@@ -24,6 +24,14 @@
     "./managers/*": {
       "import": "./lib/managers/*.js",
       "types": "./lib/managers/*.d.ts"
+    },
+    "./storage": {
+      "import": "./lib/storage/index.js",
+      "types": "./lib/storage/index.d.ts"
+    },
+    "./storage/*": {
+      "import": "./lib/storage/*.js",
+      "types": "./lib/storage/*.d.ts"
     }
   },
   "files": [
