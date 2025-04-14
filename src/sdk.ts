@@ -80,9 +80,6 @@ export class ShopeeSDK {
     shopId?: number,
     mainAccountId?: number
   ): Promise<AccessToken | null> {
-    if (shopId) {
-      this.tokenStorage = new CustomTokenStorage(shopId);
-    }
     const token = await this.auth.getAccessToken(code, shopId, mainAccountId);
     await this.tokenStorage.store(token);
     return token;
