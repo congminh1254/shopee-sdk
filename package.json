@@ -17,8 +17,7 @@
     "build": "node --loader ts-node/esm node_modules/.bin/tsc",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint \"src/**/*.ts\"",
-    "prepare": "npm run build"
+    "lint": "eslint \"src/**/*.ts\""
   },
   "repository": {
     "type": "git",
@@ -44,6 +43,11 @@
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@types/node-fetch": "^2.6.12",
+    "axios": "^1.8.4",
+    "node-fetch": "^2.6.3"
   }
 }
