@@ -1,0 +1,13 @@
+src/
+tests/
+coverage/
+.git/
+.gitignore
+.npmignore
+.eslintrc.json
+.prettierrc
+jest.config.js
+tsconfig.json
+*.test.ts
+*.test.js
+*.map 
