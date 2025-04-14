@@ -9,8 +9,22 @@
       "import": "./lib/sdk.js",
       "types": "./lib/sdk.d.ts"
     },
-    "./schemas": "./lib/schemas/index.js",
-    "./managers": "./lib/managers/index.js"
+    "./schemas": {
+      "import": "./lib/schemas/index.js",
+      "types": "./lib/schemas/index.d.ts"
+    },
+    "./schemas/*": {
+      "import": "./lib/schemas/*.js",
+      "types": "./lib/schemas/*.d.ts"
+    },
+    "./managers": {
+      "import": "./lib/managers/index.js",
+      "types": "./lib/managers/index.d.ts"
+    },
+    "./managers/*": {
+      "import": "./lib/managers/*.js",
+      "types": "./lib/managers/*.d.ts"
+    }
   },
   "files": [
     "lib/**/*"
