@@ -9,6 +9,7 @@ import { AccessToken } from './schemas/access-token.js';
 import { ShopeeSdkError } from './errors.js';
 import { PublicManager } from './managers/public.manager.js';
 import { PushManager } from './managers/push.manager.js';
+import { generateSignature } from './utils/signature.js';
 
 export interface ShopeeConfig {
   partner_id: number;
@@ -60,6 +61,18 @@ export class ShopeeSDK {
   public setBaseUrl(baseUrl: string): void {
     this.config.base_url = baseUrl;
     this.config.region = undefined;
+  }
+
+  public getAuthorizationUrl(redirect_uri: string): string {
+    const timestamp = Math.floor(Date.now() / 1000);
+    return `${this.config.base_url}/shop/auth_partner?partner_id=${this.config.partner_id}&timestamp=${timestamp}&redirect=${redirect_uri}&sign=${generateSignature(
+      this.config.partner_key,
+      [
+        this.config.partner_id.toString(),
+        '/api/v2/shop/auth_partner',
+        timestamp.toString()
+      ]
+    )}`;
   }
 
   public async authenticateWithCode(

@@ -26,6 +26,7 @@ export declare class ShopeeSDK {
     getConfig(): ShopeeConfig;
     setRegion(region: ShopeeRegion): void;
     setBaseUrl(baseUrl: string): void;
+    getAuthorizationUrl(redirect_uri: string): string;
     authenticateWithCode(code: string, shopId?: number, mainAccountId?: number): Promise<AccessToken | null>;
     getAuthToken(): Promise<AccessToken | null>;
     refreshToken(shop_id?: number, merchant_id?: number): Promise<AccessToken | null>;
