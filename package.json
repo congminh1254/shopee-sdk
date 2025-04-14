@@ -8,7 +8,9 @@
     ".": {
       "import": "./lib/sdk.js",
       "types": "./lib/sdk.d.ts"
-    }
+    },
+    "./schemas": "./lib/schemas/index.js",
+    "./managers": "./lib/managers/index.js"
   },
   "files": [
     "lib/**/*"
