@@ -2,7 +2,7 @@ import { RequestInit } from 'node-fetch';
 
 export type FetchOptions = Omit<RequestInit, 'body'> & {
   params?: Record<string, string | number | boolean | undefined | null>;
-  body?: Record<string, string | number | boolean | undefined | null>;
+  body?: unknown;
   auth?: boolean;
 }
 
