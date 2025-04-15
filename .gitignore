@@ -136,4 +136,6 @@ dist
 .pnp.*
 
 # TypeScript build output
-lib/
+# lib/
+main.ts
+.token

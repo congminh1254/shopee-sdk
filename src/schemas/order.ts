@@ -1,3 +1,5 @@
+import { FetchResponse } from './fetch.js';
+
 export interface OrderItem {
   item_id: number;
   item_name: string;
@@ -118,10 +120,81 @@ export interface Order {
   invoice_data?: InvoiceData;
 }
 
-export interface GetOrderListParams {
-  timeRangeField: string;
-  timeFrom: number;
-  timeTo: number;
-  pageSize: number;
+export type TimeRangeField = 'create_time' | 'update_time';
+export type OrderStatus =
+  | 'UNPAID'
+  | 'READY_TO_SHIP'
+  | 'PROCESSED'
+  | 'SHIPPED'
+  | 'COMPLETED'
+  | 'IN_CANCEL'
+  | 'CANCELLED'
+  | 'INVOICE_PENDING';
+
+export interface OrderListItem {
+  order_sn: string;
+  order_status?: OrderStatus;
+  booking_sn?: string;
+}
+
+export type GetOrderListParams = {
+  time_range_field: TimeRangeField;
+  time_from: number;
+  time_to: number;
+  page_size: number;
   cursor?: string;
-} 
+  order_status?: OrderStatus;
+  response_optional_fields?: string;
+  request_order_status_pending?: boolean;
+  logistics_channel_id?: number;
+};
+
+export interface GetOrderListResponse
+  extends FetchResponse<{
+    more: boolean;
+    next_cursor: string;
+    order_list: OrderListItem[];
+  }> {}
+
+export const allOptionalFields =
+  'buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address,actual_shipping_fee,goods_to_declare,note,note_update_time,item_list,pay_time,dropshipper,dropshipper_phone,split_up,buyer_cancel_reason,cancel_by,cancel_reason,actual_shipping_fee_confirmed,buyer_cpf_id,fulfillment_flag,pickup_done_time,package_list,shipping_carrier,payment_method,total_amount,invoice_data,order_chargeable_weight_gram,return_request_due_date,edt';
+export type OrderDetailOptionalFields =
+  | 'buyer_user_id'
+  | 'buyer_username'
+  | 'estimated_shipping_fee'
+  | 'recipient_address'
+  | 'actual_shipping_fee'
+  | 'goods_to_declare'
+  | 'note'
+  | 'note_update_time'
+  | 'item_list'
+  | 'pay_time'
+  | 'dropshipper'
+  | 'dropshipper_phone'
+  | 'split_up'
+  | 'buyer_cancel_reason'
+  | 'cancel_by'
+  | 'cancel_reason'
+  | 'actual_shipping_fee_confirmed'
+  | 'buyer_cpf_id'
+  | 'fulfillment_flag'
+  | 'pickup_done_time'
+  | 'package_list'
+  | 'shipping_carrier'
+  | 'payment_method'
+  | 'total_amount'
+  | 'invoice_data'
+  | 'order_chargeable_weight_gram'
+  | 'return_request_due_date'
+  | 'edt';
+
+export type GetOrdersDetailParams = {
+  order_sn_list: string[];
+  request_order_status_pending?: boolean;
+  response_optional_fields?: string;
+};
+
+export interface GetOrdersDetailResponse
+  extends FetchResponse<{
+    order_list: Order[];
+  }> {}
