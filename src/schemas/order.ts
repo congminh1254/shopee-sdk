@@ -72,13 +72,44 @@ export interface PackageItem {
 }
 
 /**
+ * The logistics status of a package
+ */
+export type LogisticsStatus =
+  /** Initial status, order not ready for fulfillment */
+  | 'LOGISTICS_NOT_STARTED'
+  /** order arranged shipment */
+  | 'LOGISTICS_REQUEST_CREATED'
+  /** order handed over to 3PL */
+  | 'LOGISTICS_PICKUP_DONE'
+  /** order pending 3PL retry pickup */
+  | 'LOGISTICS_PICKUP_RETRY'
+  /** order cancelled by 3PL due to failed pickup or picked up but not able to proceed with delivery */
+  | 'LOGISTICS_PICKUP_FAILED'
+  /** order successfully delivered */
+  | 'LOGISTICS_DELIVERY_DONE'
+  /** order cancelled due to 3PL delivery failed */
+  | 'LOGISTICS_DELIVERY_FAILED'
+  /** order cancelled when order at LOGISTICS_REQUEST_CREATED */
+  | 'LOGISTICS_REQUEST_CANCELED'
+  /** Integrated logistics COD: Order rejected for COD */
+  | 'LOGISTICS_COD_REJECTED'
+  /** order ready for fulfilment from payment perspective: non-COD: order paid, COD: order passed COD screening */
+  | 'LOGISTICS_READY'
+  /** order cancelled when order at LOGISTICS_READY */
+  | 'LOGISTICS_INVALID'
+  /** order cancelled due to 3PL lost the order */
+  | 'LOGISTICS_LOST'
+  /** order logistics pending arrangement */
+  | 'LOGISTICS_PENDING_ARRANGE';
+
+/**
  * Represents a package in an order with shipping information
  */
 export interface Package {
   /** Shopee's unique identifier for the package under an order */
   package_number: string;
   /** The Shopee logistics status for the order */
-  logistics_status: string;
+  logistics_status: LogisticsStatus;
   /** The identity of logistic channel */
   logistics_channel_id: number;
   /** The logistics service provider that the buyer selected for the order to deliver items */
@@ -155,7 +186,7 @@ export interface Order {
   /** The list of pending terms, possible values: SYSTEM_PENDING for order under Shopee internal processing, KYC_PENDING for order under KYC checking(TW CB order only) */
   pending_terms: string[];
   /** Enumerated type that defines the current status of the order */
-  order_status: string;
+  order_status: OrderStatus;
   /** The logistics service provider that the buyer selected for the order to deliver items */
   shipping_carrier: string;
   /** The payment method that the buyer selected to pay for the order */
@@ -245,14 +276,26 @@ export type TimeRangeField = 'create_time' | 'update_time';
  * The status of an order
  */
 export type OrderStatus =
+  /** Order is created, buyer has not paid yet */
   | 'UNPAID'
+  /** Seller can arrange shipment */
   | 'READY_TO_SHIP'
+  /** Seller has arranged shipment online and got tracking number from 3PL */
   | 'PROCESSED'
+  /** 3PL pickup parcel fail. Need to re arrange shipment */
+  | 'RETRY_SHIP'
+  /** The parcel has been drop to 3PL or picked up by 3PL */
   | 'SHIPPED'
-  | 'COMPLETED'
+  /** The order has been received by buyer */
+  | 'TO_CONFIRM_RECEIVE'
+  /** The order's cancelation is under processing */
   | 'IN_CANCEL'
+  /** The order has been canceled */
   | 'CANCELLED'
-  | 'INVOICE_PENDING';
+  /** The buyer requested to return the order and order's return is processing */
+  | 'TO_RETURN'
+  /** The order has been completed */
+  | 'COMPLETED';
 
 /**
  * Represents a single order in the order list response
