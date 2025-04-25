@@ -74,6 +74,18 @@ export class ShopeeFetch {
 
       if (responseType?.indexOf('application/json') !== -1) {
         if (responseData.error) {
+          // Handle invalid access token error
+          if (responseData.error === 'invalid_access_token' && options.auth) {
+            try {
+              // Attempt to refresh the access token
+              await config.sdk?.refreshToken();
+              // Retry the request with the new token
+              return this.fetch(config, path, options);
+            } catch (refreshError) {
+              // If refresh fails, throw the original error
+              throw new ShopeeApiError(response.status, responseData);
+            }
+          }
           throw new ShopeeApiError(response.status, responseData);
         }
 
