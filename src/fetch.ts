@@ -21,7 +21,7 @@ export class ShopeeFetch {
     ]);
 
     // Add query parameters
-    Object.keys(params).forEach(key => params[key] === undefined ? delete params[key] : {});
+    Object.keys(params).forEach((key) => (params[key] === undefined ? delete params[key] : {}));
     const allParams = {
       partner_id: config.partner_id,
       timestamp,
@@ -71,10 +71,24 @@ export class ShopeeFetch {
       const response: Response = await fetch(url.toString(), requestOptions);
       const responseType = response.headers.get('Content-Type');
       const responseData =
-        responseType?.indexOf('application/json') !== -1 ? await response.json() : await response.text();
+        responseType?.indexOf('application/json') !== -1
+          ? await response.json()
+          : await response.text();
 
       if (responseType?.indexOf('application/json') !== -1) {
         if (responseData.error) {
+          // Handle invalid access token error
+          if (responseData.error === 'invalid_acceess_token' && options.auth) {
+            try {
+              // Attempt to refresh the access token
+              await config.sdk?.refreshToken();
+              // Retry the request with the new token
+              return this.fetch(config, path, options);
+            } catch (refreshError) {
+              // If refresh fails, throw the original error
+              throw new ShopeeApiError(response.status, responseData);
+            }
+          }
           throw new ShopeeApiError(response.status, responseData);
         }
 
