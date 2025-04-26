@@ -21,6 +21,7 @@ export class ShopeeFetch {
     ]);
 
     // Add query parameters
+    Object.keys(params).forEach(key => params[key] === undefined ? delete params[key] : {});
     const allParams = {
       partner_id: config.partner_id,
       timestamp,
