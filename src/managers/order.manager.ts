@@ -14,6 +14,8 @@ import {
   UnsplitOrderResponse,
   CancelOrderParams,
   CancelOrderResponse,
+  GetBuyerInvoiceInfoParams,
+  GetBuyerInvoiceInfoResponse,
 } from '../schemas/order.js';
 import { ShopeeFetch } from '../fetch.js';
 
@@ -176,5 +178,41 @@ export class OrderManager extends BaseManager {
         auth: true
       }
     );
+  }
+
+  /**
+   * Get buyer invoice information for orders
+   * 
+   * Use this API to obtain buyer submitted invoice info for VN, TH and PH local sellers only.
+   * 
+   * @param params - The parameters for getting buyer invoice info
+   * @param params.queries - List of order queries
+   * @param params.queries[].order_sn - Shopee's unique identifier for an order
+   * 
+   * @returns A promise that resolves to the invoice info response containing:
+   * - invoice_info_list: List of invoice information for each order
+   *   - order_sn: Order identifier
+   *   - invoice_type: Type of invoice (personal/company)
+   *   - invoice_detail: Detailed invoice information
+   *   - error: Error message if any
+   *   - is_requested: Whether buyer requested invoice
+   * 
+   * @throws {Error} When the API request fails or returns an error
+   * - error_param: Missing or invalid parameters
+   * - error_auth: Authentication or permission errors
+   * - error_server: Internal server errors
+   */
+  async getBuyerInvoiceInfo(params: GetBuyerInvoiceInfoParams): Promise<GetBuyerInvoiceInfoResponse> {
+    const response = await ShopeeFetch.fetch<GetBuyerInvoiceInfoResponse>(
+      this.config,
+      `/order/get_buyer_invoice_info`,
+      {
+        method: 'POST',
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
   }
 } 

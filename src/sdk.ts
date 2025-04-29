@@ -10,6 +10,7 @@ import { ShopeeSdkError } from './errors.js';
 import { PublicManager } from './managers/public.manager.js';
 import { PushManager } from './managers/push.manager.js';
 import { generateSignature } from './utils/signature.js';
+import { PaymentManager } from './managers/payment.manager.js';
 
 export interface ShopeeConfig {
   partner_id: number;
@@ -28,6 +29,7 @@ export class ShopeeSDK {
   public readonly auth: AuthManager;
   public readonly public: PublicManager;
   public readonly push: PushManager;
+  public readonly payment: PaymentManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       region: ShopeeRegion.GLOBAL,
@@ -47,6 +49,7 @@ export class ShopeeSDK {
     this.auth = new AuthManager(this.config);
     this.public = new PublicManager(this.config);
     this.push = new PushManager(this.config);
+    this.payment = new PaymentManager(this.config);
   }
 
   public getConfig(): ShopeeConfig {
