@@ -1,6 +1,6 @@
 import { BaseManager } from './base.manager.js';
 import { ShopeeConfig } from '../sdk.js';
-import { GetOrderListParams, GetOrderListResponse, GetOrdersDetailParams, GetOrdersDetailResponse, GetShipmentListParams, GetShipmentListResponse, SplitOrderParams, SplitOrderResponse, UnsplitOrderParams, UnsplitOrderResponse, CancelOrderParams, CancelOrderResponse } from '../schemas/order.js';
+import { GetOrderListParams, GetOrderListResponse, GetOrdersDetailParams, GetOrdersDetailResponse, GetShipmentListParams, GetShipmentListResponse, SplitOrderParams, SplitOrderResponse, UnsplitOrderParams, UnsplitOrderResponse, CancelOrderParams, CancelOrderResponse, GetBuyerInvoiceInfoParams, GetBuyerInvoiceInfoResponse } from '../schemas/order.js';
 export declare class OrderManager extends BaseManager {
     constructor(config: ShopeeConfig);
     /**
@@ -79,4 +79,27 @@ export declare class OrderManager extends BaseManager {
      * - Order has already been shipped
      */
     cancelOrder(params: CancelOrderParams): Promise<CancelOrderResponse>;
+    /**
+     * Get buyer invoice information for orders
+     *
+     * Use this API to obtain buyer submitted invoice info for VN, TH and PH local sellers only.
+     *
+     * @param params - The parameters for getting buyer invoice info
+     * @param params.queries - List of order queries
+     * @param params.queries[].order_sn - Shopee's unique identifier for an order
+     *
+     * @returns A promise that resolves to the invoice info response containing:
+     * - invoice_info_list: List of invoice information for each order
+     *   - order_sn: Order identifier
+     *   - invoice_type: Type of invoice (personal/company)
+     *   - invoice_detail: Detailed invoice information
+     *   - error: Error message if any
+     *   - is_requested: Whether buyer requested invoice
+     *
+     * @throws {Error} When the API request fails or returns an error
+     * - error_param: Missing or invalid parameters
+     * - error_auth: Authentication or permission errors
+     * - error_server: Internal server errors
+     */
+    getBuyerInvoiceInfo(params: GetBuyerInvoiceInfoParams): Promise<GetBuyerInvoiceInfoResponse>;
 }

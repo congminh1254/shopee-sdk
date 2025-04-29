@@ -474,3 +474,119 @@ export interface CancelOrderResponse extends FetchResponse<{
     update_time: number;
 }> {
 }
+/**
+ * Query parameters for getting buyer invoice info
+ */
+export type BuyerInvoiceQuery = {
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+};
+/**
+ * Parameters for getting buyer invoice info
+ */
+export type GetBuyerInvoiceInfoParams = {
+    /** List of order queries */
+    queries: BuyerInvoiceQuery[];
+};
+/**
+ * Address breakdown information
+ */
+export type AddressBreakdown = {
+    /** Region value (PH, TH only) */
+    region: string;
+    /** State/Province (TH: Province) */
+    state: string;
+    /** City (TH: District) */
+    city: string;
+    /** Town (TH: Sub district) */
+    town: string;
+    /** Postal code (TH, PH) */
+    postcode: string;
+    /** Detailed address (street name, building, house number) */
+    detailed_address: string;
+    /** Additional address information (empty for PH, TH) */
+    additional_info: string;
+    /** Full address in format "detailed_address, town, district, state, postcode, additional_info" */
+    full_address: string;
+};
+/**
+ * Company address breakdown information
+ */
+export type CompanyAddressBreakdown = {
+    /** Region value (PH, TH only) */
+    company_region: string;
+    /** Province (PH, TH) */
+    company_state: string;
+    /** City (PH) */
+    company_city: string;
+    /** District (PH: Barangay, TH: District) */
+    company_district: string;
+    /** Town (TH: Sub district) */
+    company_town: string;
+    /** Postal code (TH, PH) */
+    company_postcode: string;
+    /** Detailed address */
+    company_detailed_address: string;
+    /** Additional information (empty for PH, TH) */
+    company_additional_info: string;
+    /** Full company address */
+    company_full_address: string;
+};
+/**
+ * Invoice details for personal or company
+ */
+export type InvoiceDetail = {
+    /** Buyer name (personal invoice only - VN, TH, PH) */
+    name?: string;
+    /** Buyer email address (personal invoice only - VN, TH, PH) */
+    email?: string;
+    /** Buyer phone number (TH only) */
+    phone_number?: string;
+    /** Tax ID (personal invoice only - VN, TH, PH) */
+    tax_id?: string;
+    /** Buyer address (personal invoice only - PH, VN) */
+    address?: string;
+    /** Buyer ID card address (personal invoice only - TH) */
+    id_card_address?: string;
+    /** Address breakdown information */
+    address_breakdown?: AddressBreakdown;
+    /** Company head office indicator (TH only, company invoice only) */
+    company_head_office?: string;
+    /** Company name (company invoice only - VN, TH, PH) */
+    company_name?: string;
+    /** Company branch name (TH only, company invoice only) */
+    company_branch_name?: string;
+    /** Company branch ID (TH only, company invoice only) */
+    company_branch_id?: string;
+    /** Company type (TH only, company invoice only) */
+    company_type?: string;
+    /** Company email (company invoice only - VN, TH, PH) */
+    company_email?: string;
+    /** Company tax ID (company invoice only - VN, TH, PH) */
+    company_tax_id?: string;
+    /** Company address (company invoice only - VN, TH) */
+    company_address?: string;
+    /** Company address breakdown */
+    company_address_breakdown?: CompanyAddressBreakdown;
+};
+/**
+ * Invoice information for an order
+ */
+export type InvoiceInfo = {
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+    /** Type of invoice requested: personal or company */
+    invoice_type: string;
+    /** Invoice details */
+    invoice_detail: InvoiceDetail | null;
+    /** Error in retrieving the receipt setting */
+    error: string;
+    /** Indicates if buyer requested invoice (applicable to PL) */
+    is_requested: boolean;
+};
+/**
+ * Response for getting buyer invoice info
+ */
+export interface GetBuyerInvoiceInfoResponse extends FetchResponse<null> {
+    invoice_info_list: InvoiceInfo[];
+}
