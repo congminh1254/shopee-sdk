@@ -7,6 +7,7 @@ import { AccessToken } from './schemas/access-token.js';
 import { PublicManager } from './managers/public.manager.js';
 import { PushManager } from './managers/push.manager.js';
 import { PaymentManager } from './managers/payment.manager.js';
+import { LogisticsManager } from './managers/logistics.manager.js';
 export interface ShopeeConfig {
     partner_id: number;
     partner_key: string;
@@ -24,6 +25,7 @@ export declare class ShopeeSDK {
     readonly public: PublicManager;
     readonly push: PushManager;
     readonly payment: PaymentManager;
+    readonly logistics: LogisticsManager;
     constructor(config: ShopeeConfig, tokenStorage?: TokenStorage);
     getConfig(): ShopeeConfig;
     setRegion(region: ShopeeRegion): void;
