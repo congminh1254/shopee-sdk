@@ -163,7 +163,7 @@ export class ProductManager extends BaseManager {
         auth: true,
         params: {
           ...params,
-          item_id_list: `[${params.item_id_list.join(',')}]`
+          item_id_list: params.item_id_list.join(',')
         }
       }
     );
