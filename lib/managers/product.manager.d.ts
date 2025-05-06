@@ -1,6 +1,6 @@
 import { BaseManager } from './base.manager.js';
 import { ShopeeConfig } from '../sdk.js';
-import { GetCommentParams, GetCommentResponse, ReplyCommentParams, ReplyCommentResponse } from '../schemas/product.js';
+import { GetCommentParams, GetCommentResponse, ReplyCommentParams, ReplyCommentResponse, GetItemListParams, GetItemListResponse, GetItemBaseInfoParams, GetItemBaseInfoResponse } from '../schemas/product.js';
 export declare class ProductManager extends BaseManager {
     constructor(config: ShopeeConfig);
     /**
@@ -47,4 +47,68 @@ export declare class ProductManager extends BaseManager {
      * - product.duplicate_comment_id: Duplicate comment id in the request
      */
     replyComment(params: ReplyCommentParams): Promise<ReplyCommentResponse>;
+    /**
+     * Use this call to get a list of items.
+     *
+     * @param params - Parameters for getting item list
+     * @param params.offset - Specifies the starting entry of data to return. Default is 0.
+     * @param params.page_size - The size of one page (1-100).
+     * @param params.update_time_from - Start of date range for item update time.
+     * @param params.update_time_to - End of date range for item update time.
+     * @param params.item_status - Array of item statuses to filter by.
+     *
+     * @returns A promise that resolves to the item list response containing:
+     * - item: List of item details (item_id, item_status, update_time, tag)
+     * - total_count: Total number of items matching the filter
+     * - has_next_page: Boolean indicating if there are more items
+     * - next_offset: Offset for the next page if has_next_page is true
+     * - warning: Optional warning message
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_update_time_range: update_time_to before update_time_from
+     * - error_param_item_status: Invalid item status
+     * - error_param_shop_id_not_found: Shop ID not found
+     * - error_param: Offset over limit
+     * - error_item_not_found: Product not found
+     */
+    getItemList(params: GetItemListParams): Promise<GetItemListResponse>;
+    /**
+     * Use this API to get basic info of items by a list of item_ids.
+     *
+     * @param params - Parameters for getting item base info
+     * @param params.item_id_list - List of Shopee's unique identifiers for items. Max 50.
+     * @param params.need_tax_info - If true, tax_info will be included in the response.
+     * @param params.need_complaint_policy - If true, complaint_policy will be included in the response (PL region only).
+     *
+     * @returns A promise that resolves to the item base info response containing:
+     * - item_list: List of detailed item base information including:
+     *   - item_id, category_id, item_name, description, item_sku, create_time, update_time
+     *   - attribute_list: Item attributes
+     *   - price_info: Pricing details (if no models)
+     *   - image: Image URLs and IDs
+     *   - weight, dimension: Physical characteristics
+     *   - logistic_info: Enabled logistics channels and fees
+     *   - pre_order: Pre-order status and days to ship
+     *   - wholesales: Wholesale pricing tiers
+     *   - condition, size_chart, item_status, deboost, has_model, promotion_id
+     *   - video_info: Video URLs, thumbnails, and duration
+     *   - brand: Brand ID and name
+     *   - item_dangerous: Dangerous goods status
+     *   - gtin_code, size_chart_id, promotion_image, compatibility_info, scheduled_publish_time
+     *   - authorised_brand_id, ssp_id, is_fulfillment_by_shopee
+     *   - complaint_policy: (If requested and applicable)
+     *   - tax_info: (If requested)
+     *   - description_info, description_type: Normal or extended description details
+     *   - stock_info_v2: Detailed stock information (summary, seller, Shopee, advance)
+     *   - certification_info: Product certifications
+     * - warning: Optional warning message
+     * - Note: The top-level complaint_policy and tax_info in the response object seem redundant as they are also part of each item in item_list if requested.
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_item_not_found: Item ID not found
+     * - error_param_shop_id_not_found: Shop ID not found
+     * - error_invalid_language: Invalid language
+     * - error_query_over_itemid_size: Too many item_ids in list
+     */
+    getItemBaseInfo(params: GetItemBaseInfoParams): Promise<GetItemBaseInfoResponse>;
 }
