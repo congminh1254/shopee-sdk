@@ -48,7 +48,13 @@ export class ShopeeFetch {
       ]);
     }
     Object.entries({ ...allParams, ...authParams, sign: signature }).forEach(([key, value]) => {
-      url.searchParams.append(key, String(value));
+      if (Array.isArray(value)) {
+        value.forEach(item => {
+          url.searchParams.append(key, String(item));
+        });
+      } else {
+        url.searchParams.append(key, String(value));
+      }
     });
 
     // Prepare headers

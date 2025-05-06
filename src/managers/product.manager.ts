@@ -109,10 +109,7 @@ export class ProductManager extends BaseManager {
       {
         method: 'GET',
         auth: true,
-        params: {
-          ...params,
-          item_status: params.item_status.join(',') // Convert array to comma-separated string for API
-        },
+        params,
       }
     );
 
@@ -166,7 +163,7 @@ export class ProductManager extends BaseManager {
         auth: true,
         params: {
           ...params,
-          item_id_list: params.item_id_list.join(',') // Convert array to comma-separated string for API
+          item_id_list: `[${params.item_id_list.join(',')}]`
         }
       }
     );

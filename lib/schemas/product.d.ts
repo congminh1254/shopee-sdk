@@ -140,7 +140,7 @@ export type GetItemListParams = {
     update_time_to?: number;
     /** Item status filter. If multiple, use separate parameters (e.g. item_status=NORMAL&item_status=BANNED) */
     item_status: ItemStatus[];
-} & Record<string, string | number | boolean | null | undefined>;
+};
 /**
  * Item tag details
  */
@@ -188,7 +188,7 @@ export type GetItemBaseInfoParams = {
     need_tax_info?: boolean;
     /** If true, response will include complaint_policy */
     need_complaint_policy?: boolean;
-} & Record<string, string | number | boolean | null | undefined>;
+};
 /**
  * Price information for an item
  */
