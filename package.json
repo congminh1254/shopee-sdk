@@ -1,6 +1,6 @@
 {
-  "name": "shopee-sdk",
-  "version": "0.3.0",
+  "name": "@congminh1254/shopee-sdk",
+  "version": "0.1.6",
   "description": "Shopee SDK maintaining by community",
   "type": "module",
   "main": "./lib/sdk.js",
@@ -43,6 +43,9 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
     "prepare": "husky install"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",

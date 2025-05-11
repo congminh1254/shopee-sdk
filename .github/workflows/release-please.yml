@@ -22,7 +22,7 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: shopee-sdk
+          package-name: "@congminh1254/shopee-sdk"
           token: ${{ secrets.GITHUB_TOKEN }}
           pull-request-title-pattern: 'chore: release ${component} ${version}'
           config-file: release-please-config.json
@@ -37,9 +37,10 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
+          scope: '@congminh1254'
       - run: npm ci
       - run: npm run build
       - run: npm test
-      - run: npm publish
+      - run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 
