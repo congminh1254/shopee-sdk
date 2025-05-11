@@ -9,4 +9,4 @@ export interface AuthedShop {
   auth_time: number;
   expire_time: number;
   sip_affi_shops: SipAffiliateShop[];
-} 
+}

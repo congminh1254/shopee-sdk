@@ -1,6 +1,6 @@
-import { BaseManager } from './base.manager.js';
-import { ShopeeConfig } from '../sdk.js';
-import { GetCommentParams, GetCommentResponse, ReplyCommentParams, ReplyCommentResponse, GetItemListParams, GetItemListResponse, GetItemBaseInfoParams, GetItemBaseInfoResponse } from '../schemas/product.js';
+import { BaseManager } from "./base.manager.js";
+import { ShopeeConfig } from "../sdk.js";
+import { GetCommentParams, GetCommentResponse, ReplyCommentParams, ReplyCommentResponse, GetItemListParams, GetItemListResponse, GetItemBaseInfoParams, GetItemBaseInfoResponse } from "../schemas/product.js";
 export declare class ProductManager extends BaseManager {
     constructor(config: ShopeeConfig);
     /**

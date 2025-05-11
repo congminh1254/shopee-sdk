@@ -2,9 +2,9 @@ name: Tests
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
@@ -25,4 +25,4 @@ jobs:
       - name: Build
         run: npm run build
       - name: Run tests
-        run: npm test 
+        run: npm test

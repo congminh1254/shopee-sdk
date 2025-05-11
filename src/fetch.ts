@@ -1,8 +1,8 @@
-import fetch, { RequestInit, Response, Headers, HeadersInit } from 'node-fetch';
-import { ShopeeConfig } from './sdk.js';
-import { FetchOptions } from './schemas/fetch.js';
-import { ShopeeApiError, ShopeeSdkError } from './errors.js';
-import { generateSignature } from './utils/signature.js';
+import fetch, { RequestInit, Response, Headers, HeadersInit } from "node-fetch";
+import { ShopeeConfig } from "./sdk.js";
+import { FetchOptions } from "./schemas/fetch.js";
+import { ShopeeApiError, ShopeeSdkError } from "./errors.js";
+import { generateSignature } from "./utils/signature.js";
 
 export class ShopeeFetch {
   public static async fetch<T>(
@@ -10,7 +10,7 @@ export class ShopeeFetch {
     path: string,
     options: FetchOptions = {}
   ): Promise<T> {
-    const { method = 'GET', params = {}, body } = options;
+    const { method = "GET", params = {}, body } = options;
     const url = new URL(`${config.base_url}${path}`);
     // Add required parameters
     const timestamp = Math.floor(Date.now() / 1000);
@@ -31,9 +31,12 @@ export class ShopeeFetch {
     let authParams = {};
 
     if (options.auth) {
-      const token = await config.sdk?.getAuthToken();
+      let token = await config.sdk?.getAuthToken();
+      if (token?.expired_at && token.expired_at < Date.now()) {
+        token = await config.sdk?.refreshToken();
+      }
       if (!token) {
-        throw new ShopeeSdkError('No access token found');
+        throw new ShopeeSdkError("No access token found");
       }
       authParams = {
         access_token: token?.access_token,
@@ -49,7 +52,7 @@ export class ShopeeFetch {
     }
     Object.entries({ ...allParams, ...authParams, sign: signature }).forEach(([key, value]) => {
       if (Array.isArray(value)) {
-        value.forEach(item => {
+        value.forEach((item) => {
           url.searchParams.append(key, String(item));
         });
       } else {
@@ -59,7 +62,7 @@ export class ShopeeFetch {
 
     // Prepare headers
     const headers = new Headers();
-    headers.set('Content-Type', 'application/json');
+    headers.set("Content-Type", "application/json");
     if (options.headers) {
       Object.entries(options.headers).forEach(([key, value]) => {
         headers.set(key, value as string);
@@ -75,16 +78,16 @@ export class ShopeeFetch {
 
     try {
       const response: Response = await fetch(url.toString(), requestOptions);
-      const responseType = response.headers.get('Content-Type');
+      const responseType = response.headers.get("Content-Type");
       const responseData =
-        responseType?.indexOf('application/json') !== -1
+        responseType?.indexOf("application/json") !== -1
           ? await response.json()
           : await response.text();
 
-      if (responseType?.indexOf('application/json') !== -1) {
+      if (responseType?.indexOf("application/json") !== -1) {
         if (responseData.error) {
           // Handle invalid access token error
-          if (responseData.error === 'invalid_acceess_token' && options.auth) {
+          if (responseData.error === "invalid_acceess_token" && options.auth) {
             try {
               // Attempt to refresh the access token
               await config.sdk?.refreshToken();
@@ -104,14 +107,14 @@ export class ShopeeFetch {
       throw new ShopeeSdkError(`Unknown response type: ${responseType}\n${responseData}`);
     } catch (error: unknown) {
       if (error instanceof Error) {
-        if (error.name === 'FetchError') {
+        if (error.name === "FetchError") {
           // Network error
           throw new ShopeeSdkError(`Network error: ${error.message}`);
         }
         // Other errors
         throw new ShopeeSdkError(`Unexpected error: ${error.message}`);
       }
-      throw new ShopeeSdkError('Unknown error occurred');
+      throw new ShopeeSdkError("Unknown error occurred");
     }
   }
 }

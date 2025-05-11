@@ -1,17 +1,17 @@
 import { FetchResponse } from "./fetch.js";
-import { BaseResponse } from './base.js';
+import { BaseResponse } from "./base.js";
 import { Attribute } from "./attribute.js";
 
 /**
  * Enum for item status
  */
 export enum ItemStatus {
-  NORMAL = 'NORMAL',
-  BANNED = 'BANNED',
-  UNLIST = 'UNLIST',
-  REVIEWING = 'REVIEWING',
-  SELLER_DELETE = 'SELLER_DELETE',
-  SHOPEE_DELETE = 'SHOPEE_DELETE',
+  NORMAL = "NORMAL",
+  BANNED = "BANNED",
+  UNLIST = "UNLIST",
+  REVIEWING = "REVIEWING",
+  SELLER_DELETE = "SELLER_DELETE",
+  SHOPEE_DELETE = "SHOPEE_DELETE",
 }
 
 /**
@@ -27,7 +27,7 @@ export type GetCommentParams = {
   cursor: string;
   /** Maximum number of entries to return per page (between 1 and 100) */
   page_size: number;
-}
+};
 
 /**
  * Comment reply information
@@ -39,7 +39,7 @@ export type CommentReply = {
   hidden: boolean;
   /** The time the seller replied to the comment */
   create_time: number;
-}
+};
 
 /**
  * Media information for a comment
@@ -49,7 +49,7 @@ export type CommentMedia = {
   image_url_list: string[];
   /** List of video URLs uploaded by the buyer in the comment */
   video_url_list: string[];
-}
+};
 
 /**
  * Individual comment information
@@ -81,19 +81,20 @@ export type CommentItem = {
   comment_reply?: CommentReply;
   /** Media information for the comment */
   media: CommentMedia;
-}
+};
 
 /**
  * Response for getting product comments
  */
-export interface GetCommentResponse extends FetchResponse<{
-  /** List of comments */
-  item_comment_list: CommentItem[];
-  /** Indicates if there are more comments to fetch */
-  more: boolean;
-  /** Cursor for the next page of results */
-  next_cursor: string;
-}> {};
+export interface GetCommentResponse
+  extends FetchResponse<{
+    /** List of comments */
+    item_comment_list: CommentItem[];
+    /** Indicates if there are more comments to fetch */
+    more: boolean;
+    /** Cursor for the next page of results */
+    next_cursor: string;
+  }> {}
 
 /**
  * Comment item for replying to comments
@@ -103,7 +104,7 @@ export type ReplyCommentItem = {
   comment_id: number;
   /** The content of the reply (between 1 and 500 characters) */
   comment: string;
-}
+};
 
 /**
  * Parameters for replying to comments in batch
@@ -111,7 +112,7 @@ export type ReplyCommentItem = {
 export type ReplyCommentParams = {
   /** The list of comments to reply to (between 1 and 100 items) */
   comment_list: ReplyCommentItem[];
-}
+};
 
 /**
  * Result item for a comment reply operation
@@ -123,17 +124,18 @@ export type ReplyCommentResultItem = {
   fail_error?: string;
   /** Error message if the reply failed for this comment */
   fail_message?: string;
-}
+};
 
 /**
  * Response for replying to comments
  */
-export interface ReplyCommentResponse extends FetchResponse<{
-  /** The result list of the request comment list */
-  result_list: ReplyCommentResultItem[];
-  /** Warning messages to take care of */
-  warning?: string[];
-}> {}
+export interface ReplyCommentResponse
+  extends FetchResponse<{
+    /** The result list of the request comment list */
+    result_list: ReplyCommentResultItem[];
+    /** Warning messages to take care of */
+    warning?: string[];
+  }> {}
 
 /**
  * Parameters for getting item list

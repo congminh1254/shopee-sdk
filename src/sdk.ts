@@ -1,18 +1,18 @@
-import { ProductManager } from './managers/product.manager.js';
-import { OrderManager } from './managers/order.manager.js';
-import { AuthManager } from './managers/auth.manager.js';
-import { ShopeeRegion, SHOPEE_BASE_URLS } from './schemas/region.js'
-import { TokenStorage } from './storage/token-storage.interface.js';
-import { CustomTokenStorage } from './storage/custom-token-storage.js';
-import { AccessToken } from './schemas/access-token.js';
-import { ShopeeSdkError } from './errors.js';
-import { PublicManager } from './managers/public.manager.js';
-import { PushManager } from './managers/push.manager.js';
-import { generateSignature } from './utils/signature.js';
-import { PaymentManager } from './managers/payment.manager.js';
-import { LogisticsManager } from './managers/logistics.manager.js';
-import { VoucherManager } from './managers/voucher.manager.js';
-import { AdsManager } from './managers/ads.manager.js';
+import { ProductManager } from "./managers/product.manager.js";
+import { OrderManager } from "./managers/order.manager.js";
+import { AuthManager } from "./managers/auth.manager.js";
+import { ShopeeRegion, SHOPEE_BASE_URLS } from "./schemas/region.js";
+import { TokenStorage } from "./storage/token-storage.interface.js";
+import { CustomTokenStorage } from "./storage/custom-token-storage.js";
+import { AccessToken } from "./schemas/access-token.js";
+import { ShopeeSdkError } from "./errors.js";
+import { PublicManager } from "./managers/public.manager.js";
+import { PushManager } from "./managers/push.manager.js";
+import { generateSignature } from "./utils/signature.js";
+import { PaymentManager } from "./managers/payment.manager.js";
+import { LogisticsManager } from "./managers/logistics.manager.js";
+import { VoucherManager } from "./managers/voucher.manager.js";
+import { AdsManager } from "./managers/ads.manager.js";
 export interface ShopeeConfig {
   partner_id: number;
   partner_key: string;
@@ -77,11 +77,7 @@ export class ShopeeSDK {
     const timestamp = Math.floor(Date.now() / 1000);
     return `${this.config.base_url}/shop/auth_partner?partner_id=${this.config.partner_id}&timestamp=${timestamp}&redirect=${redirect_uri}&sign=${generateSignature(
       this.config.partner_key,
-      [
-        this.config.partner_id.toString(),
-        '/api/v2/shop/auth_partner',
-        timestamp.toString()
-      ]
+      [this.config.partner_id.toString(), "/api/v2/shop/auth_partner", timestamp.toString()]
     )}`;
   }
 
@@ -102,7 +98,7 @@ export class ShopeeSDK {
   public async refreshToken(shop_id?: number, merchant_id?: number): Promise<AccessToken | null> {
     const old_token = await this.tokenStorage.get();
     if (!old_token) {
-      throw new ShopeeSdkError('No token found to refresh');
+      throw new ShopeeSdkError("No token found to refresh");
     }
     const token = await this.auth.getRefreshToken(
       old_token.refresh_token,

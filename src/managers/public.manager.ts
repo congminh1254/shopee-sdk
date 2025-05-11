@@ -1,13 +1,13 @@
-import { ShopeeConfig } from '../sdk.js';
-import { ShopeeFetch } from '../fetch.js';
+import { ShopeeConfig } from "../sdk.js";
+import { ShopeeFetch } from "../fetch.js";
 import {
   GetShopsByPartnerParams,
   GetMerchantsByPartnerParams,
   GetShopsByPartnerResponse,
   GetMerchantsByPartnerResponse,
   GetShopeeIpRangeResponse,
-} from '../schemas/public.js';
-import { BaseManager } from './base.manager.js';
+} from "../schemas/public.js";
+import { BaseManager } from "./base.manager.js";
 
 export class PublicManager extends BaseManager {
   constructor(config: ShopeeConfig) {
@@ -19,9 +19,9 @@ export class PublicManager extends BaseManager {
   ): Promise<GetShopsByPartnerResponse> {
     const response = await ShopeeFetch.fetch<GetShopsByPartnerResponse>(
       this.config,
-      '/public/get_shops_by_partner',
+      "/public/get_shops_by_partner",
       {
-        method: 'GET',
+        method: "GET",
         params: {
           partner_id: this.config.partner_id,
           ...params,
@@ -37,9 +37,9 @@ export class PublicManager extends BaseManager {
   ): Promise<GetMerchantsByPartnerResponse> {
     const response = await ShopeeFetch.fetch<GetMerchantsByPartnerResponse>(
       this.config,
-      '/public/get_merchants_by_partner',
+      "/public/get_merchants_by_partner",
       {
-        method: 'GET',
+        method: "GET",
         params: {
           partner_id: this.config.partner_id,
           ...params,
@@ -53,9 +53,9 @@ export class PublicManager extends BaseManager {
   public async getShopeeIpRange(): Promise<GetShopeeIpRangeResponse> {
     const response = await ShopeeFetch.fetch<GetShopeeIpRangeResponse>(
       this.config,
-      '/public/get_shopee_ip_ranges',
+      "/public/get_shopee_ip_ranges",
       {
-        method: 'GET',
+        method: "GET",
       }
     );
 

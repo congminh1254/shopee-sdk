@@ -1,4 +1,4 @@
-import { BaseResponse } from './base.js';
+import { BaseResponse } from "./base.js";
 /**
  * Enum for logistics status
  */

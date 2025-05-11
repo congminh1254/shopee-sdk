@@ -10,7 +10,7 @@ export interface SetAppPushConfigParams extends Record<string, string | number |
 export type SetAppPushConfigResponse = FetchResponse<{
     result: string;
 }>;
-export type LivePushStatus = 'Normal' | 'Warning' | 'Suspended';
+export type LivePushStatus = "Normal" | "Warning" | "Suspended";
 export interface GetAppPushConfigResponse extends FetchResponse<{
     callback_url: string;
     live_push_status: LivePushStatus;

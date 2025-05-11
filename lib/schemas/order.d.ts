@@ -1,4 +1,4 @@
-import { FetchResponse } from './fetch.js';
+import { FetchResponse } from "./fetch.js";
 /**
  * Represents an item in an order with detailed product information
  */
@@ -73,31 +73,31 @@ export interface PackageItem {
  */
 export type LogisticsStatus = 
 /** Initial status, order not ready for fulfillment */
-'LOGISTICS_NOT_STARTED'
+"LOGISTICS_NOT_STARTED"
 /** order arranged shipment */
- | 'LOGISTICS_REQUEST_CREATED'
+ | "LOGISTICS_REQUEST_CREATED"
 /** order handed over to 3PL */
- | 'LOGISTICS_PICKUP_DONE'
+ | "LOGISTICS_PICKUP_DONE"
 /** order pending 3PL retry pickup */
- | 'LOGISTICS_PICKUP_RETRY'
+ | "LOGISTICS_PICKUP_RETRY"
 /** order cancelled by 3PL due to failed pickup or picked up but not able to proceed with delivery */
- | 'LOGISTICS_PICKUP_FAILED'
+ | "LOGISTICS_PICKUP_FAILED"
 /** order successfully delivered */
- | 'LOGISTICS_DELIVERY_DONE'
+ | "LOGISTICS_DELIVERY_DONE"
 /** order cancelled due to 3PL delivery failed */
- | 'LOGISTICS_DELIVERY_FAILED'
+ | "LOGISTICS_DELIVERY_FAILED"
 /** order cancelled when order at LOGISTICS_REQUEST_CREATED */
- | 'LOGISTICS_REQUEST_CANCELED'
+ | "LOGISTICS_REQUEST_CANCELED"
 /** Integrated logistics COD: Order rejected for COD */
- | 'LOGISTICS_COD_REJECTED'
+ | "LOGISTICS_COD_REJECTED"
 /** order ready for fulfilment from payment perspective: non-COD: order paid, COD: order passed COD screening */
- | 'LOGISTICS_READY'
+ | "LOGISTICS_READY"
 /** order cancelled when order at LOGISTICS_READY */
- | 'LOGISTICS_INVALID'
+ | "LOGISTICS_INVALID"
 /** order cancelled due to 3PL lost the order */
- | 'LOGISTICS_LOST'
+ | "LOGISTICS_LOST"
 /** order logistics pending arrangement */
- | 'LOGISTICS_PENDING_ARRANGE';
+ | "LOGISTICS_PENDING_ARRANGE";
 /**
  * Represents a package in an order with shipping information
  */
@@ -262,31 +262,31 @@ export interface Order {
 /**
  * The kind of time range field for order list query
  */
-export type TimeRangeField = 'create_time' | 'update_time';
+export type TimeRangeField = "create_time" | "update_time";
 /**
  * The status of an order
  */
 export type OrderStatus = 
 /** Order is created, buyer has not paid yet */
-'UNPAID'
+"UNPAID"
 /** Seller can arrange shipment */
- | 'READY_TO_SHIP'
+ | "READY_TO_SHIP"
 /** Seller has arranged shipment online and got tracking number from 3PL */
- | 'PROCESSED'
+ | "PROCESSED"
 /** 3PL pickup parcel fail. Need to re arrange shipment */
- | 'RETRY_SHIP'
+ | "RETRY_SHIP"
 /** The parcel has been drop to 3PL or picked up by 3PL */
- | 'SHIPPED'
+ | "SHIPPED"
 /** The order has been received by buyer */
- | 'TO_CONFIRM_RECEIVE'
+ | "TO_CONFIRM_RECEIVE"
 /** The order's cancelation is under processing */
- | 'IN_CANCEL'
+ | "IN_CANCEL"
 /** The order has been canceled */
- | 'CANCELLED'
+ | "CANCELLED"
 /** The buyer requested to return the order and order's return is processing */
- | 'TO_RETURN'
+ | "TO_RETURN"
 /** The order has been completed */
- | 'COMPLETED';
+ | "COMPLETED";
 /**
  * Represents a single order in the order list response
  */
@@ -334,7 +334,7 @@ export interface GetOrderListResponse extends FetchResponse<{
 }> {
 }
 export declare const allOptionalFields = "buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address,actual_shipping_fee,goods_to_declare,note,note_update_time,item_list,pay_time,dropshipper,dropshipper_phone,split_up,buyer_cancel_reason,cancel_by,cancel_reason,actual_shipping_fee_confirmed,buyer_cpf_id,fulfillment_flag,pickup_done_time,package_list,shipping_carrier,payment_method,total_amount,invoice_data,order_chargeable_weight_gram,return_request_due_date,edt";
-export type OrderDetailOptionalFields = 'buyer_user_id' | 'buyer_username' | 'estimated_shipping_fee' | 'recipient_address' | 'actual_shipping_fee' | 'goods_to_declare' | 'note' | 'note_update_time' | 'item_list' | 'pay_time' | 'dropshipper' | 'dropshipper_phone' | 'split_up' | 'buyer_cancel_reason' | 'cancel_by' | 'cancel_reason' | 'actual_shipping_fee_confirmed' | 'buyer_cpf_id' | 'fulfillment_flag' | 'pickup_done_time' | 'package_list' | 'shipping_carrier' | 'payment_method' | 'total_amount' | 'invoice_data' | 'order_chargeable_weight_gram' | 'return_request_due_date' | 'edt';
+export type OrderDetailOptionalFields = "buyer_user_id" | "buyer_username" | "estimated_shipping_fee" | "recipient_address" | "actual_shipping_fee" | "goods_to_declare" | "note" | "note_update_time" | "item_list" | "pay_time" | "dropshipper" | "dropshipper_phone" | "split_up" | "buyer_cancel_reason" | "cancel_by" | "cancel_reason" | "actual_shipping_fee_confirmed" | "buyer_cpf_id" | "fulfillment_flag" | "pickup_done_time" | "package_list" | "shipping_carrier" | "payment_method" | "total_amount" | "invoice_data" | "order_chargeable_weight_gram" | "return_request_due_date" | "edt";
 /**
  * Parameters for getting order details
  */

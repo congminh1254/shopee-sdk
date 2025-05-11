@@ -3,4 +3,4 @@ export interface AuthedMerchant {
   merchant_id: number;
   auth_time: number;
   expire_time: number;
-} 
+}

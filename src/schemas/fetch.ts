@@ -1,10 +1,13 @@
-import { RequestInit } from 'node-fetch';
+import { RequestInit } from "node-fetch";
 
-export type FetchOptions = Omit<RequestInit, 'body'> & {
-  params?: Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>;
+export type FetchOptions = Omit<RequestInit, "body"> & {
+  params?: Record<
+    string,
+    string | number | boolean | undefined | null | (string | number | boolean)[]
+  >;
   body?: unknown;
   auth?: boolean;
-}
+};
 
 export interface FetchResponse<T> {
   result: T;
@@ -12,4 +15,4 @@ export interface FetchResponse<T> {
   request_id: string;
   error: string;
   message: string;
-} 
+}

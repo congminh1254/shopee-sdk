@@ -1,6 +1,6 @@
-import { BaseManager } from './base.manager.js';
-import { ShopeeConfig } from '../sdk.js';
-import { GetOrderListParams, GetOrderListResponse, GetOrdersDetailParams, GetOrdersDetailResponse, GetShipmentListParams, GetShipmentListResponse, SplitOrderParams, SplitOrderResponse, UnsplitOrderParams, UnsplitOrderResponse, CancelOrderParams, CancelOrderResponse, GetBuyerInvoiceInfoParams, GetBuyerInvoiceInfoResponse } from '../schemas/order.js';
+import { BaseManager } from "./base.manager.js";
+import { ShopeeConfig } from "../sdk.js";
+import { GetOrderListParams, GetOrderListResponse, GetOrdersDetailParams, GetOrdersDetailResponse, GetShipmentListParams, GetShipmentListResponse, SplitOrderParams, SplitOrderResponse, UnsplitOrderParams, UnsplitOrderResponse, CancelOrderParams, CancelOrderResponse, GetBuyerInvoiceInfoParams, GetBuyerInvoiceInfoResponse } from "../schemas/order.js";
 export declare class OrderManager extends BaseManager {
     constructor(config: ShopeeConfig);
     /**

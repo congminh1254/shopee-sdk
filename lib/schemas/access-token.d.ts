@@ -9,8 +9,9 @@ export interface AccessToken {
     merchant_id_list?: number[];
     shop_id_list?: number[];
     supplier_id_list?: number[];
+    expired_at?: number;
 }
-export interface RefreshedAccessToken extends Omit<AccessToken, 'merchant_id_list' | 'shop_id_list' | 'supplier_id_list'> {
+export interface RefreshedAccessToken extends Omit<AccessToken, "merchant_id_list" | "shop_id_list" | "supplier_id_list"> {
     partner_id: number;
     shop_id?: number;
     merchant_id?: number;

@@ -1,7 +1,7 @@
 export class ShopeeSdkError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'ShopeeSdkError';
+    this.name = "ShopeeSdkError";
   }
 }
 
@@ -11,8 +11,8 @@ export class ShopeeApiError extends Error {
 
   constructor(status: number, data: unknown) {
     super(`API Error: ${status} - ${JSON.stringify(data)}`);
-    this.name = 'ShopeeApiError';
+    this.name = "ShopeeApiError";
     this.status = status;
     this.data = data;
   }
-} 
+}

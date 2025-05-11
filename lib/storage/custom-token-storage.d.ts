@@ -1,5 +1,5 @@
-import { AccessToken } from '../schemas/access-token.js';
-import { TokenStorage } from './token-storage.interface.js';
+import { AccessToken } from "../schemas/access-token.js";
+import { TokenStorage } from "./token-storage.interface.js";
 export declare class CustomTokenStorage implements TokenStorage {
     private readonly tokenPath;
     private readonly defaultTokenPath;

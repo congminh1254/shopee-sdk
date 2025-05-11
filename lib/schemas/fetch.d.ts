@@ -1,5 +1,5 @@
-import { RequestInit } from 'node-fetch';
-export type FetchOptions = Omit<RequestInit, 'body'> & {
+import { RequestInit } from "node-fetch";
+export type FetchOptions = Omit<RequestInit, "body"> & {
     params?: Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>;
     body?: unknown;
     auth?: boolean;

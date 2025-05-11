@@ -1,4 +1,4 @@
-import { BaseResponse } from '../schemas/base.js';
+import { BaseResponse } from "../schemas/base.js";
 /**
  * Parameters for getting escrow detail
  */

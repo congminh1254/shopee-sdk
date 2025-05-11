@@ -1,4 +1,4 @@
-import { BaseResponse } from '../schemas/base.js';
+import { BaseResponse } from "../schemas/base.js";
 
 /**
  * Parameters for getting escrow detail
@@ -6,7 +6,7 @@ import { BaseResponse } from '../schemas/base.js';
 export type GetEscrowDetailParams = {
   /** Shopee's unique identifier for an order */
   order_sn: string;
-}
+};
 
 /**
  * Item details in escrow response
@@ -302,4 +302,4 @@ export interface GetEscrowDetailResponse extends BaseResponse {
     /** Buyer payment information */
     buyer_payment_info: BuyerPaymentInfo;
   };
-} 
+}

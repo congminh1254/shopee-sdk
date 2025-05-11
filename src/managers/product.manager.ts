@@ -1,7 +1,16 @@
-import { BaseManager } from './base.manager.js';
-import { ShopeeConfig } from '../sdk.js';
-import { ShopeeFetch } from '../fetch.js';
-import { GetCommentParams, GetCommentResponse, ReplyCommentParams, ReplyCommentResponse, GetItemListParams, GetItemListResponse, GetItemBaseInfoParams, GetItemBaseInfoResponse } from '../schemas/product.js';
+import { BaseManager } from "./base.manager.js";
+import { ShopeeConfig } from "../sdk.js";
+import { ShopeeFetch } from "../fetch.js";
+import {
+  GetCommentParams,
+  GetCommentResponse,
+  ReplyCommentParams,
+  ReplyCommentResponse,
+  GetItemListParams,
+  GetItemListResponse,
+  GetItemBaseInfoParams,
+  GetItemBaseInfoResponse,
+} from "../schemas/product.js";
 
 export class ProductManager extends BaseManager {
   constructor(config: ShopeeConfig) {
@@ -32,7 +41,7 @@ export class ProductManager extends BaseManager {
       this.config,
       `/product/get_comment`,
       {
-        method: 'GET',
+        method: "GET",
         auth: true,
         params,
       }
@@ -69,7 +78,7 @@ export class ProductManager extends BaseManager {
       this.config,
       `/product/reply_comment`,
       {
-        method: 'POST',
+        method: "POST",
         auth: true,
         body: params,
       }
@@ -80,21 +89,21 @@ export class ProductManager extends BaseManager {
 
   /**
    * Use this call to get a list of items.
-   * 
+   *
    * @param params - Parameters for getting item list
    * @param params.offset - Specifies the starting entry of data to return. Default is 0.
    * @param params.page_size - The size of one page (1-100).
    * @param params.update_time_from - Start of date range for item update time.
    * @param params.update_time_to - End of date range for item update time.
    * @param params.item_status - Array of item statuses to filter by.
-   * 
+   *
    * @returns A promise that resolves to the item list response containing:
    * - item: List of item details (item_id, item_status, update_time, tag)
    * - total_count: Total number of items matching the filter
    * - has_next_page: Boolean indicating if there are more items
    * - next_offset: Offset for the next page if has_next_page is true
    * - warning: Optional warning message
-   * 
+   *
    * @throws {Error} When the API request fails or returns an error:
    * - error_update_time_range: update_time_to before update_time_from
    * - error_param_item_status: Invalid item status
@@ -105,9 +114,9 @@ export class ProductManager extends BaseManager {
   async getItemList(params: GetItemListParams): Promise<GetItemListResponse> {
     const response = await ShopeeFetch.fetch<GetItemListResponse>(
       this.config,
-      '/product/get_item_list',
+      "/product/get_item_list",
       {
-        method: 'GET',
+        method: "GET",
         auth: true,
         params,
       }
@@ -157,14 +166,14 @@ export class ProductManager extends BaseManager {
   async getItemBaseInfo(params: GetItemBaseInfoParams): Promise<GetItemBaseInfoResponse> {
     const response = await ShopeeFetch.fetch<GetItemBaseInfoResponse>(
       this.config,
-      '/product/get_item_base_info',
+      "/product/get_item_base_info",
       {
-        method: 'GET',
+        method: "GET",
         auth: true,
         params: {
           ...params,
-          item_id_list: params.item_id_list.join(',')
-        }
+          item_id_list: params.item_id_list.join(","),
+        },
       }
     );
     return response;

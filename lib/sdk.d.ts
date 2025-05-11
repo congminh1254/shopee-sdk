@@ -1,15 +1,15 @@
-import { ProductManager } from './managers/product.manager.js';
-import { OrderManager } from './managers/order.manager.js';
-import { AuthManager } from './managers/auth.manager.js';
-import { ShopeeRegion } from './schemas/region.js';
-import { TokenStorage } from './storage/token-storage.interface.js';
-import { AccessToken } from './schemas/access-token.js';
-import { PublicManager } from './managers/public.manager.js';
-import { PushManager } from './managers/push.manager.js';
-import { PaymentManager } from './managers/payment.manager.js';
-import { LogisticsManager } from './managers/logistics.manager.js';
-import { VoucherManager } from './managers/voucher.manager.js';
-import { AdsManager } from './managers/ads.manager.js';
+import { ProductManager } from "./managers/product.manager.js";
+import { OrderManager } from "./managers/order.manager.js";
+import { AuthManager } from "./managers/auth.manager.js";
+import { ShopeeRegion } from "./schemas/region.js";
+import { TokenStorage } from "./storage/token-storage.interface.js";
+import { AccessToken } from "./schemas/access-token.js";
+import { PublicManager } from "./managers/public.manager.js";
+import { PushManager } from "./managers/push.manager.js";
+import { PaymentManager } from "./managers/payment.manager.js";
+import { LogisticsManager } from "./managers/logistics.manager.js";
+import { VoucherManager } from "./managers/voucher.manager.js";
+import { AdsManager } from "./managers/ads.manager.js";
 export interface ShopeeConfig {
     partner_id: number;
     partner_key: string;
