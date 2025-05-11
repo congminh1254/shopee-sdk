@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/congminh1254/shopee-sdk/compare/v0.3.0...v0.4.0) (2025-05-11)
+
+
+### Features
+
+* Implement ads get recommended keyword list ([43c056e](https://github.com/congminh1254/shopee-sdk/commit/43c056e811fdc407cabae241c2d3aae9b66a165b))
+
 ## [0.3.0](https://github.com/congminh1254/shopee-sdk/compare/v0.2.0...v0.3.0) (2025-05-11)
 
 
