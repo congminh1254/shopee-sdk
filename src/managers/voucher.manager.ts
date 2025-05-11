@@ -13,7 +13,6 @@ import {
   GetVoucherResponse,
   GetVoucherListParams,
   GetVoucherListResponse,
-  VoucherStatus
 } from "../schemas/voucher.js";
 import { ShopeeFetch } from "../fetch.js";
 

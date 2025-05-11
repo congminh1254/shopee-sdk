@@ -1,6 +1,6 @@
 import { FetchResponse } from "./fetch.js";
 import { BaseResponse } from './base.js';
-import { Attribute, AttributeValue } from "./attribute.js";
+import { Attribute } from "./attribute.js";
 
 /**
  * Enum for item status

@@ -1,7 +1,6 @@
 import { BaseManager } from './base.manager.js';
 import { ShopeeConfig } from '../sdk.js';
 import {
-  Order,
   GetOrderListParams,
   GetOrderListResponse,
   GetOrdersDetailParams,

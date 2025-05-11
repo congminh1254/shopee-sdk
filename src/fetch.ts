@@ -10,7 +10,7 @@ export class ShopeeFetch {
     path: string,
     options: FetchOptions = {}
   ): Promise<T> {
-    const { method = 'GET', params = {}, body, ...restOptions } = options;
+    const { method = 'GET', params = {}, body } = options;
     const url = new URL(`${config.base_url}${path}`);
     // Add required parameters
     const timestamp = Math.floor(Date.now() / 1000);
