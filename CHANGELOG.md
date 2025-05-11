@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/congminh1254/shopee-sdk/compare/v0.4.0...v0.5.0) (2025-05-11)
+
+
+### Features
+
+* Finalizing Ads manager ([ea9ab86](https://github.com/congminh1254/shopee-sdk/commit/ea9ab86ca6f033dc97902ac367f23680e93aac98))
+
 ## [0.4.0](https://github.com/congminh1254/shopee-sdk/compare/v0.3.0...v0.4.0) (2025-05-11)
 
 
