@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/congminh1254/shopee-sdk/compare/v0.5.0...v0.6.0) (2025-05-11)
+
+
+### Features
+
+* refresh token before expired ([2921719](https://github.com/congminh1254/shopee-sdk/commit/2921719d018c20b35d5409623242318880c81d6b))
+
 ## [0.5.0](https://github.com/congminh1254/shopee-sdk/compare/v0.4.0...v0.5.0) (2025-05-11)
 
 ### Features
