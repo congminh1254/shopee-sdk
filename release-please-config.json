@@ -7,8 +7,19 @@
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "draft": false,
-      "prerelease": false
+      "prerelease": false,
+      "include-component-in-tag": false,
+      "include-v-in-tag": true,
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "package.json",
+          "jsonpath": "$.version"
+        }
+      ]
     }
   },
+  "bootstrap-sha": "HEAD~10",
+  "last-release-sha": "HEAD~1",
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
 } 

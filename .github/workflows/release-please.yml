@@ -23,6 +23,13 @@ jobs:
           release-type: node
           package-name: shopee-sdk
           token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-title-pattern: 'chore: release ${component} ${version}'
+          command: release-pr
+          default-branch: main
+          fork: false
+          include-v-in-tag: true
+          bootstrap-sha: ${GITHUB_SHA}
+          repo-url: congminh1254/shopee-sdk
 
   publish-npm:
     needs: release-please
