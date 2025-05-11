@@ -12,6 +12,7 @@ import { PushManager } from './managers/push.manager.js';
 import { generateSignature } from './utils/signature.js';
 import { PaymentManager } from './managers/payment.manager.js';
 import { LogisticsManager } from './managers/logistics.manager.js';
+import { VoucherManager } from './managers/voucher.manager.js';
 
 export interface ShopeeConfig {
   partner_id: number;
@@ -32,6 +33,7 @@ export class ShopeeSDK {
   public readonly push: PushManager;
   public readonly payment: PaymentManager;
   public readonly logistics: LogisticsManager;
+  public readonly voucher: VoucherManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       region: ShopeeRegion.GLOBAL,
@@ -53,6 +55,7 @@ export class ShopeeSDK {
     this.push = new PushManager(this.config);
     this.payment = new PaymentManager(this.config);
     this.logistics = new LogisticsManager(this.config);
+    this.voucher = new VoucherManager(this.config);
   }
 
   public getConfig(): ShopeeConfig {
