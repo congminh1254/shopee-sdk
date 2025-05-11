@@ -1,5 +1,4 @@
 import { BaseResponse } from "./base.js";
-
 /**
  * Response for the get total balance API
  */
@@ -13,7 +12,6 @@ export interface GetTotalBalanceResponse extends BaseResponse {
     /** Optional warning message if some data cannot be responded normally */
     warning?: string;
 }
-
 /**
  * Response for the get shop toggle info API
  */
@@ -28,4 +26,4 @@ export interface GetShopToggleInfoResponse extends BaseResponse {
     };
     /** Optional warning message if some data cannot be responded normally */
     warning?: string;
-} 
+}

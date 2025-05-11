@@ -8,6 +8,8 @@ import { PublicManager } from './managers/public.manager.js';
 import { PushManager } from './managers/push.manager.js';
 import { PaymentManager } from './managers/payment.manager.js';
 import { LogisticsManager } from './managers/logistics.manager.js';
+import { VoucherManager } from './managers/voucher.manager.js';
+import { AdsManager } from './managers/ads.manager.js';
 export interface ShopeeConfig {
     partner_id: number;
     partner_key: string;
@@ -19,6 +21,7 @@ export interface ShopeeConfig {
 export declare class ShopeeSDK {
     private config;
     private tokenStorage;
+    readonly ads: AdsManager;
     readonly product: ProductManager;
     readonly order: OrderManager;
     readonly auth: AuthManager;
@@ -26,6 +29,7 @@ export declare class ShopeeSDK {
     readonly push: PushManager;
     readonly payment: PaymentManager;
     readonly logistics: LogisticsManager;
+    readonly voucher: VoucherManager;
     constructor(config: ShopeeConfig, tokenStorage?: TokenStorage);
     getConfig(): ShopeeConfig;
     setRegion(region: ShopeeRegion): void;

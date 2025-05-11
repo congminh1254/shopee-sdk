@@ -1,8 +1,7 @@
 import { ProductManager } from './managers/product.manager.js';
 import { OrderManager } from './managers/order.manager.js';
 import { AuthManager } from './managers/auth.manager.js';
-import { ShopeeRegion, SHOPEE_BASE_URLS } from './schemas/region.js';
-import { FetchOptions, FetchResponse } from './schemas/fetch.js';
+import { ShopeeRegion, SHOPEE_BASE_URLS } from './schemas/region.js'
 import { TokenStorage } from './storage/token-storage.interface.js';
 import { CustomTokenStorage } from './storage/custom-token-storage.js';
 import { AccessToken } from './schemas/access-token.js';
@@ -13,7 +12,7 @@ import { generateSignature } from './utils/signature.js';
 import { PaymentManager } from './managers/payment.manager.js';
 import { LogisticsManager } from './managers/logistics.manager.js';
 import { VoucherManager } from './managers/voucher.manager.js';
-
+import { AdsManager } from './managers/ads.manager.js';
 export interface ShopeeConfig {
   partner_id: number;
   partner_key: string;
@@ -26,6 +25,7 @@ export interface ShopeeConfig {
 export class ShopeeSDK {
   private config: ShopeeConfig;
   private tokenStorage: TokenStorage;
+  public readonly ads: AdsManager;
   public readonly product: ProductManager;
   public readonly order: OrderManager;
   public readonly auth: AuthManager;
@@ -48,6 +48,7 @@ export class ShopeeSDK {
     this.tokenStorage = tokenStorage || new CustomTokenStorage(config.shop_id);
 
     // Initialize managers
+    this.ads = new AdsManager(this.config);
     this.product = new ProductManager(this.config);
     this.order = new OrderManager(this.config);
     this.auth = new AuthManager(this.config);
