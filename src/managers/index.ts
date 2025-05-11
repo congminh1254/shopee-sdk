@@ -7,3 +7,4 @@ export * from './product.manager.js';
 export * from './public.manager.js';
 export * from './push.manager.js'; 
 export * from './voucher.manager.js';
+export * from './ads.manager.js';

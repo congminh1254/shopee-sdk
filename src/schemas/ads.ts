@@ -28,4 +28,39 @@ export interface GetShopToggleInfoResponse extends BaseResponse {
     };
     /** Optional warning message if some data cannot be responded normally */
     warning?: string;
+}
+
+/**
+ * Parameters for the get recommended keyword list API
+ */
+export type GetRecommendedKeywordListParams = {
+    /** Shopee's unique identifier for an item */
+    item_id: number;
+    /** The keyword seller typed in the manually add keyword window */
+    input_keyword?: string;
+}
+
+/**
+ * Response for the get recommended keyword list API
+ */
+export interface GetRecommendedKeywordListResponse extends BaseResponse {
+    response: {
+        /** Shopee's unique identifier for an item */
+        item_id: number;
+        /** The keyword seller typed in the manually add keyword window */
+        input_keyword?: string;
+        /** Suggested keywords recommended from product */
+        suggested_keywords: Array<{
+            /** Keyword value (Only return the highly recommended keywords, will be sightly different from Seller Center) */
+            keyword: string;
+            /** This is a measure of how attractive your ad is and its relevance to the keyword. The higher the quality score, the higher your ad rank. Ad rank is based on this score and your bid price. */
+            quality_score: number;
+            /** The number of times the keyword has been searched on Shopee in the last 30 days. The larger the search volume, the more impressions your ad will receive. */
+            search_volume: number;
+            /** This is bid price suggested by Shopee algorithm for the keyword in local currency. */
+            suggested_bid: number;
+        }>;
+    };
+    /** Optional warning message if some data cannot be responded normally */
+    warning?: string;
 } 
