@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/congminh1254/shopee-sdk/compare/v0.6.0...v0.7.0) (2025-05-12)
+
+
+### Features
+
+* implement account health manager ([738d4ce](https://github.com/congminh1254/shopee-sdk/commit/738d4ce0df947567f8cf54648e323ce4b26fcc3f))
+
 ## [0.6.0](https://github.com/congminh1254/shopee-sdk/compare/v0.5.0...v0.6.0) (2025-05-11)
 
 
