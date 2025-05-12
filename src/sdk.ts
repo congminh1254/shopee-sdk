@@ -13,6 +13,7 @@ import { PaymentManager } from "./managers/payment.manager.js";
 import { LogisticsManager } from "./managers/logistics.manager.js";
 import { VoucherManager } from "./managers/voucher.manager.js";
 import { AdsManager } from "./managers/ads.manager.js";
+import { AccountHealthManager } from "./managers/account-health.manager.js";
 export interface ShopeeConfig {
   partner_id: number;
   partner_key: string;
@@ -34,6 +35,7 @@ export class ShopeeSDK {
   public readonly payment: PaymentManager;
   public readonly logistics: LogisticsManager;
   public readonly voucher: VoucherManager;
+  public readonly accountHealth: AccountHealthManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       region: ShopeeRegion.GLOBAL,
@@ -57,6 +59,7 @@ export class ShopeeSDK {
     this.payment = new PaymentManager(this.config);
     this.logistics = new LogisticsManager(this.config);
     this.voucher = new VoucherManager(this.config);
+    this.accountHealth = new AccountHealthManager(this.config);
   }
 
   public getConfig(): ShopeeConfig {
