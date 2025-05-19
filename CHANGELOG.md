@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/congminh1254/shopee-sdk/compare/v0.7.0...v0.8.0) (2025-05-19)
+
+
+### Features
+
+* support get product model ([12dd489](https://github.com/congminh1254/shopee-sdk/commit/12dd48934f632fa40cbc1a00cd140d77139b6ba0))
+
 ## [0.7.0](https://github.com/congminh1254/shopee-sdk/compare/v0.6.0...v0.7.0) (2025-05-12)
 
 
