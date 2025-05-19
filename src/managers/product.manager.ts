@@ -10,6 +10,8 @@ import {
   GetItemListResponse,
   GetItemBaseInfoParams,
   GetItemBaseInfoResponse,
+  GetModelListParams,
+  GetModelListResponse,
 } from "../schemas/product.js";
 
 export class ProductManager extends BaseManager {
@@ -176,6 +178,38 @@ export class ProductManager extends BaseManager {
         },
       }
     );
+    return response;
+  }
+
+  /**
+   * Get model list of an item
+   *
+   * Use this API to get model list of an item.
+   *
+   * @param params - The parameters for getting the model list
+   * @param params.item_id - The ID of the item
+   *
+   * @returns A promise that resolves to the model list response containing:
+   * - tier_variation: Variation config of item with option_list and name
+   * - model: List of model information including price_info, model_id, tier_index, model_sku, model_status, etc.
+   * - standardise_tier_variation: Standardise variation config of item (if available)
+   *
+   * @throws {Error} When the API request fails or returns an error:
+   * - error_item_not_found: Item_id is not found
+   * - error_param_shop_id_not_found: Shop_id is not found
+   * - error_item_not_found: Product not found
+   */
+  async getModelList(params: GetModelListParams): Promise<GetModelListResponse> {
+    const response = await ShopeeFetch.fetch<GetModelListResponse>(
+      this.config,
+      "/product/get_model_list",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
     return response;
   }
 }

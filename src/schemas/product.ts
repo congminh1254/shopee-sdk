@@ -644,3 +644,165 @@ export interface GetItemBaseInfoResponse extends BaseResponse {
     tax_info?: TaxInfo; // This seems redundant as it's also in ItemBaseInfo
   };
 }
+
+/**
+ * Parameters for getting model list of an item
+ */
+export type GetModelListParams = {
+  /** The ID of the item */
+  item_id: number;
+};
+
+/**
+ * Option information in variation
+ */
+export interface VariationOption {
+  /** Option name */
+  option: string;
+  /** Image information for the option */
+  image?: {
+    /** Id of image */
+    image_id?: string;
+    /** Url of image */
+    image_url?: string;
+  };
+}
+
+/**
+ * Tier variation information
+ */
+export interface TierVariation {
+  /** List of options for this variation */
+  option_list: VariationOption[];
+  /** Variation name */
+  name: string;
+}
+
+/**
+ * Model price information
+ */
+export interface ModelPriceInfo {
+  /** Currency for the item price */
+  currency?: string;
+  /** Current price of item */
+  current_price: number;
+  /** Original price of item */
+  original_price: number;
+  /** Original price of item after tax */
+  inflated_price_of_original_price: number;
+  /** Current price of item after tax */
+  inflated_price_of_current_price: number;
+  /** SIP item price. Only returned for SIP primary shop */
+  sip_item_price?: number;
+  /** SIP item price source, could be manual or auto. Only returned for SIP primary shop */
+  sip_item_price_source?: string;
+  /** The currency of sip_item_price. Only returned for SIP primary shop */
+  sip_item_price_currency?: string;
+}
+
+/**
+ * Pre-order information for the model
+ */
+export interface ModelPreOrder {
+  /** Whether the model is on pre-order */
+  is_pre_order: boolean;
+  /** The days to ship for pre-order */
+  days_to_ship: number;
+}
+
+/**
+ * Model stock information
+ */
+export interface ModelStockInfoV2 {
+  /** Stock summary info */
+  summary_info?: StockSummaryInfo;
+  /** Seller stock */
+  seller_stock?: SellerStock[];
+  /** Shopee stock */
+  shopee_stock?: ShopeeStock[];
+  /** Advance stock details */
+  advance_stock?: AdvanceStock;
+}
+
+/**
+ * Model dimension information
+ */
+export interface ModelDimension {
+  /** The height of package for this model, the unit is CM */
+  package_height: number;
+  /** The length of package for this model, the unit is CM */
+  package_length: number;
+  /** The width of package for this model, the unit is CM */
+  package_width: number;
+}
+
+/**
+ * Individual model information
+ */
+export interface ModelInfo {
+  /** Price information for this model */
+  price_info: ModelPriceInfo[];
+  /** Model ID */
+  model_id?: number;
+  /** Tier index of this model */
+  tier_index?: number[];
+  /** Current promotion ID of this model */
+  promotion_id?: number;
+  /** SKU of this model */
+  model_sku?: string;
+  /** The model status, either MODEL_NORMAL or MODEL_UNAVAILABLE */
+  model_status?: string;
+  /** Pre-order information */
+  pre_order?: ModelPreOrder;
+  /** Stock information v2 */
+  stock_info_v2?: ModelStockInfoV2;
+  /** GTIN code (only available for TW seller and BR local seller) */
+  gtin_code?: string;
+  /** The weight of this model, the unit is KG */
+  weight?: string;
+  /** The dimension of this model */
+  dimension?: ModelDimension;
+  /** Whether model is fulfillment by shopee */
+  is_fulfillment_by_shopee?: boolean;
+}
+
+/**
+ * Standardized variation option
+ */
+export interface StandardVariationOption {
+  /** Standardize Option ID */
+  variation_option_id?: number;
+  /** Standardize Option Name */
+  variation_option_name?: string;
+  /** ID of image */
+  image_id?: string;
+  /** URL of image */
+  image_url?: string;
+}
+
+/**
+ * Standardized variation information
+ */
+export interface StandardiseTierVariation {
+  /** Standardize Variation ID */
+  variation_id?: number;
+  /** Standardize Variation Name */
+  variation_name?: string;
+  /** Standardize Variation Group ID */
+  variation_group_id?: number;
+  /** Standardize Variation Option List */
+  variation_option_list?: StandardVariationOption[];
+}
+
+/**
+ * Response for getting model list
+ */
+export interface GetModelListResponse
+  extends FetchResponse<{
+    /** Variation config of item */
+    tier_variation: TierVariation[];
+    /** Model list */
+    model: ModelInfo[];
+    /** Standardise Variation config of item */
+    standardise_tier_variation?: StandardiseTierVariation[];
+  }> {}

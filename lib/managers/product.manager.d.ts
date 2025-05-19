@@ -1,6 +1,6 @@
 import { BaseManager } from "./base.manager.js";
 import { ShopeeConfig } from "../sdk.js";
-import { GetCommentParams, GetCommentResponse, ReplyCommentParams, ReplyCommentResponse, GetItemListParams, GetItemListResponse, GetItemBaseInfoParams, GetItemBaseInfoResponse } from "../schemas/product.js";
+import { GetCommentParams, GetCommentResponse, ReplyCommentParams, ReplyCommentResponse, GetItemListParams, GetItemListResponse, GetItemBaseInfoParams, GetItemBaseInfoResponse, GetModelListParams, GetModelListResponse } from "../schemas/product.js";
 export declare class ProductManager extends BaseManager {
     constructor(config: ShopeeConfig);
     /**
@@ -111,4 +111,23 @@ export declare class ProductManager extends BaseManager {
      * - error_query_over_itemid_size: Too many item_ids in list
      */
     getItemBaseInfo(params: GetItemBaseInfoParams): Promise<GetItemBaseInfoResponse>;
+    /**
+     * Get model list of an item
+     *
+     * Use this API to get model list of an item.
+     *
+     * @param params - The parameters for getting the model list
+     * @param params.item_id - The ID of the item
+     *
+     * @returns A promise that resolves to the model list response containing:
+     * - tier_variation: Variation config of item with option_list and name
+     * - model: List of model information including price_info, model_id, tier_index, model_sku, model_status, etc.
+     * - standardise_tier_variation: Standardise variation config of item (if available)
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_item_not_found: Item_id is not found
+     * - error_param_shop_id_not_found: Shop_id is not found
+     * - error_item_not_found: Product not found
+     */
+    getModelList(params: GetModelListParams): Promise<GetModelListResponse>;
 }
