@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1](https://github.com/congminh1254/shopee-sdk/compare/v0.8.0...v0.8.1) (2025-05-19)
+
+
+### Bug Fixes
+
+* fix missing field name ([65fb40b](https://github.com/congminh1254/shopee-sdk/commit/65fb40b1e1d8681498eeb0595d20b49aa314f3ed))
+
 ## [0.8.0](https://github.com/congminh1254/shopee-sdk/compare/v0.7.0...v0.8.0) (2025-05-19)
 
 
