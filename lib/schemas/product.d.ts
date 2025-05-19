@@ -714,6 +714,8 @@ export interface ModelInfo {
     dimension?: ModelDimension;
     /** Whether model is fulfillment by shopee */
     is_fulfillment_by_shopee?: boolean;
+    /** Name of the model */
+    model_name?: string;
 }
 /**
  * Standardized variation option
