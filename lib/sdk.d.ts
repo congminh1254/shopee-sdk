@@ -11,6 +11,7 @@ import { LogisticsManager } from "./managers/logistics.manager.js";
 import { VoucherManager } from "./managers/voucher.manager.js";
 import { AdsManager } from "./managers/ads.manager.js";
 import { AccountHealthManager } from "./managers/account-health.manager.js";
+import { Agent } from "node:http";
 export interface ShopeeConfig {
     partner_id: number;
     partner_key: string;
@@ -18,6 +19,7 @@ export interface ShopeeConfig {
     base_url?: string;
     sdk?: ShopeeSDK;
     shop_id?: number;
+    agent?: Agent;
 }
 export declare class ShopeeSDK {
     private config;
@@ -36,6 +38,7 @@ export declare class ShopeeSDK {
     getConfig(): ShopeeConfig;
     setRegion(region: ShopeeRegion): void;
     setBaseUrl(baseUrl: string): void;
+    setFetchAgent(fetchAgent: Agent): void;
     getAuthorizationUrl(redirect_uri: string): string;
     authenticateWithCode(code: string, shopId?: number, mainAccountId?: number): Promise<AccessToken | null>;
     getAuthToken(): Promise<AccessToken | null>;

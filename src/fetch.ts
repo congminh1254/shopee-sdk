@@ -74,6 +74,7 @@ export class ShopeeFetch {
       method,
       headers: headers as unknown as HeadersInit,
       body: body ? JSON.stringify(body) : undefined,
+      agent: config.agent,
     };
 
     try {
