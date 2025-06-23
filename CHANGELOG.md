@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/congminh1254/shopee-sdk/compare/v0.8.1...v0.9.0) (2025-06-23)
+
+
+### Features
+
+* Support proxy for API request ([623084d](https://github.com/congminh1254/shopee-sdk/commit/623084d8dafc92b5cff1a68d0be8a555c02e2d33))
+
 ## [0.8.1](https://github.com/congminh1254/shopee-sdk/compare/v0.8.0...v0.8.1) (2025-05-19)
 
 
