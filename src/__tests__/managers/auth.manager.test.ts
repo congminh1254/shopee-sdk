@@ -43,24 +43,20 @@ describe("AuthManager", () => {
 
       const result = await authManager.getAccessToken("test_code");
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/auth/token/get",
-        {
-          method: "POST",
-          body: {
-            code: "test_code",
-            partner_id: 12345,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/auth/token/get", {
+        method: "POST",
+        body: {
+          code: "test_code",
+          partner_id: 12345,
+        },
+      });
 
       expect(result).toEqual({
         ...mockResponse,
         expired_at: expect.any(Number),
         shop_id: undefined,
       });
-      
+
       // Check that expired_at is calculated correctly (within 1 second tolerance)
       const expectedExpiredAt = Date.now() + 3600 * 1000 - 60 * 1000;
       expect(Math.abs(result.expired_at! - expectedExpiredAt)).toBeLessThan(1000);
@@ -80,19 +76,15 @@ describe("AuthManager", () => {
 
       const result = await authManager.getAccessToken("test_code", 123456, 789012);
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/auth/token/get",
-        {
-          method: "POST",
-          body: {
-            code: "test_code",
-            partner_id: 12345,
-            shop_id: 123456,
-            main_account_id: 789012,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/auth/token/get", {
+        method: "POST",
+        body: {
+          code: "test_code",
+          partner_id: 12345,
+          shop_id: 123456,
+          main_account_id: 789012,
+        },
+      });
 
       expect(result.shop_id).toBe(123456);
     });
@@ -131,16 +123,12 @@ describe("AuthManager", () => {
 
       const result = await authManager.getAccessTokenByResendCode("resend_code");
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_token_by_resend_code",
-        {
-          method: "POST",
-          body: {
-            resend_code: "resend_code",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_token_by_resend_code", {
+        method: "POST",
+        body: {
+          resend_code: "resend_code",
+        },
+      });
 
       expect(result).toEqual({
         ...mockResponse,
@@ -164,17 +152,13 @@ describe("AuthManager", () => {
 
       const result = await authManager.getRefreshToken("old_refresh_token");
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/auth/access_token/get",
-        {
-          method: "POST",
-          body: {
-            refresh_token: "old_refresh_token",
-            partner_id: 12345,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/auth/access_token/get", {
+        method: "POST",
+        body: {
+          refresh_token: "old_refresh_token",
+          partner_id: 12345,
+        },
+      });
 
       expect(result).toEqual({
         ...mockResponse,
@@ -196,19 +180,15 @@ describe("AuthManager", () => {
 
       const result = await authManager.getRefreshToken("old_refresh_token", 123456, 789012);
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/auth/access_token/get",
-        {
-          method: "POST",
-          body: {
-            refresh_token: "old_refresh_token",
-            partner_id: 12345,
-            shop_id: 123456,
-            merchant_id: 789012,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/auth/access_token/get", {
+        method: "POST",
+        body: {
+          refresh_token: "old_refresh_token",
+          partner_id: 12345,
+          shop_id: 123456,
+          merchant_id: 789012,
+        },
+      });
 
       expect(result.shop_id).toBe(123456);
     });

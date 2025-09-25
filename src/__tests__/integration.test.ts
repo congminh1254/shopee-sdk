@@ -10,7 +10,7 @@ ShopeeFetch.fetch = mockFetch;
 
 describe("ShopeeSDK Integration with Mock API", () => {
   let sdk: ShopeeSDK;
-  
+
   beforeEach(() => {
     jest.clearAllMocks();
 
@@ -132,7 +132,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
     };
 
     mockFetch.mockImplementationOnce(() => {
-      const error = new Error("HTTP 401 Unauthorized") as any;
+      const error = new Error("HTTP 401 Unauthorized") as Error & { status: number; data: unknown };
       error.status = 401;
       error.data = errorResponse;
       throw error;
@@ -216,32 +216,22 @@ describe("ShopeeSDK Integration with Mock API", () => {
     // Verify the calls were made correctly
     expect(mockFetch).toHaveBeenCalledTimes(2);
 
-    expect(mockFetch).toHaveBeenNthCalledWith(
-      1,
-      expect.anything(),
-      "/product/get_item_list",
-      {
-        method: "GET",
-        auth: true,
-        params: {
-          offset: 0,
-          page_size: 10,
-        },
-      }
-    );
+    expect(mockFetch).toHaveBeenNthCalledWith(1, expect.anything(), "/product/get_item_list", {
+      method: "GET",
+      auth: true,
+      params: {
+        offset: 0,
+        page_size: 10,
+      },
+    });
 
-    expect(mockFetch).toHaveBeenNthCalledWith(
-      2,
-      expect.anything(),
-      "/product/get_item_base_info",
-      {
-        method: "GET",
-        auth: true,
-        params: {
-          item_id_list: "123456",
-        },
-      }
-    );
+    expect(mockFetch).toHaveBeenNthCalledWith(2, expect.anything(), "/product/get_item_base_info", {
+      method: "GET",
+      auth: true,
+      params: {
+        item_id_list: "123456",
+      },
+    });
 
     // Verify responses
     expect(itemList).toEqual(mockItemListResponse);

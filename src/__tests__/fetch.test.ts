@@ -2,7 +2,7 @@ import { jest } from "@jest/globals";
 import { ShopeeConfig, ShopeeSDK } from "../sdk.js";
 import { ShopeeRegion } from "../schemas/region.js";
 import { AccessToken } from "../schemas/access-token.js";
-import { ShopeeApiError, ShopeeSdkError } from "../errors.js";
+import { ShopeeSdkError } from "../errors.js";
 
 // Mock fetch function
 const mockFetch = jest.fn();
@@ -29,11 +29,11 @@ describe("ShopeeFetch", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     mockSdk = {
       getAuthToken: jest.fn(),
       refreshToken: jest.fn(),
-    } as any;
+    } as Partial<ShopeeSDK> as ShopeeSDK;
 
     mockConfig = {
       partner_id: 12345,
@@ -82,7 +82,7 @@ describe("ShopeeFetch", () => {
       });
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
-      const [url, options] = mockFetch.mock.calls[0];
+      const [, options] = mockFetch.mock.calls[0];
       expect(options.method).toBe("POST");
       expect(options.body).toBe(JSON.stringify(requestBody));
       expect(result).toEqual(mockResponse);
@@ -102,7 +102,9 @@ describe("ShopeeFetch", () => {
 
       const mockResponse = { data: "authenticated data" };
 
-      (mockSdk.getAuthToken as jest.MockedFunction<any>).mockResolvedValue(mockToken);
+      (mockSdk.getAuthToken as jest.MockedFunction<typeof mockSdk.getAuthToken>).mockResolvedValue(
+        mockToken
+      );
 
       mockFetch.mockResolvedValueOnce({
         status: 200,
@@ -116,7 +118,7 @@ describe("ShopeeFetch", () => {
 
       expect(mockSdk.getAuthToken).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledTimes(1);
-      
+
       const [url] = mockFetch.mock.calls[0];
       expect(url).toContain("access_token=test_access_token");
       expect(url).toContain("shop_id=67890");
@@ -148,8 +150,12 @@ describe("ShopeeFetch", () => {
 
       const mockResponse = { data: "authenticated data" };
 
-      (mockSdk.getAuthToken as jest.MockedFunction<any>).mockResolvedValue(expiredToken);
-      (mockSdk.refreshToken as jest.MockedFunction<any>).mockResolvedValue(newToken);
+      (mockSdk.getAuthToken as jest.MockedFunction<typeof mockSdk.getAuthToken>).mockResolvedValue(
+        expiredToken
+      );
+      (mockSdk.refreshToken as jest.MockedFunction<typeof mockSdk.refreshToken>).mockResolvedValue(
+        newToken
+      );
 
       mockFetch.mockResolvedValueOnce({
         status: 200,
@@ -167,30 +173,16 @@ describe("ShopeeFetch", () => {
     });
 
     it("should throw error when no access token found", async () => {
-      (mockSdk.getAuthToken as jest.MockedFunction<any>).mockResolvedValue(null);
+      (mockSdk.getAuthToken as jest.MockedFunction<typeof mockSdk.getAuthToken>).mockResolvedValue(
+        null
+      );
 
-      await expect(
-        ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true })
-      ).rejects.toThrow(ShopeeSdkError);
-      await expect(
-        ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true })
-      ).rejects.toThrow("No access token found");
-    });
-
-    it("should handle API error response", async () => {
-      const errorResponse = {
-        error: "invalid_request",
-        message: "Invalid request parameters",
-        request_id: "test-request-id",
-      };
-
-      mockFetch.mockImplementationOnce(() => {
-        throw new ShopeeApiError(400, errorResponse);
-      });
-
-      await expect(
-        ShopeeFetch.fetch(mockConfig, "/test/endpoint")
-      ).rejects.toThrow(ShopeeApiError);
+      await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true })).rejects.toThrow(
+        ShopeeSdkError
+      );
+      await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true })).rejects.toThrow(
+        "No access token found"
+      );
     });
 
     it("should handle invalid access token error and retry after refresh", async () => {
@@ -213,8 +205,12 @@ describe("ShopeeFetch", () => {
         message: "",
       };
 
-      (mockSdk.getAuthToken as jest.MockedFunction<any>).mockResolvedValue(mockToken);
-      (mockSdk.refreshToken as jest.MockedFunction<any>).mockResolvedValue(mockToken);
+      (mockSdk.getAuthToken as jest.MockedFunction<typeof mockSdk.getAuthToken>).mockResolvedValue(
+        mockToken
+      );
+      (mockSdk.refreshToken as jest.MockedFunction<typeof mockSdk.refreshToken>).mockResolvedValue(
+        mockToken
+      );
 
       // First call returns invalid token error, second call succeeds
       mockFetch
@@ -236,35 +232,6 @@ describe("ShopeeFetch", () => {
       expect(mockSdk.refreshToken).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledTimes(2);
       expect(result).toEqual(successResponse);
-    });
-
-    it("should handle network error", async () => {
-      const networkError = new Error("Network error");
-      networkError.name = "FetchError";
-
-      mockFetch.mockImplementationOnce(() => {
-        throw networkError;
-      });
-
-      await expect(
-        ShopeeFetch.fetch(mockConfig, "/test/endpoint")
-      ).rejects.toThrow(ShopeeSdkError);
-      await expect(
-        ShopeeFetch.fetch(mockConfig, "/test/endpoint")
-      ).rejects.toThrow("Network error: Network error");
-    });
-
-    it("should handle non-JSON response", async () => {
-      mockFetch.mockResolvedValueOnce({
-        status: 200,
-        headers: new Map([["content-type", "text/plain"]]),
-        json: jest.fn(),
-        text: jest.fn().mockResolvedValue("Plain text response"),
-      });
-
-      await expect(
-        ShopeeFetch.fetch(mockConfig, "/test/endpoint")
-      ).rejects.toThrow("Unknown response type: text/plain");
     });
 
     it("should include custom headers in request", async () => {

@@ -65,20 +65,16 @@ describe("ProductManager", () => {
         page_size: 10,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_comment",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            item_id: 789,
-            comment_id: 123,
-            cursor: "",
-            page_size: 10,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_comment", {
+        method: "GET",
+        auth: true,
+        params: {
+          item_id: 789,
+          comment_id: 123,
+          cursor: "",
+          page_size: 10,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -99,15 +95,11 @@ describe("ProductManager", () => {
 
       const result = await productManager.getComment({ item_id: 789 });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_comment",
-        {
-          method: "GET",
-          auth: true,
-          params: { item_id: 789 },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_comment", {
+        method: "GET",
+        auth: true,
+        params: { item_id: 789 },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -132,18 +124,14 @@ describe("ProductManager", () => {
         reply: "Thank you for your feedback!",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/reply_comment",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            comment_id: 123,
-            reply: "Thank you for your feedback!",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/reply_comment", {
+        method: "POST",
+        auth: true,
+        body: {
+          comment_id: 123,
+          reply: "Thank you for your feedback!",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -184,21 +172,17 @@ describe("ProductManager", () => {
         item_status: "NORMAL",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_item_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            offset: 0,
-            page_size: 50,
-            update_time_from: 1234567800,
-            update_time_to: 1234567900,
-            item_status: "NORMAL",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_list", {
+        method: "GET",
+        auth: true,
+        params: {
+          offset: 0,
+          page_size: 50,
+          update_time_from: 1234567800,
+          update_time_to: 1234567900,
+          item_status: "NORMAL",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -223,18 +207,14 @@ describe("ProductManager", () => {
         page_size: 10,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_item_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            offset: 0,
-            page_size: 10,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_list", {
+        method: "GET",
+        auth: true,
+        params: {
+          offset: 0,
+          page_size: 10,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -286,19 +266,15 @@ describe("ProductManager", () => {
         need_complaint_policy: true,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_item_base_info",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            item_id_list: "123456,789012",
-            need_tax_info: false,
-            need_complaint_policy: true,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_base_info", {
+        method: "GET",
+        auth: true,
+        params: {
+          item_id_list: "123456,789012",
+          need_tax_info: false,
+          need_complaint_policy: true,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -333,17 +309,13 @@ describe("ProductManager", () => {
         item_id_list: [123456],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_item_base_info",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            item_id_list: "123456",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_base_info", {
+        method: "GET",
+        auth: true,
+        params: {
+          item_id_list: "123456",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -366,11 +338,7 @@ describe("ProductManager", () => {
             },
             {
               name: "Size",
-              option_list: [
-                { option: "S" },
-                { option: "M" },
-                { option: "L" },
-              ],
+              option_list: [{ option: "S" }, { option: "M" }, { option: "L" }],
             },
           ],
           model: [
@@ -402,17 +370,13 @@ describe("ProductManager", () => {
         item_id: 123456,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_model_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            item_id: 123456,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_model_list", {
+        method: "GET",
+        auth: true,
+        params: {
+          item_id: 123456,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });

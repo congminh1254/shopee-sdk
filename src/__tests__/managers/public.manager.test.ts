@@ -51,7 +51,7 @@ describe("PublicManager", () => {
           {
             shop_id: 789012,
             shop_name: "Test Shop 2",
-            region: "SG", 
+            region: "SG",
             status: "NORMAL",
             sip_affi_shops: [],
             auth_time: 1640995200,
@@ -64,16 +64,12 @@ describe("PublicManager", () => {
 
       const result = await publicManager.getShopsByPartner();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_shops_by_partner",
-        {
-          method: "GET",
-          params: {
-            partner_id: 12345,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shops_by_partner", {
+        method: "GET",
+        params: {
+          partner_id: 12345,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -100,17 +96,13 @@ describe("PublicManager", () => {
 
       const result = await publicManager.getShopsByPartner({ page_size: 1 });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_shops_by_partner",
-        {
-          method: "GET",
-          params: {
-            partner_id: 12345,
-            page_size: 1,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shops_by_partner", {
+        method: "GET",
+        params: {
+          partner_id: 12345,
+          page_size: 1,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -127,17 +119,13 @@ describe("PublicManager", () => {
 
       const result = await publicManager.getShopsByPartner({ cursor: "next_page_token" });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_shops_by_partner",
-        {
-          method: "GET",
-          params: {
-            partner_id: 12345,
-            cursor: "next_page_token",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shops_by_partner", {
+        method: "GET",
+        params: {
+          partner_id: 12345,
+          cursor: "next_page_token",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -167,16 +155,12 @@ describe("PublicManager", () => {
 
       const result = await publicManager.getMerchantsByPartner();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_merchants_by_partner",
-        {
-          method: "GET",
-          params: {
-            partner_id: 12345,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_merchants_by_partner", {
+        method: "GET",
+        params: {
+          partner_id: 12345,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -199,17 +183,13 @@ describe("PublicManager", () => {
 
       const result = await publicManager.getMerchantsByPartner({ page_size: 1 });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_merchants_by_partner",
-        {
-          method: "GET",
-          params: {
-            partner_id: 12345,
-            page_size: 1,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_merchants_by_partner", {
+        method: "GET",
+        params: {
+          partner_id: 12345,
+          page_size: 1,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -221,24 +201,16 @@ describe("PublicManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        ip_ranges: [
-          "203.0.113.0/24",
-          "198.51.100.0/24",
-          "192.0.2.0/24",
-        ],
+        ip_ranges: ["203.0.113.0/24", "198.51.100.0/24", "192.0.2.0/24"],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await publicManager.getShopeeIpRange();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_shopee_ip_ranges",
-        {
-          method: "GET",
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shopee_ip_ranges", {
+        method: "GET",
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -255,13 +227,9 @@ describe("PublicManager", () => {
 
       const result = await publicManager.getShopeeIpRange();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_shopee_ip_ranges",
-        {
-          method: "GET",
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shopee_ip_ranges", {
+        method: "GET",
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.ip_ranges).toHaveLength(0);
