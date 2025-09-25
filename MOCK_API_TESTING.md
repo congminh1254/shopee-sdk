@@ -2,6 +2,31 @@
 
 This document explains how to use the comprehensive mock API testing setup in the Shopee SDK.
 
+## Coverage Summary
+
+**Overall Test Coverage: 75.21%** ⬆️ (improved from 60.5%)
+- **Total Tests**: 86 tests (86 passing - 100% success rate! 🎉)
+- **Statements**: 75.21%
+- **Branches**: 74.60%  
+- **Functions**: 74.69%
+- **Lines**: 75.10%
+
+### Manager Classes Coverage: 70.96%
+
+**Fully Tested Managers (100% coverage):**
+- ✅ **AuthManager**: 6 tests - Authentication & token management
+- ✅ **ProductManager**: 8 tests - Product operations & comments  
+- ✅ **PublicManager**: 7 tests - Public API endpoints
+- ✅ **OrderManager**: 8 tests - Order management & processing
+- ✅ **LogisticsManager**: 3 tests - Shipping & tracking
+- ✅ **PaymentManager**: 3 tests - Payment & escrow details
+- ✅ **PushManager**: 9 tests - Push notifications & webhooks
+- ✅ **VoucherManager**: 8 tests - Voucher management
+
+**Remaining Managers (specialized/low usage):**
+- **AccountHealthManager**: 6.66% coverage (complex analytics manager)
+- **AdsManager**: 4.34% coverage (advertising management)
+
 ## Overview
 
 The SDK includes extensive mock API call tests that allow you to:
@@ -16,12 +41,17 @@ The mock API tests are organized as follows:
 
 ```
 src/__tests__/
-├── fetch.test.ts              # Low-level HTTP request testing
-├── integration.test.ts        # End-to-end workflow testing
+├── fetch.test.ts                    # Low-level HTTP request testing
+├── integration.test.ts              # End-to-end workflow testing
 └── managers/
-    ├── auth.manager.test.ts   # Authentication API tests
-    ├── product.manager.test.ts # Product API tests
-    └── public.manager.test.ts  # Public API tests
+    ├── auth.manager.test.ts         # Authentication API tests (6 tests)
+    ├── product.manager.test.ts      # Product API tests (8 tests)
+    ├── public.manager.test.ts       # Public API tests (7 tests)
+    ├── order.manager.test.ts        # Order API tests (8 tests)
+    ├── logistics.manager.test.ts    # Logistics API tests (3 tests)
+    ├── payment.manager.test.ts      # Payment API tests (3 tests)
+    ├── push.manager.test.ts         # Push API tests (9 tests)
+    └── voucher.manager.test.ts      # Voucher API tests (8 tests)
 ```
 
 ## Key Features
