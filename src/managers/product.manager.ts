@@ -73,6 +73,44 @@ import {
   GetItemContentDiagnosisResultResponse,
   GetItemListByContentDiagnosisParams,
   GetItemListByContentDiagnosisResponse,
+  AddKitItemParams,
+  AddKitItemResponse,
+  UpdateKitItemParams,
+  UpdateKitItemResponse,
+  GetKitItemInfoParams,
+  GetKitItemInfoResponse,
+  GetKitItemLimitParams,
+  GetKitItemLimitResponse,
+  GenerateKitImageParams,
+  GenerateKitImageResponse,
+  AddSspItemParams,
+  AddSspItemResponse,
+  GetSspInfoParams,
+  GetSspInfoResponse,
+  GetSspListParams,
+  GetSspListResponse,
+  LinkSspParams,
+  LinkSspResponse,
+  UnlinkSspParams,
+  UnlinkSspResponse,
+  UpdateSipItemPriceParams,
+  UpdateSipItemPriceResponse,
+  GetSizeChartListParams,
+  GetSizeChartListResponse,
+  GetSizeChartDetailParams,
+  GetSizeChartDetailResponse,
+  GetAllVehicleListParams,
+  GetAllVehicleListResponse,
+  GetVehicleListByCompatibilityDetailParams,
+  GetVehicleListByCompatibilityDetailResponse,
+  GetAitemByPitemIdParams,
+  GetAitemByPitemIdResponse,
+  GetDirectShopRecommendedPriceParams,
+  GetDirectShopRecommendedPriceResponse,
+  GetProductCertificationRuleParams,
+  GetProductCertificationRuleResponse,
+  SearchUnpackagedModelListParams,
+  SearchUnpackagedModelListResponse,
 } from "../schemas/product.js";
 
 export class ProductManager extends BaseManager {
@@ -441,15 +479,11 @@ export class ProductManager extends BaseManager {
    * @returns Promise resolving to add item response with item_id
    */
   async addItem(params: AddItemParams): Promise<AddItemResponse> {
-    const response = await ShopeeFetch.fetch<AddItemResponse>(
-      this.config,
-      "/product/add_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
+    const response = await ShopeeFetch.fetch<AddItemResponse>(this.config, "/product/add_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
     return response;
   }
 
@@ -483,15 +517,11 @@ export class ProductManager extends BaseManager {
    * @returns Promise resolving to add model response with model IDs
    */
   async addModel(params: AddModelParams): Promise<AddModelResponse> {
-    const response = await ShopeeFetch.fetch<AddModelResponse>(
-      this.config,
-      "/product/add_model",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
+    const response = await ShopeeFetch.fetch<AddModelResponse>(this.config, "/product/add_model", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
     return response;
   }
 
@@ -566,7 +596,9 @@ export class ProductManager extends BaseManager {
    * @param params - Parameters for updating tier variations
    * @returns Promise resolving to update tier variation response
    */
-  async updateTierVariation(params: UpdateTierVariationParams): Promise<UpdateTierVariationResponse> {
+  async updateTierVariation(
+    params: UpdateTierVariationParams
+  ): Promise<UpdateTierVariationResponse> {
     const response = await ShopeeFetch.fetch<UpdateTierVariationResponse>(
       this.config,
       "/product/update_tier_variation",
@@ -823,7 +855,9 @@ export class ProductManager extends BaseManager {
    * @param params - Parameters for getting recommended attributes
    * @returns Promise resolving to recommended attributes response
    */
-  async getRecommendAttribute(params: GetRecommendAttributeParams): Promise<GetRecommendAttributeResponse> {
+  async getRecommendAttribute(
+    params: GetRecommendAttributeParams
+  ): Promise<GetRecommendAttributeResponse> {
     const response = await ShopeeFetch.fetch<GetRecommendAttributeResponse>(
       this.config,
       "/product/get_recommend_attribute",
@@ -844,7 +878,9 @@ export class ProductManager extends BaseManager {
    * @param params - Parameters for searching attribute values
    * @returns Promise resolving to attribute value list response
    */
-  async searchAttributeValueList(params: SearchAttributeValueListParams): Promise<SearchAttributeValueListResponse> {
+  async searchAttributeValueList(
+    params: SearchAttributeValueListParams
+  ): Promise<SearchAttributeValueListResponse> {
     const response = await ShopeeFetch.fetch<SearchAttributeValueListResponse>(
       this.config,
       "/product/search_attribute_value_list",
@@ -886,7 +922,9 @@ export class ProductManager extends BaseManager {
    * @param params - Parameters for getting item violation info
    * @returns Promise resolving to item violation info response
    */
-  async getItemViolationInfo(params: GetItemViolationInfoParams): Promise<GetItemViolationInfoResponse> {
+  async getItemViolationInfo(
+    params: GetItemViolationInfoParams
+  ): Promise<GetItemViolationInfoResponse> {
     const response = await ShopeeFetch.fetch<GetItemViolationInfoResponse>(
       this.config,
       "/product/get_item_violation_info",
@@ -910,7 +948,9 @@ export class ProductManager extends BaseManager {
    * @param params - Parameters for getting weight recommendation
    * @returns Promise resolving to weight recommendation response
    */
-  async getWeightRecommendation(params: GetWeightRecommendationParams): Promise<GetWeightRecommendationResponse> {
+  async getWeightRecommendation(
+    params: GetWeightRecommendationParams
+  ): Promise<GetWeightRecommendationResponse> {
     const response = await ShopeeFetch.fetch<GetWeightRecommendationResponse>(
       this.config,
       "/product/get_weight_recommendation",
@@ -952,7 +992,9 @@ export class ProductManager extends BaseManager {
    * @param params - Parameters for getting content diagnosis result
    * @returns Promise resolving to content diagnosis result response
    */
-  async getItemContentDiagnosisResult(params: GetItemContentDiagnosisResultParams): Promise<GetItemContentDiagnosisResultResponse> {
+  async getItemContentDiagnosisResult(
+    params: GetItemContentDiagnosisResultParams
+  ): Promise<GetItemContentDiagnosisResultResponse> {
     const response = await ShopeeFetch.fetch<GetItemContentDiagnosisResultResponse>(
       this.config,
       "/product/get_item_content_diagnosis_result",
@@ -976,10 +1018,234 @@ export class ProductManager extends BaseManager {
    * @param params - Parameters for getting item list by content diagnosis
    * @returns Promise resolving to item list by content diagnosis response
    */
-  async getItemListByContentDiagnosis(params: GetItemListByContentDiagnosisParams): Promise<GetItemListByContentDiagnosisResponse> {
+  async getItemListByContentDiagnosis(
+    params: GetItemListByContentDiagnosisParams
+  ): Promise<GetItemListByContentDiagnosisResponse> {
     const response = await ShopeeFetch.fetch<GetItemListByContentDiagnosisResponse>(
       this.config,
       "/product/get_item_list_by_content_diagnosis",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  // Kit Item Management
+  async addKitItem(params: AddKitItemParams): Promise<AddKitItemResponse> {
+    const response = await ShopeeFetch.fetch<AddKitItemResponse>(this.config, "/product/add_kit_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+    return response;
+  }
+
+  async updateKitItem(params: UpdateKitItemParams): Promise<UpdateKitItemResponse> {
+    const response = await ShopeeFetch.fetch<UpdateKitItemResponse>(this.config, "/product/update_kit_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+    return response;
+  }
+
+  async getKitItemInfo(params: GetKitItemInfoParams): Promise<GetKitItemInfoResponse> {
+    const response = await ShopeeFetch.fetch<GetKitItemInfoResponse>(this.config, "/product/get_kit_item_info", {
+      method: "GET",
+      auth: true,
+      params: {
+        ...params,
+        item_id_list: params.item_id_list.join(","),
+      },
+    });
+    return response;
+  }
+
+  async getKitItemLimit(params: GetKitItemLimitParams): Promise<GetKitItemLimitResponse> {
+    const response = await ShopeeFetch.fetch<GetKitItemLimitResponse>(this.config, "/product/get_kit_item_limit", {
+      method: "GET",
+      auth: true,
+      params,
+    });
+    return response;
+  }
+
+  async generateKitImage(params: GenerateKitImageParams): Promise<GenerateKitImageResponse> {
+    const response = await ShopeeFetch.fetch<GenerateKitImageResponse>(this.config, "/product/generate_kit_image", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+    return response;
+  }
+
+  // SSP Management
+  async addSspItem(params: AddSspItemParams): Promise<AddSspItemResponse> {
+    const response = await ShopeeFetch.fetch<AddSspItemResponse>(this.config, "/product/add_ssp_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+    return response;
+  }
+
+  async getSspInfo(params: GetSspInfoParams): Promise<GetSspInfoResponse> {
+    const response = await ShopeeFetch.fetch<GetSspInfoResponse>(this.config, "/product/get_ssp_info", {
+      method: "GET",
+      auth: true,
+      params,
+    });
+    return response;
+  }
+
+  async getSspList(params?: GetSspListParams): Promise<GetSspListResponse> {
+    const response = await ShopeeFetch.fetch<GetSspListResponse>(this.config, "/product/get_ssp_list", {
+      method: "GET",
+      auth: true,
+      params: params || {},
+    });
+    return response;
+  }
+
+  async linkSsp(params: LinkSspParams): Promise<LinkSspResponse> {
+    const response = await ShopeeFetch.fetch<LinkSspResponse>(this.config, "/product/link_ssp", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+    return response;
+  }
+
+  async unlinkSsp(params: UnlinkSspParams): Promise<UnlinkSspResponse> {
+    const response = await ShopeeFetch.fetch<UnlinkSspResponse>(this.config, "/product/unlink_ssp", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+    return response;
+  }
+
+  async updateSipItemPrice(params: UpdateSipItemPriceParams): Promise<UpdateSipItemPriceResponse> {
+    const response = await ShopeeFetch.fetch<UpdateSipItemPriceResponse>(
+      this.config,
+      "/product/update_sip_item_price",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  // Size Chart Management
+  async getSizeChartList(params?: GetSizeChartListParams): Promise<GetSizeChartListResponse> {
+    const response = await ShopeeFetch.fetch<GetSizeChartListResponse>(this.config, "/product/get_size_chart_list", {
+      method: "GET",
+      auth: true,
+      params: params || {},
+    });
+    return response;
+  }
+
+  async getSizeChartDetail(params: GetSizeChartDetailParams): Promise<GetSizeChartDetailResponse> {
+    const response = await ShopeeFetch.fetch<GetSizeChartDetailResponse>(
+      this.config,
+      "/product/get_size_chart_detail",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  // Vehicle Compatibility
+  async getAllVehicleList(params?: GetAllVehicleListParams): Promise<GetAllVehicleListResponse> {
+    const response = await ShopeeFetch.fetch<GetAllVehicleListResponse>(
+      this.config,
+      "/product/get_all_vehicle_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params || {},
+      }
+    );
+    return response;
+  }
+
+  async getVehicleListByCompatibilityDetail(
+    params: GetVehicleListByCompatibilityDetailParams
+  ): Promise<GetVehicleListByCompatibilityDetailResponse> {
+    const response = await ShopeeFetch.fetch<GetVehicleListByCompatibilityDetailResponse>(
+      this.config,
+      "/product/get_vehicle_list_by_compatibility_detail",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  // Specialized Functions
+  async getAitemByPitemId(params: GetAitemByPitemIdParams): Promise<GetAitemByPitemIdResponse> {
+    const response = await ShopeeFetch.fetch<GetAitemByPitemIdResponse>(
+      this.config,
+      "/product/get_aitem_by_pitem_id",
+      {
+        method: "GET",
+        auth: true,
+        params: {
+          ...params,
+          pitem_id_list: params.pitem_id_list.join(","),
+        },
+      }
+    );
+    return response;
+  }
+
+  async getDirectShopRecommendedPrice(
+    params: GetDirectShopRecommendedPriceParams
+  ): Promise<GetDirectShopRecommendedPriceResponse> {
+    const response = await ShopeeFetch.fetch<GetDirectShopRecommendedPriceResponse>(
+      this.config,
+      "/product/get_direct_shop_recommended_price",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  async getProductCertificationRule(
+    params: GetProductCertificationRuleParams
+  ): Promise<GetProductCertificationRuleResponse> {
+    const response = await ShopeeFetch.fetch<GetProductCertificationRuleResponse>(
+      this.config,
+      "/product/get_product_certification_rule",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  async searchUnpackagedModelList(
+    params: SearchUnpackagedModelListParams
+  ): Promise<SearchUnpackagedModelListResponse> {
+    const response = await ShopeeFetch.fetch<SearchUnpackagedModelListResponse>(
+      this.config,
+      "/product/search_unpackaged_model_list",
       {
         method: "GET",
         auth: true,

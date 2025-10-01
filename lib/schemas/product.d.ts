@@ -1767,3 +1767,148 @@ export interface GetItemListByContentDiagnosisResponse extends FetchResponse<{
     next_offset: number;
 }> {
 }
+/**
+ * Kit item params (simplified - represents a bundled product)
+ */
+export type AddKitItemParams = Record<string, any>;
+export interface AddKitItemResponse extends FetchResponse<{
+    item_id: number;
+}> {
+}
+export type UpdateKitItemParams = Record<string, any>;
+export interface UpdateKitItemResponse extends BaseResponse {
+}
+export type GetKitItemInfoParams = {
+    item_id_list: number[];
+};
+export interface GetKitItemInfoResponse extends FetchResponse<{
+    item_list: any[];
+}> {
+}
+export type GetKitItemLimitParams = {
+    category_id: number;
+};
+export interface GetKitItemLimitResponse extends FetchResponse<{
+    item_limit: any;
+}> {
+}
+export type GenerateKitImageParams = {
+    image_id_list: string[];
+};
+export interface GenerateKitImageResponse extends FetchResponse<{
+    image_info: {
+        image_id: string;
+        image_url: string;
+    };
+}> {
+}
+/**
+ * SSP (Seller-Sponsored Product) params
+ */
+export type AddSspItemParams = Record<string, any>;
+export interface AddSspItemResponse extends FetchResponse<{
+    item_id: number;
+}> {
+}
+export type GetSspInfoParams = {
+    item_id: number;
+};
+export interface GetSspInfoResponse extends FetchResponse<{
+    ssp_info: any;
+}> {
+}
+export type GetSspListParams = {
+    offset?: number;
+    page_size?: number;
+};
+export interface GetSspListResponse extends FetchResponse<{
+    item_list: any[];
+    has_next_page: boolean;
+    next_offset: number;
+}> {
+}
+export type LinkSspParams = {
+    item_id: number;
+    ssp_item_id: number;
+};
+export interface LinkSspResponse extends BaseResponse {
+}
+export type UnlinkSspParams = {
+    item_id: number;
+};
+export interface UnlinkSspResponse extends BaseResponse {
+}
+export type UpdateSipItemPriceParams = {
+    item_id: number;
+    sip_item_price: number;
+};
+export interface UpdateSipItemPriceResponse extends BaseResponse {
+}
+/**
+ * Size chart params
+ */
+export type GetSizeChartListParams = {
+    offset?: number;
+    page_size?: number;
+};
+export interface GetSizeChartListResponse extends FetchResponse<{
+    size_chart_list: any[];
+    has_next_page: boolean;
+    next_offset: number;
+}> {
+}
+export type GetSizeChartDetailParams = {
+    size_chart_id: string;
+};
+export interface GetSizeChartDetailResponse extends FetchResponse<{
+    size_chart: any;
+}> {
+}
+/**
+ * Vehicle compatibility params
+ */
+export type GetAllVehicleListParams = Record<string, any>;
+export interface GetAllVehicleListResponse extends FetchResponse<{
+    vehicle_list: any[];
+}> {
+}
+export type GetVehicleListByCompatibilityDetailParams = {
+    item_id: number;
+};
+export interface GetVehicleListByCompatibilityDetailResponse extends FetchResponse<{
+    vehicle_list: any[];
+}> {
+}
+/**
+ * Other specialized params
+ */
+export type GetAitemByPitemIdParams = {
+    pitem_id_list: number[];
+};
+export interface GetAitemByPitemIdResponse extends FetchResponse<{
+    item_list: any[];
+}> {
+}
+export type GetDirectShopRecommendedPriceParams = {
+    category_id: number;
+    item_name?: string;
+};
+export interface GetDirectShopRecommendedPriceResponse extends FetchResponse<{
+    recommended_price: number;
+}> {
+}
+export type GetProductCertificationRuleParams = {
+    category_id: number;
+};
+export interface GetProductCertificationRuleResponse extends FetchResponse<{
+    certification_list: any[];
+}> {
+}
+export type SearchUnpackagedModelListParams = {
+    item_id: number;
+    search_value?: string;
+};
+export interface SearchUnpackagedModelListResponse extends FetchResponse<{
+    model_list: any[];
+}> {
+}
