@@ -1035,78 +1035,110 @@ export class ProductManager extends BaseManager {
 
   // Kit Item Management
   async addKitItem(params: AddKitItemParams): Promise<AddKitItemResponse> {
-    const response = await ShopeeFetch.fetch<AddKitItemResponse>(this.config, "/product/add_kit_item", {
-      method: "POST",
-      auth: true,
-      body: params,
-    });
+    const response = await ShopeeFetch.fetch<AddKitItemResponse>(
+      this.config,
+      "/product/add_kit_item",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
     return response;
   }
 
   async updateKitItem(params: UpdateKitItemParams): Promise<UpdateKitItemResponse> {
-    const response = await ShopeeFetch.fetch<UpdateKitItemResponse>(this.config, "/product/update_kit_item", {
-      method: "POST",
-      auth: true,
-      body: params,
-    });
+    const response = await ShopeeFetch.fetch<UpdateKitItemResponse>(
+      this.config,
+      "/product/update_kit_item",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
     return response;
   }
 
   async getKitItemInfo(params: GetKitItemInfoParams): Promise<GetKitItemInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetKitItemInfoResponse>(this.config, "/product/get_kit_item_info", {
-      method: "GET",
-      auth: true,
-      params: {
-        ...params,
-        item_id_list: params.item_id_list.join(","),
-      },
-    });
+    const response = await ShopeeFetch.fetch<GetKitItemInfoResponse>(
+      this.config,
+      "/product/get_kit_item_info",
+      {
+        method: "GET",
+        auth: true,
+        params: {
+          ...params,
+          item_id_list: params.item_id_list.join(","),
+        },
+      }
+    );
     return response;
   }
 
   async getKitItemLimit(params: GetKitItemLimitParams): Promise<GetKitItemLimitResponse> {
-    const response = await ShopeeFetch.fetch<GetKitItemLimitResponse>(this.config, "/product/get_kit_item_limit", {
-      method: "GET",
-      auth: true,
-      params,
-    });
+    const response = await ShopeeFetch.fetch<GetKitItemLimitResponse>(
+      this.config,
+      "/product/get_kit_item_limit",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
     return response;
   }
 
   async generateKitImage(params: GenerateKitImageParams): Promise<GenerateKitImageResponse> {
-    const response = await ShopeeFetch.fetch<GenerateKitImageResponse>(this.config, "/product/generate_kit_image", {
-      method: "POST",
-      auth: true,
-      body: params,
-    });
+    const response = await ShopeeFetch.fetch<GenerateKitImageResponse>(
+      this.config,
+      "/product/generate_kit_image",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
     return response;
   }
 
   // SSP Management
   async addSspItem(params: AddSspItemParams): Promise<AddSspItemResponse> {
-    const response = await ShopeeFetch.fetch<AddSspItemResponse>(this.config, "/product/add_ssp_item", {
-      method: "POST",
-      auth: true,
-      body: params,
-    });
+    const response = await ShopeeFetch.fetch<AddSspItemResponse>(
+      this.config,
+      "/product/add_ssp_item",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
     return response;
   }
 
   async getSspInfo(params: GetSspInfoParams): Promise<GetSspInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetSspInfoResponse>(this.config, "/product/get_ssp_info", {
-      method: "GET",
-      auth: true,
-      params,
-    });
+    const response = await ShopeeFetch.fetch<GetSspInfoResponse>(
+      this.config,
+      "/product/get_ssp_info",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
     return response;
   }
 
   async getSspList(params?: GetSspListParams): Promise<GetSspListResponse> {
-    const response = await ShopeeFetch.fetch<GetSspListResponse>(this.config, "/product/get_ssp_list", {
-      method: "GET",
-      auth: true,
-      params: params || {},
-    });
+    const response = await ShopeeFetch.fetch<GetSspListResponse>(
+      this.config,
+      "/product/get_ssp_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params || {},
+      }
+    );
     return response;
   }
 
@@ -1120,11 +1152,15 @@ export class ProductManager extends BaseManager {
   }
 
   async unlinkSsp(params: UnlinkSspParams): Promise<UnlinkSspResponse> {
-    const response = await ShopeeFetch.fetch<UnlinkSspResponse>(this.config, "/product/unlink_ssp", {
-      method: "POST",
-      auth: true,
-      body: params,
-    });
+    const response = await ShopeeFetch.fetch<UnlinkSspResponse>(
+      this.config,
+      "/product/unlink_ssp",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
     return response;
   }
 
@@ -1143,11 +1179,15 @@ export class ProductManager extends BaseManager {
 
   // Size Chart Management
   async getSizeChartList(params?: GetSizeChartListParams): Promise<GetSizeChartListResponse> {
-    const response = await ShopeeFetch.fetch<GetSizeChartListResponse>(this.config, "/product/get_size_chart_list", {
-      method: "GET",
-      auth: true,
-      params: params || {},
-    });
+    const response = await ShopeeFetch.fetch<GetSizeChartListResponse>(
+      this.config,
+      "/product/get_size_chart_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params || {},
+      }
+    );
     return response;
   }
 

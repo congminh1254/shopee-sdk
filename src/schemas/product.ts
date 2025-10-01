@@ -1927,12 +1927,10 @@ export type UpdateKitItemParams = Record<string, any>;
 export interface UpdateKitItemResponse extends BaseResponse {}
 
 export type GetKitItemInfoParams = { item_id_list: number[] };
-export interface GetKitItemInfoResponse
-  extends FetchResponse<{ item_list: any[] }> {}
+export interface GetKitItemInfoResponse extends FetchResponse<{ item_list: any[] }> {}
 
 export type GetKitItemLimitParams = { category_id: number };
-export interface GetKitItemLimitResponse
-  extends FetchResponse<{ item_limit: any }> {}
+export interface GetKitItemLimitResponse extends FetchResponse<{ item_limit: any }> {}
 
 export type GenerateKitImageParams = { image_id_list: string[] };
 export interface GenerateKitImageResponse
@@ -1979,15 +1977,13 @@ export interface GetSizeChartListResponse
   }> {}
 
 export type GetSizeChartDetailParams = { size_chart_id: string };
-export interface GetSizeChartDetailResponse
-  extends FetchResponse<{ size_chart: any }> {}
+export interface GetSizeChartDetailResponse extends FetchResponse<{ size_chart: any }> {}
 
 /**
  * Vehicle compatibility params
  */
 export type GetAllVehicleListParams = Record<string, any>;
-export interface GetAllVehicleListResponse
-  extends FetchResponse<{ vehicle_list: any[] }> {}
+export interface GetAllVehicleListResponse extends FetchResponse<{ vehicle_list: any[] }> {}
 
 export type GetVehicleListByCompatibilityDetailParams = {
   item_id: number;
@@ -1999,8 +1995,7 @@ export interface GetVehicleListByCompatibilityDetailResponse
  * Other specialized params
  */
 export type GetAitemByPitemIdParams = { pitem_id_list: number[] };
-export interface GetAitemByPitemIdResponse
-  extends FetchResponse<{ item_list: any[] }> {}
+export interface GetAitemByPitemIdResponse extends FetchResponse<{ item_list: any[] }> {}
 
 export type GetDirectShopRecommendedPriceParams = {
   category_id: number;
@@ -2017,5 +2012,4 @@ export type SearchUnpackagedModelListParams = {
   item_id: number;
   search_value?: string;
 };
-export interface SearchUnpackagedModelListResponse
-  extends FetchResponse<{ model_list: any[] }> {}
+export interface SearchUnpackagedModelListResponse extends FetchResponse<{ model_list: any[] }> {}
