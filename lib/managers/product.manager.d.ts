@@ -1,6 +1,6 @@
 import { BaseManager } from "./base.manager.js";
 import { ShopeeConfig } from "../sdk.js";
-import { GetCommentParams, GetCommentResponse, ReplyCommentParams, ReplyCommentResponse, GetItemListParams, GetItemListResponse, GetItemBaseInfoParams, GetItemBaseInfoResponse, GetModelListParams, GetModelListResponse } from "../schemas/product.js";
+import { GetCommentParams, GetCommentResponse, ReplyCommentParams, ReplyCommentResponse, GetItemListParams, GetItemListResponse, GetItemBaseInfoParams, GetItemBaseInfoResponse, GetModelListParams, GetModelListResponse, UpdatePriceParams, UpdatePriceResponse, UpdateStockParams, UpdateStockResponse, DeleteItemParams, DeleteItemResponse, UnlistItemParams, UnlistItemResponse, GetProductCategoryParams, GetProductCategoryResponse, AddItemParams, AddItemResponse, UpdateItemParams, UpdateItemResponse, AddModelParams, AddModelResponse, UpdateModelParams, UpdateModelResponse, DeleteModelParams, DeleteModelResponse, InitTierVariationParams, InitTierVariationResponse, UpdateTierVariationParams, UpdateTierVariationResponse, SearchItemParams, SearchItemResponse, GetItemExtraInfoParams, GetItemExtraInfoResponse, GetAttributeTreeParams, GetAttributeTreeResponse, GetBrandListParams, GetBrandListResponse, RegisterBrandParams, RegisterBrandResponse, CategoryRecommendParams, CategoryRecommendResponse, GetItemLimitParams, GetItemLimitResponse, GetItemPromotionParams, GetItemPromotionResponse, BoostItemParams, BoostItemResponse, GetBoostedListResponse, GetVariationsParams, GetVariationsResponse, GetRecommendAttributeParams, GetRecommendAttributeResponse, SearchAttributeValueListParams, SearchAttributeValueListResponse, GetMainItemListParams, GetMainItemListResponse, GetItemViolationInfoParams, GetItemViolationInfoResponse, GetWeightRecommendationParams, GetWeightRecommendationResponse, GetDirectItemListParams, GetDirectItemListResponse, GetItemContentDiagnosisResultParams, GetItemContentDiagnosisResultResponse, GetItemListByContentDiagnosisParams, GetItemListByContentDiagnosisResponse, AddKitItemParams, AddKitItemResponse, UpdateKitItemParams, UpdateKitItemResponse, GetKitItemInfoParams, GetKitItemInfoResponse, GetKitItemLimitParams, GetKitItemLimitResponse, GenerateKitImageParams, GenerateKitImageResponse, AddSspItemParams, AddSspItemResponse, GetSspInfoParams, GetSspInfoResponse, GetSspListParams, GetSspListResponse, LinkSspParams, LinkSspResponse, UnlinkSspParams, UnlinkSspResponse, UpdateSipItemPriceParams, UpdateSipItemPriceResponse, GetSizeChartListParams, GetSizeChartListResponse, GetSizeChartDetailParams, GetSizeChartDetailResponse, GetAllVehicleListParams, GetAllVehicleListResponse, GetVehicleListByCompatibilityDetailParams, GetVehicleListByCompatibilityDetailResponse, GetAitemByPitemIdParams, GetAitemByPitemIdResponse, GetDirectShopRecommendedPriceParams, GetDirectShopRecommendedPriceResponse, GetProductCertificationRuleParams, GetProductCertificationRuleResponse, SearchUnpackagedModelListParams, SearchUnpackagedModelListResponse } from "../schemas/product.js";
 export declare class ProductManager extends BaseManager {
     constructor(config: ShopeeConfig);
     /**
@@ -130,4 +130,349 @@ export declare class ProductManager extends BaseManager {
      * - error_item_not_found: Product not found
      */
     getModelList(params: GetModelListParams): Promise<GetModelListResponse>;
+    /**
+     * Update price of items
+     *
+     * Use this API to update item price. Can update up to 50 models in one call.
+     *
+     * @param params - Parameters for updating price
+     * @param params.item_id - The ID of the item
+     * @param params.price_list - List of prices to update (1-50 items). Each item contains:
+     *   - model_id: Model ID (use 0 for items without models)
+     *   - original_price: New original price
+     *
+     * @returns A promise that resolves to the update price response containing:
+     * - success_list: List of successfully updated prices
+     * - failure_list: List of failed updates with reasons
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_item_not_found: Item_id is not found
+     * - error_param_shop_id_not_found: Shop_id is not found
+     * - error_param: Invalid parameters
+     */
+    updatePrice(params: UpdatePriceParams): Promise<UpdatePriceResponse>;
+    /**
+     * Update stock of items
+     *
+     * Use this API to update item stock. Can update up to 50 models in one call.
+     * This API updates only "seller_stock".
+     *
+     * @param params - Parameters for updating stock
+     * @param params.item_id - The ID of the item
+     * @param params.stock_list - List of stock updates (1-50 items). Each item contains:
+     *   - model_id: Model ID (use 0 for items without models)
+     *   - seller_stock: Array of seller stock updates with location_id and stock amount
+     *
+     * @returns A promise that resolves to the update stock response containing:
+     * - success_list: List of successfully updated stock
+     * - failure_list: List of failed updates with reasons
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_item_not_found: Item_id is not found
+     * - error_param_shop_id_not_found: Shop_id is not found
+     * - error_param: Invalid parameters
+     */
+    updateStock(params: UpdateStockParams): Promise<UpdateStockResponse>;
+    /**
+     * Delete a product item
+     *
+     * Use this API to delete a product item.
+     *
+     * @param params - Parameters for deleting item
+     * @param params.item_id - The ID of the item to delete
+     *
+     * @returns A promise that resolves to the delete response
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_item_not_found: Item_id is not found
+     * - error_param_shop_id_not_found: Shop_id is not found
+     * - error_cannot_delete_item: Delete item failed
+     */
+    deleteItem(params: DeleteItemParams): Promise<DeleteItemResponse>;
+    /**
+     * Unlist or list items
+     *
+     * Use this API to unlist or list items. Can process up to 50 items in one call.
+     *
+     * @param params - Parameters for unlisting/listing items
+     * @param params.item_list - List of items to unlist/list (1-50 items). Each item contains:
+     *   - item_id: Shopee's unique identifier for an item
+     *   - unlist: true to unlist, false to list
+     *
+     * @returns A promise that resolves to the unlist response containing:
+     * - result: List of operation results with success status and error messages
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_item_not_found: Item_id is not found
+     * - error_param_shop_id_not_found: Shop_id is not found
+     * - error_param: Invalid parameters
+     */
+    unlistItem(params: UnlistItemParams): Promise<UnlistItemResponse>;
+    /**
+     * Get category tree
+     *
+     * Use this API to get category tree data.
+     *
+     * @param params - Parameters for getting categories
+     * @param params.language - Language for category names (optional)
+     *
+     * @returns A promise that resolves to the category response containing:
+     * - category_list: List of categories with id, parent_id, name, and has_children
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_param: Invalid parameters
+     */
+    getCategory(params?: GetProductCategoryParams): Promise<GetProductCategoryResponse>;
+    /**
+     * Add a new item
+     *
+     * Use this API to add a new product item to the shop.
+     *
+     * @param params - Parameters for adding item
+     * @returns Promise resolving to add item response with item_id
+     */
+    addItem(params: AddItemParams): Promise<AddItemResponse>;
+    /**
+     * Update an existing item
+     *
+     * Use this API to update an existing product item.
+     *
+     * @param params - Parameters for updating item
+     * @returns Promise resolving to update item response
+     */
+    updateItem(params: UpdateItemParams): Promise<UpdateItemResponse>;
+    /**
+     * Add models/variations to an item
+     *
+     * Use this API to add product models/variations.
+     *
+     * @param params - Parameters for adding models
+     * @returns Promise resolving to add model response with model IDs
+     */
+    addModel(params: AddModelParams): Promise<AddModelResponse>;
+    /**
+     * Update models/variations
+     *
+     * Use this API to update product models/variations.
+     *
+     * @param params - Parameters for updating models
+     * @returns Promise resolving to update model response
+     */
+    updateModel(params: UpdateModelParams): Promise<UpdateModelResponse>;
+    /**
+     * Delete models/variations
+     *
+     * Use this API to delete product models/variations.
+     *
+     * @param params - Parameters for deleting models
+     * @returns Promise resolving to delete model response
+     */
+    deleteModel(params: DeleteModelParams): Promise<DeleteModelResponse>;
+    /**
+     * Initialize tier variations
+     *
+     * Use this API to initialize tier variations for an item.
+     *
+     * @param params - Parameters for initializing tier variations
+     * @returns Promise resolving to init tier variation response
+     */
+    initTierVariation(params: InitTierVariationParams): Promise<InitTierVariationResponse>;
+    /**
+     * Update tier variations
+     *
+     * Use this API to update tier variations for an item.
+     *
+     * @param params - Parameters for updating tier variations
+     * @returns Promise resolving to update tier variation response
+     */
+    updateTierVariation(params: UpdateTierVariationParams): Promise<UpdateTierVariationResponse>;
+    /**
+     * Search items
+     *
+     * Use this API to search for items in the shop.
+     *
+     * @param params - Parameters for searching items
+     * @returns Promise resolving to search item response
+     */
+    searchItem(params: SearchItemParams): Promise<SearchItemResponse>;
+    /**
+     * Get item extra info
+     *
+     * Use this API to get extra information (sales, views, likes) for items.
+     *
+     * @param params - Parameters for getting item extra info
+     * @returns Promise resolving to item extra info response
+     */
+    getItemExtraInfo(params: GetItemExtraInfoParams): Promise<GetItemExtraInfoResponse>;
+    /**
+     * Get attribute tree
+     *
+     * Use this API to get the attribute tree for a category.
+     *
+     * @param params - Parameters for getting attribute tree
+     * @returns Promise resolving to attribute tree response
+     */
+    getAttributeTree(params: GetAttributeTreeParams): Promise<GetAttributeTreeResponse>;
+    /**
+     * Get brand list
+     *
+     * Use this API to get the list of brands for a category.
+     *
+     * @param params - Parameters for getting brand list
+     * @returns Promise resolving to brand list response
+     */
+    getBrandList(params: GetBrandListParams): Promise<GetBrandListResponse>;
+    /**
+     * Register a brand
+     *
+     * Use this API to register a new brand.
+     *
+     * @param params - Parameters for registering brand
+     * @returns Promise resolving to register brand response
+     */
+    registerBrand(params: RegisterBrandParams): Promise<RegisterBrandResponse>;
+    /**
+     * Get category recommendation
+     *
+     * Use this API to get category recommendations based on item name.
+     *
+     * @param params - Parameters for category recommendation
+     * @returns Promise resolving to category recommendation response
+     */
+    categoryRecommend(params: CategoryRecommendParams): Promise<CategoryRecommendResponse>;
+    /**
+     * Get item limits
+     *
+     * Use this API to get item limits for a category.
+     *
+     * @param params - Parameters for getting item limits
+     * @returns Promise resolving to item limit response
+     */
+    getItemLimit(params: GetItemLimitParams): Promise<GetItemLimitResponse>;
+    /**
+     * Get item promotion
+     *
+     * Use this API to get promotion information for items.
+     *
+     * @param params - Parameters for getting item promotion
+     * @returns Promise resolving to item promotion response
+     */
+    getItemPromotion(params: GetItemPromotionParams): Promise<GetItemPromotionResponse>;
+    /**
+     * Boost items
+     *
+     * Use this API to boost items for better visibility.
+     *
+     * @param params - Parameters for boosting items
+     * @returns Promise resolving to boost item response
+     */
+    boostItem(params: BoostItemParams): Promise<BoostItemResponse>;
+    /**
+     * Get boosted item list
+     *
+     * Use this API to get the list of boosted items.
+     *
+     * @returns Promise resolving to boosted list response
+     */
+    getBoostedList(): Promise<GetBoostedListResponse>;
+    /**
+     * Get variations
+     *
+     * Use this API to get variation information for an item.
+     *
+     * @param params - Parameters for getting variations
+     * @returns Promise resolving to variations response
+     */
+    getVariations(params: GetVariationsParams): Promise<GetVariationsResponse>;
+    /**
+     * Get recommended attributes
+     *
+     * Use this API to get recommended attributes for a category.
+     *
+     * @param params - Parameters for getting recommended attributes
+     * @returns Promise resolving to recommended attributes response
+     */
+    getRecommendAttribute(params: GetRecommendAttributeParams): Promise<GetRecommendAttributeResponse>;
+    /**
+     * Search attribute values
+     *
+     * Use this API to search for attribute values.
+     *
+     * @param params - Parameters for searching attribute values
+     * @returns Promise resolving to attribute value list response
+     */
+    searchAttributeValueList(params: SearchAttributeValueListParams): Promise<SearchAttributeValueListResponse>;
+    /**
+     * Get main item list
+     *
+     * Use this API to get the main item list.
+     *
+     * @param params - Parameters for getting main item list
+     * @returns Promise resolving to main item list response
+     */
+    getMainItemList(params?: GetMainItemListParams): Promise<GetMainItemListResponse>;
+    /**
+     * Get item violation info
+     *
+     * Use this API to get violation information for items.
+     *
+     * @param params - Parameters for getting item violation info
+     * @returns Promise resolving to item violation info response
+     */
+    getItemViolationInfo(params: GetItemViolationInfoParams): Promise<GetItemViolationInfoResponse>;
+    /**
+     * Get weight recommendation
+     *
+     * Use this API to get weight recommendations for an item.
+     *
+     * @param params - Parameters for getting weight recommendation
+     * @returns Promise resolving to weight recommendation response
+     */
+    getWeightRecommendation(params: GetWeightRecommendationParams): Promise<GetWeightRecommendationResponse>;
+    /**
+     * Get direct item list
+     *
+     * Use this API to get the direct item list.
+     *
+     * @param params - Parameters for getting direct item list
+     * @returns Promise resolving to direct item list response
+     */
+    getDirectItemList(params?: GetDirectItemListParams): Promise<GetDirectItemListResponse>;
+    /**
+     * Get item content diagnosis result
+     *
+     * Use this API to get content diagnosis results for items.
+     *
+     * @param params - Parameters for getting content diagnosis result
+     * @returns Promise resolving to content diagnosis result response
+     */
+    getItemContentDiagnosisResult(params: GetItemContentDiagnosisResultParams): Promise<GetItemContentDiagnosisResultResponse>;
+    /**
+     * Get item list by content diagnosis
+     *
+     * Use this API to get items filtered by content diagnosis status.
+     *
+     * @param params - Parameters for getting item list by content diagnosis
+     * @returns Promise resolving to item list by content diagnosis response
+     */
+    getItemListByContentDiagnosis(params: GetItemListByContentDiagnosisParams): Promise<GetItemListByContentDiagnosisResponse>;
+    addKitItem(params: AddKitItemParams): Promise<AddKitItemResponse>;
+    updateKitItem(params: UpdateKitItemParams): Promise<UpdateKitItemResponse>;
+    getKitItemInfo(params: GetKitItemInfoParams): Promise<GetKitItemInfoResponse>;
+    getKitItemLimit(params: GetKitItemLimitParams): Promise<GetKitItemLimitResponse>;
+    generateKitImage(params: GenerateKitImageParams): Promise<GenerateKitImageResponse>;
+    addSspItem(params: AddSspItemParams): Promise<AddSspItemResponse>;
+    getSspInfo(params: GetSspInfoParams): Promise<GetSspInfoResponse>;
+    getSspList(params?: GetSspListParams): Promise<GetSspListResponse>;
+    linkSsp(params: LinkSspParams): Promise<LinkSspResponse>;
+    unlinkSsp(params: UnlinkSspParams): Promise<UnlinkSspResponse>;
+    updateSipItemPrice(params: UpdateSipItemPriceParams): Promise<UpdateSipItemPriceResponse>;
+    getSizeChartList(params?: GetSizeChartListParams): Promise<GetSizeChartListResponse>;
+    getSizeChartDetail(params: GetSizeChartDetailParams): Promise<GetSizeChartDetailResponse>;
+    getAllVehicleList(params?: GetAllVehicleListParams): Promise<GetAllVehicleListResponse>;
+    getVehicleListByCompatibilityDetail(params: GetVehicleListByCompatibilityDetailParams): Promise<GetVehicleListByCompatibilityDetailResponse>;
+    getAitemByPitemId(params: GetAitemByPitemIdParams): Promise<GetAitemByPitemIdResponse>;
+    getDirectShopRecommendedPrice(params: GetDirectShopRecommendedPriceParams): Promise<GetDirectShopRecommendedPriceResponse>;
+    getProductCertificationRule(params: GetProductCertificationRuleParams): Promise<GetProductCertificationRuleResponse>;
+    searchUnpackagedModelList(params: SearchUnpackagedModelListParams): Promise<SearchUnpackagedModelListResponse>;
 }

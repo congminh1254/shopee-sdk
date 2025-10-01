@@ -755,3 +755,1160 @@ export interface GetModelListResponse extends FetchResponse<{
     standardise_tier_variation?: StandardiseTierVariation[];
 }> {
 }
+/**
+ * Price list item for updating product price
+ */
+export interface PriceListItem {
+    /** Model ID. Use 0 for items without models */
+    model_id?: number;
+    /** Original price for this model */
+    original_price: number;
+}
+/**
+ * Parameters for updating product price
+ */
+export type UpdatePriceParams = {
+    /** Item ID */
+    item_id: number;
+    /** List of prices to update. Length should be between 1 to 50 */
+    price_list: PriceListItem[];
+};
+/**
+ * Result of a single price update
+ */
+export interface UpdatePriceResultItem {
+    /** Model ID that was updated */
+    model_id: number;
+    /** Original price that was set */
+    original_price: number;
+}
+/**
+ * Response for updating product price
+ */
+export interface UpdatePriceResponse extends FetchResponse<{
+    /** List of successfully updated prices */
+    success_list?: UpdatePriceResultItem[];
+    /** List of failed updates */
+    failure_list?: {
+        /** Model ID that failed */
+        model_id: number;
+        /** Failure error message */
+        failed_reason: string;
+    }[];
+}> {
+}
+/**
+ * Seller stock information for stock update
+ */
+export interface SellerStockUpdate {
+    /** Location ID from v2.shop.get_warehouse_detail API */
+    location_id?: string;
+    /** Stock amount */
+    stock: number;
+}
+/**
+ * Stock list item for updating stock
+ */
+export interface StockListItem {
+    /** Model ID. Use 0 for items without models */
+    model_id?: number;
+    /** New seller stock info */
+    seller_stock: SellerStockUpdate[];
+}
+/**
+ * Parameters for updating product stock
+ */
+export type UpdateStockParams = {
+    /** Item ID */
+    item_id: number;
+    /** List of stock updates. Length should be between 1 to 50 */
+    stock_list: StockListItem[];
+};
+/**
+ * Result of a single stock update
+ */
+export interface UpdateStockResultItem {
+    /** Model ID that was updated */
+    model_id: number;
+    /** Seller stock that was updated */
+    seller_stock: SellerStockUpdate[];
+}
+/**
+ * Response for updating product stock
+ */
+export interface UpdateStockResponse extends FetchResponse<{
+    /** List of successfully updated stock */
+    success_list?: UpdateStockResultItem[];
+    /** List of failed updates */
+    failure_list?: {
+        /** Model ID that failed */
+        model_id: number;
+        /** Failure error message */
+        failed_reason: string;
+    }[];
+}> {
+}
+/**
+ * Parameters for deleting a product item
+ */
+export type DeleteItemParams = {
+    /** The ID of the product item to delete */
+    item_id: number;
+};
+/**
+ * Response for deleting a product item
+ */
+export interface DeleteItemResponse extends BaseResponse {
+}
+/**
+ * Item in the unlist request
+ */
+export interface UnlistItemInfo {
+    /** Shopee's unique identifier for an item */
+    item_id: number;
+    /** Unlist (true) or list (false) */
+    unlist: boolean;
+}
+/**
+ * Parameters for unlisting/listing items
+ */
+export type UnlistItemParams = {
+    /** List of items to unlist/list. Length should be between 1 to 50 */
+    item_list: UnlistItemInfo[];
+};
+/**
+ * Result of a single unlist operation
+ */
+export interface UnlistItemResultItem {
+    /** Item ID that was processed */
+    item_id: number;
+    /** Whether operation was successful */
+    success: boolean;
+    /** Error message if failed */
+    failed_reason?: string;
+}
+/**
+ * Response for unlisting/listing items
+ */
+export interface UnlistItemResponse extends FetchResponse<{
+    /** List of results */
+    result?: UnlistItemResultItem[];
+}> {
+}
+/**
+ * Category information
+ */
+export interface CategoryInfo {
+    /** The ID of category */
+    category_id: number;
+    /** The ID of parent category (if any) */
+    parent_category_id?: number;
+    /** The name of category */
+    category_name: string;
+    /** Whether this category has children */
+    has_children: boolean;
+}
+/**
+ * Parameters for getting product category list
+ */
+export type GetProductCategoryParams = {
+    /** Language for category names */
+    language?: string;
+};
+/**
+ * Response for getting product category list
+ */
+export interface GetProductCategoryResponse extends FetchResponse<{
+    /** List of categories */
+    category_list: CategoryInfo[];
+}> {
+}
+/**
+ * Image input for adding/updating items
+ */
+export interface ImageInput {
+    /** List of image IDs */
+    image_id_list: string[];
+}
+/**
+ * Description info for extended descriptions
+ */
+export interface DescriptionInfo {
+    /** Extended description details */
+    extended_description?: {
+        /** List of description fields */
+        field_list: ExtendedDescriptionField[];
+    };
+}
+/**
+ * Item attribute
+ */
+export interface ItemAttribute {
+    /** Attribute ID */
+    attribute_id: number;
+    /** List of attribute values */
+    attribute_value_list: {
+        /** Attribute value ID */
+        value_id?: number;
+        /** Original attribute value name */
+        original_value_name?: string;
+        /** Value unit */
+        value_unit?: string;
+    }[];
+}
+/**
+ * Parameters for adding a new item
+ */
+export type AddItemParams = {
+    /** Original price of the item */
+    original_price: number;
+    /** Item description */
+    description: string;
+    /** Item weight in KG */
+    weight?: number;
+    /** Item name */
+    item_name: string;
+    /** Item status: NORMAL or UNLIST */
+    item_status?: string;
+    /** Package dimensions */
+    dimension?: Dimension;
+    /** Logistics information */
+    logistic_info?: LogisticInfo[];
+    /** Attribute list */
+    attribute_list?: ItemAttribute[];
+    /** Category ID */
+    category_id: number;
+    /** Image information */
+    image: ImageInput;
+    /** Pre-order information */
+    pre_order?: PreOrder;
+    /** Item SKU */
+    item_sku?: string;
+    /** Item condition: NEW or USED */
+    condition?: string;
+    /** Wholesale pricing */
+    wholesale?: Wholesale[];
+    /** Video upload IDs */
+    video_upload_id?: string[];
+    /** Brand information */
+    brand?: BrandInfo;
+    /** Item dangerous goods indicator */
+    item_dangerous?: number;
+    /** Tax information */
+    tax_info?: TaxInfo;
+    /** Complaint policy (PL only) */
+    complaint_policy?: ComplaintPolicy;
+    /** Description info for extended description */
+    description_info?: DescriptionInfo;
+    /** Description type */
+    description_type?: string;
+    /** Seller stock list */
+    seller_stock?: SellerStockUpdate[];
+};
+/**
+ * Response for adding an item
+ */
+export interface AddItemResponse extends FetchResponse<{
+    /** Newly created item ID */
+    item_id: number;
+    /** Warning messages */
+    warning?: string[];
+}> {
+}
+/**
+ * Parameters for updating an item
+ */
+export type UpdateItemParams = {
+    /** Item ID to update */
+    item_id: number;
+    /** Original price */
+    original_price?: number;
+    /** Item description */
+    description?: string;
+    /** Item weight in KG */
+    weight?: number;
+    /** Item name */
+    item_name?: string;
+    /** Item status */
+    item_status?: string;
+    /** Package dimensions */
+    dimension?: Dimension;
+    /** Logistics information */
+    logistic_info?: LogisticInfo[];
+    /** Attribute list */
+    attribute_list?: ItemAttribute[];
+    /** Category ID */
+    category_id?: number;
+    /** Image information */
+    image?: ImageInput;
+    /** Pre-order information */
+    pre_order?: PreOrder;
+    /** Item SKU */
+    item_sku?: string;
+    /** Item condition */
+    condition?: string;
+    /** Wholesale pricing */
+    wholesale?: Wholesale[];
+    /** Video upload IDs */
+    video_upload_id?: string[];
+    /** Brand information */
+    brand?: BrandInfo;
+    /** Item dangerous goods indicator */
+    item_dangerous?: number;
+    /** Tax information */
+    tax_info?: TaxInfo;
+    /** Complaint policy */
+    complaint_policy?: ComplaintPolicy;
+    /** Description info */
+    description_info?: DescriptionInfo;
+    /** Description type */
+    description_type?: string;
+    /** Seller stock */
+    seller_stock?: SellerStockUpdate[];
+};
+/**
+ * Response for updating an item
+ */
+export interface UpdateItemResponse extends FetchResponse<{
+    /** Updated item ID */
+    item_id: number;
+    /** Warning messages */
+    warning?: string[];
+}> {
+}
+/**
+ * Tier variation option for models
+ */
+export interface TierVariationOption {
+    /** Option name */
+    option: string;
+    /** Image for the option */
+    image?: {
+        /** Image ID */
+        image_id?: string;
+    };
+}
+/**
+ * Tier variation definition
+ */
+export interface TierVariationInput {
+    /** Variation name */
+    name: string;
+    /** List of options */
+    option_list: TierVariationOption[];
+}
+/**
+ * Model input for adding models
+ */
+export interface ModelInput {
+    /** Tier index (position in variation) */
+    tier_index: number[];
+    /** Stock info */
+    normal_stock?: number;
+    /** Original price */
+    original_price: number;
+    /** Model SKU */
+    model_sku?: string;
+    /** Seller stock */
+    seller_stock?: SellerStockUpdate[];
+}
+/**
+ * Parameters for adding models to an item
+ */
+export type AddModelParams = {
+    /** Item ID */
+    item_id: number;
+    /** Model list to add */
+    model_list: ModelInput[];
+};
+/**
+ * Response for adding models
+ */
+export interface AddModelResponse extends FetchResponse<{
+    /** List of created model IDs */
+    model_id_list: number[];
+    /** Warning messages */
+    warning?: string[];
+}> {
+}
+/**
+ * Model update input
+ */
+export interface ModelUpdateInput {
+    /** Model ID to update */
+    model_id: number;
+    /** Original price */
+    original_price?: number;
+    /** Model SKU */
+    model_sku?: string;
+    /** Seller stock */
+    seller_stock?: SellerStockUpdate[];
+}
+/**
+ * Parameters for updating models
+ */
+export type UpdateModelParams = {
+    /** Item ID */
+    item_id: number;
+    /** Model list to update */
+    model_list: ModelUpdateInput[];
+};
+/**
+ * Response for updating models
+ */
+export interface UpdateModelResponse extends FetchResponse<{
+    /** List of updated model IDs */
+    model_id_list: number[];
+    /** Warning messages */
+    warning?: string[];
+}> {
+}
+/**
+ * Parameters for deleting models
+ */
+export type DeleteModelParams = {
+    /** Item ID */
+    item_id: number;
+    /** List of model IDs to delete */
+    model_id_list: number[];
+};
+/**
+ * Response for deleting models
+ */
+export interface DeleteModelResponse extends FetchResponse<{
+    /** Success status */
+    success: boolean;
+}> {
+}
+/**
+ * Parameters for initializing tier variations
+ */
+export type InitTierVariationParams = {
+    /** Item ID */
+    item_id: number;
+    /** Tier variation list */
+    tier_variation: TierVariationInput[];
+    /** Model list */
+    model: ModelInput[];
+};
+/**
+ * Response for initializing tier variations
+ */
+export interface InitTierVariationResponse extends FetchResponse<{
+    /** Created model IDs */
+    model_id_list: number[];
+    /** Warning messages */
+    warning?: string[];
+}> {
+}
+/**
+ * Parameters for updating tier variations
+ */
+export type UpdateTierVariationParams = {
+    /** Item ID */
+    item_id: number;
+    /** Tier variation list */
+    tier_variation: TierVariationInput[];
+};
+/**
+ * Response for updating tier variations
+ */
+export interface UpdateTierVariationResponse extends BaseResponse {
+}
+/**
+ * Parameters for searching items
+ */
+export type SearchItemParams = {
+    /** Offset for pagination */
+    offset?: number;
+    /** Page size (1-100) */
+    page_size?: number;
+    /** Item status filter */
+    item_status?: string[];
+    /** Search by item name */
+    item_name?: string;
+    /** Search by item SKU */
+    item_sku?: string;
+};
+/**
+ * Response for searching items
+ */
+export interface SearchItemResponse extends FetchResponse<{
+    /** List of items found */
+    item: ItemListItemInfo[];
+    /** Total count */
+    total_count: number;
+    /** Has more items */
+    has_next_page: boolean;
+    /** Next page offset */
+    next_offset: number;
+}> {
+}
+/**
+ * Parameters for getting item extra info
+ */
+export type GetItemExtraInfoParams = {
+    /** List of item IDs */
+    item_id_list: number[];
+};
+/**
+ * Sale info details
+ */
+export interface SaleInfo {
+    /** Current sale count */
+    sale: number;
+    /** Sale count in 7 days */
+    sale_7d: number;
+    /** Sale count in 30 days */
+    sale_30d: number;
+}
+/**
+ * Item extra info
+ */
+export interface ItemExtraInfo {
+    /** Item ID */
+    item_id: number;
+    /** Sale information */
+    sale_info: SaleInfo;
+    /** View count */
+    view: number;
+    /** Like count */
+    liked_count: number;
+    /** Comment count */
+    cmt_count: number;
+}
+/**
+ * Response for getting item extra info
+ */
+export interface GetItemExtraInfoResponse extends FetchResponse<{
+    /** List of item extra info */
+    item_list: ItemExtraInfo[];
+}> {
+}
+/**
+ * Attribute tree node
+ */
+export interface AttributeTreeNode {
+    /** Attribute ID */
+    attribute_id: number;
+    /** Original attribute name */
+    original_attribute_name: string;
+    /** Is mandatory */
+    is_mandatory: boolean;
+    /** Input type */
+    input_type: string;
+    /** Format type */
+    format_type?: string;
+    /** Attribute value list */
+    attribute_value_list?: {
+        /** Attribute value ID */
+        value_id?: number;
+        /** Original attribute value name */
+        original_value_name?: string;
+        /** Value unit */
+        value_unit?: string;
+    }[];
+}
+/**
+ * Parameters for getting attribute tree
+ */
+export type GetAttributeTreeParams = {
+    /** Category ID */
+    category_id: number;
+    /** Language */
+    language?: string;
+};
+/**
+ * Response for getting attribute tree
+ */
+export interface GetAttributeTreeResponse extends FetchResponse<{
+    /** List of attributes */
+    attribute_list: AttributeTreeNode[];
+}> {
+}
+/**
+ * Brand info for brand list
+ */
+export interface BrandItem {
+    /** Brand ID */
+    brand_id: number;
+    /** Original brand name */
+    original_brand_name: string;
+    /** Display brand name */
+    display_brand_name: string;
+}
+/**
+ * Parameters for getting brand list
+ */
+export type GetBrandListParams = {
+    /** Category ID */
+    category_id: number;
+    /** Page offset */
+    offset: number;
+    /** Page size */
+    page_size: number;
+    /** Status filter */
+    status?: number;
+};
+/**
+ * Response for getting brand list
+ */
+export interface GetBrandListResponse extends FetchResponse<{
+    /** List of brands */
+    brand_list: BrandItem[];
+    /** Has more data */
+    has_next_page: boolean;
+    /** Next page offset */
+    next_offset: number;
+    /** Is mandatory */
+    is_mandatory: boolean;
+    /** Input type */
+    input_type: string;
+}> {
+}
+/**
+ * Parameters for registering a brand
+ */
+export type RegisterBrandParams = {
+    /** Category ID */
+    category_id: number;
+    /** Original brand name */
+    original_brand_name: string;
+};
+/**
+ * Response for registering a brand
+ */
+export interface RegisterBrandResponse extends FetchResponse<{
+    /** Brand ID */
+    brand_id: number;
+    /** Original brand name */
+    original_brand_name: string;
+}> {
+}
+/**
+ * Recommended category
+ */
+export interface RecommendedCategory {
+    /** Category ID */
+    category_id: number;
+    /** Category name */
+    category_name: string;
+}
+/**
+ * Parameters for category recommendation
+ */
+export type CategoryRecommendParams = {
+    /** Item name */
+    item_name: string;
+};
+/**
+ * Response for category recommendation
+ */
+export interface CategoryRecommendResponse extends FetchResponse<{
+    /** List of recommended categories */
+    category_id_list: number[];
+}> {
+}
+/**
+ * Item limit info
+ */
+export interface ItemLimit {
+    /** Maximum image count */
+    max_image_count: number;
+    /** Maximum video count */
+    max_video_count: number;
+    /** Maximum product title length */
+    max_product_title_length: number;
+    /** Maximum description length */
+    max_description_length: number;
+    /** Maximum extended description length */
+    max_extended_description_length: number;
+    /** Whether video is required */
+    is_video_required: boolean;
+}
+/**
+ * Parameters for getting item limits
+ */
+export type GetItemLimitParams = {
+    /** Category ID */
+    category_id: number;
+};
+/**
+ * Response for getting item limits
+ */
+export interface GetItemLimitResponse extends FetchResponse<{
+    /** Item limit information */
+    item_limit: ItemLimit;
+}> {
+}
+/**
+ * Promotion info
+ */
+export interface PromotionInfo {
+    /** Promotion ID */
+    promotion_id: number;
+    /** Promotion type */
+    promotion_type: number;
+    /** Start time */
+    start_time: number;
+    /** End time */
+    end_time: number;
+}
+/**
+ * Parameters for getting item promotion
+ */
+export type GetItemPromotionParams = {
+    /** List of item IDs */
+    item_id_list: number[];
+};
+/**
+ * Item promotion info
+ */
+export interface ItemPromotionInfo {
+    /** Item ID */
+    item_id: number;
+    /** Promotion list */
+    promotion_list: PromotionInfo[];
+}
+/**
+ * Response for getting item promotion
+ */
+export interface GetItemPromotionResponse extends FetchResponse<{
+    /** List of item promotions */
+    item_promotion_list: ItemPromotionInfo[];
+}> {
+}
+/**
+ * Parameters for boosting an item
+ */
+export type BoostItemParams = {
+    /** List of item IDs to boost */
+    item_id_list: number[];
+};
+/**
+ * Response for boosting items
+ */
+export interface BoostItemResponse extends FetchResponse<{
+    /** List of failed item IDs */
+    failed_item_id_list?: number[];
+}> {
+}
+/**
+ * Boosted item info
+ */
+export interface BoostedItem {
+    /** Item ID */
+    item_id: number;
+    /** Boost end time */
+    boost_end_time: number;
+}
+/**
+ * Response for getting boosted list
+ */
+export interface GetBoostedListResponse extends FetchResponse<{
+    /** List of boosted items */
+    item_list: BoostedItem[];
+}> {
+}
+/**
+ * Parameters for getting variations
+ */
+export type GetVariationsParams = {
+    /** Item ID */
+    item_id: number;
+    /** Language */
+    language?: string;
+};
+/**
+ * Response for getting variations
+ */
+export interface GetVariationsResponse extends FetchResponse<{
+    /** Tier variation */
+    tier_variation: TierVariation[];
+}> {
+}
+/**
+ * Parameters for recommending attributes
+ */
+export type GetRecommendAttributeParams = {
+    /** Category ID */
+    category_id: number;
+    /** Item name */
+    item_name?: string;
+};
+/**
+ * Recommended attribute
+ */
+export interface RecommendedAttribute {
+    /** Attribute ID */
+    attribute_id: number;
+    /** Recommended value list */
+    recommended_value_list: {
+        /** Attribute value ID */
+        value_id?: number;
+        /** Original attribute value name */
+        original_value_name?: string;
+        /** Value unit */
+        value_unit?: string;
+    }[];
+}
+/**
+ * Response for getting recommended attributes
+ */
+export interface GetRecommendAttributeResponse extends FetchResponse<{
+    /** List of recommended attributes */
+    recommended_attribute_list: RecommendedAttribute[];
+}> {
+}
+/**
+ * Parameters for searching attribute values
+ */
+export type SearchAttributeValueListParams = {
+    /** Category ID */
+    category_id: number;
+    /** Attribute ID */
+    attribute_id: number;
+    /** Search value */
+    search_value: string;
+    /** Language */
+    language?: string;
+};
+/**
+ * Response for searching attribute values
+ */
+export interface SearchAttributeValueListResponse extends FetchResponse<{
+    /** List of attribute values */
+    attribute_value_list: {
+        /** Attribute value ID */
+        value_id?: number;
+        /** Original attribute value name */
+        original_value_name?: string;
+        /** Value unit */
+        value_unit?: string;
+    }[];
+}> {
+}
+/**
+ * Parameters for getting main item list
+ */
+export type GetMainItemListParams = {
+    /** Page offset */
+    offset?: number;
+    /** Page size */
+    page_size?: number;
+    /** Time filter from */
+    update_time_from?: number;
+    /** Time filter to */
+    update_time_to?: number;
+};
+/**
+ * Response for getting main item list
+ */
+export interface GetMainItemListResponse extends FetchResponse<{
+    /** List of items */
+    item: ItemListItemInfo[];
+    /** Total count */
+    total_count: number;
+    /** Has next page */
+    has_next_page: boolean;
+    /** Next offset */
+    next_offset: number;
+}> {
+}
+/**
+ * Violation info
+ */
+export interface ViolationInfo {
+    /** Violation type */
+    violation_type: string;
+    /** Violation reason */
+    violation_reason: string;
+    /** Violated item info */
+    violated_item_info: string[];
+}
+/**
+ * Parameters for getting item violation info
+ */
+export type GetItemViolationInfoParams = {
+    /** List of item IDs */
+    item_id_list: number[];
+};
+/**
+ * Item violation
+ */
+export interface ItemViolation {
+    /** Item ID */
+    item_id: number;
+    /** Violation list */
+    violation_list: ViolationInfo[];
+}
+/**
+ * Response for getting item violation info
+ */
+export interface GetItemViolationInfoResponse extends FetchResponse<{
+    /** List of item violations */
+    item_violation_list: ItemViolation[];
+}> {
+}
+/**
+ * Weight recommendation
+ */
+export interface WeightRecommendation {
+    /** Category ID */
+    category_id: number;
+    /** Item name */
+    item_name: string;
+    /** Recommended weight */
+    weight: number;
+}
+/**
+ * Parameters for getting weight recommendation
+ */
+export type GetWeightRecommendationParams = {
+    /** Category ID */
+    category_id: number;
+    /** Item name */
+    item_name: string;
+};
+/**
+ * Response for getting weight recommendation
+ */
+export interface GetWeightRecommendationResponse extends FetchResponse<{
+    /** Weight recommendation */
+    weight: number;
+}> {
+}
+/**
+ * Parameters for getting direct item list
+ */
+export type GetDirectItemListParams = {
+    /** Page offset */
+    offset?: number;
+    /** Page size */
+    page_size?: number;
+};
+/**
+ * Direct item info
+ */
+export interface DirectItemInfo {
+    /** Item ID */
+    item_id: number;
+    /** Category ID */
+    category_id: number;
+    /** Item name */
+    item_name: string;
+    /** Item status */
+    item_status: string;
+    /** Update time */
+    update_time: number;
+}
+/**
+ * Response for getting direct item list
+ */
+export interface GetDirectItemListResponse extends FetchResponse<{
+    /** List of direct items */
+    item: DirectItemInfo[];
+    /** Total count */
+    total_count: number;
+    /** Has next page */
+    has_next_page: boolean;
+    /** Next offset */
+    next_offset: number;
+}> {
+}
+/**
+ * Content diagnosis result
+ */
+export interface ContentDiagnosisResult {
+    /** Item ID */
+    item_id: number;
+    /** Diagnosis status */
+    status: string;
+    /** Failed fields */
+    failed_field_list?: string[];
+}
+/**
+ * Parameters for getting item content diagnosis result
+ */
+export type GetItemContentDiagnosisResultParams = {
+    /** List of item IDs */
+    item_id_list: number[];
+};
+/**
+ * Response for getting item content diagnosis result
+ */
+export interface GetItemContentDiagnosisResultResponse extends FetchResponse<{
+    /** Diagnosis result list */
+    item_list: ContentDiagnosisResult[];
+}> {
+}
+/**
+ * Parameters for getting item list by content diagnosis
+ */
+export type GetItemListByContentDiagnosisParams = {
+    /** Diagnosis status */
+    status: string;
+    /** Page offset */
+    offset?: number;
+    /** Page size */
+    page_size?: number;
+};
+/**
+ * Response for getting item list by content diagnosis
+ */
+export interface GetItemListByContentDiagnosisResponse extends FetchResponse<{
+    /** List of items */
+    item: ItemListItemInfo[];
+    /** Total count */
+    total_count: number;
+    /** Has next page */
+    has_next_page: boolean;
+    /** Next offset */
+    next_offset: number;
+}> {
+}
+/**
+ * Kit item params (simplified - represents a bundled product)
+ */
+export type AddKitItemParams = Record<string, any>;
+export interface AddKitItemResponse extends FetchResponse<{
+    item_id: number;
+}> {
+}
+export type UpdateKitItemParams = Record<string, any>;
+export interface UpdateKitItemResponse extends BaseResponse {
+}
+export type GetKitItemInfoParams = {
+    item_id_list: number[];
+};
+export interface GetKitItemInfoResponse extends FetchResponse<{
+    item_list: any[];
+}> {
+}
+export type GetKitItemLimitParams = {
+    category_id: number;
+};
+export interface GetKitItemLimitResponse extends FetchResponse<{
+    item_limit: any;
+}> {
+}
+export type GenerateKitImageParams = {
+    image_id_list: string[];
+};
+export interface GenerateKitImageResponse extends FetchResponse<{
+    image_info: {
+        image_id: string;
+        image_url: string;
+    };
+}> {
+}
+/**
+ * SSP (Seller-Sponsored Product) params
+ */
+export type AddSspItemParams = Record<string, any>;
+export interface AddSspItemResponse extends FetchResponse<{
+    item_id: number;
+}> {
+}
+export type GetSspInfoParams = {
+    item_id: number;
+};
+export interface GetSspInfoResponse extends FetchResponse<{
+    ssp_info: any;
+}> {
+}
+export type GetSspListParams = {
+    offset?: number;
+    page_size?: number;
+};
+export interface GetSspListResponse extends FetchResponse<{
+    item_list: any[];
+    has_next_page: boolean;
+    next_offset: number;
+}> {
+}
+export type LinkSspParams = {
+    item_id: number;
+    ssp_item_id: number;
+};
+export interface LinkSspResponse extends BaseResponse {
+}
+export type UnlinkSspParams = {
+    item_id: number;
+};
+export interface UnlinkSspResponse extends BaseResponse {
+}
+export type UpdateSipItemPriceParams = {
+    item_id: number;
+    sip_item_price: number;
+};
+export interface UpdateSipItemPriceResponse extends BaseResponse {
+}
+/**
+ * Size chart params
+ */
+export type GetSizeChartListParams = {
+    offset?: number;
+    page_size?: number;
+};
+export interface GetSizeChartListResponse extends FetchResponse<{
+    size_chart_list: any[];
+    has_next_page: boolean;
+    next_offset: number;
+}> {
+}
+export type GetSizeChartDetailParams = {
+    size_chart_id: string;
+};
+export interface GetSizeChartDetailResponse extends FetchResponse<{
+    size_chart: any;
+}> {
+}
+/**
+ * Vehicle compatibility params
+ */
+export type GetAllVehicleListParams = Record<string, any>;
+export interface GetAllVehicleListResponse extends FetchResponse<{
+    vehicle_list: any[];
+}> {
+}
+export type GetVehicleListByCompatibilityDetailParams = {
+    item_id: number;
+};
+export interface GetVehicleListByCompatibilityDetailResponse extends FetchResponse<{
+    vehicle_list: any[];
+}> {
+}
+/**
+ * Other specialized params
+ */
+export type GetAitemByPitemIdParams = {
+    pitem_id_list: number[];
+};
+export interface GetAitemByPitemIdResponse extends FetchResponse<{
+    item_list: any[];
+}> {
+}
+export type GetDirectShopRecommendedPriceParams = {
+    category_id: number;
+    item_name?: string;
+};
+export interface GetDirectShopRecommendedPriceResponse extends FetchResponse<{
+    recommended_price: number;
+}> {
+}
+export type GetProductCertificationRuleParams = {
+    category_id: number;
+};
+export interface GetProductCertificationRuleResponse extends FetchResponse<{
+    certification_list: any[];
+}> {
+}
+export type SearchUnpackagedModelListParams = {
+    item_id: number;
+    search_value?: string;
+};
+export interface SearchUnpackagedModelListResponse extends FetchResponse<{
+    model_list: any[];
+}> {
+}
