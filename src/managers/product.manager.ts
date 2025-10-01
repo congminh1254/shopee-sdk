@@ -22,6 +22,57 @@ import {
   UnlistItemResponse,
   GetProductCategoryParams,
   GetProductCategoryResponse,
+  AddItemParams,
+  AddItemResponse,
+  UpdateItemParams,
+  UpdateItemResponse,
+  AddModelParams,
+  AddModelResponse,
+  UpdateModelParams,
+  UpdateModelResponse,
+  DeleteModelParams,
+  DeleteModelResponse,
+  InitTierVariationParams,
+  InitTierVariationResponse,
+  UpdateTierVariationParams,
+  UpdateTierVariationResponse,
+  SearchItemParams,
+  SearchItemResponse,
+  GetItemExtraInfoParams,
+  GetItemExtraInfoResponse,
+  GetAttributeTreeParams,
+  GetAttributeTreeResponse,
+  GetBrandListParams,
+  GetBrandListResponse,
+  RegisterBrandParams,
+  RegisterBrandResponse,
+  CategoryRecommendParams,
+  CategoryRecommendResponse,
+  GetItemLimitParams,
+  GetItemLimitResponse,
+  GetItemPromotionParams,
+  GetItemPromotionResponse,
+  BoostItemParams,
+  BoostItemResponse,
+  GetBoostedListResponse,
+  GetVariationsParams,
+  GetVariationsResponse,
+  GetRecommendAttributeParams,
+  GetRecommendAttributeResponse,
+  SearchAttributeValueListParams,
+  SearchAttributeValueListResponse,
+  GetMainItemListParams,
+  GetMainItemListResponse,
+  GetItemViolationInfoParams,
+  GetItemViolationInfoResponse,
+  GetWeightRecommendationParams,
+  GetWeightRecommendationResponse,
+  GetDirectItemListParams,
+  GetDirectItemListResponse,
+  GetItemContentDiagnosisResultParams,
+  GetItemContentDiagnosisResultResponse,
+  GetItemListByContentDiagnosisParams,
+  GetItemListByContentDiagnosisResponse,
 } from "../schemas/product.js";
 
 export class ProductManager extends BaseManager {
@@ -378,6 +429,563 @@ export class ProductManager extends BaseManager {
       }
     );
 
+    return response;
+  }
+
+  /**
+   * Add a new item
+   *
+   * Use this API to add a new product item to the shop.
+   *
+   * @param params - Parameters for adding item
+   * @returns Promise resolving to add item response with item_id
+   */
+  async addItem(params: AddItemParams): Promise<AddItemResponse> {
+    const response = await ShopeeFetch.fetch<AddItemResponse>(
+      this.config,
+      "/product/add_item",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Update an existing item
+   *
+   * Use this API to update an existing product item.
+   *
+   * @param params - Parameters for updating item
+   * @returns Promise resolving to update item response
+   */
+  async updateItem(params: UpdateItemParams): Promise<UpdateItemResponse> {
+    const response = await ShopeeFetch.fetch<UpdateItemResponse>(
+      this.config,
+      "/product/update_item",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Add models/variations to an item
+   *
+   * Use this API to add product models/variations.
+   *
+   * @param params - Parameters for adding models
+   * @returns Promise resolving to add model response with model IDs
+   */
+  async addModel(params: AddModelParams): Promise<AddModelResponse> {
+    const response = await ShopeeFetch.fetch<AddModelResponse>(
+      this.config,
+      "/product/add_model",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Update models/variations
+   *
+   * Use this API to update product models/variations.
+   *
+   * @param params - Parameters for updating models
+   * @returns Promise resolving to update model response
+   */
+  async updateModel(params: UpdateModelParams): Promise<UpdateModelResponse> {
+    const response = await ShopeeFetch.fetch<UpdateModelResponse>(
+      this.config,
+      "/product/update_model",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Delete models/variations
+   *
+   * Use this API to delete product models/variations.
+   *
+   * @param params - Parameters for deleting models
+   * @returns Promise resolving to delete model response
+   */
+  async deleteModel(params: DeleteModelParams): Promise<DeleteModelResponse> {
+    const response = await ShopeeFetch.fetch<DeleteModelResponse>(
+      this.config,
+      "/product/delete_model",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Initialize tier variations
+   *
+   * Use this API to initialize tier variations for an item.
+   *
+   * @param params - Parameters for initializing tier variations
+   * @returns Promise resolving to init tier variation response
+   */
+  async initTierVariation(params: InitTierVariationParams): Promise<InitTierVariationResponse> {
+    const response = await ShopeeFetch.fetch<InitTierVariationResponse>(
+      this.config,
+      "/product/init_tier_variation",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Update tier variations
+   *
+   * Use this API to update tier variations for an item.
+   *
+   * @param params - Parameters for updating tier variations
+   * @returns Promise resolving to update tier variation response
+   */
+  async updateTierVariation(params: UpdateTierVariationParams): Promise<UpdateTierVariationResponse> {
+    const response = await ShopeeFetch.fetch<UpdateTierVariationResponse>(
+      this.config,
+      "/product/update_tier_variation",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Search items
+   *
+   * Use this API to search for items in the shop.
+   *
+   * @param params - Parameters for searching items
+   * @returns Promise resolving to search item response
+   */
+  async searchItem(params: SearchItemParams): Promise<SearchItemResponse> {
+    const response = await ShopeeFetch.fetch<SearchItemResponse>(
+      this.config,
+      "/product/search_item",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get item extra info
+   *
+   * Use this API to get extra information (sales, views, likes) for items.
+   *
+   * @param params - Parameters for getting item extra info
+   * @returns Promise resolving to item extra info response
+   */
+  async getItemExtraInfo(params: GetItemExtraInfoParams): Promise<GetItemExtraInfoResponse> {
+    const response = await ShopeeFetch.fetch<GetItemExtraInfoResponse>(
+      this.config,
+      "/product/get_item_extra_info",
+      {
+        method: "GET",
+        auth: true,
+        params: {
+          ...params,
+          item_id_list: params.item_id_list.join(","),
+        },
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get attribute tree
+   *
+   * Use this API to get the attribute tree for a category.
+   *
+   * @param params - Parameters for getting attribute tree
+   * @returns Promise resolving to attribute tree response
+   */
+  async getAttributeTree(params: GetAttributeTreeParams): Promise<GetAttributeTreeResponse> {
+    const response = await ShopeeFetch.fetch<GetAttributeTreeResponse>(
+      this.config,
+      "/product/get_attribute_tree",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get brand list
+   *
+   * Use this API to get the list of brands for a category.
+   *
+   * @param params - Parameters for getting brand list
+   * @returns Promise resolving to brand list response
+   */
+  async getBrandList(params: GetBrandListParams): Promise<GetBrandListResponse> {
+    const response = await ShopeeFetch.fetch<GetBrandListResponse>(
+      this.config,
+      "/product/get_brand_list",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Register a brand
+   *
+   * Use this API to register a new brand.
+   *
+   * @param params - Parameters for registering brand
+   * @returns Promise resolving to register brand response
+   */
+  async registerBrand(params: RegisterBrandParams): Promise<RegisterBrandResponse> {
+    const response = await ShopeeFetch.fetch<RegisterBrandResponse>(
+      this.config,
+      "/product/register_brand",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get category recommendation
+   *
+   * Use this API to get category recommendations based on item name.
+   *
+   * @param params - Parameters for category recommendation
+   * @returns Promise resolving to category recommendation response
+   */
+  async categoryRecommend(params: CategoryRecommendParams): Promise<CategoryRecommendResponse> {
+    const response = await ShopeeFetch.fetch<CategoryRecommendResponse>(
+      this.config,
+      "/product/category_recommend",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get item limits
+   *
+   * Use this API to get item limits for a category.
+   *
+   * @param params - Parameters for getting item limits
+   * @returns Promise resolving to item limit response
+   */
+  async getItemLimit(params: GetItemLimitParams): Promise<GetItemLimitResponse> {
+    const response = await ShopeeFetch.fetch<GetItemLimitResponse>(
+      this.config,
+      "/product/get_item_limit",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get item promotion
+   *
+   * Use this API to get promotion information for items.
+   *
+   * @param params - Parameters for getting item promotion
+   * @returns Promise resolving to item promotion response
+   */
+  async getItemPromotion(params: GetItemPromotionParams): Promise<GetItemPromotionResponse> {
+    const response = await ShopeeFetch.fetch<GetItemPromotionResponse>(
+      this.config,
+      "/product/get_item_promotion",
+      {
+        method: "GET",
+        auth: true,
+        params: {
+          ...params,
+          item_id_list: params.item_id_list.join(","),
+        },
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Boost items
+   *
+   * Use this API to boost items for better visibility.
+   *
+   * @param params - Parameters for boosting items
+   * @returns Promise resolving to boost item response
+   */
+  async boostItem(params: BoostItemParams): Promise<BoostItemResponse> {
+    const response = await ShopeeFetch.fetch<BoostItemResponse>(
+      this.config,
+      "/product/boost_item",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get boosted item list
+   *
+   * Use this API to get the list of boosted items.
+   *
+   * @returns Promise resolving to boosted list response
+   */
+  async getBoostedList(): Promise<GetBoostedListResponse> {
+    const response = await ShopeeFetch.fetch<GetBoostedListResponse>(
+      this.config,
+      "/product/get_boosted_list",
+      {
+        method: "GET",
+        auth: true,
+        params: {},
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get variations
+   *
+   * Use this API to get variation information for an item.
+   *
+   * @param params - Parameters for getting variations
+   * @returns Promise resolving to variations response
+   */
+  async getVariations(params: GetVariationsParams): Promise<GetVariationsResponse> {
+    const response = await ShopeeFetch.fetch<GetVariationsResponse>(
+      this.config,
+      "/product/get_variations",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get recommended attributes
+   *
+   * Use this API to get recommended attributes for a category.
+   *
+   * @param params - Parameters for getting recommended attributes
+   * @returns Promise resolving to recommended attributes response
+   */
+  async getRecommendAttribute(params: GetRecommendAttributeParams): Promise<GetRecommendAttributeResponse> {
+    const response = await ShopeeFetch.fetch<GetRecommendAttributeResponse>(
+      this.config,
+      "/product/get_recommend_attribute",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Search attribute values
+   *
+   * Use this API to search for attribute values.
+   *
+   * @param params - Parameters for searching attribute values
+   * @returns Promise resolving to attribute value list response
+   */
+  async searchAttributeValueList(params: SearchAttributeValueListParams): Promise<SearchAttributeValueListResponse> {
+    const response = await ShopeeFetch.fetch<SearchAttributeValueListResponse>(
+      this.config,
+      "/product/search_attribute_value_list",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get main item list
+   *
+   * Use this API to get the main item list.
+   *
+   * @param params - Parameters for getting main item list
+   * @returns Promise resolving to main item list response
+   */
+  async getMainItemList(params?: GetMainItemListParams): Promise<GetMainItemListResponse> {
+    const response = await ShopeeFetch.fetch<GetMainItemListResponse>(
+      this.config,
+      "/product/get_main_item_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params || {},
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get item violation info
+   *
+   * Use this API to get violation information for items.
+   *
+   * @param params - Parameters for getting item violation info
+   * @returns Promise resolving to item violation info response
+   */
+  async getItemViolationInfo(params: GetItemViolationInfoParams): Promise<GetItemViolationInfoResponse> {
+    const response = await ShopeeFetch.fetch<GetItemViolationInfoResponse>(
+      this.config,
+      "/product/get_item_violation_info",
+      {
+        method: "GET",
+        auth: true,
+        params: {
+          ...params,
+          item_id_list: params.item_id_list.join(","),
+        },
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get weight recommendation
+   *
+   * Use this API to get weight recommendations for an item.
+   *
+   * @param params - Parameters for getting weight recommendation
+   * @returns Promise resolving to weight recommendation response
+   */
+  async getWeightRecommendation(params: GetWeightRecommendationParams): Promise<GetWeightRecommendationResponse> {
+    const response = await ShopeeFetch.fetch<GetWeightRecommendationResponse>(
+      this.config,
+      "/product/get_weight_recommendation",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get direct item list
+   *
+   * Use this API to get the direct item list.
+   *
+   * @param params - Parameters for getting direct item list
+   * @returns Promise resolving to direct item list response
+   */
+  async getDirectItemList(params?: GetDirectItemListParams): Promise<GetDirectItemListResponse> {
+    const response = await ShopeeFetch.fetch<GetDirectItemListResponse>(
+      this.config,
+      "/product/get_direct_item_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params || {},
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get item content diagnosis result
+   *
+   * Use this API to get content diagnosis results for items.
+   *
+   * @param params - Parameters for getting content diagnosis result
+   * @returns Promise resolving to content diagnosis result response
+   */
+  async getItemContentDiagnosisResult(params: GetItemContentDiagnosisResultParams): Promise<GetItemContentDiagnosisResultResponse> {
+    const response = await ShopeeFetch.fetch<GetItemContentDiagnosisResultResponse>(
+      this.config,
+      "/product/get_item_content_diagnosis_result",
+      {
+        method: "GET",
+        auth: true,
+        params: {
+          ...params,
+          item_id_list: params.item_id_list.join(","),
+        },
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get item list by content diagnosis
+   *
+   * Use this API to get items filtered by content diagnosis status.
+   *
+   * @param params - Parameters for getting item list by content diagnosis
+   * @returns Promise resolving to item list by content diagnosis response
+   */
+  async getItemListByContentDiagnosis(params: GetItemListByContentDiagnosisParams): Promise<GetItemListByContentDiagnosisResponse> {
+    const response = await ShopeeFetch.fetch<GetItemListByContentDiagnosisResponse>(
+      this.config,
+      "/product/get_item_list_by_content_diagnosis",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
     return response;
   }
 }
