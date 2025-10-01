@@ -1,5 +1,11 @@
 # Shopee SDK
 
+[![CI](https://github.com/congminh1254/shopee-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/congminh1254/shopee-sdk/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/congminh1254/shopee-sdk/badge.svg?branch=main)](https://coveralls.io/github/congminh1254/shopee-sdk?branch=main)
+[![npm version](https://badge.fury.io/js/@congminh1254%2Fshopee-sdk.svg)](https://badge.fury.io/js/@congminh1254%2Fshopee-sdk)
+[![Node.js Version](https://img.shields.io/node/v/@congminh1254/shopee-sdk.svg)](https://www.npmjs.com/package/@congminh1254/shopee-sdk)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A TypeScript SDK for interacting with the Shopee Open API, maintained by the community.
 
 ## Installation
