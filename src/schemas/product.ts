@@ -808,3 +808,188 @@ export interface GetModelListResponse
     /** Standardise Variation config of item */
     standardise_tier_variation?: StandardiseTierVariation[];
   }> {}
+
+/**
+ * Price list item for updating product price
+ */
+export interface PriceListItem {
+  /** Model ID. Use 0 for items without models */
+  model_id?: number;
+  /** Original price for this model */
+  original_price: number;
+}
+
+/**
+ * Parameters for updating product price
+ */
+export type UpdatePriceParams = {
+  /** Item ID */
+  item_id: number;
+  /** List of prices to update. Length should be between 1 to 50 */
+  price_list: PriceListItem[];
+};
+
+/**
+ * Result of a single price update
+ */
+export interface UpdatePriceResultItem {
+  /** Model ID that was updated */
+  model_id: number;
+  /** Original price that was set */
+  original_price: number;
+}
+
+/**
+ * Response for updating product price
+ */
+export interface UpdatePriceResponse
+  extends FetchResponse<{
+    /** List of successfully updated prices */
+    success_list?: UpdatePriceResultItem[];
+    /** List of failed updates */
+    failure_list?: {
+      /** Model ID that failed */
+      model_id: number;
+      /** Failure error message */
+      failed_reason: string;
+    }[];
+  }> {}
+
+/**
+ * Seller stock information for stock update
+ */
+export interface SellerStockUpdate {
+  /** Location ID from v2.shop.get_warehouse_detail API */
+  location_id?: string;
+  /** Stock amount */
+  stock: number;
+}
+
+/**
+ * Stock list item for updating stock
+ */
+export interface StockListItem {
+  /** Model ID. Use 0 for items without models */
+  model_id?: number;
+  /** New seller stock info */
+  seller_stock: SellerStockUpdate[];
+}
+
+/**
+ * Parameters for updating product stock
+ */
+export type UpdateStockParams = {
+  /** Item ID */
+  item_id: number;
+  /** List of stock updates. Length should be between 1 to 50 */
+  stock_list: StockListItem[];
+};
+
+/**
+ * Result of a single stock update
+ */
+export interface UpdateStockResultItem {
+  /** Model ID that was updated */
+  model_id: number;
+  /** Seller stock that was updated */
+  seller_stock: SellerStockUpdate[];
+}
+
+/**
+ * Response for updating product stock
+ */
+export interface UpdateStockResponse
+  extends FetchResponse<{
+    /** List of successfully updated stock */
+    success_list?: UpdateStockResultItem[];
+    /** List of failed updates */
+    failure_list?: {
+      /** Model ID that failed */
+      model_id: number;
+      /** Failure error message */
+      failed_reason: string;
+    }[];
+  }> {}
+
+/**
+ * Parameters for deleting a product item
+ */
+export type DeleteItemParams = {
+  /** The ID of the product item to delete */
+  item_id: number;
+};
+
+/**
+ * Response for deleting a product item
+ */
+export interface DeleteItemResponse extends BaseResponse {}
+
+/**
+ * Item in the unlist request
+ */
+export interface UnlistItemInfo {
+  /** Shopee's unique identifier for an item */
+  item_id: number;
+  /** Unlist (true) or list (false) */
+  unlist: boolean;
+}
+
+/**
+ * Parameters for unlisting/listing items
+ */
+export type UnlistItemParams = {
+  /** List of items to unlist/list. Length should be between 1 to 50 */
+  item_list: UnlistItemInfo[];
+};
+
+/**
+ * Result of a single unlist operation
+ */
+export interface UnlistItemResultItem {
+  /** Item ID that was processed */
+  item_id: number;
+  /** Whether operation was successful */
+  success: boolean;
+  /** Error message if failed */
+  failed_reason?: string;
+}
+
+/**
+ * Response for unlisting/listing items
+ */
+export interface UnlistItemResponse
+  extends FetchResponse<{
+    /** List of results */
+    result?: UnlistItemResultItem[];
+  }> {}
+
+/**
+ * Category information
+ */
+export interface CategoryInfo {
+  /** The ID of category */
+  category_id: number;
+  /** The ID of parent category (if any) */
+  parent_category_id?: number;
+  /** The name of category */
+  category_name: string;
+  /** Whether this category has children */
+  has_children: boolean;
+}
+
+/**
+ * Parameters for getting product category list
+ */
+export type GetProductCategoryParams = {
+  /** Language for category names */
+  language?: string;
+};
+
+/**
+ * Response for getting product category list
+ */
+export interface GetProductCategoryResponse
+  extends FetchResponse<{
+    /** List of categories */
+    category_list: CategoryInfo[];
+  }> {}

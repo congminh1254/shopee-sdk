@@ -9,6 +9,11 @@ import {
   GetItemListResponse,
   GetItemBaseInfoResponse,
   GetModelListResponse,
+  UpdatePriceResponse,
+  UpdateStockResponse,
+  DeleteItemResponse,
+  UnlistItemResponse,
+  GetProductCategoryResponse,
 } from "../../schemas/product.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -379,6 +384,510 @@ describe("ProductManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("updatePrice", () => {
+    it("should update product price successfully", async () => {
+      const mockResponse: UpdatePriceResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          success_list: [
+            {
+              model_id: 0,
+              original_price: 99.99,
+            },
+          ],
+          failure_list: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.updatePrice({
+        item_id: 123456,
+        price_list: [
+          {
+            model_id: 0,
+            original_price: 99.99,
+          },
+        ],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/update_price", {
+        method: "POST",
+        auth: true,
+        body: {
+          item_id: 123456,
+          price_list: [
+            {
+              model_id: 0,
+              original_price: 99.99,
+            },
+          ],
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
+
+    it("should update multiple model prices", async () => {
+      const mockResponse: UpdatePriceResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          success_list: [
+            {
+              model_id: 1001,
+              original_price: 49.99,
+            },
+            {
+              model_id: 1002,
+              original_price: 59.99,
+            },
+          ],
+          failure_list: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.updatePrice({
+        item_id: 123456,
+        price_list: [
+          {
+            model_id: 1001,
+            original_price: 49.99,
+          },
+          {
+            model_id: 1002,
+            original_price: 59.99,
+          },
+        ],
+      });
+
+      expect(result.response.success_list).toHaveLength(2);
+      expect(result).toEqual(mockResponse);
+    });
+
+    it("should handle price update failures", async () => {
+      const mockResponse: UpdatePriceResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          success_list: [],
+          failure_list: [
+            {
+              model_id: 1001,
+              failed_reason: "Price too low",
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.updatePrice({
+        item_id: 123456,
+        price_list: [
+          {
+            model_id: 1001,
+            original_price: 0.01,
+          },
+        ],
+      });
+
+      expect(result.response.failure_list).toHaveLength(1);
+      expect(result.response.failure_list?.[0].failed_reason).toBe("Price too low");
+    });
+  });
+
+  describe("updateStock", () => {
+    it("should update product stock successfully", async () => {
+      const mockResponse: UpdateStockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          success_list: [
+            {
+              model_id: 0,
+              seller_stock: [
+                {
+                  stock: 100,
+                },
+              ],
+            },
+          ],
+          failure_list: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.updateStock({
+        item_id: 123456,
+        stock_list: [
+          {
+            model_id: 0,
+            seller_stock: [
+              {
+                stock: 100,
+              },
+            ],
+          },
+        ],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/update_stock", {
+        method: "POST",
+        auth: true,
+        body: {
+          item_id: 123456,
+          stock_list: [
+            {
+              model_id: 0,
+              seller_stock: [
+                {
+                  stock: 100,
+                },
+              ],
+            },
+          ],
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
+
+    it("should update stock with location_id", async () => {
+      const mockResponse: UpdateStockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          success_list: [
+            {
+              model_id: 1001,
+              seller_stock: [
+                {
+                  location_id: "LOC-001",
+                  stock: 50,
+                },
+              ],
+            },
+          ],
+          failure_list: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.updateStock({
+        item_id: 123456,
+        stock_list: [
+          {
+            model_id: 1001,
+            seller_stock: [
+              {
+                location_id: "LOC-001",
+                stock: 50,
+              },
+            ],
+          },
+        ],
+      });
+
+      expect(result.response.success_list?.[0].seller_stock[0].location_id).toBe("LOC-001");
+    });
+
+    it("should handle stock update failures", async () => {
+      const mockResponse: UpdateStockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          success_list: [],
+          failure_list: [
+            {
+              model_id: 1001,
+              failed_reason: "Insufficient stock",
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.updateStock({
+        item_id: 123456,
+        stock_list: [
+          {
+            model_id: 1001,
+            seller_stock: [
+              {
+                stock: -10,
+              },
+            ],
+          },
+        ],
+      });
+
+      expect(result.response.failure_list).toHaveLength(1);
+    });
+  });
+
+  describe("deleteItem", () => {
+    it("should delete a product item successfully", async () => {
+      const mockResponse: DeleteItemResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        warning: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.deleteItem({
+        item_id: 123456,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/delete_item", {
+        method: "POST",
+        auth: true,
+        body: {
+          item_id: 123456,
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.error).toBe("");
+    });
+
+    it("should handle delete item error", async () => {
+      const mockResponse: DeleteItemResponse = {
+        request_id: "test-request-id",
+        error: "error_item_not_found",
+        message: "Item_id is not found.",
+        warning: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.deleteItem({
+        item_id: 999999,
+      });
+
+      expect(result.error).toBe("error_item_not_found");
+      expect(result.message).toBe("Item_id is not found.");
+    });
+  });
+
+  describe("unlistItem", () => {
+    it("should unlist items successfully", async () => {
+      const mockResponse: UnlistItemResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          result: [
+            {
+              item_id: 123456,
+              success: true,
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.unlistItem({
+        item_list: [
+          {
+            item_id: 123456,
+            unlist: true,
+          },
+        ],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/unlist_item", {
+        method: "POST",
+        auth: true,
+        body: {
+          item_list: [
+            {
+              item_id: 123456,
+              unlist: true,
+            },
+          ],
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.result?.[0].success).toBe(true);
+    });
+
+    it("should list items (unlist=false)", async () => {
+      const mockResponse: UnlistItemResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          result: [
+            {
+              item_id: 123456,
+              success: true,
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.unlistItem({
+        item_list: [
+          {
+            item_id: 123456,
+            unlist: false,
+          },
+        ],
+      });
+
+      expect(result.response.result?.[0].success).toBe(true);
+    });
+
+    it("should handle multiple items with mixed results", async () => {
+      const mockResponse: UnlistItemResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          result: [
+            {
+              item_id: 123456,
+              success: true,
+            },
+            {
+              item_id: 789012,
+              success: false,
+              failed_reason: "Item not found",
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.unlistItem({
+        item_list: [
+          {
+            item_id: 123456,
+            unlist: true,
+          },
+          {
+            item_id: 789012,
+            unlist: true,
+          },
+        ],
+      });
+
+      expect(result.response.result).toHaveLength(2);
+      expect(result.response.result?.[0].success).toBe(true);
+      expect(result.response.result?.[1].success).toBe(false);
+    });
+  });
+
+  describe("getCategory", () => {
+    it("should get category list with default language", async () => {
+      const mockResponse: GetProductCategoryResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          category_list: [
+            {
+              category_id: 100001,
+              parent_category_id: 0,
+              category_name: "Electronics",
+              has_children: true,
+            },
+            {
+              category_id: 100002,
+              parent_category_id: 100001,
+              category_name: "Mobile Phones",
+              has_children: false,
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getCategory();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_category", {
+        method: "GET",
+        auth: true,
+        params: {},
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.category_list).toHaveLength(2);
+    });
+
+    it("should get category list with specific language", async () => {
+      const mockResponse: GetProductCategoryResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          category_list: [
+            {
+              category_id: 100001,
+              parent_category_id: 0,
+              category_name: "电子产品",
+              has_children: true,
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getCategory({
+        language: "zh-hans",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_category", {
+        method: "GET",
+        auth: true,
+        params: {
+          language: "zh-hans",
+        },
+      });
+
+      expect(result.response.category_list[0].category_name).toBe("电子产品");
+    });
+
+    it("should handle empty category list", async () => {
+      const mockResponse: GetProductCategoryResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          category_list: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getCategory();
+
+      expect(result.response.category_list).toEqual([]);
     });
   });
 });
