@@ -48,6 +48,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/congminh1254/shopee-sdk.git"
@@ -69,6 +72,7 @@
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
+    "coveralls": "^3.1.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^10.1.5",
     "husky": "^8.0.3",
