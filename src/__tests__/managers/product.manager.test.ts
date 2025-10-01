@@ -34,6 +34,12 @@ import {
   GetVariationsResponse,
   GetRecommendAttributeResponse,
   SearchAttributeValueListResponse,
+  GetMainItemListResponse,
+  GetItemViolationInfoResponse,
+  GetWeightRecommendationResponse,
+  GetDirectItemListResponse,
+  GetItemContentDiagnosisResultResponse,
+  GetItemListByContentDiagnosisResponse,
 } from "../../schemas/product.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -950,20 +956,16 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/add_item",
-        {
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining({
-            original_price: 99.99,
-            description: "Test product description",
-            item_name: "Test Product",
-            category_id: 100001,
-          }),
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/add_item", {
+        method: "POST",
+        auth: true,
+        body: expect.objectContaining({
+          original_price: 99.99,
+          description: "Test product description",
+          item_name: "Test Product",
+          category_id: 100001,
+        }),
+      });
 
       expect(result.response.item_id).toBe(123456);
     });
@@ -989,19 +991,15 @@ describe("ProductManager", () => {
         original_price: 149.99,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/update_item",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            item_id: 123456,
-            item_name: "Updated Product Name",
-            original_price: 149.99,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/update_item", {
+        method: "POST",
+        auth: true,
+        body: {
+          item_id: 123456,
+          item_name: "Updated Product Name",
+          original_price: 149.99,
+        },
+      });
 
       expect(result.response.item_id).toBe(123456);
     });
@@ -1037,17 +1035,13 @@ describe("ProductManager", () => {
         ],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/add_model",
-        {
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining({
-            item_id: 123456,
-          }),
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/add_model", {
+        method: "POST",
+        auth: true,
+        body: expect.objectContaining({
+          item_id: 123456,
+        }),
+      });
 
       expect(result.response.model_id_list).toHaveLength(2);
     });
@@ -1077,17 +1071,13 @@ describe("ProductManager", () => {
         ],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/update_model",
-        {
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining({
-            item_id: 123456,
-          }),
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/update_model", {
+        method: "POST",
+        auth: true,
+        body: expect.objectContaining({
+          item_id: 123456,
+        }),
+      });
 
       expect(result.response.model_id_list).toContain(1001);
     });
@@ -1111,18 +1101,14 @@ describe("ProductManager", () => {
         model_id_list: [1001, 1002],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/delete_model",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            item_id: 123456,
-            model_id_list: [1001, 1002],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/delete_model", {
+        method: "POST",
+        auth: true,
+        body: {
+          item_id: 123456,
+          model_id_list: [1001, 1002],
+        },
+      });
 
       expect(result.response.success).toBe(true);
     });
@@ -1164,17 +1150,13 @@ describe("ProductManager", () => {
         ],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/init_tier_variation",
-        {
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining({
-            item_id: 123456,
-          }),
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/init_tier_variation", {
+        method: "POST",
+        auth: true,
+        body: expect.objectContaining({
+          item_id: 123456,
+        }),
+      });
 
       expect(result.response.model_id_list).toHaveLength(2);
     });
@@ -1201,17 +1183,13 @@ describe("ProductManager", () => {
         ],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/update_tier_variation",
-        {
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining({
-            item_id: 123456,
-          }),
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/update_tier_variation", {
+        method: "POST",
+        auth: true,
+        body: expect.objectContaining({
+          item_id: 123456,
+        }),
+      });
 
       expect(result.error).toBe("");
     });
@@ -1245,19 +1223,15 @@ describe("ProductManager", () => {
         page_size: 20,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/search_item",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            item_name: "Test Product",
-            offset: 0,
-            page_size: 20,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/search_item", {
+        method: "GET",
+        auth: true,
+        params: {
+          item_name: "Test Product",
+          offset: 0,
+          page_size: 20,
+        },
+      });
 
       expect(result.response.item).toHaveLength(1);
     });
@@ -1292,17 +1266,13 @@ describe("ProductManager", () => {
         item_id_list: [123456, 789012],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_item_extra_info",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            item_id_list: "123456,789012",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_extra_info", {
+        method: "GET",
+        auth: true,
+        params: {
+          item_id_list: "123456,789012",
+        },
+      });
 
       expect(result.response.item_list[0].sale_info.sale).toBe(100);
     });
@@ -1339,18 +1309,14 @@ describe("ProductManager", () => {
         language: "en",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_attribute_tree",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            category_id: 100001,
-            language: "en",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_attribute_tree", {
+        method: "GET",
+        auth: true,
+        params: {
+          category_id: 100001,
+          language: "en",
+        },
+      });
 
       expect(result.response.attribute_list).toHaveLength(1);
     });
@@ -1390,19 +1356,15 @@ describe("ProductManager", () => {
         page_size: 20,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_brand_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            category_id: 100001,
-            offset: 0,
-            page_size: 20,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_brand_list", {
+        method: "GET",
+        auth: true,
+        params: {
+          category_id: 100001,
+          offset: 0,
+          page_size: 20,
+        },
+      });
 
       expect(result.response.brand_list).toHaveLength(2);
     });
@@ -1427,18 +1389,14 @@ describe("ProductManager", () => {
         original_brand_name: "NewBrand",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/register_brand",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            category_id: 100001,
-            original_brand_name: "NewBrand",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/register_brand", {
+        method: "POST",
+        auth: true,
+        body: {
+          category_id: 100001,
+          original_brand_name: "NewBrand",
+        },
+      });
 
       expect(result.response.brand_id).toBe(12345);
     });
@@ -1461,17 +1419,13 @@ describe("ProductManager", () => {
         item_name: "Running Shoes",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/category_recommend",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            item_name: "Running Shoes",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/category_recommend", {
+        method: "POST",
+        auth: true,
+        body: {
+          item_name: "Running Shoes",
+        },
+      });
 
       expect(result.response.category_id_list).toHaveLength(3);
     });
@@ -1501,17 +1455,13 @@ describe("ProductManager", () => {
         category_id: 100001,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_item_limit",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            category_id: 100001,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_limit", {
+        method: "GET",
+        auth: true,
+        params: {
+          category_id: 100001,
+        },
+      });
 
       expect(result.response.item_limit.max_image_count).toBe(9);
     });
@@ -1546,17 +1496,13 @@ describe("ProductManager", () => {
         item_id_list: [123456],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_item_promotion",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            item_id_list: "123456",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_promotion", {
+        method: "GET",
+        auth: true,
+        params: {
+          item_id_list: "123456",
+        },
+      });
 
       expect(result.response.item_promotion_list[0].promotion_list).toHaveLength(1);
     });
@@ -1579,17 +1525,13 @@ describe("ProductManager", () => {
         item_id_list: [123456, 789012],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/boost_item",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            item_id_list: [123456, 789012],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/boost_item", {
+        method: "POST",
+        auth: true,
+        body: {
+          item_id_list: [123456, 789012],
+        },
+      });
 
       expect(result.response.failed_item_id_list).toEqual([]);
     });
@@ -1615,15 +1557,11 @@ describe("ProductManager", () => {
 
       const result = await productManager.getBoostedList();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_boosted_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {},
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_boosted_list", {
+        method: "GET",
+        auth: true,
+        params: {},
+      });
 
       expect(result.response.item_list).toHaveLength(1);
     });
@@ -1639,10 +1577,7 @@ describe("ProductManager", () => {
           tier_variation: [
             {
               name: "Color",
-              option_list: [
-                { option: "Red" },
-                { option: "Blue" },
-              ],
+              option_list: [{ option: "Red" }, { option: "Blue" }],
             },
           ],
         },
@@ -1654,17 +1589,13 @@ describe("ProductManager", () => {
         item_id: 123456,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_variations",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            item_id: 123456,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_variations", {
+        method: "GET",
+        auth: true,
+        params: {
+          item_id: 123456,
+        },
+      });
 
       expect(result.response.tier_variation).toHaveLength(1);
     });
@@ -1698,18 +1629,14 @@ describe("ProductManager", () => {
         item_name: "T-Shirt",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_recommend_attribute",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            category_id: 100001,
-            item_name: "T-Shirt",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_recommend_attribute", {
+        method: "GET",
+        auth: true,
+        params: {
+          category_id: 100001,
+          item_name: "T-Shirt",
+        },
+      });
 
       expect(result.response.recommended_attribute_list).toHaveLength(1);
     });
@@ -1754,6 +1681,792 @@ describe("ProductManager", () => {
       );
 
       expect(result.response.attribute_value_list).toHaveLength(1);
+    });
+  });
+
+  describe("getMainItemList", () => {
+    it("should get main item list successfully", async () => {
+      const mockResponse: GetMainItemListResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          item: [
+            {
+              item_id: 123456,
+              item_status: "NORMAL",
+              update_time: 1234567890,
+            },
+          ],
+          total_count: 1,
+          has_next_page: false,
+          next_offset: 0,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getMainItemList({
+        offset: 0,
+        page_size: 20,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_main_item_list",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            offset: 0,
+            page_size: 20,
+          },
+        }
+      );
+
+      expect(result.response.item).toHaveLength(1);
+    });
+  });
+
+  describe("getItemViolationInfo", () => {
+    it("should get item violation information", async () => {
+      const mockResponse: GetItemViolationInfoResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          item_violation_list: [
+            {
+              item_id: 123456,
+              violation_list: [
+                {
+                  violation_type: "DESCRIPTION",
+                  violation_reason: "Prohibited content",
+                  violated_item_info: ["description"],
+                },
+              ],
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getItemViolationInfo({
+        item_id_list: [123456],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_item_violation_info",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            item_id_list: "123456",
+          },
+        }
+      );
+
+      expect(result.response.item_violation_list[0].violation_list).toHaveLength(1);
+    });
+  });
+
+  describe("getWeightRecommendation", () => {
+    it("should get weight recommendation", async () => {
+      const mockResponse: GetWeightRecommendationResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          weight: 1.5,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getWeightRecommendation({
+        category_id: 100001,
+        item_name: "T-Shirt",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_weight_recommendation",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            category_id: 100001,
+            item_name: "T-Shirt",
+          },
+        }
+      );
+
+      expect(result.response.weight).toBe(1.5);
+    });
+  });
+
+  describe("getDirectItemList", () => {
+    it("should get direct item list", async () => {
+      const mockResponse: GetDirectItemListResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          item: [
+            {
+              item_id: 123456,
+              category_id: 100001,
+              item_name: "Direct Item",
+              item_status: "NORMAL",
+              update_time: 1234567890,
+            },
+          ],
+          total_count: 1,
+          has_next_page: false,
+          next_offset: 0,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getDirectItemList({
+        offset: 0,
+        page_size: 20,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_direct_item_list",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            offset: 0,
+            page_size: 20,
+          },
+        }
+      );
+
+      expect(result.response.item).toHaveLength(1);
+    });
+  });
+
+  describe("getItemContentDiagnosisResult", () => {
+    it("should get item content diagnosis results", async () => {
+      const mockResponse: GetItemContentDiagnosisResultResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          item_list: [
+            {
+              item_id: 123456,
+              status: "PASSED",
+              failed_field_list: [],
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getItemContentDiagnosisResult({
+        item_id_list: [123456],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_item_content_diagnosis_result",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            item_id_list: "123456",
+          },
+        }
+      );
+
+      expect(result.response.item_list[0].status).toBe("PASSED");
+    });
+  });
+
+  describe("getItemListByContentDiagnosis", () => {
+    it("should get items filtered by content diagnosis", async () => {
+      const mockResponse: GetItemListByContentDiagnosisResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          item: [
+            {
+              item_id: 123456,
+              item_status: "NORMAL",
+              update_time: 1234567890,
+            },
+          ],
+          total_count: 1,
+          has_next_page: false,
+          next_offset: 0,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getItemListByContentDiagnosis({
+        status: "PASSED",
+        offset: 0,
+        page_size: 20,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_item_list_by_content_diagnosis",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            status: "PASSED",
+            offset: 0,
+            page_size: 20,
+          },
+        }
+      );
+
+      expect(result.response.item).toHaveLength(1);
+    });
+  });
+
+  // Specialized function tests (simplified due to 'any' types)
+  describe("specialized functions", () => {
+    it("should call addKitItem", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { item_id: 123456 },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.addKitItem({ test: "data" });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/add_kit_item",
+        {
+          method: "POST",
+          auth: true,
+          body: { test: "data" },
+        }
+      );
+
+      expect(result.response.item_id).toBe(123456);
+    });
+
+    it("should call updateKitItem", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        warning: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.updateKitItem({ item_id: 123456 });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/update_kit_item",
+        {
+          method: "POST",
+          auth: true,
+          body: { item_id: 123456 },
+        }
+      );
+
+      expect(result.error).toBe("");
+    });
+
+    it("should call getKitItemInfo", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { item_list: [{ item_id: 123456 }] },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getKitItemInfo({
+        item_id_list: [123456],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_kit_item_info",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            item_id_list: "123456",
+          },
+        }
+      );
+
+      expect(result.response.item_list).toHaveLength(1);
+    });
+
+    it("should call getKitItemLimit", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { item_limit: { max_items: 10 } },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getKitItemLimit({
+        category_id: 100001,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_kit_item_limit",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            category_id: 100001,
+          },
+        }
+      );
+
+      expect(result.response.item_limit).toBeDefined();
+    });
+
+    it("should call generateKitImage", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          image_info: { image_id: "img123", image_url: "http://example.com/img.jpg" },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.generateKitImage({
+        image_id_list: ["img1", "img2"],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/generate_kit_image",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            image_id_list: ["img1", "img2"],
+          },
+        }
+      );
+
+      expect(result.response.image_info).toBeDefined();
+    });
+
+    it("should call addSspItem", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { item_id: 123456 },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.addSspItem({ test: "data" });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/add_ssp_item",
+        {
+          method: "POST",
+          auth: true,
+          body: { test: "data" },
+        }
+      );
+
+      expect(result.response.item_id).toBe(123456);
+    });
+
+    it("should call getSspInfo", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { ssp_info: { item_id: 123456 } },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getSspInfo({ item_id: 123456 });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_ssp_info",
+        {
+          method: "GET",
+          auth: true,
+          params: { item_id: 123456 },
+        }
+      );
+
+      expect(result.response.ssp_info).toBeDefined();
+    });
+
+    it("should call getSspList", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          item_list: [{ item_id: 123456 }],
+          has_next_page: false,
+          next_offset: 0,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getSspList({ offset: 0, page_size: 20 });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_ssp_list",
+        {
+          method: "GET",
+          auth: true,
+          params: { offset: 0, page_size: 20 },
+        }
+      );
+
+      expect(result.response.item_list).toHaveLength(1);
+    });
+
+    it("should call linkSsp", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        warning: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.linkSsp({
+        item_id: 123456,
+        ssp_item_id: 789012,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/link_ssp", {
+        method: "POST",
+        auth: true,
+        body: {
+          item_id: 123456,
+          ssp_item_id: 789012,
+        },
+      });
+
+      expect(result.error).toBe("");
+    });
+
+    it("should call unlinkSsp", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        warning: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.unlinkSsp({ item_id: 123456 });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/unlink_ssp", {
+        method: "POST",
+        auth: true,
+        body: { item_id: 123456 },
+      });
+
+      expect(result.error).toBe("");
+    });
+
+    it("should call updateSipItemPrice", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        warning: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.updateSipItemPrice({
+        item_id: 123456,
+        sip_item_price: 99.99,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/update_sip_item_price",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            item_id: 123456,
+            sip_item_price: 99.99,
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+    });
+
+    it("should call getSizeChartList", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          size_chart_list: [{ chart_id: "chart1" }],
+          has_next_page: false,
+          next_offset: 0,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getSizeChartList();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_size_chart_list",
+        {
+          method: "GET",
+          auth: true,
+          params: {},
+        }
+      );
+
+      expect(result.response.size_chart_list).toHaveLength(1);
+    });
+
+    it("should call getSizeChartDetail", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { size_chart: { chart_id: "chart1" } },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getSizeChartDetail({
+        size_chart_id: "chart1",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_size_chart_detail",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            size_chart_id: "chart1",
+          },
+        }
+      );
+
+      expect(result.response.size_chart).toBeDefined();
+    });
+
+    it("should call getAllVehicleList", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { vehicle_list: [{ vehicle_id: 1 }] },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getAllVehicleList();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_all_vehicle_list",
+        {
+          method: "GET",
+          auth: true,
+          params: {},
+        }
+      );
+
+      expect(result.response.vehicle_list).toHaveLength(1);
+    });
+
+    it("should call getVehicleListByCompatibilityDetail", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { vehicle_list: [{ vehicle_id: 1 }] },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getVehicleListByCompatibilityDetail({
+        item_id: 123456,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_vehicle_list_by_compatibility_detail",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            item_id: 123456,
+          },
+        }
+      );
+
+      expect(result.response.vehicle_list).toHaveLength(1);
+    });
+
+    it("should call getAitemByPitemId", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { item_list: [{ item_id: 123456 }] },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getAitemByPitemId({
+        pitem_id_list: [789012],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_aitem_by_pitem_id",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            pitem_id_list: "789012",
+          },
+        }
+      );
+
+      expect(result.response.item_list).toHaveLength(1);
+    });
+
+    it("should call getDirectShopRecommendedPrice", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { recommended_price: 99.99 },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getDirectShopRecommendedPrice({
+        category_id: 100001,
+        item_name: "Test Item",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_direct_shop_recommended_price",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            category_id: 100001,
+            item_name: "Test Item",
+          },
+        }
+      );
+
+      expect(result.response.recommended_price).toBe(99.99);
+    });
+
+    it("should call getProductCertificationRule", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { certification_list: [{ cert_id: 1 }] },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getProductCertificationRule({
+        category_id: 100001,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_product_certification_rule",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            category_id: 100001,
+          },
+        }
+      );
+
+      expect(result.response.certification_list).toHaveLength(1);
+    });
+
+    it("should call searchUnpackagedModelList", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: { model_list: [{ model_id: 1001 }] },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.searchUnpackagedModelList({
+        item_id: 123456,
+        search_value: "test",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/search_unpackaged_model_list",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            item_id: 123456,
+            search_value: "test",
+          },
+        }
+      );
+
+      expect(result.response.model_list).toHaveLength(1);
     });
   });
 });
