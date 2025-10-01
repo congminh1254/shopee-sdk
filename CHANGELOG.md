@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/congminh1254/shopee-sdk/compare/v0.9.0...v0.10.0) (2025-10-01)
+
+
+### Features
+
+* **product:** implement all 55 Product Manager endpoints with complete test coverage ([#16](https://github.com/congminh1254/shopee-sdk/issues/16)) ([8b67e2d](https://github.com/congminh1254/shopee-sdk/commit/8b67e2ddc5b1d738f1a2deec43b1e92903cdb6ef))
+
 ## [0.9.0](https://github.com/congminh1254/shopee-sdk/compare/v0.8.1...v0.9.0) (2025-06-23)
 
 
