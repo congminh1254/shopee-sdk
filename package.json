@@ -42,7 +42,8 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "fetch-schemas": "node --loader ts-node/esm schemas/fetch.ts"
   },
   "publishConfig": {
     "access": "public"
