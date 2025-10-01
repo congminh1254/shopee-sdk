@@ -46,17 +46,26 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          comment_list: [
+          item_comment_list: [
             {
+              order_sn: "ORDER123",
               comment_id: 123,
               comment: "Great product!",
-              author_username: "user123",
-              create_time: 1234567890,
+              buyer_username: "user123",
+              item_id: 789,
+              model_id: 0,
+              model_id_list: [1001],
               rating_star: 5,
-              item_rating_id: 456,
+              editable: "EDITABLE",
+              hidden: false,
+              create_time: 1234567890,
+              media: {
+                image_url_list: [],
+                video_url_list: [],
+              },
             },
           ],
-          has_more: false,
+          more: false,
           next_cursor: "",
         },
       };
@@ -84,26 +93,32 @@ describe("ProductManager", () => {
       expect(result).toEqual(mockResponse);
     });
 
-    it("should get comments with minimal parameters", async () => {
+    it("should get comments with minimal required parameters", async () => {
       const mockResponse: GetCommentResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          comment_list: [],
-          has_more: false,
+          item_comment_list: [],
+          more: false,
           next_cursor: "",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await productManager.getComment({ item_id: 789 });
+      const result = await productManager.getComment({
+        cursor: "",
+        page_size: 10,
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_comment", {
         method: "GET",
         auth: true,
-        params: { item_id: 789 },
+        params: {
+          cursor: "",
+          page_size: 10,
+        },
       });
 
       expect(result).toEqual(mockResponse);
