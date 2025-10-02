@@ -60,8 +60,12 @@ describe("ShopManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.shop_name).toBe("OpenAPI Shop");
-      expect(result.response.shop_logo).toBe("https://cf.shopee.sg/file/4d4f2e34c6d27cd3838a49a575f251bf");
-      expect(result.response.description).toBe("Welcome to our shop. All cheap prices while good quality");
+      expect(result.response.shop_logo).toBe(
+        "https://cf.shopee.sg/file/4d4f2e34c6d27cd3838a49a575f251bf"
+      );
+      expect(result.response.description).toBe(
+        "Welcome to our shop. All cheap prices while good quality"
+      );
     });
 
     it("should get shop profile with invoice_issuer for BR seller", async () => {
@@ -266,7 +270,8 @@ describe("ShopManager", () => {
       const mockResponse: UpdateProfileResponse = {
         request_id: "f2d21d835777ec4c464c5075812cd94e",
         error: "shop.data_data_check",
-        message: "Failed to change Shop Description for characters exceeds 500 characters. Please correct and try it again.",
+        message:
+          "Failed to change Shop Description for characters exceeds 500 characters. Please correct and try it again.",
         response: {},
       };
 

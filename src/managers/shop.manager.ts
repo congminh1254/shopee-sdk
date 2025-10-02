@@ -42,15 +42,11 @@ export class ShopManager extends BaseManager {
    * ```
    */
   async getProfile(params?: GetProfileParams): Promise<GetProfileResponse> {
-    const response = await ShopeeFetch.fetch<GetProfileResponse>(
-      this.config,
-      "/shop/get_profile",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
+    const response = await ShopeeFetch.fetch<GetProfileResponse>(this.config, "/shop/get_profile", {
+      method: "GET",
+      auth: true,
+      params: params || {},
+    });
 
     return response;
   }
@@ -169,9 +165,7 @@ export class ShopManager extends BaseManager {
    * });
    * ```
    */
-  async getWarehouseDetail(
-    params?: GetWarehouseDetailParams
-  ): Promise<GetWarehouseDetailResponse> {
+  async getWarehouseDetail(params?: GetWarehouseDetailParams): Promise<GetWarehouseDetailResponse> {
     const response = await ShopeeFetch.fetch<GetWarehouseDetailResponse>(
       this.config,
       "/shop/get_warehouse_detail",
