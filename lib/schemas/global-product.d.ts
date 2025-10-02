@@ -19,14 +19,14 @@ export interface GlobalCategory {
 /**
  * Parameters for getting global category list
  */
-export type GetCategoryParams = {
+export type GetGlobalCategoryParams = {
     /** Language for category names. Should be one of "zh-hans", "en" */
     language?: string;
 };
 /**
  * Response for getting global category list
  */
-export interface GetCategoryResponse extends FetchResponse<{
+export interface GetGlobalCategoryResponse extends FetchResponse<{
     /** List of categories */
     category_list: GlobalCategory[];
 }> {
@@ -269,9 +269,9 @@ export interface GlobalModel {
     update_time: number;
 }
 /**
- * Tier variation
+ * Global tier variation
  */
-export interface TierVariation {
+export interface GlobalTierVariation {
     /** Tier variation name */
     name: string;
     /** List of options */
@@ -299,7 +299,7 @@ export type GetGlobalModelListParams = {
  */
 export interface GetGlobalModelListResponse extends FetchResponse<{
     /** Tier variation list */
-    tier_variation: TierVariation[];
+    tier_variation: GlobalTierVariation[];
     /** Global model list */
     global_model: GlobalModel[];
 }> {
@@ -505,7 +505,7 @@ export interface DeleteGlobalModelResponse extends FetchResponse<{
 /**
  * Parameters for initializing tier variation
  */
-export type InitTierVariationParams = {
+export type InitGlobalTierVariationParams = {
     /** Global item ID */
     global_item_id: number;
     /** Tier variation list (max 2 tiers) */
@@ -539,7 +539,7 @@ export type InitTierVariationParams = {
 /**
  * Response for initializing tier variation
  */
-export interface InitTierVariationResponse extends FetchResponse<{
+export interface InitGlobalTierVariationResponse extends FetchResponse<{
     /** List of created models */
     model_list: {
         /** Global model ID */
@@ -552,7 +552,7 @@ export interface InitTierVariationResponse extends FetchResponse<{
 /**
  * Parameters for updating tier variation
  */
-export type UpdateTierVariationParams = {
+export type UpdateGlobalTierVariationParams = {
     /** Global item ID */
     global_item_id: number;
     /** Tier variation list */
@@ -574,12 +574,12 @@ export type UpdateTierVariationParams = {
 /**
  * Response for updating tier variation
  */
-export interface UpdateTierVariationResponse extends BaseResponse {
+export interface UpdateGlobalTierVariationResponse extends BaseResponse {
 }
 /**
  * Parameters for updating global item stock
  */
-export type UpdateStockParams = {
+export type UpdateGlobalStockParams = {
     /** Global item ID */
     global_item_id: number;
     /** Stock list to update */
@@ -595,7 +595,7 @@ export type UpdateStockParams = {
 /**
  * Response for updating global item stock
  */
-export interface UpdateStockResponse extends FetchResponse<{
+export interface UpdateGlobalStockResponse extends FetchResponse<{
     /** List of stock update results */
     result_list: {
         /** Shop ID */
@@ -612,7 +612,7 @@ export interface UpdateStockResponse extends FetchResponse<{
 /**
  * Parameters for updating global item price
  */
-export type UpdatePriceParams = {
+export type UpdateGlobalPriceParams = {
     /** Global item ID */
     global_item_id: number;
     /** Price list to update */
@@ -628,7 +628,7 @@ export type UpdatePriceParams = {
 /**
  * Response for updating global item price
  */
-export interface UpdatePriceResponse extends FetchResponse<{
+export interface UpdateGlobalPriceResponse extends FetchResponse<{
     /** List of price update results */
     result_list: {
         /** Shop ID */
@@ -645,7 +645,7 @@ export interface UpdatePriceResponse extends FetchResponse<{
 /**
  * Parameters for getting attribute tree
  */
-export type GetAttributeTreeParams = {
+export type GetGlobalAttributeTreeParams = {
     /** Category ID */
     category_id: number;
     /** Language for attribute names */
@@ -654,7 +654,7 @@ export type GetAttributeTreeParams = {
 /**
  * Response for getting attribute tree
  */
-export interface GetAttributeTreeResponse extends FetchResponse<{
+export interface GetGlobalAttributeTreeResponse extends FetchResponse<{
     /** List of attributes */
     attribute_list: Attribute[];
 }> {
@@ -673,7 +673,7 @@ export interface Brand {
 /**
  * Parameters for getting brand list
  */
-export type GetBrandListParams = {
+export type GetGlobalBrandListParams = {
     /** Category ID */
     category_id: number;
     /** Offset for pagination */
@@ -688,7 +688,7 @@ export type GetBrandListParams = {
 /**
  * Response for getting brand list
  */
-export interface GetBrandListResponse extends FetchResponse<{
+export interface GetGlobalBrandListResponse extends FetchResponse<{
     /** List of brands */
     brand_list: Brand[];
     /** Whether there are more pages */
@@ -702,14 +702,14 @@ export interface GetBrandListResponse extends FetchResponse<{
 /**
  * Parameters for category recommendation
  */
-export type CategoryRecommendParams = {
+export type GlobalCategoryRecommendParams = {
     /** Global item name */
     global_item_name: string;
 };
 /**
  * Response for category recommendation
  */
-export interface CategoryRecommendResponse extends FetchResponse<{
+export interface GlobalCategoryRecommendResponse extends FetchResponse<{
     /** List of recommended categories */
     category_id_list: number[];
 }> {
@@ -890,14 +890,14 @@ export interface GetGlobalItemIdResponse extends FetchResponse<{
 /**
  * Parameters for getting recommended attributes
  */
-export type GetRecommendAttributeParams = {
+export type GetGlobalRecommendAttributeParams = {
     /** Global item ID */
     global_item_id: number;
 };
 /**
  * Response for getting recommended attributes
  */
-export interface GetRecommendAttributeResponse extends FetchResponse<{
+export interface GetGlobalRecommendAttributeResponse extends FetchResponse<{
     /** List of recommended attributes */
     attribute_list: Attribute[];
 }> {
@@ -939,16 +939,16 @@ export interface SearchGlobalAttributeValueListResponse extends FetchResponse<{
 /**
  * Parameters for getting variations
  */
-export type GetVariationsParams = {
+export type GetGlobalVariationsParams = {
     /** Global item ID */
     global_item_id: number;
 };
 /**
  * Response for getting variations
  */
-export interface GetVariationsResponse extends FetchResponse<{
+export interface GetGlobalVariationsResponse extends FetchResponse<{
     /** Tier variation list */
-    tier_variation: TierVariation[];
+    tier_variation: GlobalTierVariation[];
 }> {
 }
 /**
@@ -1056,7 +1056,7 @@ export interface SizeChart {
 /**
  * Parameters for getting size chart list
  */
-export type GetSizeChartListParams = {
+export type GetGlobalSizeChartListParams = {
     /** Offset for pagination */
     offset?: number;
     /** Page size */
@@ -1065,7 +1065,7 @@ export type GetSizeChartListParams = {
 /**
  * Response for getting size chart list
  */
-export interface GetSizeChartListResponse extends FetchResponse<{
+export interface GetGlobalSizeChartListResponse extends FetchResponse<{
     /** List of size charts */
     size_chart_list: SizeChart[];
     /** Whether there are more pages */
@@ -1077,14 +1077,14 @@ export interface GetSizeChartListResponse extends FetchResponse<{
 /**
  * Parameters for getting size chart detail
  */
-export type GetSizeChartDetailParams = {
+export type GetGlobalSizeChartDetailParams = {
     /** Size chart ID */
     size_chart_id: string;
 };
 /**
  * Response for getting size chart detail
  */
-export interface GetSizeChartDetailResponse extends FetchResponse<{
+export interface GetGlobalSizeChartDetailResponse extends FetchResponse<{
     /** Size chart information */
     size_chart: SizeChart;
 }> {

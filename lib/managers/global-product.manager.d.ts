@@ -1,6 +1,6 @@
 import { BaseManager } from "./base.manager.js";
 import { ShopeeConfig } from "../sdk.js";
-import { GetCategoryParams, GetCategoryResponse, GetGlobalItemListParams, GetGlobalItemListResponse, GetGlobalItemInfoParams, GetGlobalItemInfoResponse, GetGlobalModelListParams, GetGlobalModelListResponse, AddGlobalItemParams, AddGlobalItemResponse, UpdateGlobalItemParams, UpdateGlobalItemResponse, DeleteGlobalItemParams, DeleteGlobalItemResponse, AddGlobalModelParams, AddGlobalModelResponse, UpdateGlobalModelParams, UpdateGlobalModelResponse, DeleteGlobalModelParams, DeleteGlobalModelResponse, InitTierVariationParams, InitTierVariationResponse, UpdateTierVariationParams, UpdateTierVariationResponse, UpdateStockParams, UpdateStockResponse, UpdatePriceParams, UpdatePriceResponse, GetAttributeTreeParams, GetAttributeTreeResponse, GetBrandListParams, GetBrandListResponse, CategoryRecommendParams, CategoryRecommendResponse, GetGlobalItemLimitParams, GetGlobalItemLimitResponse, GetPublishableShopParams, GetPublishableShopResponse, GetShopPublishableStatusParams, GetShopPublishableStatusResponse, CreatePublishTaskParams, CreatePublishTaskResponse, GetPublishTaskResultParams, GetPublishTaskResultResponse, GetPublishedListParams, GetPublishedListResponse, GetGlobalItemIdParams, GetGlobalItemIdResponse, GetRecommendAttributeParams, GetRecommendAttributeResponse, SearchGlobalAttributeValueListParams, SearchGlobalAttributeValueListResponse, GetVariationsParams, GetVariationsResponse, SetSyncFieldParams, SetSyncFieldResponse, GetLocalAdjustmentRateParams, GetLocalAdjustmentRateResponse, UpdateLocalAdjustmentRateParams, UpdateLocalAdjustmentRateResponse, GetSizeChartListParams, GetSizeChartListResponse, GetSizeChartDetailParams, GetSizeChartDetailResponse, UpdateSizeChartParams, UpdateSizeChartResponse, SupportSizeChartParams, SupportSizeChartResponse } from "../schemas/global-product.js";
+import { GetGlobalCategoryParams, GetGlobalCategoryResponse, GetGlobalItemListParams, GetGlobalItemListResponse, GetGlobalItemInfoParams, GetGlobalItemInfoResponse, GetGlobalModelListParams, GetGlobalModelListResponse, AddGlobalItemParams, AddGlobalItemResponse, UpdateGlobalItemParams, UpdateGlobalItemResponse, DeleteGlobalItemParams, DeleteGlobalItemResponse, AddGlobalModelParams, AddGlobalModelResponse, UpdateGlobalModelParams, UpdateGlobalModelResponse, DeleteGlobalModelParams, DeleteGlobalModelResponse, InitGlobalTierVariationParams, InitGlobalTierVariationResponse, UpdateGlobalTierVariationParams, UpdateGlobalTierVariationResponse, UpdateGlobalStockParams, UpdateGlobalStockResponse, UpdateGlobalPriceParams, UpdateGlobalPriceResponse, GetGlobalAttributeTreeParams, GetGlobalAttributeTreeResponse, GetGlobalBrandListParams, GetGlobalBrandListResponse, GlobalCategoryRecommendParams, GlobalCategoryRecommendResponse, GetGlobalItemLimitParams, GetGlobalItemLimitResponse, GetPublishableShopParams, GetPublishableShopResponse, GetShopPublishableStatusParams, GetShopPublishableStatusResponse, CreatePublishTaskParams, CreatePublishTaskResponse, GetPublishTaskResultParams, GetPublishTaskResultResponse, GetPublishedListParams, GetPublishedListResponse, GetGlobalItemIdParams, GetGlobalItemIdResponse, GetGlobalRecommendAttributeParams, GetGlobalRecommendAttributeResponse, SearchGlobalAttributeValueListParams, SearchGlobalAttributeValueListResponse, GetGlobalVariationsParams, GetGlobalVariationsResponse, SetSyncFieldParams, SetSyncFieldResponse, GetLocalAdjustmentRateParams, GetLocalAdjustmentRateResponse, UpdateLocalAdjustmentRateParams, UpdateLocalAdjustmentRateResponse, GetGlobalSizeChartListParams, GetGlobalSizeChartListResponse, GetGlobalSizeChartDetailParams, GetGlobalSizeChartDetailResponse, UpdateSizeChartParams, UpdateSizeChartResponse, SupportSizeChartParams, SupportSizeChartResponse } from "../schemas/global-product.js";
 /**
  * GlobalProductManager handles all global product operations for China mainland and Korean sellers.
  * Global products allow sellers to manage products centrally and publish them to multiple shops.
@@ -24,7 +24,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    getCategory(params?: GetCategoryParams): Promise<GetCategoryResponse>;
+    getCategory(params?: GetGlobalCategoryParams): Promise<GetGlobalCategoryResponse>;
     /**
      * Get global item list
      *
@@ -225,7 +225,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    initTierVariation(params: InitTierVariationParams): Promise<InitTierVariationResponse>;
+    initTierVariation(params: InitGlobalTierVariationParams): Promise<InitGlobalTierVariationResponse>;
     /**
      * Update tier variation
      *
@@ -249,7 +249,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    updateTierVariation(params: UpdateTierVariationParams): Promise<UpdateTierVariationResponse>;
+    updateTierVariation(params: UpdateGlobalTierVariationParams): Promise<UpdateGlobalTierVariationResponse>;
     /**
      * Update global item stock
      *
@@ -269,7 +269,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    updateStock(params: UpdateStockParams): Promise<UpdateStockResponse>;
+    updateStock(params: UpdateGlobalStockParams): Promise<UpdateGlobalStockResponse>;
     /**
      * Update global item price
      *
@@ -289,7 +289,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    updatePrice(params: UpdatePriceParams): Promise<UpdatePriceResponse>;
+    updatePrice(params: UpdateGlobalPriceParams): Promise<UpdateGlobalPriceResponse>;
     /**
      * Get attribute tree
      *
@@ -309,7 +309,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    getAttributeTree(params: GetAttributeTreeParams): Promise<GetAttributeTreeResponse>;
+    getAttributeTree(params: GetGlobalAttributeTreeParams): Promise<GetGlobalAttributeTreeResponse>;
     /**
      * Get brand list
      *
@@ -326,7 +326,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    getBrandList(params: GetBrandListParams): Promise<GetBrandListResponse>;
+    getBrandList(params: GetGlobalBrandListParams): Promise<GetGlobalBrandListResponse>;
     /**
      * Get category recommendation
      *
@@ -344,7 +344,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    categoryRecommend(params: CategoryRecommendParams): Promise<CategoryRecommendResponse>;
+    categoryRecommend(params: GlobalCategoryRecommendParams): Promise<GlobalCategoryRecommendResponse>;
     /**
      * Get global item limit
      *
@@ -491,7 +491,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    getRecommendAttribute(params: GetRecommendAttributeParams): Promise<GetRecommendAttributeResponse>;
+    getRecommendAttribute(params: GetGlobalRecommendAttributeParams): Promise<GetGlobalRecommendAttributeResponse>;
     /**
      * Search global attribute value list
      *
@@ -527,7 +527,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    getVariations(params: GetVariationsParams): Promise<GetVariationsResponse>;
+    getVariations(params: GetGlobalVariationsParams): Promise<GetGlobalVariationsResponse>;
     /**
      * Set sync field
      *
@@ -600,7 +600,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    getSizeChartList(params: GetSizeChartListParams): Promise<GetSizeChartListResponse>;
+    getSizeChartList(params: GetGlobalSizeChartListParams): Promise<GetGlobalSizeChartListResponse>;
     /**
      * Get size chart detail
      *
@@ -618,7 +618,7 @@ export declare class GlobalProductManager extends BaseManager {
      * });
      * ```
      */
-    getSizeChartDetail(params: GetSizeChartDetailParams): Promise<GetSizeChartDetailResponse>;
+    getSizeChartDetail(params: GetGlobalSizeChartDetailParams): Promise<GetGlobalSizeChartDetailResponse>;
     /**
      * Update size chart
      *

@@ -98,8 +98,8 @@ export class GlobalProductManager extends BaseManager {
    * });
    * ```
    */
-  async getCategory(params: GetCategoryParams = {}): Promise<GetCategoryResponse> {
-    const response = await ShopeeFetch.fetch<GetCategoryResponse>(
+  async getCategory(params: GetGlobalCategoryParams = {}): Promise<GetGlobalCategoryResponse> {
+    const response = await ShopeeFetch.fetch<GetGlobalCategoryResponse>(
       this.config,
       "/global_product/get_category",
       {
@@ -419,8 +419,8 @@ export class GlobalProductManager extends BaseManager {
    * });
    * ```
    */
-  async initTierVariation(params: InitTierVariationParams): Promise<InitTierVariationResponse> {
-    const response = await ShopeeFetch.fetch<InitTierVariationResponse>(
+  async initTierVariation(params: InitGlobalTierVariationParams): Promise<InitGlobalTierVariationResponse> {
+    const response = await ShopeeFetch.fetch<InitGlobalTierVariationResponse>(
       this.config,
       "/global_product/init_tier_variation",
       {
@@ -456,9 +456,9 @@ export class GlobalProductManager extends BaseManager {
    * ```
    */
   async updateTierVariation(
-    params: UpdateTierVariationParams
-  ): Promise<UpdateTierVariationResponse> {
-    const response = await ShopeeFetch.fetch<UpdateTierVariationResponse>(
+    params: UpdateGlobalTierVariationParams
+  ): Promise<UpdateGlobalTierVariationResponse> {
+    const response = await ShopeeFetch.fetch<UpdateGlobalTierVariationResponse>(
       this.config,
       "/global_product/update_tier_variation",
       {
@@ -489,8 +489,8 @@ export class GlobalProductManager extends BaseManager {
    * });
    * ```
    */
-  async updateStock(params: UpdateStockParams): Promise<UpdateStockResponse> {
-    const response = await ShopeeFetch.fetch<UpdateStockResponse>(
+  async updateStock(params: UpdateGlobalStockParams): Promise<UpdateGlobalStockResponse> {
+    const response = await ShopeeFetch.fetch<UpdateGlobalStockResponse>(
       this.config,
       "/global_product/update_stock",
       {
@@ -521,8 +521,8 @@ export class GlobalProductManager extends BaseManager {
    * });
    * ```
    */
-  async updatePrice(params: UpdatePriceParams): Promise<UpdatePriceResponse> {
-    const response = await ShopeeFetch.fetch<UpdatePriceResponse>(
+  async updatePrice(params: UpdateGlobalPriceParams): Promise<UpdateGlobalPriceResponse> {
+    const response = await ShopeeFetch.fetch<UpdateGlobalPriceResponse>(
       this.config,
       "/global_product/update_price",
       {
@@ -553,8 +553,8 @@ export class GlobalProductManager extends BaseManager {
    * });
    * ```
    */
-  async getAttributeTree(params: GetAttributeTreeParams): Promise<GetAttributeTreeResponse> {
-    const response = await ShopeeFetch.fetch<GetAttributeTreeResponse>(
+  async getAttributeTree(params: GetGlobalAttributeTreeParams): Promise<GetGlobalAttributeTreeResponse> {
+    const response = await ShopeeFetch.fetch<GetGlobalAttributeTreeResponse>(
       this.config,
       "/global_product/get_attribute_tree",
       {
@@ -582,8 +582,8 @@ export class GlobalProductManager extends BaseManager {
    * });
    * ```
    */
-  async getBrandList(params: GetBrandListParams): Promise<GetBrandListResponse> {
-    const response = await ShopeeFetch.fetch<GetBrandListResponse>(
+  async getBrandList(params: GetGlobalBrandListParams): Promise<GetGlobalBrandListResponse> {
+    const response = await ShopeeFetch.fetch<GetGlobalBrandListResponse>(
       this.config,
       "/global_product/get_brand_list",
       {
@@ -612,8 +612,8 @@ export class GlobalProductManager extends BaseManager {
    * });
    * ```
    */
-  async categoryRecommend(params: CategoryRecommendParams): Promise<CategoryRecommendResponse> {
-    const response = await ShopeeFetch.fetch<CategoryRecommendResponse>(
+  async categoryRecommend(params: GlobalCategoryRecommendParams): Promise<GlobalCategoryRecommendResponse> {
+    const response = await ShopeeFetch.fetch<GlobalCategoryRecommendResponse>(
       this.config,
       "/global_product/category_recommend",
       {
@@ -860,9 +860,9 @@ export class GlobalProductManager extends BaseManager {
    * ```
    */
   async getRecommendAttribute(
-    params: GetRecommendAttributeParams
-  ): Promise<GetRecommendAttributeResponse> {
-    const response = await ShopeeFetch.fetch<GetRecommendAttributeResponse>(
+    params: GetGlobalRecommendAttributeParams
+  ): Promise<GetGlobalRecommendAttributeResponse> {
+    const response = await ShopeeFetch.fetch<GetGlobalRecommendAttributeResponse>(
       this.config,
       "/global_product/get_recommend_attribute",
       {
@@ -923,8 +923,8 @@ export class GlobalProductManager extends BaseManager {
    * });
    * ```
    */
-  async getVariations(params: GetVariationsParams): Promise<GetVariationsResponse> {
-    const response = await ShopeeFetch.fetch<GetVariationsResponse>(
+  async getVariations(params: GetGlobalVariationsParams): Promise<GetGlobalVariationsResponse> {
+    const response = await ShopeeFetch.fetch<GetGlobalVariationsResponse>(
       this.config,
       "/global_product/get_variations",
       {
@@ -1048,8 +1048,8 @@ export class GlobalProductManager extends BaseManager {
    * });
    * ```
    */
-  async getSizeChartList(params: GetSizeChartListParams): Promise<GetSizeChartListResponse> {
-    const response = await ShopeeFetch.fetch<GetSizeChartListResponse>(
+  async getSizeChartList(params: GetGlobalSizeChartListParams): Promise<GetGlobalSizeChartListResponse> {
+    const response = await ShopeeFetch.fetch<GetGlobalSizeChartListResponse>(
       this.config,
       "/global_product/get_size_chart_list",
       {
@@ -1078,8 +1078,8 @@ export class GlobalProductManager extends BaseManager {
    * });
    * ```
    */
-  async getSizeChartDetail(params: GetSizeChartDetailParams): Promise<GetSizeChartDetailResponse> {
-    const response = await ShopeeFetch.fetch<GetSizeChartDetailResponse>(
+  async getSizeChartDetail(params: GetGlobalSizeChartDetailParams): Promise<GetGlobalSizeChartDetailResponse> {
+    const response = await ShopeeFetch.fetch<GetGlobalSizeChartDetailResponse>(
       this.config,
       "/global_product/get_size_chart_detail",
       {
