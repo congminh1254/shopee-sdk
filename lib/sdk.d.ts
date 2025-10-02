@@ -11,6 +11,7 @@ import { LogisticsManager } from "./managers/logistics.manager.js";
 import { VoucherManager } from "./managers/voucher.manager.js";
 import { AdsManager } from "./managers/ads.manager.js";
 import { AccountHealthManager } from "./managers/account-health.manager.js";
+import { ShopManager } from "./managers/shop.manager.js";
 import { MediaManager } from "./managers/media.manager.js";
 import { MediaSpaceManager } from "./managers/media-space.manager.js";
 import { Agent } from "node:http";
@@ -36,6 +37,7 @@ export declare class ShopeeSDK {
     readonly logistics: LogisticsManager;
     readonly voucher: VoucherManager;
     readonly accountHealth: AccountHealthManager;
+    readonly shop: ShopManager;
     readonly media: MediaManager;
     readonly mediaSpace: MediaSpaceManager;
     constructor(config: ShopeeConfig, tokenStorage?: TokenStorage);

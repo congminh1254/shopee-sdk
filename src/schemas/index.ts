@@ -11,6 +11,7 @@ export * from "./push.js";
 export * from "./region.js";
 export * from "./ads.js";
 export * from "./account-health.js";
+export * from "./shop.js";
 // Media and MediaSpace schemas export the same types, so they are not exported from the main index
 // Import them directly from their respective files when needed:
 // import * as Media from "./schemas/media.js";
