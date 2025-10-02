@@ -178,7 +178,9 @@ export class MediaSpaceManager extends BaseManager {
    * });
    * ```
    */
-  async completeVideoUpload(params: CompleteVideoUploadParams): Promise<CompleteVideoUploadResponse> {
+  async completeVideoUpload(
+    params: CompleteVideoUploadParams
+  ): Promise<CompleteVideoUploadResponse> {
     const response = await ShopeeFetch.fetch<CompleteVideoUploadResponse>(
       this.config,
       "/media_space/complete_video_upload",
