@@ -188,9 +188,7 @@ export interface WarehouseLocation {
 /**
  * Response from getting merchant warehouse location list
  */
-export type GetMerchantWarehouseLocationListResponse = MerchantResponse<
-  WarehouseLocation[]
->;
+export type GetMerchantWarehouseLocationListResponse = MerchantResponse<WarehouseLocation[]>;
 
 /**
  * Parameters for getting shop list by merchant

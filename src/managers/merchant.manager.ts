@@ -31,9 +31,7 @@ export class MerchantManager extends BaseManager {
    * - Supported currency
    * - CNSC/CBSC upgrade status
    */
-  async getMerchantInfo(
-    params?: GetMerchantInfoParams
-  ): Promise<GetMerchantInfoResponse> {
+  async getMerchantInfo(params?: GetMerchantInfoParams): Promise<GetMerchantInfoResponse> {
     const response = await ShopeeFetch.fetch<GetMerchantInfoResponse>(
       this.config,
       "/merchant/get_merchant_info",
@@ -63,16 +61,15 @@ export class MerchantManager extends BaseManager {
   async getMerchantPrepaidAccountList(
     params: GetMerchantPrepaidAccountListParams
   ): Promise<GetMerchantPrepaidAccountListResponse> {
-    const response =
-      await ShopeeFetch.fetch<GetMerchantPrepaidAccountListResponse>(
-        this.config,
-        "/merchant/get_merchant_prepaid_account_list",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
-      );
+    const response = await ShopeeFetch.fetch<GetMerchantPrepaidAccountListResponse>(
+      this.config,
+      "/merchant/get_merchant_prepaid_account_list",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
 
     return response;
   }
@@ -127,16 +124,15 @@ export class MerchantManager extends BaseManager {
   async getMerchantWarehouseLocationList(
     params?: GetMerchantWarehouseLocationListParams
   ): Promise<GetMerchantWarehouseLocationListResponse> {
-    const response =
-      await ShopeeFetch.fetch<GetMerchantWarehouseLocationListResponse>(
-        this.config,
-        "/merchant/get_merchant_warehouse_location_list",
-        {
-          method: "GET",
-          auth: true,
-          params,
-        }
-      );
+    const response = await ShopeeFetch.fetch<GetMerchantWarehouseLocationListResponse>(
+      this.config,
+      "/merchant/get_merchant_warehouse_location_list",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
 
     return response;
   }
@@ -194,16 +190,15 @@ export class MerchantManager extends BaseManager {
   async getWarehouseEligibleShopList(
     params: GetWarehouseEligibleShopListParams
   ): Promise<GetWarehouseEligibleShopListResponse> {
-    const response =
-      await ShopeeFetch.fetch<GetWarehouseEligibleShopListResponse>(
-        this.config,
-        "/merchant/get_warehouse_eligible_shop_list",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
-      );
+    const response = await ShopeeFetch.fetch<GetWarehouseEligibleShopListResponse>(
+      this.config,
+      "/merchant/get_warehouse_eligible_shop_list",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
 
     return response;
   }

@@ -54,15 +54,11 @@ describe("MerchantManager", () => {
 
       const result = await merchantManager.getMerchantInfo();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/merchant/get_merchant_info",
-        {
-          method: "GET",
-          auth: true,
-          params: undefined,
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_merchant_info", {
+        method: "GET",
+        auth: true,
+        params: undefined,
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.merchant_name).toBe("CNSC Company 7");
@@ -222,9 +218,7 @@ describe("MerchantManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response?.warehouse_list).toHaveLength(2);
       expect(result.response?.warehouse_list[0].warehouse_name).toBe("MX Warehouse 1");
-      expect(result.response?.warehouse_list[1].enterprise_info?.cnpj).toBe(
-        "52069476000182"
-      );
+      expect(result.response?.warehouse_list[1].enterprise_info?.cnpj).toBe("52069476000182");
       expect(result.response?.total_count).toBe(2);
     });
   });
