@@ -278,9 +278,7 @@ export class OrderManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async getPackageDetail(
-    params: GetPackageDetailParams
-  ): Promise<GetPackageDetailResponse> {
+  async getPackageDetail(params: GetPackageDetailParams): Promise<GetPackageDetailResponse> {
     const response = await ShopeeFetch.fetch<GetPackageDetailResponse>(
       this.config,
       `/order/get_package_detail`,
@@ -340,18 +338,12 @@ export class OrderManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async searchPackageList(
-    params: SearchPackageListParams
-  ): Promise<SearchPackageListResponse> {
-    return ShopeeFetch.fetch<SearchPackageListResponse>(
-      this.config,
-      "/order/search_package_list",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
+  async searchPackageList(params: SearchPackageListParams): Promise<SearchPackageListResponse> {
+    return ShopeeFetch.fetch<SearchPackageListResponse>(this.config, "/order/search_package_list", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
 
   /**
@@ -427,9 +419,7 @@ export class OrderManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async downloadInvoiceDoc(
-    params: DownloadInvoiceDocParams
-  ): Promise<DownloadInvoiceDocResponse> {
+  async downloadInvoiceDoc(params: DownloadInvoiceDocParams): Promise<DownloadInvoiceDocResponse> {
     const response = await ShopeeFetch.fetch<DownloadInvoiceDocResponse>(
       this.config,
       `/order/download_invoice_doc`,
@@ -456,18 +446,12 @@ export class OrderManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async uploadInvoiceDoc(
-    params: UploadInvoiceDocParams
-  ): Promise<UploadInvoiceDocResponse> {
-    return ShopeeFetch.fetch<UploadInvoiceDocResponse>(
-      this.config,
-      "/order/upload_invoice_doc",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
+  async uploadInvoiceDoc(params: UploadInvoiceDocParams): Promise<UploadInvoiceDocResponse> {
+    return ShopeeFetch.fetch<UploadInvoiceDocResponse>(this.config, "/order/upload_invoice_doc", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
 
   /**
@@ -483,9 +467,7 @@ export class OrderManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async getBookingDetail(
-    params: GetBookingDetailParams
-  ): Promise<GetBookingDetailResponse> {
+  async getBookingDetail(params: GetBookingDetailParams): Promise<GetBookingDetailResponse> {
     const response = await ShopeeFetch.fetch<GetBookingDetailResponse>(
       this.config,
       `/order/get_booking_detail`,
@@ -521,9 +503,7 @@ export class OrderManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async getBookingList(
-    params: GetBookingListParams
-  ): Promise<GetBookingListResponse> {
+  async getBookingList(params: GetBookingListParams): Promise<GetBookingListResponse> {
     const response = await ShopeeFetch.fetch<GetBookingListResponse>(
       this.config,
       `/order/get_booking_list`,

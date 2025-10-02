@@ -8,7 +8,14 @@ The OrderManager provides methods for:
 - **Order Retrieval**: Get order lists and details
 - **Order Processing**: Split, unsplit, and cancel orders
 - **Shipping Management**: Get shipment information
-- **Invoice Management**: Retrieve buyer invoice information
+- **Package Management**: Get package details and search packages
+- **Invoice Management**: Retrieve, upload, and download buyer invoice information
+- **Booking Management**: Get booking details and lists
+- **Prescription Management**: Handle prescription checks (ID/PH only)
+- **Buyer Cancellation**: Handle buyer cancellation requests
+- **FBS Invoices**: Generate, check status, and download FBS tax documents (BR only)
+- **Warehouse Management**: Get warehouse filter configurations
+- **Order Notes**: Add notes to orders
 
 ## Quick Start
 
@@ -571,6 +578,428 @@ async function generateDailyReport(date: Date) {
   
   return stats;
 }
+```
+
+---
+
+### setNote()
+
+**API Documentation:** [v2.order.set_note](https://open.shopee.com/documents/v2/v2.order.set_note?module=94&type=1)
+
+Set a note for an order.
+
+```typescript
+await sdk.order.setNote({
+  order_sn: 'ORDER123',
+  note: 'Customer requested express shipping',
+});
+```
+
+**Parameters:**
+- `order_sn`: Shopee's unique identifier for an order
+- `note`: The note seller add for reference
+
+---
+
+### getPackageDetail()
+
+**API Documentation:** [v2.order.get_package_detail](https://open.shopee.com/documents/v2/v2.order.get_package_detail?module=94&type=1)
+
+Get detailed information about packages.
+
+```typescript
+const response = await sdk.order.getPackageDetail({
+  package_number_list: ['PKG001', 'PKG002'],
+});
+
+response.package_list.forEach((pkg) => {
+  console.log('Package:', pkg.package_number);
+  console.log('Order:', pkg.order_sn);
+  console.log('Status:', pkg.fulfillment_status);
+  console.log('Carrier:', pkg.shipping_carrier);
+  console.log('Ship by:', new Date(pkg.ship_by_date * 1000));
+});
+```
+
+**Parameters:**
+- `package_number_list`: Array of package numbers (max: 50)
+
+---
+
+### handleBuyerCancellation()
+
+**API Documentation:** [v2.order.handle_buyer_cancellation](https://open.shopee.com/documents/v2/v2.order.handle_buyer_cancellation?module=94&type=1)
+
+Accept or reject buyer's cancellation application.
+
+```typescript
+// Accept cancellation
+await sdk.order.handleBuyerCancellation({
+  order_sn: 'ORDER123',
+  operation: 'ACCEPT',
+});
+
+// Reject cancellation
+await sdk.order.handleBuyerCancellation({
+  order_sn: 'ORDER456',
+  operation: 'REJECT',
+});
+```
+
+**Parameters:**
+- `order_sn`: Shopee's unique identifier for an order
+- `operation`: Either 'ACCEPT' or 'REJECT'
+
+---
+
+### searchPackageList()
+
+**API Documentation:** [v2.order.search_package_list](https://open.shopee.com/documents/v2/v2.order.search_package_list?module=94&type=1)
+
+Search for packages with various filters.
+
+```typescript
+const response = await sdk.order.searchPackageList({
+  filter: {
+    package_status: 2, // ToProcess
+    product_location_ids: ['WAREHOUSE001'],
+    logistics_channel_ids: [80001],
+    fulfillment_type: 2, // Seller
+    invoice_pending: false,
+  },
+  pagination: {
+    page_size: 50,
+    cursor: '',
+  },
+  sort: {
+    sort_field: 'ship_by_date',
+    sort_direction: 'ASC',
+  },
+});
+
+console.log('Packages found:', response.package_list.length);
+response.package_list.forEach((pkg) => {
+  console.log(`${pkg.package_number}: ${pkg.fulfillment_status}`);
+});
+```
+
+**Package Status:**
+- `0`: All
+- `1`: Pending
+- `2`: ToProcess (default)
+- `3`: Processed
+
+**Fulfillment Type:**
+- `0`: None (no filter)
+- `1`: Shopee
+- `2`: Seller (default)
+
+---
+
+### getPendingBuyerInvoiceOrderList()
+
+**API Documentation:** [v2.order.get_pending_buyer_invoice_order_list](https://open.shopee.com/documents/v2/v2.order.get_pending_buyer_invoice_order_list?module=94&type=1)
+
+Get list of orders pending invoice upload (PH and BR sellers only).
+
+```typescript
+const response = await sdk.order.getPendingBuyerInvoiceOrderList({
+  page_size: 100,
+  cursor: '',
+});
+
+console.log('Orders pending invoice:', response.order_sn_list);
+```
+
+**Parameters:**
+- `page_size`: Number of entries per page (max: 100)
+- `cursor`: Pagination cursor
+
+---
+
+### handlePrescriptionCheck()
+
+**API Documentation:** [v2.order.handle_prescription_check](https://open.shopee.com/documents/v2/v2.order.handle_prescription_check?module=94&type=1)
+
+Approve or reject a prescription for prescription orders (ID and PH only).
+
+```typescript
+// Approve prescription
+await sdk.order.handlePrescriptionCheck({
+  package_number: 'PKG001',
+  operation: 'APPROVE',
+});
+
+// Reject prescription
+await sdk.order.handlePrescriptionCheck({
+  package_number: 'PKG002',
+  operation: 'REJECT',
+  reject_reason: 'Invalid prescription details',
+});
+```
+
+**Parameters:**
+- `package_number`: Shopee's unique identifier for the package
+- `operation`: Either 'APPROVE' or 'REJECT'
+- `reject_reason`: Required when operation is 'REJECT'
+
+---
+
+### downloadInvoiceDoc()
+
+**API Documentation:** [v2.order.download_invoice_doc](https://open.shopee.com/documents/v2/v2.order.download_invoice_doc?module=94&type=1)
+
+Download invoice document (PH and BR sellers only).
+
+```typescript
+const response = await sdk.order.downloadInvoiceDoc({
+  order_sn: 'ORDER123',
+});
+
+console.log('Invoice URL:', response.url);
+// Download the file from the URL
+```
+
+**Parameters:**
+- `order_sn`: Shopee's unique identifier for an order
+
+---
+
+### uploadInvoiceDoc()
+
+**API Documentation:** [v2.order.upload_invoice_doc](https://open.shopee.com/documents/v2/v2.order.upload_invoice_doc?module=94&type=1)
+
+Upload invoice document (PH and BR sellers only).
+
+```typescript
+await sdk.order.uploadInvoiceDoc({
+  order_sn: 'ORDER123',
+  invoice_file: 'base64_encoded_file_content',
+});
+```
+
+**Parameters:**
+- `order_sn`: Shopee's unique identifier for an order
+- `invoice_file`: Base64 encoded file content
+
+---
+
+### getBookingDetail()
+
+**API Documentation:** [v2.order.get_booking_detail](https://open.shopee.com/documents/v2/v2.order.get_booking_detail?module=94&type=1)
+
+Get detailed information about bookings.
+
+```typescript
+const response = await sdk.order.getBookingDetail({
+  booking_sn_list: ['BOOK001', 'BOOK002'],
+});
+
+response.booking_list.forEach((booking) => {
+  console.log('Booking:', booking.booking_sn);
+  console.log('Order:', booking.order_sn);
+  console.log('Status:', booking.booking_status);
+  console.log('Packages:', booking.package_list);
+});
+```
+
+**Parameters:**
+- `booking_sn_list`: Array of booking SNs (max: 50)
+
+---
+
+### getBookingList()
+
+**API Documentation:** [v2.order.get_booking_list](https://open.shopee.com/documents/v2/v2.order.get_booking_list?module=94&type=1)
+
+Search for bookings within a time range.
+
+```typescript
+const response = await sdk.order.getBookingList({
+  time_range_field: 'create_time',
+  time_from: Math.floor(Date.now() / 1000) - 7 * 86400,
+  time_to: Math.floor(Date.now() / 1000),
+  page_size: 50,
+  cursor: '',
+  booking_status: 'READY_TO_SHIP',
+});
+
+response.booking_list.forEach((booking) => {
+  console.log(`${booking.booking_sn}: ${booking.booking_status}`);
+});
+```
+
+**Booking Status:**
+- `READY_TO_SHIP`
+- `PROCESSED`
+- `SHIPPED`
+- `CANCELLED`
+- `MATCHED`
+
+---
+
+### getWarehouseFilterConfig()
+
+**API Documentation:** [v2.order.get_warehouse_filter_config](https://open.shopee.com/documents/v2/v2.order.get_warehouse_filter_config?module=94&type=1)
+
+Get warehouse filter configuration for multi-warehouse shops.
+
+```typescript
+const response = await sdk.order.getWarehouseFilterConfig();
+
+response.warehouse_list.forEach((warehouse) => {
+  console.log('Warehouse:', warehouse.product_location_id);
+  console.log('Address ID:', warehouse.address_id);
+});
+```
+
+---
+
+### downloadFbsInvoices()
+
+**API Documentation:** [v2.order.download_fbs_invoices](https://open.shopee.com/documents/v2/v2.order.download_fbs_invoices?module=94&type=1)
+
+Download FBS (Fulfilled by Shopee) invoices.
+
+**Note:** This API is part of a 3-step workflow:
+1. `generateFbsInvoices()` - Create download task
+2. `getFbsInvoicesResult()` - Check task status
+3. `downloadFbsInvoices()` - Download when status is "READY"
+
+```typescript
+const response = await sdk.order.downloadFbsInvoices({
+  request_id_list: {
+    request_id: [123, 456],
+  },
+});
+
+response.result_list.forEach((result) => {
+  console.log('Request ID:', result.request_id);
+  console.log('Download URL:', result.url);
+});
+```
+
+**Important:** Download link expires 30 minutes after being generated.
+
+---
+
+### generateFbsInvoices()
+
+**API Documentation:** [v2.order.generate_fbs_invoices](https://open.shopee.com/documents/v2/v2.order.generate_fbs_invoices?module=94&type=1)
+
+Generate FBS tax documents for download.
+
+```typescript
+const response = await sdk.order.generateFbsInvoices({
+  batch_download: {
+    start: 20240101,
+    end: 20240131,
+    document_type: 1, // Remessa
+    file_type: 3, // Both PDF and XML
+    document_status: 1, // Authorized only
+  },
+});
+
+console.log('Request ID:', response.request_id);
+// Use this request_id with getFbsInvoicesResult() to check status
+```
+
+**Document Types:**
+- `1`: Remessa
+- `2`: Return
+- `3`: Symbolic Return
+- `4`: Sale
+- `5`: Entrada
+- `6`: Symbolic Remessa
+- `7`: All
+
+**File Types:**
+- `1`: XML only
+- `2`: PDF only
+- `3`: Both
+
+**Document Status:**
+- `1`: Authorized only
+- `2`: Cancelled
+- Not specified: All statuses
+
+---
+
+### getFbsInvoicesResult()
+
+**API Documentation:** [v2.order.get_fbs_invoices_result](https://open.shopee.com/documents/v2/v2.order.get_fbs_invoices_result?module=94&type=1)
+
+Check the status of FBS invoice generation tasks.
+
+```typescript
+const response = await sdk.order.getFbsInvoicesResult({
+  request_id_list: {
+    request_id: [123, 456],
+  },
+});
+
+response.result_list.forEach((result) => {
+  console.log('Request ID:', result.request_id);
+  console.log('Status:', result.status);
+  if (result.status === 'ERROR') {
+    console.log('Error:', result.error_message);
+  }
+});
+
+// When status is "READY", use downloadFbsInvoices()
+```
+
+**Status Values:**
+- `PROCESSING`: Task is being processed
+- `READY`: Documents are ready for download
+- `ERROR`: Task failed
+
+---
+
+## Complete FBS Invoice Workflow Example
+
+```typescript
+// Step 1: Generate the invoices
+const generateResponse = await sdk.order.generateFbsInvoices({
+  batch_download: {
+    start: 20240101,
+    end: 20240131,
+    document_type: 4, // Sale invoices
+    file_type: 3, // Both PDF and XML
+  },
+});
+
+const requestId = generateResponse.request_id;
+
+// Step 2: Poll for completion
+let isReady = false;
+while (!isReady) {
+  await new Promise(resolve => setTimeout(resolve, 5000)); // Wait 5 seconds
+  
+  const statusResponse = await sdk.order.getFbsInvoicesResult({
+    request_id_list: {
+      request_id: [requestId],
+    },
+  });
+  
+  const status = statusResponse.result_list[0].status;
+  
+  if (status === 'READY') {
+    isReady = true;
+  } else if (status === 'ERROR') {
+    throw new Error(statusResponse.result_list[0].error_message);
+  }
+}
+
+// Step 3: Download the invoices
+const downloadResponse = await sdk.order.downloadFbsInvoices({
+  request_id_list: {
+    request_id: [requestId],
+  },
+});
+
+console.log('Download URL:', downloadResponse.result_list[0].url);
+// Remember: URL expires in 30 minutes
 ```
 
 ## Related
