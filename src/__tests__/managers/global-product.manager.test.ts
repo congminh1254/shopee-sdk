@@ -969,19 +969,23 @@ describe("GlobalProductManager", () => {
         ],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_global_model", {
-        method: "POST",
-        auth: true,
-        body: {
-          global_item_id: 123456,
-          model_list: [
-            {
-              global_model_id: 789,
-              model_sku: "SKU-002",
-            },
-          ],
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/update_global_model",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            global_item_id: 123456,
+            model_list: [
+              {
+                global_model_id: 789,
+                model_sku: "SKU-002",
+              },
+            ],
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.model_list[0].global_model_id).toBe(789);
@@ -1011,14 +1015,18 @@ describe("GlobalProductManager", () => {
         global_model_id_list: [789],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/delete_global_model", {
-        method: "POST",
-        auth: true,
-        body: {
-          global_item_id: 123456,
-          global_model_id_list: [789],
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/delete_global_model",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            global_item_id: 123456,
+            global_model_id_list: [789],
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.model_list[0].success).toBe(true);
@@ -1040,11 +1048,7 @@ describe("GlobalProductManager", () => {
         tier_variation: [
           {
             name: "Size",
-            option_list: [
-              { option: "S" },
-              { option: "M" },
-              { option: "L" },
-            ],
+            option_list: [{ option: "S" }, { option: "M" }, { option: "L" }],
           },
         ],
       });
@@ -1211,13 +1215,17 @@ describe("GlobalProductManager", () => {
         global_item_id: 123456,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_published_list", {
-        method: "GET",
-        auth: true,
-        params: {
-          global_item_id: 123456,
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/get_published_list",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            global_item_id: 123456,
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.shop_list).toHaveLength(1);
@@ -1470,13 +1478,17 @@ describe("GlobalProductManager", () => {
         page_size: 20,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_size_chart_list", {
-        method: "GET",
-        auth: true,
-        params: {
-          page_size: 20,
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/get_size_chart_list",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            page_size: 20,
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.size_chart_list).toHaveLength(1);
@@ -1542,14 +1554,18 @@ describe("GlobalProductManager", () => {
         size_chart_name: "Updated Size Chart",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_size_chart", {
-        method: "POST",
-        auth: true,
-        body: {
-          size_chart_id: "chart123",
-          size_chart_name: "Updated Size Chart",
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/update_size_chart",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            size_chart_id: "chart123",
+            size_chart_name: "Updated Size Chart",
+          },
+        }
+      );
 
       expect(result.error).toBe("");
     });
