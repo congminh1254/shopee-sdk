@@ -36,6 +36,8 @@ const shipments = await sdk.order.getShipmentList({
 
 ### getOrderList()
 
+**API Documentation:** [v2.order.get_order_list](https://open.shopee.com/documents/v2/v2.order.get_order_list?module=94&type=1)
+
 Retrieve a list of orders within a time range.
 
 ```typescript
@@ -160,6 +162,8 @@ response.order_list.forEach((order) => {
 
 ### getShipmentList()
 
+**API Documentation:** [v2.order.get_shipment_list](https://open.shopee.com/documents/v2/v2.order.get_shipment_list?module=94&type=1)
+
 Get list of orders ready to ship or shipped.
 
 ```typescript
@@ -181,6 +185,8 @@ response.order_list.forEach((order) => {
 ---
 
 ### splitOrder()
+
+**API Documentation:** [v2.order.split_order](https://open.shopee.com/documents/v2/v2.order.split_order?module=94&type=1)
 
 Split an order into multiple packages for separate shipping.
 
@@ -213,6 +219,8 @@ console.log('Order split successfully');
 
 ### unsplitOrder()
 
+**API Documentation:** [v2.order.unsplit_order](https://open.shopee.com/documents/v2/v2.order.unsplit_order?module=94&type=1)
+
 Revert a split order back to a single order.
 
 ```typescript
@@ -228,6 +236,8 @@ console.log('Order unsplit successfully');
 ---
 
 ### cancelOrder()
+
+**API Documentation:** [v2.order.cancel_order](https://open.shopee.com/documents/v2/v2.order.cancel_order?module=94&type=1)
 
 Cancel an order.
 
@@ -257,6 +267,8 @@ console.log('Order cancelled');
 ---
 
 ### getBuyerInvoiceInfo()
+
+**API Documentation:** [v2.order.get_buyer_invoice_info](https://open.shopee.com/documents/v2/v2.order.get_buyer_invoice_info?module=94&type=1)
 
 Get invoice information for an order (region-specific, e.g., Brazil, Poland).
 

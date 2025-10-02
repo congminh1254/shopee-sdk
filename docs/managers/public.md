@@ -33,6 +33,8 @@ console.log('Shopee IPs:', ipRanges.ip_list);
 
 ### getShopsByPartner()
 
+**API Documentation:** [v2.public.get_shops_by_partner](https://open.shopee.com/documents/v2/v2.public.get_shops_by_partner?module=104&type=1)
+
 Get list of shops that have authorized your partner application.
 
 ```typescript
@@ -88,6 +90,8 @@ async function getAllAuthorizedShops() {
 
 ### getMerchantsByPartner()
 
+**API Documentation:** [v2.public.get_merchants_by_partner](https://open.shopee.com/documents/v2/v2.public.get_merchants_by_partner?module=104&type=1)
+
 Get list of merchants (main accounts) that have authorized your partner application.
 
 ```typescript
@@ -118,6 +122,8 @@ response.authed_merchant_list.forEach((merchant) => {
 ---
 
 ### getShopeeIpRange()
+
+**API Documentation:** [v2.public.get_shopee_ip_ranges](https://open.shopee.com/documents/v2/v2.public.get_shopee_ip_ranges?module=104&type=1)
 
 Get Shopee's IP address ranges for webhook security and firewall configuration.
 

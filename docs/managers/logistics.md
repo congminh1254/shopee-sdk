@@ -30,6 +30,8 @@ const tracking = await sdk.logistics.getTrackingNumber({
 
 ### getChannelList()
 
+**API Documentation:** [v2.logistics.get_channel_list](https://open.shopee.com/documents/v2/v2.logistics.get_channel_list?module=95&type=1)
+
 Get list of available logistics channels for a shop.
 
 ```typescript
@@ -74,6 +76,8 @@ console.log('Address:', response.address_list);
 ---
 
 ### getTrackingNumber()
+
+**API Documentation:** [v2.logistics.get_tracking_number](https://open.shopee.com/documents/v2/v2.logistics.get_tracking_number?module=95&type=1)
 
 Get tracking information for a shipped order.
 

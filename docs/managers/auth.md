@@ -13,6 +13,8 @@ The AuthManager provides methods for:
 
 ### getAccessToken()
 
+**API Documentation:** [v2.public.get_access_token](https://open.shopee.com/documents/v2/v2.public.get_access_token?module=104&type=1)
+
 Exchange an authorization code for an access token.
 
 ```typescript

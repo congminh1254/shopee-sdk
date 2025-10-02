@@ -43,6 +43,8 @@ await sdk.push.confirmConsumedLostPushMessage({
 
 ### setAppPushConfig()
 
+**API Documentation:** [v2.push.set_app_push_config](https://open.shopee.com/documents/v2/v2.push.set_app_push_config?module=105&type=1)
+
 Configure webhook URLs for different event types.
 
 ```typescript
@@ -90,6 +92,8 @@ console.log('Webhook configuration updated');
 
 ### getAppPushConfig()
 
+**API Documentation:** [v2.push.get_app_push_config](https://open.shopee.com/documents/v2/v2.push.get_app_push_config?module=105&type=1)
+
 Retrieve current webhook configuration.
 
 ```typescript
@@ -110,6 +114,8 @@ if (response.blocking_config) {
 ---
 
 ### getLostPushMessage()
+
+**API Documentation:** [v2.push.get_lost_push_message](https://open.shopee.com/documents/v2/v2.push.get_lost_push_message?module=105&type=1)
 
 Get push messages that were lost or not received.
 
@@ -135,6 +141,8 @@ response.data?.forEach((message) => {
 ---
 
 ### confirmConsumedLostPushMessage()
+
+**API Documentation:** [v2.push.confirm_consumed_lost_push_message](https://open.shopee.com/documents/v2/v2.push.confirm_consumed_lost_push_message?module=105&type=1)
 
 Confirm that lost messages have been processed.
 

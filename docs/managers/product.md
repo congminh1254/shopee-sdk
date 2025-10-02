@@ -43,6 +43,8 @@ await sdk.product.updateStock({
 
 ### getItemList()
 
+**API Documentation:** [v2.product.get_item_list](https://open.shopee.com/documents/v2/v2.product.get_item_list?module=89&type=1)
+
 Retrieve a list of products from your shop.
 
 ```typescript
@@ -69,6 +71,8 @@ console.log('Items:', response.item);
 
 ### getItemBaseInfo()
 
+**API Documentation:** [v2.product.get_item_base_info](https://open.shopee.com/documents/v2/v2.product.get_item_base_info?module=89&type=1)
+
 Get detailed information about specific products.
 
 ```typescript
@@ -89,6 +93,8 @@ response.item_list.forEach((item) => {
 ---
 
 ### addItem()
+
+**API Documentation:** [v2.product.add_item](https://open.shopee.com/documents/v2/v2.product.add_item?module=89&type=1)
 
 Create a new product in your shop.
 
@@ -140,6 +146,8 @@ console.log('Warning:', response.warning);
 
 ### updateItem()
 
+**API Documentation:** [v2.product.update_item](https://open.shopee.com/documents/v2/v2.product.update_item?module=89&type=1)
+
 Update an existing product.
 
 ```typescript
@@ -166,6 +174,8 @@ await sdk.product.updateItem({
 
 ### deleteItem()
 
+**API Documentation:** [v2.product.delete_item](https://open.shopee.com/documents/v2/v2.product.delete_item?module=89&type=1)
+
 Delete a product from your shop.
 
 ```typescript
@@ -180,6 +190,8 @@ console.log('Item deleted');
 
 ### unlistItem()
 
+**API Documentation:** [v2.product.unlist_item](https://open.shopee.com/documents/v2/v2.product.unlist_item?module=89&type=1)
+
 Temporarily remove a product from sale without deleting it.
 
 ```typescript
@@ -192,6 +204,8 @@ await sdk.product.unlistItem({
 ## Stock & Pricing Methods
 
 ### updateStock()
+
+**API Documentation:** [v2.product.update_stock](https://open.shopee.com/documents/v2/v2.product.update_stock?module=89&type=1)
 
 Update product inventory levels.
 
@@ -226,6 +240,8 @@ await sdk.product.updateStock({
 
 ### updatePrice()
 
+**API Documentation:** [v2.product.update_price](https://open.shopee.com/documents/v2/v2.product.update_price?module=89&type=1)
+
 Update product prices.
 
 ```typescript
@@ -259,6 +275,8 @@ await sdk.product.updatePrice({
 
 ### getModelList()
 
+**API Documentation:** [v2.product.get_model_list](https://open.shopee.com/documents/v2/v2.product.get_model_list?module=89&type=1)
+
 Get variation models for a product.
 
 ```typescript
@@ -277,6 +295,8 @@ response.model.forEach((model) => {
 ---
 
 ### initTierVariation()
+
+**API Documentation:** [v2.product.init_tier_variation](https://open.shopee.com/documents/v2/v2.product.init_tier_variation?module=89&type=1)
 
 Initialize product variations (e.g., size, color).
 
@@ -322,6 +342,8 @@ await sdk.product.initTierVariation({
 
 ### updateTierVariation()
 
+**API Documentation:** [v2.product.update_tier_variation](https://open.shopee.com/documents/v2/v2.product.update_tier_variation?module=89&type=1)
+
 Update existing product variations.
 
 ```typescript
@@ -345,6 +367,8 @@ await sdk.product.updateTierVariation({
 
 ### addModel()
 
+**API Documentation:** [v2.product.add_model](https://open.shopee.com/documents/v2/v2.product.add_model?module=89&type=1)
+
 Add a new variation model to an existing product.
 
 ```typescript
@@ -364,6 +388,8 @@ await sdk.product.addModel({
 ---
 
 ### updateModel()
+
+**API Documentation:** [v2.product.update_model](https://open.shopee.com/documents/v2/v2.product.update_model?module=89&type=1)
 
 Update existing variation models.
 
@@ -389,6 +415,8 @@ await sdk.product.updateModel({
 
 ### deleteModel()
 
+**API Documentation:** [v2.product.delete_model](https://open.shopee.com/documents/v2/v2.product.delete_model?module=89&type=1)
+
 Delete a variation model from a product.
 
 ```typescript
@@ -401,6 +429,8 @@ await sdk.product.deleteModel({
 ## Category & Attribute Methods
 
 ### getCategory()
+
+**API Documentation:** [v2.product.get_category](https://open.shopee.com/documents/v2/v2.product.get_category?module=89&type=1)
 
 Get the product category tree.
 
@@ -422,6 +452,8 @@ const subcategories = await sdk.product.getCategory({
 ---
 
 ### getAttributeTree()
+
+**API Documentation:** [v2.product.get_attribute_tree](https://open.shopee.com/documents/v2/v2.product.get_attribute_tree?module=89&type=1)
 
 Get attributes required for a category.
 
@@ -446,6 +478,8 @@ response.attribute_list.forEach((attr) => {
 
 ### getBrandList()
 
+**API Documentation:** [v2.product.get_brand_list](https://open.shopee.com/documents/v2/v2.product.get_brand_list?module=89&type=1)
+
 Get available brands for a category.
 
 ```typescript
@@ -466,6 +500,8 @@ response.brand_list.forEach((brand) => {
 
 ### categoryRecommend()
 
+**API Documentation:** [v2.product.category_recommend](https://open.shopee.com/documents/v2/v2.product.category_recommend?module=89&type=1)
+
 Get recommended categories for a product.
 
 ```typescript
@@ -479,6 +515,8 @@ console.log('Recommended categories:', response.category_id_list);
 ## Comment Methods
 
 ### getComment()
+
+**API Documentation:** [v2.product.get_comment](https://open.shopee.com/documents/v2/v2.product.get_comment?module=89&type=1)
 
 Retrieve product comments/reviews.
 
@@ -501,6 +539,8 @@ response.item_comment_list.forEach((comment) => {
 
 ### replyComment()
 
+**API Documentation:** [v2.product.reply_comment](https://open.shopee.com/documents/v2/v2.product.reply_comment?module=89&type=1)
+
 Reply to a product comment.
 
 ```typescript
@@ -513,6 +553,8 @@ await sdk.product.replyComment({
 ## Search & Discovery Methods
 
 ### searchItem()
+
+**API Documentation:** [v2.product.search_item](https://open.shopee.com/documents/v2/v2.product.search_item?module=89&type=1)
 
 Search for products in your shop.
 
@@ -530,6 +572,8 @@ console.log('Found:', response.total_count, 'items');
 ---
 
 ### getItemExtraInfo()
+
+**API Documentation:** [v2.product.get_item_extra_info](https://open.shopee.com/documents/v2/v2.product.get_item_extra_info?module=89&type=1)
 
 Get additional product information.
 
@@ -550,6 +594,8 @@ response.item_list.forEach((item) => {
 
 ### getItemLimit()
 
+**API Documentation:** [v2.product.get_item_limit](https://open.shopee.com/documents/v2/v2.product.get_item_limit?module=89&type=1)
+
 Get the item listing limit for your shop.
 
 ```typescript
@@ -563,6 +609,8 @@ console.log('Remaining:', response.item_limit - response.current_item_count);
 ## Promotion Methods
 
 ### boostItem()
+
+**API Documentation:** [v2.product.boost_item](https://open.shopee.com/documents/v2/v2.product.boost_item?module=89&type=1)
 
 Boost a product to increase visibility.
 
@@ -578,6 +626,8 @@ console.log('Products boosted');
 
 ### getBoostedList()
 
+**API Documentation:** [v2.product.get_boosted_list](https://open.shopee.com/documents/v2/v2.product.get_boosted_list?module=89&type=1)
+
 Get list of currently boosted products.
 
 ```typescript
@@ -592,6 +642,8 @@ response.item_list.forEach((item) => {
 ---
 
 ### getItemPromotion()
+
+**API Documentation:** [v2.product.get_item_promotion](https://open.shopee.com/documents/v2/v2.product.get_item_promotion?module=89&type=1)
 
 Get promotion information for products.
 
@@ -612,6 +664,8 @@ response.item_list.forEach((item) => {
 ## Compliance & Diagnostics Methods
 
 ### getItemViolationInfo()
+
+**API Documentation:** [v2.product.get_item_violation_info](https://open.shopee.com/documents/v2/v2.product.get_item_violation_info?module=89&type=1)
 
 Check if a product has any violations.
 
@@ -634,6 +688,8 @@ if (response.violation_list && response.violation_list.length > 0) {
 
 ### getItemContentDiagnosisResult()
 
+**API Documentation:** [v2.product.get_item_content_diagnosis_result](https://open.shopee.com/documents/v2/v2.product.get_item_content_diagnosis_result?module=89&type=1)
+
 Get content diagnosis results for a product.
 
 ```typescript
@@ -648,6 +704,8 @@ console.log('Suggestions:', response.suggestion_list);
 ---
 
 ### getItemListByContentDiagnosis()
+
+**API Documentation:** [v2.product.get_item_list_by_content_diagnosis](https://open.shopee.com/documents/v2/v2.product.get_item_list_by_content_diagnosis?module=89&type=1)
 
 Get list of products filtered by content diagnosis status.
 
@@ -664,6 +722,8 @@ console.log('Items with issues:', response.item_list);
 ## Advanced Features
 
 ### getVariations()
+
+**API Documentation:** [v2.product.get_variations](https://open.shopee.com/documents/v2/v2.product.get_variations?module=89&type=1)
 
 Get standardized variations for a category.
 
@@ -682,6 +742,8 @@ response.variation_list.forEach((variation) => {
 
 ### getRecommendAttribute()
 
+**API Documentation:** [v2.product.get_recommend_attribute](https://open.shopee.com/documents/v2/v2.product.get_recommend_attribute?module=89&type=1)
+
 Get recommended attributes for a product.
 
 ```typescript
@@ -697,6 +759,8 @@ console.log('Recommended attributes:', response.recommend_attribute_list);
 
 ### getWeightRecommendation()
 
+**API Documentation:** [v2.product.get_weight_recommendation](https://open.shopee.com/documents/v2/v2.product.get_weight_recommendation?module=89&type=1)
+
 Get recommended shipping weight for a product.
 
 ```typescript
@@ -710,6 +774,8 @@ console.log('Recommended weight:', response.weight, 'kg');
 ## Kit Item Methods (Product Bundles)
 
 ### addKitItem()
+
+**API Documentation:** [v2.product.add_kit_item](https://open.shopee.com/documents/v2/v2.product.add_kit_item?module=89&type=1)
 
 Create a product bundle/kit.
 
@@ -737,6 +803,8 @@ await sdk.product.addKitItem({
 
 ### updateKitItem()
 
+**API Documentation:** [v2.product.update_kit_item](https://open.shopee.com/documents/v2/v2.product.update_kit_item?module=89&type=1)
+
 Update an existing product bundle.
 
 ```typescript
@@ -750,6 +818,8 @@ await sdk.product.updateKitItem({
 ---
 
 ### getKitItemInfo()
+
+**API Documentation:** [v2.product.get_kit_item_info](https://open.shopee.com/documents/v2/v2.product.get_kit_item_info?module=89&type=1)
 
 Get information about a product bundle.
 

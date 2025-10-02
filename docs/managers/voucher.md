@@ -43,6 +43,8 @@ await sdk.voucher.updateVoucher({
 
 ### addVoucher()
 
+**API Documentation:** [v2.voucher.add_voucher](https://open.shopee.com/documents/v2/v2.voucher.add_voucher?module=112&type=1)
+
 Create a new discount voucher.
 
 ```typescript
@@ -106,6 +108,8 @@ await sdk.voucher.addVoucher({
 
 ### updateVoucher()
 
+**API Documentation:** [v2.voucher.update_voucher](https://open.shopee.com/documents/v2/v2.voucher.update_voucher?module=112&type=1)
+
 Update an existing voucher's settings.
 
 ```typescript
@@ -132,6 +136,8 @@ await sdk.voucher.updateVoucher({
 
 ### getVoucher()
 
+**API Documentation:** [v2.voucher.get_voucher](https://open.shopee.com/documents/v2/v2.voucher.get_voucher?module=112&type=1)
+
 Get detailed information about a specific voucher.
 
 ```typescript
@@ -151,6 +157,8 @@ console.log('Valid:', new Date(response.start_time * 1000), 'to', new Date(respo
 ---
 
 ### getVoucherList()
+
+**API Documentation:** [v2.voucher.get_voucher_list](https://open.shopee.com/documents/v2/v2.voucher.get_voucher_list?module=112&type=1)
 
 Retrieve a list of vouchers with filtering options.
 
@@ -210,6 +218,8 @@ async function getAllVouchers() {
 
 ### endVoucher()
 
+**API Documentation:** [v2.voucher.end_voucher](https://open.shopee.com/documents/v2/v2.voucher.end_voucher?module=112&type=1)
+
 Manually end a voucher before its scheduled end time.
 
 ```typescript
@@ -228,6 +238,8 @@ console.log('Voucher ended');
 ---
 
 ### deleteVoucher()
+
+**API Documentation:** [v2.voucher.delete_voucher](https://open.shopee.com/documents/v2/v2.voucher.delete_voucher?module=112&type=1)
 
 Delete a voucher (only if it hasn't started or been used).
 

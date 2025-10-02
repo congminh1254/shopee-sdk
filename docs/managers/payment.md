@@ -26,6 +26,8 @@ console.log('Items:', payment.order_income.items);
 
 ### getEscrowDetail()
 
+**API Documentation:** [v2.payment.get_escrow_detail](https://open.shopee.com/documents/v2/v2.payment.get_escrow_detail?module=97&type=1)
+
 Get detailed accounting information for an order.
 
 ```typescript
