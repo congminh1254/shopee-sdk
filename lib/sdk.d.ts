@@ -11,6 +11,7 @@ import { LogisticsManager } from "./managers/logistics.manager.js";
 import { VoucherManager } from "./managers/voucher.manager.js";
 import { AdsManager } from "./managers/ads.manager.js";
 import { AccountHealthManager } from "./managers/account-health.manager.js";
+import { MediaManager } from "./managers/media.manager.js";
 import { Agent } from "node:http";
 export interface ShopeeConfig {
     partner_id: number;
@@ -34,6 +35,7 @@ export declare class ShopeeSDK {
     readonly logistics: LogisticsManager;
     readonly voucher: VoucherManager;
     readonly accountHealth: AccountHealthManager;
+    readonly media: MediaManager;
     constructor(config: ShopeeConfig, tokenStorage?: TokenStorage);
     getConfig(): ShopeeConfig;
     setRegion(region: ShopeeRegion): void;
