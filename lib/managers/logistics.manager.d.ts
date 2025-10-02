@@ -1,6 +1,6 @@
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
-import { GetTrackingInfoParams, GetTrackingInfoResponse, GetChannelListResponse, GetShippingParameterParams, GetShippingParameterResponse, GetTrackingNumberParams, GetTrackingNumberResponse, ShipOrderParams, ShipOrderResponse, GetAddressListResponse } from "../schemas/logistics.js";
+import { GetTrackingInfoParams, GetTrackingInfoResponse, GetChannelListResponse, GetShippingParameterParams, GetShippingParameterResponse, GetTrackingNumberParams, GetTrackingNumberResponse, ShipOrderParams, ShipOrderResponse, GetAddressListResponse, BatchShipOrderParams, BatchShipOrderResponse, MassShipOrderParams, MassShipOrderResponse, ShipBookingParams, ShipBookingResponse, GetBookingShippingParameterParams, GetBookingShippingParameterResponse, GetBookingTrackingInfoParams, GetBookingTrackingInfoResponse, GetBookingTrackingNumberParams, GetBookingTrackingNumberResponse, GetMassShippingParameterParams, GetMassShippingParameterResponse, GetMassTrackingNumberParams, GetMassTrackingNumberResponse, SetAddressConfigParams, SetAddressConfigResponse, DeleteAddressParams, DeleteAddressResponse, CreateShippingDocumentParams, CreateShippingDocumentResponse, DownloadShippingDocumentParams, DownloadShippingDocumentResponse, GetShippingDocumentParameterParams, GetShippingDocumentParameterResponse, GetShippingDocumentResultParams, GetShippingDocumentResultResponse, GetShippingDocumentDataInfoParams, GetShippingDocumentDataInfoResponse, CreateBookingShippingDocumentParams, CreateBookingShippingDocumentResponse, DownloadBookingShippingDocumentParams, DownloadBookingShippingDocumentResponse, GetBookingShippingDocumentParameterParams, GetBookingShippingDocumentParameterResponse, GetBookingShippingDocumentResultParams, GetBookingShippingDocumentResultResponse, GetBookingShippingDocumentDataInfoParams, GetBookingShippingDocumentDataInfoResponse, CreateShippingDocumentJobParams, CreateShippingDocumentJobResponse, DownloadShippingDocumentJobParams, DownloadShippingDocumentJobResponse, GetShippingDocumentJobStatusParams, GetShippingDocumentJobStatusResponse, DownloadToLabelParams, DownloadToLabelResponse, UpdateChannelParams, UpdateChannelResponse, UpdateShippingOrderParams, UpdateShippingOrderResponse, UpdateTrackingStatusParams, UpdateTrackingStatusResponse, UpdateSelfCollectionOrderLogisticsParams, UpdateSelfCollectionOrderLogisticsResponse, GetOperatingHoursParams, GetOperatingHoursResponse, UpdateOperatingHoursParams, UpdateOperatingHoursResponse, GetOperatingHourRestrictionsParams, GetOperatingHourRestrictionsResponse, DeleteSpecialOperatingHourParams, DeleteSpecialOperatingHourResponse, GetMartPackagingInfoParams, GetMartPackagingInfoResponse, SetMartPackagingInfoParams, SetMartPackagingInfoResponse, BatchUpdateTPFWarehouseTrackingStatusParams, BatchUpdateTPFWarehouseTrackingStatusResponse } from "../schemas/logistics.js";
 export declare class LogisticsManager extends BaseManager {
     constructor(config: ShopeeConfig);
     /**
@@ -156,4 +156,144 @@ export declare class LogisticsManager extends BaseManager {
      * - logistics.package_number_not_exist: Package number required for split order
      */
     getTrackingInfo(params: GetTrackingInfoParams): Promise<GetTrackingInfoResponse>;
+    /**
+     * Use this API to batch initiate logistics for multiple orders.
+     */
+    batchShipOrder(params: BatchShipOrderParams): Promise<BatchShipOrderResponse>;
+    /**
+     * Use this API to mass ship orders.
+     */
+    massShipOrder(params: MassShipOrderParams): Promise<MassShipOrderResponse>;
+    /**
+     * Use this API to initiate logistics for a booking.
+     */
+    shipBooking(params: ShipBookingParams): Promise<ShipBookingResponse>;
+    /**
+     * Use this API to get shipping parameters for a booking.
+     */
+    getBookingShippingParameter(params: GetBookingShippingParameterParams): Promise<GetBookingShippingParameterResponse>;
+    /**
+     * Use this API to get tracking info for a booking.
+     */
+    getBookingTrackingInfo(params: GetBookingTrackingInfoParams): Promise<GetBookingTrackingInfoResponse>;
+    /**
+     * Use this API to get tracking number for a booking.
+     */
+    getBookingTrackingNumber(params: GetBookingTrackingNumberParams): Promise<GetBookingTrackingNumberResponse>;
+    /**
+     * Use this API to get mass shipping parameters.
+     */
+    getMassShippingParameter(params: GetMassShippingParameterParams): Promise<GetMassShippingParameterResponse>;
+    /**
+     * Use this API to get mass tracking numbers.
+     */
+    getMassTrackingNumber(params: GetMassTrackingNumberParams): Promise<GetMassTrackingNumberResponse>;
+    /**
+     * Use this API to set address configuration.
+     */
+    setAddressConfig(params: SetAddressConfigParams): Promise<SetAddressConfigResponse>;
+    /**
+     * Use this API to delete an address.
+     */
+    deleteAddress(params: DeleteAddressParams): Promise<DeleteAddressResponse>;
+    /**
+     * Use this API to create shipping document.
+     */
+    createShippingDocument(params: CreateShippingDocumentParams): Promise<CreateShippingDocumentResponse>;
+    /**
+     * Use this API to download shipping document.
+     */
+    downloadShippingDocument(params: DownloadShippingDocumentParams): Promise<DownloadShippingDocumentResponse>;
+    /**
+     * Use this API to get shipping document parameters.
+     */
+    getShippingDocumentParameter(params: GetShippingDocumentParameterParams): Promise<GetShippingDocumentParameterResponse>;
+    /**
+     * Use this API to get shipping document result.
+     */
+    getShippingDocumentResult(params: GetShippingDocumentResultParams): Promise<GetShippingDocumentResultResponse>;
+    /**
+     * Use this API to get shipping document data info.
+     */
+    getShippingDocumentDataInfo(params: GetShippingDocumentDataInfoParams): Promise<GetShippingDocumentDataInfoResponse>;
+    /**
+     * Use this API to create booking shipping document.
+     */
+    createBookingShippingDocument(params: CreateBookingShippingDocumentParams): Promise<CreateBookingShippingDocumentResponse>;
+    /**
+     * Use this API to download booking shipping document.
+     */
+    downloadBookingShippingDocument(params: DownloadBookingShippingDocumentParams): Promise<DownloadBookingShippingDocumentResponse>;
+    /**
+     * Use this API to get booking shipping document parameters.
+     */
+    getBookingShippingDocumentParameter(params: GetBookingShippingDocumentParameterParams): Promise<GetBookingShippingDocumentParameterResponse>;
+    /**
+     * Use this API to get booking shipping document result.
+     */
+    getBookingShippingDocumentResult(params: GetBookingShippingDocumentResultParams): Promise<GetBookingShippingDocumentResultResponse>;
+    /**
+     * Use this API to get booking shipping document data info.
+     */
+    getBookingShippingDocumentDataInfo(params: GetBookingShippingDocumentDataInfoParams): Promise<GetBookingShippingDocumentDataInfoResponse>;
+    /**
+     * Use this API to create shipping document job.
+     */
+    createShippingDocumentJob(params: CreateShippingDocumentJobParams): Promise<CreateShippingDocumentJobResponse>;
+    /**
+     * Use this API to download shipping document job.
+     */
+    downloadShippingDocumentJob(params: DownloadShippingDocumentJobParams): Promise<DownloadShippingDocumentJobResponse>;
+    /**
+     * Use this API to get shipping document job status.
+     */
+    getShippingDocumentJobStatus(params: GetShippingDocumentJobStatusParams): Promise<GetShippingDocumentJobStatusResponse>;
+    /**
+     * Use this API to download shipping label.
+     */
+    downloadToLabel(params: DownloadToLabelParams): Promise<DownloadToLabelResponse>;
+    /**
+     * Use this API to update logistics channel configuration.
+     */
+    updateChannel(params: UpdateChannelParams): Promise<UpdateChannelResponse>;
+    /**
+     * Use this API to update shipping order.
+     */
+    updateShippingOrder(params: UpdateShippingOrderParams): Promise<UpdateShippingOrderResponse>;
+    /**
+     * Use this API to update tracking status.
+     */
+    updateTrackingStatus(params: UpdateTrackingStatusParams): Promise<UpdateTrackingStatusResponse>;
+    /**
+     * Use this API to update self collection order logistics.
+     */
+    updateSelfCollectionOrderLogistics(params: UpdateSelfCollectionOrderLogisticsParams): Promise<UpdateSelfCollectionOrderLogisticsResponse>;
+    /**
+     * Use this API to get operating hours.
+     */
+    getOperatingHours(params: GetOperatingHoursParams): Promise<GetOperatingHoursResponse>;
+    /**
+     * Use this API to update operating hours.
+     */
+    updateOperatingHours(params: UpdateOperatingHoursParams): Promise<UpdateOperatingHoursResponse>;
+    /**
+     * Use this API to get operating hour restrictions.
+     */
+    getOperatingHourRestrictions(params: GetOperatingHourRestrictionsParams): Promise<GetOperatingHourRestrictionsResponse>;
+    /**
+     * Use this API to delete special operating hour.
+     */
+    deleteSpecialOperatingHour(params: DeleteSpecialOperatingHourParams): Promise<DeleteSpecialOperatingHourResponse>;
+    /**
+     * Use this API to get mart packaging info.
+     */
+    getMartPackagingInfo(params: GetMartPackagingInfoParams): Promise<GetMartPackagingInfoResponse>;
+    /**
+     * Use this API to set mart packaging info.
+     */
+    setMartPackagingInfo(params: SetMartPackagingInfoParams): Promise<SetMartPackagingInfoResponse>;
+    /**
+     * Use this API to batch update TPF warehouse tracking status.
+     */
+    batchUpdateTPFWarehouseTrackingStatus(params: BatchUpdateTPFWarehouseTrackingStatusParams): Promise<BatchUpdateTPFWarehouseTrackingStatusResponse>;
 }

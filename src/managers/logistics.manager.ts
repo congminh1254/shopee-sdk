@@ -11,6 +11,76 @@ import {
   ShipOrderParams,
   ShipOrderResponse,
   GetAddressListResponse,
+  BatchShipOrderParams,
+  BatchShipOrderResponse,
+  MassShipOrderParams,
+  MassShipOrderResponse,
+  ShipBookingParams,
+  ShipBookingResponse,
+  GetBookingShippingParameterParams,
+  GetBookingShippingParameterResponse,
+  GetBookingTrackingInfoParams,
+  GetBookingTrackingInfoResponse,
+  GetBookingTrackingNumberParams,
+  GetBookingTrackingNumberResponse,
+  GetMassShippingParameterParams,
+  GetMassShippingParameterResponse,
+  GetMassTrackingNumberParams,
+  GetMassTrackingNumberResponse,
+  SetAddressConfigParams,
+  SetAddressConfigResponse,
+  DeleteAddressParams,
+  DeleteAddressResponse,
+  CreateShippingDocumentParams,
+  CreateShippingDocumentResponse,
+  DownloadShippingDocumentParams,
+  DownloadShippingDocumentResponse,
+  GetShippingDocumentParameterParams,
+  GetShippingDocumentParameterResponse,
+  GetShippingDocumentResultParams,
+  GetShippingDocumentResultResponse,
+  GetShippingDocumentDataInfoParams,
+  GetShippingDocumentDataInfoResponse,
+  CreateBookingShippingDocumentParams,
+  CreateBookingShippingDocumentResponse,
+  DownloadBookingShippingDocumentParams,
+  DownloadBookingShippingDocumentResponse,
+  GetBookingShippingDocumentParameterParams,
+  GetBookingShippingDocumentParameterResponse,
+  GetBookingShippingDocumentResultParams,
+  GetBookingShippingDocumentResultResponse,
+  GetBookingShippingDocumentDataInfoParams,
+  GetBookingShippingDocumentDataInfoResponse,
+  CreateShippingDocumentJobParams,
+  CreateShippingDocumentJobResponse,
+  DownloadShippingDocumentJobParams,
+  DownloadShippingDocumentJobResponse,
+  GetShippingDocumentJobStatusParams,
+  GetShippingDocumentJobStatusResponse,
+  DownloadToLabelParams,
+  DownloadToLabelResponse,
+  UpdateChannelParams,
+  UpdateChannelResponse,
+  UpdateShippingOrderParams,
+  UpdateShippingOrderResponse,
+  UpdateTrackingStatusParams,
+  UpdateTrackingStatusResponse,
+  UpdateSelfCollectionOrderLogisticsParams,
+  UpdateSelfCollectionOrderLogisticsResponse,
+  GetOperatingHoursParams,
+  GetOperatingHoursResponse,
+  UpdateOperatingHoursParams,
+  UpdateOperatingHoursResponse,
+  GetOperatingHourRestrictionsParams,
+  GetOperatingHourRestrictionsResponse,
+  DeleteSpecialOperatingHourParams,
+  DeleteSpecialOperatingHourResponse,
+  GetMartPackagingInfoParams,
+  GetMartPackagingInfoResponse,
+  SetMartPackagingInfoParams,
+  SetMartPackagingInfoResponse,
+  BatchUpdateTPFWarehouseTrackingStatusParams,
+  BatchUpdateTPFWarehouseTrackingStatusResponse,
 } from "../schemas/logistics.js";
 import { ShopeeFetch } from "../fetch.js";
 
@@ -244,6 +314,641 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to batch initiate logistics for multiple orders.
+   */
+  async batchShipOrder(params: BatchShipOrderParams): Promise<BatchShipOrderResponse> {
+    const response = await ShopeeFetch.fetch<BatchShipOrderResponse>(
+      this.config,
+      "/logistics/batch_ship_order",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to mass ship orders.
+   */
+  async massShipOrder(params: MassShipOrderParams): Promise<MassShipOrderResponse> {
+    const response = await ShopeeFetch.fetch<MassShipOrderResponse>(
+      this.config,
+      "/logistics/mass_ship_order",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to initiate logistics for a booking.
+   */
+  async shipBooking(params: ShipBookingParams): Promise<ShipBookingResponse> {
+    const response = await ShopeeFetch.fetch<ShipBookingResponse>(this.config, "/logistics/ship_booking", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+
+    return response;
+  }
+
+  /**
+   * Use this API to get shipping parameters for a booking.
+   */
+  async getBookingShippingParameter(
+    params: GetBookingShippingParameterParams
+  ): Promise<GetBookingShippingParameterResponse> {
+    const response = await ShopeeFetch.fetch<GetBookingShippingParameterResponse>(
+      this.config,
+      "/logistics/get_booking_shipping_parameter",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get tracking info for a booking.
+   */
+  async getBookingTrackingInfo(
+    params: GetBookingTrackingInfoParams
+  ): Promise<GetBookingTrackingInfoResponse> {
+    const response = await ShopeeFetch.fetch<GetBookingTrackingInfoResponse>(
+      this.config,
+      "/logistics/get_booking_tracking_info",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get tracking number for a booking.
+   */
+  async getBookingTrackingNumber(
+    params: GetBookingTrackingNumberParams
+  ): Promise<GetBookingTrackingNumberResponse> {
+    const response = await ShopeeFetch.fetch<GetBookingTrackingNumberResponse>(
+      this.config,
+      "/logistics/get_booking_tracking_number",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get mass shipping parameters.
+   */
+  async getMassShippingParameter(
+    params: GetMassShippingParameterParams
+  ): Promise<GetMassShippingParameterResponse> {
+    const response = await ShopeeFetch.fetch<GetMassShippingParameterResponse>(
+      this.config,
+      "/logistics/get_mass_shipping_parameter",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get mass tracking numbers.
+   */
+  async getMassTrackingNumber(
+    params: GetMassTrackingNumberParams
+  ): Promise<GetMassTrackingNumberResponse> {
+    const response = await ShopeeFetch.fetch<GetMassTrackingNumberResponse>(
+      this.config,
+      "/logistics/get_mass_tracking_number",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to set address configuration.
+   */
+  async setAddressConfig(params: SetAddressConfigParams): Promise<SetAddressConfigResponse> {
+    const response = await ShopeeFetch.fetch<SetAddressConfigResponse>(
+      this.config,
+      "/logistics/set_address_config",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to delete an address.
+   */
+  async deleteAddress(params: DeleteAddressParams): Promise<DeleteAddressResponse> {
+    const response = await ShopeeFetch.fetch<DeleteAddressResponse>(
+      this.config,
+      "/logistics/delete_address",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to create shipping document.
+   */
+  async createShippingDocument(
+    params: CreateShippingDocumentParams
+  ): Promise<CreateShippingDocumentResponse> {
+    const response = await ShopeeFetch.fetch<CreateShippingDocumentResponse>(
+      this.config,
+      "/logistics/create_shipping_document",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to download shipping document.
+   */
+  async downloadShippingDocument(
+    params: DownloadShippingDocumentParams
+  ): Promise<DownloadShippingDocumentResponse> {
+    const response = await ShopeeFetch.fetch<DownloadShippingDocumentResponse>(
+      this.config,
+      "/logistics/download_shipping_document",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get shipping document parameters.
+   */
+  async getShippingDocumentParameter(
+    params: GetShippingDocumentParameterParams
+  ): Promise<GetShippingDocumentParameterResponse> {
+    const response = await ShopeeFetch.fetch<GetShippingDocumentParameterResponse>(
+      this.config,
+      "/logistics/get_shipping_document_parameter",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get shipping document result.
+   */
+  async getShippingDocumentResult(
+    params: GetShippingDocumentResultParams
+  ): Promise<GetShippingDocumentResultResponse> {
+    const response = await ShopeeFetch.fetch<GetShippingDocumentResultResponse>(
+      this.config,
+      "/logistics/get_shipping_document_result",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get shipping document data info.
+   */
+  async getShippingDocumentDataInfo(
+    params: GetShippingDocumentDataInfoParams
+  ): Promise<GetShippingDocumentDataInfoResponse> {
+    const response = await ShopeeFetch.fetch<GetShippingDocumentDataInfoResponse>(
+      this.config,
+      "/logistics/get_shipping_document_data_info",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to create booking shipping document.
+   */
+  async createBookingShippingDocument(
+    params: CreateBookingShippingDocumentParams
+  ): Promise<CreateBookingShippingDocumentResponse> {
+    const response = await ShopeeFetch.fetch<CreateBookingShippingDocumentResponse>(
+      this.config,
+      "/logistics/create_booking_shipping_document",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to download booking shipping document.
+   */
+  async downloadBookingShippingDocument(
+    params: DownloadBookingShippingDocumentParams
+  ): Promise<DownloadBookingShippingDocumentResponse> {
+    const response = await ShopeeFetch.fetch<DownloadBookingShippingDocumentResponse>(
+      this.config,
+      "/logistics/download_booking_shipping_document",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get booking shipping document parameters.
+   */
+  async getBookingShippingDocumentParameter(
+    params: GetBookingShippingDocumentParameterParams
+  ): Promise<GetBookingShippingDocumentParameterResponse> {
+    const response = await ShopeeFetch.fetch<GetBookingShippingDocumentParameterResponse>(
+      this.config,
+      "/logistics/get_booking_shipping_document_parameter",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get booking shipping document result.
+   */
+  async getBookingShippingDocumentResult(
+    params: GetBookingShippingDocumentResultParams
+  ): Promise<GetBookingShippingDocumentResultResponse> {
+    const response = await ShopeeFetch.fetch<GetBookingShippingDocumentResultResponse>(
+      this.config,
+      "/logistics/get_booking_shipping_document_result",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get booking shipping document data info.
+   */
+  async getBookingShippingDocumentDataInfo(
+    params: GetBookingShippingDocumentDataInfoParams
+  ): Promise<GetBookingShippingDocumentDataInfoResponse> {
+    const response = await ShopeeFetch.fetch<GetBookingShippingDocumentDataInfoResponse>(
+      this.config,
+      "/logistics/get_booking_shipping_document_data_info",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to create shipping document job.
+   */
+  async createShippingDocumentJob(
+    params: CreateShippingDocumentJobParams
+  ): Promise<CreateShippingDocumentJobResponse> {
+    const response = await ShopeeFetch.fetch<CreateShippingDocumentJobResponse>(
+      this.config,
+      "/logistics/create_shipping_document_job",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to download shipping document job.
+   */
+  async downloadShippingDocumentJob(
+    params: DownloadShippingDocumentJobParams
+  ): Promise<DownloadShippingDocumentJobResponse> {
+    const response = await ShopeeFetch.fetch<DownloadShippingDocumentJobResponse>(
+      this.config,
+      "/logistics/download_shipping_document_job",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get shipping document job status.
+   */
+  async getShippingDocumentJobStatus(
+    params: GetShippingDocumentJobStatusParams
+  ): Promise<GetShippingDocumentJobStatusResponse> {
+    const response = await ShopeeFetch.fetch<GetShippingDocumentJobStatusResponse>(
+      this.config,
+      "/logistics/get_shipping_document_job_status",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to download shipping label.
+   */
+  async downloadToLabel(params: DownloadToLabelParams): Promise<DownloadToLabelResponse> {
+    const response = await ShopeeFetch.fetch<DownloadToLabelResponse>(
+      this.config,
+      "/logistics/download_to_label",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to update logistics channel configuration.
+   */
+  async updateChannel(params: UpdateChannelParams): Promise<UpdateChannelResponse> {
+    const response = await ShopeeFetch.fetch<UpdateChannelResponse>(
+      this.config,
+      "/logistics/update_channel",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to update shipping order.
+   */
+  async updateShippingOrder(params: UpdateShippingOrderParams): Promise<UpdateShippingOrderResponse> {
+    const response = await ShopeeFetch.fetch<UpdateShippingOrderResponse>(
+      this.config,
+      "/logistics/update_shipping_order",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to update tracking status.
+   */
+  async updateTrackingStatus(params: UpdateTrackingStatusParams): Promise<UpdateTrackingStatusResponse> {
+    const response = await ShopeeFetch.fetch<UpdateTrackingStatusResponse>(
+      this.config,
+      "/logistics/update_tracking_status",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to update self collection order logistics.
+   */
+  async updateSelfCollectionOrderLogistics(
+    params: UpdateSelfCollectionOrderLogisticsParams
+  ): Promise<UpdateSelfCollectionOrderLogisticsResponse> {
+    const response = await ShopeeFetch.fetch<UpdateSelfCollectionOrderLogisticsResponse>(
+      this.config,
+      "/logistics/update_self_collection_order_logistics",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get operating hours.
+   */
+  async getOperatingHours(params: GetOperatingHoursParams): Promise<GetOperatingHoursResponse> {
+    const response = await ShopeeFetch.fetch<GetOperatingHoursResponse>(
+      this.config,
+      "/logistics/get_operating_hours",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to update operating hours.
+   */
+  async updateOperatingHours(params: UpdateOperatingHoursParams): Promise<UpdateOperatingHoursResponse> {
+    const response = await ShopeeFetch.fetch<UpdateOperatingHoursResponse>(
+      this.config,
+      "/logistics/update_operating_hours",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get operating hour restrictions.
+   */
+  async getOperatingHourRestrictions(
+    params: GetOperatingHourRestrictionsParams
+  ): Promise<GetOperatingHourRestrictionsResponse> {
+    const response = await ShopeeFetch.fetch<GetOperatingHourRestrictionsResponse>(
+      this.config,
+      "/logistics/get_operating_hour_restrictions",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to delete special operating hour.
+   */
+  async deleteSpecialOperatingHour(
+    params: DeleteSpecialOperatingHourParams
+  ): Promise<DeleteSpecialOperatingHourResponse> {
+    const response = await ShopeeFetch.fetch<DeleteSpecialOperatingHourResponse>(
+      this.config,
+      "/logistics/delete_special_operating_hour",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get mart packaging info.
+   */
+  async getMartPackagingInfo(params: GetMartPackagingInfoParams): Promise<GetMartPackagingInfoResponse> {
+    const response = await ShopeeFetch.fetch<GetMartPackagingInfoResponse>(
+      this.config,
+      "/logistics/get_mart_packaging_info",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to set mart packaging info.
+   */
+  async setMartPackagingInfo(params: SetMartPackagingInfoParams): Promise<SetMartPackagingInfoResponse> {
+    const response = await ShopeeFetch.fetch<SetMartPackagingInfoResponse>(
+      this.config,
+      "/logistics/set_mart_packaging_info",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to batch update TPF warehouse tracking status.
+   */
+  async batchUpdateTPFWarehouseTrackingStatus(
+    params: BatchUpdateTPFWarehouseTrackingStatusParams
+  ): Promise<BatchUpdateTPFWarehouseTrackingStatusResponse> {
+    const response = await ShopeeFetch.fetch<BatchUpdateTPFWarehouseTrackingStatusResponse>(
+      this.config,
+      "/logistics/batch_update_tpf_warehouse_tracking_status",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
       }
     );
 

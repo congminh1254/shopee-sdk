@@ -666,4 +666,481 @@ describe("LogisticsManager", () => {
       expect(result.response.address_list).toHaveLength(0);
     });
   });
+
+  // Tests for new functions (35 additional endpoints)
+  describe("batchShipOrder", () => {
+    it("should batch ship multiple orders", async () => {
+      const mockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.batchShipOrder({
+        order_list: [{ order_sn: "ORDER1" }, { order_sn: "ORDER2" }],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/batch_ship_order", {
+        method: "POST",
+        auth: true,
+        body: { order_list: [{ order_sn: "ORDER1" }, { order_sn: "ORDER2" }] },
+      });
+      expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("massShipOrder", () => {
+    it("should mass ship orders", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.massShipOrder({
+        package_number_list: ["PKG1", "PKG2"],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/mass_ship_order", {
+        method: "POST",
+        auth: true,
+        body: { package_number_list: ["PKG1", "PKG2"] },
+      });
+    });
+  });
+
+  describe("shipBooking", () => {
+    it("should ship booking", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.shipBooking({
+        booking_sn: "BOOKING123",
+        pickup: { address_id: 1 },
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/ship_booking", {
+        method: "POST",
+        auth: true,
+        body: { booking_sn: "BOOKING123", pickup: { address_id: 1 } },
+      });
+    });
+  });
+
+  describe("getBookingShippingParameter", () => {
+    it("should get booking shipping parameter", async () => {
+      const mockResponse = {
+        request_id: "test",
+        error: "",
+        message: "",
+        response: { info_needed: {} },
+      };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getBookingShippingParameter({ booking_sn: "BOOKING123" });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/get_booking_shipping_parameter",
+        {
+          method: "GET",
+          auth: true,
+          params: { booking_sn: "BOOKING123" },
+        }
+      );
+    });
+  });
+
+  describe("getBookingTrackingInfo", () => {
+    it("should get booking tracking info", async () => {
+      const mockResponse = {
+        request_id: "test",
+        error: "",
+        message: "",
+        response: { booking_sn: "BOOKING123", logistics_status: "LOGISTICS_READY", tracking_info: [] },
+      };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getBookingTrackingInfo({ booking_sn: "BOOKING123" });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/get_booking_tracking_info",
+        {
+          method: "GET",
+          auth: true,
+          params: { booking_sn: "BOOKING123" },
+        }
+      );
+    });
+  });
+
+  describe("getBookingTrackingNumber", () => {
+    it("should get booking tracking number", async () => {
+      const mockResponse = {
+        request_id: "test",
+        error: "",
+        message: "",
+        response: { tracking_number: "TRACK123" },
+      };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getBookingTrackingNumber({ booking_sn: "BOOKING123" });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/get_booking_tracking_number",
+        {
+          method: "GET",
+          auth: true,
+          params: { booking_sn: "BOOKING123" },
+        }
+      );
+    });
+  });
+
+  describe("getMassShippingParameter", () => {
+    it("should get mass shipping parameter", async () => {
+      const mockResponse = {
+        request_id: "test",
+        error: "",
+        message: "",
+        response: { info_needed: {} },
+      };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getMassShippingParameter({ package_number_list: ["PKG1"] });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/get_mass_shipping_parameter",
+        {
+          method: "GET",
+          auth: true,
+          params: { package_number_list: ["PKG1"] },
+        }
+      );
+    });
+  });
+
+  describe("getMassTrackingNumber", () => {
+    it("should get mass tracking number", async () => {
+      const mockResponse = {
+        request_id: "test",
+        error: "",
+        message: "",
+        response: { result_list: [] },
+      };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getMassTrackingNumber({ order_sn_list: ["ORDER1"] });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_mass_tracking_number", {
+        method: "GET",
+        auth: true,
+        params: { order_sn_list: ["ORDER1"] },
+      });
+    });
+  });
+
+  describe("setAddressConfig", () => {
+    it("should set address config", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.setAddressConfig({ address_id: 123 });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/set_address_config", {
+        method: "POST",
+        auth: true,
+        body: { address_id: 123 },
+      });
+    });
+  });
+
+  describe("deleteAddress", () => {
+    it("should delete address", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.deleteAddress({ address_id: 123 });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/delete_address", {
+        method: "POST",
+        auth: true,
+        body: { address_id: 123 },
+      });
+    });
+  });
+
+  describe("shipping documents", () => {
+    it("should create shipping document", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.createShippingDocument({
+        order_sn_list: ["ORDER1"],
+        shipping_document_type: "NORMAL_AIR_WAYBILL",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/create_shipping_document",
+        {
+          method: "POST",
+          auth: true,
+          body: { order_sn_list: ["ORDER1"], shipping_document_type: "NORMAL_AIR_WAYBILL" },
+        }
+      );
+    });
+
+    it("should download shipping document", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: { result: "URL" } };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.downloadShippingDocument({
+        order_sn_list: ["ORDER1"],
+        shipping_document_type: "NORMAL_AIR_WAYBILL",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should get shipping document parameter", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getShippingDocumentParameter({ order_sn_list: ["ORDER1"] });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should get shipping document result", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getShippingDocumentResult({
+        order_sn_list: ["ORDER1"],
+        shipping_document_type: "NORMAL_AIR_WAYBILL",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should get shipping document data info", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getShippingDocumentDataInfo({ order_sn_list: ["ORDER1"] });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+  });
+
+  describe("booking shipping documents", () => {
+    it("should create booking shipping document", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.createBookingShippingDocument({
+        booking_sn_list: ["BOOKING1"],
+        shipping_document_type: "NORMAL_AIR_WAYBILL",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should download booking shipping document", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.downloadBookingShippingDocument({
+        booking_sn_list: ["BOOKING1"],
+        shipping_document_type: "NORMAL_AIR_WAYBILL",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should get booking shipping document parameter", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getBookingShippingDocumentParameter({ booking_sn_list: ["BOOKING1"] });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should get booking shipping document result", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getBookingShippingDocumentResult({
+        booking_sn_list: ["BOOKING1"],
+        shipping_document_type: "NORMAL_AIR_WAYBILL",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should get booking shipping document data info", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getBookingShippingDocumentDataInfo({ booking_sn_list: ["BOOKING1"] });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+  });
+
+  describe("shipping document job", () => {
+    it("should create shipping document job", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: { job_id: "JOB1" } };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.createShippingDocumentJob({});
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should download shipping document job", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.downloadShippingDocumentJob({ job_id: "JOB1" });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should get shipping document job status", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getShippingDocumentJobStatus({ job_id: "JOB1" });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should download to label", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.downloadToLabel({ order_sn_list: ["ORDER1"] });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+  });
+
+  describe("channel and order updates", () => {
+    it("should update channel", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.updateChannel({ logistics_channel_id: 123, enabled: true });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should update shipping order", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.updateShippingOrder({ order_sn: "ORDER1" });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should update tracking status", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.updateTrackingStatus({ order_sn: "ORDER1" });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should update self collection order logistics", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.updateSelfCollectionOrderLogistics({
+        order_sn: "ORDER1",
+        package_number: "PKG1",
+        self_collection_status: "READY",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+  });
+
+  describe("operating hours", () => {
+    it("should get operating hours", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getOperatingHours({});
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should update operating hours", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.updateOperatingHours({});
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should get operating hour restrictions", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getOperatingHourRestrictions({});
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should delete special operating hour", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.deleteSpecialOperatingHour({});
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+  });
+
+  describe("mart packaging", () => {
+    it("should get mart packaging info", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.getMartPackagingInfo({ order_sn: "ORDER1" });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+
+    it("should set mart packaging info", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.setMartPackagingInfo({ order_sn: "ORDER1" });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+  });
+
+  describe("batchUpdateTPFWarehouseTrackingStatus", () => {
+    it("should batch update TPF warehouse tracking status", async () => {
+      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      await logisticsManager.batchUpdateTPFWarehouseTrackingStatus({
+        tracking_status_list: [{ package_number: "PKG1", tracking_status: "DELIVERED" }],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+  });
 });
