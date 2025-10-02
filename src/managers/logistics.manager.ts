@@ -162,11 +162,15 @@ export class LogisticsManager extends BaseManager {
    * ```
    */
   async shipOrder(params: ShipOrderParams): Promise<ShipOrderResponse> {
-    const response = await ShopeeFetch.fetch<ShipOrderResponse>(this.config, "/logistics/ship_order", {
-      method: "POST",
-      auth: true,
-      body: params,
-    });
+    const response = await ShopeeFetch.fetch<ShipOrderResponse>(
+      this.config,
+      "/logistics/ship_order",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
 
     return response;
   }
