@@ -18,6 +18,7 @@ import { MerchantManager } from "./managers/merchant.manager.js";
 import { ShopManager } from "./managers/shop.manager.js";
 import { MediaManager } from "./managers/media.manager.js";
 import { MediaSpaceManager } from "./managers/media-space.manager.js";
+import { GlobalProductManager } from "./managers/global-product.manager.js";
 import { Agent } from "node:http";
 
 export interface ShopeeConfig {
@@ -47,6 +48,7 @@ export class ShopeeSDK {
   public readonly shop: ShopManager;
   public readonly media: MediaManager;
   public readonly mediaSpace: MediaSpaceManager;
+  public readonly globalProduct: GlobalProductManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       region: ShopeeRegion.GLOBAL,
@@ -75,6 +77,7 @@ export class ShopeeSDK {
     this.shop = new ShopManager(this.config);
     this.media = new MediaManager(this.config);
     this.mediaSpace = new MediaSpaceManager(this.config);
+    this.globalProduct = new GlobalProductManager(this.config);
   }
 
   public getConfig(): ShopeeConfig {
