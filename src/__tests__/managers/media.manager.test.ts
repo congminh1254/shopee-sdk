@@ -632,17 +632,13 @@ describe("MediaManager", () => {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media_space/cancel_video_upload",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/cancel_video_upload", {
+        method: "POST",
+        auth: true,
+        body: {
+          video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -660,17 +656,13 @@ describe("MediaManager", () => {
         video_upload_id: "sg_cancel_during_upload_id",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media_space/cancel_video_upload",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            video_upload_id: "sg_cancel_during_upload_id",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/cancel_video_upload", {
+        method: "POST",
+        auth: true,
+        body: {
+          video_upload_id: "sg_cancel_during_upload_id",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
