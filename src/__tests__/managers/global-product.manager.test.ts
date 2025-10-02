@@ -143,15 +143,19 @@ describe("GlobalProductManager", () => {
         update_time_to: 1611311631,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_list", {
-        method: "GET",
-        auth: true,
-        params: {
-          page_size: 10,
-          update_time_from: 1611311600,
-          update_time_to: 1611311631,
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/get_global_item_list",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            page_size: 10,
+            update_time_from: 1611311600,
+            update_time_to: 1611311631,
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.global_item_list).toHaveLength(2);
@@ -208,13 +212,17 @@ describe("GlobalProductManager", () => {
         global_item_id_list: [123456],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_info", {
-        method: "GET",
-        auth: true,
-        params: {
-          global_item_id_list: [123456],
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/get_global_item_info",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            global_item_id_list: [123456],
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.global_item_list).toHaveLength(1);
@@ -283,14 +291,18 @@ describe("GlobalProductManager", () => {
         global_item_name: "Updated Product",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_global_item", {
-        method: "POST",
-        auth: true,
-        body: {
-          global_item_id: 123456,
-          global_item_name: "Updated Product",
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/update_global_item",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            global_item_id: 123456,
+            global_item_name: "Updated Product",
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.global_item_id).toBe(123456);
@@ -311,13 +323,17 @@ describe("GlobalProductManager", () => {
         global_item_id: 123456,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/delete_global_item", {
-        method: "POST",
-        auth: true,
-        body: {
-          global_item_id: 123456,
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/delete_global_item",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            global_item_id: 123456,
+          },
+        }
+      );
 
       expect(result.error).toBe("");
     });
@@ -350,10 +366,7 @@ describe("GlobalProductManager", () => {
         tier_variation: [
           {
             name: "Color",
-            option_list: [
-              { option: "Red" },
-              { option: "Blue" },
-            ],
+            option_list: [{ option: "Red" }, { option: "Blue" }],
           },
         ],
         model_list: [
@@ -368,13 +381,17 @@ describe("GlobalProductManager", () => {
         ],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/init_tier_variation", {
-        method: "POST",
-        auth: true,
-        body: expect.objectContaining({
-          global_item_id: 123456,
-        }),
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/init_tier_variation",
+        {
+          method: "POST",
+          auth: true,
+          body: expect.objectContaining({
+            global_item_id: 123456,
+          }),
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.model_list).toHaveLength(2);
@@ -502,14 +519,18 @@ describe("GlobalProductManager", () => {
         language: "en",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_attribute_tree", {
-        method: "GET",
-        auth: true,
-        params: {
-          category_id: 100182,
-          language: "en",
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/get_attribute_tree",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            category_id: 100182,
+            language: "en",
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.attribute_list).toHaveLength(1);
@@ -575,13 +596,17 @@ describe("GlobalProductManager", () => {
         global_item_name: "iPhone Case",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/category_recommend", {
-        method: "POST",
-        auth: true,
-        body: {
-          global_item_name: "iPhone Case",
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/category_recommend",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            global_item_name: "iPhone Case",
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.category_id_list).toHaveLength(3);
@@ -603,23 +628,21 @@ describe("GlobalProductManager", () => {
 
       const result = await globalProductManager.createPublishTask({
         global_item_id: 123456,
-        shop_list: [
-          { shop_id: 67890 },
-          { shop_id: 67891 },
-        ],
+        shop_list: [{ shop_id: 67890 }, { shop_id: 67891 }],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/create_publish_task", {
-        method: "POST",
-        auth: true,
-        body: {
-          global_item_id: 123456,
-          shop_list: [
-            { shop_id: 67890 },
-            { shop_id: 67891 },
-          ],
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/create_publish_task",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            global_item_id: 123456,
+            shop_list: [{ shop_id: 67890 }, { shop_id: 67891 }],
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.publish_task_id).toBe("task_123");
@@ -650,13 +673,17 @@ describe("GlobalProductManager", () => {
         publish_task_id: "task_123",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_publish_task_result", {
-        method: "GET",
-        auth: true,
-        params: {
-          publish_task_id: "task_123",
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/get_publish_task_result",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            publish_task_id: "task_123",
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.status).toBe("SUCCESS");
@@ -682,14 +709,18 @@ describe("GlobalProductManager", () => {
         item_id: 999,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_id", {
-        method: "GET",
-        auth: true,
-        params: {
-          shop_id: 67890,
-          item_id: 999,
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/get_global_item_id",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            shop_id: 67890,
+            item_id: 999,
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.global_item_id).toBe(123456);
@@ -760,13 +791,17 @@ describe("GlobalProductManager", () => {
         category_id: 100182,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/support_size_chart", {
-        method: "GET",
-        auth: true,
-        params: {
-          category_id: 100182,
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/global_product/support_size_chart",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            category_id: 100182,
+          },
+        }
+      );
 
       expect(result.error).toBe("");
       expect(result.response.support).toBe(true);
