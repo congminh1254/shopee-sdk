@@ -9,3 +9,4 @@ export * from "./push.manager.js";
 export * from "./voucher.manager.js";
 export * from "./ads.manager.js";
 export * from "./account-health.manager.js";
+export * from "./shop.manager.js";
