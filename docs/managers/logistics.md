@@ -15,14 +15,20 @@ The LogisticsManager provides methods for:
 // Get available shipping channels
 const channels = await sdk.logistics.getChannelList();
 
-// Get shipping parameter info
-const params = await sdk.logistics.getParameterForInit({
+// Get shipping parameter info (also known as getParameterForInit)
+const params = await sdk.logistics.getShippingParameter({
   order_sn: 'ORDER123',
 });
 
 // Get tracking number
 const tracking = await sdk.logistics.getTrackingNumber({
   order_sn: 'ORDER123',
+});
+
+// Get detailed tracking info with event history
+const trackingInfo = await sdk.logistics.getTrackingInfo({
+  order_sn: 'ORDER123',
+  package_number: 'PKG456',
 });
 ```
 
@@ -53,19 +59,21 @@ response.logistics_channel_list.forEach((channel) => {
 
 ---
 
-### getParameterForInit()
+### getShippingParameter()
 
-Get required parameters for initializing logistics for an order.
+**API Documentation:** [v2.logistics.get_shipping_parameter](https://open.shopee.com/documents/v2/v2.logistics.get_shipping_parameter?module=95&type=1)
+
+Get required parameters for initializing logistics for an order. This method is also referred to as `getParameterForInit` in some documentation.
 
 ```typescript
-const response = await sdk.logistics.getParameterForInit({
+const response = await sdk.logistics.getShippingParameter({
   order_sn: 'ORDER123',
 });
 
 console.log('Pickup address:', response.info_needed?.pickup);
 console.log('Dropoff address:', response.info_needed?.dropoff);
-console.log('Pickup time slots:', response.pickup?.time_slot_list);
-console.log('Address:', response.address_list);
+console.log('Pickup time slots:', response.pickup?.address_list?.[0]?.time_slot_list);
+console.log('Addresses:', response.pickup?.address_list);
 ```
 
 **Use Cases:**
@@ -95,6 +103,37 @@ console.log('Plp number:', response.plp_number); // Pre-printed label
 - Update internal order tracking systems
 - Verify shipment details
 
+---
+
+### getTrackingInfo()
+
+**API Documentation:** [v2.logistics.get_tracking_info](https://open.shopee.com/documents/v2/v2.logistics.get_tracking_info?module=95&type=1)
+
+Get detailed logistics tracking information with event history for an order.
+
+```typescript
+const response = await sdk.logistics.getTrackingInfo({
+  order_sn: 'ORDER123',
+  package_number: 'PKG456', // optional
+});
+
+console.log('Order:', response.order_sn);
+console.log('Current status:', response.logistics_status);
+response.tracking_info.forEach((event) => {
+  console.log('Event:', event.description);
+  console.log('Time:', new Date(event.update_time * 1000).toISOString());
+  console.log('Status:', event.logistics_status);
+});
+```
+
+**Use Cases:**
+- Track detailed shipment progress
+- Display tracking history to customers
+- Monitor delivery status updates
+- Identify potential delivery issues
+
+**Note:** This API returns an array of tracking events with timestamps, descriptions, and status codes, providing a complete timeline of the shipment's journey.
+
 ## Integration Example
 
 ### Complete Shipping Workflow
@@ -121,7 +160,7 @@ async function shipOrder(orderSn: string) {
     }
     
     // Step 3: Get shipping parameters
-    const params = await sdk.logistics.getParameterForInit({
+    const params = await sdk.logistics.getShippingParameter({
       order_sn: orderSn,
     });
     
@@ -221,18 +260,18 @@ async function safeShipOrder(orderSn: string) {
 
 ```typescript
 async function validateShippingRequirements(orderSn: string): Promise<boolean> {
-  const params = await sdk.logistics.getParameterForInit({
+  const params = await sdk.logistics.getShippingParameter({
     order_sn: orderSn,
   });
   
   // Check if pickup address is required
-  if (params.info_needed?.pickup && !params.address_list?.length) {
+  if (params.info_needed?.pickup && !params.pickup?.address_list?.length) {
     console.error('Pickup address required but not provided');
     return false;
   }
   
   // Check if time slot selection is needed
-  if (params.pickup?.time_slot_list?.length && !params.pickup.time_pickup_id) {
+  if (params.pickup?.address_list?.[0]?.time_slot_list?.length) {
     console.error('Pickup time slot selection required');
     return false;
   }

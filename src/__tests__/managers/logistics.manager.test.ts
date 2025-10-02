@@ -3,7 +3,12 @@ import { LogisticsManager } from "../../managers/logistics.manager.js";
 import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { ShopeeFetch } from "../../fetch.js";
-import { GetTrackingInfoResponse } from "../../schemas/logistics.js";
+import {
+  GetTrackingInfoResponse,
+  GetChannelListResponse,
+  GetShippingParameterResponse,
+  GetTrackingNumberResponse,
+} from "../../schemas/logistics.js";
 
 // Mock ShopeeFetch.fetch static method
 const mockFetch = jest.fn();
@@ -159,6 +164,320 @@ describe("LogisticsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.tracking_info).toHaveLength(0);
+    });
+  });
+
+  describe("getChannelList", () => {
+    it("should get list of available logistics channels", async () => {
+      const mockResponse: GetChannelListResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          logistics_channel_list: [
+            {
+              logistics_channel_id: 40029,
+              logistics_channel_name: "Shopee Self Pick-up",
+              cod_enabled: true,
+              enabled: true,
+              fee_type: "SIZE_INPUT",
+              force_enable: false,
+              mask_channel_id: 0,
+              size_list: [],
+              weight_limit: {
+                item_max_weight: 5,
+                item_min_weight: 0,
+              },
+              item_max_dimension: {
+                dimension_sum: 90,
+                height: 30,
+                length: 30,
+                unit: "cm",
+                width: 30,
+              },
+              volume_limit: {
+                item_max_volume: 0,
+                item_min_volume: 0,
+              },
+              logistics_description: "Shopee Self Collect operating hours",
+              block_seller_cover_shipping_fee: false,
+              support_cross_border: false,
+              seller_logistic_has_configuration: null,
+              logistics_capability: {
+                seller_logistics: false,
+              },
+              preprint: false,
+            },
+            {
+              logistics_channel_id: 40018,
+              logistics_channel_name: "J&T Express",
+              cod_enabled: true,
+              enabled: true,
+              fee_type: "SIZE_INPUT",
+              force_enable: false,
+              mask_channel_id: 4000,
+              size_list: [],
+              weight_limit: {
+                item_max_weight: 50,
+                item_min_weight: 0,
+              },
+              item_max_dimension: {
+                dimension_sum: 0,
+                height: 150,
+                length: 150,
+                unit: "cm",
+                width: 150,
+              },
+              volume_limit: {
+                item_max_volume: 0,
+                item_min_volume: 0,
+              },
+              logistics_description: "J&T branches operating hours",
+              block_seller_cover_shipping_fee: false,
+              support_cross_border: false,
+              seller_logistic_has_configuration: null,
+              logistics_capability: {
+                seller_logistics: false,
+              },
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.getChannelList();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_channel_list", {
+        method: "GET",
+        auth: true,
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.logistics_channel_list).toHaveLength(2);
+      expect(result.response.logistics_channel_list[0].logistics_channel_name).toBe("Shopee Self Pick-up");
+    });
+
+    it("should handle empty channel list", async () => {
+      const mockResponse: GetChannelListResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          logistics_channel_list: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.getChannelList();
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.logistics_channel_list).toHaveLength(0);
+    });
+  });
+
+  describe("getShippingParameter", () => {
+    it("should get shipping parameters for an order", async () => {
+      const mockResponse: GetShippingParameterResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          info_needed: {
+            dropoff: [],
+            pickup: ["address_id", "pickup_time_id"],
+            non_integrated: [],
+          },
+          pickup: {
+            address_list: [
+              {
+                address_id: 234,
+                region: "SG",
+                state: "Sarawak",
+                city: "Kuching",
+                district: "Central",
+                town: "Downtown",
+                address: "123 Main Street",
+                zipcode: "50003",
+                address_flag: ["default_address", "pickup_address"],
+                time_slot_list: [
+                  {
+                    date: 1608103685,
+                    time_text: "9:00 AM - 12:00 PM",
+                    pickup_time_id: "slot_123",
+                    flags: ["recommended"],
+                  },
+                  {
+                    date: 1608190085,
+                    time_text: "2:00 PM - 5:00 PM",
+                    pickup_time_id: "slot_124",
+                  },
+                ],
+              },
+            ],
+          },
+          dropoff: {
+            branch_list: [],
+            slug_list: [],
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.getShippingParameter({
+        order_sn: "ORDER123",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_shipping_parameter", {
+        method: "GET",
+        auth: true,
+        params: {
+          order_sn: "ORDER123",
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.info_needed?.pickup).toContain("address_id");
+      expect(result.response.pickup?.address_list).toHaveLength(1);
+    });
+
+    it("should get shipping parameters with package number", async () => {
+      const mockResponse: GetShippingParameterResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          info_needed: {
+            dropoff: ["branch_id"],
+            pickup: [],
+          },
+          dropoff: {
+            branch_list: [
+              {
+                branch_id: 101,
+                region: "PH",
+                state: "Metro Manila",
+                city: "Manila",
+                address: "456 Branch Ave",
+                zipcode: "1000",
+                district: "Downtown",
+                town: "Central",
+              },
+            ],
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.getShippingParameter({
+        order_sn: "ORDER456",
+        package_number: "PKG789",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_shipping_parameter", {
+        method: "GET",
+        auth: true,
+        params: {
+          order_sn: "ORDER456",
+          package_number: "PKG789",
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.dropoff?.branch_list).toHaveLength(1);
+    });
+  });
+
+  describe("getTrackingNumber", () => {
+    it("should get tracking number for an order", async () => {
+      const mockResponse: GetTrackingNumberResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          tracking_number: "MY200448706479IT",
+          plp_number: "PLP123456",
+          hint: "",
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.getTrackingNumber({
+        order_sn: "ORDER789",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_tracking_number", {
+        method: "GET",
+        auth: true,
+        params: {
+          order_sn: "ORDER789",
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.tracking_number).toBe("MY200448706479IT");
+    });
+
+    it("should get tracking number with optional fields", async () => {
+      const mockResponse: GetTrackingNumberResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          tracking_number: "MY200448706479IT",
+          first_mile_tracking_number: "CNF877146678717210312",
+          last_mile_tracking_number: "200448706479IT",
+          pickup_code: "ABC123",
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.getTrackingNumber({
+        order_sn: "ORDER999",
+        package_number: "PKG999",
+        response_optional_fields: "first_mile_tracking_number,last_mile_tracking_number",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_tracking_number", {
+        method: "GET",
+        auth: true,
+        params: {
+          order_sn: "ORDER999",
+          package_number: "PKG999",
+          response_optional_fields: "first_mile_tracking_number,last_mile_tracking_number",
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.first_mile_tracking_number).toBe("CNF877146678717210312");
+      expect(result.response.pickup_code).toBe("ABC123");
+    });
+
+    it("should handle hint message when tracking not available", async () => {
+      const mockResponse: GetTrackingNumberResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          tracking_number: "",
+          hint: "Buyers CVS closed, waiting for buyer to reselect another CVS stores",
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.getTrackingNumber({
+        order_sn: "ORDER000",
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.hint).toBeTruthy();
+      expect(result.response.tracking_number).toBe("");
     });
   });
 });

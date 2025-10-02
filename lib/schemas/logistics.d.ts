@@ -155,3 +155,252 @@ export interface GetTrackingInfoResponse extends BaseResponse {
         tracking_info: TrackingInfo[];
     };
 }
+/**
+ * Weight limit for logistics channel
+ */
+export interface WeightLimit {
+    /** Max weight for an item on this logistic channel */
+    item_max_weight: number;
+    /** Min weight for an item on this logistic channel */
+    item_min_weight: number;
+}
+/**
+ * Dimension limit for logistics channel
+ */
+export interface ItemMaxDimension {
+    /** Max height limit */
+    height: number;
+    /** Max width limit */
+    width: number;
+    /** Max length limit */
+    length: number;
+    /** Unit for the limit */
+    unit: string;
+    /** Sum of the item's dimension */
+    dimension_sum: number;
+}
+/**
+ * Volume limit for logistics channel
+ */
+export interface VolumeLimit {
+    /** Max volume for an item on this logistic channel */
+    item_max_volume: number;
+    /** Min volume for an item on this logistic channel */
+    item_min_volume: number;
+}
+/**
+ * Size information for logistics channel
+ */
+export interface SizeInfo {
+    /** Identity of size */
+    size_id: string;
+    /** Name of size */
+    name: string;
+    /** Pre-defined shipping fee for the specific size */
+    default_price: number;
+}
+/**
+ * Logistics capability
+ */
+export interface LogisticsCapability {
+    /** Whether it's a Seller logistics channel */
+    seller_logistics: boolean;
+}
+/**
+ * Logistics channel information
+ */
+export interface LogisticsChannel {
+    /** Identity of logistic channel */
+    logistics_channel_id: number;
+    /** Name of logistic channel */
+    logistics_channel_name: string;
+    /** Whether this logistic channel supports COD */
+    cod_enabled: boolean;
+    /** Whether this logistic channel is enabled on shop level */
+    enabled: boolean;
+    /** Fee type: SIZE_SELECTION, SIZE_INPUT, FIXED_DEFAULT_PRICE, CUSTOM_PRICE */
+    fee_type: string;
+    /** List of sizes (only for fee_type SIZE_SELECTION) */
+    size_list: SizeInfo[];
+    /** Weight limit for this logistic channel */
+    weight_limit: WeightLimit;
+    /** Dimension limit for this logistic channel */
+    item_max_dimension: ItemMaxDimension;
+    /** Volume limit */
+    volume_limit: VolumeLimit;
+    /** Description of logistics channel */
+    logistics_description: string;
+    /** Whether the logistic channel is force enabled on Shop Level */
+    force_enable: boolean;
+    /** Parent logistic channel ID */
+    mask_channel_id: number;
+    /** Whether the channel is blocked to use seller cover shipping fee function */
+    block_seller_cover_shipping_fee?: boolean;
+    /** Whether this channel support cross border shipping */
+    support_cross_border?: boolean;
+    /** Whether seller has set the Seller logistics configuration */
+    seller_logistic_has_configuration?: boolean | null;
+    /** Capability of one logistic channel */
+    logistics_capability?: LogisticsCapability;
+    /** Whether this channel support pre-print AWB */
+    preprint?: boolean;
+}
+/**
+ * Response for get channel list API
+ */
+export interface GetChannelListResponse extends BaseResponse {
+    response: {
+        /** List of logistics channels */
+        logistics_channel_list: LogisticsChannel[];
+    };
+}
+/**
+ * Pickup time slot information
+ */
+export interface PickupTimeSlot {
+    /** Date of pickup time (timestamp) */
+    date: number;
+    /** Text description of pickup time */
+    time_text?: string;
+    /** Identity of pickup time */
+    pickup_time_id: string;
+    /** Flags for recommended time slots */
+    flags?: string[];
+}
+/**
+ * Pickup address information
+ */
+export interface PickupAddress {
+    /** Identity of address */
+    address_id: number;
+    /** Region of address */
+    region: string;
+    /** State of address */
+    state: string;
+    /** City of address */
+    city: string;
+    /** District of address */
+    district: string;
+    /** Town of address */
+    town: string;
+    /** Address description */
+    address: string;
+    /** Zipcode of address */
+    zipcode: string;
+    /** Flags of shop address */
+    address_flag?: string[];
+    /** List of pickup time information */
+    time_slot_list?: PickupTimeSlot[];
+}
+/**
+ * Dropoff branch information
+ */
+export interface DropoffBranch {
+    /** Identity of logistics branch */
+    branch_id: number;
+    /** Region of address */
+    region: string;
+    /** State of address */
+    state: string;
+    /** City of address */
+    city: string;
+    /** Address description */
+    address: string;
+    /** Zipcode of address */
+    zipcode: string;
+    /** District of address */
+    district: string;
+    /** Town of address */
+    town: string;
+}
+/**
+ * Slug information for TW 3PL drop-off partners
+ */
+export interface SlugInfo {
+    /** Identity of slug */
+    slug: string;
+    /** Name of slug */
+    slug_name: string;
+}
+/**
+ * Info needed for shipping
+ */
+export interface InfoNeeded {
+    /** Dropoff requirements */
+    dropoff?: string[];
+    /** Pickup requirements */
+    pickup?: string[];
+    /** Non-integrated requirements */
+    non_integrated?: string[];
+}
+/**
+ * Dropoff information
+ */
+export interface DropoffInfo {
+    /** List of available dropoff branches */
+    branch_list?: DropoffBranch[];
+    /** List of available TW 3PL drop-off partners */
+    slug_list?: SlugInfo[];
+}
+/**
+ * Pickup information
+ */
+export interface PickupInfo {
+    /** List of available pickup addresses */
+    address_list?: PickupAddress[];
+}
+/**
+ * Parameters for getting shipping parameter
+ */
+export type GetShippingParameterParams = {
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+    /**
+     * Shopee's unique identifier for the package under an order.
+     * You shouldn't fill the field with empty string when there isn't a package number.
+     */
+    package_number?: string;
+} & Record<string, string | number | boolean | null | undefined>;
+/**
+ * Response for get shipping parameter API
+ */
+export interface GetShippingParameterResponse extends BaseResponse {
+    response: {
+        /** Parameters required to initialize logistics */
+        info_needed?: InfoNeeded;
+        /** Logistics information for dropoff mode */
+        dropoff?: DropoffInfo;
+        /** Logistics information for pickup mode */
+        pickup?: PickupInfo;
+    };
+}
+/**
+ * Parameters for getting tracking number
+ */
+export type GetTrackingNumberParams = {
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+    /** Shopee's unique identifier for the package under an order */
+    package_number?: string;
+    /** Optional fields to include in response */
+    response_optional_fields?: string;
+} & Record<string, string | number | boolean | null | undefined>;
+/**
+ * Response for get tracking number API
+ */
+export interface GetTrackingNumberResponse extends BaseResponse {
+    response: {
+        /** The tracking number of this order */
+        tracking_number: string;
+        /** The unique identifier for package of BR correios */
+        plp_number?: string;
+        /** The first mile tracking number of the order (Cross Border Seller only) */
+        first_mile_tracking_number?: string;
+        /** The last mile tracking number of the order (Cross Border BR seller only) */
+        last_mile_tracking_number?: string;
+        /** Hint information if cannot get some fields under special scenarios */
+        hint?: string;
+        /** Pickup code for drivers (ID local orders using instant+sameday) */
+        pickup_code?: string;
+    };
+}

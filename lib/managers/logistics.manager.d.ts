@@ -1,8 +1,71 @@
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
-import { GetTrackingInfoParams, GetTrackingInfoResponse } from "../schemas/logistics.js";
+import { GetTrackingInfoParams, GetTrackingInfoResponse, GetChannelListResponse, GetShippingParameterParams, GetShippingParameterResponse, GetTrackingNumberParams, GetTrackingNumberResponse } from "../schemas/logistics.js";
 export declare class LogisticsManager extends BaseManager {
     constructor(config: ShopeeConfig);
+    /**
+     * Use this API to get all supported logistic channels.
+     *
+     * @returns A promise that resolves to the channel list response containing:
+     * - logistics_channel_list: Array of available logistics channels with:
+     *   - logistics_channel_id: Channel identifier
+     *   - logistics_channel_name: Channel name
+     *   - enabled: Whether channel is enabled
+     *   - cod_enabled: Whether COD is supported
+     *   - fee_type: Fee calculation type
+     *   - weight_limit: Weight restrictions
+     *   - item_max_dimension: Size restrictions
+     *   - and more channel details
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_auth: Invalid access_token
+     * - error_permission: No permission
+     * - error_server: System error
+     */
+    getChannelList(): Promise<GetChannelListResponse>;
+    /**
+     * Use this API to get the parameters required for initializing logistics for an order.
+     * This is also known as getParameterForInit in the documentation.
+     *
+     * @param params - Parameters for getting shipping information
+     * @param params.order_sn - Shopee's unique identifier for an order
+     * @param params.package_number - Shopee's unique identifier for the package under an order (optional)
+     *
+     * @returns A promise that resolves to the shipping parameter response containing:
+     * - info_needed: Required parameters based on the specific order
+     * - dropoff: Logistics information for dropoff mode (if applicable)
+     * - pickup: Logistics information for pickup mode (if applicable)
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_auth: Invalid access_token
+     * - error_param: Wrong parameters
+     * - error_permission: No permission
+     * - error_server: System error
+     */
+    getShippingParameter(params: GetShippingParameterParams): Promise<GetShippingParameterResponse>;
+    /**
+     * Use this API to get the tracking number of a shipped order.
+     *
+     * @param params - Parameters for getting tracking number
+     * @param params.order_sn - Shopee's unique identifier for an order
+     * @param params.package_number - Shopee's unique identifier for the package under an order (optional)
+     * @param params.response_optional_fields - Optional fields to include in response (optional)
+     *
+     * @returns A promise that resolves to the tracking number response containing:
+     * - tracking_number: The tracking number of the order
+     * - plp_number: Package identifier for BR correios (optional)
+     * - first_mile_tracking_number: First mile tracking (Cross Border only)
+     * - last_mile_tracking_number: Last mile tracking (Cross Border BR only)
+     * - hint: Hint information for special scenarios
+     * - pickup_code: Quick identification code (ID local orders only)
+     *
+     * @throws {Error} When the API request fails or returns an error:
+     * - error_auth: Invalid access_token
+     * - error_param: Wrong parameters
+     * - error_permission: No permission
+     * - error_server: System error
+     */
+    getTrackingNumber(params: GetTrackingNumberParams): Promise<GetTrackingNumberResponse>;
     /**
      * Use this API to get the logistics tracking information of an order.
      *
