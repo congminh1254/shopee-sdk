@@ -23,6 +23,7 @@ Each manager provides access to a specific set of Shopee API endpoints:
 - [PublicManager](./managers/public.md) - Public API endpoints (no auth required)
 - [AdsManager](./managers/ads.md) - Advertising campaign management
 - [AccountHealthManager](./managers/account-health.md) - Account performance analytics
+- [MediaSpaceManager](./managers/media-space.md) - Media file uploads (images and videos)
 
 ## Quick Start
 
