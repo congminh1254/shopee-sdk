@@ -20,6 +20,18 @@ const params = await sdk.logistics.getShippingParameter({
   order_sn: 'ORDER123',
 });
 
+// Get list of shop addresses
+const addresses = await sdk.logistics.getAddressList();
+
+// Ship the order (arrange pickup/dropoff)
+await sdk.logistics.shipOrder({
+  order_sn: 'ORDER123',
+  pickup: {
+    address_id: addresses.address_list[0].address_id,
+    pickup_time_id: params.pickup?.address_list?.[0]?.time_slot_list?.[0]?.pickup_time_id,
+  },
+});
+
 // Get tracking number
 const tracking = await sdk.logistics.getTrackingNumber({
   order_sn: 'ORDER123',
@@ -134,6 +146,75 @@ response.tracking_info.forEach((event) => {
 
 **Note:** This API returns an array of tracking events with timestamps, descriptions, and status codes, providing a complete timeline of the shipment's journey.
 
+---
+
+### shipOrder()
+
+**API Documentation:** [v2.logistics.ship_order](https://open.shopee.com/documents/v2/v2.logistics.ship_order?module=95&type=1)
+
+Initiate logistics for an order including arranging pickup, dropoff, or shipment. This is the core API to arrange shipment after getting shipping parameters.
+
+```typescript
+// For pickup mode
+await sdk.logistics.shipOrder({
+  order_sn: 'ORDER123',
+  pickup: {
+    address_id: 234,
+    pickup_time_id: 'slot_123',
+  },
+});
+
+// For dropoff mode
+await sdk.logistics.shipOrder({
+  order_sn: 'ORDER456',
+  dropoff: {
+    branch_id: 101,
+    sender_real_name: 'John Doe',
+  },
+});
+
+// For non-integrated channel
+await sdk.logistics.shipOrder({
+  order_sn: 'ORDER789',
+  non_integrated: {
+    tracking_number: 'TRACK123',
+  },
+});
+```
+
+**Use Cases:**
+- Arrange shipment pickup at seller's address
+- Schedule dropoff at logistics partner branch
+- Register tracking number for non-integrated channels
+- Complete the shipping initialization workflow
+
+**Important:** Must call `getShippingParameter()` first to determine which fields are required (pickup, dropoff, or non_integrated).
+
+---
+
+### getAddressList()
+
+**API Documentation:** [v2.logistics.get_address_list](https://open.shopee.com/documents/v2/v2.logistics.get_address_list?module=95&type=1)
+
+Get the list of addresses configured for the shop.
+
+```typescript
+const response = await sdk.logistics.getAddressList();
+
+response.address_list.forEach((addr) => {
+  console.log('Address ID:', addr.address_id);
+  console.log('Full Address:', addr.full_address);
+  console.log('Type:', addr.address_flag); // e.g., ['pickup_address', 'return_address']
+  console.log('Status:', addr.address_status);
+});
+```
+
+**Use Cases:**
+- Display available pickup addresses to user
+- Validate address information before shipping
+- Manage shop addresses for logistics operations
+- Get address_id for use in shipOrder() pickup parameter
+
 ## Integration Example
 
 ### Complete Shipping Workflow
@@ -166,11 +247,31 @@ async function shipOrder(orderSn: string) {
     
     console.log('Shipping parameters:', params);
     
-    // Step 4: Initialize logistics (if needed)
-    // Note: This would typically involve calling the ship order API
-    // which arranges the actual pickup
+    // Step 4: Get shop addresses
+    const addresses = await sdk.logistics.getAddressList();
+    const pickupAddress = addresses.address_list.find(
+      addr => addr.address_flag?.includes('pickup_address')
+    );
     
-    // Step 5: Get tracking number
+    if (!pickupAddress) {
+      throw new Error('No pickup address configured');
+    }
+    
+    // Step 5: Select pickup time slot
+    const timeSlot = params.pickup?.address_list
+      ?.find(addr => addr.address_id === pickupAddress.address_id)
+      ?.time_slot_list?.find(slot => slot.flags?.includes('recommended'));
+    
+    // Step 6: Ship the order (arrange pickup)
+    await sdk.logistics.shipOrder({
+      order_sn: orderSn,
+      pickup: {
+        address_id: pickupAddress.address_id,
+        pickup_time_id: timeSlot?.pickup_time_id || params.pickup?.address_list?.[0]?.time_slot_list?.[0]?.pickup_time_id,
+      },
+    });
+    
+    // Step 7: Get tracking number
     const tracking = await sdk.logistics.getTrackingNumber({
       order_sn: orderSn,
     });

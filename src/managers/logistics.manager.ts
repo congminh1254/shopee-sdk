@@ -8,6 +8,9 @@ import {
   GetShippingParameterResponse,
   GetTrackingNumberParams,
   GetTrackingNumberResponse,
+  ShipOrderParams,
+  ShipOrderResponse,
+  GetAddressListResponse,
 } from "../schemas/logistics.js";
 import { ShopeeFetch } from "../fetch.js";
 
@@ -67,7 +70,9 @@ export class LogisticsManager extends BaseManager {
    * - error_permission: No permission
    * - error_server: System error
    */
-  async getShippingParameter(params: GetShippingParameterParams): Promise<GetShippingParameterResponse> {
+  async getShippingParameter(
+    params: GetShippingParameterParams
+  ): Promise<GetShippingParameterResponse> {
     const response = await ShopeeFetch.fetch<GetShippingParameterResponse>(
       this.config,
       "/logistics/get_shipping_parameter",
@@ -111,6 +116,90 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to initiate logistics including arranging pickup, dropoff or shipment for non-integrated channels.
+   * This is also known as "Init" in the Shopee API documentation.
+   *
+   * @param params - Parameters for shipping an order
+   * @param params.order_sn - Shopee's unique identifier for an order
+   * @param params.package_number - Shopee's unique identifier for the package under an order (optional)
+   * @param params.pickup - Pickup information (required if get_shipping_parameter returns "pickup")
+   * @param params.dropoff - Dropoff information (required if get_shipping_parameter returns "dropoff")
+   * @param params.non_integrated - Non-integrated channel information (optional)
+   *
+   * @returns A promise that resolves to the ship order response
+   *
+   * @throws {Error} When the API request fails or returns an error:
+   * - error_auth: Invalid access_token
+   * - error_param: Wrong parameters
+   * - error_permission: No permission
+   * - error_server: System error
+   *
+   * @example
+   * ```typescript
+   * // For pickup mode
+   * await sdk.logistics.shipOrder({
+   *   order_sn: 'ORDER123',
+   *   pickup: {
+   *     address_id: 234,
+   *     pickup_time_id: 'slot_123',
+   *   },
+   * });
+   *
+   * // For dropoff mode
+   * await sdk.logistics.shipOrder({
+   *   order_sn: 'ORDER456',
+   *   dropoff: {
+   *     branch_id: 101,
+   *   },
+   * });
+   * ```
+   */
+  async shipOrder(params: ShipOrderParams): Promise<ShipOrderResponse> {
+    const response = await ShopeeFetch.fetch<ShipOrderResponse>(this.config, "/logistics/ship_order", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+
+    return response;
+  }
+
+  /**
+   * Use this API to get the address list of the shop.
+   *
+   * @returns A promise that resolves to the address list response containing:
+   * - show_pickup_address: Whether to show pickup address
+   * - address_list: Array of shop addresses with full details
+   *
+   * @throws {Error} When the API request fails or returns an error:
+   * - error_auth: Invalid access_token
+   * - error_permission: No permission
+   * - error_server: System error
+   *
+   * @example
+   * ```typescript
+   * const response = await sdk.logistics.getAddressList();
+   * response.address_list.forEach((addr) => {
+   *   console.log('Address ID:', addr.address_id);
+   *   console.log('Address:', addr.full_address);
+   *   console.log('Flags:', addr.address_flag);
+   * });
+   * ```
+   */
+  async getAddressList(): Promise<GetAddressListResponse> {
+    const response = await ShopeeFetch.fetch<GetAddressListResponse>(
+      this.config,
+      "/logistics/get_address_list",
+      {
+        method: "GET",
+        auth: true,
       }
     );
 

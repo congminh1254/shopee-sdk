@@ -8,6 +8,8 @@ import {
   GetChannelListResponse,
   GetShippingParameterResponse,
   GetTrackingNumberResponse,
+  ShipOrderResponse,
+  GetAddressListResponse,
 } from "../../schemas/logistics.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -255,7 +257,9 @@ describe("LogisticsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.logistics_channel_list).toHaveLength(2);
-      expect(result.response.logistics_channel_list[0].logistics_channel_name).toBe("Shopee Self Pick-up");
+      expect(result.response.logistics_channel_list[0].logistics_channel_name).toBe(
+        "Shopee Self Pick-up"
+      );
     });
 
     it("should handle empty channel list", async () => {
@@ -330,13 +334,17 @@ describe("LogisticsManager", () => {
         order_sn: "ORDER123",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_shipping_parameter", {
-        method: "GET",
-        auth: true,
-        params: {
-          order_sn: "ORDER123",
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/get_shipping_parameter",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            order_sn: "ORDER123",
+          },
+        }
+      );
 
       expect(result).toEqual(mockResponse);
       expect(result.response.info_needed?.pickup).toContain("address_id");
@@ -377,14 +385,18 @@ describe("LogisticsManager", () => {
         package_number: "PKG789",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_shipping_parameter", {
-        method: "GET",
-        auth: true,
-        params: {
-          order_sn: "ORDER456",
-          package_number: "PKG789",
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/get_shipping_parameter",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            order_sn: "ORDER456",
+            package_number: "PKG789",
+          },
+        }
+      );
 
       expect(result).toEqual(mockResponse);
       expect(result.response.dropoff?.branch_list).toHaveLength(1);
@@ -478,6 +490,180 @@ describe("LogisticsManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.hint).toBeTruthy();
       expect(result.response.tracking_number).toBe("");
+    });
+  });
+
+  describe("shipOrder", () => {
+    it("should ship order with pickup information", async () => {
+      const mockResponse: ShipOrderResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.shipOrder({
+        order_sn: "ORDER123",
+        pickup: {
+          address_id: 234,
+          pickup_time_id: "slot_123",
+        },
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/ship_order", {
+        method: "POST",
+        auth: true,
+        body: {
+          order_sn: "ORDER123",
+          pickup: {
+            address_id: 234,
+            pickup_time_id: "slot_123",
+          },
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
+
+    it("should ship order with dropoff information", async () => {
+      const mockResponse: ShipOrderResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.shipOrder({
+        order_sn: "ORDER456",
+        package_number: "PKG789",
+        dropoff: {
+          branch_id: 101,
+          sender_real_name: "John Doe",
+        },
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/ship_order", {
+        method: "POST",
+        auth: true,
+        body: {
+          order_sn: "ORDER456",
+          package_number: "PKG789",
+          dropoff: {
+            branch_id: 101,
+            sender_real_name: "John Doe",
+          },
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
+
+    it("should ship order with non-integrated channel", async () => {
+      const mockResponse: ShipOrderResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.shipOrder({
+        order_sn: "ORDER789",
+        non_integrated: {
+          tracking_number: "TRACK123",
+        },
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/ship_order", {
+        method: "POST",
+        auth: true,
+        body: {
+          order_sn: "ORDER789",
+          non_integrated: {
+            tracking_number: "TRACK123",
+          },
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("getAddressList", () => {
+    it("should get shop address list", async () => {
+      const mockResponse: GetAddressListResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          show_pickup_address: true,
+          address_list: [
+            {
+              address_id: 1173,
+              region: "SG",
+              state: "Singapore",
+              city: "Singapore",
+              district: "Central",
+              town: "Downtown",
+              address: "123 Main Street",
+              zipcode: "123456",
+              address_flag: ["default_address", "pickup_address"],
+              address_status: "ACTIVE",
+              full_address: "123 Main Street, Downtown, Central, Singapore, Singapore 123456",
+            },
+            {
+              address_id: 1174,
+              region: "SG",
+              state: "Singapore",
+              city: "Singapore",
+              district: "West",
+              town: "Jurong",
+              address: "456 West Avenue",
+              zipcode: "654321",
+              address_flag: ["return_address"],
+              address_status: "ACTIVE",
+              full_address: "456 West Avenue, Jurong, West, Singapore, Singapore 654321",
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.getAddressList();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_address_list", {
+        method: "GET",
+        auth: true,
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.address_list).toHaveLength(2);
+      expect(result.response.show_pickup_address).toBe(true);
+    });
+
+    it("should handle empty address list", async () => {
+      const mockResponse: GetAddressListResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          show_pickup_address: false,
+          address_list: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.getAddressList();
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.address_list).toHaveLength(0);
     });
   });
 });

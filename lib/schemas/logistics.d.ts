@@ -404,3 +404,93 @@ export interface GetTrackingNumberResponse extends BaseResponse {
         pickup_code?: string;
     };
 }
+/**
+ * Pickup information for ship order
+ */
+export interface ShipOrderPickup {
+    /** Identity of address */
+    address_id: number;
+    /** Pickup time id */
+    pickup_time_id?: string;
+    /** Tracking number from third-party shipping carrier */
+    tracking_number?: string;
+}
+/**
+ * Dropoff information for ship order
+ */
+export interface ShipOrderDropoff {
+    /** Identity of branch */
+    branch_id?: number;
+    /** Real name of sender */
+    sender_real_name?: string;
+    /** Tracking number from third-party shipping carrier */
+    tracking_number?: string;
+    /** Selected 3PL partner for drop-off */
+    slug?: string;
+}
+/**
+ * Non-integrated channel information for ship order
+ */
+export interface ShipOrderNonIntegrated {
+    /** Tracking number assigned by shipping carrier */
+    tracking_number?: string;
+}
+/**
+ * Parameters for ship order
+ */
+export type ShipOrderParams = {
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+    /** Shopee's unique identifier for the package under an order */
+    package_number?: string;
+    /** Pickup information (required if get_shipping_parameter returns "pickup") */
+    pickup?: ShipOrderPickup;
+    /** Dropoff information (required if get_shipping_parameter returns "dropoff") */
+    dropoff?: ShipOrderDropoff;
+    /** Non-integrated channel information */
+    non_integrated?: ShipOrderNonIntegrated;
+} & Record<string, string | number | boolean | object | null | undefined>;
+/**
+ * Response for ship order API
+ */
+export interface ShipOrderResponse extends BaseResponse {
+    response?: Record<string, never>;
+}
+/**
+ * Address information
+ */
+export interface Address {
+    /** Identity of address */
+    address_id: number;
+    /** Region of address */
+    region: string;
+    /** State of address */
+    state: string;
+    /** City of address */
+    city: string;
+    /** District of address */
+    district: string;
+    /** Town of address */
+    town: string;
+    /** Full address description */
+    address: string;
+    /** Zipcode */
+    zipcode: string;
+    /** Address type flags */
+    address_flag?: string[];
+    /** Address status */
+    address_status?: string;
+    /** Full address string */
+    full_address?: string;
+}
+/**
+ * Response for get address list API
+ */
+export interface GetAddressListResponse extends BaseResponse {
+    response: {
+        /** Whether to show pickup address */
+        show_pickup_address: boolean;
+        /** List of addresses */
+        address_list: Address[];
+    };
+}
