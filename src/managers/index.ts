@@ -8,7 +8,6 @@ export * from "./public.manager.js";
 export * from "./push.manager.js";
 export * from "./voucher.manager.js";
 export * from "./ads.manager.js";
-export * from "./account-health.manager.js";
 export * from "./merchant.manager.js";
 export * from "./shop.manager.js";
 export * from "./media.manager.js";
