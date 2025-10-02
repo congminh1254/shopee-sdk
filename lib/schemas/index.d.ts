@@ -11,4 +11,5 @@ export * from "./push.js";
 export * from "./region.js";
 export * from "./ads.js";
 export * from "./account-health.js";
+export * from "./merchant.js";
 export * from "./shop.js";
