@@ -8,60 +8,85 @@
 
 A TypeScript SDK for interacting with the Shopee Open API, maintained by the community.
 
+## 📚 Documentation
+
+**[Complete Documentation](./docs/README.md)** - Comprehensive guides and API references
+
+### Quick Links
+
+**Getting Started:**
+- [Setup Guide](./docs/guides/setup.md) - Installation and configuration
+- [Authentication](./docs/guides/authentication.md) - OAuth flow and token management
+- [Token Storage](./docs/guides/token-storage.md) - Managing access tokens
+- [Proxy Configuration](./docs/guides/proxy.md) - Using HTTP/HTTPS proxies
+
+**API Managers:**
+- [AuthManager](./docs/managers/auth.md) - Authentication operations
+- [ProductManager](./docs/managers/product.md) - Product catalog management
+- [OrderManager](./docs/managers/order.md) - Order processing
+- [LogisticsManager](./docs/managers/logistics.md) - Shipping operations
+- [PaymentManager](./docs/managers/payment.md) - Payment information
+- [VoucherManager](./docs/managers/voucher.md) - Discount management
+- [PushManager](./docs/managers/push.md) - Webhooks and notifications
+- [PublicManager](./docs/managers/public.md) - Public API endpoints
+- [AdsManager](./docs/managers/ads.md) - Advertising campaigns
+- [AccountHealthManager](./docs/managers/account-health.md) - Performance metrics
+
 ## Installation
 
 ```bash
-npm install shopee-sdk
+npm install @congminh1254/shopee-sdk
 ```
 
-## Usage
+## Quick Start
 
 ```typescript
-import { ShopeeClient } from "shopee-sdk";
+import { ShopeeSDK, ShopeeRegion } from '@congminh1254/shopee-sdk';
 
-// Initialize the client
-const client = new ShopeeClient({
+// Initialize the SDK
+const sdk = new ShopeeSDK({
   partner_id: 123456,
-  partner_key: "your-partner-key",
-  base_url: "https://partner.test-stable.shopeemobile.com", // For sandbox
-  // base_url: 'https://partner.shopeemobile.com', // For production
+  partner_key: 'your-partner-key',
+  region: ShopeeRegion.GLOBAL,
+  shop_id: 789012, // Optional
 });
 
-// Authenticate (if working with shop-level APIs)
-await client.auth.getToken({
-  code: "authorization-code",
-  shop_id: 123456,
-});
+// Get authorization URL
+const authUrl = sdk.getAuthorizationUrl('https://your-app.com/callback');
+console.log('Visit:', authUrl);
 
-// Example: Get product list
-const products = await client.product.getItemList({
+// After user authorizes, exchange code for token
+await sdk.authenticateWithCode('auth-code-from-callback');
+
+// Use the SDK
+const products = await sdk.product.getItemList({
   offset: 0,
-  page_size: 10,
+  page_size: 20,
 });
 
-// Example: Add a voucher
-const voucher = await client.voucher.addVoucher({
-  voucher_name: "Special Discount",
-  voucher_code: "SAVE10",
-  start_time: Math.floor(Date.now() / 1000),
-  end_time: Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60, // 7 days
-  voucher_type: 1, // shop voucher
-  reward_type: 1, // fixed amount
-  usage_quantity: 100,
-  min_basket_price: 20,
-  discount_amount: 10,
+const orders = await sdk.order.getOrderList({
+  time_range_field: 'create_time',
+  time_from: Math.floor(Date.now() / 1000) - 86400,
+  time_to: Math.floor(Date.now() / 1000),
+  page_size: 50,
 });
-
-// Example: Get lost push messages (partner-level API, no auth required)
-const lostMessages = await client.push.getLostPushMessage();
 ```
+
+See the [Setup Guide](./docs/guides/setup.md) and [Authentication Guide](./docs/guides/authentication.md) for detailed instructions.
 
 ## Features
 
-- TypeScript support with full type definitions
-- Support for all Shopee Open API endpoints
-- Authentication flow helpers
-- Automatic token refresh
+- ✅ **Full TypeScript Support** - Complete type definitions for all API endpoints
+- 🔐 **Authentication Management** - OAuth flow helpers and automatic token refresh
+- 💾 **Flexible Token Storage** - File-based storage included, custom storage supported
+- 🌍 **Multi-Region Support** - Support for all Shopee regions (SG, MY, TH, VN, PH, ID, TW, BR, MX, CO, CL, PL)
+- 🔌 **Proxy Support** - HTTP/HTTPS proxy configuration
+- 📦 **10 API Managers** - Comprehensive coverage of Shopee API endpoints:
+  - Products, Orders, Logistics, Payments
+  - Vouchers, Webhooks, Ads, Account Health
+  - Public endpoints and Authentication
+- 🧪 **Well Tested** - 86 tests with 75% coverage
+- 📚 **Comprehensive Documentation** - Detailed guides and examples
 
 ## Contributing
 
