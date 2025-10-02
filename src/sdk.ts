@@ -15,6 +15,8 @@ import { VoucherManager } from "./managers/voucher.manager.js";
 import { AdsManager } from "./managers/ads.manager.js";
 import { AccountHealthManager } from "./managers/account-health.manager.js";
 import { ShopManager } from "./managers/shop.manager.js";
+import { MediaManager } from "./managers/media.manager.js";
+import { MediaSpaceManager } from "./managers/media-space.manager.js";
 import { Agent } from "node:http";
 
 export interface ShopeeConfig {
@@ -41,6 +43,8 @@ export class ShopeeSDK {
   public readonly voucher: VoucherManager;
   public readonly accountHealth: AccountHealthManager;
   public readonly shop: ShopManager;
+  public readonly media: MediaManager;
+  public readonly mediaSpace: MediaSpaceManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       region: ShopeeRegion.GLOBAL,
@@ -66,6 +70,8 @@ export class ShopeeSDK {
     this.voucher = new VoucherManager(this.config);
     this.accountHealth = new AccountHealthManager(this.config);
     this.shop = new ShopManager(this.config);
+    this.media = new MediaManager(this.config);
+    this.mediaSpace = new MediaSpaceManager(this.config);
   }
 
   public getConfig(): ShopeeConfig {
