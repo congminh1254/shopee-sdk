@@ -115,9 +115,7 @@ describe("AccountHealthManager", () => {
         response: {
           overall_performance: {
             performance_rating: PerformanceRating.Good,
-            rating_threshold: [
-              { performance_rating: PerformanceRating.Good, lower_bound: 70 },
-            ],
+            rating_threshold: [{ performance_rating: PerformanceRating.Good, lower_bound: 70 }],
           },
           metric_list: [
             {

@@ -48,7 +48,7 @@ describe("AdsManager", () => {
         message: "",
         response: {
           data_timestamp: 1609459200,
-          total_balance: 1000.50,
+          total_balance: 1000.5,
         },
       };
 
@@ -62,7 +62,7 @@ describe("AdsManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.total_balance).toBe(1000.50);
+      expect(result.response.total_balance).toBe(1000.5);
     });
 
     it("should handle warning in response", async () => {
@@ -132,7 +132,7 @@ describe("AdsManager", () => {
               keyword: "iphone case",
               quality_score: 9.0,
               search_volume: 15000,
-              suggested_bid: 0.30,
+              suggested_bid: 0.3,
             },
           ],
         },
@@ -223,14 +223,10 @@ describe("AdsManager", () => {
 
       const result = await adsManager.getRecommendedItemList();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_recommended_item_list",
-        {
-          method: "GET",
-          auth: true,
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_recommended_item_list", {
+        method: "GET",
+        auth: true,
+      });
 
       expect(result.error).toBe("");
       expect(result.response).toHaveLength(2);
@@ -252,9 +248,9 @@ describe("AdsManager", () => {
               hour: 10,
               impression: 1000,
               click: 50,
-              expense: 25.50,
+              expense: 25.5,
               conversion: 5,
-              gmv: 250.00,
+              gmv: 250.0,
             },
           ],
         },
@@ -299,9 +295,9 @@ describe("AdsManager", () => {
               date: "2021-01-01",
               impression: 24000,
               click: 1200,
-              expense: 600.00,
+              expense: 600.0,
               conversion: 120,
-              gmv: 6000.00,
+              gmv: 6000.0,
             },
           ],
         },
@@ -346,9 +342,9 @@ describe("AdsManager", () => {
               date: "2021-01-01",
               impression: 5000,
               click: 250,
-              expense: 125.00,
+              expense: 125.0,
               conversion: 25,
-              gmv: 1250.00,
+              gmv: 1250.0,
             },
           ],
         },
@@ -396,9 +392,9 @@ describe("AdsManager", () => {
               hour: 15,
               impression: 200,
               click: 10,
-              expense: 5.00,
+              expense: 5.0,
               conversion: 1,
-              gmv: 50.00,
+              gmv: 50.0,
             },
           ],
         },
@@ -472,8 +468,8 @@ describe("AdsManager", () => {
               campaign_id: 1001,
               campaign_name: "Summer Sale",
               campaign_status: "ongoing",
-              daily_budget: 100.00,
-              total_budget: 3000.00,
+              daily_budget: 100.0,
+              total_budget: 3000.0,
               placement_list: ["search", "discovery"],
             },
           ],
