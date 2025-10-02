@@ -1,4 +1,5 @@
 import { BaseResponse } from "./base.js";
+import { SipAffiShop } from "./shop.js";
 
 /**
  * Cursor for pagination with double-sided navigation
@@ -199,14 +200,6 @@ export interface GetShopListByMerchantParams {
   /** Number of items per page, maximum 500 */
   page_size: number;
   [key: string]: string | number | boolean | undefined;
-}
-
-/**
- * SIP affiliate shop information
- */
-export interface SipAffiShop {
-  /** Affiliate shop's ID */
-  affi_shop_id: number;
 }
 
 /**

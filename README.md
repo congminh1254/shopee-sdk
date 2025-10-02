@@ -31,6 +31,9 @@ A TypeScript SDK for interacting with the Shopee Open API, maintained by the com
 - [PublicManager](./docs/managers/public.md) - Public API endpoints
 - [AdsManager](./docs/managers/ads.md) - Advertising campaigns
 - [AccountHealthManager](./docs/managers/account-health.md) - Performance metrics
+- [ShopManager](./docs/managers/shop.md) - Shop information and settings
+- [MediaManager](./docs/managers/media.md) - Image and video upload
+- [MediaSpaceManager](./docs/managers/media-space.md) - Media uploads (images and videos)
 
 ## Installation
 
@@ -81,11 +84,11 @@ See the [Setup Guide](./docs/guides/setup.md) and [Authentication Guide](./docs/
 - 💾 **Flexible Token Storage** - File-based storage included, custom storage supported
 - 🌍 **Multi-Region Support** - Support for all Shopee regions (SG, MY, TH, VN, PH, ID, TW, BR, MX, CO, CL, PL)
 - 🔌 **Proxy Support** - HTTP/HTTPS proxy configuration
-- 📦 **10 API Managers** - Comprehensive coverage of Shopee API endpoints:
+- 📦 **13 API Managers** - Comprehensive coverage of Shopee API endpoints:
   - Products, Orders, Logistics, Payments
   - Vouchers, Webhooks, Ads, Account Health
-  - Public endpoints and Authentication
-- 🧪 **Well Tested** - 86 tests with 75% coverage
+  - Shop, Media, Media Space, Public endpoints and Authentication
+- 🧪 **Well Tested** - 181 tests with 83% coverage
 - 📚 **Comprehensive Documentation** - Detailed guides and examples
 
 ## Contributing

@@ -24,6 +24,9 @@ Each manager provides access to a specific set of Shopee API endpoints:
 - [AdsManager](./managers/ads.md) - Advertising campaign management
 - [AccountHealthManager](./managers/account-health.md) - Account performance analytics
 - [MerchantManager](./managers/merchant.md) - Merchant information, warehouses, and shop management
+- [ShopManager](./managers/shop.md) - Shop information and profile management
+- [MediaManager](./managers/media.md) - Image and video upload operations
+- [MediaSpaceManager](./managers/media-space.md) - Media file uploads (images and videos)
 
 ## Quick Start
 
