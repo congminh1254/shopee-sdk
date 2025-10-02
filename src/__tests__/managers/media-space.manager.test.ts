@@ -295,18 +295,14 @@ describe("MediaSpaceManager", () => {
         content_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media_space/upload_video_part",
-        {
-          method: "POST",
-          body: {
-            video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
-            part_seq: 0,
-            content_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_video_part", {
+        method: "POST",
+        body: {
+          video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
+          part_seq: 0,
+          content_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -342,22 +338,32 @@ describe("MediaSpaceManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledTimes(3);
-      expect(mockShopeeFetch).toHaveBeenNthCalledWith(1, mockConfig, "/media_space/upload_video_part", {
-        method: "POST",
-        body: {
-          video_upload_id: "sg_test_upload_id",
-          part_seq: 0,
-          content_md5: "part0_md5",
-        },
-      });
-      expect(mockShopeeFetch).toHaveBeenNthCalledWith(3, mockConfig, "/media_space/upload_video_part", {
-        method: "POST",
-        body: {
-          video_upload_id: "sg_test_upload_id",
-          part_seq: 2,
-          content_md5: "part2_md5",
-        },
-      });
+      expect(mockShopeeFetch).toHaveBeenNthCalledWith(
+        1,
+        mockConfig,
+        "/media_space/upload_video_part",
+        {
+          method: "POST",
+          body: {
+            video_upload_id: "sg_test_upload_id",
+            part_seq: 0,
+            content_md5: "part0_md5",
+          },
+        }
+      );
+      expect(mockShopeeFetch).toHaveBeenNthCalledWith(
+        3,
+        mockConfig,
+        "/media_space/upload_video_part",
+        {
+          method: "POST",
+          body: {
+            video_upload_id: "sg_test_upload_id",
+            part_seq: 2,
+            content_md5: "part2_md5",
+          },
+        }
+      );
     });
   });
 
@@ -643,17 +649,13 @@ describe("MediaSpaceManager", () => {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media_space/cancel_video_upload",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/cancel_video_upload", {
+        method: "POST",
+        auth: true,
+        body: {
+          video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
