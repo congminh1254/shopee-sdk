@@ -653,3 +653,471 @@ export type InvoiceInfo = {
 export interface GetBuyerInvoiceInfoResponse extends FetchResponse<null> {
   invoice_info_list: InvoiceInfo[];
 }
+
+/**
+ * Parameters for setting a note on an order
+ */
+export interface SetNoteParams {
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+  /** The note seller add for reference */
+  note: string;
+}
+
+/**
+ * Response for setting a note
+ */
+export interface SetNoteResponse extends FetchResponse<null> {}
+
+/**
+ * Parameters for getting package detail
+ */
+export interface GetPackageDetailParams {
+  /** The set of package_number. If there are multiple package_number, you need to use English comma to connect them. limit [1,50] */
+  package_number_list: string[];
+}
+
+/**
+ * Package detail information
+ */
+export interface PackageDetail {
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+  /** Shopee's unique identifier for the package under an order */
+  package_number: string;
+  /** The Shopee fulfillment status for the package */
+  fulfillment_status: string;
+  /** Timestamp that indicates the last time that there was a change in value of package */
+  update_time: number;
+  /** The identity of logistic channel */
+  logistics_channel_id: number;
+  /** The logistics service provider that the buyer selected for the package to deliver items */
+  shipping_carrier: string;
+  /** To indicate whether the package allows for self-designed AWB */
+  allow_self_design_awb: boolean;
+  /** Shipping preparation time set by the seller when listing item on Shopee */
+  days_to_ship: number;
+  /** The deadline to ship out the package */
+  ship_by_date: number;
+  /** The list of pending terms */
+  pending_terms?: string[];
+  /** The tracking number of this package */
+  tracking_number?: string;
+  /** [TW only] Tracking number expiration date */
+  tracking_number_expiration_date?: number;
+  /** The timestamp when pickup is done */
+  pickup_done_time?: number;
+  /** To indicate whether this parcel is split */
+  is_split_up: boolean;
+  /** The list of items in the package */
+  item_list: PackageItem[];
+  /** Recipient address information */
+  recipient_address?: RecipientAddress;
+  /** Display weight used to calculate ASF for this parcel */
+  parcel_chargeable_weight_gram?: number;
+  /** The common identifier for multiple orders combined in the same parcel */
+  group_shipment_id?: number;
+  /** [Only for TW non-integrated channel] The virtual phone number to contact the recipient */
+  virtual_contact_number?: string;
+  /** [Only for TW non-integrated channel] The query number used in virtual phone number calls */
+  package_query_number?: string;
+  /** [Only for TW 30029 channel] Sorting group value of the package */
+  sorting_group?: string;
+  /** Return prescription images of this order, only for ID and PH whitelist sellers */
+  prescription_images?: string[];
+  /** Name of the Pharmacist for Prescription Order */
+  pharmacist_name?: string;
+  /** Time of when the prescription is approved */
+  prescription_approval_time?: number;
+  /** Time of when the prescription is rejected */
+  prescription_rejection_time?: number;
+  /** To indicate if this order is buyer self collection at store order */
+  is_buyer_shop_collection?: boolean;
+  /** The image url of the proof for buyer self collection at the store */
+  buyer_proof_of_collection?: string[];
+}
+
+/**
+ * Response for getting package detail
+ */
+export interface GetPackageDetailResponse
+  extends FetchResponse<{
+    /** The list of packages */
+    package_list: PackageDetail[];
+  }> {}
+
+/**
+ * Parameters for handling buyer cancellation
+ */
+export interface HandleBuyerCancellationParams {
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+  /** The operation you want to handle. Available value: ACCEPT, REJECT */
+  operation: "ACCEPT" | "REJECT";
+}
+
+/**
+ * Response for handling buyer cancellation
+ */
+export interface HandleBuyerCancellationResponse
+  extends FetchResponse<{
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+  }> {}
+
+/**
+ * Filter options for searching package list
+ */
+export interface SearchPackageListFilter {
+  /** Use this field to filter the packages of specific status. 0: All, 1: Pending, 2: ToProcess, 3: Processed. Default value = 2 (ToProcess) */
+  package_status?: number;
+  /** List of product_location_id. Use this field to filter the packages under specific warehouses */
+  product_location_ids?: string[];
+  /** List of logistics_channel_id. Use this field to filter the packages under specific logistics channels */
+  logistics_channel_ids?: number[];
+  /** Use this field to filter the packages fulfilled by shopee or seller. 0: None, 1: Shopee, 2: Seller. Default value = 2 (Seller) */
+  fulfillment_type?: number;
+  /** Use this field to filter the packages under invoice_pending. Default value = false */
+  invoice_pending?: boolean;
+  /** [Only for TW 30029 channel] Use this field to filter the sorting group of parcel. 1: North, 2: South */
+  sorting_group?: number;
+}
+
+/**
+ * Pagination options for searching package list
+ */
+export interface SearchPackageListPagination {
+  /** Maximum number of entries to return in a single page (between 1 and 100) */
+  page_size: number;
+  /** Specifies the starting entry of data to return in the current call. Default is "" */
+  cursor?: string;
+}
+
+/**
+ * Sort options for searching package list
+ */
+export interface SearchPackageListSort {
+  /** Sort field. Available value: package_number, ship_by_date, create_time. Default = ship_by_date */
+  sort_field?: string;
+  /** Sort direction. Available value: ASC, DESC. Default = ASC */
+  sort_direction?: "ASC" | "DESC";
+}
+
+/**
+ * Parameters for searching package list
+ */
+export interface SearchPackageListParams {
+  /** Filter options */
+  filter?: SearchPackageListFilter;
+  /** Pagination options */
+  pagination: SearchPackageListPagination;
+  /** Sort options */
+  sort?: SearchPackageListSort;
+}
+
+/**
+ * Package item in search result
+ */
+export interface SearchPackageListPackage {
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+  /** Shopee's unique identifier for the package under an order */
+  package_number: string;
+  /** The Shopee fulfillment status for the package */
+  fulfillment_status: string;
+  /** Timestamp that indicates the last time that there was a change in value of package */
+  update_time: number;
+  /** The identity of logistic channel */
+  logistics_channel_id: number;
+  /** Shipping preparation time set by the seller when listing item on Shopee */
+  days_to_ship: number;
+  /** The deadline to ship out the package */
+  ship_by_date: number;
+  /** Creation time of the package */
+  create_time: number;
+}
+
+/**
+ * Response for searching package list
+ */
+export interface SearchPackageListResponse
+  extends FetchResponse<{
+    /** Indicates whether the package list is more than one page */
+    more: boolean;
+    /** If more is true, you should pass the next_cursor in the next request as cursor */
+    next_cursor: string;
+    /** The list of packages */
+    package_list: SearchPackageListPackage[];
+  }> {}
+
+/**
+ * Parameters for getting pending buyer invoice order list
+ */
+export type GetPendingBuyerInvoiceOrderListParams = {
+  /** Maximum number of entries to return in a single page (between 1 and 100) */
+  page_size: number;
+  /** Specifies the starting entry of data to return in the current call */
+  cursor?: string;
+};
+
+/**
+ * Response for getting pending buyer invoice order list
+ */
+export interface GetPendingBuyerInvoiceOrderListResponse
+  extends FetchResponse<{
+    /** Indicates whether the order list is more than one page */
+    more: boolean;
+    /** If more is true, you should pass the next_cursor in the next request as cursor */
+    next_cursor: string;
+    /** The list of order serial numbers */
+    order_sn_list: string[];
+  }> {}
+
+/**
+ * Parameters for handling prescription check
+ */
+export interface HandlePrescriptionCheckParams {
+  /** Shopee's unique identifier for the package under an order */
+  package_number: string;
+  /** The operation you want to handle. Available value: APPROVE, REJECT */
+  operation: "APPROVE" | "REJECT";
+  /** The reason for rejection. Required when operation is REJECT */
+  reject_reason?: string;
+}
+
+/**
+ * Response for handling prescription check
+ */
+export interface HandlePrescriptionCheckResponse
+  extends FetchResponse<{
+    /** Shopee's unique identifier for the package under an order */
+    package_number: string;
+  }> {}
+
+/**
+ * Parameters for downloading invoice document
+ */
+export type DownloadInvoiceDocParams = {
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+};
+
+/**
+ * Response for downloading invoice document
+ */
+export interface DownloadInvoiceDocResponse
+  extends FetchResponse<{
+    /** The URL of the invoice document */
+    url: string;
+  }> {}
+
+/**
+ * Parameters for uploading invoice document
+ */
+export interface UploadInvoiceDocParams {
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+  /** The invoice document file */
+  invoice_file: string;
+}
+
+/**
+ * Response for uploading invoice document
+ */
+export interface UploadInvoiceDocResponse extends FetchResponse<null> {}
+
+/**
+ * Parameters for getting booking detail
+ */
+export interface GetBookingDetailParams {
+  /** The set of booking_sn. If there are multiple booking_sn, you need to use English comma to connect them. limit [1,50] */
+  booking_sn_list: string[];
+}
+
+/**
+ * Booking detail information
+ */
+export interface BookingDetail {
+  /** Shopee's unique identifier for a booking */
+  booking_sn: string;
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+  /** The booking status */
+  booking_status: string;
+  /** Creation time of the booking */
+  create_time: number;
+  /** Update time of the booking */
+  update_time: number;
+  /** The identity of logistic channel */
+  logistics_channel_id: number;
+  /** The list of packages in the booking */
+  package_list: string[];
+}
+
+/**
+ * Response for getting booking detail
+ */
+export interface GetBookingDetailResponse
+  extends FetchResponse<{
+    /** The list of bookings */
+    booking_list: BookingDetail[];
+  }> {}
+
+/**
+ * Parameters for getting booking list
+ */
+export type GetBookingListParams = {
+  /** The kind of time_from and time_to. Available value: create_time, update_time */
+  time_range_field: "create_time" | "update_time";
+  /** The starting date range for retrieving bookings. The maximum date range is 15 days */
+  time_from: number;
+  /** The ending date range for retrieving bookings. The maximum date range is 15 days */
+  time_to: number;
+  /** Maximum number of entries to return in a single page (between 1 and 100) */
+  page_size: number;
+  /** Specifies the starting entry of data to return in the current call */
+  cursor?: string;
+  /** The booking_status filter for retrieving bookings. Available value: READY_TO_SHIP/PROCESSED/SHIPPED/CANCELLED/MATCHED */
+  booking_status?: string;
+};
+
+/**
+ * Booking list item
+ */
+export interface BookingListItem {
+  /** Shopee's unique identifier for a booking */
+  booking_sn: string;
+  /** The booking status */
+  booking_status: string;
+  /** Update time of the booking */
+  update_time: number;
+}
+
+/**
+ * Response for getting booking list
+ */
+export interface GetBookingListResponse
+  extends FetchResponse<{
+    /** Indicates whether the booking list is more than one page */
+    more: boolean;
+    /** If more is true, you should pass the next_cursor in the next request as cursor */
+    next_cursor: string;
+    /** The list of bookings */
+    booking_list: BookingListItem[];
+  }> {}
+
+/**
+ * Warehouse filter configuration
+ */
+export interface WarehouseFilterConfig {
+  /** The warehouse ID */
+  product_location_id: string;
+  /** The address ID */
+  address_id: number;
+}
+
+/**
+ * Response for getting warehouse filter config
+ */
+export interface GetWarehouseFilterConfigResponse
+  extends FetchResponse<{
+    /** The list of warehouse filter configurations */
+    warehouse_list: WarehouseFilterConfig[];
+  }> {}
+
+/**
+ * Request ID list for FBS invoices
+ */
+export interface FbsInvoicesRequestIdList {
+  /** List of request IDs */
+  request_id: number[];
+}
+
+/**
+ * Parameters for downloading FBS invoices
+ */
+export interface DownloadFbsInvoicesParams {
+  /** List of request id (task identifiers) */
+  request_id_list?: FbsInvoicesRequestIdList;
+}
+
+/**
+ * FBS invoice download result
+ */
+export interface FbsInvoiceDownloadResult {
+  /** The request ID */
+  request_id: number;
+  /** The download URL */
+  url: string;
+}
+
+/**
+ * Response for downloading FBS invoices
+ */
+export interface DownloadFbsInvoicesResponse
+  extends FetchResponse<{
+    /** The list of download results */
+    result_list: FbsInvoiceDownloadResult[];
+  }> {}
+
+/**
+ * Batch download parameters for FBS invoices
+ */
+export interface FbsBatchDownload {
+  /** Start date in format YYYYMMDD, e.g. 20240101 */
+  start: number;
+  /** End date in format YYYYMMDD, e.g. 20240101 */
+  end: number;
+  /** Document type. 1 = Remessa, 2 = Return, 3 = Symbolic Return, 4 = Sale, 5 = Entrada, 6 = Symbolic Remessa, 7 = all */
+  document_type: number;
+  /** File type. 1 = xml only, 2 = pdf only, 3 = both */
+  file_type: number;
+  /** Document status. 1= authorized only, 2= cancelled. Default: If not passed or passed empty, means documents under ALL status (both authorized and cancelled) must be included */
+  document_status?: number;
+}
+
+/**
+ * Parameters for generating FBS invoices
+ */
+export interface GenerateFbsInvoicesParams {
+  /** Batch download parameters */
+  batch_download?: FbsBatchDownload;
+}
+
+/**
+ * Response for generating FBS invoices
+ */
+export interface GenerateFbsInvoicesResponse
+  extends FetchResponse<{
+    /** The request ID for the generated task */
+    request_id: number;
+  }> {}
+
+/**
+ * Parameters for getting FBS invoices result
+ */
+export interface GetFbsInvoicesResultParams {
+  /** List of request id to be queried */
+  request_id_list: FbsInvoicesRequestIdList;
+}
+
+/**
+ * FBS invoice result item
+ */
+export interface FbsInvoiceResultItem {
+  /** The request ID */
+  request_id: number;
+  /** The status of the request. PROCESSING, READY, ERROR */
+  status: string;
+  /** Error message if status is ERROR */
+  error_message?: string;
+}
+
+/**
+ * Response for getting FBS invoices result
+ */
+export interface GetFbsInvoicesResultResponse
+  extends FetchResponse<{
+    /** The list of results */
+    result_list: FbsInvoiceResultItem[];
+  }> {}
