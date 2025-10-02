@@ -12,3 +12,4 @@ export * from "./merchant.manager.js";
 export * from "./shop.manager.js";
 export * from "./media.manager.js";
 export * from "./media-space.manager.js";
+export * from "./global-product.manager.js";

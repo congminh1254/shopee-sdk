@@ -15,6 +15,7 @@ import { MerchantManager } from "./managers/merchant.manager.js";
 import { ShopManager } from "./managers/shop.manager.js";
 import { MediaManager } from "./managers/media.manager.js";
 import { MediaSpaceManager } from "./managers/media-space.manager.js";
+import { GlobalProductManager } from "./managers/global-product.manager.js";
 import { Agent } from "node:http";
 export interface ShopeeConfig {
     partner_id: number;
@@ -42,6 +43,7 @@ export declare class ShopeeSDK {
     readonly shop: ShopManager;
     readonly media: MediaManager;
     readonly mediaSpace: MediaSpaceManager;
+    readonly globalProduct: GlobalProductManager;
     constructor(config: ShopeeConfig, tokenStorage?: TokenStorage);
     getConfig(): ShopeeConfig;
     setRegion(region: ShopeeRegion): void;
