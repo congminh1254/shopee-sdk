@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.0](https://github.com/congminh1254/shopee-sdk/compare/v0.10.0...v0.11.0) (2025-10-02)
+
+
+### Features
+
+* implement Media manager with image and video upload endpoints ([#23](https://github.com/congminh1254/shopee-sdk/issues/23)) ([83a52bd](https://github.com/congminh1254/shopee-sdk/commit/83a52bd28930ac76d7915bb836bb045d5e7f6ce5))
+* **media-space:** implement MediaSpace manager with all 6 endpoints ([#22](https://github.com/congminh1254/shopee-sdk/issues/22)) ([e8c42d0](https://github.com/congminh1254/shopee-sdk/commit/e8c42d02aa822e3c1ac75b5975d2f22a3de28f9a))
+
 ## [0.10.0](https://github.com/congminh1254/shopee-sdk/compare/v0.9.0...v0.10.0) (2025-10-01)
 
 
