@@ -72,31 +72,27 @@ describe("BundleDealManager", () => {
         ],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/add_bundle_deal",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            rule_type: BundleDealRuleType.FIX_PRICE,
-            fix_price: 11.0,
-            min_amount: 1,
-            start_time: 1600000000,
-            end_time: 1610000000,
-            name: "bundle name",
-            purchase_limit: 3,
-            additional_tiers: [
-              {
-                min_amount: 100,
-                fix_price: 100,
-                discount_value: 20,
-                discount_percentage: 20,
-              },
-            ],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/add_bundle_deal", {
+        method: "POST",
+        auth: true,
+        body: {
+          rule_type: BundleDealRuleType.FIX_PRICE,
+          fix_price: 11.0,
+          min_amount: 1,
+          start_time: 1600000000,
+          end_time: 1610000000,
+          name: "bundle name",
+          purchase_limit: 3,
+          additional_tiers: [
+            {
+              min_amount: 100,
+              fix_price: 100,
+              discount_value: 20,
+              discount_percentage: 20,
+            },
+          ],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -143,11 +139,7 @@ describe("BundleDealManager", () => {
 
       const result = await bundleDealManager.addBundleDealItem({
         bundle_deal_id: 11111,
-        item_list: [
-          { item_id: 1111 },
-          { item_id: 2222 },
-          { item_id: 3333 },
-        ],
+        item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 3333 }],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -158,11 +150,7 @@ describe("BundleDealManager", () => {
           auth: true,
           body: {
             bundle_deal_id: 11111,
-            item_list: [
-              { item_id: 1111 },
-              { item_id: 2222 },
-              { item_id: 3333 },
-            ],
+            item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 3333 }],
           },
         }
       );
@@ -191,11 +179,7 @@ describe("BundleDealManager", () => {
 
       const result = await bundleDealManager.addBundleDealItem({
         bundle_deal_id: 11111,
-        item_list: [
-          { item_id: 1111 },
-          { item_id: 2222 },
-          { item_id: 1234 },
-        ],
+        item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 1234 }],
       });
 
       expect(result).toEqual(mockResponse);
@@ -221,17 +205,13 @@ describe("BundleDealManager", () => {
         bundle_deal_id: 11111,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/delete_bundle_deal",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            bundle_deal_id: 11111,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/delete_bundle_deal", {
+        method: "POST",
+        auth: true,
+        body: {
+          bundle_deal_id: 11111,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -253,11 +233,7 @@ describe("BundleDealManager", () => {
 
       const result = await bundleDealManager.deleteBundleDealItem({
         bundle_deal_id: 11111,
-        item_list: [
-          { item_id: 1111 },
-          { item_id: 2222 },
-          { item_id: 3333 },
-        ],
+        item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 3333 }],
       });
 
       expect(result).toEqual(mockResponse);
@@ -284,11 +260,7 @@ describe("BundleDealManager", () => {
 
       const result = await bundleDealManager.deleteBundleDealItem({
         bundle_deal_id: 11111,
-        item_list: [
-          { item_id: 1111 },
-          { item_id: 2222 },
-          { item_id: 1234 },
-        ],
+        item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 1234 }],
       });
 
       expect(result).toEqual(mockResponse);
@@ -313,17 +285,13 @@ describe("BundleDealManager", () => {
         bundle_deal_id: 11111,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/end_bundle_deal",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            bundle_deal_id: 11111,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/end_bundle_deal", {
+        method: "POST",
+        auth: true,
+        body: {
+          bundle_deal_id: 11111,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -365,17 +333,13 @@ describe("BundleDealManager", () => {
         bundle_deal_id: 113891,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/get_bundle_deal",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            bundle_deal_id: 113891,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/get_bundle_deal", {
+        method: "POST",
+        auth: true,
+        body: {
+          bundle_deal_id: 113891,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.bundle_deal_id).toBe(113891);
@@ -536,19 +500,15 @@ describe("BundleDealManager", () => {
         end_time: 1658246412,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/update_bundle_deal",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            bundle_deal_id: 6833,
-            name: "bundle name updated",
-            end_time: 1658246412,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/update_bundle_deal", {
+        method: "POST",
+        auth: true,
+        body: {
+          bundle_deal_id: 6833,
+          name: "bundle name updated",
+          end_time: 1658246412,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -570,11 +530,7 @@ describe("BundleDealManager", () => {
 
       const result = await bundleDealManager.updateBundleDealItem({
         bundle_deal_id: 11111,
-        item_list: [
-          { item_id: 1111 },
-          { item_id: 2222 },
-          { item_id: 3333 },
-        ],
+        item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 3333 }],
       });
 
       expect(result).toEqual(mockResponse);
@@ -601,11 +557,7 @@ describe("BundleDealManager", () => {
 
       const result = await bundleDealManager.updateBundleDealItem({
         bundle_deal_id: 11111,
-        item_list: [
-          { item_id: 1111 },
-          { item_id: 2222 },
-          { item_id: 12341213 },
-        ],
+        item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 12341213 }],
       });
 
       expect(result).toEqual(mockResponse);

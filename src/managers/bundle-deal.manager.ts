@@ -105,7 +105,9 @@ export class BundleDealManager extends BaseManager {
    * - success_list: Array of item IDs that were successfully deleted
    * - failed_list: Array of items that failed to be deleted with error details
    */
-  async deleteBundleDealItem(params: DeleteBundleDealItemParams): Promise<DeleteBundleDealItemResponse> {
+  async deleteBundleDealItem(
+    params: DeleteBundleDealItemParams
+  ): Promise<DeleteBundleDealItemResponse> {
     const response = await ShopeeFetch.fetch<DeleteBundleDealItemResponse>(
       this.config,
       "/bundle_deal/delete_bundle_deal_item",
@@ -200,7 +202,9 @@ export class BundleDealManager extends BaseManager {
    * - bundle_deal_list: List of bundle deals with full details
    * - more: Boolean indicating if there are more pages
    */
-  async getBundleDealList(params: GetBundleDealListParams = {}): Promise<GetBundleDealListResponse> {
+  async getBundleDealList(
+    params: GetBundleDealListParams = {}
+  ): Promise<GetBundleDealListResponse> {
     const response = await ShopeeFetch.fetch<GetBundleDealListResponse>(
       this.config,
       "/bundle_deal/get_bundle_deal_list",
@@ -245,7 +249,9 @@ export class BundleDealManager extends BaseManager {
    * - success_list: Array of item IDs that were successfully updated
    * - failed_list: Array of items that failed to be updated with error details
    */
-  async updateBundleDealItem(params: UpdateBundleDealItemParams): Promise<UpdateBundleDealItemResponse> {
+  async updateBundleDealItem(
+    params: UpdateBundleDealItemParams
+  ): Promise<UpdateBundleDealItemResponse> {
     const response = await ShopeeFetch.fetch<UpdateBundleDealItemResponse>(
       this.config,
       "/bundle_deal/update_bundle_deal_item",
