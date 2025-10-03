@@ -358,9 +358,7 @@ export class PaymentManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async getIncomeStatement(
-    params: GetIncomeStatementParams
-  ): Promise<GetIncomeStatementResponse> {
+  async getIncomeStatement(params: GetIncomeStatementParams): Promise<GetIncomeStatementResponse> {
     const response = await ShopeeFetch.fetch<GetIncomeStatementResponse>(
       this.config,
       "/payment/get_income_statement",
