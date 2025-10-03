@@ -70,23 +70,19 @@ describe("AddOnDealManager", () => {
         promotion_purchase_limit: 12,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/add_add_on_deal",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            add_on_deal_name: "add on deal name test",
-            start_time: 1624864213,
-            end_time: 1625382613,
-            promotion_type: AddOnDealPromotionType.ADD_ON_DISCOUNT,
-            purchase_min_spend: 11.1,
-            per_gift_num: 11,
-            promotion_purchase_limit: 12,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/add_add_on_deal", {
+        method: "POST",
+        auth: true,
+        body: {
+          add_on_deal_name: "add on deal name test",
+          start_time: 1624864213,
+          end_time: 1625382613,
+          promotion_type: AddOnDealPromotionType.ADD_ON_DISCOUNT,
+          purchase_min_spend: 11.1,
+          per_gift_num: 11,
+          promotion_purchase_limit: 12,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.add_on_deal_id).toBe(20142);
@@ -288,17 +284,13 @@ describe("AddOnDealManager", () => {
         add_on_deal_id: 20141,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/delete_add_on_deal",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            add_on_deal_id: 20141,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/delete_add_on_deal", {
+        method: "POST",
+        auth: true,
+        body: {
+          add_on_deal_id: 20141,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -412,17 +404,13 @@ describe("AddOnDealManager", () => {
         add_on_deal_id: 20141,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/end_add_on_deal",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            add_on_deal_id: 20141,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/end_add_on_deal", {
+        method: "POST",
+        auth: true,
+        body: {
+          add_on_deal_id: 20141,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -454,17 +442,13 @@ describe("AddOnDealManager", () => {
         add_on_deal_id: 12069,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/get_add_on_deal",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            add_on_deal_id: 12069,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/get_add_on_deal", {
+        method: "GET",
+        auth: true,
+        params: {
+          add_on_deal_id: 12069,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.add_on_deal_name).toBe("add on deal test");
@@ -677,19 +661,15 @@ describe("AddOnDealManager", () => {
         sub_item_priority: [100760424],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/update_add_on_deal",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            add_on_deal_id: 12069,
-            add_on_deal_name: "bundle deal test qweass",
-            sub_item_priority: [100760424],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/update_add_on_deal", {
+        method: "POST",
+        auth: true,
+        body: {
+          add_on_deal_id: 12069,
+          add_on_deal_name: "bundle deal test qweass",
+          sub_item_priority: [100760424],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.sub_item_priority).toHaveLength(1);
@@ -744,9 +724,7 @@ describe("AddOnDealManager", () => {
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.main_item_list[0].status).toBe(
-        AddOnDealMainItemStatus.DELETED
-      );
+      expect(result.response.main_item_list[0].status).toBe(AddOnDealMainItemStatus.DELETED);
     });
   });
 
