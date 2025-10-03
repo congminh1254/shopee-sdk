@@ -21,6 +21,7 @@ import { MediaSpaceManager } from "./managers/media-space.manager.js";
 import { GlobalProductManager } from "./managers/global-product.manager.js";
 import { FirstMileManager } from "./managers/first-mile.manager.js";
 import { DiscountManager } from "./managers/discount.manager.js";
+import { BundleDealManager } from "./managers/bundle-deal.manager.js";
 import { Agent } from "node:http";
 
 export interface ShopeeConfig {
@@ -53,6 +54,7 @@ export class ShopeeSDK {
   public readonly globalProduct: GlobalProductManager;
   public readonly firstMile: FirstMileManager;
   public readonly discount: DiscountManager;
+  public readonly bundleDeal: BundleDealManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       region: ShopeeRegion.GLOBAL,
@@ -84,6 +86,7 @@ export class ShopeeSDK {
     this.globalProduct = new GlobalProductManager(this.config);
     this.firstMile = new FirstMileManager(this.config);
     this.discount = new DiscountManager(this.config);
+    this.bundleDeal = new BundleDealManager(this.config);
   }
 
   public getConfig(): ShopeeConfig {
