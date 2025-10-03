@@ -51,7 +51,7 @@ Create a new discount voucher.
 const response = await sdk.voucher.addVoucher({
   // Basic info
   voucher_name: 'New Year Sale',
-  voucher_code: 'NY2024', // Optional: custom code
+  voucher_code: 'NY2024',
   
   // Time period
   start_time: Math.floor(Date.now() / 1000),
@@ -61,23 +61,24 @@ const response = await sdk.voucher.addVoucher({
   voucher_type: 1, // 1 = Shop voucher, 2 = Product voucher
   
   // Discount configuration
-  reward_type: 1, // 1 = Fixed amount, 2 = Percentage
+  reward_type: 1, // 1 = Fixed amount, 2 = Percentage, 3 = Coins cashback
   discount_amount: 15.00, // For fixed amount
   percentage: 20, // For percentage (use instead of discount_amount)
-  max_discount_amount: 50.00, // Max discount for percentage type
+  max_price: 50.00, // Max discount for percentage type
   
   // Usage limits
   min_basket_price: 100.00, // Minimum order amount
   usage_quantity: 500, // Total number of uses
-  usage_per_user: 1, // Uses per customer
+  
+  // Optional: Display settings
+  display_channel_list: [1], // 1: display_all, 3: feed, 4: live streaming
+  display_start_time: Math.floor(Date.now() / 1000), // When to display
   
   // Optional: Product-specific (for product voucher)
   item_id_list: [123456, 789012], // Specific products
 });
 
-console.log('Voucher created:', response.voucher_id);
-console.log('Voucher code:', response.voucher_code);
-console.log('Warning:', response.warning); // Any warnings
+console.log('Voucher created:', response.response.voucher_id);
 ```
 
 **Voucher Types:**
@@ -87,20 +88,21 @@ console.log('Warning:', response.warning); // Any warnings
 **Reward Types:**
 - `1`: Fixed amount discount (e.g., $10 off)
 - `2`: Percentage discount (e.g., 20% off)
+- `3`: Coins cashback
 
 **Example: Percentage Voucher**
 ```typescript
 await sdk.voucher.addVoucher({
   voucher_name: '20% Off Everything',
+  voucher_code: 'SAVE20',
   start_time: startTime,
   end_time: endTime,
   voucher_type: 1,
   reward_type: 2, // Percentage
   percentage: 20,
-  max_discount_amount: 50.00, // Cap at $50
+  max_price: 50.00, // Cap at $50
   min_basket_price: 25.00,
   usage_quantity: 1000,
-  usage_per_user: 2,
 });
 ```
 
@@ -145,13 +147,13 @@ const response = await sdk.voucher.getVoucher({
   voucher_id: 123456,
 });
 
-console.log('Voucher:', response.voucher_name);
-console.log('Code:', response.voucher_code);
-console.log('Status:', response.status);
-console.log('Discount:', response.discount_amount || `${response.percentage}%`);
-console.log('Used:', response.current_usage);
-console.log('Remaining:', response.usage_quantity - response.current_usage);
-console.log('Valid:', new Date(response.start_time * 1000), 'to', new Date(response.end_time * 1000));
+console.log('Voucher:', response.response.voucher_name);
+console.log('Code:', response.response.voucher_code);
+console.log('Discount:', response.response.discount_amount || `${response.response.percentage}%`);
+console.log('Used:', response.response.current_usage);
+console.log('Remaining:', response.response.usage_quantity - response.response.current_usage);
+console.log('Valid from:', new Date(response.response.start_time * 1000));
+console.log('Valid to:', new Date(response.response.end_time * 1000));
 ```
 
 ---
@@ -167,18 +169,15 @@ const response = await sdk.voucher.getVoucherList({
   status: 'ongoing', // ongoing, upcoming, expired, all
   page_no: 1,
   page_size: 20,
-  voucher_type: 1, // Optional: filter by type
 });
 
-console.log('Total:', response.total_count);
-console.log('Page:', response.page_no);
+console.log('Has more:', response.response.more);
 
-response.voucher_list.forEach((voucher) => {
+response.response.voucher_list.forEach((voucher) => {
   console.log('---');
   console.log('ID:', voucher.voucher_id);
   console.log('Name:', voucher.voucher_name);
   console.log('Code:', voucher.voucher_code);
-  console.log('Status:', voucher.status);
   console.log('Used:', voucher.current_usage, '/', voucher.usage_quantity);
 });
 ```
@@ -204,9 +203,9 @@ async function getAllVouchers() {
       page_size: pageSize,
     });
 
-    allVouchers.push(...response.voucher_list);
+    allVouchers.push(...response.response.voucher_list);
     
-    hasMore = response.voucher_list.length === pageSize;
+    hasMore = response.response.more;
     pageNo++;
   }
 
@@ -266,18 +265,18 @@ async function createFlashSale() {
   
   const voucher = await sdk.voucher.addVoucher({
     voucher_name: 'Flash Sale - 30% OFF',
+    voucher_code: 'FLASH30',
     start_time: now,
     end_time: now + flashDuration,
     voucher_type: 1,
     reward_type: 2, // Percentage
     percentage: 30,
-    max_discount_amount: 100.00,
+    max_price: 100.00,
     min_basket_price: 50.00,
     usage_quantity: 100, // Limited quantity
-    usage_per_user: 1, // One per customer
   });
   
-  console.log('Flash sale voucher:', voucher.voucher_code);
+  console.log('Flash sale voucher ID:', voucher.response.voucher_id);
   return voucher;
 }
 ```
@@ -296,7 +295,6 @@ async function createWelcomeVoucher() {
     discount_amount: 10.00,
     min_basket_price: 30.00,
     usage_quantity: 10000,
-    usage_per_user: 1, // One-time use for new customers
   });
   
   return voucher;
@@ -309,6 +307,7 @@ async function createWelcomeVoucher() {
 async function createProductPromotion(itemIds: number[]) {
   const voucher = await sdk.voucher.addVoucher({
     voucher_name: 'Buy These Products - Save 15%',
+    voucher_code: 'PROD15',
     start_time: Math.floor(Date.now() / 1000),
     end_time: Math.floor(Date.now() / 1000) + 14 * 86400, // 2 weeks
     voucher_type: 2, // Product voucher
@@ -316,7 +315,6 @@ async function createProductPromotion(itemIds: number[]) {
     percentage: 15,
     min_basket_price: 0, // No minimum
     usage_quantity: 500,
-    usage_per_user: 3,
     item_id_list: itemIds, // Specific products
   });
   
@@ -332,11 +330,11 @@ async function monitorVoucherUsage(voucherId: number) {
     voucher_id: voucherId,
   });
   
-  const usagePercent = (voucher.current_usage / voucher.usage_quantity) * 100;
+  const usagePercent = (voucher.response.current_usage / voucher.response.usage_quantity) * 100;
   
-  console.log(`Voucher: ${voucher.voucher_name}`);
-  console.log(`Code: ${voucher.voucher_code}`);
-  console.log(`Usage: ${voucher.current_usage} / ${voucher.usage_quantity} (${usagePercent.toFixed(1)}%)`);
+  console.log(`Voucher: ${voucher.response.voucher_name}`);
+  console.log(`Code: ${voucher.response.voucher_code}`);
+  console.log(`Usage: ${voucher.response.current_usage} / ${voucher.response.usage_quantity} (${usagePercent.toFixed(1)}%)`);
   
   // Alert if running low
   if (usagePercent > 80) {
@@ -344,10 +342,10 @@ async function monitorVoucherUsage(voucherId: number) {
   }
   
   // Auto-extend if popular
-  if (usagePercent > 90 && voucher.status === 'ongoing') {
+  if (usagePercent > 90) {
     await sdk.voucher.updateVoucher({
       voucher_id: voucherId,
-      usage_quantity: voucher.usage_quantity + 500,
+      usage_quantity: voucher.response.usage_quantity + 500,
     });
     console.log('✅ Extended voucher quantity by 500');
   }
@@ -366,19 +364,12 @@ async function generateVoucherReport() {
   });
   
   const report = {
-    total: vouchers.total_count,
-    ongoing: 0,
-    upcoming: 0,
-    expired: 0,
+    total: vouchers.response.voucher_list.length,
     totalUsage: 0,
-    byType: {},
+    byType: {} as Record<string, number>,
   };
   
-  vouchers.voucher_list.forEach((voucher) => {
-    if (voucher.status === 'ongoing') report.ongoing++;
-    else if (voucher.status === 'upcoming') report.upcoming++;
-    else if (voucher.status === 'expired') report.expired++;
-    
+  vouchers.response.voucher_list.forEach((voucher) => {
     report.totalUsage += voucher.current_usage;
     
     const type = voucher.voucher_type === 1 ? 'shop' : 'product';
@@ -413,12 +404,17 @@ await sdk.voucher.addVoucher({
 ### 2. Set Appropriate Limits
 
 ```typescript
-// Prevent abuse with per-user limits
+// Prevent abuse with appropriate limits
 await sdk.voucher.addVoucher({
   voucher_name: 'Limited Offer',
+  voucher_code: 'LIMIT50',
+  voucher_type: 1,
+  reward_type: 1,
+  discount_amount: 10.00,
   usage_quantity: 1000, // Total uses
-  usage_per_user: 1, // One per customer
   min_basket_price: 25.00, // Minimum order
+  start_time: Math.floor(Date.now() / 1000),
+  end_time: Math.floor(Date.now() / 1000) + 30 * 86400,
   // ...
 });
 ```
@@ -432,11 +428,12 @@ async function manageActiveVouchers() {
     page_size: 100,
   });
   
-  for (const voucher of vouchers.voucher_list) {
+  for (const voucher of vouchers.response.voucher_list) {
     const usageRate = voucher.current_usage / voucher.usage_quantity;
+    const daysSinceStart = (Date.now() / 1000 - voucher.start_time) / 86400;
     
     // End underperforming vouchers
-    if (usageRate < 0.1 && Date.now() > voucher.start_time * 1000 + 7 * 86400000) {
+    if (usageRate < 0.1 && daysSinceStart > 7) {
       await sdk.voucher.endVoucher({ voucher_id: voucher.voucher_id });
       console.log(`Ended low-performing voucher: ${voucher.voucher_name}`);
     }
@@ -445,7 +442,7 @@ async function manageActiveVouchers() {
     if (usageRate > 0.9) {
       await sdk.voucher.updateVoucher({
         voucher_id: voucher.voucher_id,
-        usage_quantity: voucher.usage_quantity * 1.5,
+        usage_quantity: Math.floor(voucher.usage_quantity * 1.5),
       });
       console.log(`Extended popular voucher: ${voucher.voucher_name}`);
     }
