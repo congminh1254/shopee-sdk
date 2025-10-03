@@ -358,11 +358,15 @@ export class LogisticsManager extends BaseManager {
    * Use this API to initiate logistics for a booking.
    */
   async shipBooking(params: ShipBookingParams): Promise<ShipBookingResponse> {
-    const response = await ShopeeFetch.fetch<ShipBookingResponse>(this.config, "/logistics/ship_booking", {
-      method: "POST",
-      auth: true,
-      body: params,
-    });
+    const response = await ShopeeFetch.fetch<ShipBookingResponse>(
+      this.config,
+      "/logistics/ship_booking",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
 
     return response;
   }
@@ -780,7 +784,9 @@ export class LogisticsManager extends BaseManager {
   /**
    * Use this API to update shipping order.
    */
-  async updateShippingOrder(params: UpdateShippingOrderParams): Promise<UpdateShippingOrderResponse> {
+  async updateShippingOrder(
+    params: UpdateShippingOrderParams
+  ): Promise<UpdateShippingOrderResponse> {
     const response = await ShopeeFetch.fetch<UpdateShippingOrderResponse>(
       this.config,
       "/logistics/update_shipping_order",
@@ -797,7 +803,9 @@ export class LogisticsManager extends BaseManager {
   /**
    * Use this API to update tracking status.
    */
-  async updateTrackingStatus(params: UpdateTrackingStatusParams): Promise<UpdateTrackingStatusResponse> {
+  async updateTrackingStatus(
+    params: UpdateTrackingStatusParams
+  ): Promise<UpdateTrackingStatusResponse> {
     const response = await ShopeeFetch.fetch<UpdateTrackingStatusResponse>(
       this.config,
       "/logistics/update_tracking_status",
@@ -850,7 +858,9 @@ export class LogisticsManager extends BaseManager {
   /**
    * Use this API to update operating hours.
    */
-  async updateOperatingHours(params: UpdateOperatingHoursParams): Promise<UpdateOperatingHoursResponse> {
+  async updateOperatingHours(
+    params: UpdateOperatingHoursParams
+  ): Promise<UpdateOperatingHoursResponse> {
     const response = await ShopeeFetch.fetch<UpdateOperatingHoursResponse>(
       this.config,
       "/logistics/update_operating_hours",
@@ -905,7 +915,9 @@ export class LogisticsManager extends BaseManager {
   /**
    * Use this API to get mart packaging info.
    */
-  async getMartPackagingInfo(params: GetMartPackagingInfoParams): Promise<GetMartPackagingInfoResponse> {
+  async getMartPackagingInfo(
+    params: GetMartPackagingInfoParams
+  ): Promise<GetMartPackagingInfoResponse> {
     const response = await ShopeeFetch.fetch<GetMartPackagingInfoResponse>(
       this.config,
       "/logistics/get_mart_packaging_info",
@@ -922,7 +934,9 @@ export class LogisticsManager extends BaseManager {
   /**
    * Use this API to set mart packaging info.
    */
-  async setMartPackagingInfo(params: SetMartPackagingInfoParams): Promise<SetMartPackagingInfoResponse> {
+  async setMartPackagingInfo(
+    params: SetMartPackagingInfoParams
+  ): Promise<SetMartPackagingInfoResponse> {
     const response = await ShopeeFetch.fetch<SetMartPackagingInfoResponse>(
       this.config,
       "/logistics/set_mart_packaging_info",

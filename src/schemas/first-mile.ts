@@ -1,7 +1,5 @@
 import { BaseResponse } from "./base.js";
 
-
-
 export type BindCourierDeliveryFirstMileTrackingNumberParamsOrderList = {
   /** Shopee's unique identifier for an order. */
   order_sn: string;
@@ -231,8 +229,6 @@ export type UnbindFirstMileTrackingNumberAllParams = {
   /** The list of order info you want to unbind from the first mile tracking number or binding ID.&nbsp;You can specify up to 50 order_sns in this call. */
   order_list: UnbindFirstMileTrackingNumberAllParamsOrderList[];
 };
-
-
 
 export type BindCourierDeliveryFirstMileTrackingNumberResponseSuccessList = {
   /** Shopee's unique identifier for an order. */

@@ -71,15 +71,11 @@ describe("FirstMileManager", () => {
 
       const result = await firstMileManager.getChannelList();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_channel_list",
-        {
-          method: "GET",
-          auth: true,
-          params: undefined,
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_channel_list", {
+        method: "GET",
+        auth: true,
+        params: undefined,
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response?.logistics_channel_list).toHaveLength(2);
@@ -105,15 +101,11 @@ describe("FirstMileManager", () => {
 
       const result = await firstMileManager.getChannelList({ region: "CN" });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_channel_list",
-        {
-          method: "GET",
-          auth: true,
-          params: { region: "CN" },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_channel_list", {
+        method: "GET",
+        auth: true,
+        params: { region: "CN" },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -187,17 +179,13 @@ describe("FirstMileManager", () => {
         first_mile_tracking_number: "CNF731738838434210105",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_detail",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            first_mile_tracking_number: "CNF731738838434210105",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_detail", {
+        method: "GET",
+        auth: true,
+        params: {
+          first_mile_tracking_number: "CNF731738838434210105",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response?.status).toBe("PICKED_UP");
@@ -227,18 +215,14 @@ describe("FirstMileManager", () => {
         cursor: "50",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_detail",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            first_mile_tracking_number: "CNF731738838434210105",
-            cursor: "50",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_detail", {
+        method: "GET",
+        auth: true,
+        params: {
+          first_mile_tracking_number: "CNF731738838434210105",
+          cursor: "50",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -449,17 +433,13 @@ describe("FirstMileManager", () => {
         first_mile_tracking_number_list: ["CNF731738838434210105"],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_waybill",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            first_mile_tracking_number_list: ["CNF731738838434210105"],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_waybill", {
+        method: "POST",
+        auth: true,
+        body: {
+          first_mile_tracking_number_list: ["CNF731738838434210105"],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response?.waybill_list).toHaveLength(1);
