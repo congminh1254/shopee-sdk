@@ -1202,7 +1202,10 @@ export interface UpdateOperatingHoursResponse extends BaseResponse {
 /**
  * Parameters for get operating hour restrictions
  */
-export type GetOperatingHourRestrictionsParams = Record<string, string | number | boolean | null | undefined>;
+export type GetOperatingHourRestrictionsParams = Record<
+  string,
+  string | number | boolean | null | undefined
+>;
 
 /**
  * Response for get operating hour restrictions API

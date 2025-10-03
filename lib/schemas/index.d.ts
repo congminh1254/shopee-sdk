@@ -14,3 +14,4 @@ export * from "./account-health.js";
 export * from "./merchant.js";
 export * from "./shop.js";
 export * from "./global-product.js";
+export * from "./first-mile.js";

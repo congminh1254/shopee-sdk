@@ -757,7 +757,11 @@ describe("LogisticsManager", () => {
         request_id: "test",
         error: "",
         message: "",
-        response: { booking_sn: "BOOKING123", logistics_status: "LOGISTICS_READY", tracking_info: [] },
+        response: {
+          booking_sn: "BOOKING123",
+          logistics_status: "LOGISTICS_READY",
+          tracking_info: [],
+        },
       };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -835,11 +839,15 @@ describe("LogisticsManager", () => {
 
       await logisticsManager.getMassTrackingNumber({ order_sn_list: ["ORDER1"] });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_mass_tracking_number", {
-        method: "GET",
-        auth: true,
-        params: { order_sn_list: ["ORDER1"] },
-      });
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/get_mass_tracking_number",
+        {
+          method: "GET",
+          auth: true,
+          params: { order_sn_list: ["ORDER1"] },
+        }
+      );
     });
   });
 
@@ -895,7 +903,12 @@ describe("LogisticsManager", () => {
     });
 
     it("should download shipping document", async () => {
-      const mockResponse = { request_id: "test", error: "", message: "", response: { result: "URL" } };
+      const mockResponse = {
+        request_id: "test",
+        error: "",
+        message: "",
+        response: { result: "URL" },
+      };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.downloadShippingDocument({
@@ -995,7 +1008,12 @@ describe("LogisticsManager", () => {
 
   describe("shipping document job", () => {
     it("should create shipping document job", async () => {
-      const mockResponse = { request_id: "test", error: "", message: "", response: { job_id: "JOB1" } };
+      const mockResponse = {
+        request_id: "test",
+        error: "",
+        message: "",
+        response: { job_id: "JOB1" },
+      };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.createShippingDocumentJob({});
