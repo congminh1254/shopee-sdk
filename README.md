@@ -34,6 +34,15 @@ A TypeScript SDK for interacting with the Shopee Open API, maintained by the com
 - [ShopManager](./docs/managers/shop.md) - Shop information and settings
 - [MediaManager](./docs/managers/media.md) - Image and video upload
 - [MediaSpaceManager](./docs/managers/media-space.md) - Media uploads (images and videos)
+- [MerchantManager](./docs/managers/merchant.md) - Merchant information and warehouses
+- [GlobalProductManager](./docs/managers/global-product.md) - Global product management
+- [FirstMileManager](./docs/managers/first-mile.md) - First mile logistics
+- [DiscountManager](./docs/managers/discount.md) - Discount campaigns
+- [BundleDealManager](./docs/managers/bundle-deal.md) - Bundle deal promotions
+- [AddOnDealManager](./docs/managers/add-on-deal.md) - Add-on deal promotions
+- [ShopFlashSaleManager](./docs/managers/shop-flash-sale.md) - Flash sale campaigns
+- [FollowPrizeManager](./docs/managers/follow-prize.md) - Follow prize activities
+- [TopPicksManager](./docs/managers/top-picks.md) - Top picks collections
 
 ## Installation
 
@@ -84,11 +93,12 @@ See the [Setup Guide](./docs/guides/setup.md) and [Authentication Guide](./docs/
 - 💾 **Flexible Token Storage** - File-based storage included, custom storage supported
 - 🌍 **Multi-Region Support** - Support for all Shopee regions (SG, MY, TH, VN, PH, ID, TW, BR, MX, CO, CL, PL)
 - 🔌 **Proxy Support** - HTTP/HTTPS proxy configuration
-- 📦 **13 API Managers** - Comprehensive coverage of Shopee API endpoints:
+- 📦 **22 API Managers** - Comprehensive coverage of Shopee API endpoints:
   - Products, Orders, Logistics, Payments
   - Vouchers, Webhooks, Ads, Account Health
-  - Shop, Media, Media Space, Public endpoints and Authentication
-- 🧪 **Well Tested** - 181 tests with 83% coverage
+  - Shop, Media, Media Space, Public endpoints, Authentication
+  - Merchant, Global Product, First Mile, Promotions (Discount, Bundle, Add-on, Flash Sale, Follow Prize, Top Picks)
+- 🧪 **Well Tested** - 436+ tests with high coverage
 - 📚 **Comprehensive Documentation** - Detailed guides and examples
 
 ## Contributing
