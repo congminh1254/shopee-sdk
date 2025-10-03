@@ -27,7 +27,7 @@ export class FollowPrizeManager extends BaseManager {
    * @returns {Promise<AddFollowPrizeResponse>} The response containing the created follow prize ID
    *
    * The follow prize allows shops to reward followers with vouchers when they follow the shop.
-   * 
+   *
    * @throws {Error} When the API request fails or returns an error
    * - follow_prize.campaign_num_max_limit: Max number of follow prizes reached (1000 ongoing and upcoming)
    * - follow_prize.campaign_overlap: Another follow prize already exists during this time period
