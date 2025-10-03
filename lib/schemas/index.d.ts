@@ -17,3 +17,4 @@ export * from "./global-product.js";
 export * from "./first-mile.js";
 export * from "./discount.js";
 export * from "./bundle-deal.js";
+export * from "./add-on-deal.js";
