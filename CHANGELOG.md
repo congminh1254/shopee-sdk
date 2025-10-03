@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.11.0](https://github.com/congminh1254/shopee-sdk/compare/v0.10.0...v0.11.0) (2025-10-03)
+
+
+### Features
+
+* **first-mile:** implement FirstMileManager with all 16 endpoints ([#36](https://github.com/congminh1254/shopee-sdk/issues/36)) ([8db6248](https://github.com/congminh1254/shopee-sdk/commit/8db6248e1ff9a61b1d939b6413b75ef65ee740da))
+* **global-product:** implement complete GlobalProduct manager with all 34 endpoints ([#30](https://github.com/congminh1254/shopee-sdk/issues/30)) ([6a31507](https://github.com/congminh1254/shopee-sdk/commit/6a31507d216755c6872fea8b35b2bf25622fa767))
+* implement Media manager with image and video upload endpoints ([#23](https://github.com/congminh1254/shopee-sdk/issues/23)) ([83a52bd](https://github.com/congminh1254/shopee-sdk/commit/83a52bd28930ac76d7915bb836bb045d5e7f6ce5))
+* **logistics:** implement all 41 logistics manager functions with comprehensive tests and documentation ([#34](https://github.com/congminh1254/shopee-sdk/issues/34)) ([4bf9120](https://github.com/congminh1254/shopee-sdk/commit/4bf9120328ae9e1e5974589857b55637f0952a6e))
+* **media-space:** implement MediaSpace manager with all 6 endpoints ([#22](https://github.com/congminh1254/shopee-sdk/issues/22)) ([e8c42d0](https://github.com/congminh1254/shopee-sdk/commit/e8c42d02aa822e3c1ac75b5975d2f22a3de28f9a))
+* **merchant:** implement merchant manager with all endpoints ([#25](https://github.com/congminh1254/shopee-sdk/issues/25)) ([ba629d0](https://github.com/congminh1254/shopee-sdk/commit/ba629d0b5abca925091ea52f0d0c5d804a7fb559))
+* **order:** implement 14 missing Order Manager functions with comprehensive tests and documentation ([#32](https://github.com/congminh1254/shopee-sdk/issues/32)) ([8f633ee](https://github.com/congminh1254/shopee-sdk/commit/8f633ee08899854cf41160de2b1f4b7011344d0d))
+* **payment:** implement all missing Payment Manager endpoints with comprehensive tests and documentation ([#38](https://github.com/congminh1254/shopee-sdk/issues/38)) ([34ea6df](https://github.com/congminh1254/shopee-sdk/commit/34ea6df8bef2c561cbd969ee3e1dd27afdf83d01))
+* **shop:** implement ShopManager with all 6 endpoints ([#24](https://github.com/congminh1254/shopee-sdk/issues/24)) ([dc1477f](https://github.com/congminh1254/shopee-sdk/commit/dc1477fce6fa27fa64423f1eb3e5269d194a523f))
+
 ## [0.10.0](https://github.com/congminh1254/shopee-sdk/compare/v0.9.0...v0.10.0) (2025-10-01)
 
 
