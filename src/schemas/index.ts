@@ -21,6 +21,7 @@ export * from "./add-on-deal.js";
 export * from "./shop-flash-sale.js";
 export * from "./follow-prize.js";
 export * from "./top-picks.js";
+export * from "./shop-category.js";
 // Media and MediaSpace schemas export the same types, so they are not exported from the main index
 // Import them directly from their respective files when needed:
 // import * as Media from "./schemas/media.js";
