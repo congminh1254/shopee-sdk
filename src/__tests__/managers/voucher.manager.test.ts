@@ -127,6 +127,56 @@ describe("VoucherManager", () => {
 
       expect(result).toEqual(mockResponse);
     });
+
+    it("should add a product voucher with item list", async () => {
+      const mockResponse: AddVoucherResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          voucher_id: 11223344,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await voucherManager.addVoucher({
+        voucher_code: "PROD15",
+        voucher_name: "15% Off Selected Products",
+        voucher_type: 2,
+        reward_type: 2,
+        percentage: 15,
+        max_price: 50.0,
+        min_basket_price: 0,
+        start_time: 1640995200,
+        end_time: 1641081600,
+        usage_quantity: 200,
+        item_id_list: [123456, 789012],
+        display_channel_list: [1, 3],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/voucher/add_voucher", {
+        method: "POST",
+        auth: true,
+        body: {
+          voucher_code: "PROD15",
+          voucher_name: "15% Off Selected Products",
+          voucher_type: 2,
+          reward_type: 2,
+          percentage: 15,
+          max_price: 50.0,
+          min_basket_price: 0,
+          start_time: 1640995200,
+          end_time: 1641081600,
+          usage_quantity: 200,
+          item_id_list: [123456, 789012],
+          display_channel_list: [1, 3],
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.voucher_id).toBe(11223344);
+    });
   });
 
   describe("deleteVoucher", () => {
@@ -220,6 +270,37 @@ describe("VoucherManager", () => {
 
       expect(result).toEqual(mockResponse);
     });
+
+    it("should update voucher display channels and item list", async () => {
+      const mockResponse: UpdateVoucherResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          voucher_id: 12345678,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await voucherManager.updateVoucher({
+        voucher_id: 12345678,
+        display_channel_list: [1, 3, 4],
+        item_id_list: [123456, 789012, 345678],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/voucher/update_voucher", {
+        method: "POST",
+        auth: true,
+        body: {
+          voucher_id: 12345678,
+          display_channel_list: [1, 3, 4],
+          item_id_list: [123456, 789012, 345678],
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
   });
 
   describe("getVoucher", () => {
@@ -264,6 +345,50 @@ describe("VoucherManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.current_usage).toBe(25);
       expect(result.response.voucher_type).toBe(1);
+    });
+
+    it("should get product voucher with item list", async () => {
+      const mockResponse: GetVoucherResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          voucher_id: 87654321,
+          voucher_code: "PROD15",
+          voucher_name: "15% Off Selected Products",
+          voucher_type: 2,
+          reward_type: 2,
+          percentage: 15,
+          max_price: 50.0,
+          min_basket_price: 0,
+          start_time: 1640995200,
+          end_time: 1641081600,
+          display_channel_list: [1, 3],
+          usage_quantity: 200,
+          current_usage: 45,
+          is_admin: false,
+          voucher_purpose: 0,
+          item_id_list: [123456, 789012],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await voucherManager.getVoucher({
+        voucher_id: 87654321,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/voucher/get_voucher", {
+        method: "GET",
+        auth: true,
+        params: {
+          voucher_id: 87654321,
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.voucher_type).toBe(2);
+      expect(result.response.item_id_list).toEqual([123456, 789012]);
     });
   });
 
