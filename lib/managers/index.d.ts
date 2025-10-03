@@ -20,3 +20,4 @@ export * from "./add-on-deal.manager.js";
 export * from "./shop-flash-sale.manager.js";
 export * from "./follow-prize.manager.js";
 export * from "./top-picks.manager.js";
+export * from "./shop-category.manager.js";

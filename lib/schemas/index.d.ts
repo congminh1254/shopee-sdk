@@ -21,3 +21,4 @@ export * from "./add-on-deal.js";
 export * from "./shop-flash-sale.js";
 export * from "./follow-prize.js";
 export * from "./top-picks.js";
+export * from "./shop-category.js";
