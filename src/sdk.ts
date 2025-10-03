@@ -25,6 +25,7 @@ import { BundleDealManager } from "./managers/bundle-deal.manager.js";
 import { AddOnDealManager } from "./managers/add-on-deal.manager.js";
 import { ShopFlashSaleManager } from "./managers/shop-flash-sale.manager.js";
 import { FollowPrizeManager } from "./managers/follow-prize.manager.js";
+import { TopPicksManager } from "./managers/top-picks.manager.js";
 import { Agent } from "node:http";
 
 export interface ShopeeConfig {
@@ -61,6 +62,7 @@ export class ShopeeSDK {
   public readonly addOnDeal: AddOnDealManager;
   public readonly shopFlashSale: ShopFlashSaleManager;
   public readonly followPrize: FollowPrizeManager;
+  public readonly topPicks: TopPicksManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       region: ShopeeRegion.GLOBAL,
@@ -96,6 +98,7 @@ export class ShopeeSDK {
     this.addOnDeal = new AddOnDealManager(this.config);
     this.shopFlashSale = new ShopFlashSaleManager(this.config);
     this.followPrize = new FollowPrizeManager(this.config);
+    this.topPicks = new TopPicksManager(this.config);
   }
 
   public getConfig(): ShopeeConfig {
