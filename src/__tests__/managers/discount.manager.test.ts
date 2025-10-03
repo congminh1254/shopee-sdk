@@ -58,19 +58,15 @@ describe("DiscountManager", () => {
         end_time: 1625382613,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/add_discount",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            discount_name: "test-create",
-            start_time: 1624864213,
-            end_time: 1625382613,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/add_discount", {
+        method: "POST",
+        auth: true,
+        body: {
+          discount_name: "test-create",
+          start_time: 1624864213,
+          end_time: 1625382613,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -182,17 +178,13 @@ describe("DiscountManager", () => {
         discount_id: 665123666665499,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/delete_discount",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            discount_id: 665123666665499,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/delete_discount", {
+        method: "POST",
+        auth: true,
+        body: {
+          discount_id: 665123666665499,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -218,19 +210,15 @@ describe("DiscountManager", () => {
         model_id: 10000153738,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/delete_discount_item",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            discount_id: 665123666665499,
-            item_id: 100862614,
-            model_id: 10000153738,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/delete_discount_item", {
+        method: "POST",
+        auth: true,
+        body: {
+          discount_id: 665123666665499,
+          item_id: 100862614,
+          model_id: 10000153738,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -254,17 +242,13 @@ describe("DiscountManager", () => {
         discount_id: 66512366666549900,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/end_discount",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            discount_id: 66512366666549900,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/end_discount", {
+        method: "POST",
+        auth: true,
+        body: {
+          discount_id: 66512366666549900,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -323,19 +307,15 @@ describe("DiscountManager", () => {
         page_size: 50,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/get_discount",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            discount_id: 1000029882,
-            page_no: 1,
-            page_size: 50,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_discount", {
+        method: "GET",
+        auth: true,
+        params: {
+          discount_id: 1000029882,
+          page_no: 1,
+          page_size: 50,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.item_list).toHaveLength(1);
@@ -388,19 +368,15 @@ describe("DiscountManager", () => {
         page_size: 100,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/get_discount_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            discount_status: "ongoing",
-            page_no: 1,
-            page_size: 100,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_discount_list", {
+        method: "GET",
+        auth: true,
+        params: {
+          discount_status: "ongoing",
+          page_no: 1,
+          page_size: 100,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.discount_list).toHaveLength(3);
@@ -456,20 +432,16 @@ describe("DiscountManager", () => {
         discount_name: "The discount 111",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/update_discount",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            discount_id: 661460179119131,
-            start_time: 1656403800,
-            end_time: 1656494739,
-            discount_name: "The discount 111",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/update_discount", {
+        method: "POST",
+        auth: true,
+        body: {
+          discount_id: 661460179119131,
+          start_time: 1656403800,
+          end_time: 1656494739,
+          discount_name: "The discount 111",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -519,34 +491,30 @@ describe("DiscountManager", () => {
         ],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/update_discount_item",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            discount_id: 1000029745,
-            item_list: [
-              {
-                item_id: 1776783,
-                purchase_limit: 2,
-                model_list: [
-                  {
-                    model_id: 0,
-                    model_promotion_price: 96,
-                  },
-                ],
-              },
-              {
-                item_id: 1778783,
-                purchase_limit: 2,
-                item_promotion_price: 11,
-              },
-            ],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/update_discount_item", {
+        method: "POST",
+        auth: true,
+        body: {
+          discount_id: 1000029745,
+          item_list: [
+            {
+              item_id: 1776783,
+              purchase_limit: 2,
+              model_list: [
+                {
+                  model_id: 0,
+                  model_promotion_price: 96,
+                },
+              ],
+            },
+            {
+              item_id: 1778783,
+              purchase_limit: 2,
+              item_promotion_price: 11,
+            },
+          ],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.error_list).toHaveLength(1);
