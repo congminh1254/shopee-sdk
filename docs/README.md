@@ -27,6 +27,14 @@ Each manager provides access to a specific set of Shopee API endpoints:
 - [ShopManager](./managers/shop.md) - Shop information and profile management
 - [MediaManager](./managers/media.md) - Image and video upload operations
 - [MediaSpaceManager](./managers/media-space.md) - Media file uploads (images and videos)
+- [GlobalProductManager](./managers/global-product.md) - Global product management
+- [FirstMileManager](./managers/first-mile.md) - First mile logistics operations
+- [DiscountManager](./managers/discount.md) - Discount promotion campaigns
+- [BundleDealManager](./managers/bundle-deal.md) - Bundle deal promotions
+- [AddOnDealManager](./managers/add-on-deal.md) - Add-on deal promotions
+- [ShopFlashSaleManager](./managers/shop-flash-sale.md) - Flash sale campaigns
+- [FollowPrizeManager](./managers/follow-prize.md) - Follow prize activities
+- [TopPicksManager](./managers/top-picks.md) - Top picks product collections
 
 ## Quick Start
 
