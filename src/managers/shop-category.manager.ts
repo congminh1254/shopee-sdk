@@ -135,9 +135,7 @@ export class ShopCategoryManager extends BaseManager {
    * });
    * ```
    */
-  async updateShopCategory(
-    params: UpdateShopCategoryParams
-  ): Promise<UpdateShopCategoryResponse> {
+  async updateShopCategory(params: UpdateShopCategoryParams): Promise<UpdateShopCategoryResponse> {
     const response = await ShopeeFetch.fetch<UpdateShopCategoryResponse>(
       this.config,
       "/shop_category/update_shop_category",
@@ -174,9 +172,7 @@ export class ShopCategoryManager extends BaseManager {
    * console.log('Deleted category:', result.response.shop_category_id);
    * ```
    */
-  async deleteShopCategory(
-    params: DeleteShopCategoryParams
-  ): Promise<DeleteShopCategoryResponse> {
+  async deleteShopCategory(params: DeleteShopCategoryParams): Promise<DeleteShopCategoryResponse> {
     const response = await ShopeeFetch.fetch<DeleteShopCategoryResponse>(
       this.config,
       "/shop_category/delete_shop_category",
@@ -301,7 +297,9 @@ export class ShopCategoryManager extends BaseManager {
    * console.log('Has more:', result.response.more);
    * ```
    */
-  async getItemList(params: GetShopCategoryItemListParams): Promise<GetShopCategoryItemListResponse> {
+  async getItemList(
+    params: GetShopCategoryItemListParams
+  ): Promise<GetShopCategoryItemListResponse> {
     const response = await ShopeeFetch.fetch<GetShopCategoryItemListResponse>(
       this.config,
       "/shop_category/get_item_list",

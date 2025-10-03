@@ -140,18 +140,14 @@ describe("ShopCategoryManager", () => {
         sort_weight: 21,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop_category/add_shop_category",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            name: "OA_V2_1",
-            sort_weight: 21,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/add_shop_category", {
+        method: "POST",
+        auth: true,
+        body: {
+          name: "OA_V2_1",
+          sort_weight: 21,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.shop_category_id).toBe(29333);
@@ -173,17 +169,13 @@ describe("ShopCategoryManager", () => {
         name: "Summer Collection",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop_category/add_shop_category",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            name: "Summer Collection",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/add_shop_category", {
+        method: "POST",
+        auth: true,
+        body: {
+          name: "Summer Collection",
+        },
+      });
 
       expect(result.response.shop_category_id).toBe(29334);
     });
@@ -330,18 +322,14 @@ describe("ShopCategoryManager", () => {
         item_list: [100908152, 100908153, 100908154, 100908155],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop_category/add_item_list",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            shop_category_id: 29333,
-            item_list: [100908152, 100908153, 100908154, 100908155],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/add_item_list", {
+        method: "POST",
+        auth: true,
+        body: {
+          shop_category_id: 29333,
+          item_list: [100908152, 100908153, 100908154, 100908155],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.current_count).toBe(4);
@@ -409,18 +397,14 @@ describe("ShopCategoryManager", () => {
         item_list: [100908152, 100908153],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop_category/delete_item_list",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            shop_category_id: 29333,
-            item_list: [100908152, 100908153],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/delete_item_list", {
+        method: "POST",
+        auth: true,
+        body: {
+          shop_category_id: 29333,
+          item_list: [100908152, 100908153],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.current_count).toBe(0);
@@ -471,19 +455,15 @@ describe("ShopCategoryManager", () => {
         page_no: 4,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop_category/get_item_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            shop_category_id: 231232,
-            page_size: 20,
-            page_no: 4,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/get_item_list", {
+        method: "GET",
+        auth: true,
+        params: {
+          shop_category_id: 231232,
+          page_size: 20,
+          page_no: 4,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.item_list).toHaveLength(2);
