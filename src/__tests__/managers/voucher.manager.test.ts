@@ -10,6 +10,7 @@ import {
   UpdateVoucherResponse,
   GetVoucherResponse,
   GetVoucherListResponse,
+  VoucherStatus,
 } from "../../schemas/voucher.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -51,16 +52,14 @@ describe("VoucherManager", () => {
       const result = await voucherManager.addVoucher({
         voucher_code: "SAVE20",
         voucher_name: "20% Off Flash Sale",
-        voucher_type: "SHOP_VOUCHER",
-        reward_type: "PERCENTAGE_DISCOUNT",
+        voucher_type: 1,
+        reward_type: 2,
         percentage: 20,
         min_basket_price: 50.0,
         start_time: 1640995200,
         end_time: 1641081600,
         display_start_time: 1640908800,
-        display_end_time: 1641081600,
         usage_quantity: 100,
-        limit_per_user: 1,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/voucher/add_voucher", {
@@ -69,16 +68,14 @@ describe("VoucherManager", () => {
         body: {
           voucher_code: "SAVE20",
           voucher_name: "20% Off Flash Sale",
-          voucher_type: "SHOP_VOUCHER",
-          reward_type: "PERCENTAGE_DISCOUNT",
+          voucher_type: 1,
+          reward_type: 2,
           percentage: 20,
           min_basket_price: 50.0,
           start_time: 1640995200,
           end_time: 1641081600,
           display_start_time: 1640908800,
-          display_end_time: 1641081600,
           usage_quantity: 100,
-          limit_per_user: 1,
         },
       });
 
@@ -101,16 +98,14 @@ describe("VoucherManager", () => {
       const result = await voucherManager.addVoucher({
         voucher_code: "SAVE10SGD",
         voucher_name: "$10 Off Your Order",
-        voucher_type: "SHOP_VOUCHER",
-        reward_type: "FIXED_DISCOUNT",
+        voucher_type: 1,
+        reward_type: 1,
         discount_amount: 10.0,
         min_basket_price: 30.0,
         start_time: 1640995200,
         end_time: 1641081600,
         display_start_time: 1640908800,
-        display_end_time: 1641081600,
         usage_quantity: 50,
-        limit_per_user: 2,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/voucher/add_voucher", {
@@ -119,20 +114,68 @@ describe("VoucherManager", () => {
         body: {
           voucher_code: "SAVE10SGD",
           voucher_name: "$10 Off Your Order",
-          voucher_type: "SHOP_VOUCHER",
-          reward_type: "FIXED_DISCOUNT",
+          voucher_type: 1,
+          reward_type: 1,
           discount_amount: 10.0,
           min_basket_price: 30.0,
           start_time: 1640995200,
           end_time: 1641081600,
           display_start_time: 1640908800,
-          display_end_time: 1641081600,
           usage_quantity: 50,
-          limit_per_user: 2,
         },
       });
 
       expect(result).toEqual(mockResponse);
+    });
+
+    it("should add a product voucher with item list", async () => {
+      const mockResponse: AddVoucherResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          voucher_id: 11223344,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await voucherManager.addVoucher({
+        voucher_code: "PROD15",
+        voucher_name: "15% Off Selected Products",
+        voucher_type: 2,
+        reward_type: 2,
+        percentage: 15,
+        max_price: 50.0,
+        min_basket_price: 0,
+        start_time: 1640995200,
+        end_time: 1641081600,
+        usage_quantity: 200,
+        item_id_list: [123456, 789012],
+        display_channel_list: [1, 3],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/voucher/add_voucher", {
+        method: "POST",
+        auth: true,
+        body: {
+          voucher_code: "PROD15",
+          voucher_name: "15% Off Selected Products",
+          voucher_type: 2,
+          reward_type: 2,
+          percentage: 15,
+          max_price: 50.0,
+          min_basket_price: 0,
+          start_time: 1640995200,
+          end_time: 1641081600,
+          usage_quantity: 200,
+          item_id_list: [123456, 789012],
+          display_channel_list: [1, 3],
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.voucher_id).toBe(11223344);
     });
   });
 
@@ -227,6 +270,37 @@ describe("VoucherManager", () => {
 
       expect(result).toEqual(mockResponse);
     });
+
+    it("should update voucher display channels and item list", async () => {
+      const mockResponse: UpdateVoucherResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          voucher_id: 12345678,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await voucherManager.updateVoucher({
+        voucher_id: 12345678,
+        display_channel_list: [1, 3, 4],
+        item_id_list: [123456, 789012, 345678],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/voucher/update_voucher", {
+        method: "POST",
+        auth: true,
+        body: {
+          voucher_id: 12345678,
+          display_channel_list: [1, 3, 4],
+          item_id_list: [123456, 789012, 345678],
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
   });
 
   describe("getVoucher", () => {
@@ -239,25 +313,18 @@ describe("VoucherManager", () => {
           voucher_id: 12345678,
           voucher_code: "SAVE20",
           voucher_name: "20% Off Flash Sale",
-          voucher_type: "SHOP_VOUCHER",
-          reward_type: "PERCENTAGE_DISCOUNT",
+          voucher_type: 1,
+          reward_type: 2,
           percentage: 20,
-          discount_amount: 0,
           min_basket_price: 50.0,
           start_time: 1640995200,
           end_time: 1641081600,
           display_start_time: 1640908800,
-          display_end_time: 1641081600,
+          display_channel_list: [1],
           usage_quantity: 100,
-          current_usage_quantity: 25,
-          limit_per_user: 1,
-          budget: 0,
-          current_budget_usage: 0,
-          status: "ONGOING",
-          create_time: 1640908800,
-          update_time: 1640995200,
-          display_channel_list: ["SHOP_HOMEPAGE"],
-          item_id_list: [],
+          current_usage: 25,
+          is_admin: false,
+          voucher_purpose: 0,
         },
       };
 
@@ -276,8 +343,52 @@ describe("VoucherManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.current_usage_quantity).toBe(25);
-      expect(result.response.status).toBe("ONGOING");
+      expect(result.response.current_usage).toBe(25);
+      expect(result.response.voucher_type).toBe(1);
+    });
+
+    it("should get product voucher with item list", async () => {
+      const mockResponse: GetVoucherResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          voucher_id: 87654321,
+          voucher_code: "PROD15",
+          voucher_name: "15% Off Selected Products",
+          voucher_type: 2,
+          reward_type: 2,
+          percentage: 15,
+          max_price: 50.0,
+          min_basket_price: 0,
+          start_time: 1640995200,
+          end_time: 1641081600,
+          display_channel_list: [1, 3],
+          usage_quantity: 200,
+          current_usage: 45,
+          is_admin: false,
+          voucher_purpose: 0,
+          item_id_list: [123456, 789012],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await voucherManager.getVoucher({
+        voucher_id: 87654321,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/voucher/get_voucher", {
+        method: "GET",
+        auth: true,
+        params: {
+          voucher_id: 87654321,
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.voucher_type).toBe(2);
+      expect(result.response.item_id_list).toEqual([123456, 789012]);
     });
   });
 
@@ -294,49 +405,33 @@ describe("VoucherManager", () => {
               voucher_id: 12345678,
               voucher_code: "SAVE20",
               voucher_name: "20% Off Flash Sale",
-              voucher_type: "SHOP_VOUCHER",
-              reward_type: "PERCENTAGE_DISCOUNT",
+              voucher_type: 1,
+              reward_type: 2,
               percentage: 20,
-              discount_amount: 0,
               min_basket_price: 50.0,
               start_time: 1640995200,
               end_time: 1641081600,
               display_start_time: 1640908800,
-              display_end_time: 1641081600,
               usage_quantity: 100,
-              current_usage_quantity: 25,
-              limit_per_user: 1,
-              budget: 0,
-              current_budget_usage: 0,
-              status: "ONGOING",
-              create_time: 1640908800,
-              update_time: 1640995200,
-              display_channel_list: ["SHOP_HOMEPAGE"],
-              item_id_list: [],
+              current_usage: 25,
+              is_admin: false,
+              voucher_purpose: 0,
             },
             {
               voucher_id: 87654321,
               voucher_code: "SAVE10SGD",
               voucher_name: "$10 Off Your Order",
-              voucher_type: "SHOP_VOUCHER",
-              reward_type: "FIXED_DISCOUNT",
-              percentage: 0,
+              voucher_type: 1,
+              reward_type: 1,
               discount_amount: 10.0,
               min_basket_price: 30.0,
               start_time: 1641168000,
               end_time: 1641254400,
               display_start_time: 1641081600,
-              display_end_time: 1641254400,
               usage_quantity: 50,
-              current_usage_quantity: 0,
-              limit_per_user: 2,
-              budget: 0,
-              current_budget_usage: 0,
-              status: "UPCOMING",
-              create_time: 1641081600,
-              update_time: 1641081600,
-              display_channel_list: ["SHOP_HOMEPAGE"],
-              item_id_list: [],
+              current_usage: 0,
+              is_admin: false,
+              voucher_purpose: 0,
             },
           ],
         },
@@ -345,7 +440,7 @@ describe("VoucherManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await voucherManager.getVoucherList({
-        status: "ALL",
+        status: VoucherStatus.ALL,
         page_no: 1,
         page_size: 20,
       });
@@ -354,7 +449,7 @@ describe("VoucherManager", () => {
         method: "GET",
         auth: true,
         params: {
-          status: "ALL",
+          status: "all",
           page_no: 1,
           page_size: 20,
         },
@@ -377,25 +472,17 @@ describe("VoucherManager", () => {
               voucher_id: 12345678,
               voucher_code: "SAVE20",
               voucher_name: "20% Off Flash Sale",
-              voucher_type: "SHOP_VOUCHER",
-              reward_type: "PERCENTAGE_DISCOUNT",
+              voucher_type: 1,
+              reward_type: 2,
               percentage: 20,
-              discount_amount: 0,
               min_basket_price: 50.0,
               start_time: 1640995200,
               end_time: 1641081600,
               display_start_time: 1640908800,
-              display_end_time: 1641081600,
               usage_quantity: 100,
-              current_usage_quantity: 25,
-              limit_per_user: 1,
-              budget: 0,
-              current_budget_usage: 0,
-              status: "ONGOING",
-              create_time: 1640908800,
-              update_time: 1640995200,
-              display_channel_list: ["SHOP_HOMEPAGE"],
-              item_id_list: [],
+              current_usage: 25,
+              is_admin: false,
+              voucher_purpose: 0,
             },
           ],
         },
@@ -404,20 +491,20 @@ describe("VoucherManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await voucherManager.getVoucherList({
-        status: "ONGOING",
+        status: VoucherStatus.ONGOING,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/voucher/get_voucher_list", {
         method: "GET",
         auth: true,
         params: {
-          status: "ONGOING",
+          status: "ongoing",
         },
       });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.voucher_list).toHaveLength(1);
-      expect(result.response.voucher_list[0].status).toBe("ONGOING");
+      expect(result.response.voucher_list[0].voucher_type).toBe(1);
     });
   });
 });
