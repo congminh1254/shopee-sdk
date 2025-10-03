@@ -423,17 +423,13 @@ describe("PaymentManager", () => {
         order_sn_list: ["220101000000001", "220101000000002"],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_escrow_detail_batch",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            order_sn_list: ["220101000000001", "220101000000002"],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_escrow_detail_batch", {
+        method: "GET",
+        auth: true,
+        params: {
+          order_sn_list: ["220101000000001", "220101000000002"],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.order_income_list).toHaveLength(1);
@@ -681,19 +677,15 @@ describe("PaymentManager", () => {
         currency: "SGD",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/generate_income_report",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            start_time: 1651680000,
-            end_time: 1651939200,
-            currency: "SGD",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/generate_income_report", {
+        method: "POST",
+        auth: true,
+        body: {
+          start_time: 1651680000,
+          end_time: 1651939200,
+          currency: "SGD",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.income_report_id).toBe("REPORT_123456");
