@@ -21,6 +21,7 @@ import { DiscountManager } from "./managers/discount.manager.js";
 import { BundleDealManager } from "./managers/bundle-deal.manager.js";
 import { AddOnDealManager } from "./managers/add-on-deal.manager.js";
 import { ShopFlashSaleManager } from "./managers/shop-flash-sale.manager.js";
+import { FollowPrizeManager } from "./managers/follow-prize.manager.js";
 import { Agent } from "node:http";
 export interface ShopeeConfig {
     partner_id: number;
@@ -54,6 +55,7 @@ export declare class ShopeeSDK {
     readonly bundleDeal: BundleDealManager;
     readonly addOnDeal: AddOnDealManager;
     readonly shopFlashSale: ShopFlashSaleManager;
+    readonly followPrize: FollowPrizeManager;
     constructor(config: ShopeeConfig, tokenStorage?: TokenStorage);
     getConfig(): ShopeeConfig;
     setRegion(region: ShopeeRegion): void;

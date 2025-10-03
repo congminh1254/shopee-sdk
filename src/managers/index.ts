@@ -18,3 +18,4 @@ export * from "./discount.manager.js";
 export * from "./bundle-deal.manager.js";
 export * from "./add-on-deal.manager.js";
 export * from "./shop-flash-sale.manager.js";
+export * from "./follow-prize.manager.js";
