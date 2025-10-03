@@ -18,3 +18,4 @@ export * from "./first-mile.js";
 export * from "./discount.js";
 export * from "./bundle-deal.js";
 export * from "./add-on-deal.js";
+export * from "./shop-flash-sale.js";
