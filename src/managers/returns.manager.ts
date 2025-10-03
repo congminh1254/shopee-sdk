@@ -107,15 +107,11 @@ export class ReturnsManager extends BaseManager {
    * @throws {Error} When the API request fails or returns an error
    */
   async confirm(params: ConfirmParams): Promise<ConfirmResponse> {
-    const response = await ShopeeFetch.fetch<ConfirmResponse>(
-      this.config,
-      "/returns/confirm",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
+    const response = await ShopeeFetch.fetch<ConfirmResponse>(this.config, "/returns/confirm", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
     return response;
   }
 
@@ -135,15 +131,11 @@ export class ReturnsManager extends BaseManager {
    * @throws {Error} When the API request fails or returns an error
    */
   async dispute(params: DisputeParams): Promise<DisputeResponse> {
-    const response = await ShopeeFetch.fetch<DisputeResponse>(
-      this.config,
-      "/returns/dispute",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
+    const response = await ShopeeFetch.fetch<DisputeResponse>(this.config, "/returns/dispute", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
     return response;
   }
 
@@ -161,15 +153,11 @@ export class ReturnsManager extends BaseManager {
    * @throws {Error} When the API request fails or returns an error
    */
   async offer(params: OfferParams): Promise<OfferResponse> {
-    const response = await ShopeeFetch.fetch<OfferResponse>(
-      this.config,
-      "/returns/offer",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
+    const response = await ShopeeFetch.fetch<OfferResponse>(this.config, "/returns/offer", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
     return response;
   }
 
@@ -208,7 +196,9 @@ export class ReturnsManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async getAvailableSolutions(params: GetAvailableSolutionsParams): Promise<GetAvailableSolutionsResponse> {
+  async getAvailableSolutions(
+    params: GetAvailableSolutionsParams
+  ): Promise<GetAvailableSolutionsResponse> {
     const response = await ShopeeFetch.fetch<GetAvailableSolutionsResponse>(
       this.config,
       "/returns/get_available_solutions",
@@ -257,7 +247,9 @@ export class ReturnsManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async getReturnDisputeReason(params: GetReturnDisputeReasonParams): Promise<GetReturnDisputeReasonResponse> {
+  async getReturnDisputeReason(
+    params: GetReturnDisputeReasonParams
+  ): Promise<GetReturnDisputeReasonResponse> {
     const response = await ShopeeFetch.fetch<GetReturnDisputeReasonResponse>(
       this.config,
       "/returns/get_return_dispute_reason",
@@ -386,7 +378,9 @@ export class ReturnsManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async uploadShippingProof(params: UploadShippingProofParams): Promise<UploadShippingProofResponse> {
+  async uploadShippingProof(
+    params: UploadShippingProofParams
+  ): Promise<UploadShippingProofResponse> {
     const response = await ShopeeFetch.fetch<UploadShippingProofResponse>(
       this.config,
       "/returns/upload_shipping_proof",

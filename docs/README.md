@@ -19,6 +19,7 @@ Each manager provides access to a specific set of Shopee API endpoints:
 - [LogisticsManager](./managers/logistics.md) - Shipping and tracking
 - [PaymentManager](./managers/payment.md) - Payment and escrow information
 - [VoucherManager](./managers/voucher.md) - Discount voucher management
+- [ReturnsManager](./managers/returns.md) - Return and refund request management
 - [PushManager](./managers/push.md) - Webhook and push notification configuration
 - [PublicManager](./managers/public.md) - Public API endpoints (no auth required)
 - [AdsManager](./managers/ads.md) - Advertising campaign management

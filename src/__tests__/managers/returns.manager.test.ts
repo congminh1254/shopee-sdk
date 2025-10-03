@@ -101,18 +101,14 @@ describe("ReturnsManager", () => {
         page_size: 10,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_return_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            page_no: 1,
-            page_size: 10,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_return_list", {
+        method: "GET",
+        auth: true,
+        params: {
+          page_no: 1,
+          page_size: 10,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.more).toBe(true);
@@ -142,22 +138,18 @@ describe("ReturnsManager", () => {
         negotiation_status: "PENDING_RESPOND",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_return_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            page_no: 1,
-            page_size: 20,
-            create_time_from: 1655392442,
-            create_time_to: 1655392542,
-            status: "REQUESTED",
-            negotiation_status: "PENDING_RESPOND",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_return_list", {
+        method: "GET",
+        auth: true,
+        params: {
+          page_no: 1,
+          page_size: 20,
+          create_time_from: 1655392442,
+          create_time_to: 1655392542,
+          status: "REQUESTED",
+          negotiation_status: "PENDING_RESPOND",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -233,17 +225,13 @@ describe("ReturnsManager", () => {
         return_sn: "2206140TA5PM808",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_return_detail",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            return_sn: "2206140TA5PM808",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_return_detail", {
+        method: "GET",
+        auth: true,
+        params: {
+          return_sn: "2206140TA5PM808",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.return_sn).toBe("2206140TA5PM808");
@@ -268,17 +256,13 @@ describe("ReturnsManager", () => {
         return_sn: "200203171852695",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/confirm",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            return_sn: "200203171852695",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/confirm", {
+        method: "POST",
+        auth: true,
+        body: {
+          return_sn: "200203171852695",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.return_sn).toBe("200203171852695");
@@ -306,21 +290,17 @@ describe("ReturnsManager", () => {
         images: ["https://cf.shopee.sg/file/evidence1.jpg"],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/dispute",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            return_sn: "200203171852695",
-            email: "seller@example.com",
-            dispute_reason: 2,
-            dispute_text_reason: "Product condition not as described by buyer",
-            images: ["https://cf.shopee.sg/file/evidence1.jpg"],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/dispute", {
+        method: "POST",
+        auth: true,
+        body: {
+          return_sn: "200203171852695",
+          email: "seller@example.com",
+          dispute_reason: 2,
+          dispute_text_reason: "Product condition not as described by buyer",
+          images: ["https://cf.shopee.sg/file/evidence1.jpg"],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -343,19 +323,15 @@ describe("ReturnsManager", () => {
         dispute_reason: 1,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/dispute",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            return_sn: "200203171852695",
-            email: "seller@example.com",
-            dispute_reason: 1,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/dispute", {
+        method: "POST",
+        auth: true,
+        body: {
+          return_sn: "200203171852695",
+          email: "seller@example.com",
+          dispute_reason: 1,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -380,19 +356,15 @@ describe("ReturnsManager", () => {
         refund_amount: 50.0,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/offer",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            return_sn: "200203171852695",
-            solution: 0,
-            refund_amount: 50.0,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/offer", {
+        method: "POST",
+        auth: true,
+        body: {
+          return_sn: "200203171852695",
+          solution: 0,
+          refund_amount: 50.0,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -415,17 +387,13 @@ describe("ReturnsManager", () => {
         return_sn: "200203171852695",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/accept_offer",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            return_sn: "200203171852695",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/accept_offer", {
+        method: "POST",
+        auth: true,
+        body: {
+          return_sn: "200203171852695",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.return_sn).toBe("200203171852695");
@@ -458,17 +426,13 @@ describe("ReturnsManager", () => {
         return_sn: "200203171852695",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_available_solutions",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            return_sn: "200203171852695",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_available_solutions", {
+        method: "GET",
+        auth: true,
+        params: {
+          return_sn: "200203171852695",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.solution).toHaveLength(2);
@@ -493,17 +457,13 @@ describe("ReturnsManager", () => {
         return_sn: "200203171852695",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/cancel_dispute",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            return_sn: "200203171852695",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/cancel_dispute", {
+        method: "POST",
+        auth: true,
+        body: {
+          return_sn: "200203171852695",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.return_sn).toBe("200203171852695");
@@ -576,26 +536,16 @@ describe("ReturnsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await returnsManager.convertImage({
-        images: [
-          { image: "base64_encoded_image_1" },
-          { image: "base64_encoded_image_2" },
-        ],
+        images: [{ image: "base64_encoded_image_1" }, { image: "base64_encoded_image_2" }],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/convert_image",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            images: [
-              { image: "base64_encoded_image_1" },
-              { image: "base64_encoded_image_2" },
-            ],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/convert_image", {
+        method: "POST",
+        auth: true,
+        body: {
+          images: [{ image: "base64_encoded_image_1" }, { image: "base64_encoded_image_2" }],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.images).toHaveLength(2);
@@ -622,20 +572,16 @@ describe("ReturnsManager", () => {
         proof_video: [{ url: "https://cf.shopee.sg/file/proof1.mp4" }],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/upload_proof",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            return_sn: "200203171852695",
-            proof_text: [{ text: "Product was not damaged when shipped" }],
-            proof_image: [{ url: "https://cf.shopee.sg/file/proof1.jpg" }],
-            proof_video: [{ url: "https://cf.shopee.sg/file/proof1.mp4" }],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_proof", {
+        method: "POST",
+        auth: true,
+        body: {
+          return_sn: "200203171852695",
+          proof_text: [{ text: "Product was not damaged when shipped" }],
+          proof_image: [{ url: "https://cf.shopee.sg/file/proof1.jpg" }],
+          proof_video: [{ url: "https://cf.shopee.sg/file/proof1.mp4" }],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.return_sn).toBe("200203171852695");
@@ -658,18 +604,14 @@ describe("ReturnsManager", () => {
         proof_text: [{ text: "Evidence description" }],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/upload_proof",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            return_sn: "200203171852695",
-            proof_text: [{ text: "Evidence description" }],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_proof", {
+        method: "POST",
+        auth: true,
+        body: {
+          return_sn: "200203171852695",
+          proof_text: [{ text: "Evidence description" }],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -694,17 +636,13 @@ describe("ReturnsManager", () => {
         return_sn: "200203171852695",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/query_proof",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            return_sn: "200203171852695",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/query_proof", {
+        method: "GET",
+        auth: true,
+        params: {
+          return_sn: "200203171852695",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.proof_text).toHaveLength(1);
@@ -741,17 +679,13 @@ describe("ReturnsManager", () => {
         return_sn: "200203171852695",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_shipping_carrier",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            return_sn: "200203171852695",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_shipping_carrier", {
+        method: "GET",
+        auth: true,
+        params: {
+          return_sn: "200203171852695",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.carrier_list).toHaveLength(2);
@@ -778,19 +712,15 @@ describe("ReturnsManager", () => {
         tracking_number: "DHL123456789",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/upload_shipping_proof",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            return_sn: "200203171852695",
-            carrier_id: 1,
-            tracking_number: "DHL123456789",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_shipping_proof", {
+        method: "POST",
+        auth: true,
+        body: {
+          return_sn: "200203171852695",
+          carrier_id: 1,
+          tracking_number: "DHL123456789",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.return_sn).toBe("200203171852695");
@@ -816,21 +746,17 @@ describe("ReturnsManager", () => {
         pickup_time: "14:00",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/upload_shipping_proof",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            return_sn: "200203171852695",
-            carrier_id: 1,
-            tracking_number: "DHL123456789",
-            pickup_date: "2024-01-15",
-            pickup_time: "14:00",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_shipping_proof", {
+        method: "POST",
+        auth: true,
+        body: {
+          return_sn: "200203171852695",
+          carrier_id: 1,
+          tracking_number: "DHL123456789",
+          pickup_date: "2024-01-15",
+          pickup_time: "14:00",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
