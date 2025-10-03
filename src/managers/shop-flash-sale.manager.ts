@@ -81,7 +81,9 @@ export class ShopFlashSaleManager extends BaseManager {
    * console.log('Flash sale created:', flashSale.response.flash_sale_id);
    * ```
    */
-  async createShopFlashSale(params: CreateShopFlashSaleParams): Promise<CreateShopFlashSaleResponse> {
+  async createShopFlashSale(
+    params: CreateShopFlashSaleParams
+  ): Promise<CreateShopFlashSaleResponse> {
     const response = await ShopeeFetch.fetch<CreateShopFlashSaleResponse>(
       this.config,
       "/shop_flash_sale/create_shop_flash_sale",
@@ -144,7 +146,9 @@ export class ShopFlashSaleManager extends BaseManager {
    * console.log('Total flash sales:', list.response.total_count);
    * ```
    */
-  async getShopFlashSaleList(params: GetShopFlashSaleListParams): Promise<GetShopFlashSaleListResponse> {
+  async getShopFlashSaleList(
+    params: GetShopFlashSaleListParams
+  ): Promise<GetShopFlashSaleListResponse> {
     const response = await ShopeeFetch.fetch<GetShopFlashSaleListResponse>(
       this.config,
       "/shop_flash_sale/get_shop_flash_sale_list",
@@ -177,7 +181,9 @@ export class ShopFlashSaleManager extends BaseManager {
    * console.log('Flash sale updated:', result.response.status);
    * ```
    */
-  async updateShopFlashSale(params: UpdateShopFlashSaleParams): Promise<UpdateShopFlashSaleResponse> {
+  async updateShopFlashSale(
+    params: UpdateShopFlashSaleParams
+  ): Promise<UpdateShopFlashSaleResponse> {
     const response = await ShopeeFetch.fetch<UpdateShopFlashSaleResponse>(
       this.config,
       "/shop_flash_sale/update_shop_flash_sale",
@@ -208,7 +214,9 @@ export class ShopFlashSaleManager extends BaseManager {
    * console.log('Flash sale deleted, status:', result.response.status);
    * ```
    */
-  async deleteShopFlashSale(params: DeleteShopFlashSaleParams): Promise<DeleteShopFlashSaleResponse> {
+  async deleteShopFlashSale(
+    params: DeleteShopFlashSaleParams
+  ): Promise<DeleteShopFlashSaleResponse> {
     const response = await ShopeeFetch.fetch<DeleteShopFlashSaleResponse>(
       this.config,
       "/shop_flash_sale/delete_shop_flash_sale",
@@ -253,7 +261,9 @@ export class ShopFlashSaleManager extends BaseManager {
    * console.log('Failed items:', result.response.failed_items);
    * ```
    */
-  async addShopFlashSaleItems(params: AddShopFlashSaleItemsParams): Promise<AddShopFlashSaleItemsResponse> {
+  async addShopFlashSaleItems(
+    params: AddShopFlashSaleItemsParams
+  ): Promise<AddShopFlashSaleItemsResponse> {
     const response = await ShopeeFetch.fetch<AddShopFlashSaleItemsResponse>(
       this.config,
       "/shop_flash_sale/add_shop_flash_sale_items",
@@ -288,7 +298,9 @@ export class ShopFlashSaleManager extends BaseManager {
    * console.log('Models:', items.response.models);
    * ```
    */
-  async getShopFlashSaleItems(params: GetShopFlashSaleItemsParams): Promise<GetShopFlashSaleItemsResponse> {
+  async getShopFlashSaleItems(
+    params: GetShopFlashSaleItemsParams
+  ): Promise<GetShopFlashSaleItemsResponse> {
     const response = await ShopeeFetch.fetch<GetShopFlashSaleItemsResponse>(
       this.config,
       "/shop_flash_sale/get_shop_flash_sale_items",
@@ -334,7 +346,9 @@ export class ShopFlashSaleManager extends BaseManager {
    * console.log('Failed items:', result.response.failed_items);
    * ```
    */
-  async updateShopFlashSaleItems(params: UpdateShopFlashSaleItemsParams): Promise<UpdateShopFlashSaleItemsResponse> {
+  async updateShopFlashSaleItems(
+    params: UpdateShopFlashSaleItemsParams
+  ): Promise<UpdateShopFlashSaleItemsResponse> {
     const response = await ShopeeFetch.fetch<UpdateShopFlashSaleItemsResponse>(
       this.config,
       "/shop_flash_sale/update_shop_flash_sale_items",
@@ -366,7 +380,9 @@ export class ShopFlashSaleManager extends BaseManager {
    * console.log('Items deleted');
    * ```
    */
-  async deleteShopFlashSaleItems(params: DeleteShopFlashSaleItemsParams): Promise<DeleteShopFlashSaleItemsResponse> {
+  async deleteShopFlashSaleItems(
+    params: DeleteShopFlashSaleItemsParams
+  ): Promise<DeleteShopFlashSaleItemsResponse> {
     const response = await ShopeeFetch.fetch<DeleteShopFlashSaleItemsResponse>(
       this.config,
       "/shop_flash_sale/delete_shop_flash_sale_items",
