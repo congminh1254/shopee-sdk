@@ -15,14 +15,32 @@ The LogisticsManager provides methods for:
 // Get available shipping channels
 const channels = await sdk.logistics.getChannelList();
 
-// Get shipping parameter info
-const params = await sdk.logistics.getParameterForInit({
+// Get shipping parameter info (also known as getParameterForInit)
+const params = await sdk.logistics.getShippingParameter({
   order_sn: 'ORDER123',
+});
+
+// Get list of shop addresses
+const addresses = await sdk.logistics.getAddressList();
+
+// Ship the order (arrange pickup/dropoff)
+await sdk.logistics.shipOrder({
+  order_sn: 'ORDER123',
+  pickup: {
+    address_id: addresses.address_list[0].address_id,
+    pickup_time_id: params.pickup?.address_list?.[0]?.time_slot_list?.[0]?.pickup_time_id,
+  },
 });
 
 // Get tracking number
 const tracking = await sdk.logistics.getTrackingNumber({
   order_sn: 'ORDER123',
+});
+
+// Get detailed tracking info with event history
+const trackingInfo = await sdk.logistics.getTrackingInfo({
+  order_sn: 'ORDER123',
+  package_number: 'PKG456',
 });
 ```
 
@@ -53,19 +71,21 @@ response.logistics_channel_list.forEach((channel) => {
 
 ---
 
-### getParameterForInit()
+### getShippingParameter()
 
-Get required parameters for initializing logistics for an order.
+**API Documentation:** [v2.logistics.get_shipping_parameter](https://open.shopee.com/documents/v2/v2.logistics.get_shipping_parameter?module=95&type=1)
+
+Get required parameters for initializing logistics for an order. This method is also referred to as `getParameterForInit` in some documentation.
 
 ```typescript
-const response = await sdk.logistics.getParameterForInit({
+const response = await sdk.logistics.getShippingParameter({
   order_sn: 'ORDER123',
 });
 
 console.log('Pickup address:', response.info_needed?.pickup);
 console.log('Dropoff address:', response.info_needed?.dropoff);
-console.log('Pickup time slots:', response.pickup?.time_slot_list);
-console.log('Address:', response.address_list);
+console.log('Pickup time slots:', response.pickup?.address_list?.[0]?.time_slot_list);
+console.log('Addresses:', response.pickup?.address_list);
 ```
 
 **Use Cases:**
@@ -95,6 +115,106 @@ console.log('Plp number:', response.plp_number); // Pre-printed label
 - Update internal order tracking systems
 - Verify shipment details
 
+---
+
+### getTrackingInfo()
+
+**API Documentation:** [v2.logistics.get_tracking_info](https://open.shopee.com/documents/v2/v2.logistics.get_tracking_info?module=95&type=1)
+
+Get detailed logistics tracking information with event history for an order.
+
+```typescript
+const response = await sdk.logistics.getTrackingInfo({
+  order_sn: 'ORDER123',
+  package_number: 'PKG456', // optional
+});
+
+console.log('Order:', response.order_sn);
+console.log('Current status:', response.logistics_status);
+response.tracking_info.forEach((event) => {
+  console.log('Event:', event.description);
+  console.log('Time:', new Date(event.update_time * 1000).toISOString());
+  console.log('Status:', event.logistics_status);
+});
+```
+
+**Use Cases:**
+- Track detailed shipment progress
+- Display tracking history to customers
+- Monitor delivery status updates
+- Identify potential delivery issues
+
+**Note:** This API returns an array of tracking events with timestamps, descriptions, and status codes, providing a complete timeline of the shipment's journey.
+
+---
+
+### shipOrder()
+
+**API Documentation:** [v2.logistics.ship_order](https://open.shopee.com/documents/v2/v2.logistics.ship_order?module=95&type=1)
+
+Initiate logistics for an order including arranging pickup, dropoff, or shipment. This is the core API to arrange shipment after getting shipping parameters.
+
+```typescript
+// For pickup mode
+await sdk.logistics.shipOrder({
+  order_sn: 'ORDER123',
+  pickup: {
+    address_id: 234,
+    pickup_time_id: 'slot_123',
+  },
+});
+
+// For dropoff mode
+await sdk.logistics.shipOrder({
+  order_sn: 'ORDER456',
+  dropoff: {
+    branch_id: 101,
+    sender_real_name: 'John Doe',
+  },
+});
+
+// For non-integrated channel
+await sdk.logistics.shipOrder({
+  order_sn: 'ORDER789',
+  non_integrated: {
+    tracking_number: 'TRACK123',
+  },
+});
+```
+
+**Use Cases:**
+- Arrange shipment pickup at seller's address
+- Schedule dropoff at logistics partner branch
+- Register tracking number for non-integrated channels
+- Complete the shipping initialization workflow
+
+**Important:** Must call `getShippingParameter()` first to determine which fields are required (pickup, dropoff, or non_integrated).
+
+---
+
+### getAddressList()
+
+**API Documentation:** [v2.logistics.get_address_list](https://open.shopee.com/documents/v2/v2.logistics.get_address_list?module=95&type=1)
+
+Get the list of addresses configured for the shop.
+
+```typescript
+const response = await sdk.logistics.getAddressList();
+
+response.address_list.forEach((addr) => {
+  console.log('Address ID:', addr.address_id);
+  console.log('Full Address:', addr.full_address);
+  console.log('Type:', addr.address_flag); // e.g., ['pickup_address', 'return_address']
+  console.log('Status:', addr.address_status);
+});
+```
+
+**Use Cases:**
+- Display available pickup addresses to user
+- Validate address information before shipping
+- Manage shop addresses for logistics operations
+- Get address_id for use in shipOrder() pickup parameter
+
 ## Integration Example
 
 ### Complete Shipping Workflow
@@ -121,17 +241,37 @@ async function shipOrder(orderSn: string) {
     }
     
     // Step 3: Get shipping parameters
-    const params = await sdk.logistics.getParameterForInit({
+    const params = await sdk.logistics.getShippingParameter({
       order_sn: orderSn,
     });
     
     console.log('Shipping parameters:', params);
     
-    // Step 4: Initialize logistics (if needed)
-    // Note: This would typically involve calling the ship order API
-    // which arranges the actual pickup
+    // Step 4: Get shop addresses
+    const addresses = await sdk.logistics.getAddressList();
+    const pickupAddress = addresses.address_list.find(
+      addr => addr.address_flag?.includes('pickup_address')
+    );
     
-    // Step 5: Get tracking number
+    if (!pickupAddress) {
+      throw new Error('No pickup address configured');
+    }
+    
+    // Step 5: Select pickup time slot
+    const timeSlot = params.pickup?.address_list
+      ?.find(addr => addr.address_id === pickupAddress.address_id)
+      ?.time_slot_list?.find(slot => slot.flags?.includes('recommended'));
+    
+    // Step 6: Ship the order (arrange pickup)
+    await sdk.logistics.shipOrder({
+      order_sn: orderSn,
+      pickup: {
+        address_id: pickupAddress.address_id,
+        pickup_time_id: timeSlot?.pickup_time_id || params.pickup?.address_list?.[0]?.time_slot_list?.[0]?.pickup_time_id,
+      },
+    });
+    
+    // Step 7: Get tracking number
     const tracking = await sdk.logistics.getTrackingNumber({
       order_sn: orderSn,
     });
@@ -221,18 +361,18 @@ async function safeShipOrder(orderSn: string) {
 
 ```typescript
 async function validateShippingRequirements(orderSn: string): Promise<boolean> {
-  const params = await sdk.logistics.getParameterForInit({
+  const params = await sdk.logistics.getShippingParameter({
     order_sn: orderSn,
   });
   
   // Check if pickup address is required
-  if (params.info_needed?.pickup && !params.address_list?.length) {
+  if (params.info_needed?.pickup && !params.pickup?.address_list?.length) {
     console.error('Pickup address required but not provided');
     return false;
   }
   
   // Check if time slot selection is needed
-  if (params.pickup?.time_slot_list?.length && !params.pickup.time_pickup_id) {
+  if (params.pickup?.address_list?.[0]?.time_slot_list?.length) {
     console.error('Pickup time slot selection required');
     return false;
   }
