@@ -312,9 +312,9 @@ describe("ShopeeFetch", () => {
         json: jest.fn().mockResolvedValue(invalidTokenResponse),
       });
 
-      await expect(
-        ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true })
-      ).rejects.toThrow("API Error: 401");
+      await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true })).rejects.toThrow(
+        "API Error: 401"
+      );
     });
 
     it("should throw ShopeeApiError when API returns error", async () => {

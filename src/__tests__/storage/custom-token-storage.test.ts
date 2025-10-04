@@ -92,13 +92,13 @@ describe("CustomTokenStorage", () => {
 
       const tokenPath = path.join(TEST_DIR, ".token", "789012.json");
       const defaultPath = path.join(TEST_DIR, ".token", "default.json");
-      
+
       expect(fs.existsSync(tokenPath)).toBe(true);
       expect(fs.existsSync(defaultPath)).toBe(true);
-      
+
       const storedData = JSON.parse(fs.readFileSync(tokenPath, "utf-8"));
       const defaultData = JSON.parse(fs.readFileSync(defaultPath, "utf-8"));
-      
+
       expect(storedData).toEqual(token);
       expect(defaultData).toEqual(token);
     });
@@ -136,7 +136,7 @@ describe("CustomTokenStorage", () => {
 
       const defaultPath = path.join(TEST_DIR, ".token", "default.json");
       const defaultData = JSON.parse(fs.readFileSync(defaultPath, "utf-8"));
-      
+
       // Default should still be the first token
       expect(defaultData.access_token).toBe("first_token");
     });
@@ -241,7 +241,7 @@ describe("CustomTokenStorage", () => {
       };
 
       await storage.store(token);
-      
+
       const tokenPath = path.join(TEST_DIR, ".token", "123456.json");
       expect(fs.existsSync(tokenPath)).toBe(true);
 
@@ -254,7 +254,7 @@ describe("CustomTokenStorage", () => {
 
     it("should handle clearing non-existent token gracefully", async () => {
       const storage = new CustomTokenStorage(999999);
-      
+
       // Should not throw error
       await expect(storage.clear()).resolves.not.toThrow();
     });
@@ -293,7 +293,7 @@ describe("CustomTokenStorage", () => {
   describe("integration tests", () => {
     it("should handle full lifecycle: store, get, clear", async () => {
       const storage = new CustomTokenStorage(888888);
-      
+
       // Initially should be null
       let result = await storage.get();
       expect(result).toBeNull();
