@@ -26,6 +26,7 @@ import { TopPicksManager } from "./managers/top-picks.manager.js";
 import { ShopCategoryManager } from "./managers/shop-category.manager.js";
 import { ReturnsManager } from "./managers/returns.manager.js";
 import { SbsManager } from "./managers/sbs.manager.js";
+import { FbsManager } from "./managers/fbs.manager.js";
 import { Agent } from "node:http";
 export interface ShopeeConfig {
     partner_id: number;
@@ -64,6 +65,7 @@ export declare class ShopeeSDK {
     readonly shopCategory: ShopCategoryManager;
     readonly returns: ReturnsManager;
     readonly sbs: SbsManager;
+    readonly fbs: FbsManager;
     constructor(config: ShopeeConfig, tokenStorage?: TokenStorage);
     getConfig(): ShopeeConfig;
     setRegion(region: ShopeeRegion): void;

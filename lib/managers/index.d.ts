@@ -23,3 +23,4 @@ export * from "./top-picks.manager.js";
 export * from "./shop-category.manager.js";
 export * from "./returns.manager.js";
 export * from "./sbs.manager.js";
+export * from "./fbs.manager.js";
