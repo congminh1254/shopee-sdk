@@ -24,3 +24,4 @@ export * from "./shop-category.manager.js";
 export * from "./returns.manager.js";
 export * from "./sbs.manager.js";
 export * from "./fbs.manager.js";
+export * from "./livestream.manager.js";
