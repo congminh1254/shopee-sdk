@@ -121,15 +121,11 @@ describe("FbsManager", () => {
 
       const result = await fbsManager.queryBrShopBlockStatus({});
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/fbs/query_br_shop_block_status",
-        {
-          method: "POST",
-          auth: true,
-          body: {},
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_shop_block_status", {
+        method: "POST",
+        auth: true,
+        body: {},
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.shop_id).toBe(67890);
@@ -210,15 +206,11 @@ describe("FbsManager", () => {
 
       const result = await fbsManager.queryBrShopInvoiceError({});
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/fbs/query_br_shop_invoice_error",
-        {
-          method: "POST",
-          auth: true,
-          body: {},
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_shop_invoice_error", {
+        method: "POST",
+        auth: true,
+        body: {},
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.total).toBe(2);
@@ -248,18 +240,14 @@ describe("FbsManager", () => {
         page_size: 50,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/fbs/query_br_shop_invoice_error",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            page_no: 2,
-            page_size: 50,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_shop_invoice_error", {
+        method: "POST",
+        auth: true,
+        body: {
+          page_no: 2,
+          page_size: 50,
+        },
+      });
 
       expect(result.response.total).toBe(0);
       expect(result.response.list).toHaveLength(0);
@@ -345,17 +333,13 @@ describe("FbsManager", () => {
         shop_sku_id: "123456_789012",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/fbs/query_br_sku_block_status",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            shop_sku_id: "123456_789012",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_sku_block_status", {
+        method: "POST",
+        auth: true,
+        body: {
+          shop_sku_id: "123456_789012",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.shop_sku_id).toBe("123456_789012");
