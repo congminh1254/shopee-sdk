@@ -515,9 +515,7 @@ export class LiveStreamManager extends BaseManager {
    *
    * @throws {Error} When the API request fails or returns an error
    */
-  async getItemSetItemList(
-    params: GetItemSetItemListParams
-  ): Promise<GetItemSetItemListResponse> {
+  async getItemSetItemList(params: GetItemSetItemListParams): Promise<GetItemSetItemListResponse> {
     const response = await ShopeeFetch.fetch<GetItemSetItemListResponse>(
       this.config,
       "/livestream/get_item_set_item_list",

@@ -314,8 +314,7 @@ export interface DeleteItemListResponse extends BaseResponse {
 /**
  * Parameters for getting item list
  */
-export interface GetItemListParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetItemListParams extends Record<string, string | number | boolean | undefined> {
   /** The identifier of livestream session */
   session_id: number;
   /** Specifies the starting entry of data to return */
@@ -389,8 +388,7 @@ export interface GetItemListResponse extends BaseResponse {
 /**
  * Parameters for getting item count
  */
-export interface GetItemCountParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetItemCountParams extends Record<string, string | number | boolean | undefined> {
   /** The identifier of livestream session */
   session_id: number;
 }
@@ -543,8 +541,7 @@ export interface GetItemSetItemListResponse extends BaseResponse {
 /**
  * Parameters for getting show item
  */
-export interface GetShowItemParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetShowItemParams extends Record<string, string | number | boolean | undefined> {
   /** The identifier of livestream session */
   session_id: number;
 }

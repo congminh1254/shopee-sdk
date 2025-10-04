@@ -560,18 +560,14 @@ describe("LiveStreamManager", () => {
         page_size: 10,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_recent_item_list",
-        {
-          method: "GET",
-          params: {
-            session_id: 6236215,
-            offset: 0,
-            page_size: 10,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_recent_item_list", {
+        method: "GET",
+        params: {
+          session_id: 6236215,
+          offset: 0,
+          page_size: 10,
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
