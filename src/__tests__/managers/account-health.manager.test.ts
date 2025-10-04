@@ -114,24 +114,24 @@ describe("AccountHealthManager", () => {
         message: "",
         response: {
           overall_performance: {
-            performance_rating: PerformanceRating.Good,
-            rating_threshold: [{ performance_rating: PerformanceRating.Good, lower_bound: 70 }],
+            rating: PerformanceRating.Good,
+            fulfillment_failed: 0,
+            listing_failed: 0,
+            custom_service_failed: 0,
           },
           metric_list: [
             {
               metric_type: MetricType.FulfillmentPerformance,
-              metrics: [
-                {
-                  metric_name: "Non-Fulfilment Rate",
-                  value: 2.5,
-                  unit: MetricUnit.Percentage,
-                  target: {
-                    value: 5,
-                    comparator: "<=",
-                  },
-                  description: "Percentage of non-fulfilled orders",
-                },
-              ],
+              metric_id: 3,
+              parent_metric_id: 0,
+              metric_name: "Non-Fulfilment Rate",
+              current_period: 2.5,
+              last_period: 3.0,
+              unit: MetricUnit.Percentage,
+              target: {
+                value: 5,
+                comparator: "<=",
+              },
             },
           ],
         },
@@ -151,33 +151,35 @@ describe("AccountHealthManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.overall_performance.performance_rating).toBe(PerformanceRating.Good);
+      expect(result.response.overall_performance.rating).toBe(PerformanceRating.Good);
       expect(result.response.metric_list).toHaveLength(1);
+      expect(result.response.metric_list[0].metric_name).toBe("Non-Fulfilment Rate");
     });
   });
 
   describe("getMetricSourceDetail", () => {
-    it("should get metric source details successfully", async () => {
+    it("should get metric source details for NFR successfully", async () => {
       const mockResponse: GetMetricSourceDetailResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          metric_source_detail: [
+          metric_id: 3,
+          total_count: 1,
+          nfr_order_list: [
             {
               order_sn: "210101ABCDEF",
-              create_time: 1609459200,
+              non_fulfillment_type: 1,
+              detailed_reason: 1001,
             },
           ],
-          more: false,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await accountHealthManager.getMetricSourceDetail({
-        metric_type: MetricType.FulfillmentPerformance,
-        metric_name: "Non-Fulfilment Rate",
+        metric_id: 3,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -187,15 +189,15 @@ describe("AccountHealthManager", () => {
           method: "GET",
           auth: true,
           params: {
-            metric_type: MetricType.FulfillmentPerformance,
-            metric_name: "Non-Fulfilment Rate",
+            metric_id: 3,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.metric_source_detail).toHaveLength(1);
-      expect(result.response.more).toBe(false);
+      expect(result.response.metric_id).toBe(3);
+      expect(result.response.total_count).toBe(1);
+      expect(result.response.nfr_order_list).toHaveLength(1);
     });
 
     it("should handle pagination parameters", async () => {
@@ -204,18 +206,24 @@ describe("AccountHealthManager", () => {
         error: "",
         message: "",
         response: {
-          metric_source_detail: [],
-          more: true,
+          metric_id: 52,
+          total_count: 5,
+          violation_listing_list: [
+            {
+              item_id: 123456,
+              detailed_reason: 1,
+              update_time: 1609459200,
+            },
+          ],
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await accountHealthManager.getMetricSourceDetail({
-        metric_type: MetricType.ListingPerformance,
-        metric_name: "Test Metric",
+        metric_id: 52,
+        page_no: 1,
         page_size: 20,
-        cursor: "cursor123",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -225,15 +233,15 @@ describe("AccountHealthManager", () => {
           method: "GET",
           auth: true,
           params: {
-            metric_type: MetricType.ListingPerformance,
-            metric_name: "Test Metric",
+            metric_id: 52,
+            page_no: 1,
             page_size: 20,
-            cursor: "cursor123",
           },
         }
       );
 
-      expect(result.response.more).toBe(true);
+      expect(result.response.metric_id).toBe(52);
+      expect(result.response.total_count).toBe(5);
     });
   });
 
@@ -244,14 +252,16 @@ describe("AccountHealthManager", () => {
         error: "",
         message: "",
         response: {
-          penalty_point_history: [
+          penalty_point_list: [
             {
-              date: 1609459200,
-              penalty_points: 5,
-              violation_type: "Late Shipment",
+              issue_time: 1609459200,
+              latest_point_num: 5,
+              original_point_num: 5,
+              reference_id: 123456789,
+              violation_type: 5,
             },
           ],
-          more: false,
+          total_count: 1,
         },
       };
 
@@ -274,26 +284,27 @@ describe("AccountHealthManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.penalty_point_history).toHaveLength(1);
-      expect(result.response.more).toBe(false);
+      expect(result.response.penalty_point_list).toHaveLength(1);
+      expect(result.response.total_count).toBe(1);
     });
 
-    it("should handle cursor-based pagination", async () => {
+    it("should handle violation type filter", async () => {
       const mockResponse: GetPenaltyPointHistoryResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          penalty_point_history: [],
-          more: true,
+          penalty_point_list: [],
+          total_count: 0,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await accountHealthManager.getPenaltyPointHistory({
+        page_no: 1,
         page_size: 20,
-        cursor: "next_cursor",
+        violation_type: 6,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -303,13 +314,14 @@ describe("AccountHealthManager", () => {
           method: "GET",
           auth: true,
           params: {
+            page_no: 1,
             page_size: 20,
-            cursor: "next_cursor",
+            violation_type: 6,
           },
         }
       );
 
-      expect(result.response.more).toBe(true);
+      expect(result.response.total_count).toBe(0);
     });
   });
 
@@ -320,21 +332,24 @@ describe("AccountHealthManager", () => {
         error: "",
         message: "",
         response: {
-          punishment_history: [
+          punishment_list: [
             {
-              punishment_name: "deboost",
+              issue_time: 1609459200,
               start_time: 1609459200,
               end_time: 1610064000,
-              punishment_tier: 1,
+              punishment_type: 103,
+              reason: 1,
+              reference_id: 123456789,
             },
           ],
-          more: false,
+          total_count: 1,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await accountHealthManager.getPunishmentHistory({
+        punishment_status: 1,
         page_size: 15,
       });
 
@@ -345,14 +360,58 @@ describe("AccountHealthManager", () => {
           method: "GET",
           auth: true,
           params: {
+            punishment_status: 1,
             page_size: 15,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.punishment_history).toHaveLength(1);
-      expect(result.response.punishment_history[0].punishment_name).toBe("deboost");
+      expect(result.response.punishment_list).toHaveLength(1);
+      expect(result.response.total_count).toBe(1);
+    });
+
+    it("should get ended punishment history", async () => {
+      const mockResponse: GetPunishmentHistoryResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          punishment_list: [
+            {
+              issue_time: 1609459200,
+              start_time: 1609459200,
+              end_time: 1610064000,
+              punishment_type: 104,
+              reason: 2,
+              reference_id: 987654321,
+              listing_limit: 100,
+            },
+          ],
+          total_count: 1,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await accountHealthManager.getPunishmentHistory({
+        punishment_status: 2,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/account_health/get_punishment_history",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            punishment_status: 2,
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.punishment_list[0].listing_limit).toBe(100);
     });
   });
 
@@ -363,15 +422,13 @@ describe("AccountHealthManager", () => {
         error: "",
         message: "",
         response: {
-          listings_with_issues: [
+          listing_list: [
             {
               item_id: 123456,
-              item_name: "Test Product",
-              issue_type: "prohibited_item",
-              violation_date: 1609459200,
+              reason: 1,
             },
           ],
-          more: false,
+          total_count: 1,
         },
       };
 
@@ -394,26 +451,27 @@ describe("AccountHealthManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.listings_with_issues).toHaveLength(1);
-      expect(result.response.listings_with_issues[0].issue_type).toBe("prohibited_item");
+      expect(result.response.listing_list).toHaveLength(1);
+      expect(result.response.listing_list[0].item_id).toBe(123456);
+      expect(result.response.total_count).toBe(1);
     });
 
-    it("should handle filter by issue type", async () => {
+    it("should handle pagination", async () => {
       const mockResponse: GetListingsWithIssuesResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          listings_with_issues: [],
-          more: false,
+          listing_list: [],
+          total_count: 0,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await accountHealthManager.getListingsWithIssues({
+        page_no: 2,
         page_size: 20,
-        issue_type: "copyright_violation",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -423,13 +481,13 @@ describe("AccountHealthManager", () => {
           method: "GET",
           auth: true,
           params: {
+            page_no: 2,
             page_size: 20,
-            issue_type: "copyright_violation",
           },
         }
       );
 
-      expect(result.response.more).toBe(false);
+      expect(result.response.total_count).toBe(0);
     });
   });
 
@@ -440,16 +498,14 @@ describe("AccountHealthManager", () => {
         error: "",
         message: "",
         response: {
-          late_orders: [
+          late_order_list: [
             {
               order_sn: "210101ABCDEF",
-              item_id: 123456,
-              model_id: 789,
-              late_reason: "Late Shipment",
-              create_time: 1609459200,
+              shipping_deadline: 1609459200,
+              late_by_days: 2,
             },
           ],
-          more: false,
+          total_count: 1,
         },
       };
 
@@ -468,38 +524,39 @@ describe("AccountHealthManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.late_orders).toHaveLength(1);
-      expect(result.response.late_orders[0].late_reason).toBe("Late Shipment");
+      expect(result.response.late_order_list).toHaveLength(1);
+      expect(result.response.late_order_list[0].order_sn).toBe("210101ABCDEF");
+      expect(result.response.total_count).toBe(1);
     });
 
-    it("should handle cursor pagination", async () => {
+    it("should handle pagination", async () => {
       const mockResponse: GetLateOrdersResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          late_orders: [],
-          more: true,
+          late_order_list: [],
+          total_count: 0,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await accountHealthManager.getLateOrders({
+        page_no: 2,
         page_size: 50,
-        cursor: "page2_cursor",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/account_health/get_late_orders", {
         method: "GET",
         auth: true,
         params: {
+          page_no: 2,
           page_size: 50,
-          cursor: "page2_cursor",
         },
       });
 
-      expect(result.response.more).toBe(true);
+      expect(result.response.total_count).toBe(0);
     });
   });
 });
