@@ -20,6 +20,32 @@ import {
   GetProductLevelCampaignSettingInfoResponse,
   GetProductRecommendedRoiTargetParams,
   GetProductRecommendedRoiTargetResponse,
+  CheckCreateGmsProductCampaignEligibilityResponse,
+  CreateAutoProductAdsParams,
+  CreateAutoProductAdsResponse,
+  CreateGmsProductCampaignParams,
+  CreateGmsProductCampaignResponse,
+  CreateManualProductAdsParams,
+  CreateManualProductAdsResponse,
+  EditAutoProductAdsParams,
+  EditAutoProductAdsResponse,
+  EditGmsItemProductCampaignParams,
+  EditGmsItemProductCampaignResponse,
+  EditGmsProductCampaignParams,
+  EditGmsProductCampaignResponse,
+  EditManualProductAdKeywordsParams,
+  EditManualProductAdKeywordsResponse,
+  EditManualProductAdsParams,
+  EditManualProductAdsResponse,
+  GetAdsFacilShopRateResponse,
+  GetCreateProductAdBudgetSuggestionParams,
+  GetCreateProductAdBudgetSuggestionResponse,
+  GetGmsCampaignPerformanceParams,
+  GetGmsCampaignPerformanceResponse,
+  GetGmsItemPerformanceParams,
+  GetGmsItemPerformanceResponse,
+  ListGmsUserDeletedItemParams,
+  ListGmsUserDeletedItemResponse,
 } from "../schemas/ads.js";
 import { ShopeeFetch } from "../fetch.js";
 
@@ -445,6 +471,426 @@ export class AdsManager extends BaseManager {
         method: "GET",
         auth: true,
         params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Check the seller's eligibility in creating a GMS campaign
+   * @returns {Promise<CheckCreateGmsProductCampaignEligibilityResponse>} Response containing eligibility status
+   *
+   * This API is used to check if the seller is eligible to create a GMS (Gross Merchandise Sales) Campaign.
+   * The response indicates eligibility and provides a reason if the seller is not eligible.
+   *
+   * Possible reasons for ineligibility:
+   * - active_campaign: There is already an existing GMS Campaign that is active
+   * - not_whitelisted: The seller is not whitelisted to sz_shop_gmv_max_feature
+   * - not_have_enough_sku: The seller does not have enough valid items in the shop
+   * - exclusive_with_other_campaign: Seller is whitelisted to sz_ads_auto_boost
+   */
+  async checkCreateGmsProductCampaignEligibility(): Promise<CheckCreateGmsProductCampaignEligibilityResponse> {
+    const response = await ShopeeFetch.fetch<CheckCreateGmsProductCampaignEligibilityResponse>(
+      this.config,
+      "/ads/check_create_gms_product_campaign_eligibility",
+      {
+        method: "GET",
+        auth: true,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Create Auto Product Ads
+   * @param {CreateAutoProductAdsParams} params Request parameters
+   * @param {string} params.reference_id A random string used to prevent duplicate ads
+   * @param {number} params.budget The budget set for the Auto Product Ads
+   * @param {string} params.start_date Start date of the campaign (DD-MM-YYYY format)
+   * @param {string} [params.end_date] End date of the campaign (DD-MM-YYYY format). Leave empty for unlimited duration
+   * @returns {Promise<CreateAutoProductAdsResponse>} Response containing the created campaign ID
+   *
+   * This API is used to create Auto Product Ads. Auto Product Ads automatically promote
+   * products based on their performance and potential.
+   *
+   * Important notes:
+   * - reference_id prevents duplicate ad creation. If an ad is created successfully,
+   *   subsequent requests using the same reference_id will fail
+   * - For unlimited campaign duration, pass today's date as start_date and leave end_date empty
+   */
+  async createAutoProductAds(
+    params: CreateAutoProductAdsParams
+  ): Promise<CreateAutoProductAdsResponse> {
+    const response = await ShopeeFetch.fetch<CreateAutoProductAdsResponse>(
+      this.config,
+      "/ads/create_auto_product_ads",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Create a GMS product campaign
+   * @param {CreateGmsProductCampaignParams} params Request parameters
+   * @param {string} params.start_date Start date of Campaign (DD-MM-YYYY format). Cannot be earlier than today.
+   * @param {string} [params.end_date] End date of Campaign (DD-MM-YYYY format). Do not fill if no end date.
+   * @param {number} params.daily_budget Daily budget for Campaign
+   * @param {string} [params.reference_id] A random string used to prevent duplicate ads
+   * @param {number} [params.roas_target] ROAS target (0 or undefined for GMV Max Auto Bidding, >0 for Custom ROAS)
+   * @returns {Promise<CreateGmsProductCampaignResponse>} Response containing the created campaign ID
+   *
+   * This API is used to create a GMS (Gross Merchandise Sales) Campaign.
+   *
+   * ROAS Target behavior:
+   * - No input or 0: GMV Max Auto Bidding (Shop)
+   * - Greater than 0: GMV Max Custom ROAS (Shop)
+   * - Value is rounded to 1 decimal place (e.g., 10.123456 becomes 10.1)
+   */
+  async createGmsProductCampaign(
+    params: CreateGmsProductCampaignParams
+  ): Promise<CreateGmsProductCampaignResponse> {
+    const response = await ShopeeFetch.fetch<CreateGmsProductCampaignResponse>(
+      this.config,
+      "/ads/create_gms_product_campaign",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Create Manual Selection Product Ads
+   * @param {CreateManualProductAdsParams} params Request parameters
+   * @param {string} params.reference_id A random string used to prevent duplicate ads
+   * @param {number} params.budget The budget set for the Manual Product Ads
+   * @param {string} params.start_date Start date of the campaign (DD-MM-YYYY format)
+   * @param {string} [params.end_date] End date of the campaign (DD-MM-YYYY format). Leave empty for unlimited duration
+   * @param {string} params.bidding_method Bidding method: "auto" or "manual"
+   * @param {number} params.item_id Product ID
+   * @param {number} [params.roas_target] ROAS target for campaigns with auto bidding. If 0, GMV Max / ROI feature is not enabled
+   * @param {Array} [params.selected_keywords] Selected keywords, required for manual bidding mode
+   * @param {Array} [params.discovery_ads_locations] Location settings for manual bidding method
+   * @param {boolean} [params.enhanced_cpc] Enhanced CPC functionality toggle
+   * @param {string} [params.smart_creative_setting] Smart Creative setting: "", "default", "on", or "off"
+   * @returns {Promise<CreateManualProductAdsResponse>} Response containing the created campaign ID
+   *
+   * This API is used to create Manual Selection Product Ads, which allow you to manually
+   * select products, keywords, and bidding strategies for your advertising campaigns.
+   *
+   * For manual bidding mode, you must specify selected_keywords and/or discovery_ads_locations.
+   * For auto bidding mode, you can set the roas_target parameter.
+   */
+  async createManualProductAds(
+    params: CreateManualProductAdsParams
+  ): Promise<CreateManualProductAdsResponse> {
+    const response = await ShopeeFetch.fetch<CreateManualProductAdsResponse>(
+      this.config,
+      "/ads/create_manual_product_ads",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Edit Auto Product Ads
+   * @param {EditAutoProductAdsParams} params Request parameters
+   * @param {string} params.reference_id A random string used to prevent duplicate ads
+   * @param {number} params.campaign_id The unique identifier for the campaign
+   * @param {string} params.edit_action The update action: "status", "budget", or "duration"
+   * @param {number} [params.budget] The budget set for the Auto Product Ads
+   * @param {string} [params.start_date] Start date of the campaign (DD-MM-YYYY format)
+   * @param {string} [params.end_date] End date of the campaign (DD-MM-YYYY format)
+   * @returns {Promise<EditAutoProductAdsResponse>} Response containing the campaign ID
+   *
+   * This API is used to edit existing Auto Product Ads.
+   * You can update the campaign status, budget, or duration based on the edit_action parameter.
+   */
+  async editAutoProductAds(
+    params: EditAutoProductAdsParams
+  ): Promise<EditAutoProductAdsResponse> {
+    const response = await ShopeeFetch.fetch<EditAutoProductAdsResponse>(
+      this.config,
+      "/ads/edit_auto_product_ads",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Add/remove items to/from the GMS Campaign
+   * @param {EditGmsItemProductCampaignParams} params Request parameters
+   * @param {number} [params.campaign_id] The GMS Campaign ID
+   * @param {string} params.edit_action The action to perform: "add" or "remove"
+   * @param {number[]} params.item_id_list Item IDs to add/remove (minimum 1, maximum 30)
+   * @returns {Promise<EditGmsItemProductCampaignResponse>} Response containing the campaign ID
+   *
+   * This API is used to add or remove items from a GMS Campaign.
+   * You can add or remove between 1 and 30 items per request.
+   */
+  async editGmsItemProductCampaign(
+    params: EditGmsItemProductCampaignParams
+  ): Promise<EditGmsItemProductCampaignResponse> {
+    const response = await ShopeeFetch.fetch<EditGmsItemProductCampaignResponse>(
+      this.config,
+      "/ads/edit_gms_item_product_campaign",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Edit a GMS product campaign
+   * @param {EditGmsProductCampaignParams} params Request parameters
+   * @param {number} params.campaign_id The GMS Campaign ID
+   * @param {string} params.edit_action The action to perform
+   * @param {number} [params.daily_budget] Daily budget for Campaign
+   * @param {string} [params.start_date] Start date of Campaign (DD-MM-YYYY format)
+   * @param {string} [params.end_date] End date of Campaign (DD-MM-YYYY format)
+   * @param {number} [params.roas_target] ROAS target for the campaign
+   * @returns {Promise<EditGmsProductCampaignResponse>} Response containing the campaign ID
+   *
+   * This API is used to edit existing GMS Campaign settings such as budget,
+   * campaign duration, and ROAS target.
+   */
+  async editGmsProductCampaign(
+    params: EditGmsProductCampaignParams
+  ): Promise<EditGmsProductCampaignResponse> {
+    const response = await ShopeeFetch.fetch<EditGmsProductCampaignResponse>(
+      this.config,
+      "/ads/edit_gms_product_campaign",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Edit Manual Selection Product Ad Keywords
+   * @param {EditManualProductAdKeywordsParams} params Request parameters
+   * @param {string} params.reference_id A random string used to prevent duplicate ads
+   * @param {number} params.campaign_id The unique identifier for the campaign
+   * @param {string} params.edit_action The action to perform: "add", "edit", or "delete"
+   * @param {Array} [params.selected_keywords] Selected keywords to add, edit, or delete
+   * @returns {Promise<EditManualProductAdKeywordsResponse>} Response containing the campaign ID
+   *
+   * This API is used to edit keywords for Manual Selection Product Ads.
+   * You can add new keywords, edit existing keywords, or delete keywords.
+   */
+  async editManualProductAdKeywords(
+    params: EditManualProductAdKeywordsParams
+  ): Promise<EditManualProductAdKeywordsResponse> {
+    const response = await ShopeeFetch.fetch<EditManualProductAdKeywordsResponse>(
+      this.config,
+      "/ads/edit_manual_product_ad_keywords",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Edit Manual Selection Product Ads
+   * @param {EditManualProductAdsParams} params Request parameters
+   * @param {string} params.reference_id A random string used to prevent duplicate ads
+   * @param {number} params.campaign_id The unique identifier for the campaign
+   * @param {string} params.edit_action The update action
+   * @param {number} [params.budget] The budget set for the Manual Product Ads
+   * @param {string} [params.start_date] Start date of the campaign (DD-MM-YYYY format)
+   * @param {string} [params.end_date] End date of the campaign (DD-MM-YYYY format)
+   * @param {number} [params.roas_target] ROAS target for campaigns with auto bidding
+   * @param {Array} [params.discovery_ads_locations] Location settings for manual bidding method
+   * @param {boolean} [params.enhanced_cpc] Enhanced CPC functionality toggle
+   * @param {string} [params.smart_creative_setting] Smart Creative setting
+   * @returns {Promise<EditManualProductAdsResponse>} Response containing the campaign ID
+   *
+   * This API is used to edit existing Manual Selection Product Ads.
+   * You can update various campaign settings including budget, duration, bidding settings,
+   * and ad placement locations.
+   */
+  async editManualProductAds(
+    params: EditManualProductAdsParams
+  ): Promise<EditManualProductAdsResponse> {
+    const response = await ShopeeFetch.fetch<EditManualProductAdsResponse>(
+      this.config,
+      "/ads/edit_manual_product_ads",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Get shop rate for Ads Facil Program
+   * @returns {Promise<GetAdsFacilShopRateResponse>} Response containing the shop rate
+   *
+   * This API is used to get the shop rate for the Ads Facil Program,
+   * which is a special advertising program available in certain regions.
+   */
+  async getAdsFacilShopRate(): Promise<GetAdsFacilShopRateResponse> {
+    const response = await ShopeeFetch.fetch<GetAdsFacilShopRateResponse>(
+      this.config,
+      "/ads/get_ads_facil_shop_rate",
+      {
+        method: "GET",
+        auth: true,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Get budget suggestion for product ads creation
+   * @param {GetCreateProductAdBudgetSuggestionParams} params Request parameters
+   * @param {string} params.reference_id A random string used to prevent duplicate ads
+   * @param {string} params.product_selection Product selection: "auto" or "manual"
+   * @param {string} params.campaign_placement Campaign placement: "search", "discovery", or "all"
+   * @param {string} params.bidding_method Bidding method: "auto" or "manual"
+   * @param {string} [params.enhanced_cpc] Enhanced CPC toggle: "true" or "false"
+   * @param {string} [params.discovery_ads_location_names] Comma-separated location values
+   * @param {number} [params.roas_target] ROAS target for campaigns with auto bidding
+   * @param {number} [params.item_id] Product ID (mandatory for manual product selection)
+   * @returns {Promise<GetCreateProductAdBudgetSuggestionResponse>} Response containing budget suggestions
+   *
+   * This API is used to get budget suggestions before creating product ads.
+   * The suggestions include minimum, maximum, and recommended budget values
+   * based on the campaign parameters.
+   */
+  async getCreateProductAdBudgetSuggestion(
+    params: GetCreateProductAdBudgetSuggestionParams
+  ): Promise<GetCreateProductAdBudgetSuggestionResponse> {
+    const response = await ShopeeFetch.fetch<GetCreateProductAdBudgetSuggestionResponse>(
+      this.config,
+      "/ads/get_create_product_ad_budget_suggestion",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Get GMS Campaign performance
+   * @param {GetGmsCampaignPerformanceParams} params Request parameters
+   * @param {number} [params.campaign_id] The GMS Campaign ID
+   * @param {string} params.start_date Start date (DD-MM-YYYY format). Maximum 3 months duration, earliest 6 months ago
+   * @param {string} params.end_date End date (DD-MM-YYYY format). Maximum 3 months duration
+   * @returns {Promise<GetGmsCampaignPerformanceResponse>} Response containing campaign performance data
+   *
+   * This API is used to get performance data for a GMS Campaign.
+   * The date range can span up to 3 months and go back up to 6 months from today.
+   *
+   * Performance metrics include impressions, clicks, CTR, expense, GMV, ROAS, and orders.
+   */
+  async getGmsCampaignPerformance(
+    params: GetGmsCampaignPerformanceParams
+  ): Promise<GetGmsCampaignPerformanceResponse> {
+    const response = await ShopeeFetch.fetch<GetGmsCampaignPerformanceResponse>(
+      this.config,
+      "/ads/get_gms_campaign_performance",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Get GMS Item performance
+   * @param {GetGmsItemPerformanceParams} params Request parameters
+   * @param {number} [params.campaign_id] The GMS Campaign ID
+   * @param {string} params.start_date Start date (DD-MM-YYYY format). Maximum 3 months duration, earliest 6 months ago
+   * @param {string} params.end_date End date (DD-MM-YYYY format). Maximum 3 months duration
+   * @param {number} [params.offset] Pagination offset (default: 0)
+   * @param {number} [params.limit] Maximum number of records to show (default: 50, max: 100)
+   * @returns {Promise<GetGmsItemPerformanceResponse>} Response containing item performance data
+   *
+   * This API is used to get performance data for items in a GMS Campaign.
+   * The response is sorted by item_id and only items with performance data are returned.
+   *
+   * The date range can span up to 3 months and go back up to 6 months from today.
+   * Results are paginated with offset and limit parameters.
+   */
+  async getGmsItemPerformance(
+    params: GetGmsItemPerformanceParams
+  ): Promise<GetGmsItemPerformanceResponse> {
+    const response = await ShopeeFetch.fetch<GetGmsItemPerformanceResponse>(
+      this.config,
+      "/ads/get_gms_item_performance",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * List GMS items that have been removed from the Campaign by seller
+   * @param {ListGmsUserDeletedItemParams} [params] Request parameters
+   * @param {number} [params.offset] Pagination offset (default: 0)
+   * @param {number} [params.limit] Maximum number of records to show (default: 50, max: 100)
+   * @returns {Promise<ListGmsUserDeletedItemResponse>} Response containing deleted item IDs
+   *
+   * This API is used to list items that have been removed from a GMS Campaign by the seller.
+   * Results are paginated with offset and limit parameters.
+   */
+  async listGmsUserDeletedItem(
+    params?: ListGmsUserDeletedItemParams
+  ): Promise<ListGmsUserDeletedItemResponse> {
+    const response = await ShopeeFetch.fetch<ListGmsUserDeletedItemResponse>(
+      this.config,
+      "/ads/list_gms_user_deleted_item",
+      {
+        method: "POST",
+        auth: true,
+        body: params || {},
       }
     );
 

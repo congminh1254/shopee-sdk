@@ -15,6 +15,20 @@ import {
   GetProductLevelCampaignIdListResponse,
   GetProductLevelCampaignSettingInfoResponse,
   GetProductRecommendedRoiTargetResponse,
+  CheckCreateGmsProductCampaignEligibilityResponse,
+  CreateAutoProductAdsResponse,
+  CreateGmsProductCampaignResponse,
+  CreateManualProductAdsResponse,
+  EditAutoProductAdsResponse,
+  EditGmsItemProductCampaignResponse,
+  EditGmsProductCampaignResponse,
+  EditManualProductAdKeywordsResponse,
+  EditManualProductAdsResponse,
+  GetAdsFacilShopRateResponse,
+  GetCreateProductAdBudgetSuggestionResponse,
+  GetGmsCampaignPerformanceResponse,
+  GetGmsItemPerformanceResponse,
+  ListGmsUserDeletedItemResponse,
 } from "../../schemas/ads.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -531,6 +545,749 @@ describe("AdsManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.recommended_roi_target).toBe(3.5);
+    });
+  });
+
+  describe("checkCreateGmsProductCampaignEligibility", () => {
+    it("should check eligibility successfully when eligible", async () => {
+      const mockResponse: CheckCreateGmsProductCampaignEligibilityResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          is_eligible: true,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.checkCreateGmsProductCampaignEligibility();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/check_create_gms_product_campaign_eligibility",
+        {
+          method: "GET",
+          auth: true,
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.is_eligible).toBe(true);
+    });
+
+    it("should check eligibility with reason when not eligible", async () => {
+      const mockResponse: CheckCreateGmsProductCampaignEligibilityResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          is_eligible: false,
+          reason: "active_campaign",
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.checkCreateGmsProductCampaignEligibility();
+
+      expect(result.response.is_eligible).toBe(false);
+      expect(result.response.reason).toBe("active_campaign");
+    });
+  });
+
+  describe("createAutoProductAds", () => {
+    it("should create auto product ads successfully", async () => {
+      const mockResponse: CreateAutoProductAdsResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 987654,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.createAutoProductAds({
+        reference_id: "ref-12345",
+        budget: 100.5,
+        start_date: "01-01-2024",
+        end_date: "31-01-2024",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/create_auto_product_ads",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            reference_id: "ref-12345",
+            budget: 100.5,
+            start_date: "01-01-2024",
+            end_date: "31-01-2024",
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.campaign_id).toBe(987654);
+    });
+
+    it("should create auto product ads with unlimited duration", async () => {
+      const mockResponse: CreateAutoProductAdsResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 987655,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.createAutoProductAds({
+        reference_id: "ref-12346",
+        budget: 50.0,
+        start_date: "01-01-2024",
+      });
+
+      expect(result.response.campaign_id).toBe(987655);
+    });
+  });
+
+  describe("createGmsProductCampaign", () => {
+    it("should create GMS product campaign successfully", async () => {
+      const mockResponse: CreateGmsProductCampaignResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 111222,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.createGmsProductCampaign({
+        start_date: "01-01-2024",
+        end_date: "31-01-2024",
+        daily_budget: 200.0,
+        reference_id: "gms-ref-001",
+        roas_target: 5.5,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/create_gms_product_campaign",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            start_date: "01-01-2024",
+            end_date: "31-01-2024",
+            daily_budget: 200.0,
+            reference_id: "gms-ref-001",
+            roas_target: 5.5,
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.campaign_id).toBe(111222);
+    });
+  });
+
+  describe("createManualProductAds", () => {
+    it("should create manual product ads with auto bidding", async () => {
+      const mockResponse: CreateManualProductAdsResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 333444,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.createManualProductAds({
+        reference_id: "manual-ref-001",
+        budget: 150.0,
+        start_date: "01-01-2024",
+        bidding_method: "auto",
+        item_id: 123456,
+        roas_target: 3.0,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/create_manual_product_ads",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            reference_id: "manual-ref-001",
+            budget: 150.0,
+            start_date: "01-01-2024",
+            bidding_method: "auto",
+            item_id: 123456,
+            roas_target: 3.0,
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.campaign_id).toBe(333444);
+    });
+
+    it("should create manual product ads with manual bidding and keywords", async () => {
+      const mockResponse: CreateManualProductAdsResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 333445,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.createManualProductAds({
+        reference_id: "manual-ref-002",
+        budget: 100.0,
+        start_date: "01-01-2024",
+        bidding_method: "manual",
+        item_id: 789012,
+        selected_keywords: [
+          {
+            keyword: "phone case",
+            match_type: "exact",
+            bid_price_per_click: 0.5,
+          },
+        ],
+        enhanced_cpc: true,
+      });
+
+      expect(result.response.campaign_id).toBe(333445);
+    });
+  });
+
+  describe("editAutoProductAds", () => {
+    it("should edit auto product ads successfully", async () => {
+      const mockResponse: EditAutoProductAdsResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 987654,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.editAutoProductAds({
+        reference_id: "edit-ref-001",
+        campaign_id: 987654,
+        edit_action: "budget",
+        budget: 200.0,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/edit_auto_product_ads",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            reference_id: "edit-ref-001",
+            campaign_id: 987654,
+            edit_action: "budget",
+            budget: 200.0,
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.campaign_id).toBe(987654);
+    });
+  });
+
+  describe("editGmsItemProductCampaign", () => {
+    it("should add items to GMS campaign successfully", async () => {
+      const mockResponse: EditGmsItemProductCampaignResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 111222,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.editGmsItemProductCampaign({
+        campaign_id: 111222,
+        edit_action: "add",
+        item_id_list: [123456, 789012],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/edit_gms_item_product_campaign",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            campaign_id: 111222,
+            edit_action: "add",
+            item_id_list: [123456, 789012],
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.campaign_id).toBe(111222);
+    });
+
+    it("should remove items from GMS campaign successfully", async () => {
+      const mockResponse: EditGmsItemProductCampaignResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 111222,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.editGmsItemProductCampaign({
+        campaign_id: 111222,
+        edit_action: "remove",
+        item_id_list: [789012],
+      });
+
+      expect(result.response.campaign_id).toBe(111222);
+    });
+  });
+
+  describe("editGmsProductCampaign", () => {
+    it("should edit GMS product campaign successfully", async () => {
+      const mockResponse: EditGmsProductCampaignResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 111222,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.editGmsProductCampaign({
+        campaign_id: 111222,
+        edit_action: "budget",
+        daily_budget: 300.0,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/edit_gms_product_campaign",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            campaign_id: 111222,
+            edit_action: "budget",
+            daily_budget: 300.0,
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.campaign_id).toBe(111222);
+    });
+  });
+
+  describe("editManualProductAdKeywords", () => {
+    it("should add keywords to manual product ads successfully", async () => {
+      const mockResponse: EditManualProductAdKeywordsResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 333444,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.editManualProductAdKeywords({
+        reference_id: "keyword-ref-001",
+        campaign_id: 333444,
+        edit_action: "add",
+        selected_keywords: [
+          {
+            keyword: "wireless earbuds",
+            match_type: "broad",
+            bid_price_per_click: 0.75,
+          },
+        ],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/edit_manual_product_ad_keywords",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            reference_id: "keyword-ref-001",
+            campaign_id: 333444,
+            edit_action: "add",
+            selected_keywords: [
+              {
+                keyword: "wireless earbuds",
+                match_type: "broad",
+                bid_price_per_click: 0.75,
+              },
+            ],
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.campaign_id).toBe(333444);
+    });
+  });
+
+  describe("editManualProductAds", () => {
+    it("should edit manual product ads successfully", async () => {
+      const mockResponse: EditManualProductAdsResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 333444,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.editManualProductAds({
+        reference_id: "edit-manual-ref-001",
+        campaign_id: 333444,
+        edit_action: "budget",
+        budget: 250.0,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/edit_manual_product_ads",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            reference_id: "edit-manual-ref-001",
+            campaign_id: 333444,
+            edit_action: "budget",
+            budget: 250.0,
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.campaign_id).toBe(333444);
+    });
+  });
+
+  describe("getAdsFacilShopRate", () => {
+    it("should get ads facil shop rate successfully", async () => {
+      const mockResponse: GetAdsFacilShopRateResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          shop_rate: 0.05,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.getAdsFacilShopRate();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/get_ads_facil_shop_rate",
+        {
+          method: "GET",
+          auth: true,
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.shop_rate).toBe(0.05);
+    });
+  });
+
+  describe("getCreateProductAdBudgetSuggestion", () => {
+    it("should get budget suggestion for auto product ads", async () => {
+      const mockResponse: GetCreateProductAdBudgetSuggestionResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          budget: {
+            min_budget: 50.0,
+            max_budget: 500.0,
+            recommended_budget: 150.0,
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.getCreateProductAdBudgetSuggestion({
+        reference_id: "budget-ref-001",
+        product_selection: "auto",
+        campaign_placement: "all",
+        bidding_method: "auto",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/get_create_product_ad_budget_suggestion",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            reference_id: "budget-ref-001",
+            product_selection: "auto",
+            campaign_placement: "all",
+            bidding_method: "auto",
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.budget.recommended_budget).toBe(150.0);
+    });
+
+    it("should get budget suggestion for manual product ads", async () => {
+      const mockResponse: GetCreateProductAdBudgetSuggestionResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          budget: {
+            min_budget: 30.0,
+            max_budget: 300.0,
+            recommended_budget: 100.0,
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.getCreateProductAdBudgetSuggestion({
+        reference_id: "budget-ref-002",
+        product_selection: "manual",
+        campaign_placement: "search",
+        bidding_method: "manual",
+        item_id: 123456,
+        enhanced_cpc: "true",
+      });
+
+      expect(result.response.budget.min_budget).toBe(30.0);
+    });
+  });
+
+  describe("getGmsCampaignPerformance", () => {
+    it("should get GMS campaign performance successfully", async () => {
+      const mockResponse: GetGmsCampaignPerformanceResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 111222,
+          report: {
+            impression: 10000,
+            clicks: 500,
+            ctr: 5.0,
+            expense: 250.0,
+            gmv: 2500.0,
+            roas: 10.0,
+            orders: 100,
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.getGmsCampaignPerformance({
+        campaign_id: 111222,
+        start_date: "01-01-2024",
+        end_date: "31-01-2024",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/get_gms_campaign_performance",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            campaign_id: 111222,
+            start_date: "01-01-2024",
+            end_date: "31-01-2024",
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.campaign_id).toBe(111222);
+      expect(result.response.report.roas).toBe(10.0);
+    });
+  });
+
+  describe("getGmsItemPerformance", () => {
+    it("should get GMS item performance successfully", async () => {
+      const mockResponse: GetGmsItemPerformanceResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 111222,
+          result_list: [
+            {
+              item_id: 123456,
+              impression: 5000,
+              clicks: 250,
+              ctr: 5.0,
+              expense: 125.0,
+              gmv: 1250.0,
+              roas: 10.0,
+              orders: 50,
+            },
+            {
+              item_id: 789012,
+              impression: 5000,
+              clicks: 250,
+              ctr: 5.0,
+              expense: 125.0,
+              gmv: 1250.0,
+              roas: 10.0,
+              orders: 50,
+            },
+          ],
+          total: 2,
+          has_next_page: false,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.getGmsItemPerformance({
+        campaign_id: 111222,
+        start_date: "01-01-2024",
+        end_date: "31-01-2024",
+        offset: 0,
+        limit: 50,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/get_gms_item_performance",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            campaign_id: 111222,
+            start_date: "01-01-2024",
+            end_date: "31-01-2024",
+            offset: 0,
+            limit: 50,
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.result_list).toHaveLength(2);
+      expect(result.response.total).toBe(2);
+      expect(result.response.has_next_page).toBe(false);
+    });
+  });
+
+  describe("listGmsUserDeletedItem", () => {
+    it("should list GMS user deleted items successfully", async () => {
+      const mockResponse: ListGmsUserDeletedItemResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 111222,
+          item_id_list: [123456, 789012],
+          total: 2,
+          has_next_page: false,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.listGmsUserDeletedItem({
+        offset: 0,
+        limit: 50,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/list_gms_user_deleted_item",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            offset: 0,
+            limit: 50,
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.item_id_list).toHaveLength(2);
+      expect(result.response.total).toBe(2);
+    });
+
+    it("should list GMS user deleted items without parameters", async () => {
+      const mockResponse: ListGmsUserDeletedItemResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          campaign_id: 111222,
+          item_id_list: [],
+          total: 0,
+          has_next_page: false,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await adsManager.listGmsUserDeletedItem();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/ads/list_gms_user_deleted_item",
+        {
+          method: "POST",
+          auth: true,
+          body: {},
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.item_id_list).toHaveLength(0);
     });
   });
 });
