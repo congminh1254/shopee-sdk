@@ -43,6 +43,9 @@ A TypeScript SDK for interacting with the Shopee Open API, maintained by the com
 - [ShopFlashSaleManager](./docs/managers/shop-flash-sale.md) - Flash sale campaigns
 - [FollowPrizeManager](./docs/managers/follow-prize.md) - Follow prize activities
 - [TopPicksManager](./docs/managers/top-picks.md) - Top picks collections
+- [ShopCategoryManager](./docs/managers/shop-category.md) - Shop category management
+- [ReturnsManager](./docs/managers/returns.md) - Return and refund management
+- [SbsManager](./docs/managers/sbs.md) - Shopee Business Services (SBS) warehouse inventory
 
 ## Installation
 
@@ -93,12 +96,14 @@ See the [Setup Guide](./docs/guides/setup.md) and [Authentication Guide](./docs/
 - 💾 **Flexible Token Storage** - File-based storage included, custom storage supported
 - 🌍 **Multi-Region Support** - Support for all Shopee regions (SG, MY, TH, VN, PH, ID, TW, BR, MX, CO, CL, PL)
 - 🔌 **Proxy Support** - HTTP/HTTPS proxy configuration
-- 📦 **22 API Managers** - Comprehensive coverage of Shopee API endpoints:
+- 📦 **25 API Managers** - Comprehensive coverage of Shopee API endpoints:
   - Products, Orders, Logistics, Payments
   - Vouchers, Webhooks, Ads, Account Health
   - Shop, Media, Media Space, Public endpoints, Authentication
-  - Merchant, Global Product, First Mile, Promotions (Discount, Bundle, Add-on, Flash Sale, Follow Prize, Top Picks)
-- 🧪 **Well Tested** - 436+ tests with high coverage
+  - Merchant, Global Product, First Mile, SBS (Shopee Business Services)
+  - Promotions (Discount, Bundle, Add-on, Flash Sale, Follow Prize, Top Picks)
+  - Returns, Shop Category
+- 🧪 **Well Tested** - 499+ tests with high coverage
 - 📚 **Comprehensive Documentation** - Detailed guides and examples
 
 ## Contributing
