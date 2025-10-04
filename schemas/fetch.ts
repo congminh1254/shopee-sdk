@@ -3,7 +3,7 @@
 // Should fetch list and save all of schema to schemas folder, with json format
 
 
-import axios from "axios";
+import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
 
@@ -23,16 +23,18 @@ async function clearExistingSchemas() {
 
 // Fetch list of endpoints
 async function fetchEndpoints() {
-  const response = await axios.get(BASE_URL);
-  const modules = response.data.modules;
+  const response = await fetch(BASE_URL);
+  const data = await response.json();
+  const modules = data.modules;
   const endpoints = modules.map((module: any) => module.items).flat();
   return endpoints;
 }
 
 // Fetch detail of each endpoint
 async function fetchEndpointDetail(name: string) {
-  const response = await axios.get(`${DETAIL_URL}${name}`);
-  return response.data;
+  const response = await fetch(`${DETAIL_URL}${name}`);
+  const data = await response.json();
+  return data;
 }
 
 // Save schema to schemas folder
