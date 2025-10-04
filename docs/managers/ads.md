@@ -4,21 +4,30 @@ The AdsManager handles Shopee advertising campaigns and promotions.
 
 ## Overview
 
-The AdsManager provides methods for managing advertising campaigns on Shopee, including:
-- Creating and managing ad campaigns
-- Setting budgets and bids
-- Tracking ad performance
+The AdsManager provides comprehensive methods for managing advertising campaigns on Shopee, including:
+- Creating and managing Auto Product Ads and Manual Product Ads
+- Creating and managing GMS (Gross Merchandise Sales) campaigns
+- Setting budgets, bids, and ROAS targets
+- Tracking ad performance (hourly and daily)
 - Managing ad keywords and targeting
+- Getting budget suggestions and ROI recommendations
 
 ## Quick Start
 
 ```typescript
-// Note: Ads functionality requires specific permissions
-// and may not be available to all sellers
+// Get total balance
+const balance = await sdk.ads.getTotalBalance();
+console.log('Available balance:', balance.response.total_balance);
 
-// Example usage would go here once you have ads permissions
-const campaigns = await sdk.ads.getCampaignList({
-  page_size: 20,
+// Get recommended items for advertising
+const recommendedItems = await sdk.ads.getRecommendedItemList();
+console.log('Recommended items:', recommendedItems.response);
+
+// Get campaign IDs
+const campaigns = await sdk.ads.getProductLevelCampaignIdList({
+  ad_type: 'all',
+  offset: 0,
+  limit: 50,
 });
 ```
 
@@ -26,195 +35,131 @@ const campaigns = await sdk.ads.getCampaignList({
 
 1. **Permissions Required**: Advertising features require special permissions from Shopee
 2. **Availability**: Not all regions support the Ads API
-3. **Documentation**: Refer to [Shopee Open API Ads documentation](https://open.shopee.com/documents/v2/v2.ads.get_list?module=105&type=1) for detailed information
+3. **Reference ID**: Use a unique reference_id for create/edit operations to prevent duplicates
+4. **Date Format**: All dates use DD-MM-YYYY format
+5. **Documentation**: Refer to [Shopee Open API Ads documentation](https://open.shopee.com/documents?module=105&type=1)
 
-## Basic Concepts
+## API Methods
 
-### Campaign Types
-- **Product Ads**: Promote specific products
-- **Shop Ads**: Promote your entire shop
-- **Discovery Ads**: Appear in discovery sections
+### Account & Shop Information
 
-### Bidding Strategies
-- **Manual Bidding**: Set your own bid amounts
-- **Auto Bidding**: Let Shopee optimize bids
+- `getTotalBalance()` - Get real-time ads credit balance
+- `getShopToggleInfo()` - Get shop toggle status (auto top-up, campaign surge)
+- `getAdsFacilShopRate()` - Get shop rate for Ads Facil Program
 
-### Budget Management
-- **Daily Budget**: Maximum spend per day
-- **Total Budget**: Maximum spend for campaign lifetime
+### Recommendations & Suggestions
 
-## Common Operations
+- `getRecommendedItemList()` - Get recommended SKUs with tags (best selling, best ROI, top search)
+- `getRecommendedKeywordList()` - Get recommended keywords for an item
+- `getProductRecommendedRoiTarget()` - Get recommended ROI targets
+- `getCreateProductAdBudgetSuggestion()` - Get budget suggestions before creating ads
 
-### Managing Campaigns
+### Auto Product Ads
 
-```typescript
-// Get campaign list
-const campaigns = await sdk.ads.getCampaignList({
-  page_size: 50,
-  page_no: 1,
-});
+- `createAutoProductAds()` - Create Auto Product Ads
+- `editAutoProductAds()` - Edit existing Auto Product Ads (budget, duration, status)
 
-// Get campaign details
-const campaign = await sdk.ads.getCampaignDetail({
-  campaign_id: 123456,
-});
+### Manual Product Ads
 
-// Update campaign budget
-await sdk.ads.updateCampaign({
-  campaign_id: 123456,
-  daily_budget: 100.00,
-  status: 'ACTIVE',
-});
-```
+- `createManualProductAds()` - Create Manual Product Ads with full control
+- `editManualProductAds()` - Edit existing Manual Product Ads
+- `editManualProductAdKeywords()` - Add/edit/delete keywords for Manual Product Ads
 
-### Managing Keywords
+### GMS Campaigns
 
-```typescript
-// Add keywords to campaign
-await sdk.ads.addKeyword({
-  campaign_id: 123456,
-  keywords: [
-    {
-      keyword: 'wireless headphones',
-      bid: 0.50,
-      match_type: 'BROAD',
-    },
-  ],
-});
+- `checkCreateGmsProductCampaignEligibility()` - Check eligibility for creating GMS campaign
+- `createGmsProductCampaign()` - Create GMS campaign
+- `editGmsProductCampaign()` - Edit GMS campaign settings
+- `editGmsItemProductCampaign()` - Add/remove items from GMS campaign
+- `listGmsUserDeletedItem()` - List items removed from GMS campaign
 
-// Get keyword performance
-const keywords = await sdk.ads.getKeywordList({
-  campaign_id: 123456,
-});
-```
+### Campaign Information
 
-### Performance Tracking
+- `getProductLevelCampaignIdList()` - Get list of all campaign IDs
+- `getProductLevelCampaignSettingInfo()` - Get detailed campaign settings (4 info types)
+
+### Performance Metrics
+
+- `getAllCpcAdsHourlyPerformance()` - Shop-level hourly performance
+- `getAllCpcAdsDailyPerformance()` - Shop-level daily performance
+- `getProductCampaignDailyPerformance()` - Product-level campaign daily performance
+- `getProductCampaignHourlyPerformance()` - Product-level campaign hourly performance
+- `getGmsCampaignPerformance()` - GMS campaign performance
+- `getGmsItemPerformance()` - GMS item-level performance
+
+## Example: Complete Campaign Lifecycle
 
 ```typescript
-// Get campaign performance metrics
-const performance = await sdk.ads.getCampaignPerformance({
-  campaign_id: 123456,
-  start_date: '2024-01-01',
-  end_date: '2024-01-31',
+// 1. Check balance
+const balance = await sdk.ads.getTotalBalance();
+
+// 2. Get recommended items
+const items = await sdk.ads.getRecommendedItemList();
+const topItem = items.response[0];
+
+// 3. Get budget suggestion
+const budget = await sdk.ads.getCreateProductAdBudgetSuggestion({
+  reference_id: 'budget-001',
+  product_selection: 'manual',
+  campaign_placement: 'all',
+  bidding_method: 'auto',
+  item_id: topItem.item_id,
 });
 
-console.log('Impressions:', performance.impressions);
-console.log('Clicks:', performance.clicks);
-console.log('Spend:', performance.spend);
-console.log('Sales:', performance.sales);
-console.log('ROI:', performance.roi);
+// 4. Create campaign
+const campaign = await sdk.ads.createManualProductAds({
+  reference_id: 'campaign-001',
+  budget: budget.response.budget.recommended_budget || 100.0,
+  start_date: '01-01-2024',
+  bidding_method: 'auto',
+  item_id: topItem.item_id,
+  roas_target: 3.0,
+});
+
+// 5. Monitor performance
+const perf = await sdk.ads.getProductCampaignDailyPerformance({
+  start_date: '01-01-2024',
+  end_date: '31-01-2024',
+  campaign_id_list: campaign.response.campaign_id.toString(),
+});
 ```
 
 ## Best Practices
 
-### 1. Start Small
+1. **Use Reference IDs** - Generate unique IDs to prevent duplicate campaigns
+2. **Check Eligibility** - Use `checkCreateGmsProductCampaignEligibility()` before creating GMS campaigns
+3. **Get Suggestions** - Use budget and ROI suggestions for optimal campaign setup
+4. **Monitor Regularly** - Track performance metrics to optimize campaigns
+5. **Optimize Keywords** - Regularly review and update keywords based on performance
 
-```typescript
-// Begin with modest budgets
-const campaign = await sdk.ads.createCampaign({
-  campaign_name: 'Test Campaign',
-  daily_budget: 10.00, // Start small
-  products: [{ item_id: 123456 }],
-});
-```
+## Performance Metrics Explained
 
-### 2. Monitor Performance
+### Direct vs Broad Metrics
 
-```typescript
-async function monitorCampaignROI(campaignId: number) {
-  const perf = await sdk.ads.getCampaignPerformance({
-    campaign_id: campaignId,
-    start_date: getDateDaysAgo(7),
-    end_date: getTodayDate(),
-  });
-  
-  const roi = (perf.sales - perf.spend) / perf.spend * 100;
-  
-  if (roi < 50) {
-    console.warn(`⚠️ Low ROI: ${roi.toFixed(2)}%`);
-    // Consider pausing or adjusting campaign
-  }
-}
-```
+- **Direct**: Performance of the advertised product specifically
+- **Broad**: Performance of any shop product after ad click
 
-### 3. A/B Test Keywords
+### Key Metrics
 
-```typescript
-async function testKeywordVariations(campaignId: number) {
-  const keywords = [
-    { keyword: 'bluetooth headphones', bid: 0.40 },
-    { keyword: 'wireless earbuds', bid: 0.45 },
-    { keyword: 'noise cancelling headphones', bid: 0.50 },
-  ];
-  
-  // Add all keywords
-  await sdk.ads.addKeyword({
-    campaign_id: campaignId,
-    keywords: keywords.map(k => ({ ...k, match_type: 'EXACT' })),
-  });
-  
-  // Monitor and keep best performers
-  // ...
-}
-```
-
-## Integration Example
-
-```typescript
-class AdsManager {
-  async createProductCampaign(itemId: number, dailyBudget: number) {
-    // Create campaign
-    const campaign = await sdk.ads.createCampaign({
-      campaign_name: `Product ${itemId} Campaign`,
-      campaign_type: 'PRODUCT',
-      daily_budget: dailyBudget,
-      start_date: getTodayDate(),
-      products: [{ item_id: itemId }],
-    });
-    
-    // Add relevant keywords
-    await sdk.ads.addKeyword({
-      campaign_id: campaign.campaign_id,
-      keywords: await this.generateKeywords(itemId),
-    });
-    
-    return campaign;
-  }
-  
-  private async generateKeywords(itemId: number): Promise<any[]> {
-    // Get product details
-    const product = await sdk.product.getItemBaseInfo({
-      item_id_list: [itemId],
-    });
-    
-    // Generate keywords from product name and category
-    // Implementation depends on your strategy
-    return [
-      { keyword: product.item_list[0].item_name, bid: 0.50 },
-      // More keywords...
-    ];
-  }
-}
-```
+- **CTR**: Click-Through Rate (Clicks / Impressions × 100%)
+- **CR**: Conversion Rate (Conversions / Clicks × 100%)
+- **ROAS**: Return on Ad Spend (GMV / Expense)
+- **CPC**: Cost Per Click (Expense / Clicks)
 
 ## Common Errors
 
 | Error Code | Description | Solution |
 |------------|-------------|----------|
-| `error_permission_denied` | No ads permission | Contact Shopee to enable ads features |
-| `error_budget_insufficient` | Budget too low | Increase campaign budget |
-| `error_keyword_invalid` | Invalid keyword | Check keyword format and restrictions |
+| `error_permission_denied` | No ads permission | Contact Shopee Support |
+| `ads.campaign.error_budget_range` | Invalid budget | Use budget suggestion API |
+| `ads.campaign.error_date_setting` | Invalid date | Ensure start >= today |
+| `ads.rate_limit.exceed_api` | Too many requests | Reduce request rate |
 
 ## Resources
 
-- [Shopee Ads API Documentation](https://open.shopee.com/documents/v2/v2.ads.get_list?module=105&type=1)
+- [Shopee Ads API Documentation](https://open.shopee.com/documents?module=105&type=1)
 - Contact Shopee Partner Support for Ads API access
-
-## Related
-
-- [ProductManager](./product.md) - Manage products being advertised
-- [Authentication Guide](../guides/authentication.md) - API authentication
 
 ---
 
-**Note:** This manager requires special permissions. Contact Shopee Partner Support to enable advertising features for your application.
+**Note:** This manager requires special permissions. Contact Shopee Partner Support to enable advertising features.

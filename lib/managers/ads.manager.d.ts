@@ -1,6 +1,6 @@
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
-import { GetTotalBalanceResponse, GetShopToggleInfoResponse, GetRecommendedKeywordListParams, GetRecommendedKeywordListResponse, GetRecommendedItemListResponse, GetAllCpcAdsHourlyPerformanceParams, GetAllCpcAdsHourlyPerformanceResponse, GetAllCpcAdsDailyPerformanceParams, GetAllCpcAdsDailyPerformanceResponse, GetProductCampaignDailyPerformanceParams, GetProductCampaignDailyPerformanceResponse, GetProductCampaignHourlyPerformanceParams, GetProductCampaignHourlyPerformanceResponse, GetProductLevelCampaignIdListParams, GetProductLevelCampaignIdListResponse, GetProductLevelCampaignSettingInfoParams, GetProductLevelCampaignSettingInfoResponse, GetProductRecommendedRoiTargetParams, GetProductRecommendedRoiTargetResponse } from "../schemas/ads.js";
+import { GetTotalBalanceResponse, GetShopToggleInfoResponse, GetRecommendedKeywordListParams, GetRecommendedKeywordListResponse, GetRecommendedItemListResponse, GetAllCpcAdsHourlyPerformanceParams, GetAllCpcAdsHourlyPerformanceResponse, GetAllCpcAdsDailyPerformanceParams, GetAllCpcAdsDailyPerformanceResponse, GetProductCampaignDailyPerformanceParams, GetProductCampaignDailyPerformanceResponse, GetProductCampaignHourlyPerformanceParams, GetProductCampaignHourlyPerformanceResponse, GetProductLevelCampaignIdListParams, GetProductLevelCampaignIdListResponse, GetProductLevelCampaignSettingInfoParams, GetProductLevelCampaignSettingInfoResponse, GetProductRecommendedRoiTargetParams, GetProductRecommendedRoiTargetResponse, CheckCreateGmsProductCampaignEligibilityResponse, CreateAutoProductAdsParams, CreateAutoProductAdsResponse, CreateGmsProductCampaignParams, CreateGmsProductCampaignResponse, CreateManualProductAdsParams, CreateManualProductAdsResponse, EditAutoProductAdsParams, EditAutoProductAdsResponse, EditGmsItemProductCampaignParams, EditGmsItemProductCampaignResponse, EditGmsProductCampaignParams, EditGmsProductCampaignResponse, EditManualProductAdKeywordsParams, EditManualProductAdKeywordsResponse, EditManualProductAdsParams, EditManualProductAdsResponse, GetAdsFacilShopRateResponse, GetCreateProductAdBudgetSuggestionParams, GetCreateProductAdBudgetSuggestionResponse, GetGmsCampaignPerformanceParams, GetGmsCampaignPerformanceResponse, GetGmsItemPerformanceParams, GetGmsItemPerformanceResponse, ListGmsUserDeletedItemParams, ListGmsUserDeletedItemResponse } from "../schemas/ads.js";
 export declare class AdsManager extends BaseManager {
     constructor(config: ShopeeConfig);
     /**
@@ -270,4 +270,220 @@ export declare class AdsManager extends BaseManager {
      * based on competitive marketplace data.
      */
     getProductRecommendedRoiTarget(params: GetProductRecommendedRoiTargetParams): Promise<GetProductRecommendedRoiTargetResponse>;
+    /**
+     * Check the seller's eligibility in creating a GMS campaign
+     * @returns {Promise<CheckCreateGmsProductCampaignEligibilityResponse>} Response containing eligibility status
+     *
+     * This API is used to check if the seller is eligible to create a GMS (Gross Merchandise Sales) Campaign.
+     * The response indicates eligibility and provides a reason if the seller is not eligible.
+     *
+     * Possible reasons for ineligibility:
+     * - active_campaign: There is already an existing GMS Campaign that is active
+     * - not_whitelisted: The seller is not whitelisted to sz_shop_gmv_max_feature
+     * - not_have_enough_sku: The seller does not have enough valid items in the shop
+     * - exclusive_with_other_campaign: Seller is whitelisted to sz_ads_auto_boost
+     */
+    checkCreateGmsProductCampaignEligibility(): Promise<CheckCreateGmsProductCampaignEligibilityResponse>;
+    /**
+     * Create Auto Product Ads
+     * @param {CreateAutoProductAdsParams} params Request parameters
+     * @param {string} params.reference_id A random string used to prevent duplicate ads
+     * @param {number} params.budget The budget set for the Auto Product Ads
+     * @param {string} params.start_date Start date of the campaign (DD-MM-YYYY format)
+     * @param {string} [params.end_date] End date of the campaign (DD-MM-YYYY format). Leave empty for unlimited duration
+     * @returns {Promise<CreateAutoProductAdsResponse>} Response containing the created campaign ID
+     *
+     * This API is used to create Auto Product Ads. Auto Product Ads automatically promote
+     * products based on their performance and potential.
+     *
+     * Important notes:
+     * - reference_id prevents duplicate ad creation. If an ad is created successfully,
+     *   subsequent requests using the same reference_id will fail
+     * - For unlimited campaign duration, pass today's date as start_date and leave end_date empty
+     */
+    createAutoProductAds(params: CreateAutoProductAdsParams): Promise<CreateAutoProductAdsResponse>;
+    /**
+     * Create a GMS product campaign
+     * @param {CreateGmsProductCampaignParams} params Request parameters
+     * @param {string} params.start_date Start date of Campaign (DD-MM-YYYY format). Cannot be earlier than today.
+     * @param {string} [params.end_date] End date of Campaign (DD-MM-YYYY format). Do not fill if no end date.
+     * @param {number} params.daily_budget Daily budget for Campaign
+     * @param {string} [params.reference_id] A random string used to prevent duplicate ads
+     * @param {number} [params.roas_target] ROAS target (0 or undefined for GMV Max Auto Bidding, >0 for Custom ROAS)
+     * @returns {Promise<CreateGmsProductCampaignResponse>} Response containing the created campaign ID
+     *
+     * This API is used to create a GMS (Gross Merchandise Sales) Campaign.
+     *
+     * ROAS Target behavior:
+     * - No input or 0: GMV Max Auto Bidding (Shop)
+     * - Greater than 0: GMV Max Custom ROAS (Shop)
+     * - Value is rounded to 1 decimal place (e.g., 10.123456 becomes 10.1)
+     */
+    createGmsProductCampaign(params: CreateGmsProductCampaignParams): Promise<CreateGmsProductCampaignResponse>;
+    /**
+     * Create Manual Selection Product Ads
+     * @param {CreateManualProductAdsParams} params Request parameters
+     * @param {string} params.reference_id A random string used to prevent duplicate ads
+     * @param {number} params.budget The budget set for the Manual Product Ads
+     * @param {string} params.start_date Start date of the campaign (DD-MM-YYYY format)
+     * @param {string} [params.end_date] End date of the campaign (DD-MM-YYYY format). Leave empty for unlimited duration
+     * @param {string} params.bidding_method Bidding method: "auto" or "manual"
+     * @param {number} params.item_id Product ID
+     * @param {number} [params.roas_target] ROAS target for campaigns with auto bidding. If 0, GMV Max / ROI feature is not enabled
+     * @param {Array} [params.selected_keywords] Selected keywords, required for manual bidding mode
+     * @param {Array} [params.discovery_ads_locations] Location settings for manual bidding method
+     * @param {boolean} [params.enhanced_cpc] Enhanced CPC functionality toggle
+     * @param {string} [params.smart_creative_setting] Smart Creative setting: "", "default", "on", or "off"
+     * @returns {Promise<CreateManualProductAdsResponse>} Response containing the created campaign ID
+     *
+     * This API is used to create Manual Selection Product Ads, which allow you to manually
+     * select products, keywords, and bidding strategies for your advertising campaigns.
+     *
+     * For manual bidding mode, you must specify selected_keywords and/or discovery_ads_locations.
+     * For auto bidding mode, you can set the roas_target parameter.
+     */
+    createManualProductAds(params: CreateManualProductAdsParams): Promise<CreateManualProductAdsResponse>;
+    /**
+     * Edit Auto Product Ads
+     * @param {EditAutoProductAdsParams} params Request parameters
+     * @param {string} params.reference_id A random string used to prevent duplicate ads
+     * @param {number} params.campaign_id The unique identifier for the campaign
+     * @param {string} params.edit_action The update action: "status", "budget", or "duration"
+     * @param {number} [params.budget] The budget set for the Auto Product Ads
+     * @param {string} [params.start_date] Start date of the campaign (DD-MM-YYYY format)
+     * @param {string} [params.end_date] End date of the campaign (DD-MM-YYYY format)
+     * @returns {Promise<EditAutoProductAdsResponse>} Response containing the campaign ID
+     *
+     * This API is used to edit existing Auto Product Ads.
+     * You can update the campaign status, budget, or duration based on the edit_action parameter.
+     */
+    editAutoProductAds(params: EditAutoProductAdsParams): Promise<EditAutoProductAdsResponse>;
+    /**
+     * Add/remove items to/from the GMS Campaign
+     * @param {EditGmsItemProductCampaignParams} params Request parameters
+     * @param {number} [params.campaign_id] The GMS Campaign ID
+     * @param {string} params.edit_action The action to perform: "add" or "remove"
+     * @param {number[]} params.item_id_list Item IDs to add/remove (minimum 1, maximum 30)
+     * @returns {Promise<EditGmsItemProductCampaignResponse>} Response containing the campaign ID
+     *
+     * This API is used to add or remove items from a GMS Campaign.
+     * You can add or remove between 1 and 30 items per request.
+     */
+    editGmsItemProductCampaign(params: EditGmsItemProductCampaignParams): Promise<EditGmsItemProductCampaignResponse>;
+    /**
+     * Edit a GMS product campaign
+     * @param {EditGmsProductCampaignParams} params Request parameters
+     * @param {number} params.campaign_id The GMS Campaign ID
+     * @param {string} params.edit_action The action to perform
+     * @param {number} [params.daily_budget] Daily budget for Campaign
+     * @param {string} [params.start_date] Start date of Campaign (DD-MM-YYYY format)
+     * @param {string} [params.end_date] End date of Campaign (DD-MM-YYYY format)
+     * @param {number} [params.roas_target] ROAS target for the campaign
+     * @returns {Promise<EditGmsProductCampaignResponse>} Response containing the campaign ID
+     *
+     * This API is used to edit existing GMS Campaign settings such as budget,
+     * campaign duration, and ROAS target.
+     */
+    editGmsProductCampaign(params: EditGmsProductCampaignParams): Promise<EditGmsProductCampaignResponse>;
+    /**
+     * Edit Manual Selection Product Ad Keywords
+     * @param {EditManualProductAdKeywordsParams} params Request parameters
+     * @param {string} params.reference_id A random string used to prevent duplicate ads
+     * @param {number} params.campaign_id The unique identifier for the campaign
+     * @param {string} params.edit_action The action to perform: "add", "edit", or "delete"
+     * @param {Array} [params.selected_keywords] Selected keywords to add, edit, or delete
+     * @returns {Promise<EditManualProductAdKeywordsResponse>} Response containing the campaign ID
+     *
+     * This API is used to edit keywords for Manual Selection Product Ads.
+     * You can add new keywords, edit existing keywords, or delete keywords.
+     */
+    editManualProductAdKeywords(params: EditManualProductAdKeywordsParams): Promise<EditManualProductAdKeywordsResponse>;
+    /**
+     * Edit Manual Selection Product Ads
+     * @param {EditManualProductAdsParams} params Request parameters
+     * @param {string} params.reference_id A random string used to prevent duplicate ads
+     * @param {number} params.campaign_id The unique identifier for the campaign
+     * @param {string} params.edit_action The update action
+     * @param {number} [params.budget] The budget set for the Manual Product Ads
+     * @param {string} [params.start_date] Start date of the campaign (DD-MM-YYYY format)
+     * @param {string} [params.end_date] End date of the campaign (DD-MM-YYYY format)
+     * @param {number} [params.roas_target] ROAS target for campaigns with auto bidding
+     * @param {Array} [params.discovery_ads_locations] Location settings for manual bidding method
+     * @param {boolean} [params.enhanced_cpc] Enhanced CPC functionality toggle
+     * @param {string} [params.smart_creative_setting] Smart Creative setting
+     * @returns {Promise<EditManualProductAdsResponse>} Response containing the campaign ID
+     *
+     * This API is used to edit existing Manual Selection Product Ads.
+     * You can update various campaign settings including budget, duration, bidding settings,
+     * and ad placement locations.
+     */
+    editManualProductAds(params: EditManualProductAdsParams): Promise<EditManualProductAdsResponse>;
+    /**
+     * Get shop rate for Ads Facil Program
+     * @returns {Promise<GetAdsFacilShopRateResponse>} Response containing the shop rate
+     *
+     * This API is used to get the shop rate for the Ads Facil Program,
+     * which is a special advertising program available in certain regions.
+     */
+    getAdsFacilShopRate(): Promise<GetAdsFacilShopRateResponse>;
+    /**
+     * Get budget suggestion for product ads creation
+     * @param {GetCreateProductAdBudgetSuggestionParams} params Request parameters
+     * @param {string} params.reference_id A random string used to prevent duplicate ads
+     * @param {string} params.product_selection Product selection: "auto" or "manual"
+     * @param {string} params.campaign_placement Campaign placement: "search", "discovery", or "all"
+     * @param {string} params.bidding_method Bidding method: "auto" or "manual"
+     * @param {string} [params.enhanced_cpc] Enhanced CPC toggle: "true" or "false"
+     * @param {string} [params.discovery_ads_location_names] Comma-separated location values
+     * @param {number} [params.roas_target] ROAS target for campaigns with auto bidding
+     * @param {number} [params.item_id] Product ID (mandatory for manual product selection)
+     * @returns {Promise<GetCreateProductAdBudgetSuggestionResponse>} Response containing budget suggestions
+     *
+     * This API is used to get budget suggestions before creating product ads.
+     * The suggestions include minimum, maximum, and recommended budget values
+     * based on the campaign parameters.
+     */
+    getCreateProductAdBudgetSuggestion(params: GetCreateProductAdBudgetSuggestionParams): Promise<GetCreateProductAdBudgetSuggestionResponse>;
+    /**
+     * Get GMS Campaign performance
+     * @param {GetGmsCampaignPerformanceParams} params Request parameters
+     * @param {number} [params.campaign_id] The GMS Campaign ID
+     * @param {string} params.start_date Start date (DD-MM-YYYY format). Maximum 3 months duration, earliest 6 months ago
+     * @param {string} params.end_date End date (DD-MM-YYYY format). Maximum 3 months duration
+     * @returns {Promise<GetGmsCampaignPerformanceResponse>} Response containing campaign performance data
+     *
+     * This API is used to get performance data for a GMS Campaign.
+     * The date range can span up to 3 months and go back up to 6 months from today.
+     *
+     * Performance metrics include impressions, clicks, CTR, expense, GMV, ROAS, and orders.
+     */
+    getGmsCampaignPerformance(params: GetGmsCampaignPerformanceParams): Promise<GetGmsCampaignPerformanceResponse>;
+    /**
+     * Get GMS Item performance
+     * @param {GetGmsItemPerformanceParams} params Request parameters
+     * @param {number} [params.campaign_id] The GMS Campaign ID
+     * @param {string} params.start_date Start date (DD-MM-YYYY format). Maximum 3 months duration, earliest 6 months ago
+     * @param {string} params.end_date End date (DD-MM-YYYY format). Maximum 3 months duration
+     * @param {number} [params.offset] Pagination offset (default: 0)
+     * @param {number} [params.limit] Maximum number of records to show (default: 50, max: 100)
+     * @returns {Promise<GetGmsItemPerformanceResponse>} Response containing item performance data
+     *
+     * This API is used to get performance data for items in a GMS Campaign.
+     * The response is sorted by item_id and only items with performance data are returned.
+     *
+     * The date range can span up to 3 months and go back up to 6 months from today.
+     * Results are paginated with offset and limit parameters.
+     */
+    getGmsItemPerformance(params: GetGmsItemPerformanceParams): Promise<GetGmsItemPerformanceResponse>;
+    /**
+     * List GMS items that have been removed from the Campaign by seller
+     * @param {ListGmsUserDeletedItemParams} [params] Request parameters
+     * @param {number} [params.offset] Pagination offset (default: 0)
+     * @param {number} [params.limit] Maximum number of records to show (default: 50, max: 100)
+     * @returns {Promise<ListGmsUserDeletedItemResponse>} Response containing deleted item IDs
+     *
+     * This API is used to list items that have been removed from a GMS Campaign by the seller.
+     * Results are paginated with offset and limit parameters.
+     */
+    listGmsUserDeletedItem(params?: ListGmsUserDeletedItemParams): Promise<ListGmsUserDeletedItemResponse>;
 }
