@@ -108,6 +108,10 @@ export class ShopeeFetch {
       throw new ShopeeSdkError(`Unknown response type: ${responseType}\n${responseData}`);
     } catch (error: unknown) {
       if (error instanceof Error) {
+        // Re-throw our custom errors as-is
+        if (error instanceof ShopeeApiError || error instanceof ShopeeSdkError) {
+          throw error;
+        }
         if (error.name === "FetchError") {
           // Network error
           throw new ShopeeSdkError(`Network error: ${error.message}`);
