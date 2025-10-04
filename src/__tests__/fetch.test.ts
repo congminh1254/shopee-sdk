@@ -255,6 +255,23 @@ describe("ShopeeFetch", () => {
       expect(options.headers.get("X-Custom-Header")).toBe("custom-value");
     });
 
+    it("should include User-Agent header with SDK version", async () => {
+      const mockResponse = { data: "test" };
+
+      mockFetch.mockResolvedValueOnce({
+        status: 200,
+        headers: new Map([["content-type", "application/json"]]),
+        json: jest.fn().mockResolvedValue(mockResponse),
+      });
+
+      await ShopeeFetch.fetch(mockConfig, "/test/endpoint");
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      const [, options] = mockFetch.mock.calls[0];
+      const userAgent = options.headers.get("user-agent");
+      expect(userAgent).toMatch(/^congminh1254\/shopee-sdk\/v\d+\.\d+\.\d+$/);
+    });
+
     it("should include query parameters in URL", async () => {
       const mockResponse = { data: "test" };
       const params = {

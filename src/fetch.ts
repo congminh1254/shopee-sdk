@@ -3,6 +3,17 @@ import { ShopeeConfig } from "./sdk.js";
 import { FetchOptions } from "./schemas/fetch.js";
 import { ShopeeApiError, ShopeeSdkError } from "./errors.js";
 import { generateSignature } from "./utils/signature.js";
+import { readFileSync } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+// Read version from package.json
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const packageJson = JSON.parse(
+  readFileSync(join(__dirname, "../package.json"), "utf-8")
+);
+const SDK_VERSION = packageJson.version;
 
 export class ShopeeFetch {
   public static async fetch<T>(
@@ -63,6 +74,7 @@ export class ShopeeFetch {
     // Prepare headers
     const headers = new Headers();
     headers.set("Content-Type", "application/json");
+    headers.set("User-Agent", `congminh1254/shopee-sdk/v${SDK_VERSION}`);
     if (options.headers) {
       Object.entries(options.headers).forEach(([key, value]) => {
         headers.set(key, value as string);
