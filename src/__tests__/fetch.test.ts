@@ -280,5 +280,104 @@ describe("ShopeeFetch", () => {
       expect(url).toContain("param3=array1");
       expect(url).toContain("param3=array2");
     });
+
+    it("should handle invalid access token error when refresh fails", async () => {
+      const invalidTokenResponse = {
+        error: "invalid_acceess_token",
+        message: "Invalid access token",
+        request_id: "test-request-id",
+      };
+
+      const mockToken: AccessToken = {
+        access_token: "old_token",
+        refresh_token: "refresh_token",
+        expire_in: 3600,
+        expired_at: Date.now() + 3600000,
+        shop_id: 67890,
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+      };
+
+      (mockSdk.getAuthToken as jest.MockedFunction<typeof mockSdk.getAuthToken>).mockResolvedValue(
+        mockToken
+      );
+      (mockSdk.refreshToken as jest.MockedFunction<typeof mockSdk.refreshToken>).mockRejectedValue(
+        new Error("Refresh failed")
+      );
+
+      mockFetch.mockResolvedValueOnce({
+        status: 401,
+        headers: new Map([["content-type", "application/json"]]),
+        json: jest.fn().mockResolvedValue(invalidTokenResponse),
+      });
+
+      await expect(
+        ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true })
+      ).rejects.toThrow("API Error: 401");
+    });
+
+    it("should throw ShopeeApiError when API returns error", async () => {
+      const errorResponse = {
+        error: "error_code",
+        message: "Error message",
+        request_id: "test-request-id",
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        status: 400,
+        headers: new Map([["content-type", "application/json"]]),
+        json: jest.fn().mockResolvedValue(errorResponse),
+      });
+
+      await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
+        "API Error: 400"
+      );
+    });
+
+    it("should throw error for unknown response type", async () => {
+      const headers = new Map([["content-type", "text/html"]]);
+      mockFetch.mockResolvedValueOnce({
+        status: 200,
+        headers: {
+          get: (name: string) => headers.get(name.toLowerCase()),
+        },
+        text: jest.fn().mockResolvedValue("<html>Not JSON</html>"),
+        json: jest.fn(),
+      });
+
+      await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
+        "Unknown response type"
+      );
+    });
+
+    it("should handle network errors", async () => {
+      const networkError = new Error("Network failed");
+      networkError.name = "FetchError";
+
+      mockFetch.mockRejectedValueOnce(networkError);
+
+      await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
+        "Network error: Network failed"
+      );
+    });
+
+    it("should handle unexpected errors", async () => {
+      const unexpectedError = new Error("Unexpected error");
+
+      mockFetch.mockRejectedValueOnce(unexpectedError);
+
+      await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
+        "Unexpected error: Unexpected error"
+      );
+    });
+
+    it("should handle unknown non-Error exceptions", async () => {
+      mockFetch.mockRejectedValueOnce("string error");
+
+      await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
+        "Unknown error occurred"
+      );
+    });
   });
 });
