@@ -178,23 +178,20 @@ describe("PushManager", () => {
         response: {
           has_next_page: false,
           last_message_id: 12345,
-          message_list: [
+          push_message_list: [
             {
-              message_id: 12343,
               shop_id: 67890,
               code: 1,
               timestamp: 1640995200,
               data: '{"order_sn":"220101000000001","order_status":"READY_TO_SHIP"}',
             },
             {
-              message_id: 12344,
               shop_id: 67890,
               code: 3,
               timestamp: 1640995300,
               data: '{"item_id":111111,"status":"BANNED"}',
             },
             {
-              message_id: 12345,
               shop_id: 67890,
               code: 7,
               timestamp: 1640995400,
@@ -213,7 +210,7 @@ describe("PushManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.message_list).toHaveLength(3);
+      expect(result.response.push_message_list).toHaveLength(3);
       expect(result.response.has_next_page).toBe(false);
       expect(result.response.last_message_id).toBe(12345);
     });
@@ -226,7 +223,7 @@ describe("PushManager", () => {
         response: {
           has_next_page: false,
           last_message_id: 0,
-          message_list: [],
+          push_message_list: [],
         },
       };
 
@@ -239,7 +236,7 @@ describe("PushManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.message_list).toHaveLength(0);
+      expect(result.response.push_message_list).toHaveLength(0);
       expect(result.response.last_message_id).toBe(0);
     });
 
@@ -251,8 +248,7 @@ describe("PushManager", () => {
         response: {
           has_next_page: true,
           last_message_id: 12400,
-          message_list: Array.from({ length: 100 }, (_, i) => ({
-            message_id: 12301 + i,
+          push_message_list: Array.from({ length: 100 }, (_, i) => ({
             shop_id: 67890,
             code: 1,
             timestamp: 1640995200 + i * 60,
@@ -265,7 +261,7 @@ describe("PushManager", () => {
 
       const result = await pushManager.getLostPushMessage();
 
-      expect(result.response.message_list).toHaveLength(100);
+      expect(result.response.push_message_list).toHaveLength(100);
       expect(result.response.has_next_page).toBe(true);
       expect(result.response.last_message_id).toBe(12400);
     });
