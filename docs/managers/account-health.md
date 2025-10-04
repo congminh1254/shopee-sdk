@@ -5,103 +5,300 @@ The AccountHealthManager provides access to shop performance metrics and account
 ## Overview
 
 The AccountHealthManager provides methods for:
-- Monitoring shop performance metrics
-- Tracking penalty points and violations
-- Getting account health scores
-- Accessing analytics and insights
+- Monitoring shop performance metrics across fulfillment, listing, and customer service
+- Tracking penalty points and violation history
+- Viewing punishment records and ongoing restrictions
+- Identifying problematic listings that need improvement
+- Managing late orders to avoid cancellations
+- Getting detailed metric source information
 
 ## Quick Start
 
 ```typescript
+// Get shop penalty information
+const penalty = await sdk.accountHealth.getShopPenalty();
+console.log('Penalty Points:', penalty.response.penalty_points.overall_penalty_points);
+
 // Get shop performance metrics
-const performance = await sdk.accountHealth.getShopPerformance({
-  start_date: '2024-01-01',
-  end_date: '2024-01-31',
-});
+const performance = await sdk.accountHealth.getShopPerformance();
+console.log('Overall Rating:', performance.response.overall_performance.rating);
 
-// Get penalty points
-const penalties = await sdk.accountHealth.getPenaltyPoints();
+// Get late orders to prioritize shipping
+const lateOrders = await sdk.accountHealth.getLateOrders({ page_size: 20 });
+console.log('Late Orders:', lateOrders.response.total_count);
 
-// Get shop metrics
-const metrics = await sdk.accountHealth.getShopMetrics();
+// Get listings with issues
+const issues = await sdk.accountHealth.getListingsWithIssues({ page_size: 50 });
+console.log('Problematic Listings:', issues.response.total_count);
 ```
 
 ## Important Notes
 
-1. **Availability**: Account health features may vary by region
-2. **Permissions**: Some metrics may require specific API permissions
-3. **Data Delay**: Metrics are typically updated daily, not real-time
+1. **Quarterly Reset**: Penalty points reset at the beginning of each quarter (first Monday)
+2. **Permissions**: Requires shop-level authentication with appropriate permissions
+3. **Pagination**: Most endpoints support pagination with `page_no` and `page_size` parameters
+4. **Real-time Updates**: Metrics and penalties are updated regularly but may have slight delays
 
 ## Basic Concepts
 
-### Performance Metrics
-- **Order Fulfillment Rate**: Percentage of orders successfully fulfilled
-- **Late Shipment Rate**: Percentage of orders shipped late
-- **Return/Refund Rate**: Percentage of orders returned or refunded
-- **Response Rate**: How quickly you respond to customer inquiries
-- **Chat Response Time**: Average time to respond to messages
+### Performance Metrics (from `getShopPerformance()`)
+- **Fulfillment Performance**: Late Shipment Rate, Non-Fulfillment Rate, Cancellation Rate, Return-refund Rate, Fast Handover Rate, On-time Pickup Failure Rate
+- **Listing Performance**: Severe Listing Violations, Pre-order Listing %, Other Listing Violations
+- **Customer Service Performance**: Chat Response Rate, Response Time, Shop Rating, Non-Responded Chats
 
-### Account Health Indicators
-- **Penalty Points**: Accumulated from violations
-- **Health Score**: Overall account health rating
-- **Violations**: Policy violations and their severity
-- **Warnings**: Active warnings on your account
+### Penalty Points (from `getShopPenalty()`)
+- **Overall Penalty Points**: Total accumulated points
+- **By Category**: Non-fulfillment rate, Late shipment rate, Listing violations, OPFR violations, Others
+- **Quarterly Reset**: Points reset on the first Monday of each quarter
 
-## Common Operations
+### Punishments
+- **Ongoing Punishments**: Active restrictions on your shop
+- **Punishment Types**: Deboost, listing restrictions, marketing restrictions, account suspension, etc.
+- **Punishment Tiers**: 1-5, with higher tiers having more severe consequences
 
-### Get Shop Performance
+## API Methods
+
+### getShopPenalty()
+
+Get the current penalty points and ongoing punishments for your shop.
 
 ```typescript
-const performance = await sdk.accountHealth.getShopPerformance({
-  start_date: '2024-01-01',
-  end_date: '2024-01-31',
+const penalty = await sdk.accountHealth.getShopPenalty();
+
+console.log('Overall Penalty Points:', penalty.response.penalty_points.overall_penalty_points);
+console.log('Non-fulfillment Rate:', penalty.response.penalty_points.non_fulfillment_rate);
+console.log('Late Shipment Rate:', penalty.response.penalty_points.late_shipment_rate);
+console.log('Listing Violations:', penalty.response.penalty_points.listing_violations);
+
+// Check ongoing punishments
+penalty.response.ongoing_punishment.forEach((punishment) => {
+  console.log('Punishment:', punishment.punishment_name);
+  console.log('Tier:', punishment.punishment_tier);
+  console.log('Days Left:', punishment.days_left);
+});
+```
+
+**Response Structure:**
+- `penalty_points`: Breakdown of penalty points by category
+- `ongoing_punishment`: List of active punishments with tier and duration
+
+---
+
+### getShopPerformance()
+
+Get comprehensive performance metrics across all key dimensions.
+
+```typescript
+const performance = await sdk.accountHealth.getShopPerformance();
+
+const overall = performance.response.overall_performance;
+console.log('Overall Rating:', overall.rating); // 1=Poor, 2=ImprovementNeeded, 3=Good, 4=Excellent
+console.log('Fulfillment Failed Metrics:', overall.fulfillment_failed);
+console.log('Listing Failed Metrics:', overall.listing_failed);
+console.log('Customer Service Failed Metrics:', overall.custom_service_failed);
+
+// Analyze specific metrics
+performance.response.metric_list.forEach((metric) => {
+  console.log(`${metric.metric_name}:`);
+  console.log('  Current:', metric.current_period, metric.unit);
+  console.log('  Target:', metric.target.comparator, metric.target.value);
+  console.log('  Last Period:', metric.last_period);
+});
+```
+
+**Key Metric IDs:**
+- `1`: Late Shipment Rate (All Channels)
+- `3`: Non-Fulfilment Rate (All Channels)
+- `12`: Pre-order Listing %
+- `25`: Fast Handover Rate
+- `42`: Cancellation Rate (All Channels)
+- `43`: Return-refund Rate (All Channels)
+- `52`: Severe Listing Violations
+
+---
+
+### getMetricSourceDetail()
+
+Get detailed information about specific metrics, including affected orders or listings.
+
+```typescript
+// Get Non-Fulfilment Rate order details
+const nfrDetails = await sdk.accountHealth.getMetricSourceDetail({
+  metric_id: 3,
+  page_size: 20,
 });
 
-console.log('Order Fulfillment:', performance.order_fulfillment_rate);
-console.log('Late Shipment:', performance.late_shipment_rate);
-console.log('Return Rate:', performance.return_rate);
-console.log('Response Rate:', performance.response_rate);
-console.log('Chat Response Time:', performance.chat_response_time);
-```
-
-### Monitor Penalty Points
-
-```typescript
-const penalties = await sdk.accountHealth.getPenaltyPoints();
-
-console.log('Total Points:', penalties.total_points);
-console.log('Penalty List:');
-penalties.penalty_list?.forEach((penalty) => {
-  console.log('- Type:', penalty.penalty_type);
-  console.log('  Points:', penalty.points);
-  console.log('  Date:', new Date(penalty.create_time * 1000));
-  console.log('  Reason:', penalty.reason);
+nfrDetails.response.nfr_order_list?.forEach((order) => {
+  console.log('Order:', order.order_sn);
+  console.log('Type:', order.non_fulfillment_type);
+  console.log('Reason:', order.detailed_reason);
 });
 
-// Alert if points are high
-if (penalties.total_points > 10) {
-  console.warn('⚠️ High penalty points - review account health!');
-}
+// Get Listing Violations
+const violations = await sdk.accountHealth.getMetricSourceDetail({
+  metric_id: 52,
+  page_size: 50,
+});
+
+violations.response.violation_listing_list?.forEach((listing) => {
+  console.log('Item ID:', listing.item_id);
+  console.log('Reason:', listing.detailed_reason);
+  console.log('Updated:', new Date(listing.update_time * 1000));
+});
 ```
 
-### Track Key Metrics
+**Supported Metric IDs:**
+- `1`, `85`: Late Shipment Rate → `lsr_order_list`
+- `3`, `88`: Non-Fulfilment Rate → `nfr_order_list`
+- `12`: Pre-order Listing % → `pre_order_listing_list`
+- `15`: Pre-order Violation Days → `pre_order_listing_violation_data_list`
+- `25`, `2001-2003`: Fast Handover Rate → `fhr_order_list`
+- `28`: OPFR Violation → `opfr_day_detail_data_list`
+- `42`, `91`: Cancellation Rate → `cancellation_order_list`
+- `43`, `92`: Return-refund Rate → `return_refund_order_list`
+- `52`, `53`: Listing Violations → `violation_listing_list`
+- `97`: % NDD Listings → `ndd_listing_list`
+
+---
+
+### getPenaltyPointHistory()
+
+Get historical records of penalty points issued during the current quarter.
 
 ```typescript
-const metrics = await sdk.accountHealth.getShopMetrics();
+const history = await sdk.accountHealth.getPenaltyPointHistory({
+  page_size: 50,
+  violation_type: 5, // Optional: filter by violation type
+});
 
-const healthScore = {
-  fulfillment: metrics.order_fulfillment_rate >= 95 ? '✅' : '⚠️',
-  lateShipment: metrics.late_shipment_rate <= 5 ? '✅' : '⚠️',
-  returnRate: metrics.return_rate <= 10 ? '✅' : '⚠️',
-  responseRate: metrics.response_rate >= 90 ? '✅' : '⚠️',
-};
+console.log('Total Records:', history.response.total_count);
 
-console.log('Shop Health Scorecard:');
-console.log('Fulfillment Rate:', healthScore.fulfillment, metrics.order_fulfillment_rate);
-console.log('Late Shipment:', healthScore.lateShipment, metrics.late_shipment_rate);
-console.log('Return Rate:', healthScore.returnRate, metrics.return_rate);
-console.log('Response Rate:', healthScore.responseRate, metrics.response_rate);
+history.response.penalty_point_list.forEach((record) => {
+  console.log('Issue Time:', new Date(record.issue_time * 1000));
+  console.log('Original Points:', record.original_point_num);
+  console.log('Latest Points:', record.latest_point_num);
+  console.log('Violation Type:', record.violation_type);
+  console.log('Reference ID:', record.reference_id);
+});
 ```
+
+**Parameters:**
+- `page_no`: Page number (default: 1)
+- `page_size`: Items per page, 1-100 (default: 10)
+- `violation_type`: Filter by specific violation type (optional)
+
+**Common Violation Types:**
+- `5`: High Late Shipment Rate
+- `6`: High Non-fulfilment Rate
+- `9`: Prohibited Listings
+- `10`: Counterfeit / IP infringement
+- `11`: Spam
+
+---
+
+### getPunishmentHistory()
+
+Get records of punishments applied during the current quarter.
+
+```typescript
+// Get ongoing punishments
+const ongoing = await sdk.accountHealth.getPunishmentHistory({
+  punishment_status: 1, // 1=Ongoing, 2=Ended
+  page_size: 20,
+});
+
+ongoing.response.punishment_list.forEach((punishment) => {
+  console.log('Punishment Type:', punishment.punishment_type);
+  console.log('Reason/Tier:', punishment.reason);
+  console.log('Start:', new Date(punishment.start_time * 1000));
+  console.log('End:', new Date(punishment.end_time * 1000));
+  
+  if (punishment.listing_limit) {
+    console.log('Listing Limit:', punishment.listing_limit);
+  }
+  if (punishment.order_limit) {
+    console.log('Order Limit:', punishment.order_limit);
+  }
+});
+```
+
+**Parameters:**
+- `punishment_status`: Required. 1 for Ongoing, 2 for Ended
+- `page_no`: Page number (default: 1)
+- `page_size`: Items per page, 1-100 (default: 10)
+
+**Common Punishment Types:**
+- `103`: Listings not displayed in category browsing
+- `104`: Listings not displayed in search
+- `105`: Unable to create new listings
+- `106`: Unable to edit listings
+- `107`: Unable to join marketing campaigns
+- `109`: Account is suspended
+- `1109-1112`: Listing Limit reduced
+- `2008`: Order Limit applied
+
+---
+
+### getListingsWithIssues()
+
+Get listings that have issues and need improvement.
+
+```typescript
+const issues = await sdk.accountHealth.getListingsWithIssues({
+  page_size: 100,
+});
+
+console.log('Total Problematic Listings:', issues.response.total_count);
+
+issues.response.listing_list.forEach((listing) => {
+  console.log('Item ID:', listing.item_id);
+  console.log('Reason:', listing.reason);
+  // Reason values: 1=Prohibited, 2=Counterfeit, 3=Spam, 4=Inappropriate Image,
+  // 5=Insufficient Info, 6=Mall Listing Improvement, 7=Other Listing Improvement
+});
+```
+
+**Parameters:**
+- `page_no`: Page number (default: 1)
+- `page_size`: Items per page, 1-100 (default: 10)
+
+**Issue Reasons:**
+- `1`: Prohibited
+- `2`: Counterfeit
+- `3`: Spam
+- `4`: Inappropriate Image
+- `5`: Insufficient Info
+- `6`: Mall Listing Improvement
+- `7`: Other Listing Improvement
+
+---
+
+### getLateOrders()
+
+Get orders that are late for shipping and need immediate attention.
+
+```typescript
+const lateOrders = await sdk.accountHealth.getLateOrders({
+  page_size: 50,
+});
+
+console.log('Total Late Orders:', lateOrders.response.total_count);
+
+lateOrders.response.late_order_list.forEach((order) => {
+  console.log('Order SN:', order.order_sn);
+  console.log('Shipping Deadline:', new Date(order.shipping_deadline * 1000));
+  console.log('Late By Days:', order.late_by_days);
+});
+
+// Prioritize most urgent orders
+const urgent = lateOrders.response.late_order_list
+  .filter(order => order.late_by_days >= 2)
+  .sort((a, b) => b.late_by_days - a.late_by_days);
+```
+
+**Parameters:**
+- `page_no`: Page number (default: 1)
+- `page_size`: Items per page, 1-100 (default: 10)
 
 ## Best Practices
 
@@ -109,185 +306,269 @@ console.log('Response Rate:', healthScore.responseRate, metrics.response_rate);
 
 ```typescript
 async function dailyHealthCheck() {
-  const endDate = new Date();
-  const startDate = new Date(endDate.getTime() - 30 * 86400000); // Last 30 days
+  const [penalty, performance, lateOrders, issues] = await Promise.all([
+    sdk.accountHealth.getShopPenalty(),
+    sdk.accountHealth.getShopPerformance(),
+    sdk.accountHealth.getLateOrders({ page_size: 100 }),
+    sdk.accountHealth.getListingsWithIssues({ page_size: 100 }),
+  ]);
   
-  const performance = await sdk.accountHealth.getShopPerformance({
-    start_date: startDate.toISOString().split('T')[0],
-    end_date: endDate.toISOString().split('T')[0],
-  });
+  const alerts = [];
   
-  const issues = [];
-  
-  if (performance.order_fulfillment_rate < 95) {
-    issues.push('Low fulfillment rate');
-  }
-  if (performance.late_shipment_rate > 5) {
-    issues.push('High late shipment rate');
-  }
-  if (performance.return_rate > 10) {
-    issues.push('High return rate');
+  // Check penalty points
+  if (penalty.response.penalty_points.overall_penalty_points > 10) {
+    alerts.push({
+      severity: 'high',
+      message: `Penalty points: ${penalty.response.penalty_points.overall_penalty_points}`,
+    });
   }
   
-  if (issues.length > 0) {
-    console.warn('⚠️ Account health issues:', issues);
-    await alertTeam(issues);
+  // Check ongoing punishments
+  if (penalty.response.ongoing_punishment.length > 0) {
+    alerts.push({
+      severity: 'critical',
+      message: `Active punishments: ${penalty.response.ongoing_punishment.length}`,
+    });
   }
   
-  return { performance, issues };
+  // Check performance rating
+  if (performance.response.overall_performance.rating < 3) {
+    alerts.push({
+      severity: 'medium',
+      message: 'Performance rating needs improvement',
+    });
+  }
+  
+  // Check late orders
+  if (lateOrders.response.total_count > 10) {
+    alerts.push({
+      severity: 'high',
+      message: `Late orders: ${lateOrders.response.total_count}`,
+    });
+  }
+  
+  // Check problematic listings
+  if (issues.response.total_count > 0) {
+    alerts.push({
+      severity: 'medium',
+      message: `Problematic listings: ${issues.response.total_count}`,
+    });
+  }
+  
+  if (alerts.length > 0) {
+    await notifyTeam(alerts);
+  }
+  
+  return { penalty, performance, lateOrders, issues, alerts };
 }
 
 // Run daily
 setInterval(dailyHealthCheck, 24 * 60 * 60 * 1000);
 ```
 
-### 2. Set Up Alerts
+### 2. Handle Late Orders Proactively
 
 ```typescript
-interface HealthThresholds {
-  orderFulfillmentMin: number;
-  lateShipmentMax: number;
-  returnRateMax: number;
-  responseRateMin: number;
-  penaltyPointsMax: number;
-}
-
-async function checkHealthThresholds(thresholds: HealthThresholds) {
-  const [performance, penalties] = await Promise.all([
-    sdk.accountHealth.getShopPerformance({
-      start_date: getDateDaysAgo(30),
-      end_date: getTodayDate(),
-    }),
-    sdk.accountHealth.getPenaltyPoints(),
-  ]);
-  
-  const alerts = [];
-  
-  if (performance.order_fulfillment_rate < thresholds.orderFulfillmentMin) {
-    alerts.push({
-      type: 'FULFILLMENT',
-      message: `Fulfillment rate ${performance.order_fulfillment_rate}% below threshold`,
-      severity: 'HIGH',
-    });
-  }
-  
-  if (performance.late_shipment_rate > thresholds.lateShipmentMax) {
-    alerts.push({
-      type: 'LATE_SHIPMENT',
-      message: `Late shipment rate ${performance.late_shipment_rate}% above threshold`,
-      severity: 'HIGH',
-    });
-  }
-  
-  if (penalties.total_points > thresholds.penaltyPointsMax) {
-    alerts.push({
-      type: 'PENALTIES',
-      message: `Penalty points ${penalties.total_points} above threshold`,
-      severity: 'CRITICAL',
-    });
-  }
-  
-  // Send alerts
-  if (alerts.length > 0) {
-    await sendHealthAlerts(alerts);
-  }
-  
-  return alerts;
-}
-```
-
-### 3. Historical Tracking
-
-```typescript
-class HealthTracker {
-  private history: any[] = [];
-  
-  async recordDailyMetrics() {
-    const performance = await sdk.accountHealth.getShopPerformance({
-      start_date: getYesterdayDate(),
-      end_date: getTodayDate(),
-    });
-    
-    this.history.push({
-      date: new Date().toISOString(),
-      ...performance,
-    });
-    
-    // Keep last 90 days
-    if (this.history.length > 90) {
-      this.history.shift();
-    }
-    
-    await this.saveToDatabase(this.history);
-  }
-  
-  getTrend(metric: string, days: number = 7) {
-    const recent = this.history.slice(-days);
-    const values = recent.map(h => h[metric]);
-    
-    const avg = values.reduce((a, b) => a + b, 0) / values.length;
-    const trend = values[values.length - 1] - values[0];
-    
-    return {
-      average: avg,
-      trend: trend > 0 ? 'improving' : trend < 0 ? 'declining' : 'stable',
-      change: trend,
-    };
-  }
-}
-
-const tracker = new HealthTracker();
-setInterval(() => tracker.recordDailyMetrics(), 24 * 60 * 60 * 1000);
-```
-
-### 4. Improvement Actions
-
-```typescript
-async function generateImprovementPlan() {
-  const performance = await sdk.accountHealth.getShopPerformance({
-    start_date: getDateDaysAgo(30),
-    end_date: getTodayDate(),
+async function prioritizeLateOrders() {
+  const lateOrders = await sdk.accountHealth.getLateOrders({
+    page_size: 100,
   });
   
-  const plan = [];
-  
-  if (performance.late_shipment_rate > 5) {
-    plan.push({
-      issue: 'High late shipment rate',
-      actions: [
-        'Review fulfillment process',
-        'Add buffer time for packing',
-        'Consider automated shipping labels',
-        'Optimize inventory management',
-      ],
-    });
+  if (lateOrders.response.total_count === 0) {
+    console.log('✅ No late orders');
+    return;
   }
   
-  if (performance.return_rate > 10) {
-    plan.push({
-      issue: 'High return rate',
-      actions: [
-        'Review product descriptions for accuracy',
-        'Improve product photography',
-        'Add size guides and measurements',
-        'Check product quality',
-      ],
-    });
+  // Group by urgency
+  const critical = lateOrders.response.late_order_list.filter(o => o.late_by_days >= 3);
+  const urgent = lateOrders.response.late_order_list.filter(o => o.late_by_days === 2);
+  const warning = lateOrders.response.late_order_list.filter(o => o.late_by_days === 1);
+  
+  console.log('🚨 Critical (3+ days late):', critical.length);
+  console.log('⚠️  Urgent (2 days late):', urgent.length);
+  console.log('⏰ Warning (1 day late):', warning.length);
+  
+  // Process critical orders first
+  for (const order of critical) {
+    await processUrgentOrder(order.order_sn);
+    await notifyWarehouse(order.order_sn, 'CRITICAL');
   }
   
-  if (performance.response_rate < 90) {
-    plan.push({
-      issue: 'Low response rate',
-      actions: [
-        'Set up automated responses',
-        'Increase customer service hours',
-        'Use quick reply templates',
-        'Enable mobile notifications',
-      ],
-    });
+  return { critical, urgent, warning };
+}
+
+// Run every 4 hours
+setInterval(prioritizeLateOrders, 4 * 60 * 60 * 1000);
+```
+
+### 3. Fix Problematic Listings
+
+```typescript
+async function fixListingIssues() {
+  const issues = await sdk.accountHealth.getListingsWithIssues({
+    page_size: 100,
+  });
+  
+  if (issues.response.total_count === 0) {
+    console.log('✅ No listing issues');
+    return;
   }
   
-  return plan;
+  // Group by issue type
+  const byReason: Record<number, number[]> = {};
+  issues.response.listing_list.forEach((listing) => {
+    if (!byReason[listing.reason]) {
+      byReason[listing.reason] = [];
+    }
+    byReason[listing.reason].push(listing.item_id);
+  });
+  
+  // Report and take action
+  for (const [reason, itemIds] of Object.entries(byReason)) {
+    const reasonText = {
+      1: 'Prohibited',
+      2: 'Counterfeit',
+      3: 'Spam',
+      4: 'Inappropriate Image',
+      5: 'Insufficient Info',
+      6: 'Mall Listing Improvement',
+      7: 'Other Listing Improvement',
+    }[Number(reason)] || 'Unknown';
+    
+    console.log(`Issue: ${reasonText} - ${itemIds.length} items`);
+    
+    // Take appropriate action
+    if (Number(reason) === 5) {
+      // Insufficient Info - update descriptions
+      for (const itemId of itemIds) {
+        await updateItemDescription(itemId);
+      }
+    } else if (Number(reason) === 4) {
+      // Inappropriate Image - update images
+      for (const itemId of itemIds) {
+        await updateItemImages(itemId);
+      }
+    }
+  }
+  
+  return byReason;
+}
+
+// Run weekly
+setInterval(fixListingIssues, 7 * 24 * 60 * 60 * 1000);
+```
+
+### 4. Track Penalty Point Trends
+
+```typescript
+async function analyzePenaltyTrends() {
+  const history = await sdk.accountHealth.getPenaltyPointHistory({
+    page_size: 100,
+  });
+  
+  if (history.response.total_count === 0) {
+    console.log('✅ No penalty points in current quarter');
+    return;
+  }
+  
+  // Group by violation type
+  const byViolationType: Record<number, { count: number; totalPoints: number }> = {};
+  
+  history.response.penalty_point_list.forEach((record) => {
+    if (!byViolationType[record.violation_type]) {
+      byViolationType[record.violation_type] = { count: 0, totalPoints: 0 };
+    }
+    byViolationType[record.violation_type].count++;
+    byViolationType[record.violation_type].totalPoints += record.latest_point_num;
+  });
+  
+  // Find most problematic areas
+  const sorted = Object.entries(byViolationType)
+    .sort(([, a], [, b]) => b.totalPoints - a.totalPoints);
+  
+  console.log('Top Violation Areas:');
+  sorted.slice(0, 5).forEach(([type, data]) => {
+    console.log(`Type ${type}: ${data.count} violations, ${data.totalPoints} points`);
+  });
+  
+  return byViolationType;
+}
+
+async function checkPunishmentStatus() {
+  const [ongoing, ended] = await Promise.all([
+    sdk.accountHealth.getPunishmentHistory({
+      punishment_status: 1,
+      page_size: 50,
+    }),
+    sdk.accountHealth.getPunishmentHistory({
+      punishment_status: 2,
+      page_size: 50,
+    }),
+  ]);
+  
+  console.log('Ongoing Punishments:', ongoing.response.total_count);
+  console.log('Ended Punishments:', ended.response.total_count);
+  
+  ongoing.response.punishment_list.forEach((p) => {
+    const daysLeft = Math.ceil((p.end_time - Date.now() / 1000) / 86400);
+    console.log(`Punishment Type ${p.punishment_type} - ${daysLeft} days left`);
+  });
+  
+  return { ongoing, ended };
+}
+```
+
+### 5. Analyze Metric Source Details
+
+```typescript
+async function analyzeMetricDetails() {
+  const performance = await sdk.accountHealth.getShopPerformance();
+  
+  // Find metrics that failed to meet targets
+  const failedMetrics = performance.response.metric_list.filter((metric) => {
+    if (metric.current_period === null) return false;
+    
+    const { value, comparator } = metric.target;
+    const current = metric.current_period;
+    
+    if (comparator === '<') return current >= value;
+    if (comparator === '<=') return current > value;
+    if (comparator === '>') return current <= value;
+    if (comparator === '>=') return current < value;
+    
+    return false;
+  });
+  
+  console.log(`Failed Metrics: ${failedMetrics.length}`);
+  
+  // Get details for each failed metric
+  for (const metric of failedMetrics) {
+    console.log(`\nAnalyzing: ${metric.metric_name}`);
+    
+    try {
+      const details = await sdk.accountHealth.getMetricSourceDetail({
+        metric_id: metric.metric_id,
+        page_size: 20,
+      });
+      
+      console.log(`Total Affected: ${details.response.total_count}`);
+      
+      // Handle different metric types
+      if (details.response.nfr_order_list) {
+        console.log('Non-Fulfillment Orders:', details.response.nfr_order_list.length);
+      }
+      if (details.response.lsr_order_list) {
+        console.log('Late Shipment Orders:', details.response.lsr_order_list.length);
+      }
+      if (details.response.violation_listing_list) {
+        console.log('Violation Listings:', details.response.violation_listing_list.length);
+      }
+    } catch (error) {
+      console.log('Details not available for this metric');
+    }
+  }
+  
+  return failedMetrics;
 }
 ```
 
@@ -295,87 +576,130 @@ async function generateImprovementPlan() {
 
 ```typescript
 async function generateHealthDashboard() {
-  const [performance, penalties, metrics] = await Promise.all([
-    sdk.accountHealth.getShopPerformance({
-      start_date: getDateDaysAgo(30),
-      end_date: getTodayDate(),
-    }),
-    sdk.accountHealth.getPenaltyPoints(),
-    sdk.accountHealth.getShopMetrics(),
+  const [penalty, performance, lateOrders, issues, penaltyHistory] = await Promise.all([
+    sdk.accountHealth.getShopPenalty(),
+    sdk.accountHealth.getShopPerformance(),
+    sdk.accountHealth.getLateOrders({ page_size: 10 }),
+    sdk.accountHealth.getListingsWithIssues({ page_size: 10 }),
+    sdk.accountHealth.getPenaltyPointHistory({ page_size: 10 }),
   ]);
   
   const dashboard = {
     timestamp: new Date(),
     
-    overallHealth: calculateHealthScore(performance, penalties),
-    
-    performance: {
-      orderFulfillment: {
-        value: performance.order_fulfillment_rate,
-        status: performance.order_fulfillment_rate >= 95 ? 'GOOD' : 'WARNING',
-      },
-      lateShipment: {
-        value: performance.late_shipment_rate,
-        status: performance.late_shipment_rate <= 5 ? 'GOOD' : 'WARNING',
-      },
-      returnRate: {
-        value: performance.return_rate,
-        status: performance.return_rate <= 10 ? 'GOOD' : 'WARNING',
-      },
-      responseRate: {
-        value: performance.response_rate,
-        status: performance.response_rate >= 90 ? 'GOOD' : 'WARNING',
-      },
+    overallHealth: {
+      rating: performance.response.overall_performance.rating,
+      ratingText: ['', 'Poor', 'Improvement Needed', 'Good', 'Excellent'][
+        performance.response.overall_performance.rating
+      ],
+      penaltyPoints: penalty.response.penalty_points.overall_penalty_points,
+      activePunishments: penalty.response.ongoing_punishment.length,
     },
     
-    penalties: {
-      total: penalties.total_points,
-      status: penalties.total_points < 5 ? 'GOOD' : 
-              penalties.total_points < 10 ? 'WARNING' : 'CRITICAL',
-      recent: penalties.penalty_list?.slice(0, 5),
+    metrics: {
+      fulfillmentFailed: performance.response.overall_performance.fulfillment_failed,
+      listingFailed: performance.response.overall_performance.listing_failed,
+      customerServiceFailed: performance.response.overall_performance.custom_service_failed,
     },
     
-    recommendations: await generateImprovementPlan(),
+    urgentActions: {
+      lateOrders: lateOrders.response.total_count,
+      problematicListings: issues.response.total_count,
+      recentPenalties: penaltyHistory.response.total_count,
+    },
+    
+    punishments: penalty.response.ongoing_punishment.map((p) => ({
+      name: p.punishment_name,
+      tier: p.punishment_tier,
+      daysLeft: p.days_left,
+    })),
+    
+    topMetrics: performance.response.metric_list.slice(0, 10).map((m) => ({
+      name: m.metric_name,
+      current: m.current_period,
+      target: `${m.target.comparator} ${m.target.value}`,
+      unit: m.unit,
+    })),
   };
   
   return dashboard;
 }
+```
 
-function calculateHealthScore(performance: any, penalties: any): number {
-  let score = 100;
+## Performance Rating Guide
+
+### Overall Performance Rating
+- **4 (Excellent)**: All metrics meet or exceed targets
+- **3 (Good)**: Most metrics meet targets with minor issues
+- **2 (Improvement Needed)**: Several metrics below target
+- **1 (Poor)**: Critical metrics failing, immediate action required
+
+### Metric Units
+- **1 (Number)**: Raw count value
+- **2 (Percentage)**: Percentage value (0-100)
+- **3 (Second)**: Time in seconds
+- **4 (Day)**: Time in days
+- **5 (Hour)**: Time in hours
+
+### Violation Type Categories
+
+**Fulfillment Issues:**
+- `5`: High Late Shipment Rate
+- `6`: High Non-fulfilment Rate
+- `7`: High number of non-fulfilled orders
+- `8`: High number of late shipped orders
+
+**Listing Issues:**
+- `9`: Prohibited Listings
+- `10`: Counterfeit / IP infringement
+- `11`: Spam
+- `12`: Copy/Steal images
+- `13`: Re-uploading deleted listings
+
+**Customer Service Issues:**
+- `21`: High No. of Non-responded Chat
+- `22`: Rude chat replies
+- `23`: Request buyer to cancel order
+- `24`: Rude reply to buyer's review
+
+## Error Handling
+
+```typescript
+try {
+  const penalty = await sdk.accountHealth.getShopPenalty();
   
-  // Deduct for poor performance
-  if (performance.order_fulfillment_rate < 95) score -= 10;
-  if (performance.late_shipment_rate > 5) score -= 10;
-  if (performance.return_rate > 10) score -= 10;
-  if (performance.response_rate < 90) score -= 10;
+  if (penalty.error) {
+    console.error('API Error:', penalty.error, penalty.message);
+    return;
+  }
   
-  // Deduct for penalties
-  score -= penalties.total_points * 2;
-  
-  return Math.max(0, score);
+  // Process successful response
+  console.log('Penalty Points:', penalty.response.penalty_points.overall_penalty_points);
+} catch (error) {
+  console.error('Network or unexpected error:', error);
 }
 ```
 
-## Common Metrics
+## Common Errors
 
-### Performance Targets
-
-| Metric | Target | Warning | Critical |
-|--------|--------|---------|----------|
-| Order Fulfillment Rate | ≥ 95% | < 95% | < 90% |
-| Late Shipment Rate | ≤ 5% | > 5% | > 10% |
-| Return/Refund Rate | ≤ 10% | > 10% | > 15% |
-| Response Rate | ≥ 90% | < 90% | < 80% |
-| Chat Response Time | ≤ 2 hours | > 2 hours | > 4 hours |
-| Penalty Points | 0 | > 5 | > 10 |
+| Error Code | Description | Solution |
+|------------|-------------|----------|
+| `error_auth` | Authentication failed | Check access token validity |
+| `error_param` | Invalid parameters | Verify parameter values and types |
+| `error_permission_denied` | No permission | Verify shop permissions for account health |
+| `error_data` | Data not available | Feature may not be available in your region |
 
 ## Related
 
-- [OrderManager](./order.md) - Impact fulfillment metrics
-- [ProductManager](./product.md) - Impact return rates
-- [Authentication Guide](../guides/authentication.md) - API authentication
+- [OrderManager](./order.md) - Manage orders to improve fulfillment metrics
+- [ProductManager](./product.md) - Fix listing issues and improve product quality
+- [Authentication Guide](../guides/authentication.md) - API authentication setup
 
 ---
 
-**Note:** Keep your shop's health metrics within Shopee's recommended ranges to maintain good standing and access to platform features.
+**Important Notes:**
+- Penalty points reset quarterly (first Monday of each quarter)
+- Metrics are updated regularly but may have slight delays
+- Take immediate action on ongoing punishments to minimize impact
+- Monitor late orders daily to avoid order cancellations
+- Fix problematic listings promptly to avoid further penalties
