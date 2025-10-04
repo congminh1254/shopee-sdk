@@ -621,9 +621,7 @@ export class AdsManager extends BaseManager {
    * This API is used to edit existing Auto Product Ads.
    * You can update the campaign status, budget, or duration based on the edit_action parameter.
    */
-  async editAutoProductAds(
-    params: EditAutoProductAdsParams
-  ): Promise<EditAutoProductAdsResponse> {
+  async editAutoProductAds(params: EditAutoProductAdsParams): Promise<EditAutoProductAdsResponse> {
     const response = await ShopeeFetch.fetch<EditAutoProductAdsResponse>(
       this.config,
       "/ads/edit_auto_product_ads",

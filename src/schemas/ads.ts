@@ -539,8 +539,7 @@ export interface GetProductRecommendedRoiTargetResponse extends BaseResponse {
 /**
  * Response for the check create GMS product campaign eligibility API
  */
-export interface CheckCreateGmsProductCampaignEligibilityResponse
-  extends BaseResponse {
+export interface CheckCreateGmsProductCampaignEligibilityResponse extends BaseResponse {
   response: {
     /** Indicates if the seller is eligible to create a GMS Campaign */
     is_eligible: boolean;
@@ -864,8 +863,7 @@ export type GetCreateProductAdBudgetSuggestionParams = {
 /**
  * Response for the get create product ad budget suggestion API
  */
-export interface GetCreateProductAdBudgetSuggestionResponse
-  extends BaseResponse {
+export interface GetCreateProductAdBudgetSuggestionResponse extends BaseResponse {
   response: {
     /** Budget suggestion data */
     budget: {

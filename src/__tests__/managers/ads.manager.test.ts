@@ -616,20 +616,16 @@ describe("AdsManager", () => {
         end_date: "31-01-2024",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/create_auto_product_ads",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            reference_id: "ref-12345",
-            budget: 100.5,
-            start_date: "01-01-2024",
-            end_date: "31-01-2024",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/create_auto_product_ads", {
+        method: "POST",
+        auth: true,
+        body: {
+          reference_id: "ref-12345",
+          budget: 100.5,
+          start_date: "01-01-2024",
+          end_date: "31-01-2024",
+        },
+      });
 
       expect(result.error).toBe("");
       expect(result.response.campaign_id).toBe(987654);
@@ -678,21 +674,17 @@ describe("AdsManager", () => {
         roas_target: 5.5,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/create_gms_product_campaign",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            start_date: "01-01-2024",
-            end_date: "31-01-2024",
-            daily_budget: 200.0,
-            reference_id: "gms-ref-001",
-            roas_target: 5.5,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/create_gms_product_campaign", {
+        method: "POST",
+        auth: true,
+        body: {
+          start_date: "01-01-2024",
+          end_date: "31-01-2024",
+          daily_budget: 200.0,
+          reference_id: "gms-ref-001",
+          roas_target: 5.5,
+        },
+      });
 
       expect(result.error).toBe("");
       expect(result.response.campaign_id).toBe(111222);
@@ -721,22 +713,18 @@ describe("AdsManager", () => {
         roas_target: 3.0,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/create_manual_product_ads",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            reference_id: "manual-ref-001",
-            budget: 150.0,
-            start_date: "01-01-2024",
-            bidding_method: "auto",
-            item_id: 123456,
-            roas_target: 3.0,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/create_manual_product_ads", {
+        method: "POST",
+        auth: true,
+        body: {
+          reference_id: "manual-ref-001",
+          budget: 150.0,
+          start_date: "01-01-2024",
+          bidding_method: "auto",
+          item_id: 123456,
+          roas_target: 3.0,
+        },
+      });
 
       expect(result.error).toBe("");
       expect(result.response.campaign_id).toBe(333444);
@@ -794,20 +782,16 @@ describe("AdsManager", () => {
         budget: 200.0,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/edit_auto_product_ads",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            reference_id: "edit-ref-001",
-            campaign_id: 987654,
-            edit_action: "budget",
-            budget: 200.0,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_auto_product_ads", {
+        method: "POST",
+        auth: true,
+        body: {
+          reference_id: "edit-ref-001",
+          campaign_id: 987654,
+          edit_action: "budget",
+          budget: 200.0,
+        },
+      });
 
       expect(result.error).toBe("");
       expect(result.response.campaign_id).toBe(987654);
@@ -892,19 +876,15 @@ describe("AdsManager", () => {
         daily_budget: 300.0,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/edit_gms_product_campaign",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            campaign_id: 111222,
-            edit_action: "budget",
-            daily_budget: 300.0,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_gms_product_campaign", {
+        method: "POST",
+        auth: true,
+        body: {
+          campaign_id: 111222,
+          edit_action: "budget",
+          daily_budget: 300.0,
+        },
+      });
 
       expect(result.error).toBe("");
       expect(result.response.campaign_id).toBe(111222);
@@ -983,20 +963,16 @@ describe("AdsManager", () => {
         budget: 250.0,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/edit_manual_product_ads",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            reference_id: "edit-manual-ref-001",
-            campaign_id: 333444,
-            edit_action: "budget",
-            budget: 250.0,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_manual_product_ads", {
+        method: "POST",
+        auth: true,
+        body: {
+          reference_id: "edit-manual-ref-001",
+          campaign_id: 333444,
+          edit_action: "budget",
+          budget: 250.0,
+        },
+      });
 
       expect(result.error).toBe("");
       expect(result.response.campaign_id).toBe(333444);
@@ -1018,14 +994,10 @@ describe("AdsManager", () => {
 
       const result = await adsManager.getAdsFacilShopRate();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_ads_facil_shop_rate",
-        {
-          method: "GET",
-          auth: true,
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_ads_facil_shop_rate", {
+        method: "GET",
+        auth: true,
+      });
 
       expect(result.error).toBe("");
       expect(result.response.shop_rate).toBe(0.05);
@@ -1197,21 +1169,17 @@ describe("AdsManager", () => {
         limit: 50,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_gms_item_performance",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            campaign_id: 111222,
-            start_date: "01-01-2024",
-            end_date: "31-01-2024",
-            offset: 0,
-            limit: 50,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_gms_item_performance", {
+        method: "POST",
+        auth: true,
+        body: {
+          campaign_id: 111222,
+          start_date: "01-01-2024",
+          end_date: "31-01-2024",
+          offset: 0,
+          limit: 50,
+        },
+      });
 
       expect(result.error).toBe("");
       expect(result.response.result_list).toHaveLength(2);
@@ -1241,18 +1209,14 @@ describe("AdsManager", () => {
         limit: 50,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/list_gms_user_deleted_item",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            offset: 0,
-            limit: 50,
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/list_gms_user_deleted_item", {
+        method: "POST",
+        auth: true,
+        body: {
+          offset: 0,
+          limit: 50,
+        },
+      });
 
       expect(result.error).toBe("");
       expect(result.response.item_id_list).toHaveLength(2);
@@ -1276,15 +1240,11 @@ describe("AdsManager", () => {
 
       const result = await adsManager.listGmsUserDeletedItem();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/list_gms_user_deleted_item",
-        {
-          method: "POST",
-          auth: true,
-          body: {},
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/list_gms_user_deleted_item", {
+        method: "POST",
+        auth: true,
+        body: {},
+      });
 
       expect(result.error).toBe("");
       expect(result.response.item_id_list).toHaveLength(0);
