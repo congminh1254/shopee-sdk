@@ -10,9 +10,7 @@ import { dirname, join } from "path";
 // Read version from package.json
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const packageJson = JSON.parse(
-  readFileSync(join(__dirname, "../package.json"), "utf-8")
-);
+const packageJson = JSON.parse(readFileSync(join(__dirname, "../package.json"), "utf-8"));
 const SDK_VERSION = packageJson.version;
 
 export class ShopeeFetch {
