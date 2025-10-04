@@ -36,6 +36,8 @@ Each manager provides access to a specific set of Shopee API endpoints:
 - [ShopFlashSaleManager](./managers/shop-flash-sale.md) - Flash sale campaigns
 - [FollowPrizeManager](./managers/follow-prize.md) - Follow prize activities
 - [TopPicksManager](./managers/top-picks.md) - Top picks product collections
+- [ShopCategoryManager](./managers/shop-category.md) - Shop category management
+- [SbsManager](./managers/sbs.md) - Shopee Business Services (SBS) warehouse inventory management
 
 ## Quick Start
 
