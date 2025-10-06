@@ -140,3 +140,6 @@ dist
 main.ts
 .token
 *.tmp
+
+# Auto-generated version file
+src/version.ts
