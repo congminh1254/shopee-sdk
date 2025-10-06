@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/congminh1254/shopee-sdk/compare/v1.0.0...v1.1.0) (2025-10-06)
+
+
+### Features
+
+* auto-generate version constant for tree-shaking compatibility ([#68](https://github.com/congminh1254/shopee-sdk/issues/68)) ([26c17d0](https://github.com/congminh1254/shopee-sdk/commit/26c17d0ab1b97d89bc5951165cbf7d60361f1630))
+
 ## [1.0.0](https://github.com/congminh1254/shopee-sdk/compare/v0.10.0...v1.0.0) (2025-10-04)
 
 
