@@ -683,3 +683,59 @@ export interface UploadShippingProofResponse extends BaseResponse {
     return_sn: string;
   };
 }
+
+/**
+ * Parameters for getting reverse tracking info
+ */
+export type GetReverseTrackingInfoParams = {
+  /** Shopee's unique identifier for a return/refund request (serial number of return) */
+  return_sn: string;
+};
+
+/**
+ * Tracking information detail
+ */
+export interface TrackingInfo {
+  /** The timestamps when reverse logistics info has been updated */
+  update_time: number;
+  /** The description of reverse logistics tracking info */
+  tracking_description: string;
+  /** Image URLs of electronic proof of pickup (ePOP) after return parcel has been picked up */
+  epop_image_list?: string[];
+  /** Image URLs of electronic proof of delivery (ePOD) after return parcel has been delivered */
+  epod_image_list?: string[];
+}
+
+/**
+ * Response for get reverse tracking info API
+ */
+export interface GetReverseTrackingInfoResponse extends BaseResponse {
+  response: {
+    /** Shopee's unique identifier for a return/refund request (serial number of return) */
+    return_sn: string;
+    /** Return refund request type: 0 = Normal RR, 1 = In-transit RR, 2 = Return-on-the-Spot */
+    return_refund_request_type: number;
+    /** Validation type: seller_validation or warehouse_validation */
+    validation_type: string;
+    /** Latest reverse logistic status */
+    reverse_logistics_status: string;
+    /** The last update time of the reverse logistics status */
+    reverse_logistics_update_time: number;
+    /** The maximum estimated delivery date for the reverse logistics */
+    estimated_delivery_date_max?: number;
+    /** The minimum estimated delivery date for the reverse logistics */
+    estimated_delivery_date_min?: number;
+    /** The tracking number for the reverse logistics */
+    tracking_number?: string;
+    /** The detailed tracking information list for the reverse logistics */
+    tracking_info?: TrackingInfo[];
+    /** Post-return logistics status */
+    post_return_logistics_status?: string;
+    /** The last update time of the post-return logistics status */
+    post_return_logistics_update_time?: number;
+    /** The tracking number for the post-return logistics (Return to Seller) */
+    rts_tracking_number?: string;
+    /** The detailed tracking information for post-return logistics */
+    post_return_logistics_tracking_info?: TrackingInfo[];
+  };
+}

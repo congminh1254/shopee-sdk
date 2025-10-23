@@ -18,6 +18,7 @@ import {
   QueryProofResponse,
   GetShippingCarrierResponse,
   UploadShippingProofResponse,
+  GetReverseTrackingInfoResponse,
 } from "../../schemas/returns.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -759,6 +760,114 @@ describe("ReturnsManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("getReverseTrackingInfo", () => {
+    it("should get reverse tracking info for seller validation", async () => {
+      const mockResponse: GetReverseTrackingInfoResponse = {
+        request_id: "d52ca43b277a4f9292fb8be658bfd33d",
+        error: "",
+        message: "",
+        response: {
+          return_sn: "2206150VT13E3MQ",
+          return_refund_request_type: 0,
+          validation_type: "seller_validation",
+          reverse_logistics_status: "LOGISTICS_REQUEST_CREATED",
+          reverse_logistics_update_time: 1740728119,
+          estimated_delivery_date_max: 1740728121,
+          estimated_delivery_date_min: 1740626000,
+          tracking_number: "MY257829361436J",
+          tracking_info: [
+            {
+              update_time: 1740728119,
+              tracking_description: "Parcel has been picked up by our logistics partner",
+              epop_image_list: ["https://cf.shopee.sg/file/4ecbb6fa567e42c1b1e02993ad53df12"],
+              epod_image_list: ["https://cf.shopee.sg/file/4ecbb6fa567e42c1b1e02993ad53df12"],
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await returnsManager.getReverseTrackingInfo({
+        return_sn: "2206150VT13E3MQ",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/returns/get_reverse_tracking_info",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            return_sn: "2206150VT13E3MQ",
+          },
+        }
+      );
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.return_sn).toBe("2206150VT13E3MQ");
+      expect(result.response.validation_type).toBe("seller_validation");
+      expect(result.response.tracking_info).toHaveLength(1);
+      expect(result.response.tracking_info![0].tracking_description).toBe(
+        "Parcel has been picked up by our logistics partner"
+      );
+    });
+
+    it("should get reverse tracking info for warehouse validation", async () => {
+      const mockResponse: GetReverseTrackingInfoResponse = {
+        request_id: "test-request-id-2",
+        error: "",
+        message: "",
+        response: {
+          return_sn: "2206150VT13E3MQ",
+          return_refund_request_type: 0,
+          validation_type: "warehouse_validation",
+          reverse_logistics_status: "LOGISTICS_DELIVERY_DONE",
+          reverse_logistics_update_time: 1740728119,
+          tracking_number: "MY257829361436J",
+          tracking_info: [
+            {
+              update_time: 1740728119,
+              tracking_description: "Delivered to warehouse",
+            },
+          ],
+          post_return_logistics_status: "LOGISTICS_IN_TRANSIT",
+          post_return_logistics_update_time: 1740828119,
+          rts_tracking_number: "RTS123456789",
+          post_return_logistics_tracking_info: [
+            {
+              update_time: 1740828119,
+              tracking_description: "Shipped from warehouse to seller",
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await returnsManager.getReverseTrackingInfo({
+        return_sn: "2206150VT13E3MQ",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/returns/get_reverse_tracking_info",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            return_sn: "2206150VT13E3MQ",
+          },
+        }
+      );
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.validation_type).toBe("warehouse_validation");
+      expect(result.response.post_return_logistics_tracking_info).toHaveLength(1);
+      expect(result.response.rts_tracking_number).toBe("RTS123456789");
     });
   });
 });

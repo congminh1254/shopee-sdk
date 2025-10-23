@@ -1,6 +1,6 @@
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
-import { GetReturnListParams, GetReturnListResponse, GetReturnDetailParams, GetReturnDetailResponse, ConfirmParams, ConfirmResponse, DisputeParams, DisputeResponse, OfferParams, OfferResponse, AcceptOfferParams, AcceptOfferResponse, GetAvailableSolutionsParams, GetAvailableSolutionsResponse, CancelDisputeParams, CancelDisputeResponse, GetReturnDisputeReasonParams, GetReturnDisputeReasonResponse, ConvertImageParams, ConvertImageResponse, UploadProofParams, UploadProofResponse, QueryProofParams, QueryProofResponse, GetShippingCarrierParams, GetShippingCarrierResponse, UploadShippingProofParams, UploadShippingProofResponse } from "../schemas/returns.js";
+import { GetReturnListParams, GetReturnListResponse, GetReturnDetailParams, GetReturnDetailResponse, ConfirmParams, ConfirmResponse, DisputeParams, DisputeResponse, OfferParams, OfferResponse, AcceptOfferParams, AcceptOfferResponse, GetAvailableSolutionsParams, GetAvailableSolutionsResponse, CancelDisputeParams, CancelDisputeResponse, GetReturnDisputeReasonParams, GetReturnDisputeReasonResponse, ConvertImageParams, ConvertImageResponse, UploadProofParams, UploadProofResponse, QueryProofParams, QueryProofResponse, GetShippingCarrierParams, GetShippingCarrierResponse, UploadShippingProofParams, UploadShippingProofResponse, GetReverseTrackingInfoParams, GetReverseTrackingInfoResponse } from "../schemas/returns.js";
 export declare class ReturnsManager extends BaseManager {
     constructor(config: ShopeeConfig);
     /**
@@ -197,4 +197,34 @@ export declare class ReturnsManager extends BaseManager {
      * @throws {Error} When the API request fails or returns an error
      */
     uploadShippingProof(params: UploadShippingProofParams): Promise<UploadShippingProofResponse>;
+    /**
+     * Get reverse and post-return logistics information of return request.
+     *
+     * For Normal RR, returns complete reverse logistics information. For In-transit RR and Return-on-the-Spot,
+     * only returns latest reverse logistics status without providing complete reverse logistics information.
+     *
+     * For seller_validation, only one segment of reverse (buyer to seller), use tracking_info.
+     * For warehouse_validation, two segments of reverse (buyer to warehouse and warehouse to seller),
+     * use post_return_logistics_tracking_info for the second segment.
+     *
+     * @param params - Parameters for getting reverse tracking info
+     * @param params.return_sn - Shopee's unique identifier for a return/refund request (required)
+     *
+     * @returns A promise that resolves to the reverse tracking info response containing:
+     * - return_sn: Return serial number
+     * - return_refund_request_type: Type of return refund request (0=Normal RR, 1=In-transit RR, 2=Return-on-the-Spot)
+     * - validation_type: Whether seller or warehouse validates (seller_validation/warehouse_validation)
+     * - reverse_logistics_status: Latest reverse logistic status
+     * - reverse_logistics_update_time: Last update time of reverse logistics status
+     * - estimated_delivery_date_max/min: Estimated delivery dates (for Normal RR with integrated reverse logistics)
+     * - tracking_number: Tracking number for reverse logistics
+     * - tracking_info: Detailed tracking information list
+     * - post_return_logistics_status: Status for warehouse to seller logistics (warehouse_validation only)
+     * - post_return_logistics_update_time: Update time for post-return logistics
+     * - rts_tracking_number: Return to Seller tracking number
+     * - post_return_logistics_tracking_info: Tracking info for warehouse to seller logistics
+     *
+     * @throws {Error} When the API request fails or returns an error
+     */
+    getReverseTrackingInfo(params: GetReverseTrackingInfoParams): Promise<GetReverseTrackingInfoResponse>;
 }

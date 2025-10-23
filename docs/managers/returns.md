@@ -371,6 +371,67 @@ const result = await sdk.returns.uploadShippingProof({
 });
 ```
 
+### getReverseTrackingInfo()
+
+Get reverse and post-return logistics information of return request. This API provides detailed tracking information for return shipments.
+
+**Parameters:**
+- `return_sn` (string, required): Shopee's unique identifier for a return/refund request
+
+**Returns:** Reverse tracking info response containing:
+- `return_sn`: Return serial number
+- `return_refund_request_type`: Type of return (0=Normal RR, 1=In-transit RR, 2=Return-on-the-Spot)
+- `validation_type`: Validation type (seller_validation/warehouse_validation)
+- `reverse_logistics_status`: Latest reverse logistic status
+- `reverse_logistics_update_time`: Last update timestamp
+- `estimated_delivery_date_max/min`: Estimated delivery dates (for Normal RR with integrated reverse logistics)
+- `tracking_number`: Tracking number for reverse logistics
+- `tracking_info`: Array of detailed tracking information
+- `post_return_logistics_status`: Status for warehouse to seller logistics (warehouse_validation only)
+- `post_return_logistics_update_time`: Update time for post-return logistics
+- `rts_tracking_number`: Return to Seller tracking number
+- `post_return_logistics_tracking_info`: Tracking info for warehouse to seller logistics
+
+**Example:**
+```typescript
+// Get reverse tracking information for a return
+const trackingInfo = await sdk.returns.getReverseTrackingInfo({
+  return_sn: '2206150VT13E3MQ',
+});
+
+console.log('Return Type:', trackingInfo.response.return_refund_request_type);
+console.log('Validation Type:', trackingInfo.response.validation_type);
+console.log('Status:', trackingInfo.response.reverse_logistics_status);
+console.log('Tracking Number:', trackingInfo.response.tracking_number);
+
+// Display tracking history
+if (trackingInfo.response.tracking_info) {
+  console.log('\nTracking History:');
+  trackingInfo.response.tracking_info.forEach((info) => {
+    const date = new Date(info.update_time * 1000);
+    console.log(`${date.toISOString()}: ${info.tracking_description}`);
+    
+    if (info.epop_image_list) {
+      console.log('  Pickup Proof:', info.epop_image_list.join(', '));
+    }
+    if (info.epod_image_list) {
+      console.log('  Delivery Proof:', info.epod_image_list.join(', '));
+    }
+  });
+}
+
+// For warehouse validation, check post-return logistics
+if (trackingInfo.response.validation_type === 'warehouse_validation' && 
+    trackingInfo.response.post_return_logistics_tracking_info) {
+  console.log('\nWarehouse to Seller Tracking:');
+  console.log('RTS Tracking Number:', trackingInfo.response.rts_tracking_number);
+  trackingInfo.response.post_return_logistics_tracking_info.forEach((info) => {
+    const date = new Date(info.update_time * 1000);
+    console.log(`${date.toISOString()}: ${info.tracking_description}`);
+  });
+}
+```
+
 ## Use Cases
 
 ### Handling New Return Requests
