@@ -69,7 +69,7 @@
   "homepage": "https://github.com/congminh1254/shopee-sdk#readme",
   "devDependencies": {
     "@types/node-fetch": "^2.6.12",
-    "@commitlint/cli": "^18.6.1",
+    "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
