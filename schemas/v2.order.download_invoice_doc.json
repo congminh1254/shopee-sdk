@@ -6,6 +6,10 @@
   "define": "This endpoint only for PH and BR local seller. Seller can download the invoice uploaded before through this endpoint.\n",
   "error_list": [
     {
+      "name": "error_order",
+      "description": "Invoice is not available for this order. Please try again later."
+    },
+    {
       "name": "error_param",
       "description": "There is no access_token in query."
     },

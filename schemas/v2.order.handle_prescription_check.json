@@ -6,6 +6,10 @@
   "define": "Use this API to approve or reject a prescription",
   "error_list": [
     {
+      "name": "order.prescription_order_status_invalid",
+      "description": "Prescription order is already completed or canceled"
+    },
+    {
       "name": "error_param",
       "description": "There is no access_token in query."
     },

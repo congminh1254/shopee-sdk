@@ -93,6 +93,11 @@
   "url": "https://partner.shopeemobile.com/api/v2/returns/upload_shipping_proof",
   "version": "",
   "error_example": "[{\"type\":\"JSON\",\"value\":\"{\\n    \\\"error\\\": \\\"returns.missing_tracking_no\\\",\\n    \\\"message\\\": \\\"Tracking Number is a required parameter\\\",\\n    \\\"request_id\\\": \\\"e3e3e7f33de01a208d40117ca55aa301\\\"\\n}\"}]",
-  "api_permission": [],
+  "api_permission": [
+    "ERP System",
+    "Seller In House System",
+    "Customer Service",
+    "Swam ERP"
+  ],
   "path": "/api/v2/returns/upload_shipping_proof"
 }

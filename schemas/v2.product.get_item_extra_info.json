@@ -171,7 +171,8 @@
     "Custom APP",
     "Swam ERP",
     "Livestream Management",
-    "Ads Facil"
+    "Ads Facil",
+    "Affiliate Marketing Solution Management"
   ],
   "path": "/api/v2/product/get_item_extra_info"
 }

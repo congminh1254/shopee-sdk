@@ -7,6 +7,26 @@
   "error_list": [
     {
       "name": "error_param",
+      "description": "Order SN is a required parameter. Please check your request data."
+    },
+    {
+      "name": "error_database",
+      "description": "Query data from database failed."
+    },
+    {
+      "name": "error_param",
+      "description": "The Order SN is duplicated."
+    },
+    {
+      "name": "error_order",
+      "description": "Something wrong. Please try again later."
+    },
+    {
+      "name": "internal_error",
+      "description": "Something wrong. Please try again later."
+    },
+    {
+      "name": "error_param",
       "description": "There is no access_token in query."
     },
     {
@@ -76,6 +96,54 @@
     {
       "name": "error_param",
       "description": "request not from gateway"
+    },
+    {
+      "name": "error_order",
+      "description": "System error, please try again later."
+    },
+    {
+      "name": "error_network",
+      "description": "This API is only available for TH, VN, PH region"
+    },
+    {
+      "name": "error_order",
+      "description": "Something wrong. Please try again later."
+    },
+    {
+      "name": "error_order",
+      "description": "Something wrong. Please try again later."
+    },
+    {
+      "name": "error_order",
+      "description": "Something wrong. Please try again later."
+    },
+    {
+      "name": "error_network",
+      "description": "Connection issue. Please try again later."
+    },
+    {
+      "name": "error_order",
+      "description": "Something wrong. Please try again later."
+    },
+    {
+      "name": "error_shop",
+      "description": "System error, please try again later."
+    },
+    {
+      "name": "error_shop",
+      "description": "Something wrong. Please try again later."
+    },
+    {
+      "name": "error_shop",
+      "description": "Something wrong. Please try again later."
+    },
+    {
+      "name": "error_network",
+      "description": "Connection issue. Please try again later."
+    },
+    {
+      "name": "error_shop",
+      "description": "Something wrong. Please try again later."
     }
   ],
   "errors": "",

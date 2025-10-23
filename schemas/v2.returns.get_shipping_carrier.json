@@ -45,6 +45,11 @@
   "url": "https://partner.shopeemobile.com/api/v2/returns/get_shipping_carrier",
   "version": "",
   "error_example": "[{\"type\":\"JSON\",\"value\":\"{ \\n          \\\"error\\\": \\\"returns.return_not_found\\\",\\n          \\\"message\\\": \\\"Return not found\\\",\\n          \\\"request_id\\\": \\\"e3e3e7f33db8f212bca86a300879df01\\\"\\n}\"}]",
-  "api_permission": [],
+  "api_permission": [
+    "ERP System",
+    "Seller In House System",
+    "Customer Service",
+    "Swam ERP"
+  ],
   "path": "/api/v2/returns/get_shipping_carrier"
 }

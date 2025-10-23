@@ -6,6 +6,14 @@
   "define": "This endpoint is for PH and BR local seller. Upload the invoice document\n",
   "error_list": [
     {
+      "name": "error_database",
+      "description": "Database connection issue. Please try again later."
+    },
+    {
+      "name": "error_database",
+      "description": "Database connection issue. Please try again later."
+    },
+    {
       "name": "error_param",
       "description": "There is no access_token in query."
     },

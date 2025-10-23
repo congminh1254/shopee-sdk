@@ -138,7 +138,8 @@
     "Ads Service",
     "Swam ERP",
     "Livestream Management",
-    "Ads Facil"
+    "Ads Facil",
+    "Affiliate Marketing Solution Management"
   ],
   "path": "/api/v2/shop/get_shop_info"
 }
