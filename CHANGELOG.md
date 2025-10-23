@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/congminh1254/shopee-sdk/compare/v1.1.0...v1.2.0) (2025-10-23)
+
+
+### Features
+
+* **returns:** add getReverseTrackingInfo function for return logistics tracking ([#72](https://github.com/congminh1254/shopee-sdk/issues/72)) ([7a987b8](https://github.com/congminh1254/shopee-sdk/commit/7a987b809a3db452adf308c85125ca173b6c4c39))
+
 ## [1.1.0](https://github.com/congminh1254/shopee-sdk/compare/v1.0.0...v1.1.0) (2025-10-06)
 
 
