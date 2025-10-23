@@ -26,6 +26,10 @@
       "description": "The start/end date of campaign should be larger or equal to today. End date to be empty for unlimited duration."
     },
     {
+      "name": "ads_deprecated",
+      "description": "This feature has been deprecated"
+    },
+    {
       "name": "error_not_found",
       "description": "The information you queried is not found."
     },

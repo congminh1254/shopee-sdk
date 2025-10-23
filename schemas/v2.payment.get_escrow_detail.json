@@ -59,7 +59,7 @@
     },
     {
       "name": "error_param",
-      "description": "Invalid promotion ID. The promotion may have been recently added and not mapped to the system yet. Please contact Customer Service for verification."
+      "description": "Invalid promotion ID. The promotion may have been recently added and not mapped to the system yet. Please raise a ticket on Open Platform for further verification."
     },
     {
       "name": "error_param",

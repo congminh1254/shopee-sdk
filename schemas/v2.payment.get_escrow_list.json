@@ -127,6 +127,10 @@
     },
     {
       "name": "error_param",
+      "description": "Invalid page_size parameter. Please provide a valid value between 1 and 100. If left empty, the default value of 40 will be applied."
+    },
+    {
+      "name": "error_param",
       "description": "release_time_from and/or release_time_to parameter is missing or invalid. Please provide both a valid start date, and end date to query."
     },
     {

@@ -107,7 +107,8 @@
     "Consignment Service System",
     "Custom APP",
     "Swam ERP",
-    "Livestream Management"
+    "Livestream Management",
+    "Affiliate Marketing Solution Management"
   ],
   "path": "/api/v2/push/set_app_push_config"
 }

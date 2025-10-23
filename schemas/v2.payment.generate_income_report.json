@@ -80,6 +80,7 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
+    "Accounting And Finance",
     "Swam ERP"
   ],
   "path": "/api/v2/payment/generate_income_report"

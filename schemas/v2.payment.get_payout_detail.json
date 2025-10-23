@@ -99,6 +99,10 @@
     },
     {
       "name": "error_param",
+      "description": "Invalid page_size parameter. Please provide a valid value between 1 and 100. If left empty, the default value of 40 will be applied."
+    },
+    {
+      "name": "error_param",
       "description": "The selected payout start time is not supported. Please choose a start time no earlier than May 1, 2022.\t\t\t"
     }
   ],
