@@ -18,6 +18,10 @@
       "description": "Please input the value that greater than than the sum of each product minimum purchase quantity"
     },
     {
+      "name": "add_on.add_on_item_exceed_discount_limit_error",
+      "description": "The overall item level promotion limit has been reached."
+    },
+    {
       "name": "add_on.add_on_item_overlap",
       "description": "This product is already in add on deal main item list"
     },

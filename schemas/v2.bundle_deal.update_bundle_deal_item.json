@@ -34,6 +34,10 @@
       "description": "Please update item of bundel deal"
     },
     {
+      "name": "bundle.bundle_deal_item_exceed_discount_limit_error",
+      "description": "The overall item level promotion limit has been reached."
+    },
+    {
       "name": "bundle.bundle_deal_status_error",
       "description": "Item status is abnormal"
     },
