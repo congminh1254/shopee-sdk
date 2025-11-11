@@ -490,6 +490,7 @@ try {
 - `bundle.bundle_deal_error_total_count_limit`: Maximum 1000 bundle deals reached
 - `bundle.bundle_deal_start_time_error`: Start time validation failed
 - `bundle.bundle_deal_exceed_remaining_time_limit`: End time exceeds maximum allowed
+- `bundle.bundle_deal_item_exceed_discount_limit_error`: The overall item level promotion limit has been reached
 
 ---
 
