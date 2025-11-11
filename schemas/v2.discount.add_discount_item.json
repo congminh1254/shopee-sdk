@@ -110,6 +110,10 @@
       "description": "Discount price is less than the minimum national amount."
     },
     {
+      "name": "discount.item_exceed_discount_limit",
+      "description": "The overall item level promotion limit has been reached."
+    },
+    {
       "name": "discount.exceed_discount_item_batch_size",
       "description": "You can only add up to 50 items at a time."
     },

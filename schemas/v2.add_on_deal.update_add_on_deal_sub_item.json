@@ -14,6 +14,10 @@
       "description": "The Days to ship is longer than that of main item\t\t\t"
     },
     {
+      "name": "add_on.add_on_item_exceed_discount_limit_error",
+      "description": "The overall item level promotion limit has been reached."
+    },
+    {
       "name": "add_on.add_on_item_overlap",
       "description": "This product is already in add on deal main item list"
     },

@@ -81,7 +81,8 @@
     "Swam ERP",
     "Livestream Management",
     "Ads Facil",
-    "Affiliate Marketing Solution Management"
+    "Affiliate Marketing Solution Management",
+    "Shopee Video Management"
   ],
   "path": "/api/v2/shop/get_shop_notification"
 }
