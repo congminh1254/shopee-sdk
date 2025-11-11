@@ -68,7 +68,6 @@
   },
   "homepage": "https://github.com/congminh1254/shopee-sdk#readme",
   "devDependencies": {
-    "@types/node-fetch": "^2.6.12",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@types/jest": "^30.0.0",
@@ -84,6 +83,6 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "node-fetch": "^2.6.3"
+    "node-fetch": "^3.3.2"
   }
 }
