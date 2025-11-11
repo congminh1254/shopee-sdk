@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/congminh1254/shopee-sdk/compare/v1.2.0...v1.3.0) (2025-11-11)
+
+
+### Features
+
+* add SIP discount endpoints to DiscountManager ([#74](https://github.com/congminh1254/shopee-sdk/issues/74)) ([de7ec86](https://github.com/congminh1254/shopee-sdk/commit/de7ec86c9daa3d0ca48c3685e625b6c1fd340d6b))
+
 ## [1.2.0](https://github.com/congminh1254/shopee-sdk/compare/v1.1.0...v1.2.0) (2025-10-23)
 
 
