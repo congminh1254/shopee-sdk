@@ -19,6 +19,12 @@ import {
   UpdateDiscountResponse,
   UpdateDiscountItemParams,
   UpdateDiscountItemResponse,
+  GetSipDiscountsParams,
+  GetSipDiscountsResponse,
+  SetSipDiscountParams,
+  SetSipDiscountResponse,
+  DeleteSipDiscountParams,
+  DeleteSipDiscountResponse,
 } from "../schemas/discount.js";
 import { ShopeeFetch } from "../fetch.js";
 
@@ -230,6 +236,91 @@ export class DiscountManager extends BaseManager {
     const response = await ShopeeFetch.fetch<UpdateDiscountItemResponse>(
       this.config,
       "/discount/update_discount_item",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Get SIP Overseas Discounts
+   * @param {GetSipDiscountsParams} [params] - Optional parameters for filtering by region
+   * @returns {Promise<GetSipDiscountsResponse>} The response containing a list of SIP discounts
+   *
+   * Only regions that have upcoming/ongoing discounts will be returned.
+   * Use Primary shop's Shop ID to request - the API will return the list of Affiliate shops
+   * under this Primary shop that have set discounts, along with the discount details.
+   *
+   * The response includes:
+   * - discount_list: Array of discount information for each region
+   *   - region: The region of the SIP affiliate shop
+   *   - status: The status of the discount (upcoming/ongoing)
+   *   - sip_discount_rate: The discount rate percentage
+   *   - start_time: When the discount starts (UNIX timestamp)
+   *   - end_time: When the discount ends (UNIX timestamp)
+   *   - create_time: When the discount was created (UNIX timestamp)
+   *   - update_time: When the discount was last updated (UNIX timestamp)
+   */
+  async getSipDiscounts(params?: GetSipDiscountsParams): Promise<GetSipDiscountsResponse> {
+    const response = await ShopeeFetch.fetch<GetSipDiscountsResponse>(
+      this.config,
+      "/discount/get_sip_discounts",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Set SIP Overseas Discount for SIP affiliate region
+   * @param {SetSipDiscountParams} params - Parameters for setting the SIP discount
+   * @returns {Promise<SetSipDiscountResponse>} The response containing the created/updated discount details
+   *
+   * Use Primary shop's Shop ID to request. Provide the region and discount rate of the Affiliate shop
+   * to be set or update - the API will set or update the discount rate for that region's Affiliate shop.
+   *
+   * Notes:
+   * - The start time is 30 minutes after the discount is set
+   * - The end time is 180 days after the start time
+   * - Cannot edit the promotion within 15 minutes after an update
+   * - In VN region, discount rate cannot exceed 50%
+   */
+  async setSipDiscount(params: SetSipDiscountParams): Promise<SetSipDiscountResponse> {
+    const response = await ShopeeFetch.fetch<SetSipDiscountResponse>(
+      this.config,
+      "/discount/set_sip_discount",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Delete SIP Overseas Discount for SIP affiliate region
+   * @param {DeleteSipDiscountParams} params - Parameters for deleting the SIP discount
+   * @returns {Promise<DeleteSipDiscountResponse>} The response containing the deleted region
+   *
+   * Use Primary shop's Shop ID to request. Provide the region of the Affiliate shop to be deleted,
+   * and the API will delete the discount from that region's Affiliate shop.
+   *
+   * Note: Cannot edit the promotion within 15 minutes after an update
+   */
+  async deleteSipDiscount(params: DeleteSipDiscountParams): Promise<DeleteSipDiscountResponse> {
+    const response = await ShopeeFetch.fetch<DeleteSipDiscountResponse>(
+      this.config,
+      "/discount/delete_sip_discount",
       {
         method: "POST",
         auth: true,
