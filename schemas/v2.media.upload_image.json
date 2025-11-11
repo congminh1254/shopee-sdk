@@ -35,7 +35,11 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Order Management"
+    "Product Management",
+    "Order Management",
+    "Customer Service",
+    "Consignment Service System",
+    "Livestream Management"
   ],
   "path": "/api/v2/media/upload_image"
 }

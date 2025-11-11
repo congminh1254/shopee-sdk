@@ -579,6 +579,11 @@ if (result.response.sub_item_list.length > 0) {
 
 **Solution:** You cannot edit add-on deals that have already ended.
 
+### add_on.add_on_item_exceed_discount_limit_error
+**Error:** The overall item level promotion limit has been reached.
+
+**Solution:** The item you're trying to add is already participating in too many promotions. Remove the item from some other promotions before adding it to this add-on deal, or choose a different item.
+
 ## Add-on Deal Lifecycle
 
 1. **Create** - Use `addAddOnDeal()` to create a new add-on deal

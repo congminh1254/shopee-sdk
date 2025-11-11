@@ -80,7 +80,8 @@
     "Custom APP",
     "Swam ERP",
     "Livestream Management",
-    "Affiliate Marketing Solution Management"
+    "Affiliate Marketing Solution Management",
+    "Shopee Video Management"
   ],
   "path": "/api/v2/push/confirm_consumed_lost_push_message"
 }

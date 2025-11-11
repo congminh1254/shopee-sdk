@@ -14,6 +14,9 @@ import {
   UpdateDiscountResponse,
   UpdateDiscountItemResponse,
   DiscountStatus,
+  GetSipDiscountsResponse,
+  SetSipDiscountResponse,
+  DeleteSipDiscountResponse,
 } from "../../schemas/discount.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -518,6 +521,186 @@ describe("DiscountManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.error_list).toHaveLength(1);
+    });
+  });
+
+  describe("getSipDiscounts", () => {
+    it("should get all SIP discounts", async () => {
+      const mockResponse: GetSipDiscountsResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          discount_list: [
+            {
+              region: "SG",
+              status: "ongoing",
+              sip_discount_rate: 10,
+              start_time: 1741235212,
+              end_time: 1756787212,
+              create_time: 1741233412,
+              update_time: 1741233412,
+            },
+            {
+              region: "TW",
+              status: "upcoming",
+              sip_discount_rate: 30,
+              start_time: 1741687818,
+              end_time: 1757239818,
+              create_time: 1741686019,
+              update_time: 1741686019,
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await discountManager.getSipDiscounts();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_sip_discounts", {
+        method: "GET",
+        auth: true,
+        params: undefined,
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.discount_list).toHaveLength(2);
+    });
+
+    it("should get SIP discounts for a specific region", async () => {
+      const mockResponse: GetSipDiscountsResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          discount_list: [
+            {
+              region: "SG",
+              status: "ongoing",
+              sip_discount_rate: 10,
+              start_time: 1741235212,
+              end_time: 1756787212,
+              create_time: 1741233412,
+              update_time: 1741233412,
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await discountManager.getSipDiscounts({
+        region: "SG",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_sip_discounts", {
+        method: "GET",
+        auth: true,
+        params: {
+          region: "SG",
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.discount_list).toHaveLength(1);
+      expect(result.response.discount_list[0].region).toBe("SG");
+    });
+  });
+
+  describe("setSipDiscount", () => {
+    it("should set a SIP discount", async () => {
+      const mockResponse: SetSipDiscountResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          region: "TH",
+          status: "upcoming",
+          sip_discount_rate: 15,
+          start_time: 1741688426,
+          end_time: 1757240426,
+          create_time: 1741686627,
+          update_time: 1741686627,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await discountManager.setSipDiscount({
+        region: "TH",
+        sip_discount_rate: 15,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/set_sip_discount", {
+        method: "POST",
+        auth: true,
+        body: {
+          region: "TH",
+          sip_discount_rate: 15,
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.region).toBe("TH");
+      expect(result.response.sip_discount_rate).toBe(15);
+    });
+
+    it("should update an existing SIP discount", async () => {
+      const mockResponse: SetSipDiscountResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          region: "TH",
+          status: "ongoing",
+          sip_discount_rate: 20,
+          start_time: 1741688426,
+          end_time: 1757240426,
+          create_time: 1741686627,
+          update_time: 1741700000,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await discountManager.setSipDiscount({
+        region: "TH",
+        sip_discount_rate: 20,
+      });
+
+      expect(result.response.sip_discount_rate).toBe(20);
+      expect(result.response.update_time).toBeGreaterThan(result.response.create_time);
+    });
+  });
+
+  describe("deleteSipDiscount", () => {
+    it("should delete a SIP discount", async () => {
+      const mockResponse: DeleteSipDiscountResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          region: "TW",
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await discountManager.deleteSipDiscount({
+        region: "TW",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/delete_sip_discount", {
+        method: "POST",
+        auth: true,
+        body: {
+          region: "TW",
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.region).toBe("TW");
     });
   });
 });

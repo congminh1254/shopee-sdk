@@ -332,3 +332,70 @@ export interface UpdateDiscountItemResponse extends BaseResponse {
     /** Warning message if any */
     warning?: string;
 }
+/**
+ * SIP discount information
+ */
+export interface SipDiscountInfo {
+    /** The region of SIP affiliate shop */
+    region: string;
+    /** The status of discount for SIP affiliate shop in current region, can be upcoming/ongoing, excluding expired discounts */
+    status: string;
+    /** The discount rate set for SIP affiliate shop in current region */
+    sip_discount_rate: number;
+    /** The start time of discount for SIP affiliate shop in current region, in UNIX seconds */
+    start_time: number;
+    /** The end time of discount for SIP affiliate shop in current region, in UNIX seconds */
+    end_time: number;
+    /** The create time of discount for SIP affiliate shop in current region, in UNIX seconds */
+    create_time: number;
+    /** The latest update time of discount for SIP affiliate shop in current region, in UNIX seconds */
+    update_time: number;
+}
+/**
+ * Parameters for getting SIP discounts
+ */
+export interface GetSipDiscountsParams {
+    /** The region of SIP affiliate shop that needs to get discount information. If not passed, will return the discount information set for all SIP affiliate shops */
+    region?: string;
+    [key: string]: string | number | boolean | undefined;
+}
+/**
+ * Parameters for setting SIP discount
+ */
+export interface SetSipDiscountParams {
+    /** The region of SIP affiliate shop that needs to set discount */
+    region: string;
+    /** The overall market discount rate that will apply to all items for SIP affiliate shop in current region */
+    sip_discount_rate: number;
+}
+/**
+ * Parameters for deleting SIP discount
+ */
+export interface DeleteSipDiscountParams {
+    /** The region of SIP affiliate shop that needs to delete discount */
+    region: string;
+}
+/**
+ * Response for the get SIP discounts API
+ */
+export interface GetSipDiscountsResponse extends BaseResponse {
+    response: {
+        /** List of discounts in each region */
+        discount_list: SipDiscountInfo[];
+    };
+}
+/**
+ * Response for the set SIP discount API
+ */
+export interface SetSipDiscountResponse extends BaseResponse {
+    response: SipDiscountInfo;
+}
+/**
+ * Response for the delete SIP discount API
+ */
+export interface DeleteSipDiscountResponse extends BaseResponse {
+    response: {
+        /** The region of SIP affiliate shop that was deleted */
+        region: string;
+    };
+}

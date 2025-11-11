@@ -364,6 +364,125 @@ console.log('Failed updates:', response.response.error_list);
 - `count`: Number of successfully updated items
 - `error_list`: List of items that failed to update with error details
 
+### getSipDiscounts()
+
+**API Documentation:** [v2.discount.get_sip_discounts](https://open.shopee.com/documents/v2/v2.discount.get_sip_discounts?module=99&type=1)
+
+Get SIP Overseas Discounts. Only regions that have upcoming/ongoing discounts will be returned.
+
+```typescript
+// Get all SIP discounts for all regions
+const allDiscounts = await sdk.discount.getSipDiscounts();
+
+console.log('SIP Discounts:', allDiscounts.response.discount_list);
+
+// Get SIP discount for a specific region
+const sgDiscount = await sdk.discount.getSipDiscounts({
+  region: 'SG',
+});
+
+for (const discount of sgDiscount.response.discount_list) {
+  console.log(`Region: ${discount.region}`);
+  console.log(`Status: ${discount.status}`);
+  console.log(`Discount Rate: ${discount.sip_discount_rate}%`);
+  console.log(`Start Time: ${new Date(discount.start_time * 1000)}`);
+  console.log(`End Time: ${new Date(discount.end_time * 1000)}`);
+}
+```
+
+**Important Notes:**
+- Use Primary shop's Shop ID to request
+- Returns list of Affiliate shops with set discounts and their details
+- Only shows upcoming/ongoing discounts, expired discounts are not included
+- If no region parameter is provided, returns all SIP affiliate shop discounts
+
+**Response includes:**
+- `region`: The region of the SIP affiliate shop
+- `status`: The discount status (upcoming/ongoing)
+- `sip_discount_rate`: The discount rate percentage
+- `start_time`: When the discount starts (UNIX timestamp)
+- `end_time`: When the discount ends (UNIX timestamp)
+- `create_time`: When the discount was created (UNIX timestamp)
+- `update_time`: When the discount was last updated (UNIX timestamp)
+
+### setSipDiscount()
+
+**API Documentation:** [v2.discount.set_sip_discount](https://open.shopee.com/documents/v2/v2.discount.set_sip_discount?module=99&type=1)
+
+Set SIP Overseas Discount for a SIP affiliate region.
+
+```typescript
+// Set a 15% discount for Thailand region
+const response = await sdk.discount.setSipDiscount({
+  region: 'TH',
+  sip_discount_rate: 15,
+});
+
+console.log('SIP Discount Set:');
+console.log('Region:', response.response.region);
+console.log('Discount Rate:', response.response.sip_discount_rate + '%');
+console.log('Status:', response.response.status);
+console.log('Start Time:', new Date(response.response.start_time * 1000));
+console.log('End Time:', new Date(response.response.end_time * 1000));
+
+// Update existing SIP discount for a region
+const updated = await sdk.discount.setSipDiscount({
+  region: 'TH',
+  sip_discount_rate: 20, // Update to 20%
+});
+```
+
+**Important Notes:**
+- Use Primary shop's Shop ID to request
+- Provide region and discount rate for the Affiliate shop
+- The API will set or update the discount rate for that region's Affiliate shop
+- Start time is automatically set to 30 minutes after setting the discount
+- End time is automatically set to 180 days after start time
+- Cannot edit the promotion within 15 minutes after an update
+- In VN region, discount rate cannot exceed 50%
+
+**Constraints:**
+- Must wait 15 minutes between updates to the same region
+- VN region: Maximum 50% discount rate
+- Other regions: Maximum 100% discount rate
+
+### deleteSipDiscount()
+
+**API Documentation:** [v2.discount.delete_sip_discount](https://open.shopee.com/documents/v2/v2.discount.delete_sip_discount?module=99&type=1)
+
+Delete SIP Overseas Discount for a SIP affiliate region.
+
+```typescript
+// Delete SIP discount for Taiwan region
+const response = await sdk.discount.deleteSipDiscount({
+  region: 'TW',
+});
+
+console.log('Deleted SIP discount for region:', response.response.region);
+```
+
+**Important Notes:**
+- Use Primary shop's Shop ID to request
+- Provide the region of the Affiliate shop to delete
+- The API will delete the discount from that region's Affiliate shop
+- Cannot edit the promotion within 15 minutes after an update
+
+**Common Use Case:**
+```typescript
+// Get all SIP discounts
+const discounts = await sdk.discount.getSipDiscounts();
+
+// Delete discounts for specific regions
+for (const discount of discounts.response.discount_list) {
+  if (discount.region === 'MY' || discount.region === 'PH') {
+    await sdk.discount.deleteSipDiscount({
+      region: discount.region,
+    });
+    console.log(`Deleted SIP discount for ${discount.region}`);
+  }
+}
+```
+
 ## Use Cases
 
 ### Flash Sale Campaign
@@ -621,6 +740,60 @@ for (const discount of upcoming.response.discount_list.slice(0, 10)) {
 Cannot create discounts when holiday mode is enabled.
 
 **Solution:** Disable holiday mode in shop settings before creating discounts.
+
+### SIP_DISCOUNT_ERROR_INVALID_REGION
+
+Invalid region specified for SIP discount operation.
+
+**Solution:**
+```typescript
+// Use a valid region where you have opened an affiliate shop
+const validRegions = ['SG', 'MY', 'TH', 'TW', 'PH', 'VN', 'ID'];
+
+if (validRegions.includes(region)) {
+  await sdk.discount.setSipDiscount({
+    region: region,
+    sip_discount_rate: 15,
+  });
+}
+```
+
+### SIP_DISCOUNT_ERROR_UPDATE_LOCKED
+
+Cannot edit the SIP discount within 15 minutes after the last update.
+
+**Solution:** Wait at least 15 minutes between updates:
+```typescript
+try {
+  await sdk.discount.setSipDiscount({
+    region: 'TH',
+    sip_discount_rate: 20,
+  });
+} catch (error) {
+  if (error.message.includes('UPDATE_LOCKED')) {
+    console.log('Please wait 15 minutes before updating again');
+    // Schedule retry after 15 minutes
+    setTimeout(() => {
+      // Retry the update
+    }, 15 * 60 * 1000);
+  }
+}
+```
+
+### SIP_DISCOUNT_ERROR_DISCOUNT_RATE_FOR_VN
+
+Discount rate for VN region exceeds 50%.
+
+**Solution:**
+```typescript
+const maxRateForVN = 50;
+const rate = region === 'VN' ? Math.min(desiredRate, maxRateForVN) : desiredRate;
+
+await sdk.discount.setSipDiscount({
+  region: region,
+  sip_discount_rate: rate,
+});
+```
 
 ## Discount Lifecycle
 

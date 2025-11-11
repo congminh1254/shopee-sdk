@@ -149,9 +149,7 @@
     "Seller In House System",
     "Product Management",
     "Ads Service",
-    "Swam ERP",
-    "Livestream Management",
-    "Affiliate Marketing Solution Management"
+    "Swam ERP"
   ],
   "path": "/api/v2/shop/update_profile"
 }
