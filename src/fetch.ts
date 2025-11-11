@@ -82,15 +82,17 @@ export class ShopeeFetch {
     try {
       const response: Response = await fetch(url.toString(), requestOptions);
       const responseType = response.headers.get("Content-Type");
-      const responseData =
+      const responseData: unknown =
         responseType?.indexOf("application/json") !== -1
           ? await response.json()
           : await response.text();
 
       if (responseType?.indexOf("application/json") !== -1) {
-        if (responseData.error) {
+        // Type guard for JSON response with error field
+        const jsonData = responseData as Record<string, unknown>;
+        if (jsonData.error) {
           // Handle invalid access token error
-          if (responseData.error === "invalid_acceess_token" && options.auth) {
+          if (jsonData.error === "invalid_acceess_token" && options.auth) {
             try {
               // Attempt to refresh the access token
               await config.sdk?.refreshToken();
@@ -98,10 +100,10 @@ export class ShopeeFetch {
               return this.fetch(config, path, options);
             } catch (refreshError) {
               // If refresh fails, throw the original error
-              throw new ShopeeApiError(response.status, responseData);
+              throw new ShopeeApiError(response.status, jsonData);
             }
           }
-          throw new ShopeeApiError(response.status, responseData);
+          throw new ShopeeApiError(response.status, jsonData);
         }
 
         const data = responseData as T;
