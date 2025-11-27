@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/congminh1254/shopee-sdk/compare/v1.3.0...v1.4.0) (2025-11-27)
+
+
+### Features
+
+* support AMS manager ([#92](https://github.com/congminh1254/shopee-sdk/issues/92)) ([8440666](https://github.com/congminh1254/shopee-sdk/commit/8440666231b1fae86cb5231d9eeafc429b976c61))
+
 ## [1.3.0](https://github.com/congminh1254/shopee-sdk/compare/v1.2.0...v1.3.0) (2025-11-11)
 
 
