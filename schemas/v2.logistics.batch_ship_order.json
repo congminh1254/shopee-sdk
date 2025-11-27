@@ -293,7 +293,7 @@
   "perm_operator": "sys",
   "perm_type": 1,
   "perm_upload_file_name": "",
-  "priority": 24,
+  "priority": 25,
   "rate_limit": "[0, 0, 0]",
   "request_sample": "[{\"type\":\"Payload\",\"value\":\"{\\n    \\\"order_list\\\": [\\n        {\\n            \\\"order_sn\\\": \\\"201212DCXHJUIKJ\\\"\\n        },\\n        {\\n            \\\"order_sn\\\": \\\"201212CXHQWEIKD\\\"\\n        }\\n    ],\\n    \\\"dropoff\\\": {\\n        \\\"tracking_no\\\": \\\"\\\",\\n        \\\"branch_id\\\": 0,\\n        \\\"sender_real_name\\\": \\\"\\\"\\n    }\\n}\"}]",
   "response_sample": "[{\"type\":\"JSON\",\"value\":\"{\\n    \\\"error\\\": \\\"\\\",\\n    \\\"message\\\": \\\"\\\",\\n    \\\"request_id\\\": \\\"3dad66f43b8447d282ae6da36626c6b7\\\",\\n    \\\"response\\\": {\\n        \\\"result_list\\\": [\\n            {\\n                \\\"order_sn\\\": \\\"201212DCXHJUIKJ\\\"\\n            },\\n            {\\n                \\\"order_sn\\\": \\\"201212CXHQWEIKD\\\"\\n            }\\n        ]\\n    }\\n}\"}]",

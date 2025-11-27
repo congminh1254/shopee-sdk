@@ -820,9 +820,9 @@
   "method": 1,
   "module_id": 95,
   "module_name": "Logistics",
-  "params": "{\"request_params\":[{\"name\":\"order_sn\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"201214JASXYXY6\",\"type\":\"string\",\"description\":\"Shopee's unique identifier for an order.\",\"key\":\"FGxQmNJ\"},{\"name\":\"package_number\",\"limits\":\"\",\"required\":\"False\",\"sample\":\"\",\"type\":\"string\",\"description\":\"Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.\",\"key\":\"EewDzMe\"},{\"name\":\"pickup\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"\",\"type\":\"object\",\"children\":[{\"name\":\"address_id\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"126194\",\"type\":\"int\",\"description\":\"The identity of address. Retrieved from get_shipping_parameter.\",\"key\":\"PtNwbfW\"},{\"name\":\"pickup_time_id\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"439291\",\"type\":\"string\",\"description\":\"The pickup time id. Retrieved from get_shipping_parameter.\",\"key\":\"djSDwyn\"}],\"description\":\"Required parameter ONLY if GetParameterForInit returns \\\"pickup\\\" or if GetLogisticsInfo returns \\\"pickup\\\" under \\\"info_needed\\\" for the same order. Developer should still include \\\"pickup\\\" field in the call even if \\\"pickup\\\" has empty value.\",\"key\":\"BMsaWaw\"}],\"response_params\":[{\"sample\":\"3dad66f43b8447d282ae6da36626c6b7\",\"type\":\"string\",\"name\":\"request_id\",\"description\":\"The identifier for an API request for error tracking.\",\"key\":\"fsRGxSd\"},{\"sample\":\"error_auth\",\"type\":\"string\",\"name\":\"error\",\"description\":\"Indicate error type if hit error. Empty if no error happened.\",\"key\":\"AHJihGN\"},{\"sample\":\"Invalid access_token.\",\"type\":\"string\",\"name\":\"message\",\"description\":\"Indicate error details if hit error. Empty if no error happened.\",\"key\":\"FEybcPn\"}]}",
+  "params": "{\"request_params\":[{\"name\":\"order_sn\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"201214JASXYXY6\",\"type\":\"string\",\"description\":\"Shopee's unique identifier for an order.\",\"key\":\"FGxQmNJ\"},{\"name\":\"package_number\",\"limits\":\"\",\"required\":\"False\",\"sample\":\"\",\"type\":\"string\",\"description\":\"Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.\",\"key\":\"EewDzMe\"},{\"name\":\"pickup\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"\",\"type\":\"object\",\"children\":[{\"name\":\"address_id\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"126194\",\"type\":\"int64\",\"description\":\"The identity of address. Retrieved from get_shipping_parameter.\",\"key\":\"PtNwbfW\"},{\"name\":\"pickup_time_id\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"439291\",\"type\":\"string\",\"description\":\"The pickup time id. Retrieved from get_shipping_parameter.\",\"key\":\"djSDwyn\"}],\"description\":\"Required parameter ONLY if GetParameterForInit returns \\\"pickup\\\" or if GetLogisticsInfo returns \\\"pickup\\\" under \\\"info_needed\\\" for the same order. Developer should still include \\\"pickup\\\" field in the call even if \\\"pickup\\\" has empty value.\",\"key\":\"BMsaWaw\"}],\"response_params\":[{\"sample\":\"3dad66f43b8447d282ae6da36626c6b7\",\"type\":\"string\",\"name\":\"request_id\",\"description\":\"The identifier for an API request for error tracking.\",\"key\":\"fsRGxSd\"},{\"sample\":\"error_auth\",\"type\":\"string\",\"name\":\"error\",\"description\":\"Indicate error type if hit error. Empty if no error happened.\",\"key\":\"AHJihGN\"},{\"sample\":\"Invalid access_token.\",\"type\":\"string\",\"name\":\"message\",\"description\":\"Indicate error details if hit error. Empty if no error happened.\",\"key\":\"FEybcPn\"}]}",
   "perm_mtime": 1621247802,
-  "perm_operator": "sys",
+  "perm_operator": "yan.su@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 4,
@@ -833,6 +833,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/logistics/update_shipping_order",
   "update_log_list": [
+    {
+      "date": "2025-11-20",
+      "content": "Set the format of address_id to int64."
+    },
     {
       "date": "2021-06-02",
       "content": "Update the request parameters description."

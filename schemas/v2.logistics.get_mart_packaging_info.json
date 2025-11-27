@@ -49,7 +49,7 @@
   "perm_operator": "caixia.tu@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
-  "priority": 80553,
+  "priority": 41,
   "rate_limit": "",
   "request_sample": "[]",
   "response_sample": "[{\"type\":\"JSON\",\"value\":\"{\\n    \\\"error\\\":\\\"\\\",\\n    \\\"message\\\":\\\"\\\",\\n    \\\"request_id\\\":\\\"e3e3e7f334afb1ec6b29b57e1285f801\\\",\\n    \\\"response\\\": {\\n        \\\"enable\\\": true,\\n        \\\"dimension\\\": {\\n            \\\"length\\\": 15,\\n            \\\"width\\\": 15,\\n            \\\"height\\\": 15\\n        },\\n        \\\"packaging_fee\\\": {\\n            \\\"value\\\": 100.00\\n        }\\n    }\\n}\"}]",
