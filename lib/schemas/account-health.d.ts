@@ -365,20 +365,20 @@ export interface NddListing {
 export interface PreparationTimeOrder {
     /** Order SN */
     order_sn: string;
-    /** Order Paid Time timestamp */
+    /** Order Paid Time (field named order_create_time in API) */
     order_create_time: number;
     /** Seller arrange pick up time timestamp */
-    arrange_pick_up_time: number;
+    arrange_pick_up_time?: number;
     /** Courier actual pick up time timestamp */
-    actual_pick_up_time: number;
+    actual_pick_up_time?: number;
     /** Preparation Days */
-    preparation_days: number;
+    preparation_days?: number;
     /** Logistics Company */
-    shipping_channel: string;
+    shipping_channel?: string;
     /** First mile shipping type. Applicable values: Pickup, Drop off */
-    first_mile_type: string;
+    first_mile_type?: string;
     /** First Mile Tracking No */
-    first_mile_tracking_no: string;
+    first_mile_tracking_no?: string;
 }
 /**
  * SDD (Same Day Delivery) listing information
