@@ -10,10 +10,6 @@
       "description": "The order_sn {order_sn} is not exist."
     },
     {
-      "name": "logistics.otp_code_invalid",
-      "description": "otp_code invalid, detail:{detail}"
-    },
-    {
       "name": "error_data",
       "description": "parse data failed"
     },
@@ -57,7 +53,7 @@
   "perm_operator": "caixia.tu@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
-  "priority": 25,
+  "priority": 26,
   "rate_limit": "",
   "request_sample": "[{\"type\":\"Payload\",\"value\":\"{\\n    \\\"order_sn\\\":\\\"2403287KU2RPJC\\\",\\n    \\\"tracking_number\\\":\\\"1234567890\\\",\\n    \\\"tracking_url\\\":\\\"https://rastreamento.correios.com.br/app/index.php\\\",\\n    \\\"logistics_status\\\":\\\"logistic_pickup_done\\\"\\n}\"}]",
   "response_sample": "[{\"type\":\"JSON\",\"value\":\"{\\n    \\\"error\\\": \\\"\\\",\\n    \\\"message\\\": \\\"\\\",\\n    \\\"request_id\\\": \\\"e9b086380a7dcdc408cb5ebe2cf38041\\\",\\n    \\\"response\\\": {\\n        \\\"update_result\\\": \\\"succeed\\\"\\n    }\\n}\"}]",
