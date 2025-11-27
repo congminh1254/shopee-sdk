@@ -44,7 +44,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
     "prepare": "husky install",
-    "fetch-schemas": "node --loader ts-node/esm schemas/fetch.ts"
+    "fetch-schemas": "tsx schemas/fetch.ts"
   },
   "publishConfig": {
     "access": "public"
@@ -80,6 +80,7 @@
     "prettier": "^3.2.5",
     "ts-jest": "^29.3.2",
     "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
     "typescript": "^5.7.3"
   },
   "dependencies": {
