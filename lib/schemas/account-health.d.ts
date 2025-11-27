@@ -243,6 +243,14 @@ export interface LateShipmentOrder {
     actual_shipping_time: number;
     /** Number of days the order was late by */
     late_by_days: number;
+    /** Courier actual pick up time */
+    actual_pick_up_time?: number;
+    /** Logistics Company */
+    shipping_channel?: string;
+    /** First mile shipping type. Applicable values: Pickup, Drop off */
+    first_mile_type?: string;
+    /** Diagnosis of the issue */
+    diagnosis_scenario?: string[];
 }
 /**
  * Fast handover order information
@@ -252,12 +260,26 @@ export interface FastHandoverOrder {
     order_sn: string;
     /** Parcel ID */
     parcel_id: number;
+    /** Display Parcel ID */
+    parcel_display_id?: string;
     /** Confirmed date timestamp */
     confirm_time: number;
     /** Parcel drop off / pickup datetime */
     handover_time: number;
     /** Fast handover deadline timestamp */
     handover_deadline: number;
+    /** Fast handover due date timestamp */
+    fast_handover_due_date?: number;
+    /** Seller arrange pick up time */
+    arrange_pick_up_time?: number;
+    /** Logistics Company */
+    shipping_channel?: string;
+    /** First mile shipping type. Applicable values: Pickup, Drop off */
+    first_mile_type?: string;
+    /** First Mile Tracking No */
+    first_mile_tracking_no?: string;
+    /** Diagnosis of the issue */
+    diagnosis_scenario?: string[];
 }
 /**
  * On-time pickup failure rate daily detail
@@ -337,6 +359,41 @@ export interface NddListing {
     current_ndd_status: number;
 }
 /**
+ * Preparation time order information
+ * Used for metric_id 4 (Preparation Time)
+ */
+export interface PreparationTimeOrder {
+    /** Order SN */
+    order_sn: string;
+    /** Order Paid Time timestamp */
+    order_create_time: number;
+    /** Seller arrange pick up time timestamp */
+    arrange_pick_up_time: number;
+    /** Courier actual pick up time timestamp */
+    actual_pick_up_time: number;
+    /** Preparation Days */
+    preparation_days: number;
+    /** Logistics Company */
+    shipping_channel: string;
+    /** First mile shipping type. Applicable values: Pickup, Drop off */
+    first_mile_type: string;
+    /** First Mile Tracking No */
+    first_mile_tracking_no: string;
+}
+/**
+ * SDD (Same Day Delivery) listing information
+ */
+export interface SddListing {
+    /** Item ID */
+    item_id: number;
+    /**
+     * Current SDD status. Applicable values:
+     * 1: Yes
+     * 0: No
+     */
+    current_sdd_status: number;
+}
+/**
  * Response for the get metric source detail API
  */
 export interface GetMetricSourceDetailResponse extends BaseResponse {
@@ -395,6 +452,16 @@ export interface GetMetricSourceDetailResponse extends BaseResponse {
          * Only present for metric_id: 97 (% NDD Listings)
          */
         ndd_listing_list?: NddListing[];
+        /**
+         * Relevant listings for % SDD Listings.
+         * Only present for metric_id: 96 (% SDD Listings)
+         */
+        sdd_listing_list?: SddListing[];
+        /**
+         * Affected parcels for Preparation Time.
+         * Only present for metric_id: 4 (Preparation Time)
+         */
+        apt_order_list?: PreparationTimeOrder[];
     };
 }
 /**
