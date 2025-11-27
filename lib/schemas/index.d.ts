@@ -24,3 +24,4 @@ export * from "./top-picks.js";
 export * from "./shop-category.js";
 export * from "./returns.js";
 export * from "./fbs.js";
+export * from "./ams.js";

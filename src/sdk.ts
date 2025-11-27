@@ -31,6 +31,7 @@ import { ReturnsManager } from "./managers/returns.manager.js";
 import { SbsManager } from "./managers/sbs.manager.js";
 import { FbsManager } from "./managers/fbs.manager.js";
 import { LiveStreamManager } from "./managers/livestream.manager.js";
+import { AmsManager } from "./managers/ams.manager.js";
 import { Agent } from "node:http";
 
 export interface ShopeeConfig {
@@ -73,6 +74,7 @@ export class ShopeeSDK {
   public readonly sbs: SbsManager;
   public readonly fbs: FbsManager;
   public readonly livestream: LiveStreamManager;
+  public readonly ams: AmsManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       region: ShopeeRegion.GLOBAL,
@@ -114,6 +116,7 @@ export class ShopeeSDK {
     this.sbs = new SbsManager(this.config);
     this.fbs = new FbsManager(this.config);
     this.livestream = new LiveStreamManager(this.config);
+    this.ams = new AmsManager(this.config);
   }
 
   public getConfig(): ShopeeConfig {
