@@ -28,7 +28,12 @@ jobs:
         run: npm ci
       
       - name: Fetch latest schemas
-        run: npm run fetch-schemas
+        run: |
+          set -e
+          npm run fetch-schemas 2>&1 || {
+            echo "Error: fetch-schemas failed"
+            exit 1
+          }
       
       - name: Check for schema changes
         id: check_changes
