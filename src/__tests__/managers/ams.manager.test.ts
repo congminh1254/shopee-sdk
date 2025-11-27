@@ -665,15 +665,11 @@ describe("AmsManager", () => {
 
       const result = await amsManager.getTargetedCampaignList();
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_targeted_campaign_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {},
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_targeted_campaign_list", {
+        method: "GET",
+        auth: true,
+        params: {},
+      });
 
       expect(result.error).toBe("");
       expect(result.response.campaign_list).toHaveLength(1);
@@ -784,15 +780,11 @@ describe("AmsManager", () => {
         campaign_id: 12345,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/terminate_targeted_campaign",
-        {
-          method: "POST",
-          auth: true,
-          body: { campaign_id: 12345 },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/terminate_targeted_campaign", {
+        method: "POST",
+        auth: true,
+        body: { campaign_id: 12345 },
+      });
 
       expect(result.error).toBe("");
     });

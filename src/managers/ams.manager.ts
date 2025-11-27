@@ -786,7 +786,9 @@ export class AmsManager extends BaseManager {
    * @param params - Period type, date range, order type, and channel
    * @returns Promise with shop-level performance metrics
    */
-  async getShopPerformance(params: AmsGetShopPerformanceParams): Promise<AmsGetShopPerformanceResponse> {
+  async getShopPerformance(
+    params: AmsGetShopPerformanceParams
+  ): Promise<AmsGetShopPerformanceResponse> {
     const response = await ShopeeFetch.fetch<AmsGetShopPerformanceResponse>(
       this.config,
       "/ams/get_shop_performance",
