@@ -121,7 +121,7 @@
   "perm_operator": "sys",
   "perm_type": 1,
   "perm_upload_file_name": "",
-  "priority": 16,
+  "priority": 17,
   "rate_limit": "[0, 0, 0]",
   "request_sample": "[{\"type\":\"Payload\",\"value\":\"{\\n   \\\"address_id\\\": 14278\\n}\"}]",
   "response_sample": "[{\"type\":\"JSON\",\"value\":\"{\\n    \\\"error\\\": \\\"\\\",\\n    \\\"message\\\": \\\"\\\",\\n    \\\"request_id\\\": \\\"KweCvVFAzQPRcmSDEoDfqpVWQyJrAUsW\\\"\\n}\"}]",

@@ -150,6 +150,7 @@ violations.response.violation_listing_list?.forEach((listing) => {
 **Supported Metric IDs:**
 - `1`, `85`: Late Shipment Rate → `lsr_order_list`
 - `3`, `88`: Non-Fulfilment Rate → `nfr_order_list`
+- `4`: Preparation Time → `apt_order_list`
 - `12`: Pre-order Listing % → `pre_order_listing_list`
 - `15`: Pre-order Violation Days → `pre_order_listing_violation_data_list`
 - `25`, `2001-2003`: Fast Handover Rate → `fhr_order_list`
@@ -157,6 +158,7 @@ violations.response.violation_listing_list?.forEach((listing) => {
 - `42`, `91`: Cancellation Rate → `cancellation_order_list`
 - `43`, `92`: Return-refund Rate → `return_refund_order_list`
 - `52`, `53`: Listing Violations → `violation_listing_list`
+- `96`: % SDD Listings → `sdd_listing_list`
 - `97`: % NDD Listings → `ndd_listing_list`
 
 ---
