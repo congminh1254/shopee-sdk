@@ -105,6 +105,7 @@
     "ERP System",
     "Seller In House System",
     "Product Management",
+    "Order Management",
     "Swam ERP"
   ],
   "path": "/api/v2/shop/get_warehouse_detail"
