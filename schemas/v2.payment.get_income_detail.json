@@ -39,6 +39,10 @@
     },
     {
       "name": "error_param",
+      "description": "Invalid Time Range: Only records from the past 5 years are supported for the TW region."
+    },
+    {
+      "name": "error_param",
       "description": "release_time_from and/or release_time_to parameter is missing or invalid. Please provide both a valid start date and end date to query, where the start date cannot be later than the end date, and the date range must not exceed 14 days."
     },
     {

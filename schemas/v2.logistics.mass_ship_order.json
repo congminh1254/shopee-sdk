@@ -64,6 +64,10 @@
     {
       "name": "error_param",
       "description": "request not from gateway"
+    },
+    {
+      "name": "logistics.warehouse_stock_insufficient",
+      "description": "Failed to assign a warehouse with sufficient stock"
     }
   ],
   "errors": "",
