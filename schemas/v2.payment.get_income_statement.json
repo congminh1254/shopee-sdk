@@ -23,6 +23,10 @@
     },
     {
       "name": "error_param",
+      "description": "Invalid Time Range: Only records from the past 5 years are supported for the TW region."
+    },
+    {
+      "name": "error_param",
       "description": "Shop is not a mart shop. Please use Mart Shop ID."
     },
     {
