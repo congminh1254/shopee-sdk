@@ -178,8 +178,16 @@
       "description": "lack of param"
     },
     {
+      "name": "error_return_request_type",
+      "description": "Action cannot be performed by shop because the Return Refund Request Type = {return_type}"
+    },
+    {
       "name": "error_perm",
       "description": "there is invalid params."
+    },
+    {
+      "name": "error_validation",
+      "description": "Action cannot be performed by shop because the validation_type of Return/Refund request = warehouse_validation"
     },
     {
       "name": "error_param",
@@ -324,6 +332,10 @@
     {
       "name": "error_data",
       "description": "Shopee is reviewing the case and will get back to you.\t\t\t"
+    },
+    {
+      "name": "error_data",
+      "description": "Shopee is reviewing the case and will get back to you."
     },
     {
       "name": "error_permission",

@@ -6,6 +6,18 @@
   "define": "Use this API to set address config of your shop.",
   "error_list": [
     {
+      "name": "error_param",
+      "description": "Cannot set inbound pickup address for this address."
+    },
+    {
+      "name": "error_param",
+      "description": "Inbound pickup address cannot be the same as Shopee warehouse address."
+    },
+    {
+      "name": "error_param",
+      "description": "Inbound pickup address must be in São Paulo state."
+    },
+    {
       "name": "logistics.address_not_found",
       "description": "The address is invalid. Please check the address."
     },

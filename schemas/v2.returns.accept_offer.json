@@ -132,6 +132,10 @@
     {
       "name": "error_data",
       "description": "Shopee is reviewing the case and will get back to you.\t\t\t"
+    },
+    {
+      "name": "error_data",
+      "description": "Shopee is reviewing the case and will get back to you."
     }
   ],
   "errors": "",

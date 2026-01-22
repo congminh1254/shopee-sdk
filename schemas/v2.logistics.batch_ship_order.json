@@ -280,6 +280,10 @@
     {
       "name": "error_param",
       "description": "Please do not request with tracking_no for this channel which does not require tracking_no."
+    },
+    {
+      "name": "logistics.warehouse_stock_insufficient",
+      "description": "Failed to assign a warehouse with sufficient stock"
     }
   ],
   "errors": "",

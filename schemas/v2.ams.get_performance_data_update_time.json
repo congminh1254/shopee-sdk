@@ -28,7 +28,7 @@
   "method": 2,
   "module_id": 127,
   "module_name": "AMS",
-  "params": "{\"request_params\":[{\"description\":\"<p>Marker type. Applicable values:&nbsp;</p><p>- AmsMarker: Used to query the data update date for metrics at the seller dimension.</p><p>- AmsCampaignAnalyticsMarker: Used to query the data update&nbsp;date&nbsp;for metrics at the campaign dimension.</p>\",\"name\":\"marker_type\",\"sample\":\"AmsMarker\",\"type\":\"string\",\"required\":\"True\",\"key\":\"RMhmdbx\"}],\"response_params\":[{\"description\":\"<p>Indicate error type if hit error. Empty if no error happened.</p>\",\"name\":\"error\",\"sample\":\"error_param\",\"type\":\"string\",\"required\":null,\"key\":\"fdtaEPp\"},{\"description\":\"<p>Indicate error details if hit error. Empty if no error happened.</p>\",\"name\":\"message\",\"sample\":\"Invalid marker type\",\"type\":\"string\",\"required\":null,\"key\":\"HcaxBCE\"},{\"description\":\"<p>The identifier for an API request for error tracking.</p><p>&lt;path&gt;&lt;/path&gt;&lt;path&gt;&lt;/path&gt;<br /></p>\",\"name\":\"request_id\",\"sample\":\"b937c04e554847789cbf3fe33a0ad5f1\",\"type\":\"string\",\"required\":null,\"key\":\"XjfxiDe\"},{\"description\":\"\",\"name\":\"response\",\"sample\":\"\",\"type\":\"object\",\"required\":null,\"key\":\"FeWBpRh\",\"children\":[{\"description\":\"<p>The latest date of AMS dashboard data metrics update.</p>\",\"name\":\"last_report_date\",\"sample\":\"2025-08-19\",\"type\":\"string\",\"required\":null,\"key\":\"dYbkSh\"}]}]}",
+  "params": "{\"request_params\":[{\"description\":\"<p>Marker type. Applicable values:&nbsp;</p><p>- AmsMarker: Used to query the data update date for ams metrics.</p>\",\"name\":\"marker_type\",\"sample\":\"AmsMarker\",\"type\":\"string\",\"required\":\"True\",\"key\":\"RMhmdbx\"}],\"response_params\":[{\"description\":\"<p>Indicate error type if hit error. Empty if no error happened.</p>\",\"name\":\"error\",\"sample\":\"error_param\",\"type\":\"string\",\"required\":null,\"key\":\"fdtaEPp\"},{\"description\":\"<p>Indicate error details if hit error. Empty if no error happened.</p>\",\"name\":\"message\",\"sample\":\"Invalid marker type\",\"type\":\"string\",\"required\":null,\"key\":\"HcaxBCE\"},{\"description\":\"<p>The identifier for an API request for error tracking.</p><p>&lt;path&gt;&lt;/path&gt;&lt;path&gt;&lt;/path&gt;<br /></p>\",\"name\":\"request_id\",\"sample\":\"b937c04e554847789cbf3fe33a0ad5f1\",\"type\":\"string\",\"required\":null,\"key\":\"XjfxiDe\"},{\"description\":\"\",\"name\":\"response\",\"sample\":\"\",\"type\":\"object\",\"required\":null,\"key\":\"FeWBpRh\",\"children\":[{\"description\":\"<p>The latest date of AMS dashboard data metrics update.</p>\",\"name\":\"last_report_date\",\"sample\":\"2025-08-19\",\"type\":\"string\",\"required\":null,\"key\":\"dYbkSh\"}]}]}",
   "perm_mtime": 1763708502,
   "perm_operator": "yan.su@shopee.com",
   "perm_type": 1,
@@ -41,6 +41,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/ams/get_performance_data_update_time",
   "update_log_list": [
+    {
+      "date": "2025-12-05",
+      "content": "Remove AmsCampaignAnalyticsMarker option for marker_type request parameter"
+    },
     {
       "date": "2025-10-15",
       "content": "New API"

@@ -198,6 +198,38 @@
       "description": "lack of param"
     },
     {
+      "name": "dispute.request.param.error",
+      "description": "can't raise dispute because the requirement and dispute reason ID does not match"
+    },
+    {
+      "name": "dispute.request.param.error",
+      "description": "Invalid images, images max size is 3 per module"
+    },
+    {
+      "name": "dispute.request.param.error",
+      "description": "Unable to raise dispute as mandatory module index is missing"
+    },
+    {
+      "name": "returnsn.illegal",
+      "description": "Return status does not allow initiating a dispute case（From dispute side）"
+    },
+    {
+      "name": "returns.dispute_is_dry_run",
+      "description": "Dispute validation passed, but will not submit as this is a dry run"
+    },
+    {
+      "name": "dispute.request.param.error",
+      "description": "can't raise dispute because mandatory evidence is missing"
+    },
+    {
+      "name": "dispute.request.param.error",
+      "description": "Can't raise dispute because the return_sn and dispute_reason_id does not match."
+    },
+    {
+      "name": "dispute.request.param.error",
+      "description": "Invalid images, images max size is 3."
+    },
+    {
       "name": "error_perm",
       "description": "there is invalid params."
     },
@@ -366,6 +398,10 @@
       "description": "Shopee is reviewing the case and will get back to you.\t\t\t"
     },
     {
+      "name": "error_data",
+      "description": "Shopee is reviewing the case and will get back to you."
+    },
+    {
       "name": "error_permission",
       "description": "Please link shop and partner on seller center."
     }
@@ -376,7 +412,7 @@
   "method": 1,
   "module_id": 102,
   "module_name": "Returns",
-  "params": "{\"request_params\":[{\"name\":\"return_sn\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"24112301K66SQXM\",\"type\":\"string\",\"description\":\"The serial number of return.\",\"key\":\"PDjrNHz\"},{\"name\":\"email\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"test@example.com\",\"type\":\"string\",\"description\":\"<p>The email address.</p>\",\"key\":\"psXbtrx\"},{\"description\":\"<p>The dispute reason id.<br /></p><p>Please call&nbsp;v2.returns.get_return_dispute_reason to get it.</p>\",\"name\":\"dispute_reason_id\",\"sample\":\"50\",\"type\":\"int32\",\"required\":\"True\",\"key\":\"bhPbTCG\"},{\"description\":\"<p>The evidence images.</p>\",\"name\":\"image_list\",\"sample\":\"\",\"type\":\"object[]\",\"required\":\"False\",\"key\":\"mjNijGd\",\"children\":[{\"description\":\"<p>The module_index of current evidence module returned by get_return_dispute_reason API.</p>\",\"name\":\"module_index\",\"sample\":\"1\",\"type\":\"int32\",\"required\":\"True\",\"key\":\"JfGYiYS\"},{\"description\":\"<p>The requirement content of current evidence module returned by get_return_dispute_reason API.</p>\",\"name\":\"requirement\",\"sample\":\"Photo(s) or Video of unboxing the returned parcel with the consignment note (Airway Bill).\",\"type\":\"string\",\"required\":\"True\",\"key\":\"JTirNyA\"},{\"description\":\"<p>The image URLs of current evidence module. It is recommended to pass in the URL returned by convert_image API.<br /></p>\",\"name\":\"image_url\",\"sample\":\"[\\\"https://fileproxy.scsusercontent.com/api/v2/files/c2hvcGVlLWRyYzAx/bf10d801_e9c9e5473d3345d08671a8cc3bc1a6de.jpg\\\",\\\"https://fileproxy.scsusercontent.com/api/v2/files/c2hvcGVlLWRyYzAx/bf10d801_1733e9f051994b56ae748d4ebd40d0ee.jpg\\\"]\",\"type\":\"string[]\",\"required\":\"True\",\"key\":\"KaKDMsM\"}]},{\"name\":\"dispute_text_reason\",\"limits\":\"\",\"required\":\"False\",\"sample\":\"Received return item(s), buyer's claim incorrect\",\"type\":\"string\",\"description\":\"<p>The content of dispute reason.</p>\",\"key\":\"ZekyHtM\"}],\"response_params\":[{\"sample\":\"openapi-e3e3e7f3291217bb0b0d5a1ffe501701:0100027ec9bf2af2:00000016da662a54\",\"type\":\"string\",\"name\":\"request_id\",\"description\":\"<p>The identifier for an API request for error tracking.</p>\",\"key\":\"ykZhMaN\"},{\"sample\":\" \",\"type\":\"string\",\"name\":\"error\",\"description\":\"<p>Indicate error type if hit error. Empty if no error happened.</p>\",\"key\":\"SpkPYxx\"},{\"sample\":\" \",\"type\":\"string\",\"name\":\"message\",\"description\":\"<p>Indicate error details if hit error. Empty if no error happened.</p>\",\"key\":\"YTQyRFk\"},{\"sample\":\"\",\"type\":\"object\",\"description\":\"\",\"name\":\"response\",\"children\":[{\"sample\":\"200203171852695\",\"type\":\"string\",\"name\":\"return_sn\",\"description\":\"<p>The serial number of return.</p>\",\"key\":\"EYnihKX\"},{\"description\":\"\",\"name\":\"msg\",\"sample\":\"dispute return success\",\"type\":\"string\",\"required\":null,\"key\":\"PcRjxXW\"}],\"key\":\"pfbCTB\"}]}",
+  "params": "{\"request_params\":[{\"name\":\"return_sn\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"24112301K66SQXM\",\"type\":\"string\",\"description\":\"The serial number of return.\",\"key\":\"PDjrNHz\"},{\"name\":\"email\",\"limits\":\"\",\"required\":\"True\",\"sample\":\"test@example.com\",\"type\":\"string\",\"description\":\"<p>The email address.</p>\",\"key\":\"psXbtrx\"},{\"description\":\"<p>The dispute reason id.<br /></p><p>Please call&nbsp;v2.returns.get_return_dispute_reason to get it.</p>\",\"name\":\"dispute_reason_id\",\"sample\":\"50\",\"type\":\"int32\",\"required\":\"True\",\"key\":\"bhPbTCG\"},{\"description\":\"<p>Determines whether image submission is mandatory for the dispute request - mandatory input field for all dispute reasons except \\\"Did not receive the return product\\\".</p>\",\"name\":\"image_list\",\"sample\":\"\",\"type\":\"object[]\",\"required\":\"False\",\"key\":\"mjNijGd\",\"children\":[{\"description\":\"<p>The module_index of current evidence module returned by get_return_dispute_reason API.</p>\",\"name\":\"module_index\",\"sample\":\"1\",\"type\":\"int32\",\"required\":\"True\",\"key\":\"JfGYiYS\"},{\"description\":\"<p>The requirement content of current evidence module returned by get_return_dispute_reason API.</p>\",\"name\":\"requirement\",\"sample\":\"Photo(s) or Video of unboxing the returned parcel with the consignment note (Airway Bill).\",\"type\":\"string\",\"required\":\"True\",\"key\":\"JTirNyA\"},{\"description\":\"<p>The image URLs of current evidence module. It is recommended to pass in the URL returned by convert_image API.<br /></p>\",\"name\":\"image_url\",\"sample\":\"[\\\"https://fileproxy.scsusercontent.com/api/v2/files/c2hvcGVlLWRyYzAx/bf10d801_e9c9e5473d3345d08671a8cc3bc1a6de.jpg\\\",\\\"https://fileproxy.scsusercontent.com/api/v2/files/c2hvcGVlLWRyYzAx/bf10d801_1733e9f051994b56ae748d4ebd40d0ee.jpg\\\"]\",\"type\":\"string[]\",\"required\":\"True\",\"key\":\"KaKDMsM\"}]},{\"name\":\"dispute_text_reason\",\"limits\":\"\",\"required\":\"False\",\"sample\":\"Received return item(s), buyer's claim incorrect\",\"type\":\"string\",\"description\":\"<p>The content of dispute reason.</p>\",\"key\":\"ZekyHtM\"}],\"response_params\":[{\"sample\":\"openapi-e3e3e7f3291217bb0b0d5a1ffe501701:0100027ec9bf2af2:00000016da662a54\",\"type\":\"string\",\"name\":\"request_id\",\"description\":\"<p>The identifier for an API request for error tracking.</p>\",\"key\":\"ykZhMaN\"},{\"sample\":\" \",\"type\":\"string\",\"name\":\"error\",\"description\":\"<p>Indicate error type if hit error. Empty if no error happened.</p>\",\"key\":\"SpkPYxx\"},{\"sample\":\" \",\"type\":\"string\",\"name\":\"message\",\"description\":\"<p>Indicate error details if hit error. Empty if no error happened.</p>\",\"key\":\"YTQyRFk\"},{\"sample\":\"\",\"type\":\"object\",\"description\":\"\",\"name\":\"response\",\"children\":[{\"sample\":\"200203171852695\",\"type\":\"string\",\"name\":\"return_sn\",\"description\":\"<p>The serial number of return.</p>\",\"key\":\"EYnihKX\"},{\"description\":\"\",\"name\":\"msg\",\"sample\":\"dispute return success\",\"type\":\"string\",\"required\":null,\"key\":\"PcRjxXW\"}],\"key\":\"pfbCTB\"}]}",
   "perm_mtime": 1621247802,
   "perm_operator": "caixia.tu@shopee.com",
   "perm_type": 1,
@@ -389,6 +425,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/returns/dispute",
   "update_log_list": [
+    {
+      "date": "2025-12-05",
+      "content": "Updated description of image_list field"
+    },
     {
       "date": "2024-12-31",
       "content": "Add new image_list request parameter"
@@ -404,10 +444,6 @@
     {
       "date": "2022-11-09",
       "content": "add dispute_reason enum values"
-    },
-    {
-      "date": "2022-02-23",
-      "content": "update example"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/returns/dispute",

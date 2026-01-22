@@ -127,6 +127,10 @@
     },
     {
       "name": "error_param",
+      "description": "This proposed solution is not one of the available solutions for this return."
+    },
+    {
+      "name": "error_param",
       "description": "The proposed adjusted refund amount can not be lower than min refund amount"
     },
     {
@@ -146,8 +150,16 @@
       "description": "The proposed adjusted refund amount only accepts {digit} digit(s) after decimal point"
     },
     {
+      "name": "error_param",
+      "description": "The proposed solution cannot have adjusted refund amount"
+    },
+    {
       "name": "error_return_status",
       "description": "The return status cannot support this action"
+    },
+    {
+      "name": "error_data",
+      "description": "Shopee is reviewing the case and will get back to you."
     }
   ],
   "errors": "",

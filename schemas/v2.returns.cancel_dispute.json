@@ -11,6 +11,10 @@
     },
     {
       "name": "dispute.cancel.ineligible",
+      "description": "Cannot cancel dispute when compensation status is already in COMPENSATION_CANCELLED"
+    },
+    {
+      "name": "dispute.cancel.ineligible",
       "description": "Cannot cancel dispute when compensation status is not in COMPENSATION_REQUESTED"
     },
     {
