@@ -20,9 +20,9 @@ export interface DeleteVideoFailureList {
     failedReason?: string;
 }
 export interface DeleteVideoResponseData {
-    /** The list of video delete successfully. */
+    /** The list of videos deleted successfully. */
     successList?: DeleteVideoSuccessList[];
-    /** The list of video delete deleted. */
+    /** The list of videos that failed to delete. */
     failureList?: DeleteVideoFailureList[];
 }
 export type DeleteVideoResponse = FetchResponse<DeleteVideoResponseData>;
@@ -591,7 +591,7 @@ export interface GetVideoListResponseData {
     /** This is to indicate whether the video list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of data. */
     hasMore?: boolean;
     /** The list of video that match the condition. */
-    list?: GetVideoListList;
+    list?: GetVideoListList[];
 }
 export type GetVideoListResponse = FetchResponse<GetVideoListResponseData>;
 export interface GetVideoPerformanceListParams {
