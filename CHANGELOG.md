@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/congminh1254/shopee-sdk/compare/v1.4.0...v1.5.0) (2026-01-26)
+
+
+### Features
+
+* sync SDK with latest Shopee API schemas ([#101](https://github.com/congminh1254/shopee-sdk/issues/101)) ([97bb272](https://github.com/congminh1254/shopee-sdk/commit/97bb272d8e1e37b9a617eb29d23411d426582889))
+
 ## [1.4.0](https://github.com/congminh1254/shopee-sdk/compare/v1.3.0...v1.4.0) (2025-11-27)
 
 
