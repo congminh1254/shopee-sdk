@@ -81,6 +81,12 @@ import {
   SetMartPackagingInfoResponse,
   BatchUpdateTPFWarehouseTrackingStatusParams,
   BatchUpdateTPFWarehouseTrackingStatusResponse,
+  CheckPolygonUpdateStatusParams,
+  CheckPolygonUpdateStatusResponse,
+  UpdateAddressParams,
+  UpdateAddressResponse,
+  UploadServiceablePolygonParams,
+  UploadServiceablePolygonResponse,
 } from "../schemas/logistics.js";
 import { ShopeeFetch } from "../fetch.js";
 
@@ -959,6 +965,61 @@ export class LogisticsManager extends BaseManager {
     const response = await ShopeeFetch.fetch<BatchUpdateTPFWarehouseTrackingStatusResponse>(
       this.config,
       "/logistics/batch_update_tpf_warehouse_tracking_status",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Only available for Brazil sellers. Use this API to check the status of polygon file uploaded for BR Entrega Turbo channel (Channel ID: 90026) by querying the task_id returned via the v2.logistics.upload_serviceable_polygon.
+   */
+  async checkPolygonUpdateStatus(
+    params: CheckPolygonUpdateStatusParams
+  ): Promise<CheckPolygonUpdateStatusResponse> {
+    const response = await ShopeeFetch.fetch<CheckPolygonUpdateStatusResponse>(
+      this.config,
+      "/logistics/check_polygon_update_status",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to update the address of a shop.
+   */
+  async updateAddress(params: UpdateAddressParams): Promise<UpdateAddressResponse> {
+    const response = await ShopeeFetch.fetch<UpdateAddressResponse>(
+      this.config,
+      "/logistics/update_address",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Only available for Brazil sellers. Use this API to upload KML file for shop level serviceability setting for BR Entrega Turbo channel (Channel ID: 90026). Please note that multiple Outlet Shops under the same Mart Shop cannot have overlapping service areas.
+   */
+  async uploadServiceablePolygon(
+    params: UploadServiceablePolygonParams
+  ): Promise<UploadServiceablePolygonResponse> {
+    const response = await ShopeeFetch.fetch<UploadServiceablePolygonResponse>(
+      this.config,
+      "/logistics/upload_serviceable_polygon",
       {
         method: "POST",
         auth: true,

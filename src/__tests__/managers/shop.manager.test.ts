@@ -10,6 +10,9 @@ import {
   GetWarehouseDetailResponse,
   GetShopNotificationResponse,
   GetAuthorisedResellerBrandResponse,
+  GetBRShopOnboardingInfoResponse,
+  GetShopHolidayModeResponse,
+  SetShopHolidayModeResponse,
 } from "../../schemas/shop.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -581,6 +584,177 @@ describe("ShopManager", () => {
       expect(result.response.is_authorised_reseller).toBe(false);
       expect(result.response.total_count).toBe(0);
       expect(result.response.authorised_brand_list).toHaveLength(0);
+    });
+  });
+
+  describe("getBRShopOnboardingInfo", () => {
+    it("should get BR shop onboarding info successfully", async () => {
+      const mockResponse: GetBRShopOnboardingInfoResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          onboarding_status: "APPROVED",
+          rejection_reason: "",
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await shopManager.getBRShopOnboardingInfo();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/shop/get_br_shop_onboarding_info",
+        {
+          method: "GET",
+          auth: true,
+          params: {},
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.onboarding_status).toBe("APPROVED");
+      expect(result.response.rejection_reason).toBe("");
+    });
+
+    it("should handle rejected BR shop onboarding", async () => {
+      const mockResponse: GetBRShopOnboardingInfoResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          onboarding_status: "REJECTED",
+          rejection_reason: "Invalid documentation",
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await shopManager.getBRShopOnboardingInfo();
+
+      expect(result.response.onboarding_status).toBe("REJECTED");
+      expect(result.response.rejection_reason).toBe("Invalid documentation");
+    });
+  });
+
+  describe("getShopHolidayMode", () => {
+    it("should get shop holiday mode successfully", async () => {
+      const mockResponse: GetShopHolidayModeResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          is_holiday_mode_on: true,
+          start_time: 1640000000,
+          end_time: 1640086400,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await shopManager.getShopHolidayMode();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_shop_holiday_mode", {
+        method: "GET",
+        auth: true,
+        params: {},
+      });
+
+      expect(result.error).toBe("");
+      expect(result.response.is_holiday_mode_on).toBe(true);
+      expect(result.response.start_time).toBe(1640000000);
+      expect(result.response.end_time).toBe(1640086400);
+    });
+
+    it("should get shop holiday mode when disabled", async () => {
+      const mockResponse: GetShopHolidayModeResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          is_holiday_mode_on: false,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await shopManager.getShopHolidayMode();
+
+      expect(result.response.is_holiday_mode_on).toBe(false);
+    });
+  });
+
+  describe("setShopHolidayMode", () => {
+    it("should enable shop holiday mode successfully", async () => {
+      const mockResponse: SetShopHolidayModeResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await shopManager.setShopHolidayMode({
+        is_holiday_mode_on: true,
+        start_time: 1640000000,
+        end_time: 1640086400,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop/set_shop_holiday_mode", {
+        method: "POST",
+        auth: true,
+        body: {
+          is_holiday_mode_on: true,
+          start_time: 1640000000,
+          end_time: 1640086400,
+        },
+      });
+
+      expect(result.error).toBe("");
+    });
+
+    it("should disable shop holiday mode successfully", async () => {
+      const mockResponse: SetShopHolidayModeResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await shopManager.setShopHolidayMode({
+        is_holiday_mode_on: false,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop/set_shop_holiday_mode", {
+        method: "POST",
+        auth: true,
+        body: {
+          is_holiday_mode_on: false,
+        },
+      });
+
+      expect(result.error).toBe("");
+    });
+
+    it("should handle error when setting holiday mode", async () => {
+      const mockResponse: SetShopHolidayModeResponse = {
+        request_id: "test-request-id",
+        error: "error_param",
+        message: "Invalid time range",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await shopManager.setShopHolidayMode({
+        is_holiday_mode_on: true,
+        start_time: 1640086400,
+        end_time: 1640000000,
+      });
+
+      expect(result.error).toBe("error_param");
+      expect(result.message).toBe("Invalid time range");
     });
   });
 });

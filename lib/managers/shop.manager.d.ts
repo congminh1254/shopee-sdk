@@ -1,6 +1,6 @@
 import { BaseManager } from "./base.manager.js";
 import { ShopeeConfig } from "../sdk.js";
-import { GetProfileParams, GetProfileResponse, GetShopInfoParams, GetShopInfoResponse, UpdateProfileParams, UpdateProfileResponse, GetWarehouseDetailParams, GetWarehouseDetailResponse, GetShopNotificationParams, GetShopNotificationResponse, GetAuthorisedResellerBrandParams, GetAuthorisedResellerBrandResponse } from "../schemas/shop.js";
+import { GetProfileParams, GetProfileResponse, GetShopInfoParams, GetShopInfoResponse, UpdateProfileParams, UpdateProfileResponse, GetWarehouseDetailParams, GetWarehouseDetailResponse, GetShopNotificationParams, GetShopNotificationResponse, GetAuthorisedResellerBrandParams, GetAuthorisedResellerBrandResponse, GetBRShopOnboardingInfoParams, GetBRShopOnboardingInfoResponse, GetShopHolidayModeParams, GetShopHolidayModeResponse, SetShopHolidayModeParams, SetShopHolidayModeResponse } from "../schemas/shop.js";
 export declare class ShopManager extends BaseManager {
     constructor(config: ShopeeConfig);
     /**
@@ -170,4 +170,16 @@ export declare class ShopManager extends BaseManager {
      * ```
      */
     getAuthorisedResellerBrand(params: GetAuthorisedResellerBrandParams): Promise<GetAuthorisedResellerBrandResponse>;
+    /**
+     * [For BR Shop Only] Use this API to get shop KYC registration and qualification information.
+     */
+    getBRShopOnboardingInfo(params?: GetBRShopOnboardingInfoParams): Promise<GetBRShopOnboardingInfoResponse>;
+    /**
+     * Use this API to check whether a shop has enabled holiday mode.
+     */
+    getShopHolidayMode(params?: GetShopHolidayModeParams): Promise<GetShopHolidayModeResponse>;
+    /**
+     * Use this API to enable or disable holiday mode for a shop.
+     */
+    setShopHolidayMode(params: SetShopHolidayModeParams): Promise<SetShopHolidayModeResponse>;
 }

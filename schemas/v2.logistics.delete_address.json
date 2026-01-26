@@ -6,6 +6,10 @@
   "define": "Use this api to delete address.",
   "error_list": [
     {
+      "name": "error_param",
+      "description": "Can't delete default address/pickup address/return address."
+    },
+    {
       "name": "logistics.address_not_found",
       "description": "The address is invalid. Please check the address."
     },

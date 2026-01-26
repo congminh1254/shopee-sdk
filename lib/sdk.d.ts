@@ -29,6 +29,7 @@ import { SbsManager } from "./managers/sbs.manager.js";
 import { FbsManager } from "./managers/fbs.manager.js";
 import { LiveStreamManager } from "./managers/livestream.manager.js";
 import { AmsManager } from "./managers/ams.manager.js";
+import { VideoManager } from "./managers/video.manager.js";
 import { Agent } from "node:http";
 export interface ShopeeConfig {
     partner_id: number;
@@ -70,6 +71,7 @@ export declare class ShopeeSDK {
     readonly fbs: FbsManager;
     readonly livestream: LiveStreamManager;
     readonly ams: AmsManager;
+    readonly video: VideoManager;
     constructor(config: ShopeeConfig, tokenStorage?: TokenStorage);
     getConfig(): ShopeeConfig;
     setRegion(region: ShopeeRegion): void;

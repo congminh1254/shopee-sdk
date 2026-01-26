@@ -111,6 +111,10 @@ import {
   GetProductCertificationRuleResponse,
   SearchUnpackagedModelListParams,
   SearchUnpackagedModelListResponse,
+  GetMartItemMappingByIdParams,
+  GetMartItemMappingByIdResponse,
+  PublishItemToOutletShopParams,
+  PublishItemToOutletShopResponse,
 } from "../schemas/product.js";
 
 export class ProductManager extends BaseManager {
@@ -1290,6 +1294,45 @@ export class ProductManager extends BaseManager {
         method: "GET",
         auth: true,
         params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get the mapping information between a Mart item and its corresponding outlet item by item ID.
+   */
+  async getMartItemMappingById(
+    params: GetMartItemMappingByIdParams
+  ): Promise<GetMartItemMappingByIdResponse> {
+    const response = await ShopeeFetch.fetch<GetMartItemMappingByIdResponse>(
+      this.config,
+      "/product/get_mart_item_mapping_by_id",
+      {
+        method: "GET",
+        auth: true,
+        params: {
+          ...params,
+          outlet_shop_id_list: params.outlet_shop_id_list.join(","),
+        },
+      }
+    );
+    return response;
+  }
+
+  /**
+   * This API supports publishing an existing item from the mart shop to an outlet shop.
+   */
+  async publishItemToOutletShop(
+    params: PublishItemToOutletShopParams
+  ): Promise<PublishItemToOutletShopResponse> {
+    const response = await ShopeeFetch.fetch<PublishItemToOutletShopResponse>(
+      this.config,
+      "/product/publish_item_to_outlet_shop",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
       }
     );
     return response;
