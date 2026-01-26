@@ -10,6 +10,9 @@ import {
   GetTrackingNumberResponse,
   ShipOrderResponse,
   GetAddressListResponse,
+  CheckPolygonUpdateStatusResponse,
+  UpdateAddressResponse,
+  UploadServiceablePolygonResponse,
 } from "../../schemas/logistics.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -1159,6 +1162,165 @@ describe("LogisticsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
+    });
+  });
+
+  describe("checkPolygonUpdateStatus", () => {
+    it("should check polygon update status successfully", async () => {
+      const mockResponse: CheckPolygonUpdateStatusResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          status: "SUCCESS",
+          error_message: "",
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.checkPolygonUpdateStatus({
+        address_id: 12345,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/check_polygon_update_status",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            address_id: 12345,
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.status).toBe("SUCCESS");
+      expect(result.response.error_message).toBe("");
+    });
+
+    it("should handle failed polygon update status", async () => {
+      const mockResponse: CheckPolygonUpdateStatusResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          status: "FAILED",
+          error_message: "Invalid KML file format",
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.checkPolygonUpdateStatus({
+        address_id: 12345,
+      });
+
+      expect(result.response.status).toBe("FAILED");
+      expect(result.response.error_message).toBe("Invalid KML file format");
+    });
+  });
+
+  describe("updateAddress", () => {
+    it("should update address successfully", async () => {
+      const mockResponse: UpdateAddressResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.updateAddress({
+        address_id: 12345,
+        address: "Updated Street Address",
+        city: "Updated City",
+        state: "Updated State",
+        zipcode: "12345",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/update_address", {
+        method: "POST",
+        auth: true,
+        body: {
+          address_id: 12345,
+          address: "Updated Street Address",
+          city: "Updated City",
+          state: "Updated State",
+          zipcode: "12345",
+        },
+      });
+
+      expect(result.error).toBe("");
+    });
+
+    it("should handle error when updating address", async () => {
+      const mockResponse: UpdateAddressResponse = {
+        request_id: "test-request-id",
+        error: "error_param",
+        message: "Invalid zipcode format",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.updateAddress({
+        address_id: 12345,
+        zipcode: "invalid",
+      });
+
+      expect(result.error).toBe("error_param");
+      expect(result.message).toBe("Invalid zipcode format");
+    });
+  });
+
+  describe("uploadServiceablePolygon", () => {
+    it("should upload serviceable polygon successfully", async () => {
+      const mockResponse: UploadServiceablePolygonResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.uploadServiceablePolygon({
+        address_id: 12345,
+        kml_content: '<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>',
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/upload_serviceable_polygon",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            address_id: 12345,
+            kml_content: '<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>',
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+    });
+
+    it("should handle error when uploading invalid polygon", async () => {
+      const mockResponse: UploadServiceablePolygonResponse = {
+        request_id: "test-request-id",
+        error: "error_invalid_kml",
+        message: "KML file contains invalid polygon data",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.uploadServiceablePolygon({
+        address_id: 12345,
+        kml_content: "invalid kml",
+      });
+
+      expect(result.error).toBe("error_invalid_kml");
+      expect(result.message).toBe("KML file contains invalid polygon data");
     });
   });
 });

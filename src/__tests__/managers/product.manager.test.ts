@@ -40,6 +40,8 @@ import {
   GetDirectItemListResponse,
   GetItemContentDiagnosisResultResponse,
   GetItemListByContentDiagnosisResponse,
+  GetMartItemMappingByIdResponse,
+  PublishItemToOutletShopResponse,
 } from "../../schemas/product.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -2403,6 +2405,179 @@ describe("ProductManager", () => {
       );
 
       expect(result.response.model_list).toHaveLength(1);
+    });
+  });
+
+  describe("getMartItemMappingById", () => {
+    it("should get mart item mapping by id successfully", async () => {
+      const mockResponse: GetMartItemMappingByIdResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          mart_item_list: [
+            {
+              mart_item_id: 111111,
+              outlet_item_mapping_list: [
+                {
+                  outlet_shop_id: 222222,
+                  outlet_item_id: 333333,
+                  outlet_item_status: "NORMAL",
+                },
+                {
+                  outlet_shop_id: 444444,
+                  outlet_item_id: 555555,
+                  outlet_item_status: "NORMAL",
+                },
+              ],
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getMartItemMappingById({
+        mart_item_id_list: [111111],
+        outlet_shop_id_list: [222222, 444444],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_mart_item_mapping_by_id",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            mart_item_id_list: [111111],
+            outlet_shop_id_list: "222222,444444",
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.mart_item_list).toHaveLength(1);
+      expect(result.response.mart_item_list[0].mart_item_id).toBe(111111);
+      expect(result.response.mart_item_list[0].outlet_item_mapping_list).toHaveLength(2);
+    });
+
+    it("should handle error when getting mart item mapping", async () => {
+      const mockResponse: GetMartItemMappingByIdResponse = {
+        request_id: "test-request-id",
+        error: "error_param",
+        message: "Invalid mart_item_id",
+        response: {
+          mart_item_list: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getMartItemMappingById({
+        mart_item_id_list: [999999],
+        outlet_shop_id_list: [222222],
+      });
+
+      expect(result.error).toBe("error_param");
+      expect(result.message).toBe("Invalid mart_item_id");
+    });
+  });
+
+  describe("publishItemToOutletShop", () => {
+    it("should publish item to outlet shop successfully", async () => {
+      const mockResponse: PublishItemToOutletShopResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          success_list: [
+            {
+              mart_item_id: 111111,
+              outlet_shop_id: 222222,
+              outlet_item_id: 333333,
+            },
+          ],
+          failed_list: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.publishItemToOutletShop({
+        publish_item_list: [
+          {
+            mart_item_id: 111111,
+            outlet_shop_id: 222222,
+          },
+        ],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/publish_item_to_outlet_shop",
+        {
+          method: "POST",
+          auth: true,
+          body: {
+            publish_item_list: [
+              {
+                mart_item_id: 111111,
+                outlet_shop_id: 222222,
+              },
+            ],
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+      expect(result.response.success_list).toHaveLength(1);
+      expect(result.response.success_list[0].mart_item_id).toBe(111111);
+      expect(result.response.success_list[0].outlet_shop_id).toBe(222222);
+      expect(result.response.success_list[0].outlet_item_id).toBe(333333);
+      expect(result.response.failed_list).toHaveLength(0);
+    });
+
+    it("should handle partial success when publishing items", async () => {
+      const mockResponse: PublishItemToOutletShopResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          success_list: [
+            {
+              mart_item_id: 111111,
+              outlet_shop_id: 222222,
+              outlet_item_id: 333333,
+            },
+          ],
+          failed_list: [
+            {
+              mart_item_id: 444444,
+              outlet_shop_id: 555555,
+              failed_reason: "Item already published",
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.publishItemToOutletShop({
+        publish_item_list: [
+          {
+            mart_item_id: 111111,
+            outlet_shop_id: 222222,
+          },
+          {
+            mart_item_id: 444444,
+            outlet_shop_id: 555555,
+          },
+        ],
+      });
+
+      expect(result.response.success_list).toHaveLength(1);
+      expect(result.response.failed_list).toHaveLength(1);
+      expect(result.response.failed_list[0].failed_reason).toBe("Item already published");
     });
   });
 });
