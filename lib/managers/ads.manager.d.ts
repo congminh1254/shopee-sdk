@@ -286,6 +286,7 @@ export declare class AdsManager extends BaseManager {
     checkCreateGmsProductCampaignEligibility(): Promise<CheckCreateGmsProductCampaignEligibilityResponse>;
     /**
      * Create Auto Product Ads
+     * @deprecated This API is coming offline soon. Please migrate to alternative advertising methods.
      * @param {CreateAutoProductAdsParams} params Request parameters
      * @param {string} params.reference_id A random string used to prevent duplicate ads
      * @param {number} params.budget The budget set for the Auto Product Ads
@@ -295,6 +296,8 @@ export declare class AdsManager extends BaseManager {
      *
      * This API is used to create Auto Product Ads. Auto Product Ads automatically promote
      * products based on their performance and potential.
+     *
+     * ⚠️ **DEPRECATION WARNING**: This endpoint is being deprecated and will be removed in a future version.
      *
      * Important notes:
      * - reference_id prevents duplicate ad creation. If an ad is created successfully,
@@ -345,6 +348,7 @@ export declare class AdsManager extends BaseManager {
     createManualProductAds(params: CreateManualProductAdsParams): Promise<CreateManualProductAdsResponse>;
     /**
      * Edit Auto Product Ads
+     * @deprecated This API is coming offline soon. Please migrate to alternative advertising methods.
      * @param {EditAutoProductAdsParams} params Request parameters
      * @param {string} params.reference_id A random string used to prevent duplicate ads
      * @param {number} params.campaign_id The unique identifier for the campaign
@@ -355,6 +359,9 @@ export declare class AdsManager extends BaseManager {
      * @returns {Promise<EditAutoProductAdsResponse>} Response containing the campaign ID
      *
      * This API is used to edit existing Auto Product Ads.
+     *
+     * ⚠️ **DEPRECATION WARNING**: This endpoint is being deprecated and will be removed in a future version.
+     *
      * You can update the campaign status, budget, or duration based on the edit_action parameter.
      */
     editAutoProductAds(params: EditAutoProductAdsParams): Promise<EditAutoProductAdsResponse>;

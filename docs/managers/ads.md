@@ -56,8 +56,10 @@ const campaigns = await sdk.ads.getProductLevelCampaignIdList({
 
 ### Auto Product Ads
 
-- `createAutoProductAds()` - Create Auto Product Ads
-- `editAutoProductAds()` - Edit existing Auto Product Ads (budget, duration, status)
+⚠️ **DEPRECATION WARNING**: Auto Product Ads endpoints are being deprecated and will be removed in a future version. Please migrate to alternative advertising methods.
+
+- `createAutoProductAds()` - ⚠️ **DEPRECATED** - Create Auto Product Ads
+- `editAutoProductAds()` - ⚠️ **DEPRECATED** - Edit existing Auto Product Ads (budget, duration, status)
 
 ### Manual Product Ads
 
