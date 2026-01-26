@@ -177,8 +177,10 @@ export interface MediaSpaceVideoInfo {
 /**
  * Parameters for getting video upload result
  */
-export interface GetVideoUploadResultParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetVideoUploadResultParams extends Record<
+  string,
+  string | number | boolean | undefined
+> {
   /** The video_upload_id from init_video_upload response */
   video_upload_id: string;
 }

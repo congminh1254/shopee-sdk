@@ -86,15 +86,14 @@ export type CommentItem = {
 /**
  * Response for getting product comments
  */
-export interface GetCommentResponse
-  extends FetchResponse<{
-    /** List of comments */
-    item_comment_list: CommentItem[];
-    /** Indicates if there are more comments to fetch */
-    more: boolean;
-    /** Cursor for the next page of results */
-    next_cursor: string;
-  }> {}
+export interface GetCommentResponse extends FetchResponse<{
+  /** List of comments */
+  item_comment_list: CommentItem[];
+  /** Indicates if there are more comments to fetch */
+  more: boolean;
+  /** Cursor for the next page of results */
+  next_cursor: string;
+}> {}
 
 /**
  * Comment item for replying to comments
@@ -129,13 +128,12 @@ export type ReplyCommentResultItem = {
 /**
  * Response for replying to comments
  */
-export interface ReplyCommentResponse
-  extends FetchResponse<{
-    /** The result list of the request comment list */
-    result_list: ReplyCommentResultItem[];
-    /** Warning messages to take care of */
-    warning?: string[];
-  }> {}
+export interface ReplyCommentResponse extends FetchResponse<{
+  /** The result list of the request comment list */
+  result_list: ReplyCommentResultItem[];
+  /** Warning messages to take care of */
+  warning?: string[];
+}> {}
 
 /**
  * Parameters for getting item list
@@ -799,15 +797,14 @@ export interface StandardiseTierVariation {
 /**
  * Response for getting model list
  */
-export interface GetModelListResponse
-  extends FetchResponse<{
-    /** Variation config of item */
-    tier_variation: TierVariation[];
-    /** Model list */
-    model: ModelInfo[];
-    /** Standardise Variation config of item */
-    standardise_tier_variation?: StandardiseTierVariation[];
-  }> {}
+export interface GetModelListResponse extends FetchResponse<{
+  /** Variation config of item */
+  tier_variation: TierVariation[];
+  /** Model list */
+  model: ModelInfo[];
+  /** Standardise Variation config of item */
+  standardise_tier_variation?: StandardiseTierVariation[];
+}> {}
 
 /**
  * Price list item for updating product price
@@ -842,18 +839,17 @@ export interface UpdatePriceResultItem {
 /**
  * Response for updating product price
  */
-export interface UpdatePriceResponse
-  extends FetchResponse<{
-    /** List of successfully updated prices */
-    success_list?: UpdatePriceResultItem[];
-    /** List of failed updates */
-    failure_list?: {
-      /** Model ID that failed */
-      model_id: number;
-      /** Failure error message */
-      failed_reason: string;
-    }[];
-  }> {}
+export interface UpdatePriceResponse extends FetchResponse<{
+  /** List of successfully updated prices */
+  success_list?: UpdatePriceResultItem[];
+  /** List of failed updates */
+  failure_list?: {
+    /** Model ID that failed */
+    model_id: number;
+    /** Failure error message */
+    failed_reason: string;
+  }[];
+}> {}
 
 /**
  * Seller stock information for stock update
@@ -898,18 +894,17 @@ export interface UpdateStockResultItem {
 /**
  * Response for updating product stock
  */
-export interface UpdateStockResponse
-  extends FetchResponse<{
-    /** List of successfully updated stock */
-    success_list?: UpdateStockResultItem[];
-    /** List of failed updates */
-    failure_list?: {
-      /** Model ID that failed */
-      model_id: number;
-      /** Failure error message */
-      failed_reason: string;
-    }[];
-  }> {}
+export interface UpdateStockResponse extends FetchResponse<{
+  /** List of successfully updated stock */
+  success_list?: UpdateStockResultItem[];
+  /** List of failed updates */
+  failure_list?: {
+    /** Model ID that failed */
+    model_id: number;
+    /** Failure error message */
+    failed_reason: string;
+  }[];
+}> {}
 
 /**
  * Parameters for deleting a product item
@@ -957,11 +952,10 @@ export interface UnlistItemResultItem {
 /**
  * Response for unlisting/listing items
  */
-export interface UnlistItemResponse
-  extends FetchResponse<{
-    /** List of results */
-    result?: UnlistItemResultItem[];
-  }> {}
+export interface UnlistItemResponse extends FetchResponse<{
+  /** List of results */
+  result?: UnlistItemResultItem[];
+}> {}
 
 /**
  * Category information
@@ -988,11 +982,10 @@ export type GetProductCategoryParams = {
 /**
  * Response for getting product category list
  */
-export interface GetProductCategoryResponse
-  extends FetchResponse<{
-    /** List of categories */
-    category_list: CategoryInfo[];
-  }> {}
+export interface GetProductCategoryResponse extends FetchResponse<{
+  /** List of categories */
+  category_list: CategoryInfo[];
+}> {}
 
 // ============================================================================
 // Additional Product API Types
@@ -1087,13 +1080,12 @@ export type AddItemParams = {
 /**
  * Response for adding an item
  */
-export interface AddItemResponse
-  extends FetchResponse<{
-    /** Newly created item ID */
-    item_id: number;
-    /** Warning messages */
-    warning?: string[];
-  }> {}
+export interface AddItemResponse extends FetchResponse<{
+  /** Newly created item ID */
+  item_id: number;
+  /** Warning messages */
+  warning?: string[];
+}> {}
 
 /**
  * Parameters for updating an item
@@ -1150,13 +1142,12 @@ export type UpdateItemParams = {
 /**
  * Response for updating an item
  */
-export interface UpdateItemResponse
-  extends FetchResponse<{
-    /** Updated item ID */
-    item_id: number;
-    /** Warning messages */
-    warning?: string[];
-  }> {}
+export interface UpdateItemResponse extends FetchResponse<{
+  /** Updated item ID */
+  item_id: number;
+  /** Warning messages */
+  warning?: string[];
+}> {}
 
 /**
  * Tier variation option for models
@@ -1210,13 +1201,12 @@ export type AddModelParams = {
 /**
  * Response for adding models
  */
-export interface AddModelResponse
-  extends FetchResponse<{
-    /** List of created model IDs */
-    model_id_list: number[];
-    /** Warning messages */
-    warning?: string[];
-  }> {}
+export interface AddModelResponse extends FetchResponse<{
+  /** List of created model IDs */
+  model_id_list: number[];
+  /** Warning messages */
+  warning?: string[];
+}> {}
 
 /**
  * Model update input
@@ -1245,13 +1235,12 @@ export type UpdateModelParams = {
 /**
  * Response for updating models
  */
-export interface UpdateModelResponse
-  extends FetchResponse<{
-    /** List of updated model IDs */
-    model_id_list: number[];
-    /** Warning messages */
-    warning?: string[];
-  }> {}
+export interface UpdateModelResponse extends FetchResponse<{
+  /** List of updated model IDs */
+  model_id_list: number[];
+  /** Warning messages */
+  warning?: string[];
+}> {}
 
 /**
  * Parameters for deleting models
@@ -1266,11 +1255,10 @@ export type DeleteModelParams = {
 /**
  * Response for deleting models
  */
-export interface DeleteModelResponse
-  extends FetchResponse<{
-    /** Success status */
-    success: boolean;
-  }> {}
+export interface DeleteModelResponse extends FetchResponse<{
+  /** Success status */
+  success: boolean;
+}> {}
 
 /**
  * Parameters for initializing tier variations
@@ -1287,13 +1275,12 @@ export type InitTierVariationParams = {
 /**
  * Response for initializing tier variations
  */
-export interface InitTierVariationResponse
-  extends FetchResponse<{
-    /** Created model IDs */
-    model_id_list: number[];
-    /** Warning messages */
-    warning?: string[];
-  }> {}
+export interface InitTierVariationResponse extends FetchResponse<{
+  /** Created model IDs */
+  model_id_list: number[];
+  /** Warning messages */
+  warning?: string[];
+}> {}
 
 /**
  * Parameters for updating tier variations
@@ -1329,17 +1316,16 @@ export type SearchItemParams = {
 /**
  * Response for searching items
  */
-export interface SearchItemResponse
-  extends FetchResponse<{
-    /** List of items found */
-    item: ItemListItemInfo[];
-    /** Total count */
-    total_count: number;
-    /** Has more items */
-    has_next_page: boolean;
-    /** Next page offset */
-    next_offset: number;
-  }> {}
+export interface SearchItemResponse extends FetchResponse<{
+  /** List of items found */
+  item: ItemListItemInfo[];
+  /** Total count */
+  total_count: number;
+  /** Has more items */
+  has_next_page: boolean;
+  /** Next page offset */
+  next_offset: number;
+}> {}
 
 /**
  * Parameters for getting item extra info
@@ -1380,11 +1366,10 @@ export interface ItemExtraInfo {
 /**
  * Response for getting item extra info
  */
-export interface GetItemExtraInfoResponse
-  extends FetchResponse<{
-    /** List of item extra info */
-    item_list: ItemExtraInfo[];
-  }> {}
+export interface GetItemExtraInfoResponse extends FetchResponse<{
+  /** List of item extra info */
+  item_list: ItemExtraInfo[];
+}> {}
 
 /**
  * Attribute tree node
@@ -1424,11 +1409,10 @@ export type GetAttributeTreeParams = {
 /**
  * Response for getting attribute tree
  */
-export interface GetAttributeTreeResponse
-  extends FetchResponse<{
-    /** List of attributes */
-    attribute_list: AttributeTreeNode[];
-  }> {}
+export interface GetAttributeTreeResponse extends FetchResponse<{
+  /** List of attributes */
+  attribute_list: AttributeTreeNode[];
+}> {}
 
 /**
  * Brand info for brand list
@@ -1459,19 +1443,18 @@ export type GetBrandListParams = {
 /**
  * Response for getting brand list
  */
-export interface GetBrandListResponse
-  extends FetchResponse<{
-    /** List of brands */
-    brand_list: BrandItem[];
-    /** Has more data */
-    has_next_page: boolean;
-    /** Next page offset */
-    next_offset: number;
-    /** Is mandatory */
-    is_mandatory: boolean;
-    /** Input type */
-    input_type: string;
-  }> {}
+export interface GetBrandListResponse extends FetchResponse<{
+  /** List of brands */
+  brand_list: BrandItem[];
+  /** Has more data */
+  has_next_page: boolean;
+  /** Next page offset */
+  next_offset: number;
+  /** Is mandatory */
+  is_mandatory: boolean;
+  /** Input type */
+  input_type: string;
+}> {}
 
 /**
  * Parameters for registering a brand
@@ -1486,13 +1469,12 @@ export type RegisterBrandParams = {
 /**
  * Response for registering a brand
  */
-export interface RegisterBrandResponse
-  extends FetchResponse<{
-    /** Brand ID */
-    brand_id: number;
-    /** Original brand name */
-    original_brand_name: string;
-  }> {}
+export interface RegisterBrandResponse extends FetchResponse<{
+  /** Brand ID */
+  brand_id: number;
+  /** Original brand name */
+  original_brand_name: string;
+}> {}
 
 /**
  * Recommended category
@@ -1515,11 +1497,10 @@ export type CategoryRecommendParams = {
 /**
  * Response for category recommendation
  */
-export interface CategoryRecommendResponse
-  extends FetchResponse<{
-    /** List of recommended categories */
-    category_id_list: number[];
-  }> {}
+export interface CategoryRecommendResponse extends FetchResponse<{
+  /** List of recommended categories */
+  category_id_list: number[];
+}> {}
 
 /**
  * Item limit info
@@ -1550,11 +1531,10 @@ export type GetItemLimitParams = {
 /**
  * Response for getting item limits
  */
-export interface GetItemLimitResponse
-  extends FetchResponse<{
-    /** Item limit information */
-    item_limit: ItemLimit;
-  }> {}
+export interface GetItemLimitResponse extends FetchResponse<{
+  /** Item limit information */
+  item_limit: ItemLimit;
+}> {}
 
 /**
  * Promotion info
@@ -1591,11 +1571,10 @@ export interface ItemPromotionInfo {
 /**
  * Response for getting item promotion
  */
-export interface GetItemPromotionResponse
-  extends FetchResponse<{
-    /** List of item promotions */
-    item_promotion_list: ItemPromotionInfo[];
-  }> {}
+export interface GetItemPromotionResponse extends FetchResponse<{
+  /** List of item promotions */
+  item_promotion_list: ItemPromotionInfo[];
+}> {}
 
 // Additional endpoints
 /**
@@ -1609,11 +1588,10 @@ export type BoostItemParams = {
 /**
  * Response for boosting items
  */
-export interface BoostItemResponse
-  extends FetchResponse<{
-    /** List of failed item IDs */
-    failed_item_id_list?: number[];
-  }> {}
+export interface BoostItemResponse extends FetchResponse<{
+  /** List of failed item IDs */
+  failed_item_id_list?: number[];
+}> {}
 
 /**
  * Boosted item info
@@ -1628,11 +1606,10 @@ export interface BoostedItem {
 /**
  * Response for getting boosted list
  */
-export interface GetBoostedListResponse
-  extends FetchResponse<{
-    /** List of boosted items */
-    item_list: BoostedItem[];
-  }> {}
+export interface GetBoostedListResponse extends FetchResponse<{
+  /** List of boosted items */
+  item_list: BoostedItem[];
+}> {}
 
 /**
  * Parameters for getting variations
@@ -1647,11 +1624,10 @@ export type GetVariationsParams = {
 /**
  * Response for getting variations
  */
-export interface GetVariationsResponse
-  extends FetchResponse<{
-    /** Tier variation */
-    tier_variation: TierVariation[];
-  }> {}
+export interface GetVariationsResponse extends FetchResponse<{
+  /** Tier variation */
+  tier_variation: TierVariation[];
+}> {}
 
 /**
  * Parameters for recommending attributes
@@ -1683,11 +1659,10 @@ export interface RecommendedAttribute {
 /**
  * Response for getting recommended attributes
  */
-export interface GetRecommendAttributeResponse
-  extends FetchResponse<{
-    /** List of recommended attributes */
-    recommended_attribute_list: RecommendedAttribute[];
-  }> {}
+export interface GetRecommendAttributeResponse extends FetchResponse<{
+  /** List of recommended attributes */
+  recommended_attribute_list: RecommendedAttribute[];
+}> {}
 
 /**
  * Parameters for searching attribute values
@@ -1706,18 +1681,17 @@ export type SearchAttributeValueListParams = {
 /**
  * Response for searching attribute values
  */
-export interface SearchAttributeValueListResponse
-  extends FetchResponse<{
-    /** List of attribute values */
-    attribute_value_list: {
-      /** Attribute value ID */
-      value_id?: number;
-      /** Original attribute value name */
-      original_value_name?: string;
-      /** Value unit */
-      value_unit?: string;
-    }[];
-  }> {}
+export interface SearchAttributeValueListResponse extends FetchResponse<{
+  /** List of attribute values */
+  attribute_value_list: {
+    /** Attribute value ID */
+    value_id?: number;
+    /** Original attribute value name */
+    original_value_name?: string;
+    /** Value unit */
+    value_unit?: string;
+  }[];
+}> {}
 
 /**
  * Parameters for getting main item list
@@ -1736,17 +1710,16 @@ export type GetMainItemListParams = {
 /**
  * Response for getting main item list
  */
-export interface GetMainItemListResponse
-  extends FetchResponse<{
-    /** List of items */
-    item: ItemListItemInfo[];
-    /** Total count */
-    total_count: number;
-    /** Has next page */
-    has_next_page: boolean;
-    /** Next offset */
-    next_offset: number;
-  }> {}
+export interface GetMainItemListResponse extends FetchResponse<{
+  /** List of items */
+  item: ItemListItemInfo[];
+  /** Total count */
+  total_count: number;
+  /** Has next page */
+  has_next_page: boolean;
+  /** Next offset */
+  next_offset: number;
+}> {}
 
 /**
  * Violation info
@@ -1781,11 +1754,10 @@ export interface ItemViolation {
 /**
  * Response for getting item violation info
  */
-export interface GetItemViolationInfoResponse
-  extends FetchResponse<{
-    /** List of item violations */
-    item_violation_list: ItemViolation[];
-  }> {}
+export interface GetItemViolationInfoResponse extends FetchResponse<{
+  /** List of item violations */
+  item_violation_list: ItemViolation[];
+}> {}
 
 /**
  * Weight recommendation
@@ -1812,11 +1784,10 @@ export type GetWeightRecommendationParams = {
 /**
  * Response for getting weight recommendation
  */
-export interface GetWeightRecommendationResponse
-  extends FetchResponse<{
-    /** Weight recommendation */
-    weight: number;
-  }> {}
+export interface GetWeightRecommendationResponse extends FetchResponse<{
+  /** Weight recommendation */
+  weight: number;
+}> {}
 
 /**
  * Parameters for getting direct item list
@@ -1847,17 +1818,16 @@ export interface DirectItemInfo {
 /**
  * Response for getting direct item list
  */
-export interface GetDirectItemListResponse
-  extends FetchResponse<{
-    /** List of direct items */
-    item: DirectItemInfo[];
-    /** Total count */
-    total_count: number;
-    /** Has next page */
-    has_next_page: boolean;
-    /** Next offset */
-    next_offset: number;
-  }> {}
+export interface GetDirectItemListResponse extends FetchResponse<{
+  /** List of direct items */
+  item: DirectItemInfo[];
+  /** Total count */
+  total_count: number;
+  /** Has next page */
+  has_next_page: boolean;
+  /** Next offset */
+  next_offset: number;
+}> {}
 
 /**
  * Content diagnosis result
@@ -1882,11 +1852,10 @@ export type GetItemContentDiagnosisResultParams = {
 /**
  * Response for getting item content diagnosis result
  */
-export interface GetItemContentDiagnosisResultResponse
-  extends FetchResponse<{
-    /** Diagnosis result list */
-    item_list: ContentDiagnosisResult[];
-  }> {}
+export interface GetItemContentDiagnosisResultResponse extends FetchResponse<{
+  /** Diagnosis result list */
+  item_list: ContentDiagnosisResult[];
+}> {}
 
 /**
  * Parameters for getting item list by content diagnosis
@@ -1903,17 +1872,16 @@ export type GetItemListByContentDiagnosisParams = {
 /**
  * Response for getting item list by content diagnosis
  */
-export interface GetItemListByContentDiagnosisResponse
-  extends FetchResponse<{
-    /** List of items */
-    item: ItemListItemInfo[];
-    /** Total count */
-    total_count: number;
-    /** Has next page */
-    has_next_page: boolean;
-    /** Next offset */
-    next_offset: number;
-  }> {}
+export interface GetItemListByContentDiagnosisResponse extends FetchResponse<{
+  /** List of items */
+  item: ItemListItemInfo[];
+  /** Total count */
+  total_count: number;
+  /** Has next page */
+  has_next_page: boolean;
+  /** Next offset */
+  next_offset: number;
+}> {}
 
 // Remaining specialized endpoints
 
@@ -1933,8 +1901,9 @@ export type GetKitItemLimitParams = { category_id: number };
 export interface GetKitItemLimitResponse extends FetchResponse<{ item_limit: any }> {}
 
 export type GenerateKitImageParams = { image_id_list: string[] };
-export interface GenerateKitImageResponse
-  extends FetchResponse<{ image_info: { image_id: string; image_url: string } }> {}
+export interface GenerateKitImageResponse extends FetchResponse<{
+  image_info: { image_id: string; image_url: string };
+}> {}
 
 /**
  * SSP (Seller-Sponsored Product) params
@@ -1946,12 +1915,11 @@ export type GetSspInfoParams = { item_id: number };
 export interface GetSspInfoResponse extends FetchResponse<{ ssp_info: any }> {}
 
 export type GetSspListParams = { offset?: number; page_size?: number };
-export interface GetSspListResponse
-  extends FetchResponse<{
-    item_list: any[];
-    has_next_page: boolean;
-    next_offset: number;
-  }> {}
+export interface GetSspListResponse extends FetchResponse<{
+  item_list: any[];
+  has_next_page: boolean;
+  next_offset: number;
+}> {}
 
 export type LinkSspParams = { item_id: number; ssp_item_id: number };
 export interface LinkSspResponse extends BaseResponse {}
@@ -1969,12 +1937,11 @@ export interface UpdateSipItemPriceResponse extends BaseResponse {}
  * Size chart params
  */
 export type GetSizeChartListParams = { offset?: number; page_size?: number };
-export interface GetSizeChartListResponse
-  extends FetchResponse<{
-    size_chart_list: any[];
-    has_next_page: boolean;
-    next_offset: number;
-  }> {}
+export interface GetSizeChartListResponse extends FetchResponse<{
+  size_chart_list: any[];
+  has_next_page: boolean;
+  next_offset: number;
+}> {}
 
 export type GetSizeChartDetailParams = { size_chart_id: string };
 export interface GetSizeChartDetailResponse extends FetchResponse<{ size_chart: any }> {}
@@ -1988,8 +1955,9 @@ export interface GetAllVehicleListResponse extends FetchResponse<{ vehicle_list:
 export type GetVehicleListByCompatibilityDetailParams = {
   item_id: number;
 };
-export interface GetVehicleListByCompatibilityDetailResponse
-  extends FetchResponse<{ vehicle_list: any[] }> {}
+export interface GetVehicleListByCompatibilityDetailResponse extends FetchResponse<{
+  vehicle_list: any[];
+}> {}
 
 /**
  * Other specialized params
@@ -2001,12 +1969,14 @@ export type GetDirectShopRecommendedPriceParams = {
   category_id: number;
   item_name?: string;
 };
-export interface GetDirectShopRecommendedPriceResponse
-  extends FetchResponse<{ recommended_price: number }> {}
+export interface GetDirectShopRecommendedPriceResponse extends FetchResponse<{
+  recommended_price: number;
+}> {}
 
 export type GetProductCertificationRuleParams = { category_id: number };
-export interface GetProductCertificationRuleResponse
-  extends FetchResponse<{ certification_list: any[] }> {}
+export interface GetProductCertificationRuleResponse extends FetchResponse<{
+  certification_list: any[];
+}> {}
 
 export type SearchUnpackagedModelListParams = {
   item_id: number;

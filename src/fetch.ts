@@ -1,9 +1,15 @@
-import fetch, { RequestInit, Response, Headers, HeadersInit } from "node-fetch";
+// Use native fetch in browsers, node-fetch in Node.js
+import nodeFetch from "node-fetch";
 import { ShopeeConfig } from "./sdk.js";
 import { FetchOptions } from "./schemas/fetch.js";
 import { ShopeeApiError, ShopeeSdkError } from "./errors.js";
 import { generateSignature } from "./utils/signature.js";
 import { SDK_VERSION } from "./version.js";
+
+// In browsers, use native fetch. In Node.js, always use node-fetch for consistency
+const fetchImpl = (
+  typeof window !== "undefined" && typeof fetch !== "undefined" ? fetch : nodeFetch
+) as typeof fetch;
 
 export class ShopeeFetch {
   public static async fetch<T>(
@@ -76,11 +82,16 @@ export class ShopeeFetch {
       method,
       headers: headers as unknown as HeadersInit,
       body: body ? JSON.stringify(body) : undefined,
-      agent: config.agent,
     };
 
+    // Add agent only in Node.js environment (not available in browsers)
+    // We need to cast to unknown first because agent is not part of standard RequestInit
+    if (typeof window === "undefined" && config.agent) {
+      (requestOptions as unknown as { agent: typeof config.agent }).agent = config.agent;
+    }
+
     try {
-      const response: Response = await fetch(url.toString(), requestOptions);
+      const response: Response = await fetchImpl(url.toString(), requestOptions);
       const responseType = response.headers.get("Content-Type");
       const responseData: unknown =
         responseType?.indexOf("application/json") !== -1
@@ -111,18 +122,20 @@ export class ShopeeFetch {
       }
       throw new ShopeeSdkError(`Unknown response type: ${responseType}\n${responseData}`);
     } catch (error: unknown) {
+      // Re-throw our custom errors as-is
+      if (error instanceof ShopeeApiError || error instanceof ShopeeSdkError) {
+        throw error;
+      }
+
       if (error instanceof Error) {
-        // Re-throw our custom errors as-is
-        if (error instanceof ShopeeApiError || error instanceof ShopeeSdkError) {
-          throw error;
-        }
-        if (error.name === "FetchError") {
-          // Network error
+        if (error.name === "FetchError" || error.name === "TypeError") {
+          // Network error (FetchError from node-fetch, TypeError from native fetch)
           throw new ShopeeSdkError(`Network error: ${error.message}`);
         }
         // Other errors
         throw new ShopeeSdkError(`Unexpected error: ${error.message}`);
       }
+
       throw new ShopeeSdkError("Unknown error occurred");
     }
   }
