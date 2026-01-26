@@ -1134,3 +1134,70 @@ export type BatchUpdateTPFWarehouseTrackingStatusParams = {
 export interface BatchUpdateTPFWarehouseTrackingStatusResponse extends BaseResponse {
     response?: Record<string, never>;
 }
+/**
+ * Parameters for check polygon update status
+ */
+export type CheckPolygonUpdateStatusParams = {
+    /** ID that needs to be checked. Please pass the task_id returned via the v2.logistics.upload_serviceable_polygon. */
+    task_id: string;
+} & Record<string, string | number | boolean | object | null | undefined>;
+/**
+ * Response for check polygon update status API
+ */
+export interface CheckPolygonUpdateStatusResponse extends BaseResponse {
+    response?: {
+        /** Serviceable polygon file upload status. 0: Task completed, 1: Task in progress, 2: KML file related errors */
+        status?: number;
+        /** Details of the upload status, e.g "task in progress" */
+        message?: string;
+    };
+}
+/**
+ * Parameters for update address
+ */
+export type UpdateAddressParams = {
+    /** Unique identifier for the address. You can get the address_id via v2.logistics.get_address_list. */
+    address_id: number;
+    /** The region of the address. Note: Do not allow to update the region of the address. */
+    region?: string;
+    /** The state of the address. */
+    state?: string;
+    /** The city of the address. */
+    city?: string;
+    /** The district of the address. */
+    district?: string;
+    /** The town of the address. */
+    town?: string;
+    /** The detailed address description of the address. */
+    address?: string;
+    /** The zipcode of the address. */
+    zipcode?: string;
+    /** Recipient's name at this address. */
+    name?: string;
+    /** Contact phone number for the recipient. */
+    phone?: string;
+    /** Geolocation information for the address. Type: JSON string. To clear existing geo info, pass "" or {}. To keep existing geo info, do not include this field. */
+    geo_info?: string;
+} & Record<string, string | number | boolean | object | null | undefined>;
+/**
+ * Response for update address API
+ */
+export interface UpdateAddressResponse extends BaseResponse {
+    response?: Record<string, never>;
+}
+/**
+ * Parameters for upload serviceable polygon
+ */
+export type UploadServiceablePolygonParams = {
+    /** The .kml file to be uploaded to denote the serviceability area of the shops. */
+    file: File | Blob;
+} & Record<string, string | number | boolean | object | null | undefined>;
+/**
+ * Response for upload serviceable polygon API
+ */
+export interface UploadServiceablePolygonResponse extends BaseResponse {
+    response?: {
+        /** Use the task_id to call v2.logistics.check_polygon_update_status to check if the upload job has been completed. */
+        task_id?: string;
+    };
+}

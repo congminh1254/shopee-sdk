@@ -432,3 +432,102 @@ if (brands.response.is_authorised_reseller) {
 - **[PublicManager](./public.md)**: For getting shop lists by partner
 - **[ProductManager](./product.md)**: For managing products in the shop
 - **[OrderManager](./order.md)**: For managing shop orders
+
+
+---
+
+### getBRShopOnboardingInfo()
+
+**API Documentation:** [v2.shop.get_br_shop_onboarding_info](https://open.shopee.com/documents/v2/v2.shop.get_br_shop_onboarding_info?module=93&type=1)
+
+**[For BR Shop Only]** Get shop KYC registration and qualification information.
+
+```typescript
+const response = await sdk.shop.getBRShopOnboardingInfo();
+
+console.log('Tax ID Type:', response.response?.tax_id_type); // 1: CPF, 2: CNPJ
+console.log('Tax ID:', response.response?.tax_id);
+console.log('Onboarding Status:', response.response?.onboarding_status);
+console.log('KYC Passed:', response.response?.onboarding_passed);
+
+if (response.response?.tax_id_type === 1) {
+  console.log('Name:', response.response?.name);
+  console.log('CPF:', response.response?.cpf_id);
+  console.log('Birthday:', response.response?.birthday_str);
+} else if (response.response?.tax_id_type === 2) {
+  console.log('Legal Entity:', response.response?.legal_entity_name);
+  console.log('CNPJ:', response.response?.cnpj_id);
+  console.log('CNAE Main:', response.response?.cnae_main);
+}
+
+// Billing address
+console.log('Address:', response.response?.billing_address);
+```
+
+**Use Cases:**
+- Verify shop KYC status
+- Retrieve tax identification
+- Check onboarding completion
+- Get billing address information
+
+**Onboarding Status Values:**
+- 0: None
+- 1: Regis Processing
+- 2: Regis Validated
+- 3: Regis Rejected
+- 4: KYC Pending
+- 5: KYC Processing
+- 6: KYC Processing Manually
+- 7: KYC Validated
+- 8: KYC Rejected
+
+---
+
+### getShopHolidayMode()
+
+**API Documentation:** [v2.shop.get_shop_holiday_mode](https://open.shopee.com/documents/v2/v2.shop.get_shop_holiday_mode?module=93&type=1)
+
+Check whether a shop has enabled holiday mode.
+
+```typescript
+const response = await sdk.shop.getShopHolidayMode();
+
+console.log('Holiday mode:', response.response?.holiday_mode_on ? 'ON' : 'OFF');
+console.log('Last modified:', new Date(response.response?.holiday_mode_mtime * 1000));
+```
+
+**Use Cases:**
+- Check current holiday mode status
+- Verify when holiday mode was last changed
+- Integrate with shop management systems
+
+---
+
+### setShopHolidayMode()
+
+**API Documentation:** [v2.shop.set_shop_holiday_mode](https://open.shopee.com/documents/v2/v2.shop.set_shop_holiday_mode?module=93&type=1)
+
+Enable or disable holiday mode for a shop.
+
+```typescript
+// Enable holiday mode
+const response = await sdk.shop.setShopHolidayMode({
+  holiday_mode_on: true,
+});
+
+console.log('Holiday mode enabled');
+
+// Disable holiday mode
+const response2 = await sdk.shop.setShopHolidayMode({
+  holiday_mode_on: false,
+});
+
+console.log('Holiday mode disabled');
+```
+
+**Use Cases:**
+- Temporarily pause shop operations
+- Automate shop closure during vacations
+- Manage shop availability
+
+**Note:** When holiday mode is enabled, customers cannot place orders from the shop.

@@ -14,6 +14,12 @@ import {
   GetShopNotificationResponse,
   GetAuthorisedResellerBrandParams,
   GetAuthorisedResellerBrandResponse,
+  GetBRShopOnboardingInfoParams,
+  GetBRShopOnboardingInfoResponse,
+  GetShopHolidayModeParams,
+  GetShopHolidayModeResponse,
+  SetShopHolidayModeParams,
+  SetShopHolidayModeResponse,
 } from "../schemas/shop.js";
 
 export class ShopManager extends BaseManager {
@@ -260,6 +266,59 @@ export class ShopManager extends BaseManager {
         method: "GET",
         auth: true,
         params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * [For BR Shop Only] Use this API to get shop KYC registration and qualification information.
+   */
+  async getBRShopOnboardingInfo(
+    params?: GetBRShopOnboardingInfoParams
+  ): Promise<GetBRShopOnboardingInfoResponse> {
+    const response = await ShopeeFetch.fetch<GetBRShopOnboardingInfoResponse>(
+      this.config,
+      "/shop/get_br_shop_onboarding_info",
+      {
+        method: "GET",
+        auth: true,
+        params: params || {},
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to check whether a shop has enabled holiday mode.
+   */
+  async getShopHolidayMode(params?: GetShopHolidayModeParams): Promise<GetShopHolidayModeResponse> {
+    const response = await ShopeeFetch.fetch<GetShopHolidayModeResponse>(
+      this.config,
+      "/shop/get_shop_holiday_mode",
+      {
+        method: "GET",
+        auth: true,
+        params: params || {},
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to enable or disable holiday mode for a shop.
+   */
+  async setShopHolidayMode(params: SetShopHolidayModeParams): Promise<SetShopHolidayModeResponse> {
+    const response = await ShopeeFetch.fetch<SetShopHolidayModeResponse>(
+      this.config,
+      "/shop/set_shop_holiday_mode",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
       }
     );
 

@@ -2013,3 +2013,155 @@ export type SearchUnpackagedModelListParams = {
   search_value?: string;
 };
 export interface SearchUnpackagedModelListResponse extends FetchResponse<{ model_list: any[] }> {}
+
+/**
+ * Parameters for get mart item mapping by id
+ */
+export type GetMartItemMappingByIdParams = {
+  /** The item ID of the item in the Mart shop */
+  mart_item_id: number;
+  /** A list of outlet shop IDs used to filter the mapping results */
+  outlet_shop_id_list: number[];
+};
+
+/**
+ * Model mapping information
+ */
+export interface ModelMapping {
+  /** The model ID of the product in the Mart shop */
+  mart_model_id?: number;
+  /** The model ID of the corresponding product in the outlet shop */
+  outlet_model_id?: number;
+}
+
+/**
+ * Item mapping information
+ */
+export interface ItemMapping {
+  /** The item ID of the item in the Mart shop */
+  mart_item_id?: number;
+  /** The item ID of the corresponding item in the outlet shop */
+  outlet_item_id?: number;
+  /** The mapping relationship between Mart models and outlet models under the mapped items */
+  model_mapping?: ModelMapping[];
+}
+
+/**
+ * Response for get mart item mapping by id API
+ */
+export interface GetMartItemMappingByIdResponse extends BaseResponse {
+  /** Warning details */
+  warning?: string;
+  response?: {
+    /** A list of item mapping records between the Mart item and its corresponding outlet items */
+    item_mapping_list?: ItemMapping[];
+  };
+}
+
+/**
+ * Seller stock information for publishing to outlet
+ */
+export interface OutletSellerStock {
+  /** The location ID where the stock is stored */
+  location_id?: string;
+  /** The available stock quantity for the model */
+  stock: number;
+}
+
+/**
+ * Pre-order configuration for publishing to outlet
+ */
+export interface OutletPreOrder {
+  /** Indicates whether the model is sold as a pre-order item */
+  is_pre_order: boolean;
+  /** The number of days required to ship the item after an order is placed */
+  days_to_ship?: number;
+}
+
+/**
+ * Model information for publishing
+ */
+export interface PublishModel {
+  /** The model ID in the Mart shop that this outlet model is associated with. model_id=0 for items with only the default model(no variations) */
+  relate_mart_model_id: number;
+  /** The status of model */
+  model_status?: string;
+  /** The original price of the model */
+  original_price?: number;
+  /** Stock information for the model, set in outlet sku level */
+  seller_stock?: OutletSellerStock[];
+  /** Pre-order configuration, set in outlet sku level */
+  pre_order?: OutletPreOrder;
+}
+
+/**
+ * Logistics channel configuration for outlet
+ */
+export interface OutletLogisticInfo {
+  /** The logistics channel ID used for shipping the item */
+  logistic_id: number;
+  /** Indicates whether the logistics channel is enabled for the item */
+  enabled: boolean;
+  /** The shipping fee charged to the buyer for this logistics channel */
+  shipping_fee?: number;
+  /** The parcel size ID used to calculate shipping fees */
+  size_id?: number;
+  /** Indicates whether free shipping is applied for this logistics channel */
+  is_free?: boolean;
+}
+
+/**
+ * Maximum purchase limit configuration
+ */
+export interface MaxPurchaseLimit {
+  /** The maximum quantity that a buyer is allowed to purchase per order */
+  purchase_limit: number;
+}
+
+/**
+ * Purchase limit information
+ */
+export interface PurchaseLimitInfo {
+  /** The minimum quantity that a buyer is allowed to purchase per order */
+  min_purchase_limit: number;
+  /** The maximum purchase quantity configuration for the item */
+  max_purchase_limit: MaxPurchaseLimit;
+}
+
+/**
+ * Item publishing configuration
+ */
+export interface PublishItemConfig {
+  /** The outlet item ID */
+  outlet_item_id?: number;
+  /** A list of models to be published to the outlet shop, mapped from the corresponding Mart shop models */
+  model?: PublishModel[];
+  /** Logistic channel setting; can set for each outlet shop */
+  logistic_info?: OutletLogisticInfo[];
+  /** Purchase quantity limits applied to the item in the outlet shop */
+  purchase_limit_info?: PurchaseLimitInfo;
+}
+
+/**
+ * Parameters for publish item to outlet shop
+ */
+export type PublishItemToOutletShopParams = {
+  /** The item ID of the product in the Mart shop to be published to the outlet shop */
+  mart_item_id: number;
+  /** The shop ID of the outlet shop where the product will be published */
+  outlet_shop_id: number;
+  /** Configuration details for publishing the product to the outlet shop, including model mapping, pricing, stock, logistics, and purchase limits */
+  publish_item: PublishItemConfig;
+};
+
+/**
+ * Response for publish item to outlet shop API
+ */
+export interface PublishItemToOutletShopResponse extends BaseResponse {
+  /** Warning message */
+  warning?: string;
+  response?: {
+    /** The outlet item ID */
+    item_id?: number;
+  };
+}

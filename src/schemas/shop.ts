@@ -269,3 +269,109 @@ export type GetAuthorisedResellerBrandResponse = BaseResponse & {
   /** Authorised reseller brand data */
   response: AuthorisedResellerBrandData;
 };
+
+/**
+ * Parameters for getting BR shop onboarding info
+ */
+export type GetBRShopOnboardingInfoParams = Record<string, never>;
+
+/**
+ * Billing address information
+ */
+export type BillingAddress = {
+  /** State of the billing address */
+  state?: string;
+  /** City of the billing address */
+  city?: string;
+  /** Specific detail of the billing address */
+  address?: string;
+  /** ZIP code of the billing address */
+  zipcode?: string;
+  /** Neighborhood of the billing address */
+  neighborhood?: string;
+};
+
+/**
+ * BR shop onboarding information
+ */
+export type BRShopOnboardingInfo = {
+  /** Type of the shop's tax ID. 1: Personal seller (CPF), 2: Company seller (CNPJ) */
+  tax_id_type?: number;
+  /** The shop's tax ID. When tax_id_type = 1 (Personal seller), it is CPF. When tax_id_type = 2 (Company seller), it is CNPJ. */
+  tax_id?: string;
+  /** CPF number of the individual seller. Valid only when tax_id_type = 1. */
+  cpf_id?: string;
+  /** CNPJ number of the company seller. Valid only when tax_id_type = 2. */
+  cnpj_id?: string;
+  /** Full name of the individual seller. Valid only when tax_id_type = 1. */
+  name?: string;
+  /** Legal name of the company seller. Valid only when tax_id_type = 2. */
+  legal_entity_name?: string;
+  /** Birthday of the individual seller (stored as Unix timestamp). Valid only when tax_id_type = 1. */
+  birthday?: number;
+  /** Birthday of the individual seller (formatted as YYYY-MM-DD). Valid only when tax_id_type = 1. */
+  birthday_str?: string;
+  /** State registration number of the shop */
+  state_registration?: string;
+  /** Shop's billing address details */
+  billing_address?: BillingAddress;
+  /** Status of the shop's current KYC onboarding process. 0: None, 1: Regis Processing, 2: Regis Validated, 3: Regis Rejected, 4: KYC Pending, 5: KYC Processing, 6: KYC Processing Manually, 7: KYC Validated, 8: KYC Rejected */
+  onboarding_status?: number;
+  /** Timestamp when the onboarding information was submitted */
+  submission_time?: number;
+  /** Nationality of the individual seller. Valid only when tax_id_type=1. */
+  nationality?: string;
+  /** Main CNAE code */
+  cnae_main?: string;
+  /** Secondary CNAE code */
+  cnae_secondary?: string;
+  /** MEI verification result. 0: No, 1: Yes */
+  mei_check?: string;
+  /** Indicate if the shop has passed KYC verification */
+  onboarding_passed?: boolean;
+};
+
+/**
+ * Response for getting BR shop onboarding info
+ */
+export type GetBRShopOnboardingInfoResponse = BaseResponse & {
+  /** Onboarding information of the Shop */
+  response?: BRShopOnboardingInfo;
+};
+
+/**
+ * Parameters for getting shop holiday mode
+ */
+export type GetShopHolidayModeParams = Record<string, never>;
+
+/**
+ * Response for getting shop holiday mode
+ */
+export type GetShopHolidayModeResponse = BaseResponse & {
+  response?: {
+    /** Indicate whether the shop has enabled holiday mode. true means ON, false means OFF. */
+    holiday_mode_on?: boolean;
+    /** The last time the holiday mode was modified */
+    holiday_mode_mtime?: number;
+    /** Debug message */
+    debug_msg?: string;
+  };
+};
+
+/**
+ * Parameters for setting shop holiday mode
+ */
+export type SetShopHolidayModeParams = {
+  /** Indicate whether to enable holiday mode for the shop. true means turn ON, false means turn OFF. */
+  holiday_mode_on: boolean;
+};
+
+/**
+ * Response for setting shop holiday mode
+ */
+export type SetShopHolidayModeResponse = BaseResponse & {
+  response?: {
+    /** Debug message */
+    debug_msg?: string;
+  };
+};

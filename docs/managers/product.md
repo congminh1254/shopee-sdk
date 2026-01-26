@@ -943,3 +943,131 @@ await sdk.product.addItem({
 - [Authentication Guide](../guides/authentication.md) - Authenticating API requests
 - [OrderManager](./order.md) - Managing orders for products
 - [VoucherManager](./voucher.md) - Creating discounts for products
+
+---
+
+### getMartItemMappingById()
+
+**API Documentation:** [v2.product.get_mart_item_mapping_by_id](https://open.shopee.com/documents/v2/v2.product.get_mart_item_mapping_by_id?module=89&type=1)
+
+Get the mapping information between a Mart item and its corresponding outlet item by item ID.
+
+```typescript
+const response = await sdk.product.getMartItemMappingById({
+  mart_item_id: 123456789,
+  outlet_shop_id_list: [987654321, 987654322],
+});
+
+response.response?.item_mapping_list?.forEach(mapping => {
+  console.log('Mart Item ID:', mapping.mart_item_id);
+  console.log('Outlet Item ID:', mapping.outlet_item_id);
+  
+  mapping.model_mapping?.forEach(modelMap => {
+    console.log('Mart Model ID:', modelMap.mart_model_id);
+    console.log('Outlet Model ID:', modelMap.outlet_model_id);
+  });
+});
+```
+
+**Use Cases:**
+- Sync inventory between Mart and Outlet shops
+- Track item relationships across shops
+- Manage multi-shop product catalogs
+
+---
+
+### publishItemToOutletShop()
+
+**API Documentation:** [v2.product.publish_item_to_outlet_shop](https://open.shopee.com/documents/v2/v2.product.publish_item_to_outlet_shop?module=89&type=1)
+
+Publish an existing item from the mart shop to an outlet shop.
+
+```typescript
+const response = await sdk.product.publishItemToOutletShop({
+  mart_item_id: 123456789,
+  outlet_shop_id: 987654321,
+  publish_item: {
+    model: [
+      {
+        relate_mart_model_id: 0, // 0 for default model (no variations)
+        original_price: 99.99,
+        seller_stock: [
+          {
+            location_id: 'LOC001',
+            stock: 100,
+          },
+        ],
+        pre_order: {
+          is_pre_order: false,
+        },
+      },
+    ],
+    logistic_info: [
+      {
+        logistic_id: 90001,
+        enabled: true,
+        shipping_fee: 5.00,
+        is_free: false,
+      },
+    ],
+    purchase_limit_info: {
+      min_purchase_limit: 1,
+      max_purchase_limit: {
+        purchase_limit: 10,
+      },
+    },
+  },
+});
+
+console.log('Outlet Item ID:', response.response?.item_id);
+```
+
+**Use Cases:**
+- Expand product availability to outlet shops
+- Manage multi-location inventory
+- Publish Mart items to specific outlets
+- Configure outlet-specific pricing and logistics
+
+**Important Notes:**
+- Multiple Outlet Shops under the same Mart Shop can publish the same Mart item
+- Model mapping is required - use `relate_mart_model_id` to link models
+- For items without variations, use `relate_mart_model_id: 0`
+- Logistics and purchase limits can be customized per outlet
+
+**Example with Variations:**
+
+```typescript
+const responseWithVariations = await sdk.product.publishItemToOutletShop({
+  mart_item_id: 123456789,
+  outlet_shop_id: 987654321,
+  publish_item: {
+    model: [
+      {
+        relate_mart_model_id: 111111, // Red variant
+        original_price: 99.99,
+        seller_stock: [{ location_id: 'LOC001', stock: 50 }],
+        pre_order: { is_pre_order: false },
+      },
+      {
+        relate_mart_model_id: 222222, // Blue variant
+        original_price: 109.99,
+        seller_stock: [{ location_id: 'LOC001', stock: 30 }],
+        pre_order: { is_pre_order: false },
+      },
+    ],
+    logistic_info: [
+      {
+        logistic_id: 90001,
+        enabled: true,
+        is_free: true, // Free shipping
+      },
+    ],
+    purchase_limit_info: {
+      min_purchase_limit: 1,
+      max_purchase_limit: { purchase_limit: 5 },
+    },
+  },
+});
+```
+
+---

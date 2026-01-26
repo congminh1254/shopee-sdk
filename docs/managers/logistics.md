@@ -390,6 +390,90 @@ async function validateShippingRequirements(orderSn: string): Promise<boolean> {
 | `error_logistics_channel` | Invalid logistics channel | Use getChannelList to get valid channels |
 | `error_param` | Missing required parameters | Check all required fields are provided |
 
+---
+
+### checkPolygonUpdateStatus()
+
+**API Documentation:** [v2.logistics.check_polygon_update_status](https://open.shopee.com/documents/v2/v2.logistics.check_polygon_update_status?module=95&type=1)
+
+**[For BR Sellers Only]** Check the status of polygon file uploaded for BR Entrega Turbo channel (Channel ID: 90026) by querying the task_id returned via uploadServiceablePolygon.
+
+```typescript
+const response = await sdk.logistics.checkPolygonUpdateStatus({
+  task_id: 'test_task_id',
+});
+
+console.log('Status:', response.response?.status); // 0: completed, 1: in progress, 2: errors
+console.log('Message:', response.response?.message);
+```
+
+**Use Cases:**
+- Monitor polygon file upload progress
+- Verify successful upload completion
+- Handle upload errors
+
+---
+
+### updateAddress()
+
+**API Documentation:** [v2.logistics.update_address](https://open.shopee.com/documents/v2/v2.logistics.update_address?module=95&type=1)
+
+Update the address of a shop. Use getAddressList to retrieve address_id values.
+
+```typescript
+const response = await sdk.logistics.updateAddress({
+  address_id: 123456,
+  state: 'SP',
+  city: 'São Paulo',
+  district: 'Pinheiros',
+  address: '123 Rua dos Pinheiros Apt 45',
+  zipcode: '05422-001',
+  name: 'Carlos Silva',
+  phone: '+55-11-91234-5678',
+});
+
+console.log('Update successful');
+```
+
+**Use Cases:**
+- Update pickup addresses
+- Change contact information
+- Modify location details
+
+**Note:** The region field cannot be updated. To clear geo_info, pass an empty string or "{}". To keep existing geo_info, omit the field.
+
+---
+
+### uploadServiceablePolygon()
+
+**API Documentation:** [v2.logistics.upload_serviceable_polygon](https://open.shopee.com/documents/v2/v2.logistics.upload_serviceable_polygon?module=95&type=1)
+
+**[For BR Sellers Only]** Upload KML file for shop level serviceability setting for BR Entrega Turbo channel (Channel ID: 90026). Multiple Outlet Shops under the same Mart Shop cannot have overlapping service areas.
+
+```typescript
+const file = new File([kmlContent], 'service_area.kml', { type: 'application/vnd.google-earth.kml+xml' });
+
+const response = await sdk.logistics.uploadServiceablePolygon({
+  file: file,
+});
+
+console.log('Task ID:', response.response?.task_id);
+
+// Check upload status
+const status = await sdk.logistics.checkPolygonUpdateStatus({
+  task_id: response.response?.task_id,
+});
+```
+
+**Use Cases:**
+- Define service areas for instant delivery
+- Set up BR Entrega Turbo channel
+- Manage outlet shop coverage areas
+
+**Note:** See [KML file format FAQ](https://open.shopee.com/faq/715) for file structure specifications.
+
+---
+
 ## Related
 
 - [OrderManager](./order.md) - Order management
