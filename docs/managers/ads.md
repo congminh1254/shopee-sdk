@@ -14,6 +14,7 @@ The AdsManager provides comprehensive methods for managing advertising campaigns
 
 ## Quick Start
 
+
 ```typescript
 // Get total balance
 const balance = await sdk.ads.getTotalBalance();
