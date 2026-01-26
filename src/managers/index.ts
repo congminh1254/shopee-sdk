@@ -26,3 +26,4 @@ export * from "./sbs.manager.js";
 export * from "./fbs.manager.js";
 export * from "./livestream.manager.js";
 export * from "./ams.manager.js";
+export * from "./video.manager.js";

@@ -78,9 +78,7 @@ export class VideoManager extends BaseManager {
    * - successList: List of video_upload_ids edited successfully
    * - failureList: List of video_upload_ids that failed to edit
    */
-  async editVideoInfo(
-    params: EditVideoInfoParams
-  ): Promise<EditVideoInfoResponse> {
+  async editVideoInfo(params: EditVideoInfoParams): Promise<EditVideoInfoResponse> {
     const response = await ShopeeFetch.fetch<EditVideoInfoResponse>(
       this.config,
       `/video/edit_video_info`,
@@ -104,16 +102,17 @@ export class VideoManager extends BaseManager {
    *
    * @returns A promise that resolves to the cover list response
    */
-  async getCoverList(
-    params: GetCoverListParams
-  ): Promise<GetCoverListResponse> {
+  async getCoverList(params: GetCoverListParams): Promise<GetCoverListResponse> {
     const response = await ShopeeFetch.fetch<GetCoverListResponse>(
       this.config,
       `/video/get_cover_list`,
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
@@ -129,16 +128,17 @@ export class VideoManager extends BaseManager {
    *
    * @returns A promise that resolves to the metric trend response
    */
-  async getMetricTrend(
-    params: GetMetricTrendParams
-  ): Promise<GetMetricTrendResponse> {
+  async getMetricTrend(params: GetMetricTrendParams): Promise<GetMetricTrendResponse> {
     const response = await ShopeeFetch.fetch<GetMetricTrendResponse>(
       this.config,
       `/video/get_metric_trend`,
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
@@ -163,7 +163,10 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
@@ -188,7 +191,10 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
@@ -213,7 +219,10 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
@@ -229,16 +238,17 @@ export class VideoManager extends BaseManager {
    *
    * @returns A promise that resolves to the video detail response
    */
-  async getVideoDetail(
-    params: GetVideoDetailParams
-  ): Promise<GetVideoDetailResponse> {
+  async getVideoDetail(params: GetVideoDetailParams): Promise<GetVideoDetailResponse> {
     const response = await ShopeeFetch.fetch<GetVideoDetailResponse>(
       this.config,
       `/video/get_video_detail`,
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
@@ -257,16 +267,18 @@ export class VideoManager extends BaseManager {
   async getVideoDetailAudienceDistribution(
     params: GetVideoDetailAudienceDistributionParams
   ): Promise<GetVideoDetailAudienceDistributionResponse> {
-    const response =
-      await ShopeeFetch.fetch<GetVideoDetailAudienceDistributionResponse>(
-        this.config,
-        `/video/get_video_detail_audience_distribution`,
-        {
-          method: "GET",
-          auth: true,
-          params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
-        }
-      );
+    const response = await ShopeeFetch.fetch<GetVideoDetailAudienceDistributionResponse>(
+      this.config,
+      `/video/get_video_detail_audience_distribution`,
+      {
+        method: "GET",
+        auth: true,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
+      }
+    );
 
     return response;
   }
@@ -289,7 +301,10 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
@@ -314,7 +329,10 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
@@ -333,16 +351,18 @@ export class VideoManager extends BaseManager {
   async getVideoDetailProductPerformance(
     params: GetVideoDetailProductPerformanceParams
   ): Promise<GetVideoDetailProductPerformanceResponse> {
-    const response =
-      await ShopeeFetch.fetch<GetVideoDetailProductPerformanceResponse>(
-        this.config,
-        `/video/get_video_detail_product_performance`,
-        {
-          method: "GET",
-          auth: true,
-          params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
-        }
-      );
+    const response = await ShopeeFetch.fetch<GetVideoDetailProductPerformanceResponse>(
+      this.config,
+      `/video/get_video_detail_product_performance`,
+      {
+        method: "GET",
+        auth: true,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
+      }
+    );
 
     return response;
   }
@@ -363,7 +383,10 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
@@ -388,7 +411,10 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<string, string | number | boolean | undefined | null | (string | number | boolean)[]>,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
@@ -407,15 +433,11 @@ export class VideoManager extends BaseManager {
    * - failureList: List of videos that failed to post
    */
   async postVideo(params: PostVideoParams): Promise<PostVideoResponse> {
-    const response = await ShopeeFetch.fetch<PostVideoResponse>(
-      this.config,
-      `/video/post_video`,
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
+    const response = await ShopeeFetch.fetch<PostVideoResponse>(this.config, `/video/post_video`, {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
 
     return response;
   }
