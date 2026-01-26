@@ -360,15 +360,14 @@ export type GetOrderListParams = {
 /**
  * Response for getting order list
  */
-export interface GetOrderListResponse
-  extends FetchResponse<{
-    /** Indicates whether the order list is more than one page */
-    more: boolean;
-    /** If more is true, you should pass the next_cursor in the next request as cursor */
-    next_cursor: string;
-    /** List of orders */
-    order_list: OrderListItem[];
-  }> {}
+export interface GetOrderListResponse extends FetchResponse<{
+  /** Indicates whether the order list is more than one page */
+  more: boolean;
+  /** If more is true, you should pass the next_cursor in the next request as cursor */
+  next_cursor: string;
+  /** List of orders */
+  order_list: OrderListItem[];
+}> {}
 
 export const allOptionalFields =
   "buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address,actual_shipping_fee,goods_to_declare,note,note_update_time,item_list,pay_time,dropshipper,dropshipper_phone,split_up,buyer_cancel_reason,cancel_by,cancel_reason,actual_shipping_fee_confirmed,buyer_cpf_id,fulfillment_flag,pickup_done_time,package_list,shipping_carrier,payment_method,total_amount,invoice_data,order_chargeable_weight_gram,return_request_due_date,edt";
@@ -417,11 +416,10 @@ export type GetOrdersDetailParams = {
 /**
  * Response for getting order details
  */
-export interface GetOrdersDetailResponse
-  extends FetchResponse<{
-    /** The list of orders */
-    order_list: Order[];
-  }> {}
+export interface GetOrdersDetailResponse extends FetchResponse<{
+  /** The list of orders */
+  order_list: Order[];
+}> {}
 
 /**
  * Represents a shipment order in the list
@@ -446,15 +444,14 @@ export type GetShipmentListParams = {
 /**
  * Response for getting shipment list
  */
-export interface GetShipmentListResponse
-  extends FetchResponse<{
-    /** The list of shipment orders */
-    order_list: ShipmentOrder[];
-    /** This is to indicate whether the order list is more than one page. If this value is true, you may want to continue to check next page to retrieve orders */
-    more: boolean;
-    /** If more is true, you should pass the next_cursor in the next request as cursor. The value of next_cursor will be empty string when more is false */
-    next_cursor: string;
-  }> {}
+export interface GetShipmentListResponse extends FetchResponse<{
+  /** The list of shipment orders */
+  order_list: ShipmentOrder[];
+  /** This is to indicate whether the order list is more than one page. If this value is true, you may want to continue to check next page to retrieve orders */
+  more: boolean;
+  /** If more is true, you should pass the next_cursor in the next request as cursor. The value of next_cursor will be empty string when more is false */
+  next_cursor: string;
+}> {}
 
 /**
  * Represents an item in a split order package
@@ -503,13 +500,12 @@ export interface SplitOrderResponsePackage {
 /**
  * Response for splitting an order
  */
-export interface SplitOrderResponse
-  extends FetchResponse<{
-    /** Shopee's unique identifier for an order */
-    order_sn: string;
-    /** The list of package under this order you have split */
-    package_list: SplitOrderResponsePackage[];
-  }> {}
+export interface SplitOrderResponse extends FetchResponse<{
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+  /** The list of package under this order you have split */
+  package_list: SplitOrderResponsePackage[];
+}> {}
 
 /**
  * Parameters for unsplitting an order
@@ -549,11 +545,10 @@ export interface CancelOrderParams {
 /**
  * Response from canceling an order
  */
-export interface CancelOrderResponse
-  extends FetchResponse<{
-    /** The time when the order is updated */
-    update_time: number;
-  }> {}
+export interface CancelOrderResponse extends FetchResponse<{
+  /** The time when the order is updated */
+  update_time: number;
+}> {}
 
 /**
  * Query parameters for getting buyer invoice info
@@ -764,11 +759,10 @@ export interface PackageDetail {
 /**
  * Response for getting package detail
  */
-export interface GetPackageDetailResponse
-  extends FetchResponse<{
-    /** The list of packages */
-    package_list: PackageDetail[];
-  }> {}
+export interface GetPackageDetailResponse extends FetchResponse<{
+  /** The list of packages */
+  package_list: PackageDetail[];
+}> {}
 
 /**
  * Parameters for handling buyer cancellation
@@ -783,11 +777,10 @@ export interface HandleBuyerCancellationParams {
 /**
  * Response for handling buyer cancellation
  */
-export interface HandleBuyerCancellationResponse
-  extends FetchResponse<{
-    /** Shopee's unique identifier for an order */
-    order_sn: string;
-  }> {}
+export interface HandleBuyerCancellationResponse extends FetchResponse<{
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+}> {}
 
 /**
  * Filter options for searching package list
@@ -864,15 +857,14 @@ export interface SearchPackageListPackage {
 /**
  * Response for searching package list
  */
-export interface SearchPackageListResponse
-  extends FetchResponse<{
-    /** Indicates whether the package list is more than one page */
-    more: boolean;
-    /** If more is true, you should pass the next_cursor in the next request as cursor */
-    next_cursor: string;
-    /** The list of packages */
-    package_list: SearchPackageListPackage[];
-  }> {}
+export interface SearchPackageListResponse extends FetchResponse<{
+  /** Indicates whether the package list is more than one page */
+  more: boolean;
+  /** If more is true, you should pass the next_cursor in the next request as cursor */
+  next_cursor: string;
+  /** The list of packages */
+  package_list: SearchPackageListPackage[];
+}> {}
 
 /**
  * Parameters for getting pending buyer invoice order list
@@ -887,15 +879,14 @@ export type GetPendingBuyerInvoiceOrderListParams = {
 /**
  * Response for getting pending buyer invoice order list
  */
-export interface GetPendingBuyerInvoiceOrderListResponse
-  extends FetchResponse<{
-    /** Indicates whether the order list is more than one page */
-    more: boolean;
-    /** If more is true, you should pass the next_cursor in the next request as cursor */
-    next_cursor: string;
-    /** The list of order serial numbers */
-    order_sn_list: string[];
-  }> {}
+export interface GetPendingBuyerInvoiceOrderListResponse extends FetchResponse<{
+  /** Indicates whether the order list is more than one page */
+  more: boolean;
+  /** If more is true, you should pass the next_cursor in the next request as cursor */
+  next_cursor: string;
+  /** The list of order serial numbers */
+  order_sn_list: string[];
+}> {}
 
 /**
  * Parameters for handling prescription check
@@ -912,11 +903,10 @@ export interface HandlePrescriptionCheckParams {
 /**
  * Response for handling prescription check
  */
-export interface HandlePrescriptionCheckResponse
-  extends FetchResponse<{
-    /** Shopee's unique identifier for the package under an order */
-    package_number: string;
-  }> {}
+export interface HandlePrescriptionCheckResponse extends FetchResponse<{
+  /** Shopee's unique identifier for the package under an order */
+  package_number: string;
+}> {}
 
 /**
  * Parameters for downloading invoice document
@@ -929,11 +919,10 @@ export type DownloadInvoiceDocParams = {
 /**
  * Response for downloading invoice document
  */
-export interface DownloadInvoiceDocResponse
-  extends FetchResponse<{
-    /** The URL of the invoice document */
-    url: string;
-  }> {}
+export interface DownloadInvoiceDocResponse extends FetchResponse<{
+  /** The URL of the invoice document */
+  url: string;
+}> {}
 
 /**
  * Parameters for uploading invoice document
@@ -981,11 +970,10 @@ export interface BookingDetail {
 /**
  * Response for getting booking detail
  */
-export interface GetBookingDetailResponse
-  extends FetchResponse<{
-    /** The list of bookings */
-    booking_list: BookingDetail[];
-  }> {}
+export interface GetBookingDetailResponse extends FetchResponse<{
+  /** The list of bookings */
+  booking_list: BookingDetail[];
+}> {}
 
 /**
  * Parameters for getting booking list
@@ -1020,15 +1008,14 @@ export interface BookingListItem {
 /**
  * Response for getting booking list
  */
-export interface GetBookingListResponse
-  extends FetchResponse<{
-    /** Indicates whether the booking list is more than one page */
-    more: boolean;
-    /** If more is true, you should pass the next_cursor in the next request as cursor */
-    next_cursor: string;
-    /** The list of bookings */
-    booking_list: BookingListItem[];
-  }> {}
+export interface GetBookingListResponse extends FetchResponse<{
+  /** Indicates whether the booking list is more than one page */
+  more: boolean;
+  /** If more is true, you should pass the next_cursor in the next request as cursor */
+  next_cursor: string;
+  /** The list of bookings */
+  booking_list: BookingListItem[];
+}> {}
 
 /**
  * Warehouse filter configuration
@@ -1043,11 +1030,10 @@ export interface WarehouseFilterConfig {
 /**
  * Response for getting warehouse filter config
  */
-export interface GetWarehouseFilterConfigResponse
-  extends FetchResponse<{
-    /** The list of warehouse filter configurations */
-    warehouse_list: WarehouseFilterConfig[];
-  }> {}
+export interface GetWarehouseFilterConfigResponse extends FetchResponse<{
+  /** The list of warehouse filter configurations */
+  warehouse_list: WarehouseFilterConfig[];
+}> {}
 
 /**
  * Request ID list for FBS invoices
@@ -1078,11 +1064,10 @@ export interface FbsInvoiceDownloadResult {
 /**
  * Response for downloading FBS invoices
  */
-export interface DownloadFbsInvoicesResponse
-  extends FetchResponse<{
-    /** The list of download results */
-    result_list: FbsInvoiceDownloadResult[];
-  }> {}
+export interface DownloadFbsInvoicesResponse extends FetchResponse<{
+  /** The list of download results */
+  result_list: FbsInvoiceDownloadResult[];
+}> {}
 
 /**
  * Batch download parameters for FBS invoices
@@ -1111,11 +1096,10 @@ export interface GenerateFbsInvoicesParams {
 /**
  * Response for generating FBS invoices
  */
-export interface GenerateFbsInvoicesResponse
-  extends FetchResponse<{
-    /** The request ID for the generated task */
-    request_id: number;
-  }> {}
+export interface GenerateFbsInvoicesResponse extends FetchResponse<{
+  /** The request ID for the generated task */
+  request_id: number;
+}> {}
 
 /**
  * Parameters for getting FBS invoices result
@@ -1140,8 +1124,7 @@ export interface FbsInvoiceResultItem {
 /**
  * Response for getting FBS invoices result
  */
-export interface GetFbsInvoicesResultResponse
-  extends FetchResponse<{
-    /** The list of results */
-    result_list: FbsInvoiceResultItem[];
-  }> {}
+export interface GetFbsInvoicesResultResponse extends FetchResponse<{
+  /** The list of results */
+  result_list: FbsInvoiceResultItem[];
+}> {}

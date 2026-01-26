@@ -32,7 +32,8 @@ import { SbsManager } from "./managers/sbs.manager.js";
 import { FbsManager } from "./managers/fbs.manager.js";
 import { LiveStreamManager } from "./managers/livestream.manager.js";
 import { AmsManager } from "./managers/ams.manager.js";
-import { Agent } from "node:http";
+// Agent is only available in Node.js environment
+import type { Agent } from "node:http";
 
 export interface ShopeeConfig {
   partner_id: number;

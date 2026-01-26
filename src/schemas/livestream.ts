@@ -102,8 +102,10 @@ export interface UpdateSessionResponse extends BaseResponse {
 /**
  * Parameters for getting session detail
  */
-export interface GetSessionDetailParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetSessionDetailParams extends Record<
+  string,
+  string | number | boolean | undefined
+> {
   /** The identifier of livestream session */
   session_id: number;
 }
@@ -143,8 +145,10 @@ export interface GetSessionDetailResponse extends BaseResponse {
 /**
  * Parameters for getting session metrics
  */
-export interface GetSessionMetricParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetSessionMetricParams extends Record<
+  string,
+  string | number | boolean | undefined
+> {
   /** The identifier of livestream session */
   session_id: number;
 }
@@ -186,8 +190,10 @@ export interface GetSessionMetricResponse extends BaseResponse {
 /**
  * Parameters for getting session item metrics
  */
-export interface GetSessionItemMetricParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetSessionItemMetricParams extends Record<
+  string,
+  string | number | boolean | undefined
+> {
   /** The identifier of livestream session */
   session_id: number;
   /** Specifies the starting entry of data to return */
@@ -406,8 +412,10 @@ export interface GetItemCountResponse extends BaseResponse {
 /**
  * Parameters for getting recent item list
  */
-export interface GetRecentItemListParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetRecentItemListParams extends Record<
+  string,
+  string | number | boolean | undefined
+> {
   /** The identifier of livestream session */
   session_id: number;
   /** Specifies the starting entry of data to return */
@@ -433,8 +441,10 @@ export interface GetRecentItemListResponse extends BaseResponse {
 /**
  * Parameters for getting like item list
  */
-export interface GetLikeItemListParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetLikeItemListParams extends Record<
+  string,
+  string | number | boolean | undefined
+> {
   /** The identifier of livestream session */
   session_id: number;
   /** Specifies the starting entry of data to return */
@@ -477,8 +487,10 @@ export interface ApplyItemSetResponse extends BaseResponse {
 /**
  * Parameters for getting item set list
  */
-export interface GetItemSetListParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetItemSetListParams extends Record<
+  string,
+  string | number | boolean | undefined
+> {
   /** Specifies the starting entry of data to return */
   offset: number;
   /** Maximum number of entries per page (1-100) */
@@ -514,8 +526,10 @@ export interface GetItemSetListResponse extends BaseResponse {
 /**
  * Parameters for getting item set item list
  */
-export interface GetItemSetItemListParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetItemSetItemListParams extends Record<
+  string,
+  string | number | boolean | undefined
+> {
   /** The identifier of item set */
   item_set_id: number;
   /** Specifies the starting entry of data to return */
@@ -626,8 +640,10 @@ export interface PostCommentResponse extends BaseResponse {
 /**
  * Parameters for getting latest comment list
  */
-export interface GetLatestCommentListParams
-  extends Record<string, string | number | boolean | undefined> {
+export interface GetLatestCommentListParams extends Record<
+  string,
+  string | number | boolean | undefined
+> {
   /** The identifier of livestream session */
   session_id: number;
   /** Specifies the starting entry of data to return */

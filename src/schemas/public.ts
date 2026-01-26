@@ -12,19 +12,16 @@ export interface GetMerchantsByPartnerParams {
   page_no?: number;
 }
 
-export interface GetShopsByPartnerResponse
-  extends FetchResponse<{
-    authed_shop_list: AuthedShop[];
-    more: boolean;
-  }> {}
+export interface GetShopsByPartnerResponse extends FetchResponse<{
+  authed_shop_list: AuthedShop[];
+  more: boolean;
+}> {}
 
-export interface GetMerchantsByPartnerResponse
-  extends FetchResponse<{
-    authed_merchant_list: AuthedMerchant[];
-    more: boolean;
-  }> {}
+export interface GetMerchantsByPartnerResponse extends FetchResponse<{
+  authed_merchant_list: AuthedMerchant[];
+  more: boolean;
+}> {}
 
-export interface GetShopeeIpRangeResponse
-  extends FetchResponse<{
-    ip_list: string[];
-  }> {}
+export interface GetShopeeIpRangeResponse extends FetchResponse<{
+  ip_list: string[];
+}> {}
