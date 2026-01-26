@@ -518,7 +518,7 @@ export interface GetVideoListParams {
     pageNo: number;
     /** The number of affiliate returned by this request, Max is 20. */
     pageSize: number;
-    /** Search tpye for video in draft status or video already post to Shopee Video.1: draft2: post */
+    /** Search type for video in draft status or video already post to Shopee Video. 1: draft, 2: post */
     listType: number;
 }
 export interface GetVideoListList {

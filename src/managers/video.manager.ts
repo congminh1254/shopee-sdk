@@ -206,12 +206,12 @@ export class VideoManager extends BaseManager {
    *
    * Use this API to get demographic information of video viewers.
    *
-   * @param params - Parameters for getting user demographics
+   * @param params - Optional parameters (currently no parameters required)
    *
    * @returns A promise that resolves to the user demographics response
    */
   async getUserDemographics(
-    params: GetUserDemographicsParams
+    params?: GetUserDemographicsParams
   ): Promise<GetUserDemographicsResponse> {
     const response = await ShopeeFetch.fetch<GetUserDemographicsResponse>(
       this.config,
@@ -219,7 +219,7 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<
+        params: (params || {}) as unknown as Record<
           string,
           string | number | boolean | undefined | null | (string | number | boolean)[]
         >,

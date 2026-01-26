@@ -76,11 +76,11 @@ export declare class VideoManager extends BaseManager {
      *
      * Use this API to get demographic information of video viewers.
      *
-     * @param params - Parameters for getting user demographics
+     * @param params - Optional parameters (currently no parameters required)
      *
      * @returns A promise that resolves to the user demographics response
      */
-    getUserDemographics(params: GetUserDemographicsParams): Promise<GetUserDemographicsResponse>;
+    getUserDemographics(params?: GetUserDemographicsParams): Promise<GetUserDemographicsResponse>;
     /**
      * Get video detail
      *
