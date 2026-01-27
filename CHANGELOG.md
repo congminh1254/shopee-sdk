@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/congminh1254/shopee-sdk/compare/v1.5.0...v1.5.1) (2026-01-27)
+
+
+### Bug Fixes
+
+* Add npm publish step to release workflow ([#109](https://github.com/congminh1254/shopee-sdk/issues/109)) ([edde153](https://github.com/congminh1254/shopee-sdk/commit/edde153f67a5bc32cc686549ca9509d89e06ac0c))
+
 ## [1.5.0](https://github.com/congminh1254/shopee-sdk/compare/v1.4.0...v1.5.0) (2026-01-26)
 
 
