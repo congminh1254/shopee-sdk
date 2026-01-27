@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/congminh1254/shopee-sdk/compare/v1.5.1...v1.5.2) (2026-01-27)
+
+
+### Bug Fixes
+
+* Remove extra newline in release-please.yml ([#111](https://github.com/congminh1254/shopee-sdk/issues/111)) ([6c84c01](https://github.com/congminh1254/shopee-sdk/commit/6c84c015923114cd4ec48491ebf124106170dc6c))
+
 ## [1.5.1](https://github.com/congminh1254/shopee-sdk/compare/v1.5.0...v1.5.1) (2026-01-27)
 
 
