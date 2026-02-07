@@ -6,6 +6,10 @@
   "define": "Use the API to download the TO label that should be attached to the carton before drop-off at the warehouse (Only for TW channel_id:30029).",
   "error_list": [
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "logistics.can_not_print_to_label",
       "description": "You do not have permission to call this API because you are either not enabled for channel 30029 or do not have any ongoing orders in this channel."
     },

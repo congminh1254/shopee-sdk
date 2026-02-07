@@ -194,6 +194,10 @@
       "description": "Pickup address is not serviceable. Please select another address.\t\t\t"
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "error_param",
       "description": "There is no access_token in query."
     },

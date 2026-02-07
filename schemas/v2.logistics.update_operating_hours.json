@@ -22,6 +22,10 @@
       "description": "All modifications to the operating hours were unsuccessful. Please check the result_list and try again."
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "error_data",
       "description": "parse data failed"
     },
