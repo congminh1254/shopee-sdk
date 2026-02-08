@@ -10,6 +10,10 @@
       "description": "Sorry you don't have the permission, detail: This shop isn't eligible to set up Regular Operating Hours."
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "error_data",
       "description": "parse data failed"
     },
