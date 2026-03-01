@@ -258,7 +258,11 @@ describe("ShopeeSDK", () => {
       // Mock auth manager's getRefreshToken to return null
       const mockGetRefreshToken =
         jest.fn<
-          (refreshToken: string, shopId?: number, mainAccountId?: number) => Promise<AccessToken | null>
+          (
+            refreshToken: string,
+            shopId?: number,
+            mainAccountId?: number
+          ) => Promise<AccessToken | null>
         >();
       mockGetRefreshToken.mockResolvedValue(null);
       const mockAuthManager = sdk.auth as jest.Mocked<AuthManager>;
