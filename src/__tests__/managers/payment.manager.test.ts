@@ -445,14 +445,14 @@ describe("PaymentManager", () => {
         response: {
           transaction_list: [
             {
-              transaction_id: 123456,
               transaction_type: "ORDER_PAYMENT",
               status: "COMPLETED",
               amount: 100.0,
               current_balance: 1000.0,
               create_time: 1651680000,
               order_sn: "220101000000001",
-              reason: "Order payment received",
+              money_flow: "MONEY_IN",
+              transaction_tab_type: "wallet_order_income",
             },
           ],
           more: false,
@@ -462,10 +462,10 @@ describe("PaymentManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.getWalletTransactionList({
+        page_no: 1,
+        page_size: 40,
         create_time_from: 1651680000,
         create_time_to: 1651939200,
-        page_no: 0,
-        page_size: 40,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -475,10 +475,10 @@ describe("PaymentManager", () => {
           method: "POST",
           auth: true,
           body: {
+            page_no: 1,
+            page_size: 40,
             create_time_from: 1651680000,
             create_time_to: 1651939200,
-            page_no: 0,
-            page_size: 40,
           },
         }
       );

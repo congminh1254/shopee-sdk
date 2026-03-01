@@ -223,18 +223,18 @@ Get wallet transaction records. Only applicable for local shops.
 
 ```typescript
 const response = await sdk.payment.getWalletTransactionList({
+  page_no: 1,
+  page_size: 40,
   create_time_from: 1651680000,
   create_time_to: 1651939200,
-  page_no: 0,
-  page_size: 40,
 });
 
 response.response.transaction_list.forEach((txn) => {
-  console.log('Transaction ID:', txn.transaction_id);
   console.log('Type:', txn.transaction_type);
   console.log('Amount:', txn.amount);
   console.log('Balance:', txn.current_balance);
   console.log('Time:', new Date(txn.create_time * 1000));
+  console.log('Money flow:', txn.money_flow);
 });
 ```
 
@@ -500,10 +500,10 @@ async function trackWalletBalance(days: number = 30) {
   
   while (hasMore) {
     const response = await sdk.payment.getWalletTransactionList({
-      create_time_from: startTime,
-      create_time_to: endTime,
       page_no: pageNo,
       page_size: 100,
+      create_time_from: startTime,
+      create_time_to: endTime,
     });
     
     transactions.push(...response.response.transaction_list);
