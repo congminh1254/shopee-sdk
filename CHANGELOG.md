@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.3](https://github.com/congminh1254/shopee-sdk/compare/v1.5.2...v1.5.3) (2026-03-01)
+
+
+### Bug Fixes
+
+* handle binary PDF responses and correct DownloadShippingDocumentParams types ([#121](https://github.com/congminh1254/shopee-sdk/issues/121)) ([090d293](https://github.com/congminh1254/shopee-sdk/commit/090d293ffe37c4c601902586aeb375b50e0a3540))
+
 ## [1.5.2](https://github.com/congminh1254/shopee-sdk/compare/v1.5.1...v1.5.2) (2026-01-27)
 
 
