@@ -5,6 +5,7 @@ import { AccessToken } from "../schemas/access-token.js";
 import { ShopeeSdkError } from "../errors.js";
 import { jest } from "@jest/globals";
 import { AuthManager } from "../managers/auth.manager.js";
+import { Agent } from "node:http";
 
 // Mock the managers
 jest.mock("../managers/auth.manager.js");
@@ -87,6 +88,13 @@ describe("ShopeeSDK", () => {
       const config = sdk.getConfig();
       expect(config.base_url).toBe(customUrl);
       expect(config.region).toBeUndefined();
+    });
+
+    it("should set fetch agent", () => {
+      const mockAgent = new Agent();
+      sdk.setFetchAgent(mockAgent);
+      const config = sdk.getConfig();
+      expect(config.agent).toBe(mockAgent);
     });
   });
 
@@ -225,6 +233,39 @@ describe("ShopeeSDK", () => {
       sdk["tokenStorage"] = mockTokenStorage;
 
       await expect(sdk.refreshToken()).rejects.toThrow(ShopeeSdkError);
+    });
+
+    it("should return null when refresh token returns null", async () => {
+      const oldToken: AccessToken = {
+        access_token: "old_token",
+        refresh_token: "test_refresh_token",
+        expire_in: 3600,
+        request_id: "test_request_id",
+        error: "",
+        message: "",
+      };
+
+      // Mock token storage
+      const mockGet = jest.fn<() => Promise<AccessToken | null>>();
+      mockGet.mockResolvedValue(oldToken);
+      const mockTokenStorage: TokenStorage = {
+        store: jest.fn<(token: AccessToken) => Promise<void>>(),
+        get: mockGet,
+        clear: jest.fn<() => Promise<void>>(),
+      };
+      sdk["tokenStorage"] = mockTokenStorage;
+
+      // Mock auth manager's getRefreshToken to return null
+      const mockGetRefreshToken =
+        jest.fn<
+          (refreshToken: string, shopId?: number, mainAccountId?: number) => Promise<AccessToken | null>
+        >();
+      mockGetRefreshToken.mockResolvedValue(null);
+      const mockAuthManager = sdk.auth as jest.Mocked<AuthManager>;
+      mockAuthManager.getRefreshToken = mockGetRefreshToken;
+
+      const token = await sdk.refreshToken();
+      expect(token).toBeNull();
     });
   });
 });
