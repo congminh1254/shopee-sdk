@@ -822,21 +822,21 @@ export interface CreateShippingDocumentResponse extends BaseResponse {
  * Parameters for download shipping document
  */
 export type DownloadShippingDocumentParams = {
-  /** List of order SNs */
-  order_sn_list: string[];
+  /** List of orders to download documents for */
+  order_list: Array<{
+    /** Order SN */
+    order_sn: string;
+    /** Package number (optional) */
+    package_number?: string;
+  }>;
   /** Document type */
   shipping_document_type: string;
-} & Record<string, string | number | boolean | null | undefined>;
+};
 
 /**
- * Response for download shipping document API
+ * Response for download shipping document API (returns raw binary PDF)
  */
-export interface DownloadShippingDocumentResponse extends BaseResponse {
-  response?: {
-    /** URL to download document */
-    result?: string;
-  };
-}
+export type DownloadShippingDocumentResponse = Buffer;
 
 /**
  * Parameters for get shipping document parameter
@@ -940,14 +940,9 @@ export type DownloadBookingShippingDocumentParams = {
 } & Record<string, string | number | boolean | null | undefined>;
 
 /**
- * Response for download booking shipping document API
+ * Response for download booking shipping document API (returns raw binary PDF)
  */
-export interface DownloadBookingShippingDocumentResponse extends BaseResponse {
-  response?: {
-    /** URL to download document */
-    result?: string;
-  };
-}
+export type DownloadBookingShippingDocumentResponse = Buffer;
 
 /**
  * Parameters for get booking shipping document parameter

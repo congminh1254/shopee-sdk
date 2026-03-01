@@ -368,6 +368,42 @@ describe("ShopeeFetch", () => {
       );
     });
 
+    it("should return Buffer for application/pdf response", async () => {
+      const text = "%PDF-1.4 test pdf content";
+      const uint8 = new TextEncoder().encode(text);
+      const headers = new Map([["content-type", "application/pdf"]]);
+      mockFetch.mockResolvedValueOnce({
+        status: 200,
+        headers: {
+          get: (name: string) => headers.get(name.toLowerCase()),
+        },
+        arrayBuffer: jest.fn().mockResolvedValue(uint8.buffer),
+      });
+
+      const result = await ShopeeFetch.fetch<Buffer>(mockConfig, "/test/endpoint");
+
+      expect(result).toBeInstanceOf(Buffer);
+      expect(result.toString()).toBe(text);
+    });
+
+    it("should return Buffer for application/octet-stream response", async () => {
+      const text = "binary data";
+      const uint8 = new TextEncoder().encode(text);
+      const headers = new Map([["content-type", "application/octet-stream"]]);
+      mockFetch.mockResolvedValueOnce({
+        status: 200,
+        headers: {
+          get: (name: string) => headers.get(name.toLowerCase()),
+        },
+        arrayBuffer: jest.fn().mockResolvedValue(uint8.buffer),
+      });
+
+      const result = await ShopeeFetch.fetch<Buffer>(mockConfig, "/test/endpoint");
+
+      expect(result).toBeInstanceOf(Buffer);
+      expect(result.toString()).toBe(text);
+    });
+
     it("should handle network errors", async () => {
       const networkError = new Error("Network failed");
       networkError.name = "FetchError";

@@ -30,15 +30,14 @@ export interface GetShopCategoryListParams {
 /**
  * Response for getting shop category list
  */
-export interface GetShopCategoryListResponse
-  extends FetchResponse<{
-    /** List of shop categories */
-    shop_categorys: ShopCategory[];
-    /** Total count of shop categories */
-    total_count: number;
-    /** Whether there are more pages */
-    more: boolean;
-  }> {}
+export interface GetShopCategoryListResponse extends FetchResponse<{
+  /** List of shop categories */
+  shop_categorys: ShopCategory[];
+  /** Total count of shop categories */
+  total_count: number;
+  /** Whether there are more pages */
+  more: boolean;
+}> {}
 
 /**
  * Parameters for adding a new shop category
@@ -53,11 +52,10 @@ export interface AddShopCategoryParams {
 /**
  * Response for adding a shop category
  */
-export interface AddShopCategoryResponse
-  extends FetchResponse<{
-    /** ShopCategory's unique identifier */
-    shop_category_id: number;
-  }> {}
+export interface AddShopCategoryResponse extends FetchResponse<{
+  /** ShopCategory's unique identifier */
+  shop_category_id: number;
+}> {}
 
 /**
  * Parameters for updating a shop category
@@ -76,17 +74,16 @@ export interface UpdateShopCategoryParams {
 /**
  * Response for updating a shop category
  */
-export interface UpdateShopCategoryResponse
-  extends FetchResponse<{
-    /** ShopCategory's unique identifier */
-    shop_category_id: number;
-    /** ShopCategory's name */
-    name: string;
-    /** ShopCategory's sort weight */
-    sort_weight: number;
-    /** ShopCategory's status */
-    status: string;
-  }> {}
+export interface UpdateShopCategoryResponse extends FetchResponse<{
+  /** ShopCategory's unique identifier */
+  shop_category_id: number;
+  /** ShopCategory's name */
+  name: string;
+  /** ShopCategory's sort weight */
+  sort_weight: number;
+  /** ShopCategory's status */
+  status: string;
+}> {}
 
 /**
  * Parameters for deleting a shop category
@@ -99,13 +96,12 @@ export interface DeleteShopCategoryParams {
 /**
  * Response for deleting a shop category
  */
-export interface DeleteShopCategoryResponse
-  extends FetchResponse<{
-    /** ShopCategory's unique identifier */
-    shop_category_id: number;
-    /** Result message */
-    msg?: string;
-  }> {}
+export interface DeleteShopCategoryResponse extends FetchResponse<{
+  /** ShopCategory's unique identifier */
+  shop_category_id: number;
+  /** Result message */
+  msg?: string;
+}> {}
 
 /**
  * Invalid item information
@@ -132,15 +128,14 @@ export interface AddItemListParams {
 /**
  * Response for adding items to a shop category
  */
-export interface AddItemListResponse
-  extends FetchResponse<{
-    /** ShopCategory's unique identifier */
-    shop_category_id: number;
-    /** Count of items under this shop category after addition */
-    current_count: number;
-    /** List of invalid item ids */
-    invalid_item_id_list?: InvalidItem[];
-  }> {}
+export interface AddItemListResponse extends FetchResponse<{
+  /** ShopCategory's unique identifier */
+  shop_category_id: number;
+  /** Count of items under this shop category after addition */
+  current_count: number;
+  /** List of invalid item ids */
+  invalid_item_id_list?: InvalidItem[];
+}> {}
 
 /**
  * Parameters for deleting items from a shop category
@@ -155,15 +150,14 @@ export interface DeleteItemListParams {
 /**
  * Response for deleting items from a shop category
  */
-export interface DeleteItemListResponse
-  extends FetchResponse<{
-    /** ShopCategory's unique identifier */
-    shop_category_id: number;
-    /** Count of items under this shop category after deletion */
-    current_count: number;
-    /** List of invalid item ids */
-    invalid_item_id_list?: InvalidItem[];
-  }> {}
+export interface DeleteItemListResponse extends FetchResponse<{
+  /** ShopCategory's unique identifier */
+  shop_category_id: number;
+  /** Count of items under this shop category after deletion */
+  current_count: number;
+  /** List of invalid item ids */
+  invalid_item_id_list?: InvalidItem[];
+}> {}
 
 /**
  * Parameters for getting items in a shop category
@@ -181,12 +175,11 @@ export interface GetShopCategoryItemListParams {
 /**
  * Response for getting items in a shop category
  */
-export interface GetShopCategoryItemListResponse
-  extends FetchResponse<{
-    /** List of item IDs */
-    item_list: number[];
-    /** Total count of items under this shop category */
-    total_count: number;
-    /** Whether there are more pages */
-    more: boolean;
-  }> {}
+export interface GetShopCategoryItemListResponse extends FetchResponse<{
+  /** List of item IDs */
+  item_list: number[];
+  /** Total count of items under this shop category */
+  total_count: number;
+  /** Whether there are more pages */
+  more: boolean;
+}> {}
