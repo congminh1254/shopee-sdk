@@ -380,29 +380,43 @@ export interface GetEscrowDetailBatchResponse extends BaseResponse {
  * Parameters for getting wallet transaction list
  */
 export type GetWalletTransactionListParams = {
-  /** The start time of the query, timestamp */
-  create_time_from: number;
-  /** The end time of the query, timestamp */
-  create_time_to: number;
-  /** Offset for pagination, start from 0 */
-  page_no?: number;
+  /** Specifies the starting entry of data to return in the current call. Default is 1 */
+  page_no: number;
   /** The number of records returned per page, min 1, max 100, default 40 */
-  page_size?: number;
-  /** Transaction types filter */
-  transaction_type?: number;
+  page_size: number;
+  /** The start time of the query, timestamp */
+  create_time_from?: number;
+  /** The end time of the query, timestamp */
+  create_time_to?: number;
+  /** This field indicates the wallet type */
+  wallet_type?: string;
+  /** Transaction type filter */
+  transaction_type?: string;
+  /** Indicates whether user wants to return only MONEY_IN or MONEY_OUT transactions */
+  money_flow?: string;
+  /** Transaction tab type filter. Only 1 value can be provided per request */
+  transaction_tab_type?: string;
 };
+
+/**
+ * Pay order item within a wallet transaction
+ */
+export interface WalletTransactionPayOrder {
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+  /** Name of the shop */
+  shop_name: string;
+}
 
 /**
  * Wallet transaction item
  */
 export interface WalletTransaction {
-  /** Transaction ID */
-  transaction_id: number;
-  /** Transaction type */
-  transaction_type: string;
   /** Transaction status */
   status: string;
-  /** Amount */
+  /** Transaction type */
+  transaction_type: string;
+  /** Transaction amount */
   amount: number;
   /** Current balance after this transaction */
   current_balance: number;
@@ -410,10 +424,32 @@ export interface WalletTransaction {
   create_time: number;
   /** Order SN if related to order */
   order_sn?: string;
+  /** The serial number of return */
+  refund_sn?: string;
+  /** The type of withdrawal */
+  withdrawal_type?: string;
+  /** Transaction fee */
+  transaction_fee?: number;
+  /** Detailed description of TOPUP SUCCESS and TOPUP FAILED */
+  description?: string;
+  /** The name of buyer */
+  buyer_name?: string;
+  /** List of pay orders associated with this transaction */
+  pay_order_list?: WalletTransactionPayOrder[];
+  /** Name of the shop */
+  shop_name?: string;
   /** Withdrawal ID if related to withdrawal */
   withdrawal_id?: number;
   /** Reason for transaction */
-  reason: string;
+  reason?: string;
+  /** Indicates the event where a withdrawal is split into several withdrawals due to withdrawal limit */
+  root_withdrawal_id?: number;
+  /** Updated transaction tab type */
+  transaction_tab_type?: string;
+  /** Money flow direction: MONEY_IN or MONEY_OUT */
+  money_flow?: string;
+  /** The outlet shop name where this outlet transaction came from */
+  outlet_shop_name?: string;
 }
 
 /**
