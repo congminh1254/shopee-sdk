@@ -42,6 +42,7 @@
     "build": "npm run prebuild && node --loader ts-node/esm node_modules/.bin/tsc",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
     "prepare": "husky install",
     "fetch-schemas": "tsx schemas/fetch.ts"
