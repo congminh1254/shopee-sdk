@@ -34,6 +34,10 @@
       "description": "The package_number {package_number} is not exist."
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "logistics.can_not_print_jit_order",
       "description": "This shipping channel only supports document printing in Shopee seller center"
     },

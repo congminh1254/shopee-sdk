@@ -14,6 +14,10 @@
       "description": "File cannot be opened"
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "error_shop",
       "description": "Shop is not eligible to upload file as instant channel is not enabled"
     },

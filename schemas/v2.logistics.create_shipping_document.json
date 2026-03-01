@@ -58,6 +58,10 @@
       "description": "The tracking number is invalid. Please check the tracking number."
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "logistics.can_not_print_combine_order\t",
       "description": "This order is part of a combined parcel, please use Seller Center instead.\t\t\t"
     },

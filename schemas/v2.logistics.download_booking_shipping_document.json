@@ -10,6 +10,10 @@
       "description": "Processing, please download later. Detail: {msg}"
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "error_data",
       "description": "parse data failed"
     },
