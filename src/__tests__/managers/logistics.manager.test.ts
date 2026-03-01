@@ -906,16 +906,11 @@ describe("LogisticsManager", () => {
     });
 
     it("should download shipping document", async () => {
-      const mockResponse = {
-        request_id: "test",
-        error: "",
-        message: "",
-        response: { result: "URL" },
-      };
+      const mockResponse = Buffer.from("%PDF-1.4");
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.downloadShippingDocument({
-        order_sn_list: ["ORDER1"],
+        order_list: [{ order_sn: "ORDER1" }],
         shipping_document_type: "NORMAL_AIR_WAYBILL",
       });
 
@@ -967,7 +962,7 @@ describe("LogisticsManager", () => {
     });
 
     it("should download booking shipping document", async () => {
-      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
+      const mockResponse = Buffer.from("%PDF-1.4");
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.downloadBookingShippingDocument({

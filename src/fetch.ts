@@ -82,6 +82,15 @@ export class ShopeeFetch {
     try {
       const response: Response = await fetch(url.toString(), requestOptions);
       const responseType = response.headers.get("Content-Type");
+
+      if (
+        responseType?.includes("application/pdf") ||
+        responseType?.includes("application/octet-stream")
+      ) {
+        const arrayBuffer = await response.arrayBuffer();
+        return Buffer.from(arrayBuffer) as unknown as T;
+      }
+
       const responseData: unknown =
         responseType?.indexOf("application/json") !== -1
           ? await response.json()
