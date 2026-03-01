@@ -742,6 +742,10 @@
       "description": "Can not update combine order through Open API, please use Shopee Seller Center instead.\t\t"
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "error_param",
       "description": "There is no access_token in query."
     },
@@ -812,6 +816,14 @@
     {
       "name": "error_param",
       "description": "request not from gateway"
+    },
+    {
+      "name": "error_param",
+      "description": "Package cannot be rescheduled"
+    },
+    {
+      "name": "error_other",
+      "description": "Rescheduling dependency error"
     }
   ],
   "errors": "",

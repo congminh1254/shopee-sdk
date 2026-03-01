@@ -18,6 +18,10 @@
       "description": "Package is not under the specified warehouse"
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "logistics.error_param",
       "description": "Package exceeds limit."
     },
@@ -72,6 +76,14 @@
     {
       "name": "error_param",
       "description": "request not from gateway"
+    },
+    {
+      "name": "error_param",
+      "description": "Package cannot be rescheduled"
+    },
+    {
+      "name": "error_other",
+      "description": "Rescheduling dependency error"
     }
   ],
   "errors": "",

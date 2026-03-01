@@ -20,6 +20,10 @@
     {
       "name": "logistics.self_collect_outbound_failed",
       "description": "Prepare order for buyer collection"
+    },
+    {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
     }
   ],
   "errors": "",

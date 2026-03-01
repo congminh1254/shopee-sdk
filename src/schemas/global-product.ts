@@ -29,11 +29,10 @@ export type GetGlobalCategoryParams = {
 /**
  * Response for getting global category list
  */
-export interface GetGlobalCategoryResponse
-  extends FetchResponse<{
-    /** List of categories */
-    category_list: GlobalCategory[];
-  }> {}
+export interface GetGlobalCategoryResponse extends FetchResponse<{
+  /** List of categories */
+  category_list: GlobalCategory[];
+}> {}
 
 /**
  * Parameters for getting global item list
@@ -62,17 +61,16 @@ export interface GlobalItemListItem {
 /**
  * Response for getting global item list
  */
-export interface GetGlobalItemListResponse
-  extends FetchResponse<{
-    /** List of global items */
-    global_item_list: GlobalItemListItem[];
-    /** Total global item count */
-    total_count: number;
-    /** Whether the item list is more than one page */
-    has_next_page: boolean;
-    /** Next page offset if has_next_page is true */
-    offset?: string;
-  }> {}
+export interface GetGlobalItemListResponse extends FetchResponse<{
+  /** List of global items */
+  global_item_list: GlobalItemListItem[];
+  /** Total global item count */
+  total_count: number;
+  /** Whether the item list is more than one page */
+  has_next_page: boolean;
+  /** Next page offset if has_next_page is true */
+  offset?: string;
+}> {}
 
 /**
  * Global item attribute
@@ -255,11 +253,10 @@ export type GetGlobalItemInfoParams = {
 /**
  * Response for getting global item info
  */
-export interface GetGlobalItemInfoResponse
-  extends FetchResponse<{
-    /** List of global item info */
-    global_item_list: GlobalItemInfo[];
-  }> {}
+export interface GetGlobalItemInfoResponse extends FetchResponse<{
+  /** List of global item info */
+  global_item_list: GlobalItemInfo[];
+}> {}
 
 /**
  * Global model information
@@ -319,13 +316,12 @@ export type GetGlobalModelListParams = {
 /**
  * Response for getting global model list
  */
-export interface GetGlobalModelListResponse
-  extends FetchResponse<{
-    /** Tier variation list */
-    tier_variation: GlobalTierVariation[];
-    /** Global model list */
-    global_model: GlobalModel[];
-  }> {}
+export interface GetGlobalModelListResponse extends FetchResponse<{
+  /** Tier variation list */
+  tier_variation: GlobalTierVariation[];
+  /** Global model list */
+  global_model: GlobalModel[];
+}> {}
 
 /**
  * Parameters for adding a global item
@@ -373,11 +369,10 @@ export type AddGlobalItemParams = {
 /**
  * Response for adding a global item
  */
-export interface AddGlobalItemResponse
-  extends FetchResponse<{
-    /** Created global item ID */
-    global_item_id: number;
-  }> {}
+export interface AddGlobalItemResponse extends FetchResponse<{
+  /** Created global item ID */
+  global_item_id: number;
+}> {}
 
 /**
  * Parameters for updating a global item
@@ -427,11 +422,10 @@ export type UpdateGlobalItemParams = {
 /**
  * Response for updating a global item
  */
-export interface UpdateGlobalItemResponse
-  extends FetchResponse<{
-    /** Updated global item ID */
-    global_item_id: number;
-  }> {}
+export interface UpdateGlobalItemResponse extends FetchResponse<{
+  /** Updated global item ID */
+  global_item_id: number;
+}> {}
 
 /**
  * Parameters for deleting a global item
@@ -469,16 +463,15 @@ export type AddGlobalModelParams = {
 /**
  * Response for adding a global model
  */
-export interface AddGlobalModelResponse
-  extends FetchResponse<{
-    /** List of added model results */
-    model_list: {
-      /** Global model ID */
-      global_model_id: number;
-      /** Tier index */
-      tier_index: number[];
-    }[];
-  }> {}
+export interface AddGlobalModelResponse extends FetchResponse<{
+  /** List of added model results */
+  model_list: {
+    /** Global model ID */
+    global_model_id: number;
+    /** Tier index */
+    tier_index: number[];
+  }[];
+}> {}
 
 /**
  * Parameters for updating a global model
@@ -503,14 +496,13 @@ export type UpdateGlobalModelParams = {
 /**
  * Response for updating a global model
  */
-export interface UpdateGlobalModelResponse
-  extends FetchResponse<{
-    /** List of updated model results */
-    model_list: {
-      /** Global model ID */
-      global_model_id: number;
-    }[];
-  }> {}
+export interface UpdateGlobalModelResponse extends FetchResponse<{
+  /** List of updated model results */
+  model_list: {
+    /** Global model ID */
+    global_model_id: number;
+  }[];
+}> {}
 
 /**
  * Parameters for deleting a global model
@@ -525,16 +517,15 @@ export type DeleteGlobalModelParams = {
 /**
  * Response for deleting a global model
  */
-export interface DeleteGlobalModelResponse
-  extends FetchResponse<{
-    /** List of deleted model results */
-    model_list: {
-      /** Global model ID */
-      global_model_id: number;
-      /** Success status */
-      success: boolean;
-    }[];
-  }> {}
+export interface DeleteGlobalModelResponse extends FetchResponse<{
+  /** List of deleted model results */
+  model_list: {
+    /** Global model ID */
+    global_model_id: number;
+    /** Success status */
+    success: boolean;
+  }[];
+}> {}
 
 /**
  * Parameters for initializing tier variation
@@ -574,16 +565,15 @@ export type InitGlobalTierVariationParams = {
 /**
  * Response for initializing tier variation
  */
-export interface InitGlobalTierVariationResponse
-  extends FetchResponse<{
-    /** List of created models */
-    model_list: {
-      /** Global model ID */
-      global_model_id: number;
-      /** Tier index */
-      tier_index: number[];
-    }[];
-  }> {}
+export interface InitGlobalTierVariationResponse extends FetchResponse<{
+  /** List of created models */
+  model_list: {
+    /** Global model ID */
+    global_model_id: number;
+    /** Tier index */
+    tier_index: number[];
+  }[];
+}> {}
 
 /**
  * Parameters for updating tier variation
@@ -633,20 +623,19 @@ export type UpdateGlobalStockParams = {
 /**
  * Response for updating global item stock
  */
-export interface UpdateGlobalStockResponse
-  extends FetchResponse<{
-    /** List of stock update results */
-    result_list: {
-      /** Shop ID */
-      shop_id: number;
-      /** Global model ID */
-      global_model_id?: number;
-      /** Success status */
-      success: boolean;
-      /** Error message if failed */
-      error_description?: string;
-    }[];
-  }> {}
+export interface UpdateGlobalStockResponse extends FetchResponse<{
+  /** List of stock update results */
+  result_list: {
+    /** Shop ID */
+    shop_id: number;
+    /** Global model ID */
+    global_model_id?: number;
+    /** Success status */
+    success: boolean;
+    /** Error message if failed */
+    error_description?: string;
+  }[];
+}> {}
 
 /**
  * Parameters for updating global item price
@@ -668,20 +657,19 @@ export type UpdateGlobalPriceParams = {
 /**
  * Response for updating global item price
  */
-export interface UpdateGlobalPriceResponse
-  extends FetchResponse<{
-    /** List of price update results */
-    result_list: {
-      /** Shop ID */
-      shop_id: number;
-      /** Global model ID */
-      global_model_id?: number;
-      /** Success status */
-      success: boolean;
-      /** Error message if failed */
-      error_description?: string;
-    }[];
-  }> {}
+export interface UpdateGlobalPriceResponse extends FetchResponse<{
+  /** List of price update results */
+  result_list: {
+    /** Shop ID */
+    shop_id: number;
+    /** Global model ID */
+    global_model_id?: number;
+    /** Success status */
+    success: boolean;
+    /** Error message if failed */
+    error_description?: string;
+  }[];
+}> {}
 
 /**
  * Parameters for getting attribute tree
@@ -696,11 +684,10 @@ export type GetGlobalAttributeTreeParams = {
 /**
  * Response for getting attribute tree
  */
-export interface GetGlobalAttributeTreeResponse
-  extends FetchResponse<{
-    /** List of attributes */
-    attribute_list: Attribute[];
-  }> {}
+export interface GetGlobalAttributeTreeResponse extends FetchResponse<{
+  /** List of attributes */
+  attribute_list: Attribute[];
+}> {}
 
 /**
  * Brand information
@@ -733,17 +720,16 @@ export type GetGlobalBrandListParams = {
 /**
  * Response for getting brand list
  */
-export interface GetGlobalBrandListResponse
-  extends FetchResponse<{
-    /** List of brands */
-    brand_list: Brand[];
-    /** Whether there are more pages */
-    has_next_page: boolean;
-    /** Next page offset */
-    next_offset: number;
-    /** Total brand count */
-    total_count: number;
-  }> {}
+export interface GetGlobalBrandListResponse extends FetchResponse<{
+  /** List of brands */
+  brand_list: Brand[];
+  /** Whether there are more pages */
+  has_next_page: boolean;
+  /** Next page offset */
+  next_offset: number;
+  /** Total brand count */
+  total_count: number;
+}> {}
 
 /**
  * Parameters for category recommendation
@@ -756,11 +742,10 @@ export type GlobalCategoryRecommendParams = {
 /**
  * Response for category recommendation
  */
-export interface GlobalCategoryRecommendResponse
-  extends FetchResponse<{
-    /** List of recommended categories */
-    category_id_list: number[];
-  }> {}
+export interface GlobalCategoryRecommendResponse extends FetchResponse<{
+  /** List of recommended categories */
+  category_id_list: number[];
+}> {}
 
 /**
  * Parameters for getting global item limit
@@ -791,11 +776,10 @@ export interface GlobalItemLimit {
 /**
  * Response for getting global item limit
  */
-export interface GetGlobalItemLimitResponse
-  extends FetchResponse<{
-    /** Limit information */
-    limit_info: GlobalItemLimit;
-  }> {}
+export interface GetGlobalItemLimitResponse extends FetchResponse<{
+  /** Limit information */
+  limit_info: GlobalItemLimit;
+}> {}
 
 /**
  * Shop info for publishing
@@ -820,11 +804,10 @@ export type GetPublishableShopParams = {
 /**
  * Response for getting publishable shop list
  */
-export interface GetPublishableShopResponse
-  extends FetchResponse<{
-    /** List of publishable shops */
-    shop_list: PublishableShop[];
-  }> {}
+export interface GetPublishableShopResponse extends FetchResponse<{
+  /** List of publishable shops */
+  shop_list: PublishableShop[];
+}> {}
 
 /**
  * Parameters for getting shop publishable status
@@ -839,18 +822,17 @@ export type GetShopPublishableStatusParams = {
 /**
  * Response for getting shop publishable status
  */
-export interface GetShopPublishableStatusResponse
-  extends FetchResponse<{
-    /** List of shop status */
-    shop_list: {
-      /** Shop ID */
-      shop_id: number;
-      /** Whether the shop is publishable */
-      publishable: boolean;
-      /** Reason if not publishable */
-      reason?: string;
-    }[];
-  }> {}
+export interface GetShopPublishableStatusResponse extends FetchResponse<{
+  /** List of shop status */
+  shop_list: {
+    /** Shop ID */
+    shop_id: number;
+    /** Whether the shop is publishable */
+    publishable: boolean;
+    /** Reason if not publishable */
+    reason?: string;
+  }[];
+}> {}
 
 /**
  * Parameters for creating publish task
@@ -868,11 +850,10 @@ export type CreatePublishTaskParams = {
 /**
  * Response for creating publish task
  */
-export interface CreatePublishTaskResponse
-  extends FetchResponse<{
-    /** Publish task ID */
-    publish_task_id: string;
-  }> {}
+export interface CreatePublishTaskResponse extends FetchResponse<{
+  /** Publish task ID */
+  publish_task_id: string;
+}> {}
 
 /**
  * Parameters for getting publish task result
@@ -885,22 +866,21 @@ export type GetPublishTaskResultParams = {
 /**
  * Response for getting publish task result
  */
-export interface GetPublishTaskResultResponse
-  extends FetchResponse<{
-    /** Task status: PROCESSING, SUCCESS, FAILED */
-    status: string;
-    /** List of publish results */
-    result_list: {
-      /** Shop ID */
-      shop_id: number;
-      /** Item ID in the shop */
-      item_id?: number;
-      /** Success status */
-      success: boolean;
-      /** Error message if failed */
-      error_description?: string;
-    }[];
-  }> {}
+export interface GetPublishTaskResultResponse extends FetchResponse<{
+  /** Task status: PROCESSING, SUCCESS, FAILED */
+  status: string;
+  /** List of publish results */
+  result_list: {
+    /** Shop ID */
+    shop_id: number;
+    /** Item ID in the shop */
+    item_id?: number;
+    /** Success status */
+    success: boolean;
+    /** Error message if failed */
+    error_description?: string;
+  }[];
+}> {}
 
 /**
  * Parameters for getting published list
@@ -927,11 +907,10 @@ export interface PublishedShop {
 /**
  * Response for getting published list
  */
-export interface GetPublishedListResponse
-  extends FetchResponse<{
-    /** List of published shops */
-    shop_list: PublishedShop[];
-  }> {}
+export interface GetPublishedListResponse extends FetchResponse<{
+  /** List of published shops */
+  shop_list: PublishedShop[];
+}> {}
 
 /**
  * Parameters for getting global item ID by shop item ID
@@ -946,11 +925,10 @@ export type GetGlobalItemIdParams = {
 /**
  * Response for getting global item ID
  */
-export interface GetGlobalItemIdResponse
-  extends FetchResponse<{
-    /** Global item ID */
-    global_item_id: number;
-  }> {}
+export interface GetGlobalItemIdResponse extends FetchResponse<{
+  /** Global item ID */
+  global_item_id: number;
+}> {}
 
 /**
  * Parameters for getting recommended attributes
@@ -963,11 +941,10 @@ export type GetGlobalRecommendAttributeParams = {
 /**
  * Response for getting recommended attributes
  */
-export interface GetGlobalRecommendAttributeResponse
-  extends FetchResponse<{
-    /** List of recommended attributes */
-    attribute_list: Attribute[];
-  }> {}
+export interface GetGlobalRecommendAttributeResponse extends FetchResponse<{
+  /** List of recommended attributes */
+  attribute_list: Attribute[];
+}> {}
 
 /**
  * Parameters for searching global attribute value list
@@ -990,20 +967,19 @@ export type SearchGlobalAttributeValueListParams = {
 /**
  * Response for searching global attribute value list
  */
-export interface SearchGlobalAttributeValueListResponse
-  extends FetchResponse<{
-    /** List of attribute values */
-    attribute_value_list: {
-      /** Value ID */
-      value_id: number;
-      /** Original value name */
-      original_value_name: string;
-      /** Display value name */
-      display_value_name: string;
-      /** Value unit */
-      value_unit?: string;
-    }[];
-  }> {}
+export interface SearchGlobalAttributeValueListResponse extends FetchResponse<{
+  /** List of attribute values */
+  attribute_value_list: {
+    /** Value ID */
+    value_id: number;
+    /** Original value name */
+    original_value_name: string;
+    /** Display value name */
+    display_value_name: string;
+    /** Value unit */
+    value_unit?: string;
+  }[];
+}> {}
 
 /**
  * Parameters for getting variations
@@ -1016,11 +992,10 @@ export type GetGlobalVariationsParams = {
 /**
  * Response for getting variations
  */
-export interface GetGlobalVariationsResponse
-  extends FetchResponse<{
-    /** Tier variation list */
-    tier_variation: GlobalTierVariation[];
-  }> {}
+export interface GetGlobalVariationsResponse extends FetchResponse<{
+  /** Tier variation list */
+  tier_variation: GlobalTierVariation[];
+}> {}
 
 /**
  * Parameters for setting sync field
@@ -1040,18 +1015,17 @@ export type SetSyncFieldParams = {
 /**
  * Response for setting sync field
  */
-export interface SetSyncFieldResponse
-  extends FetchResponse<{
-    /** List of results */
-    result_list: {
-      /** Shop ID */
-      shop_id: number;
-      /** Success status */
-      success: boolean;
-      /** Error message if failed */
-      error_description?: string;
-    }[];
-  }> {}
+export interface SetSyncFieldResponse extends FetchResponse<{
+  /** List of results */
+  result_list: {
+    /** Shop ID */
+    shop_id: number;
+    /** Success status */
+    success: boolean;
+    /** Error message if failed */
+    error_description?: string;
+  }[];
+}> {}
 
 /**
  * Parameters for getting local adjustment rate
@@ -1066,18 +1040,17 @@ export type GetLocalAdjustmentRateParams = {
 /**
  * Response for getting local adjustment rate
  */
-export interface GetLocalAdjustmentRateResponse
-  extends FetchResponse<{
-    /** List of adjustment rates */
-    adjustment_rate_list: {
-      /** Shop ID */
-      shop_id: number;
-      /** Global model ID */
-      global_model_id?: number;
-      /** Adjustment rate (percentage) */
-      adjustment_rate: number;
-    }[];
-  }> {}
+export interface GetLocalAdjustmentRateResponse extends FetchResponse<{
+  /** List of adjustment rates */
+  adjustment_rate_list: {
+    /** Shop ID */
+    shop_id: number;
+    /** Global model ID */
+    global_model_id?: number;
+    /** Adjustment rate (percentage) */
+    adjustment_rate: number;
+  }[];
+}> {}
 
 /**
  * Parameters for updating local adjustment rate
@@ -1099,20 +1072,19 @@ export type UpdateLocalAdjustmentRateParams = {
 /**
  * Response for updating local adjustment rate
  */
-export interface UpdateLocalAdjustmentRateResponse
-  extends FetchResponse<{
-    /** List of update results */
-    result_list: {
-      /** Shop ID */
-      shop_id: number;
-      /** Global model ID */
-      global_model_id?: number;
-      /** Success status */
-      success: boolean;
-      /** Error message if failed */
-      error_description?: string;
-    }[];
-  }> {}
+export interface UpdateLocalAdjustmentRateResponse extends FetchResponse<{
+  /** List of update results */
+  result_list: {
+    /** Shop ID */
+    shop_id: number;
+    /** Global model ID */
+    global_model_id?: number;
+    /** Success status */
+    success: boolean;
+    /** Error message if failed */
+    error_description?: string;
+  }[];
+}> {}
 
 /**
  * Size chart information
@@ -1144,15 +1116,14 @@ export type GetGlobalSizeChartListParams = {
 /**
  * Response for getting size chart list
  */
-export interface GetGlobalSizeChartListResponse
-  extends FetchResponse<{
-    /** List of size charts */
-    size_chart_list: SizeChart[];
-    /** Whether there are more pages */
-    has_next_page: boolean;
-    /** Next page offset */
-    next_offset: number;
-  }> {}
+export interface GetGlobalSizeChartListResponse extends FetchResponse<{
+  /** List of size charts */
+  size_chart_list: SizeChart[];
+  /** Whether there are more pages */
+  has_next_page: boolean;
+  /** Next page offset */
+  next_offset: number;
+}> {}
 
 /**
  * Parameters for getting size chart detail
@@ -1165,11 +1136,10 @@ export type GetGlobalSizeChartDetailParams = {
 /**
  * Response for getting size chart detail
  */
-export interface GetGlobalSizeChartDetailResponse
-  extends FetchResponse<{
-    /** Size chart information */
-    size_chart: SizeChart;
-  }> {}
+export interface GetGlobalSizeChartDetailResponse extends FetchResponse<{
+  /** Size chart information */
+  size_chart: SizeChart;
+}> {}
 
 /**
  * Parameters for updating size chart
@@ -1204,8 +1174,7 @@ export type SupportSizeChartParams = {
 /**
  * Response for checking size chart support
  */
-export interface SupportSizeChartResponse
-  extends FetchResponse<{
-    /** Whether size chart is supported */
-    support: boolean;
-  }> {}
+export interface SupportSizeChartResponse extends FetchResponse<{
+  /** Whether size chart is supported */
+  support: boolean;
+}> {}

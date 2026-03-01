@@ -6,6 +6,10 @@
   "define": "Only available for Brazil sellers. Use this API to check the status of polygon file uploaded for BR Entrega Turbo channel (Channel ID: 90026) by querying the task_id returned via the v2.logistics.upload_serviceable_polygon.",
   "error_list": [
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "error_server",
       "description": "Error Details : {msg}"
     }

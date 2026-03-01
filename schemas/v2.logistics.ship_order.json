@@ -886,6 +886,10 @@
       "description": "Currently, update is not allow."
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": " logistics.package_already_shipped",
       "description": "This package has already been arranged shipment and you can't call this API again."
     },

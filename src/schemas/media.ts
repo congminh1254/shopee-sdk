@@ -226,8 +226,10 @@ export interface MediaVideoInfo {
 /**
  * Parameters for v2.media_space.get_video_upload_result
  */
-export interface GetVideoUploadResultParams
-  extends Record<string, string | number | boolean | null | undefined> {
+export interface GetVideoUploadResultParams extends Record<
+  string,
+  string | number | boolean | null | undefined
+> {
   /** The video_upload_id returned by init_video_upload */
   video_upload_id: string;
 }

@@ -14,6 +14,10 @@
       "description": "Some package failed to print, please call create_shipping_document_job again. Detail: {{msg}}"
     },
     {
+      "name": "logistics.invalid_address_version",
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
+    },
+    {
       "name": "logistics.sd_file_expired",
       "description": "The shipping document file is expired, please get a new one and retry."
     },

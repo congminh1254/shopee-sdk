@@ -7,7 +7,7 @@
   "error_list": [
     {
       "name": "error_param",
-      "description": "Can't delete default address/pickup address/return address."
+      "description": "Can't delete default address/pickup address/return address/inbound pickup address."
     },
     {
       "name": "logistics.address_not_found",
