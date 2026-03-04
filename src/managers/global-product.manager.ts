@@ -904,9 +904,9 @@ export class GlobalProductManager extends BaseManager {
       this.config,
       "/global_product/search_global_attribute_value_list",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;

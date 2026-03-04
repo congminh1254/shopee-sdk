@@ -1304,9 +1304,9 @@ describe("GlobalProductManager", () => {
         mockConfig,
         "/global_product/search_global_attribute_value_list",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
+          body: {
             category_id: 100182,
             attribute_id: 1000,
             keyword: "cotton",

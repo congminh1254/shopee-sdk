@@ -349,6 +349,124 @@ Commit prefixes:
 - `feat!:` or `BREAKING CHANGE:` → Major version bump
 - `docs:`, `chore:`, `test:` → No version bump
 
+## ⚠️ Known Pitfalls & Common Mistakes
+
+### HTTP Method: Always Verify GET vs POST Against the Schema
+
+**The most common bug in this SDK**: endpoints being incorrectly implemented as `GET` when the Shopee API requires `POST`.
+
+#### How to Determine the Correct HTTP Method
+
+The `schemas/` directory contains official Shopee API spec files (`v2.<module>.<endpoint>.json`). Each file has a `method` field:
+
+- `method: 1` → **POST** (use `method: "POST"` and `body: params`)
+- `method: 2` → **GET** (use `method: "GET"` and `params: params`)
+
+**Always check the spec file** before implementing or reviewing an endpoint:
+
+```bash
+# Example: check if get_escrow_detail_batch is GET or POST
+python3 -c "
+import json
+d = json.load(open('schemas/v2.payment.get_escrow_detail_batch.json'))
+print('method:', d['method'])  # 1 = POST, 2 = GET
+print('path:', d['path'])
+"
+```
+
+#### Correct vs Incorrect Implementation
+
+```typescript
+// ❌ WRONG - Using GET for a POST endpoint
+async getEscrowDetailBatch(params: GetEscrowDetailBatchParams) {
+  return ShopeeFetch.fetch(this.config, "/payment/get_escrow_detail_batch", {
+    method: "GET",   // BUG: spec says method=1 (POST)
+    auth: true,
+    params,          // BUG: params go in body for POST
+  });
+}
+
+// ✅ CORRECT
+async getEscrowDetailBatch(params: GetEscrowDetailBatchParams) {
+  return ShopeeFetch.fetch(this.config, "/payment/get_escrow_detail_batch", {
+    method: "POST",  // Correct: spec says method=1 (POST)
+    auth: true,
+    body: params,    // Correct: POST body
+  });
+}
+```
+
+#### Why This Matters
+
+HTTP GET requests serialize the body as query string parameters, which the Shopee API rejects with `error_param`. POST endpoints **must** send data in the request body.
+
+#### Endpoints Fixed in PR #125 (Previously Broken)
+
+These endpoints were all wrongly implemented as GET — they required POST:
+
+| Module | Endpoint |
+|--------|----------|
+| payment | `get_escrow_detail_batch` |
+| payment | `set_shop_installment_status` |
+| payment | `get_item_installment_status` |
+| payment | `set_item_installment_status` |
+| payment | `get_billing_transaction_info` |
+| logistics | `get_mass_tracking_number` |
+| logistics | `get_mass_shipping_parameter` |
+| product | `search_attribute_value_list` |
+| product | `get_weight_recommendation` |
+| product | `get_item_content_diagnosis_result` |
+| product | `get_item_list_by_content_diagnosis` |
+| product | `get_product_certification_rule` |
+| product | `search_unpackaged_model_list` |
+| product | `get_mart_item_mapping_by_id` |
+| global_product | `search_global_attribute_value_list` |
+
+#### Checklist When Adding or Reviewing an Endpoint
+
+1. **Find the spec file**: `schemas/v2.<module>.<endpoint>.json`
+2. **Check `method` field**: `1` = POST, `2` = GET
+3. **Use the right fetch option**: `body: params` for POST, `params: params` for GET
+4. **Check `request_params`**: Verify the parameter names and types match the spec — they may differ from what you expect (e.g., the spec might use `item_id_list: int[]` while old code used `item_id: number`)
+5. **Check `response_params`**: Verify response field names match the spec
+
+#### Quick Script to Audit All Endpoints
+
+```bash
+python3 -c "
+import json, os, re
+
+schemas_dir = 'schemas'
+managers_dir = 'src/managers'
+
+# Build schema map: short_path -> method (1=POST, 2=GET)
+schema_map = {}
+for fname in os.listdir(schemas_dir):
+    if not fname.endswith('.json'): continue
+    d = json.load(open(os.path.join(schemas_dir, fname)))
+    path = d.get('path', '').replace('/api/v2', '')
+    if path:
+        schema_map[path] = d.get('method', 2)
+
+# Find mismatches in managers
+for mfile in sorted(os.listdir(managers_dir)):
+    if not mfile.endswith('.manager.ts'): continue
+    content = open(os.path.join(managers_dir, mfile)).read()
+    lines = content.split('\n')
+    for i, line in enumerate(lines):
+        ep_match = re.search(r'\"(/[a-z_/]+)\"', line)
+        if ep_match:
+            endpoint = ep_match.group(1)
+            for j in range(i, min(i+5, len(lines))):
+                if 'method: \"GET\"' in lines[j]:
+                    if schema_map.get(endpoint) == 1:
+                        print(f'BUG {mfile}:{i+1}: {endpoint} should be POST')
+                    break
+"
+```
+
+---
+
 ## 💡 Common Tasks for AI Agents
 
 ### Adding a New Manager
@@ -388,21 +506,24 @@ export class ShopeeSDK {
 
 ### Adding a New Method to Existing Manager
 
-1. Define types in `src/schemas/` (if needed)
-2. Add method to manager:
+1. **Check the spec file first**: `schemas/v2.<module>.<endpoint>.json`
+   - `method: 1` in spec → use `method: "POST"` with `body: params`
+   - `method: 2` in spec → use `method: "GET"` with `params: params`
+   - Verify parameter names in `request_params` match exactly
+2. Define types in `src/schemas/` (if needed)
+3. Add method to manager:
 ```typescript
 async newMethod(params: NewMethodRequest): Promise<NewMethodResponse> {
   return ShopeeFetch.fetch(this.config, '/path/to/endpoint', {
-    method: 'GET', // or POST
-    params,        // for GET
-    body,          // for POST
-    auth: true,    // or false for public endpoints
+    method: 'POST', // Always verify against schemas/v2.<module>.<endpoint>.json (method 1=POST, 2=GET)
+    body: params,   // for POST; use `params` for GET
+    auth: true,     // or false for public endpoints
   });
 }
 ```
 
-3. Add tests
-4. Update docs
+4. Add tests
+5. Update docs
 
 ### Working with Types
 
@@ -573,6 +694,9 @@ const sdk = new ShopeeSDK(config, new RedisTokenStorage());
 When working with this SDK, ensure you:
 
 - [ ] Understand the manager pattern and how endpoints are organized
+- [ ] **Check `schemas/v2.<module>.<endpoint>.json` before implementing any endpoint** — `method: 1` = POST, `method: 2` = GET
+- [ ] **Use `body: params` for POST endpoints and `params: params` for GET endpoints** (common source of bugs)
+- [ ] **Verify parameter names match the spec** — `request_params` field in the schema JSON
 - [ ] Know how to add methods to managers using `ShopeeFetch.fetch()`
 - [ ] Understand the authentication flow and token management
 - [ ] Know how request signing works (HMAC-SHA256)

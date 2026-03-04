@@ -444,9 +444,9 @@ export class LogisticsManager extends BaseManager {
       this.config,
       "/logistics/get_mass_shipping_parameter",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
 
@@ -463,9 +463,9 @@ export class LogisticsManager extends BaseManager {
       this.config,
       "/logistics/get_mass_tracking_number",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
 

@@ -889,9 +889,9 @@ export class ProductManager extends BaseManager {
       this.config,
       "/product/search_attribute_value_list",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;
@@ -959,9 +959,9 @@ export class ProductManager extends BaseManager {
       this.config,
       "/product/get_weight_recommendation",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;
@@ -1003,12 +1003,9 @@ export class ProductManager extends BaseManager {
       this.config,
       "/product/get_item_content_diagnosis_result",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params: {
-          ...params,
-          item_id_list: params.item_id_list.join(","),
-        },
+        body: params,
       }
     );
     return response;
@@ -1029,9 +1026,9 @@ export class ProductManager extends BaseManager {
       this.config,
       "/product/get_item_list_by_content_diagnosis",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;
@@ -1276,9 +1273,9 @@ export class ProductManager extends BaseManager {
       this.config,
       "/product/get_product_certification_rule",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;
@@ -1291,9 +1288,9 @@ export class ProductManager extends BaseManager {
       this.config,
       "/product/search_unpackaged_model_list",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;
@@ -1309,12 +1306,9 @@ export class ProductManager extends BaseManager {
       this.config,
       "/product/get_mart_item_mapping_by_id",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params: {
-          ...params,
-          outlet_shop_id_list: params.outlet_shop_id_list.join(","),
-        },
+        body: params,
       }
     );
     return response;
