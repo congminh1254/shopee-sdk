@@ -816,15 +816,17 @@ describe("LogisticsManager", () => {
       };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.getMassShippingParameter({ package_number_list: ["PKG1"] });
+      await logisticsManager.getMassShippingParameter({
+        package_list: [{ package_number: "PKG1" }],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_mass_shipping_parameter",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: { package_number_list: ["PKG1"] },
+          body: { package_list: [{ package_number: "PKG1" }] },
         }
       );
     });
@@ -836,19 +838,21 @@ describe("LogisticsManager", () => {
         request_id: "test",
         error: "",
         message: "",
-        response: { result_list: [] },
+        response: { success_list: [], fail_list: [] },
       };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.getMassTrackingNumber({ order_sn_list: ["ORDER1"] });
+      await logisticsManager.getMassTrackingNumber({
+        package_list: [{ package_number: "PKG1" }],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_mass_tracking_number",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: { order_sn_list: ["ORDER1"] },
+          body: { package_list: [{ package_number: "PKG1" }] },
         }
       );
     });

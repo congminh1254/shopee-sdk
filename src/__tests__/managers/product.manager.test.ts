@@ -1672,9 +1672,9 @@ describe("ProductManager", () => {
         mockConfig,
         "/product/search_attribute_value_list",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
+          body: {
             category_id: 100001,
             attribute_id: 1001,
             search_value: "Cotton",
@@ -1788,9 +1788,9 @@ describe("ProductManager", () => {
         mockConfig,
         "/product/get_weight_recommendation",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
+          body: {
             category_id: 100001,
             item_name: "T-Shirt",
           },
@@ -1870,10 +1870,10 @@ describe("ProductManager", () => {
         mockConfig,
         "/product/get_item_content_diagnosis_result",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
-            item_id_list: "123456",
+          body: {
+            item_id_list: [123456],
           },
         }
       );
@@ -1914,9 +1914,9 @@ describe("ProductManager", () => {
         mockConfig,
         "/product/get_item_list_by_content_diagnosis",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
+          body: {
             status: "PASSED",
             offset: 0,
             page_size: 20,
@@ -2365,9 +2365,9 @@ describe("ProductManager", () => {
         mockConfig,
         "/product/get_product_certification_rule",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
+          body: {
             category_id: 100001,
           },
         }
@@ -2395,9 +2395,9 @@ describe("ProductManager", () => {
         mockConfig,
         "/product/search_unpackaged_model_list",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
+          body: {
             item_id: 123456,
             search_value: "test",
           },
@@ -2446,11 +2446,11 @@ describe("ProductManager", () => {
         mockConfig,
         "/product/get_mart_item_mapping_by_id",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
+          body: {
             mart_item_id_list: [111111],
-            outlet_shop_id_list: "222222,444444",
+            outlet_shop_id_list: [222222, 444444],
           },
         }
       );

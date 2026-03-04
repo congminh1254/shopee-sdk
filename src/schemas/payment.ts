@@ -502,10 +502,8 @@ export interface GetShopInstallmentStatusResponse extends BaseResponse {
  * Parameters for setting shop installment status
  */
 export type SetShopInstallmentStatusParams = {
-  /** Whether to enable installment for shop */
-  installment_enabled: boolean;
-  /** List of tenure months to enable */
-  tenure_list?: number[];
+  /** Installment status: 1=enable, 0=disable */
+  installment_status: number;
 };
 
 /**
@@ -519,19 +517,39 @@ export interface SetShopInstallmentStatusResponse extends BaseResponse {
  * Parameters for getting item installment status
  */
 export type GetItemInstallmentStatusParams = {
+  /** List of item IDs */
+  item_id_list: number[];
+};
+
+/**
+ * Item installment info item
+ */
+export interface ItemInstallmentInfo {
   /** Item ID */
   item_id: number;
-};
+  /** Tenure list enabled for this item */
+  tenure_list: number[];
+}
+
+/**
+ * Item plan ahora info
+ */
+export interface ItemPlanAhoraInfo {
+  /** Item ID */
+  item_id: number;
+  /** Whether item participates in plan ahora */
+  participate_plan_ahora: boolean;
+}
 
 /**
  * Response for get item installment status API
  */
 export interface GetItemInstallmentStatusResponse extends BaseResponse {
   response: {
-    /** Item ID */
-    item_id: number;
-    /** Tenure list enabled for this item */
-    tenure_list: number[];
+    /** List of item installment info */
+    item_installment_list?: ItemInstallmentInfo[];
+    /** List of item plan ahora info */
+    item_plan_ahora_list?: ItemPlanAhoraInfo[];
   };
 }
 
@@ -539,10 +557,12 @@ export interface GetItemInstallmentStatusResponse extends BaseResponse {
  * Parameters for setting item installment status
  */
 export type SetItemInstallmentStatusParams = {
-  /** Item ID */
-  item_id: number;
+  /** List of item IDs */
+  item_id_list: number[];
   /** List of tenure months to enable */
   tenure_list: number[];
+  /** Whether to participate in plan ahora (optional) */
+  participate_plan_ahora?: boolean;
 };
 
 /**
@@ -646,32 +666,38 @@ export interface GetIncomeStatementResponse extends BaseResponse {
  * Parameters for getting billing transaction info
  */
 export type GetBillingTransactionInfoParams = {
-  /** Transaction time from (timestamp) */
-  transaction_time_from: number;
-  /** Transaction time to (timestamp) */
-  transaction_time_to: number;
-  /** Page number, default 1 */
-  page_no?: number;
-  /** Page size, max 100, default 40 */
-  page_size?: number;
+  /** Billing transaction info type */
+  billing_transaction_info_type: number;
+  /** Encrypted payout IDs */
+  encrypted_payout_ids?: string[];
+  /** Cursor for pagination */
+  cursor: string;
+  /** Page size, max 100 */
+  page_size: number;
 };
 
 /**
  * Billing transaction item
  */
 export interface BillingTransaction {
-  /** Transaction ID */
-  transaction_id: string;
-  /** Transaction type */
-  transaction_type: string;
   /** Transaction amount */
   amount: number;
-  /** Transaction time (timestamp) */
-  transaction_time: number;
-  /** Order SN if applicable */
-  order_sn?: string;
   /** Currency */
   currency: string;
+  /** Order SN if applicable */
+  order_sn?: string;
+  /** Cost header */
+  cost_header?: string;
+  /** Scenario */
+  scenario?: string;
+  /** Remark */
+  remark?: string;
+  /** Level */
+  level?: string;
+  /** Billing transaction type */
+  billing_transaction_type?: string;
+  /** Billing transaction status */
+  billing_transaction_status?: string;
 }
 
 /**
@@ -680,9 +706,11 @@ export interface BillingTransaction {
 export interface GetBillingTransactionInfoResponse extends BaseResponse {
   response: {
     /** List of billing transactions */
-    transaction_list: BillingTransaction[];
+    transactions: BillingTransaction[];
     /** Indicates whether there are more pages */
     more: boolean;
+    /** Next cursor for pagination */
+    next_cursor: string;
   };
 }
 

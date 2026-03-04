@@ -120,9 +120,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_escrow_detail_batch",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;
@@ -199,8 +199,7 @@ export class PaymentManager extends BaseManager {
    * Sets the staging capability of shop level.
    *
    * @param params - Parameters for setting shop installment status
-   * @param params.installment_enabled - Whether to enable installment for shop
-   * @param params.tenure_list - List of tenure months to enable
+   * @param params.installment_status - Installment status: 1=enable, 0=disable
    *
    * @returns A promise that resolves to the set shop installment status response
    *
@@ -213,9 +212,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/set_shop_installment_status",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;
@@ -225,7 +224,7 @@ export class PaymentManager extends BaseManager {
    * Get item installment tenures. Only for TH、TW.
    *
    * @param params - Parameters for getting item installment status
-   * @param params.item_id - Item ID
+   * @param params.item_id_list - List of item IDs
    *
    * @returns A promise that resolves to the item installment status response
    *
@@ -238,9 +237,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_item_installment_status",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;
@@ -250,7 +249,7 @@ export class PaymentManager extends BaseManager {
    * Set item installment. Only for TH、TW.
    *
    * @param params - Parameters for setting item installment status
-   * @param params.item_id - Item ID
+   * @param params.item_id_list - List of item IDs
    * @param params.tenure_list - List of tenure months to enable
    *
    * @returns A promise that resolves to the set item installment status response
@@ -264,9 +263,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/set_item_installment_status",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;
@@ -376,10 +375,10 @@ export class PaymentManager extends BaseManager {
    * both released and to-be released transaction can be found in here.
    *
    * @param params - Parameters for getting billing transaction info
-   * @param params.transaction_time_from - Transaction time from (timestamp)
-   * @param params.transaction_time_to - Transaction time to (timestamp)
-   * @param params.page_no - Page number, default 1
-   * @param params.page_size - Page size, max 100, default 40
+   * @param params.billing_transaction_info_type - Billing transaction info type
+   * @param params.encrypted_payout_ids - Encrypted payout IDs (optional)
+   * @param params.cursor - Cursor for pagination
+   * @param params.page_size - Page size, max 100
    *
    * @returns A promise that resolves to the billing transaction info response
    *
@@ -392,9 +391,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_billing_transaction_info",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;

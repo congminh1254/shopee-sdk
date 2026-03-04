@@ -700,12 +700,24 @@ export interface GetBookingTrackingNumberResponse extends BaseResponse {
 // ============================================
 
 /**
+ * Package item for mass shipping/tracking requests
+ */
+export type PackageListItem = {
+  /** Shopee's unique identifier for the package under an order */
+  package_number: string;
+};
+
+/**
  * Parameters for get mass shipping parameter
  */
 export type GetMassShippingParameterParams = {
-  /** List of package numbers */
-  package_number_list: string[];
-} & Record<string, string | number | boolean | null | undefined>;
+  /** Logistics channel ID (optional) */
+  logistics_channel_id?: number;
+  /** Product location ID (optional) */
+  product_location_id?: string;
+  /** List of packages to get shipping parameters for */
+  package_list: PackageListItem[];
+} & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
  * Response for get mass shipping parameter API
@@ -725,20 +737,40 @@ export interface GetMassShippingParameterResponse extends BaseResponse {
  * Parameters for get mass tracking number
  */
 export type GetMassTrackingNumberParams = {
-  /** List of order serial numbers */
-  order_sn_list: string[];
-} & Record<string, string | number | boolean | null | undefined>;
+  /** List of packages to get tracking numbers for */
+  package_list: PackageListItem[];
+  /** Optional response fields to include (e.g. "first_mile_tracking_number") */
+  response_optional_fields?: string;
+} & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
- * Mass tracking result item
+ * Mass tracking success item
  */
-export interface MassTrackingResultItem {
-  /** Order serial number */
-  order_sn: string;
-  /** Tracking number */
+export interface MassTrackingSuccessItem {
+  /** Shopee's unique identifier for the package under an order */
+  package_number: string;
+  /** The tracking number of this order */
   tracking_number?: string;
+  /** The unique identifier for package of BR correios */
+  plp_number?: string;
+  /** The first mile tracking number of the order */
+  first_mile_tracking_number?: string;
+  /** The last mile tracking number of the order */
+  last_mile_tracking_number?: string;
   /** Hint information */
   hint?: string;
+  /** Pickup code for instant+sameday orders */
+  pickup_code?: string;
+}
+
+/**
+ * Mass tracking fail item
+ */
+export interface MassTrackingFailItem {
+  /** Shopee's unique identifier for the package under an order */
+  package_number: string;
+  /** Reason for failure */
+  fail_reason?: string;
 }
 
 /**
@@ -746,8 +778,10 @@ export interface MassTrackingResultItem {
  */
 export interface GetMassTrackingNumberResponse extends BaseResponse {
   response?: {
-    /** List of tracking results */
-    result_list?: MassTrackingResultItem[];
+    /** List of successfully retrieved tracking numbers */
+    success_list?: MassTrackingSuccessItem[];
+    /** List of packages that failed to get tracking numbers */
+    fail_list?: MassTrackingFailItem[];
   };
 }
 

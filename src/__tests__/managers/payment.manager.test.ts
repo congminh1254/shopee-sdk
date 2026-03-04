@@ -424,9 +424,9 @@ describe("PaymentManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_escrow_detail_batch", {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params: {
+        body: {
           order_sn_list: ["220101000000001", "220101000000002"],
         },
       });
@@ -568,19 +568,17 @@ describe("PaymentManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.setShopInstallmentStatus({
-        installment_enabled: true,
-        tenure_list: [3, 6, 12],
+        installment_status: 1,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/payment/set_shop_installment_status",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
-            installment_enabled: true,
-            tenure_list: [3, 6, 12],
+          body: {
+            installment_status: 1,
           },
         }
       );
@@ -596,32 +594,37 @@ describe("PaymentManager", () => {
         error: "",
         message: "",
         response: {
-          item_id: 123456,
-          tenure_list: [3, 6],
+          item_installment_list: [
+            {
+              item_id: 123456,
+              tenure_list: [3, 6],
+            },
+          ],
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.getItemInstallmentStatus({
-        item_id: 123456,
+        item_id_list: [123456],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/payment/get_item_installment_status",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
-            item_id: 123456,
+          body: {
+            item_id_list: [123456],
           },
         }
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.item_id).toBe(123456);
-      expect(result.response.tenure_list).toHaveLength(2);
+      expect(result.response.item_installment_list).toHaveLength(1);
+      expect(result.response.item_installment_list![0].item_id).toBe(123456);
+      expect(result.response.item_installment_list![0].tenure_list).toHaveLength(2);
     });
   });
 
@@ -637,7 +640,7 @@ describe("PaymentManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.setItemInstallmentStatus({
-        item_id: 123456,
+        item_id_list: [123456],
         tenure_list: [3, 6, 12],
       });
 
@@ -645,10 +648,10 @@ describe("PaymentManager", () => {
         mockConfig,
         "/payment/set_item_installment_status",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
-            item_id: 123456,
+          body: {
+            item_id_list: [123456],
             tenure_list: [3, 6, 12],
           },
         }
@@ -803,26 +806,25 @@ describe("PaymentManager", () => {
         error: "",
         message: "",
         response: {
-          transaction_list: [
+          transactions: [
             {
-              transaction_id: "TXN_123456",
-              transaction_type: "ORDER_PAYMENT",
               amount: 1000.0,
-              transaction_time: 1651680000,
-              order_sn: "220101000000001",
               currency: "USD",
+              order_sn: "220101000000001",
+              billing_transaction_type: "ORDER_PAYMENT",
+              billing_transaction_status: "COMPLETED",
             },
           ],
           more: false,
+          next_cursor: "",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.getBillingTransactionInfo({
-        transaction_time_from: 1651680000,
-        transaction_time_to: 1651939200,
-        page_no: 1,
+        billing_transaction_info_type: 1,
+        cursor: "",
         page_size: 40,
       });
 
@@ -830,19 +832,18 @@ describe("PaymentManager", () => {
         mockConfig,
         "/payment/get_billing_transaction_info",
         {
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: {
-            transaction_time_from: 1651680000,
-            transaction_time_to: 1651939200,
-            page_no: 1,
+          body: {
+            billing_transaction_info_type: 1,
+            cursor: "",
             page_size: 40,
           },
         }
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.transaction_list).toHaveLength(1);
+      expect(result.response.transactions).toHaveLength(1);
     });
   });
 
