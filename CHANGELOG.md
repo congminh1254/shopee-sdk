@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4](https://github.com/congminh1254/shopee-sdk/compare/v1.5.3...v1.5.4) (2026-03-04)
+
+
+### Bug Fixes
+
+* correct GET/POST method and parameter schemas across multiple managers ([#127](https://github.com/congminh1254/shopee-sdk/issues/127)) ([4b06a5d](https://github.com/congminh1254/shopee-sdk/commit/4b06a5d985e5b84888a7a4122f4921d03564e56d))
+
 ## [1.5.3](https://github.com/congminh1254/shopee-sdk/compare/v1.5.2...v1.5.3) (2026-03-01)
 
 
