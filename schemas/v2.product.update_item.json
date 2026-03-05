@@ -15,6 +15,14 @@
     },
     {
       "name": "product.error_busi",
+      "description": "Medicine list ID is mandatory for products in Prescription/OTC category."
+    },
+    {
+      "name": "product.error_busi",
+      "description": "Please input the correct medicine list ID."
+    },
+    {
+      "name": "product.error_busi",
       "description": "Upload failed, please upload a more standard size chart image."
     },
     {

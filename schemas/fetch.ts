@@ -50,10 +50,37 @@ async function fetchEndpointDetail(name: string) {
   return data;
 }
 
+// Recursively unescape any string fields that contain valid JSON
+function unescapeJsonFields(obj: any): any {
+  if (typeof obj === 'string') {
+    const trimmed = obj.trim();
+    if ((trimmed.startsWith('{') || trimmed.startsWith('[')) && trimmed.length >= 2) {
+      try {
+        return unescapeJsonFields(JSON.parse(obj));
+      } catch {
+        // Not valid JSON, return as-is
+      }
+    }
+    return obj;
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(unescapeJsonFields);
+  }
+  if (obj !== null && typeof obj === 'object') {
+    const result: Record<string, any> = {};
+    for (const key of Object.keys(obj)) {
+      result[key] = unescapeJsonFields(obj[key]);
+    }
+    return result;
+  }
+  return obj;
+}
+
 // Save schema to schemas folder
 async function saveSchema(name: string, schema: any) {
   const schemasFolder = path.join(process.cwd(), "schemas");
-  fs.writeFileSync(path.join(schemasFolder, `${name}.json`), JSON.stringify(schema, null, 2));
+  const unescaped = unescapeJsonFields(schema);
+  fs.writeFileSync(path.join(schemasFolder, `${name}.json`), JSON.stringify(unescaped, null, 2));
 }
 
 // Main function
