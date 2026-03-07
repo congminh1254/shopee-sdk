@@ -218,7 +218,7 @@
   "is_get_method": 0,
   "method": 1,
   "module_id": 90,
-  "module_name": "GlobalProduct(CB seller only)",
+  "module_name": "GlobalProduct",
   "params": {
     "request_params": [
       {
