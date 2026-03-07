@@ -2490,26 +2490,25 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          success_list: [
-            {
-              mart_item_id: 111111,
-              outlet_shop_id: 222222,
-              outlet_item_id: 333333,
-            },
-          ],
-          failed_list: [],
+          item_id: 333333,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.publishItemToOutletShop({
-        publish_item_list: [
-          {
-            mart_item_id: 111111,
-            outlet_shop_id: 222222,
-          },
-        ],
+        mart_item_id: 111111,
+        outlet_shop_id: 222222,
+        publish_item: {
+          model: [
+            {
+              relate_mart_model_id: 0,
+              original_price: 99.99,
+              seller_stock: [{ stock: 100 }],
+              pre_order: { is_pre_order: false },
+            },
+          ],
+        },
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -2519,65 +2518,73 @@ describe("ProductManager", () => {
           method: "POST",
           auth: true,
           body: {
-            publish_item_list: [
-              {
-                mart_item_id: 111111,
-                outlet_shop_id: 222222,
-              },
-            ],
+            mart_item_id: 111111,
+            outlet_shop_id: 222222,
+            publish_item: {
+              model: [
+                {
+                  relate_mart_model_id: 0,
+                  original_price: 99.99,
+                  seller_stock: [{ stock: 100 }],
+                  pre_order: { is_pre_order: false },
+                },
+              ],
+            },
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.success_list).toHaveLength(1);
-      expect(result.response.success_list[0].mart_item_id).toBe(111111);
-      expect(result.response.success_list[0].outlet_shop_id).toBe(222222);
-      expect(result.response.success_list[0].outlet_item_id).toBe(333333);
-      expect(result.response.failed_list).toHaveLength(0);
+      expect(result.response?.item_id).toBe(333333);
     });
 
-    it("should handle partial success when publishing items", async () => {
+    it("should publish item with full config including logistics and purchase limits", async () => {
       const mockResponse: PublishItemToOutletShopResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          success_list: [
-            {
-              mart_item_id: 111111,
-              outlet_shop_id: 222222,
-              outlet_item_id: 333333,
-            },
-          ],
-          failed_list: [
-            {
-              mart_item_id: 444444,
-              outlet_shop_id: 555555,
-              failed_reason: "Item already published",
-            },
-          ],
+          item_id: 444444,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.publishItemToOutletShop({
-        publish_item_list: [
-          {
-            mart_item_id: 111111,
-            outlet_shop_id: 222222,
+        mart_item_id: 111111,
+        outlet_shop_id: 222222,
+        publish_item: {
+          model: [
+            {
+              relate_mart_model_id: 100001,
+              original_price: 150.0,
+              seller_stock: [{ location_id: "LOC001", stock: 50 }],
+              pre_order: { is_pre_order: false },
+            },
+            {
+              relate_mart_model_id: 100002,
+              original_price: 200.0,
+              seller_stock: [{ location_id: "LOC001", stock: 30 }],
+              pre_order: { is_pre_order: true, days_to_ship: 5 },
+            },
+          ],
+          logistic_info: [
+            {
+              logistic_id: 90001,
+              enabled: true,
+              shipping_fee: 5.0,
+              is_free: false,
+            },
+          ],
+          purchase_limit_info: {
+            min_purchase_limit: 1,
+            max_purchase_limit: { purchase_limit: 10 },
           },
-          {
-            mart_item_id: 444444,
-            outlet_shop_id: 555555,
-          },
-        ],
+        },
       });
 
-      expect(result.response.success_list).toHaveLength(1);
-      expect(result.response.failed_list).toHaveLength(1);
-      expect(result.response.failed_list[0].failed_reason).toBe("Item already published");
+      expect(result.error).toBe("");
+      expect(result.response?.item_id).toBe(444444);
     });
   });
 });

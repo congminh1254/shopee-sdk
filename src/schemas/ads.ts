@@ -558,6 +558,7 @@ export interface CheckCreateGmsProductCampaignEligibilityResponse extends BaseRe
 
 /**
  * Parameters for the create auto product ads API
+ * @deprecated This API is coming offline soon. Please migrate to alternative advertising methods.
  */
 export type CreateAutoProductAdsParams = {
   /** A random string used to prevent duplicate ads */
@@ -572,6 +573,7 @@ export type CreateAutoProductAdsParams = {
 
 /**
  * Response for the create auto product ads API
+ * @deprecated This API is coming offline soon. Please migrate to alternative advertising methods.
  */
 export interface CreateAutoProductAdsResponse extends BaseResponse {
   response: {
@@ -668,6 +670,7 @@ export interface CreateManualProductAdsResponse extends BaseResponse {
 
 /**
  * Parameters for the edit auto product ads API
+ * @deprecated This API is coming offline soon. Please migrate to alternative advertising methods.
  */
 export type EditAutoProductAdsParams = {
   /** A random string used to prevent duplicate ads */
@@ -686,6 +689,7 @@ export type EditAutoProductAdsParams = {
 
 /**
  * Response for the edit auto product ads API
+ * @deprecated This API is coming offline soon. Please migrate to alternative advertising methods.
  */
 export interface EditAutoProductAdsResponse extends BaseResponse {
   response: {

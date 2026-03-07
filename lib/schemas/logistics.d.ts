@@ -647,7 +647,7 @@ export type GetMassShippingParameterParams = {
     product_location_id?: string;
     /** List of packages to get shipping parameters for */
     package_list: PackageListItem[];
-} & Record<string, string | number | boolean | null | undefined | object>;
+} & Record<string, string | number | boolean | object | null | undefined>;
 /**
  * Response for get mass shipping parameter API
  */
@@ -669,7 +669,7 @@ export type GetMassTrackingNumberParams = {
     package_list: PackageListItem[];
     /** Optional response fields to include (e.g. "first_mile_tracking_number") */
     response_optional_fields?: string;
-} & Record<string, string | number | boolean | null | undefined | object>;
+} & Record<string, string | number | boolean | object | null | undefined>;
 /**
  * Mass tracking success item
  */
