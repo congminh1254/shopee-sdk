@@ -218,7 +218,7 @@
             "key": "pidYGXQ"
           },
           {
-            "description": "<p>Type of invoice requested: {1: personal, 2: company}.<br /></p>",
+            "description": "<p>Type of invoice requested: {1: personal, 2: company, 3: household}.<br /></p>",
             "name": "invoice_type",
             "sample": "personal",
             "type": "string",
@@ -498,6 +498,104 @@
                     "type": "string",
                     "required": null,
                     "key": "WJXetxX"
+                  }
+                ]
+              },
+              {
+                "description": "<p>Household address breakdown</p><p>-Only for VN</p>",
+                "name": "household_address_breakdown",
+                "sample": "",
+                "type": "object",
+                "required": null,
+                "key": "DyBrdYR",
+                "children": [
+                  {
+                    "description": "<p>Region of the household address.</p>",
+                    "name": "household_region",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "ZkErMc"
+                  },
+                  {
+                    "description": "<p>State of the household address.</p>",
+                    "name": "household_state",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "yQmZGjp"
+                  },
+                  {
+                    "description": "<p>City of the household address.</p>",
+                    "name": "household_city",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "kQDtRbG"
+                  },
+                  {
+                    "description": "<p>Province of the household address.</p>",
+                    "name": "household_province",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "QKkcKrr"
+                  },
+                  {
+                    "description": "<p>District of the household address.</p>",
+                    "name": "household_district",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "SwKxpsJ"
+                  },
+                  {
+                    "description": "<p>Town of the household address.</p>",
+                    "name": "household_town",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "rXTnMXF"
+                  },
+                  {
+                    "description": "<p>Barangay of the household address.</p>",
+                    "name": "household_barangay",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "KTcYTbe"
+                  },
+                  {
+                    "description": "<p>Postal code of the household address.</p>",
+                    "name": "household_postcode",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "wRQsNcj"
+                  },
+                  {
+                    "description": "<p>Detailed street address of the household.</p>",
+                    "name": "household_detailed_address",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "YwRNRNC"
+                  },
+                  {
+                    "description": "<p>Additional address information provided by the buyer.</p>",
+                    "name": "household_additional_info",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "dsFGNxi"
+                  },
+                  {
+                    "description": "<p>Full formatted household address.</p>",
+                    "name": "household_full_address",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "dsNYNhX"
                   }
                 ]
               }

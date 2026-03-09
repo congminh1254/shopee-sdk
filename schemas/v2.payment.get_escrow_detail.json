@@ -194,7 +194,7 @@
                 "type": "float",
                 "name": "escrow_amount",
                 "key": "SQHbrDf",
-                "description": "<p>The total amount that the seller is expected to receive for the order and will change before order is completed.&nbsp;</p><p>For non cb sip affiliate shop (new formula):&nbsp;</p><p>escrow_amount=&nbsp;original_cost_of_goods_sold-original_shopee_discount+seller_return_refund+ shopee_discount- voucher_from_seller- seller_coin_cash_back+ buyer_paid_shipping_fee- actual_shipping_fee+ shopee_shipping_rebate+ shipping_fee_discount_from_3pl- reverse_shipping_fee+ rsf_seller_protection_fee_claim_amount- final_return_to_seller_shipping_fee- seller_transaction_fee- service_fee- commission_fee- campaign_fee- shipping_seller_protection_fee_amount- delivery_seller_protection_fee_premium_amount-final_escrow_product_gst- order_ams_commission_fee- escrow_tax-sales_tax_on_lvg-reverse_shipping_fee_sst-shipping_fee_sst-withholding_tax-overseas_return_service_fee-vat_on_imported_goods - withholding_vat_tax - withholding_pit_tax - seller_order_processing_fee&nbsp;+ buyer_paid_packaging_fee - trade_in_bonus_by_seller - fbs_fee -&nbsp;ads_escrow_top_up_fee_or_technical_support_fee<br /></p><p><br /></p><p>For cb sip affiliate shop:&nbsp;escrow_amount=escrow_amount_pri * exchange_rate</p><p><br /></p><p>note: Return refund amount = if adjustable RR, will equal to drc_adjustable_refund<br /></p>"
+                "description": "<p>The total amount that the seller is expected to receive for the order and will change before order is completed.&nbsp;</p><p>For non cb sip affiliate shop (new formula):&nbsp;</p><p>escrow_amount=&nbsp;original_cost_of_goods_sold-original_shopee_discount+seller_return_refund+ shopee_discount- voucher_from_seller- seller_coin_cash_back+ buyer_paid_shipping_fee- actual_shipping_fee+ shopee_shipping_rebate+ shipping_fee_discount_from_3pl- reverse_shipping_fee+ rsf_seller_protection_fee_claim_amount- final_return_to_seller_shipping_fee- seller_transaction_fee- service_fee- commission_fee- campaign_fee- shipping_seller_protection_fee_amount- delivery_seller_protection_fee_premium_amount-final_escrow_product_gst- order_ams_commission_fee- escrow_tax-sales_tax_on_lvg-reverse_shipping_fee_sst-shipping_fee_sst-withholding_tax-overseas_return_service_fee-vat_on_imported_goods - withholding_vat_tax - withholding_pit_tax - seller_order_processing_fee&nbsp;+ buyer_paid_packaging_fee - trade_in_bonus_by_seller - fbs_fee -&nbsp;ads_escrow_top_up_fee_or_technical_support_fee - th_import_duty<br /></p><p><br /></p><p>For cb sip affiliate shop:&nbsp;escrow_amount=escrow_amount_pri * exchange_rate</p><p><br /></p><p>note: Return refund amount = if adjustable RR, will equal to drc_adjustable_refund<br /></p>"
               },
               {
                 "sample": "99.0",
@@ -1279,6 +1279,14 @@
                 "type": "float",
                 "required": null,
                 "key": "SGWttPs"
+              },
+              {
+                "description": "<p>[TH only] Import Duty collected for goods priced less than 1,500 THB</p>",
+                "name": "th_import_duty",
+                "sample": "",
+                "type": "float",
+                "required": null,
+                "key": "cEEJwsw"
               }
             ],
             "description": ""
@@ -1698,6 +1706,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/payment/get_escrow_detail",
   "update_log_list": [
     {
+      "date": "2026-03-06",
+      "content": "Updated with th_import_duty"
+    },
+    {
       "date": "2026-02-09",
       "content": "order_income > added pix_discount and prorated_pix_discount_offset_return_items\n\nupdated with ads_escrow_top_up_fee_or_technical_support_fee"
     },
@@ -1712,10 +1724,6 @@
     {
       "date": "2025-11-12",
       "content": "update the field name from \"trade_in_bonus_subtota\" to \"trade_in_bonus\""
-    },
-    {
-      "date": "2025-10-24",
-      "content": "Add  new response field promotion_list"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/payment/get_escrow_detail",

@@ -613,6 +613,34 @@ export type CompanyAddressBreakdown = {
 };
 
 /**
+ * Household address breakdown information (VN only)
+ */
+export type HouseholdAddressBreakdown = {
+  /** Region of the household address */
+  household_region: string;
+  /** State of the household address */
+  household_state: string;
+  /** City of the household address */
+  household_city: string;
+  /** Province of the household address */
+  household_province: string;
+  /** District of the household address */
+  household_district: string;
+  /** Town of the household address */
+  household_town: string;
+  /** Barangay of the household address */
+  household_barangay: string;
+  /** Postal code of the household address */
+  household_postcode: string;
+  /** Detailed street address of the household */
+  household_detailed_address: string;
+  /** Additional address information provided by the buyer */
+  household_additional_info: string;
+  /** Full formatted household address */
+  household_full_address: string;
+};
+
+/**
  * Invoice details for personal or company
  */
 export type InvoiceDetail = {
@@ -648,6 +676,8 @@ export type InvoiceDetail = {
   company_address?: string;
   /** Company address breakdown */
   company_address_breakdown?: CompanyAddressBreakdown;
+  /** Household address breakdown (VN only, household invoice only) */
+  household_address_breakdown?: HouseholdAddressBreakdown;
 };
 
 /**
@@ -656,7 +686,7 @@ export type InvoiceDetail = {
 export type InvoiceInfo = {
   /** Shopee's unique identifier for an order */
   order_sn: string;
-  /** Type of invoice requested: personal or company */
+  /** Type of invoice requested: personal, company, or household */
   invoice_type: string;
   /** Invoice details */
   invoice_detail: InvoiceDetail | null;
