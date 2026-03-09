@@ -294,6 +294,104 @@ describe("PaymentManager", () => {
     });
   });
 
+  describe("getEscrowDetail with new fields", () => {
+    it("should include th_import_duty and other new fields in order income", async () => {
+      const mockResponse: GetEscrowDetailResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          order_sn: "220101TH0000001",
+          buyer_user_name: "thbuyer",
+          return_order_sn_list: [],
+          order_income: {
+            escrow_amount: 95.0,
+            buyer_total_amount: 100.0,
+            original_price: 100.0,
+            seller_discount: 0.0,
+            shopee_discount: 0.0,
+            voucher_from_seller: 0.0,
+            voucher_from_shopee: 0.0,
+            coins: 0.0,
+            buyer_paid_shipping_fee: 0.0,
+            buyer_transaction_fee: 0.0,
+            cross_border_tax: 0.0,
+            payment_promotion: 0.0,
+            commission_fee: 3.0,
+            service_fee: 0.5,
+            seller_transaction_fee: 0.0,
+            seller_lost_compensation: 0.0,
+            seller_coin_cash_back: 0.0,
+            escrow_tax: 0.0,
+            estimated_shipping_fee: 0.0,
+            final_shipping_fee: 0.0,
+            actual_shipping_fee: 0.0,
+            shopee_shipping_rebate: 0.0,
+            shipping_fee_discount_from_3pl: 0.0,
+            seller_shipping_discount: 0.0,
+            seller_voucher_code: [],
+            drc_adjustable_refund: 0.0,
+            cost_of_goods_sold: 100.0,
+            original_cost_of_goods_sold: 100.0,
+            original_shopee_discount: 0.0,
+            seller_return_refund: 0.0,
+            items: [],
+            reverse_shipping_fee: 0.0,
+            final_product_protection: 0.0,
+            credit_card_promotion: 0.0,
+            credit_card_transaction_fee: 0.0,
+            final_product_vat_tax: 0.0,
+            th_import_duty: 1.5,
+            withholding_vat_tax: 0.3,
+            withholding_pit_tax: 0.2,
+            seller_order_processing_fee: 0.5,
+            buyer_paid_packaging_fee: 0.0,
+            trade_in_bonus_by_seller: 0.0,
+            fbs_fee: 0.0,
+            net_commission_fee: 2.5,
+            net_service_fee: 0.4,
+            pix_discount: 0.0,
+            prorated_pix_discount_offset_return_items: 0.0,
+            ads_escrow_top_up_fee_or_technical_support_fee: 0.0,
+          },
+          buyer_payment_info: {
+            buyer_payment_method: "Credit Card",
+            buyer_service_fee: 0.0,
+            buyer_tax_amount: 0.0,
+            buyer_total_amount: 100.0,
+            credit_card_promotion: 0.0,
+            icms_tax_amount: 0.0,
+            import_tax_amount: 0.0,
+            initial_buyer_txn_fee: 0.0,
+            insurance_premium: 0.0,
+            iof_tax_amount: 0.0,
+            is_paid_by_credit_card: true,
+            merchant_subtotal: 100.0,
+            seller_voucher: 0.0,
+            shipping_fee: 0.0,
+            shipping_fee_sst_amount: 0.0,
+            shopee_voucher: 0.0,
+            shopee_coins_redeemed: 0.0,
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await paymentManager.getEscrowDetail({
+        order_sn: "220101TH0000001",
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.order_income.th_import_duty).toBe(1.5);
+      expect(result.response.order_income.withholding_vat_tax).toBe(0.3);
+      expect(result.response.order_income.withholding_pit_tax).toBe(0.2);
+      expect(result.response.order_income.seller_order_processing_fee).toBe(0.5);
+      expect(result.response.order_income.net_commission_fee).toBe(2.5);
+      expect(result.response.order_income.net_service_fee).toBe(0.4);
+    });
+  });
+
   describe("getEscrowList", () => {
     it("should get escrow list for a time range", async () => {
       const mockResponse: GetEscrowListResponse = {
@@ -433,6 +531,118 @@ describe("PaymentManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.order_income_list).toHaveLength(1);
+    });
+
+    it("should include th_import_duty in batch escrow order income", async () => {
+      const mockResponse: GetEscrowDetailBatchResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          order_income_list: [
+            {
+              order_sn: "220101TH0000002",
+              buyer_user_name: "thbuyer2",
+              return_order_sn_list: [],
+              order_income: {
+                escrow_amount: 47.5,
+                buyer_total_amount: 50.0,
+                original_price: 50.0,
+                seller_discount: 0.0,
+                shopee_discount: 0.0,
+                voucher_from_seller: 0.0,
+                voucher_from_shopee: 0.0,
+                coins: 0.0,
+                buyer_paid_shipping_fee: 0.0,
+                buyer_transaction_fee: 0.0,
+                cross_border_tax: 0.0,
+                payment_promotion: 0.0,
+                commission_fee: 1.5,
+                service_fee: 0.25,
+                seller_transaction_fee: 0.0,
+                seller_lost_compensation: 0.0,
+                seller_coin_cash_back: 0.0,
+                escrow_tax: 0.0,
+                estimated_shipping_fee: 0.0,
+                final_shipping_fee: 0.0,
+                actual_shipping_fee: 0.0,
+                shopee_shipping_rebate: 0.0,
+                shipping_fee_discount_from_3pl: 0.0,
+                seller_shipping_discount: 0.0,
+                seller_voucher_code: [],
+                drc_adjustable_refund: 0.0,
+                cost_of_goods_sold: 50.0,
+                original_cost_of_goods_sold: 50.0,
+                original_shopee_discount: 0.0,
+                seller_return_refund: 0.0,
+                items: [],
+                reverse_shipping_fee: 0.0,
+                final_product_protection: 0.0,
+                credit_card_promotion: 0.0,
+                credit_card_transaction_fee: 0.0,
+                final_product_vat_tax: 0.0,
+                th_import_duty: 0.75,
+                fbs_fee: 0.5,
+                ads_escrow_top_up_fee_or_technical_support_fee: 0.0,
+                net_commission_fee_info_list: [
+                  { rule_id: 1, fee_amount: 1.5, rule_display_name: "Standard Commission" },
+                ],
+                net_service_fee_info_list: [
+                  {
+                    rule_id: 2,
+                    fee_amount: 0.25,
+                    rule_display_name: "Standard Service Fee",
+                    category: "service",
+                  },
+                ],
+                seller_product_rebate: {
+                  amount: 0.1,
+                  commission_fee_offset: 0.05,
+                  service_fee_offset: 0.05,
+                },
+              },
+              buyer_payment_info: {
+                buyer_payment_method: "PayNow",
+                buyer_service_fee: 0.0,
+                buyer_tax_amount: 0.0,
+                buyer_total_amount: 50.0,
+                credit_card_promotion: 0.0,
+                icms_tax_amount: 0.0,
+                import_tax_amount: 0.0,
+                initial_buyer_txn_fee: 0.0,
+                insurance_premium: 0.0,
+                iof_tax_amount: 0.0,
+                is_paid_by_credit_card: false,
+                merchant_subtotal: 50.0,
+                seller_voucher: 0.0,
+                shipping_fee: 0.0,
+                shipping_fee_sst_amount: 0.0,
+                shopee_voucher: 0.0,
+                shopee_coins_redeemed: 0.0,
+              },
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await paymentManager.getEscrowDetailBatch({
+        order_sn_list: ["220101TH0000002"],
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.order_income_list[0].order_income.th_import_duty).toBe(0.75);
+      expect(result.response.order_income_list[0].order_income.fbs_fee).toBe(0.5);
+      expect(
+        result.response.order_income_list[0].order_income.net_commission_fee_info_list
+      ).toHaveLength(1);
+      expect(
+        result.response.order_income_list[0].order_income.net_service_fee_info_list
+      ).toHaveLength(1);
+      expect(result.response.order_income_list[0].order_income.seller_product_rebate?.amount).toBe(
+        0.1
+      );
     });
   });
 
