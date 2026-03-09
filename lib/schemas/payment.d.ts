@@ -52,6 +52,36 @@ export interface EscrowItem {
     is_b2c_shop_item?: boolean;
     /** Affiliate commission fee for items sold via Affiliate Program */
     ams_commission_fee?: number;
+    /** Whether this is a kit item */
+    is_kit?: boolean;
+    /** Kit item details (only when is_kit is true) */
+    kit_items?: EscrowKitItem;
+    /** List of promotions applied to this item */
+    promotion_list?: EscrowItemPromotion[];
+}
+/**
+ * Kit item details within an escrow item
+ */
+export interface EscrowKitItem {
+    /** Main item ID in the kit */
+    mt_item_id: number;
+    /** Main model ID in the kit */
+    mt_model_id: number;
+    /** Total quantity of kit items */
+    total_qty: number;
+    /** Price of the parent item */
+    parent_item_price: number;
+    /** Prorated price of this item in the kit */
+    item_price_prorated: number;
+}
+/**
+ * Promotion applied to an escrow item
+ */
+export interface EscrowItemPromotion {
+    /** Type of promotion */
+    promotion_type: string;
+    /** Promotion ID */
+    promotion_id: number;
 }
 /**
  * Order adjustment information
@@ -65,6 +95,35 @@ export interface OrderAdjustment {
     currency: string;
     /** Reason for adjustment */
     adjustment_reason: string;
+}
+/**
+ * Net commission or service fee breakdown item
+ */
+export interface NetFeeInfoItem {
+    /** Rule ID for the fee */
+    rule_id: number;
+    /** Fee amount */
+    fee_amount: number;
+    /** Display name of the rule */
+    rule_display_name: string;
+}
+/**
+ * Net service fee breakdown item (includes category)
+ */
+export interface NetServiceFeeInfoItem extends NetFeeInfoItem {
+    /** Category of the fee */
+    category: string;
+}
+/**
+ * Seller product rebate information
+ */
+export interface SellerProductRebate {
+    /** Rebate amount */
+    amount: number;
+    /** Commission fee offset from rebate */
+    commission_fee_offset: number;
+    /** Service fee offset from rebate */
+    service_fee_offset: number;
 }
 /**
  * Tenure information for payment
@@ -113,6 +172,14 @@ export interface BuyerPaymentInfo {
     shopee_voucher: number;
     /** Shopee coins redeemed amount */
     shopee_coins_redeemed: number;
+    /** Packaging fee paid by buyer */
+    buyer_paid_packaging_fee?: number;
+    /** Trade-in bonus amount */
+    trade_in_bonus?: number;
+    /** Bulky handling fee */
+    bulky_handling_fee?: number;
+    /** PIX discount amount (BR region only) */
+    discount_pix?: number;
 }
 /**
  * Order income details
@@ -278,6 +345,38 @@ export interface OrderIncome {
     vat_on_imported_goods?: number;
     /** Payment tenure information */
     tenure_info_list?: TenureInfo;
+    /** Withholding VAT tax amount */
+    withholding_vat_tax?: number;
+    /** Withholding personal income tax amount */
+    withholding_pit_tax?: number;
+    /** Tax registration code */
+    tax_registration_code?: string;
+    /** Seller order processing fee */
+    seller_order_processing_fee?: number;
+    /** Packaging fee paid by buyer */
+    buyer_paid_packaging_fee?: number;
+    /** Trade-in bonus provided by seller */
+    trade_in_bonus_by_seller?: number;
+    /** Fulfillment by Shopee fee */
+    fbs_fee?: number;
+    /** Net commission fee after offsets */
+    net_commission_fee?: number;
+    /** Net service fee after offsets */
+    net_service_fee?: number;
+    /** Breakdown of net commission fee */
+    net_commission_fee_info_list?: NetFeeInfoItem[];
+    /** Breakdown of net service fee */
+    net_service_fee_info_list?: NetServiceFeeInfoItem[];
+    /** Seller product rebate details */
+    seller_product_rebate?: SellerProductRebate;
+    /** PIX discount amount (BR region only) */
+    pix_discount?: number;
+    /** Prorated PIX discount offset for returned items */
+    prorated_pix_discount_offset_return_items?: number;
+    /** AMS top-up fee or technical support fee */
+    ads_escrow_top_up_fee_or_technical_support_fee?: number;
+    /** [TH only] Import duty collected for goods priced less than 1,500 THB */
+    th_import_duty?: number;
 }
 /**
  * Response for get escrow detail API

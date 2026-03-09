@@ -479,6 +479,55 @@ describe("OrderManager", () => {
 
       expect(result).toEqual(mockResponse);
     });
+
+    it("should get buyer invoice info with household invoice type", async () => {
+      const mockResponse: GetBuyerInvoiceInfoResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: null,
+        invoice_info_list: [
+          {
+            order_sn: "220101VN0000001",
+            invoice_type: "household",
+            invoice_detail: {
+              household_address_breakdown: {
+                household_region: "Southeast",
+                household_state: "Ho Chi Minh",
+                household_city: "District 1",
+                household_province: "Ho Chi Minh City",
+                household_district: "Ben Nghe",
+                household_town: "Ben Nghe Ward",
+                household_barangay: "",
+                household_postcode: "700000",
+                household_detailed_address: "123 Nguyen Hue",
+                household_additional_info: "",
+                household_full_address:
+                  "123 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City, 700000",
+              },
+            },
+            error: "",
+            is_requested: true,
+          },
+        ],
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await orderManager.getBuyerInvoiceInfo({
+        queries: [{ order_sn: "220101VN0000001" }],
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.invoice_info_list[0].invoice_type).toBe("household");
+      expect(
+        result.invoice_info_list[0].invoice_detail?.household_address_breakdown?.household_province
+      ).toBe("Ho Chi Minh City");
+      expect(
+        result.invoice_info_list[0].invoice_detail?.household_address_breakdown
+          ?.household_full_address
+      ).toBe("123 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City, 700000");
+    });
   });
 
   describe("setNote", () => {
