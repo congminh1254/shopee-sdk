@@ -42,6 +42,10 @@
     },
     {
       "name": "error_param",
+      "description": "Inbound pickup address state and city is invalid"
+    },
+    {
+      "name": "error_param",
       "description": "Inbound pickup address cannot be the same as Shopee warehouse address."
     },
     {
