@@ -234,7 +234,7 @@
             "key": "wbCYwab",
             "children": [
               {
-                "description": "<p>Buyer name (only has value when invoice_type is personal)<br /></p><p>- VN, TH, PH only<br /></p>",
+                "description": "<p>Buyer name (has value when invoice_type is personal and household)<br /></p><p>- VN, TH, PH only<br /></p>",
                 "name": "name",
                 "sample": "Tom Jerry",
                 "type": "string",
@@ -242,7 +242,7 @@
                 "key": "zfsjFXt"
               },
               {
-                "description": "<p>Buyer email address&nbsp;(only has value when invoice_type is personal)<br /></p><p>- VN, TH, PH only<br /></p>",
+                "description": "<p>Buyer email address&nbsp;(has value when invoice_type is personal and household)<br /></p><p>- VN, TH, PH only<br /></p>",
                 "name": "email",
                 "sample": "tom.and.jerry@gmail.com",
                 "type": "string",
@@ -258,7 +258,7 @@
                 "key": "EsQzKfx"
               },
               {
-                "description": "<p>only has value when invoice_type is personal.&nbsp;<br /></p><p>- VN, TH, PH only<br /></p>",
+                "description": "<p>has value when invoice_type is personal and household.&nbsp;<br /></p><p>- VN, TH, PH only<br /></p>",
                 "name": "tax_id",
                 "sample": "1234567898",
                 "type": "string",
@@ -266,7 +266,7 @@
                 "key": "HSpdwf"
               },
               {
-                "description": "<p>Buyer address in format \"Street &amp; number, city, zipcode, any additional info provided by buyer\"&nbsp;(only has value when invoice_type is personal)<br /></p><p>- PH, VN only<br /></p>",
+                "description": "<p>Buyer address in format \"Street &amp; number, city, zipcode, any additional info provided by buyer\"&nbsp;(has value when invoice_type is personal and household)<br /></p><p>- PH, VN only<br /></p>",
                 "name": "address",
                 "sample": "GieŁdowa 4b, Długi Bród, 17200, PIĄTE PIĘTRO",
                 "type": "string",
@@ -650,7 +650,7 @@
     ]
   },
   "perm_mtime": 1652874623,
-  "perm_operator": "grace.li@shopee.com",
+  "perm_operator": "cuiyu.xie@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 11,
@@ -723,6 +723,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_buyer_invoice_info",
   "update_log_list": [
+    {
+      "date": "2026-03-10",
+      "content": "Updating name, address, tax_id, and email with household"
+    },
     {
       "date": "2022-09-30",
       "content": "add TH to use this API"
