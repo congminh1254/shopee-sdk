@@ -1009,6 +1009,14 @@
                     ]
                   }
                 ]
+              },
+              {
+                "description": "<p>[Only for ID local sellers] as a unique identifier for each standardized medicine.</p>",
+                "name": "medicine_id",
+                "sample": "",
+                "type": "int64",
+                "required": null,
+                "key": "dzDXFSd"
               }
             ],
             "name": "item_list",
@@ -1757,6 +1765,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/product/get_item_base_info",
   "update_log_list": [
     {
+      "date": "2026-03-13",
+      "content": "add new response field \"medicine_id\""
+    },
+    {
       "date": "2025-11-17",
       "content": " add new response field \"purchase_limit_info\" "
     },
@@ -1771,10 +1783,6 @@
     {
       "date": "2025-08-22",
       "content": "add to new response field \"local_promotion_price\"and \"local_price\""
-    },
-    {
-      "date": "2025-05-20",
-      "content": "Fix wrong request URL\n"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/product/get_item_base_info",
