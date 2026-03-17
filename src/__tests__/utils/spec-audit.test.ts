@@ -111,4 +111,167 @@ describe("auditRepositorySpecs", () => {
       },
     ]);
   });
+
+  it("accepts camelCase request fields and open request param schemas", () => {
+    const repoRoot = createTempRepo();
+    tempRepos.push(repoRoot);
+
+    writeFile(
+      path.join(repoRoot, "schemas", "v2.video.get_metric_trend.json"),
+      JSON.stringify({
+        method: 2,
+        params: {
+          request_params: [{ name: "period_type" }],
+          response: [{ name: "response", children: [] }],
+        },
+      })
+    );
+
+    writeFile(
+      path.join(repoRoot, "schemas", "v2.discount.get_discount_list.json"),
+      JSON.stringify({
+        method: 2,
+        params: {
+          request_params: [{ name: "update_time_from" }, { name: "update_time_to" }],
+          response: [{ name: "response", children: [] }],
+        },
+      })
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "managers", "video.manager.ts"),
+      `export class VideoManager {
+        async getMetricTrend() {
+          return ShopeeFetch.fetch<GetMetricTrendResponse>(this.config, "/video/get_metric_trend", {
+            auth: true,
+            method: "GET",
+          });
+        }
+      }`
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "managers", "discount.manager.ts"),
+      `export class DiscountManager {
+        async getDiscountList() {
+          return ShopeeFetch.fetch<GetDiscountListResponse>(this.config, "/discount/get_discount_list", {
+            auth: true,
+            method: "GET",
+          });
+        }
+      }`
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "schemas", "video.ts"),
+      `export interface GetMetricTrendParams { periodType: string }`
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "schemas", "discount.ts"),
+      `export interface GetDiscountListParams {
+        [key: string]: string | number | boolean | undefined;
+      }`
+    );
+
+    const report = auditRepositorySpecs(repoRoot);
+
+    expect(report.missingRequestFields).toEqual([]);
+  });
+
+  it("handles fallback endpoint parsing, invalid filenames, GET mismatches and sorting paths", () => {
+    const repoRoot = createTempRepo();
+    tempRepos.push(repoRoot);
+
+    writeFile(path.join(repoRoot, "schemas", "v2.invalid-schema-file.json"), "{}");
+
+    writeFile(
+      path.join(repoRoot, "schemas", "v2.alpha.get_a.json"),
+      JSON.stringify({
+        method: 2,
+        params: {
+          request_params: [{ name: "first_field" }, { name: "second_field" }],
+          response: [{ name: "response", children: [{ name: "zeta", children: [null] }] }],
+        },
+      })
+    );
+    writeFile(
+      path.join(repoRoot, "schemas", "v2.beta.get_b.json"),
+      JSON.stringify({
+        method: 2,
+        params: {
+          request_params: [{ name: "third_field" }],
+          response: [{ name: "response", children: [{ name: "alpha" }] }],
+        },
+      })
+    );
+    writeFile(
+      path.join(repoRoot, "schemas", "v2.noschema.get_c.json"),
+      JSON.stringify({
+        method: 2,
+        params: {
+          request_params: [{ name: "ignored_field" }],
+          response: [{ name: "response", children: [] }],
+        },
+      })
+    );
+    writeFile(
+      path.join(repoRoot, "schemas", "v2.gamma.get_d.json"),
+      JSON.stringify({
+        method: 2,
+        params: {
+          request_params: [],
+          response: [{ name: "response", children: [] }],
+        },
+      })
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "managers", "mix.manager.ts"),
+      `export class MixManager {
+        endpointPath = "/alpha/get_a";
+        async getB() {
+          return ShopeeFetch.fetch<GetBResponse>(this.config, "/beta/get_b", {
+            auth: true,
+            method: "POST",
+          });
+        }
+        async getC() {
+          return ShopeeFetch.fetch<GetCResponse>(this.config, "/noschema/get_c", {
+            auth: true,
+            method: "GET",
+          });
+        }
+        async getD() {
+          return ShopeeFetch.fetch<GetDResponse>(this.config, "/gamma/get_d", {
+            auth: true,
+            method: "POST",
+          });
+        }
+      }`
+    );
+
+    writeFile(path.join(repoRoot, "src", "schemas", "alpha.ts"), "export type AlphaSchema = {};");
+    writeFile(path.join(repoRoot, "src", "schemas", "beta.ts"), "export type BetaSchema = {};");
+
+    const report = auditRepositorySpecs(repoRoot);
+
+    expect(report.methodMismatches).toEqual([
+      {
+        endpoint: "beta.get_b",
+        expectedMethod: "GET",
+        actualMethod: "POST",
+      },
+      {
+        endpoint: "gamma.get_d",
+        expectedMethod: "GET",
+        actualMethod: "POST",
+      },
+    ]);
+    expect(report.missingRequestFields.map((item) => item.endpoint)).toEqual(["alpha.get_a", "beta.get_b"]);
+    expect(report.missingResponseFields.map((item) => item.endpoint)).toEqual([
+      "alpha.get_a",
+      "beta.get_b",
+    ]);
+  });
 });

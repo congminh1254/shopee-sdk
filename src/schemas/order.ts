@@ -1158,5 +1158,3 @@ export interface GetFbsInvoicesResultResponse extends FetchResponse<{
   /** The list of results */
   result_list: FbsInvoiceResultItem[];
 }> {}
-
-export const ORDER_SPEC_AUDIT_FIELD_COVERAGE = ["is_approved", "reject_reason_code"] as const;

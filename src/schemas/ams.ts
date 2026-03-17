@@ -1135,24 +1135,3 @@ export type UpdateAutoAddNewProductSettingParams = {
 export interface UpdateAutoAddNewProductSettingResponse extends BaseResponse {
   response: Record<string, never>;
 }
-
-export const AMS_SPEC_AUDIT_FIELD_COVERAGE = [
-  "l1_category_id",
-  "l2_category_id",
-  "l3_category_id",
-  "verified_status",
-  "buyer_status",
-  "attr_campaign_id",
-  "campaign_partner",
-  "seller_campaign_type",
-  "deduction_status",
-  "deduction_method",
-  "place_order_time_start",
-  "place_order_time_end",
-  "order_completed_time_start",
-  "order_completed_time_end",
-  "conversion_completed_time_start",
-  "conversion_completed_time_end",
-  "ams_deduction_time_start",
-  "ams_deduction_time_end",
-] as const;

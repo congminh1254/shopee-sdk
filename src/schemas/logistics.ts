@@ -1413,23 +1413,3 @@ export interface UploadServiceablePolygonResponse extends BaseResponse {
     task_id?: string;
   };
 }
-
-export const LOGISTICS_SPEC_AUDIT_FIELD_COVERAGE = [
-  "tpf_name",
-  "tpf_tracking_status",
-  "booking_list",
-  "unpackaged_sku_requests",
-  "sorting_group",
-  "quantity",
-  "recipient_address_info",
-  "address_type_config",
-  "packaging_fee",
-  "regular_operating_hour",
-  "special_operating_hour",
-  "instant_operating_hour",
-  "shop_collection_operating_hour",
-  "self_collection_logistics_action",
-  "epoc_image_list",
-  "tracking_url",
-  "failed_reason",
-] as const;
