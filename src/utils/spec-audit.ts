@@ -168,12 +168,16 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
     const responseRoot = (schema.params?.response ?? []).find((item) => item.name === "response");
     const responseFields = collectFieldNames(responseRoot?.children ?? []);
 
-    const missingReq = [...requestFields].filter((fieldName) => !hasFieldName(sdkSchemaSource, fieldName));
+    const missingReq = [...requestFields].filter(
+      (fieldName) => !hasFieldName(sdkSchemaSource, fieldName)
+    );
     if (missingReq.length > 0) {
       missingRequestFields.push({ endpoint: endpointKey, fields: missingReq });
     }
 
-    const missingRes = [...responseFields].filter((fieldName) => !hasFieldName(sdkSchemaSource, fieldName));
+    const missingRes = [...responseFields].filter(
+      (fieldName) => !hasFieldName(sdkSchemaSource, fieldName)
+    );
     if (missingRes.length > 0) {
       missingResponseFields.push({ endpoint: endpointKey, fields: missingRes });
     }
