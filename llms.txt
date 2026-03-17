@@ -355,6 +355,12 @@ Commit prefixes:
 
 **The most common bug in this SDK**: endpoints being incorrectly implemented as `GET` when the Shopee API requires `POST`.
 
+You can run the automated audit script to detect endpoint, method, request-field, and response-field gaps:
+
+```bash
+npm run audit:specs
+```
+
 #### How to Determine the Correct HTTP Method
 
 The `schemas/` directory contains official Shopee API spec files (`v2.<module>.<endpoint>.json`). Each file has a `method` field:
