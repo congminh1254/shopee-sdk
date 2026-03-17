@@ -45,7 +45,8 @@
     "format:check": "prettier --check \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
     "prepare": "husky install",
-    "fetch-schemas": "tsx schemas/fetch.ts"
+    "fetch-schemas": "tsx schemas/fetch.ts",
+    "audit:specs": "tsx scripts/audit-specs.ts"
   },
   "publishConfig": {
     "access": "public"
