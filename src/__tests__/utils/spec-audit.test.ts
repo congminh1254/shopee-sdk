@@ -268,7 +268,10 @@ describe("auditRepositorySpecs", () => {
         actualMethod: "POST",
       },
     ]);
-    expect(report.missingRequestFields.map((item) => item.endpoint)).toEqual(["alpha.get_a", "beta.get_b"]);
+    expect(report.missingRequestFields.map((item) => item.endpoint)).toEqual([
+      "alpha.get_a",
+      "beta.get_b",
+    ]);
     expect(report.missingResponseFields.map((item) => item.endpoint)).toEqual([
       "alpha.get_a",
       "beta.get_b",
