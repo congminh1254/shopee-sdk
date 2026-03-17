@@ -125,6 +125,8 @@ export interface InitVideoUploadParams {
   file_md5: string;
   /** Size of video file in bytes (maximum 30MB) */
   file_size: number;
+  /** Original file name */
+  file_name?: string;
 }
 
 /**
@@ -147,6 +149,8 @@ export interface UploadVideoPartParams {
   part_seq: number;
   /** MD5 of this part */
   content_md5: string;
+  /** MD5 of this part */
+  part_md5?: string;
   /** The content of this part of file (exactly 4MB except last part) */
   part_content: string | Buffer;
 }

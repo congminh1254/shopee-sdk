@@ -1422,9 +1422,9 @@ describe("ProductManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/category_recommend", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           item_name: "Running Shoes",
         },
       });

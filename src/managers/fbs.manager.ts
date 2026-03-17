@@ -45,9 +45,9 @@ export class FbsManager extends BaseManager {
       this.config,
       "/fbs/query_br_shop_enrollment_status",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -81,9 +81,9 @@ export class FbsManager extends BaseManager {
       this.config,
       "/fbs/query_br_shop_block_status",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -130,9 +130,9 @@ export class FbsManager extends BaseManager {
       this.config,
       "/fbs/query_br_shop_invoice_error",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -174,9 +174,9 @@ export class FbsManager extends BaseManager {
       this.config,
       "/fbs/query_br_sku_block_status",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;

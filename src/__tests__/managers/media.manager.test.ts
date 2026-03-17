@@ -290,7 +290,7 @@ describe("MediaManager", () => {
         file_size: 1261876,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/init_video_upload", {
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/init_video_upload", {
         method: "POST",
         auth: true,
         body: {
@@ -322,7 +322,7 @@ describe("MediaManager", () => {
         file_size: 30 * 1024 * 1024, // 30MB
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/init_video_upload", {
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/init_video_upload", {
         method: "POST",
         auth: true,
         body: {
@@ -352,7 +352,7 @@ describe("MediaManager", () => {
         part_content: "/path/to/part0",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_video_part", {
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_video_part", {
         method: "POST",
         body: {
           video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
@@ -396,7 +396,7 @@ describe("MediaManager", () => {
       expect(mockShopeeFetch).toHaveBeenNthCalledWith(
         1,
         mockConfig,
-        "/media_space/upload_video_part",
+        "/media/upload_video_part",
         {
           method: "POST",
           body: {
@@ -410,7 +410,7 @@ describe("MediaManager", () => {
       expect(mockShopeeFetch).toHaveBeenNthCalledWith(
         2,
         mockConfig,
-        "/media_space/upload_video_part",
+        "/media/upload_video_part",
         {
           method: "POST",
           body: {
@@ -444,7 +444,7 @@ describe("MediaManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
-        "/media_space/complete_video_upload",
+        "/media/complete_video_upload",
         {
           method: "POST",
           body: {
@@ -479,7 +479,7 @@ describe("MediaManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
-        "/media_space/complete_video_upload",
+        "/media/complete_video_upload",
         {
           method: "POST",
           body: {
@@ -539,7 +539,7 @@ describe("MediaManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
-        "/media_space/get_video_upload_result",
+        "/media/get_video_upload_result",
         {
           method: "GET",
           auth: true,
@@ -632,7 +632,7 @@ describe("MediaManager", () => {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/cancel_video_upload", {
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/cancel_video_upload", {
         method: "POST",
         auth: true,
         body: {
@@ -656,7 +656,7 @@ describe("MediaManager", () => {
         video_upload_id: "sg_cancel_during_upload_id",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/cancel_video_upload", {
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/cancel_video_upload", {
         method: "POST",
         auth: true,
         body: {

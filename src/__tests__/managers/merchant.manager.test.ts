@@ -116,9 +116,9 @@ describe("MerchantManager", () => {
         mockConfig,
         "/merchant/get_merchant_prepaid_account_list",
         {
-          method: "POST",
+          method: "GET",
           auth: true,
-          body: {
+          params: {
             page_no: 1,
             page_size: 100,
           },

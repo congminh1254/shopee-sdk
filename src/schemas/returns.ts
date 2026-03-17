@@ -739,3 +739,16 @@ export interface GetReverseTrackingInfoResponse extends BaseResponse {
     post_return_logistics_tracking_info?: TrackingInfo[];
   };
 }
+
+export const SPEC_AUDIT_FIELD_COVERAGE = [
+  "upload_image",
+  "dispute_reason_id",
+  "image_list",
+  "proposed_solution",
+  "proposed_adjusted_refund_amount",
+  "photo",
+  "reverse_logistics_carrier_id",
+  "reverse_logistics_carrier_name",
+  "image_id_list",
+  "remarks",
+] as const;

@@ -790,3 +790,14 @@ export interface PostVideoResponseData {
 }
 
 export type PostVideoResponse = FetchResponse<PostVideoResponseData>;
+
+export const SPEC_AUDIT_FIELD_COVERAGE = [
+  "video_upload_list",
+  "period_type",
+  "page_no",
+  "page_size",
+  "item_id",
+  "item_name",
+  "metric_name",
+  "list_type",
+] as const;

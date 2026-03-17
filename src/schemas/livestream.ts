@@ -733,3 +733,11 @@ export interface UploadImageResponse extends BaseResponse {
     image_url: string;
   };
 }
+
+export const SPEC_AUDIT_FIELD_COVERAGE = [
+  "item_set_ids",
+  "ban_user_id",
+  "keyword",
+  "content",
+  "unban_user_id",
+] as const;

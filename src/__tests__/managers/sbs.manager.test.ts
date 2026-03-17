@@ -135,9 +135,9 @@ describe("SbsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_current_inventory", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           whs_region: "CN",
           page_no: 1,
           page_size: 10,
@@ -171,9 +171,9 @@ describe("SbsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_current_inventory", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           whs_region: "SG",
           search_type: 2,
           keyword: "SKU123",
@@ -239,9 +239,9 @@ describe("SbsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_expiry_report", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           whs_region: "CN",
           page_no: 1,
           page_size: 10,
@@ -273,9 +273,9 @@ describe("SbsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_expiry_report", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           whs_region: "ID",
           category_id_l1: 100002,
           whs_ids: "IDL,IDG",
@@ -341,9 +341,9 @@ describe("SbsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_stock_aging", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           whs_region: "CN",
           page_no: 1,
           page_size: 10,
@@ -376,9 +376,9 @@ describe("SbsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_stock_aging", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           whs_region: "TH",
           search_type: 1,
           keyword: "Test",
@@ -477,9 +477,9 @@ describe("SbsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_stock_movement", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           start_time: "2025-02-01",
           end_time: "2025-02-24",
           whs_region: "CN",
@@ -522,9 +522,9 @@ describe("SbsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_stock_movement", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           start_time: "2025-01-01",
           end_time: "2025-01-31",
           whs_region: "MY",

@@ -73,9 +73,9 @@ export class SbsManager extends BaseManager {
       this.config,
       "/sbs/get_current_inventory",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -107,9 +107,9 @@ export class SbsManager extends BaseManager {
       this.config,
       "/sbs/get_expiry_report",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -140,9 +140,9 @@ export class SbsManager extends BaseManager {
       this.config,
       "/sbs/get_stock_aging",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -179,9 +179,9 @@ export class SbsManager extends BaseManager {
       this.config,
       "/sbs/get_stock_movement",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;

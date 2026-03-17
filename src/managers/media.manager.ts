@@ -144,7 +144,7 @@ export class MediaManager extends BaseManager {
   async initVideoUpload(params: InitVideoUploadParams): Promise<InitVideoUploadResponse> {
     const response = await ShopeeFetch.fetch<InitVideoUploadResponse>(
       this.config,
-      "/media_space/init_video_upload",
+      "/media/init_video_upload",
       {
         method: "POST",
         auth: true,
@@ -191,7 +191,7 @@ export class MediaManager extends BaseManager {
   async uploadVideoPart(params: UploadVideoPartParams): Promise<UploadVideoPartResponse> {
     const response = await ShopeeFetch.fetch<UploadVideoPartResponse>(
       this.config,
-      "/media_space/upload_video_part",
+      "/media/upload_video_part",
       {
         method: "POST",
         body: params,
@@ -240,7 +240,7 @@ export class MediaManager extends BaseManager {
   ): Promise<CompleteVideoUploadResponse> {
     const response = await ShopeeFetch.fetch<CompleteVideoUploadResponse>(
       this.config,
-      "/media_space/complete_video_upload",
+      "/media/complete_video_upload",
       {
         method: "POST",
         body: params,
@@ -286,7 +286,7 @@ export class MediaManager extends BaseManager {
   ): Promise<GetVideoUploadResultResponse> {
     const response = await ShopeeFetch.fetch<GetVideoUploadResultResponse>(
       this.config,
-      "/media_space/get_video_upload_result",
+      "/media/get_video_upload_result",
       {
         method: "GET",
         auth: true,
@@ -324,7 +324,7 @@ export class MediaManager extends BaseManager {
   async cancelVideoUpload(params: CancelVideoUploadParams): Promise<CancelVideoUploadResponse> {
     const response = await ShopeeFetch.fetch<CancelVideoUploadResponse>(
       this.config,
-      "/media_space/cancel_video_upload",
+      "/media/cancel_video_upload",
       {
         method: "POST",
         auth: true,

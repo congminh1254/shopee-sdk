@@ -730,6 +730,8 @@ export type GenerateIncomeStatementParams = {
   start_time: number;
   /** End time for the statement (timestamp) */
   end_time: number;
+  /** Statement type */
+  statement_type?: number;
 };
 
 /**
@@ -764,6 +766,24 @@ export interface GetIncomeStatementResponse extends BaseResponse {
     /** Statement generation time (timestamp) */
     create_time: number;
   };
+}
+
+export type GetIncomeDetailParams = {
+  date_from: number;
+  date_to: number;
+  income_status?: number;
+};
+
+export interface GetIncomeDetailResponse extends BaseResponse {
+  response: Record<string, unknown>;
+}
+
+export type GetIncomeOverviewParams = {
+  income_status?: number;
+};
+
+export interface GetIncomeOverviewResponse extends BaseResponse {
+  response: Record<string, unknown>;
 }
 
 /**

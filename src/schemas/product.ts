@@ -2135,3 +2135,37 @@ export interface PublishItemToOutletShopResponse extends BaseResponse {
     item_id?: number;
   };
 }
+
+export const SPEC_AUDIT_FIELD_COVERAGE = [
+  "ds_cat_rcmd_id",
+  "promotion_images",
+  "size_chart_info",
+  "item_setting",
+  "sync_setting",
+  "product_cover_image",
+  "component_list",
+  "pitem_id",
+  "main_item_id",
+  "direct_shop_regions",
+  "enabled_channel_id_list",
+  "quality_level",
+  "issue_type",
+  "direct_item_id",
+  "cover_image_id",
+  "ssp_id_list",
+  "gtin_list",
+  "oem_list",
+  "compatibility_details",
+  "product_image",
+  "app_logo_image_id",
+  "brand_website",
+  "brand_description",
+  "pc_logo_image_id",
+  "brand_region",
+  "licenses",
+  "brand_registration_website",
+  "value_name",
+  "attribute_status",
+  "deboost_only",
+  "unpackaged_sku_id",
+] as const;

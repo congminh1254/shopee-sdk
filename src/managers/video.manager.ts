@@ -201,6 +201,25 @@ export class VideoManager extends BaseManager {
     return response;
   }
 
+  async getProdcutPerformanceList(
+    params: GetProductPerformanceListParams
+  ): Promise<GetProductPerformanceListResponse> {
+    const response = await ShopeeFetch.fetch<GetProductPerformanceListResponse>(
+      this.config,
+      `/video/get_prodcut_performance_list`,
+      {
+        method: "GET",
+        auth: true,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
+      }
+    );
+
+    return response;
+  }
+
   /**
    * Get user demographics
    *

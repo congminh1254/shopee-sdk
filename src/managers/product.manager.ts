@@ -736,9 +736,9 @@ export class ProductManager extends BaseManager {
       this.config,
       "/product/category_recommend",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;

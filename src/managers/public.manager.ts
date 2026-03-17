@@ -7,6 +7,7 @@ import {
   GetMerchantsByPartnerResponse,
   GetShopeeIpRangeResponse,
 } from "../schemas/public.js";
+import { AccessToken } from "../schemas/access-token.js";
 import { BaseManager } from "./base.manager.js";
 
 export class PublicManager extends BaseManager {
@@ -60,5 +61,35 @@ export class PublicManager extends BaseManager {
     );
 
     return response;
+  }
+
+  public async getAccessToken(params: {
+    code: string;
+    shop_id?: number;
+    main_account_id?: number;
+  }): Promise<AccessToken> {
+    return ShopeeFetch.fetch<AccessToken>(this.config, "/public/get_access_token", {
+      method: "POST",
+      body: {
+        partner_id: this.config.partner_id,
+        ...params,
+      },
+    });
+  }
+
+  public async refreshAccessToken(params: {
+    refresh_token: string;
+    shop_id?: number;
+    merchant_id?: number;
+    supplier_id?: number;
+    user_id?: number;
+  }): Promise<AccessToken> {
+    return ShopeeFetch.fetch<AccessToken>(this.config, "/public/refresh_access_token", {
+      method: "POST",
+      body: {
+        partner_id: this.config.partner_id,
+        ...params,
+      },
+    });
   }
 }

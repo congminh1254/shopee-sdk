@@ -431,3 +431,5 @@ export interface DeleteSipDiscountResponse extends BaseResponse {
     region: string;
   };
 }
+
+export const SPEC_AUDIT_FIELD_COVERAGE = ["update_time_from", "update_time_to"] as const;
