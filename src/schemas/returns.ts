@@ -740,7 +740,7 @@ export interface GetReverseTrackingInfoResponse extends BaseResponse {
   };
 }
 
-export const SPEC_AUDIT_FIELD_COVERAGE = [
+export const RETURNS_SPEC_AUDIT_FIELD_COVERAGE = [
   "upload_image",
   "dispute_reason_id",
   "image_list",

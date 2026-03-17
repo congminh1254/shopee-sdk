@@ -1136,7 +1136,7 @@ export interface UpdateAutoAddNewProductSettingResponse extends BaseResponse {
   response: Record<string, never>;
 }
 
-export const SPEC_AUDIT_FIELD_COVERAGE = [
+export const AMS_SPEC_AUDIT_FIELD_COVERAGE = [
   "l1_category_id",
   "l2_category_id",
   "l3_category_id",

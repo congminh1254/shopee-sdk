@@ -149,7 +149,7 @@ export interface UploadVideoPartParams {
   part_seq: number;
   /** MD5 of this part */
   content_md5: string;
-  /** MD5 of this part */
+  /** Alternate field name accepted by the spec for part MD5 */
   part_md5?: string;
   /** The content of this part of file (exactly 4MB except last part) */
   part_content: string | Buffer;

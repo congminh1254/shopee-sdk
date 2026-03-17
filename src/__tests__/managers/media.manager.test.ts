@@ -393,34 +393,24 @@ describe("MediaManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledTimes(2);
-      expect(mockShopeeFetch).toHaveBeenNthCalledWith(
-        1,
-        mockConfig,
-        "/media/upload_video_part",
-        {
-          method: "POST",
-          body: {
-            video_upload_id: videoUploadId,
-            part_seq: 0,
-            content_md5: "md5_part_0",
-            part_content: "/path/to/part0",
-          },
-        }
-      );
-      expect(mockShopeeFetch).toHaveBeenNthCalledWith(
-        2,
-        mockConfig,
-        "/media/upload_video_part",
-        {
-          method: "POST",
-          body: {
-            video_upload_id: videoUploadId,
-            part_seq: 1,
-            content_md5: "md5_part_1",
-            part_content: "/path/to/part1",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenNthCalledWith(1, mockConfig, "/media/upload_video_part", {
+        method: "POST",
+        body: {
+          video_upload_id: videoUploadId,
+          part_seq: 0,
+          content_md5: "md5_part_0",
+          part_content: "/path/to/part0",
+        },
+      });
+      expect(mockShopeeFetch).toHaveBeenNthCalledWith(2, mockConfig, "/media/upload_video_part", {
+        method: "POST",
+        body: {
+          video_upload_id: videoUploadId,
+          part_seq: 1,
+          content_md5: "md5_part_1",
+          part_content: "/path/to/part1",
+        },
+      });
     });
   });
 
@@ -442,20 +432,16 @@ describe("MediaManager", () => {
         },
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media/complete_video_upload",
-        {
-          method: "POST",
-          body: {
-            video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
-            part_seq_list: [0, 1, 2, 3],
-            report_data: {
-              upload_cost: 11832,
-            },
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/complete_video_upload", {
+        method: "POST",
+        body: {
+          video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
+          part_seq_list: [0, 1, 2, 3],
+          report_data: {
+            upload_cost: 11832,
           },
-        }
-      );
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -477,20 +463,16 @@ describe("MediaManager", () => {
         },
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media/complete_video_upload",
-        {
-          method: "POST",
-          body: {
-            video_upload_id: "sg_small_video_id",
-            part_seq_list: [0],
-            report_data: {
-              upload_cost: 2500,
-            },
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/complete_video_upload", {
+        method: "POST",
+        body: {
+          video_upload_id: "sg_small_video_id",
+          part_seq_list: [0],
+          report_data: {
+            upload_cost: 2500,
           },
-        }
-      );
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });
@@ -537,17 +519,13 @@ describe("MediaManager", () => {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media/get_video_upload_result",
-        {
-          method: "GET",
-          auth: true,
-          params: {
-            video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/get_video_upload_result", {
+        method: "GET",
+        auth: true,
+        params: {
+          video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
+        },
+      });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.status).toBe("SUCCEEDED");

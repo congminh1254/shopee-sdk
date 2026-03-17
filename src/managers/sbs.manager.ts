@@ -36,7 +36,10 @@ export class SbsManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
     return response;
@@ -75,7 +78,10 @@ export class SbsManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
     return response;
@@ -109,7 +115,10 @@ export class SbsManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
     return response;
@@ -142,7 +151,10 @@ export class SbsManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
     return response;
@@ -181,7 +193,10 @@ export class SbsManager extends BaseManager {
       {
         method: "GET",
         auth: true,
-        params,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
     return response;

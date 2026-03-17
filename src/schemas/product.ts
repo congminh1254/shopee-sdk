@@ -2136,7 +2136,7 @@ export interface PublishItemToOutletShopResponse extends BaseResponse {
   };
 }
 
-export const SPEC_AUDIT_FIELD_COVERAGE = [
+export const PRODUCT_SPEC_AUDIT_FIELD_COVERAGE = [
   "ds_cat_rcmd_id",
   "promotion_images",
   "size_chart_info",

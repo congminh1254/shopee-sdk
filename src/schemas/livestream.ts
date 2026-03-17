@@ -734,7 +734,7 @@ export interface UploadImageResponse extends BaseResponse {
   };
 }
 
-export const SPEC_AUDIT_FIELD_COVERAGE = [
+export const LIVESTREAM_SPEC_AUDIT_FIELD_COVERAGE = [
   "item_set_ids",
   "ban_user_id",
   "keyword",
