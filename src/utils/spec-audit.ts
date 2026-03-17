@@ -41,56 +41,13 @@ interface SdkEndpointDefinition {
   method: EndpointMethod;
 }
 
-const REQUEST_FIELD_ALIASES_BY_ENDPOINT: Record<string, Record<string, string[]>> = {
-  "ams.get_conversion_report": {
-    l1_category_id: ["l1_category"],
-    l2_category_id: ["l2_category"],
-    l3_category_id: ["l3_category"],
-    verified_status: ["verification_status"],
-    attr_campaign_id: ["campaign_id"],
-  },
-  "ams.get_validation_report": {
-    l1_category_id: ["l1_category"],
-    l2_category_id: ["l2_category"],
-    l3_category_id: ["l3_category"],
-    verified_status: ["verification_status"],
-    attr_campaign_id: ["campaign_id"],
-  },
-  "livestream.apply_item_set": {
-    item_set_ids: ["item_set_id"],
-  },
-  "livestream.ban_user_comment": {
-    ban_user_id: ["user_id"],
-  },
-  "livestream.unban_user_comment": {
-    unban_user_id: ["user_id"],
-  },
-  "livestream.post_comment": {
-    content: ["comment"],
-  },
-  "order.handle_prescription_check": {
-    is_approved: ["operation"],
-    reject_reason_code: ["reject_reason"],
-  },
-};
-
 const FALLBACK_ENDPOINT_PATH_REGEX = /["`]\/([a-z0-9-]+)\/([a-z0-9_]+)["`]/g;
 const FETCH_BLOCK_REGEX =
   /ShopeeFetch\.fetch<[^>]+>\s*\(\s*this\.config\s*,\s*["`]\/([a-z0-9-]+)\/([a-z0-9_]+)["`]\s*,\s*\{([\s\S]*?)\}\s*\)/g;
 const METHOD_POST_REGEX = /method\s*:\s*["']POST["']/;
-const OPEN_REQUEST_PARAM_SCHEMA_REGEX = /\[\s*key\s*:\s*string\s*\]\s*:|Record<\s*string\s*,/;
 
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function snakeToCamel(value: string): string {
-  return value.replace(/_([a-z])/g, (_, char: string) => char.toUpperCase());
-}
-
-function getFieldNameCandidates(endpointKey: string, fieldName: string): string[] {
-  const aliasesForEndpoint = REQUEST_FIELD_ALIASES_BY_ENDPOINT[endpointKey]?.[fieldName] ?? [];
-  return [fieldName, snakeToCamel(fieldName), ...aliasesForEndpoint];
 }
 
 function collectFieldNames(nodes: SpecFieldNode[] = []): Set<string> {
@@ -211,13 +168,9 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
     const responseRoot = (schema.params?.response ?? []).find((item) => item.name === "response");
     const responseFields = collectFieldNames(responseRoot?.children ?? []);
 
-    const hasOpenRequestParamSchema = OPEN_REQUEST_PARAM_SCHEMA_REGEX.test(sdkSchemaSource);
-    const missingReq = hasOpenRequestParamSchema
-      ? []
-      : [...requestFields].filter((fieldName) => {
-          const candidates = getFieldNameCandidates(endpointKey, fieldName);
-          return !candidates.some((candidate) => hasFieldName(sdkSchemaSource, candidate));
-        });
+    const missingReq = [...requestFields].filter(
+      (fieldName) => !hasFieldName(sdkSchemaSource, fieldName)
+    );
     if (missingReq.length > 0) {
       missingRequestFields.push({ endpoint: endpointKey, fields: missingReq });
     }

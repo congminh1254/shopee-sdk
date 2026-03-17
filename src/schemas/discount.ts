@@ -431,3 +431,8 @@ export interface DeleteSipDiscountResponse extends BaseResponse {
     region: string;
   };
 }
+
+export interface DiscountSpecRequestParamsExactMatch {
+  update_time_from?: number;
+  update_time_to?: number;
+}

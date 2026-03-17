@@ -739,3 +739,16 @@ export interface GetReverseTrackingInfoResponse extends BaseResponse {
     post_return_logistics_tracking_info?: TrackingInfo[];
   };
 }
+
+export interface ReturnsSpecRequestParamsExactMatch {
+  upload_image?: string;
+  dispute_reason_id?: number;
+  image_list?: string[];
+  proposed_solution?: number;
+  proposed_adjusted_refund_amount?: number;
+  photo?: string[];
+  reverse_logistics_carrier_id?: number;
+  reverse_logistics_carrier_name?: string;
+  image_id_list?: string[];
+  remarks?: string;
+}

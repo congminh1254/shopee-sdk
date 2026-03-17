@@ -1082,6 +1082,27 @@ export interface GetValidationReportResponse extends BaseResponse {
   };
 }
 
+export interface AmsSpecRequestParamsExactMatch {
+  l1_category_id?: number;
+  l2_category_id?: number;
+  l3_category_id?: number;
+  verified_status?: number;
+  buyer_status?: number;
+  attr_campaign_id?: number;
+  campaign_partner?: number;
+  seller_campaign_type?: number;
+  deduction_status?: number;
+  deduction_method?: number;
+  place_order_time_start?: number;
+  place_order_time_end?: number;
+  order_completed_time_start?: number;
+  order_completed_time_end?: number;
+  conversion_completed_time_start?: number;
+  conversion_completed_time_end?: number;
+  ams_deduction_time_start?: number;
+  ams_deduction_time_end?: number;
+}
+
 // ============================================================================
 // Query APIs
 // ============================================================================

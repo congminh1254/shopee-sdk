@@ -2135,3 +2135,37 @@ export interface PublishItemToOutletShopResponse extends BaseResponse {
     item_id?: number;
   };
 }
+
+export interface ProductSpecRequestParamsExactMatch {
+  ds_cat_rcmd_id?: number;
+  promotion_images?: unknown[];
+  size_chart_info?: unknown;
+  item_setting?: unknown;
+  sync_setting?: unknown;
+  product_cover_image?: string;
+  component_list?: unknown[];
+  pitem_id?: number;
+  main_item_id?: number;
+  direct_shop_regions?: string[];
+  enabled_channel_id_list?: number[];
+  quality_level?: number;
+  issue_type?: number;
+  direct_item_id?: number;
+  cover_image_id?: string;
+  ssp_id_list?: string[];
+  gtin_list?: string[];
+  oem_list?: string[];
+  compatibility_details?: unknown[];
+  product_image?: string;
+  app_logo_image_id?: string;
+  brand_website?: string;
+  brand_description?: string;
+  pc_logo_image_id?: string;
+  brand_region?: string;
+  licenses?: unknown[];
+  brand_registration_website?: string;
+  value_name?: string;
+  attribute_status?: number;
+  deboost_only?: boolean;
+  unpackaged_sku_id?: string;
+}

@@ -790,3 +790,14 @@ export interface PostVideoResponseData {
 }
 
 export type PostVideoResponse = FetchResponse<PostVideoResponseData>;
+
+export interface VideoSpecRequestParamsExactMatch {
+  video_upload_list?: unknown[];
+  period_type?: string;
+  page_no?: number;
+  page_size?: number;
+  item_id?: number;
+  item_name?: string;
+  metric_name?: string;
+  list_type?: number;
+}

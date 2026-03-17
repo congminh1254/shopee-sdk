@@ -1158,3 +1158,8 @@ export interface GetFbsInvoicesResultResponse extends FetchResponse<{
   /** The list of results */
   result_list: FbsInvoiceResultItem[];
 }> {}
+
+export interface OrderSpecRequestParamsExactMatch {
+  is_approved?: boolean;
+  reject_reason_code?: string;
+}

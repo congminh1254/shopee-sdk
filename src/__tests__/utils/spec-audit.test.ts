@@ -112,7 +112,7 @@ describe("auditRepositorySpecs", () => {
     ]);
   });
 
-  it("accepts camelCase request fields and open request param schemas", () => {
+  it("requires exact request field names from spec", () => {
     const repoRoot = createTempRepo();
     tempRepos.push(repoRoot);
 
@@ -176,7 +176,10 @@ describe("auditRepositorySpecs", () => {
 
     const report = auditRepositorySpecs(repoRoot);
 
-    expect(report.missingRequestFields).toEqual([]);
+    expect(report.missingRequestFields).toEqual([
+      { endpoint: "discount.get_discount_list", fields: ["update_time_from", "update_time_to"] },
+      { endpoint: "video.get_metric_trend", fields: ["period_type"] },
+    ]);
   });
 
   it("handles fallback endpoint parsing, invalid filenames, GET mismatches and sorting paths", () => {

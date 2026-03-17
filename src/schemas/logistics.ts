@@ -1413,3 +1413,23 @@ export interface UploadServiceablePolygonResponse extends BaseResponse {
     task_id?: string;
   };
 }
+
+export interface LogisticsSpecRequestParamsExactMatch {
+  tpf_name?: string;
+  tpf_tracking_status?: string;
+  booking_list?: unknown[];
+  unpackaged_sku_requests?: unknown[];
+  sorting_group?: number;
+  quantity?: number;
+  recipient_address_info?: unknown;
+  address_type_config?: unknown;
+  packaging_fee?: number;
+  regular_operating_hour?: unknown[];
+  special_operating_hour?: unknown[];
+  instant_operating_hour?: unknown[];
+  shop_collection_operating_hour?: unknown[];
+  self_collection_logistics_action?: number;
+  epoc_image_list?: string[];
+  tracking_url?: string;
+  failed_reason?: string;
+}

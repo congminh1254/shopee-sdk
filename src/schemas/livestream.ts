@@ -733,3 +733,11 @@ export interface UploadImageResponse extends BaseResponse {
     image_url: string;
   };
 }
+
+export interface LivestreamSpecRequestParamsExactMatch {
+  item_set_ids?: number[];
+  ban_user_id?: number;
+  keyword?: string;
+  content?: string;
+  unban_user_id?: number;
+}
