@@ -13,8 +13,16 @@ function writeFile(filePath: string, content: string): void {
 }
 
 describe("auditRepositorySpecs", () => {
+  const tempRepos: string[] = [];
+
+  afterEach(() => {
+    tempRepos.forEach((repoPath) => fs.rmSync(repoPath, { recursive: true, force: true }));
+    tempRepos.length = 0;
+  });
+
   it("detects missing endpoints and request/response field gaps", () => {
     const repoRoot = createTempRepo();
+    tempRepos.push(repoRoot);
 
     writeFile(
       path.join(repoRoot, "schemas", "v2.product.get_item.json"),
@@ -63,6 +71,7 @@ describe("auditRepositorySpecs", () => {
 
   it("detects method mismatches", () => {
     const repoRoot = createTempRepo();
+    tempRepos.push(repoRoot);
 
     writeFile(
       path.join(repoRoot, "schemas", "v2.product.add_item.json"),
@@ -87,7 +96,10 @@ describe("auditRepositorySpecs", () => {
       }`
     );
 
-    writeFile(path.join(repoRoot, "src", "schemas", "product.ts"), "export type AddItemParams = {};");
+    writeFile(
+      path.join(repoRoot, "src", "schemas", "product.ts"),
+      "export type AddItemParams = {};"
+    );
 
     const report = auditRepositorySpecs(repoRoot);
 

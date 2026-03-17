@@ -41,9 +41,10 @@ interface SdkEndpointDefinition {
   method: EndpointMethod;
 }
 
-const ENDPOINT_PATH_REGEX = /["`]\/([a-z0-9-]+)\/([a-z0-9_]+)["`]/g;
+const FALLBACK_ENDPOINT_PATH_REGEX = /["`]\/([a-z0-9-]+)\/([a-z0-9_]+)["`]/g;
 const FETCH_BLOCK_REGEX =
   /ShopeeFetch\.fetch<[^>]+>\s*\(\s*this\.config\s*,\s*["`]\/([a-z0-9-]+)\/([a-z0-9_]+)["`]\s*,\s*\{([\s\S]*?)\}\s*\)/g;
+const METHOD_POST_REGEX = /method\s*:\s*["']POST["']/;
 
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -51,10 +52,10 @@ function escapeRegExp(value: string): string {
 
 function collectFieldNames(nodes: SpecFieldNode[] = []): Set<string> {
   const fields = new Set<string>();
-  const queue = [...nodes];
+  const stack = [...nodes];
 
-  while (queue.length > 0) {
-    const node = queue.shift();
+  while (stack.length > 0) {
+    const node = stack.pop();
     if (!node) {
       continue;
     }
@@ -64,7 +65,7 @@ function collectFieldNames(nodes: SpecFieldNode[] = []): Set<string> {
     }
 
     if (node.children && node.children.length > 0) {
-      queue.push(...node.children);
+      stack.push(...node.children);
     }
   }
 
@@ -77,11 +78,11 @@ function parseSdkEndpoints(managerSource: string): SdkEndpointDefinition[] {
   for (const match of managerSource.matchAll(FETCH_BLOCK_REGEX)) {
     const endpoint = `${match[1]}.${match[2]}`;
     const options = match[3] ?? "";
-    const method = options.includes('method: "POST"') ? "POST" : "GET";
+    const method = METHOD_POST_REGEX.test(options) ? "POST" : "GET";
     endpoints.set(endpoint, method);
   }
 
-  for (const match of managerSource.matchAll(ENDPOINT_PATH_REGEX)) {
+  for (const match of managerSource.matchAll(FALLBACK_ENDPOINT_PATH_REGEX)) {
     const endpoint = `${match[1]}.${match[2]}`;
     if (!endpoints.has(endpoint)) {
       endpoints.set(endpoint, "GET");
@@ -114,6 +115,17 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
   const methodMismatches: EndpointMethodMismatch[] = [];
   const missingRequestFields: EndpointFieldGap[] = [];
   const missingResponseFields: EndpointFieldGap[] = [];
+  const regexCache = new Map<string, RegExp>();
+
+  const hasFieldName = (schemaSource: string, fieldName: string): boolean => {
+    let fieldRegex = regexCache.get(fieldName);
+    if (!fieldRegex) {
+      fieldRegex = new RegExp(`\\b${escapeRegExp(fieldName)}\\b`, "m");
+      regexCache.set(fieldName, fieldRegex);
+    }
+
+    return fieldRegex.test(schemaSource);
+  };
 
   for (const schemaFile of schemaFiles) {
     const match = /^v2\.([a-z0-9-]+)\.([a-z0-9_]+)\.json$/.exec(schemaFile);
@@ -156,16 +168,12 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
     const responseRoot = (schema.params?.response ?? []).find((item) => item.name === "response");
     const responseFields = collectFieldNames(responseRoot?.children ?? []);
 
-    const missingReq = [...requestFields].filter(
-      (fieldName) => !new RegExp(`\\b${escapeRegExp(fieldName)}\\b`, "m").test(sdkSchemaSource)
-    );
+    const missingReq = [...requestFields].filter((fieldName) => !hasFieldName(sdkSchemaSource, fieldName));
     if (missingReq.length > 0) {
       missingRequestFields.push({ endpoint: endpointKey, fields: missingReq });
     }
 
-    const missingRes = [...responseFields].filter(
-      (fieldName) => !new RegExp(`\\b${escapeRegExp(fieldName)}\\b`, "m").test(sdkSchemaSource)
-    );
+    const missingRes = [...responseFields].filter((fieldName) => !hasFieldName(sdkSchemaSource, fieldName));
     if (missingRes.length > 0) {
       missingResponseFields.push({ endpoint: endpointKey, fields: missingRes });
     }
@@ -177,6 +185,8 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
     missingEndpoints: missingEndpoints.sort(),
     methodMismatches: methodMismatches.sort((a, b) => a.endpoint.localeCompare(b.endpoint)),
     missingRequestFields: missingRequestFields.sort((a, b) => a.endpoint.localeCompare(b.endpoint)),
-    missingResponseFields: missingResponseFields.sort((a, b) => a.endpoint.localeCompare(b.endpoint)),
+    missingResponseFields: missingResponseFields.sort((a, b) =>
+      a.endpoint.localeCompare(b.endpoint)
+    ),
   };
 }
