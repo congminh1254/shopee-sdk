@@ -8,11 +8,17 @@ export interface EndpointFieldGap {
     endpoint: string;
     fields: string[];
 }
+export interface EndpointTypeGap {
+    endpoint: string;
+    missing: Array<"request" | "response">;
+}
 export interface SpecAuditReport {
     totalSpecs: number;
     totalSdkEndpoints: number;
     missingEndpoints: string[];
+    uncoveredSdkEndpoints: string[];
     methodMismatches: EndpointMethodMismatch[];
+    endpointTypeGaps: EndpointTypeGap[];
     missingRequestFields: EndpointFieldGap[];
     missingResponseFields: EndpointFieldGap[];
 }
