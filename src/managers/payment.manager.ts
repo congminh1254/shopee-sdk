@@ -95,9 +95,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_escrow_list",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -149,9 +149,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_wallet_transaction_list",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -169,7 +169,7 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_payment_method_list",
       {
-        method: "POST",
+        method: "GET",
         auth: false,
       }
     );
@@ -188,7 +188,7 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_shop_installment_status",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
       }
     );
@@ -290,9 +290,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/generate_income_report",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -313,9 +313,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_income_report",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -339,9 +339,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/generate_income_statement",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -362,9 +362,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_income_statement",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -418,9 +418,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_payout_detail",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;
@@ -445,9 +445,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_payout_info",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;

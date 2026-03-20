@@ -425,9 +425,9 @@ describe("PaymentManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_escrow_list", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           release_time_from: 1651680000,
           release_time_to: 1651939200,
           page_size: 40,
@@ -682,9 +682,9 @@ describe("PaymentManager", () => {
         mockConfig,
         "/payment/get_wallet_transaction_list",
         {
-          method: "POST",
+          method: "GET",
           auth: true,
-          body: {
+          params: {
             page_no: 1,
             page_size: 40,
             create_time_from: 1651680000,
@@ -726,7 +726,7 @@ describe("PaymentManager", () => {
       const result = await paymentManager.getPaymentMethodList();
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payment_method_list", {
-        method: "POST",
+        method: "GET",
         auth: false,
       });
 
@@ -755,7 +755,7 @@ describe("PaymentManager", () => {
         mockConfig,
         "/payment/get_shop_installment_status",
         {
-          method: "POST",
+          method: "GET",
           auth: true,
         }
       );
@@ -891,9 +891,9 @@ describe("PaymentManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/generate_income_report", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           start_time: 1651680000,
           end_time: 1651939200,
           currency: "SGD",
@@ -926,9 +926,9 @@ describe("PaymentManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_report", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           income_report_id: "REPORT_123456",
         },
       });
@@ -961,9 +961,9 @@ describe("PaymentManager", () => {
         mockConfig,
         "/payment/generate_income_statement",
         {
-          method: "POST",
+          method: "GET",
           auth: true,
-          body: {
+          params: {
             start_time: 1651680000,
             end_time: 1651939200,
           },
@@ -996,9 +996,9 @@ describe("PaymentManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_statement", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           income_statement_id: "STATEMENT_123456",
         },
       });
@@ -1087,9 +1087,9 @@ describe("PaymentManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payout_detail", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           payout_time_from: 1651680000,
           payout_time_to: 1651939200,
           page_no: 1,
@@ -1133,9 +1133,9 @@ describe("PaymentManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payout_info", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           payout_time_from: 1651680000,
           payout_time_to: 1651939200,
           page_no: 1,

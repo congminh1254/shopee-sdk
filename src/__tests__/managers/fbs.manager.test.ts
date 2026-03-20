@@ -54,9 +54,9 @@ describe("FbsManager", () => {
         mockConfig,
         "/fbs/query_br_shop_enrollment_status",
         {
-          method: "POST",
+          method: "GET",
           auth: true,
-          body: {},
+          params: {},
         }
       );
 
@@ -122,9 +122,9 @@ describe("FbsManager", () => {
       const result = await fbsManager.queryBrShopBlockStatus({});
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_shop_block_status", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {},
+        params: {},
       });
 
       expect(result).toEqual(mockResponse);
@@ -207,9 +207,9 @@ describe("FbsManager", () => {
       const result = await fbsManager.queryBrShopInvoiceError({});
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_shop_invoice_error", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {},
+        params: {},
       });
 
       expect(result).toEqual(mockResponse);
@@ -241,9 +241,9 @@ describe("FbsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_shop_invoice_error", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           page_no: 2,
           page_size: 50,
         },
@@ -334,9 +334,9 @@ describe("FbsManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_sku_block_status", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           shop_sku_id: "123456_789012",
         },
       });
