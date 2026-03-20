@@ -187,7 +187,7 @@ export class VideoManager extends BaseManager {
   ): Promise<GetProductPerformanceListResponse> {
     const response = await ShopeeFetch.fetch<GetProductPerformanceListResponse>(
       this.config,
-      `/video/get_product_performance_list`,
+      `/video/get_prodcut_performance_list`,
       {
         method: "GET",
         auth: true,
