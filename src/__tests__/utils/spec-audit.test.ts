@@ -39,10 +39,28 @@ describe("auditRepositorySpecs", () => {
         },
       })
     );
+    writeFile(
+      path.join(repoRoot, "schemas", "v2.product.get_model.json"),
+      JSON.stringify({
+        method: 2,
+        params: {
+          request_params: [],
+          response: [{ name: "response", children: [] }],
+        },
+      })
+    );
 
     writeFile(
       path.join(repoRoot, "src", "managers", "product.manager.ts"),
       `export class ProductManager {
+        async getItem(params: GetItemParams): Promise<GetItemResponse> {
+          return ShopeeFetch.fetch<GetItemResponse>(this.config, "/product/get_item", {
+            auth: true,
+            method: "GET",
+            params,
+          });
+        }
+
         async getComment() {
           return ShopeeFetch.fetch<GetCommentResponse>(this.config, "/product/get_comment", {
             auth: true,
@@ -60,13 +78,17 @@ describe("auditRepositorySpecs", () => {
 
     const report = auditRepositorySpecs(repoRoot);
 
-    expect(report.missingEndpoints).toContain("product.get_item");
+    expect(report.missingEndpoints).toContain("product.get_model");
+    expect(report.missingEndpoints).not.toContain("product.get_item");
     expect(report.missingRequestFields).toEqual([
       { endpoint: "product.get_item", fields: ["page_size"] },
     ]);
     expect(report.missingResponseFields).toEqual([
       { endpoint: "product.get_item", fields: ["has_next_page"] },
     ]);
+    expect(report.endpointTypeGaps).toEqual([]);
+    expect(report.uncoveredSdkEndpoints).toEqual(["product.get_comment"]);
+    expect(report.uncoveredSdkEndpoints).not.toContain("product.get_model");
   });
 
   it("detects method mismatches", () => {
@@ -109,6 +131,112 @@ describe("auditRepositorySpecs", () => {
         expectedMethod: "POST",
         actualMethod: "GET",
       },
+    ]);
+  });
+
+  it("flags missing request/response endpoint types", () => {
+    const repoRoot = createTempRepo();
+    tempRepos.push(repoRoot);
+
+    writeFile(
+      path.join(repoRoot, "schemas", "v2.product.get_item.json"),
+      JSON.stringify({
+        method: 2,
+        params: {
+          request_params: [{ name: "item_id" }],
+          response: [
+            {
+              name: "response",
+              children: [{ name: "item_list" }],
+            },
+          ],
+        },
+      })
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "managers", "product.manager.ts"),
+      `export class ProductManager {
+        async getItem(query: unknown): Promise<unknown> {
+          return ShopeeFetch.fetch(this.config, "/product/get_item", {
+            auth: true,
+            method: "GET",
+            params: query,
+          });
+        }
+      }`
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "schemas", "product.ts"),
+      `export type Unrelated = { foo: string };`
+    );
+
+    const report = auditRepositorySpecs(repoRoot);
+
+    expect(report.endpointTypeGaps).toEqual([
+      {
+        endpoint: "product.get_item",
+        missing: ["request", "response"],
+      },
+    ]);
+    expect(report.missingRequestFields).toEqual([
+      { endpoint: "product.get_item", fields: ["item_id"] },
+    ]);
+    expect(report.missingResponseFields).toEqual([
+      { endpoint: "product.get_item", fields: ["item_list"] },
+    ]);
+  });
+
+  it("does not allow alias field names from other types", () => {
+    const repoRoot = createTempRepo();
+    tempRepos.push(repoRoot);
+
+    writeFile(
+      path.join(repoRoot, "schemas", "v2.product.get_item.json"),
+      JSON.stringify({
+        method: 2,
+        params: {
+          request_params: [{ name: "item_id" }],
+          response: [
+            {
+              name: "response",
+              children: [{ name: "item_list" }],
+            },
+          ],
+        },
+      })
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "managers", "product.manager.ts"),
+      `type AliasParams = { item_id: number };
+      type AliasResponse = { response: { item_list: string[] } };
+      export class ProductManager {
+        async getItem(request: GetItemParams): Promise<GetItemResponse> {
+          return ShopeeFetch.fetch<GetItemResponse>(this.config, "/product/get_item", {
+            auth: true,
+            method: "GET",
+            params: request,
+          });
+        }
+      }`
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "schemas", "product.ts"),
+      `export type GetItemParams = { item_ids: number[] };
+      export interface GetItemResponse { response: { items: string[] } }`
+    );
+
+    const report = auditRepositorySpecs(repoRoot);
+
+    expect(report.endpointTypeGaps).toEqual([]);
+    expect(report.missingRequestFields).toEqual([
+      { endpoint: "product.get_item", fields: ["item_id"] },
+    ]);
+    expect(report.missingResponseFields).toEqual([
+      { endpoint: "product.get_item", fields: ["item_list"] },
     ]);
   });
 });
