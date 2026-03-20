@@ -65,9 +65,12 @@ export class MerchantManager extends BaseManager {
       this.config,
       "/merchant/get_merchant_prepaid_account_list",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params: params as unknown as Record<
+          string,
+          string | number | boolean | undefined | null | (string | number | boolean)[]
+        >,
       }
     );
 
