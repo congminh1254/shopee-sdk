@@ -313,7 +313,8 @@ function collectTypeFieldNames(
 
     if (ts.isMappedTypeNode(node)) {
       visitTypeNode(node.type);
-      visitTypeNode(node.typeParameter.constraint);
+      visitTypeNode(node.typeParameter?.constraint);
+      return;
     }
   };
 
@@ -432,11 +433,8 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
     const responseRoot = (schema.params?.response ?? []).find((item) => item.name === "response");
     const responseFields = collectFieldNames(responseRoot?.children ?? []);
 
-    const requestTypeFields = collectTypeFieldNames(sdkEndpointDef?.requestTypeName, sdkSchemaAst);
-    const responseTypeFields = collectTypeFieldNames(
-      sdkEndpointDef?.responseTypeName,
-      sdkSchemaAst
-    );
+    const requestTypeFields = collectTypeFieldNames(sdkEndpointDef.requestTypeName, sdkSchemaAst);
+    const responseTypeFields = collectTypeFieldNames(sdkEndpointDef.responseTypeName, sdkSchemaAst);
 
     const missingTypeKinds: Array<"request" | "response"> = [];
     if (requestFields.size > 0 && !requestTypeFields) {

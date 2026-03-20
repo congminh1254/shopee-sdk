@@ -79,6 +79,7 @@ describe("auditRepositorySpecs", () => {
     const report = auditRepositorySpecs(repoRoot);
 
     expect(report.missingEndpoints).toContain("product.get_model");
+    expect(report.missingEndpoints).not.toContain("product.get_item");
     expect(report.missingRequestFields).toEqual([
       { endpoint: "product.get_item", fields: ["page_size"] },
     ]);
@@ -87,6 +88,7 @@ describe("auditRepositorySpecs", () => {
     ]);
     expect(report.endpointTypeGaps).toEqual([]);
     expect(report.uncoveredSdkEndpoints).toEqual(["product.get_comment"]);
+    expect(report.uncoveredSdkEndpoints).not.toContain("product.get_model");
   });
 
   it("detects method mismatches", () => {
