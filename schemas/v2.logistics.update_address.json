@@ -42,15 +42,11 @@
     },
     {
       "name": "error_param",
-      "description": "Inbound pickup address state and city is invalid"
+      "description": "Inbound pickup address invalid state & city, state&city must be the same as kyc.billing_address state&city or fbs_branch.billing_address state&city."
     },
     {
       "name": "error_param",
       "description": "Inbound pickup address cannot be the same as Shopee warehouse address."
-    },
-    {
-      "name": "error_param",
-      "description": "Inbound pickup address must be in São Paulo state."
     },
     {
       "name": "NOT_ALLOW_TO_EDIT_ADDRESS_REGION",

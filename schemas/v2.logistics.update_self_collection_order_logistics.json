@@ -90,6 +90,14 @@
         "type": "string[]",
         "required": "False",
         "key": "nYwWmRt"
+      },
+      {
+        "description": "<p>PIN code required for prescription orders when buyer collects at your shop.</p>",
+        "name": "pin",
+        "sample": "123456",
+        "type": "string",
+        "required": "False",
+        "key": "ZxiyaNE"
       }
     ],
     "response_params": [
@@ -132,24 +140,25 @@
         "self_collection_logistics_action": "order_collected",
         "epoc_image_list": [
           "id-11134284-7r98o-mef6xcoiw1nt15"
-        ]
+        ],
+        "pin": "123456"
       }
     },
     {
       "type": "Java",
-      "value": "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"https://partner.shopeemobile.com/api/v2/logistics/update_self_collection_order_logistics?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\")\n.header(\"Content-Type\",\"application/json\")\n.body(\"{\n   \\\"epoc_image_list\\\": [\n      \\\"id-11134284-7r98o-mef6xcoiw1nt15\\\"\n   ],\n   \\\"package_number\\\": \\\"OFG211171863281841\\\",\n   \\\"self_collection_logistics_action\\\": \\\"order_collected\\\"\n}\")\n.asString();"
+      "value": "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"https://partner.shopeemobile.com/api/v2/logistics/update_self_collection_order_logistics?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\")\n.header(\"Content-Type\",\"application/json\")\n.body(\"{\n   \\\"epoc_image_list\\\": [\n      \\\"id-11134284-7r98o-mef6xcoiw1nt15\\\"\n   ],\n   \\\"package_number\\\": \\\"OFG211171863281841\\\",\n   \\\"pin\\\": \\\"123456\\\",\n   \\\"self_collection_logistics_action\\\": \\\"order_collected\\\"\n}\")\n.asString();"
     },
     {
       "type": "PHP",
-      "value": "<?php\n\n$curl = curl_init();\n\ncurl_setopt_array($curl, array(\n  CURLOPT_URL => 'https://partner.shopeemobile.com/api/v2/logistics/update_self_collection_order_logistics?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp',\n  CURLOPT_RETURNTRANSFER => true,\n  CURLOPT_ENCODING => '',\n  CURLOPT_MAXREDIRS => 10,\n  CURLOPT_TIMEOUT => 0,\n  CURLOPT_FOLLOWLOCATION => true,\n  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,\n  CURLOPT_CUSTOMREQUEST => 'POST',\n  CURLOPT_POSTFIELDS => '{\n    \"epoc_image_list\": [\n        \"id-11134284-7r98o-mef6xcoiw1nt15\"\n    ],\n    \"package_number\": \"OFG211171863281841\",\n    \"self_collection_logistics_action\": \"order_collected\"\n}',\n  CURLOPT_HTTPHEADER => array(\n    'Content-Type: application/json'\n  ),\n));\n\n$response = curl_exec($curl);\n\ncurl_close($curl);\necho $response;\n"
+      "value": "<?php\n\n$curl = curl_init();\n\ncurl_setopt_array($curl, array(\n  CURLOPT_URL => 'https://partner.shopeemobile.com/api/v2/logistics/update_self_collection_order_logistics?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp',\n  CURLOPT_RETURNTRANSFER => true,\n  CURLOPT_ENCODING => '',\n  CURLOPT_MAXREDIRS => 10,\n  CURLOPT_TIMEOUT => 0,\n  CURLOPT_FOLLOWLOCATION => true,\n  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,\n  CURLOPT_CUSTOMREQUEST => 'POST',\n  CURLOPT_POSTFIELDS => '{\n    \"epoc_image_list\": [\n        \"id-11134284-7r98o-mef6xcoiw1nt15\"\n    ],\n    \"package_number\": \"OFG211171863281841\",\n    \"pin\": \"123456\",\n    \"self_collection_logistics_action\": \"order_collected\"\n}',\n  CURLOPT_HTTPHEADER => array(\n    'Content-Type: application/json'\n  ),\n));\n\n$response = curl_exec($curl);\n\ncurl_close($curl);\necho $response;\n"
     },
     {
       "type": "cURL",
-      "value": "curl --location --request POST 'https://partner.shopeemobile.com/api/v2/logistics/update_self_collection_order_logistics?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n   \"epoc_image_list\": [\n      \"id-11134284-7r98o-mef6xcoiw1nt15\"\n   ],\n   \"package_number\": \"OFG211171863281841\",\n   \"self_collection_logistics_action\": \"order_collected\"\n}'\n"
+      "value": "curl --location --request POST 'https://partner.shopeemobile.com/api/v2/logistics/update_self_collection_order_logistics?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n   \"epoc_image_list\": [\n      \"id-11134284-7r98o-mef6xcoiw1nt15\"\n   ],\n   \"package_number\": \"OFG211171863281841\",\n   \"pin\": \"123456\",\n   \"self_collection_logistics_action\": \"order_collected\"\n}'\n"
     },
     {
       "type": "Python",
-      "value": "import requests\nimport json\n\nurl = \"https://partner.shopeemobile.com/api/v2/logistics/update_self_collection_order_logistics?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\"\n\npayload=json.dumps({\n  \"epoc_image_list\": [\n    \"id-11134284-7r98o-mef6xcoiw1nt15\"\n  ],\n  \"package_number\": \"OFG211171863281841\",\n  \"self_collection_logistics_action\": \"order_collected\"\n})\nheaders = {\n  'Content-Type': 'application/json'\n}\nresponse = requests.RPCRequest(\"POST\",url,headers=headers, data=payload, allow_redirects=False)\n\nprint(response.text)\n"
+      "value": "import requests\nimport json\n\nurl = \"https://partner.shopeemobile.com/api/v2/logistics/update_self_collection_order_logistics?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\"\n\npayload=json.dumps({\n  \"epoc_image_list\": [\n    \"id-11134284-7r98o-mef6xcoiw1nt15\"\n  ],\n  \"package_number\": \"OFG211171863281841\",\n  \"pin\": \"123456\",\n  \"self_collection_logistics_action\": \"order_collected\"\n})\nheaders = {\n  'Content-Type': 'application/json'\n}\nresponse = requests.RPCRequest(\"POST\",url,headers=headers, data=payload, allow_redirects=False)\n\nprint(response.text)\n"
     }
   ],
   "response_sample": [
@@ -166,6 +175,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/logistics/update_self_collection_order_logistics",
   "update_log_list": [
+    {
+      "date": "2026-03-27",
+      "content": "Add new pin request parameter"
+    },
     {
       "date": "2025-09-18",
       "content": "New API"

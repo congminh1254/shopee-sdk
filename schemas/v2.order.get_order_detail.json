@@ -617,20 +617,20 @@
                     "name": "is_prescription_item"
                   },
                   {
-                    "description": "<p>determine if item is B2C_shop_item</p><p>It should be `<b>is_b2c_shop_item</b>` but it was a bug from dev. Then now it's <b>is_b2c_owned_item</b></p>",
-                    "name": "is_b2c_owned_item",
-                    "sample": "",
-                    "type": "boolean",
-                    "required": null,
-                    "key": "KXTyjZY"
-                  },
-                  {
                     "description": "<p>An identifier of teleconsultation session which buyer did to order this item. Empty if item is not ordered through teleconsultation session</p>",
                     "name": "consultation_id",
                     "sample": "",
                     "type": "string",
                     "required": null,
                     "key": "YjBCYPd"
+                  },
+                  {
+                    "description": "<p>determine if item is B2C_shop_item</p><p>It should be `<b>is_b2c_shop_item</b>` but it was a bug from dev. Then now it's <b>is_b2c_owned_item</b></p>",
+                    "name": "is_b2c_owned_item",
+                    "sample": "",
+                    "type": "boolean",
+                    "required": null,
+                    "key": "KXTyjZY"
                   },
                   {
                     "description": "",
@@ -966,15 +966,7 @@
                 "description": "display weight used to calculate ASF for this order"
               },
               {
-                "description": "<p>Return prescription images of this order, only for ID and PH whitelist sellers.</p><p><br /></p><p>Please add the prefix to review:</p><p>for ID:&nbsp;<a href=\"https://cf.shopee.co.id/file/+prescription_image\" target=\"_blank\" style=\"font-size:14px;\">https://cf.shopee.co.id/file/+prescription_image</a></p><p>for PH:<a href=\"https://cf.shopee.co.id/file/+prescription_image\" target=\"_blank\" style=\"font-size:14px;\">https://cf.shopee.ph/file/+prescription_image</a></p>",
-                "required": null,
-                "sample": "",
-                "key": "MKmrZkF",
-                "type": "string[]",
-                "name": "prescription_images"
-              },
-              {
-                "description": "enum OrderPrescriptionCheckStatus: NONE = 0; PASSED = 1; FAILED = 2; Only for ID and PH whitelist sellers.",
+                "description": "<p>Prescription check status. Only for ID and PH whitelist sellers. Applicable value:&nbsp;</p><p>0: NONE</p><p>1: PASSED</p><p>2: FAILED</p>",
                 "required": null,
                 "sample": "",
                 "key": "PGwNDEi",
@@ -988,6 +980,14 @@
                 "type": "string",
                 "required": null,
                 "key": "MmwrRGC"
+              },
+              {
+                "description": "<p>Return prescription images of this order, only for ID and PH whitelist sellers.</p><p><br /></p><p>Please add the prefix to review:</p><p>for ID:&nbsp;<a href=\"https://cf.shopee.co.id/file/+prescription_image\" target=\"_blank\" style=\"font-size:14px;\">https://cf.shopee.co.id/file/+prescription_image</a></p><p>for PH:<a href=\"https://cf.shopee.co.id/file/+prescription_image\" target=\"_blank\" style=\"font-size:14px;\">https://cf.shopee.ph/file/+prescription_image</a></p>",
+                "required": null,
+                "sample": "",
+                "key": "MKmrZkF",
+                "type": "string[]",
+                "name": "prescription_images"
               },
               {
                 "description": "<p>Time of when the prescription is approved.</p>",
@@ -1004,6 +1004,30 @@
                 "type": "timestamp",
                 "required": null,
                 "key": "NjwMyKy"
+              },
+              {
+                "description": "<p>Return the reason why a prescription is rejected. If there is no rejection reason, return empty.</p>",
+                "name": "prescription_reject_reason",
+                "sample": "Insufficient prescription detail",
+                "type": "string",
+                "required": null,
+                "key": "appBTYx"
+              },
+              {
+                "description": "<p>To indicate if this order is buyer self collection at store order</p>",
+                "name": "is_buyer_shop_collection",
+                "sample": "",
+                "type": "boolean",
+                "required": null,
+                "key": "hbrRtfG"
+              },
+              {
+                "description": "<p>The image url of the buyer self collection at the store.</p>",
+                "name": "buyer_proof_of_collection",
+                "sample": "",
+                "type": "string[]",
+                "required": null,
+                "key": "XFWeyFG"
               },
               {
                 "description": "<p>Earliest estimated delivery date of orders (only available for BR region)<br /></p>",
@@ -1094,22 +1118,6 @@
                     "key": "CwprWtp"
                   }
                 ]
-              },
-              {
-                "description": "<p>To indicate if this order is buyer self collection at store order</p>",
-                "name": "is_buyer_shop_collection",
-                "sample": "",
-                "type": "boolean",
-                "required": null,
-                "key": "hbrRtfG"
-              },
-              {
-                "description": "<p>The image url of the buyer self collection at the store.</p>",
-                "name": "buyer_proof_of_collection",
-                "sample": "",
-                "type": "string[]",
-                "required": null,
-                "key": "XFWeyFG"
               },
               {
                 "description": "<p>[Only for PH,TH,VN,MY,BR,TW] True if the order includes hot listing item.</p>",

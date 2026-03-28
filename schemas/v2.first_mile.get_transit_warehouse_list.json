@@ -84,6 +84,14 @@
         "type": "string",
         "required": "False",
         "key": "DdbYfzD"
+      },
+      {
+        "description": "<p>Use this field to specify the shipment method you want to ship parcel. Available value:&nbsp;pickup, dropoff, self_deliver, courier_delivery.</p><p><br /></p><p>Note: Only when shipment_method = dropoff, the API response will include warehouses where warehouse_type = 1 (vendor warehouse).</p>",
+        "name": "shipment_method",
+        "sample": "pickup",
+        "type": "string",
+        "required": "False",
+        "key": "JJSpYkB"
       }
     ],
     "response_params": [
@@ -149,6 +157,14 @@
                 "type": "string",
                 "required": null,
                 "key": "FSsEEnx"
+              },
+              {
+                "description": "<p>Warehouse type:&nbsp;</p><p>0 = normal warehouse</p><p>1 = vendor warehouse</p><p><br /></p><p>Note: Only when shipment_method = dropoff, the API response will include warehouses where warehouse_type = 1 (vendor warehouse).</p>",
+                "name": "warehouse_type",
+                "sample": "0",
+                "type": "int32",
+                "required": null,
+                "key": "mXFhtbt"
               }
             ]
           }
@@ -157,7 +173,7 @@
     ]
   },
   "perm_mtime": 1758275516,
-  "perm_operator": "jiayi.luo@shopee.com",
+  "perm_operator": "caixia.tu@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 80455,
@@ -165,19 +181,19 @@
   "request_sample": [
     {
       "type": "Java",
-      "value": "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.get(\"https://partner.shopeemobile.com/api/v2/first_mile/get_transit_warehouse_list?access_token=access_token&partner_id=partner_id&region=CN&shop_id=shop_id&sign=sign&timestamp=timestamp\")\n.asString();"
+      "value": "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.get(\"https://partner.shopeemobile.com/api/v2/first_mile/get_transit_warehouse_list?access_token=access_token&partner_id=partner_id&region=CN&shipment_method=pickup&shop_id=shop_id&sign=sign&timestamp=timestamp\")\n.asString();"
     },
     {
       "type": "PHP",
-      "value": "<?php\n\n$curl = curl_init();\n\ncurl_setopt_array($curl, array(\n  CURLOPT_URL => 'https://partner.shopeemobile.com/api/v2/first_mile/get_transit_warehouse_list?access_token=access_token&partner_id=partner_id&region=CN&shop_id=shop_id&sign=sign&timestamp=timestamp',\n  CURLOPT_RETURNTRANSFER => true,\n  CURLOPT_ENCODING => '',\n  CURLOPT_MAXREDIRS => 10,\n  CURLOPT_TIMEOUT => 0,\n  CURLOPT_FOLLOWLOCATION => true,\n  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,\n  CURLOPT_CUSTOMREQUEST => 'GET',\n  CURLOPT_HTTPHEADER => array(\n    'Content-Type: application/json'\n  ),\n));\n\n$response = curl_exec($curl);\n\ncurl_close($curl);\necho $response;\n"
+      "value": "<?php\n\n$curl = curl_init();\n\ncurl_setopt_array($curl, array(\n  CURLOPT_URL => 'https://partner.shopeemobile.com/api/v2/first_mile/get_transit_warehouse_list?access_token=access_token&partner_id=partner_id&region=CN&shipment_method=pickup&shop_id=shop_id&sign=sign&timestamp=timestamp',\n  CURLOPT_RETURNTRANSFER => true,\n  CURLOPT_ENCODING => '',\n  CURLOPT_MAXREDIRS => 10,\n  CURLOPT_TIMEOUT => 0,\n  CURLOPT_FOLLOWLOCATION => true,\n  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,\n  CURLOPT_CUSTOMREQUEST => 'GET',\n  CURLOPT_HTTPHEADER => array(\n    'Content-Type: application/json'\n  ),\n));\n\n$response = curl_exec($curl);\n\ncurl_close($curl);\necho $response;\n"
     },
     {
       "type": "cURL",
-      "value": "curl --location --request GET 'https://partner.shopeemobile.com/api/v2/first_mile/get_transit_warehouse_list?access_token=access_token&partner_id=partner_id&region=CN&shop_id=shop_id&sign=sign&timestamp=timestamp' "
+      "value": "curl --location --request GET 'https://partner.shopeemobile.com/api/v2/first_mile/get_transit_warehouse_list?access_token=access_token&partner_id=partner_id&region=CN&shipment_method=pickup&shop_id=shop_id&sign=sign&timestamp=timestamp' "
     },
     {
       "type": "Python",
-      "value": "import requests\n\nurl = \"https://partner.shopeemobile.com/api/v2/first_mile/get_transit_warehouse_list?access_token=access_token&partner_id=partner_id&region=CN&shop_id=shop_id&sign=sign&timestamp=timestamp\"\n\npayload={}\nheaders = {\n\n}\nresponse = requests.RPCRequest(\"GET\",url,headers=headers, data=payload, allow_redirects=False)\n\nprint(response.text)\n"
+      "value": "import requests\n\nurl = \"https://partner.shopeemobile.com/api/v2/first_mile/get_transit_warehouse_list?access_token=access_token&partner_id=partner_id&region=CN&shipment_method=pickup&shop_id=shop_id&sign=sign&timestamp=timestamp\"\n\npayload={}\nheaders = {\n\n}\nresponse = requests.RPCRequest(\"GET\",url,headers=headers, data=payload, allow_redirects=False)\n\nprint(response.text)\n"
     }
   ],
   "response_sample": [
@@ -191,48 +207,57 @@
           "transit_warehouse_list": [
             {
               "warehouse_id": "ECP03",
-              "warehouse_name_cn": "Shopee Quanzhou Transit Warehouse",
-              "warehouse_name_en": "Shopee泉州仓"
+              "warehouse_name_en": "Shopee Quanzhou Transit Warehouse",
+              "warehouse_name_cn": "Shopee泉州仓",
+              "warehouse_type": 0
             },
             {
               "warehouse_id": "ECP04",
-              "warehouse_name_cn": "Shopee Yiwu Transit Warehouse",
-              "warehouse_name_en": "Shopee义乌仓"
+              "warehouse_name_en": "Shopee Yiwu Transit Warehouse",
+              "warehouse_name_cn": "Shopee义乌仓",
+              "warehouse_type": 0
             },
             {
               "warehouse_id": "TWGZ",
+              "warehouse_name_en": "Shopee Guangzhou Transit Warehouse",
               "warehouse_name_cn": "Shopee广州仓",
-              "warehouse_name_en": "Shopee Guangzhou Transit Warehouse"
+              "warehouse_type": 0
             },
             {
               "warehouse_id": "TWHZ",
+              "warehouse_name_en": "Shopee Huizhou Transit Warehouse",
               "warehouse_name_cn": "Shopee惠州仓",
-              "warehouse_name_en": "Shopee Huizhou Transit Warehouse"
+              "warehouse_type": 0
             },
             {
               "warehouse_id": "TWJN",
+              "warehouse_name_en": "Shopee North china Front TWS",
               "warehouse_name_cn": "Shopee华北前置仓",
-              "warehouse_name_en": "Shopee North china Front TWS"
+              "warehouse_type": 0
             },
             {
               "warehouse_id": "TWNN",
+              "warehouse_name_en": "Shopee Nanning Transit Warehouse",
               "warehouse_name_cn": "Shopee南宁仓",
-              "warehouse_name_en": "Shopee Nanning Transit Warehouse"
+              "warehouse_type": 0
             },
             {
               "warehouse_id": "TWNS",
+              "warehouse_name_en": "Shopee Nanning Transit Warehouse",
               "warehouse_name_cn": "Shopee南宁仓",
-              "warehouse_name_en": "Shopee Nanning Transit Warehouse"
+              "warehouse_type": 0
             },
             {
               "warehouse_id": "TWS01",
-              "warehouse_name_cn": "Shopee Shenzhen Transit Warehouse",
-              "warehouse_name_en": "Shopee深圳仓"
+              "warehouse_name_en": "Shopee Shenzhen Transit Warehouse",
+              "warehouse_name_cn": "Shopee深圳仓",
+              "warehouse_type": 0
             },
             {
               "warehouse_id": "TWS02",
-              "warehouse_name_cn": "Shopee HongKong Transit Warehouse",
-              "warehouse_name_en": "Shopee香港仓"
+              "warehouse_name_en": "Shopee HongKong Transit Warehouse",
+              "warehouse_name_cn": "Shopee香港仓",
+              "warehouse_type": 0
             }
           ]
         }
@@ -243,6 +268,14 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/first_mile/get_transit_warehouse_list",
   "update_log_list": [
+    {
+      "date": "2026-03-23",
+      "content": "Add shipment_method request parameter"
+    },
+    {
+      "date": "2026-03-20",
+      "content": "Add warehouse_type response parameter"
+    },
     {
       "date": "2024-10-29",
       "content": "New API"

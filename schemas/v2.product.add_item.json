@@ -46,11 +46,11 @@
     },
     {
       "name": "product.error_busi",
-      "description": "Medicine list ID is mandatory for products in Prescription/OTC category."
+      "description": "Medicine ID is mandatory for products in Prescription/OTC category."
     },
     {
       "name": "product.error_busi",
-      "description": "Please input the correct medicine list ID."
+      "description": "Please input the correct medicine ID."
     },
     {
       "name": "product.error_busi",
@@ -1634,6 +1634,14 @@
             ]
           }
         ]
+      },
+      {
+        "description": "<p>[Only for ID local sellers] as a unique identifier for each standardized medicine, the medicine id can only be obtained offline</p>",
+        "name": "medicine_id",
+        "sample": "",
+        "type": "int64",
+        "required": "False",
+        "key": "DDzDsTB"
       }
     ],
     "response_params": [
@@ -2401,6 +2409,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/product/add_item",
   "update_log_list": [
     {
+      "date": "2026-03-13",
+      "content": "Introduce \"medicine_id\" as the request parameter"
+    },
+    {
       "date": "2025-09-19",
       "content": "The request field certification_type has been removed. If this field is still passed in the request, it will be ignored by the system."
     },
@@ -2415,10 +2427,6 @@
     {
       "date": "2025-03-14",
       "content": "Add export_cfop for BR "
-    },
-    {
-      "date": "2025-01-08",
-      "content": "Update GTIN validation rule"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/product/add_item",

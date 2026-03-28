@@ -73,6 +73,14 @@
       "description": "no supported warehouse address"
     },
     {
+      "name": "logistics.compulsory_channel_rule",
+      "description": "{parent_channel} cannot be turned on/off. Please enable at least 1 of the following channel(s) first: {seller channel name list}"
+    },
+    {
+      "name": "logistics.dependent_block_rule",
+      "description": "{parent_channel} cannot be turned off due to dependent block rule. Please disable all the following channel(s) before proceed: {seller channel name list}"
+    },
+    {
       "name": "logistics.minimum_activation_rule",
       "description": "{parent_channel} cannot be turned off. Please enable at least 1 of the following channel(s): {seller channel name list}"
     },

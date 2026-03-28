@@ -241,7 +241,7 @@
                 ],
                 "type": "string[]",
                 "name": "address_type",
-                "description": "The flag of shop address.Available values: DEFAULT_ADDRESS, PICK_UP_ADDRESS, RETURN_ADDRESS.",
+                "description": "<p>The flag of shop address.Available values: DEFAULT_ADDRESS, PICK_UP_ADDRESS, RETURN_ADDRESS, INBOUND_PICKUP_ADDRESS.</p>",
                 "key": "TiyYEz"
               }
             ],
@@ -253,7 +253,7 @@
     ]
   },
   "perm_mtime": 1621247802,
-  "perm_operator": "grace.li@shopee.com",
+  "perm_operator": "caixia.tu@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 14,
@@ -334,7 +334,12 @@
   "status": 1,
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/logistics/get_address_list",
-  "update_log_list": [],
+  "update_log_list": [
+    {
+      "date": "2026-03-27",
+      "content": "Add INBOUND_PICKUP_ADDRESS option for address_type"
+    }
+  ],
   "url": "https://partner.shopeemobile.com/api/v2/logistics/get_address_list",
   "version": "",
   "error_example": [
