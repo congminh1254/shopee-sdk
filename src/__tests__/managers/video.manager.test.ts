@@ -341,7 +341,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
-        "/video/get_product_performance_list",
+        "/video/get_prodcut_performance_list",
         {
           method: "GET",
           auth: true,
