@@ -46,11 +46,11 @@
     },
     {
       "name": "product.error_busi",
-      "description": "Medicine list ID is mandatory for products in Prescription/OTC category."
+      "description": "Medicine ID is mandatory for products in Prescription/OTC category."
     },
     {
       "name": "product.error_busi",
-      "description": "Please input the correct medicine list ID."
+      "description": "Please input the correct medicine ID."
     },
     {
       "name": "product.error_busi",
@@ -1644,6 +1644,14 @@
             ]
           }
         ]
+      },
+      {
+        "description": "<p>[Only for ID local sellers] as a unique identifier for each standardized medicine, the medicine id can only be obtained offline</p>",
+        "name": "medicine_id",
+        "sample": "",
+        "type": "int64",
+        "required": "False",
+        "key": "fMEDPQ"
       }
     ],
     "response_params": [
@@ -2206,6 +2214,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/product/update_item",
   "update_log_list": [
     {
+      "date": "2026-03-13",
+      "content": "Introduce \"medicine_id\" as the request parameter"
+    },
+    {
       "date": "2025-11-17",
       "content": "add new request field \"has_promotion\""
     },
@@ -2220,10 +2232,6 @@
     {
       "date": "2025-04-28",
       "content": "Add permit ID for PH product certification"
-    },
-    {
-      "date": "2025-04-23",
-      "content": "Add PH certification_info"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/product/update_item",

@@ -122,7 +122,7 @@
         "name": "is_approved"
       },
       {
-        "description": "<p>Reject reason code. Available values:&nbsp;<br /></p><p>1 = Invalid Prescription (counterfeit/incorrect format)</p><p>2 = Incorrect Dosage</p><p>3 = No Prescription</p><p>4 = Unclear Image</p>",
+        "description": "<p>Reject reason code. Available values:&nbsp;<br /></p><p>1 = Invalid Prescription (counterfeit/incorrect format)</p><p>2 = Incorrect Dosage</p><p>3 = No Prescription</p><p>4 = Unclear Image</p><p>5 = Free Text</p>",
         "required": "False",
         "sample": "",
         "key": "daptNwY",
@@ -170,6 +170,14 @@
         "type": "string",
         "required": "False",
         "key": "axEMJFX"
+      },
+      {
+        "description": "<p>The reason for rejecting the prescription. Only usable when the reject_reason_code = 5.</p>",
+        "name": "free_text",
+        "sample": "",
+        "type": "string",
+        "required": "False",
+        "key": "PGWZCYT"
       }
     ],
     "response_params": [
@@ -226,16 +234,23 @@
   "request_sample": [
     {
       "type": "Payload",
-      "value": {
-        "is_approved": "",
-        "items": {
-          "group_id": "",
-          "item_id": "",
-          "model_id": ""
-        },
-        "order_sn": "",
-        "reject_reason_code": ""
-      }
+      "value": "{\n\t\"order_sn\": \"-\",\n\t\"is_approved\": true,\n\t\"items\": [\n         {\n             \"item_id\": \"\",\n             \"group_id\": \"\"\n             \"model_id\": \"\"\n        }\n\t],\n\t\"pharmacist_name\": \"-\",\n\t\"free_text\": \"-\"\n}"
+    },
+    {
+      "type": "Java",
+      "value": "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"https://partner.shopeemobile.com/api/v2/order/handle_prescription_check?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\")\n.header(\"Content-Type\",\"application/json\")\n.body(\"{\n   \\\"free_text\\\": \\\"-\\\",\n   \\\"is_approved\\\": true,\n   \\\"items\\\": [\n      {}\n   ],\n   \\\"order_sn\\\": \\\"-\\\",\n   \\\"pharmacist_name\\\": \\\"-\\\"\n}\")\n.asString();"
+    },
+    {
+      "type": "PHP",
+      "value": "<?php\n\n$curl = curl_init();\n\ncurl_setopt_array($curl, array(\n  CURLOPT_URL => 'https://partner.shopeemobile.com/api/v2/order/handle_prescription_check?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp',\n  CURLOPT_RETURNTRANSFER => true,\n  CURLOPT_ENCODING => '',\n  CURLOPT_MAXREDIRS => 10,\n  CURLOPT_TIMEOUT => 0,\n  CURLOPT_FOLLOWLOCATION => true,\n  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,\n  CURLOPT_CUSTOMREQUEST => 'POST',\n  CURLOPT_POSTFIELDS => '{\n    \"free_text\": \"-\",\n    \"is_approved\": true,\n    \"items\": [\n        {}\n    ],\n    \"order_sn\": \"-\",\n    \"pharmacist_name\": \"-\"\n}',\n  CURLOPT_HTTPHEADER => array(\n    'Content-Type: application/json'\n  ),\n));\n\n$response = curl_exec($curl);\n\ncurl_close($curl);\necho $response;\n"
+    },
+    {
+      "type": "cURL",
+      "value": "curl --location --request POST 'https://partner.shopeemobile.com/api/v2/order/handle_prescription_check?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n   \"free_text\": \"-\",\n   \"is_approved\": true,\n   \"items\": [\n      {}\n   ],\n   \"order_sn\": \"-\",\n   \"pharmacist_name\": \"-\"\n}'\n"
+    },
+    {
+      "type": "Python",
+      "value": "import requests\nimport json\n\nurl = \"https://partner.shopeemobile.com/api/v2/order/handle_prescription_check?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\"\n\npayload=json.dumps({\n  \"free_text\": \"-\",\n  \"is_approved\": True,\n  \"items\": [\n    {}\n  ],\n  \"order_sn\": \"-\",\n  \"pharmacist_name\": \"-\"\n})\nheaders = {\n  'Content-Type': 'application/json'\n}\nresponse = requests.RPCRequest(\"POST\",url,headers=headers, data=payload, allow_redirects=False)\n\nprint(response.text)\n"
     }
   ],
   "response_sample": [
@@ -255,6 +270,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/handle_prescription_check",
   "update_log_list": [
+    {
+      "date": "2026-03-27",
+      "content": "Add 5 (Free Text) option for reject_reason_code request parameter, and add new free_text request parameter"
+    },
     {
       "date": "2023-02-03",
       "content": "New field for pharmacist name for PH only.\n"

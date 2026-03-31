@@ -243,6 +243,14 @@
                 "key": "FREaejH"
               },
               {
+                "description": "<p>The deposit fee paid by buyer of $0.10 per container as part of the SG Beverage Container Return Scheme mandated by the National Environment Agency (NEA). This value might be updated after RR/cancellation.</p>",
+                "name": "bcrs_deposit",
+                "sample": "0.10",
+                "type": "float",
+                "required": null,
+                "key": "AxzTmCa"
+              },
+              {
                 "sample": "10.0",
                 "type": "float",
                 "name": "seller_discount",
@@ -524,6 +532,14 @@
                     "name": "discounted_price",
                     "key": "FxAyeGe",
                     "description": "The after-discount price of the item in the listing currency. It returns the subtotal of that specific item if quantity exceeds 1. If there is no discount, this value will be the same as that of original_price. "
+                  },
+                  {
+                    "description": "<p>The deposit fee paid by buyer of $0.10 per container as part of the SG Beverage Container Return Scheme mandated by the National Environment Agency (NEA).&nbsp;This will be an initial value and will not update after RR/cancellation.</p>",
+                    "name": "bcrs_deposit",
+                    "sample": "0.10",
+                    "type": "float",
+                    "required": null,
+                    "key": "FQXKYb"
                   },
                   {
                     "description": "<p>The discount provided by seller for this item<br /></p>",
@@ -1281,7 +1297,7 @@
                 "key": "SGWttPs"
               },
               {
-                "description": "<p>[TH only] Import Duty collected for goods priced less than 1,500 THB</p>",
+                "description": "<p>[TH only] Import Duty collected for imported goods entering Thailand.</p>",
                 "name": "th_import_duty",
                 "sample": "",
                 "type": "float",
@@ -1466,6 +1482,14 @@
                 "type": "float",
                 "required": null,
                 "key": "BSHXiw"
+              },
+              {
+                "description": "<p>The deposit fee paid by buyer of $0.10 per container as part of the SG Beverage Container Return Scheme mandated by the National Environment Agency (NEA). This will be an initial value and will not update after RR/cancellation.</p>",
+                "name": "bcrs_deposit",
+                "sample": "0.10",
+                "type": "float",
+                "required": null,
+                "key": "PfJXbtT"
               }
             ]
           }
@@ -1706,6 +1730,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/payment/get_escrow_detail",
   "update_log_list": [
     {
+      "date": "2026-03-27",
+      "content": "add response new fields \"bcrs_deposit\" under order_income/ order_income.items/buyer_payment_info"
+    },
+    {
       "date": "2026-03-06",
       "content": "Updated with th_import_duty"
     },
@@ -1720,10 +1748,6 @@
     {
       "date": "2025-11-19",
       "content": "updated with fbs_fee"
-    },
-    {
-      "date": "2025-11-12",
-      "content": "update the field name from \"trade_in_bonus_subtota\" to \"trade_in_bonus\""
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/payment/get_escrow_detail",

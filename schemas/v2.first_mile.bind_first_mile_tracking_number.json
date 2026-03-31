@@ -366,6 +366,22 @@
         ],
         "description": "The set of ordersn. You can specify up to 50 ordersns in this call.one fm_tn maximum number of total bind orders is 10000.",
         "key": "SYcWKSy"
+      },
+      {
+        "description": "<p>The identity of transit warehouse address. Retrieved from&nbsp;v2.first_mile.get_transit_warehouse_list.</p><p><br /></p><p>Note: <b>When the first-mile delivery mode is \"Drop Off\", this field is expected to be a required field</b>. However, to avoid affecting your existing services, this field will be temporarily optional until&nbsp;<b><font color=\"#c24f4a\">April 30, 2026</font></b>. Please complete the integration before then to avoid any impact on your services if it is changed to a required field later.</p>",
+        "name": "warehouse_id",
+        "sample": "ECP03",
+        "type": "string",
+        "required": "False",
+        "key": "nXwYeFB"
+      },
+      {
+        "description": "<p>Warehouse type.&nbsp;Retrieved from&nbsp;v2.first_mile.get_transit_warehouse_list.<br />0 = normal warehouse<br />1 = vendor warehouse</p><p><br /></p><p>Note:&nbsp;<b>When the first-mile delivery mode is \"Drop Off\", this field is expected to be a required field</b>.&nbsp;However, to avoid affecting your existing services, this field will be temporarily optional until&nbsp;<b><font color=\"#c24f4a\">April 30, 2026</font></b>. Please complete the integration before then to avoid any impact on your services if it is changed to a required field later.</p>",
+        "name": "warehouse_type",
+        "sample": "0",
+        "type": "int32",
+        "required": "False",
+        "key": "wXjnZtY"
       }
     ],
     "response_params": [
@@ -606,6 +622,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/first_mile/bind_first_mile_tracking_number",
   "update_log_list": [
+    {
+      "date": "2026-03-20",
+      "content": "Add warehouse_id and warehouse_type request parameter"
+    },
     {
       "date": "2024-08-27",
       "content": "update the description of the request field \"region\""

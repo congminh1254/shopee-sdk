@@ -42,15 +42,11 @@
     },
     {
       "name": "error_param",
-      "description": "Inbound pickup address state and city is invalid"
+      "description": "Inbound pickup address invalid state & city, state&city must be the same as kyc.billing_address state&city or fbs_branch.billing_address state&city."
     },
     {
       "name": "error_param",
       "description": "Inbound pickup address cannot be the same as Shopee warehouse address."
-    },
-    {
-      "name": "error_param",
-      "description": "Inbound pickup address must be in São Paulo state."
     },
     {
       "name": "logistics.address_not_found",
@@ -190,7 +186,7 @@
             "limits": "",
             "required": "False",
             "sample": "1234",
-            "type": "int",
+            "type": "int64",
             "description": "The identifier id of the address.",
             "key": "QzRarC"
           },
@@ -203,7 +199,7 @@
               "RETURN_ADDRESS"
             ],
             "type": "string[]",
-            "description": "The type of addres. Available values: DEFAULT_ADDRESS, PICKUP_ADDRESS, RETURN_ADDRESS",
+            "description": "<p>The type of address. Available values: DEFAULT_ADDRESS, PICKUP_ADDRESS, RETURN_ADDRESS, INBOUND_PICKUP_ADDRESS.</p>",
             "key": "CnWjerX"
           }
         ],
@@ -236,7 +232,7 @@
     ]
   },
   "perm_mtime": 1621247802,
-  "perm_operator": "sys",
+  "perm_operator": "caixia.tu@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 15,
@@ -273,7 +269,12 @@
   "status": 1,
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/logistics/set_address_config",
-  "update_log_list": [],
+  "update_log_list": [
+    {
+      "date": "2026-03-27",
+      "content": "Add INBOUND_PICKUP_ADDRESS option for address_type"
+    }
+  ],
   "url": "https://partner.shopeemobile.com/api/v2/logistics/set_address_config",
   "version": "",
   "error_example": [

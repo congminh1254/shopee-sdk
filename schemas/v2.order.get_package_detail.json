@@ -555,20 +555,20 @@
                 "key": "XRJwdfe"
               },
               {
-                "description": "<p>Return prescription images of this order, only for ID and PH whitelist sellers.</p><p><br /></p><p>Please add the prefix to review:</p><p>for ID:&nbsp;https://cf.shopee.co.id/file/+prescription_image</p><p>for PH: https://cf.shopee.ph/file/+prescription_image</p>",
-                "name": "prescription_images",
-                "sample": "",
-                "type": "string[]",
-                "required": null,
-                "key": "jaAYjxD"
-              },
-              {
                 "description": "<p>Name of the Pharmacist for Prescription Order.</p>",
                 "name": "pharmacist_name",
                 "sample": "",
                 "type": "string",
                 "required": null,
                 "key": "NENybyQ"
+              },
+              {
+                "description": "<p>Return prescription images of this order, only for ID and PH whitelist sellers.</p><p><br /></p><p>Please add the prefix to review:</p><p>for ID:&nbsp;https://cf.shopee.co.id/file/+prescription_image</p><p>for PH: https://cf.shopee.ph/file/+prescription_image</p>",
+                "name": "prescription_images",
+                "sample": "",
+                "type": "string[]",
+                "required": null,
+                "key": "jaAYjxD"
               },
               {
                 "description": "<p>Time of when the prescription is approved.</p>",

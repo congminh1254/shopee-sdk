@@ -234,7 +234,7 @@
             "key": "wbCYwab",
             "children": [
               {
-                "description": "<p>Buyer name (has value when invoice_type is personal and household)<br /></p><p>- VN, TH, PH only<br /></p>",
+                "description": "<p>Buyer name (has value when invoice_type is personal, household, or company)<br /></p><p>- VN, TH, PH only<br /></p>",
                 "name": "name",
                 "sample": "Tom Jerry",
                 "type": "string",
