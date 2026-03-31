@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.5](https://github.com/congminh1254/shopee-sdk/compare/v1.5.4...v1.5.5) (2026-03-31)
+
+
+### Bug Fixes
+
+* align audited endpoint HTTP methods with spec definitions ([#146](https://github.com/congminh1254/shopee-sdk/issues/146)) ([5dba848](https://github.com/congminh1254/shopee-sdk/commit/5dba8488d04362950ac6602c3c2272f4ce646019))
+* Align Video product performance endpoint with Shopee spec path ([#148](https://github.com/congminh1254/shopee-sdk/issues/148)) ([669933b](https://github.com/congminh1254/shopee-sdk/commit/669933ba0b6b2cd956dd51d3452d3a8c2069567c))
+
 ## [1.5.4](https://github.com/congminh1254/shopee-sdk/compare/v1.5.3...v1.5.4) (2026-03-04)
 
 
