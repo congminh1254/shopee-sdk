@@ -38,6 +38,18 @@
   "error_list": [
     {
       "name": "error_param",
+      "description": "Seller or Channel does not support Auto-Call."
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid Auto-Call setting param."
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid Seller preparation time."
+    },
+    {
+      "name": "error_param",
       "description": "Shipping options of Direct Shop will follow Local Shop."
     },
     {
