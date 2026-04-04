@@ -748,13 +748,6 @@
                 "key": "fGFRTfp"
               },
               {
-                "sample": "13123",
-                "type": "int64",
-                "name": "promotion_id",
-                "description": "<p>The unique identifier of the promotion applied to the item.</p>",
-                "key": "WSmmrpP"
-              },
-              {
                 "description": "<p>Indicates whether the item is currently under any ongoing promotion.</p>",
                 "name": "has_promotion",
                 "sample": "true",
@@ -1017,6 +1010,92 @@
                 "type": "int64",
                 "required": null,
                 "key": "dzDXFSd"
+              },
+              {
+                "description": "<p>For PH product certification input<br />Required for some category and attribute option</p>",
+                "name": "certification_info",
+                "sample": "",
+                "type": "object",
+                "required": null,
+                "key": "mknDCZx",
+                "children": [
+                  {
+                    "description": "<p>Array of certification records for the product, each containing type, certificate number, permit ID, and proof documents.</p>",
+                    "name": "certification_list",
+                    "sample": "",
+                    "type": "object[]",
+                    "required": null,
+                    "key": "kEHXBBP",
+                    "children": [
+                      {
+                        "description": "<p>Permit ID, get from&nbsp;v2.product.get_product_certification_rule</p>",
+                        "name": "permit_id",
+                        "sample": "",
+                        "type": "int32",
+                        "required": null,
+                        "key": "kXfQYRB"
+                      },
+                      {
+                        "description": "<p>Certification No.</p>",
+                        "name": "certification_no",
+                        "sample": "",
+                        "type": "string",
+                        "required": null,
+                        "key": "CziYXm"
+                      },
+                      {
+                        "description": "<p>expiry timestamp</p>",
+                        "name": "expiry_date",
+                        "sample": "",
+                        "type": "int32",
+                        "required": null,
+                        "key": "PRAiKJQ"
+                      },
+                      {
+                        "description": "<p>An array of proof documents for the certification; each element represents one proof file.</p>",
+                        "name": "certification_proofs",
+                        "sample": "",
+                        "type": "object[]",
+                        "required": null,
+                        "key": "HEwhjHd",
+                        "children": [
+                          {
+                            "description": "<p>The unique image ID of the certification proof, returned by the image upload API.</p>",
+                            "name": "image_id",
+                            "sample": "",
+                            "type": "string",
+                            "required": null,
+                            "key": "fdkRbHj"
+                          },
+                          {
+                            "description": "<p>image weight/ image height.</p>",
+                            "name": "ratio",
+                            "sample": "",
+                            "type": "float",
+                            "required": null,
+                            "key": "thDepFM"
+                          },
+                          {
+                            "description": "<p>The name of the uploaded certification proof file.</p>",
+                            "name": "file_name",
+                            "sample": "",
+                            "type": "string",
+                            "required": null,
+                            "key": "rJztiRb"
+                          },
+                          {
+                            "description": "<p>The image url of the proof</p>",
+                            "name": "image_url",
+                            "sample": "",
+                            "type": "string",
+                            "required": null,
+                            "key": "shZthbt"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ],
             "name": "item_list",
@@ -1488,92 +1567,6 @@
         ],
         "name": "response",
         "key": "sZiaQXd"
-      },
-      {
-        "description": "<p>For PH product certification input<br />Required for some category and attribute option</p>",
-        "name": "certification_info",
-        "sample": "",
-        "type": "object",
-        "required": null,
-        "key": "bKDZkrH",
-        "children": [
-          {
-            "description": "<p>Array of certification records for the product, each containing type, certificate number, permit ID, and proof documents.</p><p><br /></p><p><br /></p>",
-            "name": "certification_list",
-            "sample": "",
-            "type": "object[]",
-            "required": null,
-            "key": "eANmhdX",
-            "children": [
-              {
-                "description": "<p>Permit ID, get from&nbsp;v2.product.get_product_certification_rule<br /></p>",
-                "name": "permit_id",
-                "sample": "",
-                "type": "int32",
-                "required": null,
-                "key": "bkaSXBt"
-              },
-              {
-                "description": "<p>Certification No.</p>",
-                "name": "certification_no",
-                "sample": "",
-                "type": "string",
-                "required": null,
-                "key": "mGyQjCE"
-              },
-              {
-                "description": "<p>expiry timestamp</p>",
-                "name": "expiry_date",
-                "sample": "",
-                "type": "int32",
-                "required": null,
-                "key": "prEcwQX"
-              },
-              {
-                "description": "<p>An array of proof documents for the certification; each element represents one proof file.</p>",
-                "name": "certification_proofs",
-                "sample": "",
-                "type": "object[]",
-                "required": null,
-                "key": "cXJCYxt",
-                "children": [
-                  {
-                    "description": "<p>The unique image ID of the certification proof, returned by the image upload API.</p>",
-                    "name": "image_id",
-                    "sample": "",
-                    "type": "string",
-                    "required": null,
-                    "key": "zpWeWzD"
-                  },
-                  {
-                    "description": "<p>image weight/ image height.<br /></p>",
-                    "name": "ratio",
-                    "sample": "",
-                    "type": "float",
-                    "required": null,
-                    "key": "EZxkBWP"
-                  },
-                  {
-                    "description": "<p>The name of the uploaded certification proof file.</p>",
-                    "name": "file_name",
-                    "sample": "",
-                    "type": "string",
-                    "required": null,
-                    "key": "EDBrWBW"
-                  },
-                  {
-                    "description": "<p>The image url of the proof</p>",
-                    "name": "image_url",
-                    "sample": "",
-                    "type": "string",
-                    "required": null,
-                    "key": "GQWGNJ"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
       }
     ]
   },
@@ -1765,6 +1758,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/product/get_item_base_info",
   "update_log_list": [
     {
+      "date": "2026-04-03",
+      "content": "remove promotion_id"
+    },
+    {
       "date": "2026-03-13",
       "content": "add new response field \"medicine_id\""
     },
@@ -1779,10 +1776,6 @@
     {
       "date": "2025-08-22",
       "content": "add new response field \"image_url\" under \"certification_proofs\""
-    },
-    {
-      "date": "2025-08-22",
-      "content": "add to new response field \"local_promotion_price\"and \"local_price\""
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/product/get_item_base_info",

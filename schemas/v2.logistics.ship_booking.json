@@ -71,6 +71,10 @@
     {
       "name": "error_param",
       "description": "request not from gateway"
+    },
+    {
+      "name": "logistics.product_location_mismatch",
+      "description": "Pickup address does not match product location. Please check warehouse configuration"
     }
   ],
   "errors": "",
