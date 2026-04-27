@@ -18,7 +18,7 @@ yarn add @congminh1254/shopee-sdk
 
 ## Requirements
 
-- Node.js >= 18.0.0
+- Node.js >= 20.0.0
 - TypeScript >= 5.0.0 (for TypeScript projects)
 
 ## Basic Configuration

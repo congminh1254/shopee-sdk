@@ -24,7 +24,8 @@ export class CustomTokenStorage implements TokenStorage {
       }
     } catch (error) {
       throw new Error(
-        `Failed to store token: ${error instanceof Error ? error.message : "Unknown error"}`
+        `Failed to store token: ${error instanceof Error ? error.message : "Unknown error"}`,
+        { cause: error }
       );
     }
   }
@@ -38,7 +39,8 @@ export class CustomTokenStorage implements TokenStorage {
         return null;
       }
       throw new Error(
-        `Failed to get token: ${error instanceof Error ? error.message : "Unknown error"}`
+        `Failed to get token: ${error instanceof Error ? error.message : "Unknown error"}`,
+        { cause: error }
       );
     }
   }
@@ -49,7 +51,8 @@ export class CustomTokenStorage implements TokenStorage {
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
         throw new Error(
-          `Failed to clear token: ${error instanceof Error ? error.message : "Unknown error"}`
+          `Failed to clear token: ${error instanceof Error ? error.message : "Unknown error"}`,
+          { cause: error }
         );
       }
     }

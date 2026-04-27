@@ -57,7 +57,7 @@ Build powerful Shopee integrations with confidence using our fully-featured SDK 
 npm install @congminh1254/shopee-sdk
 ```
 
-**Requirements:** Node.js >= 18.0.0
+**Requirements:** Node.js >= 20.0.0
 
 ### What You Get
 ✅ Complete TypeScript definitions for all 27 API managers  

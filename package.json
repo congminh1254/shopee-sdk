@@ -44,15 +44,15 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
-    "prepare": "husky install",
     "fetch-schemas": "tsx schemas/fetch.ts",
-    "audit:specs": "tsx scripts/audit-specs.ts"
+    "audit:specs": "tsx scripts/audit-specs.ts",
+    "prepare": "husky"
   },
   "publishConfig": {
     "access": "public"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "repository": {
     "type": "git",
@@ -72,11 +72,13 @@
   "devDependencies": {
     "@commitlint/cli": "^20.5.2",
     "@commitlint/config-conventional": "^20.5.0",
+    "@eslint/js": "^10.0.1",
     "@types/jest": "^30.0.0",
     "@typescript-eslint/eslint-plugin": "^8.59.0",
     "@typescript-eslint/parser": "^8.59.0",
     "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.5.0",
     "husky": "^9.1.7",
     "jest": "^30.3.0",
     "prettier": "^3.8.3",
