@@ -38,7 +38,7 @@ describe("FirstMileManager", () => {
       partner_id: 12345,
       partner_key: "test_partner_key",
       shop_id: 67890,
-      region: ShopeeRegion.SINGAPORE,
+      region: ShopeeRegion.GLOBAL,
       base_url: "https://partner.test-stable.shopeemobile.com/api/v2",
     };
 

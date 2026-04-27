@@ -57,25 +57,17 @@ interface ShopeeConfig {
 
 ### Region Configuration
 
-The SDK supports multiple Shopee regions:
+The SDK supports the following Shopee regions:
 
 ```typescript
 import { ShopeeRegion } from '@congminh1254/shopee-sdk';
 
 // Available regions
 ShopeeRegion.GLOBAL    // Global region (default)
-ShopeeRegion.SG        // Singapore
-ShopeeRegion.MY        // Malaysia
-ShopeeRegion.TH        // Thailand
-ShopeeRegion.VN        // Vietnam
-ShopeeRegion.PH        // Philippines
-ShopeeRegion.ID        // Indonesia
-ShopeeRegion.TW        // Taiwan
-ShopeeRegion.BR        // Brazil
-ShopeeRegion.MX        // Mexico
-ShopeeRegion.CO        // Colombia
-ShopeeRegion.CL        // Chile
-ShopeeRegion.PL        // Poland
+ShopeeRegion.CHINA     // China endpoint
+ShopeeRegion.BRAZIL    // Brazil endpoint
+ShopeeRegion.TEST_GLOBAL // Global test endpoint
+ShopeeRegion.TEST_CHINA  // China test endpoint
 ```
 
 Example with specific region:
@@ -84,7 +76,7 @@ Example with specific region:
 const sdk = new ShopeeSDK({
   partner_id: 123456,
   partner_key: 'your-key',
-  region: ShopeeRegion.SG, // Singapore region
+  region: ShopeeRegion.BRAZIL, // Brazil endpoint
 });
 ```
 
@@ -118,7 +110,7 @@ You can update configuration after initialization:
 
 ```typescript
 // Change region
-sdk.setRegion(ShopeeRegion.MY);
+sdk.setRegion(ShopeeRegion.CHINA);
 
 // Change base URL (overrides region)
 sdk.setBaseUrl('https://partner.test-stable.shopeemobile.com');

@@ -18,7 +18,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
       partner_id: 12345,
       partner_key: "test_partner_key",
       shop_id: 67890,
-      region: ShopeeRegion.SINGAPORE,
+      region: ShopeeRegion.GLOBAL,
     });
   });
 

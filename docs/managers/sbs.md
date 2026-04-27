@@ -20,7 +20,7 @@ const sdk = new ShopeeSDK({
   partner_id: YOUR_PARTNER_ID,
   partner_key: 'YOUR_PARTNER_KEY',
   shop_id: YOUR_SHOP_ID,
-  region: ShopeeRegion.SINGAPORE,
+  region: ShopeeRegion.GLOBAL,
 });
 
 // Get bound warehouse info

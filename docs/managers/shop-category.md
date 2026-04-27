@@ -594,7 +594,7 @@ const sdk = new ShopeeSDK({
   partner_id: 123456,
   partner_key: 'your_partner_key',
   shop_id: 789012,
-  region: ShopeeRegion.SINGAPORE,
+  region: ShopeeRegion.GLOBAL,
 });
 
 async function manageCategoryExample() {
