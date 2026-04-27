@@ -16,45 +16,54 @@ export class CustomTokenStorage implements TokenStorage {
     this.tokenPath = path.join(tokenDir, `${shopId ?? "default"}.json`);
   }
 
-  public async store(token: AccessToken): Promise<void> {
+  public store(token: AccessToken): Promise<void> {
     try {
       fs.writeFileSync(this.tokenPath, JSON.stringify(token, null, 2));
       if (this.defaultTokenPath !== this.tokenPath && !fs.existsSync(this.defaultTokenPath)) {
         fs.writeFileSync(this.defaultTokenPath, JSON.stringify(token, null, 2));
       }
+      return Promise.resolve();
     } catch (error) {
-      throw new Error(
-        `Failed to store token: ${error instanceof Error ? error.message : "Unknown error"}`,
-        { cause: error }
+      return Promise.reject(
+        new Error(
+          `Failed to store token: ${error instanceof Error ? error.message : "Unknown error"}`,
+          { cause: error }
+        )
       );
     }
   }
 
-  public async get(): Promise<AccessToken | null> {
+  public get(): Promise<AccessToken | null> {
     try {
       const data = fs.readFileSync(this.tokenPath, "utf-8");
-      return JSON.parse(data) as AccessToken;
+      return Promise.resolve(JSON.parse(data) as AccessToken);
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code === "ENOENT") {
-        return null;
+        return Promise.resolve(null);
       }
-      throw new Error(
-        `Failed to get token: ${error instanceof Error ? error.message : "Unknown error"}`,
-        { cause: error }
+      return Promise.reject(
+        new Error(
+          `Failed to get token: ${error instanceof Error ? error.message : "Unknown error"}`,
+          { cause: error }
+        )
       );
     }
   }
 
-  public async clear(): Promise<void> {
+  public clear(): Promise<void> {
     try {
       fs.unlinkSync(this.tokenPath);
+      return Promise.resolve();
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
-        throw new Error(
-          `Failed to clear token: ${error instanceof Error ? error.message : "Unknown error"}`,
-          { cause: error }
+        return Promise.reject(
+          new Error(
+            `Failed to clear token: ${error instanceof Error ? error.message : "Unknown error"}`,
+            { cause: error }
+          )
         );
       }
+      return Promise.resolve();
     }
   }
 }
