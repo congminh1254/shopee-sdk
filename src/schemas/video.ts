@@ -325,6 +325,7 @@ export type GetProductPerformanceListResponse =
 
 // ==================== get_user_demographics ====================
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface GetUserDemographicsParams {}
 
 export interface GetUserDemographicsResponseData {

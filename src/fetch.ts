@@ -107,7 +107,7 @@ export class ShopeeFetch {
               await config.sdk?.refreshToken();
               // Retry the request with the new token
               return this.fetch(config, path, options);
-            } catch (refreshError) {
+            } catch {
               // If refresh fails, throw the original error
               throw new ShopeeApiError(response.status, jsonData);
             }
