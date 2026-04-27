@@ -45,7 +45,8 @@
     "format:check": "prettier --check \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
     "fetch-schemas": "tsx schemas/fetch.ts",
-    "audit:specs": "tsx scripts/audit-specs.ts"
+    "audit:specs": "tsx scripts/audit-specs.ts",
+    "prepare": "husky"
   },
   "publishConfig": {
     "access": "public"
@@ -78,7 +79,7 @@
     "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.5.0",
-    "husky": "^4.3.8",
+    "husky": "^9.1.7",
     "jest": "^30.3.0",
     "prettier": "^3.8.3",
     "ts-jest": "^29.4.9",
@@ -88,11 +89,5 @@
   },
   "dependencies": {
     "node-fetch": "^3.3.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run format",
-      "commit-msg": "npx --no -- commitlint --edit $1"
-    }
   }
 }
