@@ -16,54 +16,49 @@ export class CustomTokenStorage implements TokenStorage {
     this.tokenPath = path.join(tokenDir, `${shopId ?? "default"}.json`);
   }
 
-  public store(token: AccessToken): Promise<void> {
+  public async store(token: AccessToken): Promise<void> {
     try {
-      fs.writeFileSync(this.tokenPath, JSON.stringify(token, null, 2));
-      if (this.defaultTokenPath !== this.tokenPath && !fs.existsSync(this.defaultTokenPath)) {
-        fs.writeFileSync(this.defaultTokenPath, JSON.stringify(token, null, 2));
+      await fs.promises.writeFile(this.tokenPath, JSON.stringify(token, null, 2));
+      if (this.defaultTokenPath !== this.tokenPath) {
+        try {
+          await fs.promises.access(this.defaultTokenPath);
+        } catch {
+          await fs.promises.writeFile(this.defaultTokenPath, JSON.stringify(token, null, 2));
+        }
       }
-      return Promise.resolve();
     } catch (error) {
-      return Promise.reject(
-        new Error(
-          `Failed to store token: ${error instanceof Error ? error.message : "Unknown error"}`,
-          { cause: error }
-        )
+      throw new Error(
+        `Failed to store token: ${error instanceof Error ? error.message : "Unknown error"}`,
+        { cause: error }
       );
     }
   }
 
-  public get(): Promise<AccessToken | null> {
+  public async get(): Promise<AccessToken | null> {
     try {
-      const data = fs.readFileSync(this.tokenPath, "utf-8");
-      return Promise.resolve(JSON.parse(data) as AccessToken);
+      const data = await fs.promises.readFile(this.tokenPath, "utf-8");
+      return JSON.parse(data) as AccessToken;
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code === "ENOENT") {
-        return Promise.resolve(null);
+        return null;
       }
-      return Promise.reject(
-        new Error(
-          `Failed to get token: ${error instanceof Error ? error.message : "Unknown error"}`,
-          { cause: error }
-        )
+      throw new Error(
+        `Failed to get token: ${error instanceof Error ? error.message : "Unknown error"}`,
+        { cause: error }
       );
     }
   }
 
-  public clear(): Promise<void> {
+  public async clear(): Promise<void> {
     try {
-      fs.unlinkSync(this.tokenPath);
-      return Promise.resolve();
+      await fs.promises.unlink(this.tokenPath);
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
-        return Promise.reject(
-          new Error(
-            `Failed to clear token: ${error instanceof Error ? error.message : "Unknown error"}`,
-            { cause: error }
-          )
+        throw new Error(
+          `Failed to clear token: ${error instanceof Error ? error.message : "Unknown error"}`,
+          { cause: error }
         );
       }
-      return Promise.resolve();
     }
   }
 }
