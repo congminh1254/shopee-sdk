@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.6](https://github.com/congminh1254/shopee-sdk/compare/v1.5.5...v1.5.6) (2026-04-28)
+
+
+### Bug Fixes
+
+* migrate ESLint config to flat config format (ESLint v10) ([#158](https://github.com/congminh1254/shopee-sdk/issues/158)) ([86d4546](https://github.com/congminh1254/shopee-sdk/commit/86d454695079b3ff5e2812c35717acf93765cad9))
+
 ## [1.5.5](https://github.com/congminh1254/shopee-sdk/compare/v1.5.4...v1.5.5) (2026-03-31)
 
 
