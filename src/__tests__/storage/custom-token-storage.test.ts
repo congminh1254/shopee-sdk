@@ -155,12 +155,12 @@ describe("CustomTokenStorage", () => {
       };
 
       // Mock fs.promises.writeFile to throw an error
-      jest.spyOn(fs.promises, "writeFile").mockRejectedValue(new Error("Write failed"));
+      const writeFileSpy = jest.spyOn(fs.promises, "writeFile").mockRejectedValue(new Error("Write failed"));
 
       await expect(storage.store(token)).rejects.toThrow("Failed to store token");
       await expect(storage.store(token)).rejects.toThrow("Write failed");
 
-      jest.restoreAllMocks();
+      writeFileSpy.mockRestore();
     });
   });
 
@@ -207,14 +207,14 @@ describe("CustomTokenStorage", () => {
       await storage.store(token);
 
       // Mock fs.promises.readFile to throw a non-ENOENT error
-      jest.spyOn(fs.promises, "readFile").mockRejectedValue(
+      const readFileSpy = jest.spyOn(fs.promises, "readFile").mockRejectedValue(
         Object.assign(new Error("Permission denied"), { code: "EACCES" })
       );
 
       await expect(storage.get()).rejects.toThrow("Failed to get token");
       await expect(storage.get()).rejects.toThrow("Permission denied");
 
-      jest.restoreAllMocks();
+      readFileSpy.mockRestore();
     });
   });
 
@@ -267,14 +267,14 @@ describe("CustomTokenStorage", () => {
       await storage.store(token);
 
       // Mock fs.promises.unlink to throw a non-ENOENT error
-      jest.spyOn(fs.promises, "unlink").mockRejectedValue(
+      const unlinkSpy = jest.spyOn(fs.promises, "unlink").mockRejectedValue(
         Object.assign(new Error("Permission denied"), { code: "EACCES" })
       );
 
       await expect(storage.clear()).rejects.toThrow("Failed to clear token");
       await expect(storage.clear()).rejects.toThrow("Permission denied");
 
-      jest.restoreAllMocks();
+      unlinkSpy.mockRestore();
     });
   });
 
