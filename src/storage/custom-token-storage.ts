@@ -18,9 +18,13 @@ export class CustomTokenStorage implements TokenStorage {
 
   public async store(token: AccessToken): Promise<void> {
     try {
-      fs.writeFileSync(this.tokenPath, JSON.stringify(token, null, 2));
-      if (this.defaultTokenPath !== this.tokenPath && !fs.existsSync(this.defaultTokenPath)) {
-        fs.writeFileSync(this.defaultTokenPath, JSON.stringify(token, null, 2));
+      await fs.promises.writeFile(this.tokenPath, JSON.stringify(token, null, 2));
+      if (this.defaultTokenPath !== this.tokenPath) {
+        try {
+          await fs.promises.access(this.defaultTokenPath);
+        } catch {
+          await fs.promises.writeFile(this.defaultTokenPath, JSON.stringify(token, null, 2));
+        }
       }
     } catch (error) {
       throw new Error(
@@ -32,7 +36,7 @@ export class CustomTokenStorage implements TokenStorage {
 
   public async get(): Promise<AccessToken | null> {
     try {
-      const data = fs.readFileSync(this.tokenPath, "utf-8");
+      const data = await fs.promises.readFile(this.tokenPath, "utf-8");
       return JSON.parse(data) as AccessToken;
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code === "ENOENT") {
@@ -47,7 +51,7 @@ export class CustomTokenStorage implements TokenStorage {
 
   public async clear(): Promise<void> {
     try {
-      fs.unlinkSync(this.tokenPath);
+      await fs.promises.unlink(this.tokenPath);
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
         throw new Error(

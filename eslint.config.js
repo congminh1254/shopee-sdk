@@ -6,7 +6,7 @@ import globals from 'globals';
 
 export default [
   js.configs.recommended,
-  ...tsPlugin.configs['flat/recommended'],
+  ...tsPlugin.configs['flat/recommended-type-checked'],
   prettierConfig,
   {
     languageOptions: {
@@ -14,6 +14,9 @@ export default [
       parserOptions: {
         ecmaVersion: 2020,
         sourceType: 'module',
+        projectService: {
+          defaultProject: './tsconfig.json',
+        },
       },
       globals: {
         ...globals.node,
@@ -24,6 +27,22 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-empty-object-type': ['error', { allowInterfaces: 'with-single-extends' }],
+    },
+  },
+  {
+    files: ['src/__tests__/**/*.ts'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/unbound-method': 'off',
     },
   },
 ];
