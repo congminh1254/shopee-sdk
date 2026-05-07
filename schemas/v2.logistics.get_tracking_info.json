@@ -255,6 +255,14 @@
                 "name": "logistics_status",
                 "description": "<p>The logistics status for the order. Applicable values: See Data Definition- LogisticsStatus.</p>",
                 "key": "QZSSzCn"
+              },
+              {
+                "description": "<p>The OTP generated after the parcel enters the RTS (Return to Seller) process. Sellers need to provide this OTP to the driver to complete the return confirmation.</p><p><br /><b>Note:&nbsp;</b></p><p>- This field only applies to orders under the SPX Instant &amp; Sameday channel in ID region.</p><p>- This field is only returned when the driver has initiated the return process to the seller. If the driver has not initiated the return process for the parcel, this field will be empty.</p>",
+                "name": "return_code",
+                "sample": "1234",
+                "type": "string",
+                "required": null,
+                "key": "HWTHnTw"
               }
             ],
             "key": "wMSZptG"
@@ -307,7 +315,7 @@
     ]
   },
   "perm_mtime": 1621247802,
-  "perm_operator": "sys",
+  "perm_operator": "caixia.tu@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 13,
@@ -381,6 +389,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/logistics/get_tracking_info",
   "update_log_list": [
+    {
+      "date": "2026-04-24",
+      "content": "Add return_code response parameter under tracking_info"
+    },
     {
       "date": "2025-08-14",
       "content": "Add reversed_tracking_number, reversed_courier_name and reversed_tracking_info response parameters"

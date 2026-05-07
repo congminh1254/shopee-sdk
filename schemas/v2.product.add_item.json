@@ -54,6 +54,10 @@
     },
     {
       "name": "product.error_busi",
+      "description": "For OTC medicine, maximum purchase limit per order is mandatory and cannot exceed 3 days of use."
+    },
+    {
+      "name": "product.error_busi",
       "description": "Upload failed, please upload a more standard size chart image."
     },
     {

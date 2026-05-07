@@ -675,7 +675,7 @@
                     "key": "BSZAChR"
                   },
                   {
-                    "description": "<p>Driver status. Applicable values:</p><p>- Allocating Driver<br />- Driver assigned<br />- Driver is on the way<br />- Driver is arrived</p>",
+                    "description": "<p>Driver status. Applicable values:</p><p>- Allocating Driver<br />- Driver assigned<br />- Driver is on the way<br />- Driver is arrived</p><p>-&nbsp;Driver should arrive by {starting_time} - {end_time}</p>",
                     "name": "driver_status",
                     "sample": "Driver is on the way",
                     "type": "string",
@@ -825,6 +825,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_package_detail",
   "update_log_list": [
     {
+      "date": "2026-04-09",
+      "content": "Add new option for driver_status"
+    },
+    {
       "date": "2026-02-28",
       "content": "Add preparation_end_time and driver_info response parameters"
     },
@@ -839,10 +843,6 @@
     {
       "date": "2025-12-03",
       "content": "1) Update existing shipping_carrier response parameter logic for 90021, 90025, 90026 channels to include service_code, e.g., Entrega Turbo - M1020; 2) Add geolocation response parameter including latitude and longitude for buyer address coordinates"
-    },
-    {
-      "date": "2025-09-19",
-      "content": "Add geolocation response fields under recipient_address for BR 90026 channel, and update the shipping_carrier logic for BR 90021 and 90026 to include service_code"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/order/get_package_detail",

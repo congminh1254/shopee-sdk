@@ -1269,6 +1269,14 @@
                     "key": "ApbXZsh"
                   },
                   {
+                    "description": "<p>The subscription fee paid by buyer for ShopeeVIP.</p>",
+                    "name": "shopeevip_subtotal",
+                    "sample": "0.10",
+                    "type": "float",
+                    "required": null,
+                    "key": "QSQMMtj"
+                  },
+                  {
                     "description": "<p>The deposit fee paid by buyer of $0.10 per container as part of the SG Beverage Container Return Scheme mandated by the National Environment Agency (NEA). This will be an initial value and will not update after RR/cancellation.</p>",
                     "name": "bcrs_discount",
                     "sample": "0.10",
@@ -1682,6 +1690,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/payment/get_escrow_detail_batch",
   "update_log_list": [
     {
+      "date": "2026-04-10",
+      "content": "ad new response field \"shopeevip_subtotal\" under buyer_payment_info"
+    },
+    {
       "date": "2026-03-27",
       "content": "add response new fields \"bcrs_deposit\" under order_income/ order_income.items/buyer_payment_info"
     },
@@ -1696,10 +1708,6 @@
     {
       "date": "2025-12-26",
       "content": "add new response field \"net_commission_fee\",\"net_service_fee\",\n\"net_commission_fee_info_list\", \"net_service_fee_info_list\",\"seller_product_rebate\" only for BR local sellers"
-    },
-    {
-      "date": "2025-11-19",
-      "content": "Updated with fbs_fee"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/payment/get_escrow_detail_batch",

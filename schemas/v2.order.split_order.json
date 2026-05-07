@@ -97,6 +97,10 @@
       "description": "Cannot split order with items in one bundle-deal or add-on deal into different packages."
     },
     {
+      "name": "order.order_split_wrong_item_quantity",
+      "description": "Cannot split order with wrong model quantity"
+    },
+    {
       "name": "error_param",
       "description": "There is no access_token in query."
     },

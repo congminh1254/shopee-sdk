@@ -57,6 +57,10 @@
       "description": "Cannot undo split this order."
     },
     {
+      "name": "order.order_split_wrong_item_quantity",
+      "description": "Cannot split order with wrong model quantity"
+    },
+    {
       "name": "order.order_unsplit_failed",
       "description": "Undo split failed, please try again later."
     },

@@ -45,6 +45,10 @@
       "description": "AMS campaign item and rate not exist"
     },
     {
+      "name": "error_business",
+      "description": "Cannot remove all item and rate"
+    },
+    {
       "name": "error_auth",
       "description": "Invalid partner_id or shopid."
     },

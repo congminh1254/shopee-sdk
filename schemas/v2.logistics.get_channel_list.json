@@ -400,6 +400,74 @@
                 "type": "string",
                 "required": null,
                 "key": "ZSBRaSH"
+              },
+              {
+                "description": "",
+                "name": "auto_call_driver_setting",
+                "sample": "",
+                "type": "object",
+                "required": null,
+                "key": "RbxFDmC",
+                "children": [
+                  {
+                    "description": "<p>Indicate whether this channel is eligible for Auto Call Driver.</p>",
+                    "name": "auto_call_driver_eligible",
+                    "sample": "true",
+                    "type": "boolean",
+                    "required": null,
+                    "key": "bDBsRxT"
+                  },
+                  {
+                    "description": "<p>Indicate whether Auto Call Driver is currently enabled for this channel</p>",
+                    "name": "auto_call_driver_enabled",
+                    "sample": "true",
+                    "type": "boolean",
+                    "required": null,
+                    "key": "QPWFKGf"
+                  },
+                  {
+                    "description": "<p>The current valid preparation time for this channel, in minutes.</p>",
+                    "name": "preparation_time",
+                    "sample": "10",
+                    "type": "int32",
+                    "required": null,
+                    "key": "HzHtrRY"
+                  },
+                  {
+                    "description": "<p>The preparation time range allowed for this channel.<br /><br /></p><p>Note: When calling v2.logistics.update_channel to set the Preparation Time for the channel, the time must not exceed this range.</p>",
+                    "name": "preparation_time_limit",
+                    "sample": "",
+                    "type": "object",
+                    "required": null,
+                    "key": "htZyzey",
+                    "children": [
+                      {
+                        "description": "<p>The minimum allowable preparation time, in minutes.</p>",
+                        "name": "min_preparation_time",
+                        "sample": "10",
+                        "type": "int32",
+                        "required": null,
+                        "key": "mTbhiJF"
+                      },
+                      {
+                        "description": "<p>The maximum allowable preparation time, in minutes.</p>",
+                        "name": "max_preparation_time",
+                        "sample": "30",
+                        "type": "int32",
+                        "required": null,
+                        "key": "QwCYEpy"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "description": "<p>Indicates whether this channel supports the pause operation (Pausing allows the shop to temporarily prevent buyers from placing orders through this logistics channel).</p><p>- true: This channel is affected by the pause function.<br />- false: This channel is not affected by the pause function.<br /><br />Note: Please first call v2.logistics.get_pause_status to get the current pause status of logistics channels under the shop. If is_paused = true, then call v2.logistics.get_channel_list and identify the range of channels affected by the pause function through support_pause = true.</p>",
+                "name": "support_pause",
+                "sample": "false",
+                "type": "boolean",
+                "required": null,
+                "key": "aQFcnBn"
               }
             ],
             "name": "logistics_channel_list",
@@ -411,7 +479,7 @@
     ]
   },
   "perm_mtime": 1621247802,
-  "perm_operator": "sys",
+  "perm_operator": "caixia.tu@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 18,
@@ -477,7 +545,8 @@
               "weight_limit": {
                 "item_max_weight": 5,
                 "item_min_weight": 0
-              }
+              },
+              "support_pause": false
             },
             {
               "block_seller_cover_shipping_fee": false,
@@ -509,7 +578,8 @@
               "weight_limit": {
                 "item_max_weight": 0,
                 "item_min_weight": 0
-              }
+              },
+              "support_pause": false
             },
             {
               "block_seller_cover_shipping_fee": false,
@@ -541,7 +611,8 @@
               "weight_limit": {
                 "item_max_weight": 0,
                 "item_min_weight": 0
-              }
+              },
+              "support_pause": false
             },
             {
               "block_seller_cover_shipping_fee": false,
@@ -573,7 +644,8 @@
               "weight_limit": {
                 "item_max_weight": 50,
                 "item_min_weight": 0
-              }
+              },
+              "support_pause": true
             },
             {
               "block_seller_cover_shipping_fee": false,
@@ -637,7 +709,8 @@
               "weight_limit": {
                 "item_max_weight": 80,
                 "item_min_weight": 0
-              }
+              },
+              "support_pause": false
             }
           ]
         }
@@ -648,6 +721,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/logistics/get_channel_list",
   "update_log_list": [
+    {
+      "date": "2026-04-09",
+      "content": "Add auto_call_driver_setting & support_pause response parameters"
+    },
     {
       "date": "2025-12-26",
       "content": "Add service_type_identifier response parameter"
@@ -663,10 +740,6 @@
     {
       "date": "2023-11-01",
       "content": "add new response field \"block_seller_cover_shipping_fee\""
-    },
-    {
-      "date": "2021-11-17",
-      "content": "updated the force_enabled to force_enable"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/logistics/get_channel_list",

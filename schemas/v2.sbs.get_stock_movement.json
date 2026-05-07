@@ -597,7 +597,7 @@
     ]
   },
   "perm_mtime": 1747279267,
-  "perm_operator": "tenghui.huang@shopee.com",
+  "perm_operator": "grace.li@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 80507,
@@ -607,46 +607,157 @@
     {
       "type": "JSON",
       "value": {
-        "error": "-",
-        "message": "-",
-        "request_id": "-",
+        "request_id": "0910ad85-cc2d-416e-ade9-3f9057ff3c99",
+        "error": "",
+        "message": "",
         "response": {
-          "total": 3,
-          "start_time": "2025-02-01",
-          "end_time": "2025-02-24",
-          "query_end_time": "2025-02-24",
+          "total": 1,
+          "start_time": "2026-02-01",
+          "end_time": "2026-02-28",
+          "query_end_time": "2026-02-28",
           "item_list": [
             {
-              "item_id": "900626944",
-              "item_name": "跨境商品测试00002 - 1666171567",
-              "item_image": "http://img.ws.mms.shopee.sg/08b3fc410c8eaa7e3f52b06b486a8658",
+              "warehouse_item_id": "900626850",
+              "item_name": "跨境商品测试0006 - 1666235229",
+              "item_image": "http://mms.img.susercontent.com/08b3fc410c8eaa7e3f52b06b486a8658",
               "sku_list": [
                 {
-                  "mtsku_id": "900626944_15359986",
-                  "model_id": "15359986",
-                  "variation": "Orange,Large",
+                  "variation": "White,Small",
+                  "mtsku_id": "900626850_10010403234",
+                  "model_id": "10010403234",
                   "fulfill_mapping_mode": 0,
-                  "barcode": "11fsfsf",
+                  "barcode": "900626850_10010403234",
+                  "shop_sku_list": [
+                    {
+                      "shop_sku_id": "900626817_10010403253",
+                      "shop_item_id": "900626817",
+                      "shop_model_id": "10010403253"
+                    }
+                  ],
                   "whs_list": [
                     {
-                      "whs_id": "CNN",
-                      "start_on_hand_total": 50,
+                      "start_on_hand_total": 11,
                       "inbound_total": 0,
                       "outbound_total": 0,
                       "adjust_total": 0,
-                      "end_on_hand_total": 50
+                      "end_on_hand_total": 11,
+                      "whs_id": "CNN"
                     }
                   ],
                   "start_qty": {
-                    "start_on_hand_total": 50,
-                    "start_sellable": 47,
-                    "start_reversed": 3,
+                    "start_on_hand_total": 11,
+                    "start_sellable": 0,
+                    "start_reserved": 11,
                     "start_unsellable": 0
                   },
                   "end_qty": {
-                    "end_on_hand_total": 50,
-                    "end_sellable": 47,
-                    "end_reversed": 3,
+                    "end_on_hand_total": 11,
+                    "end_sellable": 0,
+                    "end_reserved": 11,
+                    "end_unsellable": 0
+                  },
+                  "inbound_qty": {
+                    "inbound_total": 0,
+                    "inbound_my": 0,
+                    "inbound_returned": 0
+                  },
+                  "outbound_qty": {
+                    "outbound_total": 0,
+                    "outbound_sold": 0,
+                    "outbound_returned": 0,
+                    "outbound_disposed": 0
+                  },
+                  "adjust_qty": {
+                    "adjust_total": 0,
+                    "adjust_lost_found": 0,
+                    "adjust_trans_whs": 0
+                  }
+                },
+                {
+                  "variation": "Yellow,Small",
+                  "mtsku_id": "900626850_10010403235",
+                  "model_id": "10010403235",
+                  "fulfill_mapping_mode": 0,
+                  "barcode": "900626850_10010403235",
+                  "shop_sku_list": [
+                    {
+                      "shop_sku_id": "900626817_10010403254",
+                      "shop_item_id": "900626817",
+                      "shop_model_id": "10010403254"
+                    }
+                  ],
+                  "whs_list": [
+                    {
+                      "start_on_hand_total": 0,
+                      "inbound_total": 0,
+                      "outbound_total": 0,
+                      "adjust_total": 0,
+                      "end_on_hand_total": 0,
+                      "whs_id": "CNN"
+                    }
+                  ],
+                  "start_qty": {
+                    "start_on_hand_total": 0,
+                    "start_sellable": 0,
+                    "start_reserved": 0,
+                    "start_unsellable": 0
+                  },
+                  "end_qty": {
+                    "end_on_hand_total": 0,
+                    "end_sellable": 0,
+                    "end_reserved": 0,
+                    "end_unsellable": 0
+                  },
+                  "inbound_qty": {
+                    "inbound_total": 0,
+                    "inbound_my": 0,
+                    "inbound_returned": 0
+                  },
+                  "outbound_qty": {
+                    "outbound_total": 0,
+                    "outbound_sold": 0,
+                    "outbound_returned": 0,
+                    "outbound_disposed": 0
+                  },
+                  "adjust_qty": {
+                    "adjust_total": 0,
+                    "adjust_lost_found": 0,
+                    "adjust_trans_whs": 0
+                  }
+                },
+                {
+                  "variation": "Yellow,Middle",
+                  "mtsku_id": "900626850_10010403236",
+                  "model_id": "10010403236",
+                  "fulfill_mapping_mode": 0,
+                  "barcode": "900626850_10010403236",
+                  "shop_sku_list": [
+                    {
+                      "shop_sku_id": "900626817_10010403255",
+                      "shop_item_id": "900626817",
+                      "shop_model_id": "10010403255"
+                    }
+                  ],
+                  "whs_list": [
+                    {
+                      "start_on_hand_total": 0,
+                      "inbound_total": 0,
+                      "outbound_total": 0,
+                      "adjust_total": 0,
+                      "end_on_hand_total": 0,
+                      "whs_id": "CNN"
+                    }
+                  ],
+                  "start_qty": {
+                    "start_on_hand_total": 0,
+                    "start_sellable": 0,
+                    "start_reserved": 0,
+                    "start_unsellable": 0
+                  },
+                  "end_qty": {
+                    "end_on_hand_total": 0,
+                    "end_sellable": 0,
+                    "end_reserved": 0,
                     "end_unsellable": 0
                   },
                   "inbound_qty": {
