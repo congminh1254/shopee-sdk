@@ -54,7 +54,7 @@
     },
     {
       "name": "order.error_limit",
-      "description": "Can not cancel this order."
+      "description": "Can not cancel this order"
     },
     {
       "name": "order. error_param",

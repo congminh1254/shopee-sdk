@@ -1013,6 +1013,10 @@
       "description": "request not from gateway"
     },
     {
+      "name": "error_other",
+      "description": "System error. Please try again later."
+    },
+    {
       "name": "error_status",
       "description": "Buyer hasn’t completed pre-authorization yet."
     },

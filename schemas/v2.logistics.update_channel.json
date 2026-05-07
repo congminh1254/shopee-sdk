@@ -86,7 +86,7 @@
     },
     {
       "name": "logistics.compulsory_channel_rule",
-      "description": "{parent_channel} cannot be turned on/off. Please enable at least 1 of the following channel(s) first: {seller channel name list}"
+      "description": "{parent_channel} cannot be modified. Please enable at least 1 of the following channel(s) first: {seller channel name list}"
     },
     {
       "name": "logistics.dependent_block_rule",
@@ -243,6 +243,32 @@
         "type": "boolean",
         "description": "Whether to enable COD for this logistic channel. Only COD supported channels are applicable.",
         "key": "GmDwRsc"
+      },
+      {
+        "description": "",
+        "name": "auto_call_driver_setting",
+        "sample": "",
+        "type": "object",
+        "required": "False",
+        "key": "chkNhFi",
+        "children": [
+          {
+            "description": "<p>Whether to enable Auto Call Driver for this logistic channel.</p>",
+            "name": "auto_call_driver_enabled",
+            "sample": "true",
+            "type": "boolean",
+            "required": "False",
+            "key": "mhRRQPp"
+          },
+          {
+            "description": "<p>Used to set the Preparation Time for this channel, in minutes. Required when auto_call_driver_enabled = true.</p><p><br />Note: Please ensure the passed preparation_time value falls within the preparation_time_limit range returned by v2.logistics.get_channel_list.</p>",
+            "name": "preparation_time",
+            "sample": "10",
+            "type": "int32",
+            "required": "False",
+            "key": "cGtNKzp"
+          }
+        ]
       }
     ],
     "response_params": [
@@ -360,6 +386,32 @@
             "type": "boolean",
             "required": null,
             "key": "Eyhpjiw"
+          },
+          {
+            "description": "",
+            "name": "auto_call_driver_setting",
+            "sample": "",
+            "type": "object",
+            "required": null,
+            "key": "eGiGwnH",
+            "children": [
+              {
+                "description": "<p>Indicate whether Auto Call Driver is currently enabled for this channel.</p>",
+                "name": "auto_call_driver_enabled",
+                "sample": "true",
+                "type": "boolean",
+                "required": null,
+                "key": "BHHRKrW"
+              },
+              {
+                "description": "<p>The current valid preparation time for this channel, in minutes.</p>",
+                "name": "preparation_time",
+                "sample": "10",
+                "type": "int32",
+                "required": null,
+                "key": "RSSRyMD"
+              }
+            ]
           }
         ],
         "key": "wXhGCSb"
@@ -435,6 +487,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/logistics/update_channel",
   "update_log_list": [
+    {
+      "date": "2026-04-09",
+      "content": "Add auto_call_driver_setting request and response parameters"
+    },
     {
       "date": "2023-09-27",
       "content": "sunset the request parameters \"preferred\" since \"Preferred channel setting is no longer supported\"."

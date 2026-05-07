@@ -1348,6 +1348,14 @@
                 "key": "QJKFHJC"
               },
               {
+                "description": "<p>The subscription fee paid by buyer for ShopeeVIP.</p>",
+                "name": "shopeevip_subtotal",
+                "sample": "0.10",
+                "type": "float",
+                "required": null,
+                "key": "SNCPKeF"
+              },
+              {
                 "description": "<p>The promotion provided by credit card.<br />it is an initial value (will not be updated after RR/cancellation)<br /></p>",
                 "name": "credit_card_promotion",
                 "sample": "",
@@ -1730,6 +1738,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/payment/get_escrow_detail",
   "update_log_list": [
     {
+      "date": "2026-04-10",
+      "content": "add new response fields \"shopeevip_subtotal\" under buyer_payment_info"
+    },
+    {
       "date": "2026-03-27",
       "content": "add response new fields \"bcrs_deposit\" under order_income/ order_income.items/buyer_payment_info"
     },
@@ -1744,10 +1756,6 @@
     {
       "date": "2025-12-26",
       "content": "add new response field \"net_commission_fee\",\"net_service_fee\",\n\"net_commission_fee_info_list\", \"net_service_fee_info_list\",\"seller_product_rebate\" only for BR local sellers\n"
-    },
-    {
-      "date": "2025-11-19",
-      "content": "updated with fbs_fee"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/payment/get_escrow_detail",

@@ -168,7 +168,7 @@
                 "description": "<p>The dispute_reason for one specific case. See Data Definition - DisputeReason.<br /></p>",
                 "name": "dispute_reason",
                 "sample": "50",
-                "type": "int32",
+                "type": "string",
                 "required": null,
                 "key": "GSTfPsx"
               },
@@ -463,6 +463,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/returns/get_return_dispute_reason",
   "update_log_list": [
+    {
+      "date": "2026-04-27",
+      "content": "Updated TYPE of dispute_reason from int32 to STRING based on Guanlin's feedback"
+    },
     {
       "date": "2024-12-31",
       "content": "Add new dispute_reason_list response parameter"
