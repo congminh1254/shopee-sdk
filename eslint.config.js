@@ -22,7 +22,7 @@ export default [
             'src/__tests__/utils/*.ts',
           ],
           defaultProject: './tsconfig.json',
-          maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING: 100,
+          maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING: 50,
         },
       },
       globals: {
