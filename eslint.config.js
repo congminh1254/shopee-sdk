@@ -15,7 +15,14 @@ export default [
         ecmaVersion: 2020,
         sourceType: 'module',
         projectService: {
+          allowDefaultProject: [
+            'src/__tests__/*.ts',
+            'src/__tests__/managers/*.ts',
+            'src/__tests__/storage/*.ts',
+            'src/__tests__/utils/*.ts',
+          ],
           defaultProject: './tsconfig.json',
+          maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING: 100,
         },
       },
       globals: {
