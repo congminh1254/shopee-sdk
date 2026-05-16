@@ -755,13 +755,17 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.massShipOrder({
-        package_number_list: ["PKG1", "PKG2"],
+        logistics_channel_id: 123,
+        package_list: [{ order_sn: "ORDER1", package_number: "PKG1" }],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/mass_ship_order", {
         method: "POST",
         auth: true,
-        body: { package_number_list: ["PKG1", "PKG2"] },
+        body: {
+          logistics_channel_id: 123,
+          package_list: [{ order_sn: "ORDER1", package_number: "PKG1" }],
+        },
       });
     });
   });
@@ -917,12 +921,12 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.setAddressConfig({ address_id: 123 });
+      await logisticsManager.setAddressConfig({ show_pickup_address: true });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/set_address_config", {
         method: "POST",
         auth: true,
-        body: { address_id: 123 },
+        body: { show_pickup_address: true },
       });
     });
   });
@@ -1003,7 +1007,7 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.getShippingDocumentDataInfo({ order_sn_list: ["ORDER1"] });
+      await logisticsManager.getShippingDocumentDataInfo({ order_sn: "ORDER1" });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1015,8 +1019,7 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.createBookingShippingDocument({
-        booking_sn_list: ["BOOKING1"],
-        shipping_document_type: "NORMAL_AIR_WAYBILL",
+        booking_list: [{ booking_sn: "BOOKING1", shipping_document_type: "NORMAL_AIR_WAYBILL" }],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
@@ -1027,7 +1030,7 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.downloadBookingShippingDocument({
-        booking_sn_list: ["BOOKING1"],
+        booking_list: [{ booking_sn: "BOOKING1" }],
         shipping_document_type: "NORMAL_AIR_WAYBILL",
       });
 
@@ -1038,7 +1041,9 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.getBookingShippingDocumentParameter({ booking_sn_list: ["BOOKING1"] });
+      await logisticsManager.getBookingShippingDocumentParameter({
+        booking_list: [{ booking_sn: "BOOKING1" }],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1048,8 +1053,7 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.getBookingShippingDocumentResult({
-        booking_sn_list: ["BOOKING1"],
-        shipping_document_type: "NORMAL_AIR_WAYBILL",
+        booking_list: [{ booking_sn: "BOOKING1", shipping_document_type: "NORMAL_AIR_WAYBILL" }],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
@@ -1059,7 +1063,7 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.getBookingShippingDocumentDataInfo({ booking_sn_list: ["BOOKING1"] });
+      await logisticsManager.getBookingShippingDocumentDataInfo({ booking_sn: "BOOKING1" });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1075,7 +1079,10 @@ describe("LogisticsManager", () => {
       };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.createShippingDocumentJob({});
+      await logisticsManager.createShippingDocumentJob({
+        shipping_document_type: "NORMAL_AIR_WAYBILL",
+        package_list: [{ order_sn: "ORDER1" }],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1102,7 +1109,7 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.downloadToLabel({ order_sn_list: ["ORDER1"] });
+      await logisticsManager.downloadToLabel({ sorting_group: "GROUP_A", quantity: 1 });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1141,9 +1148,8 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.updateSelfCollectionOrderLogistics({
-        order_sn: "ORDER1",
         package_number: "PKG1",
-        self_collection_status: "READY",
+        self_collection_logistics_action: "PICKUP",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
@@ -1202,7 +1208,7 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.setMartPackagingInfo({ order_sn: "ORDER1" });
+      await logisticsManager.setMartPackagingInfo({ enable: true });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1214,7 +1220,7 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.batchUpdateTPFWarehouseTrackingStatus({
-        tracking_status_list: [{ package_number: "PKG1", tracking_status: "DELIVERED" }],
+        package_list: [{ package_number: "PKG1", tracking_status: "DELIVERED" }],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
