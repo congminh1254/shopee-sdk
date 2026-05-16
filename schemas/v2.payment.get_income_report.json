@@ -38,43 +38,230 @@
   "error_list": [
     {
       "name": "error_data",
-      "description": "parse data failed"
+      "description": "parse data failed",
+      "solution": null
     },
     {
       "name": "error_data",
-      "description": "data not exist"
+      "description": "data not exist",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "parameter invalid"
+      "description": "parameter invalid",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Invalid Time Range: Only records from the past 5 years are supported for the TW region."
+      "description": "Invalid Time Range: Only records from the past 5 years are supported for the TW region.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Shop is not a mart shop. Please use Mart Shop ID."
+      "description": "Shop is not a mart shop. Please use Mart Shop ID.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "The information you queried is not found."
+      "description": "The information you queried is not found.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Wrong parameters, detail: {msg}."
+      "description": "Wrong parameters, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "error_server",
-      "description": "Something wrong. Please try later.\t"
+      "description": "Something wrong. Please try later.\t",
+      "solution": null
     },
     {
       "name": "error_shop",
-      "description": "shopid is invalid"
+      "description": "shopid is invalid",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "request not from gateway"
+      "description": "request not from gateway",
+      "solution": null
+    }
+  ],
+  "common_error_list": [
+    {
+      "name": "error_auth",
+      "description": "partner_id is invalid",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "The App is deleted, and you'll be unable to make any API call.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "App developer’s permissions for authorizations have been restricted. If you’re a seller, contact the developer for more information. If you’re the developer, refer to the Open Platform Console for details.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no partner_id in query.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid partner_id.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "no timestamp",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid timestamp",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no sign in query.",
+      "solution": null
+    },
+    {
+      "name": "error_sign",
+      "description": "Wrong sign.",
+      "solution": null
+    },
+    {
+      "name": "invalid_partner_id",
+      "description": "Invalid partner_id, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "No permission to current api.",
+      "solution": null
+    },
+    {
+      "name": "error_api_call_restricted",
+      "description": "The App permission for api call have been restricted. If you’re a seller, contact the developer for more information. If you’re the developer, refer to the Open Platform Console for details.",
+      "solution": null
+    },
+    {
+      "name": "api_suspended",
+      "description": "The API is offline. Please call v2 API instead.",
+      "solution": null
+    },
+    {
+      "name": "error_limit",
+      "description": "The total API call number made by your APP has reached the daily API call limit, please try again after 00: 00 (UTC+08:00)",
+      "solution": null
+    },
+    {
+      "name": "error_rate_limit",
+      "description": "Too many requests. You have reached the rate limit. Please try again later.",
+      "solution": null
+    },
+    {
+      "name": "source_ip_undeclared",
+      "description": "Request Source IP ({ip}) is undeclared. Please declare all your IP addresses in the Shopee Open Platform Console > App list > IP Address Whitelist",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Permission denied. This API is currently offline or the request path is incorrect.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Partner_id is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "no timestamp.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Timestamp is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Timestamp is expired.",
+      "solution": null
+    },
+    {
+      "name": "error_partner_key_expired",
+      "description": "Your API partner key has expired, please reset the Live API Partner Key in Console to get a new valid partner key to call open api.",
+      "solution": null
+    },
+    {
+      "name": "error_api_permission",
+      "description": "This app type has no permission to this API.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no access_token in query.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "Invalid access_token.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "Invalid partner_id or shopid.",
+      "solution": null
+    },
+    {
+      "name": "shop_no_linked",
+      "description": "Partner and shop has no linked.",
+      "solution": null
+    },
+    {
+      "name": "shop_banned",
+      "description": "The shop account has been banned. Permissions for shop authorization and API calls have been suspended until the shop account is restored.",
+      "solution": null
+    },
+    {
+      "name": "invalid_acceess_token",
+      "description": "Invalid access_token, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "partner_shop_no_link",
+      "description": "Invalid partner_id or shop_id, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "error_ashop_api_permission",
+      "description": "The shop is Affiliate shop has no permission to call this API.",
+      "solution": null
+    },
+    {
+      "name": "error_kyc_auth",
+      "description": "No permission. Please inform the seller to complete the Seller Registration on Shopee Seller Center first, then this shop can call for this API.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "System error, please try again later.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no shop_id in query.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "shop_id is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
     }
   ],
   "errors": "",
@@ -196,5 +383,9 @@
     "Accounting And Finance",
     "Swam ERP"
   ],
-  "path": "/api/v2/payment/get_income_report"
+  "path": "/api/v2/payment/get_income_report",
+  "related_documents": {
+    "developer_guides": [],
+    "faqs": []
+  }
 }

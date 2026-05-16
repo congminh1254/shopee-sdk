@@ -38,175 +38,359 @@
   "error_list": [
     {
       "name": "error_param",
-      "description": "Seller or Channel does not support Auto-Call."
+      "description": "Seller or Channel does not support Auto-Call.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
     },
     {
       "name": "error_param",
-      "description": "Invalid Auto-Call setting param."
+      "description": "Invalid Auto-Call setting param.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
     },
     {
       "name": "error_param",
-      "description": "Invalid Seller preparation time."
+      "description": "Invalid Seller preparation time.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
     },
     {
       "name": "error_param",
-      "description": "Shipping options of Direct Shop will follow Local Shop."
+      "description": "Shipping options of Direct Shop will follow Local Shop.",
+      "solution": null
     },
     {
       "name": "logistics_error",
-      "description": "Channel is invalid. Please check the channel id."
+      "description": "Channel is invalid. Please check the channel id.",
+      "solution": null
     },
     {
       "name": "error_not_found",
-      "description": "Wrong parameters, detail: {msg}."
+      "description": "Wrong parameters, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Wrong parameters, detail: {msg}."
+      "description": "Wrong parameters, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "error_permission",
-      "description": "Sorry you don't have the permission, detail: {msg}."
+      "description": "Sorry you don't have the permission, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "error_server",
-      "description": "System error. Please try again later."
+      "description": "System error. Please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.has_item_in_bundle",
-      "description": "channel is not allow to disable due to there is item in the bundle"
+      "description": "channel is not allow to disable due to there is item in the bundle",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Invalid logistics_channel_id. Please check the logistics_channel_id."
+      "description": "Invalid logistics_channel_id. Please check the logistics_channel_id.",
+      "solution": null
     },
     {
       "name": "error",
-      "description": "no supported warehouse address"
+      "description": "no supported warehouse address",
+      "solution": null
     },
     {
       "name": "logistics.compulsory_channel_rule",
-      "description": "{parent_channel} cannot be turned on/off. Please enable at least 1 of the following channel(s) first: {seller channel name list}"
+      "description": "{parent_channel} cannot be modified. Please enable at least 1 of the following channel(s) first: {seller channel name list}",
+      "solution": null
     },
     {
       "name": "logistics.dependent_block_rule",
-      "description": "{parent_channel} cannot be turned off due to dependent block rule. Please disable all the following channel(s) before proceed: {seller channel name list}"
+      "description": "{parent_channel} cannot be turned off due to dependent block rule. Please disable all the following channel(s) before proceed: {seller channel name list}",
+      "solution": null
     },
     {
       "name": "logistics.minimum_activation_rule",
-      "description": "{parent_channel} cannot be turned off. Please enable at least 1 of the following channel(s): {seller channel name list}"
+      "description": "{parent_channel} cannot be turned off. Please enable at least 1 of the following channel(s): {seller channel name list}",
+      "solution": null
     },
     {
       "name": "logistics.address_miss_long_lat",
-      "description": "Address miss long lat."
+      "description": "Address miss long lat.",
+      "solution": null
     },
     {
       "name": "logistics.require_pickup_address",
-      "description": "Please go to set pickup address first."
+      "description": "Please go to set pickup address first.",
+      "solution": null
     },
     {
       "name": "logistics.not_allow_to_update_channel",
-      "description": "You are not allowed to enable or disable channel."
+      "description": "You are not allowed to enable or disable channel.",
+      "solution": null
     },
     {
       "name": "common.invalid_shop",
-      "description": "Shop id is invalid. Please check your shop."
+      "description": "Shop id is invalid. Please check your shop.",
+      "solution": null
     },
     {
       "name": "logistics_error",
-      "description": "Sorry that this masked channel can't be enabled."
+      "description": "Sorry that this masked channel can't be enabled.",
+      "solution": null
     },
     {
       "name": "logistics_error",
-      "description": "Sorry that this masked channel can't be enabled."
+      "description": "Sorry that this masked channel can't be enabled.",
+      "solution": null
     },
     {
       "name": "logistics_error",
-      "description": "Sorry that this channel can’t be disabled since it is force enabled."
+      "description": "Sorry that this channel can’t be disabled since it is force enabled.",
+      "solution": null
     },
     {
       "name": "logistics_error",
-      "description": "Sorry that this channel can't be enabled since it doesn’t pass the validation (whitelist validation / exclusive validation / serviceable validation )."
+      "description": "Sorry that this channel can't be enabled since it doesn’t pass the validation (whitelist validation / exclusive validation / serviceable validation ).",
+      "solution": null
     },
     {
       "name": "logistics_error",
-      "description": "Sorry that this masked channel can't be preferred."
+      "description": "Sorry that this masked channel can't be preferred.",
+      "solution": null
     },
     {
       "name": "logistics_error",
-      "description": "Sorry that this channel can't be enabled(disabled)/preferred/ COD enabled(COD disabled)."
-    },
-    {
-      "name": "error_param",
-      "description": "There is no access_token in query."
-    },
-    {
-      "name": "error_auth",
-      "description": "Invalid access_token."
-    },
-    {
-      "name": "error_param",
-      "description": "Invalid partner_id."
-    },
-    {
-      "name": "error_param",
-      "description": "There is no partner_id in query."
-    },
-    {
-      "name": "error_auth",
-      "description": "No permission to current api."
-    },
-    {
-      "name": "error_param",
-      "description": "There is no sign in query."
-    },
-    {
-      "name": "error_sign",
-      "description": "Wrong sign."
-    },
-    {
-      "name": "error_param",
-      "description": "no timestamp"
-    },
-    {
-      "name": "error_param",
-      "description": "Invalid timestamp"
+      "description": "Sorry that this channel can't be enabled(disabled)/preferred/ COD enabled(COD disabled).",
+      "solution": null
     },
     {
       "name": "error_network",
-      "description": "Inner http call failed"
+      "description": "Inner http call failed",
+      "solution": null
     },
     {
       "name": "error_data",
-      "description": "parse data failed"
+      "description": "parse data failed",
+      "solution": null
     },
     {
       "name": "error_data",
-      "description": "data not exist"
+      "description": "data not exist",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "parameter invalid"
+      "description": "parameter invalid",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "The information you queried is not found."
+      "description": "The information you queried is not found.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Wrong parameters, detail: {msg}."
+      "description": "Wrong parameters, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "error_server",
-      "description": "Something wrong. Please try later.\t"
+      "description": "Something wrong. Please try later.\t",
+      "solution": null
     },
     {
       "name": "error_shop",
-      "description": "shopid is invalid"
+      "description": "shopid is invalid",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "request not from gateway"
+      "description": "request not from gateway",
+      "solution": null
+    }
+  ],
+  "common_error_list": [
+    {
+      "name": "error_auth",
+      "description": "partner_id is invalid",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "The App is deleted, and you'll be unable to make any API call.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "App developer’s permissions for authorizations have been restricted. If you’re a seller, contact the developer for more information. If you’re the developer, refer to the Open Platform Console for details.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no partner_id in query.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid partner_id.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "no timestamp",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid timestamp",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no sign in query.",
+      "solution": null
+    },
+    {
+      "name": "error_sign",
+      "description": "Wrong sign.",
+      "solution": null
+    },
+    {
+      "name": "invalid_partner_id",
+      "description": "Invalid partner_id, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "No permission to current api.",
+      "solution": null
+    },
+    {
+      "name": "error_api_call_restricted",
+      "description": "The App permission for api call have been restricted. If you’re a seller, contact the developer for more information. If you’re the developer, refer to the Open Platform Console for details.",
+      "solution": null
+    },
+    {
+      "name": "api_suspended",
+      "description": "The API is offline. Please call v2 API instead.",
+      "solution": null
+    },
+    {
+      "name": "error_limit",
+      "description": "The total API call number made by your APP has reached the daily API call limit, please try again after 00: 00 (UTC+08:00)",
+      "solution": null
+    },
+    {
+      "name": "error_rate_limit",
+      "description": "Too many requests. You have reached the rate limit. Please try again later.",
+      "solution": null
+    },
+    {
+      "name": "source_ip_undeclared",
+      "description": "Request Source IP ({ip}) is undeclared. Please declare all your IP addresses in the Shopee Open Platform Console > App list > IP Address Whitelist",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Permission denied. This API is currently offline or the request path is incorrect.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Partner_id is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "no timestamp.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Timestamp is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Timestamp is expired.",
+      "solution": null
+    },
+    {
+      "name": "error_partner_key_expired",
+      "description": "Your API partner key has expired, please reset the Live API Partner Key in Console to get a new valid partner key to call open api.",
+      "solution": null
+    },
+    {
+      "name": "error_api_permission",
+      "description": "This app type has no permission to this API.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no access_token in query.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "Invalid access_token.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "Invalid partner_id or shopid.",
+      "solution": null
+    },
+    {
+      "name": "shop_no_linked",
+      "description": "Partner and shop has no linked.",
+      "solution": null
+    },
+    {
+      "name": "shop_banned",
+      "description": "The shop account has been banned. Permissions for shop authorization and API calls have been suspended until the shop account is restored.",
+      "solution": null
+    },
+    {
+      "name": "invalid_acceess_token",
+      "description": "Invalid access_token, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "partner_shop_no_link",
+      "description": "Invalid partner_id or shop_id, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "error_ashop_api_permission",
+      "description": "The shop is Affiliate shop has no permission to call this API.",
+      "solution": null
+    },
+    {
+      "name": "error_kyc_auth",
+      "description": "No permission. Please inform the seller to complete the Seller Registration on Shopee Seller Center first, then this shop can call for this API.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "System error, please try again later.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no shop_id in query.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "shop_id is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
     }
   ],
   "errors": "",
@@ -243,6 +427,32 @@
         "type": "boolean",
         "description": "Whether to enable COD for this logistic channel. Only COD supported channels are applicable.",
         "key": "GmDwRsc"
+      },
+      {
+        "description": "",
+        "name": "auto_call_driver_setting",
+        "sample": "",
+        "type": "object",
+        "required": "False",
+        "key": "chkNhFi",
+        "children": [
+          {
+            "description": "<p>Whether to enable Auto Call Driver for this logistic channel.</p>",
+            "name": "auto_call_driver_enabled",
+            "sample": "true",
+            "type": "boolean",
+            "required": "False",
+            "key": "mhRRQPp"
+          },
+          {
+            "description": "<p>Used to set the Preparation Time for this channel, in minutes. Required when auto_call_driver_enabled = true.</p><p><br />Note: Please ensure the passed preparation_time value falls within the preparation_time_limit range returned by v2.logistics.get_channel_list.</p>",
+            "name": "preparation_time",
+            "sample": "10",
+            "type": "int32",
+            "required": "False",
+            "key": "cGtNKzp"
+          }
+        ]
       }
     ],
     "response_params": [
@@ -360,6 +570,32 @@
             "type": "boolean",
             "required": null,
             "key": "Eyhpjiw"
+          },
+          {
+            "description": "",
+            "name": "auto_call_driver_setting",
+            "sample": "",
+            "type": "object",
+            "required": null,
+            "key": "eGiGwnH",
+            "children": [
+              {
+                "description": "<p>Indicate whether Auto Call Driver is currently enabled for this channel.</p>",
+                "name": "auto_call_driver_enabled",
+                "sample": "true",
+                "type": "boolean",
+                "required": null,
+                "key": "BHHRKrW"
+              },
+              {
+                "description": "<p>The current valid preparation time for this channel, in minutes.</p>",
+                "name": "preparation_time",
+                "sample": "10",
+                "type": "int32",
+                "required": null,
+                "key": "RSSRyMD"
+              }
+            ]
           }
         ],
         "key": "wXhGCSb"
@@ -436,6 +672,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/logistics/update_channel",
   "update_log_list": [
     {
+      "date": "2026-04-09",
+      "content": "Add auto_call_driver_setting request and response parameters"
+    },
+    {
       "date": "2023-09-27",
       "content": "sunset the request parameters \"preferred\" since \"Preferred channel setting is no longer supported\"."
     }
@@ -458,5 +698,9 @@
     "Order Management",
     "Swam ERP"
   ],
-  "path": "/api/v2/logistics/update_channel"
+  "path": "/api/v2/logistics/update_channel",
+  "related_documents": {
+    "developer_guides": [],
+    "faqs": []
+  }
 }
