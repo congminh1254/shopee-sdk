@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.7](https://github.com/congminh1254/shopee-sdk/compare/v1.5.6...v1.5.7) (2026-05-16)
+
+
+### Bug Fixes
+
+* **logistics:** correct order_sn_list → order_list for 3 shipping document param types ([#171](https://github.com/congminh1254/shopee-sdk/issues/171)) ([30f10ac](https://github.com/congminh1254/shopee-sdk/commit/30f10ac9023875694ead621d313f58ff7377fb65))
+
 ## [1.5.6](https://github.com/congminh1254/shopee-sdk/compare/v1.5.5...v1.5.6) (2026-04-28)
 
 
