@@ -617,12 +617,23 @@ export interface BatchShipOrderResponse extends BaseResponse {
  * Parameters for mass ship order
  */
 export type MassShipOrderParams = {
-  /** List of package numbers */
-  package_number_list: string[];
+  /** Logistics channel ID */
+  logistics_channel_id: number;
+  /** Product location ID */
+  product_location_id?: string;
+  /** List of packages */
+  package_list: Array<{
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+    /** Shopee's unique identifier for the package under an order */
+    package_number?: string;
+  }>;
   /** Pickup information */
   pickup?: ShipOrderPickup;
   /** Dropoff information */
   dropoff?: ShipOrderDropoff;
+  /** Non-integrated shipping information */
+  non_integrated?: ShipOrderNonIntegrated;
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
@@ -827,10 +838,18 @@ export interface GetMassTrackingNumberResponse extends BaseResponse {
  * Parameters for set address config
  */
 export type SetAddressConfigParams = {
-  /** Address ID */
-  address_id: number;
-  /** Address flags */
-  address_flag?: string[];
+  /** Whether to show pickup address */
+  show_pickup_address?: boolean;
+  /** Address type configuration */
+  address_type_config?: Array<{
+    /** Address type */
+    address_type?: string;
+    /** Address list */
+    address_list?: Array<{
+      /** Address ID */
+      address_id?: number;
+    }>;
+  }>;
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
@@ -983,8 +1002,12 @@ export interface GetShippingDocumentResultResponse extends BaseResponse {
  * Parameters for get shipping document data info
  */
 export type GetShippingDocumentDataInfoParams = {
-  /** List of order SNs */
-  order_sn_list: string[];
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+  /** Shopee's unique identifier for the package under an order */
+  package_number?: string;
+  /** Recipient address information */
+  recipient_address_info?: object;
 } & Record<string, string | number | boolean | null | undefined>;
 
 /**
@@ -1005,10 +1028,15 @@ export interface GetShippingDocumentDataInfoResponse extends BaseResponse {
  * Parameters for create booking shipping document
  */
 export type CreateBookingShippingDocumentParams = {
-  /** List of booking SNs */
-  booking_sn_list: string[];
-  /** Document type */
-  shipping_document_type: string;
+  /** List of bookings */
+  booking_list: Array<{
+    /** Shopee's unique identifier for a booking */
+    booking_sn: string;
+    /** Tracking number */
+    tracking_number?: string;
+    /** Shipping document type */
+    shipping_document_type?: string;
+  }>;
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
@@ -1022,8 +1050,11 @@ export interface CreateBookingShippingDocumentResponse extends BaseResponse {
  * Parameters for download booking shipping document
  */
 export type DownloadBookingShippingDocumentParams = {
-  /** List of booking SNs */
-  booking_sn_list: string[];
+  /** List of bookings */
+  booking_list: Array<{
+    /** Shopee's unique identifier for a booking */
+    booking_sn: string;
+  }>;
   /** Document type */
   shipping_document_type: string;
 } & Record<string, string | number | boolean | null | undefined>;
@@ -1037,8 +1068,11 @@ export type DownloadBookingShippingDocumentResponse = Buffer;
  * Parameters for get booking shipping document parameter
  */
 export type GetBookingShippingDocumentParameterParams = {
-  /** List of booking SNs */
-  booking_sn_list: string[];
+  /** List of bookings */
+  booking_list: Array<{
+    /** Shopee's unique identifier for a booking */
+    booking_sn: string;
+  }>;
 } & Record<string, string | number | boolean | null | undefined>;
 
 /**
@@ -1057,10 +1091,13 @@ export interface GetBookingShippingDocumentParameterResponse extends BaseRespons
  * Parameters for get booking shipping document result
  */
 export type GetBookingShippingDocumentResultParams = {
-  /** List of booking SNs */
-  booking_sn_list: string[];
-  /** Document type */
-  shipping_document_type: string;
+  /** List of bookings */
+  booking_list: Array<{
+    /** Shopee's unique identifier for a booking */
+    booking_sn: string;
+    /** Shipping document type */
+    shipping_document_type?: string;
+  }>;
 } & Record<string, string | number | boolean | null | undefined>;
 
 /**
@@ -1077,8 +1114,10 @@ export interface GetBookingShippingDocumentResultResponse extends BaseResponse {
  * Parameters for get booking shipping document data info
  */
 export type GetBookingShippingDocumentDataInfoParams = {
-  /** List of booking SNs */
-  booking_sn_list: string[];
+  /** Shopee's unique identifier for a booking */
+  booking_sn: string;
+  /** Recipient address information */
+  recipient_address_info?: object;
 } & Record<string, string | number | boolean | null | undefined>;
 
 /**
@@ -1099,8 +1138,17 @@ export interface GetBookingShippingDocumentDataInfoResponse extends BaseResponse
  * Parameters for create shipping document job
  */
 export type CreateShippingDocumentJobParams = {
-  /** Job identifier */
-  job_id?: string;
+  /** Shipping document type */
+  shipping_document_type: string;
+  /** Unpackaged SKU requests */
+  unpackaged_sku_requests?: object[];
+  /** Package list */
+  package_list: Array<{
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+    /** Shopee's unique identifier for the package under an order */
+    package_number?: string;
+  }>;
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
@@ -1155,8 +1203,10 @@ export interface GetShippingDocumentJobStatusResponse extends BaseResponse {
  * Parameters for download to label
  */
 export type DownloadToLabelParams = {
-  /** List of order SNs */
-  order_sn_list: string[];
+  /** Sorting group */
+  sorting_group?: string;
+  /** Label quantity */
+  quantity?: number;
 } & Record<string, string | number | boolean | null | undefined>;
 
 /**
@@ -1183,6 +1233,8 @@ export type UpdateChannelParams = {
   enabled?: boolean;
   /** COD enabled */
   cod_enabled?: boolean;
+  /** Auto call driver setting */
+  auto_call_driver_setting?: object;
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
@@ -1217,10 +1269,14 @@ export interface UpdateShippingOrderResponse extends BaseResponse {
 export type UpdateTrackingStatusParams = {
   /** Order serial number */
   order_sn: string;
-  /** Package number */
-  package_number?: string;
-  /** Tracking status */
-  tracking_status?: string;
+  /** Tracking number */
+  tracking_number?: string;
+  /** Tracking URL */
+  tracking_url?: string;
+  /** Logistics status */
+  logistics_status?: string;
+  /** Failed reason */
+  failed_reason?: string;
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
@@ -1234,12 +1290,14 @@ export interface UpdateTrackingStatusResponse extends BaseResponse {
  * Parameters for update self collection order logistics
  */
 export type UpdateSelfCollectionOrderLogisticsParams = {
-  /** Order serial number */
-  order_sn: string;
   /** Package number */
   package_number: string;
-  /** Self collection status */
-  self_collection_status: string;
+  /** Self collection logistics action */
+  self_collection_logistics_action?: string;
+  /** EPOC image list */
+  epoc_image_list?: string[];
+  /** PIN */
+  pin?: string;
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
@@ -1272,8 +1330,14 @@ export interface GetOperatingHoursResponse extends BaseResponse {
  * Parameters for update operating hours
  */
 export type UpdateOperatingHoursParams = {
-  /** Operating hours data */
-  operating_hours?: any[];
+  /** Regular operating hours */
+  regular_operating_hour?: any[];
+  /** Special operating hours */
+  special_operating_hour?: any[];
+  /** Instant operating hours */
+  instant_operating_hour?: any[];
+  /** Shop collection operating hours */
+  shop_collection_operating_hour?: any[];
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
@@ -1305,8 +1369,8 @@ export interface GetOperatingHourRestrictionsResponse extends BaseResponse {
  * Parameters for delete special operating hour
  */
 export type DeleteSpecialOperatingHourParams = {
-  /** Date to delete */
-  date?: string;
+  /** Name */
+  name?: string;
 } & Record<string, string | number | boolean | null | undefined>;
 
 /**
@@ -1342,10 +1406,16 @@ export interface GetMartPackagingInfoResponse extends BaseResponse {
  * Parameters for set mart packaging info
  */
 export type SetMartPackagingInfoParams = {
-  /** Order serial number */
-  order_sn: string;
-  /** Packaging data */
-  packaging_data?: any;
+  /** Enable mart packaging info */
+  enable?: boolean;
+  /** Packaging dimension */
+  dimension?: {
+    length?: number;
+    width?: number;
+    height?: number;
+  };
+  /** Packaging fee */
+  packaging_fee?: number;
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
@@ -1373,8 +1443,12 @@ export interface TPFTrackingStatusItem {
  * Parameters for batch update TPF warehouse tracking status
  */
 export type BatchUpdateTPFWarehouseTrackingStatusParams = {
-  /** List of tracking status items */
-  tracking_status_list: TPFTrackingStatusItem[];
+  /** Third-party fulfillment name */
+  tpf_name?: string;
+  /** Third-party fulfillment tracking status */
+  tpf_tracking_status?: string;
+  /** Package list */
+  package_list: TPFTrackingStatusItem[];
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
