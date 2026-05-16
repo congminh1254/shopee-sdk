@@ -904,7 +904,10 @@ describe("LogisticsManager", () => {
         {
           method: "POST",
           auth: true,
-          body: { order_list: [{ order_sn: "ORDER1", tracking_number: "TRK123" }], shipping_document_type: "NORMAL_AIR_WAYBILL" },
+          body: {
+            order_list: [{ order_sn: "ORDER1", tracking_number: "TRK123" }],
+            shipping_document_type: "NORMAL_AIR_WAYBILL",
+          },
         }
       );
     });
