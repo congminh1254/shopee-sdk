@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/congminh1254/shopee-sdk/compare/v1.5.7...v1.6.0) (2026-05-16)
+
+
+### Features
+
+* **logistics:** add new endpoints for logistics ([#153](https://github.com/congminh1254/shopee-sdk/issues/153)) ([0d208aa](https://github.com/congminh1254/shopee-sdk/commit/0d208aa6ed751a9291a5b6748240facbea22bcfb))
+
 ## [1.5.7](https://github.com/congminh1254/shopee-sdk/compare/v1.5.6...v1.5.7) (2026-05-16)
 
 
