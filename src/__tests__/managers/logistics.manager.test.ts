@@ -894,7 +894,7 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.createShippingDocument({
-        order_sn_list: ["ORDER1"],
+        order_list: [{ order_sn: "ORDER1", tracking_number: "TRK123" }],
         shipping_document_type: "NORMAL_AIR_WAYBILL",
       });
 
@@ -904,7 +904,7 @@ describe("LogisticsManager", () => {
         {
           method: "POST",
           auth: true,
-          body: { order_sn_list: ["ORDER1"], shipping_document_type: "NORMAL_AIR_WAYBILL" },
+          body: { order_list: [{ order_sn: "ORDER1", tracking_number: "TRK123" }], shipping_document_type: "NORMAL_AIR_WAYBILL" },
         }
       );
     });
@@ -925,7 +925,7 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.getShippingDocumentParameter({ order_sn_list: ["ORDER1"] });
+      await logisticsManager.getShippingDocumentParameter({ order_list: [{ order_sn: "ORDER1" }] });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -935,7 +935,7 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.getShippingDocumentResult({
-        order_sn_list: ["ORDER1"],
+        order_list: [{ order_sn: "ORDER1" }],
         shipping_document_type: "NORMAL_AIR_WAYBILL",
       });
 
