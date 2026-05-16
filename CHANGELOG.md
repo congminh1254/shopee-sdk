@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/congminh1254/shopee-sdk/compare/v1.6.0...v1.6.1) (2026-05-16)
+
+
+### Bug Fixes
+
+* **logistics:** align logistics request schema types with spec-audit “Request field gaps” ([#174](https://github.com/congminh1254/shopee-sdk/issues/174)) ([5692d14](https://github.com/congminh1254/shopee-sdk/commit/5692d148ca62651399d495410ad0a12cbf2714a2))
+
 ## [1.6.0](https://github.com/congminh1254/shopee-sdk/compare/v1.5.7...v1.6.0) (2026-05-16)
 
 
