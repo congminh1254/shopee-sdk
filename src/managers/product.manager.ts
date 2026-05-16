@@ -111,6 +111,8 @@ import {
   GetProductCertificationRuleResponse,
   SearchUnpackagedModelListParams,
   SearchUnpackagedModelListResponse,
+  GetMartItemByOutletItemIdParams,
+  GetMartItemByOutletItemIdResponse,
   GetMartItemMappingByIdParams,
   GetMartItemMappingByIdResponse,
   PublishItemToOutletShopParams,
@@ -1305,6 +1307,24 @@ export class ProductManager extends BaseManager {
     const response = await ShopeeFetch.fetch<GetMartItemMappingByIdResponse>(
       this.config,
       "/product/get_mart_item_mapping_by_id",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get the mapping information between a Mart item and its corresponding outlet item by outlet item ID.
+   */
+  async getMartItemByOutletItemId(
+    params: GetMartItemByOutletItemIdParams
+  ): Promise<GetMartItemByOutletItemIdResponse> {
+    const response = await ShopeeFetch.fetch<GetMartItemByOutletItemIdResponse>(
+      this.config,
+      "/product/get_mart_item_by_outlet_item_id",
       {
         method: "POST",
         auth: true,

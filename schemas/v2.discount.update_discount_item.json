@@ -38,203 +38,385 @@
   "error_list": [
     {
       "name": "discount.error_assigned_promo_stock",
-      "description": "The reserved stock of added products or disabled products can't be edited"
+      "description": "The reserved stock of added products or disabled products can't be edited",
+      "solution": null
     },
     {
       "name": "discount.item_status_abnormal",
-      "description": "The item status is abnormal"
+      "description": "The item status is abnormal",
+      "solution": null
     },
     {
       "name": "discount.error_item_abnormal",
-      "description": "The item is abnormal"
+      "description": "The item is abnormal",
+      "solution": null
     },
     {
       "name": "discount.error_item_under_block_categories",
-      "description": "This product is under a category that is prohibited from promotions due to regulations in your country"
+      "description": "This product is under a category that is prohibited from promotions due to regulations in your country",
+      "solution": null
     },
     {
       "name": "discount.fail_model_price_check",
-      "description": "The difference between the maximum price and the minimum price in one item is too large."
+      "description": "The difference between the maximum price and the minimum price in one item is too large.",
+      "solution": null
     },
     {
       "name": "discount.get_model_orgin_price_error",
-      "description": "There are something wrong when get the original price of model, please try again."
+      "description": "There are something wrong when get the original price of model, please try again.",
+      "solution": null
     },
     {
       "name": "discount.discount_is_end",
-      "description": "The end discount cannot be updated or deleted."
+      "description": "The end discount cannot be updated or deleted.",
+      "solution": null
     },
     {
       "name": "discount.error_b2c_item_not_allowed",
-      "description": "This product is a B2C product that is prohibited from promotions in FBS shops"
+      "description": "This product is a B2C product that is prohibited from promotions in FBS shops",
+      "solution": null
     },
     {
       "name": "discount.item_in_promotion_too_many",
-      "description": "A maximum of 1000 items can be uploaded in one promotion"
+      "description": "A maximum of 1000 items can be uploaded in one promotion",
+      "solution": null
     },
     {
       "name": "discount.item_in_promotion_too_many_whitelist",
-      "description": "A maximum of 15,000 items can be uploaded in one promotion"
+      "description": "A maximum of 15,000 items can be uploaded in one promotion",
+      "solution": null
     },
     {
       "name": "discount.item_purchase_limit_error",
-      "description": "Purchase limit of this product must be greater than {number}."
+      "description": "Purchase limit of this product must be greater than {number}.",
+      "solution": null
     },
     {
       "name": "discount.item_need_model_id",
-      "description": "Please input model id for the item with models."
+      "description": "Please input model id for the item with models.",
+      "solution": null
     },
     {
       "name": "discount.item_not_in_promotion",
-      "description": "Item is not found in this discount."
+      "description": "Item is not found in this discount.",
+      "solution": null
     },
     {
       "name": "discount.item_status_invalid",
-      "description": "item status is invalid."
+      "description": "item status is invalid.",
+      "solution": null
     },
     {
       "name": "discount.item_id_not_exist",
-      "description": "The Item id you provided is not found, please check your item id."
+      "description": "The Item id you provided is not found, please check your item id.",
+      "solution": null
     },
     {
       "name": "discount.item_id_repeated",
-      "description": "The item id can't be upload due to it has duplicated."
+      "description": "The item id can't be upload due to it has duplicated.",
+      "solution": null
     },
     {
       "name": "discount.model_in_promotion_too_many",
-      "description": "A maximum of 50,000 models can be uploaded in one promotion"
+      "description": "A maximum of 50,000 models can be uploaded in one promotion",
+      "solution": null
     },
     {
       "name": "discount.model_not_in_promotion",
-      "description": "The model that you provided is not in this discount."
+      "description": "The model that you provided is not in this discount.",
+      "solution": null
     },
     {
       "name": "discount.model_id_not_exist",
-      "description": "The model id you provided is not found. Please check your model id."
+      "description": "The model id you provided is not found. Please check your model id.",
+      "solution": null
     },
     {
       "name": "discount.model_id_repeated",
-      "description": "The model id can't be upload due to it has duplicated."
+      "description": "The model id can't be upload due to it has duplicated.",
+      "solution": null
     },
     {
       "name": "discount.promotion_price_for_vn",
-      "description": "The discount price has exceeded 50% of original price."
+      "description": "The discount price has exceeded 50% of original price.",
+      "solution": null
     },
     {
       "name": "discount.promotoin_price_too_high",
-      "description": "Discount price is greater than the maximum national amount."
+      "description": "Discount price is greater than the maximum national amount.",
+      "solution": null
     },
     {
       "name": "discount.promotion_price_too_low",
-      "description": "Discount price is less than the minimum national amount."
+      "description": "Discount price is less than the minimum national amount.",
+      "solution": null
     },
     {
       "name": "discount.item_exceed_discount_limit",
-      "description": "The overall item level promotion limit has been reached."
+      "description": "The overall item level promotion limit has been reached.",
+      "solution": null
     },
     {
       "name": "discount.error_update_admin_discount",
-      "description": "The discount created by admin can't be edited"
+      "description": "The discount created by admin can't be edited",
+      "solution": null
     },
     {
       "name": "discount.error_update_streaming_discount",
-      "description": "The discount created by livestreaming can't be edited"
+      "description": "The discount created by livestreaming can't be edited",
+      "solution": null
     },
     {
       "name": "discount.exceed_discount_item_batch_size",
-      "description": "You can only add up to 50 items at a time."
-    },
-    {
-      "name": "error_param",
-      "description": "There is no access_token in query."
-    },
-    {
-      "name": "error_auth",
-      "description": "Invalid access_token."
-    },
-    {
-      "name": "error_param",
-      "description": "Invalid partner_id."
-    },
-    {
-      "name": "error_param",
-      "description": "There is no partner_id in query."
-    },
-    {
-      "name": "error_auth",
-      "description": "No permission to current api."
-    },
-    {
-      "name": "error_param",
-      "description": "There is no sign in query."
-    },
-    {
-      "name": "error_sign",
-      "description": "Wrong sign."
-    },
-    {
-      "name": "error_param",
-      "description": "no timestamp"
-    },
-    {
-      "name": "error_param",
-      "description": "Invalid timestamp"
+      "description": "You can only add up to 50 items at a time.",
+      "solution": null
     },
     {
       "name": "error_network",
-      "description": "Inner http call failed"
+      "description": "Inner http call failed",
+      "solution": null
     },
     {
       "name": "error_data",
-      "description": "parse data failed"
+      "description": "parse data failed",
+      "solution": null
     },
     {
       "name": "error_data",
-      "description": "data not exist"
+      "description": "data not exist",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "parameter invalid"
+      "description": "parameter invalid",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "The information you queried is not found."
+      "description": "The information you queried is not found.",
+      "solution": null
     },
     {
       "name": "common.error_not_found",
-      "description": "The information you queried is not found."
+      "description": "The information you queried is not found.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Wrong parameters, detail: {msg}."
+      "description": "Wrong parameters, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "error_server",
-      "description": "Something wrong. Please try later.\t"
+      "description": "Something wrong. Please try later.\t",
+      "solution": null
     },
     {
       "name": "common.error_server",
-      "description": "Something wrong. Please try later."
+      "description": "Something wrong. Please try later.",
+      "solution": null
     },
     {
       "name": "error_shop",
-      "description": "shopid is invalid"
+      "description": "shopid is invalid",
+      "solution": null
     },
     {
       "name": "common.error_shop",
-      "description": "Shopid is invalid"
+      "description": "Shopid is invalid",
+      "solution": null
     },
     {
       "name": "discount.discount_need_promotion_price",
-      "description": "Please input the discount price."
+      "description": "Please input the discount price.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "request not from gateway"
+      "description": "request not from gateway",
+      "solution": null
     },
     {
       "name": "discount.promotion_price_higher_input_price",
-      "description": "Discount price is greater than original price."
+      "description": "Discount price is greater than original price.",
+      "solution": null
+    }
+  ],
+  "common_error_list": [
+    {
+      "name": "error_auth",
+      "description": "partner_id is invalid",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "The App is deleted, and you'll be unable to make any API call.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "App developer’s permissions for authorizations have been restricted. If you’re a seller, contact the developer for more information. If you’re the developer, refer to the Open Platform Console for details.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no partner_id in query.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid partner_id.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "no timestamp",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid timestamp",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no sign in query.",
+      "solution": null
+    },
+    {
+      "name": "error_sign",
+      "description": "Wrong sign.",
+      "solution": null
+    },
+    {
+      "name": "invalid_partner_id",
+      "description": "Invalid partner_id, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "No permission to current api.",
+      "solution": null
+    },
+    {
+      "name": "error_api_call_restricted",
+      "description": "The App permission for api call have been restricted. If you’re a seller, contact the developer for more information. If you’re the developer, refer to the Open Platform Console for details.",
+      "solution": null
+    },
+    {
+      "name": "api_suspended",
+      "description": "The API is offline. Please call v2 API instead.",
+      "solution": null
+    },
+    {
+      "name": "error_limit",
+      "description": "The total API call number made by your APP has reached the daily API call limit, please try again after 00: 00 (UTC+08:00)",
+      "solution": null
+    },
+    {
+      "name": "error_rate_limit",
+      "description": "Too many requests. You have reached the rate limit. Please try again later.",
+      "solution": null
+    },
+    {
+      "name": "source_ip_undeclared",
+      "description": "Request Source IP ({ip}) is undeclared. Please declare all your IP addresses in the Shopee Open Platform Console > App list > IP Address Whitelist",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Permission denied. This API is currently offline or the request path is incorrect.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Partner_id is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "no timestamp.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Timestamp is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Timestamp is expired.",
+      "solution": null
+    },
+    {
+      "name": "error_partner_key_expired",
+      "description": "Your API partner key has expired, please reset the Live API Partner Key in Console to get a new valid partner key to call open api.",
+      "solution": null
+    },
+    {
+      "name": "error_api_permission",
+      "description": "This app type has no permission to this API.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no access_token in query.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "Invalid access_token.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "Invalid partner_id or shopid.",
+      "solution": null
+    },
+    {
+      "name": "shop_no_linked",
+      "description": "Partner and shop has no linked.",
+      "solution": null
+    },
+    {
+      "name": "shop_banned",
+      "description": "The shop account has been banned. Permissions for shop authorization and API calls have been suspended until the shop account is restored.",
+      "solution": null
+    },
+    {
+      "name": "invalid_acceess_token",
+      "description": "Invalid access_token, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "partner_shop_no_link",
+      "description": "Invalid partner_id or shop_id, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "error_ashop_api_permission",
+      "description": "The shop is Affiliate shop has no permission to call this API.",
+      "solution": null
+    },
+    {
+      "name": "error_kyc_auth",
+      "description": "No permission. Please inform the seller to complete the Seller Registration on Shopee Seller Center first, then this shop can call for this API.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "System error, please try again later.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no shop_id in query.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "shop_id is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
     }
   ],
   "errors": "",
@@ -507,5 +689,9 @@
     "Marketing",
     "Swam ERP"
   ],
-  "path": "/api/v2/discount/update_discount_item"
+  "path": "/api/v2/discount/update_discount_item",
+  "related_documents": {
+    "developer_guides": [],
+    "faqs": []
+  }
 }

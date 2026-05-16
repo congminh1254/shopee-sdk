@@ -38,631 +38,925 @@
   "error_list": [
     {
       "name": "product.error_busi",
-      "description": "The GTIN code is mandatory, please check and upload again."
+      "description": "The GTIN code is mandatory, please check and upload again.",
+      "solution": null
     },
     {
       "name": "product.error_busi",
-      "description": "Please input the correct TS Mark (TD Mark) to upload your product, and refer to the SEH article - https://seller.shopee.tw/edu/article/19732 if you have any questions."
+      "description": "Please input the correct TS Mark (TD Mark) to upload your product, and refer to the SEH article - https://seller.shopee.tw/edu/article/19732 if you have any questions.",
+      "solution": null
     },
     {
       "name": "product.error_busi",
-      "description": "Medicine ID is mandatory for products in Prescription/OTC category."
+      "description": "Medicine ID is mandatory for products in Prescription/OTC category.",
+      "solution": null
     },
     {
       "name": "product.error_busi",
-      "description": "Please input the correct medicine ID."
+      "description": "Please input the correct medicine ID.",
+      "solution": null
     },
     {
       "name": "product.error_busi",
-      "description": "Upload failed, please upload a more standard size chart image."
+      "description": "For OTC medicine, maximum purchase limit per order is mandatory and cannot exceed 3 days of use.",
+      "solution": null
     },
     {
-      "name": "error_param",
-      "description": "There is no access_token in query."
-    },
-    {
-      "name": "error_auth",
-      "description": "Invalid access_token."
-    },
-    {
-      "name": "error_param",
-      "description": "Invalid partner_id."
-    },
-    {
-      "name": "error_param",
-      "description": "There is no partner_id in query."
-    },
-    {
-      "name": "error_auth",
-      "description": "No permission to current api."
-    },
-    {
-      "name": "error_param",
-      "description": "There is no sign in query."
-    },
-    {
-      "name": "error_sign",
-      "description": "Wrong sign."
-    },
-    {
-      "name": "error_param",
-      "description": "no timestamp"
-    },
-    {
-      "name": "error_param",
-      "description": "Invalid timestamp"
+      "name": "product.error_busi",
+      "description": "Upload failed, please upload a more standard size chart image.",
+      "solution": null
     },
     {
       "name": "error_network",
-      "description": "Inner http call failed"
+      "description": "Inner http call failed",
+      "solution": null
     },
     {
       "name": "error_data",
-      "description": "parse data failed"
+      "description": "parse data failed",
+      "solution": null
     },
     {
       "name": "error_data",
-      "description": "data not exist"
+      "description": "data not exist",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "parameter invalid"
+      "description": "parameter invalid",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "The information you queried is not found."
+      "description": "The information you queried is not found.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Wrong parameters, detail: {msg}."
+      "description": "Wrong parameters, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "error_server",
-      "description": "Something wrong. Please try later.\t"
+      "description": "Something wrong. Please try later.\t",
+      "solution": null
     },
     {
       "name": "error_shop",
-      "description": "shopid is invalid"
+      "description": "shopid is invalid",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "request not from gateway"
+      "description": "request not from gateway",
+      "solution": null
     },
     {
       "name": "error_auth_shop_not_found",
-      "description": "Shop is not found."
+      "description": "Shop is not found.",
+      "solution": null
     },
     {
       "name": "error_auth",
-      "description": "cnsc shop not upgraded, can not edit item."
+      "description": "cnsc shop not upgraded, can not edit item.",
+      "solution": null
     },
     {
       "name": "error_item_not_found",
-      "description": "Item_id is not found."
+      "description": "Item_id is not found.",
+      "solution": null
     },
     {
       "name": "error_param_shop_id_not_found",
-      "description": "Shop_id is not found."
+      "description": "Shop_id is not found.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Invalid logistic info, {{.error_info}}"
+      "description": "Invalid logistic info, {{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Invalid category."
+      "description": "Invalid category.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Invalid attribute. {{.error_info}}"
+      "description": "Invalid attribute. {{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Invalid wholesale setting."
+      "description": "Invalid wholesale setting.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Parameter is not match the constraints, {{.error_info}}."
+      "description": "Parameter is not match the constraints, {{.error_info}}.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Invalid Weight."
+      "description": "Invalid Weight.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Image not exist."
+      "description": "Image not exist.",
+      "solution": null
     },
     {
       "name": "error_invalid_days_to_ship",
-      "description": "Invalid days_to_ship."
+      "description": "Invalid days_to_ship.",
+      "solution": null
     },
     {
       "name": "error_value_name_required",
-      "description": "Value_name is required."
+      "description": "Value_name is required.",
+      "solution": null
     },
     {
       "name": "error_value_id_must_equal_zero",
-      "description": "Value_id must equal 0."
+      "description": "Value_id must equal 0.",
+      "solution": null
     },
     {
       "name": "error_invalid_category_attribute",
-      "description": "Category and attribute not match."
+      "description": "Category and attribute not match.",
+      "solution": null
     },
     {
       "name": "error_busi",
-      "description": "logistic must be free"
+      "description": "logistic must be free",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "invalid wholesale setting"
+      "description": "invalid wholesale setting",
+      "solution": null
     },
     {
       "name": "error_invalid_brand",
-      "description": "Invalid brand"
+      "description": "Invalid brand",
+      "solution": null
     },
     {
       "name": "error_invalid_brand",
-      "description": "Brand ID value should be \"0\"."
+      "description": "Brand ID value should be \"0\".",
+      "solution": null
     },
     {
       "name": "error_invalid_brand",
-      "description": "Brand name required"
+      "description": "Brand name required",
+      "solution": null
     },
     {
       "name": "error_invalid_brand",
-      "description": "Brand ID required"
+      "description": "Brand ID required",
+      "solution": null
     },
     {
       "name": "error_incalid_brand",
-      "description": "Brand ID or brand name required"
+      "description": "Brand ID or brand name required",
+      "solution": null
     },
     {
       "name": "error_invalid_attribute",
-      "description": "Mandatory attribute information required"
+      "description": "Mandatory attribute information required",
+      "solution": null
     },
     {
       "name": "error_invalid_brand",
-      "description": "Brand information required"
+      "description": "Brand information required",
+      "solution": null
     },
     {
       "name": "error_get_shop_fail",
-      "description": "Get shop failed. please try later."
+      "description": "Get shop failed. please try later.",
+      "solution": null
     },
     {
       "name": "error_busi_invalid_shop_status",
-      "description": "Shop status invalid."
+      "description": "Shop status invalid.",
+      "solution": null
     },
     {
       "name": "error_busi_cannot_update_field",
-      "description": "Update item failed , {{.error_info}}."
+      "description": "Update item failed , {{.error_info}}.",
+      "solution": null
     },
     {
       "name": "error_busi_item_status_invalid",
-      "description": "Invalid item status."
+      "description": "Invalid item status.",
+      "solution": null
     },
     {
       "name": "error_busi_update_item_failed",
-      "description": "Update item failed, please try later."
+      "description": "Update item failed, please try later.",
+      "solution": null
     },
     {
       "name": "error_invalid_category",
-      "description": "Invalid category ID {{.error_info}}"
+      "description": "Invalid category ID {{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_busi_attribute_error",
-      "description": "Attribute NCC value is invalid"
+      "description": "Attribute NCC value is invalid",
+      "solution": null
     },
     {
       "name": "error_busi_attribute_error",
-      "description": "Attribute NCC is mandatory"
+      "description": "Attribute NCC is mandatory",
+      "solution": null
     },
     {
       "name": "error_busi_attribute_error",
-      "description": "Attribute BSMI value is invalid"
+      "description": "Attribute BSMI value is invalid",
+      "solution": null
     },
     {
       "name": "error_busi_attribute_error",
-      "description": "Attribute BSMI is mandatory"
+      "description": "Attribute BSMI is mandatory",
+      "solution": null
     },
     {
       "name": "error_attribute_fda_error",
-      "description": "Attribute FDA value is invalid"
+      "description": "Attribute FDA value is invalid",
+      "solution": null
     },
     {
       "name": "error_inner",
-      "description": "Our system is taking some time to respond, please try later."
+      "description": "Our system is taking some time to respond, please try later.",
+      "solution": null
     },
     {
       "name": "error_inner",
-      "description": "System error, please try again later or contact the OpenAPI support team."
+      "description": "System error, please try again later or contact the OpenAPI support team.",
+      "solution": null
     },
     {
       "name": "error_unknown",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_item_not_found",
-      "description": "Product not found"
+      "description": "Product not found",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_check_luc_fail",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_repeated_mtsku",
-      "description": "A similar product has already been uploaded"
+      "description": "A similar product has already been uploaded",
+      "solution": null
     },
     {
       "name": "error_invalid_price",
-      "description": "Invalid price, please use the correct format"
+      "description": "Invalid price, please use the correct format",
+      "solution": null
     },
     {
       "name": "error_category_is_block",
-      "description": "Category is restricted"
+      "description": "Category is restricted",
+      "solution": null
     },
     {
       "name": "error_less_required_attribute",
-      "description": "Mandatory attribute information required"
+      "description": "Mandatory attribute information required",
+      "solution": null
     },
     {
       "name": "error_less_required_brand",
-      "description": "Brand information required"
+      "description": "Brand information required",
+      "solution": null
     },
     {
       "name": "error_inner",
-      "description": "Update item failed {{.error_info}}"
+      "description": "Update item failed {{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_inner",
-      "description": "Update item failed {{.error_info}}"
+      "description": "Update item failed {{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Attribute format is invalid. NCC field only allows Eng Alphanumeric input"
+      "description": "Attribute format is invalid. NCC field only allows Eng Alphanumeric input",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "NCC filed only allows character length less than 50."
+      "description": "NCC filed only allows character length less than 50.",
+      "solution": null
     },
     {
       "name": "error_unlist_item_fail",
-      "description": "Please upload your products to UNLIST status. Products will be published automatically by Shopee at the official launch date."
+      "description": "Please upload your products to UNLIST status. Products will be published automatically by Shopee at the official launch date.",
+      "solution": null
     },
     {
       "name": "error_invalid_logistic_info",
-      "description": "invalid logistic info , {{.error_info}}"
+      "description": "invalid logistic info , {{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_invalid_price_for_logistic",
-      "description": "Shipping channel cannot be enabled as product price exceeds limit."
+      "description": "Shipping channel cannot be enabled as product price exceeds limit.",
+      "solution": null
     },
     {
       "name": "error_inner",
-      "description": "System error, please try again later or contact the OpenAPI support team."
+      "description": "System error, please try again later or contact the OpenAPI support team.",
+      "solution": null
     },
     {
       "name": "error_inner",
-      "description": "System error, please try again later or contact the OpenAPI support team."
+      "description": "System error, please try again later or contact the OpenAPI support team.",
+      "solution": null
     },
     {
       "name": "error_auth",
-      "description": "The current item belong to the full FBS or B2C shop, so normal stock must be equal to 0"
+      "description": "The current item belong to the full FBS or B2C shop, so normal stock must be equal to 0",
+      "solution": null
     },
     {
       "name": "error_param_validate",
-      "description": "This is not a valid GTIN. Please, inform a valid number."
+      "description": "This is not a valid GTIN. Please, inform a valid number.",
+      "solution": null
     },
     {
       "name": "error_param_validate",
-      "description": "This is not a valid GTIN. Please, inform a valid number."
+      "description": "This is not a valid GTIN. Please, inform a valid number.",
+      "solution": null
     },
     {
       "name": "error_desc_image_no_pass",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_desc_image_no_pass",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_desc_image_no_pass",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_desc_image_no_pass",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_busi_cannot_edit_vsku",
-      "description": "Can not use OpenAPI to edit/create VSKU, please connect with your manager"
+      "description": "Can not use OpenAPI to edit/create VSKU, please connect with your manager",
+      "solution": null
     },
     {
       "name": "error_param_validate",
-      "description": "Wholesale cannot be used in this category and attributes."
+      "description": "Wholesale cannot be used in this category and attributes.",
+      "solution": null
     },
     {
       "name": "error_auth",
-      "description": "Your shop can not use model level dts"
+      "description": "Your shop can not use model level dts",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_desc_image_no_pass",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_desc_image_no_pass",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_desc_image_no_pass",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_desc_image_no_pass",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_inner",
-      "description": "Invalid stock location ID"
+      "description": "Invalid stock location ID",
+      "solution": null
     },
     {
       "name": "error attribute",
-      "description": "Your attribute info is invalid. Please fill in the category related attributes with correct attribute value."
+      "description": "Your attribute info is invalid. Please fill in the category related attributes with correct attribute value.",
+      "solution": null
     },
     {
       "name": "error_busi",
-      "description": "The merchant/shop has multi warehouse, please input location id"
+      "description": "The merchant/shop has multi warehouse, please input location id",
+      "solution": null
     },
     {
       "name": "error_incalid_brand",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_duplicated_brand",
-      "description": "Brand already exists"
+      "description": "Brand already exists",
+      "solution": null
     },
     {
       "name": "error category",
-      "description": "Your category is invalid or prohibited."
+      "description": "Your category is invalid or prohibited.",
+      "solution": null
     },
     {
       "name": "error brand",
-      "description": "Your brand is invalid. Please use the valid brand under your category."
+      "description": "Your brand is invalid. Please use the valid brand under your category.",
+      "solution": null
     },
     {
       "name": "error_marshal",
-      "description": "Interal error, please contact openapi team"
+      "description": "Interal error, please contact openapi team",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Invalid parameter for product."
+      "description": "Invalid parameter for product.",
+      "solution": null
     },
     {
       "name": "error_system_busy",
-      "description": "Our system is taking some time to respond, please try later."
+      "description": "Our system is taking some time to respond, please try later.",
+      "solution": null
     },
     {
       "name": "error_item_or_variation_not_found",
-      "description": "Item or model doesn't exist."
+      "description": "Item or model doesn't exist.",
+      "solution": null
     },
     {
       "name": "error_nil_item_in_req",
-      "description": "Interal error, please contact openapi team."
+      "description": "Interal error, please contact openapi team.",
+      "solution": null
     },
     {
       "name": "error_image_unavailable",
-      "description": "Image is invalid: single image url length is less than 32."
+      "description": "Image is invalid: single image url length is less than 32.",
+      "solution": null
     },
     {
       "name": "error_name_length_limit",
-      "description": "Exceeded item_name length limitation."
+      "description": "Exceeded item_name length limitation.",
+      "solution": null
     },
     {
       "name": "error_seller_under_penalty",
-      "description": "The shop is under penalty."
+      "description": "The shop is under penalty.",
+      "solution": null
     },
     {
       "name": "error_nil_shopid_or_itemid",
-      "description": "Query information failed."
+      "description": "Query information failed.",
+      "solution": null
     },
     {
       "name": "error_estimated_days_limit",
-      "description": "Days_to_ship limitation exceeded."
+      "description": "Days_to_ship limitation exceeded.",
+      "solution": null
     },
     {
       "name": "error_item_uneditable",
-      "description": "Can't edit this item. item status can not support editing."
+      "description": "Can't edit this item. item status can not support editing.",
+      "solution": null
     },
     {
       "name": "error_perm_non_admin",
-      "description": "Don't have permission."
+      "description": "Don't have permission.",
+      "solution": null
     },
     {
       "name": "error_desc_hash_tag_over_limit",
-      "description": "Count of hash tags is more than 18"
+      "description": "Count of hash tags is more than 18",
+      "solution": null
     },
     {
       "name": "error_item_name_empty",
-      "description": "Item name could not be empty."
+      "description": "Item name could not be empty.",
+      "solution": null
     },
     {
       "name": "error_item_name_is_too_short",
-      "description": "Item_name length is less than min limit."
+      "description": "Item_name length is less than min limit.",
+      "solution": null
     },
     {
       "name": "error_title_exceeds_max_length",
-      "description": "The length of item_name is bigger than max limit."
+      "description": "The length of item_name is bigger than max limit.",
+      "solution": null
     },
     {
       "name": "error_title_character_forbidden",
-      "description": "Item_name contains forbidden characters."
+      "description": "Item_name contains forbidden characters.",
+      "solution": null
     },
     {
       "name": "error_desc_length_min_limit",
-      "description": "Description length is less than the min limit."
+      "description": "Description length is less than the min limit.",
+      "solution": null
     },
     {
       "name": "error_image_num_min",
-      "description": "{{.error_info}}"
+      "description": "{{.error_info}}",
+      "solution": null
     },
     {
       "name": "error_forbidden_category",
-      "description": "The category is forbidden."
+      "description": "The category is forbidden.",
+      "solution": null
     },
     {
       "name": "error_brand_forbidden",
-      "description": "The brand is forbidden."
+      "description": "The brand is forbidden.",
+      "solution": null
     },
     {
       "name": "error_param_dts_exceeds_max_limit",
-      "description": "Days_to_ship exceeds max limit"
+      "description": "Days_to_ship exceeds max limit",
+      "solution": null
     },
     {
       "name": "error_param_category_not_support_pre_order",
-      "description": "Category does not support pre-order."
+      "description": "Category does not support pre-order.",
+      "solution": null
     },
     {
       "name": "error_cannt_edit_name_in_promotion",
-      "description": "Item_name cannot be edited when item is under promotion.."
+      "description": "Item_name cannot be edited when item is under promotion..",
+      "solution": null
     },
     {
       "name": "error_cannt_edit_description_in_promotion",
-      "description": "Description of item cannot be edited when item is under promotion.."
+      "description": "Description of item cannot be edited when item is under promotion..",
+      "solution": null
     },
     {
       "name": "error_cannt_edit_image_in_promotion",
-      "description": "Image of item cannot be edited when item is under promotion.."
+      "description": "Image of item cannot be edited when item is under promotion..",
+      "solution": null
     },
     {
       "name": "error_cannt_edit_pre_order_in_promotion",
-      "description": "Item cannot be changed to pre-order when item is under promotion.."
+      "description": "Item cannot be changed to pre-order when item is under promotion..",
+      "solution": null
     },
     {
       "name": "error_cannt_edit_estimated_days_in_promotion",
-      "description": "Days_to_ship cannot be edited when item is under promotion."
+      "description": "Days_to_ship cannot be edited when item is under promotion.",
+      "solution": null
     },
     {
       "name": "error_item_in_promotion",
-      "description": "item is in promotion can not set category"
+      "description": "item is in promotion can not set category",
+      "solution": null
     },
     {
       "name": "error_invalid_attribute_value",
-      "description": "Invalid attribute value."
+      "description": "Invalid attribute value.",
+      "solution": null
     },
     {
       "name": "error_wrong_attrsnapshot",
-      "description": "Invalid attribute."
+      "description": "Invalid attribute.",
+      "solution": null
     },
     {
       "name": "error_category_level",
-      "description": "Interal error, please contact openapi team."
+      "description": "Interal error, please contact openapi team.",
+      "solution": null
     },
     {
       "name": "error_category_path_count_limit",
-      "description": "Interal error, please contact openapi team."
+      "description": "Interal error, please contact openapi team.",
+      "solution": null
     },
     {
       "name": "error_server",
-      "description": "Interal error, please contact openapi team."
+      "description": "Interal error, please contact openapi team.",
+      "solution": null
     },
     {
       "name": "error_invalid_category",
-      "description": "Invalid category."
+      "description": "Invalid category.",
+      "solution": null
     },
     {
       "name": "error_incalid_category",
-      "description": "Category IDs for L1 and L2 do not match."
+      "description": "Category IDs for L1 and L2 do not match.",
+      "solution": null
     },
     {
       "name": "error_category_dts",
-      "description": "The current day_to_ship is bigger than category's max days_to_ship."
+      "description": "The current day_to_ship is bigger than category's max days_to_ship.",
+      "solution": null
     },
     {
       "name": "error_invalid_category",
-      "description": "Category is blocked for CB seller."
+      "description": "Category is blocked for CB seller.",
+      "solution": null
     },
     {
       "name": "error_in_item_promotion_image_item_lock",
-      "description": "Can't update images when item is under promotion."
+      "description": "Can't update images when item is under promotion.",
+      "solution": null
     },
     {
       "name": "error_in_item_promotion_name_item_lock",
-      "description": "Can't update item_name when item is under promotion."
+      "description": "Can't update item_name when item is under promotion.",
+      "solution": null
     },
     {
       "name": "error_in_item_promotion_unlsit_lock",
-      "description": "Can't unlist item when item is under promotion."
+      "description": "Can't unlist item when item is under promotion.",
+      "solution": null
     },
     {
       "name": "error_in_item_promotion_description_lock",
-      "description": "Can't update description when item is under promotion."
+      "description": "Can't update description when item is under promotion.",
+      "solution": null
     },
     {
       "name": "error_flash_sale_days_to_ship_lock",
-      "description": "Days_to ship cannot be changed when item is under ongoing/upcoming flash sale."
+      "description": "Days_to ship cannot be changed when item is under ongoing/upcoming flash sale.",
+      "solution": null
     },
     {
       "name": "error_slash_price_not_lowest",
-      "description": "In slash sale, price should not be lower or same as slash price."
+      "description": "In slash sale, price should not be lower or same as slash price.",
+      "solution": null
     },
     {
       "name": "error_whole_sale_min_count_incorrect",
-      "description": "Interal error, please contact openapi team."
+      "description": "Interal error, please contact openapi team.",
+      "solution": null
     },
     {
       "name": "error_whole_sale_price_setting_incorrect",
-      "description": "Wholesale price can't more than original price."
+      "description": "Wholesale price can't more than original price.",
+      "solution": null
     },
     {
       "name": "error_video_info_not_found",
-      "description": "Video_info not found."
+      "description": "Video_info not found.",
+      "solution": null
+    }
+  ],
+  "common_error_list": [
+    {
+      "name": "error_auth",
+      "description": "partner_id is invalid",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "The App is deleted, and you'll be unable to make any API call.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "App developer’s permissions for authorizations have been restricted. If you’re a seller, contact the developer for more information. If you’re the developer, refer to the Open Platform Console for details.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no partner_id in query.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid partner_id.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "no timestamp",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid timestamp",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no sign in query.",
+      "solution": null
+    },
+    {
+      "name": "error_sign",
+      "description": "Wrong sign.",
+      "solution": null
+    },
+    {
+      "name": "invalid_partner_id",
+      "description": "Invalid partner_id, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "No permission to current api.",
+      "solution": null
+    },
+    {
+      "name": "error_api_call_restricted",
+      "description": "The App permission for api call have been restricted. If you’re a seller, contact the developer for more information. If you’re the developer, refer to the Open Platform Console for details.",
+      "solution": null
+    },
+    {
+      "name": "api_suspended",
+      "description": "The API is offline. Please call v2 API instead.",
+      "solution": null
+    },
+    {
+      "name": "error_limit",
+      "description": "The total API call number made by your APP has reached the daily API call limit, please try again after 00: 00 (UTC+08:00)",
+      "solution": null
+    },
+    {
+      "name": "error_rate_limit",
+      "description": "Too many requests. You have reached the rate limit. Please try again later.",
+      "solution": null
+    },
+    {
+      "name": "source_ip_undeclared",
+      "description": "Request Source IP ({ip}) is undeclared. Please declare all your IP addresses in the Shopee Open Platform Console > App list > IP Address Whitelist",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Permission denied. This API is currently offline or the request path is incorrect.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Partner_id is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "no timestamp.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Timestamp is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Timestamp is expired.",
+      "solution": null
+    },
+    {
+      "name": "error_partner_key_expired",
+      "description": "Your API partner key has expired, please reset the Live API Partner Key in Console to get a new valid partner key to call open api.",
+      "solution": null
+    },
+    {
+      "name": "error_api_permission",
+      "description": "This app type has no permission to this API.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no access_token in query.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "Invalid access_token.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "Invalid partner_id or shopid.",
+      "solution": null
+    },
+    {
+      "name": "shop_no_linked",
+      "description": "Partner and shop has no linked.",
+      "solution": null
+    },
+    {
+      "name": "shop_banned",
+      "description": "The shop account has been banned. Permissions for shop authorization and API calls have been suspended until the shop account is restored.",
+      "solution": null
+    },
+    {
+      "name": "invalid_acceess_token",
+      "description": "Invalid access_token, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "partner_shop_no_link",
+      "description": "Invalid partner_id or shop_id, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "error_ashop_api_permission",
+      "description": "The shop is Affiliate shop has no permission to call this API.",
+      "solution": null
+    },
+    {
+      "name": "error_kyc_auth",
+      "description": "No permission. Please inform the seller to complete the Seller Registration on Shopee Seller Center first, then this shop can call for this API.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "System error, please try again later.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no shop_id in query.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "shop_id is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
     }
   ],
   "errors": "",
@@ -2242,5 +2536,9 @@
     "Seller In House System",
     "Product Management"
   ],
-  "path": "/api/v2/product/update_item"
+  "path": "/api/v2/product/update_item",
+  "related_documents": {
+    "developer_guides": [],
+    "faqs": []
+  }
 }

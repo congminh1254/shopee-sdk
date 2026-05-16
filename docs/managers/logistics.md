@@ -71,6 +71,38 @@ response.logistics_channel_list.forEach((channel) => {
 
 ---
 
+### getPauseStatus()
+
+**API Documentation:** [v2.logistics.get_pause_status](https://open.shopee.com/documents/v2/v2.logistics.get_pause_status?module=95&type=1)
+
+Get the pause status of logistics channels under the shop.
+
+```typescript
+const response = await sdk.logistics.getPauseStatus();
+
+console.log('Is paused:', response.response?.is_paused);
+console.log('Pause end time:', response.response?.pause_end_time);
+console.log('Remaining pause quota (seconds):', response.response?.remaining_pause_quota);
+```
+
+---
+
+### setPauseStatus()
+
+**API Documentation:** [v2.logistics.set_pause_status](https://open.shopee.com/documents/v2/v2.logistics.set_pause_status?module=95&type=1)
+
+Set the pause status of logistics channels under the shop.
+
+```typescript
+const response = await sdk.logistics.setPauseStatus({
+  is_paused: true,
+});
+
+console.log('Updated pause status:', response.response?.is_paused);
+```
+
+---
+
 ### getShippingParameter()
 
 **API Documentation:** [v2.logistics.get_shipping_parameter](https://open.shopee.com/documents/v2/v2.logistics.get_shipping_parameter?module=95&type=1)

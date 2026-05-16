@@ -6,8 +6,10 @@ import { ShopeeFetch } from "../../fetch.js";
 import {
   GetTrackingInfoResponse,
   GetChannelListResponse,
+  GetPauseStatusResponse,
   GetShippingParameterResponse,
   GetTrackingNumberResponse,
+  SetPauseStatusResponse,
   ShipOrderResponse,
   GetAddressListResponse,
   CheckPolygonUpdateStatusResponse,
@@ -281,6 +283,58 @@ describe("LogisticsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.logistics_channel_list).toHaveLength(0);
+    });
+  });
+
+  describe("getPauseStatus", () => {
+    it("should get pause status successfully", async () => {
+      const mockResponse: GetPauseStatusResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          is_paused: true,
+          pause_end_time: 1773401096,
+          remaining_pause_quota: 0,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.getPauseStatus();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_pause_status", {
+        method: "GET",
+        auth: true,
+      });
+      expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("setPauseStatus", () => {
+    it("should set pause status successfully", async () => {
+      const mockResponse: SetPauseStatusResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          is_paused: false,
+          remaining_pause_quota: 3600,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await logisticsManager.setPauseStatus({ is_paused: false });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/set_pause_status", {
+        method: "POST",
+        auth: true,
+        body: {
+          is_paused: false,
+        },
+      });
+      expect(result).toEqual(mockResponse);
     });
   });
 

@@ -38,823 +38,1160 @@
   "error_list": [
     {
       "name": "logistics.error_param",
-      "description": "The address is invalid. Please check the address."
+      "description": "The address is invalid. Please check the address.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The address is invalid. Please check the address."
+      "description": "The address is invalid. Please check the address.",
+      "solution": null
     },
     {
       "name": "logistics.address_not_found",
-      "description": "Address is not found."
+      "description": "Address is not found.",
+      "solution": null
     },
     {
       "name": "logistics.ADDRESS_NOT_SUPPORT",
-      "description": "Address is not supported."
+      "description": "Address is not supported.",
+      "solution": null
     },
     {
       "name": "logistics.address_not_supported",
-      "description": "Address is not supported current operation."
+      "description": "Address is not supported current operation.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The order is being allocated, please wait until the allocate is completed."
+      "description": "The order is being allocated, please wait until the allocate is completed.",
+      "solution": null
     },
     {
       "name": "logistics.block_buyer_name",
-      "description": "Buyer name is prohibited."
+      "description": "Buyer name is prohibited.",
+      "solution": null
     },
     {
       "name": "logistics.business_process_error",
-      "description": "Business process failed."
+      "description": "Business process failed.",
+      "solution": null
     },
     {
       "name": "logistics.business_validation_error",
-      "description": "Business validation failed."
+      "description": "Business validation failed.",
+      "solution": null
     },
     {
       "name": "logistics.buyer_address_not_found",
-      "description": "Buyer address is not found."
+      "description": "Buyer address is not found.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Please wait for buyer to reselect the delivery convenience store."
+      "description": "Please wait for buyer to reselect the delivery convenience store.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Logistic status is not supported."
+      "description": "Logistic status is not supported.",
+      "solution": null
     },
     {
       "name": "logistics.cancel_not_allowed",
-      "description": "Cancel is not allowed."
+      "description": "Cancel is not allowed.",
+      "solution": null
     },
     {
       "name": "logistics.category_prohibited",
-      "description": "There are contraband goods in the order."
+      "description": "There are contraband goods in the order.",
+      "solution": null
     },
     {
       "name": "logistics.error_channel_exist",
-      "description": "Fail to find the fulfillment channel of this order."
+      "description": "Fail to find the fulfillment channel of this order.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Deliver address not support COD."
+      "description": "Deliver address not support COD.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Delivery address do not support COD."
+      "description": "Delivery address do not support COD.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "This address do not support delivery."
+      "description": "This address do not support delivery.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Delivery address is not exist."
+      "description": "Delivery address is not exist.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Buyer address is not exist."
+      "description": "Buyer address is not exist.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Delivery store is not exist."
+      "description": "Delivery store is not exist.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Delivery address is not completed."
+      "description": "Delivery address is not completed.",
+      "solution": null
     },
     {
       "name": "logistics.error_address",
-      "description": "Address is invalid. Please check the address."
+      "description": "Address is invalid. Please check the address.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The address is invalid. Please check the address."
+      "description": "The address is invalid. Please check the address.",
+      "solution": null
     },
     {
       "name": "logistics.error_limit",
-      "description": "The batch request reach limit 50."
+      "description": "The batch request reach limit 50.",
+      "solution": null
     },
     {
       "name": "logistics.error_buyer_addressid",
-      "description": "Buyer addressid is invalid. Please check the buyer addressid."
+      "description": "Buyer addressid is invalid. Please check the buyer addressid.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "This order is not allowed to cancel."
+      "description": "This order is not allowed to cancel.",
+      "solution": null
     },
     {
       "name": "logistics.error_cannot_cancel_logistic_txn",
-      "description": "Cancel operation is not supported for current logistics txn."
+      "description": "Cancel operation is not supported for current logistics txn.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Error, please check the channel."
+      "description": "Error, please check the channel.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Fast Escrow ID was not found !"
+      "description": "Fast Escrow ID was not found !",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "COD is currently not supported in the area. Please check Shopee Help Center for COD serviceable area."
+      "description": "COD is currently not supported in the area. Please check Shopee Help Center for COD serviceable area.",
+      "solution": null
     },
     {
       "name": "logistics.error_connection",
-      "description": "Connection to external system is failed."
+      "description": "Connection to external system is failed.",
+      "solution": null
     },
     {
       "name": "logistics.error_consignment",
-      "description": "Fail to get consignment number."
+      "description": "Fail to get consignment number.",
+      "solution": null
     },
     {
       "name": "logistics.error_consignment_no_accepted",
-      "description": "Consignment number is not allow to update."
+      "description": "Consignment number is not allow to update.",
+      "solution": null
     },
     {
       "name": "logistics.error_core_server",
-      "description": "Fail to call core server."
+      "description": "Fail to call core server.",
+      "solution": null
     },
     {
       "name": "logistics.error_other",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_cutoff_time",
-      "description": "Pickup time is not invalid. Please check the pickup time."
+      "description": "Pickup time is not invalid. Please check the pickup time.",
+      "solution": null
     },
     {
       "name": "logistics.error_decimal",
-      "description": "Receive invalid decimal."
+      "description": "Receive invalid decimal.",
+      "solution": null
     },
     {
       "name": "logistics.error_duplicate_consignment",
-      "description": "Consignment number is duplicated."
+      "description": "Consignment number is duplicated.",
+      "solution": null
     },
     {
       "name": "logistics.error_duplicated_consignment",
-      "description": "Consignment number is duplicate."
+      "description": "Consignment number is duplicate.",
+      "solution": null
     },
     {
       "name": "logistics.error_expired",
-      "description": "Order is expired."
+      "description": "Order is expired.",
+      "solution": null
     },
     {
       "name": "logistics.error_failed_get_nearest_whs_idn",
-      "description": "Faile to get the nearest whsId."
+      "description": "Faile to get the nearest whsId.",
+      "solution": null
     },
     {
       "name": "logistics.error_not_exist",
-      "description": "Forder is not exist."
+      "description": "Forder is not exist.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_format",
-      "description": "Content format from external system is invalid. Please check the format."
+      "description": "Content format from external system is invalid. Please check the format.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_other",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_invalid_channel_id",
-      "description": "Channel id is invalid. Please check the channel."
+      "description": "Channel id is invalid. Please check the channel.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The forder_ids should belong to one order/orderId and forderIds cannot be empty at the same time/parse forderId error."
+      "description": "The forder_ids should belong to one order/orderId and forderIds cannot be empty at the same time/parse forderId error.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_ip",
-      "description": "Ip address: {ip} is deny."
+      "description": "Ip address: {ip} is deny.",
+      "solution": null
     },
     {
       "name": "logistics.error_other",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Items in the same bundle should be in the same parcel."
+      "description": "Items in the same bundle should be in the same parcel.",
+      "solution": null
     },
     {
       "name": "logistics.error_item_not_found",
-      "description": "Can not find the item."
+      "description": "Can not find the item.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_loginfo",
-      "description": "Logistic info is invalid. Please check the logistic info."
+      "description": "Logistic info is invalid. Please check the logistic info.",
+      "solution": null
     },
     {
       "name": "logistics.error_logistic_txn_not_found",
-      "description": "Logistics record is not found."
+      "description": "Logistics record is not found.",
+      "solution": null
     },
     {
       "name": "logistics.error_logistics_shop_require_pickup_address",
-      "description": "Pickup address is required."
+      "description": "Pickup address is required.",
+      "solution": null
     },
     {
       "name": "logistics.error_limit",
-      "description": "Can not update order logistics in current status."
+      "description": "Can not update order logistics in current status.",
+      "solution": null
     },
     {
       "name": "logistics.error_message_type",
-      "description": "Message type is invalid. Please check the message type."
+      "description": "Message type is invalid. Please check the message type.",
+      "solution": null
     },
     {
       "name": "logistics.error_method",
-      "description": "Operation is not supported."
+      "description": "Operation is not supported.",
+      "solution": null
     },
     {
       "name": "logistics.error_missing_cdt",
-      "description": "Cdt settings is not found."
+      "description": "Cdt settings is not found.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Seller address is invalid. Please check your address."
+      "description": "Seller address is invalid. Please check your address.",
+      "solution": null
     },
     {
       "name": "logistics.error_no_pickup",
-      "description": "Pickup is not supported."
+      "description": "Pickup is not supported.",
+      "solution": null
     },
     {
       "name": "logistics.error_no_pickup_address",
-      "description": "Pickup address is missing."
+      "description": "Pickup address is missing.",
+      "solution": null
     },
     {
       "name": "error_not_found",
-      "description": "Wrong parameters, detail: {msg}."
+      "description": "Wrong parameters, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "logistics.error_operation_failed",
-      "description": "Operation failed."
+      "description": "Operation failed.",
+      "solution": null
     },
     {
       "name": "logistics.error_order_context",
-      "description": "Order context is invalid. Please check the order context."
+      "description": "Order context is invalid. Please check the order context.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Order list length exceeds limit."
+      "description": "Order list length exceeds limit.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "This order is not allowed to cancel."
+      "description": "This order is not allowed to cancel.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Order is not exist."
+      "description": "Order is not exist.",
+      "solution": null
     },
     {
       "name": "logistics.error_order_not_found",
-      "description": "Order is not found."
+      "description": "Order is not found.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "This order can not be splited."
+      "description": "This order can not be splited.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Order is not splittable."
+      "description": "Order is not splittable.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Parcels of this order can not be combined."
+      "description": "Parcels of this order can not be combined.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Order/Forder can not update."
+      "description": "Order/Forder can not update.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Order has been shipped."
+      "description": "Order has been shipped.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Order has been splitted."
+      "description": "Order has been splitted.",
+      "solution": null
     },
     {
       "name": "logistics.error_order_state",
-      "description": "Operation is not allow with current order status."
+      "description": "Operation is not allow with current order status.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The order status is not ready to ship."
+      "description": "The order status is not ready to ship.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Wrong parameters, detail: {msg}."
+      "description": "Wrong parameters, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "logistics.error_limit",
-      "description": "Parcel count should not exceed limit."
+      "description": "Parcel count should not exceed limit.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "error_permission",
-      "description": "Sorry you don't have the permission, detail: {msg}."
+      "description": "Sorry you don't have the permission, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "logistics.error_phone",
-      "description": "Phone number is invalid. Please check the phone number."
+      "description": "Phone number is invalid. Please check the phone number.",
+      "solution": null
     },
     {
       "name": "logistics.error_pickup_time",
-      "description": "Pickup time is invalid. Please check the pick up time."
+      "description": "Pickup time is invalid. Please check the pick up time.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The buyer address is invalid. Please check the buyer address."
+      "description": "The buyer address is invalid. Please check the buyer address.",
+      "solution": null
     },
     {
       "name": "logistics.error_return_tracking_num_not_found",
-      "description": "Return tracking number is not found."
+      "description": "Return tracking number is not found.",
+      "solution": null
     },
     {
       "name": "logistics.error_not_exist",
-      "description": "Address does not exist."
+      "description": "Address does not exist.",
+      "solution": null
     },
     {
       "name": "logistics.error_seller_never_apply_tracking_no_before",
-      "description": "History is not found."
+      "description": "History is not found.",
+      "solution": null
     },
     {
       "name": "logistics.error_sender_address",
-      "description": "Sender address is invalid. Please check the sender address."
+      "description": "Sender address is invalid. Please check the sender address.",
+      "solution": null
     },
     {
       "name": "error_server",
-      "description": "System error. Please try again later."
+      "description": "System error. Please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_set_asf_by_weight",
-      "description": "Fail to set actual shipping fee."
+      "description": "Fail to set actual shipping fee.",
+      "solution": null
     },
     {
       "name": "logistics.error_set_seller_address",
-      "description": "Fail to set seller address."
+      "description": "Fail to set seller address.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Shop not found."
+      "description": "Shop not found.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Only support local warehouse, this shop do not support local warehouse."
+      "description": "Only support local warehouse, this shop do not support local warehouse.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "This shop do not support split parcels."
+      "description": "This shop do not support split parcels.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Size setting error."
+      "description": "Size setting error.",
+      "solution": null
     },
     {
       "name": "logistics.error_other",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_state",
-      "description": "Currently, operation is not supported with current logistics record status."
+      "description": "Currently, operation is not supported with current logistics record status.",
+      "solution": null
     },
     {
       "name": "logistics.error_status",
-      "description": "Operation is not supported with current logistics record status."
+      "description": "Operation is not supported with current logistics record status.",
+      "solution": null
     },
     {
       "name": "logistics.error_store_not_found",
-      "description": "Store is not found."
+      "description": "Store is not found.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_other",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_third_party_server",
-      "description": "Failed to call external system."
+      "description": "Failed to call external system.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_timeout",
-      "description": "Timeout to call external system."
+      "description": "Timeout to call external system.",
+      "solution": null
     },
     {
       "name": "logistics.error_token",
-      "description": "Token is invalid. Please check the token."
+      "description": "Token is invalid. Please check the token.",
+      "solution": null
     },
     {
       "name": "logistics.error_too_many_invoke_function",
-      "description": "Failed to get lock."
+      "description": "Failed to get lock.",
+      "solution": null
     },
     {
       "name": "logistics.error_traceno_required",
-      "description": "Trace number is required."
+      "description": "Trace number is required.",
+      "solution": null
     },
     {
       "name": "logistics.error_unknown",
-      "description": "Unknown exception, exception details is: {details}."
+      "description": "Unknown exception, exception details is: {details}.",
+      "solution": null
     },
     {
       "name": "logistics.error_unsupported",
-      "description": "Operation is not supported."
+      "description": "Operation is not supported.",
+      "solution": null
     },
     {
       "name": "logistics.error_unsupported_address",
-      "description": "Address is not supported."
+      "description": "Address is not supported.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Invalid logistics channel. Please check the logictics channel."
+      "description": "Invalid logistics channel. Please check the logictics channel.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Thaipost do not support this country."
+      "description": "Thaipost do not support this country.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_update",
-      "description": "Fail to update."
+      "description": "Fail to update.",
+      "solution": null
     },
     {
       "name": "logistics.error_update_logistic_unsupported",
-      "description": "Currently, logistics is not supported to update."
+      "description": "Currently, logistics is not supported to update.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Can not update order logistics."
+      "description": "Can not update order logistics.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Warehouse address not supported."
+      "description": "Warehouse address not supported.",
+      "solution": null
     },
     {
       "name": "logistics.error_other",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_other",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.error_zipcode_not_found",
-      "description": "Zipcode is not found."
+      "description": "Zipcode is not found.",
+      "solution": null
     },
     {
       "name": "logistics.feature_not_supported",
-      "description": "Feature is not supported."
+      "description": "Feature is not supported.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The EMS tracking number must begin with “E”"
+      "description": "The EMS tracking number must begin with “E”",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The EMS tracking number must end with “TH”"
+      "description": "The EMS tracking number must end with “TH”",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The Registered Mail tracking number must begin with “E”, “R” or “O”"
+      "description": "The Registered Mail tracking number must begin with “E”, “R” or “O”",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The Registered Mail tracking number must end with “TH”"
+      "description": "The Registered Mail tracking number must end with “TH”",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Please fill in a valid tracking number (13 digits)"
+      "description": "Please fill in a valid tracking number (13 digits)",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The tracking number has been used by other orders, please fill in a valid one."
+      "description": "The tracking number has been used by other orders, please fill in a valid one.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Please fill in the tracking number (13 digits)"
+      "description": "Please fill in the tracking number (13 digits)",
+      "solution": null
     },
     {
       "name": "logistics.invalid_size",
-      "description": "Size is invalid. Please check the"
+      "description": "Size is invalid. Please check the",
+      "solution": null
     },
     {
       "name": "logistics.error_data",
-      "description": "Store status is unavailable,pending buyer update."
+      "description": "Store status is unavailable,pending buyer update.",
+      "solution": null
     },
     {
       "name": "logistics.item_is_in_bundle",
-      "description": "Channel is not allow to disable due to there is item in the bundle."
+      "description": "Channel is not allow to disable due to there is item in the bundle.",
+      "solution": null
     },
     {
       "name": "logistics.logistic_order_is_locked_on_creating",
-      "description": "Fail to get the lock."
+      "description": "Fail to get the lock.",
+      "solution": null
     },
     {
       "name": "logistics.max dimension is limited",
-      "description": "Max dimension or weight is limited."
+      "description": "Max dimension or weight is limited.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Package exceeds weight limit. Please adjust or contact Shopee CS for more info."
+      "description": "Package exceeds weight limit. Please adjust or contact Shopee CS for more info.",
+      "solution": null
     },
     {
       "name": "logistics.missing_cdt",
-      "description": "Cdt settings is missing."
+      "description": "Cdt settings is missing.",
+      "solution": null
     },
     {
       "name": "logistics.no buyer_store",
-      "description": "Buyer store is missing."
+      "description": "Buyer store is missing.",
+      "solution": null
     },
     {
       "name": "logistics.no_proportion",
-      "description": "Can Not Found Proportion."
+      "description": "Can Not Found Proportion.",
+      "solution": null
     },
     {
       "name": "logistics.not_found",
-      "description": "Not found."
+      "description": "Not found.",
+      "solution": null
     },
     {
       "name": "logistics.order not found",
-      "description": "Relative order is not found."
+      "description": "Relative order is not found.",
+      "solution": null
     },
     {
       "name": "logistics.order_finalized",
-      "description": "Order is already in finalized status."
+      "description": "Order is already in finalized status.",
+      "solution": null
     },
     {
       "name": "logistics.order_not_ready_to_update",
-      "description": "The order status is not ready to update."
+      "description": "The order status is not ready to update.",
+      "solution": null
     },
     {
       "name": "logistics.package_not_exist",
-      "description": "The package is not exist."
+      "description": "The package is not exist.",
+      "solution": null
     },
     {
       "name": "logistics.parcel_amount_over_limit",
-      "description": "The order amount is over limit."
+      "description": "The order amount is over limit.",
+      "solution": null
     },
     {
       "name": "logistics.pickup_whitelist_not_supported",
-      "description": "Permission is deny for pickup."
+      "description": "Permission is deny for pickup.",
+      "solution": null
     },
     {
       "name": "logistics.error_other",
-      "description": "Pick up address not support COD."
+      "description": "Pick up address not support COD.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Pickup address do not support COD."
+      "description": "Pickup address do not support COD.",
+      "solution": null
     },
     {
       "name": "logistics.error_other",
-      "description": "Can not support deliver address."
+      "description": "Can not support deliver address.",
+      "solution": null
     },
     {
       "name": "logistics.error_other",
-      "description": "Can not support pick up address."
+      "description": "Can not support pick up address.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "This address do not support pickup."
+      "description": "This address do not support pickup.",
+      "solution": null
     },
     {
       "name": "logistics.pickup_address_unsupported",
-      "description": "Pickup address is not supported."
+      "description": "Pickup address is not supported.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "System error, please try again later."
+      "description": "System error, please try again later.",
+      "solution": null
     },
     {
       "name": "logistics.price_error",
-      "description": "The price is invalid. Please check the price."
+      "description": "The price is invalid. Please check the price.",
+      "solution": null
     },
     {
       "name": "logistics.quantity_error",
-      "description": "The quantity is invalid. Please check the quantity."
+      "description": "The quantity is invalid. Please check the quantity.",
+      "solution": null
     },
     {
       "name": "logistics.RcvStoreId not found",
-      "description": "Receiver storeid is not found."
+      "description": "Receiver storeid is not found.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Seller address is not completed."
+      "description": "Seller address is not completed.",
+      "solution": null
     },
     {
       "name": "logistics.seller_address_not_support_cod",
-      "description": "Cod pickup is not supported with the seller address."
+      "description": "Cod pickup is not supported with the seller address.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Seller address is not exist. Please try other address."
+      "description": "Seller address is not exist. Please try other address.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Sender address is not exist."
+      "description": "Sender address is not exist.",
+      "solution": null
     },
     {
       "name": "logistics.ship_order_need_address_pickup_time",
-      "description": "Parameter address_id and pickup_time_id are required."
+      "description": "Parameter address_id and pickup_time_id are required.",
+      "solution": null
     },
     {
       "name": "logistics.ship_order_need_pacakge_number",
-      "description": "Please request with package_number for this split order."
+      "description": "Please request with package_number for this split order.",
+      "solution": null
     },
     {
       "name": "logistics.ship_order_need_tracking_number",
-      "description": "Parameter tracking_number can not be null."
+      "description": "Parameter tracking_number can not be null.",
+      "solution": null
     },
     {
       "name": "logistics.ship_order_not_need_pacakge_number",
-      "description": "Please don’t request with package_number for this unsplit order."
+      "description": "Please don’t request with package_number for this unsplit order.",
+      "solution": null
     },
     {
       "name": "logistics.ship_order_only_support_one_type",
-      "description": "Please select just one way to ship order: pickup or dropoff or non_integrated."
+      "description": "Please select just one way to ship order: pickup or dropoff or non_integrated.",
+      "solution": null
     },
     {
       "name": "logistics.ship_order_pff_init",
-      "description": "You can not ship warehouse order."
+      "description": "You can not ship warehouse order.",
+      "solution": null
     },
     {
       "name": "logistics.ship_order_pickup_time_invalid",
-      "description": "Invalid pickup time id. Please check the pick up time id."
+      "description": "Invalid pickup time id. Please check the pick up time id.",
+      "solution": null
     },
     {
       "name": "logistics.ship_order_unsupport_pickup",
-      "description": "This order does not support ship with pickup."
+      "description": "This order does not support ship with pickup.",
+      "solution": null
     },
     {
       "name": "logistics.shop_not_found",
-      "description": "Shop is not found."
+      "description": "Shop is not found.",
+      "solution": null
     },
     {
       "name": "logistics.shop_not_support_wms",
-      "description": "Wms is not supported for the shop."
+      "description": "Wms is not supported for the shop.",
+      "solution": null
     },
     {
       "name": "common.invalid_shop",
-      "description": "Shop id is invalid. Please check your shop."
+      "description": "Shop id is invalid. Please check your shop.",
+      "solution": null
     },
     {
       "name": "logistics.sls calculate fail",
-      "description": "Fail to calculate estimated shipping fee."
+      "description": "Fail to calculate estimated shipping fee.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "The address is invalid. Please check the address."
+      "description": "The address is invalid. Please check the address.",
+      "solution": null
     },
     {
       "name": "logistics.error_param",
-      "description": "Logistic status is not supported."
+      "description": "Logistic status is not supported.",
+      "solution": null
     },
     {
       "name": "logistics.error_limit",
-      "description": "Order status not support update logistics."
+      "description": "Order status not support update logistics.",
+      "solution": null
     },
     {
       "name": "logistics.update_not_allowed",
-      "description": "Currently, update is not allow."
+      "description": "Currently, update is not allow.",
+      "solution": null
     },
     {
       "name": "logistics.update_shipping_order_no_param_change",
-      "description": "You can’t update shipping with all the same parameters."
+      "description": "You can’t update shipping with all the same parameters.",
+      "solution": null
     },
     {
       "name": "logistics.can_not_update_combine_order\t",
-      "description": "Can not update combine order through Open API, please use Shopee Seller Center instead.\t\t"
+      "description": "Can not update combine order through Open API, please use Shopee Seller Center instead.\t\t",
+      "solution": null
     },
     {
       "name": "logistics.invalid_address_version",
-      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment"
-    },
-    {
-      "name": "error_param",
-      "description": "There is no access_token in query."
-    },
-    {
-      "name": "error_auth",
-      "description": "Invalid access_token."
-    },
-    {
-      "name": "error_param",
-      "description": "Invalid partner_id."
-    },
-    {
-      "name": "error_param",
-      "description": "There is no partner_id in query."
-    },
-    {
-      "name": "error_auth",
-      "description": "No permission to current api."
-    },
-    {
-      "name": "error_param",
-      "description": "There is no sign in query."
-    },
-    {
-      "name": "error_sign",
-      "description": "Wrong sign."
-    },
-    {
-      "name": "error_param",
-      "description": "no timestamp"
-    },
-    {
-      "name": "error_param",
-      "description": "Invalid timestamp"
+      "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment",
+      "solution": null
     },
     {
       "name": "error_network",
-      "description": "Inner http call failed"
+      "description": "Inner http call failed",
+      "solution": null
     },
     {
       "name": "error_data",
-      "description": "parse data failed"
+      "description": "parse data failed",
+      "solution": null
     },
     {
       "name": "error_data",
-      "description": "data not exist"
+      "description": "data not exist",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "parameter invalid"
+      "description": "parameter invalid",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "The information you queried is not found."
+      "description": "The information you queried is not found.",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Wrong parameters, detail: {msg}."
+      "description": "Wrong parameters, detail: {msg}.",
+      "solution": null
     },
     {
       "name": "error_server",
-      "description": "Something wrong. Please try later.\t"
+      "description": "Something wrong. Please try later.\t",
+      "solution": null
     },
     {
       "name": "error_shop",
-      "description": "shopid is invalid"
+      "description": "shopid is invalid",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "request not from gateway"
+      "description": "request not from gateway",
+      "solution": null
     },
     {
       "name": "error_param",
-      "description": "Package cannot be rescheduled"
+      "description": "Package cannot be rescheduled",
+      "solution": null
     },
     {
       "name": "error_other",
-      "description": "Rescheduling dependency error"
+      "description": "Rescheduling dependency error",
+      "solution": null
+    }
+  ],
+  "common_error_list": [
+    {
+      "name": "error_auth",
+      "description": "partner_id is invalid",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "The App is deleted, and you'll be unable to make any API call.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "App developer’s permissions for authorizations have been restricted. If you’re a seller, contact the developer for more information. If you’re the developer, refer to the Open Platform Console for details.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no partner_id in query.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid partner_id.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "no timestamp",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Invalid timestamp",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no sign in query.",
+      "solution": null
+    },
+    {
+      "name": "error_sign",
+      "description": "Wrong sign.",
+      "solution": null
+    },
+    {
+      "name": "invalid_partner_id",
+      "description": "Invalid partner_id, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "No permission to current api.",
+      "solution": null
+    },
+    {
+      "name": "error_api_call_restricted",
+      "description": "The App permission for api call have been restricted. If you’re a seller, contact the developer for more information. If you’re the developer, refer to the Open Platform Console for details.",
+      "solution": null
+    },
+    {
+      "name": "api_suspended",
+      "description": "The API is offline. Please call v2 API instead.",
+      "solution": null
+    },
+    {
+      "name": "error_limit",
+      "description": "The total API call number made by your APP has reached the daily API call limit, please try again after 00: 00 (UTC+08:00)",
+      "solution": null
+    },
+    {
+      "name": "error_rate_limit",
+      "description": "Too many requests. You have reached the rate limit. Please try again later.",
+      "solution": null
+    },
+    {
+      "name": "source_ip_undeclared",
+      "description": "Request Source IP ({ip}) is undeclared. Please declare all your IP addresses in the Shopee Open Platform Console > App list > IP Address Whitelist",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Permission denied. This API is currently offline or the request path is incorrect.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Partner_id is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "no timestamp.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Timestamp is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "Timestamp is expired.",
+      "solution": null
+    },
+    {
+      "name": "error_partner_key_expired",
+      "description": "Your API partner key has expired, please reset the Live API Partner Key in Console to get a new valid partner key to call open api.",
+      "solution": null
+    },
+    {
+      "name": "error_api_permission",
+      "description": "This app type has no permission to this API.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no access_token in query.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "Invalid access_token.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "Invalid partner_id or shopid.",
+      "solution": null
+    },
+    {
+      "name": "shop_no_linked",
+      "description": "Partner and shop has no linked.",
+      "solution": null
+    },
+    {
+      "name": "shop_banned",
+      "description": "The shop account has been banned. Permissions for shop authorization and API calls have been suspended until the shop account is restored.",
+      "solution": null
+    },
+    {
+      "name": "invalid_acceess_token",
+      "description": "Invalid access_token, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "partner_shop_no_link",
+      "description": "Invalid partner_id or shop_id, please have a check.",
+      "solution": null
+    },
+    {
+      "name": "error_ashop_api_permission",
+      "description": "The shop is Affiliate shop has no permission to call this API.",
+      "solution": null
+    },
+    {
+      "name": "error_kyc_auth",
+      "description": "No permission. Please inform the seller to complete the Seller Registration on Shopee Seller Center first, then this shop can call for this API.",
+      "solution": null
+    },
+    {
+      "name": "error_auth",
+      "description": "System error, please try again later.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "There is no shop_id in query.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "shop_id is invalid, should be an integer between 0 and 4294967295.",
+      "solution": null
     }
   ],
   "errors": "",
@@ -1021,5 +1358,9 @@
     "Order Management",
     "Swam ERP"
   ],
-  "path": "/api/v2/logistics/update_shipping_order"
+  "path": "/api/v2/logistics/update_shipping_order",
+  "related_documents": {
+    "developer_guides": [],
+    "faqs": []
+  }
 }
