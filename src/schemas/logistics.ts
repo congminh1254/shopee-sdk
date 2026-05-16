@@ -839,10 +839,19 @@ export enum ShippingDocumentType {
  * Parameters for create shipping document
  */
 export type CreateShippingDocumentParams = {
-  /** List of order SNs */
-  order_sn_list: string[];
+  /** List of orders to create shipping document for. limit [1, 50] */
+  order_list: Array<{
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+    /** Shopee's unique identifier for the package under an order */
+    package_number?: string;
+    /** The tracking number of the order. Required except for channels that allow printing before arrangement */
+    tracking_number?: string;
+    /** The type of shipping document */
+    shipping_document_type?: string;
+  }>;
   /** Document type */
-  shipping_document_type: string;
+  shipping_document_type?: string;
 } & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
@@ -876,9 +885,14 @@ export type DownloadShippingDocumentResponse = Buffer;
  * Parameters for get shipping document parameter
  */
 export type GetShippingDocumentParameterParams = {
-  /** List of order SNs */
-  order_sn_list: string[];
-} & Record<string, string | number | boolean | null | undefined>;
+  /** List of orders to get shipping document parameters for. limit [1, 50] */
+  order_list: Array<{
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+    /** Shopee's unique identifier for the package under an order */
+    package_number?: string;
+  }>;
+} & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
  * Response for get shipping document parameter API
@@ -896,11 +910,18 @@ export interface GetShippingDocumentParameterResponse extends BaseResponse {
  * Parameters for get shipping document result
  */
 export type GetShippingDocumentResultParams = {
-  /** List of order SNs */
-  order_sn_list: string[];
+  /** List of orders to query shipping document status for. limit [1, 50] */
+  order_list: Array<{
+    /** Shopee's unique identifier for an order */
+    order_sn: string;
+    /** Shopee's unique identifier for the package under an order */
+    package_number?: string;
+    /** The type of shipping document */
+    shipping_document_type?: string;
+  }>;
   /** Document type */
-  shipping_document_type: string;
-} & Record<string, string | number | boolean | null | undefined>;
+  shipping_document_type?: string;
+} & Record<string, string | number | boolean | object | null | undefined>;
 
 /**
  * Shipping document result item
