@@ -2029,6 +2029,26 @@ export interface GetMartItemMappingByIdResponse extends BaseResponse {
 }
 
 /**
+ * Parameters for get mart item by outlet item id
+ */
+export type GetMartItemByOutletItemIdParams = {
+  /** The item ID of the item in the outlet shop */
+  outlet_item_id: number;
+};
+
+/**
+ * Response for get mart item by outlet item id API
+ */
+export interface GetMartItemByOutletItemIdResponse extends BaseResponse {
+  /** Warning details */
+  warning?: string;
+  response?: {
+    /** A list of item mapping records between the Mart item and its corresponding outlet items */
+    item_mapping_list?: ItemMapping[];
+  };
+}
+
+/**
  * Seller stock information for publishing to outlet
  */
 export interface OutletSellerStock {

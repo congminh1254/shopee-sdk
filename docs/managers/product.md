@@ -976,6 +976,25 @@ response.response?.item_mapping_list?.forEach(mapping => {
 
 ---
 
+### getMartItemByOutletItemId()
+
+**API Documentation:** [v2.product.get_mart_item_by_outlet_item_id](https://open.shopee.com/documents/v2/v2.product.get_mart_item_by_outlet_item_id?module=89&type=1)
+
+Get the mapping information between a Mart item and its corresponding outlet item by outlet item ID.
+
+```typescript
+const response = await sdk.product.getMartItemByOutletItemId({
+  outlet_item_id: 987654321,
+});
+
+response.response?.item_mapping_list?.forEach((mapping) => {
+  console.log('Mart Item ID:', mapping.mart_item_id);
+  console.log('Outlet Item ID:', mapping.outlet_item_id);
+});
+```
+
+---
+
 ### publishItemToOutletShop()
 
 **API Documentation:** [v2.product.publish_item_to_outlet_shop](https://open.shopee.com/documents/v2/v2.product.publish_item_to_outlet_shop?module=89&type=1)

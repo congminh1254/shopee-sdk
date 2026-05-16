@@ -4,6 +4,7 @@ import {
   GetTrackingInfoParams,
   GetTrackingInfoResponse,
   GetChannelListResponse,
+  GetPauseStatusResponse,
   GetShippingParameterParams,
   GetShippingParameterResponse,
   GetTrackingNumberParams,
@@ -29,6 +30,8 @@ import {
   GetMassTrackingNumberResponse,
   SetAddressConfigParams,
   SetAddressConfigResponse,
+  SetPauseStatusParams,
+  SetPauseStatusResponse,
   DeleteAddressParams,
   DeleteAddressResponse,
   CreateShippingDocumentParams,
@@ -121,6 +124,39 @@ export class LogisticsManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to get the pause status of logistics channels under the shop.
+   */
+  async getPauseStatus(): Promise<GetPauseStatusResponse> {
+    const response = await ShopeeFetch.fetch<GetPauseStatusResponse>(
+      this.config,
+      "/logistics/get_pause_status",
+      {
+        method: "GET",
+        auth: true,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Use this API to set the pause status of logistics channels under the shop.
+   */
+  async setPauseStatus(params: SetPauseStatusParams): Promise<SetPauseStatusResponse> {
+    const response = await ShopeeFetch.fetch<SetPauseStatusResponse>(
+      this.config,
+      "/logistics/set_pause_status",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
       }
     );
 

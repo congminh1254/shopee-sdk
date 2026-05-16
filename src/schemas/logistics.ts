@@ -268,6 +268,40 @@ export interface GetChannelListResponse extends BaseResponse {
 }
 
 /**
+ * Logistics channel pause status information
+ */
+export interface PauseStatus {
+  /** Indicates whether logistics channels are paused */
+  is_paused?: boolean;
+  /** Auto resume time when paused */
+  pause_end_time?: number;
+  /** Remaining daily pause quota in seconds when not paused */
+  remaining_pause_quota?: number;
+}
+
+/**
+ * Response for get pause status API
+ */
+export interface GetPauseStatusResponse extends BaseResponse {
+  response?: PauseStatus;
+}
+
+/**
+ * Parameters for set pause status
+ */
+export type SetPauseStatusParams = {
+  /** The target pause status */
+  is_paused: boolean;
+} & Record<string, string | number | boolean | null | undefined>;
+
+/**
+ * Response for set pause status API
+ */
+export interface SetPauseStatusResponse extends BaseResponse {
+  response?: PauseStatus;
+}
+
+/**
  * Pickup time slot information
  */
 export interface PickupTimeSlot {
