@@ -1081,6 +1081,7 @@ describe("LogisticsManager", () => {
 
       await logisticsManager.createShippingDocumentJob({
         shipping_document_type: "NORMAL_AIR_WAYBILL",
+        unpackaged_sku_requests: [{ order_sn: "ORDER1", unpackaged_sku_id: "SKU1" }],
         package_list: [{ order_sn: "ORDER1" }],
       });
 
@@ -1150,6 +1151,8 @@ describe("LogisticsManager", () => {
       await logisticsManager.updateSelfCollectionOrderLogistics({
         package_number: "PKG1",
         self_collection_logistics_action: "PICKUP",
+        epoc_image_list: ["IMG1"],
+        pin: "123456",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
