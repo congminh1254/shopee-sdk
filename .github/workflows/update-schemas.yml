@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Fix vulnerable dependencies
-        run: npm audit fix
+        run: npm audit fix || true
       
       - name: Fetch latest schemas
         run: |
@@ -38,10 +38,10 @@ jobs:
             exit 1
           }
       
-      - name: Check for schema changes
+      - name: Check for changes
         id: check_changes
         run: |
-          if git diff --quiet; then
+          if git diff --quiet -- schemas/ package-lock.json package.json; then
             echo "changes=false" >> $GITHUB_OUTPUT
             echo "No changes detected"
           else
