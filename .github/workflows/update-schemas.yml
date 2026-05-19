@@ -28,7 +28,8 @@ jobs:
         run: npm ci
 
       - name: Fix vulnerable dependencies
-        run: npm audit fix || true
+        continue-on-error: true
+        run: npm audit fix
       
       - name: Fetch latest schemas
         run: |
