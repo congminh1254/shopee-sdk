@@ -26,6 +26,9 @@ jobs:
       
       - name: Install dependencies
         run: npm ci
+
+      - name: Fix vulnerable dependencies
+        run: npm audit fix
       
       - name: Fetch latest schemas
         run: |
@@ -38,12 +41,12 @@ jobs:
       - name: Check for schema changes
         id: check_changes
         run: |
-          if git diff --quiet schemas/; then
+          if git diff --quiet; then
             echo "changes=false" >> $GITHUB_OUTPUT
-            echo "No changes detected in schemas"
+            echo "No changes detected"
           else
             echo "changes=true" >> $GITHUB_OUTPUT
-            echo "Changes detected in schemas"
+            echo "Changes detected"
           fi
       
       - name: Create Pull Request
@@ -77,4 +80,3 @@ jobs:
             schemas
             dependencies
           assignees: congminh1254
-
