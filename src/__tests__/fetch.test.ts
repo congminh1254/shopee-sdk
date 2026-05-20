@@ -6,35 +6,21 @@ import { ShopeeSdkError } from "../errors.js";
 
 // Mock fetch function
 const mockFetch = jest.fn();
-class MockBlob {
-  constructor(public readonly parts: unknown[] = []) {}
-}
-
-class MockFormData {
-  public readonly fields: Array<{ name: string; value: unknown; filename?: string }> = [];
-
-  append(name: string, value: unknown, filename?: string) {
-    this.fields.push({ name, value, filename });
-  }
-}
 
 // Mock the entire fetch module before importing ShopeeFetch
 jest.unstable_mockModule("node-fetch", () => ({
   default: mockFetch,
-  Blob: MockBlob,
-  FormData: MockFormData,
-  Headers: class MockHeaders extends Map {
-    get(name: string) {
-      return super.get(name.toLowerCase());
-    }
-    set(name: string, value: string) {
-      return super.set(name.toLowerCase(), value);
-    }
-  },
+  Blob,
+  FormData,
+  Headers,
 }));
 
 // Import ShopeeFetch after mocking
 const { ShopeeFetch } = await import("../fetch.js");
+
+function getRequestContentType(url: string, options: RequestInit): string | null {
+  return new Request(url, options).headers.get("content-type");
+}
 
 describe("ShopeeFetch", () => {
   let mockConfig: ShopeeConfig;
@@ -121,18 +107,15 @@ describe("ShopeeFetch", () => {
       });
 
       const [, options] = mockFetch.mock.calls[0];
-      const formData = options.body as MockFormData;
+      const formData = options.body as FormData;
 
-      expect(formData).toBeInstanceOf(MockFormData);
-      expect(formData.fields).toEqual([
-        { name: "scene", value: "normal", filename: undefined },
-        {
-          name: "image",
-          value: expect.any(MockBlob),
-          filename: "image.bin",
-        },
-      ]);
-      expect(options.headers.get("content-type")).toBeUndefined();
+      expect(formData).toBeInstanceOf(FormData);
+      expect(formData.get("scene")).toBe("normal");
+      expect(formData.get("image")).toBeInstanceOf(Blob);
+      expect(options.headers.get("content-type")).toBeNull();
+      expect(getRequestContentType("https://example.com/upload", options)).toMatch(
+        /^multipart\/form-data; boundary=/
+      );
     });
 
     it("should serialize multipart bodies when the payload contains binary arrays", async () => {
@@ -157,24 +140,18 @@ describe("ShopeeFetch", () => {
       });
 
       const [, options] = mockFetch.mock.calls[0];
-      const formData = options.body as MockFormData;
+      const formData = options.body as FormData;
+      const images = formData.getAll("images");
 
-      expect(formData).toBeInstanceOf(MockFormData);
-      expect(formData.fields).toEqual([
-        { name: "business", value: "2", filename: undefined },
-        { name: "scene", value: "1", filename: undefined },
-        {
-          name: "images",
-          value: expect.any(MockBlob),
-          filename: "images.bin",
-        },
-        {
-          name: "images",
-          value: expect.any(MockBlob),
-          filename: "images.bin",
-        },
-      ]);
-      expect(options.headers.get("content-type")).toBeUndefined();
+      expect(formData).toBeInstanceOf(FormData);
+      expect(formData.get("business")).toBe("2");
+      expect(formData.get("scene")).toBe("1");
+      expect(images).toHaveLength(2);
+      images.forEach((image) => expect(image).toBeInstanceOf(Blob));
+      expect(options.headers.get("content-type")).toBeNull();
+      expect(getRequestContentType("https://example.com/upload", options)).toMatch(
+        /^multipart\/form-data; boundary=/
+      );
     });
 
     it("should pass through FormData bodies without forcing JSON content type", async () => {
@@ -186,9 +163,9 @@ describe("ShopeeFetch", () => {
         json: jest.fn().mockResolvedValue(mockResponse),
       });
 
-      const formData = new MockFormData();
+      const formData = new FormData();
       formData.append("video_upload_id", "upload-id");
-      formData.append("part_content", new MockBlob([Buffer.from("video-part")]), "part.bin");
+      formData.append("part_content", new Blob([Buffer.from("video-part")]), "part.bin");
 
       await ShopeeFetch.fetch(mockConfig, "/media_space/upload_video_part", {
         method: "POST",
@@ -198,7 +175,10 @@ describe("ShopeeFetch", () => {
       const [, options] = mockFetch.mock.calls[0];
 
       expect(options.body).toBe(formData);
-      expect(options.headers.get("content-type")).toBeUndefined();
+      expect(options.headers.get("content-type")).toBeNull();
+      expect(getRequestContentType("https://example.com/upload", options)).toMatch(
+        /^multipart\/form-data; boundary=/
+      );
     });
 
     it("should make authenticated request with valid token", async () => {
