@@ -61,7 +61,7 @@ describe("MediaManager", () => {
       const result = await mediaManager.uploadMediaImage({
         business: 2,
         scene: 1,
-        images: "/path/to/image.jpg",
+        images: Buffer.from("image-bytes"),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_image", {
@@ -69,7 +69,7 @@ describe("MediaManager", () => {
         body: {
           business: 2,
           scene: 1,
-          images: "/path/to/image.jpg",
+          images: Buffer.from("image-bytes"),
         },
       });
 
@@ -106,7 +106,7 @@ describe("MediaManager", () => {
       const result = await mediaManager.uploadMediaImage({
         business: 2,
         scene: 1,
-        images: ["/path/to/image1.jpg", "/path/to/image2.jpg", "/path/to/image3.jpg"],
+        images: [Buffer.from("image1"), Buffer.from("image2"), Buffer.from("image3")],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_image", {
@@ -114,7 +114,7 @@ describe("MediaManager", () => {
         body: {
           business: 2,
           scene: 1,
-          images: ["/path/to/image1.jpg", "/path/to/image2.jpg", "/path/to/image3.jpg"],
+          images: [Buffer.from("image1"), Buffer.from("image2"), Buffer.from("image3")],
         },
       });
 
@@ -151,14 +151,14 @@ describe("MediaManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaManager.uploadImage({
-        image: "/path/to/image.jpg",
+        image: Buffer.from("image-bytes"),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_image", {
         method: "POST",
         auth: true,
         body: {
-          image: "/path/to/image.jpg",
+          image: Buffer.from("image-bytes"),
         },
       });
 
@@ -209,7 +209,7 @@ describe("MediaManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaManager.uploadImage({
-        image: ["/path/to/image1.jpg", "/path/to/image2.jpg"],
+        image: [Buffer.from("image1"), Buffer.from("image2")],
         scene: "normal",
         ratio: "1:1",
       });
@@ -218,7 +218,7 @@ describe("MediaManager", () => {
         method: "POST",
         auth: true,
         body: {
-          image: ["/path/to/image1.jpg", "/path/to/image2.jpg"],
+          image: [Buffer.from("image1"), Buffer.from("image2")],
           scene: "normal",
           ratio: "1:1",
         },
@@ -255,7 +255,7 @@ describe("MediaManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaManager.uploadImage({
-        image: "/path/to/desc-image.jpg",
+        image: Buffer.from("desc-image-bytes"),
         scene: "desc",
       });
 
@@ -263,7 +263,7 @@ describe("MediaManager", () => {
         method: "POST",
         auth: true,
         body: {
-          image: "/path/to/desc-image.jpg",
+          image: Buffer.from("desc-image-bytes"),
           scene: "desc",
         },
       });
@@ -349,7 +349,7 @@ describe("MediaManager", () => {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
         part_seq: 0,
         content_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
-        part_content: "/path/to/part0",
+        part_content: Buffer.from("part0"),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_video_part", {
@@ -358,7 +358,7 @@ describe("MediaManager", () => {
           video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
           part_seq: 0,
           content_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
-          part_content: "/path/to/part0",
+          part_content: Buffer.from("part0"),
         },
       });
 
@@ -381,7 +381,7 @@ describe("MediaManager", () => {
         video_upload_id: videoUploadId,
         part_seq: 0,
         content_md5: "md5_part_0",
-        part_content: "/path/to/part0",
+        part_content: Buffer.from("part0"),
       });
 
       // Upload part 1
@@ -389,7 +389,7 @@ describe("MediaManager", () => {
         video_upload_id: videoUploadId,
         part_seq: 1,
         content_md5: "md5_part_1",
-        part_content: "/path/to/part1",
+        part_content: Buffer.from("part1"),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledTimes(2);
@@ -403,7 +403,7 @@ describe("MediaManager", () => {
             video_upload_id: videoUploadId,
             part_seq: 0,
             content_md5: "md5_part_0",
-            part_content: "/path/to/part0",
+            part_content: Buffer.from("part0"),
           },
         }
       );
@@ -417,7 +417,7 @@ describe("MediaManager", () => {
             video_upload_id: videoUploadId,
             part_seq: 1,
             content_md5: "md5_part_1",
-            part_content: "/path/to/part1",
+            part_content: Buffer.from("part1"),
           },
         }
       );
