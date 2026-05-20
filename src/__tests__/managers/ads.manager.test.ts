@@ -32,7 +32,7 @@ import {
 } from "../../schemas/ads.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AdsManager", () => {
@@ -254,27 +254,33 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          timestamp: 1609459200,
-          total_data: [
-            {
-              date: "2021-01-01",
-              hour: 10,
-              impression: 1000,
-              click: 50,
-              expense: 25.5,
-              conversion: 5,
-              gmv: 250.0,
-            },
-          ],
-        },
+        response: [
+          {
+            hour: 10,
+            date: "01-01-2021",
+            impression: 1000,
+            clicks: 50,
+            ctr: 0.05,
+            direct_order: 5,
+            broad_order: 10,
+            direct_conversions: 5,
+            broad_conversions: 10,
+            direct_item_sold: 5,
+            broad_item_sold: 10,
+            direct_gmv: 250.0,
+            broad_gmv: 500.0,
+            expense: 25.5,
+            cost_per_conversion: 5.1,
+            direct_roas: 9.8,
+            broad_roas: 19.6,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await adsManager.getAllCpcAdsHourlyPerformance({
-        start_date: "2021-01-01",
-        end_date: "2021-01-01",
+        performance_date: "01-01-2021",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -284,15 +290,14 @@ describe("AdsManager", () => {
           method: "GET",
           auth: true,
           params: {
-            start_date: "2021-01-01",
-            end_date: "2021-01-01",
+            performance_date: "01-01-2021",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.total_data).toHaveLength(1);
-      expect(result.response.total_data[0].impression).toBe(1000);
+      expect(result.response).toHaveLength(1);
+      expect(result.response[0].impression).toBe(1000);
     });
   });
 
@@ -302,19 +307,26 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          timestamp: 1609459200,
-          total_data: [
-            {
-              date: "2021-01-01",
-              impression: 24000,
-              click: 1200,
-              expense: 600.0,
-              conversion: 120,
-              gmv: 6000.0,
-            },
-          ],
-        },
+        response: [
+          {
+            date: "2021-01-01",
+            impression: 24000,
+            clicks: 1200,
+            ctr: 0.05,
+            direct_order: 120,
+            broad_order: 240,
+            direct_conversions: 120,
+            broad_conversions: 240,
+            direct_item_sold: 120,
+            broad_item_sold: 240,
+            direct_gmv: 6000.0,
+            broad_gmv: 12000.0,
+            expense: 600.0,
+            cost_per_conversion: 5.0,
+            direct_roas: 10.0,
+            broad_roas: 20.0,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -338,7 +350,7 @@ describe("AdsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.total_data[0].impression).toBe(24000);
+      expect(result.response[0].impression).toBe(24000);
     });
   });
 
@@ -348,20 +360,43 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          timestamp: 1609459200,
-          campaign_data: [
-            {
-              campaign_id: 1001,
-              date: "2021-01-01",
-              impression: 5000,
-              click: 250,
-              expense: 125.0,
-              conversion: 25,
-              gmv: 1250.0,
-            },
-          ],
-        },
+        response: [
+          {
+            shop_id: 12345,
+            region: "SG",
+            campaign_list: [
+              {
+                campaign_id: 1001,
+                ad_type: "manual",
+                campaign_placement: "search",
+                ad_name: "Test Ad",
+                metrics_list: [
+                  {
+                    date: "01-01-2021",
+                    impression: 5000,
+                    clicks: 250,
+                    ctr: 5.0,
+                    expense: 125.0,
+                    broad_gmv: 1250.0,
+                    broad_order: 25,
+                    broad_order_amount: 25,
+                    broad_roi: 10.0,
+                    broad_cir: 10.0,
+                    cr: 10.0,
+                    cpc: 0.5,
+                    direct_order: 25,
+                    direct_order_amount: 25,
+                    direct_gmv: 1250.0,
+                    direct_roi: 10.0,
+                    direct_cir: 10.0,
+                    direct_cr: 10.0,
+                    cpdc: 5.0,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -369,7 +404,7 @@ describe("AdsManager", () => {
       const result = await adsManager.getProductCampaignDailyPerformance({
         start_date: "2021-01-01",
         end_date: "2021-01-31",
-        campaign_id_list: [1001],
+        campaign_id_list: "1001",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -381,13 +416,13 @@ describe("AdsManager", () => {
           params: {
             start_date: "2021-01-01",
             end_date: "2021-01-31",
-            campaign_id_list: [1001],
+            campaign_id_list: "1001",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_data[0].campaign_id).toBe(1001);
+      expect(result.response[0].campaign_list[0].campaign_id).toBe(1001);
     });
   });
 
@@ -397,29 +432,51 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          timestamp: 1609459200,
-          campaign_data: [
-            {
-              campaign_id: 1001,
-              date: "2021-01-01",
-              hour: 15,
-              impression: 200,
-              click: 10,
-              expense: 5.0,
-              conversion: 1,
-              gmv: 50.0,
-            },
-          ],
-        },
+        response: [
+          {
+            shop_id: 12345,
+            region: "SG",
+            campaign_list: [
+              {
+                campaign_id: 1001,
+                ad_type: "manual",
+                campaign_placement: "search",
+                ad_name: "Test Ad",
+                metrics_list: [
+                  {
+                    hour: 15,
+                    date: "01-01-2021",
+                    impression: 200,
+                    clicks: 10,
+                    ctr: 5.0,
+                    expense: 5.0,
+                    broad_gmv: 50.0,
+                    broad_order: 1,
+                    broad_order_amount: 1,
+                    broad_roi: 10.0,
+                    broad_cir: 10.0,
+                    cr: 10.0,
+                    cpc: 0.5,
+                    direct_order: 1,
+                    direct_order_amount: 1,
+                    direct_gmv: 50.0,
+                    direct_roi: 10.0,
+                    direct_cir: 10.0,
+                    direct_cr: 10.0,
+                    cpdc: 5.0,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await adsManager.getProductCampaignHourlyPerformance({
-        start_date: "2021-01-01",
-        end_date: "2021-01-01",
-        campaign_id_list: [1001],
+        performance_date: "2021-01-01",
+        campaign_id_list: "1001",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -429,14 +486,13 @@ describe("AdsManager", () => {
           method: "GET",
           auth: true,
           params: {
-            start_date: "2021-01-01",
-            end_date: "2021-01-01",
-            campaign_id_list: [1001],
+            performance_date: "2021-01-01",
+            campaign_id_list: "1001",
           },
         }
       );
 
-      expect(result.response.campaign_data[0].hour).toBe(15);
+      expect(result.response[0].campaign_list[0].metrics_list[0].hour).toBe(15);
     });
   });
 
@@ -447,7 +503,14 @@ describe("AdsManager", () => {
         error: "",
         message: "",
         response: {
-          campaign_id_list: [1001, 1002, 1003],
+          shop_id: 12345,
+          region: "SG",
+          has_next_page: false,
+          campaign_list: [
+            { ad_type: "manual", campaign_id: 1001 },
+            { ad_type: "manual", campaign_id: 1002 },
+            { ad_type: "manual", campaign_id: 1003 },
+          ],
         },
       };
 
@@ -465,8 +528,8 @@ describe("AdsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_id_list).toHaveLength(3);
-      expect(result.response.campaign_id_list).toContain(1001);
+      expect(result.response.campaign_list).toHaveLength(3);
+      expect(result.response.campaign_list[0].campaign_id).toBe(1001);
     });
   });
 
@@ -477,14 +540,24 @@ describe("AdsManager", () => {
         error: "",
         message: "",
         response: {
+          shop_id: 12345,
+          region: "SG",
           campaign_list: [
             {
               campaign_id: 1001,
-              campaign_name: "Summer Sale",
-              campaign_status: "ongoing",
-              daily_budget: 100.0,
-              total_budget: 3000.0,
-              placement_list: ["search", "discovery"],
+              common_info: {
+                ad_type: "manual",
+                ad_name: "Summer Sale",
+                campaign_status: "ongoing",
+                bidding_method: "manual",
+                campaign_placement: "search",
+                campaign_budget: 100.0,
+                campaign_duration: {
+                  start_time: 1609459200,
+                  end_time: 0,
+                },
+                item_id_list: [12345],
+              },
             },
           ],
         },
@@ -493,7 +566,8 @@ describe("AdsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await adsManager.getProductLevelCampaignSettingInfo({
-        campaign_id_list: [1001],
+        info_type_list: "1",
+        campaign_id_list: "1001",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -503,13 +577,14 @@ describe("AdsManager", () => {
           method: "GET",
           auth: true,
           params: {
-            campaign_id_list: [1001],
+            info_type_list: "1",
+            campaign_id_list: "1001",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_list[0].campaign_name).toBe("Summer Sale");
+      expect(result.response.campaign_list[0].common_info?.ad_name).toBe("Summer Sale");
     });
   });
 
@@ -520,8 +595,18 @@ describe("AdsManager", () => {
         error: "",
         message: "",
         response: {
-          item_id: 123456,
-          recommended_roi_target: 3.5,
+          lower_bound: {
+            value: 3.5,
+            percentile: 80,
+          },
+          exact: {
+            value: 5.9,
+            percentile: 50,
+          },
+          upper_bound: {
+            value: 8.0,
+            percentile: 20,
+          },
         },
       };
 
@@ -529,6 +614,7 @@ describe("AdsManager", () => {
 
       const result = await adsManager.getProductRecommendedRoiTarget({
         item_id: 123456,
+        reference_id: "test-ref-id",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -539,12 +625,13 @@ describe("AdsManager", () => {
           auth: true,
           params: {
             item_id: 123456,
+            reference_id: "test-ref-id",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.recommended_roi_target).toBe(3.5);
+      expect(result.response.exact.value).toBe(5.9);
     });
   });
 

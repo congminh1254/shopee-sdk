@@ -22,7 +22,7 @@ import {
 } from "../../schemas/video.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("VideoManager", () => {
@@ -51,35 +51,35 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          success_list: [
+          successList: [
             {
-              video_upload_id: "upload123",
+              videoUploadId: "upload123",
             },
             {
-              video_upload_id: "upload456",
+              videoUploadId: "upload456",
             },
           ],
-          failure_list: [],
+          failureList: [],
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.deleteVideo({
-        video_upload_id_list: ["upload123", "upload456"],
+        videoUploadIdList: ["upload123", "upload456"],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/delete_video", {
         method: "POST",
         auth: true,
         body: {
-          video_upload_id_list: ["upload123", "upload456"],
+          videoUploadIdList: ["upload123", "upload456"],
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.success_list).toHaveLength(2);
-      expect(result.response.failure_list).toHaveLength(0);
+      expect(result.response.successList).toHaveLength(2);
+      expect(result.response.failureList).toHaveLength(0);
     });
 
     it("should handle partial deletion failure", async () => {
@@ -88,15 +88,15 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          success_list: [
+          successList: [
             {
-              video_upload_id: "upload123",
+              videoUploadId: "upload123",
             },
           ],
-          failure_list: [
+          failureList: [
             {
-              video_upload_id: "upload456",
-              failed_reason: "Video not found",
+              videoUploadId: "upload456",
+              failedReason: "Video not found",
             },
           ],
         },
@@ -105,12 +105,12 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.deleteVideo({
-        video_upload_id_list: ["upload123", "upload456"],
+        videoUploadIdList: ["upload123", "upload456"],
       });
 
-      expect(result.response.success_list).toHaveLength(1);
-      expect(result.response.failure_list).toHaveLength(1);
-      expect(result.response.failure_list[0].failed_reason).toBe("Video not found");
+      expect(result.response.successList).toHaveLength(1);
+      expect(result.response.failureList).toHaveLength(1);
+      expect(result.response.failureList![0].failedReason).toBe("Video not found");
     });
   });
 
@@ -121,19 +121,19 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          success_list: ["upload123"],
-          failure_list: [],
+          successList: ["upload123"],
+          failureList: [],
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.editVideoInfo({
-        video_upload_list: [
+        videoUploadList: [
           {
-            video_upload_id: "upload123",
+            videoUploadId: "upload123",
             caption: "Updated caption",
-            cover_image_id: "cover123",
+            coverImageId: "cover123",
           },
         ],
       });
@@ -142,18 +142,18 @@ describe("VideoManager", () => {
         method: "POST",
         auth: true,
         body: {
-          video_upload_list: [
+          videoUploadList: [
             {
-              video_upload_id: "upload123",
+              videoUploadId: "upload123",
               caption: "Updated caption",
-              cover_image_id: "cover123",
+              coverImageId: "cover123",
             },
           ],
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.success_list).toHaveLength(1);
+      expect(result.response.successList).toHaveLength(1);
     });
 
     it("should handle edit failure", async () => {
@@ -162,11 +162,11 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          success_list: [],
-          failure_list: [
+          successList: [],
+          failureList: [
             {
-              video_upload_id: "upload123",
-              failed_reason: "Caption exceeds limit",
+              videoUploadId: "upload123",
+              failedReason: "Caption exceeds limit",
             },
           ],
         },
@@ -175,16 +175,16 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.editVideoInfo({
-        video_upload_list: [
+        videoUploadList: [
           {
-            video_upload_id: "upload123",
+            videoUploadId: "upload123",
             caption: "a".repeat(1001),
           },
         ],
       });
 
-      expect(result.response.failure_list).toHaveLength(1);
-      expect(result.response.failure_list[0].failed_reason).toBe("Caption exceeds limit");
+      expect(result.response.failureList).toHaveLength(1);
+      expect(result.response.failureList![0].failedReason).toBe("Caption exceeds limit");
     });
   });
 
@@ -195,14 +195,14 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          cover_list: [
+          coverList: [
             {
-              cover_image_id: "cover123",
-              cover_image_url: "https://example.com/cover1.jpg",
+              coverImageId: "cover123",
+              coverImageUrl: "https://example.com/cover1.jpg",
             },
             {
-              cover_image_id: "cover456",
-              cover_image_url: "https://example.com/cover2.jpg",
+              coverImageId: "cover456",
+              coverImageUrl: "https://example.com/cover2.jpg",
             },
           ],
         },
@@ -211,19 +211,19 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getCoverList({
-        video_upload_id: "upload123",
+        videoUploadId: "upload123",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_cover_list", {
         method: "GET",
         auth: true,
         params: {
-          video_upload_id: "upload123",
+          videoUploadId: "upload123",
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.cover_list).toHaveLength(2);
+      expect(result.response.coverList).toHaveLength(2);
     });
   });
 
@@ -234,18 +234,18 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          metric_trend_list: [
+          metricTrendList: [
             {
               date: "2024-01-01",
-              view_count: 1000,
-              like_count: 50,
-              share_count: 10,
+              viewCount: 1000,
+              likeCount: 50,
+              shareCount: 10,
             },
             {
               date: "2024-01-02",
-              view_count: 1200,
-              like_count: 60,
-              share_count: 15,
+              viewCount: 1200,
+              likeCount: 60,
+              shareCount: 15,
             },
           ],
         },
@@ -254,21 +254,21 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getMetricTrend({
-        start_time: 1704067200,
-        end_time: 1704153600,
+        startTime: 1704067200,
+        endTime: 1704153600,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_metric_trend", {
         method: "GET",
         auth: true,
         params: {
-          start_time: 1704067200,
-          end_time: 1704153600,
+          startTime: 1704067200,
+          endTime: 1704153600,
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.metric_trend_list).toHaveLength(2);
+      expect(result.response.metricTrendList).toHaveLength(2);
     });
   });
 
@@ -279,32 +279,32 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          total_view_count: 10000,
-          total_like_count: 500,
-          total_share_count: 100,
-          total_comment_count: 200,
+          totalViewCount: 10000,
+          totalLikeCount: 500,
+          totalShareCount: 100,
+          totalCommentCount: 200,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getOverviewPerformance({
-        start_time: 1704067200,
-        end_time: 1704153600,
+        startTime: 1704067200,
+        endTime: 1704153600,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_overview_performance", {
         method: "GET",
         auth: true,
         params: {
-          start_time: 1704067200,
-          end_time: 1704153600,
+          startTime: 1704067200,
+          endTime: 1704153600,
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.total_view_count).toBe(10000);
-      expect(result.response.total_like_count).toBe(500);
+      expect(result.response.totalViewCount).toBe(10000);
+      expect(result.response.totalLikeCount).toBe(500);
     });
   });
 
@@ -315,18 +315,18 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          product_performance_list: [
+          productPerformanceList: [
             {
-              item_id: 123456,
-              click_count: 100,
-              add_to_cart_count: 20,
-              order_count: 10,
+              itemId: 123456,
+              clickCount: 100,
+              addToCartCount: 20,
+              orderCount: 10,
             },
             {
-              item_id: 789012,
-              click_count: 80,
-              add_to_cart_count: 15,
-              order_count: 8,
+              itemId: 789012,
+              clickCount: 80,
+              addToCartCount: 15,
+              orderCount: 8,
             },
           ],
         },
@@ -335,8 +335,8 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getProductPerformanceList({
-        start_time: 1704067200,
-        end_time: 1704153600,
+        startTime: 1704067200,
+        endTime: 1704153600,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -346,14 +346,14 @@ describe("VideoManager", () => {
           method: "GET",
           auth: true,
           params: {
-            start_time: 1704067200,
-            end_time: 1704153600,
+            startTime: 1704067200,
+            endTime: 1704153600,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.product_performance_list).toHaveLength(2);
+      expect(result.response.productPerformanceList).toHaveLength(2);
     });
   });
 
@@ -364,11 +364,11 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          age_distribution: [
-            { age_range: "18-24", percentage: 30.5 },
-            { age_range: "25-34", percentage: 45.2 },
+          ageDistribution: [
+            { ageRange: "18-24", percentage: 30.5 },
+            { ageRange: "25-34", percentage: 45.2 },
           ],
-          gender_distribution: [
+          genderDistribution: [
             { gender: "male", percentage: 40.0 },
             { gender: "female", percentage: 60.0 },
           ],
@@ -386,8 +386,8 @@ describe("VideoManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.age_distribution).toHaveLength(2);
-      expect(result.response.gender_distribution).toHaveLength(2);
+      expect(result.response.ageDistribution).toHaveLength(2);
+      expect(result.response.genderDistribution).toHaveLength(2);
     });
   });
 
@@ -398,31 +398,31 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          video_upload_id: "upload123",
-          post_id: "post123",
+          videoUploadId: "upload123",
+          postId: "post123",
           caption: "Test video caption",
-          status: "POSTED",
-          create_time: 1704067200,
-          post_time: 1704070800,
+          status: 200,
+          createTime: 1704067200,
+          postTime: 1704070800,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getVideoDetail({
-        video_upload_id: "upload123",
+        videoUploadId: "upload123",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail", {
         method: "GET",
         auth: true,
         params: {
-          video_upload_id: "upload123",
+          videoUploadId: "upload123",
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.video_upload_id).toBe("upload123");
+      expect(result.response.videoUploadId).toBe("upload123");
       expect(result.response.caption).toBe("Test video caption");
     });
   });
@@ -434,11 +434,11 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          age_distribution: [
-            { age_range: "18-24", percentage: 35.0 },
-            { age_range: "25-34", percentage: 50.0 },
+          ageDistribution: [
+            { ageRange: "18-24", percentage: 35.0 },
+            { ageRange: "25-34", percentage: 50.0 },
           ],
-          gender_distribution: [
+          genderDistribution: [
             { gender: "male", percentage: 45.0 },
             { gender: "female", percentage: 55.0 },
           ],
@@ -448,7 +448,7 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getVideoDetailAudienceDistribution({
-        post_id: "post123",
+        postId: "post123",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -458,13 +458,13 @@ describe("VideoManager", () => {
           method: "GET",
           auth: true,
           params: {
-            post_id: "post123",
+            postId: "post123",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.age_distribution).toHaveLength(2);
+      expect(result.response.ageDistribution).toHaveLength(2);
     });
   });
 
@@ -475,18 +475,18 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          metric_trend_list: [
+          metricTrendList: [
             {
               date: "2024-01-01",
-              view_count: 500,
-              like_count: 25,
-              share_count: 5,
+              viewCount: 500,
+              likeCount: 25,
+              shareCount: 5,
             },
             {
               date: "2024-01-02",
-              view_count: 600,
-              like_count: 30,
-              share_count: 8,
+              viewCount: 600,
+              likeCount: 30,
+              shareCount: 8,
             },
           ],
         },
@@ -495,9 +495,9 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getVideoDetailMetricTrend({
-        post_id: "post123",
-        start_time: 1704067200,
-        end_time: 1704153600,
+        postId: "post123",
+        startTime: 1704067200,
+        endTime: 1704153600,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -507,15 +507,15 @@ describe("VideoManager", () => {
           method: "GET",
           auth: true,
           params: {
-            post_id: "post123",
-            start_time: 1704067200,
-            end_time: 1704153600,
+            postId: "post123",
+            startTime: 1704067200,
+            endTime: 1704153600,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.metric_trend_list).toHaveLength(2);
+      expect(result.response.metricTrendList).toHaveLength(2);
     });
   });
 
@@ -526,18 +526,18 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          view_count: 5000,
-          like_count: 250,
-          share_count: 50,
-          comment_count: 100,
-          avg_watch_time: 45.5,
+          viewCount: 5000,
+          likeCount: 250,
+          shareCount: 50,
+          commentCount: 100,
+          avgWatchTime: 45.5,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getVideoDetailPerformance({
-        post_id: "post123",
+        postId: "post123",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -547,14 +547,14 @@ describe("VideoManager", () => {
           method: "GET",
           auth: true,
           params: {
-            post_id: "post123",
+            postId: "post123",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.view_count).toBe(5000);
-      expect(result.response.like_count).toBe(250);
+      expect(result.response.viewCount).toBe(5000);
+      expect(result.response.likeCount).toBe(250);
     });
   });
 
@@ -565,12 +565,12 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          product_performance_list: [
+          productPerformanceList: [
             {
-              item_id: 123456,
-              click_count: 100,
-              add_to_cart_count: 20,
-              order_count: 10,
+              itemId: 123456,
+              clickCount: 100,
+              addToCartCount: 20,
+              orderCount: 10,
             },
           ],
         },
@@ -579,7 +579,9 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getVideoDetailProductPerformance({
-        post_id: "post123",
+        postId: "post123",
+        pageNo: 1,
+        pageSize: 10,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -589,13 +591,15 @@ describe("VideoManager", () => {
           method: "GET",
           auth: true,
           params: {
-            post_id: "post123",
+            postId: "post123",
+            pageNo: 1,
+            pageSize: 10,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.product_performance_list).toHaveLength(1);
+      expect(result.response.productPerformanceList).toHaveLength(1);
     });
   });
 
@@ -606,41 +610,45 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          video_list: [
+          list: [
             {
-              video_upload_id: "upload123",
+              videoUploadId: "upload123",
               caption: "First video",
-              status: "POSTED",
-              create_time: 1704067200,
+              status: 300,
+              updateTime: 1704067200,
             },
             {
-              video_upload_id: "upload456",
+              videoUploadId: "upload456",
               caption: "Second video",
-              status: "DRAFT",
-              create_time: 1704070800,
+              status: 200,
+              updateTime: 1704070800,
             },
           ],
-          has_more: false,
+          hasMore: false,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getVideoList({
-        page_size: 10,
+        pageNo: 1,
+        pageSize: 10,
+        listType: 2,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_list", {
         method: "GET",
         auth: true,
         params: {
-          page_size: 10,
+          pageNo: 1,
+          pageSize: 10,
+          listType: 2,
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.video_list).toHaveLength(2);
-      expect(result.response.has_more).toBe(false);
+      expect(result.response.list).toHaveLength(2);
+      expect(result.response.hasMore).toBe(false);
     });
   });
 
@@ -651,18 +659,18 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          video_performance_list: [
+          list: [
             {
-              post_id: "post123",
-              view_count: 5000,
-              like_count: 250,
-              share_count: 50,
+              postId: "post123",
+              views: 5000,
+              likes: 250,
+              shares: 50,
             },
             {
-              post_id: "post456",
-              view_count: 3000,
-              like_count: 150,
-              share_count: 30,
+              postId: "post456",
+              views: 3000,
+              likes: 150,
+              shares: 30,
             },
           ],
         },
@@ -671,8 +679,12 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getVideoPerformanceList({
-        start_time: 1704067200,
-        end_time: 1704153600,
+        pageNo: 1,
+        pageSize: 10,
+        periodType: "Day",
+        endDate: "2026-05-20",
+        orderBy: "Views",
+        sort: "desc",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -682,14 +694,18 @@ describe("VideoManager", () => {
           method: "GET",
           auth: true,
           params: {
-            start_time: 1704067200,
-            end_time: 1704153600,
+            pageNo: 1,
+            pageSize: 10,
+            periodType: "Day",
+            endDate: "2026-05-20",
+            orderBy: "Views",
+            sort: "desc",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.video_performance_list).toHaveLength(2);
+      expect(result.response.list).toHaveLength(2);
     });
   });
 
@@ -700,33 +716,33 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          success_list: [
+          successList: [
             {
-              video_upload_id: "upload123",
-              post_id: "post123",
+              successVideoUploadId: "upload123",
+              postId: "post123",
             },
           ],
-          failure_list: [],
+          failureList: [],
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.postVideo({
-        video_upload_id_list: ["upload123"],
+        videoUploadIdList: ["upload123"],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/post_video", {
         method: "POST",
         auth: true,
         body: {
-          video_upload_id_list: ["upload123"],
+          videoUploadIdList: ["upload123"],
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.success_list).toHaveLength(1);
-      expect(result.response.success_list[0].post_id).toBe("post123");
+      expect(result.response.successList).toHaveLength(1);
+      expect(result.response.successList![0].postId).toBe("post123");
     });
 
     it("should handle post video failure", async () => {
@@ -735,11 +751,11 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          success_list: [],
-          failure_list: [
+          successList: [],
+          failureList: [
             {
-              video_upload_id: "upload123",
-              failed_reason: "Video is still processing",
+              failVideoUploadId: "upload123",
+              failedReason: "Video is still processing",
             },
           ],
         },
@@ -748,11 +764,11 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.postVideo({
-        video_upload_id_list: ["upload123"],
+        videoUploadIdList: ["upload123"],
       });
 
-      expect(result.response.failure_list).toHaveLength(1);
-      expect(result.response.failure_list[0].failed_reason).toBe("Video is still processing");
+      expect(result.response.failureList).toHaveLength(1);
+      expect(result.response.failureList![0].failedReason).toBe("Video is still processing");
     });
   });
 });

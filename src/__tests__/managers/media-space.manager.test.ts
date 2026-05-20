@@ -13,7 +13,7 @@ import {
 } from "../../schemas/media-space.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("MediaSpaceManager", () => {

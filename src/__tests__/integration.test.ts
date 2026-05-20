@@ -3,9 +3,10 @@ import { ShopeeSDK } from "../sdk.js";
 import { ShopeeRegion } from "../schemas/region.js";
 import { ShopeeFetch } from "../fetch.js";
 import { AccessToken } from "../schemas/access-token.js";
+import { ItemStatus } from "../schemas/product.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ShopeeSDK Integration with Mock API", () => {
@@ -77,11 +78,11 @@ describe("ShopeeSDK Integration with Mock API", () => {
 
     // Mock token retrieval
     const mockTokenStorage = {
-      get: jest.fn().mockResolvedValue(mockToken),
-      store: jest.fn(),
-      clear: jest.fn(),
+      get: (jest.fn().mockResolvedValue(mockToken as any) as any),
+      store: (jest.fn() as any),
+      clear: (jest.fn() as any),
     };
-    sdk["tokenStorage"] = mockTokenStorage;
+    sdk["tokenStorage"] = mockTokenStorage as any;
 
     // Mock API response for getting shop info
     const mockShopsResponse = {
@@ -207,6 +208,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
     const itemList = await sdk.product.getItemList({
       offset: 0,
       page_size: 10,
+      item_status: [ItemStatus.NORMAL],
     });
 
     const itemDetails = await sdk.product.getItemBaseInfo({

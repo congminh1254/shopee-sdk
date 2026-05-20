@@ -18,7 +18,7 @@ import {
 } from "../../schemas/logistics.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("LogisticsManager", () => {
@@ -49,32 +49,32 @@ describe("LogisticsManager", () => {
         response: {
           order_sn: "220101000000001",
           package_number: "PKG123456789",
-          logistics_status: "LOGISTICS_DELIVERED",
+          logistics_status: "LOGISTICS_DELIVERED" as any,
           tracking_info: [
             {
               update_time: 1640995200,
               description: "Package has been delivered",
-              logistics_status: "LOGISTICS_DELIVERED",
+              logistics_status: "LOGISTICS_DELIVERED" as any,
             },
             {
               update_time: 1640995100,
               description: "Package is out for delivery",
-              logistics_status: "LOGISTICS_DELIVERY",
+              logistics_status: "LOGISTICS_DELIVERY" as any,
             },
             {
               update_time: 1640995000,
               description: "Package has arrived at delivery station",
-              logistics_status: "LOGISTICS_ARRIVAL",
+              logistics_status: "LOGISTICS_ARRIVAL" as any,
             },
             {
               update_time: 1640994900,
               description: "Package is in transit",
-              logistics_status: "LOGISTICS_PICKUP_DONE",
+              logistics_status: "LOGISTICS_PICKUP_DONE" as any,
             },
             {
               update_time: 1640994800,
               description: "Package has been picked up",
-              logistics_status: "LOGISTICS_PICKUP_RETRY",
+              logistics_status: "LOGISTICS_PICKUP_RETRY" as any,
             },
           ],
         },
@@ -107,17 +107,17 @@ describe("LogisticsManager", () => {
         response: {
           order_sn: "220101000000002",
           package_number: "",
-          logistics_status: "LOGISTICS_PICKUP_DONE",
+          logistics_status: "LOGISTICS_PICKUP_DONE" as any,
           tracking_info: [
             {
               update_time: 1640995000,
               description: "Package has been picked up by courier",
-              logistics_status: "LOGISTICS_PICKUP_DONE",
+              logistics_status: "LOGISTICS_PICKUP_DONE" as any,
             },
             {
               update_time: 1640994900,
               description: "Package is ready for pickup",
-              logistics_status: "LOGISTICS_PICKUP_RETRY",
+              logistics_status: "LOGISTICS_PICKUP_RETRY" as any,
             },
           ],
         },
@@ -148,7 +148,7 @@ describe("LogisticsManager", () => {
         response: {
           order_sn: "220101000000003",
           package_number: "PKG987654321",
-          logistics_status: "LOGISTICS_REQUEST_CREATED",
+          logistics_status: "LOGISTICS_REQUEST_CREATED" as any,
           tracking_info: [],
         },
       };
@@ -1032,7 +1032,7 @@ describe("LogisticsManager", () => {
       await logisticsManager.downloadBookingShippingDocument({
         booking_list: [{ booking_sn: "BOOKING1" }],
         shipping_document_type: "NORMAL_AIR_WAYBILL",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1043,7 +1043,7 @@ describe("LogisticsManager", () => {
 
       await logisticsManager.getBookingShippingDocumentParameter({
         booking_list: [{ booking_sn: "BOOKING1" }],
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1054,7 +1054,7 @@ describe("LogisticsManager", () => {
 
       await logisticsManager.getBookingShippingDocumentResult({
         booking_list: [{ booking_sn: "BOOKING1", shipping_document_type: "NORMAL_AIR_WAYBILL" }],
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1237,15 +1237,15 @@ describe("LogisticsManager", () => {
         error: "",
         message: "",
         response: {
-          status: "SUCCESS",
-          error_message: "",
+          status: 0,
+          message: "Task completed",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await logisticsManager.checkPolygonUpdateStatus({
-        address_id: 12345,
+        task_id: "task12345",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1255,14 +1255,14 @@ describe("LogisticsManager", () => {
           method: "POST",
           auth: true,
           body: {
-            address_id: 12345,
+            task_id: "task12345",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.status).toBe("SUCCESS");
-      expect(result.response.error_message).toBe("");
+      expect(result.response?.status).toBe(0);
+      expect(result.response?.message).toBe("Task completed");
     });
 
     it("should handle failed polygon update status", async () => {
@@ -1271,19 +1271,19 @@ describe("LogisticsManager", () => {
         error: "",
         message: "",
         response: {
-          status: "FAILED",
-          error_message: "Invalid KML file format",
+          status: 2,
+          message: "Invalid KML file format",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await logisticsManager.checkPolygonUpdateStatus({
-        address_id: 12345,
+        task_id: "task12345",
       });
 
-      expect(result.response.status).toBe("FAILED");
-      expect(result.response.error_message).toBe("Invalid KML file format");
+      expect(result.response?.status).toBe(2);
+      expect(result.response?.message).toBe("Invalid KML file format");
     });
   });
 
@@ -1352,7 +1352,7 @@ describe("LogisticsManager", () => {
       const result = await logisticsManager.uploadServiceablePolygon({
         address_id: 12345,
         kml_content: '<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>',
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1382,7 +1382,7 @@ describe("LogisticsManager", () => {
       const result = await logisticsManager.uploadServiceablePolygon({
         address_id: 12345,
         kml_content: "invalid kml",
-      });
+      } as any);
 
       expect(result.error).toBe("error_invalid_kml");
       expect(result.message).toBe("KML file contains invalid polygon data");

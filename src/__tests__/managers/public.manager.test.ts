@@ -10,7 +10,7 @@ import {
 } from "../../schemas/public.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PublicManager", () => {

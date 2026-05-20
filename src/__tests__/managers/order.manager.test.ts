@@ -28,7 +28,7 @@ import {
 } from "../../schemas/order.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("OrderManager", () => {
@@ -63,12 +63,10 @@ describe("OrderManager", () => {
             {
               order_sn: "220101000000001",
               order_status: "READY_TO_SHIP",
-              update_time: 1640995200,
             },
             {
               order_sn: "220101000000002",
               order_status: "COMPLETED",
-              update_time: 1640995300,
             },
           ],
         },
@@ -100,7 +98,7 @@ describe("OrderManager", () => {
     });
 
     it("should get order list with status filter", async () => {
-      const mockResponse: GetOrderListResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -160,7 +158,6 @@ describe("OrderManager", () => {
               currency: "SGD",
               cod: false,
               total_amount: 25.5,
-              order_flag: "NORMAL",
               create_time: 1640995200,
               update_time: 1640995300,
               days_to_ship: 3,
@@ -176,7 +173,8 @@ describe("OrderManager", () => {
                 city: "Singapore",
                 state: "Singapore",
                 zipcode: "123456",
-                country: "SG",
+                town: "Test Town",
+                region: "SG",
               },
               actual_shipping_fee: 2.5,
               goods_to_declare: false,
@@ -206,6 +204,8 @@ describe("OrderManager", () => {
                     image_url: "https://example.com/image.jpg",
                   },
                   product_location_id: [],
+                  is_prescription_item: false,
+                  is_b2c_owned_item: false,
                 },
               ],
               pay_time: 1640995250,
@@ -218,7 +218,6 @@ describe("OrderManager", () => {
               actual_shipping_fee_confirmed: true,
               buyer_cpf_id: "",
               fulfillment_flag: "FULFILLED_BY_SHOPEE",
-              pickup_done: false,
               package_list: [],
               shipping_carrier: "",
               payment_method: "Credit Card",
@@ -249,7 +248,7 @@ describe("OrderManager", () => {
           "buyer_username",
           "estimated_shipping_fee",
           "recipient_address",
-        ],
+        ].join(","),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/get_order_detail", {
@@ -279,16 +278,12 @@ describe("OrderManager", () => {
         response: {
           more: false,
           next_cursor: "",
-          shipment_list: [
+          order_list: [
             {
               order_sn: "220101000000001",
-              package_number: "PKG123456789",
-              logistics_status: "LOGISTICS_PICKUP_DONE",
-              shipment_method: "PICKUP",
-              create_time: 1640995200,
-              update_time: 1640995300,
-            },
-          ],
+              package_number: "PKG001",
+            }
+          ]
         },
       };
 
@@ -318,7 +313,23 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
+        response: {
+          order_sn: "220101000000001",
+          package_list: [
+            {
+              package_number: "PKG123456789",
+              item_list: [
+                {
+                  item_id: 111111,
+                  model_id: 222222,
+                  order_item_id: 333333,
+                  promotion_group_id: 0,
+                  model_quantity: 1,
+                },
+              ],
+            },
+          ],
+        },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -371,7 +382,7 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
+        response: null,
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -398,7 +409,9 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
+        response: {
+          update_time: 1640995300,
+        },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);

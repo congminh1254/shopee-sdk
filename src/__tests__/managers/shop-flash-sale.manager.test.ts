@@ -21,7 +21,7 @@ import {
 } from "../../schemas/shop-flash-sale.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ShopFlashSaleManager", () => {

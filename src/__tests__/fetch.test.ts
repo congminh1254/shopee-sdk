@@ -1,23 +1,28 @@
-import { jest } from "@jest/globals";
+import { jest, describe, beforeEach, it, expect } from "@jest/globals";
+import { Headers } from "node-fetch";
 import { ShopeeConfig, ShopeeSDK } from "../sdk.js";
 import { ShopeeRegion } from "../schemas/region.js";
 import { AccessToken } from "../schemas/access-token.js";
 import { ShopeeSdkError } from "../errors.js";
 
+interface MockFetchOptions {
+  method?: string;
+  body?: string;
+  headers?: Headers;
+  [key: string]: any;
+}
+
 // Mock fetch function
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as unknown as jest.Mock<
+  (url: string, options?: MockFetchOptions) => Promise<any>
+>;
 
 // Mock the entire fetch module before importing ShopeeFetch
 jest.unstable_mockModule("node-fetch", () => ({
   default: mockFetch,
-  Headers: class MockHeaders extends Map {
-    get(name: string) {
-      return super.get(name.toLowerCase());
-    }
-    set(name: string, value: string) {
-      return super.set(name.toLowerCase(), value);
-    }
-  },
+  Blob: globalThis.Blob,
+  FormData: globalThis.FormData,
+  Headers: globalThis.Headers,
 }));
 
 // Import ShopeeFetch after mocking
@@ -57,7 +62,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(mockResponse),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
       });
 
       const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint");
@@ -73,7 +78,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(mockResponse),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
       });
 
       const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -83,8 +88,9 @@ describe("ShopeeFetch", () => {
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const [, options] = mockFetch.mock.calls[0];
-      expect(options.method).toBe("POST");
-      expect(options.body).toBe(JSON.stringify(requestBody));
+      expect(options).toBeDefined();
+      expect(options!.method).toBe("POST");
+      expect(options!.body).toBe(JSON.stringify(requestBody));
       expect(result).toEqual(mockResponse);
     });
 
@@ -109,7 +115,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(mockResponse),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
       });
 
       const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -160,7 +166,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(mockResponse),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
       });
 
       const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -217,12 +223,12 @@ describe("ShopeeFetch", () => {
         .mockResolvedValueOnce({
           status: 401,
           headers: new Map([["content-type", "application/json"]]),
-          json: jest.fn().mockResolvedValue(invalidTokenResponse),
+          json: jest.fn(() => Promise.resolve(invalidTokenResponse)),
         })
         .mockResolvedValueOnce({
           status: 200,
           headers: new Map([["content-type", "application/json"]]),
-          json: jest.fn().mockResolvedValue(successResponse),
+          json: jest.fn(() => Promise.resolve(successResponse)),
         });
 
       const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -243,7 +249,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(mockResponse),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
       });
 
       await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -252,7 +258,8 @@ describe("ShopeeFetch", () => {
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const [, options] = mockFetch.mock.calls[0];
-      expect(options.headers.get("X-Custom-Header")).toBe("custom-value");
+      expect(options).toBeDefined();
+      expect(options!.headers!.get("X-Custom-Header")).toBe("custom-value");
     });
 
     it("should include User-Agent header with SDK version", async () => {
@@ -261,14 +268,15 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(mockResponse),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
       });
 
       await ShopeeFetch.fetch(mockConfig, "/test/endpoint");
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const [, options] = mockFetch.mock.calls[0];
-      const userAgent = options.headers.get("user-agent");
+      expect(options).toBeDefined();
+      const userAgent = options!.headers!.get("user-agent");
       expect(userAgent).toMatch(/^congminh1254\/shopee-sdk\/v\d+\.\d+\.\d+$/);
     });
 
@@ -283,7 +291,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(mockResponse),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
       });
 
       await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -326,7 +334,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 401,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(invalidTokenResponse),
+        json: jest.fn(() => Promise.resolve(invalidTokenResponse)),
       });
 
       await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true })).rejects.toThrow(
@@ -344,7 +352,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 400,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(errorResponse),
+        json: jest.fn(() => Promise.resolve(errorResponse)),
       });
 
       await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
@@ -358,8 +366,8 @@ describe("ShopeeFetch", () => {
         status: 200,
         headers: {
           get: (name: string) => headers.get(name.toLowerCase()),
-        },
-        text: jest.fn().mockResolvedValue("<html>Not JSON</html>"),
+        } as any,
+        text: jest.fn(() => Promise.resolve("<html>Not JSON</html>")),
         json: jest.fn(),
       });
 
@@ -376,8 +384,8 @@ describe("ShopeeFetch", () => {
         status: 200,
         headers: {
           get: (name: string) => headers.get(name.toLowerCase()),
-        },
-        arrayBuffer: jest.fn().mockResolvedValue(uint8.buffer),
+        } as any,
+        arrayBuffer: jest.fn(() => Promise.resolve(uint8.buffer)),
       });
 
       const result = await ShopeeFetch.fetch<Buffer>(mockConfig, "/test/endpoint");
@@ -394,8 +402,8 @@ describe("ShopeeFetch", () => {
         status: 200,
         headers: {
           get: (name: string) => headers.get(name.toLowerCase()),
-        },
-        arrayBuffer: jest.fn().mockResolvedValue(uint8.buffer),
+        } as any,
+        arrayBuffer: jest.fn(() => Promise.resolve(uint8.buffer)),
       });
 
       const result = await ShopeeFetch.fetch<Buffer>(mockConfig, "/test/endpoint");

@@ -150,6 +150,8 @@ export type VoucherInfo = {
   display_start_time?: number;
   /** New user or repeat buyer voucher indication. 0: regular, 1: new user, 2: repeat buyer with 1 order, 3: repeat buyer with 2 orders */
   target_voucher?: number;
+  /** The minimum spend required for using this voucher */
+  min_basket_price?: number;
 };
 
 /**

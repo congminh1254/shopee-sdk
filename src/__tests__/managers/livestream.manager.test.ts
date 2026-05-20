@@ -32,7 +32,7 @@ import {
 } from "../../schemas/livestream.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("LiveStreamManager", () => {

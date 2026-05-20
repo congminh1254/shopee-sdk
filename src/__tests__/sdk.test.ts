@@ -266,7 +266,7 @@ describe("ShopeeSDK", () => {
         >();
       mockGetRefreshToken.mockResolvedValue(null);
       const mockAuthManager = sdk.auth as jest.Mocked<AuthManager>;
-      mockAuthManager.getRefreshToken = mockGetRefreshToken;
+      mockAuthManager.getRefreshToken = mockGetRefreshToken as any;
 
       const token = await sdk.refreshToken();
       expect(token).toBeNull();
