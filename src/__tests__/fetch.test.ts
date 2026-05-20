@@ -6,10 +6,23 @@ import { ShopeeSdkError } from "../errors.js";
 
 // Mock fetch function
 const mockFetch = jest.fn();
+class MockBlob {
+  constructor(public readonly parts: unknown[] = []) {}
+}
+
+class MockFormData {
+  public readonly fields: Array<{ name: string; value: unknown; filename?: string }> = [];
+
+  append(name: string, value: unknown, filename?: string) {
+    this.fields.push({ name, value, filename });
+  }
+}
 
 // Mock the entire fetch module before importing ShopeeFetch
 jest.unstable_mockModule("node-fetch", () => ({
   default: mockFetch,
+  Blob: MockBlob,
+  FormData: MockFormData,
   Headers: class MockHeaders extends Map {
     get(name: string) {
       return super.get(name.toLowerCase());
@@ -86,6 +99,106 @@ describe("ShopeeFetch", () => {
       expect(options.method).toBe("POST");
       expect(options.body).toBe(JSON.stringify(requestBody));
       expect(result).toEqual(mockResponse);
+    });
+
+    it("should serialize multipart bodies when the payload contains binary fields", async () => {
+      const mockResponse = { success: true };
+
+      mockFetch.mockResolvedValue({
+        status: 200,
+        headers: new Map([["content-type", "application/json"]]),
+        json: jest.fn().mockResolvedValue(mockResponse),
+      });
+
+      const image = Buffer.from("image-data");
+
+      await ShopeeFetch.fetch(mockConfig, "/media_space/upload_image", {
+        method: "POST",
+        body: {
+          scene: "normal",
+          image,
+        },
+      });
+
+      const [, options] = mockFetch.mock.calls[0];
+      const formData = options.body as MockFormData;
+
+      expect(formData).toBeInstanceOf(MockFormData);
+      expect(formData.fields).toEqual([
+        { name: "scene", value: "normal", filename: undefined },
+        {
+          name: "image",
+          value: expect.any(MockBlob),
+          filename: "image.bin",
+        },
+      ]);
+      expect(options.headers.get("content-type")).toBeUndefined();
+    });
+
+    it("should serialize multipart bodies when the payload contains binary arrays", async () => {
+      const mockResponse = { success: true };
+
+      mockFetch.mockResolvedValue({
+        status: 200,
+        headers: new Map([["content-type", "application/json"]]),
+        json: jest.fn().mockResolvedValue(mockResponse),
+      });
+
+      const image1 = Buffer.from("image-1");
+      const image2 = Buffer.from("image-2");
+
+      await ShopeeFetch.fetch(mockConfig, "/media/upload_image", {
+        method: "POST",
+        body: {
+          business: 2,
+          scene: 1,
+          images: [image1, image2],
+        },
+      });
+
+      const [, options] = mockFetch.mock.calls[0];
+      const formData = options.body as MockFormData;
+
+      expect(formData).toBeInstanceOf(MockFormData);
+      expect(formData.fields).toEqual([
+        { name: "business", value: "2", filename: undefined },
+        { name: "scene", value: "1", filename: undefined },
+        {
+          name: "images",
+          value: expect.any(MockBlob),
+          filename: "images.bin",
+        },
+        {
+          name: "images",
+          value: expect.any(MockBlob),
+          filename: "images.bin",
+        },
+      ]);
+      expect(options.headers.get("content-type")).toBeUndefined();
+    });
+
+    it("should pass through FormData bodies without forcing JSON content type", async () => {
+      const mockResponse = { success: true };
+
+      mockFetch.mockResolvedValue({
+        status: 200,
+        headers: new Map([["content-type", "application/json"]]),
+        json: jest.fn().mockResolvedValue(mockResponse),
+      });
+
+      const formData = new MockFormData();
+      formData.append("video_upload_id", "upload-id");
+      formData.append("part_content", new MockBlob([Buffer.from("video-part")]), "part.bin");
+
+      await ShopeeFetch.fetch(mockConfig, "/media_space/upload_video_part", {
+        method: "POST",
+        body: formData as unknown as FormData,
+      });
+
+      const [, options] = mockFetch.mock.calls[0];
+
+      expect(options.body).toBe(formData);
+      expect(options.headers.get("content-type")).toBeUndefined();
     });
 
     it("should make authenticated request with valid token", async () => {
