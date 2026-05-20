@@ -1,9 +1,91 @@
-import fetch, { RequestInit, Response, Headers, HeadersInit } from "node-fetch";
+import fetch, { Blob, FormData, RequestInit, Response, Headers, HeadersInit } from "node-fetch";
 import { ShopeeConfig } from "./sdk.js";
 import { FetchOptions } from "./schemas/fetch.js";
 import { ShopeeApiError, ShopeeSdkError } from "./errors.js";
 import { generateSignature } from "./utils/signature.js";
 import { SDK_VERSION } from "./version.js";
+
+function isBlobLike(value: unknown): value is Blob {
+  return (
+    value instanceof Blob ||
+    (typeof value === "object" &&
+      value !== null &&
+      ["Blob", "File"].includes(value.constructor?.name ?? ""))
+  );
+}
+
+function isBinaryLike(value: unknown): boolean {
+  return Buffer.isBuffer(value) || isBlobLike(value);
+}
+
+function hasBinaryValue(value: unknown): boolean {
+  return Array.isArray(value) ? value.some(hasBinaryValue) : isBinaryLike(value);
+}
+
+function isFormDataBody(body: unknown): body is FormData {
+  return body instanceof FormData;
+}
+
+function appendFormValue(formData: FormData, key: string, value: unknown): void {
+  if (value === undefined || value === null) {
+    return;
+  }
+
+  if (Array.isArray(value)) {
+    value.forEach((item) => appendFormValue(formData, key, item));
+    return;
+  }
+
+  if (Buffer.isBuffer(value)) {
+    formData.append(key, new Blob([value]), `${key}.bin`);
+    return;
+  }
+
+  if (isBlobLike(value)) {
+    const filename =
+      "name" in value && typeof value.name === "string" ? (value.name as string) : undefined;
+
+    if (filename) {
+      formData.append(key, value, filename);
+      return;
+    }
+
+    formData.append(key, value);
+    return;
+  }
+
+  if (typeof value === "object") {
+    formData.append(key, JSON.stringify(value));
+    return;
+  }
+
+  formData.append(key, String(value));
+}
+
+function serializeRequestBody(body: unknown): {
+  body: RequestInit["body"];
+  isMultipart: boolean;
+} {
+  if (body === undefined) {
+    return { body: undefined, isMultipart: false };
+  }
+
+  if (isFormDataBody(body)) {
+    return { body: body as RequestInit["body"], isMultipart: true };
+  }
+
+  if (typeof body === "object" && body !== null && !Array.isArray(body)) {
+    const bodyEntries = Object.entries(body as Record<string, unknown>);
+
+    if (bodyEntries.some(([, value]) => hasBinaryValue(value))) {
+      const formData = new FormData();
+      bodyEntries.forEach(([key, value]) => appendFormValue(formData, key, value));
+      return { body: formData as RequestInit["body"], isMultipart: true };
+    }
+  }
+
+  return { body: body !== undefined ? JSON.stringify(body) : undefined, isMultipart: false };
+}
 
 export class ShopeeFetch {
   public static async fetch<T>(
@@ -61,9 +143,13 @@ export class ShopeeFetch {
       }
     });
 
+    const { body: requestBody, isMultipart } = serializeRequestBody(body);
+
     // Prepare headers
     const headers = new Headers();
-    headers.set("Content-Type", "application/json");
+    if (!isMultipart) {
+      headers.set("Content-Type", "application/json");
+    }
     headers.set("User-Agent", `congminh1254/shopee-sdk/v${SDK_VERSION}`);
     if (options.headers) {
       Object.entries(options.headers).forEach(([key, value]) => {
@@ -75,7 +161,7 @@ export class ShopeeFetch {
     const requestOptions: RequestInit = {
       method,
       headers: headers as unknown as HeadersInit,
-      body: body ? JSON.stringify(body) : undefined,
+      body: requestBody,
       agent: config.agent,
     };
 

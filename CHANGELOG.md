@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.2](https://github.com/congminh1254/shopee-sdk/compare/v1.6.1...v1.6.2) (2026-05-20)
+
+
+### Bug Fixes
+
+* handle multipart upload bodies correctly in ShopeeFetch ([#185](https://github.com/congminh1254/shopee-sdk/issues/185)) ([c9b1805](https://github.com/congminh1254/shopee-sdk/commit/c9b1805c13ad8a02a164640e03196980da91fdda))
+
 ## [1.6.1](https://github.com/congminh1254/shopee-sdk/compare/v1.6.0...v1.6.1) (2026-05-16)
 
 
