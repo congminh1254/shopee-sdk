@@ -282,8 +282,8 @@ describe("OrderManager", () => {
             {
               order_sn: "220101000000001",
               package_number: "PKG001",
-            }
-          ]
+            },
+          ],
         },
       };
 

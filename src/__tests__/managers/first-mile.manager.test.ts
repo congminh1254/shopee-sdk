@@ -453,9 +453,7 @@ describe("FirstMileManager", () => {
         error: "",
         message: "",
         response: {
-          logistics_channel_list: [
-            
-          ],
+          logistics_channel_list: [],
         },
       };
 
