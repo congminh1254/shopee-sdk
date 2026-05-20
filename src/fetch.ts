@@ -74,7 +74,7 @@ export class ShopeeFetch {
     // Prepare fetch options
     const requestOptions: RequestInit = {
       method,
-      headers: headers as unknown as HeadersInit,
+      headers: headers as HeadersInit,
       body: body ? JSON.stringify(body) : undefined,
       agent: config.agent,
     };
@@ -118,7 +118,7 @@ export class ShopeeFetch {
         const data = responseData as T;
         return data;
       }
-      throw new ShopeeSdkError(`Unknown response type: ${responseType}\n${responseData}`);
+      throw new ShopeeSdkError(`Unknown response type: ${responseType}\n${String(responseData)}`);
     } catch (error: unknown) {
       if (error instanceof Error) {
         // Re-throw our custom errors as-is

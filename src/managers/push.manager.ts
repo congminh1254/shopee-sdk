@@ -21,7 +21,7 @@ export class PushManager extends BaseManager {
       "/push/set_app_push_config",
       {
         method: "POST",
-        body: params as Record<string, string | number | boolean>,
+        body: params,
       }
     );
 

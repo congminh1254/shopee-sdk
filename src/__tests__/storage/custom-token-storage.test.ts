@@ -154,17 +154,15 @@ describe("CustomTokenStorage", () => {
         message: "",
       };
 
-      // Mock writeFileSync to throw an error
-      const originalWriteFileSync = fs.writeFileSync;
-      jest.spyOn(fs, "writeFileSync").mockImplementation(() => {
-        throw new Error("Write failed");
-      });
+      // Mock fs.promises.writeFile to throw an error
+      const writeFileSpy = jest
+        .spyOn(fs.promises, "writeFile")
+        .mockRejectedValue(new Error("Write failed"));
 
       await expect(storage.store(token)).rejects.toThrow("Failed to store token");
       await expect(storage.store(token)).rejects.toThrow("Write failed");
 
-      // Restore original function
-      fs.writeFileSync = originalWriteFileSync;
+      writeFileSpy.mockRestore();
     });
   });
 
@@ -210,19 +208,15 @@ describe("CustomTokenStorage", () => {
 
       await storage.store(token);
 
-      // Mock readFileSync to throw a non-ENOENT error
-      const originalReadFileSync = fs.readFileSync;
-      jest.spyOn(fs, "readFileSync").mockImplementation(() => {
-        const error = new Error("Permission denied") as NodeJS.ErrnoException;
-        error.code = "EACCES";
-        throw error;
-      });
+      // Mock fs.promises.readFile to throw a non-ENOENT error
+      const readFileSpy = jest
+        .spyOn(fs.promises, "readFile")
+        .mockRejectedValue(Object.assign(new Error("Permission denied"), { code: "EACCES" }));
 
       await expect(storage.get()).rejects.toThrow("Failed to get token");
       await expect(storage.get()).rejects.toThrow("Permission denied");
 
-      // Restore original function
-      fs.readFileSync = originalReadFileSync;
+      readFileSpy.mockRestore();
     });
   });
 
@@ -274,19 +268,15 @@ describe("CustomTokenStorage", () => {
 
       await storage.store(token);
 
-      // Mock unlinkSync to throw a non-ENOENT error
-      const originalUnlinkSync = fs.unlinkSync;
-      jest.spyOn(fs, "unlinkSync").mockImplementation(() => {
-        const error = new Error("Permission denied") as NodeJS.ErrnoException;
-        error.code = "EACCES";
-        throw error;
-      });
+      // Mock fs.promises.unlink to throw a non-ENOENT error
+      const unlinkSpy = jest
+        .spyOn(fs.promises, "unlink")
+        .mockRejectedValue(Object.assign(new Error("Permission denied"), { code: "EACCES" }));
 
       await expect(storage.clear()).rejects.toThrow("Failed to clear token");
       await expect(storage.clear()).rejects.toThrow("Permission denied");
 
-      // Restore original function
-      fs.unlinkSync = originalUnlinkSync;
+      unlinkSpy.mockRestore();
     });
   });
 
