@@ -113,9 +113,9 @@ describe("ShopeeFetch", () => {
       expect(formData.get("scene")).toBe("normal");
       expect(formData.get("image")).toBeInstanceOf(Blob);
       expect(options.headers.get("content-type")).toBeNull();
-      expect(getRequestContentType(`${mockConfig.base_url}/media_space/upload_image`, options)).toMatch(
-        /^multipart\/form-data; boundary=/
-      );
+      expect(
+        getRequestContentType(`${mockConfig.base_url}/media_space/upload_image`, options)
+      ).toMatch(/^multipart\/form-data; boundary=/);
     });
 
     it("should serialize multipart bodies when the payload contains binary arrays", async () => {
@@ -178,9 +178,7 @@ describe("ShopeeFetch", () => {
       expect(options.headers.get("content-type")).toBeNull();
       expect(
         getRequestContentType(`${mockConfig.base_url}/media_space/upload_video_part`, options)
-      ).toMatch(
-        /^multipart\/form-data; boundary=/
-      );
+      ).toMatch(/^multipart\/form-data; boundary=/);
     });
 
     it("should make authenticated request with valid token", async () => {
