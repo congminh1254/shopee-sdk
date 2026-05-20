@@ -37,7 +37,7 @@ export class MediaManager extends BaseManager {
    * @param {UploadMediaImageParams} params - Parameters for uploading images
    * @param {number} params.business - Business type (2 = Returns)
    * @param {number} params.scene - Scene type (1 = Return Seller Self Arrange Pickup Proof)
-   * @param {string | Buffer | Array<string | Buffer>} params.images - Image files to upload
+   * @param {Buffer | Array<Buffer>} params.images - Image files to upload
    * @returns {Promise<UploadMediaImageResponse>} Response containing uploaded image information
    *
    * @example
@@ -45,7 +45,7 @@ export class MediaManager extends BaseManager {
    * const result = await sdk.media.uploadMediaImage({
    *   business: 2,
    *   scene: 1,
-   *   images: '/path/to/image.jpg'
+   *   images: Buffer.from('image-bytes')
    * });
    * console.log('Uploaded images:', result.response.image_list);
    * ```
@@ -72,7 +72,7 @@ export class MediaManager extends BaseManager {
    * Upload multiple image files for general use
    *
    * @param {UploadImageParams} params - Parameters for uploading images
-   * @param {string | Buffer | Array<string | Buffer>} params.image - Image files (up to 9 images)
+   * @param {Buffer | Array<Buffer>} params.image - Image files (up to 9 images)
    * @param {string} [params.scene] - Scene type ("normal" or "desc")
    * @param {string} [params.ratio] - Image ratio ("1:1" or "3:4", whitelisted sellers only)
    * @returns {Promise<UploadImageResponse>} Response containing uploaded image information
@@ -81,14 +81,14 @@ export class MediaManager extends BaseManager {
    * ```typescript
    * // Upload product images (square processing)
    * const result = await sdk.media.uploadImage({
-   *   image: ['/path/to/image1.jpg', '/path/to/image2.jpg'],
+   *   image: [Buffer.from('image-1'), Buffer.from('image-2')],
    *   scene: 'normal',
    *   ratio: '1:1'
    * });
    *
    * // Upload description images (no processing)
    * const descResult = await sdk.media.uploadImage({
-   *   image: '/path/to/desc-image.jpg',
+   *   image: Buffer.from('desc-image-bytes'),
    *   scene: 'desc'
    * });
    * ```
@@ -162,7 +162,7 @@ export class MediaManager extends BaseManager {
    * @param {string} params.video_upload_id - Upload ID from initVideoUpload
    * @param {number} params.part_seq - Sequence number starting from 0
    * @param {string} params.content_md5 - MD5 hash of this part
-   * @param {string | Buffer} params.part_content - Content of this part
+   * @param {Buffer} params.part_content - Content of this part
    * @returns {Promise<UploadVideoPartResponse>} Response indicating upload success
    *
    * @example
@@ -173,7 +173,7 @@ export class MediaManager extends BaseManager {
    *     video_upload_id: videoUploadId,
    *     part_seq: i,
    *     content_md5: partMd5,
-   *     part_content: partBuffer
+   *     part_content: Buffer.from('part-bytes')
    *   });
    * }
    * ```
