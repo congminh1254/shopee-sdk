@@ -41,6 +41,7 @@ jobs:
 
       - name: Run spec audit and save report
         run: |
+          # audit:specs exits non-zero when gaps are found; we still want to commit the report for visibility.
           npm run audit:specs > spec-audit.txt 2>&1 || true
       
       - name: Check for changes
