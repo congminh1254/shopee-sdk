@@ -113,7 +113,7 @@ describe("ShopeeFetch", () => {
       expect(formData.get("scene")).toBe("normal");
       expect(formData.get("image")).toBeInstanceOf(Blob);
       expect(options.headers.get("content-type")).toBeNull();
-      expect(getRequestContentType("https://example.com/upload", options)).toMatch(
+      expect(getRequestContentType(`${mockConfig.base_url}/media_space/upload_image`, options)).toMatch(
         /^multipart\/form-data; boundary=/
       );
     });
@@ -149,7 +149,7 @@ describe("ShopeeFetch", () => {
       expect(images).toHaveLength(2);
       images.forEach((image) => expect(image).toBeInstanceOf(Blob));
       expect(options.headers.get("content-type")).toBeNull();
-      expect(getRequestContentType("https://example.com/upload", options)).toMatch(
+      expect(getRequestContentType(`${mockConfig.base_url}/media/upload_image`, options)).toMatch(
         /^multipart\/form-data; boundary=/
       );
     });
@@ -176,7 +176,9 @@ describe("ShopeeFetch", () => {
 
       expect(options.body).toBe(formData);
       expect(options.headers.get("content-type")).toBeNull();
-      expect(getRequestContentType("https://example.com/upload", options)).toMatch(
+      expect(
+        getRequestContentType(`${mockConfig.base_url}/media_space/upload_video_part`, options)
+      ).toMatch(
         /^multipart\/form-data; boundary=/
       );
     });
