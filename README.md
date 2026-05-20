@@ -8,7 +8,7 @@
 
 🎉 **The most complete, production-ready TypeScript SDK for Shopee Open API** 🎉
 
-[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/congminh1254)
+<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" style="height: 40px !important;width: 150px !important;" >
 
 Build powerful Shopee integrations with confidence using our fully-featured SDK that covers **100% of Shopee's API endpoints**. Trusted by developers, built by the community.
 
