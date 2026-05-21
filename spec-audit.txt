@@ -1,0 +1,118 @@
+
+> @congminh1254/shopee-sdk@1.6.2 audit:specs
+> tsx scripts/audit-specs.ts
+
+Shopee SDK Spec Audit
+Strategy:
+  1) Every spec endpoint must exist in SDK managers and vice-versa
+  2) HTTP methods must match spec definitions exactly
+  3) Endpoint request/response must use explicit endpoint type definitions
+  4) Spec request/response fields must exist in those endpoint types with exact names
+- Specs scanned: 428
+- SDK endpoints discovered: 308
+- Missing endpoints: 9
+- SDK endpoints not in spec: 5
+- Method mismatches: 0
+- Missing request/response types: 1
+- Request field gaps: 77
+- Response field gaps: 0
+
+Missing endpoints:
+  - media.cancel_video_upload
+  - media.complete_video_upload
+  - media.get_video_upload_result
+  - media.init_video_upload
+  - media.upload_video_part
+  - payment.get_income_detail
+  - payment.get_income_overview
+  - public.get_access_token
+  - public.refresh_access_token
+
+SDK endpoints not covered by spec:
+  - ads.create_auto_product_ads
+  - ads.edit_auto_product_ads
+  - ads.get_ads_facil_shop_rate
+  - product.get_size_chart_list
+  - product.publish_item_to_outlet_shop
+
+Missing request/response types:
+  - public.get_token_by_resend_code: missing request
+
+Request field gaps:
+  - ads.edit_gms_product_campaign: reference_id
+  - ams.get_affiliate_performance: order_type, channel, affiliate_id
+  - ams.get_content_performance: order_type, channel, affiliate_id, item_id
+  - ams.get_conversion_report: item_name, l1_category_id, l2_category_id, l3_category_id, order_status, verified_status, buyer_status, attr_campaign_id, campaign_partner, seller_campaign_type, deduction_status, deduction_method, place_order_time_start, place_order_time_end, order_completed_time_start, order_completed_time_end, conversion_completed_time_start, conversion_completed_time_end, ams_deduction_time_start, ams_deduction_time_end
+  - ams.get_open_campaign_performance: item_id
+  - ams.get_product_performance: order_type, channel, item_id
+  - ams.get_targeted_campaign_list: period_start_time, period_end_time, item_id, item_name
+  - ams.get_targeted_campaign_performance: campaign_id
+  - ams.get_validation_report: order_sn, l1_category_id, l2_category_id, l3_category_id, item_id, item_name, verified_status, attr_campaign_id, place_order_time_start, place_order_time_end
+  - discount.get_discount_list: update_time_from, update_time_to
+  - livestream.apply_item_set: item_set_ids
+  - livestream.ban_user_comment: ban_user_id
+  - livestream.get_item_set_list: keyword
+  - livestream.get_like_item_list: keyword
+  - livestream.post_comment: content
+  - livestream.unban_user_comment: unban_user_id
+  - livestream.update_session: is_test
+  - merchant.get_merchant_warehouse_list: warehouse_type
+  - order.get_booking_detail: response_optional_fields
+  - order.handle_prescription_check: order_sn, is_approved, reject_reason_code, items, pharmacist_name, free_text
+  - order.upload_invoice_doc: file_type, file
+  - payment.generate_income_report: release_time_from, release_time_to
+  - payment.generate_income_statement: release_time_from, release_time_to, statement_type
+  - payment.get_payout_info: cursor
+  - product.add_item: gtin_code, ds_cat_rcmd_id, promotion_images, compatibility_info, scheduled_publish_time, authorised_brand_id, size_chart_info, certification_info, purchase_limit_info, medicine_id
+  - product.add_kit_item: item_setting, sync_setting
+  - product.add_ssp_item: ssp_id, original_price, item_status, dimension, logistic_info, attribute_list, pre_order, item_sku, condition, wholesale, video_upload_id, item_dangerous, tax_info, seller_stock, size_chart_info, authorised_brand_id, model_list
+  - product.category_recommend: product_cover_image
+  - product.delete_model: model_id
+  - product.generate_kit_image: component_list
+  - product.get_aitem_by_pitem_id: pitem_id
+  - product.get_all_vehicle_list: page_size, offset, language
+  - product.get_attribute_tree: category_id_list
+  - product.get_brand_list: language
+  - product.get_direct_item_list: main_item_id
+  - product.get_direct_shop_recommended_price: main_item_id, direct_shop_regions, model_list, enabled_channel_id_list
+  - product.get_item_list_by_content_diagnosis: quality_level, issue_type
+  - product.get_kit_item_info: item_id
+  - product.get_main_item_list: direct_item_id
+  - product.get_product_certification_rule: attribute_list
+  - product.get_recommend_attribute: cover_image_id
+  - product.get_ssp_info: ssp_id_list, gtin_list, oem_list
+  - product.get_variations: category_id
+  - product.get_vehicle_list_by_compatibility_detail: compatibility_details, brand_id, model_id, year_id, language
+  - product.get_weight_recommendation: cover_image_id, attribute_list, brand_id, description_type, description, description_info
+  - product.init_tier_variation: standardise_tier_variation
+  - product.link_ssp: ssp_id, original_price, item_status, dimension, logistic_info, attribute_list, pre_order, item_sku, condition, wholesale, video_upload_id, item_dangerous, tax_info, seller_stock, size_chart_info, authorised_brand_id, model_list
+  - product.register_brand: category_list, product_image, app_logo_image_id, brand_website, brand_description, additional_information, pc_logo_image_id, brand_region, licenses, brand_registration_website
+  - product.search_attribute_value_list: value_name, cursor, limit
+  - product.search_item: attribute_status, deboost_only
+  - product.search_unpackaged_model_list: page_size, cursor, item_name, model_id, unpackaged_sku_id
+  - product.update_item: gtin_code, ds_cat_rcmd_id, promotion_images, compatibility_info, scheduled_publish_time, authorised_brand_id, size_chart_info, certification_info, purchase_limit_info, medicine_id
+  - product.update_kit_item: item_id, item_setting, sync_setting
+  - product.update_model: model
+  - product.update_tier_variation: model_list, standardise_tier_variation
+  - public.get_token_by_resend_code: resend_code
+  - returns.cancel_dispute: email
+  - returns.convert_image: return_sn, upload_image
+  - returns.dispute: dispute_reason_id, image_list
+  - returns.offer: proposed_solution, proposed_adjusted_refund_amount
+  - returns.upload_proof: photo, description
+  - returns.upload_shipping_proof: reverse_logistics_carrier_id, reverse_logistics_carrier_name, image_id_list, remarks
+  - shop.set_shop_holiday_mode: holiday_mode_type, holiday_mode_start_time, holiday_mode_end_time, holiday_mode_description
+  - video.delete_video: video_upload_id_list, post_id_list
+  - video.edit_video_info: video_upload_list
+  - video.get_cover_list: video_upload_id
+  - video.get_metric_trend: period_type, end_date
+  - video.get_overview_performance: period_type, end_date
+  - video.get_prodcut_performance_list: page_no, page_size, period_type, end_date, order_by, item_id, item_name
+  - video.get_video_detail: video_upload_id, post_id
+  - video.get_video_detail_audience_distribution: post_id
+  - video.get_video_detail_metric_trend: post_id, metric_name
+  - video.get_video_detail_performance: post_id
+  - video.get_video_detail_product_performance: page_no, page_size, post_id, item_id, item_name
+  - video.get_video_list: page_no, page_size, list_type
+  - video.get_video_performance_list: page_no, page_size, period_type, end_date, order_by
+  - video.post_video: video_upload_id_list
