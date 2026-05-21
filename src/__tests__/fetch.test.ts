@@ -104,7 +104,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValue({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(mockResponse),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
       });
 
       const image = Buffer.from("image-data");
@@ -118,14 +118,15 @@ describe("ShopeeFetch", () => {
       });
 
       const [, options] = mockFetch.mock.calls[0];
-      const formData = options.body as FormData;
+      expect(options).toBeDefined();
+      const formData = options!.body as unknown as FormData;
 
       expect(formData).toBeInstanceOf(FormData);
       expect(formData.get("scene")).toBe("normal");
       expect(formData.get("image")).toBeInstanceOf(Blob);
-      expect(options.headers.get("content-type")).toBeNull();
+      expect((options!.headers as any).get("content-type")).toBeNull();
       expect(
-        getRequestContentType(`${mockConfig.base_url}/media_space/upload_image`, options)
+        getRequestContentType(`${mockConfig.base_url}/media_space/upload_image`, options! as any)
       ).toMatch(/^multipart\/form-data; boundary=/);
     });
 
@@ -135,7 +136,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValue({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(mockResponse),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
       });
 
       const image1 = Buffer.from("image-1");
@@ -151,7 +152,8 @@ describe("ShopeeFetch", () => {
       });
 
       const [, options] = mockFetch.mock.calls[0];
-      const formData = options.body as FormData;
+      expect(options).toBeDefined();
+      const formData = options!.body as unknown as FormData;
       const images = formData.getAll("images");
 
       expect(formData).toBeInstanceOf(FormData);
@@ -159,10 +161,10 @@ describe("ShopeeFetch", () => {
       expect(formData.get("scene")).toBe("1");
       expect(images).toHaveLength(2);
       images.forEach((image) => expect(image).toBeInstanceOf(Blob));
-      expect(options.headers.get("content-type")).toBeNull();
-      expect(getRequestContentType(`${mockConfig.base_url}/media/upload_image`, options)).toMatch(
-        /^multipart\/form-data; boundary=/
-      );
+      expect((options!.headers as any).get("content-type")).toBeNull();
+      expect(
+        getRequestContentType(`${mockConfig.base_url}/media/upload_image`, options! as any)
+      ).toMatch(/^multipart\/form-data; boundary=/);
     });
 
     it("should pass through FormData bodies without forcing JSON content type", async () => {
@@ -171,7 +173,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValue({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn().mockResolvedValue(mockResponse),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
       });
 
       const formData = new FormData();
@@ -184,12 +186,60 @@ describe("ShopeeFetch", () => {
       });
 
       const [, options] = mockFetch.mock.calls[0];
+      expect(options).toBeDefined();
 
-      expect(options.body).toBe(formData);
-      expect(options.headers.get("content-type")).toBeNull();
+      expect(options!.body).toBe(formData);
+      expect((options!.headers as any).get("content-type")).toBeNull();
       expect(
-        getRequestContentType(`${mockConfig.base_url}/media_space/upload_video_part`, options)
+        getRequestContentType(
+          `${mockConfig.base_url}/media_space/upload_video_part`,
+          options! as any
+        )
       ).toMatch(/^multipart\/form-data; boundary=/);
+    });
+
+    it("should serialize multipart bodies with null, undefined, named/unnamed Blobs, and nested objects", async () => {
+      const mockResponse = { success: true };
+
+      mockFetch.mockResolvedValue({
+        status: 200,
+        headers: new Map([["content-type", "application/json"]]),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
+      });
+
+      const fileWithFilename = new Blob([Buffer.from("file-1")]);
+      Object.defineProperty(fileWithFilename, "name", {
+        value: "custom-file.txt",
+        writable: false,
+      });
+
+      const fileWithoutFilename = new Blob([Buffer.from("file-2")]);
+
+      await ShopeeFetch.fetch(mockConfig, "/media_space/upload_image", {
+        method: "POST",
+        body: {
+          image: Buffer.from("image-data"),
+          nullField: null,
+          undefinedField: undefined,
+          arrayField: ["string", null, undefined],
+          namedBlob: fileWithFilename,
+          unnamedBlob: fileWithoutFilename,
+          nestedObject: { key: "nested" },
+        },
+      });
+
+      const [, options] = mockFetch.mock.calls[0];
+      expect(options).toBeDefined();
+      const formData = options!.body as unknown as FormData;
+
+      expect(formData).toBeInstanceOf(FormData);
+      expect(formData.get("image")).toBeInstanceOf(Blob);
+      expect(formData.get("nullField")).toBeNull();
+      expect(formData.get("undefinedField")).toBeNull();
+      expect(formData.getAll("arrayField")).toEqual(["string"]);
+      expect(formData.get("namedBlob")).toBeInstanceOf(Blob);
+      expect(formData.get("unnamedBlob")).toBeInstanceOf(Blob);
+      expect(formData.get("nestedObject")).toBe(JSON.stringify({ key: "nested" }));
     });
 
     it("should make authenticated request with valid token", async () => {
@@ -560,6 +610,47 @@ describe("ShopeeFetch", () => {
       await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
         "Unknown error occurred"
       );
+    });
+
+    it("should handle null body correctly", async () => {
+      const mockResponse = { success: true };
+      mockFetch.mockResolvedValueOnce({
+        status: 200,
+        headers: new Map([["content-type", "application/json"]]),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
+      });
+
+      await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
+        method: "POST",
+        body: null as any,
+      });
+
+      const [, options] = mockFetch.mock.calls[0];
+      expect(options).toBeDefined();
+      expect(options!.body).toBe("null");
+    });
+
+    it("should serialize multipart bodies with fallback isBlobLike conditions", async () => {
+      const mockResponse = { success: true };
+      mockFetch.mockResolvedValueOnce({
+        status: 200,
+        headers: new Map([["content-type", "application/json"]]),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
+      });
+
+      await ShopeeFetch.fetch(mockConfig, "/media_space/upload_image", {
+        method: "POST",
+        body: {
+          image: Buffer.from("image-data"),
+          nullProto: Object.create(null),
+        },
+      });
+
+      const [, options] = mockFetch.mock.calls[0];
+      expect(options).toBeDefined();
+      const formData = options!.body as unknown as FormData;
+      expect(formData).toBeInstanceOf(FormData);
+      expect(formData.get("image")).toBeInstanceOf(Blob);
     });
   });
 });

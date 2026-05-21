@@ -84,7 +84,7 @@ function serializeRequestBody(body: unknown): {
     }
   }
 
-  return { body: body !== undefined ? JSON.stringify(body) : undefined, isMultipart: false };
+  return { body: JSON.stringify(body), isMultipart: false };
 }
 
 export class ShopeeFetch {
