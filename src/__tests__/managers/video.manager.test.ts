@@ -217,10 +217,7 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          imageUrlList: [
-            "https://example.com/cover1.jpg",
-            "https://example.com/cover2.jpg",
-          ],
+          imageUrlList: ["https://example.com/cover1.jpg", "https://example.com/cover2.jpg"],
         },
       };
 
@@ -397,8 +394,8 @@ describe("VideoManager", () => {
             "25-34": 70,
           },
           gender: {
-            "Male": 40,
-            "Female": 60,
+            Male: 40,
+            Female: 60,
           },
         },
       };
@@ -466,8 +463,8 @@ describe("VideoManager", () => {
             "25-34": 50.0,
           },
           gender: {
-            "male": 45.0,
-            "female": 55.0,
+            male: 45.0,
+            female: 55.0,
           },
         },
       };
@@ -790,4 +787,3 @@ describe("VideoManager", () => {
     });
   });
 });
-

@@ -260,7 +260,8 @@ describe("OrderManager", () => {
         auth: true,
         params: {
           order_sn_list: "220101000000001",
-          response_optional_fields: "buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address",
+          response_optional_fields:
+            "buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address",
         },
       });
 

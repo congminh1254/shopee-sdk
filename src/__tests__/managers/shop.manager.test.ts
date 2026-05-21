@@ -657,8 +657,8 @@ describe("ShopManager", () => {
           holiday_mode_type: 1,
           holiday_mode_start_time: 1770883200,
           holiday_mode_end_time: 1773305999,
-          holiday_mode_description: "\"Spring Festival\"",
-          debug_msg: "\"\"",
+          holiday_mode_description: '"Spring Festival"',
+          debug_msg: '""',
         },
       };
 
@@ -676,7 +676,7 @@ describe("ShopManager", () => {
       expect(result.response?.holiday_mode_on).toBe(true);
       expect(result.response?.holiday_mode_start_time).toBe(1770883200);
       expect(result.response?.holiday_mode_end_time).toBe(1773305999);
-      expect(result.response?.holiday_mode_description).toBe("\"Spring Festival\"");
+      expect(result.response?.holiday_mode_description).toBe('"Spring Festival"');
     });
 
     it("should get shop holiday mode when disabled", async () => {
@@ -704,7 +704,7 @@ describe("ShopManager", () => {
         error: "",
         message: "",
         response: {
-          debug_msg: "\"\"",
+          debug_msg: '""',
         },
       };
 
@@ -715,7 +715,7 @@ describe("ShopManager", () => {
         holiday_mode_type: 1,
         holiday_mode_start_time: 1770883200,
         holiday_mode_end_time: 1773305999,
-        holiday_mode_description: "\"Spring Festival\"",
+        holiday_mode_description: '"Spring Festival"',
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop/set_shop_holiday_mode", {
@@ -726,7 +726,7 @@ describe("ShopManager", () => {
           holiday_mode_type: 1,
           holiday_mode_start_time: 1770883200,
           holiday_mode_end_time: 1773305999,
-          holiday_mode_description: "\"Spring Festival\"",
+          holiday_mode_description: '"Spring Festival"',
         },
       });
 
