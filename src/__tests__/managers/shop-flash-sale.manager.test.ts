@@ -613,4 +613,3 @@ describe("ShopFlashSaleManager", () => {
     });
   });
 });
-

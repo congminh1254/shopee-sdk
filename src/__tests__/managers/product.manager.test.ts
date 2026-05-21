@@ -2688,4 +2688,3 @@ describe("ProductManager", () => {
     });
   });
 });
-

@@ -29,4 +29,3 @@ export interface GetShopeeIpRangeResponse extends FetchResponse<{
 export interface GetTokenByResendCodeParams {
   resend_code: string;
 }
-

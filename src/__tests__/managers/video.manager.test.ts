@@ -227,7 +227,7 @@ describe("VideoManager", () => {
               {
                 item_id: 9999,
                 custom_item_name: "custom product name",
-              }
+              },
             ],
             allow_info: {
               allow_duet: true,
@@ -254,7 +254,7 @@ describe("VideoManager", () => {
                 {
                   item_id: 9999,
                   custom_item_name: "custom product name",
-                }
+                },
               ],
               allow_info: {
                 allow_duet: true,

@@ -1082,7 +1082,14 @@ export type AddItemParams = {
   /** Promotion Image */
   promotion_images?: { image_id_list?: string[] };
   /** Compatibility information */
-  compatibility_info?: { vehicle_info_list: Array<{ brand_id: number; model_id: number; year_id?: number; version_id?: number }> };
+  compatibility_info?: {
+    vehicle_info_list: Array<{
+      brand_id: number;
+      model_id: number;
+      year_id?: number;
+      version_id?: number;
+    }>;
+  };
   /** Scheduled publish time */
   scheduled_publish_time?: number;
   /** ID of authorised reseller brand */
@@ -1090,7 +1097,14 @@ export type AddItemParams = {
   /** Size chart information */
   size_chart_info?: { size_chart?: string; size_chart_id?: number };
   /** Certification information */
-  certification_info?: { certification_list?: Array<{ certification_no: string; permit_id: number; expiry_date?: number; certification_proofs: Array<{ file_name: string; image_id: number; ratio: number }> }> };
+  certification_info?: {
+    certification_list?: Array<{
+      certification_no: string;
+      permit_id: number;
+      expiry_date?: number;
+      certification_proofs: Array<{ file_name: string; image_id: number; ratio: number }>;
+    }>;
+  };
   /** Purchase limit information */
   purchase_limit_info?: PurchaseLimitInfo;
   /** Medicine ID */
@@ -1164,7 +1178,14 @@ export type UpdateItemParams = {
   /** Promotion Image */
   promotion_images?: { image_id_list?: string[] };
   /** Compatibility information */
-  compatibility_info?: { vehicle_info_list: Array<{ brand_id: number; model_id: number; year_id?: number; version_id?: number }> };
+  compatibility_info?: {
+    vehicle_info_list: Array<{
+      brand_id: number;
+      model_id: number;
+      year_id?: number;
+      version_id?: number;
+    }>;
+  };
   /** Scheduled publish time */
   scheduled_publish_time?: number;
   /** ID of authorised reseller brand */
@@ -1172,7 +1193,14 @@ export type UpdateItemParams = {
   /** Size chart information */
   size_chart_info?: { size_chart?: string; size_chart_id?: number };
   /** Certification information */
-  certification_info?: { certification_list?: Array<{ certification_no: string; permit_id: number; expiry_date?: number; certification_proofs: Array<{ file_name: string; image_id: number; ratio: number }> }> };
+  certification_info?: {
+    certification_list?: Array<{
+      certification_no: string;
+      permit_id: number;
+      expiry_date?: number;
+      certification_proofs: Array<{ file_name: string; image_id: number; ratio: number }>;
+    }>;
+  };
   /** Purchase limit information */
   purchase_limit_info?: PurchaseLimitInfo;
   /** Medicine ID */
@@ -1468,111 +1496,111 @@ export type GetAttributeTreeParams = {
 export interface GetAttributeTreeResponse extends FetchResponse<{
   /** List of attributes */
   attribute_list: AttributeTreeNode[];
- }> {}
- 
- /**
-  * Brand info for brand list
-  */
- export interface BrandItem {
-   /** Brand ID */
-   brand_id: number;
-   /** Original brand name */
-   original_brand_name: string;
-   /** Display brand name */
-   display_brand_name: string;
- }
- 
- /**
-  * Parameters for getting brand list
-  */
- export type GetBrandListParams = {
-   /** Category ID */
-   category_id: number;
-   /** Page offset */
-   offset: number;
-   /** Page size */
-   page_size: number;
-   /** Status filter */
-   status?: number;
-   /** Language filter */
-   language?: string;
- };
- 
- /**
-  * Response for getting brand list
-  */
- export interface GetBrandListResponse extends FetchResponse<{
-   /** List of brands */
-   brand_list: BrandItem[];
-   /** Has more data */
-   has_next_page: boolean;
-   /** Next page offset */
-   next_offset: number;
-   /** Is mandatory */
-   is_mandatory: boolean;
-   /** Input type */
-   input_type: string;
- }> {}
- 
- /**
-  * Parameters for registering a brand
-  */
- export type RegisterBrandParams = {
-   /** Category ID */
-   category_id: number;
-   /** Original brand name */
-   original_brand_name: string;
-   /** Category list */
-   category_list?: number[];
-   /** Product image ID/URL */
-   product_image?: string;
-   /** App logo image ID */
-   app_logo_image_id?: string;
-   /** Brand website */
-   brand_website?: string;
-   /** Brand description */
-   brand_description?: string;
-   /** Additional information */
-   additional_information?: string;
-   /** PC logo image ID */
-   pc_logo_image_id?: string;
-   /** Brand region list */
-   brand_region?: string[];
-   /** Licenses list */
-   licenses?: any[];
-   /** Brand registration website */
-   brand_registration_website?: string;
- };
- 
- /**
-  * Response for registering a brand
-  */
- export interface RegisterBrandResponse extends FetchResponse<{
-   /** Brand ID */
-   brand_id: number;
-   /** Original brand name */
-   original_brand_name: string;
- }> {}
- 
- /**
-  * Recommended category
-  */
- export interface RecommendedCategory {
-   /** Category ID */
-   category_id: number;
-   /** Category name */
-   category_name: string;
- }
- 
- /**
-  * Parameters for category recommendation
-  */
- export type CategoryRecommendParams = {
-   /** Item name */
-   item_name: string;
-   /** Product cover image */
-   product_cover_image?: string;
- };
+}> {}
+
+/**
+ * Brand info for brand list
+ */
+export interface BrandItem {
+  /** Brand ID */
+  brand_id: number;
+  /** Original brand name */
+  original_brand_name: string;
+  /** Display brand name */
+  display_brand_name: string;
+}
+
+/**
+ * Parameters for getting brand list
+ */
+export type GetBrandListParams = {
+  /** Category ID */
+  category_id: number;
+  /** Page offset */
+  offset: number;
+  /** Page size */
+  page_size: number;
+  /** Status filter */
+  status?: number;
+  /** Language filter */
+  language?: string;
+};
+
+/**
+ * Response for getting brand list
+ */
+export interface GetBrandListResponse extends FetchResponse<{
+  /** List of brands */
+  brand_list: BrandItem[];
+  /** Has more data */
+  has_next_page: boolean;
+  /** Next page offset */
+  next_offset: number;
+  /** Is mandatory */
+  is_mandatory: boolean;
+  /** Input type */
+  input_type: string;
+}> {}
+
+/**
+ * Parameters for registering a brand
+ */
+export type RegisterBrandParams = {
+  /** Category ID */
+  category_id: number;
+  /** Original brand name */
+  original_brand_name: string;
+  /** Category list */
+  category_list?: number[];
+  /** Product image ID/URL */
+  product_image?: string;
+  /** App logo image ID */
+  app_logo_image_id?: string;
+  /** Brand website */
+  brand_website?: string;
+  /** Brand description */
+  brand_description?: string;
+  /** Additional information */
+  additional_information?: string;
+  /** PC logo image ID */
+  pc_logo_image_id?: string;
+  /** Brand region list */
+  brand_region?: string[];
+  /** Licenses list */
+  licenses?: any[];
+  /** Brand registration website */
+  brand_registration_website?: string;
+};
+
+/**
+ * Response for registering a brand
+ */
+export interface RegisterBrandResponse extends FetchResponse<{
+  /** Brand ID */
+  brand_id: number;
+  /** Original brand name */
+  original_brand_name: string;
+}> {}
+
+/**
+ * Recommended category
+ */
+export interface RecommendedCategory {
+  /** Category ID */
+  category_id: number;
+  /** Category name */
+  category_name: string;
+}
+
+/**
+ * Parameters for category recommendation
+ */
+export type CategoryRecommendParams = {
+  /** Item name */
+  item_name: string;
+  /** Product cover image */
+  product_cover_image?: string;
+};
 
 /**
  * Response for category recommendation

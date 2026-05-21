@@ -499,7 +499,6 @@ export class AdsManager extends BaseManager {
     return response;
   }
 
-
   /**
    * Create a GMS product campaign
    * @param {CreateGmsProductCampaignParams} params Request parameters
@@ -570,7 +569,6 @@ export class AdsManager extends BaseManager {
 
     return response;
   }
-
 
   /**
    * Add/remove items to/from the GMS Campaign

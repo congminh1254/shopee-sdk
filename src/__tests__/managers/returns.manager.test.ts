@@ -590,7 +590,12 @@ describe("ReturnsManager", () => {
         proof_text: [{ text: "Product was not damaged when shipped" }],
         proof_image: [{ url: "https://cf.shopee.sg/file/proof1.jpg" }],
         proof_video: [{ url: "https://cf.shopee.sg/file/proof1.mp4" }],
-        photo: [{ url: "https://cf.shopee.sg/file/evidence.jpg", thumbnail: "https://cf.shopee.sg/file/evidence_thumb.jpg" }],
+        photo: [
+          {
+            url: "https://cf.shopee.sg/file/evidence.jpg",
+            thumbnail: "https://cf.shopee.sg/file/evidence_thumb.jpg",
+          },
+        ],
         description: "evidence proof text",
       });
 
@@ -602,7 +607,12 @@ describe("ReturnsManager", () => {
           proof_text: [{ text: "Product was not damaged when shipped" }],
           proof_image: [{ url: "https://cf.shopee.sg/file/proof1.jpg" }],
           proof_video: [{ url: "https://cf.shopee.sg/file/proof1.mp4" }],
-          photo: [{ url: "https://cf.shopee.sg/file/evidence.jpg", thumbnail: "https://cf.shopee.sg/file/evidence_thumb.jpg" }],
+          photo: [
+            {
+              url: "https://cf.shopee.sg/file/evidence.jpg",
+              thumbnail: "https://cf.shopee.sg/file/evidence_thumb.jpg",
+            },
+          ],
           description: "evidence proof text",
         },
       });

@@ -681,7 +681,6 @@ describe("AdsManager", () => {
     });
   });
 
-
   describe("createGmsProductCampaign", () => {
     it("should create GMS product campaign successfully", async () => {
       const mockResponse: CreateGmsProductCampaignResponse = {
@@ -790,7 +789,6 @@ describe("AdsManager", () => {
       expect(result.response.campaign_id).toBe(333445);
     });
   });
-
 
   describe("editGmsItemProductCampaign", () => {
     it("should add items to GMS campaign successfully", async () => {

@@ -329,7 +329,6 @@ describe("ShopeeFetch", () => {
       expect(url).not.toContain("param2");
     });
 
-
     it("should handle invalid access token error when refresh fails", async () => {
       const invalidTokenResponse = {
         error: "invalid_acceess_token",

@@ -58,7 +58,6 @@ export class AuthManager extends BaseManager {
       }
     );
 
-
     if (!response.expired_at && response.expire_in) {
       response.expired_at = Date.now() + response.expire_in * 1000 - 60 * 1000;
     }

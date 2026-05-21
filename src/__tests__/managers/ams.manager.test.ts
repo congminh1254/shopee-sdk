@@ -1504,4 +1504,3 @@ describe("AmsManager", () => {
     });
   });
 });
-

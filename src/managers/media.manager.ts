@@ -351,7 +351,9 @@ export class MediaManager extends BaseManager {
    * @param {InitMediaVideoUploadParams} params - Parameters for initiating video upload
    * @returns {Promise<InitMediaVideoUploadResponse>} Response containing video_upload_id and part_size
    */
-  async initMediaVideoUpload(params: InitMediaVideoUploadParams): Promise<InitMediaVideoUploadResponse> {
+  async initMediaVideoUpload(
+    params: InitMediaVideoUploadParams
+  ): Promise<InitMediaVideoUploadResponse> {
     const response = await ShopeeFetch.fetch<InitMediaVideoUploadResponse>(
       this.config,
       "/media/init_video_upload",
@@ -371,7 +373,9 @@ export class MediaManager extends BaseManager {
    * @param {UploadMediaVideoPartParams} params - Parameters for uploading video part
    * @returns {Promise<UploadMediaVideoPartResponse>} Response indicating upload success
    */
-  async uploadMediaVideoPart(params: UploadMediaVideoPartParams): Promise<UploadMediaVideoPartResponse> {
+  async uploadMediaVideoPart(
+    params: UploadMediaVideoPartParams
+  ): Promise<UploadMediaVideoPartResponse> {
     const response = await ShopeeFetch.fetch<UploadMediaVideoPartResponse>(
       this.config,
       "/media/upload_video_part",
@@ -433,7 +437,9 @@ export class MediaManager extends BaseManager {
    * @param {CancelMediaVideoUploadParams} params - Parameters for cancelling video upload
    * @returns {Promise<CancelMediaVideoUploadResponse>} Response indicating cancellation
    */
-  async cancelMediaVideoUpload(params: CancelMediaVideoUploadParams): Promise<CancelMediaVideoUploadResponse> {
+  async cancelMediaVideoUpload(
+    params: CancelMediaVideoUploadParams
+  ): Promise<CancelMediaVideoUploadResponse> {
     const response = await ShopeeFetch.fetch<CancelMediaVideoUploadResponse>(
       this.config,
       "/media/cancel_video_upload",

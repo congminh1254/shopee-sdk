@@ -386,7 +386,9 @@ describe("CustomTokenStorage", () => {
       jest.spyOn(fs, "writeFileSync").mockImplementation(() => {
         throw "String write error";
       });
-      await expect(storage.store({} as any)).rejects.toThrow("Failed to store token: Unknown error");
+      await expect(storage.store({} as any)).rejects.toThrow(
+        "Failed to store token: Unknown error"
+      );
 
       // 2. fs.readFileSync throws string
       jest.spyOn(fs, "readFileSync").mockImplementation(() => {
@@ -402,4 +404,3 @@ describe("CustomTokenStorage", () => {
     });
   });
 });
-
