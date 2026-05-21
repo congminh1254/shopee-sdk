@@ -31,8 +31,8 @@ export interface UploadMediaImageParams {
   business: MediaImageBusiness;
   /** Defines the purpose of the uploaded image under the specified business type */
   scene: MediaImageScene;
-  /** The image files to be uploaded (file path or buffer) */
-  images: string | Buffer | Array<string | Buffer>;
+  /** The image files to be uploaded as buffers */
+  images: Buffer | Array<Buffer>;
 }
 
 /**
@@ -97,8 +97,8 @@ export interface ImageInfoItem {
  * Parameters for v2.media_space.upload_image
  */
 export interface UploadImageParams {
-  /** The image files to be uploaded (up to 9 images) */
-  image: string | Buffer | Array<string | Buffer>;
+  /** The image files to be uploaded as buffers (up to 9 images) */
+  image: Buffer | Array<Buffer>;
   /** Scene where the picture is used */
   scene?: MediaSpaceImageScene;
   /** Image ratio (only for whitelisted sellers) */
@@ -147,8 +147,8 @@ export interface UploadVideoPartParams {
   part_seq: number;
   /** MD5 of this part */
   content_md5: string;
-  /** The content of this part of file (exactly 4MB except last part) */
-  part_content: string | Buffer;
+  /** The content of this part of file as a buffer (exactly 4MB except last part) */
+  part_content: Buffer;
 }
 
 /**
