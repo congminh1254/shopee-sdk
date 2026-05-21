@@ -13,7 +13,7 @@ import {
 } from "../../schemas/merchant.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("MerchantManager", () => {
@@ -198,6 +198,7 @@ describe("MerchantManager", () => {
           next_id: 0,
           page_size: 30,
         },
+        warehouse_type: 1,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -211,6 +212,7 @@ describe("MerchantManager", () => {
               next_id: 0,
               page_size: 30,
             },
+            warehouse_type: 1,
           },
         }
       );
@@ -278,9 +280,11 @@ describe("MerchantManager", () => {
             sip_affi_shops: [
               {
                 affi_shop_id: 123456,
+                region: "SG",
               },
               {
                 affi_shop_id: 789012,
+                region: "SG",
               },
             ],
           },

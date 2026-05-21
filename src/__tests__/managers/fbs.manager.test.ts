@@ -11,7 +11,7 @@ import {
 } from "../../schemas/fbs.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("FbsManager", () => {
@@ -399,6 +399,18 @@ describe("FbsManager", () => {
       expect(result.response.shop_sku_id).toBe("999888_777666");
       expect(result.response.shop_item_id).toBe(999888);
       expect(result.response.shop_model_id).toBe(777666);
+    });
+  });
+
+  describe("Default Params Coverage", () => {
+    it("should cover FbsManager methods with default parameters", async () => {
+      mockShopeeFetch.mockResolvedValue({ response: {} });
+
+      await fbsManager.queryBrShopEnrollmentStatus();
+      await fbsManager.queryBrShopBlockStatus();
+      await fbsManager.queryBrShopInvoiceError();
+
+      expect(mockShopeeFetch).toHaveBeenCalledTimes(3);
     });
   });
 });

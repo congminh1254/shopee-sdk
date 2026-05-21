@@ -32,7 +32,7 @@ import {
 } from "../../schemas/livestream.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("LiveStreamManager", () => {
@@ -187,6 +187,7 @@ describe("LiveStreamManager", () => {
         title: "Updated Title",
         description: "Updated description",
         cover_image_url: "https://cf.shopee.sg/file/updated.jpg",
+        is_test: true,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_session", {
@@ -196,6 +197,7 @@ describe("LiveStreamManager", () => {
           title: "Updated Title",
           description: "Updated description",
           cover_image_url: "https://cf.shopee.sg/file/updated.jpg",
+          is_test: true,
         },
       });
 
@@ -612,6 +614,7 @@ describe("LiveStreamManager", () => {
         session_id: 6236215,
         offset: 0,
         page_size: 10,
+        keyword: "Summer",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_like_item_list", {
@@ -620,6 +623,7 @@ describe("LiveStreamManager", () => {
           session_id: 6236215,
           offset: 0,
           page_size: 10,
+          keyword: "Summer",
         },
       });
 
@@ -641,6 +645,7 @@ describe("LiveStreamManager", () => {
       const result = await liveStreamManager.applyItemSet({
         session_id: 6236215,
         item_set_id: 12345,
+        item_set_ids: [12345, 67890],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/apply_item_set", {
@@ -648,6 +653,7 @@ describe("LiveStreamManager", () => {
         body: {
           session_id: 6236215,
           item_set_id: 12345,
+          item_set_ids: [12345, 67890],
         },
       });
 
@@ -684,6 +690,7 @@ describe("LiveStreamManager", () => {
       const result = await liveStreamManager.getItemSetList({
         offset: 0,
         page_size: 10,
+        keyword: "Collection",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_set_list", {
@@ -691,6 +698,7 @@ describe("LiveStreamManager", () => {
         params: {
           offset: 0,
           page_size: 10,
+          keyword: "Collection",
         },
       });
 
@@ -885,6 +893,7 @@ describe("LiveStreamManager", () => {
       const result = await liveStreamManager.postComment({
         session_id: 6236215,
         comment: "Great product!",
+        content: "Great product content!",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/post_comment", {
@@ -892,6 +901,7 @@ describe("LiveStreamManager", () => {
         body: {
           session_id: 6236215,
           comment: "Great product!",
+          content: "Great product content!",
         },
       });
 
@@ -967,6 +977,7 @@ describe("LiveStreamManager", () => {
       const result = await liveStreamManager.banUserComment({
         session_id: 6236215,
         user_id: 5001,
+        ban_user_id: 5001,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/ban_user_comment", {
@@ -974,6 +985,7 @@ describe("LiveStreamManager", () => {
         body: {
           session_id: 6236215,
           user_id: 5001,
+          ban_user_id: 5001,
         },
       });
 
@@ -995,6 +1007,7 @@ describe("LiveStreamManager", () => {
       const result = await liveStreamManager.unbanUserComment({
         session_id: 6236215,
         user_id: 5001,
+        unban_user_id: 5001,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/unban_user_comment", {
@@ -1002,6 +1015,7 @@ describe("LiveStreamManager", () => {
         body: {
           session_id: 6236215,
           user_id: 5001,
+          unban_user_id: 5001,
         },
       });
 

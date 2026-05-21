@@ -1,6 +1,7 @@
 import { ShopeeConfig } from "../sdk.js";
 import { ShopeeFetch } from "../fetch.js";
 import { AccessToken } from "../schemas/access-token.js";
+import { GetTokenByResendCodeParams } from "../schemas/public.js";
 import { BaseManager } from "./base.manager.js";
 
 export class AuthManager extends BaseManager {
@@ -45,17 +46,15 @@ export class AuthManager extends BaseManager {
     };
   }
 
-  public async getAccessTokenByResendCode(code: string): Promise<AccessToken> {
-    const body: Record<string, string | number | boolean> = {
-      resend_code: code,
-    };
-
+  public async getAccessTokenByResendCode(
+    params: GetTokenByResendCodeParams
+  ): Promise<AccessToken> {
     const response: AccessToken = await ShopeeFetch.fetch<AccessToken>(
       this.config,
       "/public/get_token_by_resend_code",
       {
         method: "POST",
-        body,
+        body: params,
       }
     );
 

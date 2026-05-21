@@ -41,7 +41,7 @@ import {
 } from "../../schemas/global-product.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("GlobalProductManager", () => {
@@ -524,7 +524,7 @@ describe("GlobalProductManager", () => {
               is_mandatory: true,
               attribute_type: "SELECT",
               attribute_value_list: [],
-            },
+            } as any,
           ],
         },
       };
@@ -1247,7 +1247,7 @@ describe("GlobalProductManager", () => {
               is_mandatory: true,
               attribute_type: "SELECT",
               attribute_value_list: [],
-            },
+            } as any,
           ],
         },
       };

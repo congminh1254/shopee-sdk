@@ -8,4 +8,6 @@ export interface BaseResponse {
   error: string;
   /** Error message if any error occurred */
   message: string;
+  /** Warning message or list of warning messages */
+  warning?: string | string[];
 }

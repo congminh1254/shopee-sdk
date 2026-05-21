@@ -23,7 +23,7 @@ import {
 } from "../../schemas/first-mile.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("FirstMileManager", () => {
@@ -235,7 +235,7 @@ describe("FirstMileManager", () => {
         error: "",
         message: "",
         response: {
-          fail_list: [],
+          order_list: [],
         },
       };
 
@@ -276,7 +276,7 @@ describe("FirstMileManager", () => {
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response?.fail_list).toHaveLength(0);
+      expect(result.response?.order_list).toHaveLength(0);
     });
   });
 
@@ -287,7 +287,7 @@ describe("FirstMileManager", () => {
         error: "",
         message: "",
         response: {
-          fail_list: [],
+          order_list: [],
         },
       };
 
@@ -339,7 +339,7 @@ describe("FirstMileManager", () => {
             },
           ],
           more: false,
-          next_offset: 0,
+          next_cursor: "",
         },
       };
 
@@ -442,7 +442,7 @@ describe("FirstMileManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response?.waybill_list).toHaveLength(1);
+      expect((result.response as any)?.waybill_list).toHaveLength(1);
     });
   });
 
@@ -453,12 +453,7 @@ describe("FirstMileManager", () => {
         error: "",
         message: "",
         response: {
-          courier_service_list: [
-            {
-              courier_service_id: "1",
-              courier_service_name: "Test Courier",
-            },
-          ],
+          logistics_channel_list: [],
         },
       };
 
@@ -491,11 +486,10 @@ describe("FirstMileManager", () => {
         error: "",
         message: "",
         response: {
-          warehouse_list: [
+          transit_warehouse_list: [
             {
               warehouse_id: "WH001",
-              warehouse_name: "Test Warehouse",
-              warehouse_address: "123 Test St",
+              warehouse_name_en: "Test Warehouse",
             },
           ],
         },
@@ -635,7 +629,6 @@ describe("FirstMileManager", () => {
         message: "",
         response: {
           binding_id: "BINDING123456",
-          shipment_method: "courier_delivery",
           status: "PICKED_UP",
           declare_date: "2024-01-15",
           order_list: [
@@ -681,14 +674,14 @@ describe("FirstMileManager", () => {
         error: "",
         message: "",
         response: {
-          binding_info_list: [
+          tracking_number_list: [
             {
               binding_id: "BINDING123456",
               declare_date: "2024-01-15",
             },
           ],
           more: false,
-          next_offset: 0,
+          next_cursor: "",
         },
       };
 
@@ -728,7 +721,7 @@ describe("FirstMileManager", () => {
           waybill_list: [
             {
               binding_id: "BINDING123456",
-              waybill: "base64_encoded_pdf_content",
+              shipping_label_url: "base64_encoded_pdf_content",
             },
           ],
         },

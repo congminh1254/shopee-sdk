@@ -10,7 +10,7 @@
 **Node Version**: >= 18.0.0  
 **Main Entry**: `src/sdk.ts` → `lib/sdk.js` (compiled)  
 **Dependencies**: Minimal (only `node-fetch`)  
-**Test Coverage**: 75%+, 86 comprehensive tests
+**Test Coverage**: 95%+, 671 comprehensive tests
 
 ## 🏗️ Project Structure
 
@@ -21,7 +21,7 @@ shopee-sdk/
 │   ├── fetch.ts                  # HTTP client with auto-signing
 │   ├── errors.ts                 # Custom error classes
 │   ├── version.ts                # Auto-generated version file
-│   ├── managers/                 # API endpoint managers (27 total)
+│   ├── managers/                 # API endpoint managers (29 total)
 │   │   ├── base.manager.ts       # Abstract base class
 │   │   ├── auth.manager.ts       # OAuth & token management
 │   │   ├── product.manager.ts    # Product catalog (55+ endpoints)
@@ -47,6 +47,7 @@ shopee-sdk/
 │   │   ├── sbs.manager.ts        # SBS warehouse inventory
 │   │   ├── fbs.manager.ts        # Fulfillment by Shopee
 │   │   ├── livestream.manager.ts # Live streaming
+│   │   ├── video.manager.ts      # Shopee Video features & analytics
 │   │   ├── ams.manager.ts        # AMS (Advertising Management)
 │   │   ├── push.manager.ts       # Webhooks
 │   │   ├── public.manager.ts     # Public endpoints (no auth)
@@ -97,16 +98,16 @@ class ShopeeSDK {
   private config: ShopeeConfig;
   private tokenStorage: TokenStorage;
   
-  // 27 Manager instances (public properties)
+  // 29 Manager instances (public properties)
   public readonly product: ProductManager;
   public readonly order: OrderManager;
   public readonly auth: AuthManager;
-  // ... 24 more managers
+  // ... 26 more managers
   
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     // Initialize config with defaults
     // Initialize token storage
-    // Initialize all 27 managers
+    // Initialize all 29 managers
   }
   
   // Authentication helpers
@@ -157,7 +158,7 @@ HMAC-SHA256(
 
 ### 3. Manager Pattern
 
-All 27 managers extend `BaseManager`:
+All 29 managers extend `BaseManager`:
 
 ```typescript
 abstract class BaseManager {
@@ -261,7 +262,7 @@ ShopeeFetch.fetch()
 Return typed response
 ```
 
-## 📦 All 27 Managers
+## 📦 All 29 Managers
 
 | Manager | Purpose | Auth Required | Key Methods |
 |---------|---------|--------------|-------------|
@@ -291,6 +292,7 @@ Return typed response
 | **SbsManager** | SBS warehouse | Yes | `getInventory`, `updateInventory` |
 | **FbsManager** | Fulfillment by Shopee | Yes | `getFbsOrder`, `confirmFbsOrder` |
 | **LivestreamManager** | Live streaming | Yes | `createSession`, `getSessionInfo` |
+| **VideoManager** | Shopee Video | Yes | `getVideoList`, `postVideo`, `deleteVideo` |
 | **PushManager** | Webhooks | Yes | `setPushConfig`, `getPushConfig` |
 | **PublicManager** | Public endpoints | No | `getShopsByPartner`, `getCategories` |
 
@@ -727,6 +729,6 @@ When working with this SDK, ensure you:
 
 ---
 
-**Last Updated**: January 2026  
+**Last Updated**: May 2026  
 **SDK Version**: 1.4.0  
 **Maintained By**: Community (congminh1254)

@@ -393,6 +393,10 @@ export type DisputeParams = {
   dispute_text_reason?: string;
   /** Images for dispute */
   images?: string[];
+  /** Dispute reason ID */
+  dispute_reason_id?: number;
+  /** Image list */
+  image_list?: string[];
 };
 
 /**
@@ -415,6 +419,10 @@ export type OfferParams = {
   solution: number;
   /** Refund amount */
   refund_amount?: number;
+  /** Proposed solution */
+  proposed_solution?: string;
+  /** Proposed adjusted refund amount */
+  proposed_adjusted_refund_amount?: number;
 };
 
 /**
@@ -479,6 +487,8 @@ export interface GetAvailableSolutionsResponse extends BaseResponse {
 export type CancelDisputeParams = {
   /** Return serial number */
   return_sn: string;
+  /** Email for contact */
+  email?: string;
 };
 
 /**
@@ -533,6 +543,10 @@ export interface ImageToConvert {
 export type ConvertImageParams = {
   /** Images to convert */
   images: ImageToConvert[];
+  /** Return serial number */
+  return_sn?: string;
+  /** Upload image content */
+  upload_image?: string;
 };
 
 /**
@@ -582,6 +596,16 @@ export interface ProofVideoItem {
 /**
  * Parameters for uploading proof
  */
+/**
+ * Proof photo item
+ */
+export interface ProofPhotoItem {
+  /** Uploaded proof image link */
+  url: string;
+  /** The proof image thumbnail */
+  thumbnail: string;
+}
+
 export type UploadProofParams = {
   /** Return serial number */
   return_sn: string;
@@ -591,6 +615,10 @@ export type UploadProofParams = {
   proof_image?: ProofImageItem[];
   /** Proof videos */
   proof_video?: ProofVideoItem[];
+  /** Proof photos */
+  photo?: ProofPhotoItem[];
+  /** Proof description */
+  description?: string;
 };
 
 /**
@@ -670,8 +698,16 @@ export type UploadShippingProofParams = {
   carrier_id: number;
   /** Tracking number */
   tracking_number: string;
+  /** Reverse logistics carrier ID */
+  reverse_logistics_carrier_id?: number;
+  /** Reverse logistics carrier name */
+  reverse_logistics_carrier_name?: string;
+  /** Image ID list */
+  image_id_list?: Array<{ image_id?: string }>;
+  /** Remarks */
+  remarks?: string;
   /** Additional fields as key-value pairs */
-  [key: string]: string | number;
+  [key: string]: any;
 };
 
 /**

@@ -353,6 +353,14 @@ export type GetShopHolidayModeResponse = BaseResponse & {
     holiday_mode_on?: boolean;
     /** The last time the holiday mode was modified */
     holiday_mode_mtime?: number;
+    /** Holiday type: 0 - Full holiday, 1 - Partial holiday */
+    holiday_mode_type?: number;
+    /** Holiday start time timestamp */
+    holiday_mode_start_time?: number;
+    /** Holiday end time timestamp */
+    holiday_mode_end_time?: number;
+    /** Description of the holiday */
+    holiday_mode_description?: string;
     /** Debug message */
     debug_msg?: string;
   };
@@ -364,6 +372,14 @@ export type GetShopHolidayModeResponse = BaseResponse & {
 export type SetShopHolidayModeParams = {
   /** Indicate whether to enable holiday mode for the shop. true means turn ON, false means turn OFF. */
   holiday_mode_on: boolean;
+  /** Holiday type: 0 - Full holiday, 1 - Partial holiday */
+  holiday_mode_type?: number;
+  /** Holiday start time timestamp */
+  holiday_mode_start_time?: number;
+  /** Holiday end time timestamp */
+  holiday_mode_end_time?: number;
+  /** Description of the holiday */
+  holiday_mode_description?: string;
 };
 
 /**

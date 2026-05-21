@@ -101,6 +101,8 @@ export type GetMerchantPrepaidAccountListResponse = MerchantResponse<{
 export interface GetMerchantWarehouseListParams {
   /** Pagination cursor */
   cursor: DoubleSidedCursor;
+  /** Type of warehouse: 1 = pickup, 2 = return */
+  warehouse_type?: number;
 }
 
 /**

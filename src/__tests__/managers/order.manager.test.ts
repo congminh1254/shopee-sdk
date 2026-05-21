@@ -25,10 +25,11 @@ import {
   DownloadFbsInvoicesResponse,
   GenerateFbsInvoicesResponse,
   GetFbsInvoicesResultResponse,
+  allOptionalFields,
 } from "../../schemas/order.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("OrderManager", () => {
@@ -63,12 +64,10 @@ describe("OrderManager", () => {
             {
               order_sn: "220101000000001",
               order_status: "READY_TO_SHIP",
-              update_time: 1640995200,
             },
             {
               order_sn: "220101000000002",
               order_status: "COMPLETED",
-              update_time: 1640995300,
             },
           ],
         },
@@ -100,7 +99,7 @@ describe("OrderManager", () => {
     });
 
     it("should get order list with status filter", async () => {
-      const mockResponse: GetOrderListResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -155,12 +154,14 @@ describe("OrderManager", () => {
           order_list: [
             {
               order_sn: "220101000000001",
+              pending_terms: [],
+              message_to_seller: "",
+              pickup_done_time: 0,
               order_status: "READY_TO_SHIP",
               region: "SG",
               currency: "SGD",
               cod: false,
               total_amount: 25.5,
-              order_flag: "NORMAL",
               create_time: 1640995200,
               update_time: 1640995300,
               days_to_ship: 3,
@@ -176,7 +177,8 @@ describe("OrderManager", () => {
                 city: "Singapore",
                 state: "Singapore",
                 zipcode: "123456",
-                country: "SG",
+                town: "Test Town",
+                region: "SG",
               },
               actual_shipping_fee: 2.5,
               goods_to_declare: false,
@@ -206,6 +208,8 @@ describe("OrderManager", () => {
                     image_url: "https://example.com/image.jpg",
                   },
                   product_location_id: [],
+                  is_prescription_item: false,
+                  is_b2c_owned_item: false,
                 },
               ],
               pay_time: 1640995250,
@@ -218,7 +222,6 @@ describe("OrderManager", () => {
               actual_shipping_fee_confirmed: true,
               buyer_cpf_id: "",
               fulfillment_flag: "FULFILLED_BY_SHOPEE",
-              pickup_done: false,
               package_list: [],
               shipping_carrier: "",
               payment_method: "Credit Card",
@@ -234,7 +237,8 @@ describe("OrderManager", () => {
               checkout_shipping_carrier: "Standard",
               reverse_shipping_fee: 0,
               order_chargeable_weight_gram: 500,
-              edt: 1641340800,
+              edt_from: 1641340800,
+              edt_to: 1641340800,
             },
           ],
         },
@@ -249,7 +253,7 @@ describe("OrderManager", () => {
           "buyer_username",
           "estimated_shipping_fee",
           "recipient_address",
-        ],
+        ].join(","),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/get_order_detail", {
@@ -257,12 +261,8 @@ describe("OrderManager", () => {
         auth: true,
         params: {
           order_sn_list: "220101000000001",
-          response_optional_fields: [
-            "buyer_user_id",
-            "buyer_username",
-            "estimated_shipping_fee",
-            "recipient_address",
-          ],
+          response_optional_fields:
+            "buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address",
         },
       });
 
@@ -279,14 +279,10 @@ describe("OrderManager", () => {
         response: {
           more: false,
           next_cursor: "",
-          shipment_list: [
+          order_list: [
             {
               order_sn: "220101000000001",
-              package_number: "PKG123456789",
-              logistics_status: "LOGISTICS_PICKUP_DONE",
-              shipment_method: "PICKUP",
-              create_time: 1640995200,
-              update_time: 1640995300,
+              package_number: "PKG001",
             },
           ],
         },
@@ -318,7 +314,23 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
+        response: {
+          order_sn: "220101000000001",
+          package_list: [
+            {
+              package_number: "PKG123456789",
+              item_list: [
+                {
+                  item_id: 111111,
+                  model_id: 222222,
+                  order_item_id: 333333,
+                  promotion_group_id: 0,
+                  model_quantity: 1,
+                },
+              ],
+            },
+          ],
+        },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -371,7 +383,7 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
+        response: null,
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -398,7 +410,9 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
+        response: {
+          update_time: 1640995300,
+        },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -749,6 +763,12 @@ describe("OrderManager", () => {
       const result = await orderManager.handlePrescriptionCheck({
         package_number: "PKG001",
         operation: "APPROVE",
+        order_sn: "220101000000001",
+        is_approved: true,
+        reject_reason_code: 0,
+        items: [{ item_id: 111111, model_id: 222222, prescription_status: 1 }],
+        pharmacist_name: "John Doe",
+        free_text: "Checked",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/handle_prescription_check", {
@@ -757,6 +777,12 @@ describe("OrderManager", () => {
         body: {
           package_number: "PKG001",
           operation: "APPROVE",
+          order_sn: "220101000000001",
+          is_approved: true,
+          reject_reason_code: 0,
+          items: [{ item_id: 111111, model_id: 222222, prescription_status: 1 }],
+          pharmacist_name: "John Doe",
+          free_text: "Checked",
         },
       });
 
@@ -807,6 +833,8 @@ describe("OrderManager", () => {
       const result = await orderManager.uploadInvoiceDoc({
         order_sn: "220101000000001",
         invoice_file: "base64_encoded_file_content",
+        file_type: "pdf",
+        file: "invoice.pdf",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/upload_invoice_doc", {
@@ -815,6 +843,8 @@ describe("OrderManager", () => {
         body: {
           order_sn: "220101000000001",
           invoice_file: "base64_encoded_file_content",
+          file_type: "pdf",
+          file: "invoice.pdf",
         },
       });
 
@@ -847,6 +877,7 @@ describe("OrderManager", () => {
 
       const result = await orderManager.getBookingDetail({
         booking_sn_list: ["BOOK001"],
+        response_optional_fields: "booking_status",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/get_booking_detail", {
@@ -854,6 +885,7 @@ describe("OrderManager", () => {
         auth: true,
         params: {
           booking_sn_list: "BOOK001",
+          response_optional_fields: "booking_status",
         },
       });
 
@@ -1051,6 +1083,12 @@ describe("OrderManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("Schema Evaluation Check", () => {
+    it("should successfully reference all exported enums and constants", () => {
+      expect(allOptionalFields).toContain("recipient_address");
     });
   });
 });

@@ -20,10 +20,12 @@ import {
   GetBillingTransactionInfoResponse,
   GetPayoutDetailResponse,
   GetPayoutInfoResponse,
+  GetIncomeDetailResponse,
+  GetIncomeOverviewResponse,
 } from "../../schemas/payment.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PaymentManager", () => {
@@ -63,50 +65,74 @@ describe("PaymentManager", () => {
             shopee_discount: 0.0,
             voucher_from_seller: 0.0,
             voucher_from_shopee: 0.0,
-            coin: 0.0,
+            coins: 0.0,
+            buyer_paid_shipping_fee: 2.5,
+            buyer_transaction_fee: 0.0,
+            cross_border_tax: 0.0,
+            payment_promotion: 0.0,
+            commission_fee: 1.38,
+            service_fee: 0.12,
+            seller_transaction_fee: 0.0,
+            seller_lost_compensation: 0.0,
+            seller_coin_cash_back: 0.0,
             escrow_tax: 0.5,
-            final_escrow_tax: 0.5,
-            seller_shipping_discount: 0.0,
             estimated_shipping_fee: 2.5,
-            drc_adjustable_refund: 0.0,
             final_shipping_fee: 2.5,
             actual_shipping_fee: 2.5,
             shopee_shipping_rebate: 0.0,
             shipping_fee_discount_from_3pl: 0.0,
+            seller_shipping_discount: 0.0,
+            seller_voucher_code: [],
+            drc_adjustable_refund: 0.0,
+            cost_of_goods_sold: 23.0,
+            original_cost_of_goods_sold: 23.0,
+            original_shopee_discount: 0.0,
+            seller_return_refund: 0.0,
+            reverse_shipping_fee: 0.0,
+            final_product_protection: 0.0,
             credit_card_promotion: 0.0,
+            credit_card_transaction_fee: 0.0,
+            final_product_vat_tax: 0.0,
             items: [
               {
                 item_id: 111111,
                 item_name: "Test Product",
+                item_sku: "TEST-SKU-001-RED-L",
                 model_id: 222222,
                 model_name: "Red-Large",
-                quantity_purchased: 1,
+                model_sku: "TEST-SKU-001-RED-L",
                 original_price: 23.0,
-                sale_price: 23.0,
+                discounted_price: 23.0,
                 seller_discount: 0.0,
                 shopee_discount: 0.0,
-                final_product_price: 23.0,
-                seller_sku: "TEST-SKU-001-RED-L",
+                discount_from_coin: 0.0,
+                discount_from_voucher_shopee: 0.0,
+                discount_from_voucher_seller: 0.0,
+                activity_type: "",
+                activity_id: 0,
+                is_main_item: false,
+                quantity_purchased: 1,
               },
             ],
-            bank_guarantee: 0.0,
-            total_released_amount: 22.5,
-            escrow_detail: {
-              order_chargeable_weight_gram: 500,
-              commission_fee: 1.38,
-              service_fee: 0.12,
-              processing_fee: 0.0,
-              final_commission_fee: 1.38,
-              final_service_fee: 0.12,
-              final_processing_fee: 0.0,
-            },
           },
           buyer_payment_info: {
-            card_info: {
-              issuer: "VISA",
-              last_four_digits: "1234",
-              first_six_digits: "424242",
-            },
+            buyer_payment_method: "Credit Card",
+            buyer_service_fee: 0.0,
+            buyer_tax_amount: 0.0,
+            buyer_total_amount: 25.5,
+            credit_card_promotion: 0.0,
+            icms_tax_amount: 0.0,
+            import_tax_amount: 0.0,
+            initial_buyer_txn_fee: 0.0,
+            insurance_premium: 0.0,
+            iof_tax_amount: 0.0,
+            is_paid_by_credit_card: true,
+            merchant_subtotal: 23.0,
+            seller_voucher: 0.0,
+            shipping_fee: 2.5,
+            shipping_fee_sst_amount: 0.0,
+            shopee_voucher: 0.0,
+            shopee_coins_redeemed: 0.0,
           },
         },
       };
@@ -148,50 +174,74 @@ describe("PaymentManager", () => {
             shopee_discount: 0.0,
             voucher_from_seller: 0.0,
             voucher_from_shopee: 0.0,
-            coin: 0.0,
+            coins: 0.0,
+            buyer_paid_shipping_fee: 2.5,
+            buyer_transaction_fee: 0.0,
+            cross_border_tax: 0.0,
+            payment_promotion: 0.0,
+            commission_fee: 1.26,
+            service_fee: 0.09,
+            seller_transaction_fee: 0.0,
+            seller_lost_compensation: 0.0,
+            seller_coin_cash_back: 0.0,
             escrow_tax: 0.25,
-            final_escrow_tax: 0.25,
-            seller_shipping_discount: 0.0,
             estimated_shipping_fee: 2.5,
-            drc_adjustable_refund: 2.0,
             final_shipping_fee: 2.5,
             actual_shipping_fee: 2.5,
             shopee_shipping_rebate: 0.0,
             shipping_fee_discount_from_3pl: 0.0,
+            seller_shipping_discount: 0.0,
+            seller_voucher_code: [],
+            drc_adjustable_refund: 2.0,
+            cost_of_goods_sold: 21.0,
+            original_cost_of_goods_sold: 23.0,
+            original_shopee_discount: 0.0,
+            seller_return_refund: 0.0,
+            reverse_shipping_fee: 0.0,
+            final_product_protection: 0.0,
             credit_card_promotion: 0.0,
+            credit_card_transaction_fee: 0.0,
+            final_product_vat_tax: 0.0,
             items: [
               {
                 item_id: 333333,
                 item_name: "Another Test Product",
+                item_sku: "TEST-SKU-002-BLUE-M",
                 model_id: 444444,
                 model_name: "Blue-Medium",
-                quantity_purchased: 1,
+                model_sku: "TEST-SKU-002-BLUE-M",
                 original_price: 23.0,
-                sale_price: 21.0,
+                discounted_price: 21.0,
                 seller_discount: 2.0,
                 shopee_discount: 0.0,
-                final_product_price: 21.0,
-                seller_sku: "TEST-SKU-002-BLUE-M",
+                discount_from_coin: 0.0,
+                discount_from_voucher_shopee: 0.0,
+                discount_from_voucher_seller: 0.0,
+                activity_type: "",
+                activity_id: 0,
+                is_main_item: false,
+                quantity_purchased: 1,
               },
             ],
-            bank_guarantee: 0.0,
-            total_released_amount: 18.75,
-            escrow_detail: {
-              order_chargeable_weight_gram: 300,
-              commission_fee: 1.26,
-              service_fee: 0.09,
-              processing_fee: 0.0,
-              final_commission_fee: 1.26,
-              final_service_fee: 0.09,
-              final_processing_fee: 0.0,
-            },
           },
           buyer_payment_info: {
-            card_info: {
-              issuer: "MASTERCARD",
-              last_four_digits: "5678",
-              first_six_digits: "555555",
-            },
+            buyer_payment_method: "Credit Card",
+            buyer_service_fee: 0.0,
+            buyer_tax_amount: 0.0,
+            buyer_total_amount: 23.5,
+            credit_card_promotion: 0.0,
+            icms_tax_amount: 0.0,
+            import_tax_amount: 0.0,
+            initial_buyer_txn_fee: 0.0,
+            insurance_premium: 0.0,
+            iof_tax_amount: 0.0,
+            is_paid_by_credit_card: true,
+            merchant_subtotal: 21.0,
+            seller_voucher: 0.0,
+            shipping_fee: 2.5,
+            shipping_fee_sst_amount: 0.0,
+            shopee_voucher: 0.0,
+            shopee_coins_redeemed: 0.0,
           },
         },
       };
@@ -233,50 +283,74 @@ describe("PaymentManager", () => {
             shopee_discount: 0.0,
             voucher_from_seller: 0.0,
             voucher_from_shopee: 0.0,
-            coin: 0.0,
+            coins: 0.0,
+            buyer_paid_shipping_fee: 0.0,
+            buyer_transaction_fee: 0.0,
+            cross_border_tax: 0.0,
+            payment_promotion: 0.0,
+            commission_fee: 0.0,
+            service_fee: 0.0,
+            seller_transaction_fee: 0.0,
+            seller_lost_compensation: 0.0,
+            seller_coin_cash_back: 0.0,
             escrow_tax: 0.0,
-            final_escrow_tax: 0.0,
-            seller_shipping_discount: 0.0,
             estimated_shipping_fee: 0.0,
-            drc_adjustable_refund: 0.0,
             final_shipping_fee: 0.0,
             actual_shipping_fee: 0.0,
             shopee_shipping_rebate: 0.0,
             shipping_fee_discount_from_3pl: 0.0,
+            seller_shipping_discount: 0.0,
+            seller_voucher_code: [],
+            drc_adjustable_refund: 0.0,
+            cost_of_goods_sold: 15.0,
+            original_cost_of_goods_sold: 15.0,
+            original_shopee_discount: 0.0,
+            seller_return_refund: 0.0,
+            reverse_shipping_fee: 0.0,
+            final_product_protection: 0.0,
             credit_card_promotion: 0.0,
+            credit_card_transaction_fee: 0.0,
+            final_product_vat_tax: 0.0,
             items: [
               {
                 item_id: 555555,
                 item_name: "Digital Product",
+                item_sku: "DIGITAL-001",
                 model_id: 666666,
                 model_name: "Standard",
-                quantity_purchased: 1,
+                model_sku: "DIGITAL-001",
                 original_price: 15.0,
-                sale_price: 15.0,
+                discounted_price: 15.0,
                 seller_discount: 0.0,
                 shopee_discount: 0.0,
-                final_product_price: 15.0,
-                seller_sku: "DIGITAL-001",
+                discount_from_coin: 0.0,
+                discount_from_voucher_shopee: 0.0,
+                discount_from_voucher_seller: 0.0,
+                activity_type: "",
+                activity_id: 0,
+                is_main_item: false,
+                quantity_purchased: 1,
               },
             ],
-            bank_guarantee: 0.0,
-            total_released_amount: 15.0,
-            escrow_detail: {
-              order_chargeable_weight_gram: 0,
-              commission_fee: 0.0,
-              service_fee: 0.0,
-              processing_fee: 0.0,
-              final_commission_fee: 0.0,
-              final_service_fee: 0.0,
-              final_processing_fee: 0.0,
-            },
           },
           buyer_payment_info: {
-            card_info: {
-              issuer: "PAYPAL",
-              last_four_digits: "",
-              first_six_digits: "",
-            },
+            buyer_payment_method: "Credit Card",
+            buyer_service_fee: 0.0,
+            buyer_tax_amount: 0.0,
+            buyer_total_amount: 15.0,
+            credit_card_promotion: 0.0,
+            icms_tax_amount: 0.0,
+            import_tax_amount: 0.0,
+            initial_buyer_txn_fee: 0.0,
+            insurance_premium: 0.0,
+            iof_tax_amount: 0.0,
+            is_paid_by_credit_card: false,
+            merchant_subtotal: 15.0,
+            seller_voucher: 0.0,
+            shipping_fee: 0.0,
+            shipping_fee_sst_amount: 0.0,
+            shopee_voucher: 0.0,
+            shopee_coins_redeemed: 0.0,
           },
         },
       };
@@ -290,7 +364,7 @@ describe("PaymentManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.order_income.escrow_amount).toBe(15.0);
       expect(result.response.order_income.final_shipping_fee).toBe(0.0);
-      expect(result.response.order_income.escrow_detail.commission_fee).toBe(0.0);
+      expect(result.response.order_income.commission_fee).toBe(0.0);
     });
   });
 
@@ -1146,6 +1220,119 @@ describe("PaymentManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.payout_list).toHaveLength(1);
       expect(result.response.payout_list[0].payout_fee).toBe(25.0);
+    });
+  });
+
+  describe("getIncomeDetail", () => {
+    it("should get income detail successfully", async () => {
+      const mockResponse: GetIncomeDetailResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        income_detail_list: {
+          list: [
+            {
+              actual_payout_time: 1762532978,
+              currency: "IDR",
+              order_sn: "251101MPY3RDD3",
+              payment_method: "Cash on Delivery",
+              released_amount: 19246,
+              status: "Dana telah dilepaskan",
+            },
+          ],
+          next_page: {
+            cursor: "216223606250140",
+            page_size: 10,
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await paymentManager.getIncomeDetail({
+        date_from: "2025-08-08",
+        date_to: "2025-08-20",
+        income_status: 1,
+        cursor: "",
+        page_size: 10,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_detail", {
+        method: "GET",
+        auth: true,
+        params: {
+          date_from: "2025-08-08",
+          date_to: "2025-08-20",
+          income_status: 1,
+          cursor: "",
+          page_size: 10,
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.income_detail_list?.list).toHaveLength(1);
+      expect(result.income_detail_list?.next_page?.cursor).toBe("216223606250140");
+    });
+  });
+
+  describe("getIncomeOverview", () => {
+    it("should get income overview successfully", async () => {
+      const mockResponse: GetIncomeOverviewResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        total_income: {
+          pending_amount: 4010,
+          released_amount: 1545,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await paymentManager.getIncomeOverview({
+        income_status: 1,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_overview", {
+        method: "GET",
+        auth: true,
+        params: {
+          income_status: 1,
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.total_income?.pending_amount).toBe(4010);
+      expect(result.total_income?.released_amount).toBe(1545);
+    });
+
+    it("should get income overview without parameters", async () => {
+      const mockResponse: GetIncomeOverviewResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          latest_payout_date: "2025-08-19",
+          total_income: {
+            pending_amount: 330598.87,
+            released_amount: 330598.87,
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await paymentManager.getIncomeOverview();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_overview", {
+        method: "GET",
+        auth: true,
+        params: undefined,
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response?.latest_payout_date).toBe("2025-08-19");
+      expect(result.response?.total_income?.pending_amount).toBe(330598.87);
     });
   });
 });

@@ -43,7 +43,7 @@ import {
 } from "../../schemas/ams.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AmsManager", () => {
@@ -969,6 +969,10 @@ describe("AmsManager", () => {
         period_type: "Last7d",
         start_date: "20250120",
         end_date: "20250127",
+        order_type: 2,
+        channel: "custom",
+        affiliate_id: "aff_123",
+        item_id: 456,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_content_performance", {
@@ -978,6 +982,10 @@ describe("AmsManager", () => {
           period_type: "Last7d",
           start_date: "20250120",
           end_date: "20250127",
+          order_type: 2,
+          channel: "custom",
+          affiliate_id: "aff_123",
+          item_id: 456,
         },
       });
 
@@ -1008,12 +1016,20 @@ describe("AmsManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await amsManager.getConversionReport();
+      const result = await amsManager.getConversionReport({
+        item_name: "Awesome Item",
+        order_status: 3,
+        attr_campaign_id: "campaign_xyz",
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_conversion_report", {
         method: "GET",
         auth: true,
-        params: {},
+        params: {
+          item_name: "Awesome Item",
+          order_status: 3,
+          attr_campaign_id: "campaign_xyz",
+        },
       });
 
       expect(result.error).toBe("");
@@ -1145,6 +1161,9 @@ describe("AmsManager", () => {
         period_type: "Last30d",
         start_date: "20250101",
         end_date: "20250131",
+        order_type: 1,
+        channel: "livestream",
+        item_id: 789,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_product_performance", {
@@ -1154,6 +1173,9 @@ describe("AmsManager", () => {
           period_type: "Last30d",
           start_date: "20250101",
           end_date: "20250131",
+          order_type: 1,
+          channel: "livestream",
+          item_id: 789,
         },
       });
 
@@ -1318,12 +1340,18 @@ describe("AmsManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await amsManager.getValidationReport();
+      const result = await amsManager.getValidationReport({
+        order_sn: "ORDER999",
+        item_id: 111,
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_validation_report", {
         method: "GET",
         auth: true,
-        params: {},
+        params: {
+          order_sn: "ORDER999",
+          item_id: 111,
+        },
       });
 
       expect(result.error).toBe("");
@@ -1462,6 +1490,17 @@ describe("AmsManager", () => {
       );
 
       expect(result.error).toBe("");
+    });
+  });
+
+  describe("Default Params Coverage", () => {
+    it("should cover AmsManager methods with default parameters", async () => {
+      mockShopeeFetch.mockResolvedValue({ response: {} });
+
+      await amsManager.getConversionReport(undefined);
+      await amsManager.getValidationReport(undefined);
+
+      expect(mockShopeeFetch).toHaveBeenCalledTimes(2);
     });
   });
 });

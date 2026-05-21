@@ -20,7 +20,7 @@ import {
 } from "../../schemas/discount.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("DiscountManager", () => {
@@ -369,6 +369,8 @@ describe("DiscountManager", () => {
         discount_status: DiscountStatus.ONGOING,
         page_no: 1,
         page_size: 100,
+        update_time_from: 1609459200,
+        update_time_to: 1609545600,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_discount_list", {
@@ -378,6 +380,8 @@ describe("DiscountManager", () => {
           discount_status: "ongoing",
           page_no: 1,
           page_size: 100,
+          update_time_from: 1609459200,
+          update_time_to: 1609545600,
         },
       });
 

@@ -305,6 +305,8 @@ export type GetOpenCampaignPerformanceParams = {
   page_no?: number;
   /** Page size */
   page_size?: number;
+  /** Item ID */
+  item_id?: number;
 };
 
 /**
@@ -481,6 +483,14 @@ export type GetTargetedCampaignListParams = {
   campaign_name?: string;
   /** Campaign status to filter */
   campaign_status?: string;
+  /** Period start time */
+  period_start_time?: number;
+  /** Period end time */
+  period_end_time?: number;
+  /** Item ID */
+  item_id?: number;
+  /** Item name */
+  item_name?: string;
 };
 
 /**
@@ -530,6 +540,8 @@ export type GetTargetedCampaignPerformanceParams = {
   page_no?: number;
   /** Page size */
   page_size?: number;
+  /** Campaign ID */
+  campaign_id?: number;
 };
 
 /**
@@ -667,6 +679,12 @@ export type GetAffiliatePerformanceParams = {
   page_no?: number;
   /** Page size */
   page_size?: number;
+  /** Order type filter: 1: all, 2: completed, 3: cancelled, etc. */
+  order_type?: number;
+  /** Traffic channel: custom, livestream, affiliate, etc. */
+  channel?: string;
+  /** Affiliate ID to filter */
+  affiliate_id?: string;
 };
 
 /**
@@ -750,6 +768,14 @@ export type GetContentPerformanceParams = {
   page_no?: number;
   /** Page size */
   page_size?: number;
+  /** Order type filter */
+  order_type?: number;
+  /** Traffic channel */
+  channel?: string;
+  /** Affiliate ID */
+  affiliate_id?: string;
+  /** Item ID */
+  item_id?: number;
 };
 
 /**
@@ -791,6 +817,46 @@ export type GetConversionReportParams = {
   affiliate_id?: number;
   /** Item ID to filter */
   item_id?: number;
+  /** Item name */
+  item_name?: string;
+  /** L1 category ID */
+  l1_category_id?: number;
+  /** L2 category ID */
+  l2_category_id?: number;
+  /** L3 category ID */
+  l3_category_id?: number;
+  /** Order status */
+  order_status?: number;
+  /** Verified status */
+  verified_status?: number;
+  /** Buyer status */
+  buyer_status?: number;
+  /** Attr campaign ID */
+  attr_campaign_id?: string;
+  /** Campaign partner */
+  campaign_partner?: string;
+  /** Seller campaign type */
+  seller_campaign_type?: string;
+  /** Deduction status */
+  deduction_status?: number;
+  /** Deduction method */
+  deduction_method?: string;
+  /** Place order time start */
+  place_order_time_start?: number;
+  /** Place order time end */
+  place_order_time_end?: number;
+  /** Order completed time start */
+  order_completed_time_start?: number;
+  /** Order completed time end */
+  order_completed_time_end?: number;
+  /** Conversion completed time start */
+  conversion_completed_time_start?: number;
+  /** Conversion completed time end */
+  conversion_completed_time_end?: number;
+  /** AMS deduction time start */
+  ams_deduction_time_start?: number;
+  /** AMS deduction time end */
+  ams_deduction_time_end?: number;
 };
 
 /**
@@ -914,6 +980,12 @@ export type GetProductPerformanceParams = {
   page_no?: number;
   /** Page size */
   page_size?: number;
+  /** Order type filter */
+  order_type?: number;
+  /** Traffic channel */
+  channel?: string;
+  /** Item ID */
+  item_id?: number;
 };
 
 /**
@@ -1057,6 +1129,26 @@ export type GetValidationReportParams = {
   validation_month?: string;
   /** Campaign source */
   campaign_source?: string;
+  /** Order SN */
+  order_sn?: string;
+  /** L1 category ID */
+  l1_category_id?: number;
+  /** L2 category ID */
+  l2_category_id?: number;
+  /** L3 category ID */
+  l3_category_id?: number;
+  /** Item ID */
+  item_id?: number;
+  /** Item name */
+  item_name?: string;
+  /** Verified status */
+  verified_status?: number;
+  /** Attr campaign ID */
+  attr_campaign_id?: string;
+  /** Place order time start */
+  place_order_time_start?: number;
+  /** Place order time end */
+  place_order_time_end?: number;
 };
 
 /**

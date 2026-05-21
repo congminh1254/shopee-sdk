@@ -34,6 +34,7 @@ Build powerful Shopee integrations with confidence using our fully-featured SDK 
 - [PushManager](./docs/managers/push.md) - Webhooks and notifications
 - [PublicManager](./docs/managers/public.md) - Public API endpoints
 - [AdsManager](./docs/managers/ads.md) - Advertising campaigns
+- [AmsManager](./docs/managers/ams.md) - Affiliate Marketing Solutions (AMS)
 - [AccountHealthManager](./docs/managers/account-health.md) - Performance metrics
 - [ShopManager](./docs/managers/shop.md) - Shop information and settings
 - [MediaManager](./docs/managers/media.md) - Image and video upload
@@ -52,6 +53,7 @@ Build powerful Shopee integrations with confidence using our fully-featured SDK 
 - [SbsManager](./docs/managers/sbs.md) - Shopee Business Services (SBS) warehouse inventory
 - [FbsManager](./docs/managers/fbs.md) - Fulfillment by Shopee operations
 - [LivestreamManager](./docs/managers/livestream.md) - Live streaming features
+- [VideoManager](./docs/managers/video.md) - Shopee Video features and analytics
 
 ## Installation
 
@@ -62,7 +64,7 @@ npm install @congminh1254/shopee-sdk
 **Requirements:** Node.js >= 20.0.0
 
 ### What You Get
-✅ Complete TypeScript definitions for all 27 API managers  
+✅ Complete TypeScript definitions for all 29 API managers  
 ✅ Automatic token refresh and management  
 ✅ Built-in error handling and retry logic  
 ✅ Zero dependencies (except node-fetch)  
@@ -126,12 +128,12 @@ See the [Setup Guide](./docs/guides/setup.md) and [Authentication Guide](./docs/
 ## Why Choose This SDK?
 
 ### 🚀 Production-Ready & Battle-Tested
-- **75%+ test coverage** with 86 comprehensive tests - ensuring reliability in production
+- **95%+ test coverage** with 671 comprehensive tests - ensuring reliability in production
 - **Zero compromises** - Every Shopee API endpoint is implemented and documented
 - **Type-safe** - Full TypeScript definitions prevent errors before they happen
 - **Actively maintained** - Regular updates to stay in sync with Shopee API changes
 
-### 💪 Complete API Coverage - All 27 Managers Implemented
+### 💪 Complete API Coverage - All 29 Managers Implemented
 Unlike other SDKs with partial coverage, we provide **complete access** to every Shopee API:
 
 **Core Commerce:**
@@ -148,6 +150,7 @@ Unlike other SDKs with partial coverage, we provide **complete access** to every
 - ⚡ **ShopFlashSaleManager** - Flash sale campaigns
 - 🎯 **FollowPrizeManager** - Follow prize activities
 - ⭐ **TopPicksManager** - Top picks product collections
+- 📣 **AmsManager** - Affiliate marketing solutions (AMS)
 
 **Store Management:**
 - 🏪 **ShopManager** - Shop information and profile management
@@ -167,6 +170,7 @@ Unlike other SDKs with partial coverage, we provide **complete access** to every
 - 🏭 **SbsManager** - Shopee Business Services warehouse inventory
 - 📦 **FbsManager** - Fulfillment by Shopee operations
 - 📹 **LivestreamManager** - Live streaming features
+- 🎬 **VideoManager** - Shopee Video features and analytics
 
 ### ✨ Developer Experience First
 - **Intuitive API design** - Clean, consistent interfaces across all managers

@@ -260,3 +260,121 @@ export interface CancelVideoUploadParams {
  * Response for v2.media_space.cancel_video_upload
  */
 export interface CancelVideoUploadResponse extends BaseResponse {}
+
+/**
+ * Parameters for v2.media.init_video_upload
+ */
+export interface InitMediaVideoUploadParams {
+  /** Defines the business type of the uploaded image. Supported values: 3 = Video */
+  business: number;
+  /** Defines the purpose of the uploaded image under the specified business type. Supported values: If business = 3 (Video): 1 = Shopee Video */
+  scene: number;
+  /** Original video file name */
+  file_name: string;
+  /** Total video file size in bytes. Maximum 1GB. */
+  file_size: number;
+  /** Video duration in seconds. 1s~180s. */
+  duration: number;
+}
+
+/**
+ * Response for v2.media.init_video_upload
+ */
+export interface InitMediaVideoUploadResponse extends BaseResponse {
+  response: {
+    /** Unique upload session ID */
+    video_upload_id: string;
+    /** The size of each part. When uploading video chunks, the video must be split according to this part size for each upload request. */
+    part_size: number;
+  };
+}
+
+/**
+ * Parameters for v2.media.upload_video_part
+ */
+export interface UploadMediaVideoPartParams {
+  /** The unique ID of the upload task, returned by v2.media.init_video_upload */
+  video_upload_id: string;
+  /** Sequence number of this part, starting from 0 */
+  part_seq: number;
+  /** The content of this part of file. Part size should be exactly equal to part_size returned in v2.media.init_video_upload, except last part of file. */
+  part_content: string | Buffer;
+  /** MD5 checksum of this part for data integrity validation */
+  part_md5: string;
+}
+
+/**
+ * Response for v2.media.upload_video_part
+ */
+export interface UploadMediaVideoPartResponse extends BaseResponse {}
+
+/**
+ * Parameters for v2.media.complete_video_upload
+ */
+export interface CompleteMediaVideoUploadParams {
+  /** The unique ID of the upload task, returned by v2.media.init_video_upload */
+  video_upload_id: string;
+}
+
+/**
+ * Response for v2.media.complete_video_upload
+ */
+export interface CompleteMediaVideoUploadResponse extends BaseResponse {}
+
+/**
+ * Parameters for v2.media.get_video_upload_result
+ */
+export interface GetMediaVideoUploadResultParams extends Record<
+  string,
+  string | number | boolean | null | undefined
+> {
+  /** The unique ID of the upload task, returned by v2.media.init_video_upload */
+  video_upload_id: string;
+}
+
+/**
+ * Transcoded video info inside media video upload result
+ */
+export interface MediaVideoUploadResultVideoInfo {
+  /** Video playback url */
+  video_url: string;
+  /** Video thumbnail image url */
+  video_thumbnail_url: string;
+  /** Video thumbnail image width */
+  thumbnail_width: number;
+  /** Video thumbnail image height */
+  thumbnail_height: number;
+  /** Video duration in seconds */
+  duration: number;
+  /** Video resolution, e.g., "960x540" */
+  resolution: string;
+}
+
+/**
+ * Response for v2.media.get_video_upload_result
+ */
+export interface GetMediaVideoUploadResultResponse extends BaseResponse {
+  response: {
+    /** Current status of the upload task: INITIATED, UPLOADING, UPLOADED, PROCESSING, SUCCEEDED, FAILED, CANCELLED */
+    status: string;
+    /** Detailed fail or cancel reason, will be returned if status is FAILED or CANCELLED */
+    reason?: string;
+    /** The time of video status updates */
+    update_time?: number;
+    /** Transcoded video info, will be returned if status is SUCCEEDED */
+    video_info?: MediaVideoUploadResultVideoInfo;
+  };
+}
+
+/**
+ * Parameters for v2.media.cancel_video_upload
+ */
+export interface CancelMediaVideoUploadParams {
+  /** The unique ID of the upload task, returned by v2.media.init_video_upload */
+  video_upload_id: string;
+}
+
+/**
+ * Response for v2.media.cancel_video_upload
+ */
+export interface CancelMediaVideoUploadResponse extends BaseResponse {}

@@ -6,7 +6,7 @@ import { AccessToken } from "../../schemas/access-token.js";
 import { ShopeeFetch } from "../../fetch.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AuthManager", () => {
@@ -121,7 +121,7 @@ describe("AuthManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await authManager.getAccessTokenByResendCode("resend_code");
+      const result = await authManager.getAccessTokenByResendCode({ resend_code: "resend_code" });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_token_by_resend_code", {
         method: "POST",
@@ -191,6 +191,47 @@ describe("AuthManager", () => {
       });
 
       expect(result.shop_id).toBe(123456);
+    });
+  });
+
+  describe("AuthManager Branch Coverage", () => {
+    it("should handle token response already containing expired_at", async () => {
+      const mockResponse = {
+        access_token: "t",
+        refresh_token: "r",
+        expire_in: 3600,
+        expired_at: 9999999999,
+        request_id: "req",
+        error: "",
+        message: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const res1 = await authManager.getAccessTokenByResendCode({ resend_code: "code" });
+      expect(res1.expired_at).toBe(9999999999);
+
+      const res2 = await authManager.getRefreshToken("token");
+      expect(res2.expired_at).toBe(9999999999);
+    });
+
+    it("should handle token response lacking expire_in and expired_at", async () => {
+      const mockResponse = {
+        access_token: "t",
+        refresh_token: "r",
+        expire_in: 0,
+        request_id: "req",
+        error: "",
+        message: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const res1 = await authManager.getAccessTokenByResendCode({ resend_code: "code" });
+      expect(res1.expired_at).toBeUndefined();
+
+      const res2 = await authManager.getRefreshToken("token");
+      expect(res2.expired_at).toBeUndefined();
     });
   });
 });

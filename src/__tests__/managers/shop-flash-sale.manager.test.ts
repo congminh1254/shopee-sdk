@@ -21,7 +21,7 @@ import {
 } from "../../schemas/shop-flash-sale.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn();
+const mockFetch = jest.fn() as any;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ShopFlashSaleManager", () => {
@@ -600,6 +600,16 @@ describe("ShopFlashSaleManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.criteria).toHaveLength(1);
       expect(result.response.pair_ids).toHaveLength(1);
+    });
+  });
+
+  describe("Default Params Coverage", () => {
+    it("should cover ShopFlashSaleManager methods with default parameters", async () => {
+      mockShopeeFetch.mockResolvedValue({ response: {} });
+
+      await shopFlashSaleManager.getItemCriteria(undefined);
+
+      expect(mockShopeeFetch).toHaveBeenCalledTimes(1);
     });
   });
 });

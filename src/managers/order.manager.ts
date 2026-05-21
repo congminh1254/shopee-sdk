@@ -475,6 +475,7 @@ export class OrderManager extends BaseManager {
         method: "GET",
         auth: true,
         params: {
+          ...params,
           booking_sn_list: params.booking_sn_list.join(","),
         },
       }

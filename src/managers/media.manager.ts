@@ -15,6 +15,16 @@ import {
   GetVideoUploadResultResponse,
   CancelVideoUploadParams,
   CancelVideoUploadResponse,
+  InitMediaVideoUploadParams,
+  InitMediaVideoUploadResponse,
+  UploadMediaVideoPartParams,
+  UploadMediaVideoPartResponse,
+  CompleteMediaVideoUploadParams,
+  CompleteMediaVideoUploadResponse,
+  GetMediaVideoUploadResultParams,
+  GetMediaVideoUploadResultResponse,
+  CancelMediaVideoUploadParams,
+  CancelMediaVideoUploadResponse,
 } from "../schemas/media.js";
 import { ShopeeFetch } from "../fetch.js";
 
@@ -325,6 +335,114 @@ export class MediaManager extends BaseManager {
     const response = await ShopeeFetch.fetch<CancelVideoUploadResponse>(
       this.config,
       "/media_space/cancel_video_upload",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Initiate a video upload session under the media module
+   *
+   * @param {InitMediaVideoUploadParams} params - Parameters for initiating video upload
+   * @returns {Promise<InitMediaVideoUploadResponse>} Response containing video_upload_id and part_size
+   */
+  async initMediaVideoUpload(
+    params: InitMediaVideoUploadParams
+  ): Promise<InitMediaVideoUploadResponse> {
+    const response = await ShopeeFetch.fetch<InitMediaVideoUploadResponse>(
+      this.config,
+      "/media/init_video_upload",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Upload a video part under the media module
+   *
+   * @param {UploadMediaVideoPartParams} params - Parameters for uploading video part
+   * @returns {Promise<UploadMediaVideoPartResponse>} Response indicating upload success
+   */
+  async uploadMediaVideoPart(
+    params: UploadMediaVideoPartParams
+  ): Promise<UploadMediaVideoPartResponse> {
+    const response = await ShopeeFetch.fetch<UploadMediaVideoPartResponse>(
+      this.config,
+      "/media/upload_video_part",
+      {
+        method: "POST",
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Complete the video upload under the media module
+   *
+   * @param {CompleteMediaVideoUploadParams} params - Parameters for completing video upload
+   * @returns {Promise<CompleteMediaVideoUploadResponse>} Response indicating completion
+   */
+  async completeMediaVideoUpload(
+    params: CompleteMediaVideoUploadParams
+  ): Promise<CompleteMediaVideoUploadResponse> {
+    const response = await ShopeeFetch.fetch<CompleteMediaVideoUploadResponse>(
+      this.config,
+      "/media/complete_video_upload",
+      {
+        method: "POST",
+        body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Query the upload status and result of a video upload under the media module
+   *
+   * @param {GetMediaVideoUploadResultParams} params - Parameters for querying video status
+   * @returns {Promise<GetMediaVideoUploadResultResponse>} Response containing upload status and video info
+   */
+  async getMediaVideoUploadResult(
+    params: GetMediaVideoUploadResultParams
+  ): Promise<GetMediaVideoUploadResultResponse> {
+    const response = await ShopeeFetch.fetch<GetMediaVideoUploadResultResponse>(
+      this.config,
+      "/media/get_video_upload_result",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Cancel a video upload session under the media module
+   *
+   * @param {CancelMediaVideoUploadParams} params - Parameters for cancelling video upload
+   * @returns {Promise<CancelMediaVideoUploadResponse>} Response indicating cancellation
+   */
+  async cancelMediaVideoUpload(
+    params: CancelMediaVideoUploadParams
+  ): Promise<CancelMediaVideoUploadResponse> {
+    const response = await ShopeeFetch.fetch<CancelMediaVideoUploadResponse>(
+      this.config,
+      "/media/cancel_video_upload",
       {
         method: "POST",
         auth: true,

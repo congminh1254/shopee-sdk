@@ -1075,6 +1075,40 @@ export type AddItemParams = {
   description_type?: string;
   /** Seller stock list */
   seller_stock?: SellerStockUpdate[];
+  /** GTIN code */
+  gtin_code?: string;
+  /** Category recommendation service ID */
+  ds_cat_rcmd_id?: string;
+  /** Promotion Image */
+  promotion_images?: { image_id_list?: string[] };
+  /** Compatibility information */
+  compatibility_info?: {
+    vehicle_info_list: Array<{
+      brand_id: number;
+      model_id: number;
+      year_id?: number;
+      version_id?: number;
+    }>;
+  };
+  /** Scheduled publish time */
+  scheduled_publish_time?: number;
+  /** ID of authorised reseller brand */
+  authorised_brand_id?: number;
+  /** Size chart information */
+  size_chart_info?: { size_chart?: string; size_chart_id?: number };
+  /** Certification information */
+  certification_info?: {
+    certification_list?: Array<{
+      certification_no: string;
+      permit_id: number;
+      expiry_date?: number;
+      certification_proofs: Array<{ file_name: string; image_id: number; ratio: number }>;
+    }>;
+  };
+  /** Purchase limit information */
+  purchase_limit_info?: PurchaseLimitInfo;
+  /** Medicine ID */
+  medicine_id?: number;
 };
 
 /**
@@ -1137,6 +1171,40 @@ export type UpdateItemParams = {
   description_type?: string;
   /** Seller stock */
   seller_stock?: SellerStockUpdate[];
+  /** GTIN code */
+  gtin_code?: string;
+  /** Category recommendation service ID */
+  ds_cat_rcmd_id?: string;
+  /** Promotion Image */
+  promotion_images?: { image_id_list?: string[] };
+  /** Compatibility information */
+  compatibility_info?: {
+    vehicle_info_list: Array<{
+      brand_id: number;
+      model_id: number;
+      year_id?: number;
+      version_id?: number;
+    }>;
+  };
+  /** Scheduled publish time */
+  scheduled_publish_time?: number;
+  /** ID of authorised reseller brand */
+  authorised_brand_id?: number;
+  /** Size chart information */
+  size_chart_info?: { size_chart?: string; size_chart_id?: number };
+  /** Certification information */
+  certification_info?: {
+    certification_list?: Array<{
+      certification_no: string;
+      permit_id: number;
+      expiry_date?: number;
+      certification_proofs: Array<{ file_name: string; image_id: number; ratio: number }>;
+    }>;
+  };
+  /** Purchase limit information */
+  purchase_limit_info?: PurchaseLimitInfo;
+  /** Medicine ID */
+  medicine_id?: number;
 };
 
 /**
@@ -1230,6 +1298,8 @@ export type UpdateModelParams = {
   item_id: number;
   /** Model list to update */
   model_list: ModelUpdateInput[];
+  /** Model update object */
+  model?: any;
 };
 
 /**
@@ -1250,6 +1320,8 @@ export type DeleteModelParams = {
   item_id: number;
   /** List of model IDs to delete */
   model_id_list: number[];
+  /** Model ID to delete */
+  model_id?: number;
 };
 
 /**
@@ -1270,6 +1342,8 @@ export type InitTierVariationParams = {
   tier_variation: TierVariationInput[];
   /** Model list */
   model: ModelInput[];
+  /** Standardise tier variation configuration */
+  standardise_tier_variation?: any;
 };
 
 /**
@@ -1290,6 +1364,10 @@ export type UpdateTierVariationParams = {
   item_id: number;
   /** Tier variation list */
   tier_variation: TierVariationInput[];
+  /** Model list */
+  model_list?: any[];
+  /** Standardise tier variation configuration */
+  standardise_tier_variation?: any;
 };
 
 /**
@@ -1311,6 +1389,10 @@ export type SearchItemParams = {
   item_name?: string;
   /** Search by item SKU */
   item_sku?: string;
+  /** Attribute status filter */
+  attribute_status?: number[];
+  /** Deboost only filter */
+  deboost_only?: boolean;
 };
 
 /**
@@ -1401,9 +1483,11 @@ export interface AttributeTreeNode {
  */
 export type GetAttributeTreeParams = {
   /** Category ID */
-  category_id: number;
+  category_id?: number;
   /** Language */
   language?: string;
+  /** Category ID list */
+  category_id_list?: number[];
 };
 
 /**
@@ -1438,6 +1522,8 @@ export type GetBrandListParams = {
   page_size: number;
   /** Status filter */
   status?: number;
+  /** Language filter */
+  language?: string;
 };
 
 /**
@@ -1464,6 +1550,26 @@ export type RegisterBrandParams = {
   category_id: number;
   /** Original brand name */
   original_brand_name: string;
+  /** Category list */
+  category_list?: number[];
+  /** Product image ID/URL */
+  product_image?: string;
+  /** App logo image ID */
+  app_logo_image_id?: string;
+  /** Brand website */
+  brand_website?: string;
+  /** Brand description */
+  brand_description?: string;
+  /** Additional information */
+  additional_information?: string;
+  /** PC logo image ID */
+  pc_logo_image_id?: string;
+  /** Brand region list */
+  brand_region?: string[];
+  /** Licenses list */
+  licenses?: any[];
+  /** Brand registration website */
+  brand_registration_website?: string;
 };
 
 /**
@@ -1492,6 +1598,8 @@ export interface RecommendedCategory {
 export type CategoryRecommendParams = {
   /** Item name */
   item_name: string;
+  /** Product cover image */
+  product_cover_image?: string;
 };
 
 /**
@@ -1619,6 +1727,8 @@ export type GetVariationsParams = {
   item_id: number;
   /** Language */
   language?: string;
+  /** Category ID */
+  category_id?: number;
 };
 
 /**
@@ -1637,6 +1747,8 @@ export type GetRecommendAttributeParams = {
   category_id: number;
   /** Item name */
   item_name?: string;
+  /** Cover image ID */
+  cover_image_id?: number;
 };
 
 /**
@@ -1676,6 +1788,12 @@ export type SearchAttributeValueListParams = {
   search_value: string;
   /** Language */
   language?: string;
+  /** Value name */
+  value_name?: string;
+  /** Cursor */
+  cursor?: number;
+  /** Limit */
+  limit?: number;
 };
 
 /**
@@ -1705,6 +1823,8 @@ export type GetMainItemListParams = {
   update_time_from?: number;
   /** Time filter to */
   update_time_to?: number;
+  /** Direct item ID */
+  direct_item_id?: number;
 };
 
 /**
@@ -1778,7 +1898,19 @@ export type GetWeightRecommendationParams = {
   /** Category ID */
   category_id: number;
   /** Item name */
-  item_name: string;
+  item_name?: string;
+  /** Cover image ID */
+  cover_image_id?: string;
+  /** Attribute list */
+  attribute_list?: any[];
+  /** Brand ID */
+  brand_id?: number;
+  /** Description type */
+  description_type?: string;
+  /** Description */
+  description?: string;
+  /** Description info */
+  description_info?: DescriptionInfo;
 };
 
 /**
@@ -1797,6 +1929,8 @@ export type GetDirectItemListParams = {
   offset?: number;
   /** Page size */
   page_size?: number;
+  /** Main item ID */
+  main_item_id?: number;
 };
 
 /**
@@ -1867,6 +2001,10 @@ export type GetItemListByContentDiagnosisParams = {
   offset?: number;
   /** Page size */
   page_size?: number;
+  /** Quality level filter */
+  quality_level?: string[];
+  /** Issue type filter */
+  issue_type?: string[];
 };
 
 /**
@@ -1888,19 +2026,41 @@ export interface GetItemListByContentDiagnosisResponse extends FetchResponse<{
 /**
  * Kit item params (simplified - represents a bundled product)
  */
-export type AddKitItemParams = Record<string, any>;
+export type AddKitItemParams = {
+  /** Item settings */
+  item_setting?: any;
+  /** Sync settings */
+  sync_setting?: any;
+};
 export interface AddKitItemResponse extends FetchResponse<{ item_id: number }> {}
 
-export type UpdateKitItemParams = Record<string, any>;
+export type UpdateKitItemParams = {
+  /** Kit item ID to update */
+  item_id?: number;
+  /** Item settings */
+  item_setting?: any;
+  /** Sync settings */
+  sync_setting?: any;
+};
 export interface UpdateKitItemResponse extends BaseResponse {}
 
-export type GetKitItemInfoParams = { item_id_list: number[] };
+export type GetKitItemInfoParams = {
+  /** List of item IDs to query */
+  item_id_list: number[];
+  /** Single item ID to query */
+  item_id?: number;
+};
 export interface GetKitItemInfoResponse extends FetchResponse<{ item_list: any[] }> {}
 
 export type GetKitItemLimitParams = { category_id: number };
 export interface GetKitItemLimitResponse extends FetchResponse<{ item_limit: any }> {}
 
-export type GenerateKitImageParams = { image_id_list: string[] };
+export type GenerateKitImageParams = {
+  /** List of image IDs */
+  image_id_list?: string[];
+  /** List of components */
+  component_list?: any[];
+};
 export interface GenerateKitImageResponse extends FetchResponse<{
   image_info: { image_id: string; image_url: string };
 }> {}
@@ -1908,10 +2068,33 @@ export interface GenerateKitImageResponse extends FetchResponse<{
 /**
  * SSP (Seller-Sponsored Product) params
  */
-export type AddSspItemParams = Record<string, any>;
+export type AddSspItemParams = {
+  ssp_id?: number;
+  original_price?: number;
+  item_status?: string;
+  dimension?: Dimension;
+  logistic_info?: LogisticInfo[];
+  attribute_list?: ItemAttribute[];
+  pre_order?: PreOrder;
+  item_sku?: string;
+  condition?: string;
+  wholesale?: Wholesale[];
+  video_upload_id?: string[];
+  item_dangerous?: number;
+  tax_info?: TaxInfo;
+  seller_stock?: SellerStockUpdate[];
+  size_chart_info?: { size_chart?: string; size_chart_id?: number };
+  authorised_brand_id?: number;
+  model_list?: any[];
+};
 export interface AddSspItemResponse extends FetchResponse<{ item_id: number }> {}
 
-export type GetSspInfoParams = { item_id: number };
+export type GetSspInfoParams = {
+  item_id?: number;
+  ssp_id_list?: number[];
+  gtin_list?: string[];
+  oem_list?: string[];
+};
 export interface GetSspInfoResponse extends FetchResponse<{ ssp_info: any }> {}
 
 export type GetSspListParams = { offset?: number; page_size?: number };
@@ -1921,7 +2104,27 @@ export interface GetSspListResponse extends FetchResponse<{
   next_offset: number;
 }> {}
 
-export type LinkSspParams = { item_id: number; ssp_item_id: number };
+export type LinkSspParams = {
+  item_id?: number;
+  ssp_item_id?: number;
+  ssp_id?: number;
+  original_price?: number;
+  item_status?: string;
+  dimension?: Dimension;
+  logistic_info?: LogisticInfo[];
+  attribute_list?: ItemAttribute[];
+  pre_order?: PreOrder;
+  item_sku?: string;
+  condition?: string;
+  wholesale?: Wholesale[];
+  video_upload_id?: string[];
+  item_dangerous?: number;
+  tax_info?: TaxInfo;
+  seller_stock?: SellerStockUpdate[];
+  size_chart_info?: { size_chart?: string; size_chart_id?: number };
+  authorised_brand_id?: number;
+  model_list?: any[];
+};
 export interface LinkSspResponse extends BaseResponse {}
 
 export type UnlinkSspParams = { item_id: number };
@@ -1949,11 +2152,20 @@ export interface GetSizeChartDetailResponse extends FetchResponse<{ size_chart: 
 /**
  * Vehicle compatibility params
  */
-export type GetAllVehicleListParams = Record<string, any>;
+export type GetAllVehicleListParams = {
+  page_size?: number;
+  offset?: number;
+  language?: string;
+};
 export interface GetAllVehicleListResponse extends FetchResponse<{ vehicle_list: any[] }> {}
 
 export type GetVehicleListByCompatibilityDetailParams = {
-  item_id: number;
+  item_id?: number;
+  compatibility_details?: any[];
+  brand_id?: number;
+  model_id?: number;
+  year_id?: number;
+  language?: string;
 };
 export interface GetVehicleListByCompatibilityDetailResponse extends FetchResponse<{
   vehicle_list: any[];
@@ -1962,25 +2174,40 @@ export interface GetVehicleListByCompatibilityDetailResponse extends FetchRespon
 /**
  * Other specialized params
  */
-export type GetAitemByPitemIdParams = { pitem_id_list: number[] };
+export type GetAitemByPitemIdParams = {
+  pitem_id_list?: number[];
+  pitem_id?: number;
+};
 export interface GetAitemByPitemIdResponse extends FetchResponse<{ item_list: any[] }> {}
 
 export type GetDirectShopRecommendedPriceParams = {
-  category_id: number;
+  category_id?: number;
   item_name?: string;
+  main_item_id?: number;
+  direct_shop_regions?: string[];
+  model_list?: any[];
+  enabled_channel_id_list?: number[];
 };
 export interface GetDirectShopRecommendedPriceResponse extends FetchResponse<{
   recommended_price: number;
 }> {}
 
-export type GetProductCertificationRuleParams = { category_id: number };
+export type GetProductCertificationRuleParams = {
+  category_id?: number;
+  attribute_list?: any[];
+};
 export interface GetProductCertificationRuleResponse extends FetchResponse<{
   certification_list: any[];
 }> {}
 
 export type SearchUnpackagedModelListParams = {
-  item_id: number;
+  item_id?: number;
   search_value?: string;
+  page_size?: number;
+  cursor?: string;
+  item_name?: string;
+  model_id?: number;
+  unpackaged_sku_id?: number;
 };
 export interface SearchUnpackagedModelListResponse extends FetchResponse<{ model_list: any[] }> {}
 

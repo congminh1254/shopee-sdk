@@ -1246,7 +1246,7 @@ export class ProductManager extends BaseManager {
         auth: true,
         params: {
           ...params,
-          pitem_id_list: params.pitem_id_list.join(","),
+          pitem_id_list: params.pitem_id_list?.join(","),
         },
       }
     );

@@ -3,6 +3,7 @@ export default {
   testEnvironment: "node",
   testMatch: ["**/*.test.ts"],
   collectCoverage: true,
+  collectCoverageFrom: ["src/**/*.ts", "!src/utils/spec-audit.ts"],
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov"],
   verbose: true,

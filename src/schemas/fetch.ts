@@ -10,7 +10,7 @@ export type FetchOptions = Omit<RequestInit, "body"> & {
 };
 
 export interface FetchResponse<T> {
-  result: T;
+  result?: T;
   response: T;
   request_id: string;
   error: string;
