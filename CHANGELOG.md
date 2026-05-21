@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/congminh1254/shopee-sdk/compare/v1.6.2...v1.7.0) (2026-05-21)
+
+
+### Features
+
+* resolve API Schema Gaps, Implement Missing Media & Payment Endpoints, and Distribute 100% Test Coverage ([#187](https://github.com/congminh1254/shopee-sdk/issues/187)) ([20bf05e](https://github.com/congminh1254/shopee-sdk/commit/20bf05e74b485d904f11a6557b479f573c47dab4))
+
 ## [1.6.2](https://github.com/congminh1254/shopee-sdk/compare/v1.6.1...v1.6.2) (2026-05-20)
 
 
