@@ -53,10 +53,10 @@ describe("VideoManager", () => {
         response: {
           successList: [
             {
-              videoUploadId: "upload123",
+              successVideoUploadId: "upload123",
             },
             {
-              videoUploadId: "upload456",
+              successVideoUploadId: "upload456",
             },
           ],
           failureList: [],
@@ -90,12 +90,12 @@ describe("VideoManager", () => {
         response: {
           successList: [
             {
-              videoUploadId: "upload123",
+              successVideoUploadId: "upload123",
             },
           ],
           failureList: [
             {
-              videoUploadId: "upload456",
+              failVideoUploadId: "upload456",
               failedReason: "Video not found",
             },
           ],
@@ -133,7 +133,14 @@ describe("VideoManager", () => {
           {
             videoUploadId: "upload123",
             caption: "Updated caption",
-            coverImageId: "cover123",
+            coverImageUrl: "https://example.com/cover1.jpg",
+            allowInfo: {
+              allowDuet: true,
+              allowStitch: true,
+            },
+            scheduledInfo: {
+              scheduledPost: false,
+            },
           },
         ],
       });
@@ -146,7 +153,14 @@ describe("VideoManager", () => {
             {
               videoUploadId: "upload123",
               caption: "Updated caption",
-              coverImageId: "cover123",
+              coverImageUrl: "https://example.com/cover1.jpg",
+              allowInfo: {
+                allowDuet: true,
+                allowStitch: true,
+              },
+              scheduledInfo: {
+                scheduledPost: false,
+              },
             },
           ],
         },
@@ -165,7 +179,7 @@ describe("VideoManager", () => {
           successList: [],
           failureList: [
             {
-              videoUploadId: "upload123",
+              failVideoUploadId: "upload123",
               failedReason: "Caption exceeds limit",
             },
           ],
@@ -179,6 +193,14 @@ describe("VideoManager", () => {
           {
             videoUploadId: "upload123",
             caption: "a".repeat(1001),
+            coverImageUrl: "https://example.com/cover1.jpg",
+            allowInfo: {
+              allowDuet: true,
+              allowStitch: true,
+            },
+            scheduledInfo: {
+              scheduledPost: false,
+            },
           },
         ],
       });
@@ -195,15 +217,9 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          coverList: [
-            {
-              coverImageId: "cover123",
-              coverImageUrl: "https://example.com/cover1.jpg",
-            },
-            {
-              coverImageId: "cover456",
-              coverImageUrl: "https://example.com/cover2.jpg",
-            },
+          imageUrlList: [
+            "https://example.com/cover1.jpg",
+            "https://example.com/cover2.jpg",
           ],
         },
       };
@@ -223,7 +239,7 @@ describe("VideoManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.coverList).toHaveLength(2);
+      expect(result.response.imageUrlList).toHaveLength(2);
     });
   });
 
@@ -234,18 +250,18 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          metricTrendList: [
+          videoTotalMetricList: [
             {
-              date: "2024-01-01",
-              viewCount: 1000,
-              likeCount: 50,
-              shareCount: 10,
+              dataPeriod: "2024-01-01",
+              totalViews: 1000,
+              totalLikes: 50,
+              totalShares: 10,
             },
             {
-              date: "2024-01-02",
-              viewCount: 1200,
-              likeCount: 60,
-              shareCount: 15,
+              dataPeriod: "2024-01-02",
+              totalViews: 1200,
+              totalLikes: 60,
+              totalShares: 15,
             },
           ],
         },
@@ -254,21 +270,21 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getMetricTrend({
-        startTime: 1704067200,
-        endTime: 1704153600,
+        periodType: "Day",
+        endDate: "2026-05-20",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_metric_trend", {
         method: "GET",
         auth: true,
         params: {
-          startTime: 1704067200,
-          endTime: 1704153600,
+          periodType: "Day",
+          endDate: "2026-05-20",
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.metricTrendList).toHaveLength(2);
+      expect(result.response.videoTotalMetricList).toHaveLength(2);
     });
   });
 
@@ -279,32 +295,38 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          totalViewCount: 10000,
-          totalLikeCount: 500,
-          totalShareCount: 100,
-          totalCommentCount: 200,
+          keyMetric: {
+            totalViewers: 10000,
+          },
+          engagement: {
+            totalViews: 12000,
+            totalLikes: 500,
+            totalShares: 100,
+            totalComments: 200,
+          },
+          fetchedDateRange: "2026-05-19 - 2026-05-19",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getOverviewPerformance({
-        startTime: 1704067200,
-        endTime: 1704153600,
+        periodType: "Day",
+        endDate: "2026-05-20",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_overview_performance", {
         method: "GET",
         auth: true,
         params: {
-          startTime: 1704067200,
-          endTime: 1704153600,
+          periodType: "Day",
+          endDate: "2026-05-20",
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.totalViewCount).toBe(10000);
-      expect(result.response.totalLikeCount).toBe(500);
+      expect(result.response.keyMetric?.totalViewers).toBe(10000);
+      expect(result.response.engagement?.totalLikes).toBe(500);
     });
   });
 
@@ -315,18 +337,16 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          productPerformanceList: [
+          list: [
             {
               itemId: 123456,
-              clickCount: 100,
-              addToCartCount: 20,
-              orderCount: 10,
+              placedOrders: 10,
+              placedSales: 100,
             },
             {
               itemId: 789012,
-              clickCount: 80,
-              addToCartCount: 15,
-              orderCount: 8,
+              placedOrders: 8,
+              placedSales: 80,
             },
           ],
         },
@@ -335,8 +355,12 @@ describe("VideoManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await videoManager.getProductPerformanceList({
-        startTime: 1704067200,
-        endTime: 1704153600,
+        pageNo: 1,
+        pageSize: 10,
+        periodType: "Day",
+        endDate: "2026-05-20",
+        orderBy: "PlacedOrders",
+        sort: "desc",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -346,14 +370,18 @@ describe("VideoManager", () => {
           method: "GET",
           auth: true,
           params: {
-            startTime: 1704067200,
-            endTime: 1704153600,
+            pageNo: 1,
+            pageSize: 10,
+            periodType: "Day",
+            endDate: "2026-05-20",
+            orderBy: "PlacedOrders",
+            sort: "desc",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.productPerformanceList).toHaveLength(2);
+      expect(result.response.list).toHaveLength(2);
     });
   });
 
@@ -364,14 +392,14 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          ageDistribution: [
-            { ageRange: "18-24", percentage: 30.5 },
-            { ageRange: "25-34", percentage: 45.2 },
-          ],
-          genderDistribution: [
-            { gender: "male", percentage: 40.0 },
-            { gender: "female", percentage: 60.0 },
-          ],
+          age: {
+            "18-24": 30,
+            "25-34": 70,
+          },
+          gender: {
+            "Male": 40,
+            "Female": 60,
+          },
         },
       };
 
@@ -386,8 +414,8 @@ describe("VideoManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.ageDistribution).toHaveLength(2);
-      expect(result.response.genderDistribution).toHaveLength(2);
+      expect(result.response.age).toBeDefined();
+      expect(result.response.gender).toBeDefined();
     });
   });
 
@@ -402,7 +430,6 @@ describe("VideoManager", () => {
           postId: "post123",
           caption: "Test video caption",
           status: 200,
-          createTime: 1704067200,
           postTime: 1704070800,
         },
       };
@@ -434,14 +461,14 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          ageDistribution: [
-            { ageRange: "18-24", percentage: 35.0 },
-            { ageRange: "25-34", percentage: 50.0 },
-          ],
-          genderDistribution: [
-            { gender: "male", percentage: 45.0 },
-            { gender: "female", percentage: 55.0 },
-          ],
+          age: {
+            "18-24": 35.0,
+            "25-34": 50.0,
+          },
+          gender: {
+            "male": 45.0,
+            "female": 55.0,
+          },
         },
       };
 
@@ -464,7 +491,7 @@ describe("VideoManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.ageDistribution).toHaveLength(2);
+      expect(result.response.age).toBeDefined();
     });
   });
 
@@ -475,20 +502,10 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          metricTrendList: [
-            {
-              date: "2024-01-01",
-              viewCount: 500,
-              likeCount: 25,
-              shareCount: 5,
-            },
-            {
-              date: "2024-01-02",
-              viewCount: 600,
-              likeCount: 30,
-              shareCount: 8,
-            },
-          ],
+          metricTrend: {
+            "1704067200": 500,
+            "1704153600": 600,
+          },
         },
       };
 
@@ -496,8 +513,7 @@ describe("VideoManager", () => {
 
       const result = await videoManager.getVideoDetailMetricTrend({
         postId: "post123",
-        startTime: 1704067200,
-        endTime: 1704153600,
+        metricName: "Views",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -508,14 +524,13 @@ describe("VideoManager", () => {
           auth: true,
           params: {
             postId: "post123",
-            startTime: 1704067200,
-            endTime: 1704153600,
+            metricName: "Views",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.metricTrendList).toHaveLength(2);
+      expect(result.response.metricTrend).toBeDefined();
     });
   });
 
@@ -526,11 +541,15 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          viewCount: 5000,
-          likeCount: 250,
-          shareCount: 50,
-          commentCount: 100,
-          avgWatchTime: 45.5,
+          videoInfo: {
+            postId: "post123",
+          },
+          videoPerformance: {
+            views: 5000,
+            likes: 250,
+            shares: 50,
+            comments: 100,
+          },
         },
       };
 
@@ -553,8 +572,8 @@ describe("VideoManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.viewCount).toBe(5000);
-      expect(result.response.likeCount).toBe(250);
+      expect(result.response.videoPerformance?.views).toBe(5000);
+      expect(result.response.videoPerformance?.likes).toBe(250);
     });
   });
 
@@ -565,12 +584,11 @@ describe("VideoManager", () => {
         error: "",
         message: "",
         response: {
-          productPerformanceList: [
+          list: [
             {
               itemId: 123456,
-              clickCount: 100,
-              addToCartCount: 20,
-              orderCount: 10,
+              placedOrders: 10,
+              placedSales: 100,
             },
           ],
         },
@@ -599,7 +617,7 @@ describe("VideoManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.productPerformanceList).toHaveLength(1);
+      expect(result.response.list).toHaveLength(1);
     });
   });
 
@@ -772,3 +790,4 @@ describe("VideoManager", () => {
     });
   });
 });
+

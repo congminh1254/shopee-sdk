@@ -78,9 +78,9 @@ describe("ShopeeSDK Integration with Mock API", () => {
 
     // Mock token retrieval
     const mockTokenStorage = {
-      get: jest.fn().mockResolvedValue(mockToken as any) as any,
-      store: jest.fn() as any,
-      clear: jest.fn() as any,
+      get: jest.fn(() => Promise.resolve(mockToken)),
+      store: jest.fn(() => Promise.resolve()),
+      clear: jest.fn(() => Promise.resolve()),
     };
     sdk["tokenStorage"] = mockTokenStorage as any;
 
@@ -224,6 +224,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
       params: {
         offset: 0,
         page_size: 10,
+        item_status: [ItemStatus.NORMAL],
       },
     });
 

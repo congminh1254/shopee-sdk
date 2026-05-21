@@ -1,4 +1,4 @@
-import { jest } from "@jest/globals";
+import { jest, describe, beforeEach, it, expect } from "@jest/globals";
 import { PushManager } from "../../managers/push.manager.js";
 import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
@@ -36,72 +36,56 @@ describe("PushManager", () => {
   describe("setAppPushConfig", () => {
     it("should set app push configuration", async () => {
       const mockResponse: SetAppPushConfigResponse = {
-        request_id: "test-request-id",
+        request_id: "b937c04e554847789cbf3fe33a0ad5f1",
         error: "",
         message: "",
-        response: {},
+        response: {
+          result: "success",
+        },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await pushManager.setAppPushConfig({
-        callback_url: "https://myapp.example.com/webhook/shopee",
-        push_config: {
-          order_status: 15,
-          order_tracking_no: 1,
-          shop_update: 7,
-          banned_item: 3,
-          item_promotion: 31,
-          reserved_stock_change: 1,
-        },
+        callback_url: "https://open.shopee.com/",
+        set_push_config_on: [1, 2, 3, 4, 5, 8, 9, 10],
+        set_push_config_off: [6, 7, 11, 12, 13],
+        blocked_shop_id_list: [10010, 20020, 30030],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/push/set_app_push_config", {
         method: "POST",
         body: {
-          callback_url: "https://myapp.example.com/webhook/shopee",
-          push_config: {
-            order_status: 15,
-            order_tracking_no: 1,
-            shop_update: 7,
-            banned_item: 3,
-            item_promotion: 31,
-            reserved_stock_change: 1,
-          },
+          callback_url: "https://open.shopee.com/",
+          set_push_config_on: [1, 2, 3, 4, 5, 8, 9, 10],
+          set_push_config_off: [6, 7, 11, 12, 13],
+          blocked_shop_id_list: [10010, 20020, 30030],
         },
       });
 
       expect(result).toEqual(mockResponse);
     });
 
-    it("should set push configuration with blocking enabled", async () => {
+    it("should set push configuration with only callback_url", async () => {
       const mockResponse: SetAppPushConfigResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
+        response: {
+          result: "success",
+        },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await pushManager.setAppPushConfig({
         callback_url: "https://secure.example.com/webhook",
-        push_config: {
-          order_status: 1,
-          shop_update: 1,
-        },
-        blocking: true,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/push/set_app_push_config", {
         method: "POST",
         body: {
           callback_url: "https://secure.example.com/webhook",
-          push_config: {
-            order_status: 1,
-            shop_update: 1,
-          },
-          blocking: true,
         },
       });
 
@@ -112,20 +96,15 @@ describe("PushManager", () => {
   describe("getAppPushConfig", () => {
     it("should get current push configuration", async () => {
       const mockResponse: GetAppPushConfigResponse = {
-        request_id: "test-request-id",
+        request_id: "b937c04e554847789cbf3fe33a0ad5f1",
         error: "",
         message: "",
         response: {
-          callback_url: "https://myapp.example.com/webhook/shopee",
-          push_config: {
-            order_status: 15,
-            order_tracking_no: 1,
-            shop_update: 7,
-            banned_item: 3,
-            item_promotion: 31,
-            reserved_stock_change: 1,
-          },
-          blocking: false,
+          callback_url: "https://open.shopee.com/",
+          live_push_status: "Normal",
+          blocked_shop_id: [10010, 20020, 30030],
+          push_config_on_list: [1, 2, 3],
+          push_config_off_list: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
         },
       };
 
@@ -138,9 +117,10 @@ describe("PushManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.callback_url).toBe("https://myapp.example.com/webhook/shopee");
-      expect(result.response.push_config.order_status).toBe(15);
-      expect(result.response.blocking).toBe(false);
+      expect(result.response.callback_url).toBe("https://open.shopee.com/");
+      expect(result.response.live_push_status).toBe("Normal");
+      expect(result.response.blocked_shop_id).toContain(20020);
+      expect(result.response.push_config_on_list).toContain(3);
     });
 
     it("should handle empty push configuration", async () => {
@@ -150,8 +130,10 @@ describe("PushManager", () => {
         message: "",
         response: {
           callback_url: "",
-          push_config: {},
-          blocking: false,
+          live_push_status: "Suspended",
+          blocked_shop_id: [],
+          push_config_on_list: [],
+          push_config_off_list: [],
         },
       };
 
@@ -165,7 +147,7 @@ describe("PushManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.callback_url).toBe("");
-      expect(Object.keys(result.response.push_config)).toHaveLength(0);
+      expect(result.response.push_config_on_list).toHaveLength(0);
     });
   });
 
@@ -273,7 +255,6 @@ describe("PushManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -301,7 +282,6 @@ describe("PushManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);

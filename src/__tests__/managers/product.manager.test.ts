@@ -43,6 +43,7 @@ import {
   GetMartItemByOutletItemIdResponse,
   GetMartItemMappingByIdResponse,
   PublishItemToOutletShopResponse,
+  ItemStatus,
 } from "../../schemas/product.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -161,24 +162,35 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          comment_id: 123,
-          reply: "Thank you for your feedback!",
+          result_list: [
+            {
+              comment_id: 123,
+            },
+          ],
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.replyComment({
-        comment_id: 123,
-        reply: "Thank you for your feedback!",
+        comment_list: [
+          {
+            comment_id: 123,
+            comment: "Thank you for your feedback!",
+          },
+        ],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/reply_comment", {
         method: "POST",
         auth: true,
         body: {
-          comment_id: 123,
-          reply: "Thank you for your feedback!",
+          comment_list: [
+            {
+              comment_id: 123,
+              comment: "Thank you for your feedback!",
+            },
+          ],
         },
       });
 
@@ -196,12 +208,12 @@ describe("ProductManager", () => {
           item: [
             {
               item_id: 123456,
-              item_status: "NORMAL",
+              item_status: ItemStatus.NORMAL,
               update_time: 1234567890,
             },
             {
               item_id: 789012,
-              item_status: "BANNED",
+              item_status: ItemStatus.BANNED,
               update_time: 1234567891,
             },
           ],
@@ -218,7 +230,7 @@ describe("ProductManager", () => {
         page_size: 50,
         update_time_from: 1234567800,
         update_time_to: 1234567900,
-        item_status: "NORMAL",
+        item_status: [ItemStatus.NORMAL],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_list", {
@@ -229,7 +241,7 @@ describe("ProductManager", () => {
           page_size: 50,
           update_time_from: 1234567800,
           update_time_to: 1234567900,
-          item_status: "NORMAL",
+          item_status: [ItemStatus.NORMAL],
         },
       });
 
@@ -254,6 +266,7 @@ describe("ProductManager", () => {
       const result = await productManager.getItemList({
         offset: 0,
         page_size: 10,
+        item_status: [ItemStatus.NORMAL],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_list", {
@@ -262,6 +275,7 @@ describe("ProductManager", () => {
         params: {
           offset: 0,
           page_size: 10,
+          item_status: [ItemStatus.NORMAL],
         },
       });
 
@@ -284,7 +298,7 @@ describe("ProductManager", () => {
               item_sku: "SKU-001",
               create_time: 1234567890,
               update_time: 1234567891,
-              item_status: "NORMAL",
+              item_status: ItemStatus.NORMAL,
               has_model: false,
               condition: "NEW",
               size_chart: "",
@@ -297,7 +311,7 @@ describe("ProductManager", () => {
               item_sku: "SKU-002",
               create_time: 1234567892,
               update_time: 1234567893,
-              item_status: "NORMAL",
+              item_status: ItemStatus.NORMAL,
               has_model: true,
               condition: "USED",
               size_chart: "size_chart_url",
@@ -342,7 +356,7 @@ describe("ProductManager", () => {
               item_sku: "SKU-SINGLE",
               create_time: 1234567890,
               update_time: 1234567891,
-              item_status: "NORMAL",
+              item_status: ItemStatus.NORMAL,
               has_model: false,
               condition: "NEW",
               size_chart: "",
@@ -394,18 +408,40 @@ describe("ProductManager", () => {
             {
               model_id: 1001,
               tier_index: [0, 0],
-              normal_stock: 100,
-              reserved_stock: 5,
-              price: 29.99,
+              price_info: [
+                {
+                  current_price: 29.99,
+                  original_price: 29.99,
+                  inflated_price_of_original_price: 29.99,
+                  inflated_price_of_current_price: 29.99,
+                },
+              ],
+              stock_info_v2: {
+                summary_info: {
+                  total_available_stock: 100,
+                  total_reserved_stock: 5,
+                },
+              },
               model_sku: "SKU-RED-S",
               gtin_code: "123456789012",
             },
             {
               model_id: 1002,
               tier_index: [0, 1],
-              normal_stock: 150,
-              reserved_stock: 10,
-              price: 29.99,
+              price_info: [
+                {
+                  current_price: 29.99,
+                  original_price: 29.99,
+                  inflated_price_of_original_price: 29.99,
+                  inflated_price_of_current_price: 29.99,
+                },
+              ],
+              stock_info_v2: {
+                summary_info: {
+                  total_available_stock: 150,
+                  total_reserved_stock: 10,
+                },
+              },
               model_sku: "SKU-RED-M",
               gtin_code: "123456789013",
             },
@@ -1208,7 +1244,7 @@ describe("ProductManager", () => {
           item: [
             {
               item_id: 123456,
-              item_status: "NORMAL",
+              item_status: ItemStatus.NORMAL,
               update_time: 1234567890,
             },
           ],
@@ -1697,7 +1733,7 @@ describe("ProductManager", () => {
           item: [
             {
               item_id: 123456,
-              item_status: "NORMAL",
+              item_status: ItemStatus.NORMAL,
               update_time: 1234567890,
             },
           ],
@@ -1814,7 +1850,7 @@ describe("ProductManager", () => {
               item_id: 123456,
               category_id: 100001,
               item_name: "Direct Item",
-              item_status: "NORMAL",
+              item_status: ItemStatus.NORMAL,
               update_time: 1234567890,
             },
           ],
@@ -1893,7 +1929,7 @@ describe("ProductManager", () => {
           item: [
             {
               item_id: 123456,
-              item_status: "NORMAL",
+              item_status: ItemStatus.NORMAL,
               update_time: 1234567890,
             },
           ],
@@ -2416,19 +2452,14 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          mart_item_list: [
+          item_mapping_list: [
             {
               mart_item_id: 111111,
-              outlet_item_mapping_list: [
+              outlet_item_id: 333333,
+              model_mapping: [
                 {
-                  outlet_shop_id: 222222,
-                  outlet_item_id: 333333,
-                  outlet_item_status: "NORMAL",
-                },
-                {
-                  outlet_shop_id: 444444,
-                  outlet_item_id: 555555,
-                  outlet_item_status: "NORMAL",
+                  mart_model_id: 1001,
+                  outlet_model_id: 2001,
                 },
               ],
             },
@@ -2439,7 +2470,7 @@ describe("ProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getMartItemMappingById({
-        mart_item_id_list: [111111],
+        mart_item_id: 111111,
         outlet_shop_id_list: [222222, 444444],
       });
 
@@ -2450,16 +2481,16 @@ describe("ProductManager", () => {
           method: "POST",
           auth: true,
           body: {
-            mart_item_id_list: [111111],
+            mart_item_id: 111111,
             outlet_shop_id_list: [222222, 444444],
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.mart_item_list).toHaveLength(1);
-      expect(result.response.mart_item_list[0].mart_item_id).toBe(111111);
-      expect(result.response.mart_item_list[0].outlet_item_mapping_list).toHaveLength(2);
+      expect(result.response?.item_mapping_list).toHaveLength(1);
+      expect(result.response?.item_mapping_list?.[0].mart_item_id).toBe(111111);
+      expect(result.response?.item_mapping_list?.[0].outlet_item_id).toBe(333333);
     });
 
     it("should handle error when getting mart item mapping", async () => {
@@ -2468,14 +2499,14 @@ describe("ProductManager", () => {
         error: "error_param",
         message: "Invalid mart_item_id",
         response: {
-          mart_item_list: [],
+          item_mapping_list: [],
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getMartItemMappingById({
-        mart_item_id_list: [999999],
+        mart_item_id: 999999,
         outlet_shop_id_list: [222222],
       });
 

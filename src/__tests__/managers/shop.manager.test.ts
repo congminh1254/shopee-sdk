@@ -590,12 +590,19 @@ describe("ShopManager", () => {
   describe("getBRShopOnboardingInfo", () => {
     it("should get BR shop onboarding info successfully", async () => {
       const mockResponse: GetBRShopOnboardingInfoResponse = {
-        request_id: "test-request-id",
+        request_id: "2e17701b64d646e293bfa53f1882d440",
         error: "",
         message: "",
         response: {
-          onboarding_status: "APPROVED",
-          rejection_reason: "",
+          onboarding_passed: true,
+          onboarding_status: 7,
+          cnpj_id: "55585487000103",
+          legal_entity_name: "55.585.487 Luiz Felipe Santos Spanholi",
+          mei_check: "1",
+          state_registration: "8003688866",
+          submission_time: 1761559361,
+          tax_id: "55585487000103",
+          tax_id_type: 2,
         },
       };
 
@@ -614,8 +621,8 @@ describe("ShopManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.onboarding_status).toBe("APPROVED");
-      expect(result.response.rejection_reason).toBe("");
+      expect(result.response?.onboarding_status).toBe(7);
+      expect(result.response?.onboarding_passed).toBe(true);
     });
 
     it("should handle rejected BR shop onboarding", async () => {
@@ -624,8 +631,8 @@ describe("ShopManager", () => {
         error: "",
         message: "",
         response: {
-          onboarding_status: "REJECTED",
-          rejection_reason: "Invalid documentation",
+          onboarding_passed: false,
+          onboarding_status: 3,
         },
       };
 
@@ -633,21 +640,25 @@ describe("ShopManager", () => {
 
       const result = await shopManager.getBRShopOnboardingInfo();
 
-      expect(result.response.onboarding_status).toBe("REJECTED");
-      expect(result.response.rejection_reason).toBe("Invalid documentation");
+      expect(result.response?.onboarding_status).toBe(3);
+      expect(result.response?.onboarding_passed).toBe(false);
     });
   });
 
   describe("getShopHolidayMode", () => {
     it("should get shop holiday mode successfully", async () => {
       const mockResponse: GetShopHolidayModeResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
+        error: "error_shop_not_exists",
+        message: "Invalid partner_id or shopid.",
+        request_id: "6745b892295d750abf83a29430510400",
         response: {
-          is_holiday_mode_on: true,
-          start_time: 1640000000,
-          end_time: 1640086400,
+          holiday_mode_on: true,
+          holiday_mode_mtime: 1763435974,
+          holiday_mode_type: 1,
+          holiday_mode_start_time: 1770883200,
+          holiday_mode_end_time: 1773305999,
+          holiday_mode_description: "\"Spring Festival\"",
+          debug_msg: "\"\"",
         },
       };
 
@@ -661,10 +672,11 @@ describe("ShopManager", () => {
         params: {},
       });
 
-      expect(result.error).toBe("");
-      expect(result.response.is_holiday_mode_on).toBe(true);
-      expect(result.response.start_time).toBe(1640000000);
-      expect(result.response.end_time).toBe(1640086400);
+      expect(result.error).toBe("error_shop_not_exists");
+      expect(result.response?.holiday_mode_on).toBe(true);
+      expect(result.response?.holiday_mode_start_time).toBe(1770883200);
+      expect(result.response?.holiday_mode_end_time).toBe(1773305999);
+      expect(result.response?.holiday_mode_description).toBe("\"Spring Festival\"");
     });
 
     it("should get shop holiday mode when disabled", async () => {
@@ -673,7 +685,7 @@ describe("ShopManager", () => {
         error: "",
         message: "",
         response: {
-          is_holiday_mode_on: false,
+          holiday_mode_on: false,
         },
       };
 
@@ -681,33 +693,40 @@ describe("ShopManager", () => {
 
       const result = await shopManager.getShopHolidayMode();
 
-      expect(result.response.is_holiday_mode_on).toBe(false);
+      expect(result.response?.holiday_mode_on).toBe(false);
     });
   });
 
   describe("setShopHolidayMode", () => {
     it("should enable shop holiday mode successfully", async () => {
       const mockResponse: SetShopHolidayModeResponse = {
-        request_id: "test-request-id",
+        request_id: "6745b892295d750abf83a29430510400",
         error: "",
         message: "",
+        response: {
+          debug_msg: "\"\"",
+        },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await shopManager.setShopHolidayMode({
-        is_holiday_mode_on: true,
-        start_time: 1640000000,
-        end_time: 1640086400,
+        holiday_mode_on: true,
+        holiday_mode_type: 1,
+        holiday_mode_start_time: 1770883200,
+        holiday_mode_end_time: 1773305999,
+        holiday_mode_description: "\"Spring Festival\"",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop/set_shop_holiday_mode", {
         method: "POST",
         auth: true,
         body: {
-          is_holiday_mode_on: true,
-          start_time: 1640000000,
-          end_time: 1640086400,
+          holiday_mode_on: true,
+          holiday_mode_type: 1,
+          holiday_mode_start_time: 1770883200,
+          holiday_mode_end_time: 1773305999,
+          holiday_mode_description: "\"Spring Festival\"",
         },
       });
 
@@ -724,14 +743,14 @@ describe("ShopManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await shopManager.setShopHolidayMode({
-        is_holiday_mode_on: false,
+        holiday_mode_on: false,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop/set_shop_holiday_mode", {
         method: "POST",
         auth: true,
         body: {
-          is_holiday_mode_on: false,
+          holiday_mode_on: false,
         },
       });
 
@@ -748,9 +767,9 @@ describe("ShopManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await shopManager.setShopHolidayMode({
-        is_holiday_mode_on: true,
-        start_time: 1640086400,
-        end_time: 1640000000,
+        holiday_mode_on: true,
+        holiday_mode_start_time: 1773305999,
+        holiday_mode_end_time: 1770883200,
       });
 
       expect(result.error).toBe("error_param");

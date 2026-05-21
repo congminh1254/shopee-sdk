@@ -153,6 +153,9 @@ describe("OrderManager", () => {
           order_list: [
             {
               order_sn: "220101000000001",
+              pending_terms: [],
+              message_to_seller: "",
+              pickup_done_time: 0,
               order_status: "READY_TO_SHIP",
               region: "SG",
               currency: "SGD",
@@ -233,7 +236,8 @@ describe("OrderManager", () => {
               checkout_shipping_carrier: "Standard",
               reverse_shipping_fee: 0,
               order_chargeable_weight_gram: 500,
-              edt: 1641340800,
+              edt_from: 1641340800,
+              edt_to: 1641340800,
             },
           ],
         },
@@ -256,12 +260,7 @@ describe("OrderManager", () => {
         auth: true,
         params: {
           order_sn_list: "220101000000001",
-          response_optional_fields: [
-            "buyer_user_id",
-            "buyer_username",
-            "estimated_shipping_fee",
-            "recipient_address",
-          ],
+          response_optional_fields: "buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address",
         },
       });
 
