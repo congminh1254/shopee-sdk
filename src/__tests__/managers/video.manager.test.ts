@@ -82,6 +82,40 @@ describe("VideoManager", () => {
       expect(result.response.failureList).toHaveLength(0);
     });
 
+    it("should delete draft videos using snake_case parameters successfully", async () => {
+      const mockResponse: DeleteVideoResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          successList: [
+            {
+              successVideoUploadId: "upload123",
+            },
+          ],
+          failureList: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.deleteVideo({
+        video_upload_id_list: ["upload123"],
+        post_id_list: ["post456"],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/delete_video", {
+        method: "POST",
+        auth: true,
+        body: {
+          video_upload_id_list: ["upload123"],
+          post_id_list: ["post456"],
+        },
+      });
+
+      expect(result.error).toBe("");
+    });
+
     it("should handle partial deletion failure", async () => {
       const mockResponse: DeleteVideoResponse = {
         request_id: "test-request-id",
@@ -170,6 +204,74 @@ describe("VideoManager", () => {
       expect(result.response.successList).toHaveLength(1);
     });
 
+    it("should edit video info using snake_case parameters successfully", async () => {
+      const mockResponse: EditVideoInfoResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          successList: ["upload123"],
+          failureList: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.editVideoInfo({
+        video_upload_list: [
+          {
+            video_upload_id: "upload123",
+            caption: "Updated caption",
+            cover_image_url: "https://example.com/cover1.jpg",
+            item_info: [
+              {
+                item_id: 9999,
+                custom_item_name: "custom product name",
+              }
+            ],
+            allow_info: {
+              allow_duet: true,
+              allow_stitch: true,
+            },
+            scheduled_info: {
+              scheduled_post: false,
+              scheduled_post_time: 123456789,
+            },
+          },
+        ],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/edit_video_info", {
+        method: "POST",
+        auth: true,
+        body: {
+          video_upload_list: [
+            {
+              video_upload_id: "upload123",
+              caption: "Updated caption",
+              cover_image_url: "https://example.com/cover1.jpg",
+              item_info: [
+                {
+                  item_id: 9999,
+                  custom_item_name: "custom product name",
+                }
+              ],
+              allow_info: {
+                allow_duet: true,
+                allow_stitch: true,
+              },
+              scheduled_info: {
+                scheduled_post: false,
+                scheduled_post_time: 123456789,
+              },
+            },
+          ],
+        },
+      });
+
+      expect(result.error).toBe("");
+    });
+
     it("should handle edit failure", async () => {
       const mockResponse: EditVideoInfoResponse = {
         request_id: "test-request-id",
@@ -238,6 +340,33 @@ describe("VideoManager", () => {
       expect(result.error).toBe("");
       expect(result.response.imageUrlList).toHaveLength(2);
     });
+
+    it("should get cover list using snake_case parameters successfully", async () => {
+      const mockResponse: GetCoverListResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          imageUrlList: ["https://example.com/cover1.jpg"],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getCoverList({
+        video_upload_id: "upload123",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_cover_list", {
+        method: "GET",
+        auth: true,
+        params: {
+          video_upload_id: "upload123",
+        },
+      });
+
+      expect(result.error).toBe("");
+    });
   });
 
   describe("getMetricTrend", () => {
@@ -283,6 +412,35 @@ describe("VideoManager", () => {
       expect(result.error).toBe("");
       expect(result.response.videoTotalMetricList).toHaveLength(2);
     });
+
+    it("should get metric trend using snake_case parameters successfully", async () => {
+      const mockResponse: GetMetricTrendResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          videoTotalMetricList: [],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getMetricTrend({
+        period_type: "Day",
+        end_date: "2026-05-20",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_metric_trend", {
+        method: "GET",
+        auth: true,
+        params: {
+          period_type: "Day",
+          end_date: "2026-05-20",
+        },
+      });
+
+      expect(result.error).toBe("");
+    });
   });
 
   describe("getOverviewPerformance", () => {
@@ -324,6 +482,33 @@ describe("VideoManager", () => {
       expect(result.error).toBe("");
       expect(result.response.keyMetric?.totalViewers).toBe(10000);
       expect(result.response.engagement?.totalLikes).toBe(500);
+    });
+
+    it("should get overview performance using snake_case parameters successfully", async () => {
+      const mockResponse: GetOverviewPerformanceResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getOverviewPerformance({
+        period_type: "Day",
+        end_date: "2026-05-20",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_overview_performance", {
+        method: "GET",
+        auth: true,
+        params: {
+          period_type: "Day",
+          end_date: "2026-05-20",
+        },
+      });
+
+      expect(result.error).toBe("");
     });
   });
 
@@ -379,6 +564,49 @@ describe("VideoManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.list).toHaveLength(2);
+    });
+
+    it("should get product performance list using snake_case parameters successfully", async () => {
+      const mockResponse: GetProductPerformanceListResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getProductPerformanceList({
+        page_no: 1,
+        page_size: 10,
+        period_type: "Day",
+        end_date: "2026-05-20",
+        order_by: "PlacedOrders",
+        sort: "desc",
+        item_id: 123456,
+        item_name: "test product",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/video/get_prodcut_performance_list",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            page_no: 1,
+            page_size: 10,
+            period_type: "Day",
+            end_date: "2026-05-20",
+            order_by: "PlacedOrders",
+            sort: "desc",
+            item_id: 123456,
+            item_name: "test product",
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
     });
   });
 
@@ -449,6 +677,33 @@ describe("VideoManager", () => {
       expect(result.response.videoUploadId).toBe("upload123");
       expect(result.response.caption).toBe("Test video caption");
     });
+
+    it("should get video detail using snake_case parameters successfully", async () => {
+      const mockResponse: GetVideoDetailResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getVideoDetail({
+        video_upload_id: "upload123",
+        post_id: "post123",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail", {
+        method: "GET",
+        auth: true,
+        params: {
+          video_upload_id: "upload123",
+          post_id: "post123",
+        },
+      });
+
+      expect(result.error).toBe("");
+    });
   });
 
   describe("getVideoDetailAudienceDistribution", () => {
@@ -490,6 +745,35 @@ describe("VideoManager", () => {
       expect(result.error).toBe("");
       expect(result.response.age).toBeDefined();
     });
+
+    it("should get video detail audience distribution using snake_case parameters successfully", async () => {
+      const mockResponse: GetVideoDetailAudienceDistributionResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getVideoDetailAudienceDistribution({
+        post_id: "post123",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/video/get_video_detail_audience_distribution",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            post_id: "post123",
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+    });
   });
 
   describe("getVideoDetailMetricTrend", () => {
@@ -528,6 +812,37 @@ describe("VideoManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.metricTrend).toBeDefined();
+    });
+
+    it("should get video detail metric trend using snake_case parameters successfully", async () => {
+      const mockResponse: GetVideoDetailMetricTrendResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getVideoDetailMetricTrend({
+        post_id: "post123",
+        metric_name: "Views",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/video/get_video_detail_metric_trend",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            post_id: "post123",
+            metric_name: "Views",
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
     });
   });
 
@@ -572,6 +887,35 @@ describe("VideoManager", () => {
       expect(result.response.videoPerformance?.views).toBe(5000);
       expect(result.response.videoPerformance?.likes).toBe(250);
     });
+
+    it("should get video detail performance using snake_case parameters successfully", async () => {
+      const mockResponse: GetVideoDetailPerformanceResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getVideoDetailPerformance({
+        post_id: "post123",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/video/get_video_detail_performance",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            post_id: "post123",
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+    });
   });
 
   describe("getVideoDetailProductPerformance", () => {
@@ -615,6 +959,43 @@ describe("VideoManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.list).toHaveLength(1);
+    });
+
+    it("should get video detail product performance using snake_case parameters successfully", async () => {
+      const mockResponse: GetVideoDetailProductPerformanceResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getVideoDetailProductPerformance({
+        post_id: "post123",
+        page_no: 1,
+        page_size: 10,
+        item_id: 123456,
+        item_name: "test product",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/video/get_video_detail_product_performance",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            post_id: "post123",
+            page_no: 1,
+            page_size: 10,
+            item_id: 123456,
+            item_name: "test product",
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
     });
   });
 
@@ -664,6 +1045,38 @@ describe("VideoManager", () => {
       expect(result.error).toBe("");
       expect(result.response.list).toHaveLength(2);
       expect(result.response.hasMore).toBe(false);
+    });
+
+    it("should get video list using snake_case parameters successfully", async () => {
+      const mockResponse: GetVideoListResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          list: [],
+          hasMore: false,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getVideoList({
+        page_no: 1,
+        page_size: 10,
+        list_type: 2,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_list", {
+        method: "GET",
+        auth: true,
+        params: {
+          page_no: 1,
+          page_size: 10,
+          list_type: 2,
+        },
+      });
+
+      expect(result.error).toBe("");
     });
   });
 
@@ -722,6 +1135,45 @@ describe("VideoManager", () => {
       expect(result.error).toBe("");
       expect(result.response.list).toHaveLength(2);
     });
+
+    it("should get video performance list using snake_case parameters successfully", async () => {
+      const mockResponse: GetVideoPerformanceListResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.getVideoPerformanceList({
+        page_no: 1,
+        page_size: 10,
+        period_type: "Day",
+        end_date: "2026-05-20",
+        order_by: "Views",
+        sort: "desc",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/video/get_video_performance_list",
+        {
+          method: "GET",
+          auth: true,
+          params: {
+            page_no: 1,
+            page_size: 10,
+            period_type: "Day",
+            end_date: "2026-05-20",
+            order_by: "Views",
+            sort: "desc",
+          },
+        }
+      );
+
+      expect(result.error).toBe("");
+    });
   });
 
   describe("postVideo", () => {
@@ -758,6 +1210,31 @@ describe("VideoManager", () => {
       expect(result.error).toBe("");
       expect(result.response.successList).toHaveLength(1);
       expect(result.response.successList![0].postId).toBe("post123");
+    });
+
+    it("should post video using snake_case parameters successfully", async () => {
+      const mockResponse: PostVideoResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {},
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await videoManager.postVideo({
+        video_upload_id_list: ["upload123"],
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/post_video", {
+        method: "POST",
+        auth: true,
+        body: {
+          video_upload_id_list: ["upload123"],
+        },
+      });
+
+      expect(result.error).toBe("");
     });
 
     it("should handle post video failure", async () => {

@@ -928,6 +928,22 @@ export interface HandlePrescriptionCheckParams {
   operation: "APPROVE" | "REJECT";
   /** The reason for rejection. Required when operation is REJECT */
   reject_reason?: string;
+  /** Shopee's unique identifier for an order */
+  order_sn?: string;
+  /** Indicate whether the prescription is approved or not */
+  is_approved?: boolean;
+  /** Reject reason code */
+  reject_reason_code?: number;
+  /** Prescription check items */
+  items?: Array<{
+    item_id?: number;
+    model_id?: number;
+    prescription_status?: number;
+  }>;
+  /** Name of the pharmacist */
+  pharmacist_name?: string;
+  /** Free text remarks */
+  free_text?: string;
 }
 
 /**
@@ -962,6 +978,10 @@ export interface UploadInvoiceDocParams {
   order_sn: string;
   /** The invoice document file */
   invoice_file: string;
+  /** File type (PDF, etc) */
+  file_type?: string;
+  /** File content/name */
+  file?: string;
 }
 
 /**
@@ -975,6 +995,8 @@ export interface UploadInvoiceDocResponse extends FetchResponse<null> {}
 export interface GetBookingDetailParams {
   /** The set of booking_sn. If there are multiple booking_sn, you need to use English comma to connect them. limit [1,50] */
   booking_sn_list: string[];
+  /** Optional fields in response */
+  response_optional_fields?: string;
 }
 
 /**

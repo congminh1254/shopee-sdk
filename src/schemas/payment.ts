@@ -686,6 +686,10 @@ export type GenerateIncomeReportParams = {
   end_time: number;
   /** Currency for the report */
   currency?: string;
+  /** Release time from */
+  release_time_from?: number;
+  /** Release time to */
+  release_time_to?: number;
 };
 
 /**
@@ -730,6 +734,12 @@ export type GenerateIncomeStatementParams = {
   start_time: number;
   /** End time for the statement (timestamp) */
   end_time: number;
+  /** Release time from */
+  release_time_from?: number;
+  /** Release time to */
+  release_time_to?: number;
+  /** Statement type */
+  statement_type?: string;
 };
 
 /**
@@ -872,6 +882,8 @@ export type GetPayoutInfoParams = {
   page_no?: number;
   /** Page size, max 100, default 40 */
   page_size?: number;
+  /** Pagination cursor */
+  cursor?: string;
 };
 
 /**
@@ -902,4 +914,102 @@ export interface GetPayoutInfoResponse extends BaseResponse {
     /** Indicates whether there are more pages */
     more: boolean;
   };
+}
+
+/**
+ * Parameters for v2.payment.get_income_detail
+ */
+export interface GetIncomeDetailParams extends Record<
+  string,
+  string | number | boolean | null | undefined
+> {
+  /** Start date (YYYY-MM-DD) of the income reference period. This field is only used for Income Status = Released, the other statuses will display all records currently in that status. */
+  date_from: string;
+  /** End date (YYYY-MM-DD) of the income reference period. Must be later than date_from. This field is only used for Income Status = Released, the other statuses will display all records currently in that status. */
+  date_to: string;
+  /** Status of Seller Income payout. Supported values: Local: 1 - Released, 2 - Pending. CB: 0 - To Release, 1 - Released, 2 - Pending. */
+  income_status: number;
+  /** Pagination token for the next set of results. Use an empty string "" for the first request. */
+  cursor?: string;
+  /** Number of income detail records to retrieve per page */
+  page_size: number;
+}
+
+export interface IncomeDetailNextPage {
+  /** Token to retrieve the next page of results. Returns empty if there is no more data. */
+  cursor: string;
+  /** Number of records returned per page. */
+  page_size: number;
+}
+
+export interface IncomeDetailListItem {
+  /** Payment channel or method used for the order */
+  payment_method?: string;
+  /** Unique order serial number associated with the income record. */
+  order_sn?: string;
+  /** Type of income or billing item — e.g., Order Income, Adjustment etc */
+  description?: string;
+  /** Status description of the order income or payout. */
+  status?: string;
+  /** Currency in which the income was transacted. */
+  currency?: string;
+  /** Estimated escrow amount pending release for the order. */
+  estimated_escrow_amount?: number;
+  /** Estimated payout time (Unix timestamp). Applicable for Pending/To Release status. */
+  estimated_payout_time?: number;
+  /** Amount that is queued for release to seller (Cross Border only). */
+  to_release_amount?: number;
+  /** Order creation timestamp (Unix format). */
+  creation_date?: number;
+  /** Amount successfully released to the seller. */
+  released_amount?: number;
+  /** Actual payout time (Unix timestamp) when funds were transferred. */
+  actual_payout_time?: number;
+}
+
+export interface IncomeDetailList {
+  next_page?: IncomeDetailNextPage;
+  list?: IncomeDetailListItem[];
+}
+
+/**
+ * Response for v2.payment.get_income_detail
+ */
+export interface GetIncomeDetailResponse extends BaseResponse {
+  /** List of income detail records returned for the specified time range and status. */
+  income_detail_list?: IncomeDetailList;
+}
+
+/**
+ * Parameters for v2.payment.get_income_overview
+ */
+export interface GetIncomeOverviewParams extends Record<
+  string,
+  string | number | boolean | null | undefined
+> {
+  /** Status of Seller Income payout. Supported values: Local Shop: 1 - Released, 2 - Pending. CB Shop: 0 - To Release, 1 - Released, 2 - Pending. */
+  income_status?: number;
+}
+
+export interface TotalIncome {
+  /** Total amount pending release (Local: orders before ESCROW_PAID; CB: orders before ESCROW_PAYOUT). */
+  pending_amount?: number;
+  /** Amount queued for release in the next payout cycle (CB only). Not applicable for Local shops. */
+  to_release_amount?: number;
+  /** Total amount successfully released to the seller. */
+  released_amount?: number;
+}
+
+/**
+ * Response for v2.payment.get_income_overview
+ */
+export interface GetIncomeOverviewResponse extends BaseResponse {
+  response?: {
+    /** The latest payout date for the released income. Format: YYYY-MM-DD. Only for CN shops. */
+    latest_payout_date?: string;
+    /** Object containing total income components. */
+    total_income?: TotalIncome;
+  };
+  /** Object containing total income components (fallback top-level). */
+  total_income?: TotalIncome;
 }

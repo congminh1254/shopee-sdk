@@ -306,6 +306,30 @@ describe("ShopeeFetch", () => {
       expect(url).toContain("param3=array2");
     });
 
+    it("should remove undefined query parameters from URL", async () => {
+      const mockResponse = { data: "test" };
+      const params = {
+        param1: "value1",
+        param2: undefined,
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        status: 200,
+        headers: new Map([["content-type", "application/json"]]),
+        json: jest.fn(() => Promise.resolve(mockResponse)),
+      });
+
+      await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
+        params,
+      });
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      const [url] = mockFetch.mock.calls[0];
+      expect(url).toContain("param1=value1");
+      expect(url).not.toContain("param2");
+    });
+
+
     it("should handle invalid access token error when refresh fails", async () => {
       const invalidTokenResponse = {
         error: "invalid_acceess_token",

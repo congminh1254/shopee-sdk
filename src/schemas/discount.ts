@@ -111,6 +111,10 @@ export interface GetDiscountListParams {
   page_no?: number;
   /** Maximum number of entries to retrieve per page. Default 100, max 100 */
   page_size?: number;
+  /** Update time from */
+  update_time_from?: number;
+  /** Update time to */
+  update_time_to?: number;
   [key: string]: string | number | boolean | undefined;
 }
 

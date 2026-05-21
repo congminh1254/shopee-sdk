@@ -20,6 +20,8 @@ import {
   GetBillingTransactionInfoResponse,
   GetPayoutDetailResponse,
   GetPayoutInfoResponse,
+  GetIncomeDetailResponse,
+  GetIncomeOverviewResponse,
 } from "../../schemas/payment.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -1218,6 +1220,119 @@ describe("PaymentManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.payout_list).toHaveLength(1);
       expect(result.response.payout_list[0].payout_fee).toBe(25.0);
+    });
+  });
+
+  describe("getIncomeDetail", () => {
+    it("should get income detail successfully", async () => {
+      const mockResponse: GetIncomeDetailResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        income_detail_list: {
+          list: [
+            {
+              actual_payout_time: 1762532978,
+              currency: "IDR",
+              order_sn: "251101MPY3RDD3",
+              payment_method: "Cash on Delivery",
+              released_amount: 19246,
+              status: "Dana telah dilepaskan",
+            },
+          ],
+          next_page: {
+            cursor: "216223606250140",
+            page_size: 10,
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await paymentManager.getIncomeDetail({
+        date_from: "2025-08-08",
+        date_to: "2025-08-20",
+        income_status: 1,
+        cursor: "",
+        page_size: 10,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_detail", {
+        method: "GET",
+        auth: true,
+        params: {
+          date_from: "2025-08-08",
+          date_to: "2025-08-20",
+          income_status: 1,
+          cursor: "",
+          page_size: 10,
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.income_detail_list?.list).toHaveLength(1);
+      expect(result.income_detail_list?.next_page?.cursor).toBe("216223606250140");
+    });
+  });
+
+  describe("getIncomeOverview", () => {
+    it("should get income overview successfully", async () => {
+      const mockResponse: GetIncomeOverviewResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        total_income: {
+          pending_amount: 4010,
+          released_amount: 1545,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await paymentManager.getIncomeOverview({
+        income_status: 1,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_overview", {
+        method: "GET",
+        auth: true,
+        params: {
+          income_status: 1,
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.total_income?.pending_amount).toBe(4010);
+      expect(result.total_income?.released_amount).toBe(1545);
+    });
+
+    it("should get income overview without parameters", async () => {
+      const mockResponse: GetIncomeOverviewResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          latest_payout_date: "2025-08-19",
+          total_income: {
+            pending_amount: 330598.87,
+            released_amount: 330598.87,
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await paymentManager.getIncomeOverview();
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_overview", {
+        method: "GET",
+        auth: true,
+        params: undefined,
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response?.latest_payout_date).toBe("2025-08-19");
+      expect(result.response?.total_income?.pending_amount).toBe(330598.87);
     });
   });
 });

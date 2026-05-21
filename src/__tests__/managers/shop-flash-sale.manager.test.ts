@@ -602,4 +602,15 @@ describe("ShopFlashSaleManager", () => {
       expect(result.response.pair_ids).toHaveLength(1);
     });
   });
+
+  describe("Default Params Coverage", () => {
+    it("should cover ShopFlashSaleManager methods with default parameters", async () => {
+      mockShopeeFetch.mockResolvedValue({ response: {} });
+
+      await shopFlashSaleManager.getItemCriteria(undefined);
+
+      expect(mockShopeeFetch).toHaveBeenCalledTimes(1);
+    });
+  });
 });
+

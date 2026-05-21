@@ -38,6 +38,10 @@ Each manager provides access to a specific set of Shopee API endpoints:
 - [TopPicksManager](./managers/top-picks.md) - Top picks product collections
 - [ShopCategoryManager](./managers/shop-category.md) - Shop category management
 - [SbsManager](./managers/sbs.md) - Shopee Business Services (SBS) warehouse inventory management
+- [FbsManager](./managers/fbs.md) - Fulfillment by Shopee operations
+- [LivestreamManager](./managers/livestream.md) - Live streaming features
+- [AmsManager](./managers/ams.md) - Affiliate Marketing Solutions (AMS)
+- [VideoManager](./managers/video.md) - Shopee Video features and analytics
 
 ## Quick Start
 

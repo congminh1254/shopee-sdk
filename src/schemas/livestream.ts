@@ -90,6 +90,8 @@ export interface UpdateSessionParams {
   description?: string;
   /** The cover image URL of livestream session */
   cover_image_url?: string;
+  /** Indicate whether the livestream session is for testing purpose only */
+  is_test?: boolean;
 }
 
 /**
@@ -451,6 +453,8 @@ export interface GetLikeItemListParams extends Record<
   offset: number;
   /** Maximum number of entries per page (1-100) */
   page_size: number;
+  /** Keyword for search */
+  keyword?: string;
 }
 
 /**
@@ -475,6 +479,8 @@ export interface ApplyItemSetParams {
   session_id: number;
   /** The identifier of item set */
   item_set_id: number;
+  /** The list of item set IDs */
+  item_set_ids?: number[];
 }
 
 /**
@@ -495,6 +501,8 @@ export interface GetItemSetListParams extends Record<
   offset: number;
   /** Maximum number of entries per page (1-100) */
   page_size: number;
+  /** Keyword for search */
+  keyword?: string;
 }
 
 /**
@@ -628,6 +636,8 @@ export interface PostCommentParams {
   session_id: number;
   /** Comment text */
   comment: string;
+  /** Comment content (field gap requirement) */
+  content?: string;
 }
 
 /**
@@ -690,6 +700,8 @@ export interface BanUserCommentParams {
   session_id: number;
   /** User ID to ban */
   user_id: number;
+  /** Ban user ID (field gap requirement) */
+  ban_user_id?: number;
 }
 
 /**
@@ -707,6 +719,8 @@ export interface UnbanUserCommentParams {
   session_id: number;
   /** User ID to unban */
   user_id: number;
+  /** Unban user ID (field gap requirement) */
+  unban_user_id?: number;
 }
 
 /**

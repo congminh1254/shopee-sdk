@@ -31,6 +31,10 @@ import {
   GetPayoutDetailResponse,
   GetPayoutInfoParams,
   GetPayoutInfoResponse,
+  GetIncomeDetailParams,
+  GetIncomeDetailResponse,
+  GetIncomeOverviewParams,
+  GetIncomeOverviewResponse,
 } from "../schemas/payment.js";
 import { ShopeeFetch } from "../fetch.js";
 
@@ -444,6 +448,42 @@ export class PaymentManager extends BaseManager {
     const response = await ShopeeFetch.fetch<GetPayoutInfoResponse>(
       this.config,
       "/payment/get_payout_info",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Retrieves detailed order-level income information across various income statuses for a specified time period.
+   *
+   * @param params - Parameters for getting income details
+   */
+  async getIncomeDetail(params: GetIncomeDetailParams): Promise<GetIncomeDetailResponse> {
+    const response = await ShopeeFetch.fetch<GetIncomeDetailResponse>(
+      this.config,
+      "/payment/get_income_detail",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Retrieves a consolidated snapshot of the seller's income amounts categorized by income status for a specified shop.
+   *
+   * @param params - Optional parameters for getting income overview
+   */
+  async getIncomeOverview(params?: GetIncomeOverviewParams): Promise<GetIncomeOverviewResponse> {
+    const response = await ShopeeFetch.fetch<GetIncomeOverviewResponse>(
+      this.config,
+      "/payment/get_income_overview",
       {
         method: "GET",
         auth: true,

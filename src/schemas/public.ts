@@ -25,3 +25,8 @@ export interface GetMerchantsByPartnerResponse extends FetchResponse<{
 export interface GetShopeeIpRangeResponse extends FetchResponse<{
   ip_list: string[];
 }> {}
+
+export interface GetTokenByResendCodeParams {
+  resend_code: string;
+}
+

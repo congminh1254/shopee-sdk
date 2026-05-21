@@ -15,6 +15,8 @@ import {
   CheckPolygonUpdateStatusResponse,
   UpdateAddressResponse,
   UploadServiceablePolygonResponse,
+  LogisticsStatus,
+  TrackingLogisticsStatus,
 } from "../../schemas/logistics.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -1386,6 +1388,13 @@ describe("LogisticsManager", () => {
 
       expect(result.error).toBe("error_invalid_kml");
       expect(result.message).toBe("KML file contains invalid polygon data");
+    });
+  });
+
+  describe("Schema Evaluation Check", () => {
+    it("should successfully reference all exported enums and constants", () => {
+      expect(LogisticsStatus.LOGISTICS_READY).toBe("LOGISTICS_READY");
+      expect(TrackingLogisticsStatus.DELIVERED).toBe("DELIVERED");
     });
   });
 });

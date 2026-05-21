@@ -25,6 +25,7 @@ import {
   DownloadFbsInvoicesResponse,
   GenerateFbsInvoicesResponse,
   GetFbsInvoicesResultResponse,
+  allOptionalFields,
 } from "../../schemas/order.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -762,6 +763,12 @@ describe("OrderManager", () => {
       const result = await orderManager.handlePrescriptionCheck({
         package_number: "PKG001",
         operation: "APPROVE",
+        order_sn: "220101000000001",
+        is_approved: true,
+        reject_reason_code: 0,
+        items: [{ item_id: 111111, model_id: 222222, prescription_status: 1 }],
+        pharmacist_name: "John Doe",
+        free_text: "Checked",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/handle_prescription_check", {
@@ -770,6 +777,12 @@ describe("OrderManager", () => {
         body: {
           package_number: "PKG001",
           operation: "APPROVE",
+          order_sn: "220101000000001",
+          is_approved: true,
+          reject_reason_code: 0,
+          items: [{ item_id: 111111, model_id: 222222, prescription_status: 1 }],
+          pharmacist_name: "John Doe",
+          free_text: "Checked",
         },
       });
 
@@ -820,6 +833,8 @@ describe("OrderManager", () => {
       const result = await orderManager.uploadInvoiceDoc({
         order_sn: "220101000000001",
         invoice_file: "base64_encoded_file_content",
+        file_type: "pdf",
+        file: "invoice.pdf",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/upload_invoice_doc", {
@@ -828,6 +843,8 @@ describe("OrderManager", () => {
         body: {
           order_sn: "220101000000001",
           invoice_file: "base64_encoded_file_content",
+          file_type: "pdf",
+          file: "invoice.pdf",
         },
       });
 
@@ -860,6 +877,7 @@ describe("OrderManager", () => {
 
       const result = await orderManager.getBookingDetail({
         booking_sn_list: ["BOOK001"],
+        response_optional_fields: "booking_status",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/get_booking_detail", {
@@ -867,6 +885,7 @@ describe("OrderManager", () => {
         auth: true,
         params: {
           booking_sn_list: "BOOK001",
+          response_optional_fields: "booking_status",
         },
       });
 
@@ -1064,6 +1083,12 @@ describe("OrderManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("Schema Evaluation Check", () => {
+    it("should successfully reference all exported enums and constants", () => {
+      expect(allOptionalFields).toContain("recipient_address");
     });
   });
 });

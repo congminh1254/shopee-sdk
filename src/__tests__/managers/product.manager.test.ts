@@ -1626,6 +1626,7 @@ describe("ProductManager", () => {
 
       const result = await productManager.getVariations({
         item_id: 123456,
+        category_id: 789,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_variations", {
@@ -1633,6 +1634,7 @@ describe("ProductManager", () => {
         auth: true,
         params: {
           item_id: 123456,
+          category_id: 789,
         },
       });
 
@@ -1666,6 +1668,7 @@ describe("ProductManager", () => {
       const result = await productManager.getRecommendAttribute({
         category_id: 100001,
         item_name: "T-Shirt",
+        cover_image_id: 12345,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_recommend_attribute", {
@@ -1674,6 +1677,7 @@ describe("ProductManager", () => {
         params: {
           category_id: 100001,
           item_name: "T-Shirt",
+          cover_image_id: 12345,
         },
       });
 
@@ -1703,6 +1707,9 @@ describe("ProductManager", () => {
         category_id: 100001,
         attribute_id: 1001,
         search_value: "Cotton",
+        value_name: "Cotton Soft",
+        cursor: 10,
+        limit: 50,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1715,6 +1722,9 @@ describe("ProductManager", () => {
             category_id: 100001,
             attribute_id: 1001,
             search_value: "Cotton",
+            value_name: "Cotton Soft",
+            cursor: 10,
+            limit: 50,
           },
         }
       );
@@ -1977,12 +1987,12 @@ describe("ProductManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await productManager.addKitItem({ test: "data" });
+      const result = await productManager.addKitItem({ item_setting: "data" });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/add_kit_item", {
         method: "POST",
         auth: true,
-        body: { test: "data" },
+        body: { item_setting: "data" },
       });
 
       expect(result.response.item_id).toBe(123456);
@@ -2096,12 +2106,12 @@ describe("ProductManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await productManager.addSspItem({ test: "data" });
+      const result = await productManager.addSspItem({ item_sku: "data" });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/add_ssp_item", {
         method: "POST",
         auth: true,
-        body: { test: "data" },
+        body: { item_sku: "data" },
       });
 
       expect(result.response.item_id).toBe(123456);
@@ -2665,4 +2675,17 @@ describe("ProductManager", () => {
       expect(result.response?.item_id).toBe(444444);
     });
   });
+
+  describe("Default Params Coverage", () => {
+    it("should cover ProductManager methods with default parameters", async () => {
+      mockShopeeFetch.mockResolvedValue({ response: {} });
+
+      await productManager.getMainItemList(undefined);
+      await productManager.getDirectItemList(undefined);
+      await productManager.getSspList(undefined);
+
+      expect(mockShopeeFetch).toHaveBeenCalledTimes(3);
+    });
+  });
 });
+

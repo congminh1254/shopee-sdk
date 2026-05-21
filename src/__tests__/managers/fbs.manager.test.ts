@@ -401,4 +401,17 @@ describe("FbsManager", () => {
       expect(result.response.shop_model_id).toBe(777666);
     });
   });
+
+  describe("Default Params Coverage", () => {
+    it("should cover FbsManager methods with default parameters", async () => {
+      mockShopeeFetch.mockResolvedValue({ response: {} });
+
+      await fbsManager.queryBrShopEnrollmentStatus();
+      await fbsManager.queryBrShopBlockStatus();
+      await fbsManager.queryBrShopInvoiceError();
+
+      expect(mockShopeeFetch).toHaveBeenCalledTimes(3);
+    });
+  });
 });
+

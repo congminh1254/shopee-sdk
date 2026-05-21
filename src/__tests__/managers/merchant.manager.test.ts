@@ -198,6 +198,7 @@ describe("MerchantManager", () => {
           next_id: 0,
           page_size: 30,
         },
+        warehouse_type: 1,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -211,6 +212,7 @@ describe("MerchantManager", () => {
               next_id: 0,
               page_size: 30,
             },
+            warehouse_type: 1,
           },
         }
       );

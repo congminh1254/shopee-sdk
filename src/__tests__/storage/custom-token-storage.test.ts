@@ -360,4 +360,46 @@ describe("CustomTokenStorage", () => {
       expect(retrieved2?.shop_id).toBe(222);
     });
   });
+
+  describe("Non-Error Exception Handling", () => {
+    let originalWrite: any;
+    let originalRead: any;
+    let originalUnlink: any;
+
+    beforeEach(() => {
+      originalWrite = fs.writeFileSync;
+      originalRead = fs.readFileSync;
+      originalUnlink = fs.unlinkSync;
+    });
+
+    afterEach(() => {
+      fs.writeFileSync = originalWrite;
+      fs.readFileSync = originalRead;
+      fs.unlinkSync = originalUnlink;
+      jest.restoreAllMocks();
+    });
+
+    it("should catch non-Error exceptions correctly", async () => {
+      const storage = new CustomTokenStorage(888899);
+
+      // 1. fs.writeFileSync throws string
+      jest.spyOn(fs, "writeFileSync").mockImplementation(() => {
+        throw "String write error";
+      });
+      await expect(storage.store({} as any)).rejects.toThrow("Failed to store token: Unknown error");
+
+      // 2. fs.readFileSync throws string
+      jest.spyOn(fs, "readFileSync").mockImplementation(() => {
+        throw "String read error";
+      });
+      await expect(storage.get()).rejects.toThrow("Failed to get token: Unknown error");
+
+      // 3. fs.unlinkSync throws string
+      jest.spyOn(fs, "unlinkSync").mockImplementation(() => {
+        throw "String unlink error";
+      });
+      await expect(storage.clear()).rejects.toThrow("Failed to clear token: Unknown error");
+    });
+  });
 });
+

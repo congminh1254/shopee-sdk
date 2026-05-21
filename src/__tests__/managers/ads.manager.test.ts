@@ -16,10 +16,8 @@ import {
   GetProductLevelCampaignSettingInfoResponse,
   GetProductRecommendedRoiTargetResponse,
   CheckCreateGmsProductCampaignEligibilityResponse,
-  CreateAutoProductAdsResponse,
   CreateGmsProductCampaignResponse,
   CreateManualProductAdsResponse,
-  EditAutoProductAdsResponse,
   EditGmsItemProductCampaignResponse,
   EditGmsProductCampaignResponse,
   EditManualProductAdKeywordsResponse,
@@ -683,62 +681,6 @@ describe("AdsManager", () => {
     });
   });
 
-  describe("createAutoProductAds", () => {
-    it("should create auto product ads successfully", async () => {
-      const mockResponse: CreateAutoProductAdsResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          campaign_id: 987654,
-        },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await adsManager.createAutoProductAds({
-        reference_id: "ref-12345",
-        budget: 100.5,
-        start_date: "01-01-2024",
-        end_date: "31-01-2024",
-      });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/create_auto_product_ads", {
-        method: "POST",
-        auth: true,
-        body: {
-          reference_id: "ref-12345",
-          budget: 100.5,
-          start_date: "01-01-2024",
-          end_date: "31-01-2024",
-        },
-      });
-
-      expect(result.error).toBe("");
-      expect(result.response.campaign_id).toBe(987654);
-    });
-
-    it("should create auto product ads with unlimited duration", async () => {
-      const mockResponse: CreateAutoProductAdsResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          campaign_id: 987655,
-        },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await adsManager.createAutoProductAds({
-        reference_id: "ref-12346",
-        budget: 50.0,
-        start_date: "01-01-2024",
-      });
-
-      expect(result.response.campaign_id).toBe(987655);
-    });
-  });
 
   describe("createGmsProductCampaign", () => {
     it("should create GMS product campaign successfully", async () => {
@@ -849,41 +791,6 @@ describe("AdsManager", () => {
     });
   });
 
-  describe("editAutoProductAds", () => {
-    it("should edit auto product ads successfully", async () => {
-      const mockResponse: EditAutoProductAdsResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          campaign_id: 987654,
-        },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await adsManager.editAutoProductAds({
-        reference_id: "edit-ref-001",
-        campaign_id: 987654,
-        edit_action: "budget",
-        budget: 200.0,
-      });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_auto_product_ads", {
-        method: "POST",
-        auth: true,
-        body: {
-          reference_id: "edit-ref-001",
-          campaign_id: 987654,
-          edit_action: "budget",
-          budget: 200.0,
-        },
-      });
-
-      expect(result.error).toBe("");
-      expect(result.response.campaign_id).toBe(987654);
-    });
-  });
 
   describe("editGmsItemProductCampaign", () => {
     it("should add items to GMS campaign successfully", async () => {
@@ -961,6 +868,7 @@ describe("AdsManager", () => {
         campaign_id: 111222,
         edit_action: "budget",
         daily_budget: 300.0,
+        reference_id: "test-ref-gms-123",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_gms_product_campaign", {
@@ -970,6 +878,7 @@ describe("AdsManager", () => {
           campaign_id: 111222,
           edit_action: "budget",
           daily_budget: 300.0,
+          reference_id: "test-ref-gms-123",
         },
       });
 

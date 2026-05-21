@@ -21,14 +21,10 @@ import {
   GetProductRecommendedRoiTargetParams,
   GetProductRecommendedRoiTargetResponse,
   CheckCreateGmsProductCampaignEligibilityResponse,
-  CreateAutoProductAdsParams,
-  CreateAutoProductAdsResponse,
   CreateGmsProductCampaignParams,
   CreateGmsProductCampaignResponse,
   CreateManualProductAdsParams,
   CreateManualProductAdsResponse,
-  EditAutoProductAdsParams,
-  EditAutoProductAdsResponse,
   EditGmsItemProductCampaignParams,
   EditGmsItemProductCampaignResponse,
   EditGmsProductCampaignParams,
@@ -503,41 +499,6 @@ export class AdsManager extends BaseManager {
     return response;
   }
 
-  /**
-   * Create Auto Product Ads
-   * @deprecated This API is coming offline soon. Please migrate to alternative advertising methods.
-   * @param {CreateAutoProductAdsParams} params Request parameters
-   * @param {string} params.reference_id A random string used to prevent duplicate ads
-   * @param {number} params.budget The budget set for the Auto Product Ads
-   * @param {string} params.start_date Start date of the campaign (DD-MM-YYYY format)
-   * @param {string} [params.end_date] End date of the campaign (DD-MM-YYYY format). Leave empty for unlimited duration
-   * @returns {Promise<CreateAutoProductAdsResponse>} Response containing the created campaign ID
-   *
-   * This API is used to create Auto Product Ads. Auto Product Ads automatically promote
-   * products based on their performance and potential.
-   *
-   * ⚠️ **DEPRECATION WARNING**: This endpoint is being deprecated and will be removed in a future version.
-   *
-   * Important notes:
-   * - reference_id prevents duplicate ad creation. If an ad is created successfully,
-   *   subsequent requests using the same reference_id will fail
-   * - For unlimited campaign duration, pass today's date as start_date and leave end_date empty
-   */
-  async createAutoProductAds(
-    params: CreateAutoProductAdsParams
-  ): Promise<CreateAutoProductAdsResponse> {
-    const response = await ShopeeFetch.fetch<CreateAutoProductAdsResponse>(
-      this.config,
-      "/ads/create_auto_product_ads",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
 
   /**
    * Create a GMS product campaign
@@ -610,37 +571,6 @@ export class AdsManager extends BaseManager {
     return response;
   }
 
-  /**
-   * Edit Auto Product Ads
-   * @deprecated This API is coming offline soon. Please migrate to alternative advertising methods.
-   * @param {EditAutoProductAdsParams} params Request parameters
-   * @param {string} params.reference_id A random string used to prevent duplicate ads
-   * @param {number} params.campaign_id The unique identifier for the campaign
-   * @param {string} params.edit_action The update action: "status", "budget", or "duration"
-   * @param {number} [params.budget] The budget set for the Auto Product Ads
-   * @param {string} [params.start_date] Start date of the campaign (DD-MM-YYYY format)
-   * @param {string} [params.end_date] End date of the campaign (DD-MM-YYYY format)
-   * @returns {Promise<EditAutoProductAdsResponse>} Response containing the campaign ID
-   *
-   * This API is used to edit existing Auto Product Ads.
-   *
-   * ⚠️ **DEPRECATION WARNING**: This endpoint is being deprecated and will be removed in a future version.
-   *
-   * You can update the campaign status, budget, or duration based on the edit_action parameter.
-   */
-  async editAutoProductAds(params: EditAutoProductAdsParams): Promise<EditAutoProductAdsResponse> {
-    const response = await ShopeeFetch.fetch<EditAutoProductAdsResponse>(
-      this.config,
-      "/ads/edit_auto_product_ads",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
 
   /**
    * Add/remove items to/from the GMS Campaign

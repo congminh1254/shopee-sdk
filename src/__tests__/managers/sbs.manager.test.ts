@@ -539,4 +539,15 @@ describe("SbsManager", () => {
       expect(result.response.total).toBe(0);
     });
   });
+
+  describe("Default Params Coverage", () => {
+    it("should cover SbsManager methods with default parameters", async () => {
+      mockShopeeFetch.mockResolvedValue({ response: {} });
+
+      await sbsManager.getBoundWhsInfo();
+
+      expect(mockShopeeFetch).toHaveBeenCalledTimes(1);
+    });
+  });
 });
+

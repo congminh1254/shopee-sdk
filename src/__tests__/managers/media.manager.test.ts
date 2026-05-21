@@ -11,6 +11,11 @@ import {
   CompleteVideoUploadResponse,
   GetVideoUploadResultResponse,
   CancelVideoUploadResponse,
+  InitMediaVideoUploadResponse,
+  UploadMediaVideoPartResponse,
+  CompleteMediaVideoUploadResponse,
+  GetMediaVideoUploadResultResponse,
+  CancelMediaVideoUploadResponse,
 } from "../../schemas/media.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -661,6 +666,163 @@ describe("MediaManager", () => {
         auth: true,
         body: {
           video_upload_id: "sg_cancel_during_upload_id",
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("initMediaVideoUpload", () => {
+    it("should initiate media video upload session", async () => {
+      const mockResponse: InitMediaVideoUploadResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          video_upload_id: "sg_media_video_123",
+          part_size: 4194304,
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await mediaManager.initMediaVideoUpload({
+        business: 3,
+        scene: 1,
+        file_name: "test.mp4",
+        file_size: 10485760,
+        duration: 30,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/init_video_upload", {
+        method: "POST",
+        auth: true,
+        body: {
+          business: 3,
+          scene: 1,
+          file_name: "test.mp4",
+          file_size: 10485760,
+          duration: 30,
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("uploadMediaVideoPart", () => {
+    it("should upload a media video part", async () => {
+      const mockResponse: UploadMediaVideoPartResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await mediaManager.uploadMediaVideoPart({
+        video_upload_id: "sg_media_video_123",
+        part_seq: 0,
+        part_content: "base64-data",
+        part_md5: "md5checksum",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_video_part", {
+        method: "POST",
+        body: {
+          video_upload_id: "sg_media_video_123",
+          part_seq: 0,
+          part_content: "base64-data",
+          part_md5: "md5checksum",
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("completeMediaVideoUpload", () => {
+    it("should complete media video upload session", async () => {
+      const mockResponse: CompleteMediaVideoUploadResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await mediaManager.completeMediaVideoUpload({
+        video_upload_id: "sg_media_video_123",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/complete_video_upload", {
+        method: "POST",
+        body: {
+          video_upload_id: "sg_media_video_123",
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("getMediaVideoUploadResult", () => {
+    it("should retrieve media video upload result", async () => {
+      const mockResponse: GetMediaVideoUploadResultResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          status: "SUCCEEDED",
+          video_info: {
+            video_url: "https://shopee.com/video.mp4",
+            video_thumbnail_url: "https://shopee.com/thumb.jpg",
+            thumbnail_width: 720,
+            thumbnail_height: 1280,
+            duration: 30,
+            resolution: "720x1280",
+          },
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await mediaManager.getMediaVideoUploadResult({
+        video_upload_id: "sg_media_video_123",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/get_video_upload_result", {
+        method: "GET",
+        auth: true,
+        params: {
+          video_upload_id: "sg_media_video_123",
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+    });
+  });
+
+  describe("cancelMediaVideoUpload", () => {
+    it("should cancel media video upload session", async () => {
+      const mockResponse: CancelMediaVideoUploadResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await mediaManager.cancelMediaVideoUpload({
+        video_upload_id: "sg_media_video_123",
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/cancel_video_upload", {
+        method: "POST",
+        auth: true,
+        body: {
+          video_upload_id: "sg_media_video_123",
         },
       });
 
