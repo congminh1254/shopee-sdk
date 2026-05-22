@@ -568,26 +568,18 @@ export interface GetWalletTransactionListResponse extends BaseResponse {
   };
 }
 
-/**
- * Payment method item
- */
-export interface PaymentMethod {
-  /** Payment method ID */
-  payment_method_id: number;
-  /** Payment method name */
-  payment_method_name: string;
-  /** Whether this payment method is enabled */
-  is_enabled: boolean;
+export interface PaymentMethodRegion {
+  /** Region code */
+  region: string;
+  /** List of payment methods in this region */
+  payment_method: string[];
 }
 
 /**
  * Response for get payment method list API
  */
 export interface GetPaymentMethodListResponse extends BaseResponse {
-  response: {
-    /** List of payment methods */
-    payment_method_list: PaymentMethod[];
-  };
+  response: PaymentMethodRegion[];
 }
 
 /**
