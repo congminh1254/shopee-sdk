@@ -13,7 +13,12 @@ jobs:
   integration-test:
     name: Sandbox Integration Tests
     runs-on: ubuntu-latest
-    if: ${{ secrets.SHOPEE_SANDBOX_PARTNER_ID != '' }}
+    env:
+      SHOPEE_SANDBOX_PARTNER_ID: ${{ secrets.SHOPEE_SANDBOX_PARTNER_ID }}
+      SHOPEE_SANDBOX_PARTNER_KEY: ${{ secrets.SHOPEE_SANDBOX_PARTNER_KEY }}
+      SHOPEE_SANDBOX_ACCOUNT: ${{ secrets.SHOPEE_SANDBOX_ACCOUNT }}
+      SHOPEE_SANDBOX_PASSWORD: ${{ secrets.SHOPEE_SANDBOX_PASSWORD }}
+      SHOPEE_SANDBOX_SHOP_ID: ${{ secrets.SHOPEE_SANDBOX_SHOP_ID }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,13 +33,9 @@ jobs:
         run: npm ci
 
       - name: Install Playwright Chromium and dependencies
+        if: ${{ env.SHOPEE_SANDBOX_PARTNER_ID != '' }}
         run: npx playwright install --with-deps chromium
 
       - name: Run sandbox integration tests
+        if: ${{ env.SHOPEE_SANDBOX_PARTNER_ID != '' }}
         run: npm run test:sandbox
-        env:
-          SHOPEE_SANDBOX_PARTNER_ID: ${{ secrets.SHOPEE_SANDBOX_PARTNER_ID }}
-          SHOPEE_SANDBOX_PARTNER_KEY: ${{ secrets.SHOPEE_SANDBOX_PARTNER_KEY }}
-          SHOPEE_SANDBOX_ACCOUNT: ${{ secrets.SHOPEE_SANDBOX_ACCOUNT }}
-          SHOPEE_SANDBOX_PASSWORD: ${{ secrets.SHOPEE_SANDBOX_PASSWORD }}
-          SHOPEE_SANDBOX_SHOP_ID: ${{ secrets.SHOPEE_SANDBOX_SHOP_ID }}
