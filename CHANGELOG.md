@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/congminh1254/shopee-sdk/compare/v1.7.0...v1.8.0) (2026-05-22)
+
+
+### Features
+
+* update getAuthorizationUrl with separate baseAuthUrl ([c11837f](https://github.com/congminh1254/shopee-sdk/commit/c11837f3a02860919f1c586abacebb2ad3f65994))
+
 ## [1.7.0](https://github.com/congminh1254/shopee-sdk/compare/v1.6.2...v1.7.0) (2026-05-21)
 
 
