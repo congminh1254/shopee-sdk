@@ -24,6 +24,13 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-empty-object-type': ['error', { allowInterfaces: 'with-single-extends' }],
+      'no-console': 'error',
+    },
+  },
+  {
+    files: ['scripts/**/*.ts', 'scripts/**/*.js', 'main.ts'],
+    rules: {
+      'no-console': 'off',
     },
   },
 ];
