@@ -50,6 +50,7 @@ interface ShopeeConfig {
   partner_key: string;     // Required: Your Shopee Partner Key
   region?: ShopeeRegion;   // Optional: Target region
   base_url?: string;       // Optional: Custom API base URL
+  base_auth_url?: string;  // Optional: Custom Authorization base URL
   shop_id?: number;        // Optional: Default shop ID
   agent?: Agent;           // Optional: HTTP/HTTPS agent for proxy
 }
@@ -88,7 +89,8 @@ const sdk = new ShopeeSDK({
 const sdk = new ShopeeSDK({
   partner_id: 123456,
   partner_key: 'your-test-key',
-  base_url: 'https://partner.test-stable.shopeemobile.com',
+  base_url: 'https://partner.test-stable.shopeemobile.com/api/v2',
+  base_auth_url: 'https://open.sandbox.test-stable.shopee.com/auth',
 });
 ```
 
@@ -113,7 +115,10 @@ You can update configuration after initialization:
 sdk.setRegion(ShopeeRegion.CHINA);
 
 // Change base URL (overrides region)
-sdk.setBaseUrl('https://partner.test-stable.shopeemobile.com');
+sdk.setBaseUrl('https://partner.test-stable.shopeemobile.com/api/v2');
+
+// Change base auth URL (overrides region)
+sdk.setBaseAuthUrl('https://open.sandbox.test-stable.shopee.com/auth');
 
 // Set proxy agent
 import { HttpsProxyAgent } from 'https-proxy-agent';

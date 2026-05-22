@@ -90,6 +90,14 @@ describe("ShopeeSDK", () => {
       expect(config.region).toBeUndefined();
     });
 
+    it("should set custom base auth URL and clear region", () => {
+      const customAuthUrl = "https://custom.shopee.com/auth";
+      sdk.setBaseAuthUrl(customAuthUrl);
+      const config = sdk.getConfig();
+      expect(config.base_auth_url).toBe(customAuthUrl);
+      expect(config.region).toBeUndefined();
+    });
+
     it("should set fetch agent", () => {
       const mockAgent = new Agent();
       sdk.setFetchAgent(mockAgent);
@@ -101,12 +109,100 @@ describe("ShopeeSDK", () => {
   describe("authorization", () => {
     it("should generate authorization URL with correct parameters", () => {
       const redirectUri = "https://example.com/callback";
-      const url = sdk.getAuthorizationUrl(redirectUri);
+      const url = sdk.getAuthorizationUrl(redirectUri, { state: "csrf_state" });
 
+      expect(url).toContain("https://open.shopee.com/auth");
       expect(url).toContain("partner_id=12345");
-      expect(url).toContain("redirect=" + redirectUri);
-      expect(url).toContain("timestamp=");
-      expect(url).toContain("sign=");
+      expect(url).toContain("auth_type=seller");
+      expect(url).toContain("redirect_uri=" + encodeURIComponent(redirectUri));
+      expect(url).toContain("response_type=code");
+      expect(url).toContain("state=csrf_state");
+    });
+
+    it("should generate sandbox authorization URL when sandbox region is used", () => {
+      const sandboxSdk = new ShopeeSDK({
+        ...mockConfig,
+        region: ShopeeRegion.TEST_GLOBAL,
+      });
+      const redirectUri = "http://local.host";
+      const url = sandboxSdk.getAuthorizationUrl(redirectUri, { auth_type: "supplier" });
+
+      expect(url).toContain("https://open.sandbox.test-stable.shopee.com/auth");
+      expect(url).toContain("partner_id=12345");
+      expect(url).toContain("auth_type=supplier");
+      expect(url).toContain("redirect_uri=" + encodeURIComponent(redirectUri));
+      expect(url).toContain("response_type=code");
+    });
+
+    it("should generate correct authorization URLs for all ShopeeRegion values", () => {
+      const testCases = [
+        { region: ShopeeRegion.GLOBAL, expected: "https://open.shopee.com/auth" },
+        { region: ShopeeRegion.CHINA, expected: "https://open.shopee.cn/auth" },
+        { region: ShopeeRegion.BRAZIL, expected: "https://open.shopee.com.br/auth" },
+        {
+          region: ShopeeRegion.TEST_GLOBAL,
+          expected: "https://open.sandbox.test-stable.shopee.com/auth",
+        },
+        {
+          region: ShopeeRegion.TEST_CHINA,
+          expected: "https://open.sandbox.test-stable.shopee.cn/auth",
+        },
+      ];
+
+      for (const { region, expected } of testCases) {
+        const regionalSdk = new ShopeeSDK({
+          ...mockConfig,
+          region,
+        });
+        const url = regionalSdk.getAuthorizationUrl("http://local.host");
+        expect(url).toContain(expected);
+      }
+    });
+
+    it("should generate correct URLs based on custom base_url configuration when region is undefined", () => {
+      const testCases = [
+        {
+          base_url: "https://openplatform.test-stable.shopee.cn/api/v2",
+          base_auth_url: "https://open.sandbox.test-stable.shopee.cn/auth",
+          expected: "https://open.sandbox.test-stable.shopee.cn/auth",
+        },
+        {
+          base_url: "https://openplatform.test-stable.shopee.com.br/api/v2",
+          base_auth_url: "https://open.sandbox.test-stable.shopee.com.br/auth",
+          expected: "https://open.sandbox.test-stable.shopee.com.br/auth",
+        },
+        {
+          base_url: "https://partner.test-stable.shopeemobile.com/api/v2",
+          base_auth_url: "https://open.sandbox.test-stable.shopee.com/auth",
+          expected: "https://open.sandbox.test-stable.shopee.com/auth",
+        },
+        {
+          base_url: "https://openplatform.shopee.cn/api/v2",
+          base_auth_url: "https://open.shopee.cn/auth",
+          expected: "https://open.shopee.cn/auth",
+        },
+        {
+          base_url: "https://openplatform.shopee.com.br/api/v2",
+          base_auth_url: "https://open.shopee.com.br/auth",
+          expected: "https://open.shopee.com.br/auth",
+        },
+        {
+          base_url: "https://partner.shopeemobile.com/api/v2",
+          base_auth_url: "https://open.shopee.com/auth",
+          expected: "https://open.shopee.com/auth",
+        },
+      ];
+
+      for (const { base_url, base_auth_url, expected } of testCases) {
+        const customSdk = new ShopeeSDK({
+          partner_id: mockConfig.partner_id,
+          partner_key: mockConfig.partner_key,
+          base_url,
+          base_auth_url,
+        });
+        const url = customSdk.getAuthorizationUrl("http://local.host");
+        expect(url).toContain(expected);
+      }
     });
 
     it("should generate different URLs for different redirect URIs", () => {

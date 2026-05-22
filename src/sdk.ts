@@ -1,14 +1,13 @@
 import { ProductManager } from "./managers/product.manager.js";
 import { OrderManager } from "./managers/order.manager.js";
 import { AuthManager } from "./managers/auth.manager.js";
-import { ShopeeRegion, SHOPEE_BASE_URLS } from "./schemas/region.js";
+import { ShopeeRegion, SHOPEE_BASE_URLS, SHOPEE_AUTH_URLS } from "./schemas/region.js";
 import { TokenStorage } from "./storage/token-storage.interface.js";
 import { CustomTokenStorage } from "./storage/custom-token-storage.js";
 import { AccessToken } from "./schemas/access-token.js";
 import { ShopeeSdkError } from "./errors.js";
 import { PublicManager } from "./managers/public.manager.js";
 import { PushManager } from "./managers/push.manager.js";
-import { generateSignature } from "./utils/signature.js";
 import { PaymentManager } from "./managers/payment.manager.js";
 import { LogisticsManager } from "./managers/logistics.manager.js";
 import { VoucherManager } from "./managers/voucher.manager.js";
@@ -40,6 +39,7 @@ export interface ShopeeConfig {
   partner_key: string;
   region?: ShopeeRegion;
   base_url?: string;
+  base_auth_url?: string;
   sdk?: ShopeeSDK;
   shop_id?: number;
   agent?: Agent;
@@ -79,11 +79,14 @@ export class ShopeeSDK {
   public readonly video: VideoManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
-      region: ShopeeRegion.GLOBAL,
       ...config,
+      region: config.region || (config.base_url ? undefined : ShopeeRegion.GLOBAL),
       base_url:
         config.base_url ||
         (config.region ? SHOPEE_BASE_URLS[config.region] : SHOPEE_BASE_URLS[ShopeeRegion.GLOBAL]),
+      base_auth_url:
+        config.base_auth_url ||
+        (config.region ? SHOPEE_AUTH_URLS[config.region] : SHOPEE_AUTH_URLS[ShopeeRegion.GLOBAL]),
       sdk: this,
     };
 
@@ -129,6 +132,7 @@ export class ShopeeSDK {
   public setRegion(region: ShopeeRegion): void {
     this.config.region = region;
     this.config.base_url = SHOPEE_BASE_URLS[region];
+    this.config.base_auth_url = SHOPEE_AUTH_URLS[region];
   }
 
   public setBaseUrl(baseUrl: string): void {
@@ -136,16 +140,37 @@ export class ShopeeSDK {
     this.config.region = undefined;
   }
 
+  public setBaseAuthUrl(baseAuthUrl: string): void {
+    this.config.base_auth_url = baseAuthUrl;
+    this.config.region = undefined;
+  }
+
   public setFetchAgent(fetchAgent: Agent) {
     this.config.agent = fetchAgent;
   }
 
-  public getAuthorizationUrl(redirect_uri: string): string {
-    const timestamp = Math.floor(Date.now() / 1000);
-    return `${this.config.base_url}/shop/auth_partner?partner_id=${this.config.partner_id}&timestamp=${timestamp}&redirect=${redirect_uri}&sign=${generateSignature(
-      this.config.partner_key,
-      [this.config.partner_id.toString(), "/api/v2/shop/auth_partner", timestamp.toString()]
-    )}`;
+  public getAuthorizationUrl(
+    redirect_uri: string,
+    options?: {
+      auth_type?: "seller" | "supplier" | "user";
+      state?: string;
+    }
+  ): string {
+    const authType = options?.auth_type || "seller";
+    const state = options?.state;
+    const authBaseUrl =
+      this.config.base_auth_url || SHOPEE_AUTH_URLS[this.config.region || ShopeeRegion.GLOBAL];
+
+    const url = new URL(authBaseUrl);
+    url.searchParams.append("partner_id", this.config.partner_id.toString());
+    url.searchParams.append("auth_type", authType);
+    url.searchParams.append("redirect_uri", redirect_uri);
+    url.searchParams.append("response_type", "code");
+    if (state) {
+      url.searchParams.append("state", state);
+    }
+
+    return url.toString();
   }
 
   public async authenticateWithCode(
