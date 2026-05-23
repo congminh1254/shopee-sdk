@@ -20,7 +20,7 @@ const { runTests, initSdk } = setupIntegrationTest();
       expect(response.response.ip_list).toBeDefined();
       expect(Array.isArray(response.response.ip_list)).toBe(true);
     }
-  });
+  }, 60000);
 
   it("should fetch shops associated with partner in the sandbox environment", async () => {
     const response = await sdk.public.getShopsByPartner();
@@ -30,5 +30,5 @@ const { runTests, initSdk } = setupIntegrationTest();
     if (response.response) {
       expect(Array.isArray(response.response.authed_shop_list)).toBe(true);
     }
-  });
+  }, 60000);
 });

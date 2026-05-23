@@ -23,7 +23,7 @@ const { runTests, initSdk } = setupIntegrationTest();
     const first = result.response[0];
     expect(first.region).toBeDefined();
     expect(Array.isArray(first.payment_method)).toBe(true);
-  });
+  }, 60000);
 
   it("should retrieve shop installment status (auth: true)", async () => {
     try {
@@ -41,7 +41,7 @@ const { runTests, initSdk } = setupIntegrationTest();
         throw err;
       }
     }
-  });
+  }, 60000);
 
   it("should gracefully propagate error when querying escrow detail with dummy order ID", async () => {
     try {
@@ -56,5 +56,5 @@ const { runTests, initSdk } = setupIntegrationTest();
       expect(apiErr.data).toBeDefined();
       expect(apiErr.message).toBeDefined();
     }
-  });
+  }, 60000);
 });
