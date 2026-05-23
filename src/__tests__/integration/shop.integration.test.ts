@@ -19,12 +19,12 @@ const { runTests, initSdk } = setupIntegrationTest();
     if (shopInfo.shop_name) {
       expect(typeof shopInfo.shop_name).toBe("string");
     }
-  });
+  }, 60000);
 
   it("should retrieve shop profile details", async () => {
     const profile = await sdk.shop.getProfile();
 
     expect(profile).toBeDefined();
     expect(profile.request_id).toBeDefined();
-  });
+  }, 60000);
 });
