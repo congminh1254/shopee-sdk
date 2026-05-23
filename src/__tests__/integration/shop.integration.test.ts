@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll } from "@jest/globals";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 
-const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
+const { runTests, initSdk } = setupIntegrationTest();
 
 (runTests ? describe : describe.skip)("ShopeeSDK ShopManager Sandbox Integration Tests", () => {
   let sdk: ShopeeSDK;
@@ -12,8 +12,6 @@ const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
   });
 
   it("should retrieve shop info details", async () => {
-    if (!hasValidToken()) return;
-
     const shopInfo = await sdk.shop.getShopInfo();
 
     expect(shopInfo).toBeDefined();
@@ -24,8 +22,6 @@ const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
   });
 
   it("should retrieve shop profile details", async () => {
-    if (!hasValidToken()) return;
-
     const profile = await sdk.shop.getProfile();
 
     expect(profile).toBeDefined();

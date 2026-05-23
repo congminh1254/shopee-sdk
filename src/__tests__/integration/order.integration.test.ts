@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll } from "@jest/globals";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 
-const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
+const { runTests, initSdk } = setupIntegrationTest();
 
 (runTests ? describe : describe.skip)("ShopeeSDK OrderManager Sandbox Integration Tests", () => {
   let sdk: ShopeeSDK;
@@ -12,8 +12,6 @@ const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
   });
 
   it("should retrieve orders in last 15 days", async () => {
-    if (!hasValidToken()) return;
-
     const timeTo = Math.floor(Date.now() / 1000);
     const timeFrom = timeTo - 15 * 24 * 3600;
 

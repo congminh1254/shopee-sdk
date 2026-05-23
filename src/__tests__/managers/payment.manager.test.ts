@@ -779,20 +779,16 @@ describe("PaymentManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          payment_method_list: [
-            {
-              payment_method_id: 1,
-              payment_method_name: "Credit Card",
-              is_enabled: true,
-            },
-            {
-              payment_method_id: 2,
-              payment_method_name: "Bank Transfer",
-              is_enabled: true,
-            },
-          ],
-        },
+        response: [
+          {
+            region: "VN",
+            payment_method: ["Credit Card", "Bank Transfer"],
+          },
+          {
+            region: "SG",
+            payment_method: ["Android Pay", "Cybersource"],
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -805,7 +801,9 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.payment_method_list).toHaveLength(2);
+      expect(result.response).toHaveLength(2);
+      expect(result.response[0].region).toBe("VN");
+      expect(result.response[0].payment_method).toContain("Credit Card");
     });
   });
 
