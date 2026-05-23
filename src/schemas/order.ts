@@ -60,6 +60,16 @@ export interface OrderItem {
     /** The unique identifier of a specific promotion applied to an item */
     promotion_id: number;
   }>;
+  /** The quantity of the item model that remains active in the order and is still expected to be fulfilled */
+  active_qty?: number;
+  /** The quantity of the item model that is currently under a cancellation request but has not yet reached the final cancelled status */
+  cancel_requested_qty?: number;
+  /** The quantity of the item model that has already been successfully cancelled */
+  cancelled_qty?: number;
+  /** The quantity of the item model that is currently under a return/refund request */
+  return_requested_qty?: number;
+  /** The quantity of the item model that has already been successfully returned through the return/refund process */
+  returned_qty?: number;
 }
 
 /**
@@ -289,6 +299,12 @@ export interface Order {
   }>;
   /** [Only for PH,TH,VN,MY,BR,TW] True if the order includes hot listing item */
   hot_listing_order?: boolean;
+  /** Indicates whether the order can be full cancelled */
+  can_full_cancel_order?: boolean;
+  /** Indicates whether the order is eligible for partial cancellation */
+  can_partial_cancel_order?: boolean;
+  /** Indicates the buyer’s preference for handling out-of-stock items in the order */
+  buyer_preference_for_partial_cancellation?: number;
 }
 
 /**
@@ -531,6 +547,22 @@ export interface CancelOrderItem {
 }
 
 /**
+ * Represents an item in a partial cancel request
+ */
+export interface CancelOrderPartialCancelItem {
+  /** The unique identifier of the item to be partially cancelled */
+  item_id: number;
+  /** The unique identifier of the model to be partially cancelled */
+  model_id: number;
+  /** The identity of order item */
+  order_item_id?: number;
+  /** The identity of product promotion */
+  promotion_group_id?: number;
+  /** The quantity of the specified item model to be cancelled */
+  model_quantity: number;
+}
+
+/**
  * Parameters for canceling an order
  */
 export interface CancelOrderParams {
@@ -540,6 +572,8 @@ export interface CancelOrderParams {
   cancel_reason: string;
   /** Required when cancel_reason is OUT_OF_STOCK */
   item_list?: CancelOrderItem[];
+  /** The list of item models and quantities that the seller wants to partially cancel */
+  partial_cancel_item_list?: CancelOrderPartialCancelItem[];
 }
 
 /**
@@ -548,6 +582,24 @@ export interface CancelOrderParams {
 export interface CancelOrderResponse extends FetchResponse<{
   /** The time when the order is updated */
   update_time: number;
+}> {}
+
+/**
+ * Parameters for getting estimated cancellation value
+ */
+export interface GetEstimateCancelValueParams {
+  /** Shopee's unique identifier for an order */
+  order_sn: string;
+  /** The list of item models and quantities for estimate calculation */
+  partial_cancel_item_list: CancelOrderPartialCancelItem[];
+}
+
+/**
+ * Response for getting estimated cancellation value
+ */
+export interface GetEstimateCancelValueResponse extends FetchResponse<{
+  /** The estimated cancellation value for the selected item quantities */
+  cancel_value: number;
 }> {}
 
 /**
@@ -784,6 +836,12 @@ export interface PackageDetail {
   is_buyer_shop_collection?: boolean;
   /** The image url of the proof for buyer self collection at the store */
   buyer_proof_of_collection?: string[];
+  /** Indicates whether the order can be full cancelled */
+  can_full_cancel_order?: boolean;
+  /** Indicates whether the order is eligible for partial cancellation */
+  can_partial_cancel_order?: boolean;
+  /** Indicates the buyer’s preference for handling out-of-stock items in the order */
+  buyer_preference_for_partial_cancellation?: number;
 }
 
 /**

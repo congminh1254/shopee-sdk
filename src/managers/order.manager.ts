@@ -13,6 +13,8 @@ import {
   UnsplitOrderResponse,
   CancelOrderParams,
   CancelOrderResponse,
+  GetEstimateCancelValueParams,
+  GetEstimateCancelValueResponse,
   GetBuyerInvoiceInfoParams,
   GetBuyerInvoiceInfoResponse,
   SetNoteParams,
@@ -201,9 +203,30 @@ export class OrderManager extends BaseManager {
         order_sn: params.order_sn,
         cancel_reason: params.cancel_reason,
         item_list: params.item_list,
+        partial_cancel_item_list: params.partial_cancel_item_list,
       },
       auth: true,
     });
+  }
+
+  /**
+   * Returns the estimated refund value for a partial order cancellation given the specified items to cancel.
+   *
+   * @param params - Parameters for getting the estimated cancel value
+   * @returns Promise<GetEstimateCancelValueResponse>
+   */
+  async getEstimateCancelValue(
+    params: GetEstimateCancelValueParams
+  ): Promise<GetEstimateCancelValueResponse> {
+    return ShopeeFetch.fetch<GetEstimateCancelValueResponse>(
+      this.config,
+      "/order/get_estimiate_cancel_value",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
   }
 
   /**

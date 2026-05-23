@@ -1,6 +1,6 @@
 {
-  "api_id": 541,
-  "api_name": "v2.order.cancel_order",
+  "api_id": 3265,
+  "api_name": "v2.order.get_estimiate_cancel_value",
   "api_type": "Shop",
   "common_params": [
     {
@@ -35,13 +35,13 @@
     }
   ],
   "define": {
-    "content": "<p>Use this api to cancel an order. This action can only be performed before the order has been shipped.</p>",
+    "content": "<p>Returns the estimated refund value for a partial order cancellation given the specified items to cancel.</p>",
     "raw_content": [
       {
         "name": "paragraph",
         "children": [
           {
-            "data": "Use this api to cancel an order. This action can only be performed before the order has been shipped."
+            "data": "Returns the estimated refund value for a partial order cancellation given the specified items to cancel."
           }
         ]
       }
@@ -59,73 +59,13 @@
       "solution": null
     },
     {
-      "name": "error_permission",
-      "description": "Sorry you don't have the permission, detail: {msg}.",
-      "solution": null
-    },
-    {
       "name": "error_server",
       "description": "System error. Please try again later.",
       "solution": null
     },
     {
-      "name": "order.error_limit",
-      "description": "Can not cancel this order",
-      "solution": null
-    },
-    {
-      "name": "order. error_param",
-      "description": "You can not cancel warehouse order.",
-      "solution": null
-    },
-    {
-      "name": "order. error_permission",
-      "description": "Please link shop and partner on seller center first.",
-      "solution": null
-    },
-    {
-      "name": "error_network",
-      "description": "Inner http call failed",
-      "solution": null
-    },
-    {
-      "name": "error_data",
-      "description": "parse data failed",
-      "solution": null
-    },
-    {
-      "name": "error_data",
-      "description": "data not exist",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "parameter invalid",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "The information you queried is not found.",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "Wrong parameters, detail: {msg}.",
-      "solution": null
-    },
-    {
-      "name": "error_server",
-      "description": "Something wrong. Please try later.\t",
-      "solution": null
-    },
-    {
-      "name": "error_shop",
-      "description": "shopid is invalid",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "request not from gateway",
+      "name": "common.invalid_shop",
+      "description": "Shop id is invalid. Please check your shop.",
       "solution": null
     }
   ],
@@ -315,75 +255,36 @@
   "params": {
     "request_params": [
       {
+        "description": "<p>Shopee's unique identifier for an order.</p>",
         "name": "order_sn",
-        "limits": "",
-        "required": "True",
-        "sample": "201020SQQ5K2EP",
-        "key": "BZNsbT",
+        "sample": "2012300NQJVTYN",
         "type": "string",
-        "description": "Shopee's unique identifier for an order."
-      },
-      {
-        "name": "cancel_reason",
-        "limits": "",
         "required": "True",
-        "sample": "OUT_OF_STOCK",
-        "key": "CJrNKKk",
-        "type": "string",
-        "description": "<p>The reason seller want to cancel this order. Applicable values:&nbsp;</p><p>OUT_OF_STOCK</p><p>CUSTOMER_REQUEST</p><p>UNDELIVERABLE_AREA (Note: Only apply for TW and MY)</p><p>COD_NOT_SUPPORTED</p>"
+        "key": "XPyrZZm"
       },
       {
-        "name": "item_list",
-        "limits": "",
-        "required": "False",
-        "sample": "",
-        "key": "fEKpATZ",
-        "type": "object[]",
-        "children": [
-          {
-            "name": "item_id",
-            "limits": "",
-            "required": "True",
-            "sample": "",
-            "key": "NZCbwsT",
-            "type": "int32",
-            "description": "Id of item. "
-          },
-          {
-            "name": "model_id",
-            "limits": "",
-            "required": "True",
-            "sample": "",
-            "key": "EKskGen",
-            "type": "int64",
-            "description": "Id of the model that belongs to the same item."
-          }
-        ],
-        "description": "Required when cancel_reason is OUT_OF_STOCK. "
-      },
-      {
-        "description": "<p>The list of item models and quantities that the seller wants to partially cancel. This field should be provided when the seller intends to cancel only part of the order due to unavailable items while continuing to fulfill the remaining items.</p>",
+        "description": "<p>The list of item models and quantities for which the seller wants to estimate the cancellation value before submitting the actual partial cancellation request.</p>",
         "name": "partial_cancel_item_list",
         "sample": "",
         "type": "object[]",
-        "required": "False",
-        "key": "XrspzXh",
+        "required": "True",
+        "key": "WjnhmyS",
         "children": [
           {
-            "description": "<p>The unique identifier of the item to be partially cancelled.</p>",
+            "description": "<p>The unique identifier of the item to be included in the estimated cancellation value calculation.</p>",
             "name": "item_id",
             "sample": "1680783",
             "type": "int64",
             "required": "True",
-            "key": "wYrHERW"
+            "key": "ZWmzRPw"
           },
           {
-            "description": "<p>The unique identifier of the model to be partially cancelled.</p>",
+            "description": "<p>The unique identifier of the model to be included in the estimated cancellation value calculation.</p>",
             "name": "model_id",
             "sample": "327890123",
             "type": "int64",
             "required": "True",
-            "key": "rdMHGxZ"
+            "key": "mPwXhke"
           },
           {
             "description": "<p>The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.</p>",
@@ -391,7 +292,7 @@
             "sample": "",
             "type": "int64",
             "required": "False",
-            "key": "trMCWGk"
+            "key": "CwNFNHT"
           },
           {
             "description": "<p>The identify of product promotion.It's required for add on deal and bundle deal items.<br />For items in one same add on deal or bundle deal promotion, the promotion_group_id should share the same id. For items not in add on deal or bundle deal promotion, the promotion_group_id should be 0. And the data is from promotion_group_id of v2,order.get_order_detail.</p>",
@@ -399,71 +300,40 @@
             "sample": "",
             "type": "int64",
             "required": "False",
-            "key": "TaQKsnr"
+            "key": "RcpHfJk"
           },
           {
-            "description": "<p>The quantity of the specified item model to be cancelled.</p>",
+            "description": "<p>The quantity of the specified item model to be included in the estimated cancellation value calculation.</p>",
             "name": "model_quantity",
             "sample": "2",
             "type": "int64",
             "required": "True",
-            "key": "ddipjaN"
+            "key": "QHJtxXR"
           }
         ]
       }
     ],
     "response_params": [
       {
-        "sample": "2ead12d461c34e7c9275c42c2f70fa7d",
-        "type": "string",
-        "name": "request_id",
-        "key": "YbxhsZj",
-        "description": "The identifier for an API request for error tracking."
-      },
-      {
-        "sample": "common.error_auth",
-        "type": "string",
-        "name": "error",
-        "key": "saGWXKn",
-        "description": "Indicate error type if hit error. Empty if no error happened."
-      },
-      {
-        "sample": " Invalid access_token.",
-        "type": "string",
-        "name": "message",
-        "key": "jetyytt",
-        "description": "Indicate error details if hit error. Empty if no error happened."
-      },
-      {
-        "name": "response",
-        "sample": "",
-        "key": "eiPHJDs",
-        "type": "object",
-        "children": [
-          {
-            "sample": "1603184533",
-            "type": "timestamp",
-            "name": "update_time",
-            "key": "DRJSGJn",
-            "description": "<p>The time when the order is updated.</p>"
-          }
-        ],
-        "description": "Detail informations you are querying."
+        "name": "cancel_value",
+        "type": "int64",
+        "sample": "10",
+        "description": "<p>The estimated cancellation value for the selected item quantities. This value is calculated before the actual cancellation is submitted and can be used by sellers to preview the expected cancellation amount and support partial cancellation confirmation.</p>",
+        "key": "MZbfyzb"
       }
     ]
   },
-  "perm_mtime": 1621247802,
-  "perm_operator": "sys",
+  "perm_mtime": 1779447884,
+  "perm_operator": "caixia.tu@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
-  "priority": 7,
+  "priority": 80714,
   "rate_limit": "",
   "request_sample": [
     {
       "type": "Payload",
       "value": {
-        "order_sn": "201020SQQ5K2EP",
-        "cancel_reason": "OUT_OF_STOCK",
+        "order_sn": "2012300NQJVTYN",
         "partial_cancel_item_list": [
           {
             "item_id": 1680783,
@@ -477,70 +347,47 @@
     },
     {
       "type": "Java",
-      "value": "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"https://partner.shopeemobile.com/api/v2/order/cancel_order?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\")\n.header(\"Content-Type\",\"application/json\")\n.body(\"{\n   \\\"cancel_reason\\\": \\\"OUT_OF_STOCK\\\",\n   \\\"order_sn\\\": \\\"201020SQQ5K2EP\\\",\n   \\\"partial_cancel_item_list\\\": [\n      {\n         \\\"item_id\\\": 1680783,\n         \\\"model_id\\\": 327890123,\n         \\\"model_quantity\\\": 2,\n         \\\"order_item_id\\\": 0,\n         \\\"promotion_group_id\\\": 0\n      }\n   ]\n}\")\n.asString();"
+      "value": "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"https://partner.shopeemobile.com/api/v2/order/get_estimate_cancel_value?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\")\n.header(\"Content-Type\",\"application/json\")\n.body(\"{\n   \\\"order_sn\\\": \\\"2012300NQJVTYN\\\",\n   \\\"partial_cancel_item_list\\\": [\n      {\n         \\\"item_id\\\": 1680783,\n         \\\"model_id\\\": 327890123,\n         \\\"model_quantity\\\": 2,\n         \\\"order_item_id\\\": 0,\n         \\\"promotion_group_id\\\": 0\n      }\n   ]\n}\")\n.asString();"
     },
     {
       "type": "PHP",
-      "value": "<?php\n\n$curl = curl_init();\n\ncurl_setopt_array($curl, array(\n  CURLOPT_URL => 'https://partner.shopeemobile.com/api/v2/order/cancel_order?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp',\n  CURLOPT_RETURNTRANSFER => true,\n  CURLOPT_ENCODING => '',\n  CURLOPT_MAXREDIRS => 10,\n  CURLOPT_TIMEOUT => 0,\n  CURLOPT_FOLLOWLOCATION => true,\n  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,\n  CURLOPT_CUSTOMREQUEST => 'POST',\n  CURLOPT_POSTFIELDS => '{\n    \"cancel_reason\": \"OUT_OF_STOCK\",\n    \"order_sn\": \"201020SQQ5K2EP\",\n    \"partial_cancel_item_list\": [\n        {\n            \"item_id\": 1680783,\n            \"model_id\": 327890123,\n            \"model_quantity\": 2,\n            \"order_item_id\": 0,\n            \"promotion_group_id\": 0\n        }\n    ]\n}',\n  CURLOPT_HTTPHEADER => array(\n    'Content-Type: application/json'\n  ),\n));\n\n$response = curl_exec($curl);\n\ncurl_close($curl);\necho $response;\n"
+      "value": "<?php\n\n$curl = curl_init();\n\ncurl_setopt_array($curl, array(\n  CURLOPT_URL => 'https://partner.shopeemobile.com/api/v2/order/get_estimate_cancel_value?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp',\n  CURLOPT_RETURNTRANSFER => true,\n  CURLOPT_ENCODING => '',\n  CURLOPT_MAXREDIRS => 10,\n  CURLOPT_TIMEOUT => 0,\n  CURLOPT_FOLLOWLOCATION => true,\n  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,\n  CURLOPT_CUSTOMREQUEST => 'POST',\n  CURLOPT_POSTFIELDS => '{\n    \"order_sn\": \"2012300NQJVTYN\",\n    \"partial_cancel_item_list\": [\n        {\n            \"item_id\": 1680783,\n            \"model_id\": 327890123,\n            \"model_quantity\": 2,\n            \"order_item_id\": 0,\n            \"promotion_group_id\": 0\n        }\n    ]\n}',\n  CURLOPT_HTTPHEADER => array(\n    'Content-Type: application/json'\n  ),\n));\n\n$response = curl_exec($curl);\n\ncurl_close($curl);\necho $response;\n"
     },
     {
       "type": "cURL",
-      "value": "curl --location --request POST 'https://partner.shopeemobile.com/api/v2/order/cancel_order?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n   \"cancel_reason\": \"OUT_OF_STOCK\",\n   \"order_sn\": \"201020SQQ5K2EP\",\n   \"partial_cancel_item_list\": [\n      {\n         \"item_id\": 1680783,\n         \"model_id\": 327890123,\n         \"model_quantity\": 2,\n         \"order_item_id\": 0,\n         \"promotion_group_id\": 0\n      }\n   ]\n}'\n"
+      "value": "curl --location --request POST 'https://partner.shopeemobile.com/api/v2/order/get_estimate_cancel_value?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n   \"order_sn\": \"2012300NQJVTYN\",\n   \"partial_cancel_item_list\": [\n      {\n         \"item_id\": 1680783,\n         \"model_id\": 327890123,\n         \"model_quantity\": 2,\n         \"order_item_id\": 0,\n         \"promotion_group_id\": 0\n      }\n   ]\n}'\n"
     },
     {
       "type": "Python",
-      "value": "import requests\nimport json\n\nurl = \"https://partner.shopeemobile.com/api/v2/order/cancel_order?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\"\n\npayload=json.dumps({\n  \"cancel_reason\": \"OUT_OF_STOCK\",\n  \"order_sn\": \"201020SQQ5K2EP\",\n  \"partial_cancel_item_list\": [\n    {\n      \"item_id\": 1680783,\n      \"model_id\": 327890123,\n      \"model_quantity\": 2,\n      \"order_item_id\": 0,\n      \"promotion_group_id\": 0\n    }\n  ]\n})\nheaders = {\n  'Content-Type': 'application/json'\n}\nresponse = requests.RPCRequest(\"POST\",url,headers=headers, data=payload, allow_redirects=False)\n\nprint(response.text)\n"
+      "value": "import requests\nimport json\n\nurl = \"https://partner.shopeemobile.com/api/v2/order/get_estimate_cancel_value?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\"\n\npayload=json.dumps({\n  \"order_sn\": \"2012300NQJVTYN\",\n  \"partial_cancel_item_list\": [\n    {\n      \"item_id\": 1680783,\n      \"model_id\": 327890123,\n      \"model_quantity\": 2,\n      \"order_item_id\": 0,\n      \"promotion_group_id\": 0\n    }\n  ]\n})\nheaders = {\n  'Content-Type': 'application/json'\n}\nresponse = requests.RPCRequest(\"POST\",url,headers=headers, data=payload, allow_redirects=False)\n\nprint(response.text)\n"
     }
   ],
   "response_sample": [
     {
       "type": "JSON",
       "value": {
-        "error": "",
-        "message": "",
-        "request_id": "2ead12d461c34e7c9275c42c2f70fa7d",
-        "response": {
-          "update_time": 1603184533
-        }
+        "cancel_value": 10
       }
     }
   ],
   "status": 1,
   "tag": "",
-  "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/cancel_order",
+  "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_estimate_cancel_value",
   "update_log_list": [
     {
       "date": "2026-05-22",
-      "content": "Add partial_cancel_items_list request parameter"
-    },
-    {
-      "date": "2023-05-15",
-      "content": "update the API description."
-    },
-    {
-      "date": "2021-08-19",
-      "content": "Updated the example."
+      "content": "New API"
     }
   ],
-  "url": "https://partner.shopeemobile.com/api/v2/order/cancel_order",
+  "url": "https://partner.shopeemobile.com/api/v2/order/get_estimate_cancel_value",
   "version": "",
-  "error_example": [
-    {
-      "type": "JSON",
-      "value": {
-        "error": "error_param",
-        "message": "Wrong parameters, detail: order_sn is a required field.",
-        "request_id": "4d6a1cfcb68b2d1b0f0110e723614a22"
-      }
-    }
-  ],
+  "error_example": [],
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Order Management",
-    "Swam ERP"
+    "Order Management"
   ],
-  "path": "/api/v2/order/cancel_order",
+  "path": "/api/v2/order/get_estimate_cancel_value",
   "related_documents": {
     "developer_guides": [],
     "faqs": []
