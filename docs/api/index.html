@@ -1,0 +1,200 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Shopee SDK API Reference - v1.8.0</title><meta name="description" content="Documentation for Shopee SDK API Reference"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script><script async src="assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">Shopee SDK API Reference - v1.8.0</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>Shopee SDK API Reference - v1.8.0</h1></div><div class="tsd-panel tsd-typography"><h1 id="shopee-sdk" class="tsd-anchor-link">Shopee SDK<a href="#shopee-sdk" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p><a href="https://github.com/congminh1254/shopee-sdk/actions/workflows/ci.yml"><img src="https://github.com/congminh1254/shopee-sdk/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+<a href="https://coveralls.io/github/congminh1254/shopee-sdk?branch=main"><img src="https://coveralls.io/repos/github/congminh1254/shopee-sdk/badge.svg?branch=main" alt="Coverage Status"></a>
+<a href="https://badge.fury.io/js/@congminh1254%2Fshopee-sdk"><img src="https://badge.fury.io/js/@congminh1254%2Fshopee-sdk.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/@congminh1254/shopee-sdk"><img src="https://img.shields.io/node/v/@congminh1254/shopee-sdk.svg" alt="Node.js Version"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
+<p>🎉 <strong>The most complete, production-ready TypeScript SDK for Shopee Open API</strong> 🎉</p>
+<p><a href="https://www.buymeacoffee.com/congminh1254" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" style="height: 40px !important;width: 150px !important;" ></a></p>
+<p>Build powerful Shopee integrations with confidence using our fully-featured SDK that covers <strong>100% of Shopee's API endpoints</strong>. Trusted by developers, built by the community.</p>
+<h2 id="📚-documentation" class="tsd-anchor-link">📚 Documentation<a href="#📚-documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><strong><a href="media/README.md">Complete Documentation</a></strong> - Comprehensive guides and API references</p>
+<h3 id="quick-links" class="tsd-anchor-link">Quick Links<a href="#quick-links" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><strong>Getting Started:</strong></p>
+<ul>
+<li><a href="media/setup.md">Setup Guide</a> - Installation and configuration</li>
+<li><a href="media/authentication.md">Authentication</a> - OAuth flow and token management</li>
+<li><a href="media/token-storage.md">Token Storage</a> - Managing access tokens</li>
+<li><a href="media/proxy.md">Proxy Configuration</a> - Using HTTP/HTTPS proxies</li>
+</ul>
+<p><strong>API Managers:</strong></p>
+<ul>
+<li><a href="media/auth.md">AuthManager</a> - Authentication operations</li>
+<li><a href="media/product.md">ProductManager</a> - Product catalog management</li>
+<li><a href="media/order.md">OrderManager</a> - Order processing</li>
+<li><a href="media/logistics.md">LogisticsManager</a> - Shipping operations</li>
+<li><a href="media/payment.md">PaymentManager</a> - Payment information</li>
+<li><a href="media/voucher.md">VoucherManager</a> - Discount management</li>
+<li><a href="media/push.md">PushManager</a> - Webhooks and notifications</li>
+<li><a href="media/public.md">PublicManager</a> - Public API endpoints</li>
+<li><a href="media/ads.md">AdsManager</a> - Advertising campaigns</li>
+<li><a href="media/ams.md">AmsManager</a> - Affiliate Marketing Solutions (AMS)</li>
+<li><a href="media/account-health.md">AccountHealthManager</a> - Performance metrics</li>
+<li><a href="media/shop.md">ShopManager</a> - Shop information and settings</li>
+<li><a href="media/media.md">MediaManager</a> - Image and video upload</li>
+<li><a href="media/media-space.md">MediaSpaceManager</a> - Media uploads (images and videos)</li>
+<li><a href="media/merchant.md">MerchantManager</a> - Merchant information and warehouses</li>
+<li><a href="media/global-product.md">GlobalProductManager</a> - Global product management</li>
+<li><a href="media/first-mile.md">FirstMileManager</a> - First mile logistics</li>
+<li><a href="media/discount.md">DiscountManager</a> - Discount campaigns</li>
+<li><a href="media/bundle-deal.md">BundleDealManager</a> - Bundle deal promotions</li>
+<li><a href="media/add-on-deal.md">AddOnDealManager</a> - Add-on deal promotions</li>
+<li><a href="media/shop-flash-sale.md">ShopFlashSaleManager</a> - Flash sale campaigns</li>
+<li><a href="media/follow-prize.md">FollowPrizeManager</a> - Follow prize activities</li>
+<li><a href="media/top-picks.md">TopPicksManager</a> - Top picks collections</li>
+<li><a href="media/shop-category.md">ShopCategoryManager</a> - Shop category management</li>
+<li><a href="media/returns.md">ReturnsManager</a> - Return and refund management</li>
+<li><a href="media/sbs.md">SbsManager</a> - Shopee Business Services (SBS) warehouse inventory</li>
+<li><a href="media/fbs.md">FbsManager</a> - Fulfillment by Shopee operations</li>
+<li><a href="media/livestream.md">LivestreamManager</a> - Live streaming features</li>
+<li><a href="media/video.md">VideoManager</a> - Shopee Video features and analytics</li>
+</ul>
+<h2 id="installation" class="tsd-anchor-link">Installation<a href="#installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-2">@congminh1254/shopee-sdk</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Requirements:</strong> Node.js &gt;= 20.0.0</p>
+<h3 id="what-you-get" class="tsd-anchor-link">What You Get<a href="#what-you-get" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>✅ Complete TypeScript definitions for all 29 API managers<br>
+✅ Automatic token refresh and management<br>
+✅ Built-in error handling and retry logic<br>
+✅ Zero dependencies (except node-fetch)<br>
+✅ Full documentation and examples</p>
+<h2 id="quick-start" class="tsd-anchor-link">Quick Start<a href="#quick-start" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Get up and running in minutes! Here's how easy it is to integrate with Shopee:</p>
+<pre><code class="typescript"><span class="hl-3">import</span><span class="hl-1"> { </span><span class="hl-4">ShopeeSDK</span><span class="hl-1">, </span><span class="hl-4">ShopeeRegion</span><span class="hl-1"> } </span><span class="hl-3">from</span><span class="hl-1"> </span><span class="hl-2">&quot;@congminh1254/shopee-sdk&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">// 1. Initialize the SDK with your credentials</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">sdk</span><span class="hl-1"> = </span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-0">ShopeeSDK</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-4">partner_id:</span><span class="hl-1"> </span><span class="hl-8">123456</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">partner_key:</span><span class="hl-1"> </span><span class="hl-2">&quot;your-partner-key&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">region:</span><span class="hl-1"> </span><span class="hl-4">ShopeeRegion</span><span class="hl-1">.</span><span class="hl-7">GLOBAL</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">shop_id:</span><span class="hl-1"> </span><span class="hl-8">789012</span><span class="hl-1">, </span><span class="hl-5">// Optional for shop-specific operations</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-5">// 2. Authenticate your shop (OAuth flow)</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">authUrl</span><span class="hl-1"> = </span><span class="hl-4">sdk</span><span class="hl-1">.</span><span class="hl-0">getAuthorizationUrl</span><span class="hl-1">(</span><span class="hl-2">&quot;https://your-app.com/callback&quot;</span><span class="hl-1">);</span><br/><span class="hl-4">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-2">&quot;Visit:&quot;</span><span class="hl-1">, </span><span class="hl-4">authUrl</span><span class="hl-1">);</span><br/><br/><span class="hl-5">// After user authorizes, exchange code for token (automatic token storage!)</span><br/><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">sdk</span><span class="hl-1">.</span><span class="hl-0">authenticateWithCode</span><span class="hl-1">(</span><span class="hl-2">&quot;auth-code-from-callback&quot;</span><span class="hl-1">);</span><br/><br/><span class="hl-5">// 3. Start using the API - it&#39;s that simple!</span><br/><br/><span class="hl-5">// Manage your products</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">products</span><span class="hl-1"> = </span><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">sdk</span><span class="hl-1">.</span><span class="hl-4">product</span><span class="hl-1">.</span><span class="hl-0">getItemList</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-4">offset:</span><span class="hl-1"> </span><span class="hl-8">0</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">page_size:</span><span class="hl-1"> </span><span class="hl-8">20</span><span class="hl-1">,</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-5">// Process orders</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">orders</span><span class="hl-1"> = </span><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">sdk</span><span class="hl-1">.</span><span class="hl-4">order</span><span class="hl-1">.</span><span class="hl-0">getOrderList</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-4">time_range_field:</span><span class="hl-1"> </span><span class="hl-2">&quot;create_time&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">time_from:</span><span class="hl-1"> </span><span class="hl-4">Math</span><span class="hl-1">.</span><span class="hl-0">floor</span><span class="hl-1">(</span><span class="hl-4">Date</span><span class="hl-1">.</span><span class="hl-0">now</span><span class="hl-1">() / </span><span class="hl-8">1000</span><span class="hl-1">) - </span><span class="hl-8">86400</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">time_to:</span><span class="hl-1"> </span><span class="hl-4">Math</span><span class="hl-1">.</span><span class="hl-0">floor</span><span class="hl-1">(</span><span class="hl-4">Date</span><span class="hl-1">.</span><span class="hl-0">now</span><span class="hl-1">() / </span><span class="hl-8">1000</span><span class="hl-1">),</span><br/><span class="hl-1">  </span><span class="hl-4">page_size:</span><span class="hl-1"> </span><span class="hl-8">50</span><span class="hl-1">,</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-5">// Track shipments</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">shipping</span><span class="hl-1"> = </span><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">sdk</span><span class="hl-1">.</span><span class="hl-4">logistics</span><span class="hl-1">.</span><span class="hl-0">getShippingParameter</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-4">order_sn:</span><span class="hl-1"> </span><span class="hl-2">&quot;220615ABCDEF&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-5">// Handle returns</span><br/><span class="hl-6">const</span><span class="hl-1"> </span><span class="hl-7">returns</span><span class="hl-1"> = </span><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-4">sdk</span><span class="hl-1">.</span><span class="hl-4">returns</span><span class="hl-1">.</span><span class="hl-0">getReturnList</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-4">page_size:</span><span class="hl-1"> </span><span class="hl-8">20</span><span class="hl-1">,</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-5">// And much more - all with full TypeScript support! 🎉</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>That's it!</strong> The SDK handles token refresh, request signing, error handling, and more automatically.</p>
+<p>See the <a href="media/setup.md">Setup Guide</a> and <a href="media/authentication.md">Authentication Guide</a> for detailed instructions.</p>
+<h2 id="why-choose-this-sdk" class="tsd-anchor-link">Why Choose This SDK?<a href="#why-choose-this-sdk" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="🚀-production-ready-battle-tested" class="tsd-anchor-link">🚀 Production-Ready &amp; Battle-Tested<a href="#🚀-production-ready-battle-tested" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li><strong>100% core test coverage</strong> with 700+ robust unit &amp; live sandbox integration tests - ensuring ultimate production reliability</li>
+<li><strong>Zero compromises</strong> - Every Shopee API endpoint is implemented and documented</li>
+<li><strong>Type-safe</strong> - Full TypeScript definitions prevent errors before they happen</li>
+<li><strong>Actively maintained</strong> - Regular updates to stay in sync with Shopee API changes</li>
+</ul>
+<h3 id="💪-complete-api-coverage-all-29-managers-implemented" class="tsd-anchor-link">💪 Complete API Coverage - All 29 Managers Implemented<a href="#💪-complete-api-coverage-all-29-managers-implemented" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Unlike other SDKs with partial coverage, we provide <strong>complete access</strong> to every Shopee API:</p>
+<p><strong>Core Commerce:</strong></p>
+<ul>
+<li>📦 <strong>ProductManager</strong> - Full product catalog management with 55+ endpoints</li>
+<li>🛒 <strong>OrderManager</strong> - Complete order processing and fulfillment workflow</li>
+<li>🚚 <strong>LogisticsManager</strong> - Comprehensive shipping and tracking operations</li>
+<li>💳 <strong>PaymentManager</strong> - Payment and escrow information management</li>
+</ul>
+<p><strong>Marketing &amp; Promotions:</strong></p>
+<ul>
+<li>🎟️ <strong>VoucherManager</strong> - Discount voucher campaigns</li>
+<li>💥 <strong>DiscountManager</strong> - Discount promotion campaigns</li>
+<li>🎁 <strong>BundleDealManager</strong> - Bundle deal promotions</li>
+<li>➕ <strong>AddOnDealManager</strong> - Add-on deal promotions</li>
+<li>⚡ <strong>ShopFlashSaleManager</strong> - Flash sale campaigns</li>
+<li>🎯 <strong>FollowPrizeManager</strong> - Follow prize activities</li>
+<li>⭐ <strong>TopPicksManager</strong> - Top picks product collections</li>
+<li>📣 <strong>AmsManager</strong> - Affiliate marketing solutions (AMS)</li>
+</ul>
+<p><strong>Store Management:</strong></p>
+<ul>
+<li>🏪 <strong>ShopManager</strong> - Shop information and profile management</li>
+<li>🏢 <strong>MerchantManager</strong> - Merchant information, warehouses, and multi-shop management</li>
+<li>📂 <strong>ShopCategoryManager</strong> - Shop category organization</li>
+<li>🖼️ <strong>MediaManager</strong> &amp; <strong>MediaSpaceManager</strong> - Image and video upload operations</li>
+</ul>
+<p><strong>Advanced Features:</strong></p>
+<ul>
+<li>🔐 <strong>AuthManager</strong> - OAuth flow and token lifecycle management</li>
+<li>📢 <strong>PushManager</strong> - Webhooks and real-time notifications</li>
+<li>🌍 <strong>GlobalProductManager</strong> - Cross-border product management</li>
+<li>🔄 <strong>ReturnsManager</strong> - Return and refund request handling</li>
+<li>📊 <strong>AdsManager</strong> - Advertising campaign management</li>
+<li>📈 <strong>AccountHealthManager</strong> - Performance metrics and analytics</li>
+<li>🌐 <strong>PublicManager</strong> - Public API endpoints (no auth required)</li>
+<li>📍 <strong>FirstMileManager</strong> - First mile logistics operations</li>
+<li>🏭 <strong>SbsManager</strong> - Shopee Business Services warehouse inventory</li>
+<li>📦 <strong>FbsManager</strong> - Fulfillment by Shopee operations</li>
+<li>📹 <strong>LivestreamManager</strong> - Live streaming features</li>
+<li>🎬 <strong>VideoManager</strong> - Shopee Video features and analytics</li>
+</ul>
+<h3 id="✨-developer-experience-first" class="tsd-anchor-link">✨ Developer Experience First<a href="#✨-developer-experience-first" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li><strong>Intuitive API design</strong> - Clean, consistent interfaces across all managers</li>
+<li><strong>Automatic token refresh</strong> - Built-in token management, never worry about expiration</li>
+<li><strong>Flexible storage</strong> - File-based storage included, easy to implement custom solutions</li>
+<li><strong>Multi-region support</strong> - Works seamlessly across all 12 Shopee regions</li>
+<li><strong>Proxy support</strong> - Enterprise-ready HTTP/HTTPS proxy configuration</li>
+<li><strong>Comprehensive docs</strong> - Detailed guides and real-world examples for every feature</li>
+<li><strong>Full type safety</strong> - Complete TypeScript definitions for autocomplete and error prevention</li>
+</ul>
+<h2 id="real-world-use-cases" class="tsd-anchor-link">Real-World Use Cases<a href="#real-world-use-cases" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>This SDK is perfect for building:</p>
+<ul>
+<li>🏪 <strong>Multi-channel E-commerce Platforms</strong> - Sync inventory, orders, and products across multiple sales channels</li>
+<li>📊 <strong>Analytics Dashboards</strong> - Track sales performance, customer behavior, and business metrics</li>
+<li>🤖 <strong>Automation Tools</strong> - Automate order processing, inventory updates, and customer communications</li>
+<li>🔄 <strong>ERP Integrations</strong> - Connect Shopee with your existing business systems</li>
+<li>📱 <strong>Mobile Apps</strong> - Build native mobile experiences for shop management</li>
+<li>🎯 <strong>Marketing Automation</strong> - Manage promotions, vouchers, and advertising campaigns programmatically</li>
+<li>📦 <strong>Inventory Management Systems</strong> - Real-time stock tracking across warehouses</li>
+<li>🚀 <strong>Custom Storefronts</strong> - Create unique shopping experiences powered by Shopee's infrastructure</li>
+</ul>
+<h2 id="migrating-from-other-sdks" class="tsd-anchor-link">Migrating from Other SDKs?<a href="#migrating-from-other-sdks" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Switching is easy! Our SDK offers:</p>
+<ul>
+<li><strong>More complete coverage</strong> - Every endpoint is implemented, not just the basics</li>
+<li><strong>Better TypeScript support</strong> - Full type safety from end to end</li>
+<li><strong>Simpler API</strong> - Intuitive, well-organized manager classes</li>
+<li><strong>Active maintenance</strong> - Regular updates and community support</li>
+<li><strong>Production-ready</strong> - Battle-tested with comprehensive test coverage</li>
+</ul>
+<p>Check our <a href="media/setup.md">Migration Guide</a> to get started.</p>
+<h2 id="🧪-testing-quality-assurance" class="tsd-anchor-link">🧪 Testing &amp; Quality Assurance<a href="#🧪-testing-quality-assurance" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>This SDK is built with reliability and correctness as first-class citizens, boasting extensive test coverage across both simulated unit environments and live external sandbox systems.</p>
+<h3 id="1-unit-tests" class="tsd-anchor-link">1. Unit Tests<a href="#1-unit-tests" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li><strong>Mock Manager Coverage</strong>: Over <strong>690+ unit tests</strong> validating standard parameters, response layouts, request sign-generation, and error boundaries for all 29 API managers.</li>
+<li><strong>100% Code Coverage</strong>: All core and manager logic files maintain a strict <strong>100% statement, branch, and line code coverage</strong>.</li>
+<li>Run unit tests:<pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">run</span><span class="hl-1"> </span><span class="hl-2">test</span>
+</code><button type="button">Copy</button></pre>
+
+</li>
+</ul>
+<h3 id="2-live-sandbox-integration-tests" class="tsd-anchor-link">2. Live Sandbox Integration Tests<a href="#2-live-sandbox-integration-tests" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Our integration test suite executes real HTTP requests against the <strong>live Shopee Sandbox environment</strong> (using dynamic OAuth credentials) to verify end-to-end integration safety:</p>
+<ul>
+<li><strong>Vouchers</strong>: Tests the full CRUD lifecycle (creating, fetching, updating limits, and automatically cleaning up/deleting test vouchers).</li>
+<li><strong>Media &amp; Videos</strong>: Verifies safe transparent PNG uploads, video session initialization, and a complete chunked video upload workflow utilizing a built-in, highly-optimized 10-second Base64 MP4 H.264 video fixture.</li>
+<li><strong>Logistics &amp; Documents</strong>: Validates thermal shipping label document generation and download jobs.</li>
+<li><strong>Payments &amp; Settings</strong>: Checks public payment methods, shop installment profiles, active orders, local products, and dynamic Shopee server IP ranges.</li>
+<li>Run sandbox integration tests:<pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">run</span><span class="hl-1"> </span><span class="hl-2">test:sandbox</span>
+</code><button type="button">Copy</button></pre>
+
+</li>
+</ul>
+<h2 id="contributing" class="tsd-anchor-link">Contributing<a href="#contributing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>We use <a href="https://www.conventionalcommits.org/">Conventional Commits</a> for commit messages to automate versioning and release notes.</p>
+<p>Examples of commit messages:</p>
+<ul>
+<li><code>feat: add support for logistics API</code> - Minor version bump</li>
+<li><code>fix: correct error handling in order API</code> - Patch version bump</li>
+<li><code>docs: update API documentation</code> - No version bump</li>
+<li><code>feat!: rename parameters in product API</code> or <code>feat: rename parameters in product API BREAKING CHANGE: ...</code> - Major version bump</li>
+</ul>
+<h2 id="release-process" class="tsd-anchor-link">Release Process<a href="#release-process" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>This project uses <a href="https://github.com/googleapis/release-please">Release Please</a> to automate version management and releases.</p>
+<p>The release process follows these steps:</p>
+<ol>
+<li>Commits to the main branch are automatically analyzed</li>
+<li>When conventional commit messages are detected, Release Please creates or updates a release PR</li>
+<li>When the release PR is merged:
+<ul>
+<li>A new GitHub tag and release is created</li>
+<li>The package is automatically published to npm</li>
+<li>The <a href="http://CHANGELOG.md">CHANGELOG.md</a> is updated with the release notes</li>
+</ul>
+</li>
+</ol>
+<h2 id="license" class="tsd-anchor-link">License<a href="#license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>MIT</p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#shopee-sdk"><span>Shopee <wbr/>SDK</span></a><ul><li><a href="#📚-documentation"><span>📚 <wbr/>Documentation</span></a></li><li><ul><li><a href="#quick-links"><span>Quick <wbr/>Links</span></a></li></ul></li><li><a href="#installation"><span>Installation</span></a></li><li><ul><li><a href="#what-you-get"><span>What <wbr/>You <wbr/>Get</span></a></li></ul></li><li><a href="#quick-start"><span>Quick <wbr/>Start</span></a></li><li><a href="#why-choose-this-sdk"><span>Why <wbr/>Choose <wbr/>This <wbr/>SDK?</span></a></li><li><ul><li><a href="#🚀-production-ready-battle-tested"><span>🚀 <wbr/>Production-<wbr/>Ready &amp; <wbr/>Battle-<wbr/>Tested</span></a></li><li><a href="#💪-complete-api-coverage-all-29-managers-implemented"><span>💪 <wbr/>Complete <wbr/>API <wbr/>Coverage -<wbr/> <wbr/>All 29 <wbr/>Managers <wbr/>Implemented</span></a></li><li><a href="#✨-developer-experience-first"><span>✨ <wbr/>Developer <wbr/>Experience <wbr/>First</span></a></li></ul></li><li><a href="#real-world-use-cases"><span>Real-<wbr/>World <wbr/>Use <wbr/>Cases</span></a></li><li><a href="#migrating-from-other-sdks"><span>Migrating from <wbr/>Other <wbr/>SD<wbr/>Ks?</span></a></li><li><a href="#🧪-testing-quality-assurance"><span>🧪 <wbr/>Testing &amp; <wbr/>Quality <wbr/>Assurance</span></a></li><li><ul><li><a href="#1-unit-tests"><span>1. <wbr/>Unit <wbr/>Tests</span></a></li><li><a href="#2-live-sandbox-integration-tests"><span>2. <wbr/>Live <wbr/>Sandbox <wbr/>Integration <wbr/>Tests</span></a></li></ul></li><li><a href="#contributing"><span>Contributing</span></a></li><li><a href="#release-process"><span>Release <wbr/>Process</span></a></li><li><a href="#license"><span>License</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">Shopee SDK API Reference - v1.8.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

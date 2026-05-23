@@ -1,0 +1,237 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>AccountHealthManager | Shopee SDK API Reference - v1.8.0</title><meta name="description" content="Documentation for Shopee SDK API Reference"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="../index.html" class="title">Shopee SDK API Reference - v1.8.0</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"><li><a href="../modules/managers_account-health.manager.html">managers/account-health.manager</a></li><li><a href="" aria-current="page">AccountHealthManager</a></li></ul><h1>Class AccountHealthManager</h1></div><section class="tsd-panel tsd-hierarchy" data-refl="130"><h4>Hierarchy (<a href="../hierarchy.html#managers/account-health.manager.AccountHealthManager">View Summary</a>)</h4><ul class="tsd-hierarchy"><li class="tsd-hierarchy-item"><a href="managers_base.manager.BaseManager.html" class="tsd-signature-type tsd-kind-class">BaseManager</a><ul class="tsd-hierarchy"><li class="tsd-hierarchy-item"><span class="tsd-hierarchy-target">AccountHealthManager</span></li></ul></li></ul></section><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/congminh1254/shopee-sdk/blob/14ddb98e21f01bc81b09f49c60c063467f5a8b29/src/managers/account-health.manager.ts#L19">src/managers/account-health.manager.ts:19</a></li></ul></aside><section class="tsd-panel-group tsd-index-group"><section class="tsd-panel tsd-index-panel"><details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h5 class="tsd-index-heading uppercase">Index</h5></summary><div class="tsd-accordion-details"><section class="tsd-index-section"><h3 class="tsd-index-heading">Constructors</h3><div class="tsd-index-list"><a href="#constructor" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a>
+</div></section><section class="tsd-index-section"><h3 class="tsd-index-heading">Properties</h3><div class="tsd-index-list"><a href="#config" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>config</span></a>
+</div></section><section class="tsd-index-section"><h3 class="tsd-index-heading">Methods</h3><div class="tsd-index-list"><a href="#getlateorders" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Late<wbr/>Orders</span></a>
+<a href="#getlistingswithissues" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Listings<wbr/>With<wbr/>Issues</span></a>
+<a href="#getmetricsourcedetail" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Metric<wbr/>Source<wbr/>Detail</span></a>
+<a href="#getpenaltypointhistory" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Penalty<wbr/>Point<wbr/>History</span></a>
+<a href="#getpunishmenthistory" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Punishment<wbr/>History</span></a>
+<a href="#getshoppenalty" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Shop<wbr/>Penalty</span></a>
+<a href="#getshopperformance" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Shop<wbr/>Performance</span></a>
+</div></section></div></details></section></section><details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h2>Constructors</h2></summary><section><section class="tsd-panel tsd-member"><h3 class="tsd-anchor-link" id="constructor"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul class="tsd-signatures"><li class=""><div class="tsd-signature tsd-anchor-link" id="constructoraccounthealthmanager"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">AccountHealthManager</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">config</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sdk.ShopeeConfig.html" class="tsd-signature-type tsd-kind-interface">ShopeeConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">AccountHealthManager</a><a href="#constructoraccounthealthmanager" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div><div class="tsd-description"><div class="tsd-parameters"><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameter-list"><li><span><span class="tsd-kind-parameter">config</span>: <a href="../interfaces/sdk.ShopeeConfig.html" class="tsd-signature-type tsd-kind-interface">ShopeeConfig</a></span></li></ul></div><h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">AccountHealthManager</a></h4><aside class="tsd-sources"><p>Overrides <a href="managers_base.manager.BaseManager.html">BaseManager</a>.<a href="managers_base.manager.BaseManager.html#constructor">constructor</a></p><ul><li>Defined in <a href="https://github.com/congminh1254/shopee-sdk/blob/14ddb98e21f01bc81b09f49c60c063467f5a8b29/src/managers/account-health.manager.ts#L20">src/managers/account-health.manager.ts:20</a></li></ul></aside></div></li></ul></section></section></details><details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h2>Properties</h2></summary><section><section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"><h3 class="tsd-anchor-link" id="config"><code class="tsd-tag">Protected</code><span>config</span><a href="#config" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><div class="tsd-signature"><span class="tsd-kind-property">config</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/sdk.ShopeeConfig.html" class="tsd-signature-type tsd-kind-interface">ShopeeConfig</a></div><aside class="tsd-sources"><p>Inherited from <a href="managers_base.manager.BaseManager.html">BaseManager</a>.<a href="managers_base.manager.BaseManager.html#config">config</a></p><ul><li>Defined in <a href="https://github.com/congminh1254/shopee-sdk/blob/14ddb98e21f01bc81b09f49c60c063467f5a8b29/src/managers/base.manager.ts#L4">src/managers/base.manager.ts:4</a></li></ul></aside></section></section></details><details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h2>Methods</h2></summary><section><section class="tsd-panel tsd-member"><h3 class="tsd-anchor-link" id="getlateorders"><span>get<wbr/>Late<wbr/>Orders</span><a href="#getlateorders" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul class="tsd-signatures"><li class=""><div class="tsd-signature tsd-anchor-link" id="getlateorders-1"><span class="tsd-kind-call-signature">getLateOrders</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">?:</span> <a href="../types/schemas_account-health.GetLateOrdersParams.html" class="tsd-signature-type tsd-kind-type-alias">GetLateOrdersParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetLateOrdersResponse.html" class="tsd-signature-type tsd-kind-interface">GetLateOrdersResponse</a><span class="tsd-signature-symbol">&gt;</span><a href="#getlateorders-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div><div class="tsd-description"><div class="tsd-comment tsd-typography"><p>Get the late orders to take action to avoid order cancellation and penalty points</p>
+</div><div class="tsd-parameters"><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameter-list"><li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">params</span>: <a href="../types/schemas_account-health.GetLateOrdersParams.html" class="tsd-signature-type tsd-kind-type-alias">GetLateOrdersParams</a></span><div class="tsd-comment tsd-typography"><p>Optional request parameters</p>
+</div><div class="tsd-comment tsd-typography"><p>Parameters for the get late orders API</p>
+</div><ul class="tsd-parameters"><li class="tsd-parameter"><h5 id="page_no"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">page_no</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Specifies the page number of data to return in the current call.
+Starting from 1. Default is 1.</p>
+</div></li><li class="tsd-parameter"><h5 id="page_size"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">page_size</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Maximum number of entries to return in a single &quot;page&quot; of data.
+The limit is between 1 and 100. Default is 10.</p>
+</div></li></ul></li></ul></div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetLateOrdersResponse.html" class="tsd-signature-type tsd-kind-interface">GetLateOrdersResponse</a><span class="tsd-signature-symbol">&gt;</span></h4><p>Response containing late orders information</p>
+<p>This API returns a list of orders that are late for shipping and require immediate
+attention to avoid potential cancellations and resulting penalty points.
+Each late order record includes:</p>
+<ul>
+<li>The order SN (order number)</li>
+<li>The shipping deadline timestamp</li>
+<li>The number of days the order is late by</li>
+</ul>
+<p>The response is paginated - use page_no and page_size to navigate through the results.
+The total_count field indicates the total number of late orders across all pages.</p>
+<p>Use this API to prioritize shipping for late orders and take action to minimize
+late shipment rates, which can affect your shop's performance metrics and potentially
+result in penalties or restrictions on your shop.</p>
+<aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/congminh1254/shopee-sdk/blob/14ddb98e21f01bc81b09f49c60c063467f5a8b29/src/managers/account-health.manager.ts#L309">src/managers/account-health.manager.ts:309</a></li></ul></aside></div></li></ul></section><section class="tsd-panel tsd-member"><h3 class="tsd-anchor-link" id="getlistingswithissues"><span>get<wbr/>Listings<wbr/>With<wbr/>Issues</span><a href="#getlistingswithissues" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul class="tsd-signatures"><li class=""><div class="tsd-signature tsd-anchor-link" id="getlistingswithissues-1"><span class="tsd-kind-call-signature">getListingsWithIssues</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">?:</span> <a href="../types/schemas_account-health.GetListingsWithIssuesParams.html" class="tsd-signature-type tsd-kind-type-alias">GetListingsWithIssuesParams</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetListingsWithIssuesResponse.html" class="tsd-signature-type tsd-kind-interface">GetListingsWithIssuesResponse</a><span class="tsd-signature-symbol">&gt;</span><a href="#getlistingswithissues-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div><div class="tsd-description"><div class="tsd-comment tsd-typography"><p>Get the listings that have issues and need improvement</p>
+</div><div class="tsd-parameters"><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameter-list"><li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">params</span>: <a href="../types/schemas_account-health.GetListingsWithIssuesParams.html" class="tsd-signature-type tsd-kind-type-alias">GetListingsWithIssuesParams</a></span><div class="tsd-comment tsd-typography"><p>Optional request parameters</p>
+</div><div class="tsd-comment tsd-typography"><p>Parameters for the get listings with issues API</p>
+</div><ul class="tsd-parameters"><li class="tsd-parameter"><h5 id="page_no"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">page_no</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Specifies the page number of data to return in the current call.
+Starting from 1. Default is 1.</p>
+</div></li><li class="tsd-parameter"><h5 id="page_size"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">page_size</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Maximum number of entries to return in a single &quot;page&quot; of data.
+The limit is between 1 and 100. Default is 10.</p>
+</div></li></ul></li></ul></div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetListingsWithIssuesResponse.html" class="tsd-signature-type tsd-kind-interface">GetListingsWithIssuesResponse</a><span class="tsd-signature-symbol">&gt;</span></h4><p>Response containing listings with issues</p>
+<p>This API returns details of problematic listings that need improvement. Each listing record includes:</p>
+<ul>
+<li>The item ID of the problematic listing</li>
+<li>The reason for the issue, with possible values including:
+<ul>
+<li>Prohibited (1): Listing violates Shopee's prohibited items policy</li>
+<li>Counterfeit (2): Listing is flagged as potentially counterfeit</li>
+<li>Spam (3): Listing is identified as spam content</li>
+<li>Inappropriate Image (4): Listing contains inappropriate images</li>
+<li>Insufficient Info (5): Listing lacks required information</li>
+<li>Mall Listing Improvement (6): Mall listing requiring improvement</li>
+<li>Other Listing Improvement (7): Other issues requiring attention</li>
+</ul>
+</li>
+</ul>
+<p>The response is paginated - use page_no and page_size to navigate through the results.
+The total_count field indicates the total number of listings with issues across all pages.</p>
+<p>Use this API to identify listings that need improvement to maintain good shop health
+and avoid potential penalties or restrictions on your shop.</p>
+<aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/congminh1254/shopee-sdk/blob/14ddb98e21f01bc81b09f49c60c063467f5a8b29/src/managers/account-health.manager.ts#L271">src/managers/account-health.manager.ts:271</a></li></ul></aside></div></li></ul></section><section class="tsd-panel tsd-member"><h3 class="tsd-anchor-link" id="getmetricsourcedetail"><span>get<wbr/>Metric<wbr/>Source<wbr/>Detail</span><a href="#getmetricsourcedetail" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul class="tsd-signatures"><li class=""><div class="tsd-signature tsd-anchor-link" id="getmetricsourcedetail-1"><span class="tsd-kind-call-signature">getMetricSourceDetail</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="../types/schemas_account-health.GetMetricSourceDetailParams.html" class="tsd-signature-type tsd-kind-type-alias">GetMetricSourceDetailParams</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetMetricSourceDetailResponse.html" class="tsd-signature-type tsd-kind-interface">GetMetricSourceDetailResponse</a><span class="tsd-signature-symbol">&gt;</span><a href="#getmetricsourcedetail-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div><div class="tsd-description"><div class="tsd-comment tsd-typography"><p>Get the Affected Orders / Relevant Listings / Relevant Violations details of metrics</p>
+</div><div class="tsd-parameters"><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameter-list"><li><span><span class="tsd-kind-parameter">params</span>: <a href="../types/schemas_account-health.GetMetricSourceDetailParams.html" class="tsd-signature-type tsd-kind-type-alias">GetMetricSourceDetailParams</a></span><div class="tsd-comment tsd-typography"><p>Request parameters</p>
+</div><div class="tsd-comment tsd-typography"><p>Parameters for the get metric source detail API</p>
+</div><ul class="tsd-parameters"><li class="tsd-parameter"><h5 id="metric_id"><span class="tsd-kind-property">metric_id</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>ID of metric. Supported values:
+1: Late Shipment Rate (All Channels)
+3: Non-Fulfilment Rate (All Channels)
+12: Pre-order Listing %
+15: Days of Pre-order Listing Violation
+25: Fast Handover Rate
+28: On-time Pickup Failure Rate Violation Value
+42: Cancellation Rate (All Channels)
+43: Return-refund Rate (All Channels)
+52: Severe Listing Violations
+53: Other Listing Violations
+85: Late Shipment Rate (NDD)
+88: Non-fulfilment Rate (NDD)
+91: Cancellation Rate (NDD)
+92: Return-refund Rate (NDD)
+97: % NDD Listings
+2001: Fast Handover Rate - SLS
+2002: Fast Handover Rate - FBS
+2003: Fast Handover Rate - 3PF</p>
+</div></li><li class="tsd-parameter"><h5 id="page_no"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">page_no</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Specifies the page number of data to return in the current call.
+Starting from 1. Default is 1.</p>
+</div></li><li class="tsd-parameter"><h5 id="page_size"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">page_size</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Maximum number of entries to return in a single &quot;page&quot; of data.
+The limit is between 1 and 100. Default is 10.</p>
+</div></li></ul></li></ul></div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetMetricSourceDetailResponse.html" class="tsd-signature-type tsd-kind-interface">GetMetricSourceDetailResponse</a><span class="tsd-signature-symbol">&gt;</span></h4><p>Response containing detailed information about the metric</p>
+<p>This API returns detailed information about specific metrics, including affected orders,
+relevant listings, or violation details. The response structure varies based on the
+metric_id provided:</p>
+<ul>
+<li>Non-Fulfillment Rate metrics (3, 88): Returns <code>nfr_order_list</code> with affected orders</li>
+<li>Cancellation Rate metrics (42, 91): Returns <code>cancellation_order_list</code> with affected orders</li>
+<li>Return-refund Rate metrics (43, 92): Returns <code>return_refund_order_list</code> with affected orders</li>
+<li>Late Shipment Rate metrics (1, 85): Returns <code>lsr_order_list</code> with late shipment details</li>
+<li>Fast Handover Rate metrics (25, 2001-2003): Returns <code>fhr_order_list</code> with handover details</li>
+<li>On-time Pickup Failure Rate (28): Returns <code>opfr_day_detail_data_list</code> with daily violation data</li>
+<li>Listing Violations (52, 53): Returns <code>violation_listing_list</code> with problematic listings</li>
+<li>Pre-order Listing Violation (15): Returns <code>pre_order_listing_violation_data_list</code> with daily data</li>
+<li>Pre-order Listing % (12): Returns <code>pre_order_listing_list</code> with pre-order listings</li>
+<li>NDD Listings % (97): Returns <code>ndd_listing_list</code> with NDD-enabled listings</li>
+</ul>
+<p>The response is paginated - use page_no and page_size to navigate through the results.
+The total_count field indicates the total number of items available across all pages.</p>
+<p>Use this API to identify specific orders or listings that are affecting your shop's
+performance metrics and take corrective actions.</p>
+<aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/congminh1254/shopee-sdk/blob/14ddb98e21f01bc81b09f49c60c063467f5a8b29/src/managers/account-health.manager.ts#L137">src/managers/account-health.manager.ts:137</a></li></ul></aside></div></li></ul></section><section class="tsd-panel tsd-member"><h3 class="tsd-anchor-link" id="getpenaltypointhistory"><span>get<wbr/>Penalty<wbr/>Point<wbr/>History</span><a href="#getpenaltypointhistory" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul class="tsd-signatures"><li class=""><div class="tsd-signature tsd-anchor-link" id="getpenaltypointhistory-1"><span class="tsd-kind-call-signature">getPenaltyPointHistory</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">?:</span> <a href="../types/schemas_account-health.GetPenaltyPointHistoryParams.html" class="tsd-signature-type tsd-kind-type-alias">GetPenaltyPointHistoryParams</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetPenaltyPointHistoryResponse.html" class="tsd-signature-type tsd-kind-interface">GetPenaltyPointHistoryResponse</a><span class="tsd-signature-symbol">&gt;</span><a href="#getpenaltypointhistory-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div><div class="tsd-description"><div class="tsd-comment tsd-typography"><p>Get the penalty point records generated in the current quarter</p>
+</div><div class="tsd-parameters"><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameter-list"><li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">params</span>: <a href="../types/schemas_account-health.GetPenaltyPointHistoryParams.html" class="tsd-signature-type tsd-kind-type-alias">GetPenaltyPointHistoryParams</a></span><div class="tsd-comment tsd-typography"><p>Optional request parameters</p>
+</div><div class="tsd-comment tsd-typography"><p>Parameters for the get penalty point history API</p>
+</div><ul class="tsd-parameters"><li class="tsd-parameter"><h5 id="page_no"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">page_no</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Specifies the page number of data to return in the current call.
+Starting from 1. Default is 1.</p>
+</div></li><li class="tsd-parameter"><h5 id="page_size"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">page_size</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Maximum number of entries to return in a single &quot;page&quot; of data.
+The limit is between 1 and 100. Default is 10.</p>
+</div></li><li class="tsd-parameter"><h5 id="violation_type"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">violation_type</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Filter by specific violation type.
+See ViolationType enum for values.</p>
+</div></li></ul></li></ul></div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetPenaltyPointHistoryResponse.html" class="tsd-signature-type tsd-kind-interface">GetPenaltyPointHistoryResponse</a><span class="tsd-signature-symbol">&gt;</span></h4><p>Response containing penalty point records</p>
+<p>This API returns detailed records of penalty points that have been issued to the shop
+during the current quarter. Each record includes:</p>
+<ul>
+<li>The time when the penalty points were issued</li>
+<li>The number of points (both original and current after any adjustments via appeals)</li>
+<li>A unique reference ID for the penalty</li>
+<li>The type of violation that triggered the penalty</li>
+</ul>
+<p>Use this API to track and analyze penalty points history, which can help in:</p>
+<ul>
+<li>Understanding what types of violations are impacting your shop health</li>
+<li>Monitoring the effects of appeals on penalty points</li>
+<li>Tracking progress over time in reducing violations</li>
+</ul>
+<p>The response is paginated - use page_no and page_size to navigate through the results.
+You can also filter by violation_type to focus on specific types of issues.</p>
+<p>Note: Penalty points reset at the beginning of each quarter (on the first Monday).</p>
+<aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/congminh1254/shopee-sdk/blob/14ddb98e21f01bc81b09f49c60c063467f5a8b29/src/managers/account-health.manager.ts#L179">src/managers/account-health.manager.ts:179</a></li></ul></aside></div></li></ul></section><section class="tsd-panel tsd-member"><h3 class="tsd-anchor-link" id="getpunishmenthistory"><span>get<wbr/>Punishment<wbr/>History</span><a href="#getpunishmenthistory" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul class="tsd-signatures"><li class=""><div class="tsd-signature tsd-anchor-link" id="getpunishmenthistory-1"><span class="tsd-kind-call-signature">getPunishmentHistory</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">params</span><span class="tsd-signature-symbol">:</span> <a href="../types/schemas_account-health.GetPunishmentHistoryParams.html" class="tsd-signature-type tsd-kind-type-alias">GetPunishmentHistoryParams</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetPunishmentHistoryResponse.html" class="tsd-signature-type tsd-kind-interface">GetPunishmentHistoryResponse</a><span class="tsd-signature-symbol">&gt;</span><a href="#getpunishmenthistory-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div><div class="tsd-description"><div class="tsd-comment tsd-typography"><p>Get the punishment records generated in the current quarter</p>
+</div><div class="tsd-parameters"><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameter-list"><li><span><span class="tsd-kind-parameter">params</span>: <a href="../types/schemas_account-health.GetPunishmentHistoryParams.html" class="tsd-signature-type tsd-kind-type-alias">GetPunishmentHistoryParams</a></span><div class="tsd-comment tsd-typography"><p>Request parameters</p>
+</div><div class="tsd-comment tsd-typography"><p>Parameters for the get punishment history API</p>
+</div><ul class="tsd-parameters"><li class="tsd-parameter"><h5 id="page_no"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">page_no</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Specifies the page number of data to return in the current call.
+Starting from 1. Default is 1.</p>
+</div></li><li class="tsd-parameter"><h5 id="page_size"><code class="tsd-tag">Optional</code><span class="tsd-kind-property">page_size</span><span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><p>Maximum number of entries to return in a single &quot;page&quot; of data.
+The limit is between 1 and 100. Default is 10.</p>
+</div></li><li class="tsd-parameter"><h5 id="punishment_status"><span class="tsd-kind-property">punishment_status</span><span class="tsd-signature-symbol">: </span><a href="../enums/schemas_account-health.PunishmentStatus.html" class="tsd-signature-type tsd-kind-enum">PunishmentStatus</a></h5><div class="tsd-comment tsd-typography"><p>The status of punishment to retrieve.
+1: Ongoing punishments
+2: Ended punishments</p>
+</div></li></ul></li></ul></div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetPunishmentHistoryResponse.html" class="tsd-signature-type tsd-kind-interface">GetPunishmentHistoryResponse</a><span class="tsd-signature-symbol">&gt;</span></h4><p>Response containing punishment records</p>
+<p>This API returns detailed records of punishments that have been applied to the shop
+during the current quarter. Each punishment record includes:</p>
+<ul>
+<li>The time when the punishment was issued</li>
+<li>Start and end times of the punishment period</li>
+<li>Type of punishment (e.g., listing restrictions, marketing restrictions)</li>
+<li>Reason for the punishment (typically indicates the tier level)</li>
+<li>A unique reference ID for the punishment</li>
+<li>For listing limit punishments: the specific listing limit value</li>
+<li>For order limit punishments: the percentage applied to order limits</li>
+</ul>
+<p>You can retrieve either ongoing punishments (punishment_status=1) or
+ended punishments (punishment_status=2).</p>
+<p>Common punishment types include:</p>
+<ul>
+<li>Listings not displayed in search or category browsing</li>
+<li>Unable to create or edit listings</li>
+<li>Unable to join marketing campaigns</li>
+<li>No shipping subsidies</li>
+<li>Account suspension</li>
+<li>Listing limit reductions</li>
+<li>Order limits</li>
+</ul>
+<p>The response is paginated - use page_no and page_size to navigate through the results.</p>
+<p>Use this API to understand current restrictions on your shop and when they will expire.</p>
+<aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/congminh1254/shopee-sdk/blob/14ddb98e21f01bc81b09f49c60c063467f5a8b29/src/managers/account-health.manager.ts#L230">src/managers/account-health.manager.ts:230</a></li></ul></aside></div></li></ul></section><section class="tsd-panel tsd-member"><h3 class="tsd-anchor-link" id="getshoppenalty"><span>get<wbr/>Shop<wbr/>Penalty</span><a href="#getshoppenalty" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul class="tsd-signatures"><li class=""><div class="tsd-signature tsd-anchor-link" id="getshoppenalty-1"><span class="tsd-kind-call-signature">getShopPenalty</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetShopPenaltyResponse.html" class="tsd-signature-type tsd-kind-interface">GetShopPenaltyResponse</a><span class="tsd-signature-symbol">&gt;</span><a href="#getshoppenalty-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div><div class="tsd-description"><div class="tsd-comment tsd-typography"><p>Get the information of shop penalty</p>
+</div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetShopPenaltyResponse.html" class="tsd-signature-type tsd-kind-interface">GetShopPenaltyResponse</a><span class="tsd-signature-symbol">&gt;</span></h4><p>Response containing penalty points and ongoing punishments</p>
+<p>This API returns the seller's shop penalty information, including:</p>
+<ul>
+<li>
+<p>Penalty points that remain on record till the end of a quarter (reset on the first Monday of each quarter)</p>
+<ul>
+<li>Overall penalty points total</li>
+<li>Points from non-fulfillment rate issues</li>
+<li>Points from late shipment issues</li>
+<li>Points from listing violations</li>
+<li>Points from OPFR (Order Pick-up Failure Rate) violations</li>
+<li>Points from other violations</li>
+</ul>
+</li>
+<li>
+<p>List of ongoing punishments with details about:</p>
+<ul>
+<li>Punishment tier (1-5)</li>
+<li>Days left in the punishment period</li>
+<li>Name of the punishment (e.g., &quot;deboost&quot;)</li>
+</ul>
+</li>
+</ul>
+<p>Use this API to monitor your shop's health status and take proactive measures
+to address any issues that could affect your shop's performance.</p>
+<aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/congminh1254/shopee-sdk/blob/14ddb98e21f01bc81b09f49c60c063467f5a8b29/src/managers/account-health.manager.ts#L46">src/managers/account-health.manager.ts:46</a></li></ul></aside></div></li></ul></section><section class="tsd-panel tsd-member"><h3 class="tsd-anchor-link" id="getshopperformance"><span>get<wbr/>Shop<wbr/>Performance</span><a href="#getshopperformance" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><ul class="tsd-signatures"><li class=""><div class="tsd-signature tsd-anchor-link" id="getshopperformance-1"><span class="tsd-kind-call-signature">getShopPerformance</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetShopPerformanceResponse.html" class="tsd-signature-type tsd-kind-interface">GetShopPerformanceResponse</a><span class="tsd-signature-symbol">&gt;</span><a href="#getshopperformance-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div><div class="tsd-description"><div class="tsd-comment tsd-typography"><p>Get data metrics of shop performance</p>
+</div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/schemas_account-health.GetShopPerformanceResponse.html" class="tsd-signature-type tsd-kind-interface">GetShopPerformanceResponse</a><span class="tsd-signature-symbol">&gt;</span></h4><p>Response containing shop performance metrics</p>
+<p>This API returns comprehensive data metrics about a shop's performance across three
+key dimensions:</p>
+<ol>
+<li>
+<p>Fulfillment Performance - Metrics related to order processing and logistics:</p>
+<ul>
+<li>Late Shipment Rate</li>
+<li>Non-Fulfillment Rate</li>
+<li>Preparation Time</li>
+<li>Fast Handover Rate</li>
+<li>Cancellation Rate</li>
+<li>Return-refund Rate</li>
+<li>On-time Pickup Failure Rate</li>
+</ul>
+</li>
+<li>
+<p>Listing Performance - Metrics related to product listings quality:</p>
+<ul>
+<li>Severe Listing Violations (Prohibited, Counterfeit/IP infringement, Spam)</li>
+<li>Pre-order Listing percentage and days in violation</li>
+<li>Other Listing Violations</li>
+</ul>
+</li>
+<li>
+<p>Customer Service Performance - Metrics related to customer interactions:</p>
+<ul>
+<li>Chat Response Rate</li>
+<li>Response Time</li>
+<li>Shop Rating</li>
+<li>Non-Responded Chats</li>
+</ul>
+</li>
+</ol>
+<p>The response includes both overall performance ratings and detailed metrics with:</p>
+<ul>
+<li>Current and previous period performance values</li>
+<li>Target values with comparators (e.g., &quot;&lt;&quot;, &quot;&gt;=&quot;) to meet performance standards</li>
+<li>Units of measurement (percentage, number, days, etc.)</li>
+<li>Parent-child relationship between metrics</li>
+</ul>
+<p>Use this API to gain insights into shop performance and identify areas
+for improvement to maintain good shop health.</p>
+<aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/congminh1254/shopee-sdk/blob/14ddb98e21f01bc81b09f49c60c063467f5a8b29/src/managers/account-health.manager.ts#L95">src/managers/account-health.manager.ts:95</a></li></ul></aside></div></li></ul></section></section></details></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Constructors</summary><div><a href="#constructor"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a></div></details><details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Properties</summary><div><a href="#config" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>config</span></a></div></details><details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Methods</summary><div><a href="#getlateorders"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Late<wbr/>Orders</span></a><a href="#getlistingswithissues"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Listings<wbr/>With<wbr/>Issues</span></a><a href="#getmetricsourcedetail"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Metric<wbr/>Source<wbr/>Detail</span></a><a href="#getpenaltypointhistory"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Penalty<wbr/>Point<wbr/>History</span></a><a href="#getpunishmenthistory"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Punishment<wbr/>History</span></a><a href="#getshoppenalty"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Shop<wbr/>Penalty</span></a><a href="#getshopperformance"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Shop<wbr/>Performance</span></a></div></details></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="../modules.html">Shopee SDK API Reference - v1.8.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
