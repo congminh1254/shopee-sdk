@@ -48,6 +48,7 @@
     "lint": "eslint \"src/**/*.ts\"",
     "fetch-schemas": "tsx schemas/fetch.ts",
     "audit:specs": "tsx scripts/audit-specs.ts",
+    "docs:build": "typedoc && touch docs/api/.nojekyll",
     "prepare": "husky"
   },
   "publishConfig": {
@@ -90,6 +91,7 @@
     "ts-jest": "^29.4.10",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
+    "typedoc": "^0.28.19",
     "typescript": "^6.0.3"
   },
   "dependencies": {
