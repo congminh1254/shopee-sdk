@@ -48,7 +48,7 @@
     "lint": "eslint \"src/**/*.ts\"",
     "fetch-schemas": "tsx schemas/fetch.ts",
     "audit:specs": "tsx scripts/audit-specs.ts",
-    "docs:build": "typedoc && cp llms.txt docs/llms.txt && touch docs/api/.nojekyll",
+    "docs:build": "typedoc && cp llms.txt docs/api/llms.txt && touch docs/api/.nojekyll",
     "prepare": "husky"
   },
   "publishConfig": {
