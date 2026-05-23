@@ -3,7 +3,7 @@ import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 import { ShopeeApiError } from "../../errors.js";
 
-const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
+const { runTests, initSdk } = setupIntegrationTest();
 
 (runTests ? describe : describe.skip)("ShopeeSDK Payment Integration Tests", () => {
   let sdk: ShopeeSDK;
@@ -26,8 +26,6 @@ const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
   });
 
   it("should retrieve shop installment status (auth: true)", async () => {
-    if (!hasValidToken()) return;
-
     try {
       const result = await sdk.payment.getShopInstallmentStatus();
       expect(result).toBeDefined();
@@ -46,8 +44,6 @@ const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
   });
 
   it("should gracefully propagate error when querying escrow detail with dummy order ID", async () => {
-    if (!hasValidToken()) return;
-
     try {
       await sdk.payment.getEscrowDetail({
         order_sn: "NONEXISTENT_ORDER_SN_12345",

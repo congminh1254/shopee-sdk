@@ -3,7 +3,7 @@ import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 import { ShopeeApiError } from "../../errors.js";
 
-const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
+const { runTests, initSdk } = setupIntegrationTest();
 
 (runTests ? describe : describe.skip)("ShopeeSDK Shipping Document Integration Tests", () => {
   let sdk: ShopeeSDK;
@@ -13,8 +13,6 @@ const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
   });
 
   it("should gracefully propagate error when creating shipping document with dummy order ID", async () => {
-    if (!hasValidToken()) return;
-
     try {
       await sdk.logistics.createShippingDocument({
         order_list: [
@@ -34,8 +32,6 @@ const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
   });
 
   it("should gracefully propagate error when downloading document with dummy job ID", async () => {
-    if (!hasValidToken()) return;
-
     await expect(
       sdk.logistics.downloadShippingDocumentJob({
         job_id: "DUMMY_JOB_ID_123",

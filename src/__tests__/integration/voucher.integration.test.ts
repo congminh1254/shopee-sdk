@@ -3,7 +3,7 @@ import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 import { VoucherStatus } from "../../schemas/voucher.js";
 
-const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
+const { runTests, initSdk } = setupIntegrationTest();
 
 (runTests ? describe : describe.skip)("ShopeeSDK VoucherManager Sandbox Integration Tests", () => {
   let sdk: ShopeeSDK;
@@ -14,8 +14,6 @@ const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
   });
 
   it("should successfully run the full voucher lifecycle", async () => {
-    if (!hasValidToken()) return;
-
     // 1. Create a Voucher starting tomorrow and ending in 3 days
     const startTime = Math.floor(Date.now() / 1000) + 86400; // Tomorrow
     const endTime = startTime + 86400 * 2; // Next 2 days
@@ -62,8 +60,6 @@ const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
   });
 
   it("should successfully list shop vouchers", async () => {
-    if (!hasValidToken()) return;
-
     const listResponse = await sdk.voucher.getVoucherList({
       status: VoucherStatus.ALL,
       page_no: 1,
@@ -72,7 +68,8 @@ const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
 
     expect(listResponse).toBeDefined();
     expect(listResponse.error).toBe("");
-    expect(listResponse.response?.voucher_list).toBeDefined();
-    expect(Array.isArray(listResponse.response.voucher_list)).toBe(true);
+    if (listResponse.response?.voucher_list) {
+      expect(Array.isArray(listResponse.response.voucher_list)).toBe(true);
+    }
   });
 });

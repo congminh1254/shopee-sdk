@@ -167,22 +167,22 @@ export class ShopeeFetch {
 
     try {
       const response: Response = await fetch(url.toString(), requestOptions);
-      const responseType = response.headers.get("Content-Type");
+      const responseType =
+        response.headers.get("Content-Type") || response.headers.get("content-type") || "";
 
       if (
-        responseType?.includes("application/pdf") ||
-        responseType?.includes("application/octet-stream")
+        responseType.includes("application/pdf") ||
+        responseType.includes("application/octet-stream")
       ) {
         const arrayBuffer = await response.arrayBuffer();
         return Buffer.from(arrayBuffer) as unknown as T;
       }
 
-      const responseData: unknown =
-        responseType?.indexOf("application/json") !== -1
-          ? await response.json()
-          : await response.text();
+      const isJson = !responseType || !!responseType.toLowerCase().includes("json");
 
-      if (responseType?.indexOf("application/json") !== -1) {
+      const responseData: unknown = isJson ? await response.json() : await response.text();
+
+      if (isJson) {
         // Type guard for JSON response with error field
         const jsonData = responseData as Record<string, unknown>;
         if (jsonData.error) {
