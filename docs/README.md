@@ -9,6 +9,8 @@ Welcome to the comprehensive documentation for the Shopee SDK! This guide will h
 - [Authentication](./guides/authentication.md) - OAuth flow and token management
 - [Token Storage](./guides/token-storage.md) - Managing access tokens
 - [Proxy Configuration](./guides/proxy.md) - Using HTTP/HTTPS proxies
+- [Interactive API Reference](./api/index.html) - Complete, fully-searchable API documentation
+- [AI Onboarding & LLM Guide](../llms.txt) - Detailed codebase reference specifically tailored for AI Agents and LLMs
 
 ### API Managers
 Each manager provides access to a specific set of Shopee API endpoints:

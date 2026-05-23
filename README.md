@@ -14,7 +14,8 @@ Build powerful Shopee integrations with confidence using our fully-featured SDK 
 
 ## 📚 Documentation
 
-**[Complete Documentation](./docs/README.md)** - Comprehensive guides and API references
+* **[Complete Documentation](./docs/README.md)** - Comprehensive guides and API references
+* **[AI Onboarding & LLM Guide](./llms.txt)** - A high-context onboarding guide specifically written for AI Agents and LLMs to quickly understand the codebase architecture and start coding.
 
 ### Quick Links
 

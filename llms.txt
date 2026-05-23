@@ -602,7 +602,7 @@ describe('ProductManager', () => {
 - **`docs/guides/`**: User guides (setup, auth, etc.)
 - **`docs/managers/`**: Per-manager documentation
 - **`CHANGELOG.md`**: Version history
-- **`AI_ONBOARDING.md`**: This file!
+- **`llms.txt`**: This file!
 
 ## 🎓 Learning the Codebase
 
@@ -730,5 +730,5 @@ When working with this SDK, ensure you:
 ---
 
 **Last Updated**: May 2026  
-**SDK Version**: 1.4.0  
+**SDK Version**: 1.9.0  
 **Maintained By**: Community (congminh1254)
