@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/congminh1254/shopee-sdk/compare/v1.8.0...v1.9.0) (2026-05-23)
+
+
+### Features
+
+* implement order cancellation estimate API and partial cancellation schema fields ([a05906d](https://github.com/congminh1254/shopee-sdk/commit/a05906d20bc04cf6aaec3eb2a190af10b0229ee7))
+
 ## [1.8.0](https://github.com/congminh1254/shopee-sdk/compare/v1.7.0...v1.8.0) (2026-05-22)
 
 
