@@ -255,6 +255,15 @@ export interface LogisticsChannel {
   logistics_capability?: LogisticsCapability;
   /** Whether this channel support pre-print AWB */
   preprint?: boolean;
+  /** Indicates if the channel is compulsory. If the value is true, at least one such channel must be enabled. */
+  compulsory_channel?: boolean;
+  /** Indicate the related rules & channels of this logistic channel. */
+  channel_relation_rules?: Array<{
+    /** Channels that will be auto-enabled in the same request if this channel is enabled. */
+    related_enabled_channels?: number[];
+    /** Channels that must be disabled before or while disabling this parent channel. */
+    related_dependent_block_channels?: number[];
+  }>;
 }
 
 /**
