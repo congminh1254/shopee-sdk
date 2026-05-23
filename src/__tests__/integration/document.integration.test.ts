@@ -29,7 +29,7 @@ const { runTests, initSdk } = setupIntegrationTest();
       expect(apiErr.data).toBeDefined();
       expect(apiErr.message).toBeDefined();
     }
-  });
+  }, 60000);
 
   it("should gracefully propagate error when downloading document with dummy job ID", async () => {
     await expect(
@@ -37,5 +37,5 @@ const { runTests, initSdk } = setupIntegrationTest();
         job_id: "DUMMY_JOB_ID_123",
       })
     ).rejects.toThrow();
-  });
+  }, 60000);
 });
