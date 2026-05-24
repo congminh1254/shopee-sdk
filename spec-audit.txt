@@ -1,5 +1,5 @@
 
-> @congminh1254/shopee-sdk@1.8.0 audit:specs
+> @congminh1254/shopee-sdk@1.9.0 audit:specs
 > tsx scripts/audit-specs.ts
 
 Shopee SDK Spec Audit
@@ -9,16 +9,15 @@ Strategy:
   3) Endpoint request/response must use explicit endpoint type definitions
   4) Spec request/response fields must exist in those endpoint types with exact names
 - Specs scanned: 429
-- SDK endpoints discovered: 313
-- Missing endpoints: 3
+- SDK endpoints discovered: 314
+- Missing endpoints: 2
 - SDK endpoints not in spec: 3
 - Method mismatches: 0
 - Missing request/response types: 0
-- Request field gaps: 1
+- Request field gaps: 0
 - Response field gaps: 0
 
 Missing endpoints:
-  - order.get_estimiate_cancel_value
   - public.get_access_token
   - public.refresh_access_token
 
@@ -26,6 +25,3 @@ SDK endpoints not covered by spec:
   - ads.get_ads_facil_shop_rate
   - product.get_size_chart_list
   - product.publish_item_to_outlet_shop
-
-Request field gaps:
-  - order.cancel_order: partial_cancel_item_list
