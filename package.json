@@ -74,7 +74,7 @@
   "homepage": "https://github.com/congminh1254/shopee-sdk#readme",
   "devDependencies": {
     "@commitlint/cli": "^20.5.2",
-    "@commitlint/config-conventional": "^20.5.0",
+    "@commitlint/config-conventional": "^21.0.1",
     "@eslint/js": "^10.0.1",
     "@types/jest": "^30.0.0",
     "@typescript-eslint/eslint-plugin": "^8.59.0",
