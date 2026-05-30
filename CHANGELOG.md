@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/congminh1254/shopee-sdk/compare/v1.9.0...v1.10.0) (2026-05-30)
+
+
+### Features
+
+* **schemas:** add return_code, collection_pin_code, and txn_title fields ([a8b80e8](https://github.com/congminh1254/shopee-sdk/commit/a8b80e830d4acabb7b10719bb63beec429db8d69))
+
 ## [1.9.0](https://github.com/congminh1254/shopee-sdk/compare/v1.8.0...v1.9.0) (2026-05-23)
 
 
