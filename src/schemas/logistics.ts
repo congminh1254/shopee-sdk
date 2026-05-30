@@ -140,6 +140,8 @@ export interface TrackingInfo {
    * Applicable values: See Data Definition- TrackingLogisticsStatus
    */
   logistics_status: TrackingLogisticsStatus;
+  /** The return code of the tracking info */
+  return_code?: string;
 }
 
 /**
@@ -158,6 +160,11 @@ export interface GetTrackingInfoResponse extends BaseResponse {
     logistics_status: LogisticsStatus;
     /** The tracking info of the order */
     tracking_info: TrackingInfo[];
+    /**
+     * [TW Only] The unique 6-digit PIN code for sellers to collect RTS (Return to Seller) parcels at service points.
+     * This field is returned when the channel is C2C and the logistics_status is FULFILMENT_DELIVERY_FAILED.
+     */
+    collection_pin_code?: string;
   };
 }
 

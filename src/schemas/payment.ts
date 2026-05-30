@@ -554,6 +554,11 @@ export interface WalletTransaction {
   money_flow?: string;
   /** The outlet shop name where this outlet transaction came from */
   outlet_shop_name?: string;
+  /**
+   * The transaction title sent by client (Adjustment Center) for adjustments,
+   * Only for ID local sellers for now.
+   */
+  txn_title?: string;
 }
 
 /**

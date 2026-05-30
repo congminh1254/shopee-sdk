@@ -737,6 +737,7 @@ describe("PaymentManager", () => {
               order_sn: "220101000000001",
               money_flow: "MONEY_IN",
               transaction_tab_type: "wallet_order_income",
+              txn_title: "Adjustment for item 123",
             },
           ],
           more: false,

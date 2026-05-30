@@ -52,11 +52,13 @@ describe("LogisticsManager", () => {
           order_sn: "220101000000001",
           package_number: "PKG123456789",
           logistics_status: "LOGISTICS_DELIVERED" as any,
+          collection_pin_code: "562891",
           tracking_info: [
             {
               update_time: 1640995200,
               description: "Package has been delivered",
               logistics_status: "LOGISTICS_DELIVERED" as any,
+              return_code: "1234",
             },
             {
               update_time: 1640995100,
