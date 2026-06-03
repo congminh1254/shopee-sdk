@@ -2244,20 +2244,26 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          size_chart_list: [{ chart_id: "chart1" }],
-          has_next_page: false,
-          next_offset: 0,
+          size_chart_list: [{ size_chart_id: 700024641 }],
+          total_count: 1,
+          next_cursor: "",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await productManager.getSizeChartList();
+      const result = await productManager.getSizeChartList({
+        category_id: 12345,
+        page_size: 10,
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_size_chart_list", {
         method: "GET",
         auth: true,
-        params: {},
+        params: {
+          category_id: 12345,
+          page_size: 10,
+        },
       });
 
       expect(result.response.size_chart_list).toHaveLength(1);

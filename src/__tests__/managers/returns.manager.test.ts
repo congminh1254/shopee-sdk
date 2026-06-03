@@ -818,6 +818,7 @@ describe("ReturnsManager", () => {
           reverse_logistics_update_time: 1740728119,
           estimated_delivery_date_max: 1740728121,
           estimated_delivery_date_min: 1740626000,
+          collection_pin_code: "666188",
           tracking_number: "MY257829361436J",
           tracking_info: [
             {
@@ -851,6 +852,7 @@ describe("ReturnsManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.return_sn).toBe("2206150VT13E3MQ");
       expect(result.response.validation_type).toBe("seller_validation");
+      expect(result.response.collection_pin_code).toBe("666188");
       expect(result.response.tracking_info).toHaveLength(1);
       expect(result.response.tracking_info![0].tracking_description).toBe(
         "Parcel has been picked up by our logistics partner"

@@ -1181,14 +1181,14 @@ export class ProductManager extends BaseManager {
   }
 
   // Size Chart Management
-  async getSizeChartList(params?: GetSizeChartListParams): Promise<GetSizeChartListResponse> {
+  async getSizeChartList(params: GetSizeChartListParams): Promise<GetSizeChartListResponse> {
     const response = await ShopeeFetch.fetch<GetSizeChartListResponse>(
       this.config,
       "/product/get_size_chart_list",
       {
         method: "GET",
         auth: true,
-        params: params || {},
+        params,
       }
     );
     return response;

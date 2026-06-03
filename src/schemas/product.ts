@@ -2139,11 +2139,18 @@ export interface UpdateSipItemPriceResponse extends BaseResponse {}
 /**
  * Size chart params
  */
-export type GetSizeChartListParams = { offset?: number; page_size?: number };
+export type GetSizeChartListParams = {
+  /** category id under this shop */
+  category_id: number;
+  /** the size of one page. Max=50. */
+  page_size: number;
+  /** Specifies the starting entry of data to return in the current call. Default is "". */
+  cursor?: string;
+};
 export interface GetSizeChartListResponse extends FetchResponse<{
-  size_chart_list: any[];
-  has_next_page: boolean;
-  next_offset: number;
+  size_chart_list: { size_chart_id: number }[];
+  total_count: number;
+  next_cursor: string;
 }> {}
 
 export type GetSizeChartDetailParams = { size_chart_id: string };

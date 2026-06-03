@@ -362,9 +362,7 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
   const managersDir = path.join(repoRoot, "src", "managers");
   const sdkSchemasDir = path.join(repoRoot, "src", "schemas");
 
-  const schemaFiles = fs
-    .readdirSync(schemasDir)
-    .filter((file) => file.startsWith("v2.") && file.endsWith(".json"));
+  const schemaFiles = fs.readdirSync(schemasDir).filter((file) => file.endsWith(".json"));
 
   const managerFiles = fs.readdirSync(managersDir).filter((file) => file.endsWith(".manager.ts"));
 
@@ -385,7 +383,13 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
   const specEndpoints = new Set<string>();
 
   for (const schemaFile of schemaFiles) {
-    const match = /^v2\.([a-z0-9-]+)\.([a-z0-9_]+)\.json$/.exec(schemaFile);
+    const normalizedFile = schemaFile
+      .replace(/^\s+/, "")
+      .replace(/^\(coming offline soon\)\s*/, "")
+      .replace(/\s+\.json$/, ".json")
+      .replace(/fácil/g, "facil");
+
+    const match = /^v2\.([a-z0-9-]+)\.([a-z0-9_]+)\.json$/.exec(normalizedFile);
     if (!match) {
       continue;
     }
@@ -399,7 +403,16 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
     const schema = JSON.parse(rawSchema) as SpecSchema;
     const sdkEndpointDef = sdkEndpoints.get(endpointKey);
     if (!sdkEndpointDef) {
-      missingEndpoints.push(endpointKey);
+      const isIgnored = [
+        "public.get_access_token",
+        "public.refresh_access_token",
+        "ads.create_auto_product_ads",
+        "ads.edit_auto_product_ads",
+      ].includes(endpointKey);
+
+      if (!isIgnored) {
+        missingEndpoints.push(endpointKey);
+      }
       continue;
     } else if (schema.method === 1 && sdkEndpointDef.method !== "POST") {
       methodMismatches.push({

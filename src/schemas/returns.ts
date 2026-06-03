@@ -761,6 +761,8 @@ export interface GetReverseTrackingInfoResponse extends BaseResponse {
     estimated_delivery_date_max?: number;
     /** The minimum estimated delivery date for the reverse logistics */
     estimated_delivery_date_min?: number;
+    /** The collection Pin Code to enter for seller to collect parcel in collection point or locker. Only available for TW region. */
+    collection_pin_code?: string;
     /** The tracking number for the reverse logistics */
     tracking_number?: string;
     /** The detailed tracking information list for the reverse logistics */
