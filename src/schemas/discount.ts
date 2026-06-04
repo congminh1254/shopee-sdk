@@ -89,19 +89,6 @@ export interface EndDiscountParams {
 }
 
 /**
- * Parameters for getting discount details
- */
-export interface GetDiscountParams {
-  /** Shopee's unique identifier for a discount activity */
-  discount_id: number;
-  /** Specifies the page number of data to return. Starting from 1 */
-  page_no: number;
-  /** Maximum number of entries to retrieve per page */
-  page_size: number;
-  [key: string]: string | number | boolean | undefined;
-}
-
-/**
  * Parameters for getting a list of discounts
  */
 export interface GetDiscountListParams {
@@ -297,28 +284,6 @@ export interface EndDiscountResponse extends BaseResponse {
     discount_id: number;
     /** The time when the discount was modified */
     modify_time: number;
-  };
-}
-
-/**
- * Response for the get discount API
- */
-export interface GetDiscountResponse extends BaseResponse {
-  response: {
-    /** The status of discount promotion */
-    status: string;
-    /** Title of the discount */
-    discount_name: string;
-    /** The items selected in this discount */
-    item_list: DiscountItemInfo[];
-    /** The time when discount activity start */
-    start_time: number;
-    /** Shopee's unique identifier for a discount activity */
-    discount_id: number;
-    /** The time when discount activity end */
-    end_time: number;
-    /** This is to indicate whether the item list is more than one page */
-    more: boolean;
   };
 }
 

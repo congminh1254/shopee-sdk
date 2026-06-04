@@ -1720,26 +1720,6 @@ export interface GetBoostedListResponse extends FetchResponse<{
 }> {}
 
 /**
- * Parameters for getting variations
- */
-export type GetVariationsParams = {
-  /** Item ID */
-  item_id: number;
-  /** Language */
-  language?: string;
-  /** Category ID */
-  category_id?: number;
-};
-
-/**
- * Response for getting variations
- */
-export interface GetVariationsResponse extends FetchResponse<{
-  /** Tier variation */
-  tier_variation: TierVariation[];
-}> {}
-
-/**
  * Parameters for recommending attributes
  */
 export type GetRecommendAttributeParams = {

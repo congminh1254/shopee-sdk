@@ -42,12 +42,7 @@ await sdk.discount.addDiscountItem({
   ],
 });
 
-// Get discount details
-const details = await sdk.discount.getDiscount({
-  discount_id: discount.response.discount_id,
-  page_no: 1,
-  page_size: 50,
-});
+
 ```
 
 ## Methods
@@ -209,51 +204,6 @@ console.log('Modification time:', response.response.modify_time);
 - Cannot end upcoming or already expired discounts
 - The discount will stop immediately
 - Items will return to their original prices
-
-### getDiscount()
-
-**API Documentation:** [v2.discount.get_discount](https://open.shopee.com/documents/v2/v2.discount.get_discount?module=99&type=1)
-
-Get detailed information about a discount activity including all items.
-
-```typescript
-const response = await sdk.discount.getDiscount({
-  discount_id: 1000029882,
-  page_no: 1,      // Page number (starting from 1)
-  page_size: 50,   // Items per page
-});
-
-console.log('Discount name:', response.response.discount_name);
-console.log('Status:', response.response.status);
-console.log('Items:', response.response.item_list.length);
-console.log('More pages:', response.response.more);
-
-// Access item details
-response.response.item_list.forEach(item => {
-  console.log(`Item ${item.item_id}:`);
-  console.log(`  Original price: ${item.item_original_price}`);
-  console.log(`  Discount price: ${item.item_promotion_price}`);
-  console.log(`  Stock: ${item.normal_stock}`);
-  console.log(`  Purchase limit: ${item.purchase_limit}`);
-  
-  // For items with variations
-  item.model_list.forEach(model => {
-    console.log(`  Model ${model.model_id}: ${model.model_promotion_price}`);
-  });
-});
-```
-
-**Response includes:**
-- Basic discount information (ID, name, status, timing)
-- Complete item list with pricing details
-- Original and discounted prices (including tax-adjusted prices)
-- Local prices (for cross-border shops)
-- Stock information
-- Model/variation details
-- Pagination information
-
-**Pagination:**
-If `response.more` is `true`, there are more items to retrieve. Increment `page_no` to get the next page.
 
 ### getDiscountList()
 
@@ -530,28 +480,17 @@ Monitor and manage ongoing discounts:
 
 ```typescript
 // Get all ongoing discounts
+// Get all ongoing discounts
 const ongoing = await sdk.discount.getDiscountList({
   discount_status: DiscountStatus.ONGOING,
 });
 
-// Check each discount's performance
+// Update each ongoing discount name if needed
 for (const discount of ongoing.response.discount_list) {
-  const details = await sdk.discount.getDiscount({
+  await sdk.discount.updateDiscount({
     discount_id: discount.discount_id,
-    page_no: 1,
-    page_size: 100,
+    discount_name: discount.discount_name + ' - Updated',
   });
-  
-  console.log(`Discount: ${details.response.discount_name}`);
-  console.log(`Items: ${details.response.item_list.length}`);
-  
-  // Update if needed
-  if (needsUpdate(details)) {
-    await sdk.discount.updateDiscount({
-      discount_id: discount.discount_id,
-      discount_name: 'Updated Name',
-    });
-  }
 }
 ```
 
@@ -615,29 +554,29 @@ if (result.response.error_list.length > 0) {
 console.log(`Successfully added ${result.response.count} items`);
 ```
 
-### 3. Use Pagination for Large Item Lists
+### 3. Use Pagination for Large Discount Lists
 
-When retrieving discount details with many items:
+When retrieving a large list of discounts, handle pagination using `page_no`:
 
 ```typescript
-async function getAllDiscountItems(discountId: number) {
-  const allItems = [];
+async function getAllOngoingDiscounts() {
+  const allDiscounts = [];
   let pageNo = 1;
   let hasMore = true;
   
   while (hasMore) {
-    const response = await sdk.discount.getDiscount({
-      discount_id: discountId,
+    const response = await sdk.discount.getDiscountList({
+      discount_status: DiscountStatus.ONGOING,
       page_no: pageNo,
       page_size: 100,
     });
     
-    allItems.push(...response.response.item_list);
+    allDiscounts.push(...response.response.discount_list);
     hasMore = response.response.more;
     pageNo++;
   }
   
-  return allItems;
+  return allDiscounts;
 }
 ```
 

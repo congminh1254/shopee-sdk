@@ -11,8 +11,6 @@ import {
   DeleteDiscountItemResponse,
   EndDiscountParams,
   EndDiscountResponse,
-  GetDiscountParams,
-  GetDiscountResponse,
   GetDiscountListParams,
   GetDiscountListResponse,
   UpdateDiscountParams,
@@ -141,32 +139,6 @@ export class DiscountManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Get detailed information about a discount activity
-   * @param {GetDiscountParams} params - Parameters for getting discount details
-   * @returns {Promise<GetDiscountResponse>} The response containing comprehensive discount information
-   *
-   * The response includes:
-   * - Basic discount details (ID, name, status, timing, etc.)
-   * - Item list with detailed pricing information (original price, promotion price, stock, etc.)
-   * - For items with variations: detailed model information
-   * - Purchase limits for each item
-   * - Pagination info (more: boolean indicating if there are more pages)
-   */
-  async getDiscount(params: GetDiscountParams): Promise<GetDiscountResponse> {
-    const response = await ShopeeFetch.fetch<GetDiscountResponse>(
-      this.config,
-      "/discount/get_discount",
-      {
-        method: "GET",
-        auth: true,
-        params,
       }
     );
 

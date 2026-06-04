@@ -31,7 +31,6 @@ import {
   GetItemPromotionResponse,
   BoostItemResponse,
   GetBoostedListResponse,
-  GetVariationsResponse,
   GetRecommendAttributeResponse,
   SearchAttributeValueListResponse,
   GetMainItemListResponse,
@@ -1603,42 +1602,6 @@ describe("ProductManager", () => {
       });
 
       expect(result.response.item_list).toHaveLength(1);
-    });
-  });
-
-  describe("getVariations", () => {
-    it("should get variations for an item", async () => {
-      const mockResponse: GetVariationsResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          tier_variation: [
-            {
-              name: "Color",
-              option_list: [{ option: "Red" }, { option: "Blue" }],
-            },
-          ],
-        },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await productManager.getVariations({
-        item_id: 123456,
-        category_id: 789,
-      });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_variations", {
-        method: "GET",
-        auth: true,
-        params: {
-          item_id: 123456,
-          category_id: 789,
-        },
-      });
-
-      expect(result.response.tier_variation).toHaveLength(1);
     });
   });
 

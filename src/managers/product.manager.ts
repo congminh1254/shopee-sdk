@@ -55,8 +55,6 @@ import {
   BoostItemParams,
   BoostItemResponse,
   GetBoostedListResponse,
-  GetVariationsParams,
-  GetVariationsResponse,
   GetRecommendAttributeParams,
   GetRecommendAttributeResponse,
   SearchAttributeValueListParams,
@@ -827,27 +825,6 @@ export class ProductManager extends BaseManager {
         method: "GET",
         auth: true,
         params: {},
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get variations
-   *
-   * Use this API to get variation information for an item.
-   *
-   * @param params - Parameters for getting variations
-   * @returns Promise resolving to variations response
-   */
-  async getVariations(params: GetVariationsParams): Promise<GetVariationsResponse> {
-    const response = await ShopeeFetch.fetch<GetVariationsResponse>(
-      this.config,
-      "/product/get_variations",
-      {
-        method: "GET",
-        auth: true,
-        params,
       }
     );
     return response;

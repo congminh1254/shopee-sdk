@@ -721,25 +721,6 @@ console.log('Items with issues:', response.item_list);
 
 ## Advanced Features
 
-### getVariations()
-
-**API Documentation:** [v2.product.get_variations](https://open.shopee.com/documents/v2/v2.product.get_variations?module=89&type=1)
-
-Get standardized variations for a category.
-
-```typescript
-const response = await sdk.product.getVariations({
-  category_id: 12345,
-});
-
-response.variation_list.forEach((variation) => {
-  console.log('Variation:', variation.name);
-  console.log('Options:', variation.option_list);
-});
-```
-
----
-
 ### getRecommendAttribute()
 
 **API Documentation:** [v2.product.get_recommend_attribute](https://open.shopee.com/documents/v2/v2.product.get_recommend_attribute?module=89&type=1)

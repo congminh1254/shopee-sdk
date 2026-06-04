@@ -9,7 +9,6 @@ import {
   DeleteDiscountResponse,
   DeleteDiscountItemResponse,
   EndDiscountResponse,
-  GetDiscountResponse,
   GetDiscountListResponse,
   UpdateDiscountResponse,
   UpdateDiscountItemResponse,
@@ -254,75 +253,6 @@ describe("DiscountManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-    });
-  });
-
-  describe("getDiscount", () => {
-    it("should get discount details", async () => {
-      const mockResponse: GetDiscountResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          status: "ongoing",
-          discount_name: "test-upload-keep",
-          item_list: [
-            {
-              item_id: 2800140208,
-              item_name: "hahahahahah",
-              normal_stock: 10,
-              item_promotion_stock: 12,
-              item_original_price: 11.1,
-              item_promotion_price: 1.92,
-              item_inflated_price_of_original_price: 12.1,
-              item_inflated_price_of_promotion_price: 12.0,
-              item_local_price: 9.99,
-              item_local_promotion_price: 1.72,
-              model_list: [
-                {
-                  model_id: 1755762,
-                  model_name: "hahahahah",
-                  model_normal_stock: 2,
-                  model_promotion_stock: 10,
-                  model_original_price: 1.9,
-                  model_promotion_price: 1.86,
-                  model_inflated_price_of_original_price: 2.2,
-                  model_inflated_price_of_promotion_price: 2.1,
-                  model_local_price: 1.71,
-                  model_local_promotion_price: 1.67,
-                },
-              ],
-              purchase_limit: 1,
-            },
-          ],
-          start_time: 1604408400,
-          discount_id: 1000029882,
-          end_time: 1605276000,
-          more: false,
-        },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await discountManager.getDiscount({
-        discount_id: 1000029882,
-        page_no: 1,
-        page_size: 50,
-      });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_discount", {
-        method: "GET",
-        auth: true,
-        params: {
-          discount_id: 1000029882,
-          page_no: 1,
-          page_size: 50,
-        },
-      });
-
-      expect(result).toEqual(mockResponse);
-      expect(result.response.item_list).toHaveLength(1);
-      expect(result.response.item_list[0].model_list).toHaveLength(1);
     });
   });
 
