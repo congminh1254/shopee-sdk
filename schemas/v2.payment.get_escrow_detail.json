@@ -1032,7 +1032,7 @@
                 "key": "CNBGSCw"
               },
               {
-                "description": "<p>Service fee charged to seller in MY,ID,PH Local (as per Jun 2024) due to additional program purchased.<br /></p>",
+                "description": "<p>Service fee charged to seller in MY,ID,PH,BR Local (as per Jun 2024) due to additional program purchased.<br /></p>",
                 "name": "shipping_seller_protection_fee_amount",
                 "sample": "",
                 "type": "float",
