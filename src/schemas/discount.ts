@@ -400,3 +400,38 @@ export interface DeleteSipDiscountResponse extends BaseResponse {
     region: string;
   };
 }
+
+/**
+ * Parameters for getting a discount
+ */
+export interface GetDiscountParams {
+  /** Shopee's unique identifier for a discount activity */
+  discount_id: number;
+  /** Specifies the page number of data to return. Default 1 */
+  page_no: number;
+  /** Maximum number of entries to retrieve per page. Default 50 */
+  page_size: number;
+  [key: string]: string | number | boolean | undefined;
+}
+
+/**
+ * Response for the get discount API
+ */
+export interface GetDiscountResponse extends BaseResponse {
+  response: {
+    /** The status of discount promotion */
+    status: string;
+    /** Title of the discount */
+    discount_name: string;
+    /** The items selected in this discount */
+    item_list: DiscountItemInfo[];
+    /** The start time of discount */
+    start_time: number;
+    /** Shopee's unique identifier for a discount activity */
+    discount_id: number;
+    /** The end time of discount */
+    end_time: number;
+    /** Indicates whether there are more items to retrieve */
+    more: boolean;
+  };
+}

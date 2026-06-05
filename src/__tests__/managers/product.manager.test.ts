@@ -43,6 +43,7 @@ import {
   GetMartItemMappingByIdResponse,
   PublishItemToOutletShopResponse,
   ItemStatus,
+  GetVariationsResponse,
 } from "../../schemas/product.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -2642,6 +2643,53 @@ describe("ProductManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response?.item_id).toBe(444444);
+    });
+  });
+
+  describe("getVariations", () => {
+    it("should get standardized tier variations for a category", async () => {
+      const mockResponse: GetVariationsResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          standardise_variation_list: [
+            {
+              variation_id: 101054,
+              variation_name: "Color",
+              variation_group_list: [
+                {
+                  variation_group_id: 849982774362112,
+                  variation_group_name: "Group 1",
+                  variation_option_list: [
+                    {
+                      variation_option_id: 6245,
+                      variation_option_name: "Green",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      };
+
+      mockShopeeFetch.mockResolvedValue(mockResponse);
+
+      const result = await productManager.getVariations({
+        category_id: 100001,
+      });
+
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_variations", {
+        method: "GET",
+        auth: true,
+        params: {
+          category_id: 100001,
+        },
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.standardise_variation_list).toHaveLength(1);
     });
   });
 

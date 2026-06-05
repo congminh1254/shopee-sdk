@@ -2369,3 +2369,45 @@ export interface PublishItemToOutletShopResponse extends BaseResponse {
     item_id?: number;
   };
 }
+
+/**
+ * Standardized variation option for product get_variations
+ */
+export interface StandardiseVariationOption {
+  variation_option_id?: number;
+  variation_option_name?: string;
+}
+
+/**
+ * Standardized variation group for product get_variations
+ */
+export interface StandardiseVariationGroup {
+  variation_group_id?: number;
+  variation_group_name?: string;
+  variation_option_list?: StandardiseVariationOption[];
+}
+
+/**
+ * Standardized variation item for product get_variations
+ */
+export interface StandardiseVariation {
+  variation_id?: number;
+  variation_name?: string;
+  variation_group_list?: StandardiseVariationGroup[];
+}
+
+/**
+ * Parameters for getting product variations
+ */
+export type GetVariationsParams = {
+  /** Leaf category id */
+  category_id: number;
+};
+
+/**
+ * Response for getting product variations
+ */
+export interface GetVariationsResponse extends FetchResponse<{
+  /** standardized tier variation tree */
+  standardise_variation_list: StandardiseVariation[];
+}> {}

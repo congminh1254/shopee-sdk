@@ -115,6 +115,8 @@ import {
   GetMartItemMappingByIdResponse,
   PublishItemToOutletShopParams,
   PublishItemToOutletShopResponse,
+  GetVariationsParams,
+  GetVariationsResponse,
 } from "../schemas/product.js";
 
 export class ProductManager extends BaseManager {
@@ -1326,6 +1328,31 @@ export class ProductManager extends BaseManager {
         body: params,
       }
     );
+    return response;
+  }
+
+  /**
+   * Get the standardized tier variation defined by Shopee
+   *
+   * @param params - The parameters for getting variations
+   * @param params.category_id - Leaf category id
+   *
+   * @returns A promise that resolves to the variations response containing:
+   * - standardise_variation_list: Standardised variation tree
+   *
+   * @throws {Error} When the API request fails or returns an error
+   */
+  async getVariations(params: GetVariationsParams): Promise<GetVariationsResponse> {
+    const response = await ShopeeFetch.fetch<GetVariationsResponse>(
+      this.config,
+      "/product/get_variations",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
+
     return response;
   }
 }

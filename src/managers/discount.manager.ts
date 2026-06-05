@@ -23,6 +23,8 @@ import {
   SetSipDiscountResponse,
   DeleteSipDiscountParams,
   DeleteSipDiscountResponse,
+  GetDiscountParams,
+  GetDiscountResponse,
 } from "../schemas/discount.js";
 import { ShopeeFetch } from "../fetch.js";
 
@@ -297,6 +299,28 @@ export class DiscountManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+      }
+    );
+
+    return response;
+  }
+
+  /**
+   * Get detail of a shop discount activity
+   * @param {GetDiscountParams} params - Parameters for retrieving discount details
+   * @param {number} params.discount_id - Shopee's unique identifier for a discount activity
+   * @param {number} params.page_no - Specifies the page number of data to return
+   * @param {number} params.page_size - Maximum number of entries to retrieve per page
+   * @returns {Promise<GetDiscountResponse>} The response containing discount details
+   */
+  async getDiscount(params: GetDiscountParams): Promise<GetDiscountResponse> {
+    const response = await ShopeeFetch.fetch<GetDiscountResponse>(
+      this.config,
+      "/discount/get_discount",
+      {
+        method: "GET",
+        auth: true,
+        params,
       }
     );
 
