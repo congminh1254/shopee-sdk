@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.11.0](https://github.com/congminh1254/shopee-sdk/compare/v1.10.0...v1.11.0) (2026-06-05)
+
+
+### Features
+
+* **schemas:** update returns and product schemas to align with API specs ([8b3c702](https://github.com/congminh1254/shopee-sdk/commit/8b3c70268918f5db7917bdc3bbdde644e1a5ba1f))
+* **sdk:** implement get_discount and get_variations endpoints ([b9db0f9](https://github.com/congminh1254/shopee-sdk/commit/b9db0f952e1f253174dfb0462dcfe2531df94068))
+
 ## [1.10.0](https://github.com/congminh1254/shopee-sdk/compare/v1.9.0...v1.10.0) (2026-05-30)
 
 
