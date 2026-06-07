@@ -9,7 +9,7 @@ The OrderManager provides methods for:
 - **Order Processing**: Split, unsplit, and cancel orders
 - **Shipping Management**: Get shipment information
 - **Package Management**: Get package details and search packages
-- **Invoice Management**: Retrieve, upload, and download buyer invoice information
+- **Invoice Management**: Upload and download buyer invoice information
 - **Booking Management**: Get booking details and lists
 - **Prescription Management**: Handle prescription checks (ID/PH only)
 - **Buyer Cancellation**: Handle buyer cancellation requests
@@ -272,29 +272,6 @@ console.log('Order cancelled');
 **Important:** Only unpaid orders or orders with buyer agreement can be cancelled by seller.
 
 ---
-
-### getBuyerInvoiceInfo()
-
-**API Documentation:** [v2.order.get_buyer_invoice_info](https://open.shopee.com/documents/v2/v2.order.get_buyer_invoice_info?module=94&type=1)
-
-Get invoice information for an order (region-specific, e.g., Brazil, Poland).
-
-```typescript
-const response = await sdk.order.getBuyerInvoiceInfo({
-  order_sn_list: ['ORDER123', 'ORDER456'],
-});
-
-response.result_list.forEach((result) => {
-  if (result.invoice_info) {
-    console.log('Order:', result.order_sn);
-    console.log('Invoice number:', result.invoice_info.number);
-    console.log('Invoice date:', result.invoice_info.create_time);
-    console.log('Tax ID:', result.invoice_info.tax_id);
-  }
-});
-```
-
-**Note:** This method is only applicable to regions that require invoices (e.g., BR, PL).
 
 ## Order Processing Workflow
 

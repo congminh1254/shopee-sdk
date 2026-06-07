@@ -68,8 +68,6 @@ import {
   UpdateShippingOrderResponse,
   UpdateTrackingStatusParams,
   UpdateTrackingStatusResponse,
-  UpdateSelfCollectionOrderLogisticsParams,
-  UpdateSelfCollectionOrderLogisticsResponse,
   GetOperatingHoursParams,
   GetOperatingHoursResponse,
   UpdateOperatingHoursParams,
@@ -851,25 +849,6 @@ export class LogisticsManager extends BaseManager {
     const response = await ShopeeFetch.fetch<UpdateTrackingStatusResponse>(
       this.config,
       "/logistics/update_tracking_status",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Use this API to update self collection order logistics.
-   */
-  async updateSelfCollectionOrderLogistics(
-    params: UpdateSelfCollectionOrderLogisticsParams
-  ): Promise<UpdateSelfCollectionOrderLogisticsResponse> {
-    const response = await ShopeeFetch.fetch<UpdateSelfCollectionOrderLogisticsResponse>(
-      this.config,
-      "/logistics/update_self_collection_order_logistics",
       {
         method: "POST",
         auth: true,

@@ -1147,20 +1147,6 @@ describe("LogisticsManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
-
-    it("should update self collection order logistics", async () => {
-      const mockResponse = { request_id: "test", error: "", message: "", response: {} };
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      await logisticsManager.updateSelfCollectionOrderLogistics({
-        package_number: "PKG1",
-        self_collection_logistics_action: "PICKUP",
-        epoc_image_list: ["IMG1"],
-        pin: "123456",
-      });
-
-      expect(mockShopeeFetch).toHaveBeenCalled();
-    });
   });
 
   describe("operating hours", () => {

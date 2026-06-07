@@ -686,23 +686,6 @@ if (response.violation_list && response.violation_list.length > 0) {
 
 ---
 
-### getItemContentDiagnosisResult()
-
-**API Documentation:** [v2.product.get_item_content_diagnosis_result](https://open.shopee.com/documents/v2/v2.product.get_item_content_diagnosis_result?module=89&type=1)
-
-Get content diagnosis results for a product.
-
-```typescript
-const response = await sdk.product.getItemContentDiagnosisResult({
-  item_id: 123456,
-});
-
-console.log('Diagnosis status:', response.diagnosis_status);
-console.log('Suggestions:', response.suggestion_list);
-```
-
----
-
 ### getItemListByContentDiagnosis()
 
 **API Documentation:** [v2.product.get_item_list_by_content_diagnosis](https://open.shopee.com/documents/v2/v2.product.get_item_list_by_content_diagnosis?module=89&type=1)

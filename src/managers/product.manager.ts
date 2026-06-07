@@ -67,8 +67,6 @@ import {
   GetWeightRecommendationResponse,
   GetDirectItemListParams,
   GetDirectItemListResponse,
-  GetItemContentDiagnosisResultParams,
-  GetItemContentDiagnosisResultResponse,
   GetItemListByContentDiagnosisParams,
   GetItemListByContentDiagnosisResponse,
   AddKitItemParams,
@@ -964,29 +962,6 @@ export class ProductManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params || {},
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get item content diagnosis result
-   *
-   * Use this API to get content diagnosis results for items.
-   *
-   * @param params - Parameters for getting content diagnosis result
-   * @returns Promise resolving to content diagnosis result response
-   */
-  async getItemContentDiagnosisResult(
-    params: GetItemContentDiagnosisResultParams
-  ): Promise<GetItemContentDiagnosisResultResponse> {
-    const response = await ShopeeFetch.fetch<GetItemContentDiagnosisResultResponse>(
-      this.config,
-      "/product/get_item_content_diagnosis_result",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
       }
     );
     return response;

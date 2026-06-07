@@ -1944,34 +1944,6 @@ export interface GetDirectItemListResponse extends FetchResponse<{
 }> {}
 
 /**
- * Content diagnosis result
- */
-export interface ContentDiagnosisResult {
-  /** Item ID */
-  item_id: number;
-  /** Diagnosis status */
-  status: string;
-  /** Failed fields */
-  failed_field_list?: string[];
-}
-
-/**
- * Parameters for getting item content diagnosis result
- */
-export type GetItemContentDiagnosisResultParams = {
-  /** List of item IDs */
-  item_id_list: number[];
-};
-
-/**
- * Response for getting item content diagnosis result
- */
-export interface GetItemContentDiagnosisResultResponse extends FetchResponse<{
-  /** Diagnosis result list */
-  item_list: ContentDiagnosisResult[];
-}> {}
-
-/**
  * Parameters for getting item list by content diagnosis
  */
 export type GetItemListByContentDiagnosisParams = {

@@ -37,7 +37,6 @@ import {
   GetItemViolationInfoResponse,
   GetWeightRecommendationResponse,
   GetDirectItemListResponse,
-  GetItemContentDiagnosisResultResponse,
   GetItemListByContentDiagnosisResponse,
   GetMartItemByOutletItemIdResponse,
   GetMartItemMappingByIdResponse,
@@ -1851,45 +1850,6 @@ describe("ProductManager", () => {
       });
 
       expect(result.response.item).toHaveLength(1);
-    });
-  });
-
-  describe("getItemContentDiagnosisResult", () => {
-    it("should get item content diagnosis results", async () => {
-      const mockResponse: GetItemContentDiagnosisResultResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          item_list: [
-            {
-              item_id: 123456,
-              status: "PASSED",
-              failed_field_list: [],
-            },
-          ],
-        },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await productManager.getItemContentDiagnosisResult({
-        item_id_list: [123456],
-      });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/product/get_item_content_diagnosis_result",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            item_id_list: [123456],
-          },
-        }
-      );
-
-      expect(result.response.item_list[0].status).toBe("PASSED");
     });
   });
 

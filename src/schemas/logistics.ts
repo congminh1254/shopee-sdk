@@ -1302,27 +1302,6 @@ export interface UpdateTrackingStatusResponse extends BaseResponse {
   response?: Record<string, never>;
 }
 
-/**
- * Parameters for update self collection order logistics
- */
-export type UpdateSelfCollectionOrderLogisticsParams = {
-  /** Package number */
-  package_number: string;
-  /** Self collection logistics action */
-  self_collection_logistics_action?: string;
-  /** EPOC image list */
-  epoc_image_list?: string[];
-  /** PIN */
-  pin?: string;
-} & Record<string, string | number | boolean | object | null | undefined>;
-
-/**
- * Response for update self collection order logistics API
- */
-export interface UpdateSelfCollectionOrderLogisticsResponse extends BaseResponse {
-  response?: Record<string, never>;
-}
-
 // ============================================
 // Operating Hours
 // ============================================
