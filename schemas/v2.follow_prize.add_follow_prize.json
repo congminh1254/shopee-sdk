@@ -112,23 +112,23 @@
       "solution": null
     },
     {
+      "name": "error_param",
+      "description": "The information you queried is not found.",
+      "solution": null
+    },
+    {
       "name": "common.error_not_found",
       "description": "The information you queried is not found.",
       "solution": null
     },
     {
-      "name": "error_param",
-      "description": "The information you queried is not found.",
+      "name": "common.error_param",
+      "description": "The Wrong parameters, detail: {msg}.",
       "solution": null
     },
     {
       "name": "error_param",
       "description": "Wrong parameters, detail: {msg}.",
-      "solution": null
-    },
-    {
-      "name": "common.error_param",
-      "description": "The Wrong parameters, detail: {msg}.",
       "solution": null
     },
     {

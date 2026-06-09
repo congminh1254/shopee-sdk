@@ -112,13 +112,13 @@
       "solution": null
     },
     {
-      "name": "error_shop",
-      "description": "shopid is invalid",
+      "name": "common.error_shop",
+      "description": "Shopid is invalid",
       "solution": null
     },
     {
-      "name": "common.error_shop",
-      "description": "Shopid is invalid",
+      "name": "error_shop",
+      "description": "shopid is invalid",
       "solution": null
     },
     {
