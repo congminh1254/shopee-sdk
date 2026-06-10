@@ -67,13 +67,13 @@
       "solution": null
     },
     {
-      "name": "common.error_server",
-      "description": "Something is wrong. Please try later.",
+      "name": "error_server",
+      "description": "Something wrong. Please try later.\t",
       "solution": null
     },
     {
-      "name": "error_server",
-      "description": "Something wrong. Please try later.\t",
+      "name": "common.error_server",
+      "description": "Something is wrong. Please try later.",
       "solution": null
     },
     {

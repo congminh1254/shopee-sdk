@@ -57,12 +57,12 @@
       "solution": null
     },
     {
-      "name": "common.error_not_found",
+      "name": "error_param",
       "description": "The information you queried is not found.",
       "solution": null
     },
     {
-      "name": "error_param",
+      "name": "common.error_not_found",
       "description": "The information you queried is not found.",
       "solution": null
     },
@@ -72,13 +72,13 @@
       "solution": null
     },
     {
-      "name": "common.error_server",
-      "description": "Something is wrong. Please try later.",
+      "name": "error_server",
+      "description": "Something wrong. Please try later.\t",
       "solution": null
     },
     {
-      "name": "error_server",
-      "description": "Something wrong. Please try later.\t",
+      "name": "common.error_server",
+      "description": "Something is wrong. Please try later.",
       "solution": null
     },
     {
