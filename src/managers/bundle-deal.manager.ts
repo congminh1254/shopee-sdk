@@ -159,9 +159,9 @@ export class BundleDealManager extends BaseManager {
       this.config,
       "/bundle_deal/get_bundle_deal",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params: params as any,
       }
     );
 
@@ -181,9 +181,9 @@ export class BundleDealManager extends BaseManager {
       this.config,
       "/bundle_deal/get_bundle_deal_item",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params: params as any,
       }
     );
 
@@ -209,9 +209,9 @@ export class BundleDealManager extends BaseManager {
       this.config,
       "/bundle_deal/get_bundle_deal_list",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params: params as any,
       }
     );
 

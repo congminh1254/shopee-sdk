@@ -623,9 +623,9 @@ export class GlobalProductManager extends BaseManager {
       this.config,
       "/global_product/category_recommend",
       {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: params,
+        params,
       }
     );
     return response;

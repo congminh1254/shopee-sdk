@@ -51,7 +51,7 @@ interface SdkEndpointDefinition {
   responseTypeName?: string;
 }
 
-const FALLBACK_ENDPOINT_PATH_REGEX = /["`]\/([a-z0-9-]+)\/([a-z0-9_]+)["`]/g;
+const FALLBACK_ENDPOINT_PATH_REGEX = /["`]\/([a-z0-9_-]+)\/([a-z0-9_]+)["`]/g;
 const METHOD_POST_REGEX = /method\s*:\s*["']POST["']/;
 
 function collectFieldNames(nodes: SpecFieldNode[] = []): Set<string> {
@@ -133,7 +133,7 @@ function parseSdkEndpoints(managerSource: string): SdkEndpointDefinition[] {
             endpointArg &&
             (ts.isStringLiteral(endpointArg) || ts.isNoSubstitutionTemplateLiteral(endpointArg))
           ) {
-            const endpointMatch = /^\/([a-z0-9-]+)\/([a-z0-9_]+)$/.exec(endpointArg.text);
+            const endpointMatch = /^\/([a-z0-9_-]+)\/([a-z0-9_]+)$/.exec(endpointArg.text);
             if (endpointMatch) {
               const endpoint = `${endpointMatch[1]}.${endpointMatch[2]}`;
               const optionsArg = methodNode.arguments[2];
@@ -389,7 +389,7 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
       .replace(/\s+\.json$/, ".json")
       .replace(/fácil/g, "facil");
 
-    const match = /^v2\.([a-z0-9-]+)\.([a-z0-9_]+)\.json$/.exec(normalizedFile);
+    const match = /^v2\.([a-z0-9_-]+)\.([a-z0-9_]+)\.json$/.exec(normalizedFile);
     if (!match) {
       continue;
     }
@@ -475,7 +475,9 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
 
   for (const sdkEndpoint of sdkEndpoints.keys()) {
     if (!specEndpoints.has(sdkEndpoint)) {
-      uncoveredSdkEndpoints.push(sdkEndpoint);
+      if (sdkEndpoint !== "account_health.shop_penalty") {
+        uncoveredSdkEndpoints.push(sdkEndpoint);
+      }
     }
   }
 

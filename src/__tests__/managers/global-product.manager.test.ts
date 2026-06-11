@@ -617,9 +617,9 @@ describe("GlobalProductManager", () => {
         mockConfig,
         "/global_product/category_recommend",
         {
-          method: "POST",
+          method: "GET",
           auth: true,
-          body: {
+          params: {
             global_item_name: "iPhone Case",
           },
         }

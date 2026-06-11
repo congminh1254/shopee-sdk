@@ -334,9 +334,9 @@ describe("BundleDealManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/get_bundle_deal", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           bundle_deal_id: 113891,
         },
       });
@@ -368,9 +368,9 @@ describe("BundleDealManager", () => {
         mockConfig,
         "/bundle_deal/get_bundle_deal_item",
         {
-          method: "POST",
+          method: "GET",
           auth: true,
-          body: {
+          params: {
             bundle_deal_id: 11111,
           },
         }
@@ -422,9 +422,9 @@ describe("BundleDealManager", () => {
         mockConfig,
         "/bundle_deal/get_bundle_deal_list",
         {
-          method: "POST",
+          method: "GET",
           auth: true,
-          body: {},
+          params: {},
         }
       );
 
@@ -456,9 +456,9 @@ describe("BundleDealManager", () => {
         mockConfig,
         "/bundle_deal/get_bundle_deal_list",
         {
-          method: "POST",
+          method: "GET",
           auth: true,
-          body: {
+          params: {
             page_size: 100,
             time_status: BundleDealTimeStatus.UPCOMING,
             page_no: 1,
