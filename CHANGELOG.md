@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.12.0](https://github.com/congminh1254/shopee-sdk/compare/v1.11.0...v1.12.0) (2026-06-18)
+
+
+### Features
+
+* add batch product management APIs and update schemas ([e3b26aa](https://github.com/congminh1254/shopee-sdk/commit/e3b26aaf857fcf0a658d02e5693a37d11fc2e7a1))
+
+
+### Bug Fixes
+
+* **sdk:** update bundle_deal and global_product endpoints to use HTTP GET ([d1ad54f](https://github.com/congminh1254/shopee-sdk/commit/d1ad54f93848d2d3b473fbead19a16a975c03c9b))
+* **sdk:** update bundle_deal and global_product endpoints to use HTTP GET ([eddf77a](https://github.com/congminh1254/shopee-sdk/commit/eddf77a2971c77f0117a31106a95412e24306fd1))
+
 ## [1.11.0](https://github.com/congminh1254/shopee-sdk/compare/v1.10.0...v1.11.0) (2026-06-05)
 
 
