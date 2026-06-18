@@ -2,7 +2,6 @@ import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
 import {
-  GetShopPenaltyResponse,
   GetShopPerformanceResponse,
   GetMetricSourceDetailParams,
   GetMetricSourceDetailResponse,
@@ -19,41 +18,6 @@ import {
 export class AccountHealthManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
-  }
-
-  /**
-   * Get the information of shop penalty
-   * @returns {Promise<GetShopPenaltyResponse>} Response containing penalty points and ongoing punishments
-   *
-   * This API returns the seller's shop penalty information, including:
-   *
-   * - Penalty points that remain on record till the end of a quarter (reset on the first Monday of each quarter)
-   *   - Overall penalty points total
-   *   - Points from non-fulfillment rate issues
-   *   - Points from late shipment issues
-   *   - Points from listing violations
-   *   - Points from OPFR (Order Pick-up Failure Rate) violations
-   *   - Points from other violations
-   *
-   * - List of ongoing punishments with details about:
-   *   - Punishment tier (1-5)
-   *   - Days left in the punishment period
-   *   - Name of the punishment (e.g., "deboost")
-   *
-   * Use this API to monitor your shop's health status and take proactive measures
-   * to address any issues that could affect your shop's performance.
-   */
-  async getShopPenalty(): Promise<GetShopPenaltyResponse> {
-    const response = await ShopeeFetch.fetch<GetShopPenaltyResponse>(
-      this.config,
-      "/account_health/shop_penalty",
-      {
-        method: "GET",
-        auth: true,
-      }
-    );
-
-    return response;
   }
 
   /**

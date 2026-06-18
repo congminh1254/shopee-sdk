@@ -15,10 +15,6 @@ The AccountHealthManager provides methods for:
 ## Quick Start
 
 ```typescript
-// Get shop penalty information
-const penalty = await sdk.accountHealth.getShopPenalty();
-console.log('Penalty Points:', penalty.response.penalty_points.overall_penalty_points);
-
 // Get shop performance metrics
 const performance = await sdk.accountHealth.getShopPerformance();
 console.log('Overall Rating:', performance.response.overall_performance.rating);
@@ -46,43 +42,12 @@ console.log('Problematic Listings:', issues.response.total_count);
 - **Listing Performance**: Severe Listing Violations, Pre-order Listing %, Other Listing Violations
 - **Customer Service Performance**: Chat Response Rate, Response Time, Shop Rating, Non-Responded Chats
 
-### Penalty Points (from `getShopPenalty()`)
-- **Overall Penalty Points**: Total accumulated points
-- **By Category**: Non-fulfillment rate, Late shipment rate, Listing violations, OPFR violations, Others
-- **Quarterly Reset**: Points reset on the first Monday of each quarter
-
 ### Punishments
 - **Ongoing Punishments**: Active restrictions on your shop
 - **Punishment Types**: Deboost, listing restrictions, marketing restrictions, account suspension, etc.
 - **Punishment Tiers**: 1-5, with higher tiers having more severe consequences
 
 ## API Methods
-
-### getShopPenalty()
-
-Get the current penalty points and ongoing punishments for your shop.
-
-```typescript
-const penalty = await sdk.accountHealth.getShopPenalty();
-
-console.log('Overall Penalty Points:', penalty.response.penalty_points.overall_penalty_points);
-console.log('Non-fulfillment Rate:', penalty.response.penalty_points.non_fulfillment_rate);
-console.log('Late Shipment Rate:', penalty.response.penalty_points.late_shipment_rate);
-console.log('Listing Violations:', penalty.response.penalty_points.listing_violations);
-
-// Check ongoing punishments
-penalty.response.ongoing_punishment.forEach((punishment) => {
-  console.log('Punishment:', punishment.punishment_name);
-  console.log('Tier:', punishment.punishment_tier);
-  console.log('Days Left:', punishment.days_left);
-});
-```
-
-**Response Structure:**
-- `penalty_points`: Breakdown of penalty points by category
-- `ongoing_punishment`: List of active punishments with tier and duration
-
----
 
 ### getShopPerformance()
 
@@ -308,30 +273,13 @@ const urgent = lateOrders.response.late_order_list
 
 ```typescript
 async function dailyHealthCheck() {
-  const [penalty, performance, lateOrders, issues] = await Promise.all([
-    sdk.accountHealth.getShopPenalty(),
+  const [performance, lateOrders, issues] = await Promise.all([
     sdk.accountHealth.getShopPerformance(),
     sdk.accountHealth.getLateOrders({ page_size: 100 }),
     sdk.accountHealth.getListingsWithIssues({ page_size: 100 }),
   ]);
   
   const alerts = [];
-  
-  // Check penalty points
-  if (penalty.response.penalty_points.overall_penalty_points > 10) {
-    alerts.push({
-      severity: 'high',
-      message: `Penalty points: ${penalty.response.penalty_points.overall_penalty_points}`,
-    });
-  }
-  
-  // Check ongoing punishments
-  if (penalty.response.ongoing_punishment.length > 0) {
-    alerts.push({
-      severity: 'critical',
-      message: `Active punishments: ${penalty.response.ongoing_punishment.length}`,
-    });
-  }
   
   // Check performance rating
   if (performance.response.overall_performance.rating < 3) {
@@ -578,8 +526,7 @@ async function analyzeMetricDetails() {
 
 ```typescript
 async function generateHealthDashboard() {
-  const [penalty, performance, lateOrders, issues, penaltyHistory] = await Promise.all([
-    sdk.accountHealth.getShopPenalty(),
+  const [performance, lateOrders, issues, penaltyHistory] = await Promise.all([
     sdk.accountHealth.getShopPerformance(),
     sdk.accountHealth.getLateOrders({ page_size: 10 }),
     sdk.accountHealth.getListingsWithIssues({ page_size: 10 }),
@@ -594,8 +541,8 @@ async function generateHealthDashboard() {
       ratingText: ['', 'Poor', 'Improvement Needed', 'Good', 'Excellent'][
         performance.response.overall_performance.rating
       ],
-      penaltyPoints: penalty.response.penalty_points.overall_penalty_points,
-      activePunishments: penalty.response.ongoing_punishment.length,
+      penaltyPoints: 0,
+      activePunishments: 0,
     },
     
     metrics: {
@@ -668,15 +615,15 @@ async function generateHealthDashboard() {
 
 ```typescript
 try {
-  const penalty = await sdk.accountHealth.getShopPenalty();
+  const performance = await sdk.accountHealth.getShopPerformance();
   
-  if (penalty.error) {
-    console.error('API Error:', penalty.error, penalty.message);
+  if (performance.error) {
+    console.error('API Error:', performance.error, performance.message);
     return;
   }
   
   // Process successful response
-  console.log('Penalty Points:', penalty.response.penalty_points.overall_penalty_points);
+  console.log('Overall Rating:', performance.response.overall_performance.rating);
 } catch (error) {
   console.error('Network or unexpected error:', error);
 }

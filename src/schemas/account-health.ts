@@ -1,50 +1,6 @@
 import { BaseResponse } from "./base.js";
 
 /**
- * Penalty points information for a shop
- * Points accumulated will remain on record till the end of a quarter.
- * This will be reset on the first Monday of each quarter
- */
-export interface PenaltyPoints {
-  /** The overall penalty points */
-  overall_penalty_points: number;
-  /** The penalty points caused by non-fulfilment orders */
-  non_fulfillment_rate: number;
-  /** The penalty points caused by late shipment orders */
-  late_shipment_rate: number;
-  /** The penalty points caused by listing violations */
-  listing_violations: number;
-  /** The penalty points caused by orders that failed to be picked up during the scheduled pickup day */
-  opfr_violations: number;
-  /** Other penalty points */
-  others: number;
-}
-
-/**
- * Information about ongoing punishment for a shop
- */
-export interface OngoingPunishment {
-  /** Punishment tier, ranges from 1-5 */
-  punishment_tier: number;
-  /** Number of days left for the punishment period */
-  days_left: number;
-  /** The name of punishment */
-  punishment_name: string;
-}
-
-/**
- * Response for the get shop penalty API
- */
-export interface GetShopPenaltyResponse extends BaseResponse {
-  response: {
-    /** The shop's penalty points information */
-    penalty_points: PenaltyPoints;
-    /** List of ongoing punishments for the shop */
-    ongoing_punishment: OngoingPunishment[];
-  };
-}
-
-/**
  * Metric type enum values
  * 1 = Fulfillment Performance
  * 2 = Listing Performance

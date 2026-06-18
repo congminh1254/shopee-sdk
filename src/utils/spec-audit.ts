@@ -475,9 +475,7 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
 
   for (const sdkEndpoint of sdkEndpoints.keys()) {
     if (!specEndpoints.has(sdkEndpoint)) {
-      if (sdkEndpoint !== "account_health.shop_penalty") {
-        uncoveredSdkEndpoints.push(sdkEndpoint);
-      }
+      uncoveredSdkEndpoints.push(sdkEndpoint);
     }
   }
 

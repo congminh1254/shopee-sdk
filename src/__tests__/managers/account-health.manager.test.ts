@@ -4,7 +4,6 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { ShopeeFetch } from "../../fetch.js";
 import {
-  GetShopPenaltyResponse,
   GetShopPerformanceResponse,
   GetMetricSourceDetailResponse,
   GetPenaltyPointHistoryResponse,
@@ -37,73 +36,6 @@ describe("AccountHealthManager", () => {
     };
 
     accountHealthManager = new AccountHealthManager(mockConfig);
-  });
-
-  describe("getShopPenalty", () => {
-    it("should get shop penalty information successfully", async () => {
-      const mockResponse: GetShopPenaltyResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          penalty_points: {
-            overall_penalty_points: 10,
-            non_fulfillment_rate: 2,
-            late_shipment_rate: 3,
-            listing_violations: 2,
-            opfr_violations: 1,
-            others: 2,
-          },
-          ongoing_punishment: [
-            {
-              punishment_tier: 2,
-              days_left: 15,
-              punishment_name: "deboost",
-            },
-          ],
-        },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await accountHealthManager.getShopPenalty();
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/account_health/shop_penalty", {
-        method: "GET",
-        auth: true,
-      });
-
-      expect(result.error).toBe("");
-      expect(result.response.penalty_points.overall_penalty_points).toBe(10);
-      expect(result.response.ongoing_punishment).toHaveLength(1);
-      expect(result.response.ongoing_punishment[0].punishment_name).toBe("deboost");
-    });
-
-    it("should handle response with no ongoing punishments", async () => {
-      const mockResponse: GetShopPenaltyResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          penalty_points: {
-            overall_penalty_points: 0,
-            non_fulfillment_rate: 0,
-            late_shipment_rate: 0,
-            listing_violations: 0,
-            opfr_violations: 0,
-            others: 0,
-          },
-          ongoing_punishment: [],
-        },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await accountHealthManager.getShopPenalty();
-
-      expect(result.response.penalty_points.overall_penalty_points).toBe(0);
-      expect(result.response.ongoing_punishment).toHaveLength(0);
-    });
   });
 
   describe("getShopPerformance", () => {
