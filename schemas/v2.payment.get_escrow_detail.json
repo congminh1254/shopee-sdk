@@ -1675,6 +1675,14 @@
                 "type": "float",
                 "required": null,
                 "key": "PfJXbtT"
+              },
+              {
+                "description": "<p>The voucher provided by Ads team to offset the amount need to be paid by buyer.</p>",
+                "name": "ads_voucher_discount",
+                "sample": "",
+                "type": "float",
+                "required": null,
+                "key": "FrmSeaz"
               }
             ]
           }
@@ -1929,6 +1937,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/payment/get_escrow_detail",
   "update_log_list": [
     {
+      "date": "2026-06-17",
+      "content": "add new Voucher field'ads_voucher_discount' for ads smart voucher"
+    },
+    {
       "date": "2026-05-18",
       "content": "add new response field \"remaining_voucher\""
     },
@@ -1943,10 +1955,6 @@
     {
       "date": "2026-03-06",
       "content": "Updated with th_import_duty"
-    },
-    {
-      "date": "2026-02-09",
-      "content": "order_income > added pix_discount and prorated_pix_discount_offset_return_items\n\nupdated with ads_escrow_top_up_fee_or_technical_support_fee"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/payment/get_escrow_detail",

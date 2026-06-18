@@ -8,11 +8,18 @@ Strategy:
   2) HTTP methods must match spec definitions exactly
   3) Endpoint request/response must use explicit endpoint type definitions
   4) Spec request/response fields must exist in those endpoint types with exact names
-- Specs scanned: 432
-- SDK endpoints discovered: 314
-- Missing endpoints: 0
+- Specs scanned: 437
+- SDK endpoints discovered: 429
+- Missing endpoints: 5
 - SDK endpoints not in spec: 0
 - Method mismatches: 0
 - Missing request/response types: 0
 - Request field gaps: 0
 - Response field gaps: 0
+
+Missing endpoints:
+  - product.batch_add_item
+  - product.batch_publish_item_to_outlet_shop
+  - product.batch_update_outlet_price
+  - product.batch_update_outlet_stock
+  - product.get_batch_task_result

@@ -552,6 +552,38 @@
                     "type": "string",
                     "required": null,
                     "key": "BNHwrsr"
+                  },
+                  {
+                    "description": "<p>To indicate if this item is a prescription item. Default false. Only for PH, TH, ID whitelist shops.</p>",
+                    "name": "is_prescription_item",
+                    "sample": "",
+                    "type": "boolean",
+                    "required": null,
+                    "key": "dYRdJFc"
+                  },
+                  {
+                    "description": "<p>To indicate if there was an error when validating whether this item is prescription. Default false. If is_prescription_item=false and this field is true, the item's prescription status is uncertain (label service call failed).&nbsp;Only for PH, TH, ID whitelist shops.</p>",
+                    "name": "error_in_fetching_is_prescription_item",
+                    "sample": "",
+                    "type": "boolean",
+                    "required": null,
+                    "key": "YDQtMnD"
+                  },
+                  {
+                    "description": "<p>Prescription check status. Only for ID and PH whitelist sellers. 0: NONE, 1: PASSED, 2: FAILED.&nbsp;</p>",
+                    "name": "prescription_check_status",
+                    "sample": "",
+                    "type": "int32",
+                    "required": null,
+                    "key": "HeaFBBa"
+                  },
+                  {
+                    "description": "<p>Return the reason why a prescription is rejected. If no rejection reason, return empty. Only for ID and PH whitelist sellers.</p>",
+                    "name": "prescription_reject_reason",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "fMbpCbx"
                   }
                 ]
               },
@@ -1056,6 +1088,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_package_detail",
   "update_log_list": [
     {
+      "date": "2026-06-17",
+      "content": "Add some new prescription fields including \"is_prescription_item\",\"error_in_fetching_is_prescription_item\",\"prescription_check_status\",\"prescription_reject_reason\" into item list"
+    },
+    {
       "date": "2026-05-22",
       "content": "Add can_full_cancel_order, can_partial_cancel_order, buyer_preference_for_partial_cancellation response parameters"
     },
@@ -1070,10 +1106,6 @@
     {
       "date": "2025-12-26",
       "content": "Add is_shipment_arranged, status_info_tag, can_split_order, can_unsplit_order, is_pre_order response parameters"
-    },
-    {
-      "date": "2025-12-12",
-      "content": "Add new \"ARRANGE_SHIPMENT_PENDING\" option for \"pending_terms\" and add new \"pending_description\" response param for corresponding description to \"pending_terms\""
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/order/get_package_detail",

@@ -775,12 +775,20 @@
                     "description": "The fulfilment warehouse ID(s) of the items in the order. (Multi-Warehouse sellers only)"
                   },
                   {
-                    "description": "<p>To indicate if this item is prescription item<br /></p>",
+                    "description": "<p>To indicate if this item is prescription item. Only for PH, TH, ID local shop.<br /></p>",
                     "required": null,
                     "sample": "",
                     "key": "nJxwrkc",
                     "type": "boolean",
                     "name": "is_prescription_item"
+                  },
+                  {
+                    "description": "<p>To indicate if there was an error when validating whether this item is prescription. Default false. If is_prescription_item=false and this field is true, the item's prescription status is uncertain (label service call failed). Only for TH, PH, ID local shop.</p>",
+                    "name": "error_in_fetching_is_prescription_item",
+                    "sample": "",
+                    "type": "boolean",
+                    "required": null,
+                    "key": "ShpDmwR"
                   },
                   {
                     "description": "<p>An identifier of teleconsultation session which buyer did to order this item. Empty if item is not ordered through teleconsultation session</p>",
@@ -1212,7 +1220,7 @@
                 "key": "NjwMyKy"
               },
               {
-                "description": "<p>Return the reason why a prescription is rejected. If there is no rejection reason, return empty.</p>",
+                "description": "<p>Return the reason why a prescription is rejected. If there is no rejection reason, return empty.Only for ID and PH whitelist sellers</p>",
                 "name": "prescription_reject_reason",
                 "sample": "Insufficient prescription detail",
                 "type": "string",
@@ -1419,6 +1427,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_order_detail",
   "update_log_list": [
     {
+      "date": "2026-06-17",
+      "content": "add a new field error_in_fetching_is_prescription_item"
+    },
+    {
       "date": "2026-05-22",
       "content": "Add active_qty, cancel_request_qty, cancelled_qty, return_requested_qty, returned_qty response parameters"
     },
@@ -1433,10 +1445,6 @@
     {
       "date": "2025-12-03",
       "content": "1) Update existing shipping_carrier response parameter logic for 90021, 90025, 90026 channels to include service_code, e.g., Entrega Turbo - M1020\n2) Add geolocation response parameter including latitude and longitude for buyer address coordinates"
-    },
-    {
-      "date": "2025-11-26",
-      "content": "Add new response fields \"hot_listing_order\" and \"hot_listing_item\"\n"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/order/get_order_detail",
