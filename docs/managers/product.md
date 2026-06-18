@@ -1071,3 +1071,139 @@ const responseWithVariations = await sdk.product.publishItemToOutletShop({
 ```
 
 ---
+
+### batchAddItem()
+
+**API Documentation:** [v2.product.batch_add_item](https://open.shopee.com/documents/v2/v2.product.batch_add_item?module=89&type=1)
+
+Batch create new products in your shop.
+
+```typescript
+const response = await sdk.product.batchAddItem({
+  item_list: [
+    {
+      original_price: 123.30,
+      description: "Item 1 description",
+      weight: 1.1,
+      item_name: "Batch Item 1",
+      category_id: 100001,
+      image: {
+        image_id_list: ["image_id_123"],
+      },
+    },
+  ],
+});
+
+console.log('Task ID:', response.response?.task_id);
+```
+
+---
+
+### batchPublishItemToOutletShop()
+
+**API Documentation:** [v2.product.batch_publish_item_to_outlet_shop](https://open.shopee.com/documents/v2/v2.product.batch_publish_item_to_outlet_shop?module=89&type=1)
+
+Batch publish existing items from mart shop to outlet shop.
+
+```typescript
+const response = await sdk.product.batchPublishItemToOutletShop({
+  item_list: [
+    {
+      mart_item_id: 123456789,
+      outlet_shop_id: 987654321,
+      publish_item: {
+        model: [
+          {
+            relate_mart_model_id: 0,
+            original_price: 19.99,
+            seller_stock: [{ location_id: "LOC001", stock: 100 }],
+            pre_order: { is_pre_order: false },
+          },
+        ],
+      },
+    },
+  ],
+});
+
+console.log('Task ID:', response.response?.task_id);
+```
+
+---
+
+### batchUpdateOutletPrice()
+
+**API Documentation:** [v2.product.batch_update_outlet_price](https://open.shopee.com/documents/v2/v2.product.batch_update_outlet_price?module=89&type=1)
+
+Batch update price of products in outlet shops.
+
+```typescript
+const response = await sdk.product.batchUpdateOutletPrice({
+  item_list: [
+    {
+      outlet_shop_id: 987654321,
+      item_id: 123456789,
+      price_list: [
+        {
+          model_id: 111111,
+          original_price: 24.99,
+        },
+      ],
+    },
+  ],
+});
+
+console.log('Task ID:', response.response?.task_id);
+```
+
+---
+
+### batchUpdateOutletStock()
+
+**API Documentation:** [v2.product.batch_update_outlet_stock](https://open.shopee.com/documents/v2/v2.product.batch_update_outlet_stock?module=89&type=1)
+
+Batch update stock of products in outlet shops.
+
+```typescript
+const response = await sdk.product.batchUpdateOutletStock({
+  item_list: [
+    {
+      outlet_shop_id: 987654321,
+      item_id: 123456789,
+      stock_list: [
+        {
+          model_id: 111111,
+          seller_stock: [
+            {
+              location_id: "LOC001",
+              stock: 150,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
+
+console.log('Task ID:', response.response?.task_id);
+```
+
+---
+
+### getBatchTaskResult()
+
+**API Documentation:** [v2.product.get_batch_task_result](https://open.shopee.com/documents/v2/v2.product.get_batch_task_result?module=89&type=1)
+
+Get the result of a batch task.
+
+```typescript
+const response = await sdk.product.getBatchTaskResult({
+  task_type: 4, // 1: price, 2: stock, 3: publish outlet, 4: add item
+  task_id: 123456789012,
+});
+
+console.log('Publish status:', response.response?.publish_status); // 1: ongoing, 2: finished
+console.log('Success list:', response.response?.success_list);
+console.log('Failed list:', response.response?.failed_list);
+```
+
+---

@@ -44,6 +44,11 @@ import {
   PublishItemToOutletShopResponse,
   ItemStatus,
   GetVariationsResponse,
+  BatchAddItemResponse,
+  BatchPublishItemToOutletShopResponse,
+  BatchUpdateOutletPriceResponse,
+  BatchUpdateOutletStockResponse,
+  GetBatchTaskResultResponse,
 } from "../../schemas/product.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -2693,15 +2698,233 @@ describe("ProductManager", () => {
     });
   });
 
+  describe("batchAddItem", () => {
+    it("should batch add items and return task id", async () => {
+      const mockResponse: BatchAddItemResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          task_id: 123456,
+        },
+      };
+
+      mockFetch.mockResolvedValue(mockResponse);
+
+      const params = {
+        item_list: [
+          {
+            original_price: 123.3,
+            description: "Test description",
+            weight: 1.1,
+            item_name: "Test Batch Item",
+            category_id: 100001,
+            image: {
+              image_id_list: ["img1"],
+            },
+          },
+        ],
+      };
+
+      const result = await productManager.batchAddItem(params);
+
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/product/batch_add_item", {
+        method: "POST",
+        auth: true,
+        body: params,
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.task_id).toBe(123456);
+    });
+  });
+
+  describe("batchPublishItemToOutletShop", () => {
+    it("should batch publish items to outlet shop and return task id", async () => {
+      const mockResponse: BatchPublishItemToOutletShopResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          task_id: 234567,
+        },
+      };
+
+      mockFetch.mockResolvedValue(mockResponse);
+
+      const params = {
+        item_list: [
+          {
+            mart_item_id: 123456789,
+            outlet_shop_id: 987654321,
+            publish_item: {
+              model: [
+                {
+                  relate_mart_model_id: 0,
+                  original_price: 19.99,
+                  seller_stock: [{ location_id: "LOC001", stock: 100 }],
+                  pre_order: { is_pre_order: false },
+                },
+              ],
+            },
+          },
+        ],
+      };
+
+      const result = await productManager.batchPublishItemToOutletShop(params);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/batch_publish_item_to_outlet_shop",
+        {
+          method: "POST",
+          auth: true,
+          body: params,
+        }
+      );
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.task_id).toBe(234567);
+    });
+  });
+
+  describe("batchUpdateOutletPrice", () => {
+    it("should batch update outlet price and return task id", async () => {
+      const mockResponse: BatchUpdateOutletPriceResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          task_id: 345678,
+        },
+      };
+
+      mockFetch.mockResolvedValue(mockResponse);
+
+      const params = {
+        item_list: [
+          {
+            outlet_shop_id: 987654321,
+            item_id: 123456789,
+            price_list: [
+              {
+                model_id: 111111,
+                original_price: 24.99,
+              },
+            ],
+          },
+        ],
+      };
+
+      const result = await productManager.batchUpdateOutletPrice(params);
+
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/product/batch_update_outlet_price", {
+        method: "POST",
+        auth: true,
+        body: params,
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.task_id).toBe(345678);
+    });
+  });
+
+  describe("batchUpdateOutletStock", () => {
+    it("should batch update outlet stock and return task id", async () => {
+      const mockResponse: BatchUpdateOutletStockResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          task_id: 456789,
+        },
+      };
+
+      mockFetch.mockResolvedValue(mockResponse);
+
+      const params = {
+        item_list: [
+          {
+            outlet_shop_id: 987654321,
+            item_id: 123456789,
+            stock_list: [
+              {
+                model_id: 111111,
+                seller_stock: [
+                  {
+                    location_id: "LOC001",
+                    stock: 150,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      const result = await productManager.batchUpdateOutletStock(params);
+
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/product/batch_update_outlet_stock", {
+        method: "POST",
+        auth: true,
+        body: params,
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.task_id).toBe(456789);
+    });
+  });
+
+  describe("getBatchTaskResult", () => {
+    it("should get batch task result", async () => {
+      const mockResponse: GetBatchTaskResultResponse = {
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: {
+          publish_status: 2,
+          success_list: [
+            {
+              shop_id: 987654321,
+              item_id: 123456789,
+              model_id: 111111,
+            },
+          ],
+          failed_list: [],
+        },
+      };
+
+      mockFetch.mockResolvedValue(mockResponse);
+
+      const params = {
+        task_type: 4,
+        task_id: 123456789012,
+      };
+
+      const result = await productManager.getBatchTaskResult(params);
+
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/product/get_batch_task_result", {
+        method: "GET",
+        auth: true,
+        params,
+      });
+
+      expect(result).toEqual(mockResponse);
+      expect(result.response.publish_status).toBe(2);
+      expect(result.response.success_list).toHaveLength(1);
+    });
+  });
+
   describe("Default Params Coverage", () => {
     it("should cover ProductManager methods with default parameters", async () => {
-      mockShopeeFetch.mockResolvedValue({ response: {} });
+      mockFetch.mockResolvedValue({ response: {} });
 
       await productManager.getMainItemList(undefined);
       await productManager.getDirectItemList(undefined);
       await productManager.getSspList(undefined);
+      await productManager.getBatchTaskResult(undefined);
 
-      expect(mockShopeeFetch).toHaveBeenCalledTimes(3);
+      expect(mockFetch).toHaveBeenCalledTimes(4);
     });
   });
 });

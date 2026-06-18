@@ -49,6 +49,8 @@ export interface OrderItem {
   product_location_id: string[];
   /** To indicate if this item is prescription item */
   is_prescription_item: boolean;
+  /** To indicate if there was an error when validating whether this item is prescription */
+  error_in_fetching_is_prescription_item?: boolean;
   /** Determine if item is B2C shop item */
   is_b2c_owned_item: boolean;
   /** [Only for PH,TH,VN,MY,BR,TW] True if the item is hot listing */
@@ -88,6 +90,14 @@ export interface PackageItem {
   product_location_id: string;
   /** The identify of product promotion */
   promotion_group_id: number;
+  /** To indicate if this item is prescription item */
+  is_prescription_item?: boolean;
+  /** To indicate if there was an error when validating whether this item is prescription */
+  error_in_fetching_is_prescription_item?: boolean;
+  /** Prescription check status */
+  prescription_check_status?: number;
+  /** Return the reason why a prescription is rejected */
+  prescription_reject_reason?: string;
 }
 
 /**

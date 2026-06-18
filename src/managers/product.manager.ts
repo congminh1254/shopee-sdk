@@ -117,6 +117,16 @@ import {
   PublishItemToOutletShopResponse,
   GetVariationsParams,
   GetVariationsResponse,
+  BatchAddItemParams,
+  BatchAddItemResponse,
+  BatchPublishItemToOutletShopParams,
+  BatchPublishItemToOutletShopResponse,
+  BatchUpdateOutletPriceParams,
+  BatchUpdateOutletPriceResponse,
+  BatchUpdateOutletStockParams,
+  BatchUpdateOutletStockResponse,
+  GetBatchTaskResultParams,
+  GetBatchTaskResultResponse,
 } from "../schemas/product.js";
 
 export class ProductManager extends BaseManager {
@@ -1353,6 +1363,107 @@ export class ProductManager extends BaseManager {
       }
     );
 
+    return response;
+  }
+
+  /**
+   * Batch add items.
+   *
+   * @param params - The parameters for batch adding items
+   * @returns Promise resolving to the batch add item response
+   */
+  async batchAddItem(params: BatchAddItemParams): Promise<BatchAddItemResponse> {
+    const response = await ShopeeFetch.fetch<BatchAddItemResponse>(
+      this.config,
+      "/product/batch_add_item",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Batch publish items to outlet shop.
+   *
+   * @param params - The parameters for batch publishing items to outlet shop
+   * @returns Promise resolving to the batch publish response
+   */
+  async batchPublishItemToOutletShop(
+    params: BatchPublishItemToOutletShopParams
+  ): Promise<BatchPublishItemToOutletShopResponse> {
+    const response = await ShopeeFetch.fetch<BatchPublishItemToOutletShopResponse>(
+      this.config,
+      "/product/batch_publish_item_to_outlet_shop",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Batch update outlet price.
+   *
+   * @param params - The parameters for batch updating outlet price
+   * @returns Promise resolving to the batch update price response
+   */
+  async batchUpdateOutletPrice(
+    params: BatchUpdateOutletPriceParams
+  ): Promise<BatchUpdateOutletPriceResponse> {
+    const response = await ShopeeFetch.fetch<BatchUpdateOutletPriceResponse>(
+      this.config,
+      "/product/batch_update_outlet_price",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Batch update outlet stock.
+   *
+   * @param params - The parameters for batch updating outlet stock
+   * @returns Promise resolving to the batch update stock response
+   */
+  async batchUpdateOutletStock(
+    params: BatchUpdateOutletStockParams
+  ): Promise<BatchUpdateOutletStockResponse> {
+    const response = await ShopeeFetch.fetch<BatchUpdateOutletStockResponse>(
+      this.config,
+      "/product/batch_update_outlet_stock",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+    return response;
+  }
+
+  /**
+   * Get batch task result.
+   *
+   * @param params - The parameters for getting batch task result
+   * @returns Promise resolving to the batch task result response
+   */
+  async getBatchTaskResult(params?: GetBatchTaskResultParams): Promise<GetBatchTaskResultResponse> {
+    const response = await ShopeeFetch.fetch<GetBatchTaskResultResponse>(
+      this.config,
+      "/product/get_batch_task_result",
+      {
+        method: "GET",
+        auth: true,
+        params,
+      }
+    );
     return response;
   }
 }

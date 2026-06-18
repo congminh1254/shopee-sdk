@@ -60,6 +60,8 @@ export interface EscrowItem {
   kit_items?: EscrowKitItem;
   /** List of promotions applied to this item */
   promotion_list?: EscrowItemPromotion[];
+  /** Deposit fee paid by buyer under SG Beverage Container Return Scheme */
+  bcrs_deposit?: number;
 }
 
 /**
@@ -190,6 +192,8 @@ export interface BuyerPaymentInfo {
   bulky_handling_fee?: number;
   /** PIX discount amount (BR region only) */
   discount_pix?: number;
+  /** Deposit fee paid by buyer under SG Beverage Container Return Scheme */
+  bcrs_deposit?: number;
 }
 
 /**
@@ -388,6 +392,10 @@ export interface OrderIncome {
   ads_escrow_top_up_fee_or_technical_support_fee?: number;
   /** [TH only] Import duty collected for goods priced less than 1,500 THB */
   th_import_duty?: number;
+  /** Deposit fee paid by buyer under SG Beverage Container Return Scheme */
+  bcrs_deposit?: number;
+  /** Voucher discount provided by Ads team */
+  ads_voucher_discount?: number;
 }
 
 /**
