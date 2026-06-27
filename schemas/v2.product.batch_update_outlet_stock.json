@@ -362,8 +362,77 @@
   "perm_upload_file_name": "",
   "priority": 80720,
   "rate_limit": "",
-  "request_sample": [],
-  "response_sample": [],
+  "request_sample": [
+    {
+      "type": "Payload",
+      "value": {
+        "item_list": [
+          {
+            "outlet_shop_id": 100001,
+            "item_id": 200001,
+            "stock_list": [
+              {
+                "model_id": 300001,
+                "seller_stock": [
+                  {
+                    "location_id": "SGZ",
+                    "stock": 100
+                  }
+                ]
+              },
+              {
+                "model_id": 300002,
+                "seller_stock": [
+                  {
+                    "location_id": "SGZ",
+                    "stock": 80
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "outlet_shop_id": 100002,
+            "item_id": 200002,
+            "stock_list": [
+              {
+                "model_id": 300003,
+                "seller_stock": [
+                  {
+                    "location_id": "SGZ",
+                    "stock": 60
+                  }
+                ]
+              },
+              {
+                "model_id": 300004,
+                "seller_stock": [
+                  {
+                    "location_id": "SGZ",
+                    "stock": 40
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "response_sample": [
+    {
+      "type": "JSON",
+      "value": {
+        "error": "",
+        "message": "",
+        "warning": "",
+        "request_id": "d9f2c3d4e5f6a7b8",
+        "response": {
+          "task_id": 900000002
+        }
+      }
+    }
+  ],
   "status": 1,
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/product/batch_update_outlet_stock",
@@ -375,7 +444,17 @@
   ],
   "url": "https://partner.shopeemobile.com/api/v2/product/batch_update_outlet_stock",
   "version": "",
-  "error_example": [],
+  "error_example": [
+    {
+      "type": "JSON",
+      "value": {
+        "error": "product.error_busi",
+        "message": "model ID not exist in sku",
+        "warning": "",
+        "request_id": "e3e3e7f3549798db60beb2604da2f600"
+      }
+    }
+  ],
   "api_permission": [
     "ERP System",
     "Seller In House System",

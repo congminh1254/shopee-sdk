@@ -570,7 +570,7 @@
                     "key": "YDQtMnD"
                   },
                   {
-                    "description": "<p>Prescription check status. Only for ID and PH whitelist sellers. 0: NONE, 1: PASSED, 2: FAILED.&nbsp;</p>",
+                    "description": "<p>Prescription check status. For ID, PH whitelisted sellers, the applicable values:</p><p>0: NONE</p><p>1: PASSED</p><p>2: FAILED</p><p>For TH whitelisted sellers, the applicable values:</p><p>0: NONE</p><p>1: PASSED</p>",
                     "name": "prescription_check_status",
                     "sample": "",
                     "type": "int32",

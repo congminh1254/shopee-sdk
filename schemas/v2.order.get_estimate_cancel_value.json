@@ -1,6 +1,6 @@
 {
   "api_id": 3265,
-  "api_name": "v2.order.get_estimiate_cancel_value",
+  "api_name": "v2.order.get_estimate_cancel_value",
   "api_type": "Shop",
   "common_params": [
     {
@@ -315,16 +315,16 @@
     ],
     "response_params": [
       {
-        "name": "cancel_value",
-        "type": "int64",
-        "sample": "10",
+        "name": "cancel_value_price",
+        "type": "string",
+        "sample": "1000",
         "description": "<p>The estimated cancellation value for the selected item quantities. This value is calculated before the actual cancellation is submitted and can be used by sellers to preview the expected cancellation amount and support partial cancellation confirmation.</p>",
         "key": "MZbfyzb"
       }
     ]
   },
   "perm_mtime": 1779447884,
-  "perm_operator": "caixia.tu@shopee.com",
+  "perm_operator": "grace.li@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 80714,
@@ -366,7 +366,7 @@
     {
       "type": "JSON",
       "value": {
-        "cancel_value": 10
+        "cancel_value_price": "1000"
       }
     }
   ],
@@ -374,6 +374,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_estimate_cancel_value",
   "update_log_list": [
+    {
+      "date": "2026-06-25",
+      "content": "update the request field from “update cancel_value” to “cancel_value_price“"
+    },
     {
       "date": "2026-05-22",
       "content": "New API"

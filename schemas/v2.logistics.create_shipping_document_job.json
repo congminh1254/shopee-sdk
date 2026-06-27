@@ -42,6 +42,22 @@
       "solution": null
     },
     {
+      "name": "logistics.different_c2c_status",
+      "description": "The packages has different C2C status.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
+      "name": "logistics.different_shipping_channels",
+      "description": "The packages has different shipping channel. Please input packages with the same shipping channel.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
       "name": "logistics.invalid_address_version",
       "description": "Some addresses are no longer supported per new regulation, please update to avoid wrong fulfilment",
       "solution": null

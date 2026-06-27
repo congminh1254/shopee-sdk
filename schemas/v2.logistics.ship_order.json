@@ -742,6 +742,14 @@
       "solution": null
     },
     {
+      "name": "logistics.lack_of_invoice_data",
+      "description": "Pending invoice data, can not arrange shipment. Detail: {msg}",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
       "name": "lack_of_invoice_data",
       "description": "Pending invoice data, can not arrange shipment.",
       "solution": null

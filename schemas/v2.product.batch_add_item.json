@@ -1284,8 +1284,163 @@
   "perm_upload_file_name": "",
   "priority": 80720,
   "rate_limit": "",
-  "request_sample": [],
-  "response_sample": [],
+  "request_sample": [
+    {
+      "type": "Payload",
+      "value": {
+        "item_list": [
+          {
+            "category_id": 100017,
+            "item_name": "Example Item 1",
+            "description": "Example item description 1",
+            "item_sku": "SKU-001",
+            "image": {
+              "image_id_list": [
+                "c54265d475b85e00ffb2404585e32b6f"
+              ]
+            },
+            "tier_variation": [
+              {
+                "name": "Color",
+                "option_list": [
+                  {
+                    "option": "Red"
+                  },
+                  {
+                    "option": "Blue"
+                  }
+                ]
+              }
+            ],
+            "model_list": [
+              {
+                "model_sku": "SKU-001-RED",
+                "original_price": 12.34,
+                "seller_stock": [
+                  {
+                    "location_id": "SGZ",
+                    "stock": 100
+                  }
+                ],
+                "tier_index": [
+                  0
+                ]
+              },
+              {
+                "model_sku": "SKU-001-BLUE",
+                "original_price": 13.34,
+                "seller_stock": [
+                  {
+                    "location_id": "SGZ",
+                    "stock": 80
+                  }
+                ],
+                "tier_index": [
+                  1
+                ]
+              }
+            ],
+            "weight": 1.2,
+            "dimension": {
+              "package_length": 10,
+              "package_width": 8,
+              "package_height": 5
+            },
+            "logistic_info": [
+              {
+                "logistic_id": 50001,
+                "enabled": true
+              }
+            ],
+            "brand": {
+              "brand_id": 0
+            }
+          },
+          {
+            "category_id": 100017,
+            "item_name": "Example Item 2",
+            "description": "Example item description 2",
+            "item_sku": "SKU-002",
+            "image": {
+              "image_id_list": [
+                "6fb33d484f232510b5f9b169f2758322"
+              ]
+            },
+            "tier_variation": [
+              {
+                "name": "Size",
+                "option_list": [
+                  {
+                    "option": "M"
+                  },
+                  {
+                    "option": "L"
+                  }
+                ]
+              }
+            ],
+            "model_list": [
+              {
+                "model_sku": "SKU-002-M",
+                "original_price": 15.99,
+                "seller_stock": [
+                  {
+                    "location_id": "SGZ",
+                    "stock": 60
+                  }
+                ],
+                "tier_index": [
+                  0
+                ]
+              },
+              {
+                "model_sku": "SKU-002-L",
+                "original_price": 16.99,
+                "seller_stock": [
+                  {
+                    "location_id": "SGZ",
+                    "stock": 40
+                  }
+                ],
+                "tier_index": [
+                  1
+                ]
+              }
+            ],
+            "weight": 1.5,
+            "dimension": {
+              "package_length": 12,
+              "package_width": 9,
+              "package_height": 6
+            },
+            "logistic_info": [
+              {
+                "logistic_id": 50001,
+                "enabled": true
+              }
+            ],
+            "brand": {
+              "brand_id": 0
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "response_sample": [
+    {
+      "type": "JSON",
+      "value": {
+        "error": "",
+        "message": "",
+        "warning": "",
+        "request_id": "f9f2c3d4e5f6a7b8",
+        "response": {
+          "task_id": 900000004
+        }
+      }
+    }
+  ],
   "status": 1,
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/product/batch_add_item",
@@ -1297,7 +1452,17 @@
   ],
   "url": "https://partner.shopeemobile.com/api/v2/product/batch_add_item",
   "version": "",
-  "error_example": [],
+  "error_example": [
+    {
+      "type": "JSON",
+      "value": {
+        "error": "product.error_param",
+        "message": "shop_id not found",
+        "warning": "",
+        "request_id": "e3e3e7f3549798db60beb2604da2f600"
+      }
+    }
+  ],
   "api_permission": [
     "ERP System",
     "Seller In House System",
