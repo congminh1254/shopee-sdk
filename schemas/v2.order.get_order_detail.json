@@ -1180,7 +1180,7 @@
                 "description": "display weight used to calculate ASF for this order"
               },
               {
-                "description": "<p>Prescription check status. Only for ID and PH whitelist sellers. Applicable value:&nbsp;</p><p>0: NONE</p><p>1: PASSED</p><p>2: FAILED</p>",
+                "description": "<p>Prescription check status. For ID, PH whitelisted sellers, the applicable values:</p><p>0: NONE</p><p>1: PASSED</p><p>2: FAILED</p><p>For TH whitelisted sellers, the applicable values:</p><p>0: NONE</p><p>1: PASSED<strong></strong></p>",
                 "required": null,
                 "sample": "",
                 "key": "PGwNDEi",

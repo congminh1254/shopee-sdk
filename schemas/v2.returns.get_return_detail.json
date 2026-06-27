@@ -287,13 +287,18 @@
       "solution": null
     },
     {
-      "name": "error_param",
-      "description": "parameter invalid",
+      "name": "error_data",
+      "description": "The return detail is not available.",
       "solution": null
     },
     {
       "name": "error_param",
       "description": "Inner error, please try later. [1].",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "parameter invalid",
       "solution": null
     },
     {
@@ -318,7 +323,17 @@
     },
     {
       "name": "error_data",
+      "description": "Query shop info failed. Please try later.",
+      "solution": null
+    },
+    {
+      "name": "error_data",
       "description": "Get user info failed. Please try later.",
+      "solution": null
+    },
+    {
+      "name": "error_data",
+      "description": "Query contact info failed. Please try later.",
       "solution": null
     },
     {
@@ -359,6 +374,11 @@
     {
       "name": "error_data",
       "description": "The return you queried doesn't exist.",
+      "solution": null
+    },
+    {
+      "name": "error_permission",
+      "description": "You don't have permission to view this return data.",
       "solution": null
     },
     {

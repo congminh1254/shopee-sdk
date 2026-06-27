@@ -344,8 +344,57 @@
   "perm_upload_file_name": "",
   "priority": 80720,
   "rate_limit": "",
-  "request_sample": [],
-  "response_sample": [],
+  "request_sample": [
+    {
+      "type": "Payload",
+      "value": {
+        "item_list": [
+          {
+            "outlet_shop_id": 100001,
+            "item_id": 200001,
+            "price_list": [
+              {
+                "model_id": 300001,
+                "original_price": 12.34
+              },
+              {
+                "model_id": 300002,
+                "original_price": 22.22
+              }
+            ]
+          },
+          {
+            "outlet_shop_id": 100002,
+            "item_id": 200002,
+            "price_list": [
+              {
+                "model_id": 300003,
+                "original_price": 18.5
+              },
+              {
+                "model_id": 300004,
+                "original_price": 21.9
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "response_sample": [
+    {
+      "type": "JSON",
+      "value": {
+        "error": "",
+        "message": "",
+        "warning": "",
+        "request_id": "98eae35efff24dd0974c21a847127184",
+        "response": {
+          "task_id": 900000001
+        }
+      }
+    }
+  ],
   "status": 1,
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/product/batch_update_outlet_price",
@@ -357,7 +406,17 @@
   ],
   "url": "https://partner.shopeemobile.com/api/v2/product/batch_update_outlet_price",
   "version": "",
-  "error_example": [],
+  "error_example": [
+    {
+      "type": "JSON",
+      "value": {
+        "error": "product.error_busi",
+        "message": "model ID not exist in sku",
+        "warning": "",
+        "request_id": "e3e3e7f3549798db60beb2604da2f600"
+      }
+    }
+  ],
   "api_permission": [
     "ERP System",
     "Seller In House System",

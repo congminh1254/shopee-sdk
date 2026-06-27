@@ -1387,7 +1387,7 @@
             "required": "False",
             "sample": "",
             "type": "string",
-            "description": "(BR region)",
+            "description": "<p>(BR region)<br /><br /></p><p>The value must be provided in uppercase and must match one of the supported units below:<br /><br /></p><p>\n</p><p>AMPOLA, BALDE, BANDEJ, BARRA, BISNAG, BLOCO, BOBINA, BOMB, CAPS, CART, CENTO, CJ, CM, CM2, CX, CX2, CX3, CX5, CX10, CX15, CX20, CX25, CX50, CX100, DISP, DUZIA, EMBAL, FARDO, FOLHA, FRASCO, GALAO, GF, GRAMAS, JOGO, KG, KIT, LATA, LITRO, M, M2, M3, MILHEI, ML, MWH, PACOTE, PALETE, PARES, PC, POTE, K, RESMA, ROLO, SACO, SACOLA, TAMBOR, TANQUE, TON, TUBO, UN, VASIL, VIDRO.</p>",
             "key": "QirWeXD"
           },
           {
@@ -2720,6 +2720,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/product/add_item",
   "update_log_list": [
     {
+      "date": "2026-06-24",
+      "content": "2026-06-17"
+    },
+    {
       "date": "2026-03-13",
       "content": "Introduce \"medicine_id\" as the request parameter"
     },
@@ -2734,10 +2738,6 @@
     {
       "date": "2025-04-23",
       "content": "Add PH certification_info"
-    },
-    {
-      "date": "2025-03-14",
-      "content": "Add export_cfop for BR "
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/product/add_item",

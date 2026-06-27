@@ -508,8 +508,117 @@
   "perm_upload_file_name": "",
   "priority": 80720,
   "rate_limit": "",
-  "request_sample": [],
-  "response_sample": [],
+  "request_sample": [
+    {
+      "type": "Payload",
+      "value": {
+        "item_list": [
+          {
+            "mart_item_id": 700001,
+            "outlet_shop_id": 100001,
+            "publish_item": {
+              "outlet_item_id": 200001,
+              "model": [
+                {
+                  "relate_mart_model_id": 800001,
+                  "original_price": 9.99,
+                  "seller_stock": [
+                    {
+                      "location_id": "SGZ",
+                      "stock": 50
+                    }
+                  ]
+                },
+                {
+                  "relate_mart_model_id": 800002,
+                  "original_price": 11.99,
+                  "seller_stock": [
+                    {
+                      "location_id": "SGZ",
+                      "stock": 30
+                    }
+                  ]
+                }
+              ],
+              "logistic_info": [
+                {
+                  "logistic_id": 50001,
+                  "enabled": true,
+                  "shipping_fee": 1.5,
+                  "size_id": 0,
+                  "is_free": false
+                }
+              ],
+              "purchase_limit_info": {
+                "min_purchase_limit": 1,
+                "max_purchase_limit": {
+                  "purchase_limit": 10
+                }
+              }
+            }
+          },
+          {
+            "mart_item_id": 700002,
+            "outlet_shop_id": 100002,
+            "publish_item": {
+              "outlet_item_id": 200002,
+              "model": [
+                {
+                  "relate_mart_model_id": 800003,
+                  "original_price": 13.99,
+                  "seller_stock": [
+                    {
+                      "location_id": "SGZ",
+                      "stock": 70
+                    }
+                  ]
+                },
+                {
+                  "relate_mart_model_id": 800004,
+                  "original_price": 16.99,
+                  "seller_stock": [
+                    {
+                      "location_id": "SGZ",
+                      "stock": 45
+                    }
+                  ]
+                }
+              ],
+              "logistic_info": [
+                {
+                  "logistic_id": 50001,
+                  "enabled": true,
+                  "shipping_fee": 1.5,
+                  "size_id": 0,
+                  "is_free": false
+                }
+              ],
+              "purchase_limit_info": {
+                "min_purchase_limit": 1,
+                "max_purchase_limit": {
+                  "purchase_limit": 5
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "response_sample": [
+    {
+      "type": "JSON",
+      "value": {
+        "error": "",
+        "message": "",
+        "warning": "",
+        "request_id": "e9f2c3d4e5f6a7b8",
+        "response": {
+          "task_id": 900000003
+        }
+      }
+    }
+  ],
   "status": 1,
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/product/batch_publish_item_to_outlet_shop",
@@ -521,7 +630,17 @@
   ],
   "url": "https://partner.shopeemobile.com/api/v2/product/batch_publish_item_to_outlet_shop",
   "version": "",
-  "error_example": [],
+  "error_example": [
+    {
+      "type": "JSON",
+      "value": {
+        "error": "product.error_busi",
+        "message": "model ID not exist in sku",
+        "warning": "",
+        "request_id": "e3e3e7f3549798db60beb2604da2f600"
+      }
+    }
+  ],
   "api_permission": [
     "ERP System",
     "Seller In House System",

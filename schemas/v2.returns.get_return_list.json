@@ -237,6 +237,11 @@
       "solution": null
     },
     {
+      "name": "error_param",
+      "description": "The create_time_to should be later than create_time_from.",
+      "solution": null
+    },
+    {
       "name": "error_perm",
       "description": "invalid dispute_reason.",
       "solution": null
@@ -298,12 +303,12 @@
     },
     {
       "name": "error_param",
-      "description": "parameter invalid",
+      "description": "Inner error, please try later. [1].",
       "solution": null
     },
     {
       "name": "error_param",
-      "description": "Inner error, please try later. [1].",
+      "description": "parameter invalid",
       "solution": null
     },
     {
@@ -373,7 +378,32 @@
     },
     {
       "name": "error_permission",
+      "description": "You don't have permission to view this return data.",
+      "solution": null
+    },
+    {
+      "name": "error_permission",
       "description": "Please link shop and partner on seller center.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "The update_time_from must be after create_time_from.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "The period between update_time_from and update_time_to must not more than 15 days.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "The update_time_to should be later than update_time_from.",
+      "solution": null
+    },
+    {
+      "name": "error_param",
+      "description": "The period between update_time_from and update_time_to must not more than 15 days.",
       "solution": null
     }
   ],

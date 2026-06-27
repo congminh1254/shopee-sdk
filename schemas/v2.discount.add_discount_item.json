@@ -47,13 +47,13 @@
       "solution": null
     },
     {
-      "name": "discount.error_item_abnormal",
-      "description": "The item is abnormal",
+      "name": "discount.item_status_abnormal",
+      "description": "The item status is abnormal",
       "solution": null
     },
     {
-      "name": "discount.item_status_abnormal",
-      "description": "The item status is abnormal",
+      "name": "discount.error_item_abnormal",
+      "description": "The item is abnormal",
       "solution": null
     },
     {
@@ -222,13 +222,13 @@
       "solution": null
     },
     {
-      "name": "common.error_shop",
-      "description": "Shopid is invalid",
+      "name": "error_shop",
+      "description": "shopid is invalid",
       "solution": null
     },
     {
-      "name": "error_shop",
-      "description": "shopid is invalid",
+      "name": "common.error_shop",
+      "description": "Shopid is invalid",
       "solution": null
     },
     {
