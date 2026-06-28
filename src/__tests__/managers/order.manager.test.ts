@@ -472,24 +472,20 @@ describe("OrderManager", () => {
         ],
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_estimiate_cancel_value",
-        {
-          method: "POST",
-          auth: true,
-          body: {
-            order_sn: "220101000000001",
-            partial_cancel_item_list: [
-              {
-                item_id: 111111,
-                model_id: 222222,
-                model_quantity: 2,
-              },
-            ],
-          },
-        }
-      );
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/get_estimate_cancel_value", {
+        method: "POST",
+        auth: true,
+        body: {
+          order_sn: "220101000000001",
+          partial_cancel_item_list: [
+            {
+              item_id: 111111,
+              model_id: 222222,
+              model_quantity: 2,
+            },
+          ],
+        },
+      });
 
       expect(result).toEqual(mockResponse);
     });

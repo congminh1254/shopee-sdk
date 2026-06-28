@@ -220,7 +220,7 @@ export class OrderManager extends BaseManager {
   ): Promise<GetEstimateCancelValueResponse> {
     return ShopeeFetch.fetch<GetEstimateCancelValueResponse>(
       this.config,
-      "/order/get_estimiate_cancel_value",
+      "/order/get_estimate_cancel_value",
       {
         method: "POST",
         auth: true,

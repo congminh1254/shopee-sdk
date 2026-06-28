@@ -2065,121 +2065,6 @@ describe("ProductManager", () => {
       expect(result.response.image_info).toBeDefined();
     });
 
-    it("should call addSspItem", async () => {
-      const mockResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: { item_id: 123456 },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await productManager.addSspItem({ item_sku: "data" });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/add_ssp_item", {
-        method: "POST",
-        auth: true,
-        body: { item_sku: "data" },
-      });
-
-      expect(result.response.item_id).toBe(123456);
-    });
-
-    it("should call getSspInfo", async () => {
-      const mockResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: { ssp_info: { item_id: 123456 } },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await productManager.getSspInfo({ item_id: 123456 });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_ssp_info", {
-        method: "GET",
-        auth: true,
-        params: { item_id: 123456 },
-      });
-
-      expect(result.response.ssp_info).toBeDefined();
-    });
-
-    it("should call getSspList", async () => {
-      const mockResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          item_list: [{ item_id: 123456 }],
-          has_next_page: false,
-          next_offset: 0,
-        },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await productManager.getSspList({ offset: 0, page_size: 20 });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_ssp_list", {
-        method: "GET",
-        auth: true,
-        params: { offset: 0, page_size: 20 },
-      });
-
-      expect(result.response.item_list).toHaveLength(1);
-    });
-
-    it("should call linkSsp", async () => {
-      const mockResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        warning: "",
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await productManager.linkSsp({
-        item_id: 123456,
-        ssp_item_id: 789012,
-      });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/link_ssp", {
-        method: "POST",
-        auth: true,
-        body: {
-          item_id: 123456,
-          ssp_item_id: 789012,
-        },
-      });
-
-      expect(result.error).toBe("");
-    });
-
-    it("should call unlinkSsp", async () => {
-      const mockResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        warning: "",
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await productManager.unlinkSsp({ item_id: 123456 });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/unlink_ssp", {
-        method: "POST",
-        auth: true,
-        body: { item_id: 123456 },
-      });
-
-      expect(result.error).toBe("");
-    });
-
     it("should call updateSipItemPrice", async () => {
       const mockResponse = {
         request_id: "test-request-id",
@@ -2921,10 +2806,9 @@ describe("ProductManager", () => {
 
       await productManager.getMainItemList(undefined);
       await productManager.getDirectItemList(undefined);
-      await productManager.getSspList(undefined);
       await productManager.getBatchTaskResult(undefined);
 
-      expect(mockFetch).toHaveBeenCalledTimes(4);
+      expect(mockFetch).toHaveBeenCalledTimes(3);
     });
   });
 });

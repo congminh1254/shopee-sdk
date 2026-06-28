@@ -81,16 +81,6 @@ import {
   GetKitItemLimitResponse,
   GenerateKitImageParams,
   GenerateKitImageResponse,
-  AddSspItemParams,
-  AddSspItemResponse,
-  GetSspInfoParams,
-  GetSspInfoResponse,
-  GetSspListParams,
-  GetSspListResponse,
-  LinkSspParams,
-  LinkSspResponse,
-  UnlinkSspParams,
-  UnlinkSspResponse,
   UpdateSipItemPriceParams,
   UpdateSipItemPriceResponse,
   GetSizeChartListParams,
@@ -1085,68 +1075,6 @@ export class ProductManager extends BaseManager {
     const response = await ShopeeFetch.fetch<GenerateKitImageResponse>(
       this.config,
       "/product/generate_kit_image",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  // SSP Management
-  async addSspItem(params: AddSspItemParams): Promise<AddSspItemResponse> {
-    const response = await ShopeeFetch.fetch<AddSspItemResponse>(
-      this.config,
-      "/product/add_ssp_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  async getSspInfo(params: GetSspInfoParams): Promise<GetSspInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetSspInfoResponse>(
-      this.config,
-      "/product/get_ssp_info",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  async getSspList(params?: GetSspListParams): Promise<GetSspListResponse> {
-    const response = await ShopeeFetch.fetch<GetSspListResponse>(
-      this.config,
-      "/product/get_ssp_list",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
-    return response;
-  }
-
-  async linkSsp(params: LinkSspParams): Promise<LinkSspResponse> {
-    const response = await ShopeeFetch.fetch<LinkSspResponse>(this.config, "/product/link_ssp", {
-      method: "POST",
-      auth: true,
-      body: params,
-    });
-    return response;
-  }
-
-  async unlinkSsp(params: UnlinkSspParams): Promise<UnlinkSspResponse> {
-    const response = await ShopeeFetch.fetch<UnlinkSspResponse>(
-      this.config,
-      "/product/unlink_ssp",
       {
         method: "POST",
         auth: true,
