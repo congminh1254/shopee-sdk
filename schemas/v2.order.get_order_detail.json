@@ -1372,6 +1372,14 @@
                 "type": "int64",
                 "required": null,
                 "key": "raRYZWS"
+              },
+              {
+                "description": "<p>Indicates that this order is a refundable sample  order. Applicable values:</p><p>0 = Order is not a refundable sample order</p><p>1 = Order is a refundable sample order</p>",
+                "name": "affiliate_sample_type",
+                "sample": "1",
+                "type": "int32",
+                "required": null,
+                "key": "EGQBkAr"
               }
             ],
             "name": "order_list"
@@ -1427,6 +1435,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_order_detail",
   "update_log_list": [
     {
+      "date": "2026-07-01",
+      "content": "add affiliate_sample_type"
+    },
+    {
       "date": "2026-06-17",
       "content": "add a new field error_in_fetching_is_prescription_item"
     },
@@ -1441,10 +1453,6 @@
     {
       "date": "2025-12-12",
       "content": "Add new \"ARRANGE_SHIPMENT_PENDING\" option for \"pending_terms\" and add new \"pending_description\" response param for corresponding description to \"pending_terms\""
-    },
-    {
-      "date": "2025-12-03",
-      "content": "1) Update existing shipping_carrier response parameter logic for 90021, 90025, 90026 channels to include service_code, e.g., Entrega Turbo - M1020\n2) Add geolocation response parameter including latitude and longitude for buyer address coordinates"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/order/get_order_detail",
