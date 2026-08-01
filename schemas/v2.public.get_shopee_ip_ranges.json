@@ -301,7 +301,8 @@
     "Ads Facil",
     "Affiliate Marketing Solution Management",
     "Shopee Video Management",
-    "Auto Parts Installation (ISP)"
+    "Auto Parts Installation (ISP)",
+    "Brand Portal Service"
   ],
   "path": "/api/v2/public/get_shopee_ip_ranges",
   "related_documents": {

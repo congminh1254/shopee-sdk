@@ -363,7 +363,7 @@
                 "type": "float",
                 "name": "escrow_amount",
                 "key": "SQHbrDf",
-                "description": "<p>The total amount that the seller is expected to receive for the order and will change before order is completed.&nbsp;</p><p>For non cb sip affiliate shop (new formula):&nbsp;</p><p>escrow_amount=&nbsp;original_cost_of_goods_sold-original_shopee_discount+seller_return_refund+ shopee_discount- voucher_from_seller- seller_coin_cash_back+ buyer_paid_shipping_fee- actual_shipping_fee+ shopee_shipping_rebate+ shipping_fee_discount_from_3pl- reverse_shipping_fee+ rsf_seller_protection_fee_claim_amount- final_return_to_seller_shipping_fee- seller_transaction_fee- service_fee- commission_fee- campaign_fee- shipping_seller_protection_fee_amount- delivery_seller_protection_fee_premium_amount-final_escrow_product_gst- order_ams_commission_fee- escrow_tax-sales_tax_on_lvg-reverse_shipping_fee_sst-shipping_fee_sst-withholding_tax-overseas_return_service_fee-vat_on_imported_goods - withholding_vat_tax - withholding_pit_tax - seller_order_processing_fee&nbsp;+ buyer_paid_packaging_fee - trade_in_bonus_by_seller - fbs_fee -&nbsp;ads_escrow_top_up_fee_or_technical_support_fee - th_import_duty<br /></p><p><br /></p><p>For cb sip affiliate shop:&nbsp;escrow_amount=escrow_amount_pri * exchange_rate</p><p><br /></p><p>note: Return refund amount = if adjustable RR, will equal to drc_adjustable_refund<br /></p>"
+                "description": "<p>The total amount that the seller is expected to receive for the order and will change before order is completed.&nbsp;</p><p>For non cb sip affiliate shop (new formula):&nbsp;</p><p>escrow_amount=&nbsp;original_cost_of_goods_sold-original_shopee_discount+seller_return_refund+ shopee_discount- voucher_from_seller- seller_coin_cash_back+ buyer_paid_shipping_fee- actual_shipping_fee+ shopee_shipping_rebate+ shipping_fee_discount_from_3pl- reverse_shipping_fee+ rsf_seller_protection_fee_claim_amount- final_return_to_seller_shipping_fee- seller_transaction_fee- service_fee- commission_fee- campaign_fee- shipping_seller_protection_fee_amount- delivery_seller_protection_fee_premium_amount-final_escrow_product_gst- order_ams_commission_fee- escrow_tax-sales_tax_on_lvg-reverse_shipping_fee_sst-shipping_fee_sst-withholding_tax-overseas_return_service_fee-vat_on_imported_goods - withholding_vat_tax - withholding_pit_tax - withholding_cit_tax - seller_order_processing_fee&nbsp;+ buyer_paid_packaging_fee - trade_in_bonus_by_seller - fbs_fee -&nbsp;ads_escrow_top_up_fee_or_technical_support_fee - th_import_duty<br /></p><p><br /></p><p>For cb sip affiliate shop:&nbsp;escrow_amount=escrow_amount_pri * exchange_rate</p><p><br /></p><p>note: Return refund amount = if adjustable RR, will equal to drc_adjustable_refund<br /></p>"
               },
               {
                 "sample": "99.0",
@@ -446,6 +446,14 @@
                 "name": "voucher_from_shopee",
                 "key": "zXYMQri",
                 "description": "Final value of voucher provided by Shopee for the order. (Only display for non cb sip affiliate shop. )"
+              },
+              {
+                "description": "<p>Final value of voucher provided by External Party for the order. (Only display for non cb sip affiliate shop.)</p>",
+                "name": "voucher_from_external_party",
+                "sample": "",
+                "type": "float",
+                "required": null,
+                "key": "ixTkYM"
               },
               {
                 "sample": "0.0",
@@ -673,6 +681,14 @@
                     "description": "A model SKU (stock keeping unit) is an identifier defined by a seller. It is only intended for the seller's use. Many sellers assign a SKU to an item of a specific type, size, and color, which are variations of one item in Shopee Listings."
                   },
                   {
+                    "description": "<p>The identity of order item. In case the order item is a bundle deal, this value will be unique to distinguish the order item.</p>",
+                    "name": "line_item_id",
+                    "sample": "2600144043",
+                    "type": "int64",
+                    "required": null,
+                    "key": "rjkpkFs"
+                  },
+                  {
                     "sample": "139.0",
                     "type": "float",
                     "name": "original_price",
@@ -756,10 +772,10 @@
                   },
                   {
                     "sample": "0",
-                    "type": "int64",
+                    "type": "uint64",
                     "name": "activity_id",
                     "key": "aSJSnRx",
-                    "description": "If bundle_deal the is id of bundle deal, if add_on_deal this is id of add on deal."
+                    "description": "<p>If bundle_deal the is id of bundle deal, if add_on_deal this is id of add on deal.</p>"
                   },
                   {
                     "sample": "false",
@@ -809,7 +825,7 @@
                     "children": [
                       {
                         "description": "<p>The merchant item identifier of the product within the kit&nbsp;(only for BR local seller)</p>",
-                        "name": "mt_item_id",
+                        "name": "original_product_id",
                         "sample": "",
                         "type": "float",
                         "required": null,
@@ -817,7 +833,7 @@
                       },
                       {
                         "description": "<p>The merchant product model of the item within the kit.&nbsp;(only for BR local seller)</p>",
-                        "name": "mt_model_id",
+                        "name": "original_model_id",
                         "sample": "",
                         "type": "float",
                         "required": null,
@@ -833,7 +849,7 @@
                       },
                       {
                         "description": "<p>The price of the item when it is listed as a standalone item.&nbsp;(only for BR local seller)</p>",
-                        "name": "parent_item_price",
+                        "name": "original_price",
                         "sample": "",
                         "type": "float",
                         "required": null,
@@ -841,7 +857,7 @@
                       },
                       {
                         "description": "<p>The price of the item when it is listed within the kit (i.e. proportionally distributed)&nbsp;(only for BR local seller)</p>",
-                        "name": "item_price_prorated",
+                        "name": "proportional_price",
                         "sample": "",
                         "type": "float",
                         "required": null,
@@ -866,10 +882,10 @@
                         "key": "MEmZbGB"
                       },
                       {
-                        "description": "<p>Represents the unique identifier of a specific promotion applied to an item. Each promotion_id corresponds to a distinct promotion rule or campaign, defined under a particular promotion_type. The value is expressed in a numeric string format.</p>",
+                        "description": "<p>Represents the unique identifier of a specific promotion applied to an item. Each promotion_id corresponds to a distinct promotion rule or campaign, defined under a particular promotion_type.</p>",
                         "name": "promotion_id",
                         "sample": "848474823",
-                        "type": "int64",
+                        "type": "uint64",
                         "required": null,
                         "key": "GCsFNQC"
                       }
@@ -1274,6 +1290,14 @@
                 "type": "float",
                 "required": null,
                 "key": "MJeXBkb"
+              },
+              {
+                "description": "<p>By VN law, E-commerce platforms need to Withhold Personal Income Tax applicable to corporate sellers selling in VN region</p>",
+                "name": "withholding_cit_tax",
+                "sample": "3.0",
+                "type": "float",
+                "required": null,
+                "key": "aEzAEnz"
               },
               {
                 "description": "<p>For VN Withholding Tax. This is the Tax Registration Number (TRN) from Seller Info (Business information) of the seller at the point of order creation</p>",
@@ -1713,7 +1737,7 @@
     ]
   },
   "perm_mtime": 1621247802,
-  "perm_operator": "grace.li@shopee.com",
+  "perm_operator": "qimiao@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 0,
@@ -1937,24 +1961,24 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/payment/get_escrow_detail",
   "update_log_list": [
     {
-      "date": "2026-06-17",
-      "content": "add new Voucher field'ads_voucher_discount' for ads smart voucher"
+      "date": "2026-07-31",
+      "content": "update the type of the \"promotion_id\" and \"activity_id\" to uint64"
     },
     {
-      "date": "2026-05-18",
-      "content": "add new response field \"remaining_voucher\""
+      "date": "2026-07-23",
+      "content": "add \"voucher_from_external_party\" under \"order_income\""
     },
     {
-      "date": "2026-04-10",
-      "content": "add new response fields \"shopeevip_subtotal\" under buyer_payment_info"
+      "date": "2026-07-17",
+      "content": "update the field names under \"kit_items\": \n\"mt_item_id\" to \"original_product_id\", \"mt_model_id\" to \"original_model_id\", \"parent_item_price\" to \"original_price\", and \"item_price_prorated\" to \"proportional_price\""
     },
     {
-      "date": "2026-03-27",
-      "content": "add response new fields \"bcrs_deposit\" under order_income/ order_income.items/buyer_payment_info"
+      "date": "2026-07-17",
+      "content": "add \"line_item_id\""
     },
     {
-      "date": "2026-03-06",
-      "content": "Updated with th_import_duty"
+      "date": "2026-07-06",
+      "content": "add \"withholding_cit_tax\" under order_income"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/payment/get_escrow_detail",

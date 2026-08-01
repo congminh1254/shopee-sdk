@@ -328,12 +328,12 @@
     },
     {
       "name": "error_network",
-      "description": "Inner http call failed",
+      "description": "Inner error, please try later. [4].",
       "solution": null
     },
     {
       "name": "error_network",
-      "description": "Inner error, please try later. [4].",
+      "description": "Inner http call failed",
       "solution": null
     },
     {
@@ -343,12 +343,12 @@
     },
     {
       "name": "error_data",
-      "description": "parse data failed",
+      "description": "Inner error, please try later. [5].",
       "solution": null
     },
     {
       "name": "error_data",
-      "description": "Inner error, please try later. [5].",
+      "description": "parse data failed",
       "solution": null
     },
     {
@@ -358,12 +358,12 @@
     },
     {
       "name": "error_param",
-      "description": "Inner error, please try later. [1].",
+      "description": "parameter invalid",
       "solution": null
     },
     {
       "name": "error_param",
-      "description": "parameter invalid",
+      "description": "Inner error, please try later. [1].",
       "solution": null
     },
     {

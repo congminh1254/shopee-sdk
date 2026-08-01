@@ -743,7 +743,15 @@
     },
     {
       "name": "logistics.lack_of_invoice_data",
-      "description": "Pending invoice data, can not arrange shipment. Detail: {msg}",
+      "description": "Please upload the invoice or verify the details of the document already submitted, which is currently flagged as invalid by SEFAZ. Correction is required to release the shipment.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
+      "name": "logistics.lack_of_invoice_data",
+      "description": "The invoice has not been uploaded yet or was rejected by SEFAZ: {msg}",
       "solution": {
         "content": "",
         "raw_content": []
