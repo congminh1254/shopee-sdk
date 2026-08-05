@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.14.0](https://github.com/congminh1254/shopee-sdk/compare/v1.13.0...v1.14.0) (2026-08-05)
+
+
+### Features
+
+* **sdk:** implement principal manager and schemas for performance metrics ([9a21f81](https://github.com/congminh1254/shopee-sdk/commit/9a21f81f38dc44ced4662bc17ebdad9d0287cbef))
+
+
+### Bug Fixes
+
+* **livestream:** add ai_stream request parameter to start_session ([2248ff6](https://github.com/congminh1254/shopee-sdk/commit/2248ff68289ad364870e51aeeaf01b05d161e506))
+* **payment:** change get_escrow_detail_batch HTTP method from POST to GET ([033b255](https://github.com/congminh1254/shopee-sdk/commit/033b255b5c16c8b946780c517b056525ee8f927c))
+
 ## [1.13.0](https://github.com/congminh1254/shopee-sdk/compare/v1.12.0...v1.13.0) (2026-06-28)
 
 
