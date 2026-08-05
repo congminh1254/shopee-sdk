@@ -54,6 +54,8 @@ export interface StartSessionParams {
   session_id: number;
   /** The identifier of the stream domain */
   domain_id: number;
+  /** Only available in PH region. Set true if AI streamer is used. */
+  ai_stream?: boolean;
 }
 
 /**
