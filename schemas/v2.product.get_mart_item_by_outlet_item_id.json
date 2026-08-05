@@ -369,7 +369,11 @@
   "url": "https://partner.shopeemobile.com/api/v2/product/get_mart_item_by_outlet_item_id",
   "version": "",
   "error_example": [],
-  "api_permission": [],
+  "api_permission": [
+    "ERP System",
+    "Seller In House System",
+    "Product Management"
+  ],
   "path": "/api/v2/product/get_mart_item_by_outlet_item_id",
   "related_documents": {
     "developer_guides": [],

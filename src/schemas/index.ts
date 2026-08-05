@@ -25,6 +25,7 @@ export * from "./shop-category.js";
 export * from "./returns.js";
 export * from "./fbs.js";
 export * from "./ams.js";
+export * from "./principal.js";
 // Media and MediaSpace schemas export the same types, so they are not exported from the main index
 // Import them directly from their respective files when needed:
 // import * as Media from "./schemas/media.js";

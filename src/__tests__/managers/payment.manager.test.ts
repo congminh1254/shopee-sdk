@@ -596,9 +596,9 @@ describe("PaymentManager", () => {
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_escrow_detail_batch", {
-        method: "POST",
+        method: "GET",
         auth: true,
-        body: {
+        params: {
           order_sn_list: ["220101000000001", "220101000000002"],
         },
       });
