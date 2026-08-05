@@ -37,7 +37,7 @@ function appendFormValue(formData: FormData, key: string, value: unknown): void 
   }
 
   if (Buffer.isBuffer(value)) {
-    formData.append(key, new Blob([value]), `${key}.bin`);
+    formData.append(key, new Blob([new Uint8Array(value)]), `${key}.bin`);
     return;
   }
 
