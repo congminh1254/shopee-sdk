@@ -32,6 +32,7 @@ import { FbsManager } from "./managers/fbs.manager.js";
 import { LiveStreamManager } from "./managers/livestream.manager.js";
 import { AmsManager } from "./managers/ams.manager.js";
 import { VideoManager } from "./managers/video.manager.js";
+import { PrincipalManager } from "./managers/principal.manager.js";
 import { Agent } from "node:http";
 
 export interface ShopeeConfig {
@@ -77,6 +78,7 @@ export class ShopeeSDK {
   public readonly livestream: LiveStreamManager;
   public readonly ams: AmsManager;
   public readonly video: VideoManager;
+  public readonly principal: PrincipalManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       ...config,
@@ -123,6 +125,7 @@ export class ShopeeSDK {
     this.livestream = new LiveStreamManager(this.config);
     this.ams = new AmsManager(this.config);
     this.video = new VideoManager(this.config);
+    this.principal = new PrincipalManager(this.config);
   }
 
   public getConfig(): ShopeeConfig {
