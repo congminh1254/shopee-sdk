@@ -1162,6 +1162,22 @@
                     "name": "tax_code",
                     "key": "XfimKGp",
                     "description": "The tax code for the invoice."
+                  },
+                  {
+                    "description": "<p>The invoice statuses should be:</p><p>- valid (The invoice sent is valid)</p><p>-&nbsp;pending (System is waiting to receive the invoice)</p>",
+                    "name": "status",
+                    "sample": "valid",
+                    "type": "string",
+                    "required": null,
+                    "key": "tPKeZXJ"
+                  },
+                  {
+                    "description": "<p>It's the failed reason if status is pending<strong></strong></p>",
+                    "name": "pending_reason",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "RcmbDDz"
                   }
                 ],
                 "name": "invoice_data"
@@ -1443,6 +1459,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_order_detail",
   "update_log_list": [
     {
+      "date": "2026-08-06",
+      "content": "Add \"status\" and \"pending_reason\" under \"invoice_data\""
+    },
+    {
       "date": "2026-07-17",
       "content": "add \"line_item_id\" as Response Parameter"
     },
@@ -1457,10 +1477,6 @@
     {
       "date": "2026-05-22",
       "content": "Add active_qty, cancel_request_qty, cancelled_qty, return_requested_qty, returned_qty response parameters"
-    },
-    {
-      "date": "2026-05-22",
-      "content": "Add can_full_cancel_order, can_partial_cancel_order, buyer_preference_for_partial_cancellation response parameters"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/order/get_order_detail",

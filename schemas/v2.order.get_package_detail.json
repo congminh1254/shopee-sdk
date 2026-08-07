@@ -946,6 +946,32 @@
                 "type": "int64",
                 "required": null,
                 "key": "DDrNphz"
+              },
+              {
+                "description": "",
+                "name": "invoice_pending",
+                "sample": "",
+                "type": "object",
+                "required": null,
+                "key": "sYQBEHZ",
+                "children": [
+                  {
+                    "description": "<p>The invoice statuses should be:</p><p>- valid (The invoice sent is valid)</p><p>-&nbsp;pending (System is waiting to receive the invoice)</p>",
+                    "name": "status",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "nddwipH"
+                  },
+                  {
+                    "description": "<p>It's the failed reason if status is pending</p>",
+                    "name": "pending_reason",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "EQJQGmX"
+                  }
+                ]
               }
             ]
           }
@@ -1088,6 +1114,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_package_detail",
   "update_log_list": [
     {
+      "date": "2026-08-06",
+      "content": "Add invoice pending object"
+    },
+    {
       "date": "2026-06-17",
       "content": "Add some new prescription fields including \"is_prescription_item\",\"error_in_fetching_is_prescription_item\",\"prescription_check_status\",\"prescription_reject_reason\" into item list"
     },
@@ -1102,10 +1132,6 @@
     {
       "date": "2026-02-28",
       "content": "Add preparation_end_time and driver_info response parameters"
-    },
-    {
-      "date": "2025-12-26",
-      "content": "Add is_shipment_arranged, status_info_tag, can_split_order, can_unsplit_order, is_pre_order response parameters"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/order/get_package_detail",
