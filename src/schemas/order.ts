@@ -199,6 +199,10 @@ export interface InvoiceData {
   products_total_value: number;
   /** The tax code for the invoice */
   tax_code: string;
+  /** The status of the invoice. possible values: valid, pending */
+  status?: string;
+  /** The failed reason if status is pending */
+  pending_reason?: string;
 }
 
 export interface Order {
@@ -852,6 +856,11 @@ export interface PackageDetail {
   can_partial_cancel_order?: boolean;
   /** Indicates the buyer’s preference for handling out-of-stock items in the order */
   buyer_preference_for_partial_cancellation?: number;
+  /** The invoice pending status details */
+  invoice_pending?: {
+    status: string;
+    pending_reason: string;
+  };
 }
 
 /**
