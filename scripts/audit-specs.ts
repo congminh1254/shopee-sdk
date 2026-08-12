@@ -19,6 +19,11 @@ function main(): void {
   console.log(`- Missing request/response types: ${report.endpointTypeGaps.length}`);
   console.log(`- Request field gaps: ${report.missingRequestFields.length}`);
   console.log(`- Response field gaps: ${report.missingResponseFields.length}`);
+  console.log(`- Extra request fields: ${report.extraRequestFields.length}`);
+  console.log(`- Extra response fields: ${report.extraResponseFields.length}`);
+  console.log(`- Request type mismatches: ${report.requestTypeMismatches.length}`);
+  console.log(`- Response type mismatches: ${report.responseTypeMismatches.length}`);
+  console.log(`- Request optionality mismatches: ${report.requestOptionalityMismatches.length}`);
 
   if (report.missingEndpoints.length > 0) {
     console.log("\nMissing endpoints:");
@@ -58,13 +63,53 @@ function main(): void {
     );
   }
 
+  if (report.extraRequestFields.length > 0) {
+    console.log("\nExtra request fields:");
+    report.extraRequestFields.forEach((item) =>
+      console.log(`  - ${item.endpoint}: ${item.fields.join(", ")}`)
+    );
+  }
+
+  if (report.extraResponseFields.length > 0) {
+    console.log("\nExtra response fields:");
+    report.extraResponseFields.forEach((item) =>
+      console.log(`  - ${item.endpoint}: ${item.fields.join(", ")}`)
+    );
+  }
+
+  if (report.requestTypeMismatches.length > 0) {
+    console.log("\nRequest type mismatches:");
+    report.requestTypeMismatches.forEach((item) =>
+      console.log(`  - ${item.endpoint}: field "${item.field}" expected type ${item.expectedType}, found ${item.actualType}`)
+    );
+  }
+
+  if (report.responseTypeMismatches.length > 0) {
+    console.log("\nResponse type mismatches:");
+    report.responseTypeMismatches.forEach((item) =>
+      console.log(`  - ${item.endpoint}: field "${item.field}" expected type ${item.expectedType}, found ${item.actualType}`)
+    );
+  }
+
+  if (report.requestOptionalityMismatches.length > 0) {
+    console.log("\nRequest optionality mismatches:");
+    report.requestOptionalityMismatches.forEach((item) =>
+      console.log(`  - ${item.endpoint}: field "${item.field}" expected optional=${item.expectedOptional}, found optional=${item.actualOptional}`)
+    );
+  }
+
   const hasFailures =
     report.missingEndpoints.length > 0 ||
     report.uncoveredSdkEndpoints.length > 0 ||
     report.methodMismatches.length > 0 ||
     report.endpointTypeGaps.length > 0 ||
     report.missingRequestFields.length > 0 ||
-    report.missingResponseFields.length > 0;
+    report.missingResponseFields.length > 0 ||
+    report.extraRequestFields.length > 0 ||
+    report.extraResponseFields.length > 0 ||
+    report.requestTypeMismatches.length > 0 ||
+    report.responseTypeMismatches.length > 0 ||
+    report.requestOptionalityMismatches.length > 0;
 
   if (hasFailures) {
     process.exitCode = 1;

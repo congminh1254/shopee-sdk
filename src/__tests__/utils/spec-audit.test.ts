@@ -91,6 +91,100 @@ describe("auditRepositorySpecs", () => {
     expect(report.uncoveredSdkEndpoints).not.toContain("product.get_model");
   });
 
+  it("detects type mismatches, optionality mismatches, and extra fields", () => {
+    const repoRoot = createTempRepo();
+    tempRepos.push(repoRoot);
+
+    writeFile(
+      path.join(repoRoot, "schemas", "v2.product.get_item.json"),
+      JSON.stringify({
+        method: 2,
+        params: {
+          request_params: [
+            { name: "item_id", type: "int64", required: "True" },
+            { name: "query", type: "string", required: "False" },
+          ],
+          response: [
+            {
+              name: "response",
+              children: [
+                { name: "item_list", type: "array" },
+                { name: "status", type: "string" },
+              ],
+            },
+          ],
+        },
+      })
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "managers", "product.manager.ts"),
+      `export class ProductManager {
+        async getItem(params: GetItemParams): Promise<GetItemResponse> {
+          return ShopeeFetch.fetch<GetItemResponse>(this.config, "/product/get_item", {
+            auth: true,
+            method: "GET",
+            params,
+          });
+        }
+      }`
+    );
+
+    writeFile(
+      path.join(repoRoot, "src", "schemas", "product.ts"),
+      `export type GetItemParams = {
+        item_id?: string; // Type mismatch (expected number, found string) & Optionality mismatch (expected required=false, found required=true)
+        query: string;    // Optionality mismatch (expected required=true, found required=false)
+        extra_field: number; // Extra field
+      };
+      export interface GetItemResponse {
+        response: {
+          item_list: number; // Type mismatch (expected array, found number)
+          extra_res: boolean; // Extra field
+        }
+      }`
+    );
+
+    const report = auditRepositorySpecs(repoRoot);
+
+    expect(report.requestTypeMismatches).toEqual([
+      {
+        endpoint: "product.get_item",
+        field: "item_id",
+        expectedType: "number",
+        actualType: "string",
+      },
+    ]);
+    expect(report.requestOptionalityMismatches).toEqual([
+      {
+        endpoint: "product.get_item",
+        field: "item_id",
+        expectedOptional: false,
+        actualOptional: true,
+      },
+      {
+        endpoint: "product.get_item",
+        field: "query",
+        expectedOptional: true,
+        actualOptional: false,
+      },
+    ]);
+    expect(report.extraRequestFields).toEqual([
+      { endpoint: "product.get_item", fields: ["extra_field"] },
+    ]);
+    expect(report.responseTypeMismatches).toEqual([
+      {
+        endpoint: "product.get_item",
+        field: "item_list",
+        expectedType: "array",
+        actualType: "number",
+      },
+    ]);
+    expect(report.extraResponseFields).toEqual([
+      { endpoint: "product.get_item", fields: ["extra_res"] },
+    ]);
+  });
+
   it("detects method mismatches", () => {
     const repoRoot = createTempRepo();
     tempRepos.push(repoRoot);
