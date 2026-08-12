@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.0](https://github.com/congminh1254/shopee-sdk/compare/v1.14.0...v1.15.0) (2026-08-12)
+
+
+### Features
+
+* **order:** add invoice pending and status fields to schemas ([ce14502](https://github.com/congminh1254/shopee-sdk/commit/ce14502643578598dd974e9f8ed1d95b736d3b6f))
+
 ## [1.14.0](https://github.com/congminh1254/shopee-sdk/compare/v1.13.0...v1.14.0) (2026-08-05)
 
 
