@@ -57,6 +57,9 @@ const { runTests, initSdk } = setupIntegrationTest();
         (addResponse.response as any)?.campaign_id || (addResponse.response as any)?.campagin_id;
       expect(testCampaignId).toBeDefined();
 
+      // Sleep for 2 seconds to allow Sandbox propagation
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       try {
         // 2. Retrieve the details of the created campaign
         const getResponse = await sdk.followPrize.getFollowPrizeDetail({
