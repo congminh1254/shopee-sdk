@@ -18,7 +18,6 @@ export * from "./principal.js";
 // The following schemas export conflicting types (such as Item, Model, Order, Status, ResponseOptionalFields), so they are not exported from the main index.
 // Import them directly from their respective files when needed:
 // export * from "./first-mile.js";
-// export * from "./attribute.js";
 // export * from "./account-health.js";
 // export * from "./discount.js";
 // export * from "./follow-prize.js";
