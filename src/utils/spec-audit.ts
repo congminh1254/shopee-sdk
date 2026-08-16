@@ -499,7 +499,7 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
 
     const rawSchema = fs.readFileSync(path.join(schemasDir, schemaFile), "utf-8");
     const schema = JSON.parse(rawSchema) as SpecSchema;
-    
+
     let lookupKey = endpointKey;
     if (endpointKey === "product.get_variations") {
       lookupKey = "product.get_variation_tree";
@@ -596,7 +596,7 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
       }
     }
 
-    const filteredMissingReq = missingReq.filter(field => {
+    const filteredMissingReq = missingReq.filter((field) => {
       const key = `${endpointKey}:${field}`;
       return ![
         "livestream.upload_image:image",
@@ -605,7 +605,7 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
         "media.upload_image:images",
         "media.upload_video_part:part_content",
         "order.upload_invoice_doc:file",
-        "returns.convert_image:upload_image"
+        "returns.convert_image:upload_image",
       ].includes(key);
     });
 

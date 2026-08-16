@@ -148,34 +148,12 @@ export class FileMerger {
     // 4. Combine and check imports
     let finalStatements = [...manualStatements];
 
-    // Ensure BaseResponse and FetchResponse imports exist
-    const hasBaseImport = manualStatements.some(
-      (s) => ts.isImportDeclaration(s) && s.moduleSpecifier.getText().includes("base.js")
-    );
+    // Ensure FetchResponse import exists
     const hasFetchImport = manualStatements.some(
       (s) => ts.isImportDeclaration(s) && s.moduleSpecifier.getText().includes("fetch.js")
     );
 
     const extraImports: ts.Statement[] = [];
-    if (!hasBaseImport) {
-      extraImports.push(
-        ts.factory.createImportDeclaration(
-          undefined,
-          ts.factory.createImportClause(
-            false,
-            undefined,
-            ts.factory.createNamedImports([
-              ts.factory.createImportSpecifier(
-                false,
-                undefined,
-                ts.factory.createIdentifier("BaseResponse")
-              ),
-            ])
-          ),
-          ts.factory.createStringLiteral("./base.js")
-        )
-      );
-    }
     if (!hasFetchImport) {
       extraImports.push(
         ts.factory.createImportDeclaration(
