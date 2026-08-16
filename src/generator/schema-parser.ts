@@ -321,7 +321,12 @@ export function parseSchemaFile(filePath: string): EndpointSpec | null {
   const schema = JSON.parse(raw);
 
   const methodVal = schema.method;
-  const method: "GET" | "POST" = methodVal === 2 ? "GET" : "POST";
+  let method: "GET" | "POST" = methodVal === 2 ? "GET" : "POST";
+  // Issue 227: Shopee spec incorrectly marks get_escrow_detail_batch as GET (method 2),
+  // but live Shopee gateway only accepts POST.
+  if (moduleName === "payment" && endpointName === "get_escrow_detail_batch") {
+    method = "POST";
+  }
   const rawPath = schema.path || `/api/v2/${moduleName}/${endpointName}`;
   const pathVal = rawPath.replace("/api/v2/", "/"); // shopee fetch uses "/module/endpoint" format
 

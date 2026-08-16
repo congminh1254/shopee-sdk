@@ -575,9 +575,9 @@ describe("PaymentManager (Generated Tests)", () => {
         mockConfig,
         "/payment/get_escrow_detail_batch",
         expect.objectContaining({
-          method: "GET",
+          method: "POST",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
+          body: expect.objectContaining(exampleRequest),
         })
       );
 
