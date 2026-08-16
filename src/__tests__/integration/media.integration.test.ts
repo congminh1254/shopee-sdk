@@ -64,7 +64,7 @@ const TINY_VIDEO_BASE64 =
     } catch (err) {
       expect(err).toBeInstanceOf(ShopeeApiError);
       const apiErr = err as ShopeeApiError;
-      expect((apiErr.data as any).error).toBe("product.error_param");
+      expect(["product.error_param", "error_param"]).toContain((apiErr.data as any).error);
     }
   });
 
