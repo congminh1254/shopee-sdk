@@ -211,7 +211,7 @@ const { runTests, initSdk } = setupIntegrationTest();
     expect(addResponse.error).toBe("");
     expect(addResponse.response?.item_id).toBeDefined();
 
-    const createdItemId = addResponse.response.item_id;
+    const createdItemId = addResponse.response!.item_id!;
 
     try {
       // 4. Retrieve item base info to verify creation
