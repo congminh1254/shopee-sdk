@@ -27,7 +27,7 @@ import {
   GetPerformanceDataUpdateTimeResponse,
   GetProductPerformanceResponse,
   GetRecommendedAffiliateListResponse,
-  AmsGetShopPerformanceResponse,
+  GetShopPerformanceResponse,
   GetShopSuggestedRateResponse,
   GetTargetedCampaignAddableProductListResponse,
   GetTargetedCampaignListResponse,
@@ -191,13 +191,13 @@ describe("AmsManager", () => {
             { item_id: 102, suggested_rate: 6.5 },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await amsManager.batchGetProductsSuggestedRate({
         item_id_list: "101,102",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -765,14 +765,14 @@ describe("AmsManager", () => {
 
   describe("terminateTargetedCampaign", () => {
     it("should terminate targeted campaign successfully", async () => {
-      const mockResponse: TerminateTargetedCampaignResponse = {
+      const mockResponse: GetContentPerformanceResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
           campaign_id: 12345,
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -792,14 +792,14 @@ describe("AmsManager", () => {
 
   describe("updateBasicInfoOfTargetedCampaign", () => {
     it("should update basic info of targeted campaign successfully", async () => {
-      const mockResponse: UpdateBasicInfoOfTargetedCampaignResponse = {
+      const mockResponse: GetConversionReportResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
           campaign_id: 12345,
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -944,7 +944,7 @@ describe("AmsManager", () => {
 
   describe("getContentPerformance", () => {
     it("should get content performance successfully", async () => {
-      const mockResponse: GetContentPerformanceResponse = {
+      const mockResponse: GetOptimizationSuggestionProductResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -961,7 +961,7 @@ describe("AmsManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -973,7 +973,7 @@ describe("AmsManager", () => {
         channel: "custom",
         affiliate_id: "aff_123",
         item_id: 456,
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_content_performance", {
         method: "GET",
@@ -995,7 +995,7 @@ describe("AmsManager", () => {
 
   describe("getConversionReport", () => {
     it("should get conversion report successfully", async () => {
-      const mockResponse: GetConversionReportResponse = {
+      const mockResponse: GetProductPerformanceResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1012,7 +1012,7 @@ describe("AmsManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -1020,7 +1020,7 @@ describe("AmsManager", () => {
         item_name: "Awesome Item",
         order_status: 3,
         attr_campaign_id: "campaign_xyz",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_conversion_report", {
         method: "GET",
@@ -1067,7 +1067,7 @@ describe("AmsManager", () => {
 
   describe("getOptimizationSuggestionProduct", () => {
     it("should get optimization suggestion products successfully", async () => {
-      const mockResponse: GetOptimizationSuggestionProductResponse = {
+      const mockResponse: GetValidationListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1083,7 +1083,7 @@ describe("AmsManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -1136,7 +1136,7 @@ describe("AmsManager", () => {
 
   describe("getProductPerformance", () => {
     it("should get product performance successfully", async () => {
-      const mockResponse: GetProductPerformanceResponse = {
+      const mockResponse: QueryAffiliateListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1153,7 +1153,7 @@ describe("AmsManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -1164,7 +1164,7 @@ describe("AmsManager", () => {
         order_type: 1,
         channel: "livestream",
         item_id: 789,
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_product_performance", {
         method: "GET",
@@ -1220,7 +1220,7 @@ describe("AmsManager", () => {
 
   describe("getShopPerformance", () => {
     it("should get shop performance successfully", async () => {
-      const mockResponse: AmsGetShopPerformanceResponse = {
+      const mockResponse: GetShopPerformanceResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1293,7 +1293,7 @@ describe("AmsManager", () => {
   // Validation APIs
   describe("getValidationList", () => {
     it("should get validation list successfully", async () => {
-      const mockResponse: GetValidationListResponse = {
+      const mockResponse: TerminateTargetedCampaignResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1303,7 +1303,7 @@ describe("AmsManager", () => {
             { validation_id: 2, validation_month: "202502", status: "pending" },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -1361,7 +1361,7 @@ describe("AmsManager", () => {
   // Query APIs
   describe("queryAffiliateList", () => {
     it("should query affiliate list by ID successfully", async () => {
-      const mockResponse: QueryAffiliateListResponse = {
+      const mockResponse: UpdateBasicInfoOfTargetedCampaignResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1374,14 +1374,14 @@ describe("AmsManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await amsManager.queryAffiliateList({
         query_type: "id",
         affiliate_id_list: "11301234567",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/query_affiliate_list", {
         method: "GET",
@@ -1396,7 +1396,7 @@ describe("AmsManager", () => {
     });
 
     it("should query affiliate list by name successfully", async () => {
-      const mockResponse: QueryAffiliateListResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1415,7 +1415,7 @@ describe("AmsManager", () => {
       const result = await amsManager.queryAffiliateList({
         query_type: "name",
         name: "Affiliate",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/query_affiliate_list", {
         method: "GET",

@@ -108,7 +108,7 @@ describe("AdsManager", () => {
           auto_top_up: true,
           campaign_surge: false,
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -170,7 +170,7 @@ describe("AdsManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.suggested_keywords).toHaveLength(2);
-      expect(result.response.suggested_keywords[0].keyword).toBe("phone case");
+      expect(result.response.suggested_keywords![0].keyword).toBe("phone case");
     });
 
     it("should handle optional input_keyword parameter", async () => {
@@ -395,7 +395,7 @@ describe("AdsManager", () => {
             ],
           },
         ],
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -403,7 +403,7 @@ describe("AdsManager", () => {
         start_date: "2021-01-01",
         end_date: "2021-01-31",
         campaign_id_list: "1001",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -420,7 +420,7 @@ describe("AdsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response[0].campaign_list[0].campaign_id).toBe(1001);
+      expect(result.response![0]!.campaign_list![0]!.campaign_id).toBe(1001);
     });
   });
 
@@ -468,14 +468,14 @@ describe("AdsManager", () => {
             ],
           },
         ],
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await adsManager.getProductCampaignHourlyPerformance({
         performance_date: "2021-01-01",
         campaign_id_list: "1001",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -490,7 +490,7 @@ describe("AdsManager", () => {
         }
       );
 
-      expect(result.response[0].campaign_list[0].metrics_list[0].hour).toBe(15);
+      expect(result.response![0]!.campaign_list![0]!.metrics_list![0]!.hour).toBe(15);
     });
   });
 
@@ -527,7 +527,7 @@ describe("AdsManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.campaign_list).toHaveLength(3);
-      expect(result.response.campaign_list[0].campaign_id).toBe(1001);
+      expect(result.response.campaign_list![0].campaign_id).toBe(1001);
     });
   });
 
@@ -559,14 +559,14 @@ describe("AdsManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await adsManager.getProductLevelCampaignSettingInfo({
         info_type_list: "1",
         campaign_id_list: "1001",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -582,7 +582,7 @@ describe("AdsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_list[0].common_info?.ad_name).toBe("Summer Sale");
+      expect(result.response.campaign_list![0].common_info?.ad_name).toBe("Summer Sale");
     });
   });
 
@@ -629,7 +629,7 @@ describe("AdsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.exact.value).toBe(5.9);
+      expect(result.response.exact!.value).toBe(5.9);
     });
   });
 
@@ -725,9 +725,11 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          campaign_id: 333444,
-        },
+        response: [
+          {
+            campaign_id: 333444,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -755,7 +757,7 @@ describe("AdsManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_id).toBe(333444);
+      expect(result.response[0].campaign_id).toBe(333444);
     });
 
     it("should create manual product ads with manual bidding and keywords", async () => {
@@ -763,9 +765,11 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          campaign_id: 333445,
-        },
+        response: [
+          {
+            campaign_id: 333445,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -786,7 +790,7 @@ describe("AdsManager", () => {
         enhanced_cpc: true,
       });
 
-      expect(result.response.campaign_id).toBe(333445);
+      expect(result.response[0].campaign_id).toBe(333445);
     });
   });
 
@@ -891,9 +895,11 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          campaign_id: 333444,
-        },
+        response: [
+          {
+            campaign_id: 333444,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -933,7 +939,7 @@ describe("AdsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_id).toBe(333444);
+      expect(result.response[0].campaign_id).toBe(333444);
     });
   });
 
@@ -943,9 +949,11 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          campaign_id: 333444,
-        },
+        response: [
+          {
+            campaign_id: 333444,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -969,7 +977,7 @@ describe("AdsManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_id).toBe(333444);
+      expect(result.response[0].campaign_id).toBe(333444);
     });
   });
 
@@ -1038,7 +1046,7 @@ describe("AdsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.budget.recommended_budget).toBe(150.0);
+      expect(result.response.budget!.recommended_budget).toBe(150.0);
     });
 
     it("should get budget suggestion for manual product ads", async () => {
@@ -1066,7 +1074,7 @@ describe("AdsManager", () => {
         enhanced_cpc: "true",
       });
 
-      expect(result.response.budget.min_budget).toBe(30.0);
+      expect(result.response.budget!.min_budget).toBe(30.0);
     });
   });
 
@@ -1114,7 +1122,7 @@ describe("AdsManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.campaign_id).toBe(111222);
-      expect(result.response.report.roas).toBe(10.0);
+      expect(result.response.report!.roas).toBe(10.0);
     });
   });
 

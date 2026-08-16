@@ -79,9 +79,9 @@ describe("TopPicksManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.collection_list).toHaveLength(1);
-      expect(result.response.collection_list[0].top_picks_id).toBe(62);
-      expect(result.response.collection_list[0].name).toBe("test1234");
-      expect(result.response.collection_list[0].is_activated).toBe(false);
+      expect(result.response.collection_list![0].top_picks_id).toBe(62);
+      expect(result.response.collection_list![0].name).toBe("test1234");
+      expect(result.response.collection_list![0].is_activated).toBe(false);
     });
 
     it("should add an activated top picks collection with multiple items", async () => {
@@ -124,8 +124,8 @@ describe("TopPicksManager", () => {
         is_activated: true,
       });
 
-      expect(result.response.collection_list[0].is_activated).toBe(true);
-      expect(result.response.collection_list[0].item_list).toHaveLength(2);
+      expect(result.response.collection_list![0].is_activated).toBe(true);
+      expect(result.response.collection_list![0].item_list).toHaveLength(2);
     });
   });
 
@@ -196,7 +196,7 @@ describe("TopPicksManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.collection_list).toHaveLength(1);
-      expect(result.response.collection_list[0].top_picks_id).toBe(62);
+      expect(result.response.collection_list![0].top_picks_id).toBe(62);
     });
 
     it("should get list with multiple collections", async () => {
@@ -243,8 +243,8 @@ describe("TopPicksManager", () => {
       const result = await topPicksManager.getTopPicksList();
 
       expect(result.response.collection_list).toHaveLength(2);
-      expect(result.response.collection_list[0].is_activated).toBe(true);
-      expect(result.response.collection_list[1].is_activated).toBe(false);
+      expect(result.response.collection_list![0].is_activated).toBe(true);
+      expect(result.response.collection_list![1].is_activated).toBe(false);
     });
   });
 
@@ -295,7 +295,7 @@ describe("TopPicksManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.collection_list[0].top_picks_id).toBe(62);
+      expect(result.response.collection_list![0].top_picks_id).toBe(62);
     });
 
     it("should update only specific fields of a collection", async () => {
@@ -339,7 +339,7 @@ describe("TopPicksManager", () => {
         },
       });
 
-      expect(result.response.collection_list[0].name).toBe("Updated Name");
+      expect(result.response.collection_list![0].name).toBe("Updated Name");
     });
 
     it("should activate a collection", async () => {
@@ -366,7 +366,7 @@ describe("TopPicksManager", () => {
         is_activated: true,
       });
 
-      expect(result.response.collection_list[0].is_activated).toBe(true);
+      expect(result.response.collection_list![0].is_activated).toBe(true);
     });
   });
 });

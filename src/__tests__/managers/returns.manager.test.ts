@@ -19,12 +19,14 @@ import {
   GetShippingCarrierResponse,
   UploadShippingProofResponse,
   GetReverseTrackingInfoResponse,
+} from "../../schemas/returns.js";
+import {
   ReturnStatus,
   NegotiationStatus,
   SellerProofStatus,
   SellerCompensationStatus,
   ReturnSolution,
-} from "../../schemas/returns.js";
+} from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
 const mockFetch = jest.fn() as any;
@@ -51,7 +53,7 @@ describe("ReturnsManager", () => {
 
   describe("getReturnList", () => {
     it("should get list of returns with pagination", async () => {
-      const mockResponse: GetReturnListResponse = {
+      const mockResponse: GetReturnDetailResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -98,7 +100,7 @@ describe("ReturnsManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -119,7 +121,7 @@ describe("ReturnsManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.more).toBe(true);
       expect(result.response.return).toHaveLength(1);
-      expect(result.response.return[0].return_sn).toBe("200203171852695");
+      expect(result.response.return![0].return_sn).toBe("200203171852695");
     });
 
     it("should get returns with filters", async () => {
@@ -163,7 +165,7 @@ describe("ReturnsManager", () => {
 
   describe("getReturnDetail", () => {
     it("should get detailed information for a specific return", async () => {
-      const mockResponse: GetReturnDetailResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -277,7 +279,7 @@ describe("ReturnsManager", () => {
 
   describe("dispute", () => {
     it("should dispute a return with reason and images", async () => {
-      const mockResponse: DisputeResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -296,7 +298,7 @@ describe("ReturnsManager", () => {
         images: ["https://cf.shopee.sg/file/evidence1.jpg"],
         dispute_reason_id: 1002,
         image_list: ["image_id_1"],
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/dispute", {
         method: "POST",

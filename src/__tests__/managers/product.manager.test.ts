@@ -13,7 +13,7 @@ import {
   UpdateStockResponse,
   DeleteItemResponse,
   UnlistItemResponse,
-  GetProductCategoryResponse,
+  GetCategoryResponse,
   AddItemResponse,
   UpdateItemResponse,
   AddModelResponse,
@@ -76,7 +76,7 @@ describe("ProductManager", () => {
 
   describe("getComment", () => {
     it("should get product comments with required parameters", async () => {
-      const mockResponse: GetCommentResponse = {
+      const mockResponse: GetItemListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -103,7 +103,7 @@ describe("ProductManager", () => {
           more: false,
           next_cursor: "",
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -205,7 +205,7 @@ describe("ProductManager", () => {
 
   describe("getItemList", () => {
     it("should get item list with pagination", async () => {
-      const mockResponse: GetItemListResponse = {
+      const mockResponse: UpdateModelResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -226,7 +226,7 @@ describe("ProductManager", () => {
           has_next_page: false,
           next_offset: 0,
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -236,7 +236,7 @@ describe("ProductManager", () => {
         update_time_from: 1234567800,
         update_time_to: 1234567900,
         item_status: [ItemStatus.NORMAL],
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_list", {
         method: "GET",
@@ -254,7 +254,7 @@ describe("ProductManager", () => {
     });
 
     it("should get item list with minimal parameters", async () => {
-      const mockResponse: GetItemListResponse = {
+      const mockResponse: InitTierVariationResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -264,7 +264,7 @@ describe("ProductManager", () => {
           has_next_page: false,
           next_offset: 0,
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -272,7 +272,7 @@ describe("ProductManager", () => {
         offset: 0,
         page_size: 10,
         item_status: [ItemStatus.NORMAL],
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_list", {
         method: "GET",
@@ -413,6 +413,7 @@ describe("ProductManager", () => {
             {
               model_id: 1001,
               tier_index: [0, 0],
+              promotion_id: 0,
               price_info: [
                 {
                   current_price: 29.99,
@@ -433,6 +434,7 @@ describe("ProductManager", () => {
             {
               model_id: 1002,
               tier_index: [0, 1],
+              promotion_id: 0,
               price_info: [
                 {
                   current_price: 29.99,
@@ -733,6 +735,7 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         warning: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -759,6 +762,7 @@ describe("ProductManager", () => {
         error: "error_item_not_found",
         message: "Item_id is not found.",
         warning: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -888,7 +892,7 @@ describe("ProductManager", () => {
 
   describe("getCategory", () => {
     it("should get category list with default language", async () => {
-      const mockResponse: GetProductCategoryResponse = {
+      const mockResponse: GetCategoryResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -925,7 +929,7 @@ describe("ProductManager", () => {
     });
 
     it("should get category list with specific language", async () => {
-      const mockResponse: GetProductCategoryResponse = {
+      const mockResponse: GetCategoryResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -955,11 +959,11 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.category_list[0].category_name).toBe("电子产品");
+      expect(result.response.category_list![0].category_name).toBe("电子产品");
     });
 
     it("should handle empty category list", async () => {
-      const mockResponse: GetProductCategoryResponse = {
+      const mockResponse: GetCategoryResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1093,7 +1097,7 @@ describe("ProductManager", () => {
 
   describe("updateModel", () => {
     it("should update models successfully", async () => {
-      const mockResponse: UpdateModelResponse = {
+      const mockResponse: SearchItemResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1101,7 +1105,7 @@ describe("ProductManager", () => {
           model_id_list: [1001],
           warning: [],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -1160,7 +1164,7 @@ describe("ProductManager", () => {
 
   describe("initTierVariation", () => {
     it("should initialize tier variations", async () => {
-      const mockResponse: InitTierVariationResponse = {
+      const mockResponse: GetItemListByContentDiagnosisResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1168,7 +1172,7 @@ describe("ProductManager", () => {
           model_id_list: [2001, 2002],
           warning: [],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -1192,7 +1196,7 @@ describe("ProductManager", () => {
             normal_stock: 50,
           },
         ],
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/init_tier_variation", {
         method: "POST",
@@ -1213,6 +1217,7 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         warning: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1241,7 +1246,7 @@ describe("ProductManager", () => {
 
   describe("searchItem", () => {
     it("should search items successfully", async () => {
-      const mockResponse: SearchItemResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1265,7 +1270,7 @@ describe("ProductManager", () => {
         item_name: "Test Product",
         offset: 0,
         page_size: 20,
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/search_item", {
         method: "GET",
@@ -1318,7 +1323,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.item_list[0].sale_info.sale).toBe(100);
+      expect(result.response.item_list![0].sale_info.sale).toBe(100);
     });
   });
 
@@ -1900,7 +1905,7 @@ describe("ProductManager", () => {
 
   describe("getItemListByContentDiagnosis", () => {
     it("should get items filtered by content diagnosis", async () => {
-      const mockResponse: GetItemListByContentDiagnosisResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1924,7 +1929,7 @@ describe("ProductManager", () => {
         status: "PASSED",
         offset: 0,
         page_size: 20,
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1956,7 +1961,7 @@ describe("ProductManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await productManager.addKitItem({ item_setting: "data" });
+      const result = await productManager.addKitItem({ item_setting: "data" } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/add_kit_item", {
         method: "POST",
@@ -2078,7 +2083,7 @@ describe("ProductManager", () => {
       const result = await productManager.updateSipItemPrice({
         item_id: 123456,
         sip_item_price: 99.99,
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/update_sip_item_price", {
         method: "POST",
@@ -2109,7 +2114,7 @@ describe("ProductManager", () => {
       const result = await productManager.getSizeChartList({
         category_id: 12345,
         page_size: 10,
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_size_chart_list", {
         method: "GET",
@@ -2135,7 +2140,7 @@ describe("ProductManager", () => {
 
       const result = await productManager.getSizeChartDetail({
         size_chart_id: "chart1",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_size_chart_detail", {
         method: "GET",
@@ -2570,7 +2575,7 @@ describe("ProductManager", () => {
         category_id: 100001,
       });
 
-      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_variations", {
+      expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_variation_tree", {
         method: "GET",
         auth: true,
         params: {

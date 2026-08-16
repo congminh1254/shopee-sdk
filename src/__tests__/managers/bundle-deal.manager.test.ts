@@ -14,9 +14,8 @@ import {
   GetBundleDealListResponse,
   UpdateBundleDealResponse,
   UpdateBundleDealItemResponse,
-  BundleDealRuleType,
-  BundleDealTimeStatus,
 } from "../../schemas/bundle-deal.js";
+import { BundleDealRuleType, BundleDealTimeStatus } from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
 const mockFetch = jest.fn() as any;
@@ -356,7 +355,7 @@ describe("BundleDealManager", () => {
         response: {
           item_list: [1111, 2222, 3333, 4444],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 

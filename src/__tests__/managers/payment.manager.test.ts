@@ -152,8 +152,8 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.order_income.escrow_amount).toBe(22.5);
-      expect(result.response.order_income.items).toHaveLength(1);
+      expect(result.response.order_income!.escrow_amount).toBe(22.5);
+      expect(result.response.order_income!.items).toHaveLength(1);
       expect(result.response.buyer_user_name).toBe("testbuyer123");
     });
 
@@ -262,8 +262,8 @@ describe("PaymentManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.return_order_sn_list).toHaveLength(2);
-      expect(result.response.order_income.seller_discount).toBe(2.0);
-      expect(result.response.order_income.drc_adjustable_refund).toBe(2.0);
+      expect(result.response.order_income!.seller_discount).toBe(2.0);
+      expect(result.response.order_income!.drc_adjustable_refund).toBe(2.0);
     });
 
     it("should handle orders with no escrow detail breakdown", async () => {
@@ -362,9 +362,9 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.order_income.escrow_amount).toBe(15.0);
-      expect(result.response.order_income.final_shipping_fee).toBe(0.0);
-      expect(result.response.order_income.commission_fee).toBe(0.0);
+      expect(result.response.order_income!.escrow_amount).toBe(15.0);
+      expect(result.response.order_income!.final_shipping_fee).toBe(0.0);
+      expect(result.response.order_income!.commission_fee).toBe(0.0);
     });
   });
 
@@ -457,12 +457,12 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.order_income.th_import_duty).toBe(1.5);
-      expect(result.response.order_income.withholding_vat_tax).toBe(0.3);
-      expect(result.response.order_income.withholding_pit_tax).toBe(0.2);
-      expect(result.response.order_income.seller_order_processing_fee).toBe(0.5);
-      expect(result.response.order_income.net_commission_fee).toBe(2.5);
-      expect(result.response.order_income.net_service_fee).toBe(0.4);
+      expect(result.response.order_income!.th_import_duty).toBe(1.5);
+      expect(result.response.order_income!.withholding_vat_tax).toBe(0.3);
+      expect(result.response.order_income!.withholding_pit_tax).toBe(0.2);
+      expect(result.response.order_income!.seller_order_processing_fee).toBe(0.5);
+      expect(result.response.order_income!.net_commission_fee).toBe(2.5);
+      expect(result.response.order_income!.net_service_fee).toBe(0.4);
     });
   });
 
@@ -587,7 +587,7 @@ describe("PaymentManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -604,11 +604,11 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.order_income_list).toHaveLength(1);
+      expect((result.response as any).order_income_list).toHaveLength(1);
     });
 
     it("should include th_import_duty in batch escrow order income", async () => {
-      const mockResponse: GetEscrowDetailBatchResponse = {
+      const mockResponse: GetIncomeReportResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -697,7 +697,7 @@ describe("PaymentManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -706,17 +706,17 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.order_income_list[0].order_income.th_import_duty).toBe(0.75);
-      expect(result.response.order_income_list[0].order_income.fbs_fee).toBe(0.5);
+      expect((result.response as any).order_income_list[0].order_income.th_import_duty).toBe(0.75);
+      expect((result.response as any).order_income_list[0].order_income.fbs_fee).toBe(0.5);
       expect(
-        result.response.order_income_list[0].order_income.net_commission_fee_info_list
+        (result.response as any).order_income_list[0].order_income.net_commission_fee_info_list
       ).toHaveLength(1);
       expect(
-        result.response.order_income_list[0].order_income.net_service_fee_info_list
+        (result.response as any).order_income_list[0].order_income.net_service_fee_info_list
       ).toHaveLength(1);
-      expect(result.response.order_income_list[0].order_income.seller_product_rebate?.amount).toBe(
-        0.1
-      );
+      expect(
+        (result.response as any).order_income_list[0].order_income.seller_product_rebate?.amount
+      ).toBe(0.1);
     });
   });
 
@@ -980,7 +980,7 @@ describe("PaymentManager", () => {
 
   describe("getIncomeReport", () => {
     it("should get income report status and download link", async () => {
-      const mockResponse: GetIncomeReportResponse = {
+      const mockResponse: GetIncomeStatementResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -990,13 +990,13 @@ describe("PaymentManager", () => {
           url: "https://example.com/report.csv",
           create_time: 1651680000,
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.getIncomeReport({
         income_report_id: "REPORT_123456",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_report", {
         method: "GET",
@@ -1050,7 +1050,7 @@ describe("PaymentManager", () => {
 
   describe("getIncomeStatement", () => {
     it("should get income statement status and download link", async () => {
-      const mockResponse: GetIncomeStatementResponse = {
+      const mockResponse: GetPayoutInfoResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1060,13 +1060,13 @@ describe("PaymentManager", () => {
           url: "https://example.com/statement.pdf",
           create_time: 1651680000,
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.getIncomeStatement({
         income_statement_id: "STATEMENT_123456",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_statement", {
         method: "GET",
@@ -1177,7 +1177,7 @@ describe("PaymentManager", () => {
 
   describe("getPayoutInfo", () => {
     it("should get payout info for CB sellers", async () => {
-      const mockResponse: GetPayoutInfoResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1218,7 +1218,7 @@ describe("PaymentManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.payout_list).toHaveLength(1);
-      expect(result.response.payout_list[0].payout_fee).toBe(25.0);
+      expect(result.response.payout_list![0].payout_fee).toBe(25.0);
     });
   });
 
@@ -1244,6 +1244,7 @@ describe("PaymentManager", () => {
             page_size: 10,
           },
         },
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1284,6 +1285,7 @@ describe("PaymentManager", () => {
           pending_amount: 4010,
           released_amount: 1545,
         },
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);

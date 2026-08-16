@@ -30,7 +30,7 @@ const { runTests, initSdk } = setupIntegrationTest();
       );
 
       if (leafCategories.length > 0) {
-        testCategoryId = leafCategories[0].category_id;
+        testCategoryId = leafCategories[0].category_id!;
       }
 
       // Dynamically traverse leaf categories to find one with no mandatory attributes (limit to 10 for speed)
@@ -39,10 +39,10 @@ const { runTests, initSdk } = setupIntegrationTest();
           const attrResponse = await sdk.product.getAttributeTree({ category_id: cat.category_id });
           if (attrResponse.response && attrResponse.response.attribute_list) {
             const hasMandatory = attrResponse.response.attribute_list.some(
-              (attr) => attr.is_mandatory
+              (attr: any) => attr.is_mandatory
             );
             if (!hasMandatory) {
-              testCategoryId = cat.category_id;
+              testCategoryId = cat.category_id!;
               break;
             }
           }
@@ -57,7 +57,7 @@ const { runTests, initSdk } = setupIntegrationTest();
     const itemsResponse = await sdk.product.getItemList({
       offset: 0,
       page_size: 10,
-      item_status: [ItemStatus.NORMAL],
+      item_status: ItemStatus.NORMAL as any,
     });
 
     expect(itemsResponse).toBeDefined();
@@ -149,7 +149,7 @@ const { runTests, initSdk } = setupIntegrationTest();
     const logisticsResponse = await sdk.logistics.getChannelList();
     expect(logisticsResponse).toBeDefined();
     expect(logisticsResponse.response?.logistics_channel_list).toBeDefined();
-    const enabledChannel = logisticsResponse.response.logistics_channel_list.find(
+    const enabledChannel = logisticsResponse.response.logistics_channel_list!.find(
       (ch) => ch.enabled
     );
 
@@ -186,7 +186,7 @@ const { runTests, initSdk } = setupIntegrationTest();
         package_height: 10,
       },
       image: {
-        image_id_list: [imageId],
+        image_id_list: [imageId!],
       },
       logistic_info: [
         {

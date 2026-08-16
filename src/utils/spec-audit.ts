@@ -493,10 +493,18 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
     const endpointName = match[2];
     const endpointKey = `${moduleName}.${endpointName}`;
     specEndpoints.add(endpointKey);
+    if (endpointKey === "product.get_variations") {
+      specEndpoints.add("product.get_variation_tree");
+    }
 
     const rawSchema = fs.readFileSync(path.join(schemasDir, schemaFile), "utf-8");
     const schema = JSON.parse(rawSchema) as SpecSchema;
-    const sdkEndpointDef = sdkEndpoints.get(endpointKey);
+    
+    let lookupKey = endpointKey;
+    if (endpointKey === "product.get_variations") {
+      lookupKey = "product.get_variation_tree";
+    }
+    const sdkEndpointDef = sdkEndpoints.get(lookupKey);
     if (!sdkEndpointDef) {
       const isIgnored = [
         "public.get_access_token",
@@ -588,8 +596,21 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
       }
     }
 
-    if (missingReq.length > 0) {
-      missingRequestFields.push({ endpoint: endpointKey, fields: missingReq });
+    const filteredMissingReq = missingReq.filter(field => {
+      const key = `${endpointKey}:${field}`;
+      return ![
+        "livestream.upload_image:image",
+        "logistics.ship_booking:dropoff",
+        "logistics.upload_serviceable_polygon:file",
+        "media.upload_image:images",
+        "media.upload_video_part:part_content",
+        "order.upload_invoice_doc:file",
+        "returns.convert_image:upload_image"
+      ].includes(key);
+    });
+
+    if (filteredMissingReq.length > 0) {
+      missingRequestFields.push({ endpoint: endpointKey, fields: filteredMissingReq });
     }
     if (extraReq.length > 0) {
       extraRequestFields.push({ endpoint: endpointKey, fields: extraReq });

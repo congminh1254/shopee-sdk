@@ -38,7 +38,7 @@ const { runTests, initSdk } = setupIntegrationTest();
         expect(listResponse.error || "").toBe("");
         expect(Array.isArray(listResponse.response?.shop_categorys)).toBe(true);
 
-        const createdCat = listResponse.response.shop_categorys.find(
+        const createdCat = listResponse.response.shop_categorys!.find(
           (cat) => cat.shop_category_id === testCategoryId
         );
         expect(createdCat).toBeDefined();

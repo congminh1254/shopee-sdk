@@ -18,11 +18,13 @@ import {
   UpdateAddOnDealResponse,
   UpdateAddOnDealMainItemResponse,
   UpdateAddOnDealSubItemResponse,
+} from "../../schemas/add-on-deal.js";
+import {
   AddOnDealPromotionType,
   AddOnDealPromotionStatus,
   AddOnDealMainItemStatus,
   AddOnDealSubItemStatus,
-} from "../../schemas/add-on-deal.js";
+} from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
 const mockFetch = jest.fn() as any;
@@ -263,7 +265,7 @@ describe("AddOnDealManager", () => {
       });
 
       expect(result.response.sub_item_list).toHaveLength(1);
-      expect(result.response.sub_item_list[0].fail_error).toBe("error_unknown");
+      expect(result.response.sub_item_list![0].fail_error).toBe("error_unknown");
     });
   });
 
@@ -724,7 +726,7 @@ describe("AddOnDealManager", () => {
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.main_item_list[0].status).toBe(AddOnDealMainItemStatus.DELETED);
+      expect(result.response.main_item_list![0].status).toBe(AddOnDealMainItemStatus.DELETED);
     });
   });
 

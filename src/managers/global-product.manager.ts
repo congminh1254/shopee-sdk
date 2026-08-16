@@ -1,234 +1,88 @@
-import { BaseManager } from "./base.manager.js";
-import { ShopeeConfig } from "../sdk.js";
-import { ShopeeFetch } from "../fetch.js";
 import {
-  GetGlobalCategoryParams,
-  GetGlobalCategoryResponse,
-  GetGlobalItemListParams,
-  GetGlobalItemListResponse,
-  GetGlobalItemInfoParams,
-  GetGlobalItemInfoResponse,
-  GetGlobalModelListParams,
-  GetGlobalModelListResponse,
-  AddGlobalItemParams,
+  AddGlobalItemRequest,
   AddGlobalItemResponse,
-  UpdateGlobalItemParams,
-  UpdateGlobalItemResponse,
-  DeleteGlobalItemParams,
-  DeleteGlobalItemResponse,
-  AddGlobalModelParams,
+  AddGlobalModelRequest,
   AddGlobalModelResponse,
-  UpdateGlobalModelParams,
-  UpdateGlobalModelResponse,
-  DeleteGlobalModelParams,
-  DeleteGlobalModelResponse,
-  InitGlobalTierVariationParams,
-  InitGlobalTierVariationResponse,
-  UpdateGlobalTierVariationParams,
-  UpdateGlobalTierVariationResponse,
-  UpdateGlobalStockParams,
-  UpdateGlobalStockResponse,
-  UpdateGlobalPriceParams,
-  UpdateGlobalPriceResponse,
-  GetGlobalAttributeTreeParams,
-  GetGlobalAttributeTreeResponse,
-  GetGlobalBrandListParams,
-  GetGlobalBrandListResponse,
-  GlobalCategoryRecommendParams,
-  GlobalCategoryRecommendResponse,
-  GetGlobalItemLimitParams,
-  GetGlobalItemLimitResponse,
-  GetPublishableShopParams,
-  GetPublishableShopResponse,
-  GetShopPublishableStatusParams,
-  GetShopPublishableStatusResponse,
-  CreatePublishTaskParams,
+  CategoryRecommendRequest,
+  CategoryRecommendResponse,
+  CreatePublishTaskRequest,
   CreatePublishTaskResponse,
-  GetPublishTaskResultParams,
-  GetPublishTaskResultResponse,
-  GetPublishedListParams,
-  GetPublishedListResponse,
-  GetGlobalItemIdParams,
+  DeleteGlobalItemRequest,
+  DeleteGlobalItemResponse,
+  DeleteGlobalModelRequest,
+  DeleteGlobalModelResponse,
+  GetAttributeTreeRequest,
+  GetAttributeTreeResponse,
+  GetBrandListRequest,
+  GetBrandListResponse,
+  GetCategoryRequest,
+  GetCategoryResponse,
+  GetGlobalItemIdRequest,
   GetGlobalItemIdResponse,
-  GetGlobalRecommendAttributeParams,
-  GetGlobalRecommendAttributeResponse,
-  SearchGlobalAttributeValueListParams,
-  SearchGlobalAttributeValueListResponse,
-  GetGlobalVariationsParams,
-  GetGlobalVariationsResponse,
-  SetSyncFieldParams,
-  SetSyncFieldResponse,
-  GetLocalAdjustmentRateParams,
+  GetGlobalItemInfoRequest,
+  GetGlobalItemInfoResponse,
+  GetGlobalItemLimitRequest,
+  GetGlobalItemLimitResponse,
+  GetGlobalItemListRequest,
+  GetGlobalItemListResponse,
+  GetGlobalModelListRequest,
+  GetGlobalModelListResponse,
+  GetLocalAdjustmentRateRequest,
   GetLocalAdjustmentRateResponse,
-  UpdateLocalAdjustmentRateParams,
-  UpdateLocalAdjustmentRateResponse,
-  GetGlobalSizeChartListParams,
-  GetGlobalSizeChartListResponse,
-  GetGlobalSizeChartDetailParams,
-  GetGlobalSizeChartDetailResponse,
-  UpdateSizeChartParams,
-  UpdateSizeChartResponse,
-  SupportSizeChartParams,
+  GetPublishTaskResultRequest,
+  GetPublishTaskResultResponse,
+  GetPublishableShopRequest,
+  GetPublishableShopResponse,
+  GetPublishedListRequest,
+  GetPublishedListResponse,
+  GetRecommendAttributeRequest,
+  GetRecommendAttributeResponse,
+  GetShopPublishableStatusRequest,
+  GetShopPublishableStatusResponse,
+  GetSizeChartDetailRequest,
+  GetSizeChartDetailResponse,
+  GetSizeChartListRequest,
+  GetSizeChartListResponse,
+  GetVariationsRequest,
+  GetVariationsResponse,
+  InitTierVariationRequest,
+  InitTierVariationResponse,
+  SearchGlobalAttributeValueListRequest,
+  SearchGlobalAttributeValueListResponse,
+  SetSyncFieldRequest,
+  SetSyncFieldResponse,
+  SupportSizeChartRequest,
   SupportSizeChartResponse,
+  UpdateGlobalItemRequest,
+  UpdateGlobalItemResponse,
+  UpdateGlobalModelRequest,
+  UpdateGlobalModelResponse,
+  UpdateLocalAdjustmentRateRequest,
+  UpdateLocalAdjustmentRateResponse,
+  UpdatePriceRequest,
+  UpdatePriceResponse,
+  UpdateSizeChartRequest,
+  UpdateSizeChartResponse,
+  UpdateStockRequest,
+  UpdateStockResponse,
+  UpdateTierVariationRequest,
+  UpdateTierVariationResponse,
 } from "../schemas/global-product.js";
-
-/**
- * GlobalProductManager handles all global product operations for China mainland and Korean sellers.
- * Global products allow sellers to manage products centrally and publish them to multiple shops.
- */
+import { ShopeeConfig } from "../sdk.js";
+import { BaseManager } from "./base.manager.js";
+import { ShopeeFetch } from "../fetch.js";
 export class GlobalProductManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
   /**
-   * Get global category list
+   * Add global item. Only for China mainland sellers using China Seller Centre(CNSC). More details in https://shopee.cn/cooperate/46/53/926.
    *
-   * Use this API to get global category list. Only for China mainland sellers and Korean sellers.
-   *
-   * @param params - Parameters for getting category list
-   * @param params.language - Display language. Should be one of "zh-hans", "en"
-   *
-   * @returns Promise resolving to category list response
-   *
-   * @example
-   * ```typescript
-   * const categories = await sdk.globalProduct.getCategory({
-   *   language: "en"
-   * });
-   * ```
+   * @param {AddGlobalItemRequest} params Request parameters
+   * @returns {Promise<AddGlobalItemResponse>} Promise resolving to the response
    */
-  async getCategory(params: GetGlobalCategoryParams = {}): Promise<GetGlobalCategoryResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalCategoryResponse>(
-      this.config,
-      "/global_product/get_category",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get global item list
-   *
-   * Use this API to get global item id list. Only for China mainland sellers and Korean sellers.
-   *
-   * @param params - Parameters for getting global item list
-   * @param params.page_size - The size of one page. Limit is [1,50]
-   * @param params.offset - Specifies the starting entry of data to return
-   * @param params.update_time_from - The starting date range for retrieving items
-   * @param params.update_time_to - The ending date range for retrieving items
-   *
-   * @returns Promise resolving to global item list response
-   *
-   * @example
-   * ```typescript
-   * const items = await sdk.globalProduct.getGlobalItemList({
-   *   page_size: 20,
-   *   update_time_from: 1611311600,
-   *   update_time_to: 1611311631
-   * });
-   * ```
-   */
-  async getGlobalItemList(params: GetGlobalItemListParams): Promise<GetGlobalItemListResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalItemListResponse>(
-      this.config,
-      "/global_product/get_global_item_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get global item information
-   *
-   * Use this API to get global item detailed information.
-   *
-   * @param params - Parameters for getting global item info
-   * @param params.global_item_id_list - List of global item IDs to retrieve (max 50)
-   *
-   * @returns Promise resolving to global item info response
-   *
-   * @example
-   * ```typescript
-   * const itemInfo = await sdk.globalProduct.getGlobalItemInfo({
-   *   global_item_id_list: [123456, 789012]
-   * });
-   * ```
-   */
-  async getGlobalItemInfo(params: GetGlobalItemInfoParams): Promise<GetGlobalItemInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalItemInfoResponse>(
-      this.config,
-      "/global_product/get_global_item_info",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get global model list
-   *
-   * Use this API to get global model list for a global item.
-   *
-   * @param params - Parameters for getting global model list
-   * @param params.global_item_id - Global item ID
-   *
-   * @returns Promise resolving to global model list response
-   *
-   * @example
-   * ```typescript
-   * const models = await sdk.globalProduct.getGlobalModelList({
-   *   global_item_id: 123456
-   * });
-   * ```
-   */
-  async getGlobalModelList(params: GetGlobalModelListParams): Promise<GetGlobalModelListResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalModelListResponse>(
-      this.config,
-      "/global_product/get_global_model_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Add a global item
-   *
-   * Use this API to add a new global item.
-   *
-   * @param params - Parameters for adding a global item
-   * @returns Promise resolving to add global item response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.addGlobalItem({
-   *   category_id: 100182,
-   *   global_item_name: "Test Product",
-   *   description: "This is a test product",
-   *   weight: 1.0,
-   *   image: {
-   *     image_id_list: ["image123"]
-   *   }
-   * });
-   * ```
-   */
-  async addGlobalItem(params: AddGlobalItemParams): Promise<AddGlobalItemResponse> {
-    const response = await ShopeeFetch.fetch<AddGlobalItemResponse>(
+  public async addGlobalItem(params?: AddGlobalItemRequest): Promise<AddGlobalItemResponse> {
+    return ShopeeFetch.fetch<AddGlobalItemResponse>(
       this.config,
       "/global_product/add_global_item",
       {
@@ -237,90 +91,15 @@ export class GlobalProductManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Update a global item
+   * Add global model. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to update an existing global item.
-   *
-   * @param params - Parameters for updating a global item
-   * @returns Promise resolving to update global item response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.updateGlobalItem({
-   *   global_item_id: 123456,
-   *   global_item_name: "Updated Product Name",
-   *   description: "Updated description"
-   * });
-   * ```
+   * @param {AddGlobalModelRequest} params Request parameters
+   * @returns {Promise<AddGlobalModelResponse>} Promise resolving to the response
    */
-  async updateGlobalItem(params: UpdateGlobalItemParams): Promise<UpdateGlobalItemResponse> {
-    const response = await ShopeeFetch.fetch<UpdateGlobalItemResponse>(
-      this.config,
-      "/global_product/update_global_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Delete a global item
-   *
-   * Use this API to delete a global item.
-   *
-   * @param params - Parameters for deleting a global item
-   * @param params.global_item_id - Global item ID to delete
-   *
-   * @returns Promise resolving to delete global item response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.deleteGlobalItem({
-   *   global_item_id: 123456
-   * });
-   * ```
-   */
-  async deleteGlobalItem(params: DeleteGlobalItemParams): Promise<DeleteGlobalItemResponse> {
-    const response = await ShopeeFetch.fetch<DeleteGlobalItemResponse>(
-      this.config,
-      "/global_product/delete_global_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Add global models
-   *
-   * Use this API to add models to a global item.
-   *
-   * @param params - Parameters for adding global models
-   * @returns Promise resolving to add global model response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.addGlobalModel({
-   *   global_item_id: 123456,
-   *   model_list: [{
-   *     tier_index: [0, 1],
-   *     model_sku: "SKU-001"
-   *   }]
-   * });
-   * ```
-   */
-  async addGlobalModel(params: AddGlobalModelParams): Promise<AddGlobalModelResponse> {
-    const response = await ShopeeFetch.fetch<AddGlobalModelResponse>(
+  public async addGlobalModel(params?: AddGlobalModelRequest): Promise<AddGlobalModelResponse> {
+    return ShopeeFetch.fetch<AddGlobalModelResponse>(
       this.config,
       "/global_product/add_global_model",
       {
@@ -329,420 +108,36 @@ export class GlobalProductManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Update global models
+   * Recommend category by item name. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to update existing global models.
-   *
-   * @param params - Parameters for updating global models
-   * @returns Promise resolving to update global model response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.updateGlobalModel({
-   *   global_item_id: 123456,
-   *   model_list: [{
-   *     global_model_id: 789,
-   *     model_sku: "SKU-002"
-   *   }]
-   * });
-   * ```
+   * @param {CategoryRecommendRequest} params Request parameters
+   * @returns {Promise<CategoryRecommendResponse>} Promise resolving to the response
    */
-  async updateGlobalModel(params: UpdateGlobalModelParams): Promise<UpdateGlobalModelResponse> {
-    const response = await ShopeeFetch.fetch<UpdateGlobalModelResponse>(
-      this.config,
-      "/global_product/update_global_model",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Delete global models
-   *
-   * Use this API to delete global models.
-   *
-   * @param params - Parameters for deleting global models
-   * @returns Promise resolving to delete global model response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.deleteGlobalModel({
-   *   global_item_id: 123456,
-   *   global_model_id_list: [789, 790]
-   * });
-   * ```
-   */
-  async deleteGlobalModel(params: DeleteGlobalModelParams): Promise<DeleteGlobalModelResponse> {
-    const response = await ShopeeFetch.fetch<DeleteGlobalModelResponse>(
-      this.config,
-      "/global_product/delete_global_model",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Initialize tier variation
-   *
-   * Use this API to initialize tier variation for a global item.
-   *
-   * @param params - Parameters for initializing tier variation
-   * @returns Promise resolving to init tier variation response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.initTierVariation({
-   *   global_item_id: 123456,
-   *   tier_variation: [{
-   *     name: "Color",
-   *     option_list: [
-   *       { option: "Red" },
-   *       { option: "Blue" }
-   *     ]
-   *   }],
-   *   model_list: [{
-   *     tier_index: [0],
-   *     model_sku: "SKU-RED"
-   *   }]
-   * });
-   * ```
-   */
-  async initTierVariation(
-    params: InitGlobalTierVariationParams
-  ): Promise<InitGlobalTierVariationResponse> {
-    const response = await ShopeeFetch.fetch<InitGlobalTierVariationResponse>(
-      this.config,
-      "/global_product/init_tier_variation",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Update tier variation
-   *
-   * Use this API to update tier variation for a global item.
-   *
-   * @param params - Parameters for updating tier variation
-   * @returns Promise resolving to update tier variation response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.updateTierVariation({
-   *   global_item_id: 123456,
-   *   tier_variation: [{
-   *     name: "Size",
-   *     option_list: [
-   *       { option: "S" },
-   *       { option: "M" },
-   *       { option: "L" }
-   *     ]
-   *   }]
-   * });
-   * ```
-   */
-  async updateTierVariation(
-    params: UpdateGlobalTierVariationParams
-  ): Promise<UpdateGlobalTierVariationResponse> {
-    const response = await ShopeeFetch.fetch<UpdateGlobalTierVariationResponse>(
-      this.config,
-      "/global_product/update_tier_variation",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Update global item stock
-   *
-   * Use this API to update stock for global items or models.
-   *
-   * @param params - Parameters for updating stock
-   * @returns Promise resolving to update stock response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.updateStock({
-   *   global_item_id: 123456,
-   *   stock_list: [{
-   *     shop_id: 67890,
-   *     normal_stock: 100
-   *   }]
-   * });
-   * ```
-   */
-  async updateStock(params: UpdateGlobalStockParams): Promise<UpdateGlobalStockResponse> {
-    const response = await ShopeeFetch.fetch<UpdateGlobalStockResponse>(
-      this.config,
-      "/global_product/update_stock",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Update global item price
-   *
-   * Use this API to update price for global items or models.
-   *
-   * @param params - Parameters for updating price
-   * @returns Promise resolving to update price response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.updatePrice({
-   *   global_item_id: 123456,
-   *   price_list: [{
-   *     shop_id: 67890,
-   *     original_price: 29.99
-   *   }]
-   * });
-   * ```
-   */
-  async updatePrice(params: UpdateGlobalPriceParams): Promise<UpdateGlobalPriceResponse> {
-    const response = await ShopeeFetch.fetch<UpdateGlobalPriceResponse>(
-      this.config,
-      "/global_product/update_price",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get attribute tree
-   *
-   * Use this API to get attribute tree for a category.
-   *
-   * @param params - Parameters for getting attribute tree
-   * @param params.category_id - Category ID
-   * @param params.language - Language for attribute names
-   *
-   * @returns Promise resolving to attribute tree response
-   *
-   * @example
-   * ```typescript
-   * const attributes = await sdk.globalProduct.getAttributeTree({
-   *   category_id: 100182,
-   *   language: "en"
-   * });
-   * ```
-   */
-  async getAttributeTree(
-    params: GetGlobalAttributeTreeParams
-  ): Promise<GetGlobalAttributeTreeResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalAttributeTreeResponse>(
-      this.config,
-      "/global_product/get_attribute_tree",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get brand list
-   *
-   * Use this API to get brand list for a category.
-   *
-   * @param params - Parameters for getting brand list
-   * @returns Promise resolving to brand list response
-   *
-   * @example
-   * ```typescript
-   * const brands = await sdk.globalProduct.getBrandList({
-   *   category_id: 100182,
-   *   page_size: 20
-   * });
-   * ```
-   */
-  async getBrandList(params: GetGlobalBrandListParams): Promise<GetGlobalBrandListResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalBrandListResponse>(
-      this.config,
-      "/global_product/get_brand_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get category recommendation
-   *
-   * Use this API to get category recommendations based on item name.
-   *
-   * @param params - Parameters for getting category recommendation
-   * @param params.global_item_name - Global item name
-   *
-   * @returns Promise resolving to category recommendation response
-   *
-   * @example
-   * ```typescript
-   * const recommendations = await sdk.globalProduct.categoryRecommend({
-   *   global_item_name: "iPhone Case"
-   * });
-   * ```
-   */
-  async categoryRecommend(
-    params: GlobalCategoryRecommendParams
-  ): Promise<GlobalCategoryRecommendResponse> {
-    const response = await ShopeeFetch.fetch<GlobalCategoryRecommendResponse>(
+  public async categoryRecommend(
+    params?: CategoryRecommendRequest
+  ): Promise<CategoryRecommendResponse> {
+    return ShopeeFetch.fetch<CategoryRecommendResponse>(
       this.config,
       "/global_product/category_recommend",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get global item limit
+   * Create publish task for global item. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to get limits for a category (max images, videos, name length, etc.).
-   *
-   * @param params - Parameters for getting global item limit
-   * @param params.category_id - Category ID
-   *
-   * @returns Promise resolving to global item limit response
-   *
-   * @example
-   * ```typescript
-   * const limits = await sdk.globalProduct.getGlobalItemLimit({
-   *   category_id: 100182
-   * });
-   * ```
+   * @param {CreatePublishTaskRequest} params Request parameters
+   * @returns {Promise<CreatePublishTaskResponse>} Promise resolving to the response
    */
-  async getGlobalItemLimit(params: GetGlobalItemLimitParams): Promise<GetGlobalItemLimitResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalItemLimitResponse>(
-      this.config,
-      "/global_product/get_global_item_limit",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get publishable shop list
-   *
-   * Use this API to get list of shops where a global item can be published.
-   *
-   * @param params - Parameters for getting publishable shops
-   * @param params.global_item_id - Global item ID
-   *
-   * @returns Promise resolving to publishable shop list response
-   *
-   * @example
-   * ```typescript
-   * const shops = await sdk.globalProduct.getPublishableShop({
-   *   global_item_id: 123456
-   * });
-   * ```
-   */
-  async getPublishableShop(params: GetPublishableShopParams): Promise<GetPublishableShopResponse> {
-    const response = await ShopeeFetch.fetch<GetPublishableShopResponse>(
-      this.config,
-      "/global_product/get_publishable_shop",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get shop publishable status
-   *
-   * Use this API to check if shops can publish a specific global item.
-   *
-   * @param params - Parameters for getting shop publishable status
-   * @returns Promise resolving to shop publishable status response
-   *
-   * @example
-   * ```typescript
-   * const status = await sdk.globalProduct.getShopPublishableStatus({
-   *   global_item_id: 123456,
-   *   shop_id_list: [67890, 67891]
-   * });
-   * ```
-   */
-  async getShopPublishableStatus(
-    params: GetShopPublishableStatusParams
-  ): Promise<GetShopPublishableStatusResponse> {
-    const response = await ShopeeFetch.fetch<GetShopPublishableStatusResponse>(
-      this.config,
-      "/global_product/get_shop_publishable_status",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Create publish task
-   *
-   * Use this API to create a task to publish a global item to multiple shops.
-   *
-   * @param params - Parameters for creating publish task
-   * @returns Promise resolving to create publish task response
-   *
-   * @example
-   * ```typescript
-   * const task = await sdk.globalProduct.createPublishTask({
-   *   global_item_id: 123456,
-   *   shop_list: [
-   *     { shop_id: 67890 },
-   *     { shop_id: 67891 }
-   *   ]
-   * });
-   * ```
-   */
-  async createPublishTask(params: CreatePublishTaskParams): Promise<CreatePublishTaskResponse> {
-    const response = await ShopeeFetch.fetch<CreatePublishTaskResponse>(
+  public async createPublishTask(
+    params?: CreatePublishTaskRequest
+  ): Promise<CreatePublishTaskResponse> {
+    return ShopeeFetch.fetch<CreatePublishTaskResponse>(
       this.config,
       "/global_product/create_publish_task",
       {
@@ -751,156 +146,386 @@ export class GlobalProductManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get publish task result
+   * Delete global item. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to get the result of a publish task.
-   *
-   * @param params - Parameters for getting publish task result
-   * @param params.publish_task_id - Publish task ID
-   *
-   * @returns Promise resolving to publish task result response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.getPublishTaskResult({
-   *   publish_task_id: "task123"
-   * });
-   * ```
+   * @param {DeleteGlobalItemRequest} params Request parameters
+   * @returns {Promise<DeleteGlobalItemResponse>} Promise resolving to the response
    */
-  async getPublishTaskResult(
-    params: GetPublishTaskResultParams
-  ): Promise<GetPublishTaskResultResponse> {
-    const response = await ShopeeFetch.fetch<GetPublishTaskResultResponse>(
+  public async deleteGlobalItem(
+    params?: DeleteGlobalItemRequest
+  ): Promise<DeleteGlobalItemResponse> {
+    return ShopeeFetch.fetch<DeleteGlobalItemResponse>(
       this.config,
-      "/global_product/get_publish_task_result",
+      "/global_product/delete_global_item",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Delete global model. Only for China mainland sellers and Korean sellers.
+   *
+   * @param {DeleteGlobalModelRequest} params Request parameters
+   * @returns {Promise<DeleteGlobalModelResponse>} Promise resolving to the response
+   */
+  public async deleteGlobalModel(
+    params?: DeleteGlobalModelRequest
+  ): Promise<DeleteGlobalModelResponse> {
+    return ShopeeFetch.fetch<DeleteGlobalModelResponse>(
+      this.config,
+      "/global_product/delete_global_model",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Get the mtsku attribute trees for categories
+   *
+   * @param {GetAttributeTreeRequest} params Request parameters
+   * @returns {Promise<GetAttributeTreeResponse>} Promise resolving to the response
+   */
+  public async getAttributeTree(
+    params?: GetAttributeTreeRequest
+  ): Promise<GetAttributeTreeResponse> {
+    return ShopeeFetch.fetch<GetAttributeTreeResponse>(
+      this.config,
+      "/global_product/get_attribute_tree",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get published list
+   * Use this call to get a list of brand. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to get list of shops where a global item has been published.
-   *
-   * @param params - Parameters for getting published list
-   * @param params.global_item_id - Global item ID
-   *
-   * @returns Promise resolving to published list response
-   *
-   * @example
-   * ```typescript
-   * const published = await sdk.globalProduct.getPublishedList({
-   *   global_item_id: 123456
-   * });
-   * ```
+   * @param {GetBrandListRequest} params Request parameters
+   * @returns {Promise<GetBrandListResponse>} Promise resolving to the response
    */
-  async getPublishedList(params: GetPublishedListParams): Promise<GetPublishedListResponse> {
-    const response = await ShopeeFetch.fetch<GetPublishedListResponse>(
-      this.config,
-      "/global_product/get_published_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
+  public async getBrandList(params?: GetBrandListRequest): Promise<GetBrandListResponse> {
+    return ShopeeFetch.fetch<GetBrandListResponse>(this.config, "/global_product/get_brand_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
   }
-
   /**
-   * Get global item ID by shop item ID
+   * Get global category. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to get the global item ID from a shop item ID.
-   *
-   * @param params - Parameters for getting global item ID
-   * @param params.shop_id - Shop ID
-   * @param params.item_id - Item ID in the shop
-   *
-   * @returns Promise resolving to global item ID response
-   *
-   * @example
-   * ```typescript
-   * const globalId = await sdk.globalProduct.getGlobalItemId({
-   *   shop_id: 67890,
-   *   item_id: 123456
-   * });
-   * ```
+   * @param {GetCategoryRequest} params Request parameters
+   * @returns {Promise<GetCategoryResponse>} Promise resolving to the response
    */
-  async getGlobalItemId(params: GetGlobalItemIdParams): Promise<GetGlobalItemIdResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalItemIdResponse>(
+  public async getCategory(params?: GetCategoryRequest): Promise<GetCategoryResponse> {
+    return ShopeeFetch.fetch<GetCategoryResponse>(this.config, "/global_product/get_category", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Get get_global_item_id by item_id. Only for China mainland sellers and Korean sellers.
+   *
+   * @param {GetGlobalItemIdRequest} params Request parameters
+   * @returns {Promise<GetGlobalItemIdResponse>} Promise resolving to the response
+   */
+  public async getGlobalItemId(params?: GetGlobalItemIdRequest): Promise<GetGlobalItemIdResponse> {
+    return ShopeeFetch.fetch<GetGlobalItemIdResponse>(
       this.config,
       "/global_product/get_global_item_id",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get recommended attributes
+   * Get global item info.Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to get recommended attributes for a global item.
-   *
-   * @param params - Parameters for getting recommended attributes
-   * @param params.global_item_id - Global item ID
-   *
-   * @returns Promise resolving to recommended attributes response
-   *
-   * @example
-   * ```typescript
-   * const attributes = await sdk.globalProduct.getRecommendAttribute({
-   *   global_item_id: 123456
-   * });
-   * ```
+   * @param {GetGlobalItemInfoRequest} params Request parameters
+   * @returns {Promise<GetGlobalItemInfoResponse>} Promise resolving to the response
    */
-  async getRecommendAttribute(
-    params: GetGlobalRecommendAttributeParams
-  ): Promise<GetGlobalRecommendAttributeResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalRecommendAttributeResponse>(
+  public async getGlobalItemInfo(
+    params?: GetGlobalItemInfoRequest
+  ): Promise<GetGlobalItemInfoResponse> {
+    return ShopeeFetch.fetch<GetGlobalItemInfoResponse>(
+      this.config,
+      "/global_product/get_global_item_info",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: [
+          "response.global_item_list.create_time",
+          "response.global_item_list.update_time",
+        ],
+      }
+    );
+  }
+  /**
+   * Get global item upload control.
+   *
+   * @param {GetGlobalItemLimitRequest} params Request parameters
+   * @returns {Promise<GetGlobalItemLimitResponse>} Promise resolving to the response
+   */
+  public async getGlobalItemLimit(
+    params?: GetGlobalItemLimitRequest
+  ): Promise<GetGlobalItemLimitResponse> {
+    return ShopeeFetch.fetch<GetGlobalItemLimitResponse>(
+      this.config,
+      "/global_product/get_global_item_limit",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get global item id list. Only for China mainland sellers and Korean sellers.
+   *
+   * @param {GetGlobalItemListRequest} params Request parameters
+   * @returns {Promise<GetGlobalItemListResponse>} Promise resolving to the response
+   */
+  public async getGlobalItemList(
+    params?: GetGlobalItemListRequest
+  ): Promise<GetGlobalItemListResponse> {
+    return ShopeeFetch.fetch<GetGlobalItemListResponse>(
+      this.config,
+      "/global_product/get_global_item_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: [
+          "update_time_from",
+          "update_time_to",
+          "response.global_item_list.update_time",
+        ],
+      }
+    );
+  }
+  /**
+   * Get global model list. Only for China mainland sellers and Korean sellers.
+   *
+   * @param {GetGlobalModelListRequest} params Request parameters
+   * @returns {Promise<GetGlobalModelListResponse>} Promise resolving to the response
+   */
+  public async getGlobalModelList(
+    params?: GetGlobalModelListRequest
+  ): Promise<GetGlobalModelListResponse> {
+    return ShopeeFetch.fetch<GetGlobalModelListResponse>(
+      this.config,
+      "/global_product/get_global_model_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Retrieves the adjustment rate that converts CB stock price into local-warehouse price for a specific shop.
+   *
+   * @param {GetLocalAdjustmentRateRequest} params Request parameters
+   * @returns {Promise<GetLocalAdjustmentRateResponse>} Promise resolving to the response
+   */
+  public async getLocalAdjustmentRate(
+    params?: GetLocalAdjustmentRateRequest
+  ): Promise<GetLocalAdjustmentRateResponse> {
+    return ShopeeFetch.fetch<GetLocalAdjustmentRateResponse>(
+      this.config,
+      "/global_product/get_local_adjustment_rate",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get publish task result for global item. Only for China mainland sellers and Korean sellers.
+   *
+   * @param {GetPublishTaskResultRequest} params Request parameters
+   * @returns {Promise<GetPublishTaskResultResponse>} Promise resolving to the response
+   */
+  public async getPublishTaskResult(
+    params?: GetPublishTaskResultRequest
+  ): Promise<GetPublishTaskResultResponse> {
+    return ShopeeFetch.fetch<GetPublishTaskResultResponse>(
+      this.config,
+      "/global_product/get_publish_task_result",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get publishable shop list for global item. Only for China mainland sellers and Korean sellers.
+   *
+   * @param {GetPublishableShopRequest} params Request parameters
+   * @returns {Promise<GetPublishableShopResponse>} Promise resolving to the response
+   */
+  public async getPublishableShop(
+    params?: GetPublishableShopRequest
+  ): Promise<GetPublishableShopResponse> {
+    return ShopeeFetch.fetch<GetPublishableShopResponse>(
+      this.config,
+      "/global_product/get_publishable_shop",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get published item list of global item. Only for China mainland sellers and Korean sellers.
+   *
+   * @param {GetPublishedListRequest} params Request parameters
+   * @returns {Promise<GetPublishedListResponse>} Promise resolving to the response
+   */
+  public async getPublishedList(
+    params?: GetPublishedListRequest
+  ): Promise<GetPublishedListResponse> {
+    return ShopeeFetch.fetch<GetPublishedListResponse>(
+      this.config,
+      "/global_product/get_published_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get recommend attributes. Only for China mainland sellers and Korean sellers.
+   *
+   * @param {GetRecommendAttributeRequest} params Request parameters
+   * @returns {Promise<GetRecommendAttributeResponse>} Promise resolving to the response
+   */
+  public async getRecommendAttribute(
+    params?: GetRecommendAttributeRequest
+  ): Promise<GetRecommendAttributeResponse> {
+    return ShopeeFetch.fetch<GetRecommendAttributeResponse>(
       this.config,
       "/global_product/get_recommend_attribute",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Search global attribute value list
+   * Get publishable shop list for global item in pages.
    *
-   * Use this API to search for attribute values.
-   *
-   * @param params - Parameters for searching attribute values
-   * @returns Promise resolving to search attribute value list response
-   *
-   * @example
-   * ```typescript
-   * const values = await sdk.globalProduct.searchGlobalAttributeValueList({
-   *   category_id: 100182,
-   *   attribute_id: 1000,
-   *   keyword: "cotton"
-   * });
-   * ```
+   * @param {GetShopPublishableStatusRequest} params Request parameters
+   * @returns {Promise<GetShopPublishableStatusResponse>} Promise resolving to the response
    */
-  async searchGlobalAttributeValueList(
-    params: SearchGlobalAttributeValueListParams
+  public async getShopPublishableStatus(
+    params?: GetShopPublishableStatusRequest
+  ): Promise<GetShopPublishableStatusResponse> {
+    return ShopeeFetch.fetch<GetShopPublishableStatusResponse>(
+      this.config,
+      "/global_product/get_shop_publishable_status",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get new size chart detail
+   *
+   * @param {GetSizeChartDetailRequest} params Request parameters
+   * @returns {Promise<GetSizeChartDetailResponse>} Promise resolving to the response
+   */
+  public async getSizeChartDetail(
+    params?: GetSizeChartDetailRequest
+  ): Promise<GetSizeChartDetailResponse> {
+    return ShopeeFetch.fetch<GetSizeChartDetailResponse>(
+      this.config,
+      "/global_product/get_size_chart_detail",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get size chart list
+   *
+   * @param {GetSizeChartListRequest} params Request parameters
+   * @returns {Promise<GetSizeChartListResponse>} Promise resolving to the response
+   */
+  public async getSizeChartList(
+    params?: GetSizeChartListRequest
+  ): Promise<GetSizeChartListResponse> {
+    return ShopeeFetch.fetch<GetSizeChartListResponse>(
+      this.config,
+      "/global_product/get_size_chart_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get the standardized tier variation defined by Shopee, which is currently a three-layer tree structure. The top layer is variations, the second layer is groups, groups are used to divide options, and the third layer is options.
+   *
+   * @param {GetVariationsRequest} params Request parameters
+   * @returns {Promise<GetVariationsResponse>} Promise resolving to the response
+   */
+  public async getVariations(params?: GetVariationsRequest): Promise<GetVariationsResponse> {
+    return ShopeeFetch.fetch<GetVariationsResponse>(this.config, "/global_product/get_variations", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Only for China mainland sellers and Korean sellers. If you only define color, it is one tier, if you define color and size, it is two tier. Support two tier structures at most. This API can change no tier to one tier, no tier to two tier, one tier to two tier, two tier to one tier, one tier to no tier, two tier to no tier. Please create variants after an interval of 5 seconds after creating an item, as there may be a delay.
+   *
+   * @param {InitTierVariationRequest} params Request parameters
+   * @returns {Promise<InitTierVariationResponse>} Promise resolving to the response
+   */
+  public async initTierVariation(
+    params?: InitTierVariationRequest
+  ): Promise<InitTierVariationResponse> {
+    return ShopeeFetch.fetch<InitTierVariationResponse>(
+      this.config,
+      "/global_product/init_tier_variation",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * this api is for searching attribute value list for attribute with support_search_value flag
+   *
+   * @param {SearchGlobalAttributeValueListRequest} params Request parameters
+   * @returns {Promise<SearchGlobalAttributeValueListResponse>} Promise resolving to the response
+   */
+  public async searchGlobalAttributeValueList(
+    params?: SearchGlobalAttributeValueListRequest
   ): Promise<SearchGlobalAttributeValueListResponse> {
-    const response = await ShopeeFetch.fetch<SearchGlobalAttributeValueListResponse>(
+    return ShopeeFetch.fetch<SearchGlobalAttributeValueListResponse>(
       this.config,
       "/global_product/search_global_attribute_value_list",
       {
@@ -909,125 +534,87 @@ export class GlobalProductManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get variations
+   * Set auto sync field. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to get variation information for a global item.
-   *
-   * @param params - Parameters for getting variations
-   * @param params.global_item_id - Global item ID
-   *
-   * @returns Promise resolving to variations response
-   *
-   * @example
-   * ```typescript
-   * const variations = await sdk.globalProduct.getVariations({
-   *   global_item_id: 123456
-   * });
-   * ```
+   * @param {SetSyncFieldRequest} params Request parameters
+   * @returns {Promise<SetSyncFieldResponse>} Promise resolving to the response
    */
-  async getVariations(params: GetGlobalVariationsParams): Promise<GetGlobalVariationsResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalVariationsResponse>(
+  public async setSyncField(params?: SetSyncFieldRequest): Promise<SetSyncFieldResponse> {
+    return ShopeeFetch.fetch<SetSyncFieldResponse>(this.config, "/global_product/set_sync_field", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Get category support size chart. Only for China mainland sellers and Korean sellers.
+   *
+   * @param {SupportSizeChartRequest} params Request parameters
+   * @returns {Promise<SupportSizeChartResponse>} Promise resolving to the response
+   */
+  public async supportSizeChart(
+    params?: SupportSizeChartRequest
+  ): Promise<SupportSizeChartResponse> {
+    return ShopeeFetch.fetch<SupportSizeChartResponse>(
       this.config,
-      "/global_product/get_variations",
+      "/global_product/support_size_chart",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Set sync field
+   * Update global item. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to set which fields should sync between global item and shop items.
-   *
-   * @param params - Parameters for setting sync field
-   * @returns Promise resolving to set sync field response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.setSyncField({
-   *   global_item_id: 123456,
-   *   shop_list: [{
-   *     shop_id: 67890,
-   *     sync_field_list: ["name", "price", "stock"]
-   *   }]
-   * });
-   * ```
+   * @param {UpdateGlobalItemRequest} params Request parameters
+   * @returns {Promise<UpdateGlobalItemResponse>} Promise resolving to the response
    */
-  async setSyncField(params: SetSyncFieldParams): Promise<SetSyncFieldResponse> {
-    const response = await ShopeeFetch.fetch<SetSyncFieldResponse>(
+  public async updateGlobalItem(
+    params?: UpdateGlobalItemRequest
+  ): Promise<UpdateGlobalItemResponse> {
+    return ShopeeFetch.fetch<UpdateGlobalItemResponse>(
       this.config,
-      "/global_product/set_sync_field",
+      "/global_product/update_global_item",
       {
         method: "POST",
         auth: true,
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get local adjustment rate
+   * Update global model. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to get local price adjustment rates for shops.
-   *
-   * @param params - Parameters for getting local adjustment rate
-   * @returns Promise resolving to local adjustment rate response
-   *
-   * @example
-   * ```typescript
-   * const rates = await sdk.globalProduct.getLocalAdjustmentRate({
-   *   global_item_id: 123456,
-   *   shop_id_list: [67890, 67891]
-   * });
-   * ```
+   * @param {UpdateGlobalModelRequest} params Request parameters
+   * @returns {Promise<UpdateGlobalModelResponse>} Promise resolving to the response
    */
-  async getLocalAdjustmentRate(
-    params: GetLocalAdjustmentRateParams
-  ): Promise<GetLocalAdjustmentRateResponse> {
-    const response = await ShopeeFetch.fetch<GetLocalAdjustmentRateResponse>(
+  public async updateGlobalModel(
+    params?: UpdateGlobalModelRequest
+  ): Promise<UpdateGlobalModelResponse> {
+    return ShopeeFetch.fetch<UpdateGlobalModelResponse>(
       this.config,
-      "/global_product/get_local_adjustment_rate",
+      "/global_product/update_global_model",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Update local adjustment rate
+   * A multiplier that automatically converts your CB stock price into the local-warehouse price. It ensures your local inventory prices reflect regional costs, currency factors, and margin targets.
    *
-   * Use this API to update local price adjustment rates for shops.
-   *
-   * @param params - Parameters for updating local adjustment rate
-   * @returns Promise resolving to update local adjustment rate response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.updateLocalAdjustmentRate({
-   *   global_item_id: 123456,
-   *   adjustment_rate_list: [{
-   *     shop_id: 67890,
-   *     adjustment_rate: 10.5
-   *   }]
-   * });
-   * ```
+   * @param {UpdateLocalAdjustmentRateRequest} params Request parameters
+   * @returns {Promise<UpdateLocalAdjustmentRateResponse>} Promise resolving to the response
    */
-  async updateLocalAdjustmentRate(
-    params: UpdateLocalAdjustmentRateParams
+  public async updateLocalAdjustmentRate(
+    params?: UpdateLocalAdjustmentRateRequest
   ): Promise<UpdateLocalAdjustmentRateResponse> {
-    const response = await ShopeeFetch.fetch<UpdateLocalAdjustmentRateResponse>(
+    return ShopeeFetch.fetch<UpdateLocalAdjustmentRateResponse>(
       this.config,
       "/global_product/update_local_adjustment_rate",
       {
@@ -1036,96 +623,28 @@ export class GlobalProductManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get size chart list
+   * Update global price. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to get list of size charts.
-   *
-   * @param params - Parameters for getting size chart list
-   * @returns Promise resolving to size chart list response
-   *
-   * @example
-   * ```typescript
-   * const sizeCharts = await sdk.globalProduct.getSizeChartList({
-   *   page_size: 20
-   * });
-   * ```
+   * @param {UpdatePriceRequest} params Request parameters
+   * @returns {Promise<UpdatePriceResponse>} Promise resolving to the response
    */
-  async getSizeChartList(
-    params: GetGlobalSizeChartListParams
-  ): Promise<GetGlobalSizeChartListResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalSizeChartListResponse>(
-      this.config,
-      "/global_product/get_size_chart_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
+  public async updatePrice(params?: UpdatePriceRequest): Promise<UpdatePriceResponse> {
+    return ShopeeFetch.fetch<UpdatePriceResponse>(this.config, "/global_product/update_price", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
-
   /**
-   * Get size chart detail
+   * Update size chart for global item. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to get detailed information of a size chart.
-   *
-   * @param params - Parameters for getting size chart detail
-   * @param params.size_chart_id - Size chart ID
-   *
-   * @returns Promise resolving to size chart detail response
-   *
-   * @example
-   * ```typescript
-   * const sizeChart = await sdk.globalProduct.getSizeChartDetail({
-   *   size_chart_id: "chart123"
-   * });
-   * ```
+   * @param {UpdateSizeChartRequest} params Request parameters
+   * @returns {Promise<UpdateSizeChartResponse>} Promise resolving to the response
    */
-  async getSizeChartDetail(
-    params: GetGlobalSizeChartDetailParams
-  ): Promise<GetGlobalSizeChartDetailResponse> {
-    const response = await ShopeeFetch.fetch<GetGlobalSizeChartDetailResponse>(
-      this.config,
-      "/global_product/get_size_chart_detail",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Update size chart
-   *
-   * Use this API to update a size chart.
-   *
-   * @param params - Parameters for updating size chart
-   * @returns Promise resolving to update size chart response
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.globalProduct.updateSizeChart({
-   *   size_chart_id: "chart123",
-   *   size_chart_name: "Updated Size Chart",
-   *   size_chart_table: {
-   *     header: ["Size", "Chest", "Length"],
-   *     rows: [
-   *       ["S", "90cm", "60cm"],
-   *       ["M", "95cm", "65cm"]
-   *     ]
-   *   }
-   * });
-   * ```
-   */
-  async updateSizeChart(params: UpdateSizeChartParams): Promise<UpdateSizeChartResponse> {
-    const response = await ShopeeFetch.fetch<UpdateSizeChartResponse>(
+  public async updateSizeChart(params?: UpdateSizeChartRequest): Promise<UpdateSizeChartResponse> {
+    return ShopeeFetch.fetch<UpdateSizeChartResponse>(
       this.config,
       "/global_product/update_size_chart",
       {
@@ -1134,36 +653,37 @@ export class GlobalProductManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Check size chart support
+   * Update global stock. Only for China mainland sellers and Korean sellers.
    *
-   * Use this API to check if a category supports size charts.
-   *
-   * @param params - Parameters for checking size chart support
-   * @param params.category_id - Category ID
-   *
-   * @returns Promise resolving to size chart support response
-   *
-   * @example
-   * ```typescript
-   * const support = await sdk.globalProduct.supportSizeChart({
-   *   category_id: 100182
-   * });
-   * ```
+   * @param {UpdateStockRequest} params Request parameters
+   * @returns {Promise<UpdateStockResponse>} Promise resolving to the response
    */
-  async supportSizeChart(params: SupportSizeChartParams): Promise<SupportSizeChartResponse> {
-    const response = await ShopeeFetch.fetch<SupportSizeChartResponse>(
+  public async updateStock(params?: UpdateStockRequest): Promise<UpdateStockResponse> {
+    return ShopeeFetch.fetch<UpdateStockResponse>(this.config, "/global_product/update_stock", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Update global product tier variation. Only for China mainland sellers and Korean sellers.This api can only be used without changing the tier structure, you can add options, delete options, and update the option image by this api.
+   *
+   * @param {UpdateTierVariationRequest} params Request parameters
+   * @returns {Promise<UpdateTierVariationResponse>} Promise resolving to the response
+   */
+  public async updateTierVariation(
+    params?: UpdateTierVariationRequest
+  ): Promise<UpdateTierVariationResponse> {
+    return ShopeeFetch.fetch<UpdateTierVariationResponse>(
       this.config,
-      "/global_product/support_size_chart",
+      "/global_product/update_tier_variation",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
-    return response;
   }
 }

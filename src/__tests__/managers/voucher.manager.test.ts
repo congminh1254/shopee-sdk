@@ -10,8 +10,8 @@ import {
   UpdateVoucherResponse,
   GetVoucherResponse,
   GetVoucherListResponse,
-  VoucherStatus,
 } from "../../schemas/voucher.js";
+import { VoucherStatus } from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
 const mockFetch = jest.fn() as any;
@@ -504,7 +504,7 @@ describe("VoucherManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.voucher_list).toHaveLength(1);
-      expect(result.response.voucher_list[0].voucher_type).toBe(1);
+      expect(result.response.voucher_list![0].voucher_type).toBe(1);
     });
   });
 });

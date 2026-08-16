@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
-import { FollowPrizeStatus, FollowPrizeRewardType } from "../../schemas/follow-prize.js";
+import { FollowPrizeStatus, FollowPrizeRewardType } from "../utils/legacy-enums.js";
 
 const { runTests, initSdk } = setupIntegrationTest();
 

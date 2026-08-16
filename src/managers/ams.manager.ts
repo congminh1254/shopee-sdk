@@ -1,196 +1,173 @@
+import {
+  AddAllProductsToOpenCampaignRequest,
+  AddAllProductsToOpenCampaignResponse,
+  BatchAddProductsToOpenCampaignRequest,
+  BatchAddProductsToOpenCampaignResponse,
+  BatchEditProductsOpenCampaignSettingRequest,
+  BatchEditProductsOpenCampaignSettingResponse,
+  BatchGetProductsSuggestedRateRequest,
+  BatchGetProductsSuggestedRateResponse,
+  BatchRemoveProductsOpenCampaignSettingRequest,
+  BatchRemoveProductsOpenCampaignSettingResponse,
+  CreateNewTargetedCampaignRequest,
+  CreateNewTargetedCampaignResponse,
+  EditAffiliateListOfTargetedCampaignRequest,
+  EditAffiliateListOfTargetedCampaignResponse,
+  EditAllProductsOpenCampaignSettingRequest,
+  EditAllProductsOpenCampaignSettingResponse,
+  EditProductListOfTargetedCampaignRequest,
+  EditProductListOfTargetedCampaignResponse,
+  GetAffiliatePerformanceRequest,
+  GetAffiliatePerformanceResponse,
+  GetAutoAddNewProductToggleStatusRequest,
+  GetAutoAddNewProductToggleStatusResponse,
+  GetCampaignKeyMetricsPerformanceRequest,
+  GetCampaignKeyMetricsPerformanceResponse,
+  GetContentPerformanceRequest,
+  GetContentPerformanceResponse,
+  GetConversionReportRequest,
+  GetConversionReportResponse,
+  GetManagedAffiliateListRequest,
+  GetManagedAffiliateListResponse,
+  GetOpenCampaignAddedProductRequest,
+  GetOpenCampaignAddedProductResponse,
+  GetOpenCampaignBatchTaskResultRequest,
+  GetOpenCampaignBatchTaskResultResponse,
+  GetOpenCampaignNotAddedProductRequest,
+  GetOpenCampaignNotAddedProductResponse,
+  GetOpenCampaignPerformanceRequest,
+  GetOpenCampaignPerformanceResponse,
+  GetOptimizationSuggestionProductRequest,
+  GetOptimizationSuggestionProductResponse,
+  GetPerformanceDataUpdateTimeRequest,
+  GetPerformanceDataUpdateTimeResponse,
+  GetProductPerformanceRequest,
+  GetProductPerformanceResponse,
+  GetRecommendedAffiliateListRequest,
+  GetRecommendedAffiliateListResponse,
+  GetShopPerformanceRequest,
+  GetShopPerformanceResponse,
+  GetShopSuggestedRateRequest,
+  GetShopSuggestedRateResponse,
+  GetTargetedCampaignAddableProductListRequest,
+  GetTargetedCampaignAddableProductListResponse,
+  GetTargetedCampaignListRequest,
+  GetTargetedCampaignListResponse,
+  GetTargetedCampaignPerformanceRequest,
+  GetTargetedCampaignPerformanceResponse,
+  GetTargetedCampaignSettingsRequest,
+  GetTargetedCampaignSettingsResponse,
+  GetValidationListRequest,
+  GetValidationListResponse,
+  GetValidationReportRequest,
+  GetValidationReportResponse,
+  QueryAffiliateListRequest,
+  QueryAffiliateListResponse,
+  RemoveAllProductsOpenCampaignSettingRequest,
+  RemoveAllProductsOpenCampaignSettingResponse,
+  TerminateTargetedCampaignRequest,
+  TerminateTargetedCampaignResponse,
+  UpdateAutoAddNewProductSettingRequest,
+  UpdateAutoAddNewProductSettingResponse,
+  UpdateBasicInfoOfTargetedCampaignRequest,
+  UpdateBasicInfoOfTargetedCampaignResponse,
+} from "../schemas/ams.js";
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
-import {
-  AddAllProductsToOpenCampaignParams,
-  AddAllProductsToOpenCampaignResponse,
-  BatchAddProductsToOpenCampaignParams,
-  BatchAddProductsToOpenCampaignResponse,
-  BatchEditProductsOpenCampaignSettingParams,
-  BatchEditProductsOpenCampaignSettingResponse,
-  BatchGetProductsSuggestedRateParams,
-  BatchGetProductsSuggestedRateResponse,
-  BatchRemoveProductsOpenCampaignSettingParams,
-  BatchRemoveProductsOpenCampaignSettingResponse,
-  CreateNewTargetedCampaignParams,
-  CreateNewTargetedCampaignResponse,
-  EditAffiliateListOfTargetedCampaignParams,
-  EditAffiliateListOfTargetedCampaignResponse,
-  EditAllProductsOpenCampaignSettingParams,
-  EditAllProductsOpenCampaignSettingResponse,
-  EditProductListOfTargetedCampaignParams,
-  EditProductListOfTargetedCampaignResponse,
-  GetAffiliatePerformanceParams,
-  GetAffiliatePerformanceResponse,
-  GetAutoAddNewProductToggleStatusResponse,
-  GetCampaignKeyMetricsPerformanceParams,
-  GetCampaignKeyMetricsPerformanceResponse,
-  GetContentPerformanceParams,
-  GetContentPerformanceResponse,
-  GetConversionReportParams,
-  GetConversionReportResponse,
-  GetManagedAffiliateListParams,
-  GetManagedAffiliateListResponse,
-  GetOpenCampaignAddedProductParams,
-  GetOpenCampaignAddedProductResponse,
-  GetOpenCampaignBatchTaskResultParams,
-  GetOpenCampaignBatchTaskResultResponse,
-  GetOpenCampaignNotAddedProductParams,
-  GetOpenCampaignNotAddedProductResponse,
-  GetOpenCampaignPerformanceParams,
-  GetOpenCampaignPerformanceResponse,
-  GetOptimizationSuggestionProductParams,
-  GetOptimizationSuggestionProductResponse,
-  GetPerformanceDataUpdateTimeParams,
-  GetPerformanceDataUpdateTimeResponse,
-  GetProductPerformanceParams,
-  GetProductPerformanceResponse,
-  GetRecommendedAffiliateListParams,
-  GetRecommendedAffiliateListResponse,
-  AmsGetShopPerformanceParams,
-  AmsGetShopPerformanceResponse,
-  GetShopSuggestedRateResponse,
-  GetTargetedCampaignAddableProductListParams,
-  GetTargetedCampaignAddableProductListResponse,
-  GetTargetedCampaignListParams,
-  GetTargetedCampaignListResponse,
-  GetTargetedCampaignPerformanceParams,
-  GetTargetedCampaignPerformanceResponse,
-  GetTargetedCampaignSettingsParams,
-  GetTargetedCampaignSettingsResponse,
-  GetValidationListResponse,
-  GetValidationReportParams,
-  GetValidationReportResponse,
-  QueryAffiliateListParams,
-  QueryAffiliateListResponse,
-  RemoveAllProductsOpenCampaignSettingResponse,
-  TerminateTargetedCampaignParams,
-  TerminateTargetedCampaignResponse,
-  UpdateAutoAddNewProductSettingParams,
-  UpdateAutoAddNewProductSettingResponse,
-  UpdateBasicInfoOfTargetedCampaignParams,
-  UpdateBasicInfoOfTargetedCampaignResponse,
-} from "../schemas/ams.js";
-
-/**
- * AMS (Affiliate Marketing Solution) Manager
- *
- * This manager provides methods for managing affiliate marketing campaigns,
- * including open campaigns, targeted campaigns, performance tracking, and affiliate management.
- */
 export class AmsManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
-  // ============================================================================
-  // Open Campaign APIs
-  // ============================================================================
-
   /**
-   * Add all products to open campaign
+   * Add all eligible products into the Open Campaign. We will only return the general error that caused the whole task failure, without returning the specific error for each product in the v2.ams.get_open_campaign_batch_task_result API. If you want to get the result for each products, you can use v2.ams.batch_add_products_to_open_campaign by pagination manually, or check the product status by using the GET API after the task progress turn to 100%.
    *
-   * Use this API to add all shop products to the open campaign with specified commission rate and period.
-   *
-   * @param params - Parameters for adding all products
-   * @returns Promise with task ID for checking batch task result
+   * @param {AddAllProductsToOpenCampaignRequest} params Request parameters
+   * @returns {Promise<AddAllProductsToOpenCampaignResponse>} Promise resolving to the response
    */
-  async addAllProductsToOpenCampaign(
-    params: AddAllProductsToOpenCampaignParams
+  public async addAllProductsToOpenCampaign(
+    params?: AddAllProductsToOpenCampaignRequest
   ): Promise<AddAllProductsToOpenCampaignResponse> {
-    const response = await ShopeeFetch.fetch<AddAllProductsToOpenCampaignResponse>(
+    return ShopeeFetch.fetch<AddAllProductsToOpenCampaignResponse>(
       this.config,
       "/ams/add_all_products_to_open_campaign",
       {
         method: "POST",
         auth: true,
         body: params,
+        timestampPaths: ["period_start_time", "period_end_time"],
       }
     );
-    return response;
   }
-
   /**
-   * Batch add products to open campaign
+   * Batch add products to the Open Campaign for a given list of product IDs
    *
-   * Use this API to add specific products to the open campaign.
-   *
-   * @param params - Parameters including item IDs, commission rate, and period
-   * @returns Promise with task ID for checking batch task result
+   * @param {BatchAddProductsToOpenCampaignRequest} params Request parameters
+   * @returns {Promise<BatchAddProductsToOpenCampaignResponse>} Promise resolving to the response
    */
-  async batchAddProductsToOpenCampaign(
-    params: BatchAddProductsToOpenCampaignParams
+  public async batchAddProductsToOpenCampaign(
+    params?: BatchAddProductsToOpenCampaignRequest
   ): Promise<BatchAddProductsToOpenCampaignResponse> {
-    const response = await ShopeeFetch.fetch<BatchAddProductsToOpenCampaignResponse>(
+    return ShopeeFetch.fetch<BatchAddProductsToOpenCampaignResponse>(
       this.config,
       "/ams/batch_add_products_to_open_campaign",
       {
         method: "POST",
         auth: true,
         body: params,
+        timestampPaths: ["period_start_time", "period_end_time"],
       }
     );
-    return response;
   }
-
   /**
-   * Batch edit products open campaign setting
+   * Batch update open campaign settings for a given list of product IDs
    *
-   * Use this API to edit settings for multiple products in the open campaign.
-   *
-   * @param params - Parameters including campaign IDs and new settings
-   * @returns Promise with task ID for checking batch task result
+   * @param {BatchEditProductsOpenCampaignSettingRequest} params Request parameters
+   * @returns {Promise<BatchEditProductsOpenCampaignSettingResponse>} Promise resolving to the response
    */
-  async batchEditProductsOpenCampaignSetting(
-    params: BatchEditProductsOpenCampaignSettingParams
+  public async batchEditProductsOpenCampaignSetting(
+    params?: BatchEditProductsOpenCampaignSettingRequest
   ): Promise<BatchEditProductsOpenCampaignSettingResponse> {
-    const response = await ShopeeFetch.fetch<BatchEditProductsOpenCampaignSettingResponse>(
+    return ShopeeFetch.fetch<BatchEditProductsOpenCampaignSettingResponse>(
       this.config,
       "/ams/batch_edit_products_open_campaign_setting",
       {
         method: "POST",
         auth: true,
         body: params,
+        timestampPaths: ["period_start_time", "period_end_time"],
       }
     );
-    return response;
   }
-
   /**
-   * Batch get products suggested rate
+   * Fetch suggested rates for a given list of product IDs
    *
-   * Use this API to get suggested commission rates for multiple products.
-   *
-   * @param params - Parameters with item ID list
-   * @returns Promise with suggested rates for each item
+   * @param {BatchGetProductsSuggestedRateRequest} params Request parameters
+   * @returns {Promise<BatchGetProductsSuggestedRateResponse>} Promise resolving to the response
    */
-  async batchGetProductsSuggestedRate(
-    params: BatchGetProductsSuggestedRateParams
+  public async batchGetProductsSuggestedRate(
+    params?: BatchGetProductsSuggestedRateRequest
   ): Promise<BatchGetProductsSuggestedRateResponse> {
-    const response = await ShopeeFetch.fetch<BatchGetProductsSuggestedRateResponse>(
+    return ShopeeFetch.fetch<BatchGetProductsSuggestedRateResponse>(
       this.config,
       "/ams/batch_get_products_suggested_rate",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Batch remove products open campaign setting
+   * Batch update products from Open Campaign for a given list of product IDs
    *
-   * Use this API to remove multiple products from the open campaign.
-   *
-   * @param params - Parameters with campaign IDs to remove
-   * @returns Promise with task ID for checking batch task result
+   * @param {BatchRemoveProductsOpenCampaignSettingRequest} params Request parameters
+   * @returns {Promise<BatchRemoveProductsOpenCampaignSettingResponse>} Promise resolving to the response
    */
-  async batchRemoveProductsOpenCampaignSetting(
-    params: BatchRemoveProductsOpenCampaignSettingParams
+  public async batchRemoveProductsOpenCampaignSetting(
+    params?: BatchRemoveProductsOpenCampaignSettingRequest
   ): Promise<BatchRemoveProductsOpenCampaignSettingResponse> {
-    const response = await ShopeeFetch.fetch<BatchRemoveProductsOpenCampaignSettingResponse>(
+    return ShopeeFetch.fetch<BatchRemoveProductsOpenCampaignSettingResponse>(
       this.config,
       "/ams/batch_remove_products_open_campaign_setting",
       {
@@ -199,183 +176,37 @@ export class AmsManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Edit all products open campaign setting
+   * Create a new campaign with custom product & affiliate selections, and basic info filling.
    *
-   * Use this API to edit settings for all products in the open campaign.
-   *
-   * @param params - Parameters with new commission rate and period
-   * @returns Promise with task ID for checking batch task result
+   * @param {CreateNewTargetedCampaignRequest} params Request parameters
+   * @returns {Promise<CreateNewTargetedCampaignResponse>} Promise resolving to the response
    */
-  async editAllProductsOpenCampaignSetting(
-    params: EditAllProductsOpenCampaignSettingParams
-  ): Promise<EditAllProductsOpenCampaignSettingResponse> {
-    const response = await ShopeeFetch.fetch<EditAllProductsOpenCampaignSettingResponse>(
-      this.config,
-      "/ams/edit_all_products_open_campaign_setting",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get open campaign added product list
-   *
-   * Use this API to get the list of products added to the open campaign.
-   *
-   * @param params - Pagination and search parameters
-   * @returns Promise with list of added products
-   */
-  async getOpenCampaignAddedProduct(
-    params: GetOpenCampaignAddedProductParams
-  ): Promise<GetOpenCampaignAddedProductResponse> {
-    const response = await ShopeeFetch.fetch<GetOpenCampaignAddedProductResponse>(
-      this.config,
-      "/ams/get_open_campaign_added_product",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get open campaign batch task result
-   *
-   * Use this API to check the status and result of a batch operation.
-   *
-   * @param params - Parameters with task ID
-   * @returns Promise with task status and results
-   */
-  async getOpenCampaignBatchTaskResult(
-    params: GetOpenCampaignBatchTaskResultParams
-  ): Promise<GetOpenCampaignBatchTaskResultResponse> {
-    const response = await ShopeeFetch.fetch<GetOpenCampaignBatchTaskResultResponse>(
-      this.config,
-      "/ams/get_open_campaign_batch_task_result",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get open campaign not added product list
-   *
-   * Use this API to get products that are not yet added to the open campaign.
-   *
-   * @param params - Pagination and search parameters
-   * @returns Promise with list of not added products
-   */
-  async getOpenCampaignNotAddedProduct(
-    params: GetOpenCampaignNotAddedProductParams
-  ): Promise<GetOpenCampaignNotAddedProductResponse> {
-    const response = await ShopeeFetch.fetch<GetOpenCampaignNotAddedProductResponse>(
-      this.config,
-      "/ams/get_open_campaign_not_added_product",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get open campaign performance
-   *
-   * Use this API to get performance data for the open campaign.
-   *
-   * @param params - Period type, date range, and pagination parameters
-   * @returns Promise with performance data
-   */
-  async getOpenCampaignPerformance(
-    params: GetOpenCampaignPerformanceParams
-  ): Promise<GetOpenCampaignPerformanceResponse> {
-    const response = await ShopeeFetch.fetch<GetOpenCampaignPerformanceResponse>(
-      this.config,
-      "/ams/get_open_campaign_performance",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Remove all products from open campaign
-   *
-   * Use this API to remove all products from the open campaign.
-   *
-   * @returns Promise with task ID for checking batch task result
-   */
-  async removeAllProductsOpenCampaignSetting(): Promise<RemoveAllProductsOpenCampaignSettingResponse> {
-    const response = await ShopeeFetch.fetch<RemoveAllProductsOpenCampaignSettingResponse>(
-      this.config,
-      "/ams/remove_all_products_open_campaign_setting",
-      {
-        method: "POST",
-        auth: true,
-        body: {},
-      }
-    );
-    return response;
-  }
-
-  // ============================================================================
-  // Targeted Campaign APIs
-  // ============================================================================
-
-  /**
-   * Create a new targeted campaign
-   *
-   * Use this API to create a targeted campaign with specific products and affiliates.
-   *
-   * @param params - Campaign details including name, period, items, and affiliates
-   * @returns Promise with created campaign ID and any failed items/affiliates
-   */
-  async createNewTargetedCampaign(
-    params: CreateNewTargetedCampaignParams
+  public async createNewTargetedCampaign(
+    params?: CreateNewTargetedCampaignRequest
   ): Promise<CreateNewTargetedCampaignResponse> {
-    const response = await ShopeeFetch.fetch<CreateNewTargetedCampaignResponse>(
+    return ShopeeFetch.fetch<CreateNewTargetedCampaignResponse>(
       this.config,
       "/ams/create_new_targeted_campaign",
       {
         method: "POST",
         auth: true,
         body: params,
+        timestampPaths: ["period_start_time", "period_end_time"],
       }
     );
-    return response;
   }
-
   /**
-   * Edit affiliate list of targeted campaign
+   * Modify the selected affiliate list in an existing target campaign
    *
-   * Use this API to add or remove affiliates from a targeted campaign.
-   *
-   * @param params - Campaign ID, edit type (add/remove), and affiliate list
-   * @returns Promise with campaign ID and any failed affiliates
+   * @param {EditAffiliateListOfTargetedCampaignRequest} params Request parameters
+   * @returns {Promise<EditAffiliateListOfTargetedCampaignResponse>} Promise resolving to the response
    */
-  async editAffiliateListOfTargetedCampaign(
-    params: EditAffiliateListOfTargetedCampaignParams
+  public async editAffiliateListOfTargetedCampaign(
+    params?: EditAffiliateListOfTargetedCampaignRequest
   ): Promise<EditAffiliateListOfTargetedCampaignResponse> {
-    const response = await ShopeeFetch.fetch<EditAffiliateListOfTargetedCampaignResponse>(
+    return ShopeeFetch.fetch<EditAffiliateListOfTargetedCampaignResponse>(
       this.config,
       "/ams/edit_affiliate_list_of_targeted_campaign",
       {
@@ -384,21 +215,37 @@ export class AmsManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Edit product list of targeted campaign
+   * Update for all products in the Open Campaign. We will only return the general error that caused the whole task failure, without returning the specific error for each product in the v2.ams.get_open_campaign_batch_task_result API. If you want to get the result for each products, you can use v2.ams.batch_edit_products_open_campaign_setting by pagination manually, or check the product status by using the GET API after the task progress turn to 100%.
    *
-   * Use this API to add, remove, or edit products in a targeted campaign.
-   *
-   * @param params - Campaign ID, edit type (add/remove/edit), and item list
-   * @returns Promise with campaign ID and any failed items
+   * @param {EditAllProductsOpenCampaignSettingRequest} params Request parameters
+   * @returns {Promise<EditAllProductsOpenCampaignSettingResponse>} Promise resolving to the response
    */
-  async editProductListOfTargetedCampaign(
-    params: EditProductListOfTargetedCampaignParams
+  public async editAllProductsOpenCampaignSetting(
+    params?: EditAllProductsOpenCampaignSettingRequest
+  ): Promise<EditAllProductsOpenCampaignSettingResponse> {
+    return ShopeeFetch.fetch<EditAllProductsOpenCampaignSettingResponse>(
+      this.config,
+      "/ams/edit_all_products_open_campaign_setting",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+        timestampPaths: ["period_start_time", "period_end_time"],
+      }
+    );
+  }
+  /**
+   * Modify the selected product list in an existing target campaign
+   *
+   * @param {EditProductListOfTargetedCampaignRequest} params Request parameters
+   * @returns {Promise<EditProductListOfTargetedCampaignResponse>} Promise resolving to the response
+   */
+  public async editProductListOfTargetedCampaign(
+    params?: EditProductListOfTargetedCampaignRequest
   ): Promise<EditProductListOfTargetedCampaignResponse> {
-    const response = await ShopeeFetch.fetch<EditProductListOfTargetedCampaignResponse>(
+    return ShopeeFetch.fetch<EditProductListOfTargetedCampaignResponse>(
       this.config,
       "/ams/edit_product_list_of_targeted_campaign",
       {
@@ -407,113 +254,495 @@ export class AmsManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get targeted campaign addable product list
+   * Retrieve affiliate performance of the shop.
    *
-   * Use this API to get products that can be added to targeted campaigns.
-   *
-   * @param params - Pagination and search parameters
-   * @returns Promise with list of addable products
+   * @param {GetAffiliatePerformanceRequest} params Request parameters
+   * @returns {Promise<GetAffiliatePerformanceResponse>} Promise resolving to the response
    */
-  async getTargetedCampaignAddableProductList(
-    params: GetTargetedCampaignAddableProductListParams
+  public async getAffiliatePerformance(
+    params?: GetAffiliatePerformanceRequest
+  ): Promise<GetAffiliatePerformanceResponse> {
+    return ShopeeFetch.fetch<GetAffiliatePerformanceResponse>(
+      this.config,
+      "/ams/get_affiliate_performance",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Check if auto-add new product is currently enabled
+   *
+   * @param {GetAutoAddNewProductToggleStatusRequest} params Request parameters
+   * @returns {Promise<GetAutoAddNewProductToggleStatusResponse>} Promise resolving to the response
+   */
+  public async getAutoAddNewProductToggleStatus(
+    params?: GetAutoAddNewProductToggleStatusRequest
+  ): Promise<GetAutoAddNewProductToggleStatusResponse> {
+    return ShopeeFetch.fetch<GetAutoAddNewProductToggleStatusResponse>(
+      this.config,
+      "/ams/get_auto_add_new_product_toggle_status",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Retrieve key metrics for Open and Targeted campaigns
+   *
+   * @param {GetCampaignKeyMetricsPerformanceRequest} params Request parameters
+   * @returns {Promise<GetCampaignKeyMetricsPerformanceResponse>} Promise resolving to the response
+   */
+  public async getCampaignKeyMetricsPerformance(
+    params?: GetCampaignKeyMetricsPerformanceRequest
+  ): Promise<GetCampaignKeyMetricsPerformanceResponse> {
+    return ShopeeFetch.fetch<GetCampaignKeyMetricsPerformanceResponse>(
+      this.config,
+      "/ams/get_campaign_key_metrics_performance",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Retrieve content performance of the shop
+   *
+   * @param {GetContentPerformanceRequest} params Request parameters
+   * @returns {Promise<GetContentPerformanceResponse>} Promise resolving to the response
+   */
+  public async getContentPerformance(
+    params?: GetContentPerformanceRequest
+  ): Promise<GetContentPerformanceResponse> {
+    return ShopeeFetch.fetch<GetContentPerformanceResponse>(
+      this.config,
+      "/ams/get_content_performance",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Retrieve the shop's conversion report with details about each order, item, affiliate, campaign.You can filter results using one or multiple time ranges, and the final result will be the intersection of these ranges. Due to data volume limitations, the maximum queryable time span is three months, etc.Maximum data can be viewed is 500 pages, please export data for more details.
+   *
+   * @param {GetConversionReportRequest} params Request parameters
+   * @returns {Promise<GetConversionReportResponse>} Promise resolving to the response
+   */
+  public async getConversionReport(
+    params?: GetConversionReportRequest
+  ): Promise<GetConversionReportResponse> {
+    return ShopeeFetch.fetch<GetConversionReportResponse>(
+      this.config,
+      "/ams/get_conversion_report",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: [
+          "place_order_time_start",
+          "place_order_time_end",
+          "order_completed_time_start",
+          "order_completed_time_end",
+          "conversion_completed_time_start",
+          "conversion_completed_time_end",
+          "ams_deduction_time_start",
+          "ams_deduction_time_end",
+        ],
+      }
+    );
+  }
+  /**
+   * Returns affiliates that are saved to managed affiliate list
+   *
+   * @param {GetManagedAffiliateListRequest} params Request parameters
+   * @returns {Promise<GetManagedAffiliateListResponse>} Promise resolving to the response
+   */
+  public async getManagedAffiliateList(
+    params?: GetManagedAffiliateListRequest
+  ): Promise<GetManagedAffiliateListResponse> {
+    return ShopeeFetch.fetch<GetManagedAffiliateListResponse>(
+      this.config,
+      "/ams/get_managed_affiliate_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Retrieve all products currently in the Open Campaign, including campaign status, commission rate, and promotion period
+   *
+   * @param {GetOpenCampaignAddedProductRequest} params Request parameters
+   * @returns {Promise<GetOpenCampaignAddedProductResponse>} Promise resolving to the response
+   */
+  public async getOpenCampaignAddedProduct(
+    params?: GetOpenCampaignAddedProductRequest
+  ): Promise<GetOpenCampaignAddedProductResponse> {
+    return ShopeeFetch.fetch<GetOpenCampaignAddedProductResponse>(
+      this.config,
+      "/ams/get_open_campaign_added_product",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: [
+          "response.item_list.period_start_time",
+          "response.item_list.period_end_time",
+          "response.item_list.pending_terminated_time",
+          "response.item_list.commission_protection_list.protection_period_end_time",
+        ],
+      }
+    );
+  }
+  /**
+   * Get open campaign batch task result
+   *
+   * @param {GetOpenCampaignBatchTaskResultRequest} params Request parameters
+   * @returns {Promise<GetOpenCampaignBatchTaskResultResponse>} Promise resolving to the response
+   */
+  public async getOpenCampaignBatchTaskResult(
+    params?: GetOpenCampaignBatchTaskResultRequest
+  ): Promise<GetOpenCampaignBatchTaskResultResponse> {
+    return ShopeeFetch.fetch<GetOpenCampaignBatchTaskResultResponse>(
+      this.config,
+      "/ams/get_open_campaign_batch_task_result",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Retrieve eligible products not yet added to the Open Campaign
+   *
+   * @param {GetOpenCampaignNotAddedProductRequest} params Request parameters
+   * @returns {Promise<GetOpenCampaignNotAddedProductResponse>} Promise resolving to the response
+   */
+  public async getOpenCampaignNotAddedProduct(
+    params?: GetOpenCampaignNotAddedProductRequest
+  ): Promise<GetOpenCampaignNotAddedProductResponse> {
+    return ShopeeFetch.fetch<GetOpenCampaignNotAddedProductResponse>(
+      this.config,
+      "/ams/get_open_campaign_not_added_product",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Retrieve all products in the Open Campaign along with performance data
+   *
+   * @param {GetOpenCampaignPerformanceRequest} params Request parameters
+   * @returns {Promise<GetOpenCampaignPerformanceResponse>} Promise resolving to the response
+   */
+  public async getOpenCampaignPerformance(
+    params?: GetOpenCampaignPerformanceRequest
+  ): Promise<GetOpenCampaignPerformanceResponse> {
+    return ShopeeFetch.fetch<GetOpenCampaignPerformanceResponse>(
+      this.config,
+      "/ams/get_open_campaign_performance",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Retrieve products with suggestions to improve performance
+   *
+   * @param {GetOptimizationSuggestionProductRequest} params Request parameters
+   * @returns {Promise<GetOptimizationSuggestionProductResponse>} Promise resolving to the response
+   */
+  public async getOptimizationSuggestionProduct(
+    params?: GetOptimizationSuggestionProductRequest
+  ): Promise<GetOptimizationSuggestionProductResponse> {
+    return ShopeeFetch.fetch<GetOptimizationSuggestionProductResponse>(
+      this.config,
+      "/ams/get_optimization_suggestion_product",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: [
+          "response.item_list.period_start_time",
+          "response.item_list.period_end_time",
+        ],
+      }
+    );
+  }
+  /**
+   * Retrieve the latest date of AMS dashboard data metrics update.
+   *
+   * @param {GetPerformanceDataUpdateTimeRequest} params Request parameters
+   * @returns {Promise<GetPerformanceDataUpdateTimeResponse>} Promise resolving to the response
+   */
+  public async getPerformanceDataUpdateTime(
+    params?: GetPerformanceDataUpdateTimeRequest
+  ): Promise<GetPerformanceDataUpdateTimeResponse> {
+    return ShopeeFetch.fetch<GetPerformanceDataUpdateTimeResponse>(
+      this.config,
+      "/ams/get_performance_data_update_time",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Retrieve product performance of the shop.
+   *
+   * @param {GetProductPerformanceRequest} params Request parameters
+   * @returns {Promise<GetProductPerformanceResponse>} Promise resolving to the response
+   */
+  public async getProductPerformance(
+    params?: GetProductPerformanceRequest
+  ): Promise<GetProductPerformanceResponse> {
+    return ShopeeFetch.fetch<GetProductPerformanceResponse>(
+      this.config,
+      "/ams/get_product_performance",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Returns top 200 recommended affiliates that can be added to a campaign
+   *
+   * @param {GetRecommendedAffiliateListRequest} params Request parameters
+   * @returns {Promise<GetRecommendedAffiliateListResponse>} Promise resolving to the response
+   */
+  public async getRecommendedAffiliateList(
+    params?: GetRecommendedAffiliateListRequest
+  ): Promise<GetRecommendedAffiliateListResponse> {
+    return ShopeeFetch.fetch<GetRecommendedAffiliateListResponse>(
+      this.config,
+      "/ams/get_recommended_affiliate_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Retrieve overall key metrics for all channels or specific channels.
+   *
+   * @param {GetShopPerformanceRequest} params Request parameters
+   * @returns {Promise<GetShopPerformanceResponse>} Promise resolving to the response
+   */
+  public async getShopPerformance(
+    params?: GetShopPerformanceRequest
+  ): Promise<GetShopPerformanceResponse> {
+    return ShopeeFetch.fetch<GetShopPerformanceResponse>(this.config, "/ams/get_shop_performance", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Retrieve suggested rates for all eligible products
+   *
+   * @param {GetShopSuggestedRateRequest} params Request parameters
+   * @returns {Promise<GetShopSuggestedRateResponse>} Promise resolving to the response
+   */
+  public async getShopSuggestedRate(
+    params?: GetShopSuggestedRateRequest
+  ): Promise<GetShopSuggestedRateResponse> {
+    return ShopeeFetch.fetch<GetShopSuggestedRateResponse>(
+      this.config,
+      "/ams/get_shop_suggested_rate",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Returns a list of products that can be added to a targeted campaign
+   *
+   * @param {GetTargetedCampaignAddableProductListRequest} params Request parameters
+   * @returns {Promise<GetTargetedCampaignAddableProductListResponse>} Promise resolving to the response
+   */
+  public async getTargetedCampaignAddableProductList(
+    params?: GetTargetedCampaignAddableProductListRequest
   ): Promise<GetTargetedCampaignAddableProductListResponse> {
-    const response = await ShopeeFetch.fetch<GetTargetedCampaignAddableProductListResponse>(
+    return ShopeeFetch.fetch<GetTargetedCampaignAddableProductListResponse>(
       this.config,
       "/ams/get_targeted_campaign_addable_product_list",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get targeted campaign list
+   * Retrieve all current targeted campaigns created by the seller
    *
-   * Use this API to get a list of targeted campaigns with optional filters.
-   *
-   * @param params - Pagination and filter parameters
-   * @returns Promise with list of campaigns
+   * @param {GetTargetedCampaignListRequest} params Request parameters
+   * @returns {Promise<GetTargetedCampaignListResponse>} Promise resolving to the response
    */
-  async getTargetedCampaignList(
-    params?: GetTargetedCampaignListParams
+  public async getTargetedCampaignList(
+    params?: GetTargetedCampaignListRequest
   ): Promise<GetTargetedCampaignListResponse> {
-    const response = await ShopeeFetch.fetch<GetTargetedCampaignListResponse>(
+    return ShopeeFetch.fetch<GetTargetedCampaignListResponse>(
       this.config,
       "/ams/get_targeted_campaign_list",
       {
         method: "GET",
         auth: true,
-        params: params || {},
+        params: params,
+        timestampPaths: [
+          "period_start_time",
+          "period_end_time",
+          "response.campaign_list.period_start_time",
+          "response.campaign_list.period_end_time",
+          "response.campaign_list.last_edit_time",
+        ],
       }
     );
-    return response;
   }
-
   /**
-   * Get targeted campaign performance
+   * Retrieve a list of Targeted Campaigns and their performance data
    *
-   * Use this API to get performance data for targeted campaigns.
-   *
-   * @param params - Period type, date range, and pagination parameters
-   * @returns Promise with campaign performance data
+   * @param {GetTargetedCampaignPerformanceRequest} params Request parameters
+   * @returns {Promise<GetTargetedCampaignPerformanceResponse>} Promise resolving to the response
    */
-  async getTargetedCampaignPerformance(
-    params: GetTargetedCampaignPerformanceParams
+  public async getTargetedCampaignPerformance(
+    params?: GetTargetedCampaignPerformanceRequest
   ): Promise<GetTargetedCampaignPerformanceResponse> {
-    const response = await ShopeeFetch.fetch<GetTargetedCampaignPerformanceResponse>(
+    return ShopeeFetch.fetch<GetTargetedCampaignPerformanceResponse>(
       this.config,
       "/ams/get_targeted_campaign_performance",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get targeted campaign settings
+   * For each campaign, return: campaign basic info (name, status, promotion period, message), selected product list (with product name & ID), selected affiliate list (with affiliate names)
    *
-   * Use this API to get detailed settings of a specific targeted campaign.
-   *
-   * @param params - Campaign ID
-   * @returns Promise with campaign settings including items and affiliates
+   * @param {GetTargetedCampaignSettingsRequest} params Request parameters
+   * @returns {Promise<GetTargetedCampaignSettingsResponse>} Promise resolving to the response
    */
-  async getTargetedCampaignSettings(
-    params: GetTargetedCampaignSettingsParams
+  public async getTargetedCampaignSettings(
+    params?: GetTargetedCampaignSettingsRequest
   ): Promise<GetTargetedCampaignSettingsResponse> {
-    const response = await ShopeeFetch.fetch<GetTargetedCampaignSettingsResponse>(
+    return ShopeeFetch.fetch<GetTargetedCampaignSettingsResponse>(
       this.config,
       "/ams/get_targeted_campaign_settings",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
+        timestampPaths: [
+          "response.period_start_time",
+          "response.period_end_time",
+          "response.pending_terminated_time",
+          "response.item_list.commission_protection_list.protection_period_end_time",
+        ],
       }
     );
-    return response;
   }
-
   /**
-   * Terminate targeted campaign
+   * Retrieve the seller's AMS validation bill
    *
-   * Use this API to terminate an active targeted campaign.
-   *
-   * @param params - Campaign ID to terminate
-   * @returns Promise with terminated campaign ID
+   * @param {GetValidationListRequest} params Request parameters
+   * @returns {Promise<GetValidationListResponse>} Promise resolving to the response
    */
-  async terminateTargetedCampaign(
-    params: TerminateTargetedCampaignParams
+  public async getValidationList(
+    params?: GetValidationListRequest
+  ): Promise<GetValidationListResponse> {
+    return ShopeeFetch.fetch<GetValidationListResponse>(this.config, "/ams/get_validation_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Retrieve detailed information for a specific validation bill
+   *
+   * @param {GetValidationReportRequest} params Request parameters
+   * @returns {Promise<GetValidationReportResponse>} Promise resolving to the response
+   */
+  public async getValidationReport(
+    params?: GetValidationReportRequest
+  ): Promise<GetValidationReportResponse> {
+    return ShopeeFetch.fetch<GetValidationReportResponse>(
+      this.config,
+      "/ams/get_validation_report",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: ["place_order_time_start", "place_order_time_end"],
+      }
+    );
+  }
+  /**
+   * Retrieve affiliate information by affiliate id.
+   *
+   * @param {QueryAffiliateListRequest} params Request parameters
+   * @returns {Promise<QueryAffiliateListResponse>} Promise resolving to the response
+   */
+  public async queryAffiliateList(
+    params?: QueryAffiliateListRequest
+  ): Promise<QueryAffiliateListResponse> {
+    return ShopeeFetch.fetch<QueryAffiliateListResponse>(this.config, "/ams/query_affiliate_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Remove the entire product list of Open Campaign. We will only return the general error that caused the whole task failure, without returning the specific error for each product in the v2.ams.get_open_campaign_batch_task_result API. If you want to get the result for each products, you can use v2.ams. batch_remove_products_open_campaign_setting by pagination manually, or check the product status by using the GET API after the task progress turn to 100%.
+   *
+   * @param {RemoveAllProductsOpenCampaignSettingRequest} params Request parameters
+   * @returns {Promise<RemoveAllProductsOpenCampaignSettingResponse>} Promise resolving to the response
+   */
+  public async removeAllProductsOpenCampaignSetting(
+    params?: RemoveAllProductsOpenCampaignSettingRequest
+  ): Promise<RemoveAllProductsOpenCampaignSettingResponse> {
+    return ShopeeFetch.fetch<RemoveAllProductsOpenCampaignSettingResponse>(
+      this.config,
+      "/ams/remove_all_products_open_campaign_setting",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Change target campaign status to "terminated" to stop all affiliate promotion activity
+   *
+   * @param {TerminateTargetedCampaignRequest} params Request parameters
+   * @returns {Promise<TerminateTargetedCampaignResponse>} Promise resolving to the response
+   */
+  public async terminateTargetedCampaign(
+    params?: TerminateTargetedCampaignRequest
   ): Promise<TerminateTargetedCampaignResponse> {
-    const response = await ShopeeFetch.fetch<TerminateTargetedCampaignResponse>(
+    return ShopeeFetch.fetch<TerminateTargetedCampaignResponse>(
       this.config,
       "/ams/terminate_targeted_campaign",
       {
@@ -522,391 +751,17 @@ export class AmsManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Update basic info of targeted campaign
+   * Change auto-add toggle and default commission rate setting
    *
-   * Use this API to update basic information of a targeted campaign.
-   *
-   * @param params - Campaign ID and fields to update
-   * @returns Promise with updated campaign ID
+   * @param {UpdateAutoAddNewProductSettingRequest} params Request parameters
+   * @returns {Promise<UpdateAutoAddNewProductSettingResponse>} Promise resolving to the response
    */
-  async updateBasicInfoOfTargetedCampaign(
-    params: UpdateBasicInfoOfTargetedCampaignParams
-  ): Promise<UpdateBasicInfoOfTargetedCampaignResponse> {
-    const response = await ShopeeFetch.fetch<UpdateBasicInfoOfTargetedCampaignResponse>(
-      this.config,
-      "/ams/update_basic_info_of_targeted_campaign",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  // ============================================================================
-  // Performance & Analytics APIs
-  // ============================================================================
-
-  /**
-   * Get affiliate performance
-   *
-   * Use this API to get performance data by affiliate.
-   *
-   * @param params - Period type, date range, and pagination parameters
-   * @returns Promise with affiliate performance data
-   */
-  async getAffiliatePerformance(
-    params: GetAffiliatePerformanceParams
-  ): Promise<GetAffiliatePerformanceResponse> {
-    const response = await ShopeeFetch.fetch<GetAffiliatePerformanceResponse>(
-      this.config,
-      "/ams/get_affiliate_performance",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get auto add new product toggle status
-   *
-   * Use this API to check if auto-add new product feature is enabled.
-   *
-   * @returns Promise with toggle status and commission rate
-   */
-  async getAutoAddNewProductToggleStatus(): Promise<GetAutoAddNewProductToggleStatusResponse> {
-    const response = await ShopeeFetch.fetch<GetAutoAddNewProductToggleStatusResponse>(
-      this.config,
-      "/ams/get_auto_add_new_product_toggle_status",
-      {
-        method: "GET",
-        auth: true,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get campaign key metrics performance
-   *
-   * Use this API to get overall key metrics for campaigns.
-   *
-   * @param params - Period type and date range
-   * @returns Promise with aggregated performance metrics
-   */
-  async getCampaignKeyMetricsPerformance(
-    params: GetCampaignKeyMetricsPerformanceParams
-  ): Promise<GetCampaignKeyMetricsPerformanceResponse> {
-    const response = await ShopeeFetch.fetch<GetCampaignKeyMetricsPerformanceResponse>(
-      this.config,
-      "/ams/get_campaign_key_metrics_performance",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get content performance
-   *
-   * Use this API to get performance data by content.
-   *
-   * @param params - Period type, date range, and pagination parameters
-   * @returns Promise with content performance data
-   */
-  async getContentPerformance(
-    params: GetContentPerformanceParams
-  ): Promise<GetContentPerformanceResponse> {
-    const response = await ShopeeFetch.fetch<GetContentPerformanceResponse>(
-      this.config,
-      "/ams/get_content_performance",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get conversion report
-   *
-   * Use this API to get detailed conversion data with optional filters.
-   *
-   * @param params - Pagination and filter parameters
-   * @returns Promise with conversion report data
-   */
-  async getConversionReport(
-    params?: GetConversionReportParams
-  ): Promise<GetConversionReportResponse> {
-    const response = await ShopeeFetch.fetch<GetConversionReportResponse>(
-      this.config,
-      "/ams/get_conversion_report",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get managed affiliate list
-   *
-   * Use this API to get the list of affiliates managed by the shop.
-   *
-   * @param params - Pagination parameters
-   * @returns Promise with list of managed affiliates
-   */
-  async getManagedAffiliateList(
-    params?: GetManagedAffiliateListParams
-  ): Promise<GetManagedAffiliateListResponse> {
-    const response = await ShopeeFetch.fetch<GetManagedAffiliateListResponse>(
-      this.config,
-      "/ams/get_managed_affiliate_list",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get optimization suggestion product
-   *
-   * Use this API to get products with optimization suggestions.
-   *
-   * @param params - Pagination and filter parameters
-   * @returns Promise with products and their suggested optimizations
-   */
-  async getOptimizationSuggestionProduct(
-    params?: GetOptimizationSuggestionProductParams
-  ): Promise<GetOptimizationSuggestionProductResponse> {
-    const response = await ShopeeFetch.fetch<GetOptimizationSuggestionProductResponse>(
-      this.config,
-      "/ams/get_optimization_suggestion_product",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get performance data update time
-   *
-   * Use this API to get the latest data date for performance data.
-   *
-   * @param params - Marker type (e.g., AmsMarker)
-   * @returns Promise with latest data date
-   */
-  async getPerformanceDataUpdateTime(
-    params: GetPerformanceDataUpdateTimeParams
-  ): Promise<GetPerformanceDataUpdateTimeResponse> {
-    const response = await ShopeeFetch.fetch<GetPerformanceDataUpdateTimeResponse>(
-      this.config,
-      "/ams/get_performance_data_update_time",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get product performance
-   *
-   * Use this API to get performance data by product.
-   *
-   * @param params - Period type, date range, and pagination parameters
-   * @returns Promise with product performance data
-   */
-  async getProductPerformance(
-    params: GetProductPerformanceParams
-  ): Promise<GetProductPerformanceResponse> {
-    const response = await ShopeeFetch.fetch<GetProductPerformanceResponse>(
-      this.config,
-      "/ams/get_product_performance",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get recommended affiliate list
-   *
-   * Use this API to get a list of recommended affiliates for the shop.
-   *
-   * @param params - Page size parameter
-   * @returns Promise with list of recommended affiliates
-   */
-  async getRecommendedAffiliateList(
-    params?: GetRecommendedAffiliateListParams
-  ): Promise<GetRecommendedAffiliateListResponse> {
-    const response = await ShopeeFetch.fetch<GetRecommendedAffiliateListResponse>(
-      this.config,
-      "/ams/get_recommended_affiliate_list",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get shop performance
-   *
-   * Use this API to retrieve overall key metrics for all channels or specific channels.
-   *
-   * @param params - Period type, date range, order type, and channel
-   * @returns Promise with shop-level performance metrics
-   */
-  async getShopPerformance(
-    params: AmsGetShopPerformanceParams
-  ): Promise<AmsGetShopPerformanceResponse> {
-    const response = await ShopeeFetch.fetch<AmsGetShopPerformanceResponse>(
-      this.config,
-      "/ams/get_shop_performance",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get shop suggested rate
-   *
-   * Use this API to get the suggested commission rate for the shop.
-   *
-   * @returns Promise with suggested rate and rate range
-   */
-  async getShopSuggestedRate(): Promise<GetShopSuggestedRateResponse> {
-    const response = await ShopeeFetch.fetch<GetShopSuggestedRateResponse>(
-      this.config,
-      "/ams/get_shop_suggested_rate",
-      {
-        method: "GET",
-        auth: true,
-      }
-    );
-    return response;
-  }
-
-  // ============================================================================
-  // Validation APIs
-  // ============================================================================
-
-  /**
-   * Get validation list
-   *
-   * Use this API to get the list of validation periods.
-   *
-   * @returns Promise with list of validation periods
-   */
-  async getValidationList(): Promise<GetValidationListResponse> {
-    const response = await ShopeeFetch.fetch<GetValidationListResponse>(
-      this.config,
-      "/ams/get_validation_list",
-      {
-        method: "GET",
-        auth: true,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get validation report
-   *
-   * Use this API to get detailed validation report data.
-   *
-   * @param params - Pagination and filter parameters
-   * @returns Promise with validation report data
-   */
-  async getValidationReport(
-    params?: GetValidationReportParams
-  ): Promise<GetValidationReportResponse> {
-    const response = await ShopeeFetch.fetch<GetValidationReportResponse>(
-      this.config,
-      "/ams/get_validation_report",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
-    return response;
-  }
-
-  // ============================================================================
-  // Query APIs
-  // ============================================================================
-
-  /**
-   * Query affiliate list
-   *
-   * Use this API to search for affiliates by ID or name.
-   *
-   * @param params - Query type (id/name) and search criteria
-   * @returns Promise with matching affiliates
-   */
-  async queryAffiliateList(params: QueryAffiliateListParams): Promise<QueryAffiliateListResponse> {
-    const response = await ShopeeFetch.fetch<QueryAffiliateListResponse>(
-      this.config,
-      "/ams/query_affiliate_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  // ============================================================================
-  // Settings APIs
-  // ============================================================================
-
-  /**
-   * Update auto add new product setting
-   *
-   * Use this API to enable/disable and configure auto-add new product feature.
-   *
-   * @param params - Toggle status and commission rate
-   * @returns Promise with empty response on success
-   */
-  async updateAutoAddNewProductSetting(
-    params: UpdateAutoAddNewProductSettingParams
+  public async updateAutoAddNewProductSetting(
+    params?: UpdateAutoAddNewProductSettingRequest
   ): Promise<UpdateAutoAddNewProductSettingResponse> {
-    const response = await ShopeeFetch.fetch<UpdateAutoAddNewProductSettingResponse>(
+    return ShopeeFetch.fetch<UpdateAutoAddNewProductSettingResponse>(
       this.config,
       "/ams/update_auto_add_new_product_setting",
       {
@@ -915,6 +770,25 @@ export class AmsManager extends BaseManager {
         body: params,
       }
     );
-    return response;
+  }
+  /**
+   * Edit campaign name, promotion period, message, and budget (if the shop is whitelisted) of target campaign
+   *
+   * @param {UpdateBasicInfoOfTargetedCampaignRequest} params Request parameters
+   * @returns {Promise<UpdateBasicInfoOfTargetedCampaignResponse>} Promise resolving to the response
+   */
+  public async updateBasicInfoOfTargetedCampaign(
+    params?: UpdateBasicInfoOfTargetedCampaignRequest
+  ): Promise<UpdateBasicInfoOfTargetedCampaignResponse> {
+    return ShopeeFetch.fetch<UpdateBasicInfoOfTargetedCampaignResponse>(
+      this.config,
+      "/ams/update_basic_info_of_targeted_campaign",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+        timestampPaths: ["period_start_time", "period_end_time"],
+      }
+    );
   }
 }

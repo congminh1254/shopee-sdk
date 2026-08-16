@@ -87,13 +87,88 @@ function serializeRequestBody(body: unknown): {
   return { body: JSON.stringify(body), isMultipart: false };
 }
 
+function serializeDates(value: unknown): unknown {
+  if (value instanceof Date) {
+    return Math.floor(value.getTime() / 1000);
+  }
+  if (isBinaryLike(value)) {
+    return value;
+  }
+  if (Array.isArray(value)) {
+    return value.map(serializeDates);
+  }
+  if (typeof value === "object" && value !== null) {
+    if (isFormDataBody(value)) {
+      return value;
+    }
+    // Check if prototype of object is null or direct Object
+    const proto = Object.getPrototypeOf(value);
+    if (proto !== null && proto !== Object.prototype) {
+      return value;
+    }
+    const serialized: Record<string, unknown> = {};
+    for (const [key, val] of Object.entries(value)) {
+      serialized[key] = serializeDates(val);
+    }
+    return serialized;
+  }
+  return value;
+}
+
+function convertPathToDate(obj: any, pathParts: string[], index: number = 0): void {
+  if (!obj || typeof obj !== "object") {
+    return;
+  }
+
+  const part = pathParts[index];
+  const isLast = index === pathParts.length - 1;
+
+  if (Array.isArray(obj)) {
+    for (const item of obj) {
+      convertPathToDate(item, pathParts, index);
+    }
+    return;
+  }
+
+  if (!(part in obj)) {
+    return;
+  }
+
+  if (isLast) {
+    const val = obj[part];
+    if (typeof val === "number" && val > 0) {
+      obj[part] = new Date(val * 1000);
+    } else if (Array.isArray(val)) {
+      obj[part] = val.map((v) => (typeof v === "number" && v > 0 ? new Date(v * 1000) : v));
+    }
+  } else {
+    const nextObj = obj[part];
+    if (Array.isArray(nextObj)) {
+      for (const item of nextObj) {
+        convertPathToDate(item, pathParts, index + 1);
+      }
+    } else {
+      convertPathToDate(nextObj, pathParts, index + 1);
+    }
+  }
+}
+
+function deserializeTimestamps(data: any, paths: string[]): void {
+  for (const path of paths) {
+    const parts = path.split(".");
+    convertPathToDate(data, parts);
+  }
+}
+
 export class ShopeeFetch {
   public static async fetch<T>(
     config: ShopeeConfig,
     path: string,
     options: FetchOptions = {}
   ): Promise<T> {
-    const { method = "GET", params = {}, body } = options;
+    const serializedParams = serializeDates(options.params || {}) as Record<string, any>;
+    const serializedBody = serializeDates(options.body);
+    const { method = "GET" } = options;
     const url = new URL(`${config.base_url}${path}`);
     // Add required parameters
     const timestamp = Math.floor(Date.now() / 1000);
@@ -104,11 +179,13 @@ export class ShopeeFetch {
     ]);
 
     // Add query parameters
-    Object.keys(params).forEach((key) => (params[key] === undefined ? delete params[key] : {}));
+    Object.keys(serializedParams).forEach((key) =>
+      serializedParams[key] === undefined ? delete serializedParams[key] : {}
+    );
     const allParams = {
       partner_id: config.partner_id,
       timestamp,
-      ...params,
+      ...serializedParams,
     };
 
     let authParams = {};
@@ -143,7 +220,7 @@ export class ShopeeFetch {
       }
     });
 
-    const { body: requestBody, isMultipart } = serializeRequestBody(body);
+    const { body: requestBody, isMultipart } = serializeRequestBody(serializedBody);
 
     // Prepare headers
     const headers = new Headers();
@@ -201,7 +278,11 @@ export class ShopeeFetch {
           throw new ShopeeApiError(response.status, jsonData);
         }
 
-        const data = responseData as T;
+        if (options.timestampPaths && options.timestampPaths.length > 0) {
+          deserializeTimestamps(jsonData, options.timestampPaths);
+        }
+
+        const data = jsonData as T;
         return data;
       }
       throw new ShopeeSdkError(`Unknown response type: ${responseType}\n${responseData}`);

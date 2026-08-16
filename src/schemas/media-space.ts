@@ -1,211 +1,352 @@
-import { BaseResponse } from "./base.js";
-
+import { FetchResponse } from "./fetch.js";
 /**
- * Parameters for uploading image to MediaSpace
+ * Enum generated for field RequestId
  */
-export interface UploadImageParams {
-  /** The scene where the picture is used. Default is 'normal'
-   * - normal: Process the image as a square image (recommended for item images)
-   * - desc: Do not process the image (recommended for extend_description images)
-   */
-  scene?: "normal" | "desc";
-  /** Image aspect ratio. Only applicable to whitelisted sellers.
-   * Supported values: "1:1" (default), "3:4"
-   */
-  ratio?: "1:1" | "3:4";
-  /** Image files. Max 10.0 MB each. Image format accepted: JPG, JPEG, PNG.
-   * Image number should be less than 9.
-   * Note: This is handled as multipart/form-data in the actual request
-   */
-  image?: File | Blob | Buffer;
+export enum RequestId {
+  AND = "and",
+  OR = "or",
 }
-
 /**
- * Image URL information by region
+ * Enum generated for field Status
  */
-export interface ImageUrlRegion {
-  /** Region of image url */
-  image_url_region: string;
-  /** Image URL */
-  image_url: string;
+export enum Status {
+  AND = "and",
+  OR = "or",
 }
-
 /**
- * Image information for MediaSpace
+ * Enum generated for field Message
  */
-export interface MediaSpaceImageInfo {
-  /** Id of image */
-  image_id: string;
-  /** Image URL of each region */
-  image_url_list: ImageUrlRegion[];
+export enum Message {
+  UPLOADING = "uploading",
+  TRANSCODING = "transcoding",
 }
-
 /**
- * Individual image info in the list
+ * Enum generated for field VideoUploadId
  */
-export interface ImageInfoListItem {
-  /** The index of images */
-  id: number;
-  /** Indicate error type if this index's image upload processing hit error */
+export enum VideoUploadId {
+  AND = "and",
+  OR = "or",
+}
+/**
+ * Request parameters for cancel_video_upload
+ *
+ * Cancel a video upload session
+ */
+export interface CancelVideoUploadRequest {
+  /**
+   * The ID of this upload session, returned in init_video_upload.
+   */
+  video_upload_id?: string;
+  [key: string]: any;
+}
+/**
+ * Response data payload for cancel_video_upload
+ */
+export interface CancelVideoUploadResponseData {
+  /**
+   * Warning message.
+   */
+  warning?: string;
+  [key: string]: any;
+}
+/**
+ * Response payload for cancel_video_upload
+ *
+ * Cancel a video upload session
+ */
+export type CancelVideoUploadResponse = FetchResponse<CancelVideoUploadResponseData>;
+/**
+ * CompleteVideoUpload_ReportData sub-interface for CompleteVideoUploadRequest
+ */
+export interface CompleteVideoUpload_ReportData {
+  /**
+   * Time used for uploading the video file via upload_video_part api, in milliseconds. For video upload performance tracking purpose.
+   */
+  upload_cost?: number;
+  [key: string]: any;
+}
+/**
+ * Request parameters for complete_video_upload
+ *
+ * Complete the video upload and starts the transcoding process when all parts are uploaded successfully.
+ */
+export interface CompleteVideoUploadRequest {
+  /**
+   * The ID of this upload session, returned in init_video_upload.
+   */
+  video_upload_id?: string;
+  /**
+   * All uploaded sequence number.
+   */
+  part_seq_list?: number[];
+  report_data?: CompleteVideoUpload_ReportData;
+  [key: string]: any;
+}
+/**
+ * Response data payload for complete_video_upload
+ */
+export interface CompleteVideoUploadResponseData {
+  /**
+   * Warning message.
+   */
+  warning?: string;
+  [key: string]: any;
+}
+/**
+ * Response payload for complete_video_upload
+ *
+ * Complete the video upload and starts the transcoding process when all parts are uploaded successfully.
+ */
+export type CompleteVideoUploadResponse = FetchResponse<CompleteVideoUploadResponseData>;
+/**
+ * Request parameters for get_video_upload_result
+ *
+ * Query the upload status and result of video upload.
+ */
+export interface GetVideoUploadResultRequest {
+  video_upload_id?: string;
+  [key: string]: any;
+}
+/**
+ * GetVideoUploadResult_VideoUrl sub-interface for GetVideoUploadResult_VideoInfo
+ */
+export interface GetVideoUploadResult_VideoUrl {
+  /**
+   * The region of this video URL.
+   */
+  video_url_region?: string;
+  /**
+   * Video playback URL.
+   */
+  video_url?: string;
+  [key: string]: any;
+}
+/**
+ * GetVideoUploadResult_ThumbnailUrl sub-interface for GetVideoUploadResult_VideoInfo
+ */
+export interface GetVideoUploadResult_ThumbnailUrl {
+  /**
+   * The region of this image URL.
+   */
+  image_url_region?: string;
+  /**
+   * Image display URL.
+   */
+  image_url?: string;
+  [key: string]: any;
+}
+/**
+ * GetVideoUploadResult_VideoInfo sub-interface for GetVideoUploadResult_Response
+ */
+export interface GetVideoUploadResult_VideoInfo {
+  /**
+   * Video playback URL list.
+   */
+  video_url_list?: GetVideoUploadResult_VideoUrl[];
+  /**
+   * Video thumbnail image URL list.
+   */
+  thumbnail_url_list?: GetVideoUploadResult_ThumbnailUrl[];
+  /**
+   * Duration of this video, in seconds.
+   */
+  duration?: number;
+  [key: string]: any;
+}
+/**
+ * GetVideoUploadResult_Response sub-interface for GetVideoUploadResultResponse
+ */
+export interface GetVideoUploadResult_Response {
+  /**
+   * Current status of this video upload session. could be: INITIATED(waiting for part uploading and/or the complete_video_upload API call), TRANSCODING(has received all video parts, and is transcoding the video file), SUCCEEDED(transcoding completed, and this upload_id can now be used for item adding/updating), FAILED(this upload failed, see the message filed for some info), CANCELLED(this upload is cancelled)
+   */
+  status?: Status | string | number;
+  /**
+   * Transcoded video info, will be present if status is SUCCEEDED.
+   */
+  video_info?: GetVideoUploadResult_VideoInfo;
+  /**
+   * Detail error message if video uploading/transcoding failed.
+   */
+  message?: Message | string | number;
+  [key: string]: any;
+}
+/**
+ * Response data payload for get_video_upload_result
+ */
+export type GetVideoUploadResultResponseData = GetVideoUploadResult_Response;
+/**
+ * Response payload for get_video_upload_result
+ *
+ * Query the upload status and result of video upload.
+ */
+export type GetVideoUploadResultResponse = FetchResponse<GetVideoUploadResultResponseData>;
+/**
+ * Request parameters for init_video_upload
+ *
+ * Initiate video upload session.
+ *
+ * Video duration should be between 10s and 60s (inclusive).
+ */
+export interface InitVideoUploadRequest {
+  /**
+   * md5 of video file
+   */
+  file_md5?: string;
+  /**
+   * size of video file, in bytes, maximum is 30MB
+   */
+  file_size?: number;
+  [key: string]: any;
+}
+/**
+ * InitVideoUpload_Response sub-interface for InitVideoUploadResponse
+ */
+export interface InitVideoUpload_Response {
+  /**
+   * The identifier of this upload session, used in following video upload request and item creating and/or updating
+   */
+  video_upload_id?: VideoUploadId | string | number;
+  [key: string]: any;
+}
+/**
+ * Response data payload for init_video_upload
+ */
+export type InitVideoUploadResponseData = InitVideoUpload_Response;
+/**
+ * Response payload for init_video_upload
+ *
+ * Initiate video upload session.
+ *
+ * Video duration should be between 10s and 60s (inclusive).
+ */
+export type InitVideoUploadResponse = FetchResponse<InitVideoUploadResponseData>;
+/**
+ * Request parameters for upload_image
+ *
+ * Use this API to upload multiple image files (less than 9 images).
+ */
+export interface UploadImageRequest {
+  /**
+   * image files. Max 10.0 MB each. Image format accepted: JPG, JPEG, PNG. image number should be less than 9
+   */
+  image?: any;
+  /**
+   * The scene where the picture is used, The value range is normal or desc; normal: we will process the image as a square image, it is recommended to use when uploading item image; desc: we will not process the image, it is recommended to use when uploading the image of extend_description, if you do not upload this field, it will be normal.
+   */
+  scene?: string;
+  /**
+   * only applicable to whitelisted sellers.only support 1:1 and 3:4; 1:1 by default.
+   */
+  ratio?: string;
+  [key: string]: any;
+}
+/**
+ * UploadImage_ImageUrl sub-interface for UploadImage_ImageInfo
+ */
+export interface UploadImage_ImageUrl {
+  /**
+   * Region of image url
+   */
+  image_url_region?: string;
+  /**
+   * image url
+   */
+  image_url?: string;
+  [key: string]: any;
+}
+/**
+ * UploadImage_ImageInfo sub-interface for UploadImage_Response
+ */
+export interface UploadImage_ImageInfo {
+  /**
+   * Id of image
+   */
+  image_id?: string;
+  /**
+   * Image URL of each region
+   */
+  image_url_list?: UploadImage_ImageUrl[];
+  [key: string]: any;
+}
+/**
+ * UploadImage_UploadImage_ImageInfo sub-interface for UploadImage_Response
+ */
+export interface UploadImage_UploadImage_ImageInfo {
+  /**
+   * the index of images
+   */
+  id?: number;
+  /**
+   * Indicate error type if this index's image upload processing hit error. Empty if no error happened for this index's image .
+   */
   error?: string;
-  /** Indicate error detail if this index's image upload processing hit error */
-  message?: string;
-  /** Image information */
-  image_info?: MediaSpaceImageInfo;
-}
-
-/**
- * Response for uploading image to MediaSpace
- */
-export interface UploadImageResponse extends BaseResponse {
-  warning?: string;
-  response: {
-    /** Deprecated field - use image_info_list instead */
-    image_info?: MediaSpaceImageInfo;
-    /** List of uploaded images with their information */
-    image_info_list?: ImageInfoListItem[];
-  };
-}
-
-/**
- * Parameters for initializing video upload
- */
-export interface InitVideoUploadParams {
-  /** MD5 of video file */
-  file_md5: string;
-  /** Size of video file, in bytes. Maximum is 30MB */
-  file_size: number;
-}
-
-/**
- * Response for initializing video upload
- */
-export interface InitVideoUploadResponse extends BaseResponse {
-  response: {
-    /** The identifier of this upload session, used in following video upload requests and item creating/updating */
-    video_upload_id: string;
-  };
-}
-
-/**
- * Parameters for uploading video part
- */
-export interface UploadVideoPartParams {
-  /** The video_upload_id from init_video_upload response */
-  video_upload_id: string;
-  /** Sequence of the current part, starts from 0 */
-  part_seq: number;
-  /** MD5 of this part */
-  content_md5: string;
-  /** The content of this part of file. Part size should be exactly 4MB, except last part of file.
-   * Note: This is handled as multipart/form-data in the actual request
+  /**
+   * Indicate error detail if this index's image upload processing hit error. Empty if no error happened for this index's image .
    */
-  part_content?: File | Blob | Buffer;
+  message?: string;
+  image_info?: UploadImage_ImageInfo;
+  [key: string]: any;
 }
-
 /**
- * Response for uploading video part
+ * UploadImage_Response sub-interface for UploadImageResponse
  */
-export interface UploadVideoPartResponse extends BaseResponse {
+export interface UploadImage_Response {
+  image_info?: UploadImage_ImageInfo;
+  image_info_list?: UploadImage_UploadImage_ImageInfo[];
+  [key: string]: any;
+}
+/**
+ * Response data payload for upload_image
+ */
+export type UploadImageResponseData = UploadImage_Response;
+/**
+ * Response payload for upload_image
+ *
+ * Use this API to upload multiple image files (less than 9 images).
+ */
+export type UploadImageResponse = FetchResponse<UploadImageResponseData>;
+/**
+ * Request parameters for upload_video_part
+ *
+ * Upload video file by part using the upload_id in initiate_video_upload.
+ *
+ * The request Content-Type of this API should be of multipart/form-data
+ */
+export interface UploadVideoPartRequest {
+  /**
+   * The video_upload_id in the response of initiate_video_upload
+   */
+  video_upload_id?: string;
+  /**
+   * Sequence of the current part, starts from 0
+   */
+  part_seq?: number;
+  /**
+   * md5 of this part
+   */
+  content_md5?: string;
+  /**
+   * The content of this part of file.  Part size should be exactly 4MB, except last part of file.
+   */
+  part_content?: any;
+  [key: string]: any;
+}
+/**
+ * Response data payload for upload_video_part
+ */
+export interface UploadVideoPartResponseData {
+  /**
+   * Warning message.
+   */
   warning?: string;
+  [key: string]: any;
 }
-
 /**
- * Report data for completing video upload
+ * Response payload for upload_video_part
+ *
+ * Upload video file by part using the upload_id in initiate_video_upload.
+ *
+ * The request Content-Type of this API should be of multipart/form-data
  */
-export interface ReportData {
-  /** Time used for uploading the video file via upload_video_part api, in milliseconds */
-  upload_cost: number;
-}
-
-/**
- * Parameters for completing video upload
- */
-export interface CompleteVideoUploadParams {
-  /** The ID of this upload session, returned in init_video_upload */
-  video_upload_id: string;
-  /** All uploaded sequence numbers */
-  part_seq_list: number[];
-  /** Report data for tracking upload performance */
-  report_data: ReportData;
-}
-
-/**
- * Response for completing video upload
- */
-export interface CompleteVideoUploadResponse extends BaseResponse {
-  warning?: string;
-}
-
-/**
- * Parameters for canceling video upload
- */
-export interface CancelVideoUploadParams {
-  /** The ID of this upload session, returned in init_video_upload */
-  video_upload_id: string;
-}
-
-/**
- * Response for canceling video upload
- */
-export interface CancelVideoUploadResponse extends BaseResponse {
-  warning?: string;
-}
-
-/**
- * Video URL information by region
- */
-export interface VideoUrlRegion {
-  /** The region of this video URL */
-  video_url_region: string;
-  /** Video playback URL */
-  video_url: string;
-}
-
-/**
- * Video information after successful transcoding
- */
-export interface MediaSpaceVideoInfo {
-  /** Video playback URL list */
-  video_url_list: VideoUrlRegion[];
-  /** Video thumbnail image URL list */
-  thumbnail_url_list: ImageUrlRegion[];
-  /** Duration of this video, in seconds */
-  duration: number;
-}
-
-/**
- * Parameters for getting video upload result
- */
-export interface GetVideoUploadResultParams extends Record<
-  string,
-  string | number | boolean | undefined
-> {
-  /** The video_upload_id from init_video_upload response */
-  video_upload_id: string;
-}
-
-/**
- * Video upload status
- * - INITIATED: Waiting for part uploading and/or the complete_video_upload API call
- * - TRANSCODING: Has received all video parts, and is transcoding the video file
- * - SUCCEEDED: Transcoding completed, and this upload_id can now be used for item adding/updating
- * - FAILED: This upload failed, see the message field for info
- * - CANCELLED: This upload is cancelled
- */
-export type VideoUploadStatus = "INITIATED" | "TRANSCODING" | "SUCCEEDED" | "FAILED" | "CANCELLED";
-
-/**
- * Response for getting video upload result
- */
-export interface GetVideoUploadResultResponse extends BaseResponse {
-  warning?: string;
-  response: {
-    /** Current status of this video upload session */
-    status: VideoUploadStatus;
-    /** Transcoded video info, present if status is SUCCEEDED */
-    video_info?: MediaSpaceVideoInfo;
-    /** Detail error message if video uploading/transcoding failed */
-    message?: string;
-  };
-}
+export type UploadVideoPartResponse = FetchResponse<UploadVideoPartResponseData>;

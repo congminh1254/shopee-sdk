@@ -215,11 +215,11 @@ describe("FbsManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.total).toBe(2);
       expect(result.response.list).toHaveLength(2);
-      expect(result.response.list[0].biz_request_type).toBe(1);
-      expect(result.response.list[0].fail_type).toBe(1);
-      expect(result.response.list[0].shop_sku_list).toHaveLength(1);
-      expect(result.response.list[1].biz_request_type).toBe(3);
-      expect(result.response.list[1].fail_type).toBe(2);
+      expect(result.response.list![0].biz_request_type).toBe(1);
+      expect(result.response.list![0].fail_type).toBe(1);
+      expect(result.response.list![0].shop_sku_list).toHaveLength(1);
+      expect(result.response.list![1].biz_request_type).toBe(3);
+      expect(result.response.list![1].fail_type).toBe(2);
     });
 
     it("should query BR shop invoice errors with pagination", async () => {
@@ -305,9 +305,9 @@ describe("FbsManager", () => {
         page_size: 10,
       });
 
-      expect(result.response.list[0].biz_request_type).toBe(2); // RTS
-      expect(result.response.list[1].biz_request_type).toBe(4); // Move Transfer
-      expect(result.response.list[2].biz_request_type).toBe(5); // IA
+      expect(result.response.list![0].biz_request_type).toBe(2); // RTS
+      expect(result.response.list![1].biz_request_type).toBe(4); // Move Transfer
+      expect(result.response.list![2].biz_request_type).toBe(5); // IA
     });
   });
 

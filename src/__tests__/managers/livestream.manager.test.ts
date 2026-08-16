@@ -230,7 +230,7 @@ describe("LiveStreamManager", () => {
             domain_id: 57,
           },
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -804,7 +804,7 @@ describe("LiveStreamManager", () => {
     });
 
     it("should handle no show item", async () => {
-      const mockResponse: GetShowItemResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",

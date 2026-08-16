@@ -1,270 +1,44 @@
+import {
+  AddShopFlashSaleItemsRequest,
+  AddShopFlashSaleItemsResponse,
+  CreateShopFlashSaleRequest,
+  CreateShopFlashSaleResponse,
+  DeleteShopFlashSaleRequest,
+  DeleteShopFlashSaleResponse,
+  DeleteShopFlashSaleItemsRequest,
+  DeleteShopFlashSaleItemsResponse,
+  GetItemCriteriaRequest,
+  GetItemCriteriaResponse,
+  GetShopFlashSaleRequest,
+  GetShopFlashSaleResponse,
+  GetShopFlashSaleItemsRequest,
+  GetShopFlashSaleItemsResponse,
+  GetShopFlashSaleListRequest,
+  GetShopFlashSaleListResponse,
+  GetTimeSlotIdRequest,
+  GetTimeSlotIdResponse,
+  UpdateShopFlashSaleRequest,
+  UpdateShopFlashSaleResponse,
+  UpdateShopFlashSaleItemsRequest,
+  UpdateShopFlashSaleItemsResponse,
+} from "../schemas/shop-flash-sale.js";
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
-import {
-  GetTimeSlotIdParams,
-  GetTimeSlotIdResponse,
-  CreateShopFlashSaleParams,
-  CreateShopFlashSaleResponse,
-  GetShopFlashSaleParams,
-  GetShopFlashSaleResponse,
-  GetShopFlashSaleListParams,
-  GetShopFlashSaleListResponse,
-  UpdateShopFlashSaleParams,
-  UpdateShopFlashSaleResponse,
-  DeleteShopFlashSaleParams,
-  DeleteShopFlashSaleResponse,
-  AddShopFlashSaleItemsParams,
-  AddShopFlashSaleItemsResponse,
-  GetShopFlashSaleItemsParams,
-  GetShopFlashSaleItemsResponse,
-  UpdateShopFlashSaleItemsParams,
-  UpdateShopFlashSaleItemsResponse,
-  DeleteShopFlashSaleItemsParams,
-  DeleteShopFlashSaleItemsResponse,
-  GetItemCriteriaParams,
-  GetItemCriteriaResponse,
-} from "../schemas/shop-flash-sale.js";
 import { ShopeeFetch } from "../fetch.js";
-
 export class ShopFlashSaleManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
   /**
-   * Get available time slot IDs
+   * add shop flash sale item
    *
-   * Use this API to get available time slots for creating shop flash sales.
-   * You can only use time slots that start in the future.
-   *
-   * @param params - Parameters containing start_time and end_time
-   * @returns A promise that resolves to the list of available time slots
-   *
-   * @example
-   * ```typescript
-   * const now = Math.floor(Date.now() / 1000);
-   * const slots = await sdk.shopFlashSale.getTimeSlotId({
-   *   start_time: now,
-   *   end_time: now + 7 * 86400 // Next 7 days
-   * });
-   * console.log('Available slots:', slots.response);
-   * ```
+   * @param {AddShopFlashSaleItemsRequest} params Request parameters
+   * @returns {Promise<AddShopFlashSaleItemsResponse>} Promise resolving to the response
    */
-  async getTimeSlotId(params: GetTimeSlotIdParams): Promise<GetTimeSlotIdResponse> {
-    const response = await ShopeeFetch.fetch<GetTimeSlotIdResponse>(
-      this.config,
-      "/shop_flash_sale/get_time_slot_id",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Create a new shop flash sale
-   *
-   * Use this API to create a new shop flash sale activity for a specific time slot.
-   * The time slot must be obtained from getTimeSlotId() and must start in the future.
-   *
-   * @param params - Parameters containing timeslot_id
-   * @returns A promise that resolves to the created flash sale information
-   *
-   * @example
-   * ```typescript
-   * const flashSale = await sdk.shopFlashSale.createShopFlashSale({
-   *   timeslot_id: 237859372232704
-   * });
-   * console.log('Flash sale created:', flashSale.response.flash_sale_id);
-   * ```
-   */
-  async createShopFlashSale(
-    params: CreateShopFlashSaleParams
-  ): Promise<CreateShopFlashSaleResponse> {
-    const response = await ShopeeFetch.fetch<CreateShopFlashSaleResponse>(
-      this.config,
-      "/shop_flash_sale/create_shop_flash_sale",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Get shop flash sale details
-   *
-   * Use this API to get detailed information about a specific shop flash sale.
-   *
-   * @param params - Parameters containing flash_sale_id
-   * @returns A promise that resolves to the flash sale details
-   *
-   * @example
-   * ```typescript
-   * const details = await sdk.shopFlashSale.getShopFlashSale({
-   *   flash_sale_id: 802063533822541
-   * });
-   * console.log('Flash sale status:', details.response.status);
-   * ```
-   */
-  async getShopFlashSale(params: GetShopFlashSaleParams): Promise<GetShopFlashSaleResponse> {
-    const response = await ShopeeFetch.fetch<GetShopFlashSaleResponse>(
-      this.config,
-      "/shop_flash_sale/get_shop_flash_sale",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Get shop flash sale list
-   *
-   * Use this API to get a list of shop flash sales with pagination support.
-   * You can filter by type (upcoming, ongoing, expired) and time range.
-   *
-   * @param params - Parameters for filtering and pagination
-   * @returns A promise that resolves to the list of flash sales
-   *
-   * @example
-   * ```typescript
-   * const list = await sdk.shopFlashSale.getShopFlashSaleList({
-   *   type: 1, // upcoming
-   *   offset: 0,
-   *   limit: 20
-   * });
-   * console.log('Total flash sales:', list.response.total_count);
-   * ```
-   */
-  async getShopFlashSaleList(
-    params: GetShopFlashSaleListParams
-  ): Promise<GetShopFlashSaleListResponse> {
-    const response = await ShopeeFetch.fetch<GetShopFlashSaleListResponse>(
-      this.config,
-      "/shop_flash_sale/get_shop_flash_sale_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Update shop flash sale status
-   *
-   * Use this API to enable or disable a shop flash sale.
-   * Disabling a flash sale will disable all items in the session.
-   * Cannot edit flash sales with 'system_rejected' status.
-   *
-   * @param params - Parameters containing flash_sale_id and status
-   * @returns A promise that resolves to the updated flash sale information
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.shopFlashSale.updateShopFlashSale({
-   *   flash_sale_id: 802063533822541,
-   *   status: 1 // enable
-   * });
-   * console.log('Flash sale updated:', result.response.status);
-   * ```
-   */
-  async updateShopFlashSale(
-    params: UpdateShopFlashSaleParams
-  ): Promise<UpdateShopFlashSaleResponse> {
-    const response = await ShopeeFetch.fetch<UpdateShopFlashSaleResponse>(
-      this.config,
-      "/shop_flash_sale/update_shop_flash_sale",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Delete shop flash sale
-   *
-   * Use this API to delete a shop flash sale.
-   * Cannot delete ongoing and expired flash sales.
-   *
-   * @param params - Parameters containing flash_sale_id
-   * @returns A promise that resolves to the deleted flash sale information
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.shopFlashSale.deleteShopFlashSale({
-   *   flash_sale_id: 802063533822541
-   * });
-   * console.log('Flash sale deleted, status:', result.response.status);
-   * ```
-   */
-  async deleteShopFlashSale(
-    params: DeleteShopFlashSaleParams
-  ): Promise<DeleteShopFlashSaleResponse> {
-    const response = await ShopeeFetch.fetch<DeleteShopFlashSaleResponse>(
-      this.config,
-      "/shop_flash_sale/delete_shop_flash_sale",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Add items to shop flash sale
-   *
-   * Use this API to add items to a shop flash sale.
-   * Maximum 50 enabled items per flash sale.
-   * For items with variations, specify model_id and prices for each variation.
-   *
-   * @param params - Parameters containing flash_sale_id and items
-   * @returns A promise that resolves to the result with any failed items
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.shopFlashSale.addShopFlashSaleItems({
-   *   flash_sale_id: 802063533822541,
-   *   items: [
-   *     {
-   *       item_id: 3744623870,
-   *       purchase_limit: 5,
-   *       models: [
-   *         {
-   *           model_id: 5414485721,
-   *           input_promo_price: 69.3,
-   *           stock: 100
-   *         }
-   *       ]
-   *     }
-   *   ]
-   * });
-   * console.log('Failed items:', result.response.failed_items);
-   * ```
-   */
-  async addShopFlashSaleItems(
-    params: AddShopFlashSaleItemsParams
+  public async addShopFlashSaleItems(
+    params?: AddShopFlashSaleItemsRequest
   ): Promise<AddShopFlashSaleItemsResponse> {
-    const response = await ShopeeFetch.fetch<AddShopFlashSaleItemsResponse>(
+    return ShopeeFetch.fetch<AddShopFlashSaleItemsResponse>(
       this.config,
       "/shop_flash_sale/add_shop_flash_sale_items",
       {
@@ -273,117 +47,55 @@ export class ShopFlashSaleManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Get shop flash sale items
+   * creat shop flash sale
    *
-   * Use this API to get items and their details in a shop flash sale.
-   * Returns both item information and model details for items with variations.
-   *
-   * @param params - Parameters containing flash_sale_id, offset, and limit
-   * @returns A promise that resolves to the items and their details
-   *
-   * @example
-   * ```typescript
-   * const items = await sdk.shopFlashSale.getShopFlashSaleItems({
-   *   flash_sale_id: 802063533822541,
-   *   offset: 0,
-   *   limit: 50
-   * });
-   * console.log('Total items:', items.response.total_count);
-   * console.log('Items:', items.response.item_info);
-   * console.log('Models:', items.response.models);
-   * ```
+   * @param {CreateShopFlashSaleRequest} params Request parameters
+   * @returns {Promise<CreateShopFlashSaleResponse>} Promise resolving to the response
    */
-  async getShopFlashSaleItems(
-    params: GetShopFlashSaleItemsParams
-  ): Promise<GetShopFlashSaleItemsResponse> {
-    const response = await ShopeeFetch.fetch<GetShopFlashSaleItemsResponse>(
+  public async createShopFlashSale(
+    params?: CreateShopFlashSaleRequest
+  ): Promise<CreateShopFlashSaleResponse> {
+    return ShopeeFetch.fetch<CreateShopFlashSaleResponse>(
       this.config,
-      "/shop_flash_sale/get_shop_flash_sale_items",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Update shop flash sale items
-   *
-   * Use this API to update items in a shop flash sale.
-   * Can only edit items/models in disabled or enabled status.
-   * Cannot modify price or stock of enabled items, must disable first.
-   *
-   * @param params - Parameters containing flash_sale_id and items
-   * @returns A promise that resolves to the result with any failed items
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.shopFlashSale.updateShopFlashSaleItems({
-   *   flash_sale_id: 802063533822541,
-   *   items: [
-   *     {
-   *       item_id: 3744623870,
-   *       purchase_limit: 10,
-   *       models: [
-   *         {
-   *           model_id: 5414485721,
-   *           status: 1, // enable
-   *           input_promo_price: 65.0,
-   *           stock: 150
-   *         }
-   *       ]
-   *     }
-   *   ]
-   * });
-   * console.log('Failed items:', result.response.failed_items);
-   * ```
-   */
-  async updateShopFlashSaleItems(
-    params: UpdateShopFlashSaleItemsParams
-  ): Promise<UpdateShopFlashSaleItemsResponse> {
-    const response = await ShopeeFetch.fetch<UpdateShopFlashSaleItemsResponse>(
-      this.config,
-      "/shop_flash_sale/update_shop_flash_sale_items",
+      "/shop_flash_sale/create_shop_flash_sale",
       {
         method: "POST",
         auth: true,
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Delete items from shop flash sale
+   * delete shop flash sale
    *
-   * Use this API to delete items from a shop flash sale.
-   * Deleting an item will delete all its models/variations.
-   *
-   * @param params - Parameters containing flash_sale_id and item_ids
-   * @returns A promise that resolves to the result with any failed items
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.shopFlashSale.deleteShopFlashSaleItems({
-   *   flash_sale_id: 802063533822541,
-   *   item_ids: [3744623870, 3744624265]
-   * });
-   * console.log('Items deleted');
-   * ```
+   * @param {DeleteShopFlashSaleRequest} params Request parameters
+   * @returns {Promise<DeleteShopFlashSaleResponse>} Promise resolving to the response
    */
-  async deleteShopFlashSaleItems(
-    params: DeleteShopFlashSaleItemsParams
+  public async deleteShopFlashSale(
+    params?: DeleteShopFlashSaleRequest
+  ): Promise<DeleteShopFlashSaleResponse> {
+    return ShopeeFetch.fetch<DeleteShopFlashSaleResponse>(
+      this.config,
+      "/shop_flash_sale/delete_shop_flash_sale",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * delete shop flash sale items
+   *
+   * @param {DeleteShopFlashSaleItemsRequest} params Request parameters
+   * @returns {Promise<DeleteShopFlashSaleItemsResponse>} Promise resolving to the response
+   */
+  public async deleteShopFlashSaleItems(
+    params?: DeleteShopFlashSaleItemsRequest
   ): Promise<DeleteShopFlashSaleItemsResponse> {
-    const response = await ShopeeFetch.fetch<DeleteShopFlashSaleItemsResponse>(
+    return ShopeeFetch.fetch<DeleteShopFlashSaleItemsResponse>(
       this.config,
       "/shop_flash_sale/delete_shop_flash_sale_items",
       {
@@ -392,37 +104,142 @@ export class ShopFlashSaleManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Get item criteria for shop flash sale
+   * get shop flash sale item criteria
    *
-   * Use this API to get the criteria that items must meet to be eligible
-   * for shop flash sales. Criteria vary by product category and region.
-   *
-   * @param params - No parameters required
-   * @returns A promise that resolves to the criteria details
-   *
-   * @example
-   * ```typescript
-   * const criteria = await sdk.shopFlashSale.getItemCriteria({});
-   * console.log('Criteria:', criteria.response.criteria);
-   * console.log('Category mappings:', criteria.response.pair_ids);
-   * ```
+   * @param {GetItemCriteriaRequest} params Request parameters
+   * @returns {Promise<GetItemCriteriaResponse>} Promise resolving to the response
    */
-  async getItemCriteria(params?: GetItemCriteriaParams): Promise<GetItemCriteriaResponse> {
-    const response = await ShopeeFetch.fetch<GetItemCriteriaResponse>(
+  public async getItemCriteria(params?: GetItemCriteriaRequest): Promise<GetItemCriteriaResponse> {
+    return ShopeeFetch.fetch<GetItemCriteriaResponse>(
       this.config,
       "/shop_flash_sale/get_item_criteria",
       {
         method: "GET",
         auth: true,
-        params: params || {},
+        params: params,
       }
     );
-
-    return response;
+  }
+  /**
+   * get shop flash sale detail
+   *
+   * @param {GetShopFlashSaleRequest} params Request parameters
+   * @returns {Promise<GetShopFlashSaleResponse>} Promise resolving to the response
+   */
+  public async getShopFlashSale(
+    params?: GetShopFlashSaleRequest
+  ): Promise<GetShopFlashSaleResponse> {
+    return ShopeeFetch.fetch<GetShopFlashSaleResponse>(
+      this.config,
+      "/shop_flash_sale/get_shop_flash_sale",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: ["response.start_time", "response.end_time"],
+      }
+    );
+  }
+  /**
+   * get shop flash sale items and item detail
+   *
+   * @param {GetShopFlashSaleItemsRequest} params Request parameters
+   * @returns {Promise<GetShopFlashSaleItemsResponse>} Promise resolving to the response
+   */
+  public async getShopFlashSaleItems(
+    params?: GetShopFlashSaleItemsRequest
+  ): Promise<GetShopFlashSaleItemsResponse> {
+    return ShopeeFetch.fetch<GetShopFlashSaleItemsResponse>(
+      this.config,
+      "/shop_flash_sale/get_shop_flash_sale_items",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * get shop flash sale list
+   *
+   * @param {GetShopFlashSaleListRequest} params Request parameters
+   * @returns {Promise<GetShopFlashSaleListResponse>} Promise resolving to the response
+   */
+  public async getShopFlashSaleList(
+    params?: GetShopFlashSaleListRequest
+  ): Promise<GetShopFlashSaleListResponse> {
+    return ShopeeFetch.fetch<GetShopFlashSaleListResponse>(
+      this.config,
+      "/shop_flash_sale/get_shop_flash_sale_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: [
+          "start_time",
+          "end_time",
+          "flash_sale_list.start_time",
+          "flash_sale_list.end_time",
+        ],
+      }
+    );
+  }
+  /**
+   * get time slot id
+   *
+   * @param {GetTimeSlotIdRequest} params Request parameters
+   * @returns {Promise<GetTimeSlotIdResponse>} Promise resolving to the response
+   */
+  public async getTimeSlotId(params?: GetTimeSlotIdRequest): Promise<GetTimeSlotIdResponse> {
+    return ShopeeFetch.fetch<GetTimeSlotIdResponse>(
+      this.config,
+      "/shop_flash_sale/get_time_slot_id",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: ["start_time", "end_time", "response.start_time", "response.end_time"],
+      }
+    );
+  }
+  /**
+   * edit shop flash sale(enable, disable)
+   *
+   * @param {UpdateShopFlashSaleRequest} params Request parameters
+   * @returns {Promise<UpdateShopFlashSaleResponse>} Promise resolving to the response
+   */
+  public async updateShopFlashSale(
+    params?: UpdateShopFlashSaleRequest
+  ): Promise<UpdateShopFlashSaleResponse> {
+    return ShopeeFetch.fetch<UpdateShopFlashSaleResponse>(
+      this.config,
+      "/shop_flash_sale/update_shop_flash_sale",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * edit shop flash sale item, you can only edit the models in disbaled or enabled status
+   *
+   * @param {UpdateShopFlashSaleItemsRequest} params Request parameters
+   * @returns {Promise<UpdateShopFlashSaleItemsResponse>} Promise resolving to the response
+   */
+  public async updateShopFlashSaleItems(
+    params?: UpdateShopFlashSaleItemsRequest
+  ): Promise<UpdateShopFlashSaleItemsResponse> {
+    return ShopeeFetch.fetch<UpdateShopFlashSaleItemsResponse>(
+      this.config,
+      "/shop_flash_sale/update_shop_flash_sale_items",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
   }
 }

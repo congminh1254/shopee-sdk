@@ -10,7 +10,7 @@ import {
   DeleteShopCategoryResponse,
   AddItemListResponse,
   DeleteItemListResponse,
-  GetShopCategoryItemListResponse,
+  GetItemListResponse,
 } from "../../schemas/shop-category.js";
 
 // Mock ShopeeFetch.fetch static method
@@ -436,7 +436,7 @@ describe("ShopCategoryManager", () => {
 
   describe("getItemList", () => {
     it("should get items in a shop category", async () => {
-      const mockResponse: GetShopCategoryItemListResponse = {
+      const mockResponse: GetItemListResponse = {
         request_id: "375ae1023f7396e34904fddfaafed901",
         error: "",
         message: "",
@@ -472,7 +472,7 @@ describe("ShopCategoryManager", () => {
     });
 
     it("should get items with default pagination", async () => {
-      const mockResponse: GetShopCategoryItemListResponse = {
+      const mockResponse: GetItemListResponse = {
         request_id: "375ae1023f7396e34904fddfaafed901",
         error: "",
         message: "",
@@ -495,7 +495,7 @@ describe("ShopCategoryManager", () => {
     });
 
     it("should handle empty item list", async () => {
-      const mockResponse: GetShopCategoryItemListResponse = {
+      const mockResponse: GetItemListResponse = {
         request_id: "375ae1023f7396e34904fddfaafed901",
         error: "",
         message: "",

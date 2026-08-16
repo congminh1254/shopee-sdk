@@ -285,6 +285,7 @@ describe("MediaSpaceManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -312,6 +313,7 @@ describe("MediaSpaceManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -373,6 +375,7 @@ describe("MediaSpaceManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -408,6 +411,7 @@ describe("MediaSpaceManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -428,6 +432,7 @@ describe("MediaSpaceManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -641,6 +646,7 @@ describe("MediaSpaceManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -665,6 +671,7 @@ describe("MediaSpaceManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);

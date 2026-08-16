@@ -12,7 +12,7 @@ const { runTests, initSdk } = setupIntegrationTest();
   });
 
   it("should successfully fetch Shopee IP ranges from the sandbox environment", async () => {
-    const response = await sdk.public.getShopeeIpRange();
+    const response = await sdk.public.getShopeeIpRanges();
 
     expect(response).toBeDefined();
     expect(response.request_id).toBeDefined();

@@ -140,7 +140,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
     });
 
     // Attempt API call that will fail
-    await expect(sdk.public.getShopeeIpRange()).rejects.toThrow();
+    await expect(sdk.public.getShopeeIpRanges()).rejects.toThrow();
 
     expect(mockFetch).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -208,7 +208,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
     const itemList = await sdk.product.getItemList({
       offset: 0,
       page_size: 10,
-      item_status: [ItemStatus.NORMAL],
+      item_status: ItemStatus.NORMAL as any,
     });
 
     const itemDetails = await sdk.product.getItemBaseInfo({
@@ -224,7 +224,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
       params: {
         offset: 0,
         page_size: 10,
-        item_status: [ItemStatus.NORMAL],
+        item_status: ItemStatus.NORMAL as any,
       },
     });
 

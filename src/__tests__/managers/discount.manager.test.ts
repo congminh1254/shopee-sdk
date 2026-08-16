@@ -539,7 +539,7 @@ describe("DiscountManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.discount_list).toHaveLength(1);
-      expect(result.response.discount_list[0].region).toBe("SG");
+      expect(result.response.discount_list![0].region).toBe("SG");
     });
   });
 
@@ -582,7 +582,7 @@ describe("DiscountManager", () => {
     });
 
     it("should update an existing SIP discount", async () => {
-      const mockResponse: SetSipDiscountResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -602,10 +602,12 @@ describe("DiscountManager", () => {
       const result = await discountManager.setSipDiscount({
         region: "TH",
         sip_discount_rate: 20,
-      });
+      } as any);
 
       expect(result.response.sip_discount_rate).toBe(20);
-      expect(result.response.update_time).toBeGreaterThan(result.response.create_time);
+      expect(result.response.update_time as number).toBeGreaterThan(
+        result.response.create_time as number
+      );
     });
   });
 

@@ -255,6 +255,7 @@ describe("PushManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -282,6 +283,7 @@ describe("PushManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);

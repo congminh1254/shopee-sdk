@@ -5,7 +5,7 @@ import { ShopeeRegion } from "../../schemas/region.js";
 import { ShopeeFetch } from "../../fetch.js";
 import {
   GetOrderListResponse,
-  GetOrdersDetailResponse,
+  GetOrderDetailResponse,
   GetShipmentListResponse,
   SplitOrderResponse,
   UnsplitOrderResponse,
@@ -26,8 +26,8 @@ import {
   GenerateFbsInvoicesResponse,
   GetFbsInvoicesResultResponse,
   GetEstimateCancelValueResponse,
-  allOptionalFields,
 } from "../../schemas/order.js";
+import { allOptionalFields } from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
 const mockFetch = jest.fn() as any;
@@ -100,7 +100,7 @@ describe("OrderManager", () => {
     });
 
     it("should get order list with status filter", async () => {
-      const mockResponse: any = {
+      const mockResponse: GetOrderDetailResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -115,7 +115,7 @@ describe("OrderManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -145,9 +145,9 @@ describe("OrderManager", () => {
     });
   });
 
-  describe("getOrdersDetail", () => {
+  describe("getOrderDetail", () => {
     it("should get orders detail for multiple orders", async () => {
-      const mockResponse: GetOrdersDetailResponse = {
+      const mockResponse: UnsplitOrderResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -243,11 +243,11 @@ describe("OrderManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await orderManager.getOrdersDetail({
+      const result = await orderManager.getOrderDetail({
         order_sn_list: ["220101000000001"],
         response_optional_fields: [
           "buyer_user_id",
@@ -380,12 +380,12 @@ describe("OrderManager", () => {
 
   describe("unsplitOrder", () => {
     it("should unsplit an order", async () => {
-      const mockResponse: UnsplitOrderResponse = {
+      const mockResponse: GetBuyerInvoiceInfoResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: null,
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -493,7 +493,7 @@ describe("OrderManager", () => {
 
   describe("getBuyerInvoiceInfo", () => {
     it("should get buyer invoice info", async () => {
-      const mockResponse: GetBuyerInvoiceInfoResponse = {
+      const mockResponse: SetNoteResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -511,7 +511,7 @@ describe("OrderManager", () => {
             is_requested: true,
           },
         ],
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -539,7 +539,7 @@ describe("OrderManager", () => {
     });
 
     it("should get buyer invoice info with household invoice type", async () => {
-      const mockResponse: GetBuyerInvoiceInfoResponse = {
+      const mockResponse: HandlePrescriptionCheckResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -568,7 +568,7 @@ describe("OrderManager", () => {
             is_requested: true,
           },
         ],
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -590,12 +590,12 @@ describe("OrderManager", () => {
 
   describe("setNote", () => {
     it("should set note for an order", async () => {
-      const mockResponse: SetNoteResponse = {
+      const mockResponse: UploadInvoiceDocResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: null,
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -793,14 +793,14 @@ describe("OrderManager", () => {
 
   describe("handlePrescriptionCheck", () => {
     it("should approve prescription", async () => {
-      const mockResponse: HandlePrescriptionCheckResponse = {
+      const mockResponse: DownloadFbsInvoicesResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
           package_number: "PKG001",
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -813,7 +813,7 @@ describe("OrderManager", () => {
         items: [{ item_id: 111111, model_id: 222222, prescription_status: 1 }],
         pharmacist_name: "John Doe",
         free_text: "Checked",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/handle_prescription_check", {
         method: "POST",
@@ -865,12 +865,12 @@ describe("OrderManager", () => {
 
   describe("uploadInvoiceDoc", () => {
     it("should upload invoice document", async () => {
-      const mockResponse: UploadInvoiceDocResponse = {
+      const mockResponse: GetFbsInvoicesResultResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: null,
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -879,7 +879,7 @@ describe("OrderManager", () => {
         invoice_file: "base64_encoded_file_content",
         file_type: "pdf",
         file: "invoice.pdf",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/upload_invoice_doc", {
         method: "POST",
@@ -1017,7 +1017,7 @@ describe("OrderManager", () => {
 
   describe("downloadFbsInvoices", () => {
     it("should download FBS invoices", async () => {
-      const mockResponse: DownloadFbsInvoicesResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1037,7 +1037,7 @@ describe("OrderManager", () => {
         request_id_list: {
           request_id: [123, 456],
         },
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/download_fbs_invoices", {
         method: "POST",
@@ -1094,7 +1094,7 @@ describe("OrderManager", () => {
 
   describe("getFbsInvoicesResult", () => {
     it("should get FBS invoices result", async () => {
-      const mockResponse: GetFbsInvoicesResultResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1114,7 +1114,7 @@ describe("OrderManager", () => {
         request_id_list: {
           request_id: [123],
         },
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/get_fbs_invoices_result", {
         method: "POST",

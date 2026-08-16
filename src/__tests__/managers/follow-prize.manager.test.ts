@@ -10,9 +10,8 @@ import {
   GetFollowPrizeDetailResponse,
   GetFollowPrizeListResponse,
   UpdateFollowPrizeResponse,
-  FollowPrizeStatus,
-  FollowPrizeRewardType,
 } from "../../schemas/follow-prize.js";
+import { FollowPrizeStatus, FollowPrizeRewardType } from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
 const mockFetch = jest.fn() as any;
@@ -332,8 +331,8 @@ describe("FollowPrizeManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.more).toBe(false);
       expect(result.response.follow_prize_list).toHaveLength(1);
-      expect(result.response.follow_prize_list[0].campaign_status).toBe("upcoming");
-      expect(result.response.follow_prize_list[0].claimed).toBe(0);
+      expect(result.response.follow_prize_list![0].campaign_status).toBe("upcoming");
+      expect(result.response.follow_prize_list![0].claimed).toBe(0);
     });
 
     it("should get list of all follow prizes with pagination", async () => {
@@ -385,7 +384,7 @@ describe("FollowPrizeManager", () => {
 
       expect(result.response.more).toBe(true);
       expect(result.response.follow_prize_list).toHaveLength(3);
-      expect(result.response.follow_prize_list[1].claimed).toBe(200);
+      expect(result.response.follow_prize_list![1].claimed).toBe(200);
     });
 
     it("should get list of ongoing follow prizes", async () => {
@@ -415,7 +414,7 @@ describe("FollowPrizeManager", () => {
         status: FollowPrizeStatus.ONGOING,
       });
 
-      expect(result.response.follow_prize_list[0].campaign_status).toBe("ongoing");
+      expect(result.response.follow_prize_list![0].campaign_status).toBe("ongoing");
     });
   });
 

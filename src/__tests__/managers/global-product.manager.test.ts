@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { ShopeeFetch } from "../../fetch.js";
 import {
-  GetGlobalCategoryResponse,
+  GetCategoryResponse,
   GetGlobalItemListResponse,
   GetGlobalItemInfoResponse,
   GetGlobalModelListResponse,
@@ -14,13 +14,13 @@ import {
   AddGlobalModelResponse,
   UpdateGlobalModelResponse,
   DeleteGlobalModelResponse,
-  InitGlobalTierVariationResponse,
-  UpdateGlobalTierVariationResponse,
-  UpdateGlobalStockResponse,
-  UpdateGlobalPriceResponse,
-  GetGlobalAttributeTreeResponse,
-  GetGlobalBrandListResponse,
-  GlobalCategoryRecommendResponse,
+  InitTierVariationResponse,
+  UpdateTierVariationResponse,
+  UpdateStockResponse,
+  UpdatePriceResponse,
+  GetAttributeTreeResponse,
+  GetBrandListResponse,
+  CategoryRecommendResponse,
   GetGlobalItemLimitResponse,
   GetPublishableShopResponse,
   GetShopPublishableStatusResponse,
@@ -28,14 +28,14 @@ import {
   GetPublishTaskResultResponse,
   GetPublishedListResponse,
   GetGlobalItemIdResponse,
-  GetGlobalRecommendAttributeResponse,
+  GetRecommendAttributeResponse,
   SearchGlobalAttributeValueListResponse,
-  GetGlobalVariationsResponse,
+  GetVariationsResponse,
   SetSyncFieldResponse,
   GetLocalAdjustmentRateResponse,
   UpdateLocalAdjustmentRateResponse,
-  GetGlobalSizeChartListResponse,
-  GetGlobalSizeChartDetailResponse,
+  GetSizeChartListResponse,
+  GetSizeChartDetailResponse,
   UpdateSizeChartResponse,
   SupportSizeChartResponse,
 } from "../../schemas/global-product.js";
@@ -65,7 +65,7 @@ describe("GlobalProductManager", () => {
 
   describe("getCategory", () => {
     it("should get global category list successfully", async () => {
-      const mockResponse: GetGlobalCategoryResponse = {
+      const mockResponse: GetCategoryResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -101,12 +101,12 @@ describe("GlobalProductManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.category_list).toHaveLength(2);
-      expect(result.response.category_list[0].category_id).toBe(100182);
-      expect(result.response.category_list[0].has_children).toBe(true);
+      expect(result.response.category_list![0].category_id).toBe(100182);
+      expect(result.response.category_list![0].has_children).toBe(true);
     });
 
     it("should get category list without language parameter", async () => {
-      const mockResponse: GetGlobalCategoryResponse = {
+      const mockResponse: GetCategoryResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -243,8 +243,8 @@ describe("GlobalProductManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.global_item_list).toHaveLength(1);
-      expect(result.response.global_item_list[0].global_item_id).toBe(123456);
-      expect(result.response.global_item_list[0].global_item_name).toBe("Test Product");
+      expect(result.response.global_item_list![0].global_item_id).toBe(123456);
+      expect(result.response.global_item_list![0].global_item_name).toBe("Test Product");
     });
   });
 
@@ -332,6 +332,7 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -358,7 +359,7 @@ describe("GlobalProductManager", () => {
 
   describe("initTierVariation", () => {
     it("should initialize tier variation successfully", async () => {
-      const mockResponse: InitGlobalTierVariationResponse = {
+      const mockResponse: InitTierVariationResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -417,7 +418,7 @@ describe("GlobalProductManager", () => {
 
   describe("updateStock", () => {
     it("should update global item stock successfully", async () => {
-      const mockResponse: UpdateGlobalStockResponse = {
+      const mockResponse: UpdateStockResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -464,7 +465,7 @@ describe("GlobalProductManager", () => {
 
   describe("updatePrice", () => {
     it("should update global item price successfully", async () => {
-      const mockResponse: UpdateGlobalPriceResponse = {
+      const mockResponse: UpdatePriceResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -511,7 +512,7 @@ describe("GlobalProductManager", () => {
 
   describe("getAttributeTree", () => {
     it("should get attribute tree successfully", async () => {
-      const mockResponse: GetGlobalAttributeTreeResponse = {
+      const mockResponse: GetAttributeTreeResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -556,7 +557,7 @@ describe("GlobalProductManager", () => {
 
   describe("getBrandList", () => {
     it("should get brand list successfully", async () => {
-      const mockResponse: GetGlobalBrandListResponse = {
+      const mockResponse: GetBrandListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -592,13 +593,13 @@ describe("GlobalProductManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.brand_list).toHaveLength(1);
-      expect(result.response.brand_list[0].brand_id).toBe(5001);
+      expect(result.response.brand_list![0].brand_id).toBe(5001);
     });
   });
 
   describe("categoryRecommend", () => {
     it("should get category recommendations successfully", async () => {
-      const mockResponse: GlobalCategoryRecommendResponse = {
+      const mockResponse: CategoryRecommendResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -639,7 +640,7 @@ describe("GlobalProductManager", () => {
         response: {
           publish_task_id: "task_123",
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -682,13 +683,13 @@ describe("GlobalProductManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.getPublishTaskResult({
         publish_task_id: "task_123",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1035,10 +1036,11 @@ describe("GlobalProductManager", () => {
 
   describe("updateTierVariation", () => {
     it("should update tier variation successfully", async () => {
-      const mockResponse: UpdateGlobalTierVariationResponse = {
+      const mockResponse: UpdateTierVariationResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1234,7 +1236,7 @@ describe("GlobalProductManager", () => {
 
   describe("getRecommendAttribute", () => {
     it("should get recommended attributes successfully", async () => {
-      const mockResponse: GetGlobalRecommendAttributeResponse = {
+      const mockResponse: GetRecommendAttributeResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1321,7 +1323,7 @@ describe("GlobalProductManager", () => {
 
   describe("getVariations", () => {
     it("should get variations successfully", async () => {
-      const mockResponse: GetGlobalVariationsResponse = {
+      const mockResponse: GetVariationsResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1452,7 +1454,7 @@ describe("GlobalProductManager", () => {
 
   describe("getSizeChartList", () => {
     it("should get size chart list successfully", async () => {
-      const mockResponse: GetGlobalSizeChartListResponse = {
+      const mockResponse: GetSizeChartListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1470,7 +1472,7 @@ describe("GlobalProductManager", () => {
           has_next_page: false,
           next_offset: 0,
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -1497,7 +1499,7 @@ describe("GlobalProductManager", () => {
 
   describe("getSizeChartDetail", () => {
     it("should get size chart detail successfully", async () => {
-      const mockResponse: GetGlobalSizeChartDetailResponse = {
+      const mockResponse: GetSizeChartDetailResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1514,13 +1516,13 @@ describe("GlobalProductManager", () => {
             },
           },
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.getSizeChartDetail({
         size_chart_id: "chart123",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1545,6 +1547,7 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);

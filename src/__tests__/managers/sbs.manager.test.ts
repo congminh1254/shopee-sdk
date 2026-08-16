@@ -53,7 +53,7 @@ describe("SbsManager", () => {
             },
           ],
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -67,8 +67,8 @@ describe("SbsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.list).toHaveLength(1);
-      expect(result.response.list[0].shop_id).toBe(67890);
-      expect(result.response.list[0].bound_whs[0].whs_region).toBe("SG");
+      expect(result.response.list![0].shop_id).toBe(67890);
+      expect(result.response!.list![0].bound_whs![0].whs_region).toBe("SG");
     });
   });
 
@@ -146,8 +146,8 @@ describe("SbsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.item_list).toHaveLength(1);
-      expect(result.response.item_list[0].warehouse_item_id).toBe("900625438");
-      expect(result.response.item_list[0].sku_list[0].whs_list[0].sellable_qty).toBe(47);
+      expect(result.response.item_list![0].warehouse_item_id).toBe("900625438");
+      expect(result.response!.item_list![0].sku_list![0].whs_list![0].sellable_qty).toBe(47);
     });
 
     it("should get current inventory with filters", async () => {
@@ -251,11 +251,11 @@ describe("SbsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.item_list).toHaveLength(1);
-      expect(result.response.item_list[0].sku_list[0].whs_list[0].expiring_qty).toBe(5);
+      expect(result.response!.item_list![0].sku_list![0].whs_list![0].expiring_qty).toBe(5);
     });
 
     it("should get expiry report with category filter", async () => {
-      const mockResponse: GetExpiryReportResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -270,7 +270,7 @@ describe("SbsManager", () => {
         whs_region: "ID",
         category_id_l1: 100002,
         whs_ids: "IDL,IDG",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_expiry_report", {
         method: "GET",
@@ -352,7 +352,9 @@ describe("SbsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.item_list).toHaveLength(1);
-      expect(result.response.item_list[0].sku_list[0].whs_list[0].qty_of_stock_age_one).toBe(10);
+      expect(result.response!.item_list![0].sku_list![0].whs_list![0].qty_of_stock_age_one).toBe(
+        10
+      );
     });
 
     it("should get stock aging with search filters", async () => {
@@ -474,7 +476,7 @@ describe("SbsManager", () => {
         whs_region: "CN",
         page_no: 1,
         page_size: 10,
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_stock_movement", {
         method: "GET",
@@ -491,12 +493,12 @@ describe("SbsManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.total).toBe(3);
       expect(result.response.item_list).toHaveLength(1);
-      expect(result.response.item_list[0].sku_list[0].start_qty.start_on_hand_total).toBe(50);
-      expect(result.response.item_list[0].sku_list[0].end_qty.end_on_hand_total).toBe(55);
+      expect(result.response!.item_list![0].sku_list![0].start_qty!.start_on_hand_total).toBe(50);
+      expect(result.response!.item_list![0].sku_list![0].end_qty!.end_on_hand_total).toBe(55);
     });
 
     it("should get stock movement with all filters", async () => {
-      const mockResponse: GetStockMovementResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -519,7 +521,7 @@ describe("SbsManager", () => {
         category_id_l1: 100002,
         sku_id: "801866836_10006075010",
         item_id: "801866836",
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_stock_movement", {
         method: "GET",

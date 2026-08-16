@@ -9,7 +9,7 @@ import {
   GetCoverListResponse,
   GetMetricTrendResponse,
   GetOverviewPerformanceResponse,
-  GetProductPerformanceListResponse,
+  GetProdcutPerformanceListResponse,
   GetUserDemographicsResponse,
   GetVideoDetailResponse,
   GetVideoDetailAudienceDistributionResponse,
@@ -512,9 +512,9 @@ describe("VideoManager", () => {
     });
   });
 
-  describe("getProductPerformanceList", () => {
+  describe("getProdcutPerformanceList", () => {
     it("should get product performance list successfully", async () => {
-      const mockResponse: GetProductPerformanceListResponse = {
+      const mockResponse: GetProdcutPerformanceListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -536,7 +536,7 @@ describe("VideoManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await videoManager.getProductPerformanceList({
+      const result = await videoManager.getProdcutPerformanceList({
         pageNo: 1,
         pageSize: 10,
         periodType: "Day",
@@ -567,7 +567,7 @@ describe("VideoManager", () => {
     });
 
     it("should get product performance list using snake_case parameters successfully", async () => {
-      const mockResponse: GetProductPerformanceListResponse = {
+      const mockResponse: GetProdcutPerformanceListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -576,7 +576,7 @@ describe("VideoManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await videoManager.getProductPerformanceList({
+      const result = await videoManager.getProdcutPerformanceList({
         page_no: 1,
         page_size: 10,
         period_type: "Day",
@@ -1048,7 +1048,7 @@ describe("VideoManager", () => {
     });
 
     it("should get video list using snake_case parameters successfully", async () => {
-      const mockResponse: GetVideoListResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1064,7 +1064,7 @@ describe("VideoManager", () => {
         page_no: 1,
         page_size: 10,
         list_type: 2,
-      });
+      } as any);
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_list", {
         method: "GET",

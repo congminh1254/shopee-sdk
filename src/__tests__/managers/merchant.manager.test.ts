@@ -48,6 +48,7 @@ describe("MerchantManager", () => {
         merchant_currency: "CNY",
         merchant_region: "CN",
         is_upgraded_cbsc: true,
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -127,7 +128,7 @@ describe("MerchantManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response?.list).toHaveLength(2);
-      expect(result.response?.list[0].prepaid_account_is_default).toBe(true);
+      expect(result.response?.list![0].prepaid_account_is_default).toBe(true);
       expect(result.response?.total).toBe(2);
     });
   });
@@ -189,7 +190,7 @@ describe("MerchantManager", () => {
           },
           total_count: 2,
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -219,8 +220,8 @@ describe("MerchantManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response?.warehouse_list).toHaveLength(2);
-      expect(result.response?.warehouse_list[0].warehouse_name).toBe("MX Warehouse 1");
-      expect(result.response?.warehouse_list[1].enterprise_info?.cnpj).toBe("52069476000182");
+      expect(result.response?.warehouse_list![0].warehouse_name).toBe("MX Warehouse 1");
+      expect(result.response?.warehouse_list![1].enterprise_info?.cnpj).toBe("52069476000182");
       expect(result.response?.total_count).toBe(2);
     });
   });
@@ -290,6 +291,7 @@ describe("MerchantManager", () => {
           },
         ],
         more: false,
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -352,7 +354,7 @@ describe("MerchantManager", () => {
             prev_id: null,
           },
         },
-      };
+      } as any as any;
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -384,8 +386,8 @@ describe("MerchantManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response?.shop_list).toHaveLength(4);
-      expect(result.response?.shop_list[0].shop_name).toBe("test_shop11");
-      expect(result.response?.cursor.next_id).toBe(222859324);
+      expect(result.response?.shop_list![0].shop_name).toBe("test_shop11");
+      expect(result.response?.cursor!.next_id).toBe(222859324);
     });
   });
 });
