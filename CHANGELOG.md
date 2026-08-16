@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.1](https://github.com/congminh1254/shopee-sdk/compare/v1.15.0...v1.15.1) (2026-08-16)
+
+
+### Bug Fixes
+
+* resolve get_escrow_detail_batch live gateway POST requirement (issue 227) on 1.x ([99800de](https://github.com/congminh1254/shopee-sdk/commit/99800de65ee275156d030e096515d19b6bd5765b))
+
 ## [1.15.0](https://github.com/congminh1254/shopee-sdk/compare/v1.14.0...v1.15.0) (2026-08-12)
 
 
