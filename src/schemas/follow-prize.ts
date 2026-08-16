@@ -25,27 +25,27 @@ export interface AddFollowPrizeRequest {
   /**
    * The name of the follow prize,The follow prize name length max limit is 20.
    */
-  follow_prize_name?: string;
+  follow_prize_name: string;
   /**
    * The timing from when the follow prize is valid,the start time later than the current time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
    */
-  start_time?: Date | number;
+  start_time: Date | number;
   /**
    * The timing until when the follow prize is still valid,the end time must be greater than the start time by at least 1 day and end time cannot exceed 3 months after start time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
    */
-  end_time?: Date | number;
+  end_time: Date | number;
   /**
    * Please enter a value between 1 and 200000.
    */
-  usage_quantity?: number;
+  usage_quantity: number;
   /**
    * The minimum spend required for using this follow prize.
    */
-  min_spend?: number;
+  min_spend: number;
   /**
    * The reward type of the follow prize.The available values are:1:discount---fix amount,2:discount---by percentage,3:coin cash back.
    */
-  reward_type?: number;
+  reward_type: number;
   /**
    * The discount amount set for this particular follow prize.Only fill in when you are creating a fix amount follow prize.
    */
@@ -89,7 +89,7 @@ export interface DeleteFollowPrizeRequest {
   /**
    * The unique identifier for the created follow prize.
    */
-  campaign_id?: number;
+  campaign_id: number;
   [key: string]: any;
 }
 /**
@@ -121,7 +121,7 @@ export interface EndFollowPrizeRequest {
   /**
    * The unique identifier for the created follow prize.
    */
-  campaign_id?: number;
+  campaign_id: number;
   [key: string]: any;
 }
 /**
@@ -233,7 +233,7 @@ export interface GetFollowPrizeListRequest {
   /**
    * The status filter for retrieving follow prize list. Available value: upcoming/ongoing/expired/all.
    */
-  status?: Status | string | number;
+  status: Status | string | number;
   [key: string]: any;
 }
 /**
@@ -307,7 +307,7 @@ export interface UpdateFollowPrizeRequest {
   /**
    * The unique identifier for the created follow prize.
    */
-  campaign_id?: number;
+  campaign_id: number;
   /**
    * The timing from when the follow prize is valid,the start time later than the current time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
    */

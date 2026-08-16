@@ -35,11 +35,11 @@ export interface GetAuthorisedResellerBrandRequest {
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 30.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -580,7 +580,7 @@ export interface SetShopHolidayModeRequest {
   /**
    * Indicate whether to enable holiday mode for the shop. true means turn ON, false means turn OFF.
    */
-  holiday_mode_on?: boolean;
+  holiday_mode_on: boolean;
   /**
    * Holiday type:0 - Full holiday，buyers cannot place new orders. The behavior remains consistent with the current Holiday Mode.1 - Partial holiday, buyers can continue placing orders, and the system will automatically extend the order’s Ship-By-Date (SBD).
    */

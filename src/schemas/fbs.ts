@@ -166,7 +166,7 @@ export type QueryBrShopInvoiceErrorResponse = FetchResponse<QueryBrShopInvoiceEr
  * This API checks whether an FBS product is blocked due to invoice-related issues. When blocked, the product cannot be included in new Inbound Requests, and its warehouse inventory is restricted from being sold.
  */
 export interface QueryBrSkuBlockStatusRequest {
-  shop_sku_id?: string;
+  shop_sku_id: string;
   [key: string]: any;
 }
 /**

@@ -127,11 +127,11 @@ export interface CancelOrder_Item {
   /**
    * Id of item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Id of the model that belongs to the same item.
    */
-  model_id?: number;
+  model_id: number;
   [key: string]: any;
 }
 /**
@@ -141,11 +141,11 @@ export interface CancelOrder_PartialCancelItem {
   /**
    * The unique identifier of the item to be partially cancelled.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The unique identifier of the model to be partially cancelled.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.
    */
@@ -157,7 +157,7 @@ export interface CancelOrder_PartialCancelItem {
   /**
    * The quantity of the specified item model to be cancelled.
    */
-  model_quantity?: number;
+  model_quantity: number;
   [key: string]: any;
 }
 /**
@@ -169,11 +169,11 @@ export interface CancelOrderRequest {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * The reason seller want to cancel this order. Applicable values: OUT_OF_STOCKCUSTOMER_REQUESTUNDELIVERABLE_AREA (Note: Only apply for TW and MY)COD_NOT_SUPPORTED
    */
-  cancel_reason?: string;
+  cancel_reason: string;
   /**
    * Required when cancel_reason is OUT_OF_STOCK.
    */
@@ -208,7 +208,7 @@ export type CancelOrderResponse = FetchResponse<CancelOrderResponseData>;
  * DownloadFbsInvoices_RequestId sub-interface for DownloadFbsInvoicesRequest
  */
 export interface DownloadFbsInvoices_RequestId {
-  request_id?: number[];
+  request_id: number[];
   [key: string]: any;
 }
 /**
@@ -250,7 +250,7 @@ export interface DownloadInvoiceDocRequest {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   [key: string]: any;
 }
 /**
@@ -273,19 +273,19 @@ export interface GenerateFbsInvoices_BatchDownload {
   /**
    * Format YYYYMMDDe.g. 20240101
    */
-  start?: number;
+  start: number;
   /**
    * Format YYYYMMDDe.g. 20240101
    */
-  end?: number;
+  end: number;
   /**
    * 1 = Remessa2 = Return3 = Symbolic Return4 = Sale5 = Entrada6 = Symbolic Remessa7 = all
    */
-  document_type?: number;
+  document_type: number;
   /**
    * 1 = xml only2 = pdf only3 = both
    */
-  file_type?: number;
+  file_type: number;
   /**
    * 1= authorized only2= cancelledDefault: If document_status not passed or passed empty, means documents under ALL status (both authorized and cancelled) must be included
    */
@@ -349,7 +349,7 @@ export interface GetBookingDetailRequest {
   /**
    * The set of booking_sn. If there are multiple booking_sn, you need to use English comma to connect them. limit [1,50]
    */
-  booking_sn_list?: string[];
+  booking_sn_list: string[];
   /**
    * The response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them. Available values: item_list,cancel_by,cancel_reason,fulfillment_flag,pickup_done_time,shipping_carrier, recipient_address, dropshipper, dropshipper_phone
    */
@@ -557,19 +557,19 @@ export interface GetBookingListRequest {
   /**
    * The kind of time_from and time_to. Available value: create_time, update_time.
    */
-  time_range_field?: TimeRangeField | string | number;
+  time_range_field: TimeRangeField | string | number;
   /**
    * The time_from and time_to fields specify a date range for retrieving bookings (based on the time_range_field). The time_from field is the starting date range. The maximum date range that may be specified with the time_from and time_to fields is 15 days.
    */
-  time_from?: number;
+  time_from: number;
   /**
    * The time_from and time_to fields specify a date range for retrieving bookings (based on the time_range_field). The time_from field is the starting date range. The maximum date range that may be specified with the time_from and time_to fields is 15 days.
    */
-  time_to?: number;
+  time_to: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data.The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
@@ -630,7 +630,7 @@ export interface GetBuyerInvoiceInfo_Querie {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   [key: string]: any;
 }
 /**
@@ -639,7 +639,7 @@ export interface GetBuyerInvoiceInfo_Querie {
  * API to obtain buyer submitted invoice info for VN, TH and PH local sellers only.
  */
 export interface GetBuyerInvoiceInfoRequest {
-  queries?: GetBuyerInvoiceInfo_Querie[];
+  queries: GetBuyerInvoiceInfo_Querie[];
   [key: string]: any;
 }
 /**
@@ -896,11 +896,11 @@ export interface GetEstimateCancelValue_PartialCancelItem {
   /**
    * The unique identifier of the item to be included in the estimated cancellation value calculation.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The unique identifier of the model to be included in the estimated cancellation value calculation.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.
    */
@@ -912,7 +912,7 @@ export interface GetEstimateCancelValue_PartialCancelItem {
   /**
    * The quantity of the specified item model to be included in the estimated cancellation value calculation.
    */
-  model_quantity?: number;
+  model_quantity: number;
   [key: string]: any;
 }
 /**
@@ -924,11 +924,11 @@ export interface GetEstimateCancelValueRequest {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * The list of item models and quantities for which the seller wants to estimate the cancellation value before submitting the actual partial cancellation request.
    */
-  partial_cancel_item_list?: GetEstimateCancelValue_PartialCancelItem[];
+  partial_cancel_item_list: GetEstimateCancelValue_PartialCancelItem[];
   [key: string]: any;
 }
 /**
@@ -954,7 +954,7 @@ export interface GetFbsInvoicesResult_RequestId {
   /**
    * A list of integers representing the request IDs to be queried.
    */
-  request_id?: number[];
+  request_id: number[];
   [key: string]: any;
 }
 /**
@@ -966,7 +966,7 @@ export interface GetFbsInvoicesResultRequest {
   /**
    * -
    */
-  request_id_list?: GetFbsInvoicesResult_RequestId[];
+  request_id_list: GetFbsInvoicesResult_RequestId[];
   [key: string]: any;
 }
 /**
@@ -1013,7 +1013,7 @@ export interface GetOrderDetailRequest {
   /**
    * The set of order_sn. If there are multiple order_sn, you need to use English comma to connect them. limit [1,50]
    */
-  order_sn_list?: string[];
+  order_sn_list: string[];
   /**
    * Compatible parameter during migration period, send True will let API support PENDING status and return  pending_terms, send False or don’t send will fallback to old logic
    */
@@ -1662,19 +1662,19 @@ export interface GetOrderListRequest {
   /**
    * The kind of time_from and time_to. Available value: create_time, update_time.
    */
-  time_range_field?: TimeRangeField | string | number;
+  time_range_field: TimeRangeField | string | number;
   /**
    * The time_from and time_to fields specify a date range for retrieving orders (based on the time_range_field). The time_from field is the starting date range. The maximum date range that may be specified with the time_from and time_to fields is 15 days.
    */
-  time_from?: Date | number;
+  time_from: Date | number;
   /**
    * The time_from and time_to fields specify a date range for retrieving orders (based on the time_range_field). The time_from field is the starting date range. The maximum date range that may be specified with the time_from and time_to fields is 15 days.
    */
-  time_to?: Date | number;
+  time_to: Date | number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data.The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the starting entry of data to return in the current call. The default is empty. If the data is more than one page, the offset can be some entry to start the next call.
    */
@@ -1749,7 +1749,7 @@ export interface GetPackageDetailRequest {
   /**
    * The set of package_number. If there are multiple package_number, you need to use English comma to connect them. limit [1,50]
    */
-  package_number_list?: string[];
+  package_number_list: string[];
   [key: string]: any;
 }
 /**
@@ -2128,7 +2128,7 @@ export interface GetPendingBuyerInvoiceOrderListRequest {
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data.The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -2180,7 +2180,7 @@ export interface GetShipmentListRequest {
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data.The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -2283,11 +2283,11 @@ export interface HandleBuyerCancellationRequest {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * The operation you want to handle.Avaiable value: ACCEPT, REJECT
    */
-  operation?: string;
+  operation: string;
   [key: string]: any;
 }
 /**
@@ -2317,15 +2317,15 @@ export interface HandlePrescriptionCheck_Item {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Shopee's unique identifier for a model of an item.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * The identify of product promotion. For items in one same add on deal promotion, the group_id should share the same id. For items not in add on deal promotion, the group_id should be 0. And the data is from group_id of shopee.orders.GetOrderDetails.
    */
-  group_id?: number;
+  group_id: number;
   [key: string]: any;
 }
 /**
@@ -2337,11 +2337,11 @@ export interface HandlePrescriptionCheckRequest {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * Approve or reject the prescription. Available values: TRUE, FALSE.
    */
-  is_approved?: IsApproved | string | number;
+  is_approved: IsApproved | string | number;
   /**
    * Reject reason code. Available values: 1 = Invalid Prescription (counterfeit/incorrect format)2 = Incorrect Dosage3 = No Prescription4 = Unclear Image5 = Free Text
    */
@@ -2433,7 +2433,7 @@ export interface SearchPackageList_Pagination {
    * number of entries to return in a single "page" of data.The limit of
    * page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the starting entry of data to return in the current call.
    * Default is "". If data is more than one page, the offset can be some
@@ -2463,7 +2463,7 @@ export interface SearchPackageList_Sort {
  */
 export interface SearchPackageListRequest {
   filter?: SearchPackageList_Filter;
-  pagination?: SearchPackageList_Pagination;
+  pagination: SearchPackageList_Pagination;
   sort?: SearchPackageList_Sort;
   [key: string]: any;
 }
@@ -2560,11 +2560,11 @@ export interface SetNoteRequest {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * The note seller add for reference.
    */
-  note?: string;
+  note: string;
   [key: string]: any;
 }
 /**
@@ -2584,11 +2584,11 @@ export interface SplitOrder_Item {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Shopee's unique identifier for a model of an item. For single item without variation, you can set model_id as 0.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.
    */
@@ -2610,7 +2610,7 @@ export interface SplitOrder_Package {
   /**
    * The list of items under the same package.
    */
-  item_list?: SplitOrder_Item[];
+  item_list: SplitOrder_Item[];
   [key: string]: any;
 }
 /**
@@ -2622,11 +2622,11 @@ export interface SplitOrderRequest {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * The list of packages that you want to split. Note: - Orders that include installation services cannot be split by quantity.- When splitting the order, must contain all items in the order in one request.- You can split the order into 30 parcels at most in TW and 5 parcels at most in other regions.
    */
-  package_list?: SplitOrder_Package[];
+  package_list: SplitOrder_Package[];
   [key: string]: any;
 }
 /**
@@ -2702,7 +2702,7 @@ export interface UnsplitOrderRequest {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   [key: string]: any;
 }
 /**
@@ -2724,15 +2724,15 @@ export interface UploadInvoiceDocRequest {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * the type of invoice file. 1:pdf 2.jpeg 3.png. 4.xml
    */
-  file_type?: number;
+  file_type: number;
   /**
    * invoice file. File size limit to 1MB.
    */
-  file?: any;
+  file: any;
   [key: string]: any;
 }
 /**

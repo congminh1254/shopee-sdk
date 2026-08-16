@@ -22,7 +22,7 @@ export interface AddAllProductsToOpenCampaignRequest {
   /**
    * Commission Rate, 1.1 means 1.1%, support two decimal places
    */
-  commission_rate?: number;
+  commission_rate: number;
   /**
    * Period start time, in seconds, if missing, will set 10 minutes later
    */
@@ -67,11 +67,11 @@ export interface BatchAddProductsToOpenCampaignRequest {
   /**
    * The list of item_id, max limit: 50
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   /**
    * Commission Rate, 1.1 means 1.1%, support two decimal places
    */
-  commission_rate?: number;
+  commission_rate: number;
   /**
    * Period start time, in seconds, if missing, will set 10 minutes later
    */
@@ -131,7 +131,7 @@ export interface BatchEditProductsOpenCampaignSettingRequest {
   /**
    * The list of campaign_id, max limit: 50
    */
-  campaign_ids?: number[];
+  campaign_ids: number[];
   /**
    * Commission Rate, 1.1 means 1.1%, support two decimal places
    */
@@ -196,7 +196,7 @@ export interface BatchGetProductsSuggestedRateRequest {
   /**
    * The list of item_id, different item id should be split by comma and at most 20 items
    */
-  item_id_list?: string[];
+  item_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -244,7 +244,7 @@ export interface BatchRemoveProductsOpenCampaignSettingRequest {
   /**
    * The list of campaign_id, max limit: 50
    */
-  campaign_ids?: number[];
+  campaign_ids: number[];
   [key: string]: any;
 }
 /**
@@ -295,11 +295,11 @@ export interface CreateNewTargetedCampaign_Item {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Commission rate of current item, 1.1 means 1.1%, support two decimal places.
    */
-  rate?: number;
+  rate: number;
   [key: string]: any;
 }
 /**
@@ -309,7 +309,7 @@ export interface CreateNewTargetedCampaign_Affiliate {
   /**
    * The unique key for affiliate.
    */
-  affiliate_id?: number;
+  affiliate_id: number;
   [key: string]: any;
 }
 /**
@@ -321,15 +321,15 @@ export interface CreateNewTargetedCampaignRequest {
   /**
    * The name of the current campaign.
    */
-  campaign_name?: string;
+  campaign_name: string;
   /**
    * The period start time of campaign, in seconds.
    */
-  period_start_time?: Date | number;
+  period_start_time: Date | number;
   /**
    * The period end time of campaign, in seconds.Can set 32503651199 (2999-12-31 23:59:59) represent of no limit.
    */
-  period_end_time?: Date | number;
+  period_end_time: Date | number;
   /**
    * Budget allocation toggle for the current campaign.Note: TH not supported
    */
@@ -341,15 +341,15 @@ export interface CreateNewTargetedCampaignRequest {
   /**
    * The message displayed to affiliates.
    */
-  seller_message?: string;
+  seller_message: string;
   /**
    * The list of items associated with the current campaign.
    */
-  item_list?: CreateNewTargetedCampaign_Item[];
+  item_list: CreateNewTargetedCampaign_Item[];
   /**
    * The list of affiliates associated with the current campaign.
    */
-  affiliate_list?: CreateNewTargetedCampaign_Affiliate[];
+  affiliate_list: CreateNewTargetedCampaign_Affiliate[];
   [key: string]: any;
 }
 /**
@@ -424,7 +424,7 @@ export interface EditAffiliateListOfTargetedCampaign_Affiliate {
   /**
    * The unique key for affiliate.
    */
-  affiliate_id?: number;
+  affiliate_id: number;
   [key: string]: any;
 }
 /**
@@ -436,15 +436,15 @@ export interface EditAffiliateListOfTargetedCampaignRequest {
   /**
    * Campaign id for update.
    */
-  campaign_id?: number;
+  campaign_id: number;
   /**
    * Edit type. Applicable values:adddelete
    */
-  edit_type?: string;
+  edit_type: string;
   /**
    * The list of affiliates to be modified.
    */
-  affiliate_list?: EditAffiliateListOfTargetedCampaign_Affiliate[];
+  affiliate_list: EditAffiliateListOfTargetedCampaign_Affiliate[];
   [key: string]: any;
 }
 /**
@@ -540,7 +540,7 @@ export interface EditProductListOfTargetedCampaign_Item {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Commission rate of current item, 1.1 means 1.1%, support two decimal places.
    */
@@ -556,15 +556,15 @@ export interface EditProductListOfTargetedCampaignRequest {
   /**
    * Campaign id for update.
    */
-  campaign_id?: number;
+  campaign_id: number;
   /**
    * Edit type. Applicable values: adddeleteupdate
    */
-  edit_type?: string;
+  edit_type: string;
   /**
    * The list of items to be modified.
    */
-  item_list?: EditProductListOfTargetedCampaign_Item[];
+  item_list: EditProductListOfTargetedCampaign_Item[];
   [key: string]: any;
 }
 /**
@@ -616,31 +616,31 @@ export interface GetAffiliatePerformanceRequest {
   /**
    * Period Type. Applicable values:DayWeekMonthLast7dLast30dNote: The start date and end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The start_date must be:- Any day in the past three calendar months for "Day" period type- Sunday for "Week" period type- The 1st day of a Month for "Month" period type- The date that is 6 days prior to the latest data date for "Last7d" period type- The date that is 29 days prior to the latest data date for "Last30d" period typeNote: The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * The end_date must be: - Equal to start_date for "Day" period type- Saturday for "Week" period type- The last day of a Month for "Month" period type. If the selected month is the current month, the end_date should be the latest data date- The latest data date for "Last7d" period type- The latest data date for "Last30d" period typeNote: - The end_date must be later than the start_date and earlier than the latest data date- The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  end_date?: string;
+  end_date: string;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 20.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Order Type. Applicable values: PlacedOrderConfirmedOrder: Note: - Placed orders are orders (COD and non-COD) that buyers have successfully placed, including paid and unpaid orders.- Confirmed orders are either non-COD orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
-  order_type?: string;
+  order_type: string;
   /**
    * Channel. Applicable values: - AllChannel- SocialMedia- ShopeeVideo- LiveStreaming
    */
-  channel?: string;
+  channel: string;
   /**
    * Affiliate ID for query.
    */
@@ -767,15 +767,15 @@ export interface GetCampaignKeyMetricsPerformanceRequest {
   /**
    * Period Type. Applicable values:DayWeekMonthLast7dLast30dNote: The start date and end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The start_date must be:- Any day in the past three calendar months for "Day" period type- Sunday for "Week" period type- The 1st day of a Month for "Month" period type- The date that is 6 days prior to the latest data date for "Last7d" period type- The date that is 29 days prior to the latest data date for "Last30d" period typeNote: The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * The end_date must be: - Equal to start_date for "Day" period type- Saturday for "Week" period type- The last day of a Month for "Month" period type. If the selected month is the current month, the end_date should be the latest data date- The latest data date for "Last7d" period type- The latest data date for "Last30d" period typeNote: - The end_date must be later than the start_date and earlier than the latest data date- The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  end_date?: string;
+  end_date: string;
   [key: string]: any;
 }
 /**
@@ -861,31 +861,31 @@ export interface GetContentPerformanceRequest {
   /**
    * Period Type. Applicable values:DayWeekMonthLast7dLast30dNote: The start date and end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The start_date must be:- Any day in the past three calendar months for "Day" period type- Sunday for "Week" period type- The 1st day of a Month for "Month" period type- The date that is 6 days prior to the latest data date for "Last7d" period type- The date that is 29 days prior to the latest data date for "Last30d" period typeNote: The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * The end_date must be: - Equal to start_date for "Day" period type- Saturday for "Week" period type- The last day of a Month for "Month" period type. If the selected month is the current month, the end_date should be the latest data date- The latest data date for "Last7d" period type- The latest data date for "Last30d" period typeNote: - The end_date must be later than the start_date and earlier than the latest data date- The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  end_date?: string;
+  end_date: string;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 20.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Order Type. Applicable values: PlacedOrderConfirmedOrder: Note: - Placed orders are orders (COD and non-COD) that buyers have successfully placed, including paid and unpaid orders.- Confirmed orders are either non-COD orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
-  order_type?: string;
+  order_type: string;
   /**
    * Channel. Applicable values: - ShopeeVideo- LiveStreaming
    */
-  channel?: string;
+  channel: string;
   /**
    * Search for the contents published by affiliates with the affiliate id entered.
    */
@@ -992,11 +992,11 @@ export interface GetConversionReportRequest {
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. If data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Number of records returned per page, the maximum limit is 500, and page_no * page_size must be <= 10000.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Unique identifier of the order.
    */
@@ -1281,11 +1281,11 @@ export interface GetManagedAffiliateListRequest {
   /**
    * The start index of request.The max managed affiliates of affiliate is 2000. Zero count will returned if offset > 2000 or offset > real managed count.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * The number of affiliate returned by this request, Max is 100, default is 20.The max managed affiliates of affiliate is 2000.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -1455,7 +1455,7 @@ export interface GetOpenCampaignAddedProductRequest {
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "" or not passed. If data is more than one page, the cursor can be some entry to start next call.
    */
@@ -1573,7 +1573,7 @@ export interface GetOpenCampaignBatchTaskResultRequest {
   /**
    * Task id, used to query task progress
    */
-  task_id?: string;
+  task_id: string;
   [key: string]: any;
 }
 /**
@@ -1614,7 +1614,7 @@ export interface GetOpenCampaignNotAddedProductRequest {
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "" or not passed. If data is more than one page, the cursor can be some entry to start next call.
    */
@@ -1706,23 +1706,23 @@ export interface GetOpenCampaignPerformanceRequest {
   /**
    * Period Type. Applicable values:DayWeekMonthLast7dLast30dNote: The start date and end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The start_date must be:- Any day in the past three calendar months for "Day" period type- Sunday for "Week" period type- The 1st day of a Month for "Month" period type- The date that is 6 days prior to the latest data date for "Last7d" period type- The date that is 29 days prior to the latest data date for "Last30d" period typeNote: The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * The end_date must be: - Equal to start_date for "Day" period type- Saturday for "Week" period type- The last day of a Month for "Month" period type. If the selected month is the current month, the end_date should be the latest data date- The latest data date for "Last7d" period type- The latest data date for "Last30d" period typeNote: - The end_date must be later than the start_date and earlier than the latest data date- The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  end_date?: string;
+  end_date: string;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 20.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Item ID for query.
    */
@@ -1798,15 +1798,15 @@ export interface GetOptimizationSuggestionProductRequest {
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data.The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Recommended types. Applicable values: product_opportunitiesoptimize_increase_commission_rateoptimize_extend_promotion_period
    */
-  rcmd_reason_filter?: string;
+  rcmd_reason_filter: string;
   [key: string]: any;
 }
 /**
@@ -1919,7 +1919,7 @@ export interface GetPerformanceDataUpdateTimeRequest {
   /**
    * Marker type. Applicable values: - AmsMarker: Used to query the data update date for ams metrics.
    */
-  marker_type?: string;
+  marker_type: string;
   [key: string]: any;
 }
 /**
@@ -1952,31 +1952,31 @@ export interface GetProductPerformanceRequest {
   /**
    * Period Type. Applicable values:DayWeekMonthLast7dLast30dNote: The start date and end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The start_date must be:- Any day in the past three calendar months for "Day" period type- Sunday for "Week" period type- The 1st day of a Month for "Month" period type- The date that is 6 days prior to the latest data date for "Last7d" period type- The date that is 29 days prior to the latest data date for "Last30d" period typeNote: The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * The end_date must be: - Equal to start_date for "Day" period type- Saturday for "Week" period type- The last day of a Month for "Month" period type. If the selected month is the current month, the end_date should be the latest data date- The latest data date for "Last7d" period type- The latest data date for "Last30d" period typeNote: - The end_date must be later than the start_date and earlier than the latest data date- The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  end_date?: string;
+  end_date: string;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. If data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 20.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Order Type. Applicable values: PlacedOrderConfirmedOrder: Note: - Placed orders are orders (COD and non-COD) that buyers have successfully placed, including paid and unpaid orders.- Confirmed orders are either non-COD orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
-  order_type?: string;
+  order_type: string;
   /**
    * Channel. Applicable values: - AllChannel- SocialMedia- ShopeeVideo- LiveStreaming
    */
-  channel?: string;
+  channel: string;
   /**
    * Item ID for query.
    */
@@ -2067,7 +2067,7 @@ export interface GetRecommendedAffiliateListRequest {
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. Note: The response size will up to 200.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -2238,23 +2238,23 @@ export interface GetShopPerformanceRequest {
   /**
    * Period Type. Applicable values: DayWeekMonthLast7dLast30dNote: The start date and end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The start_date must be:- Any day in the past three calendar months for "Day" period type- Sunday for "Week" period type- The 1st day of a Month for "Month" period type- The date that is 6 days prior to the latest data date for "Last7d" period type- The date that is 29 days prior to the latest data date for "Last30d" period typeNote: The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * The end_date must be: - Equal to start_date for "Day" period type- Saturday for "Week" period type- The last day of a Month for "Month" period type. If the selected month is the current month, the end_date should be the latest data date- The latest data date for "Last7d" period type- The latest data date for "Last30d" period typeNote: - The end_date must be later than the start_date and earlier than the latest data date- The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  end_date?: string;
+  end_date: string;
   /**
    * Order Type. Applicable values: PlacedOrderConfirmedOrder: Note: - Placed orders are orders (COD and non-COD) that buyers have successfully placed, including paid and unpaid orders.- Confirmed orders are either non-COD orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
-  order_type?: string;
+  order_type: string;
   /**
    * Channel. Applicable values: - AllChannel- SocialMedia- ShopeeVideo- LiveStreaming
    */
-  channel?: string;
+  channel: string;
   [key: string]: any;
 }
 /**
@@ -2348,7 +2348,7 @@ export interface GetTargetedCampaignAddableProductListRequest {
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "" or not passed. If data is more than one page, the cursor can be some entry to start next call.
    */
@@ -2436,11 +2436,11 @@ export interface GetTargetedCampaignListRequest {
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * The list of campaign_id for query, different campaign id should be split by comma and at most 50 campaigns.
    */
@@ -2558,23 +2558,23 @@ export interface GetTargetedCampaignPerformanceRequest {
   /**
    * Period Type. Applicable values:DayWeekMonthLast7dLast30dNote: The start date and end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The start_date must be:- Any day in the past three calendar months for "Day" period type- Sunday for "Week" period type- The 1st day of a Month for "Month" period type- The date that is 6 days prior to the latest data date for "Last7d" period type- The date that is 29 days prior to the latest data date for "Last30d" period typeNote: The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * The end_date must be: - Equal to start_date for "Day" period type- Saturday for "Week" period type- The last day of a Month for "Month" period type. If the selected month is the current month, the end_date should be the latest data date- The latest data date for "Last7d" period type- The latest data date for "Last30d" period typeNote: - The end_date must be later than the start_date and earlier than the latest data date- The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
-  end_date?: string;
+  end_date: string;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 20.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Campaign ID for query.
    */
@@ -2650,7 +2650,7 @@ export interface GetTargetedCampaignSettingsRequest {
   /**
    * Campaign id for query.Note: For campaigns with campaign_source = ShopeeManaged, cannot be queried for details through this API.
    */
-  campaign_id?: number;
+  campaign_id: number;
   [key: string]: any;
 }
 /**
@@ -2878,23 +2878,23 @@ export interface GetValidationReportRequest {
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. If data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Number of records returned per page, the maximum limit is 500, and page_no * page_size must be <= 10000.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Unique identifier of the billing entry.
    */
-  validation_id?: string;
+  validation_id: string;
   /**
    * Billing month in the format YYYYMM (e.g., 202405).
    */
-  validation_month?: number;
+  validation_month: number;
   /**
    * Source of campaign setup. Applicable values:ShopeeManagedSeller
    */
-  campaign_source?: string;
+  campaign_source: string;
   /**
    * Unique identifier of the order.
    */
@@ -2930,11 +2930,11 @@ export interface GetValidationReportRequest {
   /**
    * Start time (inclusive) of order placement, in timestamp format.
    */
-  place_order_time_start?: Date | number;
+  place_order_time_start: Date | number;
   /**
    * End time (inclusive) of order placement, in timestamp format.
    */
-  place_order_time_end?: Date | number;
+  place_order_time_end: Date | number;
   [key: string]: any;
 }
 /**
@@ -3127,7 +3127,7 @@ export interface QueryAffiliateListRequest {
   /**
    * Query type: 1: query affiliate information by id list2: query affiliate id by name(fuzzy matching), only return affiliate id and affiliate name
    */
-  query_type?: number;
+  query_type: number;
   /**
    * Query affiliate information by affiliate id list.Max count of affiliate id is 200. Will return first 200 affiliates' information if length > 200.
    */
@@ -3337,7 +3337,7 @@ export interface TerminateTargetedCampaignRequest {
   /**
    * The unique key for the current campaign.
    */
-  campaign_id?: number;
+  campaign_id: number;
   [key: string]: any;
 }
 /**
@@ -3360,7 +3360,7 @@ export interface UpdateAutoAddNewProductSettingRequest {
   /**
    * Enable or disable auto-add new product, if true is passed, it means enabled, if false is passed, it means disabled
    */
-  open?: boolean;
+  open: boolean;
   /**
    * Commission rate, 1.1 means 1.1%, support two decimal places
    */
@@ -3387,7 +3387,7 @@ export interface UpdateBasicInfoOfTargetedCampaignRequest {
   /**
    * The unique key for the current campaign.
    */
-  campaign_id?: number;
+  campaign_id: number;
   /**
    * The name of the current campaign.
    */

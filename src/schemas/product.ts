@@ -82,15 +82,15 @@ export interface AddItem_Dimension {
   /**
    * The height of package for this item, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   /**
    * The length of package for this item, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this item, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   [key: string]: any;
 }
 /**
@@ -108,11 +108,11 @@ export interface AddItem_LogisticInfo {
   /**
    * Whether channel is enabled for this item
    */
-  enabled?: boolean;
+  enabled: boolean;
   /**
    * ID of the channel
    */
-  logistic_id?: number;
+  logistic_id: number;
   /**
    * Whether cover shipping fee for buyer
    */
@@ -126,7 +126,7 @@ export interface AddItem_AttributeValue {
   /**
    * Value ID. In the following cases, the value id needs to be uploaded as 0, and original_value_name is mandatory, needs to be filled in customized value. (1) AttributeInputType is TEXT_FILED; (2) AttributeInputType is COMBO_BOX or MULTIPLE_SELECT_COMBO_BOX, and the seller want to fill in a customized value.
    */
-  value_id?: number;
+  value_id: number;
   /**
    * Value name. original_value_name from product.get_attributes api. If value id=0, this field is required. If AttributeType is DATE_TYPE or TIMESTAMP_TYPE, you can upload timestamp(string type) as the original_value_name.
    */
@@ -144,7 +144,7 @@ export interface AddItem_Attribute {
   /**
    * ID of attribute
    */
-  attribute_id?: number;
+  attribute_id: number;
   attribute_value_list?: AddItem_AttributeValue[];
   [key: string]: any;
 }
@@ -155,7 +155,7 @@ export interface AddItem_Image {
   /**
    * ID of image
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   /**
    * Ratio of image, OptionalAllowed ratios :"1:1" (default) "3:4"only applicable to whitelisted seller.
    */
@@ -169,7 +169,7 @@ export interface AddItem_PreOrder {
   /**
    * Whether item is pre order
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   /**
    * The guaranteed days to ship orders. Please get the days_to_ship range from get_dts_limit api
    */
@@ -183,15 +183,15 @@ export interface AddItem_Wholesale {
   /**
    * Minimum count of this tier
    */
-  min_count?: number;
+  min_count: number;
   /**
    * Maximum count of this tier
    */
-  max_count?: number;
+  max_count: number;
   /**
    * Unit price of this tier
    */
-  unit_price?: number;
+  unit_price: number;
   [key: string]: any;
 }
 /**
@@ -201,11 +201,11 @@ export interface AddItem_Brand {
   /**
    * Id of brand.
    */
-  brand_id?: number;
+  brand_id: number;
   /**
    * Original name of brand( No Brand if not brand).
    */
-  original_brand_name?: string;
+  original_brand_name: string;
   [key: string]: any;
 }
 /**
@@ -414,7 +414,7 @@ export interface AddItem_SellerStock {
   /**
    * stock
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -434,11 +434,11 @@ export interface AddItem_VehicleInfo {
   /**
    * ID of the brand.
    */
-  brand_id?: number;
+  brand_id: number;
   /**
    * ID of the model.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * ID of the year.
    */
@@ -453,7 +453,7 @@ export interface AddItem_VehicleInfo {
  * AddItem_CompatibilityInfo sub-interface for AddItemRequest
  */
 export interface AddItem_CompatibilityInfo {
-  vehicle_info_list?: AddItem_VehicleInfo[];
+  vehicle_info_list: AddItem_VehicleInfo[];
   [key: string]: any;
 }
 /**
@@ -477,15 +477,15 @@ export interface AddItem_CertificationProof {
   /**
    * The name of the uploaded certification proof file.
    */
-  file_name?: string;
+  file_name: string;
   /**
    * The unique image ID of the certification proof, returned by the image upload API.
    */
-  image_id?: number;
+  image_id: number;
   /**
    * image weight/ image heightWill be optional in the future; can input 0.75 by default
    */
-  ratio?: number;
+  ratio: number;
   [key: string]: any;
 }
 /**
@@ -495,11 +495,11 @@ export interface AddItem_Certification {
   /**
    * Certification No.
    */
-  certification_no?: string;
+  certification_no: string;
   /**
    * Permit ID, get from v2.product.get_product_certification_rule
    */
-  permit_id?: number;
+  permit_id: number;
   /**
    * Expiry timestamp. Required for PH, but not needed for TW.
    */
@@ -507,7 +507,7 @@ export interface AddItem_Certification {
   /**
    * An array of proof documents for the certification; each element represents one proof file.<path></path>
    */
-  certification_proofs?: AddItem_CertificationProof[];
+  certification_proofs: AddItem_CertificationProof[];
   [key: string]: any;
 }
 /**
@@ -550,19 +550,19 @@ export interface AddItemRequest {
   /**
    * Item price
    */
-  original_price?: number;
+  original_price: number;
   /**
    * if description_type is normal , Description information should be set by this field.
    */
-  description?: string;
+  description: string;
   /**
    * The weight of this item, the unit is KG.
    */
-  weight?: number;
+  weight: number;
   /**
    * Item name
    */
-  item_name?: string;
+  item_name: string;
   /**
    * Item status, could be UNLIST or NORMAL
    */
@@ -574,7 +574,7 @@ export interface AddItemRequest {
   /**
    * Logistic channel setting
    */
-  logistic_info?: AddItem_LogisticInfo[];
+  logistic_info: AddItem_LogisticInfo[];
   /**
    * This field is optional(expect Indonesia) depending on the specific attribute under different categories. Should call shopee.item.GetAttributes to get attribute first. Must contain all all mandatory attribute.
    */
@@ -582,11 +582,11 @@ export interface AddItemRequest {
   /**
    * ID of category
    */
-  category_id?: number;
+  category_id: number;
   /**
    * Item images
    */
-  image?: AddItem_Image;
+  image: AddItem_Image;
   /**
    * Pre order setting
    */
@@ -675,11 +675,11 @@ export interface AddItem_AddItem_PreOrder {
   /**
    * The guaranteed days to ship orders.
    */
-  days_to_ship?: number;
+  days_to_ship: number;
   /**
    * Whether this item is pre order
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   [key: string]: any;
 }
 /**
@@ -689,11 +689,11 @@ export interface AddItem_AddItem_Image {
   /**
    * ID of image
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   /**
    * Display URL of image
    */
-  image_url_list?: string[];
+  image_url_list: string[];
   [key: string]: any;
 }
 /**
@@ -703,11 +703,11 @@ export interface AddItem_PriceInfo {
   /**
    * Current price of item
    */
-  current_price?: number;
+  current_price: number;
   /**
    * Original price of item
    */
-  original_price?: number;
+  original_price: number;
   [key: string]: any;
 }
 /**
@@ -717,23 +717,23 @@ export interface AddItem_AddItem_LogisticInfo {
   /**
    * Size ID
    */
-  size_id?: number;
+  size_id: number;
   /**
    * Shipping fee
    */
-  shipping_fee?: number;
+  shipping_fee: number;
   /**
    * Whether this channel is enabled for this item
    */
-  enabled?: boolean;
+  enabled: boolean;
   /**
    * Logistic channel ID
    */
-  logistic_id?: number;
+  logistic_id: number;
   /**
    * Whether cover shipping fee for buyer
    */
-  is_free?: boolean;
+  is_free: boolean;
   [key: string]: any;
 }
 /**
@@ -825,55 +825,55 @@ export interface AddItem_Response {
   /**
    * Description of item
    */
-  description?: string;
+  description: string;
   /**
    * The weight of this item, the unit is KG.
    */
-  weight?: number;
+  weight: number;
   /**
    * Pre order setting
    */
-  pre_order?: AddItem_AddItem_PreOrder;
+  pre_order: AddItem_AddItem_PreOrder;
   /**
    * Item name
    */
-  item_name?: string;
+  item_name: string;
   /**
    * Item images
    */
-  images?: AddItem_AddItem_Image;
+  images: AddItem_AddItem_Image;
   /**
    * Item status
    */
-  item_status?: string;
+  item_status: string;
   /**
    * Item price info
    */
-  price_info?: AddItem_PriceInfo;
+  price_info: AddItem_PriceInfo;
   /**
    * Logistic setting
    */
-  logistic_info?: AddItem_AddItem_LogisticInfo[];
+  logistic_info: AddItem_AddItem_LogisticInfo[];
   /**
    * Item ID
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Item attributes
    */
-  attribute?: AddItem_Attribute[];
+  attribute: AddItem_Attribute[];
   /**
    * Category ID
    */
-  category_id?: number;
+  category_id: number;
   /**
    * The dimension of this item.
    */
-  dimension?: AddItem_Dimension;
+  dimension: AddItem_Dimension;
   /**
    * Item condition, could be NEW or USED
    */
-  condition?: string;
+  condition: string;
   /**
    * Item video
    */
@@ -922,7 +922,7 @@ export interface AddKitItem_Image {
   /**
    * ID of image.
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -932,7 +932,7 @@ export interface AddKitItem_LongImage {
   /**
    * ID of image.
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -942,7 +942,7 @@ export interface AddKitItem_ImageInfo {
   /**
    * Image id.
    */
-  image_id?: string;
+  image_id: string;
   [key: string]: any;
 }
 /**
@@ -952,11 +952,11 @@ export interface AddKitItem_Field {
   /**
    * Type of extended description field. See Data Definition- description_field_type (text , image).
    */
-  field_type?: string;
+  field_type: string;
   /**
    * If field_type is text, text information will be set by this field.
    */
-  text?: string;
+  text: string;
   /**
    * If field_type is image, image will be set by this field.
    */
@@ -970,7 +970,7 @@ export interface AddKitItem_ExtendedDescription {
   /**
    * Field of extended description.
    */
-  field_list?: AddKitItem_Field[];
+  field_list: AddKitItem_Field[];
   [key: string]: any;
 }
 /**
@@ -980,7 +980,7 @@ export interface AddKitItem_DescriptionInfo {
   /**
    * If description_type is extended , Description information should be set by this field.
    */
-  extended_description?: AddKitItem_ExtendedDescription;
+  extended_description: AddKitItem_ExtendedDescription;
   [key: string]: any;
 }
 /**
@@ -990,11 +990,11 @@ export interface AddKitItem_LogisticInfo {
   /**
    * ID of the channel.
    */
-  logistic_id?: number;
+  logistic_id: number;
   /**
    * Whether channel is enabled for this kit item.
    */
-  enabled?: boolean;
+  enabled: boolean;
   /**
    * Shipping fee. Only needed when logistics fee_type = CUSTOM_PRICE.
    */
@@ -1016,15 +1016,15 @@ export interface AddKitItem_Dimension {
   /**
    * The length of package for this kit item, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this kit item, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   /**
    * The height of package for this kit item, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   [key: string]: any;
 }
 /**
@@ -1034,7 +1034,7 @@ export interface AddKitItem_PreOrder {
   /**
    * Whether kit item is pre order.
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   /**
    * The guaranteed days to ship orders. Please get the days_to_ship range from get_kit_item_limit api.
    */
@@ -1048,7 +1048,7 @@ export interface AddKitItem_Component {
   /**
    * ID of the item that composes this kit model.
    */
-  component_item_id?: number;
+  component_item_id: number;
   /**
    * ID of the model that composes this kit model.
    */
@@ -1056,7 +1056,7 @@ export interface AddKitItem_Component {
   /**
    * The amount of the item/model that composes this kit model.
    */
-  quantity?: number;
+  quantity: number;
   /**
    * Whether this item/model is the main component for this kit.One kit item can only have one item/model as main component.
    */
@@ -1070,7 +1070,7 @@ export interface AddKitItem_Model {
   /**
    * Tier index of this kit model.
    */
-  tier_index?: number[];
+  tier_index: number[];
   /**
    * Seller SKU of this kit model, model_sku length information needs to be no more than 100 characters.
    */
@@ -1078,11 +1078,11 @@ export interface AddKitItem_Model {
   /**
    * Original price of this kit model.
    */
-  original_price?: number;
+  original_price: number;
   /**
    * Please get the amount of item/model that one kit model support from get_kit_item_limit.
    */
-  component_list?: AddKitItem_Component[];
+  component_list: AddKitItem_Component[];
   [key: string]: any;
 }
 /**
@@ -1092,7 +1092,7 @@ export interface AddKitItem_AddKitItem_Image {
   /**
    * ID of image. If you choose to define, you need to define an image for all options.
    */
-  image_id?: string;
+  image_id: string;
   [key: string]: any;
 }
 /**
@@ -1102,7 +1102,7 @@ export interface AddKitItem_Option {
   /**
    * Option name.
    */
-  option?: string;
+  option: string;
   /**
    * Option image.
    */
@@ -1120,7 +1120,7 @@ export interface AddKitItem_TierVariation {
   /**
    * Tier variation option info list.
    */
-  option_list?: AddKitItem_Option[];
+  option_list: AddKitItem_Option[];
   [key: string]: any;
 }
 /**
@@ -1130,11 +1130,11 @@ export interface AddKitItem_ItemSetting {
   /**
    * The name of this kit item.
    */
-  item_name?: string;
+  item_name: string;
   /**
    * Item images with 1:1 ratio.
    */
-  images?: AddKitItem_Image;
+  images: AddKitItem_Image;
   /**
    * Item images with 3:4 ratio.
    */
@@ -1154,11 +1154,11 @@ export interface AddKitItem_ItemSetting {
   /**
    * See Data Definition- description_type (normal , extended). If you want to use extended_description, this field must be inputed.
    */
-  description_type?: string;
+  description_type: string;
   /**
    * Logistic channel setting.
    */
-  logistic_info?: AddKitItem_LogisticInfo[];
+  logistic_info: AddKitItem_LogisticInfo[];
   /**
    * Unlist or not.
    */
@@ -1170,7 +1170,7 @@ export interface AddKitItem_ItemSetting {
   /**
    * The weight of this kit item, the unit is KG.
    */
-  weight?: number;
+  weight: number;
   /**
    * The dimension of this kit item.
    */
@@ -1182,11 +1182,11 @@ export interface AddKitItem_ItemSetting {
   /**
    * Model info list, model number at most 9.
    */
-  model_list?: AddKitItem_Model[];
+  model_list: AddKitItem_Model[];
   /**
    * Tier variation info list. Only support one tier variation, and each kit item can have from 1 to 9 kit variations.
    */
-  tier_variation_list?: AddKitItem_TierVariation[];
+  tier_variation_list: AddKitItem_TierVariation[];
   [key: string]: any;
 }
 /**
@@ -1196,7 +1196,7 @@ export interface AddKitItem_SyncSetting {
   /**
    * Auto sync the pre_order setting from main component or not.
    */
-  auto_sync_dts?: boolean;
+  auto_sync_dts: boolean;
   [key: string]: any;
 }
 /**
@@ -1205,7 +1205,7 @@ export interface AddKitItem_SyncSetting {
  * Create the kit item by selecting multiple items and setting main component and quantity per kit.
  */
 export interface AddKitItemRequest {
-  item_setting?: AddKitItem_ItemSetting;
+  item_setting: AddKitItem_ItemSetting;
   sync_setting?: AddKitItem_SyncSetting;
   [key: string]: any;
 }
@@ -1237,7 +1237,7 @@ export interface AddModel_SellerStock {
   /**
    * stock
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -1247,15 +1247,15 @@ export interface AddModel_Dimension {
   /**
    * The height of package for this model, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   /**
    * The length of package for this model, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this model, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   [key: string]: any;
 }
 /**
@@ -1265,7 +1265,7 @@ export interface AddModel_PreOrder {
   /**
    * Whether the model is pre order.
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   /**
    * Days to ship. Please get the days_to_ship range from the get_dts_limit API.
    */
@@ -1279,11 +1279,11 @@ export interface AddModel_Model {
   /**
    * Tier index of model
    */
-  tier_index?: number[];
+  tier_index: number[];
   /**
    * Normal stock for price
    */
-  original_price?: number;
+  original_price: number;
   /**
    * Seller sku, model_sku length information needs to be no more than 100 characters.
    */
@@ -1291,7 +1291,7 @@ export interface AddModel_Model {
   /**
    * new stock info for model（Please notice that stock(including Seller Stock and Shopee Stock) should be larger than or equal to real-time reserved stock）
    */
-  seller_stock?: AddModel_SellerStock[];
+  seller_stock: AddModel_SellerStock[];
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
@@ -1319,11 +1319,11 @@ export interface AddModelRequest {
   /**
    * ID of item
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Model list
    */
-  model_list?: AddModel_Model[];
+  model_list: AddModel_Model[];
   [key: string]: any;
 }
 /**
@@ -1423,15 +1423,15 @@ export interface BatchAddItem_Dimension {
   /**
    * The height of package for this item, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   /**
    * The length of package for this item, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this item, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   [key: string]: any;
 }
 /**
@@ -1449,11 +1449,11 @@ export interface BatchAddItem_LogisticInfo {
   /**
    * Whether channel is enabled for this item
    */
-  enabled?: boolean;
+  enabled: boolean;
   /**
    * ID of the channel
    */
-  logistic_id?: number;
+  logistic_id: number;
   /**
    * Whether cover shipping fee for buyer
    */
@@ -1467,7 +1467,7 @@ export interface BatchAddItem_AttributeValue {
   /**
    * Value ID. In the following cases, the value id needs to be uploaded as 0, and original_value_name is mandatory, needs to be filled in customized value. (1) AttributeInputType is TEXT_FILED; (2) AttributeInputType is COMBO_BOX or MULTIPLE_SELECT_COMBO_BOX, and the seller want to fill in a customized value.
    */
-  value_id?: number;
+  value_id: number;
   /**
    * Value name. original_value_name from product.get_attributes api. If value id=0, this field is required. If AttributeType is DATE_TYPE or TIMESTAMP_TYPE, you can upload timestamp(string type) as the original_value_name.
    */
@@ -1485,7 +1485,7 @@ export interface BatchAddItem_Attribute {
   /**
    * ID of attribute
    */
-  attribute_id?: number;
+  attribute_id: number;
   attribute_value_list?: BatchAddItem_AttributeValue[];
   [key: string]: any;
 }
@@ -1496,7 +1496,7 @@ export interface BatchAddItem_Image {
   /**
    * ID of image
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   /**
    * Ratio of image, OptionalAllowed ratios :"1:1" (default) "3:4"only applicable to whitelisted seller.
    */
@@ -1510,7 +1510,7 @@ export interface BatchAddItem_PreOrder {
   /**
    * Whether item is pre order
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   /**
    * The guaranteed days to ship orders. Please get the days_to_ship range from get_dts_limit api
    */
@@ -1524,15 +1524,15 @@ export interface BatchAddItem_Wholesale {
   /**
    * Minimum count of this tier
    */
-  min_count?: number;
+  min_count: number;
   /**
    * Maximum count of this tier
    */
-  max_count?: number;
+  max_count: number;
   /**
    * Unit price of this tier
    */
-  unit_price?: number;
+  unit_price: number;
   [key: string]: any;
 }
 /**
@@ -1542,11 +1542,11 @@ export interface BatchAddItem_Brand {
   /**
    * Id of brand.
    */
-  brand_id?: number;
+  brand_id: number;
   /**
    * Original name of brand( No Brand if not brand).
    */
-  original_brand_name?: string;
+  original_brand_name: string;
   [key: string]: any;
 }
 /**
@@ -1754,7 +1754,7 @@ export interface BatchAddItem_SellerStock {
   /**
    * stock
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -1774,11 +1774,11 @@ export interface BatchAddItem_VehicleInfo {
   /**
    * ID of the brand.
    */
-  brand_id?: number;
+  brand_id: number;
   /**
    * ID of the model.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * ID of the year.
    */
@@ -1793,7 +1793,7 @@ export interface BatchAddItem_VehicleInfo {
  * BatchAddItem_CompatibilityInfo sub-interface for BatchAddItem_Item
  */
 export interface BatchAddItem_CompatibilityInfo {
-  vehicle_info_list?: BatchAddItem_VehicleInfo[];
+  vehicle_info_list: BatchAddItem_VehicleInfo[];
   [key: string]: any;
 }
 /**
@@ -1817,15 +1817,15 @@ export interface BatchAddItem_CertificationProof {
   /**
    * The name of the uploaded certification proof file.
    */
-  file_name?: string;
+  file_name: string;
   /**
    * The unique image ID of the certification proof, returned by the image upload API.
    */
-  image_id?: number;
+  image_id: number;
   /**
    * image weight/ image heightWill be optional in the future; can input 0.75 by default
    */
-  ratio?: number;
+  ratio: number;
   [key: string]: any;
 }
 /**
@@ -1835,11 +1835,11 @@ export interface BatchAddItem_Certification {
   /**
    * Certification No.
    */
-  certification_no?: string;
+  certification_no: string;
   /**
    * Permit ID, get from v2.product.get_product_certification_rule
    */
-  permit_id?: number;
+  permit_id: number;
   /**
    * Expiry timestamp. Required for PH, but not needed for TW.
    */
@@ -1847,7 +1847,7 @@ export interface BatchAddItem_Certification {
   /**
    * An array of proof documents for the certification; each element represents one proof file.<path></path>
    */
-  certification_proofs?: BatchAddItem_CertificationProof[];
+  certification_proofs: BatchAddItem_CertificationProof[];
   [key: string]: any;
 }
 /**
@@ -1888,19 +1888,19 @@ export interface BatchAddItem_Item {
   /**
    * Item price
    */
-  original_price?: number;
+  original_price: number;
   /**
    * if description_type is normal , Description information should be set by this field.
    */
-  description?: string;
+  description: string;
   /**
    * The weight of this item, the unit is KG.
    */
-  weight?: number;
+  weight: number;
   /**
    * Item name
    */
-  item_name?: string;
+  item_name: string;
   /**
    * Item status, could be UNLIST or NORMAL
    */
@@ -1912,7 +1912,7 @@ export interface BatchAddItem_Item {
   /**
    * Logistic channel setting
    */
-  logistic_info?: BatchAddItem_LogisticInfo[];
+  logistic_info: BatchAddItem_LogisticInfo[];
   /**
    * This field is optional(expect Indonesia) depending on the specific attribute under different categories. Should call shopee.item.GetAttributes to get attribute first. Must contain all all mandatory attribute.
    */
@@ -1920,11 +1920,11 @@ export interface BatchAddItem_Item {
   /**
    * ID of category
    */
-  category_id?: number;
+  category_id: number;
   /**
    * Item images
    */
-  image?: BatchAddItem_Image;
+  image: BatchAddItem_Image;
   /**
    * Pre order setting
    */
@@ -2015,7 +2015,7 @@ export interface BatchAddItemRequest {
   /**
    * The item list to batch add. The list size must be between 1 and 100.
    */
-  item_list?: BatchAddItem_Item[];
+  item_list: BatchAddItem_Item[];
   [key: string]: any;
 }
 /**
@@ -2049,7 +2049,7 @@ export interface BatchPublishItemToOutletShop_SellerStock {
   /**
    * The stock quantity of the location.
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -2059,7 +2059,7 @@ export interface BatchPublishItemToOutletShop_PreOrder {
   /**
    * Indicate whether the model is pre-order.
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   /**
    * The days to ship for pre-order model.
    */
@@ -2103,7 +2103,7 @@ export interface BatchPublishItemToOutletShop_LogisticInfo {
   /**
    * Indicates whether the logistics channel is enabled for the item.
    */
-  enabled?: boolean;
+  enabled: boolean;
   /**
    * The shipping fee charged to the buyer for this logistics channel.
    */
@@ -2171,15 +2171,15 @@ export interface BatchPublishItemToOutletShop_Item {
   /**
    * The item ID of the item in the Mart shop.
    */
-  mart_item_id?: number;
+  mart_item_id: number;
   /**
    * The shop ID of the Outlet shop.
    */
-  outlet_shop_id?: number;
+  outlet_shop_id: number;
   /**
    * The outlet item data to publish.
    */
-  publish_item?: BatchPublishItemToOutletShop_PublishItem;
+  publish_item: BatchPublishItemToOutletShop_PublishItem;
   [key: string]: any;
 }
 /**
@@ -2191,7 +2191,7 @@ export interface BatchPublishItemToOutletShopRequest {
   /**
    * The item list to batch publish to Outlet shop. The list size must be between 1 and 100.
    */
-  item_list?: BatchPublishItemToOutletShop_Item[];
+  item_list: BatchPublishItemToOutletShop_Item[];
   [key: string]: any;
 }
 /**
@@ -2226,7 +2226,7 @@ export interface BatchUpdateOutletPrice_Price {
   /**
    * The original price to update. The value must be greater than 0.
    */
-  original_price?: number;
+  original_price: number;
   [key: string]: any;
 }
 /**
@@ -2236,15 +2236,15 @@ export interface BatchUpdateOutletPrice_Item {
   /**
    * The shop ID of the Outlet shop.
    */
-  outlet_shop_id?: number;
+  outlet_shop_id: number;
   /**
    * The item ID of the item in the Outlet shop.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The price list of item models. The list size must be at least 1.
    */
-  price_list?: BatchUpdateOutletPrice_Price[];
+  price_list: BatchUpdateOutletPrice_Price[];
   [key: string]: any;
 }
 /**
@@ -2256,7 +2256,7 @@ export interface BatchUpdateOutletPriceRequest {
   /**
    * The item list to batch update price. The list size must be between 1 and 100.
    */
-  item_list?: BatchUpdateOutletPrice_Item[];
+  item_list: BatchUpdateOutletPrice_Item[];
   [key: string]: any;
 }
 /**
@@ -2290,7 +2290,7 @@ export interface BatchUpdateOutletStock_SellerStock {
   /**
    * The stock quantity of the location.
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -2304,7 +2304,7 @@ export interface BatchUpdateOutletStock_Stock {
   /**
    * The seller stock by location.
    */
-  seller_stock?: BatchUpdateOutletStock_SellerStock[];
+  seller_stock: BatchUpdateOutletStock_SellerStock[];
   [key: string]: any;
 }
 /**
@@ -2314,15 +2314,15 @@ export interface BatchUpdateOutletStock_Item {
   /**
    * The shop ID of the Outlet shop.
    */
-  outlet_shop_id?: number;
+  outlet_shop_id: number;
   /**
    * The item ID of the item in the Outlet shop.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The stock list of item models. The list size must be at least 1.
    */
-  stock_list?: BatchUpdateOutletStock_Stock[];
+  stock_list: BatchUpdateOutletStock_Stock[];
   [key: string]: any;
 }
 /**
@@ -2334,7 +2334,7 @@ export interface BatchUpdateOutletStockRequest {
   /**
    * The item list to batch update stock. The list size must be between 1 and 100.
    */
-  item_list?: BatchUpdateOutletStock_Item[];
+  item_list: BatchUpdateOutletStock_Item[];
   [key: string]: any;
 }
 /**
@@ -2366,7 +2366,7 @@ export interface BoostItemRequest {
   /**
    * Shopee's unique identifier for an item, limit:[1,5]
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   [key: string]: any;
 }
 /**
@@ -2420,7 +2420,7 @@ export interface CategoryRecommendRequest {
   /**
    * name of item
    */
-  item_name?: string;
+  item_name: string;
   /**
    * Please use the image id returned by v2.media_space.upload_image api, we will ignore if this field is empty string
    */
@@ -2456,7 +2456,7 @@ export interface DeleteItemRequest {
   /**
    * The identity of product item.
    */
-  item_id?: number;
+  item_id: number;
   [key: string]: any;
 }
 /**
@@ -2484,11 +2484,11 @@ export interface DeleteModelRequest {
   /**
    * ID of item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * ID of model.
    */
-  model_id?: number;
+  model_id: number;
   [key: string]: any;
 }
 /**
@@ -2514,7 +2514,7 @@ export interface GenerateKitImage_Component {
   /**
    * ID of the item that composes this kit model.
    */
-  component_item_id?: number;
+  component_item_id: number;
   /**
    * ID of the model that composes this kit model.
    */
@@ -2530,7 +2530,7 @@ export interface GenerateKitImageRequest {
   /**
    * Please send up until 9 components.
    */
-  component_list?: GenerateKitImage_Component[];
+  component_list: GenerateKitImage_Component[];
   [key: string]: any;
 }
 /**
@@ -2562,7 +2562,7 @@ export interface GetAitemByPitemIdRequest {
   /**
    * ID of item under SIP Primary Shop.
    */
-  pitem_id?: number;
+  pitem_id: number;
   [key: string]: any;
 }
 /**
@@ -2627,7 +2627,7 @@ export interface GetAllVehicleListRequest {
   /**
    * The size of one page. Max=100
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
@@ -2710,7 +2710,7 @@ export interface GetAttributeTreeRequest {
   /**
    * max count is 20
    */
-  category_id_list?: number[];
+  category_id_list: number[];
   /**
    * LanguageSupport Lanuage:"SG": [        "en",        "zh-Hans",        "ms"      ], "MY": [        "en",        "zh-Hans",        "ms"      ], "PH": [        "en",        "zh-Hans"      ], "VN": [        "vn",        "en"      ], "ID": [        "id",        "en"      ], "TH": [        "th",        "en"      ], "BR": [        "pt-BR",        "en"      ], "MX": [        "es-MX",        "en"      ], "CO": [        "es-CO",        "en"      ], "CL": [        "es-CL",        "en"      ], "TW": [        "zh-Hant",        "zh-Hans",        "en"      ],"IN": [        "en",        "hi"      ]
    */
@@ -2873,11 +2873,11 @@ export interface GetBatchTaskResultRequest {
   /**
    * The task type. 1: price; 2: stock; 3: publish outlet; 4: add item.
    */
-  task_type?: number;
+  task_type: number;
   /**
    * The task ID to query.
    */
-  task_id?: number;
+  task_id: number;
   [key: string]: any;
 }
 /**
@@ -2994,19 +2994,19 @@ export interface GetBrandListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0. If data is more than one page,this field needs to be replaced with "next_offset" to request,and the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset: number;
   /**
    * the size of one page.Max=100
    */
-  page_size?: number;
+  page_size: number;
   /**
    * ID of category.
    */
-  category_id?: number;
+  category_id: number;
   /**
    * Brand status , 1: normal brand, 2: pending brand
    */
-  status?: number;
+  status: number;
   /**
    * If language is not uploaded, the default language=en, the following are the languages supported by different markets SG: en ; MY: en / ms-my / zh-hans ; TH: en / th ; VN: en / vi ; PH: en ; TW: en / zh-hant ; ID: en / id ;  BR: en / pt-br ;  MX: en / es-mx ; CO: en/es-CO ; CL: en/es-CL. Note: For markets that have already launched global tree, Crossboard shop only support returning en and zh-hans language data
    */
@@ -3133,11 +3133,11 @@ export interface GetCommentRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
-  cursor?: string;
+  cursor: string;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -3264,7 +3264,7 @@ export interface GetDirectItemListRequest {
   /**
    * Item id of main shop.
    */
-  main_item_id?: number[];
+  main_item_id: number[];
   [key: string]: any;
 }
 /**
@@ -3331,11 +3331,11 @@ export interface GetDirectShopRecommendedPrice_Model {
  * get recommend price for direct shop.
  */
 export interface GetDirectShopRecommendedPriceRequest {
-  main_item_id?: number;
+  main_item_id: number;
   /**
    * Direct shop regions.
    */
-  direct_shop_regions?: string[];
+  direct_shop_regions: string[];
   /**
    * Main_item's category.
    */
@@ -3408,7 +3408,7 @@ export interface GetItemBaseInfoRequest {
   /**
    * item_id list; limit [0,50]
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   /**
    * if true will response tax_info
    */
@@ -4227,7 +4227,7 @@ export interface GetItemContentDiagnosisResultRequest {
   /**
    * item_id list; limit [1,48]
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   [key: string]: any;
 }
 /**
@@ -4301,7 +4301,7 @@ export interface GetItemExtraInfoRequest {
   /**
    * item_id list, limit [0,50]
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   [key: string]: any;
 }
 /**
@@ -4623,11 +4623,11 @@ export interface GetItemListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0. if data is more than one page, the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset: number;
   /**
    * the size of one page.Max=100
    */
-  page_size?: number;
+  page_size: number;
   /**
    * The update_time_from and update_time_to fields specify a date range for retrieving orders (based on the item update time). The update_time_from field is the starting date range.
    */
@@ -4639,7 +4639,7 @@ export interface GetItemListRequest {
   /**
    * NORMAL/BANNED/UNLIST/REVIEWING/SELLER_DELETE/SHOPEE_DELETEIf you want to search multiple status, please upload the url like this: item_status=NORMAL&item_status=BANNED
    */
-  item_status?: ItemStatus | string | number;
+  item_status: ItemStatus | string | number;
   [key: string]: any;
 }
 /**
@@ -4712,7 +4712,7 @@ export interface GetItemListByContentDiagnosisRequest {
   /**
    * the size of one page. Max=48
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is empty. if data is more than one page, the offset can be some entry to start next call.
    */
@@ -4795,7 +4795,7 @@ export interface GetItemPromotionRequest {
   /**
    * Item ID list, can send 1 to 50 items.
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   [key: string]: any;
 }
 /**
@@ -4921,7 +4921,7 @@ export interface GetItemViolationInfoRequest {
   /**
    * item_id list; limit [0,50]
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   [key: string]: any;
 }
 /**
@@ -5049,7 +5049,7 @@ export interface GetKitItemInfoRequest {
   /**
    * ID of kit item.
    */
-  item_id?: number;
+  item_id: number;
   [key: string]: any;
 }
 /**
@@ -5646,7 +5646,7 @@ export interface GetMainItemListRequest {
   /**
    * Item id of direct shop.
    */
-  direct_item_id?: number[];
+  direct_item_id: number[];
   [key: string]: any;
 }
 /**
@@ -5693,7 +5693,7 @@ export interface GetMartItemByOutletItemIdRequest {
   /**
    * The item ID of the item in the outlet shop.
    */
-  outlet_item_id?: number;
+  outlet_item_id: number;
   [key: string]: any;
 }
 /**
@@ -5758,11 +5758,11 @@ export interface GetMartItemMappingByIdRequest {
   /**
    * The item ID of the item in the Mart shop.
    */
-  mart_item_id?: number;
+  mart_item_id: number;
   /**
    * A list of outlet shop IDs used to filter the mapping results.
    */
-  outlet_shop_id_list?: number[];
+  outlet_shop_id_list: number[];
   [key: string]: any;
 }
 /**
@@ -5826,7 +5826,7 @@ export interface GetModelListRequest {
   /**
    * The ID of the item
    */
-  item_id?: number;
+  item_id: number;
   [key: string]: any;
 }
 /**
@@ -5850,7 +5850,7 @@ export interface GetModelList_Option {
   /**
    * Option name.
    */
-  option?: string;
+  option: string;
   image?: GetModelList_Image;
   [key: string]: any;
 }
@@ -5861,11 +5861,11 @@ export interface GetModelList_TierVariation {
   /**
    * Option list.
    */
-  option_list?: GetModelList_Option[];
+  option_list: GetModelList_Option[];
   /**
    * Variation name.
    */
-  name?: string;
+  name: string;
   [key: string]: any;
 }
 /**
@@ -5879,19 +5879,19 @@ export interface GetModelList_PriceInfo {
   /**
    * Current price of item.
    */
-  current_price?: number;
+  current_price: number;
   /**
    * Original price of item.
    */
-  original_price?: number;
+  original_price: number;
   /**
    * Original price of item after tax.
    */
-  inflated_price_of_original_price?: number;
+  inflated_price_of_original_price: number;
   /**
    * Current price of item after tax.
    */
-  inflated_price_of_current_price?: number;
+  inflated_price_of_current_price: number;
   /**
    * SIP item price. If item is from SIP primary shop, this field will be returned.
    */
@@ -6035,19 +6035,19 @@ export interface GetModelList_Model {
   /**
    * Price info.For SG/MY/BR/MX/PL/ES/AR seller: Sellers can set the price with two decimal place, other regions can only set the price as an integer.
    */
-  price_info?: GetModelList_PriceInfo[];
+  price_info: GetModelList_PriceInfo[];
   /**
    * Model ID.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * Tier index of this model.
    */
-  tier_index?: number[];
+  tier_index: number[];
   /**
    * Current promotion ID of this model.
    */
-  promotion_id?: any;
+  promotion_id: any;
   /**
    * Indicates whether the model is currently under any ongoing promotion.
    */
@@ -6137,11 +6137,11 @@ export interface GetModelList_Response {
   /**
    * Variation config of item.
    */
-  tier_variation?: GetModelList_TierVariation[];
+  tier_variation: GetModelList_TierVariation[];
   /**
    * Model list.
    */
-  model?: GetModelList_Model[];
+  model: GetModelList_Model[];
   /**
    * Standardise Variation config of item.
    */
@@ -6165,7 +6165,7 @@ export interface GetProductCertificationRule_AttributeValue {
   /**
    * ID of attribute value. In the following cases, the value id needs to be uploaded as 0, and original_value_name is mandatory, needs to be filled in customized value. (1) AttributeInputType is TEXT_FILED; (2) AttributeInputType is COMBO_BOX or MULTIPLE_SELECT_COMBO_BOX, and the seller want to fill in a customized value.
    */
-  value_id?: number;
+  value_id: number;
   /**
    * Value name. original_value_name from produc.get_attributes api. If value id=0, this field is required. If AttributeType is DATE_TYPE or TIMESTAMP_TYPE, you can upload timestamp(string type) as the original_value_name.
    */
@@ -6183,7 +6183,7 @@ export interface GetProductCertificationRule_Attribute {
   /**
    * ID of attribute.
    */
-  attribute_id?: number;
+  attribute_id: number;
   attribute_value_list?: GetProductCertificationRule_AttributeValue[];
   [key: string]: any;
 }
@@ -6252,7 +6252,7 @@ export interface GetRecommendAttributeRequest {
   /**
    * name of item
    */
-  item_name?: string;
+  item_name: string;
   /**
    * Cover image id of item
    */
@@ -6260,7 +6260,7 @@ export interface GetRecommendAttributeRequest {
   /**
    * ID of category
    */
-  category_id?: number;
+  category_id: number;
   [key: string]: any;
 }
 /**
@@ -6316,7 +6316,7 @@ export interface GetSizeChartDetailRequest {
   /**
    * ID of new size chart
    */
-  size_chart_id?: number;
+  size_chart_id: number;
   [key: string]: any;
 }
 /**
@@ -6420,11 +6420,11 @@ export interface GetSizeChartListRequest {
   /**
    * category id under this shop
    */
-  category_id?: string;
+  category_id: string;
   /**
    * the size of one page. Max=50.
    */
-  page_size?: string;
+  page_size: string;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the cursor can be some entry to start next call.
    */
@@ -6476,7 +6476,7 @@ export interface GetVariationsRequest {
   /**
    * Leaf category id
    */
-  category_id?: number;
+  category_id: number;
   [key: string]: any;
 }
 /**
@@ -6545,7 +6545,7 @@ export interface GetVehicleListByCompatibilityDetailRequest {
   /**
    * To inform compatibility list, can be equal to Brand, Model, Year, or Version.Pass the compatibility_details="Brand" to get all brand list;Pass the compatibility_details="Model" and brand_id=1234 to get all model list under brand_id=1234;Pass the compatibility_details="Year" and brand_id=1234 and model_id=2345 to get all year list under brand_id=1234 and model_id=2345;Pass the compatibility_details="Version" and brand_id=1234 and model_id=2345 and year_id=3456 to get all version list under brand_id=1234 and model_id=2345 and year_id=3456.
    */
-  compatibility_details?: string;
+  compatibility_details: string;
   /**
    * ID of the brand.
    */
@@ -6628,7 +6628,7 @@ export interface GetWeightRecommendation_AttributeValue {
   /**
    * Unique identifier for value of this item attribute.
    */
-  value_id?: number;
+  value_id: number;
   /**
    * Value name of this item attribute.
    */
@@ -6646,8 +6646,8 @@ export interface GetWeightRecommendation_Attribute {
   /**
    * The Identify of each attribute.
    */
-  attribute_id?: number;
-  attribute_value_list?: GetWeightRecommendation_AttributeValue[];
+  attribute_id: number;
+  attribute_value_list: GetWeightRecommendation_AttributeValue[];
   [key: string]: any;
 }
 /**
@@ -6707,24 +6707,24 @@ export interface GetWeightRecommendationRequest {
   /**
    * Name of the item in local language.
    */
-  item_name?: string;
+  item_name: string;
   /**
    * Image id of first product image.
    */
-  cover_image_id?: string;
+  cover_image_id: string;
   /**
    * Shopee's unique identifier for a category.
    */
-  category_id?: number;
-  attribute_list?: GetWeightRecommendation_Attribute[];
+  category_id: number;
+  attribute_list: GetWeightRecommendation_Attribute[];
   /**
    * Id of brand.
    */
-  brand_id?: number;
+  brand_id: number;
   /**
    * Type of description, values: See Data Definition- description_type (normal , extended).
    */
-  description_type?: string;
+  description_type: string;
   /**
    * If description_type is normal , Description information should be set by this field.
    */
@@ -6766,7 +6766,7 @@ export interface InitTierVariation_SellerStock {
   /**
    * stock
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -6776,15 +6776,15 @@ export interface InitTierVariation_Dimension {
   /**
    * The height of package for this model, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   /**
    * The length of package for this model, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this model, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   [key: string]: any;
 }
 /**
@@ -6794,7 +6794,7 @@ export interface InitTierVariation_PreOrder {
   /**
    * Whether the model is pre order.
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   /**
    * Days to ship. Please get the days_to_ship range from the get_dts_limit API.
    */
@@ -6808,11 +6808,11 @@ export interface InitTierVariation_Model {
   /**
    * Tier index of this model.If you want to update one tier/two tier to no tier, can just pass the tier_variation and standardise_tier_variation as [], and pass the model >> tier_index as [], meanwhile pass the original_price, seller_stock, etc., to set the price and stock for the modified product with no tier structure.
    */
-  tier_index?: TierIndex | string | number;
+  tier_index: TierIndex | string | number;
   /**
    * Original price of this model.For CO local VAT responsible seller：Please remember the price you set in here must be VAT inclusive. If you have any doubts on how to calculate VAT for your product please refer to the Seller Education Hub（https://seller.shopee.com.co/edu/article/13565）
    */
-  original_price?: number;
+  original_price: number;
   /**
    * Seller SKU of this model, model_sku length information needs to be no more than 100 characters.
    */
@@ -6820,7 +6820,7 @@ export interface InitTierVariation_Model {
   /**
    * new stock info（Please notice that stock(including Seller Stock and Shopee Stock) should be larger than or equal to real-time reserved stock）
    */
-  seller_stock?: InitTierVariation_SellerStock[];
+  seller_stock: InitTierVariation_SellerStock[];
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
@@ -6864,7 +6864,7 @@ export interface InitTierVariation_StandardiseTierVariation {
   /**
    * standardise tier variation ID.
    */
-  variation_id?: number;
+  variation_id: number;
   /**
    * standardise tier variation name
    */
@@ -6876,7 +6876,7 @@ export interface InitTierVariation_StandardiseTierVariation {
   /**
    * standardise tier variation option list
    */
-  variation_option_list?: InitTierVariation_VariationOption[];
+  variation_option_list: InitTierVariation_VariationOption[];
   [key: string]: any;
 }
 /**
@@ -6888,11 +6888,11 @@ export interface InitTierVariationRequest {
   /**
    * ID of item
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Model info list, model number at most 50
    */
-  model?: InitTierVariation_Model[];
+  model: InitTierVariation_Model[];
   /**
    * There is at least one standardise_tier_variation and tier_variation.If you want to update one tier/two tier to no tier, can just pass the tier_variation and standardise_tier_variation as [], and pass the model >> tier_index as [], meanwhile pass the original_price, seller_stock, etc., to set the price and stock for the modified product with no tier structure.
    */
@@ -7046,7 +7046,7 @@ export interface PublishItemToOutletShop_SellerStock {
   /**
    * The available stock quantity for the model.
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -7056,7 +7056,7 @@ export interface PublishItemToOutletShop_PreOrder {
   /**
    * Indicates whether the model is sold as a pre-order item.
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   /**
    * The number of days required to ship the item after an order is placed.
    */
@@ -7070,7 +7070,7 @@ export interface PublishItemToOutletShop_Model {
   /**
    * The model ID in the Mart shop that this outlet model is associated with.model_id=0 for items with only the default model(no variations)
    */
-  relate_mart_model_id?: number;
+  relate_mart_model_id: number;
   /**
    * The status of model.
    */
@@ -7096,11 +7096,11 @@ export interface PublishItemToOutletShop_LogisticInfo {
   /**
    * The logistics channel ID used for shipping the item.
    */
-  logistic_id?: number;
+  logistic_id: number;
   /**
    * Indicates whether the logistics channel is enabled for the item.
    */
-  enabled?: boolean;
+  enabled: boolean;
   /**
    * The shipping fee charged to the buyer for this logistics channel.
    */
@@ -7122,7 +7122,7 @@ export interface PublishItemToOutletShop_MaxPurchaseLimit {
   /**
    * The maximum quantity that a buyer is allowed to purchase per order.
    */
-  purchase_limit?: number;
+  purchase_limit: number;
   [key: string]: any;
 }
 /**
@@ -7132,11 +7132,11 @@ export interface PublishItemToOutletShop_PurchaseLimitInfo {
   /**
    * The minimum quantity that a buyer is allowed to purchase per order.
    */
-  min_purchase_limit?: number;
+  min_purchase_limit: number;
   /**
    * The maximum purchase quantity configuration for the item.
    */
-  max_purchase_limit?: PublishItemToOutletShop_MaxPurchaseLimit;
+  max_purchase_limit: PublishItemToOutletShop_MaxPurchaseLimit;
   [key: string]: any;
 }
 /**
@@ -7167,15 +7167,15 @@ export interface PublishItemToOutletShopRequest {
   /**
    * The item ID of the product in the Mart shop to be published to the outlet shop.
    */
-  mart_item_id?: number;
+  mart_item_id: number;
   /**
    * The shop ID of the outlet shop where the product will be published.
    */
-  outlet_shop_id?: number;
+  outlet_shop_id: number;
   /**
    * Configuration details for publishing the product to the outlet shop, including model mapping, pricing, stock, logistics, and purchase limits.
    */
-  publish_item?: PublishItemToOutletShop_PublishItem;
+  publish_item: PublishItemToOutletShop_PublishItem;
   [key: string]: any;
 }
 /**
@@ -7205,7 +7205,7 @@ export interface RegisterBrand_ProductImage {
   /**
    * Image Id of product image for this brand, max input num of file = 10 ,each file's length<=498. ID market is optional.
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -7231,12 +7231,12 @@ export interface RegisterBrandRequest {
   /**
    * Brand name, length<=254.
    */
-  original_brand_name?: string;
+  original_brand_name: string;
   /**
    * Category_id list for this brand, please input category in L1 or L2. Max input num of category_id is 50.
    */
-  category_list?: number[];
-  product_image?: RegisterBrand_ProductImage;
+  category_list: number[];
+  product_image: RegisterBrand_ProductImage;
   /**
    * Image_id  of logo for  app client,please input hashcode of this picture.
    */
@@ -7260,7 +7260,7 @@ export interface RegisterBrandRequest {
   /**
    * origin region of brand.
    */
-  brand_region?: string;
+  brand_region: string;
   /**
    * For appeal blacklisted brand data
    */
@@ -7302,11 +7302,11 @@ export interface ReplyComment_Comment {
   /**
    * The identity of comment.
    */
-  comment_id?: number;
+  comment_id: number;
   /**
    * The content of the comment.
    */
-  comment?: string;
+  comment: string;
   [key: string]: any;
 }
 /**
@@ -7318,7 +7318,7 @@ export interface ReplyCommentRequest {
   /**
    * The list of comment. The limit is between 1 and 100.
    */
-  comment_list?: ReplyComment_Comment[];
+  comment_list: ReplyComment_Comment[];
   [key: string]: any;
 }
 /**
@@ -7365,16 +7365,16 @@ export type ReplyCommentResponse = FetchResponse<ReplyCommentResponseData>;
  * this api is for searching attribute value list for attribute with support_search_value flag
  */
 export interface SearchAttributeValueListRequest {
-  attribute_id?: number;
+  attribute_id: number;
   /**
    * search the keywords of the attributes value
    */
   value_name?: string;
-  cursor?: number;
+  cursor: number;
   /**
    * The range is 1 to 100
    */
-  limit?: number;
+  limit: number;
   [key: string]: any;
 }
 /**
@@ -7430,7 +7430,7 @@ export interface SearchItemRequest {
   /**
    * the size of one page.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * name of item.
    */
@@ -7490,7 +7490,7 @@ export interface SearchUnpackagedModelListRequest {
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 48.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the cursor can be some entry to start next call.
    */
@@ -7571,11 +7571,11 @@ export interface UnlistItem_Item {
   /**
    * Shopee's unique identifier for an item
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Unlist or not
    */
-  unlist?: boolean;
+  unlist: boolean;
   [key: string]: any;
 }
 /**
@@ -7587,7 +7587,7 @@ export interface UnlistItemRequest {
   /**
    * Length should be between 1 to 50.
    */
-  item_list?: UnlistItem_Item[];
+  item_list: UnlistItem_Item[];
   [key: string]: any;
 }
 /**
@@ -7643,11 +7643,11 @@ export interface UpdateItem_PreOrder {
   /**
    * Days to ship.
    */
-  days_to_ship?: number;
+  days_to_ship: number;
   /**
    * Whether the item is pre order.
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   [key: string]: any;
 }
 /**
@@ -7657,7 +7657,7 @@ export interface UpdateItem_AttributeValue {
   /**
    * ID of attribute value. In the following cases, the value id needs to be uploaded as 0, and original_value_name is mandatory, needs to be filled in customized value. (1) AttributeInputType is TEXT_FILED; (2) AttributeInputType is COMBO_BOX or MULTIPLE_SELECT_COMBO_BOX, and the seller want to fill in a customized value.
    */
-  value_id?: number;
+  value_id: number;
   /**
    * Value name. original_value_name from produc.get_attributes api. If value id=0, this field is required. If AttributeType is DATE_TYPE or TIMESTAMP_TYPE, you can upload timestamp(string type) as the original_value_name.
    */
@@ -7675,7 +7675,7 @@ export interface UpdateItem_Attribute {
   /**
    * ID of attribute.
    */
-  attribute_id?: number;
+  attribute_id: number;
   attribute_value_list?: UpdateItem_AttributeValue[];
   [key: string]: any;
 }
@@ -7686,7 +7686,7 @@ export interface UpdateItem_Image {
   /**
    * Image ID.
    */
-  image_id_list?: any[];
+  image_id_list: any[];
   /**
    * Ratio of image, OptionalAllowed ratios :"1:1" (default) "3:4"
    */
@@ -7700,15 +7700,15 @@ export interface UpdateItem_Wholesale {
   /**
    * Minimum count of this tier.
    */
-  min_count?: number;
+  min_count: number;
   /**
    * Price of this tier.
    */
-  unit_price?: number;
+  unit_price: number;
   /**
    * Maximum count of this tier.
    */
-  max_count?: number;
+  max_count: number;
   [key: string]: any;
 }
 /**
@@ -7718,15 +7718,15 @@ export interface UpdateItem_Dimension {
   /**
    * The height of package for this item, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   /**
    * The length of package for this item, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this item, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   [key: string]: any;
 }
 /**
@@ -7962,11 +7962,11 @@ export interface UpdateItem_VehicleInfo {
   /**
    * ID of the brand.
    */
-  brand_id?: number;
+  brand_id: number;
   /**
    * ID of the model.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * ID of the year.
    */
@@ -7981,7 +7981,7 @@ export interface UpdateItem_VehicleInfo {
  * UpdateItem_CompatibilityInfo sub-interface for UpdateItemRequest
  */
 export interface UpdateItem_CompatibilityInfo {
-  vehicle_info_list?: UpdateItem_VehicleInfo[];
+  vehicle_info_list: UpdateItem_VehicleInfo[];
   [key: string]: any;
 }
 /**
@@ -8005,15 +8005,15 @@ export interface UpdateItem_CertificationProof {
   /**
    * The unique image ID of the certification proof, returned by the image upload API.
    */
-  image_id?: string;
+  image_id: string;
   /**
    * The name of the uploaded certification proof file.
    */
-  file_name?: string;
+  file_name: string;
   /**
    * image weight/ image heightWill be optional in the future; can input 0.75 by default
    */
-  ratio?: number;
+  ratio: number;
   [key: string]: any;
 }
 /**
@@ -8023,11 +8023,11 @@ export interface UpdateItem_Certification {
   /**
    * Certification number issued by the regulatory or certifying authority; uniquely identifies the certification.refer tohttps://seller.shopee.ph/edu/article/24236
    */
-  certification_no?: CertificationNo | string | number;
+  certification_no: CertificationNo | string | number;
   /**
    * Platform-defined permit ID used to link to a specific certification template or rule.get from v2.product.get_product_certification_rule
    */
-  permit_id?: number;
+  permit_id: number;
   /**
    * Expiry timestamp. Required for PH, but not needed for TW.
    */
@@ -8114,7 +8114,7 @@ export interface UpdateItemRequest {
   /**
    * ID of item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * ID of category.
    */
@@ -8195,11 +8195,11 @@ export interface UpdateItem_UpdateItem_Image {
   /**
    * ID list of item image.
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   /**
    * URL list of item image
    */
-  image_url_list?: string[];
+  image_url_list: string[];
   [key: string]: any;
 }
 /**
@@ -8209,23 +8209,23 @@ export interface UpdateItem_LogisticInfo {
   /**
    * Estimated shipping fee.
    */
-  estimated_shipping_fee?: number;
+  estimated_shipping_fee: number;
   /**
    * Name of logistics channel.
    */
-  logistic_name?: string;
+  logistic_name: string;
   /**
    * Whether this channel is enabled.
    */
-  enabled?: boolean;
+  enabled: boolean;
   /**
    * ID of this channel.
    */
-  logistic_id?: number;
+  logistic_id: number;
   /**
    * Whether cover shipping fee for buyer.
    */
-  is_free?: boolean;
+  is_free: boolean;
   [key: string]: any;
 }
 /**
@@ -8253,41 +8253,41 @@ export interface UpdateItem_Response {
   /**
    * Item description.
    */
-  description?: string;
+  description: string;
   /**
    * The weight of this item, the unit is KG.
    */
-  weight?: number;
-  pre_order?: UpdateItem_PreOrder;
+  weight: number;
+  pre_order: UpdateItem_PreOrder;
   /**
    * Item name.
    */
-  item_name?: string;
+  item_name: string;
   /**
    * Item status.
    */
-  item_status?: string;
+  item_status: string;
   /**
    * Item images.
    */
-  images?: UpdateItem_UpdateItem_Image;
-  logistic_info?: UpdateItem_LogisticInfo[];
+  images: UpdateItem_UpdateItem_Image;
+  logistic_info: UpdateItem_LogisticInfo[];
   /**
    * ID of item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * ID of item category.
    */
-  category_id?: number;
+  category_id: number;
   /**
    * The dimension of this item.
    */
-  dimension?: UpdateItem_Dimension;
+  dimension: UpdateItem_Dimension;
   /**
    * Item condition, could be USED or NEW.
    */
-  condition?: string;
+  condition: string;
   brand?: UpdateItem_Brand;
   /**
    * This field is only applicable for local sellers in Indonesia and Malaysia. Use this field to identify whether a product is a dangerous product. 0 for non-dangerous product and 1 for dangerous product. For more information, please visit the market's respective Seller Education Hub.
@@ -8324,7 +8324,7 @@ export interface UpdateKitItem_Image {
   /**
    * ID of image.
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -8334,7 +8334,7 @@ export interface UpdateKitItem_LongImage {
   /**
    * ID of image.
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -8344,7 +8344,7 @@ export interface UpdateKitItem_ImageInfo {
   /**
    * Image id.
    */
-  image_id?: string;
+  image_id: string;
   [key: string]: any;
 }
 /**
@@ -8354,11 +8354,11 @@ export interface UpdateKitItem_Field {
   /**
    * Type of extended description field. See Data Definition- description_field_type (text , image).
    */
-  field_type?: string;
+  field_type: string;
   /**
    * If field_type is text, text information will be set by this field.
    */
-  text?: string;
+  text: string;
   /**
    * If field_type is image, image will be set by this field.
    */
@@ -8372,7 +8372,7 @@ export interface UpdateKitItem_ExtendedDescription {
   /**
    * Field of extended description.
    */
-  field_list?: UpdateKitItem_Field[];
+  field_list: UpdateKitItem_Field[];
   [key: string]: any;
 }
 /**
@@ -8382,7 +8382,7 @@ export interface UpdateKitItem_DescriptionInfo {
   /**
    * If description_type is extended , Description information should be set by this field.
    */
-  extended_description?: UpdateKitItem_ExtendedDescription;
+  extended_description: UpdateKitItem_ExtendedDescription;
   [key: string]: any;
 }
 /**
@@ -8392,11 +8392,11 @@ export interface UpdateKitItem_LogisticInfo {
   /**
    * ID of the channel.
    */
-  logistic_id?: number;
+  logistic_id: number;
   /**
    * Whether channel is enabled for this kit item.
    */
-  enabled?: boolean;
+  enabled: boolean;
   /**
    * Shipping fee. Only needed when logistics fee_type = CUSTOM_PRICE.
    */
@@ -8418,15 +8418,15 @@ export interface UpdateKitItem_Dimension {
   /**
    * The length of package for this kit item, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this kit item, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   /**
    * The height of package for this kit item, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   [key: string]: any;
 }
 /**
@@ -8436,7 +8436,7 @@ export interface UpdateKitItem_PreOrder {
   /**
    * Whether kit item is pre order.
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   /**
    * The guaranteed days to ship orders. Please get the days_to_ship range from get_kit_item_limit api.
    */
@@ -8450,7 +8450,7 @@ export interface UpdateKitItem_Component {
   /**
    * ID of the item that composes this kit model.
    */
-  component_item_id?: number;
+  component_item_id: number;
   /**
    * ID of the model that composes this kit model.
    */
@@ -8458,7 +8458,7 @@ export interface UpdateKitItem_Component {
   /**
    * The amount of the item/model that composes this kit model.
    */
-  quantity?: number;
+  quantity: number;
   /**
    * Whether this item/model is the main component for this kit.One kit item can only have one item/model as main component.
    */
@@ -8476,7 +8476,7 @@ export interface UpdateKitItem_Model {
   /**
    * Tier index of this kit model.
    */
-  tier_index?: number[];
+  tier_index: number[];
   /**
    * Seller SKU of this kit model, model_sku length information needs to be no more than 100 characters.
    */
@@ -8498,7 +8498,7 @@ export interface UpdateKitItem_UpdateKitItem_Image {
   /**
    * ID of image. If you choose to define, you need to define an image for all options.
    */
-  image_id?: string;
+  image_id: string;
   [key: string]: any;
 }
 /**
@@ -8508,7 +8508,7 @@ export interface UpdateKitItem_Option {
   /**
    * Option name.
    */
-  option?: string;
+  option: string;
   /**
    * Option image.
    */
@@ -8526,7 +8526,7 @@ export interface UpdateKitItem_TierVariation {
   /**
    * Tier variation option info list.
    */
-  option_list?: UpdateKitItem_Option[];
+  option_list: UpdateKitItem_Option[];
   [key: string]: any;
 }
 /**
@@ -8602,7 +8602,7 @@ export interface UpdateKitItem_SyncSetting {
   /**
    * Auto sync the pre_order setting from main component or not.
    */
-  auto_sync_dts?: boolean;
+  auto_sync_dts: boolean;
   [key: string]: any;
 }
 /**
@@ -8614,7 +8614,7 @@ export interface UpdateKitItemRequest {
   /**
    * ID of kit item.
    */
-  item_id?: number;
+  item_id: number;
   item_setting?: UpdateKitItem_ItemSetting;
   sync_setting?: UpdateKitItem_SyncSetting;
   [key: string]: any;
@@ -8639,11 +8639,11 @@ export interface UpdateModel_PreOrder {
   /**
    * Pre-order
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   /**
    * The days to ship. Only work for is_pre_order=true
    */
-  days_to_ship?: number;
+  days_to_ship: number;
   [key: string]: any;
 }
 /**
@@ -8653,15 +8653,15 @@ export interface UpdateModel_Dimension {
   /**
    * The height of package for this model, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   /**
    * The length of package for this model, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this model, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   [key: string]: any;
 }
 /**
@@ -8671,11 +8671,11 @@ export interface UpdateModel_Model {
   /**
    * ID of model
    */
-  model_id?: number;
+  model_id: number;
   /**
    * Seller SKU for model, model_sku length information needs to be no more than 100 characters. CNSC and KRSC sellers are not allowed to update the MPSKU model sku.
    */
-  model_sku?: string;
+  model_sku: string;
   pre_order?: UpdateModel_PreOrder;
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
@@ -8704,11 +8704,11 @@ export interface UpdateModelRequest {
   /**
    * ID of item
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Length should be between 1 to 50
    */
-  model?: UpdateModel_Model[];
+  model: UpdateModel_Model[];
   [key: string]: any;
 }
 /**
@@ -8738,7 +8738,7 @@ export interface UpdatePrice_Price {
   /**
    * Original price for this model.For CO local VAT responsible seller：Please remember the price you set in here must be VAT inclusive. If you have any doubts on how to calculate VAT for your product please refer to the Seller Education Hub（https://seller.shopee.com.co/edu/article/13565）For SG/MY/BR/MX/PL/ES/AR seller: Sellers can set the price with two decimal place, other regions can only set the price as an integer.
    */
-  original_price?: number;
+  original_price: number;
   [key: string]: any;
 }
 /**
@@ -8750,11 +8750,11 @@ export interface UpdatePriceRequest {
   /**
    * ID of item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Length should be between 1 to 50.
    */
-  price_list?: UpdatePrice_Price[];
+  price_list: UpdatePrice_Price[];
   [key: string]: any;
 }
 /**
@@ -8820,7 +8820,7 @@ export interface UpdateSipItemPrice_SipItemPrice {
   /**
    * SIP item price.
    */
-  sip_item_price?: number;
+  sip_item_price: number;
   [key: string]: any;
 }
 /**
@@ -8832,7 +8832,7 @@ export interface UpdateSipItemPriceRequest {
   /**
    * ID of item.
    */
-  item_id?: number;
+  item_id: number;
   sip_item_price?: UpdateSipItemPrice_SipItemPrice[];
   [key: string]: any;
 }
@@ -8863,7 +8863,7 @@ export interface UpdateStock_SellerStock {
   /**
    * stock
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -8877,7 +8877,7 @@ export interface UpdateStock_Stock {
   /**
    * new stock info（Please notice that stock(including Seller Stock and Shopee Stock) should be larger than or equal to real-time reserved stock）
    */
-  seller_stock?: UpdateStock_SellerStock[];
+  seller_stock: UpdateStock_SellerStock[];
   [key: string]: any;
 }
 /**
@@ -8889,11 +8889,11 @@ export interface UpdateStockRequest {
   /**
    * ID of item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Length should be between 1 to 50.
    */
-  stock_list?: UpdateStock_Stock[];
+  stock_list: UpdateStock_Stock[];
   [key: string]: any;
 }
 /**
@@ -8959,11 +8959,11 @@ export interface UpdateTierVariation_Model {
   /**
    * ID of model
    */
-  model_id?: number;
+  model_id: number;
   /**
    * Model's tier_variation
    */
-  tier_index?: number[];
+  tier_index: number[];
   [key: string]: any;
 }
 /**
@@ -8973,7 +8973,7 @@ export interface UpdateTierVariation_VariationOption {
   /**
    * standardise tier variation option ID
    */
-  variation_option_id?: number;
+  variation_option_id: number;
   /**
    * standardise tier variation option value
    */
@@ -8991,7 +8991,7 @@ export interface UpdateTierVariation_StandardiseTierVariation {
   /**
    * standardise tier variation ID
    */
-  variation_id?: number;
+  variation_id: number;
   /**
    * standardise tier variation name
    */
@@ -9003,7 +9003,7 @@ export interface UpdateTierVariation_StandardiseTierVariation {
   /**
    * standardise tier variation option list
    */
-  variation_option_list?: UpdateTierVariation_VariationOption[];
+  variation_option_list: UpdateTierVariation_VariationOption[];
   [key: string]: any;
 }
 /**
@@ -9015,7 +9015,7 @@ export interface UpdateTierVariationRequest {
   /**
    * ID of item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Item's model list
    */

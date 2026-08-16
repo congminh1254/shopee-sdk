@@ -43,7 +43,7 @@ describe("AstBuilder", () => {
       const node = builder.buildRequestInterface("add_item", params, "Add a product item");
       const code = printAstNode(node);
       expect(code).toContain("export interface AddItemRequest");
-      expect(code).toContain("item_id?: number;");
+      expect(code).toContain("item_id: number;");
       expect(code).toContain("item_name?: string;");
       expect(code).toContain("[key: string]: any;");
     });

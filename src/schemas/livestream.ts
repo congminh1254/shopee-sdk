@@ -14,11 +14,11 @@ export interface AddItemList_Item {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The shop id of this item.
    */
-  shop_id?: number;
+  shop_id: number;
   [key: string]: any;
 }
 /**
@@ -30,11 +30,11 @@ export interface AddItemListRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * The list of item to add.
    */
-  item_list?: AddItemList_Item[];
+  item_list: AddItemList_Item[];
   [key: string]: any;
 }
 /**
@@ -56,11 +56,11 @@ export interface ApplyItemSetRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * List of item set id to apply.
    */
-  item_set_ids?: number[];
+  item_set_ids: number[];
   [key: string]: any;
 }
 /**
@@ -82,11 +82,11 @@ export interface BanUserCommentRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * The user id that will be banned from posting comments.
    */
-  ban_user_id?: number;
+  ban_user_id: number;
   [key: string]: any;
 }
 /**
@@ -108,7 +108,7 @@ export interface CreateSessionRequest {
   /**
    * The title of livestream session, cannot exceed 200 characters.
    */
-  title?: string;
+  title: string;
   /**
    * The description of livestream session, cannot exceed 200 characters.
    */
@@ -116,7 +116,7 @@ export interface CreateSessionRequest {
   /**
    * The cover image URL of livestream session.Please call the v2.livestream.upload_image to upload the cover image file and get the cover_image_url.
    */
-  cover_image_url?: string;
+  cover_image_url: string;
   /**
    * Indicate whether the livestream session is for testing purpose only.
    */
@@ -150,11 +150,11 @@ export interface DeleteItemList_Item {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The shop id of this item.
    */
-  shop_id?: number;
+  shop_id: number;
   [key: string]: any;
 }
 /**
@@ -166,11 +166,11 @@ export interface DeleteItemListRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * The list of item to delete.
    */
-  item_list?: DeleteItemList_Item[];
+  item_list: DeleteItemList_Item[];
   [key: string]: any;
 }
 /**
@@ -192,7 +192,7 @@ export interface DeleteShowItemRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   [key: string]: any;
 }
 /**
@@ -214,7 +214,7 @@ export interface EndSessionRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   [key: string]: any;
 }
 /**
@@ -236,7 +236,7 @@ export interface GetItemCountRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   [key: string]: any;
 }
 /**
@@ -272,15 +272,15 @@ export interface GetItemListRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -389,15 +389,15 @@ export interface GetItemSetItemListRequest {
   /**
    * The identifier of the item set.
    */
-  item_set_id?: number;
+  item_set_id: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -502,11 +502,11 @@ export interface GetItemSetListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Search the item set with it's name matching the keyword.
    */
@@ -565,7 +565,7 @@ export interface GetLatestCommentListRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
@@ -628,11 +628,11 @@ export interface GetLikeItemListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Search items with name matching this keyword.
    */
@@ -741,11 +741,11 @@ export interface GetRecentItemListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -850,7 +850,7 @@ export interface GetSessionDetailRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   [key: string]: any;
 }
 /**
@@ -945,15 +945,15 @@ export interface GetSessionItemMetricRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -1057,7 +1057,7 @@ export interface GetSessionMetricRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   [key: string]: any;
 }
 /**
@@ -1137,7 +1137,7 @@ export interface GetShowItemRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   [key: string]: any;
 }
 /**
@@ -1215,11 +1215,11 @@ export interface PostCommentRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * The comment content, cannot exceed 150 characters.
    */
-  content?: string;
+  content: string;
   [key: string]: any;
 }
 /**
@@ -1251,11 +1251,11 @@ export interface StartSessionRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * The identifier of the stream domain.
    */
-  domain_id?: number;
+  domain_id: number;
   /**
    * Only available in PH region.To support transparent experiences on Shopee Live,please select this option if AI-generated streameris used for live-streaming.Failure of doing so may lead to warning or termination.Learn more about the policy:PH: https://seller.shopee.ph/edu/article/25213
    */
@@ -1281,11 +1281,11 @@ export interface UnbanUserCommentRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * The user ID that will be unbanned from posting comments.
    */
-  unban_user_id?: number;
+  unban_user_id: number;
   [key: string]: any;
 }
 /**
@@ -1305,11 +1305,11 @@ export interface UpdateItemList_Item {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The shop id of this item.
    */
-  shop_id?: number;
+  shop_id: number;
   [key: string]: any;
 }
 /**
@@ -1321,11 +1321,11 @@ export interface UpdateItemListRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * The list of item with updated order.
    */
-  item_list?: UpdateItemList_Item[];
+  item_list: UpdateItemList_Item[];
   [key: string]: any;
 }
 /**
@@ -1347,11 +1347,11 @@ export interface UpdateSessionRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * The title of the livestream session, cannot exceed 200 characters.
    */
-  title?: string;
+  title: string;
   /**
    * The description of the livestream session, cannot exceed 200 characters.
    */
@@ -1359,11 +1359,11 @@ export interface UpdateSessionRequest {
   /**
    * The cover image url of the livestream session.Please call the v2.livestream.upload_image to upload the cover image file and get the cover_image_url.
    */
-  cover_image_url?: string;
+  cover_image_url: string;
   /**
    * Indicate whether this livestream session if for testing purpose only.
    */
-  is_test?: boolean;
+  is_test: boolean;
   [key: string]: any;
 }
 /**
@@ -1385,15 +1385,15 @@ export interface UpdateShowItemRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id: number;
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The shop id of this item.
    */
-  shop_id?: number;
+  shop_id: number;
   [key: string]: any;
 }
 /**
@@ -1415,7 +1415,7 @@ export interface UploadImageRequest {
   /**
    * The image file to upload.
    */
-  image?: any;
+  image: any;
   [key: string]: any;
 }
 /**

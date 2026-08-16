@@ -93,7 +93,7 @@ export interface GetCurrentInventoryRequest {
   /**
    * The warehouse region you want to query, can only query one region in a requestOptional value: BR、CN、ID、MY、MX、TH、TW、PH、VN、SGIf do not pass, will get error "block by gateway due to invalid cid"
    */
-  whs_region?: string;
+  whs_region: string;
   [key: string]: any;
 }
 /**
@@ -290,7 +290,7 @@ export interface GetExpiryReportRequest {
   /**
    * Num value: BR、CN、ID、MY、MX、TH、TW、PH、VN、SGIf do not pass, will get error "block by gateway due to invalid cid"
    */
-  whs_region?: string;
+  whs_region: string;
   [key: string]: any;
 }
 /**
@@ -437,7 +437,7 @@ export interface GetStockAgingRequest {
   /**
    * BR、CN、ID、MY、MX、TH、TW、PH、VN、SGIf do not pass, will get error "block by gateway due to invalid cid"
    */
-  whs_region?: string;
+  whs_region: string;
   [key: string]: any;
 }
 /**
@@ -584,11 +584,11 @@ export interface GetStockMovementRequest {
   /**
    * Start date in YYYY-MM-DD format. Only data within the past 1 year can be queried, and the time range must not exceed 90 days.
    */
-  start_time?: string;
+  start_time: string;
   /**
    * End date in YYYY-MM-DD format. Only data within the past 1 year can be queried, and the time range must not exceed 90 days.
    */
-  end_time?: string;
+  end_time: string;
   /**
    * Multiple warehouse_id values should be separated by commas.
    */
@@ -607,7 +607,7 @@ export interface GetStockMovementRequest {
   /**
    * Warehouse Region. Enum values: BR, CN, ID, MY, MX, TH, TW, PH, VN, SGIf do not pass, will get error "block by gateway due to invalid cid"
    */
-  whs_region?: string;
+  whs_region: string;
   [key: string]: any;
 }
 /**

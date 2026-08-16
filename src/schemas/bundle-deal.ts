@@ -6,7 +6,7 @@ export interface AddBundleDeal_AdditionalTier {
   /**
    * The quantity of items that the buyers need to purchase for additional tier
    */
-  min_amount?: number;
+  min_amount: number;
   /**
    * The bundle price when the buyers purchase a bundle deal for additional tiers. Need to input it when the bundle deal rule type is 1.
    */
@@ -30,39 +30,39 @@ export interface AddBundleDealRequest {
   /**
    * The bundle deal rule type：FIX_PRICE = 1 ；DISCOUNT_PERCENTAGE = 2； DISCOUNT_VALUE = 3
    */
-  rule_type?: number;
+  rule_type: number;
   /**
    * The deducted price when when buying a bundle deal. Need to input it when the bundle deal rule type is 3
    */
-  discount_value?: number;
+  discount_value: number;
   /**
    * The amount of the buyer needs to spend to purchase a bundle deal. Need to input it when the bundle deal rule type is 1
    */
-  fix_price?: number;
+  fix_price: number;
   /**
    * The discount that the buyer can get when buying a bundle deal. Need to input it when the bundle deal rule type is 2
    */
-  discount_percentage?: number;
+  discount_percentage: number;
   /**
    * The quantity of items that need buyer to combine purchased
    */
-  min_amount?: number;
+  min_amount: number;
   /**
    * The time when bundle deal activity start.The start time must be later than current time.
    */
-  start_time?: Date | number;
+  start_time: Date | number;
   /**
    * The time when bundle deal activity end. The end time must be 1 hour later than start time.
    */
-  end_time?: Date | number;
+  end_time: Date | number;
   /**
    * Title of the bundle deal
    */
-  name?: string;
+  name: string;
   /**
    * Maximum number of bundle deals that can be bought by a buyer.
    */
-  purchase_limit?: number;
+  purchase_limit: number;
   /**
    * Use to create tiered discount for bundle deals, a max of 2 additional tiers are allowed to create.the rule of multiple tiers needs to follow this faq https://open.shopee.com/faq/53For additional tiers, the fix price, discount_percentage, discount_value should be consistent with tier 1
    */
@@ -96,11 +96,11 @@ export interface AddBundleDealItem_Item {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The status of bundle deal item：enable = 1；disable =0
    */
-  status?: number;
+  status: number;
   [key: string]: any;
 }
 /**
@@ -112,11 +112,11 @@ export interface AddBundleDealItemRequest {
   /**
    * Shopee's unique identifier for a bundle deal activity.
    */
-  bundle_deal_id?: number;
+  bundle_deal_id: number;
   /**
    * The items added in this bundle deal promotion.
    */
-  item_list?: AddBundleDealItem_Item[];
+  item_list: AddBundleDealItem_Item[];
   [key: string]: any;
 }
 /**
@@ -170,7 +170,7 @@ export interface DeleteBundleDealRequest {
   /**
    * Shopee's unique identifier for a bundle deal activity.
    */
-  bundle_deal_id?: number;
+  bundle_deal_id: number;
   [key: string]: any;
 }
 /**
@@ -200,7 +200,7 @@ export interface DeleteBundleDealItem_Item {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   [key: string]: any;
 }
 /**
@@ -212,11 +212,11 @@ export interface DeleteBundleDealItemRequest {
   /**
    * Shopee's unique identifier for a bundle deal activity.
    */
-  bundle_deal_id?: number;
+  bundle_deal_id: number;
   /**
    * The items deleted in this bundle deal promotion.
    */
-  item_list?: DeleteBundleDealItem_Item[];
+  item_list: DeleteBundleDealItem_Item[];
   [key: string]: any;
 }
 /**
@@ -270,7 +270,7 @@ export interface EndBundleDealRequest {
   /**
    * Shopee's unique identifier for a bundle deal activity.
    */
-  bundle_deal_id?: number;
+  bundle_deal_id: number;
   [key: string]: any;
 }
 /**
@@ -302,7 +302,7 @@ export interface GetBundleDealRequest {
   /**
    * Shopee's unique identifier for a bundle deal activity.
    */
-  bundle_deal_id?: number;
+  bundle_deal_id: number;
   [key: string]: any;
 }
 /**
@@ -403,7 +403,7 @@ export interface GetBundleDealItemRequest {
   /**
    * Shopee's unique identifier for a bundle deal activity.
    */
-  bundle_deal_id?: number;
+  bundle_deal_id: number;
   [key: string]: any;
 }
 /**
@@ -574,7 +574,7 @@ export interface UpdateBundleDeal_AdditionalTier {
   /**
    * The quantity of items that the buyers need to purchase for additional tier
    */
-  min_amount?: number;
+  min_amount: number;
   /**
    * The bundle price when the buyers purchase a bundle deal for additional tiers. Need to input it when the bundle deal rule type is 1.
    */
@@ -634,7 +634,7 @@ export interface UpdateBundleDealRequest {
   /**
    * Shopee's unique identifier for a bundle deal activity.
    */
-  bundle_deal_id?: number;
+  bundle_deal_id: number;
   /**
    * Use to create tiered discount for bundle deals, a max of 2 additional tiers are allowed to create bundle deals like buy 2 get 10% off, buy 3 for 15% off, buy 4 for 20% off; For each tier, we will need to set the following 4 values based on bundle deal type +    min_amount = IntAttribute() +    fix_price = IntAttribute() +    discount_percentage = IntAttribute() +    discount_value = IntAttribute()Note: for additional tiers, the fix price, discount_percentage, discount_value should be consistent with tier 1
    */
@@ -737,11 +737,11 @@ export interface UpdateBundleDealItem_Item {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The status of bundle deal item：enable = 1；disable =0
    */
-  status?: number;
+  status: number;
   [key: string]: any;
 }
 /**
@@ -753,11 +753,11 @@ export interface UpdateBundleDealItemRequest {
   /**
    * Shopee's unique identifier for a bundle deal activity.
    */
-  bundle_deal_id?: number;
+  bundle_deal_id: number;
   /**
    * The items added in this bundle deal promotion.
    */
-  item_list?: UpdateBundleDealItem_Item[];
+  item_list: UpdateBundleDealItem_Item[];
   [key: string]: any;
 }
 /**

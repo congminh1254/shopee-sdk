@@ -78,7 +78,7 @@ export interface EditVideoInfo_ItemInfo {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Product display name in Shopee Video.
    */
@@ -92,11 +92,11 @@ export interface EditVideoInfo_AllowInfo {
   /**
    * Whether allow duet.
    */
-  allow_duet?: boolean;
+  allow_duet: boolean;
   /**
    * Whether allow stitch.
    */
-  allow_stitch?: boolean;
+  allow_stitch: boolean;
   [key: string]: any;
 }
 /**
@@ -106,7 +106,7 @@ export interface EditVideoInfo_ScheduledInfo {
   /**
    * Whether post it to Shopee Video at scheduled time.
    */
-  scheduled_post?: boolean;
+  scheduled_post: boolean;
   /**
    * Scheduled post time, millisecond timestamp. When scheduled_post is true, scheduled_post_time must not empty.
    */
@@ -120,7 +120,7 @@ export interface EditVideoInfo_VideoUpload {
   /**
    * ID of uploaded video. Obtain from v2.media.get_video_upload_result.
    */
-  video_upload_id?: string;
+  video_upload_id: string;
   /**
    * Description of the Shopee Video.
    */
@@ -128,7 +128,7 @@ export interface EditVideoInfo_VideoUpload {
   /**
    * Selected cover image url of the Shopee Video. Obtain from v2.video.get_cover_list.
    */
-  cover_image_url?: string;
+  cover_image_url: string;
   /**
    * List of products to be linked with the Shopee Video, no more than 6.
    */
@@ -136,11 +136,11 @@ export interface EditVideoInfo_VideoUpload {
   /**
    * Whether allow stitch and duet.
    */
-  allow_info?: EditVideoInfo_AllowInfo;
+  allow_info: EditVideoInfo_AllowInfo;
   /**
    * When scheduled_post is true, scheduled_post_time must not empty.When scheduled_post is false, scheduled_post_time must empty.
    */
-  scheduled_info?: EditVideoInfo_ScheduledInfo;
+  scheduled_info: EditVideoInfo_ScheduledInfo;
   [key: string]: any;
 }
 /**
@@ -152,7 +152,7 @@ export interface EditVideoInfoRequest {
   /**
    * Video information collection, no more than 5.
    */
-  video_upload_list?: EditVideoInfo_VideoUpload[];
+  video_upload_list: EditVideoInfo_VideoUpload[];
   [key: string]: any;
 }
 /**
@@ -202,7 +202,7 @@ export interface GetCoverListRequest {
   /**
    * ID of uploaded video. Obtain from v2.media.get_video_upload_result.
    */
-  video_upload_id?: string;
+  video_upload_id: string;
   [key: string]: any;
 }
 /**
@@ -234,11 +234,11 @@ export interface GetMetricTrendRequest {
   /**
    * Period Type. Applicable values:DayWeekMonthLast7dLast15dLast30dNote: The end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The end_date format should be "YYYY-MM-DD".- For Day, Last7d, Last15d, and Last30d, the end_date must before current day.- For Week, the end_date must be Sunday and must be less than or equal to the current week.- For Month, the end_date must be the end of the month and must be less than or equal to the current month.
    */
-  end_date?: string;
+  end_date: string;
   [key: string]: any;
 }
 /**
@@ -385,11 +385,11 @@ export interface GetOverviewPerformanceRequest {
   /**
    * Period Type. Applicable values:DayWeekMonthLast7dLast15dLast30dNote: The end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The end_date format should be "YYYY-MM-DD".- For Day, Last7d, Last15d, and Last30d, the end_date must before current day.- For Week, the end_date must be Sunday and must be less than or equal to the current week.- For Month, the end_date must be the end of the month and must be less than or equal to the current month.
    */
-  end_date?: string;
+  end_date: string;
   [key: string]: any;
 }
 /**
@@ -550,27 +550,27 @@ export interface GetProdcutPerformanceListRequest {
   /**
    * The start index of request. Starting from 1.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * The number of item returned by this request. Max is 20.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Period Type. Applicable values:DayWeekMonthLast7dLast15dLast30dNote: The end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The end_date format should be "YYYY-MM-DD".- For Day, Last7d, Last15d, and Last30d, the end_date must before current day.- For Week, the end_date must be Sunday and must be less than or equal to the current week.- For Month, the end_date must be the end of the month and must be less than or equal to the current month.
    */
-  end_date?: string;
+  end_date: string;
   /**
    * Use this field to specify which field to use to sort the returned list. Available values:PlacedOrdersPlacedSalesPlacedUniqueBuyersConfirmedOrdersConfirmedSalesConfirmedUniqueBuyers
    */
-  order_by?: string;
+  order_by: string;
   /**
    * Use this field to specify whether the returned list is sorted in ascending or descending order_by. Available values:ascdesc
    */
-  sort?: string;
+  sort: string;
   /**
    * Shopee's unique identifier for an item.
    */
@@ -885,7 +885,7 @@ export interface GetVideoDetailAudienceDistributionRequest {
   /**
    * A unique identifier for Shopee videos.
    */
-  post_id?: string;
+  post_id: string;
   [key: string]: any;
 }
 /**
@@ -943,11 +943,11 @@ export interface GetVideoDetailMetricTrendRequest {
   /**
    * A unique identifier for Shopee videos.
    */
-  post_id?: string;
+  post_id: string;
   /**
    * The name of metric that require obtaining trend data. Applicable values: Views, Likes, Comments, Shares, FollowersGrowth, PlacedOrders, PlacedSales, UniqueBuyers, ConversionRate, SoldItems, SalesPerOrder, SalesPerBuyer
    */
-  metric_name?: string;
+  metric_name: string;
   [key: string]: any;
 }
 /**
@@ -980,7 +980,7 @@ export interface GetVideoDetailPerformanceRequest {
   /**
    * A unique identifier for Shopee videos.
    */
-  post_id?: string;
+  post_id: string;
   [key: string]: any;
 }
 /**
@@ -1113,15 +1113,15 @@ export interface GetVideoDetailProductPerformanceRequest {
   /**
    * The start index of request. Starting from 1.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * The number of item returned by this request. Max is 20.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * The unique identifier for post Shopee Video.
    */
-  post_id?: string;
+  post_id: string;
   /**
    * Shopee's unique identifier for an item.
    */
@@ -1241,15 +1241,15 @@ export interface GetVideoListRequest {
   /**
    * The start index of request. Starting from 1.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * The number of affiliate returned by this request, Max is 20.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Search tpye for video in draft status or video already post to Shopee Video.1: draft2: post
    */
-  list_type?: number[];
+  list_type: number[];
   [key: string]: any;
 }
 /**
@@ -1425,19 +1425,19 @@ export interface GetVideoPerformanceListRequest {
   /**
    * The start index of request. Starting from 1.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * The number of video returned by this request. Max is 20.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Period Type. Applicable values:DayWeekMonthLast7dLast15dLast30dNote: The end date must align with the Period Type.
    */
-  period_type?: string;
+  period_type: string;
   /**
    * The end_date format should be "YYYY-MM-DD".- For Day, Last7d, Last15d, and Last30d, the end_date must before current day.- For Week, the end_date must be Sunday and must be less than or equal to the current week.- For Month, the end_date must be the end of the month and must be less than or equal to the current month.
    */
-  end_date?: string;
+  end_date: string;
   /**
    * Description of the Shopee Video.
    */
@@ -1445,11 +1445,11 @@ export interface GetVideoPerformanceListRequest {
   /**
    * Use this field to specify which field to use to sort the returned list. Available values:ViewsLikesCommentsAvgViewsDuration
    */
-  order_by?: string;
+  order_by: string;
   /**
    * Use this field to specify whether the returned list is sorted in ascending or descending order_by. Available values:ascdesc
    */
-  sort?: string;
+  sort: string;
   [key: string]: any;
 }
 /**
@@ -1579,7 +1579,7 @@ export interface PostVideoRequest {
   /**
    * ID of uploaded video. Obtain from v2.media.get_video_upload_result. No more than 5.
    */
-  video_upload_id_list?: string[];
+  video_upload_id_list: string[];
   [key: string]: any;
 }
 /**

@@ -15,7 +15,7 @@ export interface CancelVideoUploadRequest {
   /**
    * The unique ID of the upload task, returned by v2.media.init_video_upload.
    */
-  video_upload_id?: string;
+  video_upload_id: string;
   [key: string]: any;
 }
 /**
@@ -43,7 +43,7 @@ export interface CompleteVideoUploadRequest {
   /**
    * The unique ID of the upload task, returned by v2.media.init_video_upload.
    */
-  video_upload_id?: string;
+  video_upload_id: string;
   [key: string]: any;
 }
 /**
@@ -71,7 +71,7 @@ export interface GetVideoUploadResultRequest {
   /**
    * The unique ID of the upload task, returned by v2.media.init_video_upload.
    */
-  video_upload_id?: string;
+  video_upload_id: string;
   [key: string]: any;
 }
 /**
@@ -145,23 +145,23 @@ export interface InitVideoUploadRequest {
   /**
    * Defines the business type of the uploaded image. Supported values: 3 = Video
    */
-  business?: number;
+  business: number;
   /**
    * Defines the purpose of the uploaded image under the specified business type. Supported values: - If business = 3 (Video): 1 = Shopee Video
    */
-  scene?: number;
+  scene: number;
   /**
    * Original video file name.
    */
-  file_name?: string;
+  file_name: string;
   /**
    * Total video file size in bytes. Rules and restrictions by business and scene: - If business = 3 (Video) and scene = 1 (Shopee Video): Maximum 1GB.
    */
-  file_size?: number;
+  file_size: number;
   /**
    * Video duration in seconds. Rules and restrictions by business and scene:- If business = 3 (Video) and scene = 1 (Shopee Video): 1s~180s.
    */
-  duration?: number;
+  duration: number;
   [key: string]: any;
 }
 /**
@@ -197,15 +197,15 @@ export interface UploadImageRequest {
   /**
    * Defines the business type of the uploaded image. Supported values: 2 = Returns
    */
-  business?: number;
+  business: number;
   /**
    * Defines the purpose of the uploaded image under the specified business type. Supported values:- If business = 2 (Returns): 1 = Return Seller Self Arrange Pickup Proof Image
    */
-  scene?: number;
+  scene: number;
   /**
    * The image files to be uploaded. Rules and restrictions by business and scene:- If business = 2 (Returns) and scene = 1 (Return Seller Self Arrange Pickup Proof Image): Up to 3 images can be uploaded. Each image must not exceed 10MB. Supported formats: JPG, JPEG, PNG.
    */
-  images?: any;
+  images: any;
   [key: string]: any;
 }
 /**
@@ -251,19 +251,19 @@ export interface UploadVideoPartRequest {
   /**
    * The unique ID of the upload task, returned by v2.media.init_video_upload.
    */
-  video_upload_id?: string;
+  video_upload_id: string;
   /**
    * Sequence number of this part, starting from 0.
    */
-  part_seq?: number;
+  part_seq: number;
   /**
    * The content of this part of file. Part size should be exactly equal to part_size returned in v2.media.init_video_upload, except last part of file.
    */
-  part_content?: any;
+  part_content: any;
   /**
    * MD5 checksum of this part for data integrity validation.
    */
-  part_md5?: string;
+  part_md5: string;
   [key: string]: any;
 }
 /**

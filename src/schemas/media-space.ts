@@ -36,7 +36,7 @@ export interface CancelVideoUploadRequest {
   /**
    * The ID of this upload session, returned in init_video_upload.
    */
-  video_upload_id?: string;
+  video_upload_id: string;
   [key: string]: any;
 }
 /**
@@ -62,7 +62,7 @@ export interface CompleteVideoUpload_ReportData {
   /**
    * Time used for uploading the video file via upload_video_part api, in milliseconds. For video upload performance tracking purpose.
    */
-  upload_cost?: number;
+  upload_cost: number;
   [key: string]: any;
 }
 /**
@@ -74,12 +74,12 @@ export interface CompleteVideoUploadRequest {
   /**
    * The ID of this upload session, returned in init_video_upload.
    */
-  video_upload_id?: string;
+  video_upload_id: string;
   /**
    * All uploaded sequence number.
    */
-  part_seq_list?: number[];
-  report_data?: CompleteVideoUpload_ReportData;
+  part_seq_list: number[];
+  report_data: CompleteVideoUpload_ReportData;
   [key: string]: any;
 }
 /**
@@ -104,7 +104,7 @@ export type CompleteVideoUploadResponse = FetchResponse<CompleteVideoUploadRespo
  * Query the upload status and result of video upload.
  */
 export interface GetVideoUploadResultRequest {
-  video_upload_id?: string;
+  video_upload_id: string;
   [key: string]: any;
 }
 /**
@@ -192,11 +192,11 @@ export interface InitVideoUploadRequest {
   /**
    * md5 of video file
    */
-  file_md5?: string;
+  file_md5: string;
   /**
    * size of video file, in bytes, maximum is 30MB
    */
-  file_size?: number;
+  file_size: number;
   [key: string]: any;
 }
 /**
@@ -230,7 +230,7 @@ export interface UploadImageRequest {
   /**
    * image files. Max 10.0 MB each. Image format accepted: JPG, JPEG, PNG. image number should be less than 9
    */
-  image?: any;
+  image: any;
   /**
    * The scene where the picture is used, The value range is normal or desc; normal: we will process the image as a square image, it is recommended to use when uploading item image; desc: we will not process the image, it is recommended to use when uploading the image of extend_description, if you do not upload this field, it will be normal.
    */
@@ -317,19 +317,19 @@ export interface UploadVideoPartRequest {
   /**
    * The video_upload_id in the response of initiate_video_upload
    */
-  video_upload_id?: string;
+  video_upload_id: string;
   /**
    * Sequence of the current part, starts from 0
    */
-  part_seq?: number;
+  part_seq: number;
   /**
    * md5 of this part
    */
-  content_md5?: string;
+  content_md5: string;
   /**
    * The content of this part of file.  Part size should be exactly 4MB, except last part of file.
    */
-  part_content?: any;
+  part_content: any;
   [key: string]: any;
 }
 /**

@@ -75,7 +75,7 @@ export interface CreateGmsProductCampaignRequest {
   /**
    * Start date of Campaign e.g. "30-11-2025". Cannot be earlier than today.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * End date of Campaign e.g. "30-11-2025". Do not fill if no end date.
    */
@@ -83,7 +83,7 @@ export interface CreateGmsProductCampaignRequest {
   /**
    * Daily budget for Campaign.
    */
-  daily_budget?: number;
+  daily_budget: number;
   /**
    * Input a string
    */
@@ -121,15 +121,15 @@ export interface CreateManualProductAds_SelectedKeyword {
   /**
    * bid keyword for each campaign
    */
-  keyword?: string;
+  keyword: string;
   /**
    * exact, broad
    */
-  match_type?: string;
+  match_type: string;
   /**
    * the bid price of keyword
    */
-  bid_price_per_click?: number;
+  bid_price_per_click: number;
   [key: string]: any;
 }
 /**
@@ -139,11 +139,11 @@ export interface CreateManualProductAds_DiscoveryAdsLocation {
   /**
    * daily_discover, you_may_also_like
    */
-  location?: string;
+  location: string;
   /**
    * bid price of the location
    */
-  bid_price?: number;
+  bid_price: number;
   [key: string]: any;
 }
 /**
@@ -155,15 +155,15 @@ export interface CreateManualProductAdsRequest {
   /**
    * A random string used to prevent duplicate ads. If an ads is created successfully, subsequent request using the same reference id will fail
    */
-  reference_id?: string;
+  reference_id: string;
   /**
    * The budget set for the Auto Product Ads
    */
-  budget?: number;
+  budget: number;
   /**
    * the start date per campaign. please kindly note that if you want to set unlimited date, you can just pass today's date as the start date
    */
-  start_date?: string;
+  start_date: string;
   /**
    * the end date of each campaign. please kindly note that if you want to set an unlimited campaign, you can keep empty for the end date field
    */
@@ -171,11 +171,11 @@ export interface CreateManualProductAdsRequest {
   /**
    * auto, manual
    */
-  bidding_method?: string;
+  bidding_method: string;
   /**
    * Product ID
    */
-  item_id?: number;
+  item_id: number;
   /**
    * the ROAS target for each campaign with auto bidding. If 0, GMV Max / ROI feature is not enabled
    */
@@ -231,11 +231,11 @@ export interface EditGmsItemProductCampaignRequest {
   /**
    * The following is the list of possible actions:    add    remove
    */
-  edit_action?: string;
+  edit_action: string;
   /**
    * Item IDs to add / remove. Minimum 1 Item ID. Maximum 30 Item IDs.
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   [key: string]: any;
 }
 /**
@@ -272,7 +272,7 @@ export interface EditGmsProductCampaignRequest {
   /**
    * The following is the list of possible actions and their required fields:1.change_budgetdaily_budget2.change_durationstart_date3.end_date4.pause5.resume6.start7.change_roas_targetroas_target: when edit_action = change_roas_target, you must provide:roas_target (float) Value rules follow the same logic as in the create endpoint
    */
-  edit_action?: string;
+  edit_action: string;
   /**
    * Daily budget for Campaign.
    */
@@ -322,11 +322,11 @@ export interface EditManualProductAdKeywords_SelectedKeyword {
   /**
    * The update behaviours such as "add", "delete", "restore", "change_bid_price", "change_match_type"
    */
-  edit_action?: string;
+  edit_action: string;
   /**
    * bid keyword for each campaign
    */
-  keyword?: string;
+  keyword: string;
   /**
    * exact, broad; required if changing match type
    */
@@ -346,15 +346,15 @@ export interface EditManualProductAdKeywordsRequest {
   /**
    * A random string used to prevent duplicate ads. If an ads is created successfully, subsequent request using the same reference id will fail
    */
-  reference_id?: string;
+  reference_id: string;
   /**
    * The unique identifier for a campaign
    */
-  campaign_id?: number;
+  campaign_id: number;
   /**
    * selected keywords, required for manual bidding mode.
    */
-  selected_keywords?: EditManualProductAdKeywords_SelectedKeyword[];
+  selected_keywords: EditManualProductAdKeywords_SelectedKeyword[];
   [key: string]: any;
 }
 /**
@@ -407,15 +407,15 @@ export interface EditManualProductAds_DiscoveryAdsLocation {
   /**
    * daily_discover, you_may_also_like
    */
-  location?: string;
+  location: string;
   /**
    * active / inactive
    */
-  status?: string;
+  status: string;
   /**
    * bid price of the location
    */
-  bid_price?: number;
+  bid_price: number;
   [key: string]: any;
 }
 /**
@@ -427,15 +427,15 @@ export interface EditManualProductAdsRequest {
   /**
    * A random string used to prevent duplicate ads. If an ads is created successfully, subsequent request using the same reference id will fail
    */
-  reference_id?: string;
+  reference_id: string;
   /**
    * The unique identifier for a campaign
    */
-  campaign_id?: number;
+  campaign_id: number;
   /**
    * Actions supported: "start", "pause", "resume", "stop", "delete", "change_budget", "change_duration", "change_smart_creative", "change_location", "change_enhanced_cpc", "change_roas_target"
    */
-  edit_action?: string;
+  edit_action: string;
   /**
    * The budget set for the Auto Product Ads
    */
@@ -521,11 +521,11 @@ export interface GetAllCpcAdsDailyPerformanceRequest {
   /**
    * This is the parameter to indicate the start date of the time length of performance.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * This is the parameter to indicate the end date of the time length of performance
    */
-  end_date?: string;
+  end_date: string;
   [key: string]: any;
 }
 /**
@@ -618,7 +618,7 @@ export interface GetAllCpcAdsHourlyPerformanceRequest {
   /**
    * This is the parameter of the single date on which requester wants to check the hourly performance. Date in DD-MM-YYYY format.
    */
-  performance_date?: string;
+  performance_date: string;
   [key: string]: any;
 }
 /**
@@ -715,19 +715,19 @@ export interface GetCreateProductAdBudgetSuggestionRequest {
   /**
    * A random string used to prevent duplicate ads. If an ads is created successfully, subsequent request using the same reference id will fail
    */
-  reference_id?: string;
+  reference_id: string;
   /**
    * auto,manual - for Auto product ads or Manual Product Ads
    */
-  product_selection?: string;
+  product_selection: string;
   /**
    * search, discovery, all
    */
-  campaign_placement?: string;
+  campaign_placement: string;
   /**
    * Bidding Method of product ad: auto, manual
    */
-  bidding_method?: string;
+  bidding_method: string;
   /**
    * Enhanced CPC functionality toggle. Values supported "true"/"false". Mandatory for product_selection=manual, bidding_method=manual
    */
@@ -799,11 +799,11 @@ export interface GetGmsCampaignPerformanceRequest {
   /**
    * Start date of Campaign e.g. "11-11-2025". Maximum duration of 3 months between start_date & end_date. Earliest start_date is 6 months before today.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * End date of Campaign e.g. "11-11-2025". Maximum duration of 3 months between start_date & end_date.
    */
-  end_date?: string;
+  end_date: string;
   [key: string]: any;
 }
 /**
@@ -913,11 +913,11 @@ export interface GetGmsItemPerformanceRequest {
   /**
    * Start date of Campaign e.g. "11-11-2025". Maximum duration of 3 months between start_date & end_date. Earliest start_date is 6 months before today.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * End date of Campaign e.g. "11-11-2025". Maximum duration of 3 months between start_date & end_date.
    */
-  end_date?: string;
+  end_date: string;
   /**
    * Specifies the starting point, or the number of records to skip. Default is 0.
    */
@@ -1049,15 +1049,15 @@ export interface GetProductCampaignDailyPerformanceRequest {
   /**
    * This is the parameter to indicate the start date of the time length of performance.
    */
-  start_date?: string;
+  start_date: string;
   /**
    * This is the parameter to indicate the end date of the time length of performance
    */
-  end_date?: string;
+  end_date: string;
   /**
    * The campaign ids (comma separated) you want to fetch the performance. (max 100)
    */
-  campaign_id_list?: string[];
+  campaign_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -1207,11 +1207,11 @@ export interface GetProductCampaignHourlyPerformanceRequest {
   /**
    * This is the parameter to indicate the start date of the time length of performance.
    */
-  performance_date?: string;
+  performance_date: string;
   /**
    * The campaign ids (comma separated) you want to fetch the performance. (max 100)
    */
-  campaign_id_list?: string[];
+  campaign_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -1432,11 +1432,11 @@ export interface GetProductLevelCampaignSettingInfoRequest {
   /**
    * Info type values: 1.Common Info 2.Manual Bidding Info 3.Auto Bidding Info 4.Auto Product Ads Info
    */
-  info_type_list?: string[];
+  info_type_list: string[];
   /**
    * list of campaign ids comma separated (max 100 campaign ids)
    */
-  campaign_id_list?: string[];
+  campaign_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -1642,11 +1642,11 @@ export interface GetProductRecommendedRoiTargetRequest {
   /**
    * A random string used to prevent duplicate ads. If an ads is created successfully, subsequent requests using the same reference id will fail - in this case, a new one must be generated.Use the same string for calling suggestion/recommendation API before the actual request to create an ads.
    */
-  reference_id?: ReferenceId | string | number;
+  reference_id: ReferenceId | string | number;
   /**
    * Unique identifier for a product.
    */
-  item_id?: number;
+  item_id: number;
   [key: string]: any;
 }
 /**
@@ -1768,7 +1768,7 @@ export interface GetRecommendedKeywordListRequest {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The keyword seller typed in the manually add keyword window.
    */

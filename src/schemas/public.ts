@@ -8,11 +8,11 @@ export interface GetAccessTokenRequest {
   /**
    * The code in redirect url after the authorization. Valid for one-time use, expires in 10 minutes
    */
-  code?: string;
+  code: string;
   /**
    * Partner ID is assigned upon registration is successful. Required for all requests.
    */
-  partner_id?: number;
+  partner_id: number;
   /**
    * Shopee's unique identifier for a shop.
    */
@@ -232,7 +232,7 @@ export interface GetTokenByResendCodeRequest {
   /**
    * the code in redirect url after you resend code in shop authorization management page. valid for one-time use, expires in 10minutes.
    */
-  resend_code?: string;
+  resend_code: string;
   [key: string]: any;
 }
 /**
@@ -276,11 +276,11 @@ export interface RefreshAccessTokenRequest {
   /**
    * Use refresh_token to get a new access_token. Each refresh_token is valid for 30 days, and can only be used once by either a shop_id or merchant_id or supplier_id or user_id.
    */
-  refresh_token?: string;
+  refresh_token: string;
   /**
    * The partner_id obtained from the App. This partner_id is inserted into the body.
    */
-  partner_id?: number;
+  partner_id: number;
   /**
    * The shop_id that granted authorization to your App. Only the shop_id or merchant_id or supplier_id or user_id can be selected as the input parameter, and they must be refreshed separately.
    */

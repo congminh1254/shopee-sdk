@@ -8,7 +8,7 @@ export interface ConfirmConsumedLostPushMessageRequest {
   /**
    * The last_message_id returned by v2.push.get_lost_push_message.
    */
-  last_message_id?: number;
+  last_message_id: number;
   [key: string]: any;
 }
 /**

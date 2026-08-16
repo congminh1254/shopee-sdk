@@ -5,9 +5,9 @@ import { FetchResponse } from "./fetch.js";
  * add one collection
  */
 export interface AddTopPicksRequest {
-  name?: string;
-  item_id_list?: number[];
-  is_activated?: boolean;
+  name: string;
+  item_id_list: number[];
+  is_activated: boolean;
   [key: string]: any;
 }
 /**
@@ -87,7 +87,7 @@ export interface DeleteTopPicksRequest {
   /**
    * collection id
    */
-  top_picks_id?: number;
+  top_picks_id: number;
   [key: string]: any;
 }
 /**
@@ -193,7 +193,7 @@ export interface UpdateTopPicksRequest {
   /**
    * collection id
    */
-  top_picks_id?: number;
+  top_picks_id: number;
   /**
    * collection name
    */

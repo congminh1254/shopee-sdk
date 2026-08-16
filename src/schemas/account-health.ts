@@ -120,7 +120,7 @@ export interface GetMetricSourceDetailRequest {
   /**
    * ID of metric. Supported values: 1: Late Shipment Rate (All Channels)3: Non-Fulfilment Rate (All Channels)4: Preparation Time12: Pre-order Listing %15: Days of Pre-order Listing Violation25: Fast Handover Rate28: On-time Pickup Failure Rate Violation Value42: Cancellation Rate (All Channels)43: Return-refund Rate (All Channels)52: Severe Listing Violations53: Other Listing Violations85: Late Shipment Rate (NDD)88: Non-fulfilment Rate (NDD91: Cancellation Rate (NDD)92: Return-refund Rate (NDD)96: % SDD Listings97: % NDD Listings2001: Fast Handover Rate - SLS2002: Fast Handover Rate - FBS2003: Fast Handover Rate - 3PF2030: % HD Listings2031: % HD Free Shipping Enabled2032: Saturday Shipment2033: Preparation Time PS2033: Preparation Time PS2036: OTDR Logistic Rate2037: OTDR DD Rate
    */
-  metric_id?: number;
+  metric_id: number;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call. Default is 1.
    */
@@ -677,7 +677,7 @@ export interface GetPunishmentHistoryRequest {
   /**
    * The status of punishment. Applicable values: 1: Ongoing2: Ended
    */
-  punishment_status?: number;
+  punishment_status: number;
   [key: string]: any;
 }
 /**

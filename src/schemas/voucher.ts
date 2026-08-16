@@ -17,35 +17,35 @@ export interface AddVoucherRequest {
   /**
    * The name of the voucher.
    */
-  voucher_name?: string;
+  voucher_name: string;
   /**
    * The code of the voucher.
    */
-  voucher_code?: string;
+  voucher_code: string;
   /**
    * The timing from when the voucher is valid; so buyer is allowed to claim and to use. Field can only be updated if voucher has not started.
    */
-  start_time?: Date | number;
+  start_time: Date | number;
   /**
    * The timing until when the voucher is still valid. Any time after this end_time, buyer is not allowed to claim or to use.
    */
-  end_time?: Date | number;
+  end_time: Date | number;
   /**
    * The type of the voucher. The available values are: 1: shop voucher, 2: product voucher.
    */
-  voucher_type?: number;
+  voucher_type: number;
   /**
    * The reward type of the voucher. The available values are: 1: fix_amount voucher, 2: discount_percentage voucher, 3: coin_cashback voucher.
    */
-  reward_type?: number;
+  reward_type: number;
   /**
    * The number of times for this particular voucher could be used.
    */
-  usage_quantity?: number;
+  usage_quantity: number;
   /**
    * The minimum spend required for using this voucher.
    */
-  min_basket_price?: number;
+  min_basket_price: number;
   /**
    * The discount amount set for this particular voucher. Only fill in when you are creating a fix amount voucher.
    */
@@ -101,7 +101,7 @@ export interface DeleteVoucherRequest {
   /**
    * The unique identifier for the voucher you want to delete.
    */
-  voucher_id?: number;
+  voucher_id: number;
   [key: string]: any;
 }
 /**
@@ -133,7 +133,7 @@ export interface EndVoucherRequest {
   /**
    * The unique identifier for the voucher you want to end now.
    */
-  voucher_id?: number;
+  voucher_id: number;
   [key: string]: any;
 }
 /**
@@ -165,7 +165,7 @@ export interface GetVoucherRequest {
   /**
    * The unique identifier of a voucher used to query the voucher details.
    */
-  voucher_id?: number;
+  voucher_id: number;
   [key: string]: any;
 }
 /**
@@ -285,7 +285,7 @@ export interface GetVoucherListRequest {
   /**
    * The status filter for retrieving voucher list. Available value: upcoming/ongoing/expired/all.
    */
-  status?: Status | string | number;
+  status: Status | string | number;
   [key: string]: any;
 }
 /**
@@ -387,7 +387,7 @@ export interface UpdateVoucherRequest {
   /**
    * The unique identifier of the voucher which is going to be updated.
    */
-  voucher_id?: number;
+  voucher_id: number;
   /**
    * The name of the voucher
    */

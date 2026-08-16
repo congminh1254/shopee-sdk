@@ -125,7 +125,9 @@ export class AstBuilder {
         // Build the current sub-interface itself
         const properties = param.children.map((child) => {
           const typeNode = this.getTypeNode(child.type);
-          const questionToken = ts.factory.createToken(ts.SyntaxKind.QuestionToken);
+          const questionToken = child.optional
+            ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
+            : undefined;
 
           let prop = ts.factory.createPropertySignature(
             undefined,
@@ -236,7 +238,9 @@ export class AstBuilder {
 
     const properties = params.map((p) => {
       const typeNode = this.getTypeNode(p.type);
-      const questionToken = ts.factory.createToken(ts.SyntaxKind.QuestionToken);
+      const questionToken = p.optional
+        ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
+        : undefined;
 
       let prop = ts.factory.createPropertySignature(undefined, p.name, questionToken, typeNode);
       if (p.description) {
@@ -302,7 +306,9 @@ export class AstBuilder {
       if (nonEnvelopeParams.length > 0) {
         const properties = nonEnvelopeParams.map((p) => {
           const typeNode = this.getTypeNode(p.type);
-          const questionToken = ts.factory.createToken(ts.SyntaxKind.QuestionToken);
+          const questionToken = p.optional
+            ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
+            : undefined;
 
           const prop = ts.factory.createPropertySignature(
             undefined,

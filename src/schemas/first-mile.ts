@@ -43,7 +43,7 @@ export interface BindCourierDeliveryFirstMileTrackingNumber_Order {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there isn't a package number.
    */
@@ -59,15 +59,15 @@ export interface BindCourierDeliveryFirstMileTrackingNumberRequest {
   /**
    * The shipment method for generate and bind orders. Available value: courier_delivery.
    */
-  shipment_method?: string;
+  shipment_method: string;
   /**
    * If using courier_delivery as the shipment method, the "binding_id" field should pass the value generated from v2.first_mile.generate_and_bind_first_mile_tracking_number.
    */
-  binding_id?: string;
+  binding_id: string;
   /**
    * The list of order_sn. You can specify up to 50 order_sns in this call. One fm_tn maximum number of total bind orders is 10000.
    */
-  order_list?: BindCourierDeliveryFirstMileTrackingNumber_Order[];
+  order_list: BindCourierDeliveryFirstMileTrackingNumber_Order[];
   [key: string]: any;
 }
 /**
@@ -137,7 +137,7 @@ export interface BindFirstMileTrackingNumber_Order {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.
    */
@@ -153,19 +153,19 @@ export interface BindFirstMileTrackingNumberRequest {
   /**
    * If using "pickup" or "self_deliver" as the shipment method the "first_mile_tracking_number" field should pass the value generated from v2.first_mile.generate_first_mile_tracking_number.If using "dropoff" as the shipment method the "first_mile_tracking_number" field should pass the tracking number provide by the supplier.
    */
-  first_mile_tracking_number?: string;
+  first_mile_tracking_number: string;
   /**
    * The shipment method for bound orders, should be pickup, dropoff or self_deliver.
    */
-  shipment_method?: string;
+  shipment_method: string;
   /**
    * Use this field to specify the region you want to ship parcel.Available value: cn,kr. Please fill in the field according to the region of the Merchant to which the shop belongs.
    */
-  region?: Region | string | number;
+  region: Region | string | number;
   /**
    * The identity of first-mile logistic channel.If you using "dropoff" or "pickup" as shipment method, please call v2.first_mile.get_channel_list to get the logsitc_channel_id then fill it.If you using "self_deliver"as shipment method then the logistics_channel_id should be "null".
    */
-  logistics_channel_id?: number;
+  logistics_channel_id: number;
   /**
    * The volume of the parcel.
    */
@@ -189,7 +189,7 @@ export interface BindFirstMileTrackingNumberRequest {
   /**
    * The set of ordersn. You can specify up to 50 ordersns in this call.one fm_tn maximum number of total bind orders is 10000.
    */
-  order_list?: BindFirstMileTrackingNumber_Order[];
+  order_list: BindFirstMileTrackingNumber_Order[];
   /**
    * The identity of transit warehouse address. Retrieved from v2.first_mile.get_transit_warehouse_list.Note: When the first-mile delivery mode is "Drop Off", this field is expected to be a required field. However, to avoid affecting your existing services, this field will be temporarily optional until April 30, 2026. Please complete the integration before then to avoid any impact on your services if it is changed to a required field later.
    */
@@ -264,7 +264,7 @@ export interface GenerateAndBindFirstMileTrackingNumber_Order {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * Shopee's unique identifier for the package under an order. You should fill the field with empty string when there isn't a package number.
    */
@@ -278,15 +278,15 @@ export interface GenerateAndBindFirstMileTrackingNumber_CourierDeliveryInfo {
   /**
    * The identity of address. Retrieved from v2.logistics.get_address_list, address_type need to be FIRST_MILE_PICKUP_ADDRESS.
    */
-  address_id?: number;
+  address_id: number;
   /**
    * The identity of transit warehouse address. Retrieved from v2.first_mile.get_transit_warehouse_list.
    */
-  warehouse_id?: string;
+  warehouse_id: string;
   /**
    * The definition of logistics product ID: 1010003 (kuaidi100 to C) - seller book courier pickup and pay offline1010004 (kuaidi100 prepaid(MP)) - seller can use prepaid account to place courier order, so prepaid_account_id is required
    */
-  logistics_product_id?: number;
+  logistics_product_id: number;
   /**
    * ID of prepaid account. Retrieved from v2.merchant.get_merchant_prepaid_account_list.
    */
@@ -294,7 +294,7 @@ export interface GenerateAndBindFirstMileTrackingNumber_CourierDeliveryInfo {
   /**
    * The identity of courier service. Retrieved from v2.first_mile.get_courier_delivery_channel_list.
    */
-  courier_service_id?: string;
+  courier_service_id: string;
   [key: string]: any;
 }
 /**
@@ -306,7 +306,7 @@ export interface GenerateAndBindFirstMileTrackingNumberRequest {
   /**
    * The shipment method for generate and bind orders. Available value: courier_delivery.
    */
-  shipment_method?: string;
+  shipment_method: string;
   /**
    * Use this field to specify the region you want to ship parcel. Available value: CN.
    */
@@ -314,11 +314,11 @@ export interface GenerateAndBindFirstMileTrackingNumberRequest {
   /**
    * The list of order_sn. You can specify up to 50 order_sns in this call. One fm_tn maximum number of total bind orders is 10000.
    */
-  order_list?: GenerateAndBindFirstMileTrackingNumber_Order[];
+  order_list: GenerateAndBindFirstMileTrackingNumber_Order[];
   /**
    * The set of information you need to generate FM tracking number and bind orders.
    */
-  courier_delivery_info?: GenerateAndBindFirstMileTrackingNumber_CourierDeliveryInfo;
+  courier_delivery_info: GenerateAndBindFirstMileTrackingNumber_CourierDeliveryInfo;
   [key: string]: any;
 }
 /**
@@ -390,7 +390,7 @@ export interface GenerateFirstMileTrackingNumberRequest {
   /**
    * This field is used for seller to specify the declare time.
    */
-  declare_date?: string;
+  declare_date: string;
   /**
    * The number of first-mile tracking numbers generated. Up to 20 first-mile tracking numbers can be generated for one declaration day.
    */
@@ -537,7 +537,7 @@ export interface GetCourierDeliveryDetailRequest {
   /**
    * Binding ID
    */
-  binding_id?: string;
+  binding_id: string;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
@@ -624,11 +624,11 @@ export interface GetCourierDeliveryTrackingNumberListRequest {
   /**
    * The start time of creation time
    */
-  from_date?: string;
+  from_date: string;
   /**
    * The end time of creation time
    */
-  to_date?: string;
+  to_date: string;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. limit [1, 50]
    */
@@ -701,7 +701,7 @@ export interface GetCourierDeliveryWaybillRequest {
   /**
    * Binding ID list of waybill. System limits maximum of Binding ID to 50.
    */
-  binding_id_list?: string[];
+  binding_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -745,7 +745,7 @@ export interface GetDetailRequest {
   /**
    * The first mile tracking number.
    */
-  first_mile_tracking_number?: string;
+  first_mile_tracking_number: string;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
@@ -835,11 +835,11 @@ export interface GetTrackingNumberListRequest {
   /**
    * The start time of declare_date.
    */
-  from_date?: string;
+  from_date: string;
   /**
    * The end time of declare_date.
    */
-  to_date?: string;
+  to_date: string;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. limit [1, 50]
    */
@@ -1026,7 +1026,7 @@ export interface GetWaybillRequest {
   /**
    * The first mile tracking number that you want to print waybill.limit [1, 50]
    */
-  first_mile_tracking_number_list?: string[];
+  first_mile_tracking_number_list: string[];
   [key: string]: any;
 }
 /**
@@ -1052,7 +1052,7 @@ export interface UnbindFirstMileTrackingNumber_Order {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.
    */
@@ -1068,11 +1068,11 @@ export interface UnbindFirstMileTrackingNumberRequest {
   /**
    * The identifier for an API request for error tracking.
    */
-  first_mile_tracking_number?: string;
+  first_mile_tracking_number: string;
   /**
    * The list of order info you want to unbind from the given first mile tracking number.You can specify up to 50 orders in this call.
    */
-  order_list?: UnbindFirstMileTrackingNumber_Order[];
+  order_list: UnbindFirstMileTrackingNumber_Order[];
   [key: string]: any;
 }
 /**
@@ -1143,7 +1143,7 @@ export interface UnbindFirstMileTrackingNumberAll_Order {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   /**
    * Shopee's unique identifier for the package under an order. You should fill the field with empty string when there isn't a package number.
    */
@@ -1159,7 +1159,7 @@ export interface UnbindFirstMileTrackingNumberAllRequest {
   /**
    * The list of order info you want to unbind from the first mile tracking number or binding ID. You can specify up to 50 order_sns in this call.
    */
-  order_list?: UnbindFirstMileTrackingNumberAll_Order[];
+  order_list: UnbindFirstMileTrackingNumberAll_Order[];
   [key: string]: any;
 }
 /**

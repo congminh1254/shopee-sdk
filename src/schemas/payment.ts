@@ -62,11 +62,11 @@ export interface GenerateIncomeReportRequest {
   /**
    * Start time in epoch
    */
-  release_time_from?: number;
+  release_time_from: number;
   /**
    * End time in epoch
    */
-  release_time_to?: number;
+  release_time_to: number;
   [key: string]: any;
 }
 /**
@@ -98,15 +98,15 @@ export interface GenerateIncomeStatementRequest {
   /**
    * The release_time_from must be- Monday (local time) for a weekly report- The 1st day (local time) of a Month for a monthly report
    */
-  release_time_from?: number;
+  release_time_from: number;
   /**
    * The release_time_to must be- Sunday (local time) for a weekly report- The last day (local time) of a Month for a monthly report
    */
-  release_time_to?: number;
+  release_time_to: number;
   /**
    * STATEMENT_TYPE_WEEKLY = 1;STATEMENT_TYPE_MONTHLY = 2;Local seller Income statement requires this value to be set.CB seller income statement does not require this.
    */
-  statement_type?: number;
+  statement_type: number;
   [key: string]: any;
 }
 /**
@@ -138,7 +138,7 @@ export interface GetBillingTransactionInfoRequest {
   /**
    * Billing transaction types: 1: TO_RELEASE, 2: RELEASED
    */
-  billing_transaction_info_type?: number;
+  billing_transaction_info_type: number;
   /**
    * encrypted_payout_id get from API: v2.get_payout_infowhen encrypted_payout_id provided and billing_transaction_info_type=2, we will return the "released" billing items under this payout.when encrypted_payout_id not provided, we will return the "to release" billing items under hasn't form payout yetMax length: 100
    */
@@ -146,11 +146,11 @@ export interface GetBillingTransactionInfoRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
-  cursor?: string;
+  cursor: string;
   /**
    * Number of pages returned max:100
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -224,7 +224,7 @@ export interface GetEscrowDetailRequest {
   /**
    * Shopee's unique identifier for an order.
    */
-  order_sn?: string;
+  order_sn: string;
   [key: string]: any;
 }
 /**
@@ -1112,7 +1112,7 @@ export interface GetEscrowDetailBatchRequest {
   /**
    * Shopee's unique identifier for an order.limit [1,50] The number of recommended requests ranges from 1 to 20 orders.
    */
-  order_sn_list?: string[];
+  order_sn_list: string[];
   [key: string]: any;
 }
 /**
@@ -1856,11 +1856,11 @@ export interface GetEscrowListRequest {
   /**
    * Query start time
    */
-  release_time_from?: Date | number;
+  release_time_from: Date | number;
   /**
    * Query end time
    */
-  release_time_to?: Date | number;
+  release_time_to: Date | number;
   /**
    * Number of pages returned  max:100  default:40
    */
@@ -1924,15 +1924,15 @@ export interface GetIncomeDetailRequest {
   /**
    * Start date (YYYY-MM-DD) of the income reference period. This field is only used for Income Status = Released, the other statuses will display all records currently in that status.For income Status = Released, For Released → Payout released date:1. date_to must be later than date_from2. date range cannot exceed 14 days3. Input must follow valid date format.
    */
-  date_from?: string;
+  date_from: string;
   /**
    * End date (YYYY-MM-DD) of the income reference period. Must be later than date_from. This field is only used for Income Status = Released, the other statuses will display all records currently in that status.For income Status = Released, For Released → Payout released date:1. date_to must be later than date_from2. date range cannot exceed 14 days3. Input must follow valid date format.
    */
-  date_to?: string;
+  date_to: string;
   /**
    * Status of Seller Income payout (Enum - Desc)Local1 -Released2 - PendingCB0 - To Release1 - Released2 - Pending
    */
-  income_status?: number;
+  income_status: number;
   /**
    * Pagination token for the next set of results. Use an empty string "" for the first request.
    */
@@ -1940,7 +1940,7 @@ export interface GetIncomeDetailRequest {
   /**
    * Number of income detail records to retrieve per page
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -2106,7 +2106,7 @@ export interface GetIncomeReportRequest {
   /**
    * The identifier for income report file request.
    */
-  income_report_id?: number;
+  income_report_id: number;
   [key: string]: any;
 }
 /**
@@ -2154,7 +2154,7 @@ export interface GetIncomeStatementRequest {
   /**
    * The identifier for income statement file request.return from the API v2.payment.generate_income_statement
    */
-  income_statement_id?: number;
+  income_statement_id: number;
   [key: string]: any;
 }
 /**
@@ -2202,7 +2202,7 @@ export interface GetItemInstallmentStatusRequest {
   /**
    * Item id array, Max :100
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   [key: string]: any;
 }
 /**
@@ -2287,19 +2287,19 @@ export interface GetPayoutDetailRequest {
   /**
    * Number of pages returned  max:100
    */
-  page_size?: number;
+  page_size: number;
   /**
    * The page number  min:1  default:1
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Strat time. Maximum time range is 15 days
    */
-  payout_time_from?: Date | number;
+  payout_time_from: Date | number;
   /**
    * End time
    */
-  payout_time_to?: Date | number;
+  payout_time_to: Date | number;
   [key: string]: any;
 }
 /**
@@ -2430,19 +2430,19 @@ export interface GetPayoutInfoRequest {
   /**
    * Start time. Maximum time range is 15 days
    */
-  payout_time_from?: Date | number;
+  payout_time_from: Date | number;
   /**
    * Payout End time
    */
-  payout_time_to?: Date | number;
+  payout_time_to: Date | number;
   /**
    * Number of pages returned max:100
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
-  cursor?: string;
+  cursor: string;
   [key: string]: any;
 }
 /**
@@ -2547,11 +2547,11 @@ export interface GetWalletTransactionListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0. if data is more than one page, the offset can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * If many transactions are available to retrieve, you may need to call GetTransactionList multiple times to retrieve all the data. Each result set is returned as a page of entries. Default is 40. Use the Pagination filters to control the maximum number of entries (<= 100) to retrieve per page (i.e., per call), the offset number to start next call. This integer value is usUed to specify the maximum number of entries to return in a single ""page"" of data.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * The create_time_from field is the starting date range. The maximum date range that may be specified with the create_time_from and create_time_to fields is 15 days.
    */
@@ -2702,11 +2702,11 @@ export interface SetItemInstallmentStatusRequest {
   /**
    * The id array of the item, Max :100
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   /**
    * Staged array, TH must be [3,6,10], TW region tenures must be in [3,6,12,24], [] means closed
    */
-  tenure_list?: number[];
+  tenure_list: number[];
   /**
    * Only applicable and required for local AR sellers.
    */
@@ -2771,7 +2771,7 @@ export interface SetShopInstallmentStatusRequest {
   /**
    * The status of installment contains 1 and 0.
    */
-  installment_status?: number;
+  installment_status: number;
   [key: string]: any;
 }
 /**

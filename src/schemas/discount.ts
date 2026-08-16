@@ -24,15 +24,15 @@ export interface AddDiscountRequest {
   /**
    * Title of the discount.
    */
-  discount_name?: string;
+  discount_name: string;
   /**
    * The time when discount activity start.The start time must be 1 hour later than current time.
    */
-  start_time?: Date | number;
+  start_time: Date | number;
   /**
    * The time when discount activity end.The end time must be 1 hour later than start time,and the discount period must be less than 180 days.
    */
-  end_time?: Date | number;
+  end_time: Date | number;
   [key: string]: any;
 }
 /**
@@ -62,11 +62,11 @@ export interface AddDiscountItem_Model {
   /**
    * Shopee's unique identifier for a variation of an item. If there is no variation of this item, you don't need to input this param. Dafault is 0.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * The discount price of the item.
    */
-  model_promotion_price?: number;
+  model_promotion_price: number;
   /**
    * The reserved stock of the model, default is no limit, and can not update. To edit the promotion stock, you need to delete the exist discount and re-add again.
    */
@@ -80,7 +80,7 @@ export interface AddDiscountItem_Item {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The discount price of the item. If the item has no variation, this param is necessary.
    */
@@ -96,7 +96,7 @@ export interface AddDiscountItem_Item {
   /**
    * The max number of this product in the promotion price. If it's No Limit, please input the 0 for this request data.
    */
-  purchase_limit?: number;
+  purchase_limit: number;
   [key: string]: any;
 }
 /**
@@ -108,11 +108,11 @@ export interface AddDiscountItemRequest {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id?: number;
+  discount_id: number;
   /**
    * The items added in this discount promotion.
    */
-  item_list?: AddDiscountItem_Item[];
+  item_list: AddDiscountItem_Item[];
   [key: string]: any;
 }
 /**
@@ -174,7 +174,7 @@ export interface DeleteDiscountRequest {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id?: number;
+  discount_id: number;
   [key: string]: any;
 }
 /**
@@ -210,11 +210,11 @@ export interface DeleteDiscountItemRequest {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id?: number;
+  discount_id: number;
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * Shopee's unique identifier for a variation of an item. If there is no variation of this item, you don't need to input this param. Dafault is 0.
    */
@@ -276,7 +276,7 @@ export interface DeleteSipDiscountRequest {
   /**
    * The region of SIP affiliate shop that needs to delete discount.
    */
-  region?: string;
+  region: string;
   [key: string]: any;
 }
 /**
@@ -308,7 +308,7 @@ export interface EndDiscountRequest {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id?: number;
+  discount_id: number;
   [key: string]: any;
 }
 /**
@@ -344,15 +344,15 @@ export interface GetDiscountRequest {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id?: number;
+  discount_id: number;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -524,15 +524,15 @@ export interface GetDiscountListRequest {
   /**
    * The status filter for retriveing discount list. Available value: upcoming/ongoing/expired/all.
    */
-  discount_status?: DiscountStatus | string | number;
+  discount_status: DiscountStatus | string | number;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * If many items are available to retrieve, you may need to call GetDiscountsList multiple times to retrieve all the data. Each result set is returned as a page of entries. Use the Pagination filters to control the maximum number of entries (<= 100) to retrieve per page (i.e., per call), the offset number to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * The update_time_from and update_time_to fields specify a date range for retrieving orders (based on the discount update time). The maximum date range that may be specified with the update_time_from and update_time_to fields is 30 days.
    */
@@ -672,11 +672,11 @@ export interface SetSipDiscountRequest {
   /**
    * The region of SIP affiliate shop that needs to set discount.
    */
-  region?: string;
+  region: string;
   /**
    * The overall market discount rate that will apply to all items for SIP affiliate shop in current region.
    */
-  sip_discount_rate?: number;
+  sip_discount_rate: number;
   [key: string]: any;
 }
 /**
@@ -732,7 +732,7 @@ export interface UpdateDiscountRequest {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id?: number;
+  discount_id: number;
   /**
    * Title of the discount.
    */
@@ -778,11 +778,11 @@ export interface UpdateDiscountItem_Model {
   /**
    * Shopee's unique identifier for a variation of an item. If there is no variation of this item, you don't need to input this param. Dafault is 0.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * The discount price of the item.
    */
-  model_promotion_price?: number;
+  model_promotion_price: number;
   [key: string]: any;
 }
 /**
@@ -792,7 +792,7 @@ export interface UpdateDiscountItem_Item {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The discount price of the item.
    */
@@ -816,11 +816,11 @@ export interface UpdateDiscountItemRequest {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id?: number;
+  discount_id: number;
   /**
    * The items selected to this discount. You can update at most 50 items per call.
    */
-  item_list?: UpdateDiscountItem_Item[];
+  item_list: UpdateDiscountItem_Item[];
   [key: string]: any;
 }
 /**

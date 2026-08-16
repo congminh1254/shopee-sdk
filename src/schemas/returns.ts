@@ -36,7 +36,7 @@ export interface AcceptOfferRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   [key: string]: any;
 }
 /**
@@ -68,11 +68,11 @@ export interface CancelDisputeRequest {
   /**
    * Shopee's unique serial number identifier for a Return Refund request.Note: Sellers can only cancel compensation disputes, not normal disputes. This means that sellers can only cancel disputes when the return_status is ACCEPTED and the compensation_status is COMPENSATION_REQUESTED.
    */
-  return_sn?: string;
+  return_sn: string;
   /**
    * The operator's email address. For operation record keeping purposes (same as v2.returns.dispute API).
    */
-  email?: string;
+  email: string;
   [key: string]: any;
 }
 /**
@@ -108,7 +108,7 @@ export interface ConfirmRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   [key: string]: any;
 }
 /**
@@ -140,11 +140,11 @@ export interface ConvertImageRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   /**
    * The proof picture to be uploaded must be within 10MB in size, and the format only supports .jpg, .jpeg, and .png. Only one picture is allowed to be uploaded per request. If multiple pictures are uploaded, only the first picture will be processed.
    */
-  upload_image?: any;
+  upload_image: any;
   [key: string]: any;
 }
 /**
@@ -178,15 +178,15 @@ export interface Dispute_Image {
   /**
    * The module_index of current evidence module returned by get_return_dispute_reason API.
    */
-  module_index?: number;
+  module_index: number;
   /**
    * The requirement content of current evidence module returned by get_return_dispute_reason API.
    */
-  requirement?: string;
+  requirement: string;
   /**
    * The image URLs of current evidence module. It is recommended to pass in the URL returned by convert_image API.
    */
-  image_url?: string[];
+  image_url: string[];
   [key: string]: any;
 }
 /**
@@ -200,15 +200,15 @@ export interface DisputeRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   /**
    * The email address.
    */
-  email?: string;
+  email: string;
   /**
    * The dispute reason id.Please call v2.returns.get_return_dispute_reason to get it.
    */
-  dispute_reason_id?: number;
+  dispute_reason_id: number;
   /**
    * Determines whether image submission is mandatory for the dispute request - mandatory input field for all dispute reasons except "Did not receive the return product".
    */
@@ -251,7 +251,7 @@ export interface GetAvailableSolutionsRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   [key: string]: any;
 }
 /**
@@ -329,7 +329,7 @@ export interface GetReturnDetailRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   [key: string]: any;
 }
 /**
@@ -797,7 +797,7 @@ export interface GetReturnDisputeReasonRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   [key: string]: any;
 }
 /**
@@ -887,11 +887,11 @@ export interface GetReturnListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0. if data is more than one page, the offset can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * if many items are available to retrieve, you may need to call GetReturnList multiple times to retrieve all the data. Each result set is returned as a page of entries. Default is 40. Use the Pagination filters to control the maximum number of entries (<= 100) to retrieve per page (i.e., per call), the offset number to start next call. This integer value is usUed to specify the maximum number of entries to return in a single ""page"" of data.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * The create_time_from and create_time_to fields specify a date range for retrieving orders (based on the order create time). The create_time_from field is the starting date range. The maximum date range that may be specified with the create_time_from and create_time_to fields is 15 days.
    */
@@ -1182,7 +1182,7 @@ export interface GetReverseTrackingInfoRequest {
   /**
    * Shopee's unique identifier for a return/refund request (serial number of return).
    */
-  return_sn?: ReturnSn | string | number;
+  return_sn: ReturnSn | string | number;
   [key: string]: any;
 }
 /**
@@ -1310,7 +1310,7 @@ export interface GetShippingCarrierRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   [key: string]: any;
 }
 /**
@@ -1382,11 +1382,11 @@ export interface OfferRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   /**
    * The new solution to be offered. See "Data Definition - ReturnSolution"
    */
-  proposed_solution?: string;
+  proposed_solution: string;
   /**
    * The new refund amount to be offered
    */
@@ -1422,7 +1422,7 @@ export interface QueryProofRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   [key: string]: any;
 }
 /**
@@ -1482,11 +1482,11 @@ export interface UploadProof_Photo {
   /**
    * Uploaded proof image link, it is recommended to pass in the return url of api called convert_image.
    */
-  url?: string;
+  url: string;
   /**
    * The proof image thumbnail.
    */
-  thumbnail?: string;
+  thumbnail: string;
   [key: string]: any;
 }
 /**
@@ -1498,7 +1498,7 @@ export interface UploadProofRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   photo?: UploadProof_Photo[];
   /**
    * text description in the dispute proof
@@ -1535,11 +1535,11 @@ export interface UploadShippingProofRequest {
   /**
    * The serial number of return.
    */
-  return_sn?: string;
+  return_sn: string;
   /**
    * Unique ID of non-integrated reverse logistics channel used by seller.
    */
-  reverse_logistics_carrier_id?: number;
+  reverse_logistics_carrier_id: number;
   /**
    * Non-integrated reverse logistics channel name used by seller.
    */

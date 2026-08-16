@@ -13,7 +13,7 @@ export interface AddGlobalItem_Image {
   /**
    * Image id list of global item.
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -23,15 +23,15 @@ export interface AddGlobalItem_Dimension {
   /**
    * Package length of global item.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * Package width of global item.
    */
-  package_width?: number;
+  package_width: number;
   /**
    * Package height of global item.
    */
-  package_height?: number;
+  package_height: number;
   [key: string]: any;
 }
 /**
@@ -41,7 +41,7 @@ export interface AddGlobalItem_PreOrder {
   /**
    * Days to ship.
    */
-  days_to_ship?: number;
+  days_to_ship: number;
   [key: string]: any;
 }
 /**
@@ -146,7 +146,7 @@ export interface AddGlobalItem_SellerStock {
   /**
    * stock
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -172,15 +172,15 @@ export interface AddGlobalItemRequest {
   /**
    * Category id of global item.
    */
-  category_id?: number;
+  category_id: number;
   /**
    * Name of global item.
    */
-  global_item_name?: string;
+  global_item_name: string;
   /**
    * Description of global item.
    */
-  description?: string;
+  description: string;
   /**
    * Sku of global item.
    */
@@ -192,7 +192,7 @@ export interface AddGlobalItemRequest {
   /**
    * Original price of global item.
    */
-  original_price?: number;
+  original_price: number;
   /**
    * Normal stock of global item.
    */
@@ -200,7 +200,7 @@ export interface AddGlobalItemRequest {
   /**
    * Weight of global item.
    */
-  weight?: number;
+  weight: number;
   /**
    * Dimension information of global item.
    */
@@ -208,7 +208,7 @@ export interface AddGlobalItemRequest {
   /**
    * Preorder information of global item.
    */
-  pre_order?: AddGlobalItem_PreOrder;
+  pre_order: AddGlobalItem_PreOrder;
   /**
    * Condition of global item, "NEW" or "USED" is available.
    */
@@ -272,7 +272,7 @@ export interface AddGlobalModel_SellerStock {
   /**
    * stock
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -282,15 +282,15 @@ export interface AddGlobalModel_Dimension {
   /**
    * The height of package for this global model, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   /**
    * The length of package for this global model, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this global model, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   [key: string]: any;
 }
 /**
@@ -300,7 +300,7 @@ export interface AddGlobalModel_PreOrder {
   /**
    * Days to ship. Please get the days_to_ship range from the get_dts_limit API.
    */
-  days_to_ship?: number;
+  days_to_ship: number;
   [key: string]: any;
 }
 /**
@@ -314,7 +314,7 @@ export interface AddGlobalModel_GlobalModel {
   /**
    * Tier index of global model.
    */
-  tier_index?: number[];
+  tier_index: number[];
   /**
    * seller_stock of global item
    */
@@ -322,7 +322,7 @@ export interface AddGlobalModel_GlobalModel {
   /**
    * Original price of global item.
    */
-  original_price?: number;
+  original_price: number;
   /**
    * The weight of this global model, the unit is KG.If don't set the weight of this global model, will use the weight of global item by default.If set the dimension of this global model, them must set the weight of this global model.
    */
@@ -346,11 +346,11 @@ export interface AddGlobalModelRequest {
   /**
    * ID of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Global model setting list. Limit is  [1,50].
    */
-  global_model?: AddGlobalModel_GlobalModel[];
+  global_model: AddGlobalModel_GlobalModel[];
   [key: string]: any;
 }
 /**
@@ -378,7 +378,7 @@ export interface CategoryRecommendRequest {
   /**
    * name of item
    */
-  global_item_name?: string;
+  global_item_name: string;
   /**
    * Please use the image id returned by v2.media_space.upload_image api, we will ignore if this field is empty string
    */
@@ -412,7 +412,7 @@ export interface CreatePublishTask_Image {
   /**
    * Image id list of item.
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -422,11 +422,11 @@ export interface CreatePublishTask_Model {
   /**
    * Tier index of model.
    */
-  tier_index?: number[];
+  tier_index: number[];
   /**
    * Original price of model. If you upload this field, we will take your value, so you should pass the value in local currency, if you don't upload this field, Shopee will automatically calculate the price.
    */
-  original_price?: number;
+  original_price: number;
   /**
    * can be "NORMAL" or "UNAVAILABLE". Normal models can be sold on the buyer's side, and UNAVAILABLE models cannot be sold on the buyer's side. If you do not upload this field, the model status will be considered as "NORMAL".
    */
@@ -440,11 +440,11 @@ export interface CreatePublishTask_Logistic {
   /**
    * Logistic id.
    */
-  logistic_id?: number;
+  logistic_id: number;
   /**
    * If this logistic channel is enabled.
    */
-  enabled?: boolean;
+  enabled: boolean;
   /**
    * Shipping fee.
    */
@@ -466,7 +466,7 @@ export interface CreatePublishTask_PreOrder {
   /**
    * If this item is preorder.
    */
-  is_pre_order?: boolean;
+  is_pre_order: boolean;
   /**
    * Days to ship, it's mandatory if is_pre_order is true.
    */
@@ -596,15 +596,15 @@ export interface CreatePublishTaskRequest {
   /**
    * Id of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Id of shop to publish to.
    */
-  shop_id?: number;
+  shop_id: number;
   /**
    * Region of shop.
    */
-  shop_region?: string;
+  shop_region: string;
   /**
    * Item information.
    */
@@ -640,7 +640,7 @@ export interface DeleteGlobalItemRequest {
   /**
    * The id of global item to delete.
    */
-  global_item_id?: number;
+  global_item_id: number;
   [key: string]: any;
 }
 /**
@@ -686,11 +686,11 @@ export interface DeleteGlobalModelRequest {
   /**
    * Shopee's unique identifier for an global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Shopee's unique identifier for an global model.
    */
-  global_model_id?: number;
+  global_model_id: number;
   [key: string]: any;
 }
 /**
@@ -741,7 +741,7 @@ export interface GetAttributeTreeRequest {
   /**
    * Max count is 20
    */
-  category_id_list?: number[];
+  category_id_list: number[];
   /**
    * LanguageSupport Lanuage:"SG": [ "en", "zh-Hans", "ms" ], "MY": [ "en", "zh-Hans", "ms" ],"PH": [ "en", "zh-Hans" ],"VN": [ "vn", "en" ],"ID": [ "id", "en" ],"TH": [ "th", "en" ],"BR": [ "pt-BR", "en" ],"MX": [ "es-MX", "en" ],"CO": [ "es-CO", "en" ],"CL": [ "es-CL", "en" ],"TW": [ "zh-Hant", "zh-Hans", "en" ],"IN": [ "en", "hi" ]
    */
@@ -908,19 +908,19 @@ export interface GetBrandListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0. if data is more than one page, the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset: number;
   /**
    * the size of one page.
    */
-  page_size?: number;
+  page_size: number;
   /**
    * ID of category.
    */
-  category_id?: number;
+  category_id: number;
   /**
    * Brand status , 1: normal brand, 2: pending brand.
    */
-  status?: number;
+  status: number;
   [key: string]: any;
 }
 /**
@@ -1038,11 +1038,11 @@ export interface GetGlobalItemIdRequest {
   /**
    * Id of shop.
    */
-  shop_id?: number;
+  shop_id: number;
   /**
    * Item id list. Length limit is [1,20].
    */
-  item_id_list?: number[];
+  item_id_list: number[];
   [key: string]: any;
 }
 /**
@@ -1085,7 +1085,7 @@ export interface GetGlobalItemInfoRequest {
   /**
    * Global item id list. Length limit is [1,20].
    */
-  global_item_id_list?: number[];
+  global_item_id_list: number[];
   [key: string]: any;
 }
 /**
@@ -1634,7 +1634,7 @@ export interface GetGlobalItemListRequest {
   /**
    * The size of one page. Limit is [1,50].
    */
-  page_size?: number;
+  page_size: number;
   /**
    * The update_time_from and update_time_to fields specify a date range for retrieving orders (based on the item update time). The update_time_from field is the starting date range.
    */
@@ -1697,7 +1697,7 @@ export interface GetGlobalModelListRequest {
   /**
    * The id of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   [key: string]: any;
 }
 /**
@@ -1929,7 +1929,7 @@ export interface GetLocalAdjustmentRateRequest {
   /**
    * The unique identifier of the shop whose adjustment rate is being queried
    */
-  shop_id?: number;
+  shop_id: number;
   [key: string]: any;
 }
 /**
@@ -1961,7 +1961,7 @@ export interface GetPublishTaskResultRequest {
   /**
    * Id of publish task.
    */
-  publish_task_id?: number;
+  publish_task_id: number;
   [key: string]: any;
 }
 /**
@@ -2029,7 +2029,7 @@ export interface GetPublishableShopRequest {
   /**
    * Id of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Shop id list for checking if the shop is publishable.If not input the list, will return the first 300 publishable shop list in response
    */
@@ -2079,7 +2079,7 @@ export interface GetPublishedListRequest {
   /**
    * Id of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Shop id list for checking if the shop is publishable.If not input the list, will return the first 300 publishable shop list in response after the migration period.
    */
@@ -2137,11 +2137,11 @@ export interface GetRecommendAttributeRequest {
   /**
    * Name of item.
    */
-  global_item_name?: string;
+  global_item_name: string;
   /**
    * ID of category.
    */
-  category_id?: number;
+  category_id: number;
   /**
    * ID of image.
    */
@@ -2201,15 +2201,15 @@ export interface GetShopPublishableStatusRequest {
   /**
    * Id of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0. if data is more than one page, the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset: number;
   /**
    * the size of one page.Max=100
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -2268,7 +2268,7 @@ export type GetShopPublishableStatusResponse = FetchResponse<GetShopPublishableS
  * Get new size chart detail
  */
 export interface GetSizeChartDetailRequest {
-  size_chart_id?: number;
+  size_chart_id: number;
   /**
    * language should be in the list: ["en", "zh-Hans"]
    */
@@ -2373,9 +2373,9 @@ export type GetSizeChartDetailResponse = FetchResponse<GetSizeChartDetailRespons
  * Get size chart list
  */
 export interface GetSizeChartListRequest {
-  category_id?: number;
-  page_size?: number;
-  cursor?: string;
+  category_id: number;
+  page_size: number;
+  cursor: string;
   [key: string]: any;
 }
 /**
@@ -2413,7 +2413,7 @@ export interface GetVariationsRequest {
   /**
    * Leaf category id
    */
-  category_id?: number;
+  category_id: number;
   [key: string]: any;
 }
 /**
@@ -2471,7 +2471,7 @@ export interface InitTierVariation_SellerStock {
   /**
    * stock
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -2481,15 +2481,15 @@ export interface InitTierVariation_Dimension {
   /**
    * The height of package for this global model, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   /**
    * The length of package for this global model, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this global model, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   [key: string]: any;
 }
 /**
@@ -2499,7 +2499,7 @@ export interface InitTierVariation_PreOrder {
   /**
    * Days to ship. Please get the days_to_ship range from the get_dts_limit API.
    */
-  days_to_ship?: number;
+  days_to_ship: number;
   [key: string]: any;
 }
 /**
@@ -2509,7 +2509,7 @@ export interface InitTierVariation_GlobalModel {
   /**
    * Original price of global model.
    */
-  original_price?: number;
+  original_price: number;
   /**
    * seller_stock of global item
    */
@@ -2521,7 +2521,7 @@ export interface InitTierVariation_GlobalModel {
   /**
    * Tier index of global model. Index starts from 0.If you want to update one tier/two tier to no tier, can just pass the tier_variation and standardise_tier_variation as [], and pass the global_model >> tier_index as [], meanwhile pass the original_price, seller_stock, etc., to set the price and stock for the modified product with no tier structure.
    */
-  tier_index?: TierIndex | string | number;
+  tier_index: TierIndex | string | number;
   /**
    * The weight of this global model, the unit is KG.If don't set the weight of this global model, will use the weight of global item by default.If set the dimension of this global model, them must set the weight of this global model.
    */
@@ -2543,7 +2543,7 @@ export interface InitTierVariation_VariationOption {
   /**
    * standardise tier variation option ID
    */
-  variation_option_id?: number;
+  variation_option_id: number;
   /**
    * standardise tier variation option value
    */
@@ -2561,7 +2561,7 @@ export interface InitTierVariation_StandardiseTierVariation {
   /**
    * standardise tier variation ID
    */
-  variation_id?: number;
+  variation_id: number;
   /**
    * standardise tier variation name
    */
@@ -2573,7 +2573,7 @@ export interface InitTierVariation_StandardiseTierVariation {
   /**
    * standardise tier variation option list
    */
-  variation_option_list?: InitTierVariation_VariationOption[];
+  variation_option_list: InitTierVariation_VariationOption[];
   [key: string]: any;
 }
 /**
@@ -2585,11 +2585,11 @@ export interface InitTierVariationRequest {
   /**
    * Model info list, model number at most 50
    */
-  global_model?: InitTierVariation_GlobalModel[];
+  global_model: InitTierVariation_GlobalModel[];
   /**
    * ID of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * There is at least one standardise_tier_variation and tier_variation.If you want to update one tier/two tier to no tier, can just pass the tier_variation and standardise_tier_variation as [], and pass the global_model >> tier_index as [], meanwhile pass the original_price, seller_stock, etc., to set the price and stock for the modified product with no tier structure.
    */
@@ -2618,13 +2618,13 @@ export type InitTierVariationResponse = FetchResponse<InitTierVariationResponseD
  * this api is for searching attribute value list for attribute with support_search_value flag
  */
 export interface SearchGlobalAttributeValueListRequest {
-  attribute_id?: number;
+  attribute_id: number;
   value_name?: string;
-  cursor?: number;
+  cursor: number;
   /**
    * The range is 1 to 100
    */
-  limit?: number;
+  limit: number;
   [key: string]: any;
 }
 /**
@@ -2669,31 +2669,31 @@ export interface SetSyncField_ShopSync {
   /**
    * Id of shop.
    */
-  shop_id?: number;
+  shop_id: number;
   /**
    * TW TH MY BR IN SG VN
    */
-  shop_region?: string;
+  shop_region: string;
   /**
    * sync name and description
    */
-  name_and_description?: boolean;
+  name_and_description: boolean;
   /**
    * sync media information
    */
-  media_information?: boolean;
+  media_information: boolean;
   /**
    * sync tier variation
    */
-  tier_variation_name_and_option?: boolean;
+  tier_variation_name_and_option: boolean;
   /**
    * sync price
    */
-  price?: boolean;
+  price: boolean;
   /**
    * sync days to ship info
    */
-  days_to_ship?: boolean;
+  days_to_ship: boolean;
   [key: string]: any;
 }
 /**
@@ -2705,7 +2705,7 @@ export interface SetSyncFieldRequest {
   /**
    * Length limit is [1,50].
    */
-  shop_sync_list?: SetSyncField_ShopSync[];
+  shop_sync_list: SetSyncField_ShopSync[];
   [key: string]: any;
 }
 /**
@@ -2733,7 +2733,7 @@ export interface SupportSizeChartRequest {
   /**
    * Id of category.
    */
-  category_id?: number;
+  category_id: number;
   [key: string]: any;
 }
 /**
@@ -2781,7 +2781,7 @@ export interface UpdateGlobalItem_PreOrder {
   /**
    * Days to ship.
    */
-  days_to_ship?: number;
+  days_to_ship: number;
   [key: string]: any;
 }
 /**
@@ -2791,7 +2791,7 @@ export interface UpdateGlobalItem_Image {
   /**
    * Image id list of global item.
    */
-  image_id_list?: string[];
+  image_id_list: string[];
   [key: string]: any;
 }
 /**
@@ -2904,7 +2904,7 @@ export interface UpdateGlobalItemRequest {
   /**
    * Id of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Category id of global item.
    */
@@ -2988,15 +2988,15 @@ export interface UpdateGlobalModel_Dimension {
   /**
    * The height of package for this global model, the unit is CM.
    */
-  package_height?: number;
+  package_height: number;
   /**
    * The length of package for this global model, the unit is CM.
    */
-  package_length?: number;
+  package_length: number;
   /**
    * The width of package for this global model, the unit is CM.
    */
-  package_width?: number;
+  package_width: number;
   [key: string]: any;
 }
 /**
@@ -3006,7 +3006,7 @@ export interface UpdateGlobalModel_PreOrder {
   /**
    * Days to ship. Please get the days_to_ship range from the get_dts_limit API.
    */
-  days_to_ship?: number;
+  days_to_ship: number;
   [key: string]: any;
 }
 /**
@@ -3016,11 +3016,11 @@ export interface UpdateGlobalModel_GlobalModel {
   /**
    * Sku of global model.
    */
-  global_model_sku?: string;
+  global_model_sku: string;
   /**
    * ID of global model.
    */
-  global_model_id?: number;
+  global_model_id: number;
   /**
    * The weight of this global model, the unit is KG.If don't set the weight of this global model, will use the weight of global item by default.If set the dimension of this global model, them must set the weight of this global model.
    */
@@ -3044,11 +3044,11 @@ export interface UpdateGlobalModelRequest {
   /**
    * ID of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Sku setting for global model. Limit is [1,50].
    */
-  global_model?: UpdateGlobalModel_GlobalModel[];
+  global_model: UpdateGlobalModel_GlobalModel[];
   [key: string]: any;
 }
 /**
@@ -3076,11 +3076,11 @@ export interface UpdateLocalAdjustmentRateRequest {
   /**
    * The multiplier used to adjust the cross-border original price to local price
    */
-  adjustment_rate?: number;
+  adjustment_rate: number;
   /**
    * The unique identifier of the shop to which the adjustment rate applies
    */
-  shop_id?: number;
+  shop_id: number;
   [key: string]: any;
 }
 /**
@@ -3111,7 +3111,7 @@ export interface UpdatePrice_Price {
   /**
    * Original price of global item.
    */
-  original_price?: number;
+  original_price: number;
   [key: string]: any;
 }
 /**
@@ -3123,11 +3123,11 @@ export interface UpdatePriceRequest {
   /**
    * ID of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Price setting for global model. Limit is [1,50].
    */
-  price_list?: UpdatePrice_Price[];
+  price_list: UpdatePrice_Price[];
   [key: string]: any;
 }
 /**
@@ -3155,11 +3155,11 @@ export interface UpdateSizeChartRequest {
   /**
    * Id of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Image id of size chart.
    */
-  size_chart?: string;
+  size_chart: string;
   [key: string]: any;
 }
 /**
@@ -3189,7 +3189,7 @@ export interface UpdateStock_SellerStock {
   /**
    * stock
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
@@ -3212,11 +3212,11 @@ export interface UpdateStockRequest {
   /**
    * ID of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   /**
    * Stock setting for global model. Limit is [1,50].
    */
-  stock_list?: UpdateStock_Stock[];
+  stock_list: UpdateStock_Stock[];
   [key: string]: any;
 }
 /**
@@ -3242,18 +3242,18 @@ export interface UpdateTierVariation_Model {
   /**
    * ID of model
    */
-  model_id?: number;
+  model_id: number;
   /**
    * Model's tier_variation
    */
-  tier_index?: number;
+  tier_index: number;
   [key: string]: any;
 }
 /**
  * UpdateTierVariation_VariationOption sub-interface for UpdateTierVariation_StandardiseTierVariation
  */
 export interface UpdateTierVariation_VariationOption {
-  variation_option_id?: number;
+  variation_option_id: number;
   variation_option_name?: string;
   image_id?: string;
   [key: string]: any;
@@ -3265,7 +3265,7 @@ export interface UpdateTierVariation_StandardiseTierVariation {
   /**
    * standardise tier variation ID
    */
-  variation_id?: number;
+  variation_id: number;
   /**
    * standardise tier variation name
    */
@@ -3277,7 +3277,7 @@ export interface UpdateTierVariation_StandardiseTierVariation {
   /**
    * standardise tier variation option list
    */
-  variation_option_list?: UpdateTierVariation_VariationOption[];
+  variation_option_list: UpdateTierVariation_VariationOption[];
   [key: string]: any;
 }
 /**
@@ -3289,7 +3289,7 @@ export interface UpdateTierVariationRequest {
   /**
    * ID of global item.
    */
-  global_item_id?: number;
+  global_item_id: number;
   model_list?: UpdateTierVariation_Model[];
   /**
    * item standardise tier variation There is at least one standardise_tier_variation and tier_variation

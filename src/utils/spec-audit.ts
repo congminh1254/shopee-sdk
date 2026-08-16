@@ -596,6 +596,10 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
       }
     }
 
+    // Filter out known false positives from the audit check.
+    // These fields are binary/file payload parameters (e.g., file, image, part_content) in multipart/form-data
+    // upload endpoints which are handled via specialized buffer/stream parameters in the SDK,
+    // or nested fields that have structural deviations for compatibility.
     const filteredMissingReq = missingReq.filter((field) => {
       const key = `${endpointKey}:${field}`;
       return ![

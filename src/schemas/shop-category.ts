@@ -8,11 +8,11 @@ export interface AddItemListRequest {
   /**
    * ShopCategory's unique identifier.
    */
-  shop_category_id?: number;
+  shop_category_id: number;
   /**
    * Shopee's unique identifiers list for an item. Max. 100 items to be deleted per request.
    */
-  item_list?: number[];
+  item_list: number[];
   [key: string]: any;
 }
 /**
@@ -70,7 +70,7 @@ export interface AddShopCategoryRequest {
   /**
    * ShopCategory's name.
    */
-  name?: string;
+  name: string;
   /**
    * ShopCategory's sort weight. The maximum number should be 2147483546.
    */
@@ -106,11 +106,11 @@ export interface DeleteItemListRequest {
   /**
    * The list of items need to be deleted. To note that the items which can be deleted successfully should be under this category.
    */
-  shop_category_id?: number;
+  shop_category_id: number;
   /**
    * ShopCategory's unique identifier.
    */
-  item_list?: number[];
+  item_list: number[];
   [key: string]: any;
 }
 /**
@@ -150,7 +150,7 @@ export interface DeleteShopCategoryRequest {
   /**
    * ShopCategory's unique identifier.
    */
-  shop_category_id?: number;
+  shop_category_id: number;
   [key: string]: any;
 }
 /**
@@ -186,7 +186,7 @@ export interface GetItemListRequest {
   /**
    * ShopCategory's unique identifier.
    */
-  shop_category_id?: number;
+  shop_category_id: number;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 1000. The input range of page_size is [0, 1000]
    */
@@ -234,11 +234,11 @@ export interface GetShopCategoryListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. The parameter range of page_size should be [1, 2147483647]
    */
-  page_size?: number;
+  page_size: number;
   /**
    * Specifies the total returned data per entry. The parameter range of page_no should be [1, 100]
    */
-  page_no?: number;
+  page_no: number;
   [key: string]: any;
 }
 /**
@@ -300,7 +300,7 @@ export interface UpdateShopCategoryRequest {
   /**
    * ShopCategory's unique identifier.
    */
-  shop_category_id?: number;
+  shop_category_id: number;
   /**
    * ShopCategory's name.
    */

@@ -8,19 +8,19 @@ export interface AddAddOnDealRequest {
   /**
    * Title of the add on deal
    */
-  add_on_deal_name?: string;
+  add_on_deal_name: string;
   /**
    * The time when add on deal activity start.
    */
-  start_time?: number;
+  start_time: number;
   /**
    * The time when add on deal activity end
    */
-  end_time?: number;
+  end_time: number;
   /**
    * The type of add on deal：add on discount =0；gift with mini spend=1
    */
-  promotion_type?: number;
+  promotion_type: number;
   /**
    * The minimum purchase amount that needs to be met to buy the gift with min.Spend
    */
@@ -62,11 +62,11 @@ export interface AddAddOnDealMainItem_MainItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The status of add on deal item：enable = 1；disable =2
    */
-  status?: number;
+  status: number;
   [key: string]: any;
 }
 /**
@@ -78,11 +78,11 @@ export interface AddAddOnDealMainItemRequest {
   /**
    * Shopee's unique identifier for add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   /**
    * The main items added in this add on deal promotion.
    */
-  main_item_list?: AddAddOnDealMainItem_MainItem[];
+  main_item_list: AddAddOnDealMainItem_MainItem[];
   [key: string]: any;
 }
 /**
@@ -158,11 +158,11 @@ export interface AddAddOnDealSubItemRequest {
   /**
    * Shopee's unique identifier for add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   /**
    * The sub items added in this add on deal promotion.
    */
-  sub_item_list?: AddAddOnDealSubItem_SubItem[];
+  sub_item_list: AddAddOnDealSubItem_SubItem[];
   [key: string]: any;
 }
 /**
@@ -218,7 +218,7 @@ export interface DeleteAddOnDealRequest {
   /**
    * Shopee's unique identifier for an add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   [key: string]: any;
 }
 /**
@@ -250,11 +250,11 @@ export interface DeleteAddOnDealMainItemRequest {
   /**
    * Shopee's unique identifier for add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   /**
    * The main items added in this add on deal promotion.
    */
-  main_item_list?: number[];
+  main_item_list: number[];
   [key: string]: any;
 }
 /**
@@ -304,11 +304,11 @@ export interface DeleteAddOnDealSubItemRequest {
   /**
    * Shopee's unique identifier for add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   /**
    * The sub items added in this add on deal promotion.
    */
-  sub_item_list?: DeleteAddOnDealSubItem_SubItem[];
+  sub_item_list: DeleteAddOnDealSubItem_SubItem[];
   [key: string]: any;
 }
 /**
@@ -360,7 +360,7 @@ export interface EndAddOnDealRequest {
   /**
    * The identifier of the API request for error tracking
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   [key: string]: any;
 }
 /**
@@ -392,7 +392,7 @@ export interface GetAddOnDealRequest {
   /**
    * Shopee's unique identifier for an add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   [key: string]: any;
 }
 /**
@@ -457,7 +457,7 @@ export interface GetAddOnDealListRequest {
   /**
    * The Status of add on deal，default status is all
    */
-  promotion_status?: string;
+  promotion_status: string;
   /**
    * The default page number is 1
    */
@@ -547,7 +547,7 @@ export interface GetAddOnDealMainItemRequest {
   /**
    * Shopee's unique identifier for add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   [key: string]: any;
 }
 /**
@@ -597,7 +597,7 @@ export interface GetAddOnDealSubItemRequest {
   /**
    * Shopee's unique identifier for add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   [key: string]: any;
 }
 /**
@@ -670,7 +670,7 @@ export interface UpdateAddOnDealRequest {
   /**
    * Shopee's unique identifier for an add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   /**
    * The time when bundle deal activity start.The start time must be 1 hour than current time.
    */
@@ -756,11 +756,11 @@ export interface UpdateAddOnDealMainItem_MainItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id: number;
   /**
    * The status of add on deal item：enable = 1；disable =2
    */
-  status?: number;
+  status: number;
   [key: string]: any;
 }
 /**
@@ -772,11 +772,11 @@ export interface UpdateAddOnDealMainItemRequest {
   /**
    * Shopee's unique identifier for add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   /**
    * The main items added in this add on deal promotion.
    */
-  main_item_list?: UpdateAddOnDealMainItem_MainItem[];
+  main_item_list: UpdateAddOnDealMainItem_MainItem[];
   [key: string]: any;
 }
 /**
@@ -848,11 +848,11 @@ export interface UpdateAddOnDealSubItemRequest {
   /**
    * Shopee's unique identifier for add on deal activity.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id: number;
   /**
    * The sub items added in this add on deal promotion.
    */
-  sub_item_list?: UpdateAddOnDealSubItem_SubItem[];
+  sub_item_list: UpdateAddOnDealSubItem_SubItem[];
   [key: string]: any;
 }
 /**

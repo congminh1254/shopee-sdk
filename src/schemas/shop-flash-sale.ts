@@ -6,26 +6,26 @@ export interface AddShopFlashSaleItems_Model {
   /**
    * If the item has variation, this param is necessary.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * promotion price without tax
    */
-  input_promo_price?: number;
+  input_promo_price: number;
   /**
    * min=1, Campaign Stock, Campaign stock can only be reserved from either Shopee stock or Seller stock
    */
-  stock?: number;
+  stock: number;
   [key: string]: any;
 }
 /**
  * AddShopFlashSaleItems_Item sub-interface for AddShopFlashSaleItemsRequest
  */
 export interface AddShopFlashSaleItems_Item {
-  item_id?: number;
+  item_id: number;
   /**
    * min=0, 0 means no limit
    */
-  purchase_limit?: number;
+  purchase_limit: number;
   /**
    * If the item has variation, this param is necessary.
    */
@@ -46,8 +46,8 @@ export interface AddShopFlashSaleItems_Item {
  * add shop flash sale item
  */
 export interface AddShopFlashSaleItemsRequest {
-  flash_sale_id?: number;
-  items?: AddShopFlashSaleItems_Item[];
+  flash_sale_id: number;
+  items: AddShopFlashSaleItems_Item[];
   [key: string]: any;
 }
 /**
@@ -110,7 +110,7 @@ export interface CreateShopFlashSaleRequest {
   /**
    * can get it from v2.shop_flash_sale.get_time_slot_id API, and you can only use the timeslot which start_time > now
    */
-  timeslot_id?: number;
+  timeslot_id: number;
   [key: string]: any;
 }
 /**
@@ -144,7 +144,7 @@ export interface DeleteShopFlashSaleRequest {
   /**
    * cannot delete ongoing and expired shop flash sale
    */
-  flash_sale_id?: number;
+  flash_sale_id: number;
   [key: string]: any;
 }
 /**
@@ -175,11 +175,11 @@ export type DeleteShopFlashSaleResponse = FetchResponse<DeleteShopFlashSaleRespo
  * delete shop flash sale items
  */
 export interface DeleteShopFlashSaleItemsRequest {
-  flash_sale_id?: number;
+  flash_sale_id: number;
   /**
    * if you delete a item, will delete all models of the item
    */
-  item_ids?: number[];
+  item_ids: number[];
   [key: string]: any;
 }
 /**
@@ -355,7 +355,7 @@ export type GetItemCriteriaResponse = FetchResponse<GetItemCriteriaResponseData>
  * get shop flash sale detail
  */
 export interface GetShopFlashSaleRequest {
-  flash_sale_id?: number;
+  flash_sale_id: number;
   [key: string]: any;
 }
 /**
@@ -406,15 +406,15 @@ export type GetShopFlashSaleResponse = FetchResponse<GetShopFlashSaleResponseDat
  * get shop flash sale items and item detail
  */
 export interface GetShopFlashSaleItemsRequest {
-  flash_sale_id?: number;
+  flash_sale_id: number;
   /**
    * min=0,max=1000
    */
-  offset?: number;
+  offset: number;
   /**
    * min=1,max=100
    */
-  limit?: number;
+  limit: number;
   [key: string]: any;
 }
 /**
@@ -547,7 +547,7 @@ export interface GetShopFlashSaleListRequest {
   /**
    * you can use this filed to search different state of shop flash sale0: all state1: upcoming state2: ongoing state3: expired state
    */
-  type?: number;
+  type: number;
   /**
    * you should use start_time and end_time together, and start_time shoule be < end_time
    */
@@ -559,11 +559,11 @@ export interface GetShopFlashSaleListRequest {
   /**
    * min=0,max=1000
    */
-  offset?: number;
+  offset: number;
   /**
    * min=1,max=100
    */
-  limit?: number;
+  limit: number;
   [key: string]: any;
 }
 /**
@@ -635,11 +635,11 @@ export interface GetTimeSlotIdRequest {
   /**
    * min = now, max=2145887999, should be < end_time
    */
-  start_time?: Date | number;
+  start_time: Date | number;
   /**
    * should be > start_time, max=2145887999
    */
-  end_time?: Date | number;
+  end_time: Date | number;
   [key: string]: any;
 }
 /**
@@ -673,11 +673,11 @@ export type GetTimeSlotIdResponse = FetchResponse<GetTimeSlotIdResponseData>;
  * edit shop flash sale(enable, disable)
  */
 export interface UpdateShopFlashSaleRequest {
-  flash_sale_id?: number;
+  flash_sale_id: number;
   /**
    * the status of shop flash sale you want to set, you cannot edit the shop flash sale in 'system_rejected' statusDisabling this Flash Sale will disable all items in this session1: enable2: disbaled
    */
-  status?: number;
+  status: number;
   [key: string]: any;
 }
 /**
@@ -709,11 +709,11 @@ export interface UpdateShopFlashSaleItems_Model {
   /**
    * If the item has variation, this param is necessary.
    */
-  model_id?: number;
+  model_id: number;
   /**
    * you can use this field to set the status of model0: disable1: enable
    */
-  status?: number;
+  status: number;
   /**
    * promotion price without taxif the model is enabled(status  = 1) now, you can't set this field, you can only disable the modelif the model is disabled(status  = 0) now and you want to set this field, you should also set status to 1
    */
@@ -728,7 +728,7 @@ export interface UpdateShopFlashSaleItems_Model {
  * UpdateShopFlashSaleItems_Item sub-interface for UpdateShopFlashSaleItemsRequest
  */
 export interface UpdateShopFlashSaleItems_Item {
-  item_id?: number;
+  item_id: number;
   /**
    * min=0, 0 means no limitif the item is in enabled status or the item has models in enabled status, you can't set this field
    */
@@ -757,8 +757,8 @@ export interface UpdateShopFlashSaleItems_Item {
  * edit shop flash sale item, you can only edit the models in disbaled or enabled status
  */
 export interface UpdateShopFlashSaleItemsRequest {
-  flash_sale_id?: number;
-  items?: UpdateShopFlashSaleItems_Item[];
+  flash_sale_id: number;
+  items: UpdateShopFlashSaleItems_Item[];
   [key: string]: any;
 }
 /**

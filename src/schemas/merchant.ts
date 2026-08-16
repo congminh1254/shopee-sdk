@@ -57,11 +57,11 @@ export interface GetMerchantPrepaidAccountListRequest {
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data.Min: 1 Max:10
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -146,7 +146,7 @@ export interface GetMerchantWarehouseList_Cursor {
   /**
    * The size of one page. Limit is [1,30].
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -158,11 +158,11 @@ export interface GetMerchantWarehouseListRequest {
   /**
    * // how to use DoubleSidedCursor// Get data for the first page: Please pass next_id = 0 or nil, page_size = {your page size}.// Get data for the next page: Please pass the Cursor from the previous response, and set prev_id=nil;// Get data for the prev page: Please pass the Cursor from the previous response, and set next_id=nil;// Stop fetching next data: The Cursor.next_id in the previous response is nil.// Stop fetching prev data: The Cursor.prev_id in the previous response is nil.
    */
-  cursor?: GetMerchantWarehouseList_Cursor;
+  cursor: GetMerchantWarehouseList_Cursor;
   /**
    * 1 means pickup warehouse2 means return warehouse
    */
-  warehouse_type?: number;
+  warehouse_type: number;
   [key: string]: any;
 }
 /**
@@ -313,11 +313,11 @@ export interface GetShopListByMerchantRequest {
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
-  page_no?: number;
+  page_no: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data.No more than 500.
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -373,7 +373,7 @@ export interface GetWarehouseEligibleShopList_Cursor {
   /**
    * The size of one page. Limit is [1,30].
    */
-  page_size?: number;
+  page_size: number;
   [key: string]: any;
 }
 /**
@@ -385,15 +385,15 @@ export interface GetWarehouseEligibleShopListRequest {
   /**
    * Warehouse address identifier.
    */
-  warehouse_id?: number;
+  warehouse_id: number;
   /**
    * 1 means pickup warehouse2 means return warehouse
    */
-  warehouse_type?: number;
+  warehouse_type: number;
   /**
    * // how to use DoubleSidedCursor// Get data for the first page: Please pass next_id = 0 or nil, page_size = {your page size}.// Get data for the next page: Please pass the Cursor from the previous response, and set prev_id=nil;// Get data for the prev page: Please pass the Cursor from the previous response, and set next_id=nil;// Stop fetching next data: The Cursor.next_id in the previous response is nil.// Stop fetching prev data: The Cursor.prev_id in the previous response is nil.
    */
-  cursor?: GetWarehouseEligibleShopList_Cursor;
+  cursor: GetWarehouseEligibleShopList_Cursor;
   [key: string]: any;
 }
 /**
