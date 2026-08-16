@@ -213,12 +213,54 @@ const { runTests, initSdk } = setupIntegrationTest();
 
     const createdItemId = addResponse.response.item_id;
 
-    // 4. Tear down: delete the newly created product immediately to keep Sandbox clean
-    const deleteResponse = await sdk.product.deleteItem({
-      item_id: createdItemId,
-    });
+    try {
+      // 4. Retrieve item base info to verify creation
+      const infoResponse = await sdk.product.getItemBaseInfo({
+        item_id_list: [createdItemId],
+      });
+      expect(infoResponse).toBeDefined();
+      expect(infoResponse.error).toBe("");
+      expect(infoResponse.response?.item_list).toBeDefined();
+      expect(infoResponse.response.item_list!.length).toBeGreaterThan(0);
+      expect(infoResponse.response.item_list![0].item_id).toBe(createdItemId);
 
-    expect(deleteResponse).toBeDefined();
-    expect(deleteResponse.error).toBe("");
+      // 5. Update product price
+      const updatePriceResponse = await sdk.product.updatePrice({
+        item_id: createdItemId,
+        price_list: [
+          {
+            model_id: 0,
+            original_price: 60000,
+          },
+        ],
+      });
+      expect(updatePriceResponse).toBeDefined();
+      expect(updatePriceResponse.error).toBe("");
+
+      // 6. Update product stock
+      const updateStockResponse = await sdk.product.updateStock({
+        item_id: createdItemId,
+        stock_list: [
+          {
+            model_id: 0,
+            seller_stock: [
+              {
+                stock: 150,
+              },
+            ],
+          },
+        ],
+      });
+      expect(updateStockResponse).toBeDefined();
+      expect(updateStockResponse.error).toBe("");
+    } finally {
+      // 7. Tear down: delete the newly created product immediately to keep Sandbox clean
+      const deleteResponse = await sdk.product.deleteItem({
+        item_id: createdItemId,
+      });
+
+      expect(deleteResponse).toBeDefined();
+      expect(deleteResponse.error).toBe("");
+    }
   });
 });
