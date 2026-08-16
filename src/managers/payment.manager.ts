@@ -124,9 +124,9 @@ export class PaymentManager extends BaseManager {
       this.config,
       "/payment/get_escrow_detail_batch",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
     return response;
