@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Request parameters for add_item_list
@@ -15,9 +17,9 @@ export interface AddItemListRequest {
   item_list: number[];
 }
 /**
- * AddItemList_InvalidItemId sub-interface for AddItemList_Response
+ * AddItemListInvalidItemId sub-interface for AddItemListResponseData
  */
-export interface AddItemList_InvalidItemId {
+export interface AddItemListInvalidItemId {
   /**
    * The invalid item id.
    */
@@ -32,13 +34,13 @@ export interface AddItemList_InvalidItemId {
   fail_message?: string;
 }
 /**
- * AddItemList_Response sub-interface for AddItemListResponse
+ * AddItemListResponseData sub-interface for AddItemListResponse
  */
-export interface AddItemList_Response {
+export interface AddItemListResponseData {
   /**
    * List of invalid item ids.
    */
-  invalid_item_id_list?: AddItemList_InvalidItemId[];
+  invalid_item_id_list?: AddItemListInvalidItemId[];
   /**
    * ShopCategory's unique identifier.
    */
@@ -48,10 +50,6 @@ export interface AddItemList_Response {
    */
   current_count?: number;
 }
-/**
- * Response data payload for add_item_list
- */
-export type AddItemListResponseData = AddItemList_Response;
 /**
  * Response payload for add_item_list
  *
@@ -74,18 +72,14 @@ export interface AddShopCategoryRequest {
   sort_weight?: number;
 }
 /**
- * AddShopCategory_Response sub-interface for AddShopCategoryResponse
+ * AddShopCategoryResponseData sub-interface for AddShopCategoryResponse
  */
-export interface AddShopCategory_Response {
+export interface AddShopCategoryResponseData {
   /**
    * ShopCategory's unique identifier.
    */
   shop_category_id?: number;
 }
-/**
- * Response data payload for add_shop_category
- */
-export type AddShopCategoryResponseData = AddShopCategory_Response;
 /**
  * Response payload for add_shop_category
  *
@@ -108,9 +102,9 @@ export interface DeleteItemListRequest {
   item_list: number[];
 }
 /**
- * DeleteItemList_Response sub-interface for DeleteItemListResponse
+ * DeleteItemListResponseData sub-interface for DeleteItemListResponse
  */
-export interface DeleteItemList_Response {
+export interface DeleteItemListResponseData {
   /**
    * ShopCategory's unique identifier.
    */
@@ -124,10 +118,6 @@ export interface DeleteItemList_Response {
    */
   current_count?: number;
 }
-/**
- * Response data payload for delete_item_list
- */
-export type DeleteItemListResponseData = DeleteItemList_Response;
 /**
  * Response payload for delete_item_list
  *
@@ -146,9 +136,9 @@ export interface DeleteShopCategoryRequest {
   shop_category_id: number;
 }
 /**
- * DeleteShopCategory_Response sub-interface for DeleteShopCategoryResponse
+ * DeleteShopCategoryResponseData sub-interface for DeleteShopCategoryResponse
  */
-export interface DeleteShopCategory_Response {
+export interface DeleteShopCategoryResponseData {
   /**
    * ShopCategory's unique identifier.
    */
@@ -158,10 +148,6 @@ export interface DeleteShopCategory_Response {
    */
   msg?: string;
 }
-/**
- * Response data payload for delete_shop_category
- */
-export type DeleteShopCategoryResponseData = DeleteShopCategory_Response;
 /**
  * Response payload for delete_shop_category
  *
@@ -188,9 +174,9 @@ export interface GetItemListRequest {
   page_no?: number;
 }
 /**
- * GetItemList_Response sub-interface for GetItemListResponse
+ * GetItemListResponseData sub-interface for GetItemListResponse
  */
-export interface GetItemList_Response {
+export interface GetItemListResponseData {
   /**
    * A list of Shopee's unique identifiers for items.
    */
@@ -204,10 +190,6 @@ export interface GetItemList_Response {
    */
   more?: boolean;
 }
-/**
- * Response data payload for get_item_list
- */
-export type GetItemListResponseData = GetItemList_Response;
 /**
  * Response payload for get_item_list
  *
@@ -230,9 +212,9 @@ export interface GetShopCategoryListRequest {
   page_no: number;
 }
 /**
- * GetShopCategoryList_ShopCategory sub-interface for GetShopCategoryList_Response
+ * GetShopCategoryListShopCategory sub-interface for GetShopCategoryListResponseData
  */
-export interface GetShopCategoryList_ShopCategory {
+export interface GetShopCategoryListShopCategory {
   /**
    * ShopCategory's unique identifier.
    */
@@ -251,13 +233,13 @@ export interface GetShopCategoryList_ShopCategory {
   sort_weight?: number;
 }
 /**
- * GetShopCategoryList_Response sub-interface for GetShopCategoryListResponse
+ * GetShopCategoryListResponseData sub-interface for GetShopCategoryListResponse
  */
-export interface GetShopCategoryList_Response {
+export interface GetShopCategoryListResponseData {
   /**
    * ShopCategory's unique identifier.
    */
-  shop_categorys?: GetShopCategoryList_ShopCategory[];
+  shop_categorys?: GetShopCategoryListShopCategory[];
   /**
    * This is to indicate the whole number of  in-shop categories under the shop.
    */
@@ -267,10 +249,6 @@ export interface GetShopCategoryList_Response {
    */
   more?: boolean;
 }
-/**
- * Response data payload for get_shop_category_list
- */
-export type GetShopCategoryListResponseData = GetShopCategoryList_Response;
 /**
  * Response payload for get_shop_category_list
  *
@@ -301,9 +279,9 @@ export interface UpdateShopCategoryRequest {
   status?: string;
 }
 /**
- * UpdateShopCategory_Response sub-interface for UpdateShopCategoryResponse
+ * UpdateShopCategoryResponseData sub-interface for UpdateShopCategoryResponse
  */
-export interface UpdateShopCategory_Response {
+export interface UpdateShopCategoryResponseData {
   /**
    * This is to indicate whether the shop categories list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of shop categories
    */
@@ -321,10 +299,6 @@ export interface UpdateShopCategory_Response {
    */
   status?: string;
 }
-/**
- * Response data payload for update_shop_category
- */
-export type UpdateShopCategoryResponseData = UpdateShopCategory_Response;
 /**
  * Response payload for update_shop_category
  *

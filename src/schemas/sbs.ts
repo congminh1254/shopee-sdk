@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Request parameters for get_bound_whs_info
@@ -6,9 +8,9 @@ import { FetchResponse } from "./fetch.js";
  */
 export type GetBoundWhsInfoRequest = Record<string, never>;
 /**
- * GetBoundWhsInfo_BoundWh sub-interface for GetBoundWhsInfo_List
+ * GetBoundWhsInfoBoundWh sub-interface for GetBoundWhsInfoList
  */
-export interface GetBoundWhsInfo_BoundWh {
+export interface GetBoundWhsInfoBoundWh {
   /**
    * the warehouse region bound with the shop
    */
@@ -19,22 +21,18 @@ export interface GetBoundWhsInfo_BoundWh {
   whs_ids?: string[];
 }
 /**
- * GetBoundWhsInfo_List sub-interface for GetBoundWhsInfo_Response
+ * GetBoundWhsInfoList sub-interface for GetBoundWhsInfoResponseData
  */
-export interface GetBoundWhsInfo_List {
+export interface GetBoundWhsInfoList {
   shop_id?: number;
-  bound_whs?: GetBoundWhsInfo_BoundWh[];
+  bound_whs?: GetBoundWhsInfoBoundWh[];
 }
 /**
- * GetBoundWhsInfo_Response sub-interface for GetBoundWhsInfoResponse
+ * GetBoundWhsInfoResponseData sub-interface for GetBoundWhsInfoResponse
  */
-export interface GetBoundWhsInfo_Response {
-  list?: GetBoundWhsInfo_List[];
+export interface GetBoundWhsInfoResponseData {
+  list?: GetBoundWhsInfoList[];
 }
-/**
- * Response data payload for get_bound_whs_info
- */
-export type GetBoundWhsInfoResponseData = GetBoundWhsInfo_Response;
 /**
  * Response payload for get_bound_whs_info
  *
@@ -93,9 +91,9 @@ export interface GetCurrentInventoryRequest {
   whs_region: string;
 }
 /**
- * GetCurrentInventory_Whs sub-interface for GetCurrentInventory_Sku
+ * GetCurrentInventoryWhs sub-interface for GetCurrentInventorySku
  */
-export interface GetCurrentInventory_Whs {
+export interface GetCurrentInventoryWhs {
   /**
    * Warehouse ID
    */
@@ -162,9 +160,9 @@ export interface GetCurrentInventory_Whs {
   last_90_sold?: number;
 }
 /**
- * GetCurrentInventory_ShopSku sub-interface for GetCurrentInventory_Sku
+ * GetCurrentInventoryShopSku sub-interface for GetCurrentInventorySku
  */
-export interface GetCurrentInventory_ShopSku {
+export interface GetCurrentInventoryShopSku {
   /**
    * shop level sku_idshop_sku_id="item_id" _ "model_id"
    */
@@ -179,9 +177,9 @@ export interface GetCurrentInventory_ShopSku {
   shop_model_id?: string;
 }
 /**
- * GetCurrentInventory_Sku sub-interface for GetCurrentInventory_Item
+ * GetCurrentInventorySku sub-interface for GetCurrentInventoryItem
  */
-export interface GetCurrentInventory_Sku {
+export interface GetCurrentInventorySku {
   /**
    * mtsku id
    */
@@ -208,13 +206,13 @@ export interface GetCurrentInventory_Sku {
   /**
    * Info of whs
    */
-  whs_list?: GetCurrentInventory_Whs[];
-  shop_sku_list?: GetCurrentInventory_ShopSku[];
+  whs_list?: GetCurrentInventoryWhs[];
+  shop_sku_list?: GetCurrentInventoryShopSku[];
 }
 /**
- * GetCurrentInventory_Item sub-interface for GetCurrentInventory_Response
+ * GetCurrentInventoryItem sub-interface for GetCurrentInventoryResponseData
  */
-export interface GetCurrentInventory_Item {
+export interface GetCurrentInventoryItem {
   /**
    * Warehouse item id; To indicate an unique item in a warehouseone warehouse item id can match with multiple shop_item_idFor Global Item, warehouse_item_id=Global Item idFor Local Item, shop_item_id=item_id
    */
@@ -230,21 +228,17 @@ export interface GetCurrentInventory_Item {
   /**
    * Data list of mtsku
    */
-  sku_list?: GetCurrentInventory_Sku[];
+  sku_list?: GetCurrentInventorySku[];
 }
 /**
- * GetCurrentInventory_Response sub-interface for GetCurrentInventoryResponse
+ * GetCurrentInventoryResponseData sub-interface for GetCurrentInventoryResponse
  */
-export interface GetCurrentInventory_Response {
+export interface GetCurrentInventoryResponseData {
   /**
    * Data list of item sku
    */
-  item_list?: GetCurrentInventory_Item[];
+  item_list?: GetCurrentInventoryItem[];
 }
-/**
- * Response data payload for get_current_inventory
- */
-export type GetCurrentInventoryResponseData = GetCurrentInventory_Response;
 /**
  * Response payload for get_current_inventory
  *
@@ -284,9 +278,9 @@ export interface GetExpiryReportRequest {
   whs_region: string;
 }
 /**
- * GetExpiryReport_ShopSku sub-interface for GetExpiryReport_Sku
+ * GetExpiryReportShopSku sub-interface for GetExpiryReportSku
  */
-export interface GetExpiryReport_ShopSku {
+export interface GetExpiryReportShopSku {
   /**
    * shop level sku_idshop_sku_id="item_id" _ "model_id"
    */
@@ -301,9 +295,9 @@ export interface GetExpiryReport_ShopSku {
   shop_model_id?: string;
 }
 /**
- * GetExpiryReport_Whs sub-interface for GetExpiryReport_Sku
+ * GetExpiryReportWhs sub-interface for GetExpiryReportSku
  */
-export interface GetExpiryReport_Whs {
+export interface GetExpiryReportWhs {
   /**
    * warehouse ID
    */
@@ -334,9 +328,9 @@ export interface GetExpiryReport_Whs {
   total_qty?: number;
 }
 /**
- * GetExpiryReport_Sku sub-interface for GetExpiryReport_Item
+ * GetExpiryReportSku sub-interface for GetExpiryReportItem
  */
-export interface GetExpiryReport_Sku {
+export interface GetExpiryReportSku {
   /**
    * Unique ID for a warehouse SKU"warehouse_item_id"_"warehouse_model_id"
    */
@@ -350,31 +344,27 @@ export interface GetExpiryReport_Sku {
    */
   fulfill_mapping_mode?: number;
   variation?: string;
-  shop_sku_list?: GetExpiryReport_ShopSku[];
-  whs_list?: GetExpiryReport_Whs[];
+  shop_sku_list?: GetExpiryReportShopSku[];
+  whs_list?: GetExpiryReportWhs[];
 }
 /**
- * GetExpiryReport_Item sub-interface for GetExpiryReport_Response
+ * GetExpiryReportItem sub-interface for GetExpiryReportResponseData
  */
-export interface GetExpiryReport_Item {
+export interface GetExpiryReportItem {
   /**
    * Warehouse item id; To indicate an unique item in a warehouseone warehouse item id can match with multiple shop_item_idFor Global Item, warehouse_item_id=Global Item idFor Local Item, shop_item_id=item_id
    */
   warehouse_item_id?: string;
   item_name?: string;
   item_image?: string;
-  sku_list?: GetExpiryReport_Sku[];
+  sku_list?: GetExpiryReportSku[];
 }
 /**
- * GetExpiryReport_Response sub-interface for GetExpiryReportResponse
+ * GetExpiryReportResponseData sub-interface for GetExpiryReportResponse
  */
-export interface GetExpiryReport_Response {
-  item_list?: GetExpiryReport_Item[];
+export interface GetExpiryReportResponseData {
+  item_list?: GetExpiryReportItem[];
 }
-/**
- * Response data payload for get_expiry_report
- */
-export type GetExpiryReportResponseData = GetExpiryReport_Response;
 /**
  * Response payload for get_expiry_report
  *
@@ -425,9 +415,9 @@ export interface GetStockAgingRequest {
   whs_region: string;
 }
 /**
- * GetStockAging_Whs sub-interface for GetStockAging_Sku
+ * GetStockAgingWhs sub-interface for GetStockAgingSku
  */
-export interface GetStockAging_Whs {
+export interface GetStockAgingWhs {
   /**
    * Whs id
    */
@@ -463,9 +453,9 @@ export interface GetStockAging_Whs {
   aging_storage_tag?: number;
 }
 /**
- * GetStockAging_ShopSku sub-interface for GetStockAging_Sku
+ * GetStockAgingShopSku sub-interface for GetStockAgingSku
  */
-export interface GetStockAging_ShopSku {
+export interface GetStockAgingShopSku {
   /**
    * shop level sku_idshop_sku_id="item_id" _ "model_id"
    */
@@ -480,9 +470,9 @@ export interface GetStockAging_ShopSku {
   shop_model_id?: string;
 }
 /**
- * GetStockAging_Sku sub-interface for GetStockAging_Item
+ * GetStockAgingSku sub-interface for GetStockAgingItem
  */
-export interface GetStockAging_Sku {
+export interface GetStockAgingSku {
   /**
    * mtsku id
    */
@@ -503,13 +493,13 @@ export interface GetStockAging_Sku {
   /**
    * Info of whs
    */
-  whs_list?: GetStockAging_Whs[];
-  shop_sku_list?: GetStockAging_ShopSku[];
+  whs_list?: GetStockAgingWhs[];
+  shop_sku_list?: GetStockAgingShopSku[];
 }
 /**
- * GetStockAging_Item sub-interface for GetStockAging_Response
+ * GetStockAgingItem sub-interface for GetStockAgingResponseData
  */
-export interface GetStockAging_Item {
+export interface GetStockAgingItem {
   /**
    * Warehouse item id; To indicate an unique item in a warehouseone warehouse item id can match with multiple shop_item_idFor Global Item, warehouse_item_id=Global Item idFor Local Item, shop_item_id=item_id
    */
@@ -525,21 +515,17 @@ export interface GetStockAging_Item {
   /**
    * Data list of mtsku
    */
-  sku_list?: GetStockAging_Sku[];
+  sku_list?: GetStockAgingSku[];
 }
 /**
- * GetStockAging_Response sub-interface for GetStockAgingResponse
+ * GetStockAgingResponseData sub-interface for GetStockAgingResponse
  */
-export interface GetStockAging_Response {
+export interface GetStockAgingResponseData {
   /**
    * Data list of item sku
    */
-  item_list?: GetStockAging_Item[];
+  item_list?: GetStockAgingItem[];
 }
-/**
- * Response data payload for get_stock_aging
- */
-export type GetStockAgingResponseData = GetStockAging_Response;
 /**
  * Response payload for get_stock_aging
  *
@@ -589,9 +575,9 @@ export interface GetStockMovementRequest {
   whs_region: string;
 }
 /**
- * GetStockMovement_Whs sub-interface for GetStockMovement_Sku
+ * GetStockMovementWhs sub-interface for GetStockMovementSku
  */
-export interface GetStockMovement_Whs {
+export interface GetStockMovementWhs {
   /**
    * Whs id
    */
@@ -618,9 +604,9 @@ export interface GetStockMovement_Whs {
   end_on_hand_total?: number;
 }
 /**
- * GetStockMovement_StartQty sub-interface for GetStockMovement_Sku
+ * GetStockMovementStartQty sub-interface for GetStockMovementSku
  */
-export interface GetStockMovement_StartQty {
+export interface GetStockMovementStartQty {
   /**
    * sku number at the start time
    */
@@ -636,9 +622,9 @@ export interface GetStockMovement_StartQty {
   start_unsellable?: number;
 }
 /**
- * GetStockMovement_EndQty sub-interface for GetStockMovement_Sku
+ * GetStockMovementEndQty sub-interface for GetStockMovementSku
  */
-export interface GetStockMovement_EndQty {
+export interface GetStockMovementEndQty {
   /**
    * Total inventory at the end time.
    */
@@ -648,9 +634,9 @@ export interface GetStockMovement_EndQty {
   end_unsellable?: number;
 }
 /**
- * GetStockMovement_InboundQty sub-interface for GetStockMovement_Sku
+ * GetStockMovementInboundQty sub-interface for GetStockMovementSku
  */
-export interface GetStockMovement_InboundQty {
+export interface GetStockMovementInboundQty {
   /**
    * Total inbound quantity during the selected time period
    */
@@ -665,9 +651,9 @@ export interface GetStockMovement_InboundQty {
   inbound_returned?: number;
 }
 /**
- * GetStockMovement_OutboundQty sub-interface for GetStockMovement_Sku
+ * GetStockMovementOutboundQty sub-interface for GetStockMovementSku
  */
-export interface GetStockMovement_OutboundQty {
+export interface GetStockMovementOutboundQty {
   /**
    * Total outbound quantity during the selected time period.
    */
@@ -686,9 +672,9 @@ export interface GetStockMovement_OutboundQty {
   outbound_disposed?: number;
 }
 /**
- * GetStockMovement_AdjustQty sub-interface for GetStockMovement_Sku
+ * GetStockMovementAdjustQty sub-interface for GetStockMovementSku
  */
-export interface GetStockMovement_AdjustQty {
+export interface GetStockMovementAdjustQty {
   /**
    * "Total number of SKU changes during the selected time period."
    */
@@ -703,9 +689,9 @@ export interface GetStockMovement_AdjustQty {
   adjust_trans_whs?: number;
 }
 /**
- * GetStockMovement_ShopSku sub-interface for GetStockMovement_Sku
+ * GetStockMovementShopSku sub-interface for GetStockMovementSku
  */
-export interface GetStockMovement_ShopSku {
+export interface GetStockMovementShopSku {
   /**
    * shop level sku_id  shop_sku_id="item_id" _ "model_id"
    */
@@ -720,9 +706,9 @@ export interface GetStockMovement_ShopSku {
   shop_model_id?: string;
 }
 /**
- * GetStockMovement_Sku sub-interface for GetStockMovement_Item
+ * GetStockMovementSku sub-interface for GetStockMovementItem
  */
-export interface GetStockMovement_Sku {
+export interface GetStockMovementSku {
   /**
    * mtsku id
    */
@@ -740,27 +726,27 @@ export interface GetStockMovement_Sku {
   /**
    * Info of whs
    */
-  whs_list?: GetStockMovement_Whs[];
+  whs_list?: GetStockMovementWhs[];
   /**
    * Inventory information at the start time.
    */
-  start_qty?: GetStockMovement_StartQty;
-  end_qty?: GetStockMovement_EndQty;
+  start_qty?: GetStockMovementStartQty;
+  end_qty?: GetStockMovementEndQty;
   /**
    * Inbound information during the selected time period
    */
-  inbound_qty?: GetStockMovement_InboundQty;
-  outbound_qty?: GetStockMovement_OutboundQty;
+  inbound_qty?: GetStockMovementInboundQty;
+  outbound_qty?: GetStockMovementOutboundQty;
   /**
    * "SKU change information during the selected time period."
    */
-  adjust_qty?: GetStockMovement_AdjustQty;
-  shop_sku_list?: GetStockMovement_ShopSku[];
+  adjust_qty?: GetStockMovementAdjustQty;
+  shop_sku_list?: GetStockMovementShopSku[];
 }
 /**
- * GetStockMovement_Item sub-interface for GetStockMovement_Response
+ * GetStockMovementItem sub-interface for GetStockMovementResponseData
  */
-export interface GetStockMovement_Item {
+export interface GetStockMovementItem {
   /**
    * Warehouse item id; To indicate an unique item in a warehouseone warehouse item id can match with multiple shop_item_id
    */
@@ -776,12 +762,12 @@ export interface GetStockMovement_Item {
   /**
    * Data list of mtsku
    */
-  sku_list?: GetStockMovement_Sku[];
+  sku_list?: GetStockMovementSku[];
 }
 /**
- * GetStockMovement_Response sub-interface for GetStockMovementResponse
+ * GetStockMovementResponseData sub-interface for GetStockMovementResponse
  */
-export interface GetStockMovement_Response {
+export interface GetStockMovementResponseData {
   total?: number;
   start_time?: string;
   end_time?: string;
@@ -789,12 +775,8 @@ export interface GetStockMovement_Response {
   /**
    * Data list of item sku
    */
-  item_list?: GetStockMovement_Item[];
+  item_list?: GetStockMovementItem[];
 }
-/**
- * Response data payload for get_stock_movement
- */
-export type GetStockMovementResponseData = GetStockMovement_Response;
 /**
  * Response payload for get_stock_movement
  *

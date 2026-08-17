@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field Status
@@ -70,9 +72,9 @@ export interface GetVideoUploadResultRequest {
   video_upload_id: string;
 }
 /**
- * GetVideoUploadResult_VideoInfo sub-interface for GetVideoUploadResult_Response
+ * GetVideoUploadResultVideoInfo sub-interface for GetVideoUploadResultResponseData
  */
-export interface GetVideoUploadResult_VideoInfo {
+export interface GetVideoUploadResultVideoInfo {
   /**
    * Video playback url.
    */
@@ -99,9 +101,9 @@ export interface GetVideoUploadResult_VideoInfo {
   resolution?: string;
 }
 /**
- * GetVideoUploadResult_Response sub-interface for GetVideoUploadResultResponse
+ * GetVideoUploadResultResponseData sub-interface for GetVideoUploadResultResponse
  */
-export interface GetVideoUploadResult_Response {
+export interface GetVideoUploadResultResponseData {
   /**
    * Current status of the upload task. Possible values:- INITIATED: Upload task has been created (via init_video_upload) but no parts have been uploaded yet.- UPLOADING: Video file parts are being uploaded. The upload has started but is not yet completed.- UPLOADED: All video parts have been uploaded successfully, waiting for complete_video_upload to trigger processing.- PROCESSING: Video is being transcoded/validated by the system (duration, format, resolution checks).- SUCCEEDED: Video upload and transcoding completed successfully. Video URL and cover URL are available for use.- FAILED: Upload or processing failed (e.g., invalid format, duration not within allowed range, transcoding error).- CANCELLED: Upload task was explicitly canceled by the client (cancel_video_upload), and the video is discarded.
    */
@@ -117,12 +119,8 @@ export interface GetVideoUploadResult_Response {
   /**
    * Transcoded video info, will be returned if status is SUCCEEDED.
    */
-  video_info?: GetVideoUploadResult_VideoInfo;
+  video_info?: GetVideoUploadResultVideoInfo;
 }
-/**
- * Response data payload for get_video_upload_result
- */
-export type GetVideoUploadResultResponseData = GetVideoUploadResult_Response;
 /**
  * Response payload for get_video_upload_result
  *
@@ -157,9 +155,9 @@ export interface InitVideoUploadRequest {
   duration: number;
 }
 /**
- * InitVideoUpload_Response sub-interface for InitVideoUploadResponse
+ * InitVideoUploadResponseData sub-interface for InitVideoUploadResponse
  */
-export interface InitVideoUpload_Response {
+export interface InitVideoUploadResponseData {
   /**
    * Unique upload session ID.
    */
@@ -169,10 +167,6 @@ export interface InitVideoUpload_Response {
    */
   part_size?: number;
 }
-/**
- * Response data payload for init_video_upload
- */
-export type InitVideoUploadResponseData = InitVideoUpload_Response;
 /**
  * Response payload for init_video_upload
  *
@@ -199,9 +193,9 @@ export interface UploadImageRequest {
   images: any;
 }
 /**
- * UploadImage_Image sub-interface for UploadImage_Response
+ * UploadImageImage sub-interface for UploadImageResponseData
  */
-export interface UploadImage_Image {
+export interface UploadImageImage {
   /**
    * Unique ID of the uploaded image.
    */
@@ -212,18 +206,14 @@ export interface UploadImage_Image {
   image_url?: string;
 }
 /**
- * UploadImage_Response sub-interface for UploadImageResponse
+ * UploadImageResponseData sub-interface for UploadImageResponse
  */
-export interface UploadImage_Response {
+export interface UploadImageResponseData {
   /**
    * List of uploaded images.
    */
-  image_list?: UploadImage_Image[];
+  image_list?: UploadImageImage[];
 }
-/**
- * Response data payload for upload_image
- */
-export type UploadImageResponseData = UploadImage_Response;
 /**
  * Response payload for upload_image
  *

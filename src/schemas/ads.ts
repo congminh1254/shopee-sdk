@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field SmartCreativeSetting
@@ -27,9 +29,9 @@ export enum ReferenceId {
  */
 export type CheckCreateGmsProductCampaignEligibilityRequest = Record<string, never>;
 /**
- * CheckCreateGmsProductCampaignEligibility_Response sub-interface for CheckCreateGmsProductCampaignEligibilityResponse
+ * CheckCreateGmsProductCampaignEligibilityResponseData sub-interface for CheckCreateGmsProductCampaignEligibilityResponse
  */
-export interface CheckCreateGmsProductCampaignEligibility_Response {
+export interface CheckCreateGmsProductCampaignEligibilityResponseData {
   /**
    * Indicates if the seller is eligible to create a GMS Campaign
    */
@@ -39,11 +41,6 @@ export interface CheckCreateGmsProductCampaignEligibility_Response {
    */
   reason?: string;
 }
-/**
- * Response data payload for check_create_gms_product_campaign_eligibility
- */
-export type CheckCreateGmsProductCampaignEligibilityResponseData =
-  CheckCreateGmsProductCampaignEligibility_Response;
 /**
  * Response payload for check_create_gms_product_campaign_eligibility
  *
@@ -79,18 +76,14 @@ export interface CreateGmsProductCampaignRequest {
   roas_target?: number;
 }
 /**
- * CreateGmsProductCampaign_Response sub-interface for CreateGmsProductCampaignResponse
+ * CreateGmsProductCampaignResponseData sub-interface for CreateGmsProductCampaignResponse
  */
-export interface CreateGmsProductCampaign_Response {
+export interface CreateGmsProductCampaignResponseData {
   /**
    * GMS Campaign ID.
    */
   campaign_id?: number;
 }
-/**
- * Response data payload for create_gms_product_campaign
- */
-export type CreateGmsProductCampaignResponseData = CreateGmsProductCampaign_Response;
 /**
  * Response payload for create_gms_product_campaign
  *
@@ -98,9 +91,9 @@ export type CreateGmsProductCampaignResponseData = CreateGmsProductCampaign_Resp
  */
 export type CreateGmsProductCampaignResponse = FetchResponse<CreateGmsProductCampaignResponseData>;
 /**
- * CreateManualProductAds_SelectedKeyword sub-interface for CreateManualProductAdsRequest
+ * CreateManualProductAdsSelectedKeyword sub-interface for CreateManualProductAdsRequest
  */
-export interface CreateManualProductAds_SelectedKeyword {
+export interface CreateManualProductAdsSelectedKeyword {
   /**
    * bid keyword for each campaign
    */
@@ -115,9 +108,9 @@ export interface CreateManualProductAds_SelectedKeyword {
   bid_price_per_click: number;
 }
 /**
- * CreateManualProductAds_DiscoveryAdsLocation sub-interface for CreateManualProductAdsRequest
+ * CreateManualProductAdsDiscoveryAdsLocation sub-interface for CreateManualProductAdsRequest
  */
-export interface CreateManualProductAds_DiscoveryAdsLocation {
+export interface CreateManualProductAdsDiscoveryAdsLocation {
   /**
    * daily_discover, you_may_also_like
    */
@@ -164,11 +157,11 @@ export interface CreateManualProductAdsRequest {
   /**
    * selected keywords, required for manual bidding mode
    */
-  selected_keywords?: CreateManualProductAds_SelectedKeyword[];
+  selected_keywords?: CreateManualProductAdsSelectedKeyword[];
   /**
    * the location settings for manual bidding method
    */
-  discovery_ads_locations?: CreateManualProductAds_DiscoveryAdsLocation[];
+  discovery_ads_locations?: CreateManualProductAdsDiscoveryAdsLocation[];
   /**
    * Enhanced CPC functionality toggle
    */
@@ -179,9 +172,9 @@ export interface CreateManualProductAdsRequest {
   smart_creative_setting?: SmartCreativeSetting | string | number;
 }
 /**
- * CreateManualProductAds_Response sub-interface for CreateManualProductAdsResponse
+ * CreateManualProductAdsResponseDataItem sub-interface for CreateManualProductAdsResponse
  */
-export interface CreateManualProductAds_Response {
+export interface CreateManualProductAdsResponseDataItem {
   /**
    * The unique identifier for a campaign
    */
@@ -190,7 +183,7 @@ export interface CreateManualProductAds_Response {
 /**
  * Response data payload for create_manual_product_ads
  */
-export type CreateManualProductAdsResponseData = CreateManualProductAds_Response[];
+export type CreateManualProductAdsResponseData = CreateManualProductAdsResponseDataItem[];
 /**
  * Response payload for create_manual_product_ads
  *
@@ -217,18 +210,14 @@ export interface EditGmsItemProductCampaignRequest {
   item_id_list: number[];
 }
 /**
- * EditGmsItemProductCampaign_Response sub-interface for EditGmsItemProductCampaignResponse
+ * EditGmsItemProductCampaignResponseData sub-interface for EditGmsItemProductCampaignResponse
  */
-export interface EditGmsItemProductCampaign_Response {
+export interface EditGmsItemProductCampaignResponseData {
   /**
    * GMS Campaign ID
    */
   campaign_id?: number;
 }
-/**
- * Response data payload for edit_gms_item_product_campaign
- */
-export type EditGmsItemProductCampaignResponseData = EditGmsItemProductCampaign_Response;
 /**
  * Response payload for edit_gms_item_product_campaign
  *
@@ -272,18 +261,14 @@ export interface EditGmsProductCampaignRequest {
   reference_id?: string;
 }
 /**
- * EditGmsProductCampaign_Response sub-interface for EditGmsProductCampaignResponse
+ * EditGmsProductCampaignResponseData sub-interface for EditGmsProductCampaignResponse
  */
-export interface EditGmsProductCampaign_Response {
+export interface EditGmsProductCampaignResponseData {
   /**
    * GMS Campaign ID
    */
   campaign_id?: number;
 }
-/**
- * Response data payload for edit_gms_product_campaign
- */
-export type EditGmsProductCampaignResponseData = EditGmsProductCampaign_Response;
 /**
  * Response payload for edit_gms_product_campaign
  *
@@ -291,9 +276,9 @@ export type EditGmsProductCampaignResponseData = EditGmsProductCampaign_Response
  */
 export type EditGmsProductCampaignResponse = FetchResponse<EditGmsProductCampaignResponseData>;
 /**
- * EditManualProductAdKeywords_SelectedKeyword sub-interface for EditManualProductAdKeywordsRequest
+ * EditManualProductAdKeywordsSelectedKeyword sub-interface for EditManualProductAdKeywordsRequest
  */
-export interface EditManualProductAdKeywords_SelectedKeyword {
+export interface EditManualProductAdKeywordsSelectedKeyword {
   /**
    * The update behaviours such as "add", "delete", "restore", "change_bid_price", "change_match_type"
    */
@@ -328,12 +313,12 @@ export interface EditManualProductAdKeywordsRequest {
   /**
    * selected keywords, required for manual bidding mode.
    */
-  selected_keywords: EditManualProductAdKeywords_SelectedKeyword[];
+  selected_keywords: EditManualProductAdKeywordsSelectedKeyword[];
 }
 /**
- * EditManualProductAdKeywords_FailedEdit sub-interface for EditManualProductAdKeywords_Response
+ * EditManualProductAdKeywordsFailedEdit sub-interface for EditManualProductAdKeywordsResponseDataItem
  */
-export interface EditManualProductAdKeywords_FailedEdit {
+export interface EditManualProductAdKeywordsFailedEdit {
   /**
    * keyword that failed to update
    */
@@ -348,9 +333,9 @@ export interface EditManualProductAdKeywords_FailedEdit {
   message?: string;
 }
 /**
- * EditManualProductAdKeywords_Response sub-interface for EditManualProductAdKeywordsResponse
+ * EditManualProductAdKeywordsResponseDataItem sub-interface for EditManualProductAdKeywordsResponse
  */
-export interface EditManualProductAdKeywords_Response {
+export interface EditManualProductAdKeywordsResponseDataItem {
   /**
    * The unique identifier for a campaign
    */
@@ -358,12 +343,12 @@ export interface EditManualProductAdKeywords_Response {
   /**
    * failed edits are mentioned here
    */
-  failed_edits?: EditManualProductAdKeywords_FailedEdit[];
+  failed_edits?: EditManualProductAdKeywordsFailedEdit[];
 }
 /**
  * Response data payload for edit_manual_product_ad_keywords
  */
-export type EditManualProductAdKeywordsResponseData = EditManualProductAdKeywords_Response[];
+export type EditManualProductAdKeywordsResponseData = EditManualProductAdKeywordsResponseDataItem[];
 /**
  * Response payload for edit_manual_product_ad_keywords
  *
@@ -372,9 +357,9 @@ export type EditManualProductAdKeywordsResponseData = EditManualProductAdKeyword
 export type EditManualProductAdKeywordsResponse =
   FetchResponse<EditManualProductAdKeywordsResponseData>;
 /**
- * EditManualProductAds_DiscoveryAdsLocation sub-interface for EditManualProductAdsRequest
+ * EditManualProductAdsDiscoveryAdsLocation sub-interface for EditManualProductAdsRequest
  */
-export interface EditManualProductAds_DiscoveryAdsLocation {
+export interface EditManualProductAdsDiscoveryAdsLocation {
   /**
    * daily_discover, you_may_also_like
    */
@@ -425,7 +410,7 @@ export interface EditManualProductAdsRequest {
   /**
    * the location settings for manual bidding method
    */
-  discovery_ads_locations?: EditManualProductAds_DiscoveryAdsLocation[];
+  discovery_ads_locations?: EditManualProductAdsDiscoveryAdsLocation[];
   /**
    * Enhanced CPC functionality toggle
    */
@@ -436,9 +421,9 @@ export interface EditManualProductAdsRequest {
   smart_creative_setting?: SmartCreativeSetting | string | number;
 }
 /**
- * EditManualProductAds_Response sub-interface for EditManualProductAdsResponse
+ * EditManualProductAdsResponseDataItem sub-interface for EditManualProductAdsResponse
  */
-export interface EditManualProductAds_Response {
+export interface EditManualProductAdsResponseDataItem {
   /**
    * The unique identifier for a campaign
    */
@@ -447,7 +432,7 @@ export interface EditManualProductAds_Response {
 /**
  * Response data payload for edit_manual_product_ads
  */
-export type EditManualProductAdsResponseData = EditManualProductAds_Response[];
+export type EditManualProductAdsResponseData = EditManualProductAdsResponseDataItem[];
 /**
  * Response payload for edit_manual_product_ads
  *
@@ -495,9 +480,9 @@ export interface GetAllCpcAdsDailyPerformanceRequest {
   end_date: string;
 }
 /**
- * GetAllCpcAdsDailyPerformance_Response sub-interface for GetAllCpcAdsDailyPerformanceResponse
+ * GetAllCpcAdsDailyPerformanceResponseDataItem sub-interface for GetAllCpcAdsDailyPerformanceResponse
  */
-export interface GetAllCpcAdsDailyPerformance_Response {
+export interface GetAllCpcAdsDailyPerformanceResponseDataItem {
   /**
    * This is the parameter to indicate which date the performance record belongs to.
    */
@@ -566,7 +551,8 @@ export interface GetAllCpcAdsDailyPerformance_Response {
 /**
  * Response data payload for get_all_cpc_ads_daily_performance
  */
-export type GetAllCpcAdsDailyPerformanceResponseData = GetAllCpcAdsDailyPerformance_Response[];
+export type GetAllCpcAdsDailyPerformanceResponseData =
+  GetAllCpcAdsDailyPerformanceResponseDataItem[];
 /**
  * Response payload for get_all_cpc_ads_daily_performance
  *
@@ -586,9 +572,9 @@ export interface GetAllCpcAdsHourlyPerformanceRequest {
   performance_date: string;
 }
 /**
- * GetAllCpcAdsHourlyPerformance_Response sub-interface for GetAllCpcAdsHourlyPerformanceResponse
+ * GetAllCpcAdsHourlyPerformanceResponseDataItem sub-interface for GetAllCpcAdsHourlyPerformanceResponse
  */
-export interface GetAllCpcAdsHourlyPerformance_Response {
+export interface GetAllCpcAdsHourlyPerformanceResponseDataItem {
   /**
    * This is the parameter to indicate each hour the performance record belongs to.
    */
@@ -661,7 +647,8 @@ export interface GetAllCpcAdsHourlyPerformance_Response {
 /**
  * Response data payload for get_all_cpc_ads_hourly_performance
  */
-export type GetAllCpcAdsHourlyPerformanceResponseData = GetAllCpcAdsHourlyPerformance_Response[];
+export type GetAllCpcAdsHourlyPerformanceResponseData =
+  GetAllCpcAdsHourlyPerformanceResponseDataItem[];
 /**
  * Response payload for get_all_cpc_ads_hourly_performance
  *
@@ -709,9 +696,9 @@ export interface GetCreateProductAdBudgetSuggestionRequest {
   item_id?: number;
 }
 /**
- * GetCreateProductAdBudgetSuggestion_Budget sub-interface for GetCreateProductAdBudgetSuggestion_Response
+ * GetCreateProductAdBudgetSuggestionBudget sub-interface for GetCreateProductAdBudgetSuggestionResponseData
  */
-export interface GetCreateProductAdBudgetSuggestion_Budget {
+export interface GetCreateProductAdBudgetSuggestionBudget {
   /**
    * Recommended Suggested Budget
    */
@@ -726,19 +713,14 @@ export interface GetCreateProductAdBudgetSuggestion_Budget {
   max_budget?: number;
 }
 /**
- * GetCreateProductAdBudgetSuggestion_Response sub-interface for GetCreateProductAdBudgetSuggestionResponse
+ * GetCreateProductAdBudgetSuggestionResponseData sub-interface for GetCreateProductAdBudgetSuggestionResponse
  */
-export interface GetCreateProductAdBudgetSuggestion_Response {
+export interface GetCreateProductAdBudgetSuggestionResponseData {
   /**
    * Budget data
    */
-  budget?: GetCreateProductAdBudgetSuggestion_Budget;
+  budget?: GetCreateProductAdBudgetSuggestionBudget;
 }
-/**
- * Response data payload for get_create_product_ad_budget_suggestion
- */
-export type GetCreateProductAdBudgetSuggestionResponseData =
-  GetCreateProductAdBudgetSuggestion_Response;
 /**
  * Response payload for get_create_product_ad_budget_suggestion
  *
@@ -766,9 +748,9 @@ export interface GetGmsCampaignPerformanceRequest {
   end_date: string;
 }
 /**
- * GetGmsCampaignPerformance_Report sub-interface for GetGmsCampaignPerformance_Response
+ * GetGmsCampaignPerformanceReport sub-interface for GetGmsCampaignPerformanceResponseData
  */
-export interface GetGmsCampaignPerformance_Report {
+export interface GetGmsCampaignPerformanceReport {
   /**
    * The direct advertising cost of sales, or direct ACOS, measures how much your ad costs relative to the revenue generated from sales of the advertised product. It is the amount spent on the ad divided by the amount of sales revenue for the advertised product that is attributed to the ad. Direct ACOS = expense ÷ direct GMV × 100%.
    */
@@ -835,19 +817,15 @@ export interface GetGmsCampaignPerformance_Report {
   impression?: number;
 }
 /**
- * GetGmsCampaignPerformance_Response sub-interface for GetGmsCampaignPerformanceResponse
+ * GetGmsCampaignPerformanceResponseData sub-interface for GetGmsCampaignPerformanceResponse
  */
-export interface GetGmsCampaignPerformance_Response {
+export interface GetGmsCampaignPerformanceResponseData {
   /**
    * GMS Campaign ID
    */
   campaign_id?: number;
-  report?: GetGmsCampaignPerformance_Report;
+  report?: GetGmsCampaignPerformanceReport;
 }
-/**
- * Response data payload for get_gms_campaign_performance
- */
-export type GetGmsCampaignPerformanceResponseData = GetGmsCampaignPerformance_Response;
 /**
  * Response payload for get_gms_campaign_performance
  *
@@ -885,9 +863,9 @@ export interface GetGmsItemPerformanceRequest {
   limit?: number;
 }
 /**
- * GetGmsItemPerformance_Report sub-interface for GetGmsItemPerformance_Result
+ * GetGmsItemPerformanceReport sub-interface for GetGmsItemPerformanceResult
  */
-export interface GetGmsItemPerformance_Report {
+export interface GetGmsItemPerformanceReport {
   /**
    * The direct advertising cost of sales, or direct ACOS, measures how much your ad costs relative to the revenue generated from sales of the advertised product. It is the amount spent on the ad divided by the amount of sales revenue for the advertised product that is attributed to the ad. Direct ACOS = expense ÷ direct GMV × 100%.
    */
@@ -954,24 +932,24 @@ export interface GetGmsItemPerformance_Report {
   impression?: number;
 }
 /**
- * GetGmsItemPerformance_Result sub-interface for GetGmsItemPerformance_Response
+ * GetGmsItemPerformanceResult sub-interface for GetGmsItemPerformanceResponseData
  */
-export interface GetGmsItemPerformance_Result {
+export interface GetGmsItemPerformanceResult {
   /**
    * Item ID. Results are sorted by this.
    */
   item_id?: number;
-  report?: GetGmsItemPerformance_Report;
+  report?: GetGmsItemPerformanceReport;
 }
 /**
- * GetGmsItemPerformance_Response sub-interface for GetGmsItemPerformanceResponse
+ * GetGmsItemPerformanceResponseData sub-interface for GetGmsItemPerformanceResponse
  */
-export interface GetGmsItemPerformance_Response {
+export interface GetGmsItemPerformanceResponseData {
   /**
    * GMS Campaign ID
    */
   campaign_id?: number;
-  result_list?: GetGmsItemPerformance_Result[];
+  result_list?: GetGmsItemPerformanceResult[];
   /**
    * Total number of Item ID reports.
    */
@@ -981,10 +959,6 @@ export interface GetGmsItemPerformance_Response {
    */
   has_next_page?: boolean;
 }
-/**
- * Response data payload for get_gms_item_performance
- */
-export type GetGmsItemPerformanceResponseData = GetGmsItemPerformance_Response;
 /**
  * Response payload for get_gms_item_performance
  *
@@ -1013,9 +987,9 @@ export interface GetProductCampaignDailyPerformanceRequest {
   campaign_id_list: string[];
 }
 /**
- * GetProductCampaignDailyPerformance_Metrics sub-interface for GetProductCampaignDailyPerformance_Campaign
+ * GetProductCampaignDailyPerformanceMetrics sub-interface for GetProductCampaignDailyPerformanceCampaign
  */
-export interface GetProductCampaignDailyPerformance_Metrics {
+export interface GetProductCampaignDailyPerformanceMetrics {
   /**
    * the given date for the performance
    */
@@ -1094,9 +1068,9 @@ export interface GetProductCampaignDailyPerformance_Metrics {
   cpdc?: number;
 }
 /**
- * GetProductCampaignDailyPerformance_Campaign sub-interface for GetProductCampaignDailyPerformance_Response
+ * GetProductCampaignDailyPerformanceCampaign sub-interface for GetProductCampaignDailyPerformanceResponseDataItem
  */
-export interface GetProductCampaignDailyPerformance_Campaign {
+export interface GetProductCampaignDailyPerformanceCampaign {
   /**
    * the unique id per campaign
    */
@@ -1116,12 +1090,12 @@ export interface GetProductCampaignDailyPerformance_Campaign {
   /**
    * the performance metric list
    */
-  metrics_list?: GetProductCampaignDailyPerformance_Metrics[];
+  metrics_list?: GetProductCampaignDailyPerformanceMetrics[];
 }
 /**
- * GetProductCampaignDailyPerformance_Response sub-interface for GetProductCampaignDailyPerformanceResponse
+ * GetProductCampaignDailyPerformanceResponseDataItem sub-interface for GetProductCampaignDailyPerformanceResponse
  */
-export interface GetProductCampaignDailyPerformance_Response {
+export interface GetProductCampaignDailyPerformanceResponseDataItem {
   /**
    * the unique id per shop
    */
@@ -1133,13 +1107,13 @@ export interface GetProductCampaignDailyPerformance_Response {
   /**
    * the list of campaign
    */
-  campaign_list?: GetProductCampaignDailyPerformance_Campaign[];
+  campaign_list?: GetProductCampaignDailyPerformanceCampaign[];
 }
 /**
  * Response data payload for get_product_campaign_daily_performance
  */
 export type GetProductCampaignDailyPerformanceResponseData =
-  GetProductCampaignDailyPerformance_Response[];
+  GetProductCampaignDailyPerformanceResponseDataItem[];
 /**
  * Response payload for get_product_campaign_daily_performance
  *
@@ -1163,9 +1137,9 @@ export interface GetProductCampaignHourlyPerformanceRequest {
   campaign_id_list: string[];
 }
 /**
- * GetProductCampaignHourlyPerformance_Metrics sub-interface for GetProductCampaignHourlyPerformance_Campaign
+ * GetProductCampaignHourlyPerformanceMetrics sub-interface for GetProductCampaignHourlyPerformanceCampaign
  */
-export interface GetProductCampaignHourlyPerformance_Metrics {
+export interface GetProductCampaignHourlyPerformanceMetrics {
   /**
    * This is the parameter to indicate each hour the performance record belongs to.
    */
@@ -1248,9 +1222,9 @@ export interface GetProductCampaignHourlyPerformance_Metrics {
   cpdc?: number;
 }
 /**
- * GetProductCampaignHourlyPerformance_Campaign sub-interface for GetProductCampaignHourlyPerformance_Response
+ * GetProductCampaignHourlyPerformanceCampaign sub-interface for GetProductCampaignHourlyPerformanceResponseDataItem
  */
-export interface GetProductCampaignHourlyPerformance_Campaign {
+export interface GetProductCampaignHourlyPerformanceCampaign {
   /**
    * The unique identifier for a campaign
    */
@@ -1270,12 +1244,12 @@ export interface GetProductCampaignHourlyPerformance_Campaign {
   /**
    * performance metric list
    */
-  metrics_list?: GetProductCampaignHourlyPerformance_Metrics[];
+  metrics_list?: GetProductCampaignHourlyPerformanceMetrics[];
 }
 /**
- * GetProductCampaignHourlyPerformance_Response sub-interface for GetProductCampaignHourlyPerformanceResponse
+ * GetProductCampaignHourlyPerformanceResponseDataItem sub-interface for GetProductCampaignHourlyPerformanceResponse
  */
-export interface GetProductCampaignHourlyPerformance_Response {
+export interface GetProductCampaignHourlyPerformanceResponseDataItem {
   /**
    * Shopee's unique identifier for a shop
    */
@@ -1287,13 +1261,13 @@ export interface GetProductCampaignHourlyPerformance_Response {
   /**
    * the list of campaign
    */
-  campaign_list?: GetProductCampaignHourlyPerformance_Campaign[];
+  campaign_list?: GetProductCampaignHourlyPerformanceCampaign[];
 }
 /**
  * Response data payload for get_product_campaign_hourly_performance
  */
 export type GetProductCampaignHourlyPerformanceResponseData =
-  GetProductCampaignHourlyPerformance_Response[];
+  GetProductCampaignHourlyPerformanceResponseDataItem[];
 /**
  * Response payload for get_product_campaign_hourly_performance
  *
@@ -1321,9 +1295,9 @@ export interface GetProductLevelCampaignIdListRequest {
   limit?: number;
 }
 /**
- * GetProductLevelCampaignIdList_Campaign sub-interface for GetProductLevelCampaignIdList_Response
+ * GetProductLevelCampaignIdListCampaign sub-interface for GetProductLevelCampaignIdListResponseData
  */
-export interface GetProductLevelCampaignIdList_Campaign {
+export interface GetProductLevelCampaignIdListCampaign {
   /**
    * auto/manual
    */
@@ -1334,9 +1308,9 @@ export interface GetProductLevelCampaignIdList_Campaign {
   campaign_id?: number;
 }
 /**
- * GetProductLevelCampaignIdList_Response sub-interface for GetProductLevelCampaignIdListResponse
+ * GetProductLevelCampaignIdListResponseData sub-interface for GetProductLevelCampaignIdListResponse
  */
-export interface GetProductLevelCampaignIdList_Response {
+export interface GetProductLevelCampaignIdListResponseData {
   /**
    * Shopee's unique identifier for a shop.
    */
@@ -1352,12 +1326,8 @@ export interface GetProductLevelCampaignIdList_Response {
   /**
    * the list of campaigns
    */
-  campaign_list?: GetProductLevelCampaignIdList_Campaign[];
+  campaign_list?: GetProductLevelCampaignIdListCampaign[];
 }
-/**
- * Response data payload for get_product_level_campaign_id_list
- */
-export type GetProductLevelCampaignIdListResponseData = GetProductLevelCampaignIdList_Response;
 /**
  * Response payload for get_product_level_campaign_id_list
  *
@@ -1381,9 +1351,9 @@ export interface GetProductLevelCampaignSettingInfoRequest {
   campaign_id_list: string[];
 }
 /**
- * GetProductLevelCampaignSettingInfo_CampaignDuration sub-interface for GetProductLevelCampaignSettingInfo_CommonInfo
+ * GetProductLevelCampaignSettingInfoCampaignDuration sub-interface for GetProductLevelCampaignSettingInfoCommonInfo
  */
-export interface GetProductLevelCampaignSettingInfo_CampaignDuration {
+export interface GetProductLevelCampaignSettingInfoCampaignDuration {
   /**
    * The start date for each campaign. please kindly note that if this campaign is no end date, please pass today's date as the start date
    */
@@ -1394,9 +1364,9 @@ export interface GetProductLevelCampaignSettingInfo_CampaignDuration {
   end_time?: number;
 }
 /**
- * GetProductLevelCampaignSettingInfo_CommonInfo sub-interface for GetProductLevelCampaignSettingInfo_Campaign
+ * GetProductLevelCampaignSettingInfoCommonInfo sub-interface for GetProductLevelCampaignSettingInfoCampaign
  */
-export interface GetProductLevelCampaignSettingInfo_CommonInfo {
+export interface GetProductLevelCampaignSettingInfoCommonInfo {
   /**
    * auto, manual
    */
@@ -1424,16 +1394,16 @@ export interface GetProductLevelCampaignSettingInfo_CommonInfo {
   /**
    * the duration per campaign
    */
-  campaign_duration?: GetProductLevelCampaignSettingInfo_CampaignDuration;
+  campaign_duration?: GetProductLevelCampaignSettingInfoCampaignDuration;
   /**
    * List of unique identifiers for all products under this campaign. If the campaign is using auto product selection it can have between zero and many products. If the campaign is using manual product selection, it has exactly one.
    */
   item_id_list?: number[];
 }
 /**
- * GetProductLevelCampaignSettingInfo_SelectedKeyword sub-interface for GetProductLevelCampaignSettingInfo_ManualBiddingInfo
+ * GetProductLevelCampaignSettingInfoSelectedKeyword sub-interface for GetProductLevelCampaignSettingInfoManualBiddingInfo
  */
-export interface GetProductLevelCampaignSettingInfo_SelectedKeyword {
+export interface GetProductLevelCampaignSettingInfoSelectedKeyword {
   /**
    * bid keywords for each campaign with search placement
    */
@@ -1452,9 +1422,9 @@ export interface GetProductLevelCampaignSettingInfo_SelectedKeyword {
   bid_price_per_click?: number;
 }
 /**
- * GetProductLevelCampaignSettingInfo_DiscoveryAdsLocation sub-interface for GetProductLevelCampaignSettingInfo_ManualBiddingInfo
+ * GetProductLevelCampaignSettingInfoDiscoveryAdsLocation sub-interface for GetProductLevelCampaignSettingInfoManualBiddingInfo
  */
-export interface GetProductLevelCampaignSettingInfo_DiscoveryAdsLocation {
+export interface GetProductLevelCampaignSettingInfoDiscoveryAdsLocation {
   /**
    * daily_discover, you_may_also_like
    */
@@ -1469,9 +1439,9 @@ export interface GetProductLevelCampaignSettingInfo_DiscoveryAdsLocation {
   bid_price?: number;
 }
 /**
- * GetProductLevelCampaignSettingInfo_ManualBiddingInfo sub-interface for GetProductLevelCampaignSettingInfo_Campaign
+ * GetProductLevelCampaignSettingInfoManualBiddingInfo sub-interface for GetProductLevelCampaignSettingInfoCampaign
  */
-export interface GetProductLevelCampaignSettingInfo_ManualBiddingInfo {
+export interface GetProductLevelCampaignSettingInfoManualBiddingInfo {
   /**
    * Enhanced CPC functionality
    */
@@ -1479,25 +1449,25 @@ export interface GetProductLevelCampaignSettingInfo_ManualBiddingInfo {
   /**
    * selected keywords
    */
-  selected_keywords?: GetProductLevelCampaignSettingInfo_SelectedKeyword[];
+  selected_keywords?: GetProductLevelCampaignSettingInfoSelectedKeyword[];
   /**
    * the location settings
    */
-  discovery_ads_locations?: GetProductLevelCampaignSettingInfo_DiscoveryAdsLocation[];
+  discovery_ads_locations?: GetProductLevelCampaignSettingInfoDiscoveryAdsLocation[];
 }
 /**
- * GetProductLevelCampaignSettingInfo_AutoBiddingInfo sub-interface for GetProductLevelCampaignSettingInfo_Campaign
+ * GetProductLevelCampaignSettingInfoAutoBiddingInfo sub-interface for GetProductLevelCampaignSettingInfoCampaign
  */
-export interface GetProductLevelCampaignSettingInfo_AutoBiddingInfo {
+export interface GetProductLevelCampaignSettingInfoAutoBiddingInfo {
   /**
    * the ROAS target for each campaign with auto bidding
    */
   roas_target?: number;
 }
 /**
- * GetProductLevelCampaignSettingInfo_AutoProductAdsInfo sub-interface for GetProductLevelCampaignSettingInfo_Campaign
+ * GetProductLevelCampaignSettingInfoAutoProductAdsInfo sub-interface for GetProductLevelCampaignSettingInfoCampaign
  */
-export interface GetProductLevelCampaignSettingInfo_AutoProductAdsInfo {
+export interface GetProductLevelCampaignSettingInfoAutoProductAdsInfo {
   /**
    * the name of product
    */
@@ -1512,9 +1482,9 @@ export interface GetProductLevelCampaignSettingInfo_AutoProductAdsInfo {
   item_id?: number;
 }
 /**
- * GetProductLevelCampaignSettingInfo_Campaign sub-interface for GetProductLevelCampaignSettingInfo_Response
+ * GetProductLevelCampaignSettingInfoCampaign sub-interface for GetProductLevelCampaignSettingInfoResponseData
  */
-export interface GetProductLevelCampaignSettingInfo_Campaign {
+export interface GetProductLevelCampaignSettingInfoCampaign {
   /**
    * The unique ID per campaign
    */
@@ -1522,24 +1492,24 @@ export interface GetProductLevelCampaignSettingInfo_Campaign {
   /**
    * common_info body
    */
-  common_info?: GetProductLevelCampaignSettingInfo_CommonInfo;
+  common_info?: GetProductLevelCampaignSettingInfoCommonInfo;
   /**
    * manual bidding info
    */
-  manual_bidding_info?: GetProductLevelCampaignSettingInfo_ManualBiddingInfo;
+  manual_bidding_info?: GetProductLevelCampaignSettingInfoManualBiddingInfo;
   /**
    * bidding info
    */
-  auto_bidding_info?: GetProductLevelCampaignSettingInfo_AutoBiddingInfo;
+  auto_bidding_info?: GetProductLevelCampaignSettingInfoAutoBiddingInfo;
   /**
    * selected products info
    */
-  auto_product_ads_info?: GetProductLevelCampaignSettingInfo_AutoProductAdsInfo[];
+  auto_product_ads_info?: GetProductLevelCampaignSettingInfoAutoProductAdsInfo[];
 }
 /**
- * GetProductLevelCampaignSettingInfo_Response sub-interface for GetProductLevelCampaignSettingInfoResponse
+ * GetProductLevelCampaignSettingInfoResponseData sub-interface for GetProductLevelCampaignSettingInfoResponse
  */
-export interface GetProductLevelCampaignSettingInfo_Response {
+export interface GetProductLevelCampaignSettingInfoResponseData {
   /**
    * Shopee's unique identifier for a shop.
    */
@@ -1551,13 +1521,8 @@ export interface GetProductLevelCampaignSettingInfo_Response {
   /**
    * -
    */
-  campaign_list?: GetProductLevelCampaignSettingInfo_Campaign[];
+  campaign_list?: GetProductLevelCampaignSettingInfoCampaign[];
 }
-/**
- * Response data payload for get_product_level_campaign_setting_info
- */
-export type GetProductLevelCampaignSettingInfoResponseData =
-  GetProductLevelCampaignSettingInfo_Response;
 /**
  * Response payload for get_product_level_campaign_setting_info
  *
@@ -1581,9 +1546,9 @@ export interface GetProductRecommendedRoiTargetRequest {
   item_id: number;
 }
 /**
- * GetProductRecommendedRoiTarget_LowerBound sub-interface for GetProductRecommendedRoiTarget_Response
+ * GetProductRecommendedRoiTargetLowerBound sub-interface for GetProductRecommendedRoiTargetResponseData
  */
-export interface GetProductRecommendedRoiTarget_LowerBound {
+export interface GetProductRecommendedRoiTargetLowerBound {
   /**
    * The ROI target value.
    */
@@ -1594,9 +1559,9 @@ export interface GetProductRecommendedRoiTarget_LowerBound {
   percentile?: number;
 }
 /**
- * GetProductRecommendedRoiTarget_Exact sub-interface for GetProductRecommendedRoiTarget_Response
+ * GetProductRecommendedRoiTargetExact sub-interface for GetProductRecommendedRoiTargetResponseData
  */
-export interface GetProductRecommendedRoiTarget_Exact {
+export interface GetProductRecommendedRoiTargetExact {
   /**
    * The ROI target value.
    */
@@ -1607,9 +1572,9 @@ export interface GetProductRecommendedRoiTarget_Exact {
   percentile?: number;
 }
 /**
- * GetProductRecommendedRoiTarget_UpperBound sub-interface for GetProductRecommendedRoiTarget_Response
+ * GetProductRecommendedRoiTargetUpperBound sub-interface for GetProductRecommendedRoiTargetResponseData
  */
-export interface GetProductRecommendedRoiTarget_UpperBound {
+export interface GetProductRecommendedRoiTargetUpperBound {
   /**
    * The ROI target value.
    */
@@ -1620,27 +1585,23 @@ export interface GetProductRecommendedRoiTarget_UpperBound {
   percentile?: number;
 }
 /**
- * GetProductRecommendedRoiTarget_Response sub-interface for GetProductRecommendedRoiTargetResponse
+ * GetProductRecommendedRoiTargetResponseData sub-interface for GetProductRecommendedRoiTargetResponse
  */
-export interface GetProductRecommendedRoiTarget_Response {
+export interface GetProductRecommendedRoiTargetResponseData {
   /**
    * Lower bound recommendation.
    * e.g., value=3.5 and percentile=80 mean that setting an ROI target of 3.5 makes the ads more competitive than 80% of similar ads.
    */
-  lower_bound?: GetProductRecommendedRoiTarget_LowerBound;
+  lower_bound?: GetProductRecommendedRoiTargetLowerBound;
   /**
    * Mid-level recommendation e.g., value=5.9 and percentile=50 mean that setting an ROI target of 5.9 makes the ads more competitive than 50% of similar ads.
    */
-  exact?: GetProductRecommendedRoiTarget_Exact;
+  exact?: GetProductRecommendedRoiTargetExact;
   /**
    * Higher bound recommendation.e.g., value=10.8 and percentile=20 mean that setting an ROI target of 10.8 makes the ads more competitive than 20% of similar ads.
    */
-  upper_bound?: GetProductRecommendedRoiTarget_UpperBound;
+  upper_bound?: GetProductRecommendedRoiTargetUpperBound;
 }
-/**
- * Response data payload for get_product_recommended_roi_target
- */
-export type GetProductRecommendedRoiTargetResponseData = GetProductRecommendedRoiTarget_Response;
 /**
  * Response payload for get_product_recommended_roi_target
  *
@@ -1655,9 +1616,9 @@ export type GetProductRecommendedRoiTargetResponse =
  */
 export type GetRecommendedItemListRequest = Record<string, never>;
 /**
- * GetRecommendedItemList_Response sub-interface for GetRecommendedItemListResponse
+ * GetRecommendedItemListResponseDataItem sub-interface for GetRecommendedItemListResponse
  */
-export interface GetRecommendedItemList_Response {
+export interface GetRecommendedItemListResponseDataItem {
   /**
    * Recommended SKU's item id
    */
@@ -1678,7 +1639,7 @@ export interface GetRecommendedItemList_Response {
 /**
  * Response data payload for get_recommended_item_list
  */
-export type GetRecommendedItemListResponseData = GetRecommendedItemList_Response[];
+export type GetRecommendedItemListResponseData = GetRecommendedItemListResponseDataItem[];
 /**
  * Response payload for get_recommended_item_list
  *
@@ -1701,9 +1662,9 @@ export interface GetRecommendedKeywordListRequest {
   input_keyword?: string;
 }
 /**
- * GetRecommendedKeywordList_SuggestedKeyword sub-interface for GetRecommendedKeywordList_Response
+ * GetRecommendedKeywordListSuggestedKeyword sub-interface for GetRecommendedKeywordListResponseData
  */
-export interface GetRecommendedKeywordList_SuggestedKeyword {
+export interface GetRecommendedKeywordListSuggestedKeyword {
   /**
    * Keyword value(Only return the highly recommended keywords, will be sightly different from Seller Center)
    */
@@ -1722,9 +1683,9 @@ export interface GetRecommendedKeywordList_SuggestedKeyword {
   suggested_bid?: number;
 }
 /**
- * GetRecommendedKeywordList_Response sub-interface for GetRecommendedKeywordListResponse
+ * GetRecommendedKeywordListResponseData sub-interface for GetRecommendedKeywordListResponse
  */
-export interface GetRecommendedKeywordList_Response {
+export interface GetRecommendedKeywordListResponseData {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -1736,12 +1697,8 @@ export interface GetRecommendedKeywordList_Response {
   /**
    * Suggested keywords recommended from product.
    */
-  suggested_keywords?: GetRecommendedKeywordList_SuggestedKeyword[];
+  suggested_keywords?: GetRecommendedKeywordListSuggestedKeyword[];
 }
-/**
- * Response data payload for get_recommended_keyword_list
- */
-export type GetRecommendedKeywordListResponseData = GetRecommendedKeywordList_Response;
 /**
  * Response payload for get_recommended_keyword_list
  *
@@ -1756,9 +1713,9 @@ export type GetRecommendedKeywordListResponse =
  */
 export type GetShopToggleInfoRequest = Record<string, never>;
 /**
- * GetShopToggleInfo_Response sub-interface for GetShopToggleInfoResponse
+ * GetShopToggleInfoResponseData sub-interface for GetShopToggleInfoResponse
  */
-export interface GetShopToggleInfo_Response {
+export interface GetShopToggleInfoResponseData {
   /**
    * Timestamp of data in response
    */
@@ -1773,10 +1730,6 @@ export interface GetShopToggleInfo_Response {
   campaign_surge?: boolean;
 }
 /**
- * Response data payload for get_shop_toggle_info
- */
-export type GetShopToggleInfoResponseData = GetShopToggleInfo_Response;
-/**
  * Response payload for get_shop_toggle_info
  *
  * Use this API to get Shop level info - i.e. seller's toggle status is on/off
@@ -1789,9 +1742,9 @@ export type GetShopToggleInfoResponse = FetchResponse<GetShopToggleInfoResponseD
  */
 export type GetTotalBalanceRequest = Record<string, never>;
 /**
- * GetTotalBalance_Response sub-interface for GetTotalBalanceResponse
+ * GetTotalBalanceResponseData sub-interface for GetTotalBalanceResponse
  */
-export interface GetTotalBalance_Response {
+export interface GetTotalBalanceResponseData {
   /**
    * This is param to indicate the time of the snapshot of total balance
    */
@@ -1801,10 +1754,6 @@ export interface GetTotalBalance_Response {
    */
   total_balance?: number;
 }
-/**
- * Response data payload for get_total_balance
- */
-export type GetTotalBalanceResponseData = GetTotalBalance_Response;
 /**
  * Response payload for get_total_balance
  *
@@ -1827,9 +1776,9 @@ export interface ListGmsUserDeletedItemRequest {
   limit?: number;
 }
 /**
- * ListGmsUserDeletedItem_Response sub-interface for ListGmsUserDeletedItemResponse
+ * ListGmsUserDeletedItemResponseData sub-interface for ListGmsUserDeletedItemResponse
  */
-export interface ListGmsUserDeletedItem_Response {
+export interface ListGmsUserDeletedItemResponseData {
   /**
    * GMS Campaign ID
    */
@@ -1847,10 +1796,6 @@ export interface ListGmsUserDeletedItem_Response {
    */
   has_next_page?: boolean;
 }
-/**
- * Response data payload for list_gms_user_deleted_item
- */
-export type ListGmsUserDeletedItemResponseData = ListGmsUserDeletedItem_Response;
 /**
  * Response payload for list_gms_user_deleted_item
  *

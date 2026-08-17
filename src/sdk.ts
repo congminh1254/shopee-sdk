@@ -3,7 +3,7 @@ import { OrderManager } from "./managers/order.manager.js";
 import { AuthManager } from "./managers/auth.manager.js";
 import { ShopeeRegion, SHOPEE_BASE_URLS, SHOPEE_AUTH_URLS } from "./schemas/region.js";
 import { TokenStorage } from "./storage/token-storage.interface.js";
-import { CustomTokenStorage } from "./storage/custom-token-storage.js";
+import { InMemoryTokenStorage } from "./storage/in-memory-token-storage.js";
 import { AccessToken } from "./schemas/access-token.js";
 import { ShopeeSdkError } from "./errors.js";
 import { PublicManager } from "./managers/public.manager.js";
@@ -93,7 +93,7 @@ export class ShopeeSDK {
     };
 
     // Initialize token storage
-    this.tokenStorage = tokenStorage || new CustomTokenStorage(config.shop_id);
+    this.tokenStorage = tokenStorage || new InMemoryTokenStorage();
 
     // Initialize managers
     this.ads = new AdsManager(this.config);

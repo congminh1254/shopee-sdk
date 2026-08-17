@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Request parameters for add_add_on_deal
@@ -35,18 +37,14 @@ export interface AddAddOnDealRequest {
   promotion_purchase_limit?: number;
 }
 /**
- * AddAddOnDeal_Response sub-interface for AddAddOnDealResponse
+ * AddAddOnDealResponseData sub-interface for AddAddOnDealResponse
  */
-export interface AddAddOnDeal_Response {
+export interface AddAddOnDealResponseData {
   /**
    * Shopee's unique identifier for an add on deal activity.
    */
   add_on_deal_id?: number;
 }
-/**
- * Response data payload for add_add_on_deal
- */
-export type AddAddOnDealResponseData = AddAddOnDeal_Response;
 /**
  * Response payload for add_add_on_deal
  *
@@ -54,9 +52,9 @@ export type AddAddOnDealResponseData = AddAddOnDeal_Response;
  */
 export type AddAddOnDealResponse = FetchResponse<AddAddOnDealResponseData>;
 /**
- * AddAddOnDealMainItem_MainItem sub-interface for AddAddOnDealMainItemRequest
+ * AddAddOnDealMainItemMainItem sub-interface for AddAddOnDealMainItemRequest
  */
-export interface AddAddOnDealMainItem_MainItem {
+export interface AddAddOnDealMainItemMainItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -79,12 +77,12 @@ export interface AddAddOnDealMainItemRequest {
   /**
    * The main items added in this add on deal promotion.
    */
-  main_item_list: AddAddOnDealMainItem_MainItem[];
+  main_item_list: AddAddOnDealMainItemMainItem[];
 }
 /**
- * AddAddOnDealMainItem_AddAddOnDealMainItem_MainItem sub-interface for AddAddOnDealMainItem_Response
+ * AddAddOnDealMainItem_AddAddOnDealMainItemMainItem sub-interface for AddAddOnDealMainItemResponseData
  */
-export interface AddAddOnDealMainItem_AddAddOnDealMainItem_MainItem {
+export interface AddAddOnDealMainItem_AddAddOnDealMainItemMainItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -95,22 +93,18 @@ export interface AddAddOnDealMainItem_AddAddOnDealMainItem_MainItem {
   status?: number;
 }
 /**
- * AddAddOnDealMainItem_Response sub-interface for AddAddOnDealMainItemResponse
+ * AddAddOnDealMainItemResponseData sub-interface for AddAddOnDealMainItemResponse
  */
-export interface AddAddOnDealMainItem_Response {
+export interface AddAddOnDealMainItemResponseData {
   /**
    * The main items added in this add on deal promotion.
    */
-  main_item_list?: AddAddOnDealMainItem_AddAddOnDealMainItem_MainItem[];
+  main_item_list?: AddAddOnDealMainItem_AddAddOnDealMainItemMainItem[];
   /**
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
 }
-/**
- * Response data payload for add_add_on_deal_main_item
- */
-export type AddAddOnDealMainItemResponseData = AddAddOnDealMainItem_Response;
 /**
  * Response payload for add_add_on_deal_main_item
  *
@@ -118,9 +112,9 @@ export type AddAddOnDealMainItemResponseData = AddAddOnDealMainItem_Response;
  */
 export type AddAddOnDealMainItemResponse = FetchResponse<AddAddOnDealMainItemResponseData>;
 /**
- * AddAddOnDealSubItem_SubItem sub-interface for AddAddOnDealSubItemRequest
+ * AddAddOnDealSubItemSubItem sub-interface for AddAddOnDealSubItemRequest
  */
-export interface AddAddOnDealSubItem_SubItem {
+export interface AddAddOnDealSubItemSubItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -155,12 +149,12 @@ export interface AddAddOnDealSubItemRequest {
   /**
    * The sub items added in this add on deal promotion.
    */
-  sub_item_list: AddAddOnDealSubItem_SubItem[];
+  sub_item_list: AddAddOnDealSubItemSubItem[];
 }
 /**
- * AddAddOnDealSubItem_AddAddOnDealSubItem_SubItem sub-interface for AddAddOnDealSubItem_Response
+ * AddAddOnDealSubItem_AddAddOnDealSubItemSubItem sub-interface for AddAddOnDealSubItemResponseData
  */
-export interface AddAddOnDealSubItem_AddAddOnDealSubItem_SubItem {
+export interface AddAddOnDealSubItem_AddAddOnDealSubItemSubItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -177,22 +171,18 @@ export interface AddAddOnDealSubItem_AddAddOnDealSubItem_SubItem {
   fail_message?: string;
 }
 /**
- * AddAddOnDealSubItem_Response sub-interface for AddAddOnDealSubItemResponse
+ * AddAddOnDealSubItemResponseData sub-interface for AddAddOnDealSubItemResponse
  */
-export interface AddAddOnDealSubItem_Response {
+export interface AddAddOnDealSubItemResponseData {
   /**
    * The sub items added in this add on deal promotion.
    */
-  sub_item_list?: AddAddOnDealSubItem_AddAddOnDealSubItem_SubItem[];
+  sub_item_list?: AddAddOnDealSubItem_AddAddOnDealSubItemSubItem[];
   /**
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
 }
-/**
- * Response data payload for add_add_on_deal_sub_item
- */
-export type AddAddOnDealSubItemResponseData = AddAddOnDealSubItem_Response;
 /**
  * Response payload for add_add_on_deal_sub_item
  *
@@ -211,18 +201,14 @@ export interface DeleteAddOnDealRequest {
   add_on_deal_id: number;
 }
 /**
- * DeleteAddOnDeal_Response sub-interface for DeleteAddOnDealResponse
+ * DeleteAddOnDealResponseData sub-interface for DeleteAddOnDealResponse
  */
-export interface DeleteAddOnDeal_Response {
+export interface DeleteAddOnDealResponseData {
   /**
    * Shopee's unique identifier for an add on deal activity.
    */
   add_on_deal_id?: number;
 }
-/**
- * Response data payload for delete_add_on_deal
- */
-export type DeleteAddOnDealResponseData = DeleteAddOnDeal_Response;
 /**
  * Response payload for delete_add_on_deal
  *
@@ -245,9 +231,9 @@ export interface DeleteAddOnDealMainItemRequest {
   main_item_list: number[];
 }
 /**
- * DeleteAddOnDealMainItem_Response sub-interface for DeleteAddOnDealMainItemResponse
+ * DeleteAddOnDealMainItemResponseData sub-interface for DeleteAddOnDealMainItemResponse
  */
-export interface DeleteAddOnDealMainItem_Response {
+export interface DeleteAddOnDealMainItemResponseData {
   /**
    * The main items added in this add on deal promotion.
    */
@@ -258,19 +244,15 @@ export interface DeleteAddOnDealMainItem_Response {
   add_on_deal_id?: number;
 }
 /**
- * Response data payload for delete_add_on_deal_main_item
- */
-export type DeleteAddOnDealMainItemResponseData = DeleteAddOnDealMainItem_Response;
-/**
  * Response payload for delete_add_on_deal_main_item
  *
  * Delete Add-on Deal Main Item
  */
 export type DeleteAddOnDealMainItemResponse = FetchResponse<DeleteAddOnDealMainItemResponseData>;
 /**
- * DeleteAddOnDealSubItem_SubItem sub-interface for DeleteAddOnDealSubItemRequest
+ * DeleteAddOnDealSubItemSubItem sub-interface for DeleteAddOnDealSubItemRequest
  */
-export interface DeleteAddOnDealSubItem_SubItem {
+export interface DeleteAddOnDealSubItemSubItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -293,12 +275,12 @@ export interface DeleteAddOnDealSubItemRequest {
   /**
    * The sub items added in this add on deal promotion.
    */
-  sub_item_list: DeleteAddOnDealSubItem_SubItem[];
+  sub_item_list: DeleteAddOnDealSubItemSubItem[];
 }
 /**
- * DeleteAddOnDealSubItem_DeleteAddOnDealSubItem_SubItem sub-interface for DeleteAddOnDealSubItem_Response
+ * DeleteAddOnDealSubItem_DeleteAddOnDealSubItemSubItem sub-interface for DeleteAddOnDealSubItemResponseData
  */
-export interface DeleteAddOnDealSubItem_DeleteAddOnDealSubItem_SubItem {
+export interface DeleteAddOnDealSubItem_DeleteAddOnDealSubItemSubItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -311,22 +293,18 @@ export interface DeleteAddOnDealSubItem_DeleteAddOnDealSubItem_SubItem {
   fail_message?: string;
 }
 /**
- * DeleteAddOnDealSubItem_Response sub-interface for DeleteAddOnDealSubItemResponse
+ * DeleteAddOnDealSubItemResponseData sub-interface for DeleteAddOnDealSubItemResponse
  */
-export interface DeleteAddOnDealSubItem_Response {
+export interface DeleteAddOnDealSubItemResponseData {
   /**
    * The sub items added in this add on deal promotion.
    */
-  sub_item_list?: DeleteAddOnDealSubItem_DeleteAddOnDealSubItem_SubItem[];
+  sub_item_list?: DeleteAddOnDealSubItem_DeleteAddOnDealSubItemSubItem[];
   /**
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
 }
-/**
- * Response data payload for delete_add_on_deal_sub_item
- */
-export type DeleteAddOnDealSubItemResponseData = DeleteAddOnDealSubItem_Response;
 /**
  * Response payload for delete_add_on_deal_sub_item
  *
@@ -345,18 +323,14 @@ export interface EndAddOnDealRequest {
   add_on_deal_id: number;
 }
 /**
- * EndAddOnDeal_Response sub-interface for EndAddOnDealResponse
+ * EndAddOnDealResponseData sub-interface for EndAddOnDealResponse
  */
-export interface EndAddOnDeal_Response {
+export interface EndAddOnDealResponseData {
   /**
    * The identifier of the API request for error tracking
    */
   add_on_deal_id?: number;
 }
-/**
- * Response data payload for end_add_on_deal
- */
-export type EndAddOnDealResponseData = EndAddOnDeal_Response;
 /**
  * Response payload for end_add_on_deal
  *
@@ -375,9 +349,9 @@ export interface GetAddOnDealRequest {
   add_on_deal_id: number;
 }
 /**
- * GetAddOnDeal_Response sub-interface for GetAddOnDealResponse
+ * GetAddOnDealResponseData sub-interface for GetAddOnDealResponse
  */
-export interface GetAddOnDeal_Response {
+export interface GetAddOnDealResponseData {
   /**
    * The time when add on deal activity start.
    */
@@ -417,10 +391,6 @@ export interface GetAddOnDeal_Response {
   source?: number;
 }
 /**
- * Response data payload for get_add_on_deal
- */
-export type GetAddOnDealResponseData = GetAddOnDeal_Response;
-/**
  * Response payload for get_add_on_deal
  *
  * Get Add-on Deal
@@ -446,9 +416,9 @@ export interface GetAddOnDealListRequest {
   page_size?: number;
 }
 /**
- * GetAddOnDealList_AddOnDeal sub-interface for GetAddOnDealList_Response
+ * GetAddOnDealListAddOnDeal sub-interface for GetAddOnDealListResponseData
  */
-export interface GetAddOnDealList_AddOnDeal {
+export interface GetAddOnDealListAddOnDeal {
   /**
    * The time when add on deal activity start.
    */
@@ -491,22 +461,18 @@ export interface GetAddOnDealList_AddOnDeal {
   sub_item_prioriry?: number[];
 }
 /**
- * GetAddOnDealList_Response sub-interface for GetAddOnDealListResponse
+ * GetAddOnDealListResponseData sub-interface for GetAddOnDealListResponse
  */
-export interface GetAddOnDealList_Response {
+export interface GetAddOnDealListResponseData {
   /**
    * The list of add on deal id
    */
-  add_on_deal_list?: GetAddOnDealList_AddOnDeal[];
+  add_on_deal_list?: GetAddOnDealListAddOnDeal[];
   /**
    * This is to indicate whether the promotion list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of promotions.
    */
   more?: boolean;
 }
-/**
- * Response data payload for get_add_on_deal_list
- */
-export type GetAddOnDealListResponseData = GetAddOnDealList_Response;
 /**
  * Response payload for get_add_on_deal_list
  *
@@ -525,9 +491,9 @@ export interface GetAddOnDealMainItemRequest {
   add_on_deal_id: number;
 }
 /**
- * GetAddOnDealMainItem_MainItem sub-interface for GetAddOnDealMainItem_Response
+ * GetAddOnDealMainItemMainItem sub-interface for GetAddOnDealMainItemResponseData
  */
-export interface GetAddOnDealMainItem_MainItem {
+export interface GetAddOnDealMainItemMainItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -538,22 +504,18 @@ export interface GetAddOnDealMainItem_MainItem {
   status?: number;
 }
 /**
- * GetAddOnDealMainItem_Response sub-interface for GetAddOnDealMainItemResponse
+ * GetAddOnDealMainItemResponseData sub-interface for GetAddOnDealMainItemResponse
  */
-export interface GetAddOnDealMainItem_Response {
+export interface GetAddOnDealMainItemResponseData {
   /**
    * The main items added in this add on deal promotion.
    */
-  main_item_list?: GetAddOnDealMainItem_MainItem[];
+  main_item_list?: GetAddOnDealMainItemMainItem[];
   /**
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
 }
-/**
- * Response data payload for get_add_on_deal_main_item
- */
-export type GetAddOnDealMainItemResponseData = GetAddOnDealMainItem_Response;
 /**
  * Response payload for get_add_on_deal_main_item
  *
@@ -572,9 +534,9 @@ export interface GetAddOnDealSubItemRequest {
   add_on_deal_id: number;
 }
 /**
- * GetAddOnDealSubItem_Price sub-interface for GetAddOnDealSubItem_SubItem
+ * GetAddOnDealSubItemPrice sub-interface for GetAddOnDealSubItemSubItem
  */
-export interface GetAddOnDealSubItem_Price {
+export interface GetAddOnDealSubItemPrice {
   /**
    * Add-on discount price before tax
    */
@@ -585,9 +547,9 @@ export interface GetAddOnDealSubItem_Price {
   promo_price?: number;
 }
 /**
- * GetAddOnDealSubItem_SubItem sub-interface for GetAddOnDealSubItem_Response
+ * GetAddOnDealSubItemSubItem sub-interface for GetAddOnDealSubItemResponseData
  */
-export interface GetAddOnDealSubItem_SubItem {
+export interface GetAddOnDealSubItemSubItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -604,25 +566,21 @@ export interface GetAddOnDealSubItem_SubItem {
    * Shopee's unique identifier for a model.
    */
   model_id?: number;
-  price?: GetAddOnDealSubItem_Price;
+  price?: GetAddOnDealSubItemPrice;
 }
 /**
- * GetAddOnDealSubItem_Response sub-interface for GetAddOnDealSubItemResponse
+ * GetAddOnDealSubItemResponseData sub-interface for GetAddOnDealSubItemResponse
  */
-export interface GetAddOnDealSubItem_Response {
+export interface GetAddOnDealSubItemResponseData {
   /**
    * The sub items added in this add on deal promotion.
    */
-  sub_item_list?: GetAddOnDealSubItem_SubItem[];
+  sub_item_list?: GetAddOnDealSubItemSubItem[];
   /**
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
 }
-/**
- * Response data payload for get_add_on_deal_sub_item
- */
-export type GetAddOnDealSubItemResponseData = GetAddOnDealSubItem_Response;
 /**
  * Response payload for get_add_on_deal_sub_item
  *
@@ -669,9 +627,9 @@ export interface UpdateAddOnDealRequest {
   add_on_deal_name?: string;
 }
 /**
- * UpdateAddOnDeal_Response sub-interface for UpdateAddOnDealResponse
+ * UpdateAddOnDealResponseData sub-interface for UpdateAddOnDealResponse
  */
-export interface UpdateAddOnDeal_Response {
+export interface UpdateAddOnDealResponseData {
   /**
    * The time when add on deal activity start.
    */
@@ -706,19 +664,15 @@ export interface UpdateAddOnDeal_Response {
   add_on_deal_name?: string;
 }
 /**
- * Response data payload for update_add_on_deal
- */
-export type UpdateAddOnDealResponseData = UpdateAddOnDeal_Response;
-/**
  * Response payload for update_add_on_deal
  *
  * Update Add-on Deal
  */
 export type UpdateAddOnDealResponse = FetchResponse<UpdateAddOnDealResponseData>;
 /**
- * UpdateAddOnDealMainItem_MainItem sub-interface for UpdateAddOnDealMainItemRequest
+ * UpdateAddOnDealMainItemMainItem sub-interface for UpdateAddOnDealMainItemRequest
  */
-export interface UpdateAddOnDealMainItem_MainItem {
+export interface UpdateAddOnDealMainItemMainItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -741,12 +695,12 @@ export interface UpdateAddOnDealMainItemRequest {
   /**
    * The main items added in this add on deal promotion.
    */
-  main_item_list: UpdateAddOnDealMainItem_MainItem[];
+  main_item_list: UpdateAddOnDealMainItemMainItem[];
 }
 /**
- * UpdateAddOnDealMainItem_UpdateAddOnDealMainItem_MainItem sub-interface for UpdateAddOnDealMainItem_Response
+ * UpdateAddOnDealMainItem_UpdateAddOnDealMainItemMainItem sub-interface for UpdateAddOnDealMainItemResponseData
  */
-export interface UpdateAddOnDealMainItem_UpdateAddOnDealMainItem_MainItem {
+export interface UpdateAddOnDealMainItem_UpdateAddOnDealMainItemMainItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -757,18 +711,14 @@ export interface UpdateAddOnDealMainItem_UpdateAddOnDealMainItem_MainItem {
   status?: number;
 }
 /**
- * UpdateAddOnDealMainItem_Response sub-interface for UpdateAddOnDealMainItemResponse
+ * UpdateAddOnDealMainItemResponseData sub-interface for UpdateAddOnDealMainItemResponse
  */
-export interface UpdateAddOnDealMainItem_Response {
+export interface UpdateAddOnDealMainItemResponseData {
   /**
    * The main items added in this add on deal promotion.
    */
-  main_item_list?: UpdateAddOnDealMainItem_UpdateAddOnDealMainItem_MainItem[];
+  main_item_list?: UpdateAddOnDealMainItem_UpdateAddOnDealMainItemMainItem[];
 }
-/**
- * Response data payload for update_add_on_deal_main_item
- */
-export type UpdateAddOnDealMainItemResponseData = UpdateAddOnDealMainItem_Response;
 /**
  * Response payload for update_add_on_deal_main_item
  *
@@ -776,9 +726,9 @@ export type UpdateAddOnDealMainItemResponseData = UpdateAddOnDealMainItem_Respon
  */
 export type UpdateAddOnDealMainItemResponse = FetchResponse<UpdateAddOnDealMainItemResponseData>;
 /**
- * UpdateAddOnDealSubItem_SubItem sub-interface for UpdateAddOnDealSubItemRequest
+ * UpdateAddOnDealSubItemSubItem sub-interface for UpdateAddOnDealSubItemRequest
  */
-export interface UpdateAddOnDealSubItem_SubItem {
+export interface UpdateAddOnDealSubItemSubItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -813,12 +763,12 @@ export interface UpdateAddOnDealSubItemRequest {
   /**
    * The sub items added in this add on deal promotion.
    */
-  sub_item_list: UpdateAddOnDealSubItem_SubItem[];
+  sub_item_list: UpdateAddOnDealSubItemSubItem[];
 }
 /**
- * UpdateAddOnDealSubItem_UpdateAddOnDealSubItem_SubItem sub-interface for UpdateAddOnDealSubItem_Response
+ * UpdateAddOnDealSubItem_UpdateAddOnDealSubItemSubItem sub-interface for UpdateAddOnDealSubItemResponseData
  */
-export interface UpdateAddOnDealSubItem_UpdateAddOnDealSubItem_SubItem {
+export interface UpdateAddOnDealSubItem_UpdateAddOnDealSubItemSubItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -843,18 +793,14 @@ export interface UpdateAddOnDealSubItem_UpdateAddOnDealSubItem_SubItem {
   sub_item_limit?: number;
 }
 /**
- * UpdateAddOnDealSubItem_Response sub-interface for UpdateAddOnDealSubItemResponse
+ * UpdateAddOnDealSubItemResponseData sub-interface for UpdateAddOnDealSubItemResponse
  */
-export interface UpdateAddOnDealSubItem_Response {
+export interface UpdateAddOnDealSubItemResponseData {
   /**
    * The sub items added in this add on deal promotion.
    */
-  sub_item_list?: UpdateAddOnDealSubItem_UpdateAddOnDealSubItem_SubItem[];
+  sub_item_list?: UpdateAddOnDealSubItem_UpdateAddOnDealSubItemSubItem[];
 }
-/**
- * Response data payload for update_add_on_deal_sub_item
- */
-export type UpdateAddOnDealSubItemResponseData = UpdateAddOnDealSubItem_Response;
 /**
  * Response payload for update_add_on_deal_sub_item
  *

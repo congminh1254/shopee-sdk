@@ -23,6 +23,15 @@ export function cleanDescription(desc: unknown): string {
     .trim();
 }
 
+// Type overrides to resolve Shopee's inaccurate documentation schemas
+const NODE_PATH_TYPE_OVERRIDES: Record<string, string> = {
+  "publish_item.model": "object[]",
+};
+
+const FIELD_NAME_TYPE_OVERRIDES: Record<string, { expectedType: string; resolvedType: string }> = {
+  image_id_list: { expectedType: "any[]", resolvedType: "string[]" },
+};
+
 function deduplicateMembers(members: ParsedEnumMember[]): ParsedEnumMember[] {
   const seenNames = new Set<string>();
   const seenValues = new Set<string | number>();
@@ -260,13 +269,13 @@ function parseParams(
 
     let tsType = mapType(node.type, fieldName);
 
-    // Override: Shopee spec incorrectly defines publish_item.model as object, but it is an array of models.
-    if (nodePath === "publish_item.model") {
-      tsType = "object[]";
+    // Apply static overrides
+    if (NODE_PATH_TYPE_OVERRIDES[nodePath]) {
+      tsType = NODE_PATH_TYPE_OVERRIDES[nodePath];
     }
-    // Override: Shopee spec defines image_id_list as object[] but it is an array of string image IDs.
-    if (fieldName === "image_id_list" && tsType === "any[]") {
-      tsType = "string[]";
+    const fieldOverride = FIELD_NAME_TYPE_OVERRIDES[fieldName];
+    if (fieldOverride && tsType === fieldOverride.expectedType) {
+      tsType = fieldOverride.resolvedType;
     }
 
     const hasChildren = node.children && node.children.length > 0;
@@ -280,6 +289,20 @@ function parseParams(
       if (parsedEnum) {
         enums.push(parsedEnum);
         tsType = parsedEnum.name;
+      } else {
+        // Warning if the description mentions enum-like words but we failed to parse an enum
+        const descLower = description.toLowerCase();
+        if (
+          descLower.includes("available values:") ||
+          descLower.includes("available value:") ||
+          descLower.includes("available value :") ||
+          (descLower.includes("1:") && descLower.includes("2:"))
+        ) {
+          // eslint-disable-next-line no-console
+          console.warn(
+            `[Generator Warning] Field "${nodePath}" might contain an enum in its description but failed to parse: "${description.substring(0, 100)}..."`
+          );
+        }
       }
     }
 

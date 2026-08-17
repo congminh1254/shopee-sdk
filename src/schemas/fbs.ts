@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Request parameters for query_br_shop_block_status
@@ -6,9 +8,9 @@ import { FetchResponse } from "./fetch.js";
  */
 export type QueryBrShopBlockStatusRequest = Record<string, never>;
 /**
- * QueryBrShopBlockStatus_Response sub-interface for QueryBrShopBlockStatusResponse
+ * QueryBrShopBlockStatusResponseData sub-interface for QueryBrShopBlockStatusResponse
  */
-export interface QueryBrShopBlockStatus_Response {
+export interface QueryBrShopBlockStatusResponseData {
   /**
    * Shopee's unique identifier for a shop.
    */
@@ -18,10 +20,6 @@ export interface QueryBrShopBlockStatus_Response {
    */
   is_block?: boolean;
 }
-/**
- * Response data payload for query_br_shop_block_status
- */
-export type QueryBrShopBlockStatusResponseData = QueryBrShopBlockStatus_Response;
 /**
  * Response payload for query_br_shop_block_status
  *
@@ -35,9 +33,9 @@ export type QueryBrShopBlockStatusResponse = FetchResponse<QueryBrShopBlockStatu
  */
 export type QueryBrShopEnrollmentStatusRequest = Record<string, never>;
 /**
- * QueryBrShopEnrollmentStatus_Response sub-interface for QueryBrShopEnrollmentStatusResponse
+ * QueryBrShopEnrollmentStatusResponseData sub-interface for QueryBrShopEnrollmentStatusResponse
  */
-export interface QueryBrShopEnrollmentStatus_Response {
+export interface QueryBrShopEnrollmentStatusResponseData {
   /**
    * Shopee's unique identifier for a shop
    */
@@ -51,10 +49,6 @@ export interface QueryBrShopEnrollmentStatus_Response {
    */
   enable_enrollment_time?: number;
 }
-/**
- * Response data payload for query_br_shop_enrollment_status
- */
-export type QueryBrShopEnrollmentStatusResponseData = QueryBrShopEnrollmentStatus_Response;
 /**
  * Response payload for query_br_shop_enrollment_status
  *
@@ -75,9 +69,9 @@ export interface QueryBrShopInvoiceErrorRequest {
   page_size?: number;
 }
 /**
- * QueryBrShopInvoiceError_ShopSku sub-interface for QueryBrShopInvoiceError_List
+ * QueryBrShopInvoiceErrorShopSku sub-interface for QueryBrShopInvoiceErrorList
  */
-export interface QueryBrShopInvoiceError_ShopSku {
+export interface QueryBrShopInvoiceErrorShopSku {
   /**
    * ID of item
    */
@@ -100,9 +94,9 @@ export interface QueryBrShopInvoiceError_ShopSku {
   fail_reason?: string;
 }
 /**
- * QueryBrShopInvoiceError_List sub-interface for QueryBrShopInvoiceError_Response
+ * QueryBrShopInvoiceErrorList sub-interface for QueryBrShopInvoiceErrorResponseData
  */
-export interface QueryBrShopInvoiceError_List {
+export interface QueryBrShopInvoiceErrorList {
   /**
    * Shopee's unique identifier for a shop.
    */
@@ -127,7 +121,7 @@ export interface QueryBrShopInvoiceError_List {
    * The expired time of this failed invoice. If expired, then this request order would be cancelled.
    */
   invoice_deadline_time?: number;
-  shop_sku_list?: QueryBrShopInvoiceError_ShopSku[];
+  shop_sku_list?: QueryBrShopInvoiceErrorShopSku[];
   /**
    * Invoice ID
    */
@@ -138,16 +132,12 @@ export interface QueryBrShopInvoiceError_List {
   reminder_desc?: string;
 }
 /**
- * QueryBrShopInvoiceError_Response sub-interface for QueryBrShopInvoiceErrorResponse
+ * QueryBrShopInvoiceErrorResponseData sub-interface for QueryBrShopInvoiceErrorResponse
  */
-export interface QueryBrShopInvoiceError_Response {
+export interface QueryBrShopInvoiceErrorResponseData {
   total?: number;
-  list?: QueryBrShopInvoiceError_List[];
+  list?: QueryBrShopInvoiceErrorList[];
 }
-/**
- * Response data payload for query_br_shop_invoice_error
- */
-export type QueryBrShopInvoiceErrorResponseData = QueryBrShopInvoiceError_Response;
 /**
  * Response payload for query_br_shop_invoice_error
  *
@@ -163,9 +153,9 @@ export interface QueryBrSkuBlockStatusRequest {
   shop_sku_id: string;
 }
 /**
- * QueryBrSkuBlockStatus_Response sub-interface for QueryBrSkuBlockStatusResponse
+ * QueryBrSkuBlockStatusResponseData sub-interface for QueryBrSkuBlockStatusResponse
  */
-export interface QueryBrSkuBlockStatus_Response {
+export interface QueryBrSkuBlockStatusResponseData {
   /**
    * itemID_modelID
    */
@@ -191,10 +181,6 @@ export interface QueryBrSkuBlockStatus_Response {
    */
   shop_model_name?: string;
 }
-/**
- * Response data payload for query_br_sku_block_status
- */
-export type QueryBrSkuBlockStatusResponseData = QueryBrSkuBlockStatus_Response;
 /**
  * Response payload for query_br_sku_block_status
  *

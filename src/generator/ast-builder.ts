@@ -106,7 +106,12 @@ export class AstBuilder {
 
     for (const param of params) {
       if (param.children && param.children.length > 0) {
-        const preferredName = `${toPascalCase(endpointName)}_${toPascalCase(singularize(param.name))}`;
+        const preferredName =
+          param.name === "response"
+            ? param.type.endsWith("[]")
+              ? `${toPascalCase(endpointName)}ResponseDataItem`
+              : `${toPascalCase(endpointName)}ResponseData`
+            : `${toPascalCase(endpointName)}${toPascalCase(singularize(param.name))}`;
         const resolvedName = this.resolveInterfaceName(preferredName, param.children, endpointName);
 
         // Map the type of the property in the parent to the resolved sub-interface name
@@ -260,14 +265,21 @@ export class AstBuilder {
 
     const responseParam = params.find((p) => p.name === "response");
 
-    let dataDecl: ts.InterfaceDeclaration | ts.TypeAliasDeclaration;
+    let dataDecl: ts.InterfaceDeclaration | ts.TypeAliasDeclaration | undefined;
     if (responseParam) {
-      dataDecl = ts.factory.createTypeAliasDeclaration(
-        [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
-        dataName,
-        undefined,
-        this.getTypeNode(responseParam.type)
-      );
+      const resolvedType = responseParam.type;
+      if (resolvedType === dataName) {
+        // Skip creating the type alias, because buildNestedInterfaces has already
+        // generated an export interface with this exact name!
+        dataDecl = undefined;
+      } else {
+        dataDecl = ts.factory.createTypeAliasDeclaration(
+          [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
+          dataName,
+          undefined,
+          this.getTypeNode(resolvedType)
+        );
+      }
     } else {
       const nonEnvelopeParams = params.filter(
         (p) => !["request_id", "error", "message"].includes(p.name)
@@ -309,9 +321,13 @@ export class AstBuilder {
       }
     }
 
-    const dataDeclWithDoc = addJsDoc(dataDecl, `Response data payload for ${endpointName}`) as
-      | ts.InterfaceDeclaration
-      | ts.TypeAliasDeclaration;
+    const result: (ts.InterfaceDeclaration | ts.TypeAliasDeclaration)[] = [];
+    if (dataDecl) {
+      const dataDeclWithDoc = addJsDoc(dataDecl, `Response data payload for ${endpointName}`) as
+        | ts.InterfaceDeclaration
+        | ts.TypeAliasDeclaration;
+      result.push(dataDeclWithDoc);
+    }
 
     const responseAlias = ts.factory.createTypeAliasDeclaration(
       [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
@@ -325,8 +341,9 @@ export class AstBuilder {
       responseAlias,
       `Response payload for ${endpointName}\n\n${description}`
     ) as ts.TypeAliasDeclaration;
+    result.push(responseAliasWithDoc);
 
-    return [dataDeclWithDoc, responseAliasWithDoc];
+    return result;
   }
 
   // Build Manager Method AST

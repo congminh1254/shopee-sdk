@@ -198,6 +198,7 @@ export class FileMerger {
     const outputSource = ts.factory.updateSourceFile(sourceFile, finalStatements);
     let resultString = this.printer.printFile(outputSource);
     resultString = removeUnusedImports(resultString);
+    resultString = `// NOTE: This file is auto-generated. Do not edit directly.\n\n${resultString}`;
 
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
     fs.writeFileSync(filePath, resultString, "utf-8");
@@ -309,6 +310,7 @@ export class ${className} extends BaseManager {
     const outputSource = ts.factory.updateSourceFile(sourceFile, finalStatements);
     let resultString = this.printer.printFile(outputSource);
     resultString = removeUnusedImports(resultString);
+    resultString = `// NOTE: This file is auto-generated. Do not edit directly.\n\n${resultString}`;
 
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
     fs.writeFileSync(filePath, resultString, "utf-8");

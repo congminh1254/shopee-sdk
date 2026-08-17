@@ -1,8 +1,10 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
- * AddShopFlashSaleItems_Model sub-interface for AddShopFlashSaleItems_Item
+ * AddShopFlashSaleItemsModel sub-interface for AddShopFlashSaleItemsItem
  */
-export interface AddShopFlashSaleItems_Model {
+export interface AddShopFlashSaleItemsModel {
   /**
    * If the item has variation, this param is necessary.
    */
@@ -17,9 +19,9 @@ export interface AddShopFlashSaleItems_Model {
   stock: number;
 }
 /**
- * AddShopFlashSaleItems_Item sub-interface for AddShopFlashSaleItemsRequest
+ * AddShopFlashSaleItemsItem sub-interface for AddShopFlashSaleItemsRequest
  */
-export interface AddShopFlashSaleItems_Item {
+export interface AddShopFlashSaleItemsItem {
   item_id: number;
   /**
    * min=0, 0 means no limit
@@ -28,7 +30,7 @@ export interface AddShopFlashSaleItems_Item {
   /**
    * If the item has variation, this param is necessary.
    */
-  models?: AddShopFlashSaleItems_Model[];
+  models?: AddShopFlashSaleItemsModel[];
   /**
    * promotion price without tax of the item. If the item has no variation, this param is necessary, otherwise don't use this field
    */
@@ -45,12 +47,12 @@ export interface AddShopFlashSaleItems_Item {
  */
 export interface AddShopFlashSaleItemsRequest {
   flash_sale_id: number;
-  items: AddShopFlashSaleItems_Item[];
+  items: AddShopFlashSaleItemsItem[];
 }
 /**
- * AddShopFlashSaleItems_UnqualifiedCondition sub-interface for AddShopFlashSaleItems_FailedItem
+ * AddShopFlashSaleItemsUnqualifiedCondition sub-interface for AddShopFlashSaleItemsFailedItem
  */
-export interface AddShopFlashSaleItems_UnqualifiedCondition {
+export interface AddShopFlashSaleItemsUnqualifiedCondition {
   /**
    * error code for unqualified item
    */
@@ -61,9 +63,9 @@ export interface AddShopFlashSaleItems_UnqualifiedCondition {
   unqualified_msg?: string;
 }
 /**
- * AddShopFlashSaleItems_FailedItem sub-interface for AddShopFlashSaleItems_Response
+ * AddShopFlashSaleItemsFailedItem sub-interface for AddShopFlashSaleItemsResponseData
  */
-export interface AddShopFlashSaleItems_FailedItem {
+export interface AddShopFlashSaleItemsFailedItem {
   item_id?: number;
   /**
    * If the item has no variation, this field will be empty
@@ -77,18 +79,14 @@ export interface AddShopFlashSaleItems_FailedItem {
   /**
    * if model or item doesn't meet a criteria, will show the detail in this field
    */
-  unqualified_conditions?: AddShopFlashSaleItems_UnqualifiedCondition[];
+  unqualified_conditions?: AddShopFlashSaleItemsUnqualifiedCondition[];
 }
 /**
- * AddShopFlashSaleItems_Response sub-interface for AddShopFlashSaleItemsResponse
+ * AddShopFlashSaleItemsResponseData sub-interface for AddShopFlashSaleItemsResponse
  */
-export interface AddShopFlashSaleItems_Response {
-  failed_items?: AddShopFlashSaleItems_FailedItem[];
+export interface AddShopFlashSaleItemsResponseData {
+  failed_items?: AddShopFlashSaleItemsFailedItem[];
 }
-/**
- * Response data payload for add_shop_flash_sale_items
- */
-export type AddShopFlashSaleItemsResponseData = AddShopFlashSaleItems_Response;
 /**
  * Response payload for add_shop_flash_sale_items
  *
@@ -107,9 +105,9 @@ export interface CreateShopFlashSaleRequest {
   timeslot_id: number;
 }
 /**
- * CreateShopFlashSale_Response sub-interface for CreateShopFlashSaleResponse
+ * CreateShopFlashSaleResponseData sub-interface for CreateShopFlashSaleResponse
  */
-export interface CreateShopFlashSale_Response {
+export interface CreateShopFlashSaleResponseData {
   timeslot_id?: number;
   flash_sale_id?: number;
   /**
@@ -117,10 +115,6 @@ export interface CreateShopFlashSale_Response {
    */
   status?: number;
 }
-/**
- * Response data payload for create_shop_flash_sale
- */
-export type CreateShopFlashSaleResponseData = CreateShopFlashSale_Response;
 /**
  * Response payload for create_shop_flash_sale
  *
@@ -139,9 +133,9 @@ export interface DeleteShopFlashSaleRequest {
   flash_sale_id: number;
 }
 /**
- * DeleteShopFlashSale_Response sub-interface for DeleteShopFlashSaleResponse
+ * DeleteShopFlashSaleResponseData sub-interface for DeleteShopFlashSaleResponse
  */
-export interface DeleteShopFlashSale_Response {
+export interface DeleteShopFlashSaleResponseData {
   timeslot_id?: number;
   flash_sale_id?: number;
   /**
@@ -149,10 +143,6 @@ export interface DeleteShopFlashSale_Response {
    */
   status?: number;
 }
-/**
- * Response data payload for delete_shop_flash_sale
- */
-export type DeleteShopFlashSaleResponseData = DeleteShopFlashSale_Response;
 /**
  * Response payload for delete_shop_flash_sale
  *
@@ -172,16 +162,16 @@ export interface DeleteShopFlashSaleItemsRequest {
   item_ids: number[];
 }
 /**
- * DeleteShopFlashSaleItems_UnqualifiedCondition sub-interface for DeleteShopFlashSaleItems_FailedItem
+ * DeleteShopFlashSaleItemsUnqualifiedCondition sub-interface for DeleteShopFlashSaleItemsFailedItem
  */
-export interface DeleteShopFlashSaleItems_UnqualifiedCondition {
+export interface DeleteShopFlashSaleItemsUnqualifiedCondition {
   unqualified_code?: number;
   unqualified_msg?: string;
 }
 /**
- * DeleteShopFlashSaleItems_FailedItem sub-interface for DeleteShopFlashSaleItems_Response
+ * DeleteShopFlashSaleItemsFailedItem sub-interface for DeleteShopFlashSaleItemsResponseData
  */
-export interface DeleteShopFlashSaleItems_FailedItem {
+export interface DeleteShopFlashSaleItemsFailedItem {
   item_id?: number;
   /**
    * If the item has no variation, this field will be empty
@@ -195,18 +185,14 @@ export interface DeleteShopFlashSaleItems_FailedItem {
   /**
    * if the model doesn't meet a criteria, will show the detail in this field
    */
-  unqualified_conditions?: DeleteShopFlashSaleItems_UnqualifiedCondition[];
+  unqualified_conditions?: DeleteShopFlashSaleItemsUnqualifiedCondition[];
 }
 /**
- * DeleteShopFlashSaleItems_Response sub-interface for DeleteShopFlashSaleItemsResponse
+ * DeleteShopFlashSaleItemsResponseData sub-interface for DeleteShopFlashSaleItemsResponse
  */
-export interface DeleteShopFlashSaleItems_Response {
-  failed_items?: DeleteShopFlashSaleItems_FailedItem[];
+export interface DeleteShopFlashSaleItemsResponseData {
+  failed_items?: DeleteShopFlashSaleItemsFailedItem[];
 }
-/**
- * Response data payload for delete_shop_flash_sale_items
- */
-export type DeleteShopFlashSaleItemsResponseData = DeleteShopFlashSaleItems_Response;
 /**
  * Response payload for delete_shop_flash_sale_items
  *
@@ -220,9 +206,9 @@ export type DeleteShopFlashSaleItemsResponse = FetchResponse<DeleteShopFlashSale
  */
 export type GetItemCriteriaRequest = Record<string, never>;
 /**
- * GetItemCriteria_Criteria sub-interface for GetItemCriteria_Response
+ * GetItemCriteriaCriteria sub-interface for GetItemCriteriaResponseData
  */
-export interface GetItemCriteria_Criteria {
+export interface GetItemCriteriaCriteria {
   criteria_id?: number;
   /**
    * Product Rating(0.0-5.0), -1 means no limit
@@ -278,9 +264,9 @@ export interface GetItemCriteria_Criteria {
   need_lowest_price?: boolean;
 }
 /**
- * GetItemCriteria_Category sub-interface for GetItemCriteria_PairId
+ * GetItemCriteriaCategory sub-interface for GetItemCriteriaPairId
  */
-export interface GetItemCriteria_Category {
+export interface GetItemCriteriaCategory {
   /**
    * o means this is All category
    */
@@ -295,36 +281,32 @@ export interface GetItemCriteria_Category {
   parent_id?: number;
 }
 /**
- * GetItemCriteria_PairId sub-interface for GetItemCriteria_Response
+ * GetItemCriteriaPairId sub-interface for GetItemCriteriaResponseData
  */
-export interface GetItemCriteria_PairId {
+export interface GetItemCriteriaPairId {
   criteria_id?: number;
   /**
    * these are the categories that the shop has items, and the criteria will apply to these categories
    */
-  category_list?: GetItemCriteria_Category[];
+  category_list?: GetItemCriteriaCategory[];
 }
 /**
- * GetItemCriteria_Response sub-interface for GetItemCriteriaResponse
+ * GetItemCriteriaResponseData sub-interface for GetItemCriteriaResponse
  */
-export interface GetItemCriteria_Response {
+export interface GetItemCriteriaResponseData {
   /**
    * criteria detail
    */
-  criteria?: GetItemCriteria_Criteria[];
+  criteria?: GetItemCriteriaCriteria[];
   /**
    * the mapping relationship between criteria and category
    */
-  pair_ids?: GetItemCriteria_PairId[];
+  pair_ids?: GetItemCriteriaPairId[];
   /**
    * Due to regulations, the promotion of some products in these categories are prohibited in this region
    */
   overlap_block_category_ids?: number[];
 }
-/**
- * Response data payload for get_item_criteria
- */
-export type GetItemCriteriaResponseData = GetItemCriteria_Response;
 /**
  * Response payload for get_item_criteria
  *
@@ -340,9 +322,9 @@ export interface GetShopFlashSaleRequest {
   flash_sale_id: number;
 }
 /**
- * GetShopFlashSale_Response sub-interface for GetShopFlashSaleResponse
+ * GetShopFlashSaleResponseData sub-interface for GetShopFlashSaleResponse
  */
-export interface GetShopFlashSale_Response {
+export interface GetShopFlashSaleResponseData {
   timeslot_id?: number;
   flash_sale_id?: number;
   /**
@@ -371,10 +353,6 @@ export interface GetShopFlashSale_Response {
   type?: number;
 }
 /**
- * Response data payload for get_shop_flash_sale
- */
-export type GetShopFlashSaleResponseData = GetShopFlashSale_Response;
-/**
  * Response payload for get_shop_flash_sale
  *
  * get shop flash sale detail
@@ -397,16 +375,16 @@ export interface GetShopFlashSaleItemsRequest {
   limit: number;
 }
 /**
- * GetShopFlashSaleItems_UnqualifiedCondition sub-interface for GetShopFlashSaleItems_Model
+ * GetShopFlashSaleItemsUnqualifiedCondition sub-interface for GetShopFlashSaleItemsModel
  */
-export interface GetShopFlashSaleItems_UnqualifiedCondition {
+export interface GetShopFlashSaleItemsUnqualifiedCondition {
   unqualified_code?: number;
   unqualified_msg?: string;
 }
 /**
- * GetShopFlashSaleItems_Model sub-interface for GetShopFlashSaleItems_Response
+ * GetShopFlashSaleItemsModel sub-interface for GetShopFlashSaleItemsResponseData
  */
-export interface GetShopFlashSaleItems_Model {
+export interface GetShopFlashSaleItemsModel {
   item_id?: number;
   model_id?: number;
   model_name?: string;
@@ -439,12 +417,12 @@ export interface GetShopFlashSaleItems_Model {
   /**
    * if the model doesn't meet a criteria, will show the detail in this field
    */
-  unqualified_conditions?: GetShopFlashSaleItems_UnqualifiedCondition;
+  unqualified_conditions?: GetShopFlashSaleItemsUnqualifiedCondition;
 }
 /**
- * GetShopFlashSaleItems_ItemInfo sub-interface for GetShopFlashSaleItems_Response
+ * GetShopFlashSaleItemsItemInfo sub-interface for GetShopFlashSaleItemsResponseData
  */
-export interface GetShopFlashSaleItems_ItemInfo {
+export interface GetShopFlashSaleItemsItemInfo {
   item_id?: number;
   item_name?: string;
   /**
@@ -490,23 +468,19 @@ export interface GetShopFlashSaleItems_ItemInfo {
   /**
    * if the item doesn't meet a criteria, will show the detail in this fieldif the item has variation, this field will be empty
    */
-  unqualified_conditions?: GetShopFlashSaleItems_UnqualifiedCondition;
+  unqualified_conditions?: GetShopFlashSaleItemsUnqualifiedCondition;
 }
 /**
- * GetShopFlashSaleItems_Response sub-interface for GetShopFlashSaleItemsResponse
+ * GetShopFlashSaleItemsResponseData sub-interface for GetShopFlashSaleItemsResponse
  */
-export interface GetShopFlashSaleItems_Response {
+export interface GetShopFlashSaleItemsResponseData {
   total_count?: number;
   /**
    * If the item has variation, the infomation of model will be in this field
    */
-  models?: GetShopFlashSaleItems_Model[];
-  item_info?: GetShopFlashSaleItems_ItemInfo[];
+  models?: GetShopFlashSaleItemsModel[];
+  item_info?: GetShopFlashSaleItemsItemInfo[];
 }
-/**
- * Response data payload for get_shop_flash_sale_items
- */
-export type GetShopFlashSaleItemsResponseData = GetShopFlashSaleItems_Response;
 /**
  * Response payload for get_shop_flash_sale_items
  *
@@ -541,18 +515,18 @@ export interface GetShopFlashSaleListRequest {
   limit: number;
 }
 /**
- * GetShopFlashSaleList_Response sub-interface for GetShopFlashSaleListResponse
+ * GetShopFlashSaleListResponseData sub-interface for GetShopFlashSaleListResponse
  */
-export interface GetShopFlashSaleList_Response {
+export interface GetShopFlashSaleListResponseData {
   /**
    * the number of shop flash sale that the shop has
    */
   total_count?: number;
 }
 /**
- * GetShopFlashSaleList_FlashSale sub-interface for GetShopFlashSaleListResponse
+ * GetShopFlashSaleListFlashSale sub-interface for GetShopFlashSaleListResponse
  */
-export interface GetShopFlashSaleList_FlashSale {
+export interface GetShopFlashSaleListFlashSale {
   timeslot_id?: number;
   flash_sale_id?: number;
   /**
@@ -589,10 +563,6 @@ export interface GetShopFlashSaleList_FlashSale {
   click_count?: number;
 }
 /**
- * Response data payload for get_shop_flash_sale_list
- */
-export type GetShopFlashSaleListResponseData = GetShopFlashSaleList_Response;
-/**
  * Response payload for get_shop_flash_sale_list
  *
  * get shop flash sale list
@@ -614,9 +584,9 @@ export interface GetTimeSlotIdRequest {
   end_time: Date | number;
 }
 /**
- * GetTimeSlotId_Response sub-interface for GetTimeSlotIdResponse
+ * GetTimeSlotIdResponseDataItem sub-interface for GetTimeSlotIdResponse
  */
-export interface GetTimeSlotId_Response {
+export interface GetTimeSlotIdResponseDataItem {
   timeslot_id?: number;
   /**
    * the start time of time slot
@@ -630,7 +600,7 @@ export interface GetTimeSlotId_Response {
 /**
  * Response data payload for get_time_slot_id
  */
-export type GetTimeSlotIdResponseData = GetTimeSlotId_Response[];
+export type GetTimeSlotIdResponseData = GetTimeSlotIdResponseDataItem[];
 /**
  * Response payload for get_time_slot_id
  *
@@ -650,9 +620,9 @@ export interface UpdateShopFlashSaleRequest {
   status: number;
 }
 /**
- * UpdateShopFlashSale_Response sub-interface for UpdateShopFlashSaleResponse
+ * UpdateShopFlashSaleResponseData sub-interface for UpdateShopFlashSaleResponse
  */
-export interface UpdateShopFlashSale_Response {
+export interface UpdateShopFlashSaleResponseData {
   timeslot_id?: number;
   flash_sale_id?: number;
   /**
@@ -661,19 +631,15 @@ export interface UpdateShopFlashSale_Response {
   status?: number;
 }
 /**
- * Response data payload for update_shop_flash_sale
- */
-export type UpdateShopFlashSaleResponseData = UpdateShopFlashSale_Response;
-/**
  * Response payload for update_shop_flash_sale
  *
  * edit shop flash sale(enable, disable)
  */
 export type UpdateShopFlashSaleResponse = FetchResponse<UpdateShopFlashSaleResponseData>;
 /**
- * UpdateShopFlashSaleItems_Model sub-interface for UpdateShopFlashSaleItems_Item
+ * UpdateShopFlashSaleItemsModel sub-interface for UpdateShopFlashSaleItemsItem
  */
-export interface UpdateShopFlashSaleItems_Model {
+export interface UpdateShopFlashSaleItemsModel {
   /**
    * If the item has variation, this param is necessary.
    */
@@ -692,9 +658,9 @@ export interface UpdateShopFlashSaleItems_Model {
   stock?: number;
 }
 /**
- * UpdateShopFlashSaleItems_Item sub-interface for UpdateShopFlashSaleItemsRequest
+ * UpdateShopFlashSaleItemsItem sub-interface for UpdateShopFlashSaleItemsRequest
  */
-export interface UpdateShopFlashSaleItems_Item {
+export interface UpdateShopFlashSaleItemsItem {
   item_id: number;
   /**
    * min=0, 0 means no limitif the item is in enabled status or the item has models in enabled status, you can't set this field
@@ -703,7 +669,7 @@ export interface UpdateShopFlashSaleItems_Item {
   /**
    * If the item has variation, this param is necessary, otherwise please don't use this field
    */
-  models?: UpdateShopFlashSaleItems_Model[];
+  models?: UpdateShopFlashSaleItemsModel[];
   /**
    * The status of the item. If the item has no variation, this param is necessary, otherwise don't use this fieldyou can use this field to set the status of item0: disable1: enable
    */
@@ -724,19 +690,19 @@ export interface UpdateShopFlashSaleItems_Item {
  */
 export interface UpdateShopFlashSaleItemsRequest {
   flash_sale_id: number;
-  items: UpdateShopFlashSaleItems_Item[];
+  items: UpdateShopFlashSaleItemsItem[];
 }
 /**
- * UpdateShopFlashSaleItems_UnqualifiedCondition sub-interface for UpdateShopFlashSaleItems_FailedItem
+ * UpdateShopFlashSaleItemsUnqualifiedCondition sub-interface for UpdateShopFlashSaleItemsFailedItem
  */
-export interface UpdateShopFlashSaleItems_UnqualifiedCondition {
+export interface UpdateShopFlashSaleItemsUnqualifiedCondition {
   unqualified_code?: number;
   unqualified_msg?: string;
 }
 /**
- * UpdateShopFlashSaleItems_FailedItem sub-interface for UpdateShopFlashSaleItems_Response
+ * UpdateShopFlashSaleItemsFailedItem sub-interface for UpdateShopFlashSaleItemsResponseData
  */
-export interface UpdateShopFlashSaleItems_FailedItem {
+export interface UpdateShopFlashSaleItemsFailedItem {
   item_id?: number;
   /**
    * If the item has no variation, this field will be empty
@@ -750,18 +716,14 @@ export interface UpdateShopFlashSaleItems_FailedItem {
   /**
    * if the model doesn't meet a criteria, will show the detail in this field
    */
-  unqualified_conditions?: UpdateShopFlashSaleItems_UnqualifiedCondition[];
+  unqualified_conditions?: UpdateShopFlashSaleItemsUnqualifiedCondition[];
 }
 /**
- * UpdateShopFlashSaleItems_Response sub-interface for UpdateShopFlashSaleItemsResponse
+ * UpdateShopFlashSaleItemsResponseData sub-interface for UpdateShopFlashSaleItemsResponse
  */
-export interface UpdateShopFlashSaleItems_Response {
-  failed_items?: UpdateShopFlashSaleItems_FailedItem[];
+export interface UpdateShopFlashSaleItemsResponseData {
+  failed_items?: UpdateShopFlashSaleItemsFailedItem[];
 }
-/**
- * Response data payload for update_shop_flash_sale_items
- */
-export type UpdateShopFlashSaleItemsResponseData = UpdateShopFlashSaleItems_Response;
 /**
  * Response payload for update_shop_flash_sale_items
  *

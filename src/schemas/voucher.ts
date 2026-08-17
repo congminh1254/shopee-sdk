@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field Status
@@ -72,18 +74,14 @@ export interface AddVoucherRequest {
   display_start_time?: number;
 }
 /**
- * AddVoucher_Response sub-interface for AddVoucherResponse
+ * AddVoucherResponseData sub-interface for AddVoucherResponse
  */
-export interface AddVoucher_Response {
+export interface AddVoucherResponseData {
   /**
    * The unique identifier for the created voucher.
    */
   voucher_id?: number;
 }
-/**
- * Response data payload for add_voucher
- */
-export type AddVoucherResponseData = AddVoucher_Response;
 /**
  * Response payload for add_voucher
  *
@@ -102,18 +100,14 @@ export interface DeleteVoucherRequest {
   voucher_id: number;
 }
 /**
- * DeleteVoucher_Response sub-interface for DeleteVoucherResponse
+ * DeleteVoucherResponseData sub-interface for DeleteVoucherResponse
  */
-export interface DeleteVoucher_Response {
+export interface DeleteVoucherResponseData {
   /**
    * The unique identifier for the voucher it is being deleted.
    */
   voucher_id?: number;
 }
-/**
- * Response data payload for delete_voucher
- */
-export type DeleteVoucherResponseData = DeleteVoucher_Response;
 /**
  * Response payload for delete_voucher
  *
@@ -132,18 +126,14 @@ export interface EndVoucherRequest {
   voucher_id: number;
 }
 /**
- * EndVoucher_Response sub-interface for EndVoucherResponse
+ * EndVoucherResponseData sub-interface for EndVoucherResponse
  */
-export interface EndVoucher_Response {
+export interface EndVoucherResponseData {
   /**
    * The unique identifier for the voucher it is being ended.
    */
   voucher_id?: number;
 }
-/**
- * Response data payload for end_voucher
- */
-export type EndVoucherResponseData = EndVoucher_Response;
 /**
  * Response payload for end_voucher
  *
@@ -162,9 +152,9 @@ export interface GetVoucherRequest {
   voucher_id: number;
 }
 /**
- * GetVoucher_Response sub-interface for GetVoucherResponse
+ * GetVoucherResponseData sub-interface for GetVoucherResponse
  */
-export interface GetVoucher_Response {
+export interface GetVoucherResponseData {
   /**
    * The unique identifier of the voucher whose details are returned.
    */
@@ -251,10 +241,6 @@ export interface GetVoucher_Response {
   usecase?: number;
 }
 /**
- * Response data payload for get_voucher
- */
-export type GetVoucherResponseData = GetVoucher_Response;
-/**
  * Response payload for get_voucher
  *
  * Get Voucher Detail
@@ -280,9 +266,9 @@ export interface GetVoucherListRequest {
   status: Status | string | number;
 }
 /**
- * GetVoucherList_Voucher sub-interface for GetVoucherList_Response
+ * GetVoucherListVoucher sub-interface for GetVoucherListResponseData
  */
-export interface GetVoucherList_Voucher {
+export interface GetVoucherListVoucher {
   /**
    * The unique identifier for a voucher.
    */
@@ -345,9 +331,9 @@ export interface GetVoucherList_Voucher {
   display_start_time?: Date | number;
 }
 /**
- * GetVoucherList_Response sub-interface for GetVoucherListResponse
+ * GetVoucherListResponseData sub-interface for GetVoucherListResponse
  */
-export interface GetVoucherList_Response {
+export interface GetVoucherListResponseData {
   /**
    * This is to indicate whether the comment list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of comments.
    */
@@ -355,12 +341,8 @@ export interface GetVoucherList_Response {
   /**
    * The list of voucher.
    */
-  voucher_list?: GetVoucherList_Voucher[];
+  voucher_list?: GetVoucherListVoucher[];
 }
-/**
- * Response data payload for get_voucher_list
- */
-export type GetVoucherListResponseData = GetVoucherList_Response;
 /**
  * Response payload for get_voucher_list
  *
@@ -423,18 +405,14 @@ export interface UpdateVoucherRequest {
   display_start_time?: number;
 }
 /**
- * UpdateVoucher_Response sub-interface for UpdateVoucherResponse
+ * UpdateVoucherResponseData sub-interface for UpdateVoucherResponse
  */
-export interface UpdateVoucher_Response {
+export interface UpdateVoucherResponseData {
   /**
    * The unique identifier of the voucher which is being updated.
    */
   voucher_id?: number;
 }
-/**
- * Response data payload for update_voucher
- */
-export type UpdateVoucherResponseData = UpdateVoucher_Response;
 /**
  * Response payload for update_voucher
  *

@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field CampaignPartner
@@ -33,9 +35,9 @@ export interface AddAllProductsToOpenCampaignRequest {
   period_end_time?: Date | number;
 }
 /**
- * AddAllProductsToOpenCampaign_Response sub-interface for AddAllProductsToOpenCampaignResponse
+ * AddAllProductsToOpenCampaignResponseData sub-interface for AddAllProductsToOpenCampaignResponse
  */
-export interface AddAllProductsToOpenCampaign_Response {
+export interface AddAllProductsToOpenCampaignResponseData {
   /**
    * Task type. Applicable values: batch_add_open_campaignsbatch_remove_open_campaignsbatch_update_open_campaignsFor this API, task type will be batch_add_open_campaigns
    */
@@ -45,10 +47,6 @@ export interface AddAllProductsToOpenCampaign_Response {
    */
   task_id?: string;
 }
-/**
- * Response data payload for add_all_products_to_open_campaign
- */
-export type AddAllProductsToOpenCampaignResponseData = AddAllProductsToOpenCampaign_Response;
 /**
  * Response payload for add_all_products_to_open_campaign
  *
@@ -80,9 +78,9 @@ export interface BatchAddProductsToOpenCampaignRequest {
   period_end_time?: Date | number;
 }
 /**
- * BatchAddProductsToOpenCampaign_Failed sub-interface for BatchAddProductsToOpenCampaign_Response
+ * BatchAddProductsToOpenCampaignFailed sub-interface for BatchAddProductsToOpenCampaignResponseData
  */
-export interface BatchAddProductsToOpenCampaign_Failed {
+export interface BatchAddProductsToOpenCampaignFailed {
   /**
    * Item ID
    */
@@ -97,19 +95,15 @@ export interface BatchAddProductsToOpenCampaign_Failed {
   fail_message?: string;
 }
 /**
- * BatchAddProductsToOpenCampaign_Response sub-interface for BatchAddProductsToOpenCampaignResponse
+ * BatchAddProductsToOpenCampaignResponseData sub-interface for BatchAddProductsToOpenCampaignResponse
  */
-export interface BatchAddProductsToOpenCampaign_Response {
-  failed_list?: BatchAddProductsToOpenCampaign_Failed[];
+export interface BatchAddProductsToOpenCampaignResponseData {
+  failed_list?: BatchAddProductsToOpenCampaignFailed[];
   /**
    * Success Item ID List
    */
   success_list?: number[];
 }
-/**
- * Response data payload for batch_add_products_to_open_campaign
- */
-export type BatchAddProductsToOpenCampaignResponseData = BatchAddProductsToOpenCampaign_Response;
 /**
  * Response payload for batch_add_products_to_open_campaign
  *
@@ -141,9 +135,9 @@ export interface BatchEditProductsOpenCampaignSettingRequest {
   period_end_time?: Date | number;
 }
 /**
- * BatchEditProductsOpenCampaignSetting_Failed sub-interface for BatchEditProductsOpenCampaignSetting_Response
+ * BatchEditProductsOpenCampaignSettingFailed sub-interface for BatchEditProductsOpenCampaignSettingResponseData
  */
-export interface BatchEditProductsOpenCampaignSetting_Failed {
+export interface BatchEditProductsOpenCampaignSettingFailed {
   /**
    * Campaign ID
    */
@@ -158,20 +152,15 @@ export interface BatchEditProductsOpenCampaignSetting_Failed {
   fail_message?: string;
 }
 /**
- * BatchEditProductsOpenCampaignSetting_Response sub-interface for BatchEditProductsOpenCampaignSettingResponse
+ * BatchEditProductsOpenCampaignSettingResponseData sub-interface for BatchEditProductsOpenCampaignSettingResponse
  */
-export interface BatchEditProductsOpenCampaignSetting_Response {
-  failed_list?: BatchEditProductsOpenCampaignSetting_Failed[];
+export interface BatchEditProductsOpenCampaignSettingResponseData {
+  failed_list?: BatchEditProductsOpenCampaignSettingFailed[];
   /**
    * Success Campaign ID List
    */
   success_list?: number[];
 }
-/**
- * Response data payload for batch_edit_products_open_campaign_setting
- */
-export type BatchEditProductsOpenCampaignSettingResponseData =
-  BatchEditProductsOpenCampaignSetting_Response;
 /**
  * Response payload for batch_edit_products_open_campaign_setting
  *
@@ -191,9 +180,9 @@ export interface BatchGetProductsSuggestedRateRequest {
   item_id_list: string[];
 }
 /**
- * BatchGetProductsSuggestedRate_Rate sub-interface for BatchGetProductsSuggestedRate_Response
+ * BatchGetProductsSuggestedRateRate sub-interface for BatchGetProductsSuggestedRateResponseData
  */
-export interface BatchGetProductsSuggestedRate_Rate {
+export interface BatchGetProductsSuggestedRateRate {
   /**
    * Item ID
    */
@@ -208,15 +197,11 @@ export interface BatchGetProductsSuggestedRate_Rate {
   max_rate?: number;
 }
 /**
- * BatchGetProductsSuggestedRate_Response sub-interface for BatchGetProductsSuggestedRateResponse
+ * BatchGetProductsSuggestedRateResponseData sub-interface for BatchGetProductsSuggestedRateResponse
  */
-export interface BatchGetProductsSuggestedRate_Response {
-  rates?: BatchGetProductsSuggestedRate_Rate[];
+export interface BatchGetProductsSuggestedRateResponseData {
+  rates?: BatchGetProductsSuggestedRateRate[];
 }
-/**
- * Response data payload for batch_get_products_suggested_rate
- */
-export type BatchGetProductsSuggestedRateResponseData = BatchGetProductsSuggestedRate_Response;
 /**
  * Response payload for batch_get_products_suggested_rate
  *
@@ -236,9 +221,9 @@ export interface BatchRemoveProductsOpenCampaignSettingRequest {
   campaign_ids: number[];
 }
 /**
- * BatchRemoveProductsOpenCampaignSetting_Failed sub-interface for BatchRemoveProductsOpenCampaignSetting_Response
+ * BatchRemoveProductsOpenCampaignSettingFailed sub-interface for BatchRemoveProductsOpenCampaignSettingResponseData
  */
-export interface BatchRemoveProductsOpenCampaignSetting_Failed {
+export interface BatchRemoveProductsOpenCampaignSettingFailed {
   /**
    * Campaign ID
    */
@@ -253,20 +238,15 @@ export interface BatchRemoveProductsOpenCampaignSetting_Failed {
   fail_message?: string;
 }
 /**
- * BatchRemoveProductsOpenCampaignSetting_Response sub-interface for BatchRemoveProductsOpenCampaignSettingResponse
+ * BatchRemoveProductsOpenCampaignSettingResponseData sub-interface for BatchRemoveProductsOpenCampaignSettingResponse
  */
-export interface BatchRemoveProductsOpenCampaignSetting_Response {
-  failed_list?: BatchRemoveProductsOpenCampaignSetting_Failed[];
+export interface BatchRemoveProductsOpenCampaignSettingResponseData {
+  failed_list?: BatchRemoveProductsOpenCampaignSettingFailed[];
   /**
    * Success Campaign ID List
    */
   success_list?: number[];
 }
-/**
- * Response data payload for batch_remove_products_open_campaign_setting
- */
-export type BatchRemoveProductsOpenCampaignSettingResponseData =
-  BatchRemoveProductsOpenCampaignSetting_Response;
 /**
  * Response payload for batch_remove_products_open_campaign_setting
  *
@@ -275,9 +255,9 @@ export type BatchRemoveProductsOpenCampaignSettingResponseData =
 export type BatchRemoveProductsOpenCampaignSettingResponse =
   FetchResponse<BatchRemoveProductsOpenCampaignSettingResponseData>;
 /**
- * CreateNewTargetedCampaign_Item sub-interface for CreateNewTargetedCampaignRequest
+ * CreateNewTargetedCampaignItem sub-interface for CreateNewTargetedCampaignRequest
  */
-export interface CreateNewTargetedCampaign_Item {
+export interface CreateNewTargetedCampaignItem {
   /**
    * Item ID.
    */
@@ -288,9 +268,9 @@ export interface CreateNewTargetedCampaign_Item {
   rate: number;
 }
 /**
- * CreateNewTargetedCampaign_Affiliate sub-interface for CreateNewTargetedCampaignRequest
+ * CreateNewTargetedCampaignAffiliate sub-interface for CreateNewTargetedCampaignRequest
  */
-export interface CreateNewTargetedCampaign_Affiliate {
+export interface CreateNewTargetedCampaignAffiliate {
   /**
    * The unique key for affiliate.
    */
@@ -329,16 +309,16 @@ export interface CreateNewTargetedCampaignRequest {
   /**
    * The list of items associated with the current campaign.
    */
-  item_list: CreateNewTargetedCampaign_Item[];
+  item_list: CreateNewTargetedCampaignItem[];
   /**
    * The list of affiliates associated with the current campaign.
    */
-  affiliate_list: CreateNewTargetedCampaign_Affiliate[];
+  affiliate_list: CreateNewTargetedCampaignAffiliate[];
 }
 /**
- * CreateNewTargetedCampaign_FailItem sub-interface for CreateNewTargetedCampaign_Response
+ * CreateNewTargetedCampaignFailItem sub-interface for CreateNewTargetedCampaignResponseData
  */
-export interface CreateNewTargetedCampaign_FailItem {
+export interface CreateNewTargetedCampaignFailItem {
   /**
    * Item ID.
    */
@@ -353,9 +333,9 @@ export interface CreateNewTargetedCampaign_FailItem {
   fail_message?: string;
 }
 /**
- * CreateNewTargetedCampaign_FailAffiliate sub-interface for CreateNewTargetedCampaign_Response
+ * CreateNewTargetedCampaignFailAffiliate sub-interface for CreateNewTargetedCampaignResponseData
  */
-export interface CreateNewTargetedCampaign_FailAffiliate {
+export interface CreateNewTargetedCampaignFailAffiliate {
   /**
    * Affiliate ID.
    */
@@ -370,9 +350,9 @@ export interface CreateNewTargetedCampaign_FailAffiliate {
   fail_message?: string;
 }
 /**
- * CreateNewTargetedCampaign_Response sub-interface for CreateNewTargetedCampaignResponse
+ * CreateNewTargetedCampaignResponseData sub-interface for CreateNewTargetedCampaignResponse
  */
-export interface CreateNewTargetedCampaign_Response {
+export interface CreateNewTargetedCampaignResponseData {
   /**
    * The unique key for campaign.
    */
@@ -380,16 +360,12 @@ export interface CreateNewTargetedCampaign_Response {
   /**
    * Failed Item List.
    */
-  fail_item_list?: CreateNewTargetedCampaign_FailItem[];
+  fail_item_list?: CreateNewTargetedCampaignFailItem[];
   /**
    * Fail Affiliate List.
    */
-  fail_affiliate_list?: CreateNewTargetedCampaign_FailAffiliate[];
+  fail_affiliate_list?: CreateNewTargetedCampaignFailAffiliate[];
 }
-/**
- * Response data payload for create_new_targeted_campaign
- */
-export type CreateNewTargetedCampaignResponseData = CreateNewTargetedCampaign_Response;
 /**
  * Response payload for create_new_targeted_campaign
  *
@@ -398,9 +374,9 @@ export type CreateNewTargetedCampaignResponseData = CreateNewTargetedCampaign_Re
 export type CreateNewTargetedCampaignResponse =
   FetchResponse<CreateNewTargetedCampaignResponseData>;
 /**
- * EditAffiliateListOfTargetedCampaign_Affiliate sub-interface for EditAffiliateListOfTargetedCampaignRequest
+ * EditAffiliateListOfTargetedCampaignAffiliate sub-interface for EditAffiliateListOfTargetedCampaignRequest
  */
-export interface EditAffiliateListOfTargetedCampaign_Affiliate {
+export interface EditAffiliateListOfTargetedCampaignAffiliate {
   /**
    * The unique key for affiliate.
    */
@@ -423,12 +399,12 @@ export interface EditAffiliateListOfTargetedCampaignRequest {
   /**
    * The list of affiliates to be modified.
    */
-  affiliate_list: EditAffiliateListOfTargetedCampaign_Affiliate[];
+  affiliate_list: EditAffiliateListOfTargetedCampaignAffiliate[];
 }
 /**
- * EditAffiliateListOfTargetedCampaign_FailAffiliate sub-interface for EditAffiliateListOfTargetedCampaign_Response
+ * EditAffiliateListOfTargetedCampaignFailAffiliate sub-interface for EditAffiliateListOfTargetedCampaignResponseData
  */
-export interface EditAffiliateListOfTargetedCampaign_FailAffiliate {
+export interface EditAffiliateListOfTargetedCampaignFailAffiliate {
   /**
    * The unique key for affiliate.
    */
@@ -443,19 +419,14 @@ export interface EditAffiliateListOfTargetedCampaign_FailAffiliate {
   fail_message?: string;
 }
 /**
- * EditAffiliateListOfTargetedCampaign_Response sub-interface for EditAffiliateListOfTargetedCampaignResponse
+ * EditAffiliateListOfTargetedCampaignResponseData sub-interface for EditAffiliateListOfTargetedCampaignResponse
  */
-export interface EditAffiliateListOfTargetedCampaign_Response {
+export interface EditAffiliateListOfTargetedCampaignResponseData {
   /**
    * Failed Affiliate List.
    */
-  fail_affiliate_list?: EditAffiliateListOfTargetedCampaign_FailAffiliate[];
+  fail_affiliate_list?: EditAffiliateListOfTargetedCampaignFailAffiliate[];
 }
-/**
- * Response data payload for edit_affiliate_list_of_targeted_campaign
- */
-export type EditAffiliateListOfTargetedCampaignResponseData =
-  EditAffiliateListOfTargetedCampaign_Response;
 /**
  * Response payload for edit_affiliate_list_of_targeted_campaign
  *
@@ -483,9 +454,9 @@ export interface EditAllProductsOpenCampaignSettingRequest {
   period_end_time?: Date | number;
 }
 /**
- * EditAllProductsOpenCampaignSetting_Response sub-interface for EditAllProductsOpenCampaignSettingResponse
+ * EditAllProductsOpenCampaignSettingResponseData sub-interface for EditAllProductsOpenCampaignSettingResponse
  */
-export interface EditAllProductsOpenCampaignSetting_Response {
+export interface EditAllProductsOpenCampaignSettingResponseData {
   /**
    * Task type. Applicable values: batch_add_open_campaignsbatch_remove_open_campaignsbatch_update_open_campaignsFor this API, task type will be batch_update_open_campaigns
    */
@@ -496,11 +467,6 @@ export interface EditAllProductsOpenCampaignSetting_Response {
   task_id?: string;
 }
 /**
- * Response data payload for edit_all_products_open_campaign_setting
- */
-export type EditAllProductsOpenCampaignSettingResponseData =
-  EditAllProductsOpenCampaignSetting_Response;
-/**
  * Response payload for edit_all_products_open_campaign_setting
  *
  * Update for all products in the Open Campaign. We will only return the general error that caused the whole task failure, without returning the specific error for each product in the v2.ams.get_open_campaign_batch_task_result API. If you want to get the result for each products, you can use v2.ams.batch_edit_products_open_campaign_setting by pagination manually, or check the product status by using the GET API after the task progress turn to 100%.
@@ -508,9 +474,9 @@ export type EditAllProductsOpenCampaignSettingResponseData =
 export type EditAllProductsOpenCampaignSettingResponse =
   FetchResponse<EditAllProductsOpenCampaignSettingResponseData>;
 /**
- * EditProductListOfTargetedCampaign_Item sub-interface for EditProductListOfTargetedCampaignRequest
+ * EditProductListOfTargetedCampaignItem sub-interface for EditProductListOfTargetedCampaignRequest
  */
-export interface EditProductListOfTargetedCampaign_Item {
+export interface EditProductListOfTargetedCampaignItem {
   /**
    * Item ID.
    */
@@ -537,12 +503,12 @@ export interface EditProductListOfTargetedCampaignRequest {
   /**
    * The list of items to be modified.
    */
-  item_list: EditProductListOfTargetedCampaign_Item[];
+  item_list: EditProductListOfTargetedCampaignItem[];
 }
 /**
- * EditProductListOfTargetedCampaign_FailItem sub-interface for EditProductListOfTargetedCampaign_Response
+ * EditProductListOfTargetedCampaignFailItem sub-interface for EditProductListOfTargetedCampaignResponseData
  */
-export interface EditProductListOfTargetedCampaign_FailItem {
+export interface EditProductListOfTargetedCampaignFailItem {
   /**
    * Item ID.
    */
@@ -557,19 +523,14 @@ export interface EditProductListOfTargetedCampaign_FailItem {
   fail_message?: string;
 }
 /**
- * EditProductListOfTargetedCampaign_Response sub-interface for EditProductListOfTargetedCampaignResponse
+ * EditProductListOfTargetedCampaignResponseData sub-interface for EditProductListOfTargetedCampaignResponse
  */
-export interface EditProductListOfTargetedCampaign_Response {
+export interface EditProductListOfTargetedCampaignResponseData {
   /**
    * Failed Item List.
    */
-  fail_item_list?: EditProductListOfTargetedCampaign_FailItem[];
+  fail_item_list?: EditProductListOfTargetedCampaignFailItem[];
 }
-/**
- * Response data payload for edit_product_list_of_targeted_campaign
- */
-export type EditProductListOfTargetedCampaignResponseData =
-  EditProductListOfTargetedCampaign_Response;
 /**
  * Response payload for edit_product_list_of_targeted_campaign
  *
@@ -617,9 +578,9 @@ export interface GetAffiliatePerformanceRequest {
   affiliate_id?: number;
 }
 /**
- * GetAffiliatePerformance_List sub-interface for GetAffiliatePerformance_Response
+ * GetAffiliatePerformanceList sub-interface for GetAffiliatePerformanceResponseData
  */
-export interface GetAffiliatePerformance_List {
+export interface GetAffiliatePerformanceList {
   /**
    * Unique identifier assigned to the affiliate. Used as a reference key in the system.
    */
@@ -666,10 +627,10 @@ export interface GetAffiliatePerformance_List {
   new_buyers?: number;
 }
 /**
- * GetAffiliatePerformance_Response sub-interface for GetAffiliatePerformanceResponse
+ * GetAffiliatePerformanceResponseData sub-interface for GetAffiliatePerformanceResponse
  */
-export interface GetAffiliatePerformance_Response {
-  list?: GetAffiliatePerformance_List[];
+export interface GetAffiliatePerformanceResponseData {
+  list?: GetAffiliatePerformanceList[];
   /**
    * Total number of affiliates that match the condition.
    */
@@ -684,10 +645,6 @@ export interface GetAffiliatePerformance_Response {
   fetched_date_range?: string;
 }
 /**
- * Response data payload for get_affiliate_performance
- */
-export type GetAffiliatePerformanceResponseData = GetAffiliatePerformance_Response;
-/**
  * Response payload for get_affiliate_performance
  *
  * Retrieve affiliate performance of the shop.
@@ -700,9 +657,9 @@ export type GetAffiliatePerformanceResponse = FetchResponse<GetAffiliatePerforma
  */
 export type GetAutoAddNewProductToggleStatusRequest = Record<string, never>;
 /**
- * GetAutoAddNewProductToggleStatus_Response sub-interface for GetAutoAddNewProductToggleStatusResponse
+ * GetAutoAddNewProductToggleStatusResponseData sub-interface for GetAutoAddNewProductToggleStatusResponse
  */
-export interface GetAutoAddNewProductToggleStatus_Response {
+export interface GetAutoAddNewProductToggleStatusResponseData {
   /**
    * If auto-add new product is currently enabled
    */
@@ -712,11 +669,6 @@ export interface GetAutoAddNewProductToggleStatus_Response {
    */
   commission_rate?: number;
 }
-/**
- * Response data payload for get_auto_add_new_product_toggle_status
- */
-export type GetAutoAddNewProductToggleStatusResponseData =
-  GetAutoAddNewProductToggleStatus_Response;
 /**
  * Response payload for get_auto_add_new_product_toggle_status
  *
@@ -744,9 +696,9 @@ export interface GetCampaignKeyMetricsPerformanceRequest {
   end_date: string;
 }
 /**
- * GetCampaignKeyMetricsPerformance_OpenCampaignKeyMetirc sub-interface for GetCampaignKeyMetricsPerformance_Response
+ * GetCampaignKeyMetricsPerformanceOpenCampaignKeyMetirc sub-interface for GetCampaignKeyMetricsPerformanceResponseData
  */
-export interface GetCampaignKeyMetricsPerformance_OpenCampaignKeyMetirc {
+export interface GetCampaignKeyMetricsPerformanceOpenCampaignKeyMetirc {
   /**
    * Total number of affiliates who drove orders from Open Campaigns.
    */
@@ -765,9 +717,9 @@ export interface GetCampaignKeyMetricsPerformance_OpenCampaignKeyMetirc {
   est_commission?: string;
 }
 /**
- * GetCampaignKeyMetricsPerformance_TargetedCampaignKeyMetirc sub-interface for GetCampaignKeyMetricsPerformance_Response
+ * GetCampaignKeyMetricsPerformanceTargetedCampaignKeyMetirc sub-interface for GetCampaignKeyMetricsPerformanceResponseData
  */
-export interface GetCampaignKeyMetricsPerformance_TargetedCampaignKeyMetirc {
+export interface GetCampaignKeyMetricsPerformanceTargetedCampaignKeyMetirc {
   /**
    * Total number of affiliates who drove orders from Targeted Campaigns.
    */
@@ -786,27 +738,22 @@ export interface GetCampaignKeyMetricsPerformance_TargetedCampaignKeyMetirc {
   est_commission?: string;
 }
 /**
- * GetCampaignKeyMetricsPerformance_Response sub-interface for GetCampaignKeyMetricsPerformanceResponse
+ * GetCampaignKeyMetricsPerformanceResponseData sub-interface for GetCampaignKeyMetricsPerformanceResponse
  */
-export interface GetCampaignKeyMetricsPerformance_Response {
+export interface GetCampaignKeyMetricsPerformanceResponseData {
   /**
    * Performance data of Open Campaign.
    */
-  open_campaign_key_metircs?: GetCampaignKeyMetricsPerformance_OpenCampaignKeyMetirc;
+  open_campaign_key_metircs?: GetCampaignKeyMetricsPerformanceOpenCampaignKeyMetirc;
   /**
    * Performance data of Target Campaign.
    */
-  targeted_campaign_key_metircs?: GetCampaignKeyMetricsPerformance_TargetedCampaignKeyMetirc;
+  targeted_campaign_key_metircs?: GetCampaignKeyMetricsPerformanceTargetedCampaignKeyMetirc;
   /**
    * Effective query date range. Invalid input ranges will be automatically shifted.
    */
   fetched_date_range?: string;
 }
-/**
- * Response data payload for get_campaign_key_metrics_performance
- */
-export type GetCampaignKeyMetricsPerformanceResponseData =
-  GetCampaignKeyMetricsPerformance_Response;
 /**
  * Response payload for get_campaign_key_metrics_performance
  *
@@ -858,9 +805,9 @@ export interface GetContentPerformanceRequest {
   item_id?: number;
 }
 /**
- * GetContentPerformance_List sub-interface for GetContentPerformance_Response
+ * GetContentPerformanceList sub-interface for GetContentPerformanceResponseData
  */
-export interface GetContentPerformance_List {
+export interface GetContentPerformanceList {
   /**
    * Unique identifier of the content where the product is placed.
    */
@@ -915,10 +862,10 @@ export interface GetContentPerformance_List {
   channel?: string;
 }
 /**
- * GetContentPerformance_Response sub-interface for GetContentPerformanceResponse
+ * GetContentPerformanceResponseData sub-interface for GetContentPerformanceResponse
  */
-export interface GetContentPerformance_Response {
-  list?: GetContentPerformance_List[];
+export interface GetContentPerformanceResponseData {
+  list?: GetContentPerformanceList[];
   /**
    * This is to indicate the whole number of items.
    */
@@ -932,10 +879,6 @@ export interface GetContentPerformance_Response {
    */
   fetched_date_range?: string;
 }
-/**
- * Response data payload for get_content_performance
- */
-export type GetContentPerformanceResponseData = GetContentPerformance_Response;
 /**
  * Response payload for get_content_performance
  *
@@ -1050,9 +993,9 @@ export interface GetConversionReportRequest {
   ams_deduction_time_end?: Date | number;
 }
 /**
- * GetConversionReport_Item sub-interface for GetConversionReport_List
+ * GetConversionReportItem sub-interface for GetConversionReportList
  */
-export interface GetConversionReport_Item {
+export interface GetConversionReportItem {
   /**
    * Unique identifier of the item in the order.
    */
@@ -1135,9 +1078,9 @@ export interface GetConversionReport_Item {
   seller_service_fee?: string;
 }
 /**
- * GetConversionReport_List sub-interface for GetConversionReport_Response
+ * GetConversionReportList sub-interface for GetConversionReportResponseData
  */
-export interface GetConversionReport_List {
+export interface GetConversionReportList {
   /**
    * Unique identifier of the order.
    */
@@ -1194,20 +1137,20 @@ export interface GetConversionReport_List {
    * Buyer Status. Applicable values: NewExisting
    */
   buyer_status?: string;
-  items?: GetConversionReport_Item[];
+  items?: GetConversionReportItem[];
   /**
    * Partner identifier for the campaign.
    */
   campaign_partner?: string;
 }
 /**
- * GetConversionReport_Response sub-interface for GetConversionReportResponse
+ * GetConversionReportResponseData sub-interface for GetConversionReportResponse
  */
-export interface GetConversionReport_Response {
+export interface GetConversionReportResponseData {
   /**
    * Array of order records. Each object contains order and commission details.
    */
-  list?: GetConversionReport_List[];
+  list?: GetConversionReportList[];
   /**
    * Total number of entities that match the condition.
    */
@@ -1217,10 +1160,6 @@ export interface GetConversionReport_Response {
    */
   has_more?: boolean;
 }
-/**
- * Response data payload for get_conversion_report
- */
-export type GetConversionReportResponseData = GetConversionReport_Response;
 /**
  * Response payload for get_conversion_report
  *
@@ -1243,9 +1182,9 @@ export interface GetManagedAffiliateListRequest {
   page_size: number;
 }
 /**
- * GetManagedAffiliateList_PopularSocialMedia sub-interface for GetManagedAffiliateList_Affiliate
+ * GetManagedAffiliateListPopularSocialMedia sub-interface for GetManagedAffiliateListAffiliate
  */
-export interface GetManagedAffiliateList_PopularSocialMedia {
+export interface GetManagedAffiliateListPopularSocialMedia {
   /**
    * The platform of this social media account.
    */
@@ -1256,9 +1195,9 @@ export interface GetManagedAffiliateList_PopularSocialMedia {
   follower_count?: number;
 }
 /**
- * GetManagedAffiliateList_SocialMedia sub-interface for GetManagedAffiliateList_Affiliate
+ * GetManagedAffiliateListSocialMedia sub-interface for GetManagedAffiliateListAffiliate
  */
-export interface GetManagedAffiliateList_SocialMedia {
+export interface GetManagedAffiliateListSocialMedia {
   /**
    * The platform of this social media account.
    */
@@ -1273,9 +1212,9 @@ export interface GetManagedAffiliateList_SocialMedia {
   social_media_user_name?: string;
 }
 /**
- * GetManagedAffiliateList_TopPopularContent sub-interface for GetManagedAffiliateList_Affiliate
+ * GetManagedAffiliateListTopPopularContent sub-interface for GetManagedAffiliateListAffiliate
  */
-export interface GetManagedAffiliateList_TopPopularContent {
+export interface GetManagedAffiliateListTopPopularContent {
   /**
    * The platform of this affiliate's content. eg. shopee video/shopee live
    */
@@ -1302,18 +1241,18 @@ export interface GetManagedAffiliateList_TopPopularContent {
   media_url?: string;
 }
 /**
- * GetManagedAffiliateList_TopSellingProduct sub-interface for GetManagedAffiliateList_Affiliate
+ * GetManagedAffiliateListTopSellingProduct sub-interface for GetManagedAffiliateListAffiliate
  */
-export interface GetManagedAffiliateList_TopSellingProduct {
+export interface GetManagedAffiliateListTopSellingProduct {
   /**
    * The item id of this item.
    */
   item_id?: number;
 }
 /**
- * GetManagedAffiliateList_Affiliate sub-interface for GetManagedAffiliateList_Response
+ * GetManagedAffiliateListAffiliate sub-interface for GetManagedAffiliateListResponseData
  */
-export interface GetManagedAffiliateList_Affiliate {
+export interface GetManagedAffiliateListAffiliate {
   /**
    * The unique key for the current affiliate.
    */
@@ -1333,11 +1272,11 @@ export interface GetManagedAffiliateList_Affiliate {
   /**
    * The popular social media of this affiliate.
    */
-  popular_social_media?: GetManagedAffiliateList_PopularSocialMedia;
+  popular_social_media?: GetManagedAffiliateListPopularSocialMedia;
   /**
    * Social media account list of this affiliate.
    */
-  social_medias?: GetManagedAffiliateList_SocialMedia[];
+  social_medias?: GetManagedAffiliateListSocialMedia[];
   /**
    * Number of clicks in the last 30 days.
    */
@@ -1365,16 +1304,16 @@ export interface GetManagedAffiliateList_Affiliate {
   /**
    * Top popular contents of this affiliate.
    */
-  top_popular_contents?: GetManagedAffiliateList_TopPopularContent[];
+  top_popular_contents?: GetManagedAffiliateListTopPopularContent[];
   /**
    * Top selling items of the affiliate.
    */
-  top_selling_products?: GetManagedAffiliateList_TopSellingProduct[];
+  top_selling_products?: GetManagedAffiliateListTopSellingProduct[];
 }
 /**
- * GetManagedAffiliateList_Response sub-interface for GetManagedAffiliateListResponse
+ * GetManagedAffiliateListResponseData sub-interface for GetManagedAffiliateListResponse
  */
-export interface GetManagedAffiliateList_Response {
+export interface GetManagedAffiliateListResponseData {
   /**
    * The total count of affiliates that managed by this seller.
    */
@@ -1382,12 +1321,8 @@ export interface GetManagedAffiliateList_Response {
   /**
    * Affiliate list managed by seller.Not all return fields will have values.
    */
-  affiliate_list?: GetManagedAffiliateList_Affiliate[];
+  affiliate_list?: GetManagedAffiliateListAffiliate[];
 }
-/**
- * Response data payload for get_managed_affiliate_list
- */
-export type GetManagedAffiliateListResponseData = GetManagedAffiliateList_Response;
 /**
  * Response payload for get_managed_affiliate_list
  *
@@ -1422,9 +1357,9 @@ export interface GetOpenCampaignAddedProductRequest {
   search_content?: string;
 }
 /**
- * GetOpenCampaignAddedProduct_CommissionProtection sub-interface for GetOpenCampaignAddedProduct_Item
+ * GetOpenCampaignAddedProductCommissionProtection sub-interface for GetOpenCampaignAddedProductItem
  */
-export interface GetOpenCampaignAddedProduct_CommissionProtection {
+export interface GetOpenCampaignAddedProductCommissionProtection {
   /**
    * Commission Rate, 1.1 means 1.1%, support two decimal places
    */
@@ -1435,9 +1370,9 @@ export interface GetOpenCampaignAddedProduct_CommissionProtection {
   protection_period_end_time?: Date | number;
 }
 /**
- * GetOpenCampaignAddedProduct_Item sub-interface for GetOpenCampaignAddedProduct_Response
+ * GetOpenCampaignAddedProductItem sub-interface for GetOpenCampaignAddedProductResponseData
  */
-export interface GetOpenCampaignAddedProduct_Item {
+export interface GetOpenCampaignAddedProductItem {
   /**
    * Item ID
    */
@@ -1473,17 +1408,17 @@ export interface GetOpenCampaignAddedProduct_Item {
   /**
    * Commission Protection List
    */
-  commission_protection_list?: GetOpenCampaignAddedProduct_CommissionProtection[];
+  commission_protection_list?: GetOpenCampaignAddedProductCommissionProtection[];
   /**
    * Max Commission Rate Current Day, 1.1 means 1.1%, support two decimal places
    */
   max_commission_rate_current_day?: number;
 }
 /**
- * GetOpenCampaignAddedProduct_Response sub-interface for GetOpenCampaignAddedProductResponse
+ * GetOpenCampaignAddedProductResponseData sub-interface for GetOpenCampaignAddedProductResponse
  */
-export interface GetOpenCampaignAddedProduct_Response {
-  item_list?: GetOpenCampaignAddedProduct_Item[];
+export interface GetOpenCampaignAddedProductResponseData {
+  item_list?: GetOpenCampaignAddedProductItem[];
   /**
    * Total number of items that match the condition
    */
@@ -1497,10 +1432,6 @@ export interface GetOpenCampaignAddedProduct_Response {
    */
   has_more?: boolean;
 }
-/**
- * Response data payload for get_open_campaign_added_product
- */
-export type GetOpenCampaignAddedProductResponseData = GetOpenCampaignAddedProduct_Response;
 /**
  * Response payload for get_open_campaign_added_product
  *
@@ -1520,9 +1451,9 @@ export interface GetOpenCampaignBatchTaskResultRequest {
   task_id: string;
 }
 /**
- * GetOpenCampaignBatchTaskResult_Response sub-interface for GetOpenCampaignBatchTaskResultResponse
+ * GetOpenCampaignBatchTaskResultResponseData sub-interface for GetOpenCampaignBatchTaskResultResponse
  */
-export interface GetOpenCampaignBatchTaskResult_Response {
+export interface GetOpenCampaignBatchTaskResultResponseData {
   /**
    * Task status. Applicable values:DoingDoneFailNote: Please note that task Done here refers to the completion of scanning all products in the shop, but not the successful execution of all products. Some products may fail, but due to the unpredictable huge volume of data, detailed information will not returned in the fail_reason. After the task is Done, you need to retrieve the list again by GET API and compare it with the before list to confirm the execution details
    */
@@ -1536,10 +1467,6 @@ export interface GetOpenCampaignBatchTaskResult_Response {
    */
   fail_reason?: string;
 }
-/**
- * Response data payload for get_open_campaign_batch_task_result
- */
-export type GetOpenCampaignBatchTaskResultResponseData = GetOpenCampaignBatchTaskResult_Response;
 /**
  * Response payload for get_open_campaign_batch_task_result
  *
@@ -1575,9 +1502,9 @@ export interface GetOpenCampaignNotAddedProductRequest {
   search_content?: string;
 }
 /**
- * GetOpenCampaignNotAddedProduct_Item sub-interface for GetOpenCampaignNotAddedProduct_Response
+ * GetOpenCampaignNotAddedProductItem sub-interface for GetOpenCampaignNotAddedProductResponseData
  */
-export interface GetOpenCampaignNotAddedProduct_Item {
+export interface GetOpenCampaignNotAddedProductItem {
   /**
    * Item ID
    */
@@ -1608,10 +1535,10 @@ export interface GetOpenCampaignNotAddedProduct_Item {
   with_open_campaign?: boolean;
 }
 /**
- * GetOpenCampaignNotAddedProduct_Response sub-interface for GetOpenCampaignNotAddedProductResponse
+ * GetOpenCampaignNotAddedProductResponseData sub-interface for GetOpenCampaignNotAddedProductResponse
  */
-export interface GetOpenCampaignNotAddedProduct_Response {
-  item_list?: GetOpenCampaignNotAddedProduct_Item[];
+export interface GetOpenCampaignNotAddedProductResponseData {
+  item_list?: GetOpenCampaignNotAddedProductItem[];
   /**
    * Total number of items that match the condition
    */
@@ -1625,10 +1552,6 @@ export interface GetOpenCampaignNotAddedProduct_Response {
    */
   has_more?: boolean;
 }
-/**
- * Response data payload for get_open_campaign_not_added_product
- */
-export type GetOpenCampaignNotAddedProductResponseData = GetOpenCampaignNotAddedProduct_Response;
 /**
  * Response payload for get_open_campaign_not_added_product
  *
@@ -1668,9 +1591,9 @@ export interface GetOpenCampaignPerformanceRequest {
   item_id?: number;
 }
 /**
- * GetOpenCampaignPerformance_List sub-interface for GetOpenCampaignPerformance_Response
+ * GetOpenCampaignPerformanceList sub-interface for GetOpenCampaignPerformanceResponseData
  */
-export interface GetOpenCampaignPerformance_List {
+export interface GetOpenCampaignPerformanceList {
   /**
    * Unique identifier of the promoted item within open campaign.
    */
@@ -1697,10 +1620,10 @@ export interface GetOpenCampaignPerformance_List {
   est_commission?: string;
 }
 /**
- * GetOpenCampaignPerformance_Response sub-interface for GetOpenCampaignPerformanceResponse
+ * GetOpenCampaignPerformanceResponseData sub-interface for GetOpenCampaignPerformanceResponse
  */
-export interface GetOpenCampaignPerformance_Response {
-  list?: GetOpenCampaignPerformance_List[];
+export interface GetOpenCampaignPerformanceResponseData {
+  list?: GetOpenCampaignPerformanceList[];
   /**
    * This is to indicate the whole number of items.
    */
@@ -1714,10 +1637,6 @@ export interface GetOpenCampaignPerformance_Response {
    */
   fetched_date_range?: string;
 }
-/**
- * Response data payload for get_open_campaign_performance
- */
-export type GetOpenCampaignPerformanceResponseData = GetOpenCampaignPerformance_Response;
 /**
  * Response payload for get_open_campaign_performance
  *
@@ -1745,9 +1664,9 @@ export interface GetOptimizationSuggestionProductRequest {
   rcmd_reason_filter: string;
 }
 /**
- * GetOptimizationSuggestionProduct_Item sub-interface for GetOptimizationSuggestionProduct_Response
+ * GetOptimizationSuggestionProductItem sub-interface for GetOptimizationSuggestionProductResponseData
  */
-export interface GetOptimizationSuggestionProduct_Item {
+export interface GetOptimizationSuggestionProductItem {
   /**
    * Item ID
    */
@@ -1818,10 +1737,10 @@ export interface GetOptimizationSuggestionProduct_Item {
   has_subsidy_data?: boolean;
 }
 /**
- * GetOptimizationSuggestionProduct_Response sub-interface for GetOptimizationSuggestionProductResponse
+ * GetOptimizationSuggestionProductResponseData sub-interface for GetOptimizationSuggestionProductResponse
  */
-export interface GetOptimizationSuggestionProduct_Response {
-  item_list?: GetOptimizationSuggestionProduct_Item[];
+export interface GetOptimizationSuggestionProductResponseData {
+  item_list?: GetOptimizationSuggestionProductItem[];
   /**
    * Total number of items that match the condition
    */
@@ -1831,11 +1750,6 @@ export interface GetOptimizationSuggestionProduct_Response {
    */
   has_more?: boolean;
 }
-/**
- * Response data payload for get_optimization_suggestion_product
- */
-export type GetOptimizationSuggestionProductResponseData =
-  GetOptimizationSuggestionProduct_Response;
 /**
  * Response payload for get_optimization_suggestion_product
  *
@@ -1855,18 +1769,14 @@ export interface GetPerformanceDataUpdateTimeRequest {
   marker_type: string;
 }
 /**
- * GetPerformanceDataUpdateTime_Response sub-interface for GetPerformanceDataUpdateTimeResponse
+ * GetPerformanceDataUpdateTimeResponseData sub-interface for GetPerformanceDataUpdateTimeResponse
  */
-export interface GetPerformanceDataUpdateTime_Response {
+export interface GetPerformanceDataUpdateTimeResponseData {
   /**
    * The latest date of AMS dashboard data metrics update.
    */
   last_report_date?: string;
 }
-/**
- * Response data payload for get_performance_data_update_time
- */
-export type GetPerformanceDataUpdateTimeResponseData = GetPerformanceDataUpdateTime_Response;
 /**
  * Response payload for get_performance_data_update_time
  *
@@ -1914,9 +1824,9 @@ export interface GetProductPerformanceRequest {
   item_id?: number;
 }
 /**
- * GetProductPerformance_List sub-interface for GetProductPerformance_Response
+ * GetProductPerformanceList sub-interface for GetProductPerformanceResponseData
  */
-export interface GetProductPerformance_List {
+export interface GetProductPerformanceList {
   /**
    * Item ID.
    */
@@ -1959,10 +1869,10 @@ export interface GetProductPerformance_List {
   new_buyers?: number;
 }
 /**
- * GetProductPerformance_Response sub-interface for GetProductPerformanceResponse
+ * GetProductPerformanceResponseData sub-interface for GetProductPerformanceResponse
  */
-export interface GetProductPerformance_Response {
-  list?: GetProductPerformance_List[];
+export interface GetProductPerformanceResponseData {
+  list?: GetProductPerformanceList[];
   /**
    * Total number of items that match the condition.
    */
@@ -1976,10 +1886,6 @@ export interface GetProductPerformance_Response {
    */
   fetched_date_range?: string;
 }
-/**
- * Response data payload for get_product_performance
- */
-export type GetProductPerformanceResponseData = GetProductPerformance_Response;
 /**
  * Response payload for get_product_performance
  *
@@ -1998,9 +1904,9 @@ export interface GetRecommendedAffiliateListRequest {
   page_size: number;
 }
 /**
- * GetRecommendedAffiliateList_PopularSocialMedia sub-interface for GetRecommendedAffiliateList_Affiliate
+ * GetRecommendedAffiliateListPopularSocialMedia sub-interface for GetRecommendedAffiliateListAffiliate
  */
-export interface GetRecommendedAffiliateList_PopularSocialMedia {
+export interface GetRecommendedAffiliateListPopularSocialMedia {
   /**
    * The platform of this social media account.
    */
@@ -2011,9 +1917,9 @@ export interface GetRecommendedAffiliateList_PopularSocialMedia {
   follower_count?: number;
 }
 /**
- * GetRecommendedAffiliateList_SocialMedia sub-interface for GetRecommendedAffiliateList_Affiliate
+ * GetRecommendedAffiliateListSocialMedia sub-interface for GetRecommendedAffiliateListAffiliate
  */
-export interface GetRecommendedAffiliateList_SocialMedia {
+export interface GetRecommendedAffiliateListSocialMedia {
   /**
    * The platform of this social media account.
    */
@@ -2028,9 +1934,9 @@ export interface GetRecommendedAffiliateList_SocialMedia {
   social_media_user_name?: string;
 }
 /**
- * GetRecommendedAffiliateList_TopPopularContent sub-interface for GetRecommendedAffiliateList_Affiliate
+ * GetRecommendedAffiliateListTopPopularContent sub-interface for GetRecommendedAffiliateListAffiliate
  */
-export interface GetRecommendedAffiliateList_TopPopularContent {
+export interface GetRecommendedAffiliateListTopPopularContent {
   /**
    * The platform of this affiliate's content. eg. shopee video/shopee live
    */
@@ -2057,18 +1963,18 @@ export interface GetRecommendedAffiliateList_TopPopularContent {
   media_url?: string;
 }
 /**
- * GetRecommendedAffiliateList_TopSellingProduct sub-interface for GetRecommendedAffiliateList_Affiliate
+ * GetRecommendedAffiliateListTopSellingProduct sub-interface for GetRecommendedAffiliateListAffiliate
  */
-export interface GetRecommendedAffiliateList_TopSellingProduct {
+export interface GetRecommendedAffiliateListTopSellingProduct {
   /**
    * The item id of this item.
    */
   item_id?: number;
 }
 /**
- * GetRecommendedAffiliateList_Affiliate sub-interface for GetRecommendedAffiliateList_Response
+ * GetRecommendedAffiliateListAffiliate sub-interface for GetRecommendedAffiliateListResponseData
  */
-export interface GetRecommendedAffiliateList_Affiliate {
+export interface GetRecommendedAffiliateListAffiliate {
   /**
    * The unique key for the current affiliate.
    */
@@ -2088,11 +1994,11 @@ export interface GetRecommendedAffiliateList_Affiliate {
   /**
    * The popular social media of this affiliate.
    */
-  popular_social_media?: GetRecommendedAffiliateList_PopularSocialMedia;
+  popular_social_media?: GetRecommendedAffiliateListPopularSocialMedia;
   /**
    * Social media account list of this affiliate.
    */
-  social_medias?: GetRecommendedAffiliateList_SocialMedia[];
+  social_medias?: GetRecommendedAffiliateListSocialMedia[];
   /**
    * Number of clicks in the last 30 days.
    */
@@ -2120,16 +2026,16 @@ export interface GetRecommendedAffiliateList_Affiliate {
   /**
    * Top popular contents of this affiliate.
    */
-  top_popular_contents?: GetRecommendedAffiliateList_TopPopularContent[];
+  top_popular_contents?: GetRecommendedAffiliateListTopPopularContent[];
   /**
    * Top selling items of the affiliate.
    */
-  top_selling_products?: GetRecommendedAffiliateList_TopSellingProduct[];
+  top_selling_products?: GetRecommendedAffiliateListTopSellingProduct[];
 }
 /**
- * GetRecommendedAffiliateList_Response sub-interface for GetRecommendedAffiliateListResponse
+ * GetRecommendedAffiliateListResponseData sub-interface for GetRecommendedAffiliateListResponse
  */
-export interface GetRecommendedAffiliateList_Response {
+export interface GetRecommendedAffiliateListResponseData {
   /**
    * The total count of affiliates that recommended for shop id.
    */
@@ -2137,12 +2043,8 @@ export interface GetRecommendedAffiliateList_Response {
   /**
    * Recommended Affiliate list. Not all return fields will have values.
    */
-  affiliate_list?: GetRecommendedAffiliateList_Affiliate[];
+  affiliate_list?: GetRecommendedAffiliateListAffiliate[];
 }
-/**
- * Response data payload for get_recommended_affiliate_list
- */
-export type GetRecommendedAffiliateListResponseData = GetRecommendedAffiliateList_Response;
 /**
  * Response payload for get_recommended_affiliate_list
  *
@@ -2178,9 +2080,9 @@ export interface GetShopPerformanceRequest {
   channel: string;
 }
 /**
- * GetShopPerformance_Response sub-interface for GetShopPerformanceResponse
+ * GetShopPerformanceResponseData sub-interface for GetShopPerformanceResponse
  */
-export interface GetShopPerformance_Response {
+export interface GetShopPerformanceResponseData {
   /**
    * Total value of orders generated through affiliate marketing during the selected period.
    */
@@ -2219,10 +2121,6 @@ export interface GetShopPerformance_Response {
   fetched_date_range?: string;
 }
 /**
- * Response data payload for get_shop_performance
- */
-export type GetShopPerformanceResponseData = GetShopPerformance_Response;
-/**
  * Response payload for get_shop_performance
  *
  * Retrieve overall key metrics for all channels or specific channels.
@@ -2235,9 +2133,9 @@ export type GetShopPerformanceResponse = FetchResponse<GetShopPerformanceRespons
  */
 export type GetShopSuggestedRateRequest = Record<string, never>;
 /**
- * GetShopSuggestedRate_Response sub-interface for GetShopSuggestedRateResponse
+ * GetShopSuggestedRateResponseData sub-interface for GetShopSuggestedRateResponse
  */
-export interface GetShopSuggestedRate_Response {
+export interface GetShopSuggestedRateResponseData {
   /**
    * Minimum suggested commission rate, 1.1 means 1.1%, support two decimal places
    */
@@ -2247,10 +2145,6 @@ export interface GetShopSuggestedRate_Response {
    */
   max_rate?: number;
 }
-/**
- * Response data payload for get_shop_suggested_rate
- */
-export type GetShopSuggestedRateResponseData = GetShopSuggestedRate_Response;
 /**
  * Response payload for get_shop_suggested_rate
  *
@@ -2285,9 +2179,9 @@ export interface GetTargetedCampaignAddableProductListRequest {
   search_content?: string;
 }
 /**
- * GetTargetedCampaignAddableProductList_Item sub-interface for GetTargetedCampaignAddableProductList_Response
+ * GetTargetedCampaignAddableProductListItem sub-interface for GetTargetedCampaignAddableProductListResponseData
  */
-export interface GetTargetedCampaignAddableProductList_Item {
+export interface GetTargetedCampaignAddableProductListItem {
   /**
    * The unique key for item.
    */
@@ -2314,13 +2208,13 @@ export interface GetTargetedCampaignAddableProductList_Item {
   is_in_blacklist?: boolean;
 }
 /**
- * GetTargetedCampaignAddableProductList_Response sub-interface for GetTargetedCampaignAddableProductListResponse
+ * GetTargetedCampaignAddableProductListResponseData sub-interface for GetTargetedCampaignAddableProductListResponse
  */
-export interface GetTargetedCampaignAddableProductList_Response {
+export interface GetTargetedCampaignAddableProductListResponseData {
   /**
    * Item list.
    */
-  item_list?: GetTargetedCampaignAddableProductList_Item[];
+  item_list?: GetTargetedCampaignAddableProductListItem[];
   /**
    * The total count of items that meet the query criteria.
    */
@@ -2330,11 +2224,6 @@ export interface GetTargetedCampaignAddableProductList_Response {
    */
   cursor?: string;
 }
-/**
- * Response data payload for get_targeted_campaign_addable_product_list
- */
-export type GetTargetedCampaignAddableProductListResponseData =
-  GetTargetedCampaignAddableProductList_Response;
 /**
  * Response payload for get_targeted_campaign_addable_product_list
  *
@@ -2386,9 +2275,9 @@ export interface GetTargetedCampaignListRequest {
   item_name?: string;
 }
 /**
- * GetTargetedCampaignList_Campaign sub-interface for GetTargetedCampaignList_Response
+ * GetTargetedCampaignListCampaign sub-interface for GetTargetedCampaignListResponseData
  */
-export interface GetTargetedCampaignList_Campaign {
+export interface GetTargetedCampaignListCampaign {
   /**
    * The unique key for the current campaign.
    */
@@ -2439,9 +2328,9 @@ export interface GetTargetedCampaignList_Campaign {
   max_rate?: number;
 }
 /**
- * GetTargetedCampaignList_Response sub-interface for GetTargetedCampaignListResponse
+ * GetTargetedCampaignListResponseData sub-interface for GetTargetedCampaignListResponse
  */
-export interface GetTargetedCampaignList_Response {
+export interface GetTargetedCampaignListResponseData {
   /**
    * The total count of targeted campaigns that meet the query criteria.
    */
@@ -2449,12 +2338,8 @@ export interface GetTargetedCampaignList_Response {
   /**
    * Targeted campaign list.
    */
-  campaign_list?: GetTargetedCampaignList_Campaign[];
+  campaign_list?: GetTargetedCampaignListCampaign[];
 }
-/**
- * Response data payload for get_targeted_campaign_list
- */
-export type GetTargetedCampaignListResponseData = GetTargetedCampaignList_Response;
 /**
  * Response payload for get_targeted_campaign_list
  *
@@ -2493,9 +2378,9 @@ export interface GetTargetedCampaignPerformanceRequest {
   campaign_id?: number;
 }
 /**
- * GetTargetedCampaignPerformance_List sub-interface for GetTargetedCampaignPerformance_Response
+ * GetTargetedCampaignPerformanceList sub-interface for GetTargetedCampaignPerformanceResponseData
  */
-export interface GetTargetedCampaignPerformance_List {
+export interface GetTargetedCampaignPerformanceList {
   /**
    * Unique identifier of the targeted campaign.
    */
@@ -2522,10 +2407,10 @@ export interface GetTargetedCampaignPerformance_List {
   campaign_name?: string;
 }
 /**
- * GetTargetedCampaignPerformance_Response sub-interface for GetTargetedCampaignPerformanceResponse
+ * GetTargetedCampaignPerformanceResponseData sub-interface for GetTargetedCampaignPerformanceResponse
  */
-export interface GetTargetedCampaignPerformance_Response {
-  list?: GetTargetedCampaignPerformance_List[];
+export interface GetTargetedCampaignPerformanceResponseData {
+  list?: GetTargetedCampaignPerformanceList[];
   /**
    * This is to indicate the whole number of target campaigns.
    */
@@ -2539,10 +2424,6 @@ export interface GetTargetedCampaignPerformance_Response {
    */
   fetched_date_range?: string;
 }
-/**
- * Response data payload for get_targeted_campaign_performance
- */
-export type GetTargetedCampaignPerformanceResponseData = GetTargetedCampaignPerformance_Response;
 /**
  * Response payload for get_targeted_campaign_performance
  *
@@ -2562,18 +2443,18 @@ export interface GetTargetedCampaignSettingsRequest {
   campaign_id: number;
 }
 /**
- * GetTargetedCampaignSettings_Affiliate sub-interface for GetTargetedCampaignSettings_Response
+ * GetTargetedCampaignSettingsAffiliate sub-interface for GetTargetedCampaignSettingsResponseData
  */
-export interface GetTargetedCampaignSettings_Affiliate {
+export interface GetTargetedCampaignSettingsAffiliate {
   /**
    * The unique key for affiliate, can call v2.ams.query_affiliate_list to get affiliate details.
    */
   affiliate_id?: number;
 }
 /**
- * GetTargetedCampaignSettings_CommissionProtection sub-interface for GetTargetedCampaignSettings_Item
+ * GetTargetedCampaignSettingsCommissionProtection sub-interface for GetTargetedCampaignSettingsItem
  */
-export interface GetTargetedCampaignSettings_CommissionProtection {
+export interface GetTargetedCampaignSettingsCommissionProtection {
   /**
    * Commission Rate, 1.1 means 1.1%, support two decimal places.
    */
@@ -2584,9 +2465,9 @@ export interface GetTargetedCampaignSettings_CommissionProtection {
   protection_period_end_time?: Date | number;
 }
 /**
- * GetTargetedCampaignSettings_Item sub-interface for GetTargetedCampaignSettings_Response
+ * GetTargetedCampaignSettingsItem sub-interface for GetTargetedCampaignSettingsResponseData
  */
-export interface GetTargetedCampaignSettings_Item {
+export interface GetTargetedCampaignSettingsItem {
   /**
    * Item ID.
    */
@@ -2606,12 +2487,12 @@ export interface GetTargetedCampaignSettings_Item {
   /**
    * Commission Protection List.
    */
-  commission_protection_list?: GetTargetedCampaignSettings_CommissionProtection[];
+  commission_protection_list?: GetTargetedCampaignSettingsCommissionProtection[];
 }
 /**
- * GetTargetedCampaignSettings_Response sub-interface for GetTargetedCampaignSettingsResponse
+ * GetTargetedCampaignSettingsResponseData sub-interface for GetTargetedCampaignSettingsResponse
  */
-export interface GetTargetedCampaignSettings_Response {
+export interface GetTargetedCampaignSettingsResponseData {
   /**
    * The name of the current campaign.
    */
@@ -2651,16 +2532,12 @@ export interface GetTargetedCampaignSettings_Response {
   /**
    * The list of affiliates associated with the current campaign.
    */
-  affiliate_list?: GetTargetedCampaignSettings_Affiliate[];
+  affiliate_list?: GetTargetedCampaignSettingsAffiliate[];
   /**
    * The list of items associated with the current campaign.
    */
-  item_list?: GetTargetedCampaignSettings_Item[];
+  item_list?: GetTargetedCampaignSettingsItem[];
 }
-/**
- * Response data payload for get_targeted_campaign_settings
- */
-export type GetTargetedCampaignSettingsResponseData = GetTargetedCampaignSettings_Response;
 /**
  * Response payload for get_targeted_campaign_settings
  *
@@ -2675,9 +2552,9 @@ export type GetTargetedCampaignSettingsResponse =
  */
 export type GetValidationListRequest = Record<string, never>;
 /**
- * GetValidationList_OnlineBill sub-interface for GetValidationList_Validation
+ * GetValidationListOnlineBill sub-interface for GetValidationListValidation
  */
-export interface GetValidationList_OnlineBill {
+export interface GetValidationListOnlineBill {
   /**
    * Total commission amount for the billing month.
    */
@@ -2700,9 +2577,9 @@ export interface GetValidationList_OnlineBill {
   pending_amount?: number;
 }
 /**
- * GetValidationList_OfflineBill sub-interface for GetValidationList_Validation
+ * GetValidationListOfflineBill sub-interface for GetValidationListValidation
  */
-export interface GetValidationList_OfflineBill {
+export interface GetValidationListOfflineBill {
   /**
    * Order placement month in the format YYYYMM.
    */
@@ -2725,9 +2602,9 @@ export interface GetValidationList_OfflineBill {
   ams_credit_deducted_amount?: number;
 }
 /**
- * GetValidationList_Validation sub-interface for GetValidationList_Response
+ * GetValidationListValidation sub-interface for GetValidationListResponseData
  */
-export interface GetValidationList_Validation {
+export interface GetValidationListValidation {
   /**
    * Unique identifier of the billing entry.
    */
@@ -2747,22 +2624,18 @@ export interface GetValidationList_Validation {
   /**
    * Billing details when payment method is Online.
    */
-  online_bill?: GetValidationList_OnlineBill;
+  online_bill?: GetValidationListOnlineBill;
   /**
    * List of billing details when payment method is Offline, grouped by order placement month.
    */
-  offline_bills?: GetValidationList_OfflineBill[];
+  offline_bills?: GetValidationListOfflineBill[];
 }
 /**
- * GetValidationList_Response sub-interface for GetValidationListResponse
+ * GetValidationListResponseData sub-interface for GetValidationListResponse
  */
-export interface GetValidationList_Response {
-  validation_list?: GetValidationList_Validation[];
+export interface GetValidationListResponseData {
+  validation_list?: GetValidationListValidation[];
 }
-/**
- * Response data payload for get_validation_list
- */
-export type GetValidationListResponseData = GetValidationList_Response;
 /**
  * Response payload for get_validation_list
  *
@@ -2837,9 +2710,9 @@ export interface GetValidationReportRequest {
   place_order_time_end: Date | number;
 }
 /**
- * GetValidationReport_Item sub-interface for GetValidationReport_List
+ * GetValidationReportItem sub-interface for GetValidationReportList
  */
-export interface GetValidationReport_Item {
+export interface GetValidationReportItem {
   /**
    * Unique identifier of the item in the order.
    */
@@ -2922,9 +2795,9 @@ export interface GetValidationReport_Item {
   seller_service_fee?: string;
 }
 /**
- * GetValidationReport_List sub-interface for GetValidationReport_Response
+ * GetValidationReportList sub-interface for GetValidationReportResponseData
  */
-export interface GetValidationReport_List {
+export interface GetValidationReportList {
   /**
    * Unique identifier of the order.
    */
@@ -2985,16 +2858,16 @@ export interface GetValidationReport_List {
    * Buyer Status. Applicable values:NewExisting
    */
   buyer_status?: string;
-  items?: GetValidationReport_Item[];
+  items?: GetValidationReportItem[];
 }
 /**
- * GetValidationReport_Response sub-interface for GetValidationReportResponse
+ * GetValidationReportResponseData sub-interface for GetValidationReportResponse
  */
-export interface GetValidationReport_Response {
+export interface GetValidationReportResponseData {
   /**
    * Array of order records. Each object contains order and commission details.
    */
-  list?: GetValidationReport_List[];
+  list?: GetValidationReportList[];
   /**
    * Total number of entities that match the condition.
    */
@@ -3004,10 +2877,6 @@ export interface GetValidationReport_Response {
    */
   has_more?: boolean;
 }
-/**
- * Response data payload for get_validation_report
- */
-export type GetValidationReportResponseData = GetValidationReport_Response;
 /**
  * Response payload for get_validation_report
  *
@@ -3034,9 +2903,9 @@ export interface QueryAffiliateListRequest {
   name?: string;
 }
 /**
- * QueryAffiliateList_PopularSocialMedia sub-interface for QueryAffiliateList_Affiliate
+ * QueryAffiliateListPopularSocialMedia sub-interface for QueryAffiliateListAffiliate
  */
-export interface QueryAffiliateList_PopularSocialMedia {
+export interface QueryAffiliateListPopularSocialMedia {
   /**
    * The platform of this social media account.
    */
@@ -3047,9 +2916,9 @@ export interface QueryAffiliateList_PopularSocialMedia {
   follower_count?: number;
 }
 /**
- * QueryAffiliateList_SocialMedia sub-interface for QueryAffiliateList_Affiliate
+ * QueryAffiliateListSocialMedia sub-interface for QueryAffiliateListAffiliate
  */
-export interface QueryAffiliateList_SocialMedia {
+export interface QueryAffiliateListSocialMedia {
   /**
    * The platform of this social media account.
    */
@@ -3064,9 +2933,9 @@ export interface QueryAffiliateList_SocialMedia {
   social_media_user_name?: string;
 }
 /**
- * QueryAffiliateList_TopPopularContent sub-interface for QueryAffiliateList_Affiliate
+ * QueryAffiliateListTopPopularContent sub-interface for QueryAffiliateListAffiliate
  */
-export interface QueryAffiliateList_TopPopularContent {
+export interface QueryAffiliateListTopPopularContent {
   /**
    * The platform of this affiliate's content.
    */
@@ -3093,18 +2962,18 @@ export interface QueryAffiliateList_TopPopularContent {
   media_url?: string;
 }
 /**
- * QueryAffiliateList_TopSellingProduct sub-interface for QueryAffiliateList_Affiliate
+ * QueryAffiliateListTopSellingProduct sub-interface for QueryAffiliateListAffiliate
  */
-export interface QueryAffiliateList_TopSellingProduct {
+export interface QueryAffiliateListTopSellingProduct {
   /**
    * The item id of this item.
    */
   item_id?: number;
 }
 /**
- * QueryAffiliateList_Affiliate sub-interface for QueryAffiliateList_Response
+ * QueryAffiliateListAffiliate sub-interface for QueryAffiliateListResponseData
  */
-export interface QueryAffiliateList_Affiliate {
+export interface QueryAffiliateListAffiliate {
   /**
    * The unique key for the current affiliate.
    */
@@ -3124,11 +2993,11 @@ export interface QueryAffiliateList_Affiliate {
   /**
    * The popular social media of this affiliate.
    */
-  popular_social_media?: QueryAffiliateList_PopularSocialMedia[];
+  popular_social_media?: QueryAffiliateListPopularSocialMedia[];
   /**
    * Social media account list of this affiliate.
    */
-  social_medias?: QueryAffiliateList_SocialMedia[];
+  social_medias?: QueryAffiliateListSocialMedia[];
   /**
    * Number of clicks in the last 30 days.
    */
@@ -3156,16 +3025,16 @@ export interface QueryAffiliateList_Affiliate {
   /**
    * Top popular contents of this affiliate.
    */
-  top_popular_contents?: QueryAffiliateList_TopPopularContent[];
+  top_popular_contents?: QueryAffiliateListTopPopularContent[];
   /**
    * Top selling items of the affiliate.
    */
-  top_selling_products?: QueryAffiliateList_TopSellingProduct[];
+  top_selling_products?: QueryAffiliateListTopSellingProduct[];
 }
 /**
- * QueryAffiliateList_Response sub-interface for QueryAffiliateListResponse
+ * QueryAffiliateListResponseData sub-interface for QueryAffiliateListResponse
  */
-export interface QueryAffiliateList_Response {
+export interface QueryAffiliateListResponseData {
   /**
    * The total count of affiliates by this query.Max is 200.
    */
@@ -3173,12 +3042,8 @@ export interface QueryAffiliateList_Response {
   /**
    * Affiliate list by this query.Not all return fields will have values.
    */
-  affiliate_list?: QueryAffiliateList_Affiliate[];
+  affiliate_list?: QueryAffiliateListAffiliate[];
 }
-/**
- * Response data payload for query_affiliate_list
- */
-export type QueryAffiliateListResponseData = QueryAffiliateList_Response;
 /**
  * Response payload for query_affiliate_list
  *
@@ -3192,9 +3057,9 @@ export type QueryAffiliateListResponse = FetchResponse<QueryAffiliateListRespons
  */
 export type RemoveAllProductsOpenCampaignSettingRequest = Record<string, never>;
 /**
- * RemoveAllProductsOpenCampaignSetting_Response sub-interface for RemoveAllProductsOpenCampaignSettingResponse
+ * RemoveAllProductsOpenCampaignSettingResponseData sub-interface for RemoveAllProductsOpenCampaignSettingResponse
  */
-export interface RemoveAllProductsOpenCampaignSetting_Response {
+export interface RemoveAllProductsOpenCampaignSettingResponseData {
   /**
    * Task type. Applicable values: batch_add_open_campaignsbatch_remove_open_campaignsbatch_update_open_campaignsFor this API, task type will be batch_remove_open_campaigns
    */
@@ -3204,11 +3069,6 @@ export interface RemoveAllProductsOpenCampaignSetting_Response {
    */
   task_id?: string;
 }
-/**
- * Response data payload for remove_all_products_open_campaign_setting
- */
-export type RemoveAllProductsOpenCampaignSettingResponseData =
-  RemoveAllProductsOpenCampaignSetting_Response;
 /**
  * Response payload for remove_all_products_open_campaign_setting
  *

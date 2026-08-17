@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field DiscountStatus
@@ -35,18 +37,14 @@ export interface AddDiscountRequest {
   end_time: Date | number;
 }
 /**
- * AddDiscount_Response sub-interface for AddDiscountResponse
+ * AddDiscountResponseData sub-interface for AddDiscountResponse
  */
-export interface AddDiscount_Response {
+export interface AddDiscountResponseData {
   /**
    * Shopee's unique identifier for a discount activity.
    */
   discount_id?: number;
 }
-/**
- * Response data payload for add_discount
- */
-export type AddDiscountResponseData = AddDiscount_Response;
 /**
  * Response payload for add_discount
  *
@@ -54,9 +52,9 @@ export type AddDiscountResponseData = AddDiscount_Response;
  */
 export type AddDiscountResponse = FetchResponse<AddDiscountResponseData>;
 /**
- * AddDiscountItem_Model sub-interface for AddDiscountItem_Item
+ * AddDiscountItemModel sub-interface for AddDiscountItemItem
  */
-export interface AddDiscountItem_Model {
+export interface AddDiscountItemModel {
   /**
    * Shopee's unique identifier for a variation of an item. If there is no variation of this item, you don't need to input this param. Dafault is 0.
    */
@@ -71,9 +69,9 @@ export interface AddDiscountItem_Model {
   model_promotion_stock?: number;
 }
 /**
- * AddDiscountItem_Item sub-interface for AddDiscountItemRequest
+ * AddDiscountItemItem sub-interface for AddDiscountItemRequest
  */
-export interface AddDiscountItem_Item {
+export interface AddDiscountItemItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -89,7 +87,7 @@ export interface AddDiscountItem_Item {
   /**
    * The models which belongs to this item.
    */
-  model_list?: AddDiscountItem_Model[];
+  model_list?: AddDiscountItemModel[];
   /**
    * The max number of this product in the promotion price. If it's No Limit, please input the 0 for this request data.
    */
@@ -108,12 +106,12 @@ export interface AddDiscountItemRequest {
   /**
    * The items added in this discount promotion.
    */
-  item_list: AddDiscountItem_Item[];
+  item_list: AddDiscountItemItem[];
 }
 /**
- * AddDiscountItem_Error sub-interface for AddDiscountItem_Response
+ * AddDiscountItemError sub-interface for AddDiscountItemResponseData
  */
-export interface AddDiscountItem_Error {
+export interface AddDiscountItemError {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -132,9 +130,9 @@ export interface AddDiscountItem_Error {
   fail_error?: string;
 }
 /**
- * AddDiscountItem_Response sub-interface for AddDiscountItemResponse
+ * AddDiscountItemResponseData sub-interface for AddDiscountItemResponse
  */
-export interface AddDiscountItem_Response {
+export interface AddDiscountItemResponseData {
   /**
    * Shopee's unique identifier for a discount activity.
    */
@@ -146,12 +144,8 @@ export interface AddDiscountItem_Response {
   /**
    * Indicate error details.
    */
-  error_list?: AddDiscountItem_Error[];
+  error_list?: AddDiscountItemError[];
 }
-/**
- * Response data payload for add_discount_item
- */
-export type AddDiscountItemResponseData = AddDiscountItem_Response;
 /**
  * Response payload for add_discount_item
  *
@@ -170,9 +164,9 @@ export interface DeleteDiscountRequest {
   discount_id: number;
 }
 /**
- * DeleteDiscount_Response sub-interface for DeleteDiscountResponse
+ * DeleteDiscountResponseData sub-interface for DeleteDiscountResponse
  */
-export interface DeleteDiscount_Response {
+export interface DeleteDiscountResponseData {
   /**
    * Shopee's unique identifier for a discount activity.
    */
@@ -182,10 +176,6 @@ export interface DeleteDiscount_Response {
    */
   modify_time?: Date | number;
 }
-/**
- * Response data payload for delete_discount
- */
-export type DeleteDiscountResponseData = DeleteDiscount_Response;
 /**
  * Response payload for delete_discount
  *
@@ -212,9 +202,9 @@ export interface DeleteDiscountItemRequest {
   model_id?: number;
 }
 /**
- * DeleteDiscountItem_Error sub-interface for DeleteDiscountItem_Response
+ * DeleteDiscountItemError sub-interface for DeleteDiscountItemResponseData
  */
-export interface DeleteDiscountItem_Error {
+export interface DeleteDiscountItemError {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -233,9 +223,9 @@ export interface DeleteDiscountItem_Error {
   fail_error?: string;
 }
 /**
- * DeleteDiscountItem_Response sub-interface for DeleteDiscountItemResponse
+ * DeleteDiscountItemResponseData sub-interface for DeleteDiscountItemResponse
  */
-export interface DeleteDiscountItem_Response {
+export interface DeleteDiscountItemResponseData {
   /**
    * Shopee's unique identifier for a discount activity.
    */
@@ -243,12 +233,8 @@ export interface DeleteDiscountItem_Response {
   /**
    * Detail informations about error.
    */
-  error_list?: DeleteDiscountItem_Error[];
+  error_list?: DeleteDiscountItemError[];
 }
-/**
- * Response data payload for delete_discount_item
- */
-export type DeleteDiscountItemResponseData = DeleteDiscountItem_Response;
 /**
  * Response payload for delete_discount_item
  *
@@ -267,18 +253,14 @@ export interface DeleteSipDiscountRequest {
   region: string;
 }
 /**
- * DeleteSipDiscount_Response sub-interface for DeleteSipDiscountResponse
+ * DeleteSipDiscountResponseData sub-interface for DeleteSipDiscountResponse
  */
-export interface DeleteSipDiscount_Response {
+export interface DeleteSipDiscountResponseData {
   /**
    * The region of SIP affiliate shop that needs to delete discount.
    */
   region?: string;
 }
-/**
- * Response data payload for delete_sip_discount
- */
-export type DeleteSipDiscountResponseData = DeleteSipDiscount_Response;
 /**
  * Response payload for delete_sip_discount
  *
@@ -297,9 +279,9 @@ export interface EndDiscountRequest {
   discount_id: number;
 }
 /**
- * EndDiscount_Response sub-interface for EndDiscountResponse
+ * EndDiscountResponseData sub-interface for EndDiscountResponse
  */
-export interface EndDiscount_Response {
+export interface EndDiscountResponseData {
   /**
    * Shopee's unique identifier for a discount activity.
    */
@@ -309,10 +291,6 @@ export interface EndDiscount_Response {
    */
   modify_time?: Date | number;
 }
-/**
- * Response data payload for end_discount
- */
-export type EndDiscountResponseData = EndDiscount_Response;
 /**
  * Response payload for end_discount
  *
@@ -339,9 +317,9 @@ export interface GetDiscountRequest {
   page_size: number;
 }
 /**
- * GetDiscount_Model sub-interface for GetDiscount_Item
+ * GetDiscountModel sub-interface for GetDiscountItem
  */
-export interface GetDiscount_Model {
+export interface GetDiscountModel {
   /**
    * Shopee's unique identifier for a variation of an item.
    */
@@ -392,9 +370,9 @@ export interface GetDiscount_Model {
   model_local_promotion_price_inflated?: number;
 }
 /**
- * GetDiscount_Item sub-interface for GetDiscount_Response
+ * GetDiscountItem sub-interface for GetDiscountResponseData
  */
-export interface GetDiscount_Item {
+export interface GetDiscountItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -446,16 +424,16 @@ export interface GetDiscount_Item {
   /**
    * The models belong to this item.
    */
-  model_list?: GetDiscount_Model[];
+  model_list?: GetDiscountModel[];
   /**
    * The max number of this product in the promotion price.
    */
   purchase_limit?: number;
 }
 /**
- * GetDiscount_Response sub-interface for GetDiscountResponse
+ * GetDiscountResponseData sub-interface for GetDiscountResponse
  */
-export interface GetDiscount_Response {
+export interface GetDiscountResponseData {
   /**
    * The status of discount promotion
    */
@@ -467,7 +445,7 @@ export interface GetDiscount_Response {
   /**
    * The items selected in this discount.
    */
-  item_list?: GetDiscount_Item[];
+  item_list?: GetDiscountItem[];
   /**
    * The time when discount activity start.
    */
@@ -485,10 +463,6 @@ export interface GetDiscount_Response {
    */
   more?: boolean;
 }
-/**
- * Response data payload for get_discount
- */
-export type GetDiscountResponseData = GetDiscount_Response;
 /**
  * Response payload for get_discount
  *
@@ -523,9 +497,9 @@ export interface GetDiscountListRequest {
   update_time_to?: Date | number;
 }
 /**
- * GetDiscountList_Discount sub-interface for GetDiscountList_Response
+ * GetDiscountListDiscount sub-interface for GetDiscountListResponseData
  */
-export interface GetDiscountList_Discount {
+export interface GetDiscountListDiscount {
   /**
    * The status of discount.
    */
@@ -552,22 +526,18 @@ export interface GetDiscountList_Discount {
   source?: number;
 }
 /**
- * GetDiscountList_Response sub-interface for GetDiscountListResponse
+ * GetDiscountListResponseData sub-interface for GetDiscountListResponse
  */
-export interface GetDiscountList_Response {
+export interface GetDiscountListResponseData {
   /**
    * The discounts created in this shop.
    */
-  discount_list?: GetDiscountList_Discount[];
+  discount_list?: GetDiscountListDiscount[];
   /**
    * This is to indicate whether the item list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of items.
    */
   more?: boolean;
 }
-/**
- * Response data payload for get_discount_list
- */
-export type GetDiscountListResponseData = GetDiscountList_Response;
 /**
  * Response payload for get_discount_list
  *
@@ -586,9 +556,9 @@ export interface GetSipDiscountsRequest {
   region?: string;
 }
 /**
- * GetSipDiscounts_Discount sub-interface for GetSipDiscounts_Response
+ * GetSipDiscountsDiscount sub-interface for GetSipDiscountsResponseData
  */
-export interface GetSipDiscounts_Discount {
+export interface GetSipDiscountsDiscount {
   /**
    * The region of SIP affiliate shop.
    */
@@ -619,18 +589,14 @@ export interface GetSipDiscounts_Discount {
   update_time?: Date | number;
 }
 /**
- * GetSipDiscounts_Response sub-interface for GetSipDiscountsResponse
+ * GetSipDiscountsResponseData sub-interface for GetSipDiscountsResponse
  */
-export interface GetSipDiscounts_Response {
+export interface GetSipDiscountsResponseData {
   /**
    * List of discounts in each region. Will be filtered based on the "region" request parameter.
    */
-  discount_list?: GetSipDiscounts_Discount[];
+  discount_list?: GetSipDiscountsDiscount[];
 }
-/**
- * Response data payload for get_sip_discounts
- */
-export type GetSipDiscountsResponseData = GetSipDiscounts_Response;
 /**
  * Response payload for get_sip_discounts
  *
@@ -653,9 +619,9 @@ export interface SetSipDiscountRequest {
   sip_discount_rate: number;
 }
 /**
- * SetSipDiscount_Response sub-interface for SetSipDiscountResponse
+ * SetSipDiscountResponseData sub-interface for SetSipDiscountResponse
  */
-export interface SetSipDiscount_Response {
+export interface SetSipDiscountResponseData {
   /**
    * The region of SIP affiliate shop.
    */
@@ -686,10 +652,6 @@ export interface SetSipDiscount_Response {
   update_time?: Date | number;
 }
 /**
- * Response data payload for set_sip_discount
- */
-export type SetSipDiscountResponseData = SetSipDiscount_Response;
-/**
  * Response payload for set_sip_discount
  *
  * Set SIP Overseas Discount for SIP affiliate region. Please use Primary shop's Shop ID to request, and provide the region and discount rate of the Affiliate shop to be set or update, the API will set or update the discount rate for that region's Affiliate shop.
@@ -719,9 +681,9 @@ export interface UpdateDiscountRequest {
   start_time?: number;
 }
 /**
- * UpdateDiscount_Response sub-interface for UpdateDiscountResponse
+ * UpdateDiscountResponseData sub-interface for UpdateDiscountResponse
  */
-export interface UpdateDiscount_Response {
+export interface UpdateDiscountResponseData {
   /**
    * Shopee's unique identifier for a discount activity.
    */
@@ -732,19 +694,15 @@ export interface UpdateDiscount_Response {
   modify_time?: Date | number;
 }
 /**
- * Response data payload for update_discount
- */
-export type UpdateDiscountResponseData = UpdateDiscount_Response;
-/**
  * Response payload for update_discount
  *
  * Use this api to update one discount information
  */
 export type UpdateDiscountResponse = FetchResponse<UpdateDiscountResponseData>;
 /**
- * UpdateDiscountItem_Model sub-interface for UpdateDiscountItem_Item
+ * UpdateDiscountItemModel sub-interface for UpdateDiscountItemItem
  */
-export interface UpdateDiscountItem_Model {
+export interface UpdateDiscountItemModel {
   /**
    * Shopee's unique identifier for a variation of an item. If there is no variation of this item, you don't need to input this param. Dafault is 0.
    */
@@ -755,9 +713,9 @@ export interface UpdateDiscountItem_Model {
   model_promotion_price: number;
 }
 /**
- * UpdateDiscountItem_Item sub-interface for UpdateDiscountItemRequest
+ * UpdateDiscountItemItem sub-interface for UpdateDiscountItemRequest
  */
-export interface UpdateDiscountItem_Item {
+export interface UpdateDiscountItemItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -769,7 +727,7 @@ export interface UpdateDiscountItem_Item {
   /**
    * The models selected to this discount.
    */
-  model_list?: UpdateDiscountItem_Model[];
+  model_list?: UpdateDiscountItemModel[];
   /**
    * The max number of this product in the promotion price.
    */
@@ -788,12 +746,12 @@ export interface UpdateDiscountItemRequest {
   /**
    * The items selected to this discount. You can update at most 50 items per call.
    */
-  item_list: UpdateDiscountItem_Item[];
+  item_list: UpdateDiscountItemItem[];
 }
 /**
- * UpdateDiscountItem_Error sub-interface for UpdateDiscountItem_Response
+ * UpdateDiscountItemError sub-interface for UpdateDiscountItemResponseData
  */
-export interface UpdateDiscountItem_Error {
+export interface UpdateDiscountItemError {
   /**
    * The items which have something error.
    */
@@ -812,9 +770,9 @@ export interface UpdateDiscountItem_Error {
   fail_error?: string;
 }
 /**
- * UpdateDiscountItem_Response sub-interface for UpdateDiscountItemResponse
+ * UpdateDiscountItemResponseData sub-interface for UpdateDiscountItemResponse
  */
-export interface UpdateDiscountItem_Response {
+export interface UpdateDiscountItemResponseData {
   /**
    * Shopee's unique identifier for a discount activity.
    */
@@ -826,12 +784,8 @@ export interface UpdateDiscountItem_Response {
   /**
    * Error list of this discount.
    */
-  error_list?: UpdateDiscountItem_Error[];
+  error_list?: UpdateDiscountItemError[];
 }
-/**
- * Response data payload for update_discount_item
- */
-export type UpdateDiscountItemResponseData = UpdateDiscountItem_Response;
 /**
  * Response payload for update_discount_item
  *

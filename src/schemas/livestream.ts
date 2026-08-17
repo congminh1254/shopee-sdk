@@ -1,8 +1,10 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
- * AddItemList_Item sub-interface for AddItemListRequest
+ * AddItemListItem sub-interface for AddItemListRequest
  */
-export interface AddItemList_Item {
+export interface AddItemListItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -25,7 +27,7 @@ export interface AddItemListRequest {
   /**
    * The list of item to add.
    */
-  item_list: AddItemList_Item[];
+  item_list: AddItemListItem[];
 }
 /**
  * Response data payload for add_item_list
@@ -111,18 +113,14 @@ export interface CreateSessionRequest {
   is_test?: boolean;
 }
 /**
- * CreateSession_Response sub-interface for CreateSessionResponse
+ * CreateSessionResponseData sub-interface for CreateSessionResponse
  */
-export interface CreateSession_Response {
+export interface CreateSessionResponseData {
   /**
    * The identifier of livestream session.
    */
   session_id?: number;
 }
-/**
- * Response data payload for create_session
- */
-export type CreateSessionResponseData = CreateSession_Response;
 /**
  * Response payload for create_session
  *
@@ -130,9 +128,9 @@ export type CreateSessionResponseData = CreateSession_Response;
  */
 export type CreateSessionResponse = FetchResponse<CreateSessionResponseData>;
 /**
- * DeleteItemList_Item sub-interface for DeleteItemListRequest
+ * DeleteItemListItem sub-interface for DeleteItemListRequest
  */
-export interface DeleteItemList_Item {
+export interface DeleteItemListItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -155,7 +153,7 @@ export interface DeleteItemListRequest {
   /**
    * The list of item to delete.
    */
-  item_list: DeleteItemList_Item[];
+  item_list: DeleteItemListItem[];
 }
 /**
  * Response data payload for delete_item_list
@@ -221,9 +219,9 @@ export interface GetItemCountRequest {
   session_id: number;
 }
 /**
- * GetItemCount_Response sub-interface for GetItemCountResponse
+ * GetItemCountResponseData sub-interface for GetItemCountResponse
  */
-export interface GetItemCount_Response {
+export interface GetItemCountResponseData {
   /**
    * The number of items in the shopping bag of this session.
    */
@@ -233,10 +231,6 @@ export interface GetItemCount_Response {
    */
   max_item_count?: number;
 }
-/**
- * Response data payload for get_item_count
- */
-export type GetItemCountResponseData = GetItemCount_Response;
 /**
  * Response payload for get_item_count
  *
@@ -263,9 +257,9 @@ export interface GetItemListRequest {
   page_size: number;
 }
 /**
- * GetItemList_PriceInfo sub-interface for GetItemList_List
+ * GetItemListPriceInfo sub-interface for GetItemListList
  */
-export interface GetItemList_PriceInfo {
+export interface GetItemListPriceInfo {
   /**
    * The three-digit code representing the currency unit used for the item.
    */
@@ -280,9 +274,9 @@ export interface GetItemList_PriceInfo {
   original_price?: number;
 }
 /**
- * GetItemList_AffiliateInfo sub-interface for GetItemList_List
+ * GetItemListAffiliateInfo sub-interface for GetItemListList
  */
-export interface GetItemList_AffiliateInfo {
+export interface GetItemListAffiliateInfo {
   /**
    * The commission rate that the streamer can get, for example, 0.1 means 10%.
    */
@@ -305,9 +299,9 @@ export interface GetItemList_AffiliateInfo {
   campaign_end_time?: number;
 }
 /**
- * GetItemList_List sub-interface for GetItemList_Response
+ * GetItemListList sub-interface for GetItemListResponseData
  */
-export interface GetItemList_List {
+export interface GetItemListList {
   /**
    * The order of this item in the shopping bag of current session, start from 1.
    */
@@ -328,13 +322,13 @@ export interface GetItemList_List {
    * The image url of this item.
    */
   image_url?: string;
-  price_info?: GetItemList_PriceInfo;
-  affiliate_info?: GetItemList_AffiliateInfo;
+  price_info?: GetItemListPriceInfo;
+  affiliate_info?: GetItemListAffiliateInfo;
 }
 /**
- * GetItemList_Response sub-interface for GetItemListResponse
+ * GetItemListResponseData sub-interface for GetItemListResponse
  */
-export interface GetItemList_Response {
+export interface GetItemListResponseData {
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of data.
    */
@@ -343,12 +337,8 @@ export interface GetItemList_Response {
    * If more is true, this value need set to next request offset.
    */
   next_offset?: number;
-  list?: GetItemList_List[];
+  list?: GetItemListList[];
 }
-/**
- * Response data payload for get_item_list
- */
-export type GetItemListResponseData = GetItemList_Response;
 /**
  * Response payload for get_item_list
  *
@@ -375,9 +365,9 @@ export interface GetItemSetItemListRequest {
   page_size: number;
 }
 /**
- * GetItemSetItemList_PriceInfo sub-interface for GetItemSetItemList_List
+ * GetItemSetItemListPriceInfo sub-interface for GetItemSetItemListList
  */
-export interface GetItemSetItemList_PriceInfo {
+export interface GetItemSetItemListPriceInfo {
   /**
    * The three-digit code representing the currency unit used for the item.
    */
@@ -392,9 +382,9 @@ export interface GetItemSetItemList_PriceInfo {
   original_price?: number;
 }
 /**
- * GetItemSetItemList_AffiliateInfo sub-interface for GetItemSetItemList_List
+ * GetItemSetItemListAffiliateInfo sub-interface for GetItemSetItemListList
  */
-export interface GetItemSetItemList_AffiliateInfo {
+export interface GetItemSetItemListAffiliateInfo {
   /**
    * The commission rate that the streamer can get, for example, 0.1 means 10%.
    */
@@ -417,9 +407,9 @@ export interface GetItemSetItemList_AffiliateInfo {
   campaign_end_time?: number;
 }
 /**
- * GetItemSetItemList_List sub-interface for GetItemSetItemList_Response
+ * GetItemSetItemListList sub-interface for GetItemSetItemListResponseData
  */
-export interface GetItemSetItemList_List {
+export interface GetItemSetItemListList {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -436,13 +426,13 @@ export interface GetItemSetItemList_List {
    * The image url of this item.
    */
   image_url?: string;
-  price_info?: GetItemSetItemList_PriceInfo;
-  affiliate_info?: GetItemSetItemList_AffiliateInfo;
+  price_info?: GetItemSetItemListPriceInfo;
+  affiliate_info?: GetItemSetItemListAffiliateInfo;
 }
 /**
- * GetItemSetItemList_Response sub-interface for GetItemSetItemListResponse
+ * GetItemSetItemListResponseData sub-interface for GetItemSetItemListResponse
  */
-export interface GetItemSetItemList_Response {
+export interface GetItemSetItemListResponseData {
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of data.
    */
@@ -451,12 +441,8 @@ export interface GetItemSetItemList_Response {
    * If more is true, this value need set to next request offset.
    */
   next_offset?: number;
-  list?: GetItemSetItemList_List[];
+  list?: GetItemSetItemListList[];
 }
-/**
- * Response data payload for get_item_set_item_list
- */
-export type GetItemSetItemListResponseData = GetItemSetItemList_Response;
 /**
  * Response payload for get_item_set_item_list
  *
@@ -483,9 +469,9 @@ export interface GetItemSetListRequest {
   keyword?: string;
 }
 /**
- * GetItemSetList_List sub-interface for GetItemSetList_Response
+ * GetItemSetListList sub-interface for GetItemSetListResponseData
  */
-export interface GetItemSetList_List {
+export interface GetItemSetListList {
   /**
    * The identifier of the item set.
    */
@@ -500,9 +486,9 @@ export interface GetItemSetList_List {
   item_count?: number;
 }
 /**
- * GetItemSetList_Response sub-interface for GetItemSetListResponse
+ * GetItemSetListResponseData sub-interface for GetItemSetListResponse
  */
-export interface GetItemSetList_Response {
+export interface GetItemSetListResponseData {
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of data.
    */
@@ -511,12 +497,8 @@ export interface GetItemSetList_Response {
    * If more is true, this value need set to next request offset.
    */
   next_offset?: number;
-  list?: GetItemSetList_List[];
+  list?: GetItemSetListList[];
 }
-/**
- * Response data payload for get_item_set_list
- */
-export type GetItemSetListResponseData = GetItemSetList_Response;
 /**
  * Response payload for get_item_set_list
  *
@@ -539,9 +521,9 @@ export interface GetLatestCommentListRequest {
   offset?: number;
 }
 /**
- * GetLatestCommentList_List sub-interface for GetLatestCommentList_Response
+ * GetLatestCommentListList sub-interface for GetLatestCommentListResponseData
  */
-export interface GetLatestCommentList_List {
+export interface GetLatestCommentListList {
   /**
    * The identifier of comment.
    */
@@ -564,19 +546,15 @@ export interface GetLatestCommentList_List {
   username?: string;
 }
 /**
- * GetLatestCommentList_Response sub-interface for GetLatestCommentListResponse
+ * GetLatestCommentListResponseData sub-interface for GetLatestCommentListResponse
  */
-export interface GetLatestCommentList_Response {
+export interface GetLatestCommentListResponseData {
   /**
    * The offset for next page request.
    */
   next_offset?: number;
-  list?: GetLatestCommentList_List[];
+  list?: GetLatestCommentListList[];
 }
-/**
- * Response data payload for get_latest_comment_list
- */
-export type GetLatestCommentListResponseData = GetLatestCommentList_Response;
 /**
  * Response payload for get_latest_comment_list
  *
@@ -603,9 +581,9 @@ export interface GetLikeItemListRequest {
   keyword?: string;
 }
 /**
- * GetLikeItemList_PriceInfo sub-interface for GetLikeItemList_List
+ * GetLikeItemListPriceInfo sub-interface for GetLikeItemListList
  */
-export interface GetLikeItemList_PriceInfo {
+export interface GetLikeItemListPriceInfo {
   /**
    * The three-digit code representing the currency unit used for the item.
    */
@@ -620,9 +598,9 @@ export interface GetLikeItemList_PriceInfo {
   original_price?: number;
 }
 /**
- * GetLikeItemList_AffiliateInfo sub-interface for GetLikeItemList_List
+ * GetLikeItemListAffiliateInfo sub-interface for GetLikeItemListList
  */
-export interface GetLikeItemList_AffiliateInfo {
+export interface GetLikeItemListAffiliateInfo {
   /**
    * The commission rate that the streamer can get, for example, 0.1 means 10%.
    */
@@ -645,9 +623,9 @@ export interface GetLikeItemList_AffiliateInfo {
   campaign_end_time?: number;
 }
 /**
- * GetLikeItemList_List sub-interface for GetLikeItemList_Response
+ * GetLikeItemListList sub-interface for GetLikeItemListResponseData
  */
-export interface GetLikeItemList_List {
+export interface GetLikeItemListList {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -664,13 +642,13 @@ export interface GetLikeItemList_List {
    * The image url of this item.
    */
   image_url?: string;
-  price_info?: GetLikeItemList_PriceInfo;
-  affiliate_info?: GetLikeItemList_AffiliateInfo;
+  price_info?: GetLikeItemListPriceInfo;
+  affiliate_info?: GetLikeItemListAffiliateInfo;
 }
 /**
- * GetLikeItemList_Response sub-interface for GetLikeItemListResponse
+ * GetLikeItemListResponseData sub-interface for GetLikeItemListResponse
  */
-export interface GetLikeItemList_Response {
+export interface GetLikeItemListResponseData {
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of data.
    */
@@ -679,12 +657,8 @@ export interface GetLikeItemList_Response {
    * If more is true, this value need set to next request offset.
    */
   next_offset?: number;
-  list?: GetLikeItemList_List[];
+  list?: GetLikeItemListList[];
 }
-/**
- * Response data payload for get_like_item_list
- */
-export type GetLikeItemListResponseData = GetLikeItemList_Response;
 /**
  * Response payload for get_like_item_list
  *
@@ -707,9 +681,9 @@ export interface GetRecentItemListRequest {
   page_size: number;
 }
 /**
- * GetRecentItemList_PriceInfo sub-interface for GetRecentItemList_List
+ * GetRecentItemListPriceInfo sub-interface for GetRecentItemListList
  */
-export interface GetRecentItemList_PriceInfo {
+export interface GetRecentItemListPriceInfo {
   /**
    * The three-digit code representing the currency unit used for the item.
    */
@@ -724,9 +698,9 @@ export interface GetRecentItemList_PriceInfo {
   original_price?: number;
 }
 /**
- * GetRecentItemList_AffiliateInfo sub-interface for GetRecentItemList_List
+ * GetRecentItemListAffiliateInfo sub-interface for GetRecentItemListList
  */
-export interface GetRecentItemList_AffiliateInfo {
+export interface GetRecentItemListAffiliateInfo {
   /**
    * The commission rate that the streamer can get, for example, 0.1 means 10%.
    */
@@ -749,9 +723,9 @@ export interface GetRecentItemList_AffiliateInfo {
   campaign_end_time?: number;
 }
 /**
- * GetRecentItemList_List sub-interface for GetRecentItemList_Response
+ * GetRecentItemListList sub-interface for GetRecentItemListResponseData
  */
-export interface GetRecentItemList_List {
+export interface GetRecentItemListList {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -768,13 +742,13 @@ export interface GetRecentItemList_List {
    * The image url of this item.
    */
   image_url?: string;
-  price_info?: GetRecentItemList_PriceInfo;
-  affiliate_info?: GetRecentItemList_AffiliateInfo;
+  price_info?: GetRecentItemListPriceInfo;
+  affiliate_info?: GetRecentItemListAffiliateInfo;
 }
 /**
- * GetRecentItemList_Response sub-interface for GetRecentItemListResponse
+ * GetRecentItemListResponseData sub-interface for GetRecentItemListResponse
  */
-export interface GetRecentItemList_Response {
+export interface GetRecentItemListResponseData {
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of data.
    */
@@ -783,12 +757,8 @@ export interface GetRecentItemList_Response {
    * If more is true, this value need set to next request offset.
    */
   next_offset?: number;
-  list?: GetRecentItemList_List[];
+  list?: GetRecentItemListList[];
 }
-/**
- * Response data payload for get_recent_item_list
- */
-export type GetRecentItemListResponseData = GetRecentItemList_Response;
 /**
  * Response payload for get_recent_item_list
  *
@@ -807,9 +777,9 @@ export interface GetSessionDetailRequest {
   session_id: number;
 }
 /**
- * GetSessionDetail_StreamUrl sub-interface for GetSessionDetail_Response
+ * GetSessionDetailStreamUrl sub-interface for GetSessionDetailResponseData
  */
-export interface GetSessionDetail_StreamUrl {
+export interface GetSessionDetailStreamUrl {
   /**
    * The push stream url for the livestream session.
    */
@@ -828,9 +798,9 @@ export interface GetSessionDetail_StreamUrl {
   domain_id?: number;
 }
 /**
- * GetSessionDetail_Response sub-interface for GetSessionDetailResponse
+ * GetSessionDetailResponseData sub-interface for GetSessionDetailResponse
  */
-export interface GetSessionDetail_Response {
+export interface GetSessionDetailResponseData {
   /**
    * The identifier of livestream session.
    */
@@ -875,12 +845,8 @@ export interface GetSessionDetail_Response {
    * The end time of livestream session, 0 if session is not ended yet. It's unix timestamp in seconds.
    */
   end_time?: number;
-  stream_url_list?: GetSessionDetail_StreamUrl[];
+  stream_url_list?: GetSessionDetailStreamUrl[];
 }
-/**
- * Response data payload for get_session_detail
- */
-export type GetSessionDetailResponseData = GetSessionDetail_Response;
 /**
  * Response payload for get_session_detail
  *
@@ -907,9 +873,9 @@ export interface GetSessionItemMetricRequest {
   page_size: number;
 }
 /**
- * GetSessionItemMetric_PriceInfo sub-interface for GetSessionItemMetric_Item
+ * GetSessionItemMetricPriceInfo sub-interface for GetSessionItemMetricItem
  */
-export interface GetSessionItemMetric_PriceInfo {
+export interface GetSessionItemMetricPriceInfo {
   /**
    * The three-digit code representing the currency unit used for the item.
    */
@@ -924,9 +890,9 @@ export interface GetSessionItemMetric_PriceInfo {
   original_price?: number;
 }
 /**
- * GetSessionItemMetric_Item sub-interface for GetSessionItemMetric_List
+ * GetSessionItemMetricItem sub-interface for GetSessionItemMetricList
  */
-export interface GetSessionItemMetric_Item {
+export interface GetSessionItemMetricItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -943,12 +909,12 @@ export interface GetSessionItemMetric_Item {
    * The image url of the item.
    */
   image_url?: string;
-  price_info?: GetSessionItemMetric_PriceInfo;
+  price_info?: GetSessionItemMetricPriceInfo;
 }
 /**
- * GetSessionItemMetric_Metric sub-interface for GetSessionItemMetric_List
+ * GetSessionItemMetricMetric sub-interface for GetSessionItemMetricList
  */
-export interface GetSessionItemMetric_Metric {
+export interface GetSessionItemMetricMetric {
   /**
    * Number of product clicks.
    */
@@ -963,16 +929,16 @@ export interface GetSessionItemMetric_Metric {
   sold_items?: number;
 }
 /**
- * GetSessionItemMetric_List sub-interface for GetSessionItemMetric_Response
+ * GetSessionItemMetricList sub-interface for GetSessionItemMetricResponseData
  */
-export interface GetSessionItemMetric_List {
-  item?: GetSessionItemMetric_Item;
-  metric?: GetSessionItemMetric_Metric;
+export interface GetSessionItemMetricList {
+  item?: GetSessionItemMetricItem;
+  metric?: GetSessionItemMetricMetric;
 }
 /**
- * GetSessionItemMetric_Response sub-interface for GetSessionItemMetricResponse
+ * GetSessionItemMetricResponseData sub-interface for GetSessionItemMetricResponse
  */
-export interface GetSessionItemMetric_Response {
+export interface GetSessionItemMetricResponseData {
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of data.
    */
@@ -981,12 +947,8 @@ export interface GetSessionItemMetric_Response {
    * If more is true, this value need set to next request offset.
    */
   next_offset?: number;
-  list?: GetSessionItemMetric_List[];
+  list?: GetSessionItemMetricList[];
 }
-/**
- * Response data payload for get_session_item_metric
- */
-export type GetSessionItemMetricResponseData = GetSessionItemMetric_Response;
 /**
  * Response payload for get_session_item_metric
  *
@@ -1005,9 +967,9 @@ export interface GetSessionMetricRequest {
   session_id: number;
 }
 /**
- * GetSessionMetric_Response sub-interface for GetSessionMetricResponse
+ * GetSessionMetricResponseData sub-interface for GetSessionMetricResponse
  */
-export interface GetSessionMetric_Response {
+export interface GetSessionMetricResponseData {
   /**
    * Value of placed orders (paid and unpaid) during Livestream, including sales from cancelled orders.
    */
@@ -1062,10 +1024,6 @@ export interface GetSessionMetric_Response {
   avg_viewing_duration?: number;
 }
 /**
- * Response data payload for get_session_metric
- */
-export type GetSessionMetricResponseData = GetSessionMetric_Response;
-/**
  * Response payload for get_session_metric
  *
  * Get real-time indicator data of the live stream room, including the number of likes, comments, shares, views, etc.(For TW, ID, TH, PH, MY, SG, VN)
@@ -1083,9 +1041,9 @@ export interface GetShowItemRequest {
   session_id: number;
 }
 /**
- * GetShowItem_PriceInfo sub-interface for GetShowItem_Item
+ * GetShowItemPriceInfo sub-interface for GetShowItemItem
  */
-export interface GetShowItem_PriceInfo {
+export interface GetShowItemPriceInfo {
   /**
    * The three-digit code representing the currency unit used for the item.
    */
@@ -1100,9 +1058,9 @@ export interface GetShowItem_PriceInfo {
   original_price?: number;
 }
 /**
- * GetShowItem_Item sub-interface for GetShowItem_Response
+ * GetShowItemItem sub-interface for GetShowItemResponseData
  */
-export interface GetShowItem_Item {
+export interface GetShowItemItem {
   /**
    * The order of this item in the shopping bag of current session, start from 1. Only return item_no when showing item is in the shopping bag of current session.
    */
@@ -1123,22 +1081,18 @@ export interface GetShowItem_Item {
    * The image url of this item.
    */
   image_url?: string;
-  price_info?: GetShowItem_PriceInfo;
+  price_info?: GetShowItemPriceInfo;
 }
 /**
- * GetShowItem_Response sub-interface for GetShowItemResponse
+ * GetShowItemResponseData sub-interface for GetShowItemResponse
  */
-export interface GetShowItem_Response {
+export interface GetShowItemResponseData {
   /**
    * Whether has the showing item.
    */
   has_show_item?: boolean;
-  item?: GetShowItem_Item;
+  item?: GetShowItemItem;
 }
-/**
- * Response data payload for get_show_item
- */
-export type GetShowItemResponseData = GetShowItem_Response;
 /**
  * Response payload for get_show_item
  *
@@ -1161,18 +1115,14 @@ export interface PostCommentRequest {
   content: string;
 }
 /**
- * PostComment_Response sub-interface for PostCommentResponse
+ * PostCommentResponseData sub-interface for PostCommentResponse
  */
-export interface PostComment_Response {
+export interface PostCommentResponseData {
   /**
    * The identifier of the comment.
    */
   comment_id?: number;
 }
-/**
- * Response data payload for post_comment
- */
-export type PostCommentResponseData = PostComment_Response;
 /**
  * Response payload for post_comment
  *
@@ -1234,9 +1184,9 @@ export type UnbanUserCommentResponseData = any;
  */
 export type UnbanUserCommentResponse = FetchResponse<UnbanUserCommentResponseData>;
 /**
- * UpdateItemList_Item sub-interface for UpdateItemListRequest
+ * UpdateItemListItem sub-interface for UpdateItemListRequest
  */
-export interface UpdateItemList_Item {
+export interface UpdateItemListItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -1259,7 +1209,7 @@ export interface UpdateItemListRequest {
   /**
    * The list of item with updated order.
    */
-  item_list: UpdateItemList_Item[];
+  item_list: UpdateItemListItem[];
 }
 /**
  * Response data payload for update_item_list
@@ -1349,18 +1299,14 @@ export interface UploadImageRequest {
   image: any;
 }
 /**
- * UploadImage_Response sub-interface for UploadImageResponse
+ * UploadImageResponseData sub-interface for UploadImageResponse
  */
-export interface UploadImage_Response {
+export interface UploadImageResponseData {
   /**
    * The image URL
    */
   image_url?: string;
 }
-/**
- * Response data payload for upload_image
- */
-export type UploadImageResponseData = UploadImage_Response;
 /**
  * Response payload for upload_image
  *

@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import {
   GetAuthorisedResellerBrandRequest,
   GetAuthorisedResellerBrandResponse,

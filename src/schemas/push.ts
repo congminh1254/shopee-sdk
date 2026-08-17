@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Request parameters for confirm_consumed_lost_push_message
@@ -33,9 +35,9 @@ export type ConfirmConsumedLostPushMessageResponse =
  */
 export type GetAppPushConfigRequest = Record<string, never>;
 /**
- * GetAppPushConfig_Response sub-interface for GetAppPushConfigResponse
+ * GetAppPushConfigResponseData sub-interface for GetAppPushConfigResponse
  */
-export interface GetAppPushConfig_Response {
+export interface GetAppPushConfigResponseData {
   /**
    * The callback url of push mechanism. It is the address where the Shopee will send the push message to. If you don't set any callback_url before, this parameters is required.
    */
@@ -62,10 +64,6 @@ export interface GetAppPushConfig_Response {
   push_config_off_list?: number[];
 }
 /**
- * Response data payload for get_app_push_config
- */
-export type GetAppPushConfigResponseData = GetAppPushConfig_Response;
-/**
  * Response payload for get_app_push_config
  *
  * you can get your app current push config setting through this api
@@ -78,9 +76,9 @@ export type GetAppPushConfigResponse = FetchResponse<GetAppPushConfigResponseDat
  */
 export type GetLostPushMessageRequest = Record<string, never>;
 /**
- * GetLostPushMessage_PushMessage sub-interface for GetLostPushMessage_Response
+ * GetLostPushMessagePushMessage sub-interface for GetLostPushMessageResponseData
  */
-export interface GetLostPushMessage_PushMessage {
+export interface GetLostPushMessagePushMessage {
   /**
    * Shopee's unique identifier for a shop. If it's a partner level push (such as code: 1, 2, 12), shop_id will not be returned.
    */
@@ -99,13 +97,13 @@ export interface GetLostPushMessage_PushMessage {
   data?: string;
 }
 /**
- * GetLostPushMessage_Response sub-interface for GetLostPushMessageResponse
+ * GetLostPushMessageResponseData sub-interface for GetLostPushMessageResponse
  */
-export interface GetLostPushMessage_Response {
+export interface GetLostPushMessageResponseData {
   /**
    * Returns the earliest 100 lost push messages that were lost within 3 days of the current time and not confirmed to have been consumed.
    */
-  push_message_list?: GetLostPushMessage_PushMessage[];
+  push_message_list?: GetLostPushMessagePushMessage[];
   /**
    * This is to indicate whether the lost push message to be consumed is more than 100. If this value is true, you may need to continue calling to get the remaining lost push messages to be consumed.
    */
@@ -115,10 +113,6 @@ export interface GetLostPushMessage_Response {
    */
   last_message_id?: number;
 }
-/**
- * Response data payload for get_lost_push_message
- */
-export type GetLostPushMessageResponseData = GetLostPushMessage_Response;
 /**
  * Response payload for get_lost_push_message
  *
@@ -149,18 +143,14 @@ export interface SetAppPushConfigRequest {
   blocked_shop_id_list?: number[];
 }
 /**
- * SetAppPushConfig_Response sub-interface for SetAppPushConfigResponse
+ * SetAppPushConfigResponseData sub-interface for SetAppPushConfigResponse
  */
-export interface SetAppPushConfig_Response {
+export interface SetAppPushConfigResponseData {
   /**
    * Use this field to indicate whether the configuration is set successfully.
    */
   result?: string;
 }
-/**
- * Response data payload for set_app_push_config
- */
-export type SetAppPushConfigResponseData = SetAppPushConfig_Response;
 /**
  * Response payload for set_app_push_config
  *

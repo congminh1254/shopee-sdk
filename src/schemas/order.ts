@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field ResponseOptionalFields
@@ -107,9 +109,9 @@ export enum OrderStatus {
   CANCELLED = "CANCELLED",
 }
 /**
- * CancelOrder_Item sub-interface for CancelOrderRequest
+ * CancelOrderItem sub-interface for CancelOrderRequest
  */
-export interface CancelOrder_Item {
+export interface CancelOrderItem {
   /**
    * Id of item.
    */
@@ -120,9 +122,9 @@ export interface CancelOrder_Item {
   model_id: number;
 }
 /**
- * CancelOrder_PartialCancelItem sub-interface for CancelOrderRequest
+ * CancelOrderPartialCancelItem sub-interface for CancelOrderRequest
  */
-export interface CancelOrder_PartialCancelItem {
+export interface CancelOrderPartialCancelItem {
   /**
    * The unique identifier of the item to be partially cancelled.
    */
@@ -161,25 +163,21 @@ export interface CancelOrderRequest {
   /**
    * Required when cancel_reason is OUT_OF_STOCK.
    */
-  item_list?: CancelOrder_Item[];
+  item_list?: CancelOrderItem[];
   /**
    * The list of item models and quantities that the seller wants to partially cancel. This field should be provided when the seller intends to cancel only part of the order due to unavailable items while continuing to fulfill the remaining items.
    */
-  partial_cancel_item_list?: CancelOrder_PartialCancelItem[];
+  partial_cancel_item_list?: CancelOrderPartialCancelItem[];
 }
 /**
- * CancelOrder_Response sub-interface for CancelOrderResponse
+ * CancelOrderResponseData sub-interface for CancelOrderResponse
  */
-export interface CancelOrder_Response {
+export interface CancelOrderResponseData {
   /**
    * The time when the order is updated.
    */
   update_time?: Date | number;
 }
-/**
- * Response data payload for cancel_order
- */
-export type CancelOrderResponseData = CancelOrder_Response;
 /**
  * Response payload for cancel_order
  *
@@ -187,9 +185,9 @@ export type CancelOrderResponseData = CancelOrder_Response;
  */
 export type CancelOrderResponse = FetchResponse<CancelOrderResponseData>;
 /**
- * DownloadFbsInvoices_RequestId sub-interface for DownloadFbsInvoicesRequest
+ * DownloadFbsInvoicesRequestId sub-interface for DownloadFbsInvoicesRequest
  */
-export interface DownloadFbsInvoices_RequestId {
+export interface DownloadFbsInvoicesRequestId {
   request_id: number[];
 }
 /**
@@ -201,19 +199,15 @@ export interface DownloadFbsInvoicesRequest {
   /**
    * list of request id (task identifiers)
    */
-  request_id_list?: DownloadFbsInvoices_RequestId[];
+  request_id_list?: DownloadFbsInvoicesRequestId[];
 }
 /**
- * DownloadFbsInvoices_Response sub-interface for DownloadFbsInvoicesResponse
+ * DownloadFbsInvoicesResponseData sub-interface for DownloadFbsInvoicesResponse
  */
-export interface DownloadFbsInvoices_Response {
+export interface DownloadFbsInvoicesResponseData {
   request_id?: number;
   file_link?: string;
 }
-/**
- * Response data payload for download_fbs_invoices
- */
-export type DownloadFbsInvoicesResponseData = DownloadFbsInvoices_Response;
 /**
  * Response payload for download_fbs_invoices
  *
@@ -244,9 +238,9 @@ export interface DownloadInvoiceDocResponseData {
  */
 export type DownloadInvoiceDocResponse = FetchResponse<DownloadInvoiceDocResponseData>;
 /**
- * GenerateFbsInvoices_BatchDownload sub-interface for GenerateFbsInvoicesRequest
+ * GenerateFbsInvoicesBatchDownload sub-interface for GenerateFbsInvoicesRequest
  */
-export interface GenerateFbsInvoices_BatchDownload {
+export interface GenerateFbsInvoicesBatchDownload {
   /**
    * Format YYYYMMDDe.g. 20240101
    */
@@ -276,12 +270,12 @@ export interface GenerateFbsInvoices_BatchDownload {
  * Please note: The download link for the document will expire 30 minutes after being generated.
  */
 export interface GenerateFbsInvoicesRequest {
-  batch_download?: GenerateFbsInvoices_BatchDownload;
+  batch_download?: GenerateFbsInvoicesBatchDownload;
 }
 /**
- * GenerateFbsInvoices_Result sub-interface for GenerateFbsInvoicesResponse
+ * GenerateFbsInvoicesResult sub-interface for GenerateFbsInvoicesResponse
  */
-export interface GenerateFbsInvoices_Result {
+export interface GenerateFbsInvoicesResult {
   /**
    * Unique task identifier that includes one or more tax documents to be downloaded according to the filters sent in the request.
    */
@@ -303,7 +297,7 @@ export interface GenerateFbsInvoicesResponseData {
    * Error messages
    */
   error_msg?: string;
-  result_list?: GenerateFbsInvoices_Result[];
+  result_list?: GenerateFbsInvoicesResult[];
 }
 /**
  * Response payload for generate_fbs_invoices
@@ -329,9 +323,9 @@ export interface GetBookingDetailRequest {
   response_optional_fields?: ResponseOptionalFields | string | number;
 }
 /**
- * GetBookingDetail_RecipientAddress sub-interface for GetBookingDetail_Booking
+ * GetBookingDetailRecipientAddress sub-interface for GetBookingDetailBooking
  */
-export interface GetBookingDetail_RecipientAddress {
+export interface GetBookingDetailRecipientAddress {
   /**
    * Recipient's name for the address.
    */
@@ -370,18 +364,18 @@ export interface GetBookingDetail_RecipientAddress {
   full_address?: string;
 }
 /**
- * GetBookingDetail_ImageInfo sub-interface for GetBookingDetail_Item
+ * GetBookingDetailImageInfo sub-interface for GetBookingDetailItem
  */
-export interface GetBookingDetail_ImageInfo {
+export interface GetBookingDetailImageInfo {
   /**
    * The image url of the product. Default to be variation image, if the model does not have a variation image, will use an item main image instead.
    */
   image_url?: string;
 }
 /**
- * GetBookingDetail_Item sub-interface for GetBookingDetail_Booking
+ * GetBookingDetailItem sub-interface for GetBookingDetailBooking
  */
-export interface GetBookingDetail_Item {
+export interface GetBookingDetailItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -421,12 +415,12 @@ export interface GetBookingDetail_Item {
   /**
    * Image info of the product.
    */
-  image_info?: GetBookingDetail_ImageInfo;
+  image_info?: GetBookingDetailImageInfo;
 }
 /**
- * GetBookingDetail_Booking sub-interface for GetBookingDetail_Response
+ * GetBookingDetailBooking sub-interface for GetBookingDetailResponseData
  */
-export interface GetBookingDetail_Booking {
+export interface GetBookingDetailBooking {
   /**
    * Return by default. Shopee's unique identifier for a booking.
    */
@@ -466,11 +460,11 @@ export interface GetBookingDetail_Booking {
   /**
    * This object contains detailed breakdown for the recipient address.
    */
-  recipient_address?: GetBookingDetail_RecipientAddress;
+  recipient_address?: GetBookingDetailRecipientAddress;
   /**
    * This object contains the detailed breakdown for the result of this API call.
    */
-  item_list?: GetBookingDetail_Item[];
+  item_list?: GetBookingDetailItem[];
   /**
    * For Indonesia bookings only. The name of the dropshipper.
    */
@@ -497,18 +491,14 @@ export interface GetBookingDetail_Booking {
   pickup_done_time?: Date | number;
 }
 /**
- * GetBookingDetail_Response sub-interface for GetBookingDetailResponse
+ * GetBookingDetailResponseData sub-interface for GetBookingDetailResponse
  */
-export interface GetBookingDetail_Response {
+export interface GetBookingDetailResponseData {
   /**
    * The list of bookings.
    */
-  booking_list?: GetBookingDetail_Booking[];
+  booking_list?: GetBookingDetailBooking[];
 }
-/**
- * Response data payload for get_booking_detail
- */
-export type GetBookingDetailResponseData = GetBookingDetail_Response;
 /**
  * Response payload for get_booking_detail
  *
@@ -547,9 +537,9 @@ export interface GetBookingListRequest {
   booking_status?: BookingStatus | string | number;
 }
 /**
- * GetBookingList_Booking sub-interface for GetBookingList_Response
+ * GetBookingListBooking sub-interface for GetBookingListResponseData
  */
-export interface GetBookingList_Booking {
+export interface GetBookingListBooking {
   /**
    * Shopee's unique identifier for a booking.
    */
@@ -568,19 +558,15 @@ export interface GetBookingList_Booking {
   next_cursor?: string;
 }
 /**
- * GetBookingList_Response sub-interface for GetBookingListResponse
+ * GetBookingListResponseData sub-interface for GetBookingListResponse
  */
-export interface GetBookingList_Response {
+export interface GetBookingListResponseData {
   /**
    * This is to indicate whether the booking list is more than one page. If this value is true, you may want to continue to check next page to retrieve bookings.
    */
   more?: boolean;
-  booking_list?: GetBookingList_Booking[];
+  booking_list?: GetBookingListBooking[];
 }
-/**
- * Response data payload for get_booking_list
- */
-export type GetBookingListResponseData = GetBookingList_Response;
 /**
  * Response payload for get_booking_list
  *
@@ -588,9 +574,9 @@ export type GetBookingListResponseData = GetBookingList_Response;
  */
 export type GetBookingListResponse = FetchResponse<GetBookingListResponseData>;
 /**
- * GetBuyerInvoiceInfo_Querie sub-interface for GetBuyerInvoiceInfoRequest
+ * GetBuyerInvoiceInfoQuerie sub-interface for GetBuyerInvoiceInfoRequest
  */
-export interface GetBuyerInvoiceInfo_Querie {
+export interface GetBuyerInvoiceInfoQuerie {
   /**
    * Shopee's unique identifier for an order.
    */
@@ -602,12 +588,12 @@ export interface GetBuyerInvoiceInfo_Querie {
  * API to obtain buyer submitted invoice info for VN, TH and PH local sellers only.
  */
 export interface GetBuyerInvoiceInfoRequest {
-  queries: GetBuyerInvoiceInfo_Querie[];
+  queries: GetBuyerInvoiceInfoQuerie[];
 }
 /**
- * GetBuyerInvoiceInfo_AddressBreakdown sub-interface for GetBuyerInvoiceInfo_InvoiceDetail
+ * GetBuyerInvoiceInfoAddressBreakdown sub-interface for GetBuyerInvoiceInfoInvoiceDetail
  */
-export interface GetBuyerInvoiceInfo_AddressBreakdown {
+export interface GetBuyerInvoiceInfoAddressBreakdown {
   /**
    * Return region value- PH, TH only
    */
@@ -642,9 +628,9 @@ export interface GetBuyerInvoiceInfo_AddressBreakdown {
   full_address?: string;
 }
 /**
- * GetBuyerInvoiceInfo_CompanyAddressBreakdown sub-interface for GetBuyerInvoiceInfo_InvoiceDetail
+ * GetBuyerInvoiceInfoCompanyAddressBreakdown sub-interface for GetBuyerInvoiceInfoInvoiceDetail
  */
-export interface GetBuyerInvoiceInfo_CompanyAddressBreakdown {
+export interface GetBuyerInvoiceInfoCompanyAddressBreakdown {
   /**
    * Return region value- PH, TH only
    */
@@ -683,9 +669,9 @@ export interface GetBuyerInvoiceInfo_CompanyAddressBreakdown {
   company_full_address?: string;
 }
 /**
- * GetBuyerInvoiceInfo_HouseholdAddressBreakdown sub-interface for GetBuyerInvoiceInfo_InvoiceDetail
+ * GetBuyerInvoiceInfoHouseholdAddressBreakdown sub-interface for GetBuyerInvoiceInfoInvoiceDetail
  */
-export interface GetBuyerInvoiceInfo_HouseholdAddressBreakdown {
+export interface GetBuyerInvoiceInfoHouseholdAddressBreakdown {
   /**
    * Region of the household address.
    */
@@ -732,9 +718,9 @@ export interface GetBuyerInvoiceInfo_HouseholdAddressBreakdown {
   household_full_address?: string;
 }
 /**
- * GetBuyerInvoiceInfo_InvoiceDetail sub-interface for GetBuyerInvoiceInfo_InvoiceInfo
+ * GetBuyerInvoiceInfoInvoiceDetail sub-interface for GetBuyerInvoiceInfoInvoiceInfo
  */
-export interface GetBuyerInvoiceInfo_InvoiceDetail {
+export interface GetBuyerInvoiceInfoInvoiceDetail {
   /**
    * Buyer name (has value when invoice_type is personal, household, or company)- VN, TH, PH only
    */
@@ -762,7 +748,7 @@ export interface GetBuyerInvoiceInfo_InvoiceDetail {
   /**
    * Buyer address breakdown.- TH, PH only
    */
-  address_breakdown?: GetBuyerInvoiceInfo_AddressBreakdown;
+  address_breakdown?: GetBuyerInvoiceInfoAddressBreakdown;
   /**
    * - return value for TH only (only has value when invoice_type is company)
    */
@@ -798,20 +784,20 @@ export interface GetBuyerInvoiceInfo_InvoiceDetail {
   /**
    * Company address breakdown- PH, TH only
    */
-  company_address_breakdown?: GetBuyerInvoiceInfo_CompanyAddressBreakdown;
+  company_address_breakdown?: GetBuyerInvoiceInfoCompanyAddressBreakdown;
   /**
    * Household address breakdown-Only for VN
    */
-  household_address_breakdown?: GetBuyerInvoiceInfo_HouseholdAddressBreakdown;
+  household_address_breakdown?: GetBuyerInvoiceInfoHouseholdAddressBreakdown;
   /**
    * National ID information provided by the buyer.- Only return value when invoice_type is personal- VN only
    */
   national_id?: string;
 }
 /**
- * GetBuyerInvoiceInfo_InvoiceInfo sub-interface for GetBuyerInvoiceInfoResponse
+ * GetBuyerInvoiceInfoInvoiceInfo sub-interface for GetBuyerInvoiceInfoResponse
  */
-export interface GetBuyerInvoiceInfo_InvoiceInfo {
+export interface GetBuyerInvoiceInfoInvoiceInfo {
   /**
    * Shopee's unique identifier for an order.
    */
@@ -823,7 +809,7 @@ export interface GetBuyerInvoiceInfo_InvoiceInfo {
   /**
    * Invoice info submitted by buyer. Might be masked, e.g. A****b, depending on order status.
    */
-  invoice_detail?: GetBuyerInvoiceInfo_InvoiceDetail;
+  invoice_detail?: GetBuyerInvoiceInfoInvoiceDetail;
   /**
    * Error in retrieving the receipt setting of a particular order.
    */
@@ -837,7 +823,7 @@ export interface GetBuyerInvoiceInfo_InvoiceInfo {
  * Response data payload for get_buyer_invoice_info
  */
 export interface GetBuyerInvoiceInfoResponseData {
-  invoice_info_list?: GetBuyerInvoiceInfo_InvoiceInfo[];
+  invoice_info_list?: GetBuyerInvoiceInfoInvoiceInfo[];
 }
 /**
  * Response payload for get_buyer_invoice_info
@@ -846,9 +832,9 @@ export interface GetBuyerInvoiceInfoResponseData {
  */
 export type GetBuyerInvoiceInfoResponse = FetchResponse<GetBuyerInvoiceInfoResponseData>;
 /**
- * GetEstimateCancelValue_PartialCancelItem sub-interface for GetEstimateCancelValueRequest
+ * GetEstimateCancelValuePartialCancelItem sub-interface for GetEstimateCancelValueRequest
  */
-export interface GetEstimateCancelValue_PartialCancelItem {
+export interface GetEstimateCancelValuePartialCancelItem {
   /**
    * The unique identifier of the item to be included in the estimated cancellation value calculation.
    */
@@ -883,7 +869,7 @@ export interface GetEstimateCancelValueRequest {
   /**
    * The list of item models and quantities for which the seller wants to estimate the cancellation value before submitting the actual partial cancellation request.
    */
-  partial_cancel_item_list: GetEstimateCancelValue_PartialCancelItem[];
+  partial_cancel_item_list: GetEstimateCancelValuePartialCancelItem[];
 }
 /**
  * Response data payload for get_estimate_cancel_value
@@ -901,9 +887,9 @@ export interface GetEstimateCancelValueResponseData {
  */
 export type GetEstimateCancelValueResponse = FetchResponse<GetEstimateCancelValueResponseData>;
 /**
- * GetFbsInvoicesResult_RequestId sub-interface for GetFbsInvoicesResultRequest
+ * GetFbsInvoicesResultRequestId sub-interface for GetFbsInvoicesResultRequest
  */
-export interface GetFbsInvoicesResult_RequestId {
+export interface GetFbsInvoicesResultRequestId {
   /**
    * A list of integers representing the request IDs to be queried.
    */
@@ -918,12 +904,12 @@ export interface GetFbsInvoicesResultRequest {
   /**
    * -
    */
-  request_id_list: GetFbsInvoicesResult_RequestId[];
+  request_id_list: GetFbsInvoicesResultRequestId[];
 }
 /**
- * GetFbsInvoicesResult_Result sub-interface for GetFbsInvoicesResultResponse
+ * GetFbsInvoicesResultResult sub-interface for GetFbsInvoicesResultResponse
  */
-export interface GetFbsInvoicesResult_Result {
+export interface GetFbsInvoicesResultResult {
   /**
    * Represents the current status of the request
    */
@@ -945,7 +931,7 @@ export interface GetFbsInvoicesResultResponseData {
    * Indicate error details if hit error. Empty if no error happened.
    */
   error_msg?: string;
-  result_list?: GetFbsInvoicesResult_Result[];
+  result_list?: GetFbsInvoicesResultResult[];
 }
 /**
  * Response payload for get_fbs_invoices_result
@@ -973,9 +959,9 @@ export interface GetOrderDetailRequest {
   response_optional_fields?: ResponseOptionalFields | string | number;
 }
 /**
- * GetOrderDetail_Geolocation sub-interface for GetOrderDetail_RecipientAddress
+ * GetOrderDetailGeolocation sub-interface for GetOrderDetailRecipientAddress
  */
-export interface GetOrderDetail_Geolocation {
+export interface GetOrderDetailGeolocation {
   /**
    * Latitude.
    */
@@ -986,9 +972,9 @@ export interface GetOrderDetail_Geolocation {
   longitude?: number;
 }
 /**
- * GetOrderDetail_RecipientAddress sub-interface for GetOrderDetail_Order
+ * GetOrderDetailRecipientAddress sub-interface for GetOrderDetailOrder
  */
-export interface GetOrderDetail_RecipientAddress {
+export interface GetOrderDetailRecipientAddress {
   /**
    * Recipient's name for the address.
    */
@@ -1028,21 +1014,21 @@ export interface GetOrderDetail_RecipientAddress {
   /**
    * Geolocation info. Only available for logistics_channel_id 90026.
    */
-  geolocation?: GetOrderDetail_Geolocation;
+  geolocation?: GetOrderDetailGeolocation;
 }
 /**
- * GetOrderDetail_ImageInfo sub-interface for GetOrderDetail_Item
+ * GetOrderDetailImageInfo sub-interface for GetOrderDetailItem
  */
-export interface GetOrderDetail_ImageInfo {
+export interface GetOrderDetailImageInfo {
   /**
    * The image url of the product. Default to be variation image, if the model does not have a variation image, will use an item main image instead.
    */
   image_url?: string;
 }
 /**
- * GetOrderDetail_Promotion sub-interface for GetOrderDetail_Item
+ * GetOrderDetailPromotion sub-interface for GetOrderDetailItem
  */
-export interface GetOrderDetail_Promotion {
+export interface GetOrderDetailPromotion {
   /**
    * Indicates the type of item or package level promotion applied to a product. Each item can be associated with at most one item promotion and one package promotion at a time.Item Promotions:low_price_promotiondeep_discountplatform_saleseller_discountflash_salewholesalewelcome_package_free_giftbrand_flash_salein_shop_flash_salesynced_promoplatform_streaming_priceseller_streaming_priceexclusive_streamer_priceprice_bidding_with_rebateprice_bidding_without_rebateseller_advisor_priceselling_pricesettlement_pricecampaign_settlement_pricelocal_sip_settlement_priceplatform_exclusive_priceseller_exclusive_priceseller_member_exclusive_skuitem_priceorder_sync_pricePackage Promotions:bundle_dealadd_on_deal_mainadd_on_deal_sub
    */
@@ -1053,9 +1039,9 @@ export interface GetOrderDetail_Promotion {
   promotion_id?: number;
 }
 /**
- * GetOrderDetail_Item sub-interface for GetOrderDetail_Order
+ * GetOrderDetailItem sub-interface for GetOrderDetailOrder
  */
-export interface GetOrderDetail_Item {
+export interface GetOrderDetailItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -1135,7 +1121,7 @@ export interface GetOrderDetail_Item {
   /**
    * Image info of the product.
    */
-  image_info?: GetOrderDetail_ImageInfo;
+  image_info?: GetOrderDetailImageInfo;
   /**
    * The fulfilment warehouse ID(s) of the items in the order. (Multi-Warehouse sellers only)
    */
@@ -1156,7 +1142,7 @@ export interface GetOrderDetail_Item {
    * determine if item is B2C_shop_itemIt should be `is_b2c_shop_item` but it was a bug from dev. Then now it's is_b2c_owned_item
    */
   is_b2c_owned_item?: boolean;
-  promotion_list?: GetOrderDetail_Promotion[];
+  promotion_list?: GetOrderDetailPromotion[];
   /**
    * [Only for PH,TH,VN,MY,BR,TW] True if the item is hot listing.
    */
@@ -1183,9 +1169,9 @@ export interface GetOrderDetail_Item {
   returned_qty?: number;
 }
 /**
- * GetOrderDetail_GetOrderDetail_Item sub-interface for GetOrderDetail_Package
+ * GetOrderDetail_GetOrderDetailItem sub-interface for GetOrderDetailPackage
  */
-export interface GetOrderDetail_GetOrderDetail_Item {
+export interface GetOrderDetail_GetOrderDetailItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -1212,9 +1198,9 @@ export interface GetOrderDetail_GetOrderDetail_Item {
   product_location_id?: string;
 }
 /**
- * GetOrderDetail_Package sub-interface for GetOrderDetail_Order
+ * GetOrderDetailPackage sub-interface for GetOrderDetailOrder
  */
-export interface GetOrderDetail_Package {
+export interface GetOrderDetailPackage {
   /**
    * Shopee's unique identifier for the package under an order.
    */
@@ -1238,7 +1224,7 @@ export interface GetOrderDetail_Package {
   /**
    * The lis of items.
    */
-  item_list?: GetOrderDetail_GetOrderDetail_Item[];
+  item_list?: GetOrderDetail_GetOrderDetailItem[];
   /**
    * display weight used to calculate ASF for this parcel
    */
@@ -1261,9 +1247,9 @@ export interface GetOrderDetail_Package {
   sorting_group?: string;
 }
 /**
- * GetOrderDetail_InvoiceData sub-interface for GetOrderDetail_Order
+ * GetOrderDetailInvoiceData sub-interface for GetOrderDetailOrder
  */
-export interface GetOrderDetail_InvoiceData {
+export interface GetOrderDetailInvoiceData {
   /**
    * The number of the invoice.
    */
@@ -1302,9 +1288,9 @@ export interface GetOrderDetail_InvoiceData {
   pending_reason?: string;
 }
 /**
- * GetOrderDetail_PaymentInfo sub-interface for GetOrderDetail_Order
+ * GetOrderDetailPaymentInfo sub-interface for GetOrderDetailOrder
  */
-export interface GetOrderDetail_PaymentInfo {
+export interface GetOrderDetailPaymentInfo {
   /**
    * [Only for BR] Payment method used in the order, such as Credit Card, Debit Card, Pix, etc.
    */
@@ -1327,9 +1313,9 @@ export interface GetOrderDetail_PaymentInfo {
   payment_amount?: number;
 }
 /**
- * GetOrderDetail_Order sub-interface for GetOrderDetail_Response
+ * GetOrderDetailOrder sub-interface for GetOrderDetailResponseData
  */
-export interface GetOrderDetail_Order {
+export interface GetOrderDetailOrder {
   /**
    * Return by default. Shopee's unique identifier for an order.
    */
@@ -1405,7 +1391,7 @@ export interface GetOrderDetail_Order {
   /**
    * This object contains detailed breakdown for the recipient address.Different parameters might be masked according to each market and kind of seller.For TW region integrated channel orders will be all masked as "****". More details may refer the announcement.
    */
-  recipient_address?: GetOrderDetail_RecipientAddress;
+  recipient_address?: GetOrderDetailRecipientAddress;
   /**
    * The actual shipping fee of the order if available from external logistics partners.
    */
@@ -1425,7 +1411,7 @@ export interface GetOrderDetail_Order {
   /**
    * This object contains the detailed breakdown for the result of this API call.
    */
-  item_list?: GetOrderDetail_Item[];
+  item_list?: GetOrderDetailItem[];
   /**
    * The time when the order status is updated from UNPAID to PAID. This value is NULL when order is not paid yet.
    */
@@ -1473,11 +1459,11 @@ export interface GetOrderDetail_Order {
   /**
    * The list of package under an order
    */
-  package_list?: GetOrderDetail_Package[];
+  package_list?: GetOrderDetailPackage[];
   /**
    * The invoice data of the order.
    */
-  invoice_data?: GetOrderDetail_InvoiceData;
+  invoice_data?: GetOrderDetailInvoiceData;
   /**
    * For non masking order, the logistics service provider that the buyer selected for the order to deliver items.  For masking order, the logistics service type that the buyer selected for the order to deliver items.
    */
@@ -1545,7 +1531,7 @@ export interface GetOrderDetail_Order {
   /**
    * [Only for BR] List of payment information, to follow NT 2025.001 (BR government invoice rules).
    */
-  payment_info?: GetOrderDetail_PaymentInfo[];
+  payment_info?: GetOrderDetailPaymentInfo[];
   /**
    * [Only for PH,TH,VN,MY,BR,TW] True if the order includes hot listing item.
    */
@@ -1572,18 +1558,14 @@ export interface GetOrderDetail_Order {
   affiliate_sample_type?: number;
 }
 /**
- * GetOrderDetail_Response sub-interface for GetOrderDetailResponse
+ * GetOrderDetailResponseData sub-interface for GetOrderDetailResponse
  */
-export interface GetOrderDetail_Response {
+export interface GetOrderDetailResponseData {
   /**
    * The list of orders.
    */
-  order_list?: GetOrderDetail_Order[];
+  order_list?: GetOrderDetailOrder[];
 }
-/**
- * Response data payload for get_order_detail
- */
-export type GetOrderDetailResponseData = GetOrderDetail_Response;
 /**
  * Response payload for get_order_detail
  *
@@ -1634,9 +1616,9 @@ export interface GetOrderListRequest {
   logistics_channel_id?: number;
 }
 /**
- * GetOrderList_Order sub-interface for GetOrderList_Response
+ * GetOrderListOrder sub-interface for GetOrderListResponseData
  */
-export interface GetOrderList_Order {
+export interface GetOrderListOrder {
   /**
    * Shopee's unique identifier for an order.
    */
@@ -1651,23 +1633,19 @@ export interface GetOrderList_Order {
   booking_sn?: string;
 }
 /**
- * GetOrderList_Response sub-interface for GetOrderListResponse
+ * GetOrderListResponseData sub-interface for GetOrderListResponse
  */
-export interface GetOrderList_Response {
+export interface GetOrderListResponseData {
   /**
    * This is to indicate whether the order list is more than one page. If this value is true, you may want to continue to check next page to retrieve orders.
    */
   more?: boolean;
-  order_list?: GetOrderList_Order[];
+  order_list?: GetOrderListOrder[];
   /**
    * If  more is true, you should pass the next_cursor in the next request as cursor. The value of next_cursor will be empty string when more is false.
    */
   next_cursor?: string;
 }
-/**
- * Response data payload for get_order_list
- */
-export type GetOrderListResponseData = GetOrderList_Response;
 /**
  * Response payload for get_order_list
  *
@@ -1686,9 +1664,9 @@ export interface GetPackageDetailRequest {
   package_number_list: string[];
 }
 /**
- * GetPackageDetail_Item sub-interface for GetPackageDetail_Package
+ * GetPackageDetailItem sub-interface for GetPackageDetailPackage
  */
-export interface GetPackageDetail_Item {
+export interface GetPackageDetailItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -1743,9 +1721,9 @@ export interface GetPackageDetail_Item {
   prescription_reject_reason?: string;
 }
 /**
- * GetPackageDetail_Geolocation sub-interface for GetPackageDetail_RecipientAddress
+ * GetPackageDetailGeolocation sub-interface for GetPackageDetailRecipientAddress
  */
-export interface GetPackageDetail_Geolocation {
+export interface GetPackageDetailGeolocation {
   /**
    * Latitude.
    */
@@ -1756,9 +1734,9 @@ export interface GetPackageDetail_Geolocation {
   longitude?: number;
 }
 /**
- * GetPackageDetail_RecipientAddress sub-interface for GetPackageDetail_Package
+ * GetPackageDetailRecipientAddress sub-interface for GetPackageDetailPackage
  */
-export interface GetPackageDetail_RecipientAddress {
+export interface GetPackageDetailRecipientAddress {
   /**
    * Recipient's name for the address.
    */
@@ -1798,12 +1776,12 @@ export interface GetPackageDetail_RecipientAddress {
   /**
    * Geolocation info. Only available for logistics_channel_id 90026.
    */
-  geolocation?: GetPackageDetail_Geolocation;
+  geolocation?: GetPackageDetailGeolocation;
 }
 /**
- * GetPackageDetail_StatusInfoTag sub-interface for GetPackageDetail_Package
+ * GetPackageDetailStatusInfoTag sub-interface for GetPackageDetailPackage
  */
-export interface GetPackageDetail_StatusInfoTag {
+export interface GetPackageDetailStatusInfoTag {
   /**
    * Shipping urgency tag type, applicable values below:0: No tag1: Will be cancelled within 1 day2: Must ship before the specified timestamp3: Shipment delayed4: Must ship within the current hour5: Will be cancelled at the specified timestamp
    */
@@ -1814,9 +1792,9 @@ export interface GetPackageDetail_StatusInfoTag {
   timestamp?: Date | number;
 }
 /**
- * GetPackageDetail_DriverInfo sub-interface for GetPackageDetail_Package
+ * GetPackageDetailDriverInfo sub-interface for GetPackageDetailPackage
  */
-export interface GetPackageDetail_DriverInfo {
+export interface GetPackageDetailDriverInfo {
   /**
    * Driver Name
    */
@@ -1851,9 +1829,9 @@ export interface GetPackageDetail_DriverInfo {
   driver_status?: string;
 }
 /**
- * GetPackageDetail_InvoicePending sub-interface for GetPackageDetail_Package
+ * GetPackageDetailInvoicePending sub-interface for GetPackageDetailPackage
  */
-export interface GetPackageDetail_InvoicePending {
+export interface GetPackageDetailInvoicePending {
   /**
    * The invoice statuses should be:- valid (The invoice sent is valid)- pending (System is waiting to receive the invoice)
    */
@@ -1864,9 +1842,9 @@ export interface GetPackageDetail_InvoicePending {
   pending_reason?: string;
 }
 /**
- * GetPackageDetail_Package sub-interface for GetPackageDetail_Response
+ * GetPackageDetailPackage sub-interface for GetPackageDetailResponseData
  */
-export interface GetPackageDetail_Package {
+export interface GetPackageDetailPackage {
   /**
    * Shopee's unique identifier for an order.
    */
@@ -1930,11 +1908,11 @@ export interface GetPackageDetail_Package {
   /**
    * The lis of items in the package.
    */
-  item_list?: GetPackageDetail_Item[];
+  item_list?: GetPackageDetailItem[];
   /**
    * This object contains detailed breakdown for the recipient address.Different parameters might be masked according to each market and kind of seller.For TW region integrated channel orders will be all masked as "****". More details may refer the announcement.
    */
-  recipient_address?: GetPackageDetail_RecipientAddress;
+  recipient_address?: GetPackageDetailRecipientAddress;
   /**
    * display weight used to calculate ASF for this parcel
    */
@@ -1962,7 +1940,7 @@ export interface GetPackageDetail_Package {
   /**
    * Package shipping urgency tag information.
    */
-  status_info_tag?: GetPackageDetail_StatusInfoTag;
+  status_info_tag?: GetPackageDetailStatusInfoTag;
   /**
    * This field indicates whether this order can be split into multiple packages for separate shipment.- true: Support splitting, can call v2.order.split_order to execute- false: Does not support splitting
    */
@@ -2006,7 +1984,7 @@ export interface GetPackageDetail_Package {
   /**
    * After the driver is successfully called, the driver's information will be returned.Note: Data availability depends on the specific 3PL provider; certain fields may be omitted due to provider policies, PII restrictions, or data unavailability.
    */
-  driver_info?: GetPackageDetail_DriverInfo;
+  driver_info?: GetPackageDetailDriverInfo;
   /**
    * Indicates whether the order can be full cancelled: - If this value is true, seller can cancel the entire order- If the value is false, full order cancellation is not available for the order
    */
@@ -2019,21 +1997,17 @@ export interface GetPackageDetail_Package {
    * Indicates the buyer’s preference for handling out-of-stock items in the order. Applicable values:0 = Ship Available Items Only (The buyer allows the seller to cancel unavailable items and continue shipping the remaining available items)1 = Cancel The Entire Order (The buyer does not allow partial cancellation. If any item is unavailable, the seller should cancel the entire order instead)
    */
   buyer_preference_for_partial_cancellation?: number;
-  invoice_pending?: GetPackageDetail_InvoicePending;
+  invoice_pending?: GetPackageDetailInvoicePending;
 }
 /**
- * GetPackageDetail_Response sub-interface for GetPackageDetailResponse
+ * GetPackageDetailResponseData sub-interface for GetPackageDetailResponse
  */
-export interface GetPackageDetail_Response {
+export interface GetPackageDetailResponseData {
   /**
    * The list of packages.
    */
-  package_list?: GetPackageDetail_Package[];
+  package_list?: GetPackageDetailPackage[];
 }
-/**
- * Response data payload for get_package_detail
- */
-export type GetPackageDetailResponseData = GetPackageDetail_Response;
 /**
  * Response payload for get_package_detail
  *
@@ -2056,18 +2030,18 @@ export interface GetPendingBuyerInvoiceOrderListRequest {
   page_size: number;
 }
 /**
- * GetPendingBuyerInvoiceOrderList_Order sub-interface for GetPendingBuyerInvoiceOrderList_Response
+ * GetPendingBuyerInvoiceOrderListOrder sub-interface for GetPendingBuyerInvoiceOrderListResponseData
  */
-export interface GetPendingBuyerInvoiceOrderList_Order {
+export interface GetPendingBuyerInvoiceOrderListOrder {
   /**
    * Shopee's unique identifier for an order.
    */
   order_sn?: string;
 }
 /**
- * GetPendingBuyerInvoiceOrderList_Response sub-interface for GetPendingBuyerInvoiceOrderListResponse
+ * GetPendingBuyerInvoiceOrderListResponseData sub-interface for GetPendingBuyerInvoiceOrderListResponse
  */
-export interface GetPendingBuyerInvoiceOrderList_Response {
+export interface GetPendingBuyerInvoiceOrderListResponseData {
   /**
    * This is to indicate whether the order list is more than one page. If this value is true, you may want to continue to check next page to retrieve orders.
    */
@@ -2076,12 +2050,8 @@ export interface GetPendingBuyerInvoiceOrderList_Response {
    * If more is true, you should pass the next_cursor in the next request as cursor. The value of next_cursor will be empty string when more is false.
    */
   next_cursor?: string;
-  order_list?: GetPendingBuyerInvoiceOrderList_Order[];
+  order_list?: GetPendingBuyerInvoiceOrderListOrder[];
 }
-/**
- * Response data payload for get_pending_buyer_invoice_order_list
- */
-export type GetPendingBuyerInvoiceOrderListResponseData = GetPendingBuyerInvoiceOrderList_Response;
 /**
  * Response payload for get_pending_buyer_invoice_order_list
  *
@@ -2105,9 +2075,9 @@ export interface GetShipmentListRequest {
   page_size: number;
 }
 /**
- * GetShipmentList_Order sub-interface for GetShipmentList_Response
+ * GetShipmentListOrder sub-interface for GetShipmentListResponseData
  */
-export interface GetShipmentList_Order {
+export interface GetShipmentListOrder {
   /**
    * Shopee's unique identifier for an order.
    */
@@ -2118,13 +2088,13 @@ export interface GetShipmentList_Order {
   package_number?: string;
 }
 /**
- * GetShipmentList_Response sub-interface for GetShipmentListResponse
+ * GetShipmentListResponseData sub-interface for GetShipmentListResponse
  */
-export interface GetShipmentList_Response {
+export interface GetShipmentListResponseData {
   /**
    * The list of  shipment orders
    */
-  order_list?: GetShipmentList_Order[];
+  order_list?: GetShipmentListOrder[];
   /**
    * This is to indicate whether the order list is more than one page. If this value is true, you may want to continue to check next page to retrieve orders.
    */
@@ -2134,10 +2104,6 @@ export interface GetShipmentList_Response {
    */
   next_cursor?: string;
 }
-/**
- * Response data payload for get_shipment_list
- */
-export type GetShipmentListResponseData = GetShipmentList_Response;
 /**
  * Response payload for get_shipment_list
  *
@@ -2151,9 +2117,9 @@ export type GetShipmentListResponse = FetchResponse<GetShipmentListResponseData>
  */
 export type GetWarehouseFilterConfigRequest = Record<string, never>;
 /**
- * GetWarehouseFilterConfig_WarehouseFilter sub-interface for GetWarehouseFilterConfig_Response
+ * GetWarehouseFilterConfigWarehouseFilter sub-interface for GetWarehouseFilterConfigResponseData
  */
-export interface GetWarehouseFilterConfig_WarehouseFilter {
+export interface GetWarehouseFilterConfigWarehouseFilter {
   /**
    * The warehouse name filled in when creating the warehouse address.
    */
@@ -2176,15 +2142,11 @@ export interface GetWarehouseFilterConfig_WarehouseFilter {
   address?: string;
 }
 /**
- * GetWarehouseFilterConfig_Response sub-interface for GetWarehouseFilterConfigResponse
+ * GetWarehouseFilterConfigResponseData sub-interface for GetWarehouseFilterConfigResponse
  */
-export interface GetWarehouseFilterConfig_Response {
-  warehouse_filters?: GetWarehouseFilterConfig_WarehouseFilter[];
+export interface GetWarehouseFilterConfigResponseData {
+  warehouse_filters?: GetWarehouseFilterConfigWarehouseFilter[];
 }
-/**
- * Response data payload for get_warehouse_filter_config
- */
-export type GetWarehouseFilterConfigResponseData = GetWarehouseFilterConfig_Response;
 /**
  * Response payload for get_warehouse_filter_config
  *
@@ -2207,18 +2169,14 @@ export interface HandleBuyerCancellationRequest {
   operation: string;
 }
 /**
- * HandleBuyerCancellation_Response sub-interface for HandleBuyerCancellationResponse
+ * HandleBuyerCancellationResponseData sub-interface for HandleBuyerCancellationResponse
  */
-export interface HandleBuyerCancellation_Response {
+export interface HandleBuyerCancellationResponseData {
   /**
    * The time when the order is updated.
    */
   update_time?: Date | number;
 }
-/**
- * Response data payload for handle_buyer_cancellation
- */
-export type HandleBuyerCancellationResponseData = HandleBuyerCancellation_Response;
 /**
  * Response payload for handle_buyer_cancellation
  *
@@ -2226,9 +2184,9 @@ export type HandleBuyerCancellationResponseData = HandleBuyerCancellation_Respon
  */
 export type HandleBuyerCancellationResponse = FetchResponse<HandleBuyerCancellationResponseData>;
 /**
- * HandlePrescriptionCheck_Item sub-interface for HandlePrescriptionCheckRequest
+ * HandlePrescriptionCheckItem sub-interface for HandlePrescriptionCheckRequest
  */
-export interface HandlePrescriptionCheck_Item {
+export interface HandlePrescriptionCheckItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -2263,7 +2221,7 @@ export interface HandlePrescriptionCheckRequest {
   /**
    * The list of invalid items that make the prescription get rejected
    */
-  items?: HandlePrescriptionCheck_Item[];
+  items?: HandlePrescriptionCheckItem[];
   /**
    * Full name of the pharmacist. Required for PH and ID Prescription Orders.
    */
@@ -2274,18 +2232,14 @@ export interface HandlePrescriptionCheckRequest {
   free_text?: string;
 }
 /**
- * HandlePrescriptionCheck_Response sub-interface for HandlePrescriptionCheckResponse
+ * HandlePrescriptionCheckResponseData sub-interface for HandlePrescriptionCheckResponse
  */
-export interface HandlePrescriptionCheck_Response {
+export interface HandlePrescriptionCheckResponseData {
   /**
    * This is to indicate whether the request has been executed successfully.
    */
   is_success?: boolean;
 }
-/**
- * Response data payload for handle_prescription_check
- */
-export type HandlePrescriptionCheckResponseData = HandlePrescriptionCheck_Response;
 /**
  * Response payload for handle_prescription_check
  *
@@ -2293,9 +2247,9 @@ export type HandlePrescriptionCheckResponseData = HandlePrescriptionCheck_Respon
  */
 export type HandlePrescriptionCheckResponse = FetchResponse<HandlePrescriptionCheckResponseData>;
 /**
- * SearchPackageList_Filter sub-interface for SearchPackageListRequest
+ * SearchPackageListFilter sub-interface for SearchPackageListRequest
  */
-export interface SearchPackageList_Filter {
+export interface SearchPackageListFilter {
   /**
    * Use this field to filter the packages of specific status. Applicable values:0: All1: Pending2: ToProcess3: ProcessedDefault value = 2 (ToProcess)
    */
@@ -2334,9 +2288,9 @@ export interface SearchPackageList_Filter {
   shipping_priority?: number;
 }
 /**
- * SearchPackageList_Pagination sub-interface for SearchPackageListRequest
+ * SearchPackageListPagination sub-interface for SearchPackageListRequest
  */
-export interface SearchPackageList_Pagination {
+export interface SearchPackageListPagination {
   /**
    * Each result set is returned as a page of entries. Use the "page_size"
    * filters to control the maximum number of entries to retrieve per page
@@ -2353,9 +2307,9 @@ export interface SearchPackageList_Pagination {
   cursor?: string;
 }
 /**
- * SearchPackageList_Sort sub-interface for SearchPackageListRequest
+ * SearchPackageListSort sub-interface for SearchPackageListRequest
  */
-export interface SearchPackageList_Sort {
+export interface SearchPackageListSort {
   /**
    * Use this field to specify which field to use to sort the returned package list. Available values: 1: ShipByDate  2: CreateDate3: ConfirmedDateDefault value = 1 (ShipByDate)
    */
@@ -2371,14 +2325,14 @@ export interface SearchPackageList_Sort {
  * Use this API to search the list of packages that have not been SHIPPED to proceed arranging shipment, and it supports various filters and sort fields.
  */
 export interface SearchPackageListRequest {
-  filter?: SearchPackageList_Filter;
-  pagination: SearchPackageList_Pagination;
-  sort?: SearchPackageList_Sort;
+  filter?: SearchPackageListFilter;
+  pagination: SearchPackageListPagination;
+  sort?: SearchPackageListSort;
 }
 /**
- * SearchPackageList_Packages sub-interface for SearchPackageList_Response
+ * SearchPackageListPackages sub-interface for SearchPackageListResponseData
  */
-export interface SearchPackageList_Packages {
+export interface SearchPackageListPackages {
   /**
    * Shopee's unique identifier for an order.
    */
@@ -2405,9 +2359,9 @@ export interface SearchPackageList_Packages {
   is_shipment_arranged?: boolean;
 }
 /**
- * SearchPackageList_SearchPackageList_Pagination sub-interface for SearchPackageList_Response
+ * SearchPackageList_SearchPackageListPagination sub-interface for SearchPackageListResponseData
  */
-export interface SearchPackageList_SearchPackageList_Pagination {
+export interface SearchPackageList_SearchPackageListPagination {
   /**
    * Total orders can be returned with your query
    */
@@ -2422,9 +2376,9 @@ export interface SearchPackageList_SearchPackageList_Pagination {
   more?: boolean;
 }
 /**
- * SearchPackageList_SearchPackageList_Sort sub-interface for SearchPackageList_Response
+ * SearchPackageList_SearchPackageListSort sub-interface for SearchPackageListResponseData
  */
-export interface SearchPackageList_SearchPackageList_Sort {
+export interface SearchPackageList_SearchPackageListSort {
   /**
    * As same as request param
    */
@@ -2435,20 +2389,16 @@ export interface SearchPackageList_SearchPackageList_Sort {
   is_asc?: boolean;
 }
 /**
- * SearchPackageList_Response sub-interface for SearchPackageListResponse
+ * SearchPackageListResponseData sub-interface for SearchPackageListResponse
  */
-export interface SearchPackageList_Response {
-  packages_list?: SearchPackageList_Packages[];
-  pagination?: SearchPackageList_SearchPackageList_Pagination;
+export interface SearchPackageListResponseData {
+  packages_list?: SearchPackageListPackages[];
+  pagination?: SearchPackageList_SearchPackageListPagination;
   /**
    * As same as request param
    */
-  sort?: SearchPackageList_SearchPackageList_Sort;
+  sort?: SearchPackageList_SearchPackageListSort;
 }
-/**
- * Response data payload for search_package_list
- */
-export type SearchPackageListResponseData = SearchPackageList_Response;
 /**
  * Response payload for search_package_list
  *
@@ -2481,9 +2431,9 @@ export type SetNoteResponseData = Record<string, never>;
  */
 export type SetNoteResponse = FetchResponse<SetNoteResponseData>;
 /**
- * SplitOrder_Item sub-interface for SplitOrder_Package
+ * SplitOrderItem sub-interface for SplitOrderPackage
  */
-export interface SplitOrder_Item {
+export interface SplitOrderItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -2506,13 +2456,13 @@ export interface SplitOrder_Item {
   model_quantity?: number;
 }
 /**
- * SplitOrder_Package sub-interface for SplitOrderRequest
+ * SplitOrderPackage sub-interface for SplitOrderRequest
  */
-export interface SplitOrder_Package {
+export interface SplitOrderPackage {
   /**
    * The list of items under the same package.
    */
-  item_list: SplitOrder_Item[];
+  item_list: SplitOrderItem[];
 }
 /**
  * Request parameters for split_order
@@ -2527,12 +2477,12 @@ export interface SplitOrderRequest {
   /**
    * The list of packages that you want to split. Note: - Orders that include installation services cannot be split by quantity.- When splitting the order, must contain all items in the order in one request.- You can split the order into 30 parcels at most in TW and 5 parcels at most in other regions.
    */
-  package_list: SplitOrder_Package[];
+  package_list: SplitOrderPackage[];
 }
 /**
- * SplitOrder_SplitOrder_Item sub-interface for SplitOrder_SplitOrder_Package
+ * SplitOrder_SplitOrderItem sub-interface for SplitOrder_SplitOrderPackage
  */
-export interface SplitOrder_SplitOrder_Item {
+export interface SplitOrder_SplitOrderItem {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -2555,9 +2505,9 @@ export interface SplitOrder_SplitOrder_Item {
   model_quantity?: number;
 }
 /**
- * SplitOrder_SplitOrder_Package sub-interface for SplitOrder_Response
+ * SplitOrder_SplitOrderPackage sub-interface for SplitOrderResponseData
  */
-export interface SplitOrder_SplitOrder_Package {
+export interface SplitOrder_SplitOrderPackage {
   /**
    * Shopee's unique identifier for the package under an order.
    */
@@ -2565,12 +2515,12 @@ export interface SplitOrder_SplitOrder_Package {
   /**
    * The list of items under this package.
    */
-  item_list?: SplitOrder_SplitOrder_Item[];
+  item_list?: SplitOrder_SplitOrderItem[];
 }
 /**
- * SplitOrder_Response sub-interface for SplitOrderResponse
+ * SplitOrderResponseData sub-interface for SplitOrderResponse
  */
-export interface SplitOrder_Response {
+export interface SplitOrderResponseData {
   /**
    * Shopee's unique identifier for an order.
    */
@@ -2578,12 +2528,8 @@ export interface SplitOrder_Response {
   /**
    * The list of package under this order you have split.
    */
-  package_list?: SplitOrder_SplitOrder_Package[];
+  package_list?: SplitOrder_SplitOrderPackage[];
 }
-/**
- * Response data payload for split_order
- */
-export type SplitOrderResponseData = SplitOrder_Response;
 /**
  * Response payload for split_order
  *

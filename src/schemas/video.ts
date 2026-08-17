@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Request parameters for delete_video
@@ -15,9 +17,9 @@ export interface DeleteVideoRequest {
   post_id_list?: string[];
 }
 /**
- * DeleteVideo_Success sub-interface for DeleteVideo_Response
+ * DeleteVideoSuccess sub-interface for DeleteVideoResponseData
  */
-export interface DeleteVideo_Success {
+export interface DeleteVideoSuccess {
   /**
    * The video_upload_id delete successfully.
    */
@@ -28,9 +30,9 @@ export interface DeleteVideo_Success {
   success_post_id?: string;
 }
 /**
- * DeleteVideo_Failure sub-interface for DeleteVideo_Response
+ * DeleteVideoFailure sub-interface for DeleteVideoResponseData
  */
-export interface DeleteVideo_Failure {
+export interface DeleteVideoFailure {
   /**
    * Failed video_upload_id.
    */
@@ -45,22 +47,18 @@ export interface DeleteVideo_Failure {
   failed_reason?: string;
 }
 /**
- * DeleteVideo_Response sub-interface for DeleteVideoResponse
+ * DeleteVideoResponseData sub-interface for DeleteVideoResponse
  */
-export interface DeleteVideo_Response {
+export interface DeleteVideoResponseData {
   /**
    * The list of video delete successfully.
    */
-  success_list?: DeleteVideo_Success[];
+  success_list?: DeleteVideoSuccess[];
   /**
    * The list of video delete deleted.
    */
-  failure_list?: DeleteVideo_Failure[];
+  failure_list?: DeleteVideoFailure[];
 }
-/**
- * Response data payload for delete_video
- */
-export type DeleteVideoResponseData = DeleteVideo_Response;
 /**
  * Response payload for delete_video
  *
@@ -68,9 +66,9 @@ export type DeleteVideoResponseData = DeleteVideo_Response;
  */
 export type DeleteVideoResponse = FetchResponse<DeleteVideoResponseData>;
 /**
- * EditVideoInfo_ItemInfo sub-interface for EditVideoInfo_VideoUpload
+ * EditVideoInfoItemInfo sub-interface for EditVideoInfoVideoUpload
  */
-export interface EditVideoInfo_ItemInfo {
+export interface EditVideoInfoItemInfo {
   /**
    * Shopee's unique identifier for an item.
    */
@@ -81,9 +79,9 @@ export interface EditVideoInfo_ItemInfo {
   custom_item_name?: string;
 }
 /**
- * EditVideoInfo_AllowInfo sub-interface for EditVideoInfo_VideoUpload
+ * EditVideoInfoAllowInfo sub-interface for EditVideoInfoVideoUpload
  */
-export interface EditVideoInfo_AllowInfo {
+export interface EditVideoInfoAllowInfo {
   /**
    * Whether allow duet.
    */
@@ -94,9 +92,9 @@ export interface EditVideoInfo_AllowInfo {
   allow_stitch: boolean;
 }
 /**
- * EditVideoInfo_ScheduledInfo sub-interface for EditVideoInfo_VideoUpload
+ * EditVideoInfoScheduledInfo sub-interface for EditVideoInfoVideoUpload
  */
-export interface EditVideoInfo_ScheduledInfo {
+export interface EditVideoInfoScheduledInfo {
   /**
    * Whether post it to Shopee Video at scheduled time.
    */
@@ -107,9 +105,9 @@ export interface EditVideoInfo_ScheduledInfo {
   scheduled_post_time?: Date | number;
 }
 /**
- * EditVideoInfo_VideoUpload sub-interface for EditVideoInfoRequest
+ * EditVideoInfoVideoUpload sub-interface for EditVideoInfoRequest
  */
-export interface EditVideoInfo_VideoUpload {
+export interface EditVideoInfoVideoUpload {
   /**
    * ID of uploaded video. Obtain from v2.media.get_video_upload_result.
    */
@@ -125,15 +123,15 @@ export interface EditVideoInfo_VideoUpload {
   /**
    * List of products to be linked with the Shopee Video, no more than 6.
    */
-  item_info?: EditVideoInfo_ItemInfo[];
+  item_info?: EditVideoInfoItemInfo[];
   /**
    * Whether allow stitch and duet.
    */
-  allow_info: EditVideoInfo_AllowInfo;
+  allow_info: EditVideoInfoAllowInfo;
   /**
    * When scheduled_post is true, scheduled_post_time must not empty.When scheduled_post is false, scheduled_post_time must empty.
    */
-  scheduled_info: EditVideoInfo_ScheduledInfo;
+  scheduled_info: EditVideoInfoScheduledInfo;
 }
 /**
  * Request parameters for edit_video_info
@@ -144,12 +142,12 @@ export interface EditVideoInfoRequest {
   /**
    * Video information collection, no more than 5.
    */
-  video_upload_list: EditVideoInfo_VideoUpload[];
+  video_upload_list: EditVideoInfoVideoUpload[];
 }
 /**
- * EditVideoInfo_Failure sub-interface for EditVideoInfo_Response
+ * EditVideoInfoFailure sub-interface for EditVideoInfoResponseData
  */
-export interface EditVideoInfo_Failure {
+export interface EditVideoInfoFailure {
   /**
    * Failed video_upload_id.
    */
@@ -160,9 +158,9 @@ export interface EditVideoInfo_Failure {
   failed_reason?: string;
 }
 /**
- * EditVideoInfo_Response sub-interface for EditVideoInfoResponse
+ * EditVideoInfoResponseData sub-interface for EditVideoInfoResponse
  */
-export interface EditVideoInfo_Response {
+export interface EditVideoInfoResponseData {
   /**
    * The list of video_upload_id edit successfully.
    */
@@ -170,12 +168,8 @@ export interface EditVideoInfo_Response {
   /**
    * The list of video_upload_id edit failed.
    */
-  failure_list?: EditVideoInfo_Failure[];
+  failure_list?: EditVideoInfoFailure[];
 }
-/**
- * Response data payload for edit_video_info
- */
-export type EditVideoInfoResponseData = EditVideoInfo_Response;
 /**
  * Response payload for edit_video_info
  *
@@ -194,18 +188,14 @@ export interface GetCoverListRequest {
   video_upload_id: string;
 }
 /**
- * GetCoverList_Response sub-interface for GetCoverListResponse
+ * GetCoverListResponseData sub-interface for GetCoverListResponse
  */
-export interface GetCoverList_Response {
+export interface GetCoverListResponseData {
   /**
    * List of image url for each frame of the uploaded video, you can select one as the video cover when calling v2.video.edit_video_info.
    */
   image_url_list?: string[];
 }
-/**
- * Response data payload for get_cover_list
- */
-export type GetCoverListResponseData = GetCoverList_Response;
 /**
  * Response payload for get_cover_list
  *
@@ -228,9 +218,9 @@ export interface GetMetricTrendRequest {
   end_date: string;
 }
 /**
- * GetMetricTrend_VideoTotalMetric sub-interface for GetMetricTrend_Response
+ * GetMetricTrendVideoTotalMetric sub-interface for GetMetricTrendResponseData
  */
-export interface GetMetricTrend_VideoTotalMetric {
+export interface GetMetricTrendVideoTotalMetric {
   /**
    * The placed value of orders from all videos in the period selected.
    */
@@ -345,15 +335,11 @@ export interface GetMetricTrend_VideoTotalMetric {
   data_period?: string;
 }
 /**
- * GetMetricTrend_Response sub-interface for GetMetricTrendResponse
+ * GetMetricTrendResponseData sub-interface for GetMetricTrendResponse
  */
-export interface GetMetricTrend_Response {
-  video_total_metric_list?: GetMetricTrend_VideoTotalMetric[];
+export interface GetMetricTrendResponseData {
+  video_total_metric_list?: GetMetricTrendVideoTotalMetric[];
 }
-/**
- * Response data payload for get_metric_trend
- */
-export type GetMetricTrendResponseData = GetMetricTrend_Response;
 /**
  * Response payload for get_metric_trend
  *
@@ -376,9 +362,9 @@ export interface GetOverviewPerformanceRequest {
   end_date: string;
 }
 /**
- * GetOverviewPerformance_KeyMetric sub-interface for GetOverviewPerformance_Response
+ * GetOverviewPerformanceKeyMetric sub-interface for GetOverviewPerformanceResponseData
  */
-export interface GetOverviewPerformance_KeyMetric {
+export interface GetOverviewPerformanceKeyMetric {
   /**
    * The placed value of orders from all videos in the period selected.
    */
@@ -417,9 +403,9 @@ export interface GetOverviewPerformance_KeyMetric {
   avg_view_duration?: number;
 }
 /**
- * GetOverviewPerformance_Conversion sub-interface for GetOverviewPerformance_Response
+ * GetOverviewPerformanceConversion sub-interface for GetOverviewPerformanceResponseData
  */
-export interface GetOverviewPerformance_Conversion {
+export interface GetOverviewPerformanceConversion {
   /**
    * Number of unique buyers who placed order from the video.
    */
@@ -474,9 +460,9 @@ export interface GetOverviewPerformance_Conversion {
   confirmed_revenue_generating_videos?: number;
 }
 /**
- * GetOverviewPerformance_Engagement sub-interface for GetOverviewPerformance_Response
+ * GetOverviewPerformanceEngagement sub-interface for GetOverviewPerformanceResponseData
  */
-export interface GetOverviewPerformance_Engagement {
+export interface GetOverviewPerformanceEngagement {
   /**
    * Number of views from all videos
    */
@@ -499,21 +485,17 @@ export interface GetOverviewPerformance_Engagement {
   video_new_followers?: number;
 }
 /**
- * GetOverviewPerformance_Response sub-interface for GetOverviewPerformanceResponse
+ * GetOverviewPerformanceResponseData sub-interface for GetOverviewPerformanceResponse
  */
-export interface GetOverviewPerformance_Response {
-  key_metric?: GetOverviewPerformance_KeyMetric;
-  conversion?: GetOverviewPerformance_Conversion;
-  engagement?: GetOverviewPerformance_Engagement;
+export interface GetOverviewPerformanceResponseData {
+  key_metric?: GetOverviewPerformanceKeyMetric;
+  conversion?: GetOverviewPerformanceConversion;
+  engagement?: GetOverviewPerformanceEngagement;
   /**
    * Data offline computation time.
    */
   fetched_date_range?: string;
 }
-/**
- * Response data payload for get_overview_performance
- */
-export type GetOverviewPerformanceResponseData = GetOverviewPerformance_Response;
 /**
  * Response payload for get_overview_performance
  *
@@ -560,9 +542,9 @@ export interface GetProdcutPerformanceListRequest {
   item_name?: string;
 }
 /**
- * GetProdcutPerformanceList_List sub-interface for GetProdcutPerformanceList_Response
+ * GetProdcutPerformanceListList sub-interface for GetProdcutPerformanceListResponseData
  */
-export interface GetProdcutPerformanceList_List {
+export interface GetProdcutPerformanceListList {
   /**
    * Shopee's unique identifier for a shop.
    */
@@ -613,9 +595,9 @@ export interface GetProdcutPerformanceList_List {
   fetched_date_range?: string;
 }
 /**
- * GetProdcutPerformanceList_Response sub-interface for GetProdcutPerformanceListResponse
+ * GetProdcutPerformanceListResponseData sub-interface for GetProdcutPerformanceListResponse
  */
-export interface GetProdcutPerformanceList_Response {
+export interface GetProdcutPerformanceListResponseData {
   /**
    * The total count of product that match the condition.
    */
@@ -627,12 +609,8 @@ export interface GetProdcutPerformanceList_Response {
   /**
    * The list of product that match the condition.
    */
-  list?: GetProdcutPerformanceList_List[];
+  list?: GetProdcutPerformanceListList[];
 }
-/**
- * Response data payload for get_prodcut_performance_list
- */
-export type GetProdcutPerformanceListResponseData = GetProdcutPerformanceList_Response;
 /**
  * Response payload for get_prodcut_performance_list
  *
@@ -647,9 +625,9 @@ export type GetProdcutPerformanceListResponse =
  */
 export type GetUserDemographicsRequest = Record<string, never>;
 /**
- * GetUserDemographics_Response sub-interface for GetUserDemographicsResponse
+ * GetUserDemographicsResponseData sub-interface for GetUserDemographicsResponse
  */
-export interface GetUserDemographics_Response {
+export interface GetUserDemographicsResponseData {
   /**
    * The age distribution of your viewers.Note: The type of age is a map. The key is an enumerated value corresponding to an age range: -1: Unknown1: 18-24 years old2: 25-34 years old3: 35-44 years old4: 45+ years oldThe value is the number of viewers in each age group.
    */
@@ -680,10 +658,6 @@ export interface GetUserDemographics_Response {
   shopping?: any;
 }
 /**
- * Response data payload for get_user_demographics
- */
-export type GetUserDemographicsResponseData = GetUserDemographics_Response;
-/**
  * Response payload for get_user_demographics
  *
  * Get user demographics data to better understand the types of viewers that watch your Shopee Video.
@@ -705,9 +679,9 @@ export interface GetVideoDetailRequest {
   post_id?: string;
 }
 /**
- * GetVideoDetail_Item sub-interface for GetVideoDetail_Response
+ * GetVideoDetailItem sub-interface for GetVideoDetailResponseData
  */
-export interface GetVideoDetail_Item {
+export interface GetVideoDetailItem {
   /**
    * Shopee's unique identifier for a shop of the item.
    */
@@ -742,9 +716,9 @@ export interface GetVideoDetail_Item {
   stock?: number;
 }
 /**
- * GetVideoDetail_AllowInfo sub-interface for GetVideoDetail_Response
+ * GetVideoDetailAllowInfo sub-interface for GetVideoDetailResponseData
  */
-export interface GetVideoDetail_AllowInfo {
+export interface GetVideoDetailAllowInfo {
   /**
    * Whether allow stitch.
    */
@@ -755,9 +729,9 @@ export interface GetVideoDetail_AllowInfo {
   allow_duet?: boolean;
 }
 /**
- * GetVideoDetail_ScheduledInfo sub-interface for GetVideoDetail_Response
+ * GetVideoDetailScheduledInfo sub-interface for GetVideoDetailResponseData
  */
-export interface GetVideoDetail_ScheduledInfo {
+export interface GetVideoDetailScheduledInfo {
   /**
    * Whether post it to Shopee Video at scheduled time.
    */
@@ -768,9 +742,9 @@ export interface GetVideoDetail_ScheduledInfo {
   scheduled_post_time?: Date | number;
 }
 /**
- * GetVideoDetail_Response sub-interface for GetVideoDetailResponse
+ * GetVideoDetailResponseData sub-interface for GetVideoDetailResponse
  */
-export interface GetVideoDetail_Response {
+export interface GetVideoDetailResponseData {
   /**
    * ID of uploaded video.
    */
@@ -822,24 +796,20 @@ export interface GetVideoDetail_Response {
   /**
    * List of products linked with the Shopee Video.
    */
-  item_list?: GetVideoDetail_Item[];
+  item_list?: GetVideoDetailItem[];
   /**
    * Whether allow stitch and duet.
    */
-  allow_info?: GetVideoDetail_AllowInfo;
+  allow_info?: GetVideoDetailAllowInfo;
   /**
    * When scheduled_post is true, scheduled_post_time must not empty.When scheduled_post is false, scheduled_post_time must empty.
    */
-  scheduled_info?: GetVideoDetail_ScheduledInfo;
+  scheduled_info?: GetVideoDetailScheduledInfo;
   /**
    * The lasted update time the video.
    */
   update_time?: Date | number;
 }
-/**
- * Response data payload for get_video_detail
- */
-export type GetVideoDetailResponseData = GetVideoDetail_Response;
 /**
  * Response payload for get_video_detail
  *
@@ -858,9 +828,9 @@ export interface GetVideoDetailAudienceDistributionRequest {
   post_id: string;
 }
 /**
- * GetVideoDetailAudienceDistribution_Response sub-interface for GetVideoDetailAudienceDistributionResponse
+ * GetVideoDetailAudienceDistributionResponseData sub-interface for GetVideoDetailAudienceDistributionResponse
  */
-export interface GetVideoDetailAudienceDistribution_Response {
+export interface GetVideoDetailAudienceDistributionResponseData {
   /**
    * The age distribution of your viewers.Note: The type of age is a map. The key is an enumerated value corresponding to an age range: -1: Unknown1: 18-24 years old2: 25-34 years old3: 35-44 years old4: 45+ years oldThe value is the number of viewers in each age group.
    */
@@ -891,11 +861,6 @@ export interface GetVideoDetailAudienceDistribution_Response {
   shopping?: any;
 }
 /**
- * Response data payload for get_video_detail_audience_distribution
- */
-export type GetVideoDetailAudienceDistributionResponseData =
-  GetVideoDetailAudienceDistribution_Response;
-/**
  * Response payload for get_video_detail_audience_distribution
  *
  * Get detailed audience distribution data for individual post Shopee Video. There is at least a one-day delay.
@@ -918,18 +883,14 @@ export interface GetVideoDetailMetricTrendRequest {
   metric_name: string;
 }
 /**
- * GetVideoDetailMetricTrend_Response sub-interface for GetVideoDetailMetricTrendResponse
+ * GetVideoDetailMetricTrendResponseData sub-interface for GetVideoDetailMetricTrendResponse
  */
-export interface GetVideoDetailMetricTrend_Response {
+export interface GetVideoDetailMetricTrendResponseData {
   /**
    * The type of metric_trend is a map. The key is date (in millisecond timestamp format), and the value is the number corresponding to metric.
    */
   metric_trend?: any;
 }
-/**
- * Response data payload for get_video_detail_metric_trend
- */
-export type GetVideoDetailMetricTrendResponseData = GetVideoDetailMetricTrend_Response;
 /**
  * Response payload for get_video_detail_metric_trend
  *
@@ -949,9 +910,9 @@ export interface GetVideoDetailPerformanceRequest {
   post_id: string;
 }
 /**
- * GetVideoDetailPerformance_VideoInfo sub-interface for GetVideoDetailPerformance_Response
+ * GetVideoDetailPerformanceVideoInfo sub-interface for GetVideoDetailPerformanceResponseData
  */
-export interface GetVideoDetailPerformance_VideoInfo {
+export interface GetVideoDetailPerformanceVideoInfo {
   /**
    * A unique identifier for Shopee videos.
    */
@@ -982,9 +943,9 @@ export interface GetVideoDetailPerformance_VideoInfo {
   related_item_count?: number;
 }
 /**
- * GetVideoDetailPerformance_VideoPerformance sub-interface for GetVideoDetailPerformance_Response
+ * GetVideoDetailPerformanceVideoPerformance sub-interface for GetVideoDetailPerformanceResponseData
  */
-export interface GetVideoDetailPerformance_VideoPerformance {
+export interface GetVideoDetailPerformanceVideoPerformance {
   /**
    * Amount of views from the video.
    */
@@ -1043,22 +1004,18 @@ export interface GetVideoDetailPerformance_VideoPerformance {
   sales_per_buyer?: number;
 }
 /**
- * GetVideoDetailPerformance_Response sub-interface for GetVideoDetailPerformanceResponse
+ * GetVideoDetailPerformanceResponseData sub-interface for GetVideoDetailPerformanceResponse
  */
-export interface GetVideoDetailPerformance_Response {
+export interface GetVideoDetailPerformanceResponseData {
   /**
    * Video post detail informations you are querying.
    */
-  video_info?: GetVideoDetailPerformance_VideoInfo;
+  video_info?: GetVideoDetailPerformanceVideoInfo;
   /**
    * Overall performance data of the video you are querying.
    */
-  video_performance?: GetVideoDetailPerformance_VideoPerformance;
+  video_performance?: GetVideoDetailPerformanceVideoPerformance;
 }
-/**
- * Response data payload for get_video_detail_performance
- */
-export type GetVideoDetailPerformanceResponseData = GetVideoDetailPerformance_Response;
 /**
  * Response payload for get_video_detail_performance
  *
@@ -1094,9 +1051,9 @@ export interface GetVideoDetailProductPerformanceRequest {
   item_name?: string;
 }
 /**
- * GetVideoDetailProductPerformance_List sub-interface for GetVideoDetailProductPerformance_Response
+ * GetVideoDetailProductPerformanceList sub-interface for GetVideoDetailProductPerformanceResponseData
  */
-export interface GetVideoDetailProductPerformance_List {
+export interface GetVideoDetailProductPerformanceList {
   /**
    * Shopee's unique identifier for a shop.
    */
@@ -1163,13 +1120,13 @@ export interface GetVideoDetailProductPerformance_List {
   sales_per_buyer?: number;
 }
 /**
- * GetVideoDetailProductPerformance_Response sub-interface for GetVideoDetailProductPerformanceResponse
+ * GetVideoDetailProductPerformanceResponseData sub-interface for GetVideoDetailProductPerformanceResponse
  */
-export interface GetVideoDetailProductPerformance_Response {
+export interface GetVideoDetailProductPerformanceResponseData {
   /**
    * The list of item that match the condition.
    */
-  list?: GetVideoDetailProductPerformance_List[];
+  list?: GetVideoDetailProductPerformanceList[];
   /**
    * The total count of video that match the condition.
    */
@@ -1179,11 +1136,6 @@ export interface GetVideoDetailProductPerformance_Response {
    */
   has_more?: boolean;
 }
-/**
- * Response data payload for get_video_detail_product_performance
- */
-export type GetVideoDetailProductPerformanceResponseData =
-  GetVideoDetailProductPerformance_Response;
 /**
  * Response payload for get_video_detail_product_performance
  *
@@ -1211,9 +1163,9 @@ export interface GetVideoListRequest {
   list_type: number[];
 }
 /**
- * GetVideoList_Item sub-interface for GetVideoList_List
+ * GetVideoListItem sub-interface for GetVideoListList
  */
-export interface GetVideoList_Item {
+export interface GetVideoListItem {
   /**
    * Shopee's unique identifier for a shop of the item.
    */
@@ -1248,9 +1200,9 @@ export interface GetVideoList_Item {
   stock?: number;
 }
 /**
- * GetVideoList_AllowInfo sub-interface for GetVideoList_List
+ * GetVideoListAllowInfo sub-interface for GetVideoListList
  */
-export interface GetVideoList_AllowInfo {
+export interface GetVideoListAllowInfo {
   /**
    * Whether allow stitch.
    */
@@ -1261,9 +1213,9 @@ export interface GetVideoList_AllowInfo {
   allow_duet?: boolean;
 }
 /**
- * GetVideoList_ScheduledInfo sub-interface for GetVideoList_List
+ * GetVideoListScheduledInfo sub-interface for GetVideoListList
  */
-export interface GetVideoList_ScheduledInfo {
+export interface GetVideoListScheduledInfo {
   /**
    * Whether post it to Shopee Video at scheduled time.
    */
@@ -1274,9 +1226,9 @@ export interface GetVideoList_ScheduledInfo {
   scheduled_post_time?: Date | number;
 }
 /**
- * GetVideoList_List sub-interface for GetVideoList_Response
+ * GetVideoListList sub-interface for GetVideoListResponseData
  */
-export interface GetVideoList_List {
+export interface GetVideoListList {
   /**
    * ID of uploaded video.
    */
@@ -1328,24 +1280,24 @@ export interface GetVideoList_List {
   /**
    * List of products linked with the Shopee Video.
    */
-  item_list?: GetVideoList_Item[];
+  item_list?: GetVideoListItem[];
   /**
    * Whether allow stitch and duet.
    */
-  allow_info?: GetVideoList_AllowInfo;
+  allow_info?: GetVideoListAllowInfo;
   /**
    * When scheduled_post is true, scheduled_post_time must not empty.When scheduled_post is false, scheduled_post_time must empty.
    */
-  scheduled_info?: GetVideoList_ScheduledInfo;
+  scheduled_info?: GetVideoListScheduledInfo;
   /**
    * The lasted update time the video.
    */
   update_time?: Date | number;
 }
 /**
- * GetVideoList_Response sub-interface for GetVideoListResponse
+ * GetVideoListResponseData sub-interface for GetVideoListResponse
  */
-export interface GetVideoList_Response {
+export interface GetVideoListResponseData {
   /**
    * The total count of video that match the condition.
    */
@@ -1357,12 +1309,8 @@ export interface GetVideoList_Response {
   /**
    * The list of video that match the condition.
    */
-  list?: GetVideoList_List[];
+  list?: GetVideoListList[];
 }
-/**
- * Response data payload for get_video_list
- */
-export type GetVideoListResponseData = GetVideoList_Response;
 /**
  * Response payload for get_video_list
  *
@@ -1405,9 +1353,9 @@ export interface GetVideoPerformanceListRequest {
   sort: string;
 }
 /**
- * GetVideoPerformanceList_List sub-interface for GetVideoPerformanceList_Response
+ * GetVideoPerformanceListList sub-interface for GetVideoPerformanceListResponseData
  */
-export interface GetVideoPerformanceList_List {
+export interface GetVideoPerformanceListList {
   /**
    * ID of uploaded video.
    */
@@ -1494,9 +1442,9 @@ export interface GetVideoPerformanceList_List {
   fetched_date_range?: string;
 }
 /**
- * GetVideoPerformanceList_Response sub-interface for GetVideoPerformanceListResponse
+ * GetVideoPerformanceListResponseData sub-interface for GetVideoPerformanceListResponse
  */
-export interface GetVideoPerformanceList_Response {
+export interface GetVideoPerformanceListResponseData {
   /**
    * The total count of video that match the condition.
    */
@@ -1508,12 +1456,8 @@ export interface GetVideoPerformanceList_Response {
   /**
    * The list of video that match the condition.
    */
-  list?: GetVideoPerformanceList_List[];
+  list?: GetVideoPerformanceListList[];
 }
-/**
- * Response data payload for get_video_performance_list
- */
-export type GetVideoPerformanceListResponseData = GetVideoPerformanceList_Response;
 /**
  * Response payload for get_video_performance_list
  *
@@ -1532,9 +1476,9 @@ export interface PostVideoRequest {
   video_upload_id_list: string[];
 }
 /**
- * PostVideo_Success sub-interface for PostVideo_Response
+ * PostVideoSuccess sub-interface for PostVideoResponseData
  */
-export interface PostVideo_Success {
+export interface PostVideoSuccess {
   /**
    * The video_upload_id post successfully.
    */
@@ -1545,9 +1489,9 @@ export interface PostVideo_Success {
   post_id?: string;
 }
 /**
- * PostVideo_Failure sub-interface for PostVideo_Response
+ * PostVideoFailure sub-interface for PostVideoResponseData
  */
-export interface PostVideo_Failure {
+export interface PostVideoFailure {
   /**
    * Failed video_upload_id.
    */
@@ -1558,22 +1502,18 @@ export interface PostVideo_Failure {
   failed_reason?: string;
 }
 /**
- * PostVideo_Response sub-interface for PostVideoResponse
+ * PostVideoResponseData sub-interface for PostVideoResponse
  */
-export interface PostVideo_Response {
+export interface PostVideoResponseData {
   /**
    * The list of video post successfully.
    */
-  success_list?: PostVideo_Success[];
+  success_list?: PostVideoSuccess[];
   /**
    * The list of video post failed.
    */
-  failure_list?: PostVideo_Failure[];
+  failure_list?: PostVideoFailure[];
 }
-/**
- * Response data payload for post_video
- */
-export type PostVideoResponseData = PostVideo_Response;
 /**
  * Response payload for post_video
  *

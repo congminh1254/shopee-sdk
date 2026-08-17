@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field TaxIdType
@@ -35,9 +37,9 @@ export interface GetAuthorisedResellerBrandRequest {
   page_size: number;
 }
 /**
- * GetAuthorisedResellerBrand_AuthorisedBrand sub-interface for GetAuthorisedResellerBrand_Response
+ * GetAuthorisedResellerBrandAuthorisedBrand sub-interface for GetAuthorisedResellerBrandResponseData
  */
-export interface GetAuthorisedResellerBrand_AuthorisedBrand {
+export interface GetAuthorisedResellerBrandAuthorisedBrand {
   /**
    * ID of the authorised brand, it may be the same in different regions.
    */
@@ -48,9 +50,9 @@ export interface GetAuthorisedResellerBrand_AuthorisedBrand {
   brand_name?: string;
 }
 /**
- * GetAuthorisedResellerBrand_Response sub-interface for GetAuthorisedResellerBrandResponse
+ * GetAuthorisedResellerBrandResponseData sub-interface for GetAuthorisedResellerBrandResponse
  */
-export interface GetAuthorisedResellerBrand_Response {
+export interface GetAuthorisedResellerBrandResponseData {
   /**
    * This is to indicate whether the shop is authorised reseller.
    */
@@ -63,12 +65,8 @@ export interface GetAuthorisedResellerBrand_Response {
    * This is to indicate whether the authorised brand list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of authorised brand.
    */
   more?: boolean;
-  authorised_brand_list?: GetAuthorisedResellerBrand_AuthorisedBrand[];
+  authorised_brand_list?: GetAuthorisedResellerBrandAuthorisedBrand[];
 }
-/**
- * Response data payload for get_authorised_reseller_brand
- */
-export type GetAuthorisedResellerBrandResponseData = GetAuthorisedResellerBrand_Response;
 /**
  * Response payload for get_authorised_reseller_brand
  *
@@ -83,9 +81,9 @@ export type GetAuthorisedResellerBrandResponse =
  */
 export type GetBrShopOnboardingInfoRequest = Record<string, never>;
 /**
- * GetBrShopOnboardingInfo_BillingAddress sub-interface for GetBrShopOnboardingInfo_Response
+ * GetBrShopOnboardingInfoBillingAddress sub-interface for GetBrShopOnboardingInfoResponseData
  */
-export interface GetBrShopOnboardingInfo_BillingAddress {
+export interface GetBrShopOnboardingInfoBillingAddress {
   /**
    * State of the billing address.
    */
@@ -108,9 +106,9 @@ export interface GetBrShopOnboardingInfo_BillingAddress {
   neighborhood?: string;
 }
 /**
- * GetBrShopOnboardingInfo_Response sub-interface for GetBrShopOnboardingInfoResponse
+ * GetBrShopOnboardingInfoResponseData sub-interface for GetBrShopOnboardingInfoResponse
  */
-export interface GetBrShopOnboardingInfo_Response {
+export interface GetBrShopOnboardingInfoResponseData {
   /**
    * Type of the shop’s tax ID. Applicable values:
    * 1: Personal seller (CPF)
@@ -152,7 +150,7 @@ export interface GetBrShopOnboardingInfo_Response {
   /**
    * Shop’s billing address details.
    */
-  billing_address?: GetBrShopOnboardingInfo_BillingAddress;
+  billing_address?: GetBrShopOnboardingInfoBillingAddress;
   /**
    * Status of the shop’s current KYC onboarding process. Applicable values:0: None1: Regis Processing2: Regis Validated3: Regis Rejected4: KYC Pending5: KYC Processing6: KYC Processing Manually7: KYC Validated8: KYC Rejected
    */
@@ -183,10 +181,6 @@ export interface GetBrShopOnboardingInfo_Response {
   onboarding_passed?: boolean;
 }
 /**
- * Response data payload for get_br_shop_onboarding_info
- */
-export type GetBrShopOnboardingInfoResponseData = GetBrShopOnboardingInfo_Response;
-/**
  * Response payload for get_br_shop_onboarding_info
  *
  * [For BR Shop Only] Use this API to get shop KYC registration and qualification information.
@@ -199,9 +193,9 @@ export type GetBrShopOnboardingInfoResponse = FetchResponse<GetBrShopOnboardingI
  */
 export type GetProfileRequest = Record<string, never>;
 /**
- * GetProfile_Response sub-interface for GetProfileResponse
+ * GetProfileResponseData sub-interface for GetProfileResponse
  */
-export interface GetProfile_Response {
+export interface GetProfileResponseData {
   /**
    * The Image URL of the shop logo.
    */
@@ -220,10 +214,6 @@ export interface GetProfile_Response {
   invoice_issuer?: string;
 }
 /**
- * Response data payload for get_profile
- */
-export type GetProfileResponseData = GetProfile_Response;
-/**
  * Response payload for get_profile
  *
  * This API support to get information of shop.
@@ -236,9 +226,9 @@ export type GetProfileResponse = FetchResponse<GetProfileResponseData>;
  */
 export type GetShopHolidayModeRequest = Record<string, never>;
 /**
- * GetShopHolidayMode_Response sub-interface for GetShopHolidayModeResponse
+ * GetShopHolidayModeResponseData sub-interface for GetShopHolidayModeResponse
  */
-export interface GetShopHolidayMode_Response {
+export interface GetShopHolidayModeResponseData {
   /**
    * Indicate whether the shop has enabled holiday mode. true means ON, false means OFF.
    */
@@ -269,10 +259,6 @@ export interface GetShopHolidayMode_Response {
   debug_msg?: string;
 }
 /**
- * Response data payload for get_shop_holiday_mode
- */
-export type GetShopHolidayModeResponseData = GetShopHolidayMode_Response;
-/**
  * Response payload for get_shop_holiday_mode
  *
  * Use this API to check whether a shop has enabled holiday mode and its ongoing and upcoming holiday mode period.
@@ -285,9 +271,9 @@ export type GetShopHolidayModeResponse = FetchResponse<GetShopHolidayModeRespons
  */
 export type GetShopInfoRequest = Record<string, never>;
 /**
- * GetShopInfo_SipAffiShop sub-interface for GetShopInfoResponse
+ * GetShopInfoSipAffiShop sub-interface for GetShopInfoResponse
  */
-export interface GetShopInfo_SipAffiShop {
+export interface GetShopInfoSipAffiShop {
   /**
    * Affiliate shop's id.
    */
@@ -298,9 +284,9 @@ export interface GetShopInfo_SipAffiShop {
   region?: string;
 }
 /**
- * GetShopInfo_LinkedDirectShop sub-interface for GetShopInfoResponse
+ * GetShopInfoLinkedDirectShop sub-interface for GetShopInfoResponse
  */
-export interface GetShopInfo_LinkedDirectShop {
+export interface GetShopInfoLinkedDirectShop {
   /**
    * Shop ID of the Cross Border Direct Shop.
    */
@@ -311,9 +297,9 @@ export interface GetShopInfo_LinkedDirectShop {
   direct_shop_region?: string;
 }
 /**
- * GetShopInfo_OutletShopInfo sub-interface for GetShopInfoResponse
+ * GetShopInfoOutletShopInfo sub-interface for GetShopInfoResponse
  */
-export interface GetShopInfo_OutletShopInfo {
+export interface GetShopInfoOutletShopInfo {
   /**
    * Shop ID of the Outlet Shop.
    */
@@ -338,7 +324,7 @@ export interface GetShopInfoResponseData {
   /**
    * SIP affiliate shops info list.If you request for SIP primary shop,this field will be returned, if you request for SIP affiliate shop,this field won't be returned
    */
-  sip_affi_shops?: GetShopInfo_SipAffiShop[];
+  sip_affi_shops?: GetShopInfoSipAffiShop[];
   /**
    * Use this filed to indicate whether the shop is a cross-border shop.
    */
@@ -382,7 +368,7 @@ export interface GetShopInfoResponseData {
   /**
    * Returns the list of Cross Border Direct Shops linked to the Local Shop.
    */
-  linked_direct_shop_list?: GetShopInfo_LinkedDirectShop[];
+  linked_direct_shop_list?: GetShopInfoLinkedDirectShop[];
   /**
    * Use this filed to indicate if the shop is in 1-AWB whitelist. If is_one_awb return true, please use new AWB size (10cm x 15cm thermal paper) to print AWB. For more details, please refer to: https://open.shopee.com/announcements/1138?category=3&is_top=false
    */
@@ -402,7 +388,7 @@ export interface GetShopInfoResponseData {
   /**
    * (Only returned when requesting a Mart Shop) List of Outlet Shop IDs under this Mart Shop.
    */
-  outlet_shop_info_list?: GetShopInfo_OutletShopInfo[];
+  outlet_shop_info_list?: GetShopInfoOutletShopInfo[];
   /**
    * (Only returned when requesting a Mart or Outlet Shop)Indicates the structure type of the Mart or Outlet shop. Applicable values are: normal_mart_shop, warehouse_mart_shop, normal_outlet_shop, warehouse_outlet_shop
    */
@@ -430,9 +416,9 @@ export interface GetShopNotificationRequest {
   page_size?: number;
 }
 /**
- * GetShopNotification_Data sub-interface for GetShopNotificationResponse
+ * GetShopNotificationData sub-interface for GetShopNotificationResponse
  */
-export interface GetShopNotification_Data {
+export interface GetShopNotificationData {
   /**
    * the notification create time
    */
@@ -458,7 +444,7 @@ export interface GetShopNotificationResponseData {
    * Last notification_id returned in the page
    */
   cursor?: number;
-  data?: GetShopNotification_Data;
+  data?: GetShopNotificationData;
 }
 /**
  * Response payload for get_shop_notification
@@ -478,9 +464,9 @@ export interface GetWarehouseDetailRequest {
   warehouse_type?: number;
 }
 /**
- * GetWarehouseDetail_Response sub-interface for GetWarehouseDetailResponse
+ * GetWarehouseDetailResponseDataItem sub-interface for GetWarehouseDetailResponse
  */
-export interface GetWarehouseDetail_Response {
+export interface GetWarehouseDetailResponseDataItem {
   /**
    * Warehouse address identifier. It should be unique for every warehouse address
    */
@@ -541,7 +527,7 @@ export interface GetWarehouseDetail_Response {
 /**
  * Response data payload for get_warehouse_detail
  */
-export type GetWarehouseDetailResponseData = GetWarehouseDetail_Response[];
+export type GetWarehouseDetailResponseData = GetWarehouseDetailResponseDataItem[];
 /**
  * Response payload for get_warehouse_detail
  *
@@ -576,18 +562,14 @@ export interface SetShopHolidayModeRequest {
   holiday_mode_description?: string;
 }
 /**
- * SetShopHolidayMode_Response sub-interface for SetShopHolidayModeResponse
+ * SetShopHolidayModeResponseData sub-interface for SetShopHolidayModeResponse
  */
-export interface SetShopHolidayMode_Response {
+export interface SetShopHolidayModeResponseData {
   /**
    * Debug message.
    */
   debug_msg?: string;
 }
-/**
- * Response data payload for set_shop_holiday_mode
- */
-export type SetShopHolidayModeResponseData = SetShopHolidayMode_Response;
 /**
  * Response payload for set_shop_holiday_mode
  *
@@ -614,9 +596,9 @@ export interface UpdateProfileRequest {
   description?: string;
 }
 /**
- * UpdateProfile_Response sub-interface for UpdateProfileResponse
+ * UpdateProfileResponseData sub-interface for UpdateProfileResponse
  */
-export interface UpdateProfile_Response {
+export interface UpdateProfileResponseData {
   /**
    * The Image URL of the shop logo after updated.
    */
@@ -630,10 +612,6 @@ export interface UpdateProfile_Response {
    */
   shop_name?: string;
 }
-/**
- * Response data payload for update_profile
- */
-export type UpdateProfileResponseData = UpdateProfile_Response;
 /**
  * Response payload for update_profile
  *

@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field CampaignStatus
@@ -60,18 +62,14 @@ export interface AddFollowPrizeRequest {
   max_price?: number;
 }
 /**
- * AddFollowPrize_Response sub-interface for AddFollowPrizeResponse
+ * AddFollowPrizeResponseData sub-interface for AddFollowPrizeResponse
  */
-export interface AddFollowPrize_Response {
+export interface AddFollowPrizeResponseData {
   /**
    * The unique identifier for the created follow prize.
    */
   campagin_id?: number;
 }
-/**
- * Response data payload for add_follow_prize
- */
-export type AddFollowPrizeResponseData = AddFollowPrize_Response;
 /**
  * Response payload for add_follow_prize
  *
@@ -90,18 +88,14 @@ export interface DeleteFollowPrizeRequest {
   campaign_id: number;
 }
 /**
- * DeleteFollowPrize_Response sub-interface for DeleteFollowPrizeResponse
+ * DeleteFollowPrizeResponseData sub-interface for DeleteFollowPrizeResponse
  */
-export interface DeleteFollowPrize_Response {
+export interface DeleteFollowPrizeResponseData {
   /**
    * The unique identifier for the created follow prize.
    */
   campagin_id?: number;
 }
-/**
- * Response data payload for delete_follow_prize
- */
-export type DeleteFollowPrizeResponseData = DeleteFollowPrize_Response;
 /**
  * Response payload for delete_follow_prize
  *
@@ -120,18 +114,14 @@ export interface EndFollowPrizeRequest {
   campaign_id: number;
 }
 /**
- * EndFollowPrize_Response sub-interface for EndFollowPrizeResponse
+ * EndFollowPrizeResponseData sub-interface for EndFollowPrizeResponse
  */
-export interface EndFollowPrize_Response {
+export interface EndFollowPrizeResponseData {
   /**
    * The unique identifier for the created follow prize.
    */
   campaign_id?: number;
 }
-/**
- * Response data payload for end_follow_prize
- */
-export type EndFollowPrizeResponseData = EndFollowPrize_Response;
 /**
  * Response payload for end_follow_prize
  *
@@ -150,9 +140,9 @@ export interface GetFollowPrizeDetailRequest {
   campaign_id?: number;
 }
 /**
- * GetFollowPrizeDetail_Response sub-interface for GetFollowPrizeDetailResponse
+ * GetFollowPrizeDetailResponseData sub-interface for GetFollowPrizeDetailResponse
  */
-export interface GetFollowPrizeDetail_Response {
+export interface GetFollowPrizeDetailResponseData {
   /**
    * The status of follow prize,the campagin status have upcoming/ongoing/expired.
    */
@@ -199,10 +189,6 @@ export interface GetFollowPrizeDetail_Response {
   max_price?: number;
 }
 /**
- * Response data payload for get_follow_prize_detail
- */
-export type GetFollowPrizeDetailResponseData = GetFollowPrizeDetail_Response;
-/**
  * Response payload for get_follow_prize_detail
  *
  * get_follow_prize_detail
@@ -228,9 +214,9 @@ export interface GetFollowPrizeListRequest {
   status: Status | string | number;
 }
 /**
- * GetFollowPrizeList_FollowPrize sub-interface for GetFollowPrizeList_Response
+ * GetFollowPrizeListFollowPrize sub-interface for GetFollowPrizeListResponseData
  */
-export interface GetFollowPrizeList_FollowPrize {
+export interface GetFollowPrizeListFollowPrize {
   /**
    * The unique identifier for the created follow prize.
    */
@@ -261,9 +247,9 @@ export interface GetFollowPrizeList_FollowPrize {
   claimed?: number;
 }
 /**
- * GetFollowPrizeList_Response sub-interface for GetFollowPrizeListResponse
+ * GetFollowPrizeListResponseData sub-interface for GetFollowPrizeListResponse
  */
-export interface GetFollowPrizeList_Response {
+export interface GetFollowPrizeListResponseData {
   /**
    * This is to indicate whether the comment list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of comments.
    */
@@ -271,12 +257,8 @@ export interface GetFollowPrizeList_Response {
   /**
    * The list of follow prize.
    */
-  follow_prize_list?: GetFollowPrizeList_FollowPrize[];
+  follow_prize_list?: GetFollowPrizeListFollowPrize[];
 }
-/**
- * Response data payload for get_follow_prize_list
- */
-export type GetFollowPrizeListResponseData = GetFollowPrizeList_Response;
 /**
  * Response payload for get_follow_prize_list
  *
@@ -315,18 +297,14 @@ export interface UpdateFollowPrizeRequest {
   min_spend?: number;
 }
 /**
- * UpdateFollowPrize_Response sub-interface for UpdateFollowPrizeResponse
+ * UpdateFollowPrizeResponseData sub-interface for UpdateFollowPrizeResponse
  */
-export interface UpdateFollowPrize_Response {
+export interface UpdateFollowPrizeResponseData {
   /**
    * The unique identifier for the created follow prize.
    */
   campagin_id?: number;
 }
-/**
- * Response data payload for update_follow_prize
- */
-export type UpdateFollowPrizeResponseData = UpdateFollowPrize_Response;
 /**
  * Response payload for update_follow_prize
  *

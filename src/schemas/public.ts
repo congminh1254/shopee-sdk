@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Request parameters for get_access_token
@@ -81,9 +83,9 @@ export interface GetMerchantsByPartnerRequest {
   page_no?: number;
 }
 /**
- * GetMerchantsByPartner_AuthedMerchant sub-interface for GetMerchantsByPartnerResponse
+ * GetMerchantsByPartnerAuthedMerchant sub-interface for GetMerchantsByPartnerResponse
  */
-export interface GetMerchantsByPartner_AuthedMerchant {
+export interface GetMerchantsByPartnerAuthedMerchant {
   /**
    * Merchant's area
    */
@@ -108,7 +110,7 @@ export interface GetMerchantsByPartnerResponseData {
   /**
    * A list of merchants authorized to the partner.
    */
-  authed_merchant_list?: GetMerchantsByPartner_AuthedMerchant[];
+  authed_merchant_list?: GetMerchantsByPartnerAuthedMerchant[];
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
@@ -157,9 +159,9 @@ export interface GetShopsByPartnerRequest {
   page_no?: number;
 }
 /**
- * GetShopsByPartner_SipAffiShop sub-interface for GetShopsByPartner_AuthedShop
+ * GetShopsByPartnerSipAffiShop sub-interface for GetShopsByPartnerAuthedShop
  */
-export interface GetShopsByPartner_SipAffiShop {
+export interface GetShopsByPartnerSipAffiShop {
   /**
    * Affiliate Shop's area
    */
@@ -170,9 +172,9 @@ export interface GetShopsByPartner_SipAffiShop {
   affi_shop_id?: number;
 }
 /**
- * GetShopsByPartner_AuthedShop sub-interface for GetShopsByPartnerResponse
+ * GetShopsByPartnerAuthedShop sub-interface for GetShopsByPartnerResponse
  */
-export interface GetShopsByPartner_AuthedShop {
+export interface GetShopsByPartnerAuthedShop {
   /**
    * Shop's area
    */
@@ -192,7 +194,7 @@ export interface GetShopsByPartner_AuthedShop {
   /**
    * SIP affiliate shops info list
    */
-  sip_affi_shop_list?: GetShopsByPartner_SipAffiShop[];
+  sip_affi_shop_list?: GetShopsByPartnerSipAffiShop[];
 }
 /**
  * Response data payload for get_shops_by_partner
@@ -201,7 +203,7 @@ export interface GetShopsByPartnerResponseData {
   /**
    * A list of shops authorized to the partner.
    */
-  authed_shop_list?: GetShopsByPartner_AuthedShop[];
+  authed_shop_list?: GetShopsByPartnerAuthedShop[];
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */

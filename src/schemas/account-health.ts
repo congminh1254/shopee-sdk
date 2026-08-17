@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Request parameters for get_late_orders
@@ -15,9 +17,9 @@ export interface GetLateOrdersRequest {
   page_size?: number;
 }
 /**
- * GetLateOrders_LateOrder sub-interface for GetLateOrders_Response
+ * GetLateOrdersLateOrder sub-interface for GetLateOrdersResponseData
  */
-export interface GetLateOrders_LateOrder {
+export interface GetLateOrdersLateOrder {
   /**
    * Order SN.
    */
@@ -32,22 +34,18 @@ export interface GetLateOrders_LateOrder {
   late_by_days?: number;
 }
 /**
- * GetLateOrders_Response sub-interface for GetLateOrdersResponse
+ * GetLateOrdersResponseData sub-interface for GetLateOrdersResponse
  */
-export interface GetLateOrders_Response {
+export interface GetLateOrdersResponseData {
   /**
    * Late Orders.
    */
-  late_order_list?: GetLateOrders_LateOrder[];
+  late_order_list?: GetLateOrdersLateOrder[];
   /**
    * Total number of late orders.
    */
   total_count?: number;
 }
-/**
- * Response data payload for get_late_orders
- */
-export type GetLateOrdersResponseData = GetLateOrders_Response;
 /**
  * Response payload for get_late_orders
  *
@@ -70,9 +68,9 @@ export interface GetListingsWithIssuesRequest {
   page_size?: number;
 }
 /**
- * GetListingsWithIssues_Listing sub-interface for GetListingsWithIssues_Response
+ * GetListingsWithIssuesListing sub-interface for GetListingsWithIssuesResponseData
  */
-export interface GetListingsWithIssues_Listing {
+export interface GetListingsWithIssuesListing {
   /**
    * Item ID.
    */
@@ -83,22 +81,18 @@ export interface GetListingsWithIssues_Listing {
   reason?: number;
 }
 /**
- * GetListingsWithIssues_Response sub-interface for GetListingsWithIssuesResponse
+ * GetListingsWithIssuesResponseData sub-interface for GetListingsWithIssuesResponse
  */
-export interface GetListingsWithIssues_Response {
+export interface GetListingsWithIssuesResponseData {
   /**
    * Listing with issues.
    */
-  listing_list?: GetListingsWithIssues_Listing[];
+  listing_list?: GetListingsWithIssuesListing[];
   /**
    * Total number of listing with issues.
    */
   total_count?: number;
 }
-/**
- * Response data payload for get_listings_with_issues
- */
-export type GetListingsWithIssuesResponseData = GetListingsWithIssues_Response;
 /**
  * Response payload for get_listings_with_issues
  *
@@ -125,9 +119,9 @@ export interface GetMetricSourceDetailRequest {
   page_size?: number;
 }
 /**
- * GetMetricSourceDetail_NfrOrder sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailNfrOrder sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_NfrOrder {
+export interface GetMetricSourceDetailNfrOrder {
   /**
    * Order SN.
    */
@@ -142,9 +136,9 @@ export interface GetMetricSourceDetail_NfrOrder {
   detailed_reason?: number;
 }
 /**
- * GetMetricSourceDetail_CancellationOrder sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailCancellationOrder sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_CancellationOrder {
+export interface GetMetricSourceDetailCancellationOrder {
   /**
    * Order SN.
    */
@@ -159,9 +153,9 @@ export interface GetMetricSourceDetail_CancellationOrder {
   detailed_reason?: number;
 }
 /**
- * GetMetricSourceDetail_ReturnRefundOrder sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailReturnRefundOrder sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_ReturnRefundOrder {
+export interface GetMetricSourceDetailReturnRefundOrder {
   /**
    * Order SN.
    */
@@ -172,9 +166,9 @@ export interface GetMetricSourceDetail_ReturnRefundOrder {
   detailed_reason?: number;
 }
 /**
- * GetMetricSourceDetail_LsrOrder sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailLsrOrder sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_LsrOrder {
+export interface GetMetricSourceDetailLsrOrder {
   /**
    * Order SN.
    */
@@ -209,9 +203,9 @@ export interface GetMetricSourceDetail_LsrOrder {
   diagnosis_scenario?: string[];
 }
 /**
- * GetMetricSourceDetail_FhrOrder sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailFhrOrder sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_FhrOrder {
+export interface GetMetricSourceDetailFhrOrder {
   /**
    * Order SN.
    */
@@ -262,9 +256,9 @@ export interface GetMetricSourceDetail_FhrOrder {
   diagnosis_scenario?: string[];
 }
 /**
- * GetMetricSourceDetail_OpfrDayDetailData sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailOpfrDayDetailData sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_OpfrDayDetailData {
+export interface GetMetricSourceDetailOpfrDayDetailData {
   /**
    * Date.
    */
@@ -287,9 +281,9 @@ export interface GetMetricSourceDetail_OpfrDayDetailData {
   target?: string;
 }
 /**
- * GetMetricSourceDetail_ViolationListing sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailViolationListing sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_ViolationListing {
+export interface GetMetricSourceDetailViolationListing {
   /**
    * Item ID.
    */
@@ -304,9 +298,9 @@ export interface GetMetricSourceDetail_ViolationListing {
   update_time?: Date | number;
 }
 /**
- * GetMetricSourceDetail_PreOrderListingViolationData sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailPreOrderListingViolationData sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_PreOrderListingViolationData {
+export interface GetMetricSourceDetailPreOrderListingViolationData {
   /**
    * Date.
    */
@@ -329,9 +323,9 @@ export interface GetMetricSourceDetail_PreOrderListingViolationData {
   target?: string;
 }
 /**
- * GetMetricSourceDetail_PreOrderListing sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailPreOrderListing sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_PreOrderListing {
+export interface GetMetricSourceDetailPreOrderListing {
   /**
    * Item ID.
    */
@@ -342,9 +336,9 @@ export interface GetMetricSourceDetail_PreOrderListing {
   current_pre_order_status?: number;
 }
 /**
- * GetMetricSourceDetail_SddListing sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailSddListing sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_SddListing {
+export interface GetMetricSourceDetailSddListing {
   /**
    * Item ID.
    */
@@ -355,9 +349,9 @@ export interface GetMetricSourceDetail_SddListing {
   current_sdd_status?: number;
 }
 /**
- * GetMetricSourceDetail_NddListing sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailNddListing sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_NddListing {
+export interface GetMetricSourceDetailNddListing {
   /**
    * Item ID.
    */
@@ -368,9 +362,9 @@ export interface GetMetricSourceDetail_NddListing {
   current_ndd_status?: number;
 }
 /**
- * GetMetricSourceDetail_AptOrder sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailAptOrder sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_AptOrder {
+export interface GetMetricSourceDetailAptOrder {
   /**
    * Order SN.
    */
@@ -405,9 +399,9 @@ export interface GetMetricSourceDetail_AptOrder {
   first_mile_tracking_no?: string;
 }
 /**
- * GetMetricSourceDetail_HdListing sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailHdListing sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_HdListing {
+export interface GetMetricSourceDetailHdListing {
   /**
    * Item ID.
    */
@@ -418,9 +412,9 @@ export interface GetMetricSourceDetail_HdListing {
   current_status?: number;
 }
 /**
- * GetMetricSourceDetail_SaturdayShipment sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailSaturdayShipment sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_SaturdayShipment {
+export interface GetMetricSourceDetailSaturdayShipment {
   /**
    * Order SN.
    */
@@ -455,9 +449,9 @@ export interface GetMetricSourceDetail_SaturdayShipment {
   first_mile_tracking_no?: string;
 }
 /**
- * GetMetricSourceDetail_OtdrOrder sub-interface for GetMetricSourceDetail_Response
+ * GetMetricSourceDetailOtdrOrder sub-interface for GetMetricSourceDetailResponseData
  */
-export interface GetMetricSourceDetail_OtdrOrder {
+export interface GetMetricSourceDetailOtdrOrder {
   /**
    * Order ID.
    */
@@ -488,9 +482,9 @@ export interface GetMetricSourceDetail_OtdrOrder {
   difference_between_edd_rdt?: string;
 }
 /**
- * GetMetricSourceDetail_Response sub-interface for GetMetricSourceDetailResponse
+ * GetMetricSourceDetailResponseData sub-interface for GetMetricSourceDetailResponse
  */
-export interface GetMetricSourceDetail_Response {
+export interface GetMetricSourceDetailResponseData {
   /**
    * ID of metric.
    */
@@ -498,69 +492,65 @@ export interface GetMetricSourceDetail_Response {
   /**
    * Affected Orders for Non-fulfilment Rate.Supported metric_id: 3: Non-Fulfilment Rate (All Channels)88: Non-fulfilment Rate (NDD)
    */
-  nfr_order_list?: GetMetricSourceDetail_NfrOrder[];
+  nfr_order_list?: GetMetricSourceDetailNfrOrder[];
   /**
    * Affected Orders for Cancellation Rate. Supported metric_id: 42: Cancellation Rate (All Channels)91: Cancellation Rate (NDD)
    */
-  cancellation_order_list?: GetMetricSourceDetail_CancellationOrder[];
+  cancellation_order_list?: GetMetricSourceDetailCancellationOrder[];
   /**
    * Affected Orders for Return-refund Rate.Supported metric_id: 43: Return-refund Rate (All Channels)92: Return-refund Rate (NDD)
    */
-  return_refund_order_list?: GetMetricSourceDetail_ReturnRefundOrder[];
+  return_refund_order_list?: GetMetricSourceDetailReturnRefundOrder[];
   /**
    * Affected Orders for Late Shipment Rate.Supported metric_id: 1: Late Shipment Rate (All Channels)85: Late Shipment Rate (NDD)
    */
-  lsr_order_list?: GetMetricSourceDetail_LsrOrder[];
+  lsr_order_list?: GetMetricSourceDetailLsrOrder[];
   /**
    * Affected Orders for Fast Handover Rate.Supported metric_id: 25: Fast Handover Rate2001: Fast Handover Rate - SLS2002: Fast Handover Rate - FBS2003: Fast Handover Rate - 3PF
    */
-  fhr_order_list?: GetMetricSourceDetail_FhrOrder[];
+  fhr_order_list?: GetMetricSourceDetailFhrOrder[];
   /**
    * Relevant Violations for OPFR Violation Value.Supported metric_id: 28: On-time Pickup Failure Rate Violation Value
    */
-  opfr_day_detail_data_list?: GetMetricSourceDetail_OpfrDayDetailData[];
+  opfr_day_detail_data_list?: GetMetricSourceDetailOpfrDayDetailData[];
   /**
    * Relevant Listings for Severe Listing Violations and Other Listing Violations.Supported metric_id: 52: Severe Listing Violations53: Other Listing Violations
    */
-  violation_listing_list?: GetMetricSourceDetail_ViolationListing[];
+  violation_listing_list?: GetMetricSourceDetailViolationListing[];
   /**
    * Relevant Listings for Days of Pre-order Listing Violation.Supported metric_id: 15: Days of Pre-order Listing Violation
    */
-  pre_order_listing_violation_data_list?: GetMetricSourceDetail_PreOrderListingViolationData[];
+  pre_order_listing_violation_data_list?: GetMetricSourceDetailPreOrderListingViolationData[];
   /**
    * Relevant Listings for Pre-order Listing.Supported metric_id: 12: Pre-order Listing %
    */
-  pre_order_listing_list?: GetMetricSourceDetail_PreOrderListing[];
+  pre_order_listing_list?: GetMetricSourceDetailPreOrderListing[];
   /**
    * Relevant Listings for % SDD Listings.Supported metric_id: 96: % SDD Listings.
    */
-  sdd_listing_list?: GetMetricSourceDetail_SddListing[];
+  sdd_listing_list?: GetMetricSourceDetailSddListing[];
   /**
    * Relevant Listings for % NDD Listings.Supported metric_id: 97: % NDD Listings.
    */
-  ndd_listing_list?: GetMetricSourceDetail_NddListing[];
+  ndd_listing_list?: GetMetricSourceDetailNddListing[];
   /**
    * Affected Parcels for Preparation Time.Supported metric_id: 4: Preparation Time
    */
-  apt_order_list?: GetMetricSourceDetail_AptOrder[];
+  apt_order_list?: GetMetricSourceDetailAptOrder[];
   /**
    * Relevant Listings for % HD Listings and % HD Free Shipping Enabled.Supported metric_id: 2030: % HD Listings2031: % HD Free Shipping Enabled
    */
-  hd_listing_list?: GetMetricSourceDetail_HdListing[];
+  hd_listing_list?: GetMetricSourceDetailHdListing[];
   /**
    * Affected Parcels for Saturday ShipmentSupported metric_id:2032: Saturday Shipment
    */
-  saturday_shipment_list?: GetMetricSourceDetail_SaturdayShipment[];
-  otdr_order_list?: GetMetricSourceDetail_OtdrOrder[];
+  saturday_shipment_list?: GetMetricSourceDetailSaturdayShipment[];
+  otdr_order_list?: GetMetricSourceDetailOtdrOrder[];
   /**
    * Total number of Affected Orders or Relevant Listings.
    */
   total_count?: number;
 }
-/**
- * Response data payload for get_metric_source_detail
- */
-export type GetMetricSourceDetailResponseData = GetMetricSourceDetail_Response;
 /**
  * Response payload for get_metric_source_detail
  *
@@ -587,9 +577,9 @@ export interface GetPenaltyPointHistoryRequest {
   violation_type?: number;
 }
 /**
- * GetPenaltyPointHistory_PenaltyPoint sub-interface for GetPenaltyPointHistory_Response
+ * GetPenaltyPointHistoryPenaltyPoint sub-interface for GetPenaltyPointHistoryResponseData
  */
-export interface GetPenaltyPointHistory_PenaltyPoint {
+export interface GetPenaltyPointHistoryPenaltyPoint {
   /**
    * The time when penalty points are issued.
    */
@@ -612,22 +602,18 @@ export interface GetPenaltyPointHistory_PenaltyPoint {
   violation_type?: number;
 }
 /**
- * GetPenaltyPointHistory_Response sub-interface for GetPenaltyPointHistoryResponse
+ * GetPenaltyPointHistoryResponseData sub-interface for GetPenaltyPointHistoryResponse
  */
-export interface GetPenaltyPointHistory_Response {
+export interface GetPenaltyPointHistoryResponseData {
   /**
    * The penalty point records generated in the current quarter.
    */
-  penalty_point_list?: GetPenaltyPointHistory_PenaltyPoint[];
+  penalty_point_list?: GetPenaltyPointHistoryPenaltyPoint[];
   /**
    * Total number of penalty point records.
    */
   total_count?: number;
 }
-/**
- * Response data payload for get_penalty_point_history
- */
-export type GetPenaltyPointHistoryResponseData = GetPenaltyPointHistory_Response;
 /**
  * Response payload for get_penalty_point_history
  *
@@ -654,9 +640,9 @@ export interface GetPunishmentHistoryRequest {
   punishment_status: number;
 }
 /**
- * GetPunishmentHistory_Punishment sub-interface for GetPunishmentHistory_Response
+ * GetPunishmentHistoryPunishment sub-interface for GetPunishmentHistoryResponseData
  */
-export interface GetPunishmentHistory_Punishment {
+export interface GetPunishmentHistoryPunishment {
   /**
    * The time when punishment are issued.
    */
@@ -691,22 +677,18 @@ export interface GetPunishmentHistory_Punishment {
   order_limit?: string;
 }
 /**
- * GetPunishmentHistory_Response sub-interface for GetPunishmentHistoryResponse
+ * GetPunishmentHistoryResponseData sub-interface for GetPunishmentHistoryResponse
  */
-export interface GetPunishmentHistory_Response {
+export interface GetPunishmentHistoryResponseData {
   /**
    * The punishment records generated in the current quarter.
    */
-  punishment_list?: GetPunishmentHistory_Punishment[];
+  punishment_list?: GetPunishmentHistoryPunishment[];
   /**
    * Total number of punishment records.
    */
   total_count?: number;
 }
-/**
- * Response data payload for get_punishment_history
- */
-export type GetPunishmentHistoryResponseData = GetPunishmentHistory_Response;
 /**
  * Response payload for get_punishment_history
  *
@@ -720,9 +702,9 @@ export type GetPunishmentHistoryResponse = FetchResponse<GetPunishmentHistoryRes
  */
 export type GetShopPerformanceRequest = Record<string, never>;
 /**
- * GetShopPerformance_OverallPerformance sub-interface for GetShopPerformance_Response
+ * GetShopPerformanceOverallPerformance sub-interface for GetShopPerformanceResponseData
  */
-export interface GetShopPerformance_OverallPerformance {
+export interface GetShopPerformanceOverallPerformance {
   /**
    * Overall Performance: Poor = 1ImprovementNeeded = 2Good = 3Excellent = 4
    */
@@ -741,9 +723,9 @@ export interface GetShopPerformance_OverallPerformance {
   custom_service_failed?: number;
 }
 /**
- * GetShopPerformance_Target sub-interface for GetShopPerformance_Metric
+ * GetShopPerformanceTarget sub-interface for GetShopPerformanceMetric
  */
-export interface GetShopPerformance_Target {
+export interface GetShopPerformanceTarget {
   /**
    * Value of target.
    */
@@ -754,9 +736,9 @@ export interface GetShopPerformance_Target {
   comparator?: string;
 }
 /**
- * GetShopPerformance_Metric sub-interface for GetShopPerformance_Response
+ * GetShopPerformanceMetric sub-interface for GetShopPerformanceResponseData
  */
-export interface GetShopPerformance_Metric {
+export interface GetShopPerformanceMetric {
   /**
    * Type of metric: Fulfillment Performance = 1Listing Performance = 2Customer Service Performance = 3
    */
@@ -785,23 +767,19 @@ export interface GetShopPerformance_Metric {
    * Unit of metric: Number = 1Percentage = 2Second = 3Day = 4Hour = 5
    */
   unit?: number;
-  target?: GetShopPerformance_Target;
+  target?: GetShopPerformanceTarget;
   /**
    * (Only for whitelist TW sellers) The exemption_end_date value will not be empty if ALL conditions are met: - The shop is in the "POL Shop Whitelist"- Within the "Exemption Period"- The metric_id is 12 (Pre-order Listing %) or 15 (Days of Pre-order Listing Violation)
    */
   exemption_end_date?: string;
 }
 /**
- * GetShopPerformance_Response sub-interface for GetShopPerformanceResponse
+ * GetShopPerformanceResponseData sub-interface for GetShopPerformanceResponse
  */
-export interface GetShopPerformance_Response {
-  overall_performance?: GetShopPerformance_OverallPerformance;
-  metric_list?: GetShopPerformance_Metric[];
+export interface GetShopPerformanceResponseData {
+  overall_performance?: GetShopPerformanceOverallPerformance;
+  metric_list?: GetShopPerformanceMetric[];
 }
-/**
- * Response data payload for get_shop_performance
- */
-export type GetShopPerformanceResponseData = GetShopPerformance_Response;
 /**
  * Response payload for get_shop_performance
  *

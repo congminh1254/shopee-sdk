@@ -214,9 +214,9 @@ export class ShopeeFetch {
       serializedParams[key] === undefined ? delete serializedParams[key] : {}
     );
     const allParams = {
+      ...serializedParams,
       partner_id: config.partner_id,
       timestamp,
-      ...serializedParams,
     };
 
     let authParams = {};
@@ -297,13 +297,25 @@ export class ShopeeFetch {
         const jsonData = responseData as Record<string, unknown>;
         if (jsonData.error) {
           // Handle invalid access token error
-          if (jsonData.error === "invalid_acceess_token" && options.auth) {
+          const isAuthError =
+            jsonData.error === "invalid_access_token" ||
+            jsonData.error === "invalid_acceess_token" ||
+            jsonData.error === "error_auth";
+
+          if (isAuthError && options.auth) {
             try {
+              if ((options as any)._retryCount) {
+                throw new ShopeeApiError(response.status, jsonData);
+              }
+              const newOptions = { ...options, _retryCount: 1 };
               // Attempt to refresh the access token
               await config.sdk?.refreshToken();
               // Retry the request with the new token
-              return this.fetch(config, path, options);
-            } catch {
+              return this.fetch(config, path, newOptions);
+            } catch (err) {
+              if (err instanceof ShopeeApiError) {
+                throw err;
+              }
               // If refresh fails, throw the original error
               throw new ShopeeApiError(response.status, jsonData);
             }

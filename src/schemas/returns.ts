@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field ReturnRefundType
@@ -32,18 +34,14 @@ export interface AcceptOfferRequest {
   return_sn: string;
 }
 /**
- * AcceptOffer_Response sub-interface for AcceptOfferResponse
+ * AcceptOfferResponseData sub-interface for AcceptOfferResponse
  */
-export interface AcceptOffer_Response {
+export interface AcceptOfferResponseData {
   /**
    * The serial number of return.
    */
   return_sn?: string;
 }
-/**
- * Response data payload for accept_offer
- */
-export type AcceptOfferResponseData = AcceptOffer_Response;
 /**
  * Response payload for accept_offer
  *
@@ -66,9 +64,9 @@ export interface CancelDisputeRequest {
   email: string;
 }
 /**
- * CancelDispute_Response sub-interface for CancelDisputeResponse
+ * CancelDisputeResponseData sub-interface for CancelDisputeResponse
  */
-export interface CancelDispute_Response {
+export interface CancelDisputeResponseData {
   /**
    * Shopee's unique serial number identifier for a Return Refund request.
    */
@@ -78,10 +76,6 @@ export interface CancelDispute_Response {
    */
   message?: string;
 }
-/**
- * Response data payload for cancel_dispute
- */
-export type CancelDisputeResponseData = CancelDispute_Response;
 /**
  * Response payload for cancel_dispute
  *
@@ -100,18 +94,14 @@ export interface ConfirmRequest {
   return_sn: string;
 }
 /**
- * Confirm_Response sub-interface for ConfirmResponse
+ * ConfirmResponseData sub-interface for ConfirmResponse
  */
-export interface Confirm_Response {
+export interface ConfirmResponseData {
   /**
    * The identifier for an API request for error tracking
    */
   return_sn?: string;
 }
-/**
- * Response data payload for confirm
- */
-export type ConfirmResponseData = Confirm_Response;
 /**
  * Response payload for confirm
  *
@@ -134,9 +124,9 @@ export interface ConvertImageRequest {
   upload_image: any;
 }
 /**
- * ConvertImage_Response sub-interface for ConvertImageResponse
+ * ConvertImageResponseData sub-interface for ConvertImageResponse
  */
-export interface ConvertImage_Response {
+export interface ConvertImageResponseData {
   /**
    * The link uploaded to the image server can be used with the upload_proof interface.
    */
@@ -147,19 +137,15 @@ export interface ConvertImage_Response {
   thumbnail?: string;
 }
 /**
- * Response data payload for convert_image
- */
-export type ConvertImageResponseData = ConvertImage_Response;
-/**
  * Response payload for convert_image
  *
  * Convert a specific format and pictures within 10M into url.
  */
 export type ConvertImageResponse = FetchResponse<ConvertImageResponseData>;
 /**
- * Dispute_Image sub-interface for DisputeRequest
+ * DisputeImage sub-interface for DisputeRequest
  */
-export interface Dispute_Image {
+export interface DisputeImage {
   /**
    * The module_index of current evidence module returned by get_return_dispute_reason API.
    */
@@ -196,26 +182,22 @@ export interface DisputeRequest {
   /**
    * Determines whether image submission is mandatory for the dispute request - mandatory input field for all dispute reasons except "Did not receive the return product".
    */
-  image_list?: Dispute_Image[];
+  image_list?: DisputeImage[];
   /**
    * The content of dispute reason.
    */
   dispute_text_reason?: string;
 }
 /**
- * Dispute_Response sub-interface for DisputeResponse
+ * DisputeResponseData sub-interface for DisputeResponse
  */
-export interface Dispute_Response {
+export interface DisputeResponseData {
   /**
    * The serial number of return.
    */
   return_sn?: string;
   msg?: string;
 }
-/**
- * Response data payload for dispute
- */
-export type DisputeResponseData = Dispute_Response;
 /**
  * Response payload for dispute
  *
@@ -236,9 +218,9 @@ export interface GetAvailableSolutionsRequest {
   return_sn: string;
 }
 /**
- * GetAvailableSolutions_OfferReturnRefund sub-interface for GetAvailableSolutions_Response
+ * GetAvailableSolutionsOfferReturnRefund sub-interface for GetAvailableSolutionsResponseData
  */
-export interface GetAvailableSolutions_OfferReturnRefund {
+export interface GetAvailableSolutionsOfferReturnRefund {
   /**
    * To indicate whether ReturnRefund solution is available for sellers to select.
    */
@@ -257,9 +239,9 @@ export interface GetAvailableSolutions_OfferReturnRefund {
   min_refund_amount?: number;
 }
 /**
- * GetAvailableSolutions_OfferRefund sub-interface for GetAvailableSolutions_Response
+ * GetAvailableSolutionsOfferRefund sub-interface for GetAvailableSolutionsResponseData
  */
-export interface GetAvailableSolutions_OfferRefund {
+export interface GetAvailableSolutionsOfferRefund {
   /**
    * To indicate whether Refund solution is available for sellers to select.
    */
@@ -278,20 +260,16 @@ export interface GetAvailableSolutions_OfferRefund {
   min_refund_amount?: number;
 }
 /**
- * GetAvailableSolutions_Response sub-interface for GetAvailableSolutionsResponse
+ * GetAvailableSolutionsResponseData sub-interface for GetAvailableSolutionsResponse
  */
-export interface GetAvailableSolutions_Response {
+export interface GetAvailableSolutionsResponseData {
   /**
    * The serial number of return.
    */
   return_sn?: string;
-  offer_return_refund?: GetAvailableSolutions_OfferReturnRefund;
-  offer_refund?: GetAvailableSolutions_OfferRefund;
+  offer_return_refund?: GetAvailableSolutionsOfferReturnRefund;
+  offer_refund?: GetAvailableSolutionsOfferRefund;
 }
-/**
- * Response data payload for get_available_solutions
- */
-export type GetAvailableSolutionsResponseData = GetAvailableSolutions_Response;
 /**
  * Response payload for get_available_solutions
  *
@@ -310,9 +288,9 @@ export interface GetReturnDetailRequest {
   return_sn: string;
 }
 /**
- * GetReturnDetail_BuyerVideo sub-interface for GetReturnDetail_Response
+ * GetReturnDetailBuyerVideo sub-interface for GetReturnDetailResponseData
  */
-export interface GetReturnDetail_BuyerVideo {
+export interface GetReturnDetailBuyerVideo {
   /**
    * The thumbnail url of video
    */
@@ -323,9 +301,9 @@ export interface GetReturnDetail_BuyerVideo {
   video_url?: string;
 }
 /**
- * GetReturnDetail_User sub-interface for GetReturnDetail_Response
+ * GetReturnDetailUser sub-interface for GetReturnDetailResponseData
  */
-export interface GetReturnDetail_User {
+export interface GetReturnDetailUser {
   /**
    * Buyer's nickname, will be masked as "****" if it is a non-integrated return in TW region.
    */
@@ -340,9 +318,9 @@ export interface GetReturnDetail_User {
   portrait?: string;
 }
 /**
- * GetReturnDetail_Item sub-interface for GetReturnDetail_Response
+ * GetReturnDetailItem sub-interface for GetReturnDetailResponseData
  */
-export interface GetReturnDetail_Item {
+export interface GetReturnDetailItem {
   /**
    * Shopee's unique identifier for a variation of an item.
    */
@@ -393,9 +371,9 @@ export interface GetReturnDetail_Item {
   refund_amount?: number;
 }
 /**
- * GetReturnDetail_GetReturnDetail_Item sub-interface for GetReturnDetail_Activity
+ * GetReturnDetail_GetReturnDetailItem sub-interface for GetReturnDetailActivity
  */
-export interface GetReturnDetail_GetReturnDetail_Item {
+export interface GetReturnDetail_GetReturnDetailItem {
   /**
    * The id of item.
    */
@@ -414,9 +392,9 @@ export interface GetReturnDetail_GetReturnDetail_Item {
   original_price?: string;
 }
 /**
- * GetReturnDetail_Activity sub-interface for GetReturnDetail_Response
+ * GetReturnDetailActivity sub-interface for GetReturnDetailResponseData
  */
-export interface GetReturnDetail_Activity {
+export interface GetReturnDetailActivity {
   /**
    * The id of activity.
    */
@@ -433,16 +411,16 @@ export interface GetReturnDetail_Activity {
    * activity's discount price
    */
   discounted_price?: string;
-  items?: GetReturnDetail_GetReturnDetail_Item[];
+  items?: GetReturnDetail_GetReturnDetailItem[];
   /**
    * item's refund amount for bundle deal cases, only for shops whitelisted for Partial Qty RR.
    */
   refund_amount?: string;
 }
 /**
- * GetReturnDetail_SellerProof sub-interface for GetReturnDetail_Response
+ * GetReturnDetailSellerProof sub-interface for GetReturnDetailResponseData
  */
-export interface GetReturnDetail_SellerProof {
+export interface GetReturnDetailSellerProof {
   /**
    * To indicate whether the seller needs to provide evidence when the return status is RETURN_JUDING, RETURN_SELLER_DISPUTE and RETURN_ACCEPTED. Applicable values: See Data Definition- SellerProofStatus.
    */
@@ -453,9 +431,9 @@ export interface GetReturnDetail_SellerProof {
   seller_evidence_deadline?: Date | number;
 }
 /**
- * GetReturnDetail_CompensationAmount sub-interface for GetReturnDetail_SellerCompensation
+ * GetReturnDetailCompensationAmount sub-interface for GetReturnDetailSellerCompensation
  */
-export interface GetReturnDetail_CompensationAmount {
+export interface GetReturnDetailCompensationAmount {
   /**
    * To indicate the type of return-related compensationApplicable values: See Data Definition - Compensation Type
    */
@@ -463,9 +441,9 @@ export interface GetReturnDetail_CompensationAmount {
   compensation_amount?: number;
 }
 /**
- * GetReturnDetail_SellerCompensation sub-interface for GetReturnDetail_Response
+ * GetReturnDetailSellerCompensation sub-interface for GetReturnDetailResponseData
  */
-export interface GetReturnDetail_SellerCompensation {
+export interface GetReturnDetailSellerCompensation {
   /**
    * To indicate whether the seller is eligible for raising a compensation request. See "Data Definition - SellerCompensationStatus"
    */
@@ -478,12 +456,12 @@ export interface GetReturnDetail_SellerCompensation {
    * To indicate the compensation amount that the agent decided
    */
   compensation_amount?: number;
-  compensation_amount_list?: GetReturnDetail_CompensationAmount[];
+  compensation_amount_list?: GetReturnDetailCompensationAmount[];
 }
 /**
- * GetReturnDetail_Negotiation sub-interface for GetReturnDetail_Response
+ * GetReturnDetailNegotiation sub-interface for GetReturnDetailResponseData
  */
-export interface GetReturnDetail_Negotiation {
+export interface GetReturnDetailNegotiation {
   /**
    * To indicate whether the seller can negotiate with the buyer. See "Data Definition - NegotiationStatus"
    */
@@ -510,9 +488,9 @@ export interface GetReturnDetail_Negotiation {
   offer_due_date?: Date | number;
 }
 /**
- * GetReturnDetail_ReturnPickupAddress sub-interface for GetReturnDetail_Response
+ * GetReturnDetailReturnPickupAddress sub-interface for GetReturnDetailResponseData
  */
-export interface GetReturnDetail_ReturnPickupAddress {
+export interface GetReturnDetailReturnPickupAddress {
   /**
    * To indicate receiver's address
    */
@@ -551,18 +529,18 @@ export interface GetReturnDetail_ReturnPickupAddress {
   zipcode?: string;
 }
 /**
- * GetReturnDetail_ReturnAddress sub-interface for GetReturnDetail_Response
+ * GetReturnDetailReturnAddress sub-interface for GetReturnDetailResponseData
  */
-export interface GetReturnDetail_ReturnAddress {
+export interface GetReturnDetailReturnAddress {
   /**
    * To indicate the warehouse id where item will be returned to. Please call v2.shop.get_warehouse_detail to check the detailed warehouse information the item returned to with the field "location_id" of the v2.shop.get_warehouse_detail match to the field"whs_id"of the v2.return.get_return_detail.For fulfillment by Shopee (FBS) & multi warehouse sellers, R/R orders will be returned back to the nearest warehouse of buyer address instead of going back to only 1 default return address like a normal seller.If it's a normal seller, then the field will be response empty.
    */
   whs_id?: string;
 }
 /**
- * GetReturnDetail_FollowUpAction sub-interface for GetReturnDetail_Response
+ * GetReturnDetailFollowUpAction sub-interface for GetReturnDetailResponseData
  */
-export interface GetReturnDetail_FollowUpAction {
+export interface GetReturnDetailFollowUpAction {
   /**
    * Unique identifier of the item.
    */
@@ -589,14 +567,14 @@ export interface GetReturnDetail_FollowUpAction {
   resell_failed_next_step?: string;
 }
 /**
- * GetReturnDetail_Response sub-interface for GetReturnDetailResponse
+ * GetReturnDetailResponseData sub-interface for GetReturnDetailResponse
  */
-export interface GetReturnDetail_Response {
+export interface GetReturnDetailResponseData {
   /**
    * Image URLs of return.
    */
   image?: string[];
-  buyer_videos?: GetReturnDetail_BuyerVideo[];
+  buyer_videos?: GetReturnDetailBuyerVideo[];
   /**
    * Indicates the original return reason submitted by the buyer when initiating the return request.Applicable values: See Data Definition- ReturnReason and Reassessed Request Reason.
    * Note: There may be cases where Shopee Agent updates the return request with a "Reassessed Return Reason" after reviewing more details about the buyer's return request and potentially after requesting evidence from the seller. If the platform updates the return reason during this process, the reassessed outcome will be provided separately in the reassessed_request_reason field.
@@ -658,8 +636,8 @@ export interface GetReturnDetail_Response {
    * Order price before discount.
    */
   amount_before_discount?: number;
-  user?: GetReturnDetail_User;
-  item?: GetReturnDetail_Item[];
+  user?: GetReturnDetailUser;
+  item?: GetReturnDetailItem[];
   /**
    * Shopee's unique identifier for an order.
    */
@@ -672,10 +650,10 @@ export interface GetReturnDetail_Response {
    * The due date for seller to deal with this return when buyer have shipped order.
    */
   return_seller_due_date?: Date | number;
-  activity?: GetReturnDetail_Activity[];
-  seller_proof?: GetReturnDetail_SellerProof;
-  seller_compensation?: GetReturnDetail_SellerCompensation;
-  negotiation?: GetReturnDetail_Negotiation;
+  activity?: GetReturnDetailActivity[];
+  seller_proof?: GetReturnDetailSellerProof;
+  seller_compensation?: GetReturnDetailSellerCompensation;
+  negotiation?: GetReturnDetailNegotiation;
   /**
    * To indicate the reverse logistics status. See "Data Definition - LogisticsStatus".Note: - This is a legacy field that only reflects the reverse logistics status of Normal RR. To determine whether the RR is a Normal RR, check if return_refund_request_type = 0.- If you need the reverse logistics status for Normal RR, In-transit RR, or Return-on-the-Spot, please use the newly released field reverse_logistic_status instead.
    */
@@ -687,7 +665,7 @@ export interface GetReturnDetail_Response {
   /**
    * To indicate the buyer's pickup address
    */
-  return_pickup_address?: GetReturnDetail_ReturnPickupAddress;
+  return_pickup_address?: GetReturnDetailReturnPickupAddress;
   /**
    * [Only for TW non-integrated channel] The virtual phone number to contact the recipient.
    */
@@ -696,7 +674,7 @@ export interface GetReturnDetail_Response {
    * [Only for TW non-integrated channel] The query number used in virtual phone number calls to contact the recipient of this return.
    */
   package_query_number?: string;
-  return_address?: GetReturnDetail_ReturnAddress;
+  return_address?: GetReturnDetailReturnAddress;
   /**
    * To indicate whether the return is RRBOC (Return/Refund request raised before Order Complete) or RRAOC (Return/Refund request raised after Order Complete).
    */
@@ -740,12 +718,8 @@ export interface GetReturnDetail_Response {
   /**
    * [Only for validation_type = warehouse_validation] Warehouse handling actions for each item in the parcel.
    */
-  follow_up_action_list?: GetReturnDetail_FollowUpAction[];
+  follow_up_action_list?: GetReturnDetailFollowUpAction[];
 }
-/**
- * Response data payload for get_return_detail
- */
-export type GetReturnDetailResponseData = GetReturnDetail_Response;
 /**
  * Response payload for get_return_detail
  *
@@ -764,9 +738,9 @@ export interface GetReturnDisputeReasonRequest {
   return_sn: string;
 }
 /**
- * GetReturnDisputeReason_SampleEvidence sub-interface for GetReturnDisputeReason_DisputeReason
+ * GetReturnDisputeReasonSampleEvidence sub-interface for GetReturnDisputeReasonDisputeReason
  */
-export interface GetReturnDisputeReason_SampleEvidence {
+export interface GetReturnDisputeReasonSampleEvidence {
   /**
    * The type of sample evidence. Applicable value: - 1: Image
    */
@@ -781,9 +755,9 @@ export interface GetReturnDisputeReason_SampleEvidence {
   thumbnail?: string;
 }
 /**
- * GetReturnDisputeReason_EvidenceModule sub-interface for GetReturnDisputeReason_DisputeReason
+ * GetReturnDisputeReasonEvidenceModule sub-interface for GetReturnDisputeReasonDisputeReason
  */
-export interface GetReturnDisputeReason_EvidenceModule {
+export interface GetReturnDisputeReasonEvidenceModule {
   /**
    * The index of current evidence module.
    */
@@ -798,9 +772,9 @@ export interface GetReturnDisputeReason_EvidenceModule {
   is_required?: boolean;
 }
 /**
- * GetReturnDisputeReason_DisputeReason sub-interface for GetReturnDisputeReason_Response
+ * GetReturnDisputeReasonDisputeReason sub-interface for GetReturnDisputeReasonResponseData
  */
-export interface GetReturnDisputeReason_DisputeReason {
+export interface GetReturnDisputeReasonDisputeReason {
   /**
    * The dispute_reason for one specific case. See Data Definition - DisputeReason.
    */
@@ -812,25 +786,21 @@ export interface GetReturnDisputeReason_DisputeReason {
   /**
    * The URL of sample evidence to upload.
    */
-  sample_evidence?: GetReturnDisputeReason_SampleEvidence[];
+  sample_evidence?: GetReturnDisputeReasonSampleEvidence[];
   /**
    * The associated evidence module list for current dispute reason.
    */
-  evidence_module_list?: GetReturnDisputeReason_EvidenceModule[];
+  evidence_module_list?: GetReturnDisputeReasonEvidenceModule[];
 }
 /**
- * GetReturnDisputeReason_Response sub-interface for GetReturnDisputeReasonResponse
+ * GetReturnDisputeReasonResponseData sub-interface for GetReturnDisputeReasonResponse
  */
-export interface GetReturnDisputeReason_Response {
+export interface GetReturnDisputeReasonResponseData {
   /**
    * The dispute_reason and associated evidence list.
    */
-  dispute_reason_list?: GetReturnDisputeReason_DisputeReason[];
+  dispute_reason_list?: GetReturnDisputeReasonDisputeReason[];
 }
-/**
- * Response data payload for get_return_dispute_reason
- */
-export type GetReturnDisputeReasonResponseData = GetReturnDisputeReason_Response;
 /**
  * Response payload for get_return_dispute_reason
  *
@@ -885,9 +855,9 @@ export interface GetReturnListRequest {
   seller_compensation_status?: string;
 }
 /**
- * GetReturnList_User sub-interface for GetReturnList_Return
+ * GetReturnListUser sub-interface for GetReturnListReturn
  */
-export interface GetReturnList_User {
+export interface GetReturnListUser {
   /**
    * Buyer's nickname, will be masked as "****" if it is a non-integrated return in TW region.
    */
@@ -902,9 +872,9 @@ export interface GetReturnList_User {
   portrait?: string;
 }
 /**
- * GetReturnList_Item sub-interface for GetReturnList_Return
+ * GetReturnListItem sub-interface for GetReturnListReturn
  */
-export interface GetReturnList_Item {
+export interface GetReturnListItem {
   /**
    * Shopee's unique identifier for a variation of an item.
    */
@@ -951,9 +921,9 @@ export interface GetReturnList_Item {
   variation_sku?: string;
 }
 /**
- * GetReturnList_FollowUpAction sub-interface for GetReturnList_Return
+ * GetReturnListFollowUpAction sub-interface for GetReturnListReturn
  */
-export interface GetReturnList_FollowUpAction {
+export interface GetReturnListFollowUpAction {
   /**
    * Unique identifier of the item.
    */
@@ -980,9 +950,9 @@ export interface GetReturnList_FollowUpAction {
   resell_failed_next_step?: string;
 }
 /**
- * GetReturnList_Return sub-interface for GetReturnList_Response
+ * GetReturnListReturn sub-interface for GetReturnListResponseData
  */
-export interface GetReturnList_Return {
+export interface GetReturnListReturn {
   /**
    * Image URLs of return.
    */
@@ -1047,8 +1017,8 @@ export interface GetReturnList_Return {
    * Order price before discount.
    */
   amount_before_discount?: number;
-  user?: GetReturnList_User;
-  item?: GetReturnList_Item[];
+  user?: GetReturnListUser;
+  item?: GetReturnListItem[];
   /**
    * Shopee's unique identifier for an order.
    */
@@ -1104,22 +1074,18 @@ export interface GetReturnList_Return {
   /**
    * [Only for validation_type = warehouse_validation] Warehouse handling actions for each item in the parcel.
    */
-  follow_up_action_list?: GetReturnList_FollowUpAction[];
+  follow_up_action_list?: GetReturnListFollowUpAction[];
 }
 /**
- * GetReturnList_Response sub-interface for GetReturnListResponse
+ * GetReturnListResponseData sub-interface for GetReturnListResponse
  */
-export interface GetReturnList_Response {
+export interface GetReturnListResponseData {
   /**
    * Whether has next page
    */
   more?: boolean;
-  return?: GetReturnList_Return[];
+  return?: GetReturnListReturn[];
 }
-/**
- * Response data payload for get_return_list
- */
-export type GetReturnListResponseData = GetReturnList_Response;
 /**
  * Response payload for get_return_list
  *
@@ -1138,9 +1104,9 @@ export interface GetReverseTrackingInfoRequest {
   return_sn: ReturnSn | string | number;
 }
 /**
- * GetReverseTrackingInfo_TrackingInfo sub-interface for GetReverseTrackingInfo_Response
+ * GetReverseTrackingInfoTrackingInfo sub-interface for GetReverseTrackingInfoResponseData
  */
-export interface GetReverseTrackingInfo_TrackingInfo {
+export interface GetReverseTrackingInfoTrackingInfo {
   /**
    * The timestamps when reverse logistics info has been updated for Normal RR, pushed from third party logistics provider to Shopee.
    */
@@ -1159,9 +1125,9 @@ export interface GetReverseTrackingInfo_TrackingInfo {
   epod_image_list?: string[];
 }
 /**
- * GetReverseTrackingInfo_PostReturnLogisticsTrackingInfo sub-interface for GetReverseTrackingInfo_Response
+ * GetReverseTrackingInfoPostReturnLogisticsTrackingInfo sub-interface for GetReverseTrackingInfoResponseData
  */
-export interface GetReverseTrackingInfo_PostReturnLogisticsTrackingInfo {
+export interface GetReverseTrackingInfoPostReturnLogisticsTrackingInfo {
   /**
    * The timestamps when reverse logistics info has been updated for Normal RR from warehouse to seller, pushed from third party logistics provider to Shopee.
    */
@@ -1180,9 +1146,9 @@ export interface GetReverseTrackingInfo_PostReturnLogisticsTrackingInfo {
   epod_image_list?: string[];
 }
 /**
- * GetReverseTrackingInfo_Response sub-interface for GetReverseTrackingInfoResponse
+ * GetReverseTrackingInfoResponseData sub-interface for GetReverseTrackingInfoResponse
  */
-export interface GetReverseTrackingInfo_Response {
+export interface GetReverseTrackingInfoResponseData {
   /**
    * Shopee's unique identifier for a return/refund request (serial number of return).
    */
@@ -1222,7 +1188,7 @@ export interface GetReverseTrackingInfo_Response {
   /**
    * The detailed tracking information list for the reverse logistics.Note: - Only available for Normal RR with integrated reverse logistics, with the tracking information pushed by third party logistics provider to Shopee.- If validation_type = seller_validation, there is only one segment of reverse logistics (The buyer ships the return parcel directly back to the seller). Please use the fields reverse_logistics_status, reverse_logistics_update_time, tracking_number, and tracking_info to obtain the reverse logistics tracking information.
    */
-  tracking_info?: GetReverseTrackingInfo_TrackingInfo[];
+  tracking_info?: GetReverseTrackingInfoTrackingInfo[];
   /**
    * Post-return logistics status, referring to the current status of the warehouse shipping the return parcel back to the seller in warehouse validation mode. See "Data Definition - Post Return Logistics Status".Note: - Only available for Normal RR with return_solution = 0 (Return and Refund) and validation_type = warehouse_validation, and the warehouse ships the return parcel back to seller using integrated reverse logistics.- If validation_type = warehouse_validation AND the warehouse uses an integrated logistics channel to ship the return parcel back to the seller, there are two segments of reverse logistics: - The buyer first ships the return parcel back to the warehouse. Use the fields reverse_logistics_status, reverse_logistics_update_time, tracking_number, and tracking_info to obtain tracking information for this first segment.- The warehouse then ships the return parcel back to the seller. Use the fields post_return_logistics_status, post_return_logistics_update_time, rts_tracking_number, and post_return_logistics_tracking_info to obtain tracking information for this second segment (post-return logistics).- For Cross-Border Returns, if the second segment exists, the API returns information for both the first and second segments. For Local Returns, if the second segment exists, the API prioritizes and returns only the second segment information.
    */
@@ -1238,12 +1204,8 @@ export interface GetReverseTrackingInfo_Response {
   /**
    * Only available for Normal RR with return_solution = 0 (Return and Refund) and validation_type = warehouse_validation, and the warehouse ships the return parcel back to seller using integrated reverse logistics.In this scenario, the tracking logistics from warehouse to seller is called "post-return logistics", with the tracking information pushed by third party logistics provider to Shopee.Note: - If validation_type = warehouse_validation AND the warehouse uses an integrated logistics channel to ship the return parcel back to the seller, there are two segments of reverse logistics: - The buyer first ships the return parcel back to the warehouse. Use the fields reverse_logistics_status, reverse_logistics_update_time, tracking_number, and tracking_info to obtain tracking information for this first segment.- The warehouse then ships the return parcel back to the seller. Use the fields post_return_logistics_status, post_return_logistics_update_time, rts_tracking_number, and post_return_logistics_tracking_info to obtain tracking information for this second segment (post-return logistics).- For Cross-Border Returns, if the second segment exists, the API returns information for both the first and second segments. For Local Returns, if the second segment exists, the API prioritizes and returns only the second segment information.
    */
-  post_return_logistics_tracking_info?: GetReverseTrackingInfo_PostReturnLogisticsTrackingInfo[];
+  post_return_logistics_tracking_info?: GetReverseTrackingInfoPostReturnLogisticsTrackingInfo[];
 }
-/**
- * Response data payload for get_reverse_tracking_info
- */
-export type GetReverseTrackingInfoResponseData = GetReverseTrackingInfo_Response;
 /**
  * Response payload for get_reverse_tracking_info
  *
@@ -1262,9 +1224,9 @@ export interface GetShippingCarrierRequest {
   return_sn: string;
 }
 /**
- * GetShippingCarrier_ShippingProofTemplate sub-interface for GetShippingCarrier_Response
+ * GetShippingCarrierShippingProofTemplate sub-interface for GetShippingCarrierResponseData
  */
-export interface GetShippingCarrier_ShippingProofTemplate {
+export interface GetShippingCarrierShippingProofTemplate {
   /**
    * To indicate whether it is mandatory to provide tracking number when uploading shipping proof.
    */
@@ -1275,9 +1237,9 @@ export interface GetShippingCarrier_ShippingProofTemplate {
   is_shipping_image_file_mandatory?: boolean;
 }
 /**
- * GetShippingCarrier_ReverseLogisticsCarrier sub-interface for GetShippingCarrier_Response
+ * GetShippingCarrierReverseLogisticsCarrier sub-interface for GetShippingCarrierResponseData
  */
-export interface GetShippingCarrier_ReverseLogisticsCarrier {
+export interface GetShippingCarrierReverseLogisticsCarrier {
   /**
    * To indicate the id of the non-integrated reverse logistics channel used by seller.
    */
@@ -1288,9 +1250,9 @@ export interface GetShippingCarrier_ReverseLogisticsCarrier {
   reverse_logistics_carrier_name?: string;
 }
 /**
- * GetShippingCarrier_Response sub-interface for GetShippingCarrierResponse
+ * GetShippingCarrierResponseData sub-interface for GetShippingCarrierResponse
  */
-export interface GetShippingCarrier_Response {
+export interface GetShippingCarrierResponseData {
   /**
    * To indicate whether uploading shipping proof is mandatory for seller to confirm "Arrange Pickup" when is_seller_arrange = true.
    */
@@ -1302,16 +1264,12 @@ export interface GetShippingCarrier_Response {
   /**
    * To display list of request parameters needed to upload shipping proof.
    */
-  shipping_proof_template?: GetShippingCarrier_ShippingProofTemplate[];
+  shipping_proof_template?: GetShippingCarrierShippingProofTemplate[];
   /**
    * The list of logistics carriers available for sellers to choose.
    */
-  reverse_logistics_carrier_list?: GetShippingCarrier_ReverseLogisticsCarrier[];
+  reverse_logistics_carrier_list?: GetShippingCarrierReverseLogisticsCarrier[];
 }
-/**
- * Response data payload for get_shipping_carrier
- */
-export type GetShippingCarrierResponseData = GetShippingCarrier_Response;
 /**
  * Response payload for get_shipping_carrier
  *
@@ -1338,18 +1296,14 @@ export interface OfferRequest {
   proposed_adjusted_refund_amount?: number;
 }
 /**
- * Offer_Response sub-interface for OfferResponse
+ * OfferResponseData sub-interface for OfferResponse
  */
-export interface Offer_Response {
+export interface OfferResponseData {
   /**
    * The serial number of return.
    */
   return_sn?: string;
 }
-/**
- * Response data payload for offer
- */
-export type OfferResponseData = Offer_Response;
 /**
  * Response payload for offer
  *
@@ -1368,9 +1322,9 @@ export interface QueryProofRequest {
   return_sn: string;
 }
 /**
- * QueryProof_Image sub-interface for QueryProof_Response
+ * QueryProofImage sub-interface for QueryProofResponseData
  */
-export interface QueryProof_Image {
+export interface QueryProofImage {
   /**
    * The image url in dispute proof.
    */
@@ -1381,9 +1335,9 @@ export interface QueryProof_Image {
   thumbnail?: string;
 }
 /**
- * QueryProof_Video sub-interface for QueryProof_Response
+ * QueryProofVideo sub-interface for QueryProofResponseData
  */
-export interface QueryProof_Video {
+export interface QueryProofVideo {
   /**
    * The video url in dispute proof.
    */
@@ -1394,20 +1348,16 @@ export interface QueryProof_Video {
   thumbnail?: string;
 }
 /**
- * QueryProof_Response sub-interface for QueryProofResponse
+ * QueryProofResponseData sub-interface for QueryProofResponse
  */
-export interface QueryProof_Response {
-  image?: QueryProof_Image[];
-  video?: QueryProof_Video[];
+export interface QueryProofResponseData {
+  image?: QueryProofImage[];
+  video?: QueryProofVideo[];
   /**
    * The text description in the dispute proof.
    */
   description?: string;
 }
-/**
- * Response data payload for query_proof
- */
-export type QueryProofResponseData = QueryProof_Response;
 /**
  * Response payload for query_proof
  *
@@ -1415,9 +1365,9 @@ export type QueryProofResponseData = QueryProof_Response;
  */
 export type QueryProofResponse = FetchResponse<QueryProofResponseData>;
 /**
- * UploadProof_Photo sub-interface for UploadProofRequest
+ * UploadProofPhoto sub-interface for UploadProofRequest
  */
-export interface UploadProof_Photo {
+export interface UploadProofPhoto {
   /**
    * Uploaded proof image link, it is recommended to pass in the return url of api called convert_image.
    */
@@ -1437,7 +1387,7 @@ export interface UploadProofRequest {
    * The serial number of return.
    */
   return_sn: string;
-  photo?: UploadProof_Photo[];
+  photo?: UploadProofPhoto[];
   /**
    * text description in the dispute proof
    */
@@ -1454,9 +1404,9 @@ export type UploadProofResponseData = any;
  */
 export type UploadProofResponse = FetchResponse<UploadProofResponseData>;
 /**
- * UploadShippingProof_ImageId sub-interface for UploadShippingProofRequest
+ * UploadShippingProofImageId sub-interface for UploadShippingProofRequest
  */
-export interface UploadShippingProof_ImageId {
+export interface UploadShippingProofImageId {
   /**
    * Unique image_id.
    */
@@ -1487,7 +1437,7 @@ export interface UploadShippingProofRequest {
   /**
    * List of image_id of shipping proof image. Required when is_shipping_image_file_mandatory = true in v2.returns.get_shipping_carrier. Max: 3.You can call the v2.media.upload_image to upload image and get the image_id, for this scenario, please pass the business = 2 and scene = 1.
    */
-  image_id_list?: UploadShippingProof_ImageId[];
+  image_id_list?: UploadShippingProofImageId[];
   /**
    * Optional remarks
    */

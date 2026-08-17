@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field MerchantCurrency
@@ -63,9 +65,9 @@ export interface GetMerchantPrepaidAccountListRequest {
   page_size: number;
 }
 /**
- * GetMerchantPrepaidAccountList_List sub-interface for GetMerchantPrepaidAccountList_Response
+ * GetMerchantPrepaidAccountListList sub-interface for GetMerchantPrepaidAccountListResponseData
  */
-export interface GetMerchantPrepaidAccountList_List {
+export interface GetMerchantPrepaidAccountListList {
   /**
    * Record ID
    */
@@ -112,20 +114,16 @@ export interface GetMerchantPrepaidAccountList_List {
   prepaid_account_is_default?: boolean;
 }
 /**
- * GetMerchantPrepaidAccountList_Response sub-interface for GetMerchantPrepaidAccountListResponse
+ * GetMerchantPrepaidAccountListResponseData sub-interface for GetMerchantPrepaidAccountListResponse
  */
-export interface GetMerchantPrepaidAccountList_Response {
+export interface GetMerchantPrepaidAccountListResponseData {
   total?: number;
-  list?: GetMerchantPrepaidAccountList_List[];
+  list?: GetMerchantPrepaidAccountListList[];
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
   more?: boolean;
 }
-/**
- * Response data payload for get_merchant_prepaid_account_list
- */
-export type GetMerchantPrepaidAccountListResponseData = GetMerchantPrepaidAccountList_Response;
 /**
  * Response payload for get_merchant_prepaid_account_list
  *
@@ -134,9 +132,9 @@ export type GetMerchantPrepaidAccountListResponseData = GetMerchantPrepaidAccoun
 export type GetMerchantPrepaidAccountListResponse =
   FetchResponse<GetMerchantPrepaidAccountListResponseData>;
 /**
- * GetMerchantWarehouseList_Cursor sub-interface for GetMerchantWarehouseListRequest
+ * GetMerchantWarehouseListCursor sub-interface for GetMerchantWarehouseListRequest
  */
-export interface GetMerchantWarehouseList_Cursor {
+export interface GetMerchantWarehouseListCursor {
   next_id?: number;
   prev_id?: number;
   /**
@@ -153,16 +151,16 @@ export interface GetMerchantWarehouseListRequest {
   /**
    * // how to use DoubleSidedCursor// Get data for the first page: Please pass next_id = 0 or nil, page_size = {your page size}.// Get data for the next page: Please pass the Cursor from the previous response, and set prev_id=nil;// Get data for the prev page: Please pass the Cursor from the previous response, and set next_id=nil;// Stop fetching next data: The Cursor.next_id in the previous response is nil.// Stop fetching prev data: The Cursor.prev_id in the previous response is nil.
    */
-  cursor: GetMerchantWarehouseList_Cursor;
+  cursor: GetMerchantWarehouseListCursor;
   /**
    * 1 means pickup warehouse2 means return warehouse
    */
   warehouse_type: number;
 }
 /**
- * GetMerchantWarehouseList_Address sub-interface for GetMerchantWarehouseList_Warehouse
+ * GetMerchantWarehouseListAddress sub-interface for GetMerchantWarehouseListWarehouse
  */
-export interface GetMerchantWarehouseList_Address {
+export interface GetMerchantWarehouseListAddress {
   /**
    * The address name filled in when creating the warehouse.
    */
@@ -197,18 +195,18 @@ export interface GetMerchantWarehouseList_Address {
   zip_code?: string;
 }
 /**
- * GetMerchantWarehouseList_EnterpriseInfo sub-interface for GetMerchantWarehouseList_Warehouse
+ * GetMerchantWarehouseListEnterpriseInfo sub-interface for GetMerchantWarehouseListWarehouse
  */
-export interface GetMerchantWarehouseList_EnterpriseInfo {
+export interface GetMerchantWarehouseListEnterpriseInfo {
   company_name?: string;
   cnpj?: string;
   state_registration_number?: string;
   is_freight_payer?: boolean;
 }
 /**
- * GetMerchantWarehouseList_Warehouse sub-interface for GetMerchantWarehouseList_Response
+ * GetMerchantWarehouseListWarehouse sub-interface for GetMerchantWarehouseListResponseData
  */
-export interface GetMerchantWarehouseList_Warehouse {
+export interface GetMerchantWarehouseListWarehouse {
   /**
    * Warehouse address identifier.
    */
@@ -229,32 +227,28 @@ export interface GetMerchantWarehouseList_Warehouse {
    * Location identifier for stocks. Different location_ids represent that your addresses are in different item stocks.
    */
   location_id?: string;
-  address?: GetMerchantWarehouseList_Address;
-  enterprise_info?: GetMerchantWarehouseList_EnterpriseInfo;
+  address?: GetMerchantWarehouseListAddress;
+  enterprise_info?: GetMerchantWarehouseListEnterpriseInfo;
 }
 /**
- * GetMerchantWarehouseList_GetMerchantWarehouseList_Cursor sub-interface for GetMerchantWarehouseList_Response
+ * GetMerchantWarehouseList_GetMerchantWarehouseListCursor sub-interface for GetMerchantWarehouseListResponseData
  */
-export interface GetMerchantWarehouseList_GetMerchantWarehouseList_Cursor {
+export interface GetMerchantWarehouseList_GetMerchantWarehouseListCursor {
   next_id?: number;
   prev_id?: number;
   page_size?: number;
 }
 /**
- * GetMerchantWarehouseList_Response sub-interface for GetMerchantWarehouseListResponse
+ * GetMerchantWarehouseListResponseData sub-interface for GetMerchantWarehouseListResponse
  */
-export interface GetMerchantWarehouseList_Response {
+export interface GetMerchantWarehouseListResponseData {
   /**
    * Total count of all warehouses.
    */
   total_count?: number;
-  warehouse_list?: GetMerchantWarehouseList_Warehouse[];
-  cursor?: GetMerchantWarehouseList_GetMerchantWarehouseList_Cursor;
+  warehouse_list?: GetMerchantWarehouseListWarehouse[];
+  cursor?: GetMerchantWarehouseList_GetMerchantWarehouseListCursor;
 }
-/**
- * Response data payload for get_merchant_warehouse_list
- */
-export type GetMerchantWarehouseListResponseData = GetMerchantWarehouseList_Response;
 /**
  * Response payload for get_merchant_warehouse_list
  *
@@ -268,9 +262,9 @@ export type GetMerchantWarehouseListResponse = FetchResponse<GetMerchantWarehous
  */
 export type GetMerchantWarehouseLocationListRequest = Record<string, never>;
 /**
- * GetMerchantWarehouseLocationList_Response sub-interface for GetMerchantWarehouseLocationListResponse
+ * GetMerchantWarehouseLocationListResponseDataItem sub-interface for GetMerchantWarehouseLocationListResponse
  */
-export interface GetMerchantWarehouseLocationList_Response {
+export interface GetMerchantWarehouseLocationListResponseDataItem {
   /**
    * Location identifier for stocks. Different location_ids represent that your addresses are in different item stocks
    */
@@ -284,7 +278,7 @@ export interface GetMerchantWarehouseLocationList_Response {
  * Response data payload for get_merchant_warehouse_location_list
  */
 export type GetMerchantWarehouseLocationListResponseData =
-  GetMerchantWarehouseLocationList_Response[];
+  GetMerchantWarehouseLocationListResponseDataItem[];
 /**
  * Response payload for get_merchant_warehouse_location_list
  *
@@ -308,18 +302,18 @@ export interface GetShopListByMerchantRequest {
   page_size: number;
 }
 /**
- * GetShopListByMerchant_SipAffiShop sub-interface for GetShopListByMerchant_Shop
+ * GetShopListByMerchantSipAffiShop sub-interface for GetShopListByMerchantShop
  */
-export interface GetShopListByMerchant_SipAffiShop {
+export interface GetShopListByMerchantSipAffiShop {
   /**
    * Affiliate shop's id.
    */
   affi_shop_id?: number;
 }
 /**
- * GetShopListByMerchant_Shop sub-interface for GetShopListByMerchantResponse
+ * GetShopListByMerchantShop sub-interface for GetShopListByMerchantResponse
  */
-export interface GetShopListByMerchant_Shop {
+export interface GetShopListByMerchantShop {
   /**
    * Shopee's unique identifier for a shop.
    */
@@ -327,7 +321,7 @@ export interface GetShopListByMerchant_Shop {
   /**
    * List of SIP affiliate shops.Only primary shop will return this parameter
    */
-  sip_affi_shops?: GetShopListByMerchant_SipAffiShop[];
+  sip_affi_shops?: GetShopListByMerchantSipAffiShop[];
 }
 /**
  * Response data payload for get_shop_list_by_merchant
@@ -336,7 +330,7 @@ export interface GetShopListByMerchantResponseData {
   /**
    * list of shop authorized to the partner and bound to the merchant.
    */
-  shop_list?: GetShopListByMerchant_Shop[];
+  shop_list?: GetShopListByMerchantShop[];
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
@@ -349,9 +343,9 @@ export interface GetShopListByMerchantResponseData {
  */
 export type GetShopListByMerchantResponse = FetchResponse<GetShopListByMerchantResponseData>;
 /**
- * GetWarehouseEligibleShopList_Cursor sub-interface for GetWarehouseEligibleShopListRequest
+ * GetWarehouseEligibleShopListCursor sub-interface for GetWarehouseEligibleShopListRequest
  */
-export interface GetWarehouseEligibleShopList_Cursor {
+export interface GetWarehouseEligibleShopListCursor {
   next_id?: number;
   prev_id?: number;
   /**
@@ -376,12 +370,12 @@ export interface GetWarehouseEligibleShopListRequest {
   /**
    * // how to use DoubleSidedCursor// Get data for the first page: Please pass next_id = 0 or nil, page_size = {your page size}.// Get data for the next page: Please pass the Cursor from the previous response, and set prev_id=nil;// Get data for the prev page: Please pass the Cursor from the previous response, and set next_id=nil;// Stop fetching next data: The Cursor.next_id in the previous response is nil.// Stop fetching prev data: The Cursor.prev_id in the previous response is nil.
    */
-  cursor: GetWarehouseEligibleShopList_Cursor;
+  cursor: GetWarehouseEligibleShopListCursor;
 }
 /**
- * GetWarehouseEligibleShopList_Shop sub-interface for GetWarehouseEligibleShopList_Response
+ * GetWarehouseEligibleShopListShop sub-interface for GetWarehouseEligibleShopListResponseData
  */
-export interface GetWarehouseEligibleShopList_Shop {
+export interface GetWarehouseEligibleShopListShop {
   /**
    * Shopee's unique identifier for a shop.
    */
@@ -392,27 +386,23 @@ export interface GetWarehouseEligibleShopList_Shop {
   shop_name?: string;
 }
 /**
- * GetWarehouseEligibleShopList_GetWarehouseEligibleShopList_Cursor sub-interface for GetWarehouseEligibleShopList_Response
+ * GetWarehouseEligibleShopList_GetWarehouseEligibleShopListCursor sub-interface for GetWarehouseEligibleShopListResponseData
  */
-export interface GetWarehouseEligibleShopList_GetWarehouseEligibleShopList_Cursor {
+export interface GetWarehouseEligibleShopList_GetWarehouseEligibleShopListCursor {
   next_id?: number;
   prev_id?: number;
   page_size?: number;
 }
 /**
- * GetWarehouseEligibleShopList_Response sub-interface for GetWarehouseEligibleShopListResponse
+ * GetWarehouseEligibleShopListResponseData sub-interface for GetWarehouseEligibleShopListResponse
  */
-export interface GetWarehouseEligibleShopList_Response {
+export interface GetWarehouseEligibleShopListResponseData {
   /**
    * Eligible shop list of the warehouse
    */
-  shop_list?: GetWarehouseEligibleShopList_Shop[];
-  cursor?: GetWarehouseEligibleShopList_GetWarehouseEligibleShopList_Cursor;
+  shop_list?: GetWarehouseEligibleShopListShop[];
+  cursor?: GetWarehouseEligibleShopList_GetWarehouseEligibleShopListCursor;
 }
-/**
- * Response data payload for get_warehouse_eligible_shop_list
- */
-export type GetWarehouseEligibleShopListResponseData = GetWarehouseEligibleShopList_Response;
 /**
  * Response payload for get_warehouse_eligible_shop_list
  *

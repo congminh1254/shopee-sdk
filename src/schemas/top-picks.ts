@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Request parameters for add_top_picks
@@ -10,9 +12,9 @@ export interface AddTopPicksRequest {
   is_activated: boolean;
 }
 /**
- * AddTopPicks_Item sub-interface for AddTopPicks_Collection
+ * AddTopPicksItem sub-interface for AddTopPicksCollection
  */
-export interface AddTopPicks_Item {
+export interface AddTopPicksItem {
   /**
    * The name of item.
    */
@@ -35,9 +37,9 @@ export interface AddTopPicks_Item {
   sales?: number;
 }
 /**
- * AddTopPicks_Collection sub-interface for AddTopPicks_Response
+ * AddTopPicksCollection sub-interface for AddTopPicksResponseData
  */
-export interface AddTopPicks_Collection {
+export interface AddTopPicksCollection {
   /**
    * whether collection is activated.
    */
@@ -45,7 +47,7 @@ export interface AddTopPicks_Collection {
   /**
    * The items of top picks
    */
-  item_list?: AddTopPicks_Item[];
+  item_list?: AddTopPicksItem[];
   /**
    * Collection id.
    */
@@ -56,18 +58,14 @@ export interface AddTopPicks_Collection {
   name?: string;
 }
 /**
- * AddTopPicks_Response sub-interface for AddTopPicksResponse
+ * AddTopPicksResponseData sub-interface for AddTopPicksResponse
  */
-export interface AddTopPicks_Response {
+export interface AddTopPicksResponseData {
   /**
    * The top picks list in this shop.
    */
-  collection_list?: AddTopPicks_Collection[];
+  collection_list?: AddTopPicksCollection[];
 }
-/**
- * Response data payload for add_top_picks
- */
-export type AddTopPicksResponseData = AddTopPicks_Response;
 /**
  * Response payload for add_top_picks
  *
@@ -86,18 +84,14 @@ export interface DeleteTopPicksRequest {
   top_picks_id: number;
 }
 /**
- * DeleteTopPicks_Response sub-interface for DeleteTopPicksResponse
+ * DeleteTopPicksResponseData sub-interface for DeleteTopPicksResponse
  */
-export interface DeleteTopPicks_Response {
+export interface DeleteTopPicksResponseData {
   /**
    * collection id
    */
   top_picks_id?: number;
 }
-/**
- * Response data payload for delete_top_picks
- */
-export type DeleteTopPicksResponseData = DeleteTopPicks_Response;
 /**
  * Response payload for delete_top_picks
  *
@@ -111,9 +105,9 @@ export type DeleteTopPicksResponse = FetchResponse<DeleteTopPicksResponseData>;
  */
 export type GetTopPicksListRequest = Record<string, never>;
 /**
- * GetTopPicksList_Item sub-interface for GetTopPicksList_Collection
+ * GetTopPicksListItem sub-interface for GetTopPicksListCollection
  */
-export interface GetTopPicksList_Item {
+export interface GetTopPicksListItem {
   /**
    * The name of item.
    */
@@ -136,9 +130,9 @@ export interface GetTopPicksList_Item {
   sales?: number;
 }
 /**
- * GetTopPicksList_Collection sub-interface for GetTopPicksList_Response
+ * GetTopPicksListCollection sub-interface for GetTopPicksListResponseData
  */
-export interface GetTopPicksList_Collection {
+export interface GetTopPicksListCollection {
   /**
    * whether collection is activated.
    */
@@ -146,7 +140,7 @@ export interface GetTopPicksList_Collection {
   /**
    * The items of top picks
    */
-  item_list?: GetTopPicksList_Item[];
+  item_list?: GetTopPicksListItem[];
   /**
    * collection id.
    */
@@ -157,18 +151,14 @@ export interface GetTopPicksList_Collection {
   name?: string;
 }
 /**
- * GetTopPicksList_Response sub-interface for GetTopPicksListResponse
+ * GetTopPicksListResponseData sub-interface for GetTopPicksListResponse
  */
-export interface GetTopPicksList_Response {
+export interface GetTopPicksListResponseData {
   /**
    * The top picks list in this shop.
    */
-  collection_list?: GetTopPicksList_Collection[];
+  collection_list?: GetTopPicksListCollection[];
 }
-/**
- * Response data payload for get_top_picks_list
- */
-export type GetTopPicksListResponseData = GetTopPicksList_Response;
 /**
  * Response payload for get_top_picks_list
  *
@@ -199,9 +189,9 @@ export interface UpdateTopPicksRequest {
   is_activated?: boolean;
 }
 /**
- * UpdateTopPicks_Item sub-interface for UpdateTopPicks_Collection
+ * UpdateTopPicksItem sub-interface for UpdateTopPicksCollection
  */
-export interface UpdateTopPicks_Item {
+export interface UpdateTopPicksItem {
   /**
    * The name of item.
    */
@@ -224,9 +214,9 @@ export interface UpdateTopPicks_Item {
   sales?: number;
 }
 /**
- * UpdateTopPicks_Collection sub-interface for UpdateTopPicks_Response
+ * UpdateTopPicksCollection sub-interface for UpdateTopPicksResponseData
  */
-export interface UpdateTopPicks_Collection {
+export interface UpdateTopPicksCollection {
   /**
    * whether is activated
    */
@@ -234,7 +224,7 @@ export interface UpdateTopPicks_Collection {
   /**
    * a list of item
    */
-  item_list?: UpdateTopPicks_Item[];
+  item_list?: UpdateTopPicksItem[];
   /**
    * collection id
    */
@@ -245,18 +235,14 @@ export interface UpdateTopPicks_Collection {
   name?: string;
 }
 /**
- * UpdateTopPicks_Response sub-interface for UpdateTopPicksResponse
+ * UpdateTopPicksResponseData sub-interface for UpdateTopPicksResponse
  */
-export interface UpdateTopPicks_Response {
+export interface UpdateTopPicksResponseData {
   /**
    * The top picks list in this shop.
    */
-  collection_list?: UpdateTopPicks_Collection[];
+  collection_list?: UpdateTopPicksCollection[];
 }
-/**
- * Response data payload for update_top_picks
- */
-export type UpdateTopPicksResponseData = UpdateTopPicks_Response;
 /**
  * Response payload for update_top_picks
  *

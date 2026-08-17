@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field RequestId
@@ -54,9 +56,9 @@ export interface CancelVideoUploadResponseData {
  */
 export type CancelVideoUploadResponse = FetchResponse<CancelVideoUploadResponseData>;
 /**
- * CompleteVideoUpload_ReportData sub-interface for CompleteVideoUploadRequest
+ * CompleteVideoUploadReportData sub-interface for CompleteVideoUploadRequest
  */
-export interface CompleteVideoUpload_ReportData {
+export interface CompleteVideoUploadReportData {
   /**
    * Time used for uploading the video file via upload_video_part api, in milliseconds. For video upload performance tracking purpose.
    */
@@ -76,7 +78,7 @@ export interface CompleteVideoUploadRequest {
    * All uploaded sequence number.
    */
   part_seq_list: number[];
-  report_data: CompleteVideoUpload_ReportData;
+  report_data: CompleteVideoUploadReportData;
 }
 /**
  * Response data payload for complete_video_upload
@@ -102,9 +104,9 @@ export interface GetVideoUploadResultRequest {
   video_upload_id: string;
 }
 /**
- * GetVideoUploadResult_VideoUrl sub-interface for GetVideoUploadResult_VideoInfo
+ * GetVideoUploadResultVideoUrl sub-interface for GetVideoUploadResultVideoInfo
  */
-export interface GetVideoUploadResult_VideoUrl {
+export interface GetVideoUploadResultVideoUrl {
   /**
    * The region of this video URL.
    */
@@ -115,9 +117,9 @@ export interface GetVideoUploadResult_VideoUrl {
   video_url?: string;
 }
 /**
- * GetVideoUploadResult_ThumbnailUrl sub-interface for GetVideoUploadResult_VideoInfo
+ * GetVideoUploadResultThumbnailUrl sub-interface for GetVideoUploadResultVideoInfo
  */
-export interface GetVideoUploadResult_ThumbnailUrl {
+export interface GetVideoUploadResultThumbnailUrl {
   /**
    * The region of this image URL.
    */
@@ -128,26 +130,26 @@ export interface GetVideoUploadResult_ThumbnailUrl {
   image_url?: string;
 }
 /**
- * GetVideoUploadResult_VideoInfo sub-interface for GetVideoUploadResult_Response
+ * GetVideoUploadResultVideoInfo sub-interface for GetVideoUploadResultResponseData
  */
-export interface GetVideoUploadResult_VideoInfo {
+export interface GetVideoUploadResultVideoInfo {
   /**
    * Video playback URL list.
    */
-  video_url_list?: GetVideoUploadResult_VideoUrl[];
+  video_url_list?: GetVideoUploadResultVideoUrl[];
   /**
    * Video thumbnail image URL list.
    */
-  thumbnail_url_list?: GetVideoUploadResult_ThumbnailUrl[];
+  thumbnail_url_list?: GetVideoUploadResultThumbnailUrl[];
   /**
    * Duration of this video, in seconds.
    */
   duration?: number;
 }
 /**
- * GetVideoUploadResult_Response sub-interface for GetVideoUploadResultResponse
+ * GetVideoUploadResultResponseData sub-interface for GetVideoUploadResultResponse
  */
-export interface GetVideoUploadResult_Response {
+export interface GetVideoUploadResultResponseData {
   /**
    * Current status of this video upload session. could be: INITIATED(waiting for part uploading and/or the complete_video_upload API call), TRANSCODING(has received all video parts, and is transcoding the video file), SUCCEEDED(transcoding completed, and this upload_id can now be used for item adding/updating), FAILED(this upload failed, see the message filed for some info), CANCELLED(this upload is cancelled)
    */
@@ -155,16 +157,12 @@ export interface GetVideoUploadResult_Response {
   /**
    * Transcoded video info, will be present if status is SUCCEEDED.
    */
-  video_info?: GetVideoUploadResult_VideoInfo;
+  video_info?: GetVideoUploadResultVideoInfo;
   /**
    * Detail error message if video uploading/transcoding failed.
    */
   message?: Message | string | number;
 }
-/**
- * Response data payload for get_video_upload_result
- */
-export type GetVideoUploadResultResponseData = GetVideoUploadResult_Response;
 /**
  * Response payload for get_video_upload_result
  *
@@ -189,18 +187,14 @@ export interface InitVideoUploadRequest {
   file_size: number;
 }
 /**
- * InitVideoUpload_Response sub-interface for InitVideoUploadResponse
+ * InitVideoUploadResponseData sub-interface for InitVideoUploadResponse
  */
-export interface InitVideoUpload_Response {
+export interface InitVideoUploadResponseData {
   /**
    * The identifier of this upload session, used in following video upload request and item creating and/or updating
    */
   video_upload_id?: VideoUploadId | string | number;
 }
-/**
- * Response data payload for init_video_upload
- */
-export type InitVideoUploadResponseData = InitVideoUpload_Response;
 /**
  * Response payload for init_video_upload
  *
@@ -229,9 +223,9 @@ export interface UploadImageRequest {
   ratio?: string;
 }
 /**
- * UploadImage_ImageUrl sub-interface for UploadImage_ImageInfo
+ * UploadImageImageUrl sub-interface for UploadImageImageInfo
  */
-export interface UploadImage_ImageUrl {
+export interface UploadImageImageUrl {
   /**
    * Region of image url
    */
@@ -242,9 +236,9 @@ export interface UploadImage_ImageUrl {
   image_url?: string;
 }
 /**
- * UploadImage_ImageInfo sub-interface for UploadImage_Response
+ * UploadImageImageInfo sub-interface for UploadImageResponseData
  */
-export interface UploadImage_ImageInfo {
+export interface UploadImageImageInfo {
   /**
    * Id of image
    */
@@ -252,12 +246,12 @@ export interface UploadImage_ImageInfo {
   /**
    * Image URL of each region
    */
-  image_url_list?: UploadImage_ImageUrl[];
+  image_url_list?: UploadImageImageUrl[];
 }
 /**
- * UploadImage_UploadImage_ImageInfo sub-interface for UploadImage_Response
+ * UploadImage_UploadImageImageInfo sub-interface for UploadImageResponseData
  */
-export interface UploadImage_UploadImage_ImageInfo {
+export interface UploadImage_UploadImageImageInfo {
   /**
    * the index of images
    */
@@ -270,19 +264,15 @@ export interface UploadImage_UploadImage_ImageInfo {
    * Indicate error detail if this index's image upload processing hit error. Empty if no error happened for this index's image .
    */
   message?: string;
-  image_info?: UploadImage_ImageInfo;
+  image_info?: UploadImageImageInfo;
 }
 /**
- * UploadImage_Response sub-interface for UploadImageResponse
+ * UploadImageResponseData sub-interface for UploadImageResponse
  */
-export interface UploadImage_Response {
-  image_info?: UploadImage_ImageInfo;
-  image_info_list?: UploadImage_UploadImage_ImageInfo[];
+export interface UploadImageResponseData {
+  image_info?: UploadImageImageInfo;
+  image_info_list?: UploadImage_UploadImageImageInfo[];
 }
-/**
- * Response data payload for upload_image
- */
-export type UploadImageResponseData = UploadImage_Response;
 /**
  * Response payload for upload_image
  *

@@ -1,3 +1,5 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import { FetchResponse } from "./fetch.js";
 /**
  * Enum generated for field TierIndex
@@ -7,18 +9,18 @@ export enum TierIndex {
   TWO = "two",
 }
 /**
- * AddGlobalItem_Image sub-interface for AddGlobalItemRequest
+ * AddGlobalItemImage sub-interface for AddGlobalItemRequest
  */
-export interface AddGlobalItem_Image {
+export interface AddGlobalItemImage {
   /**
    * Image id list of global item.
    */
   image_id_list: string[];
 }
 /**
- * AddGlobalItem_Dimension sub-interface for AddGlobalItemRequest
+ * AddGlobalItemDimension sub-interface for AddGlobalItemRequest
  */
-export interface AddGlobalItem_Dimension {
+export interface AddGlobalItemDimension {
   /**
    * Package length of global item.
    */
@@ -33,18 +35,18 @@ export interface AddGlobalItem_Dimension {
   package_height: number;
 }
 /**
- * AddGlobalItem_PreOrder sub-interface for AddGlobalItemRequest
+ * AddGlobalItemPreOrder sub-interface for AddGlobalItemRequest
  */
-export interface AddGlobalItem_PreOrder {
+export interface AddGlobalItemPreOrder {
   /**
    * Days to ship.
    */
   days_to_ship: number;
 }
 /**
- * AddGlobalItem_Brand sub-interface for AddGlobalItemRequest
+ * AddGlobalItemBrand sub-interface for AddGlobalItemRequest
  */
-export interface AddGlobalItem_Brand {
+export interface AddGlobalItemBrand {
   /**
    * Id of brand.
    */
@@ -55,9 +57,9 @@ export interface AddGlobalItem_Brand {
   original_brand_name?: string;
 }
 /**
- * AddGlobalItem_AttributeValue sub-interface for AddGlobalItem_Attribute
+ * AddGlobalItemAttributeValue sub-interface for AddGlobalItemAttribute
  */
-export interface AddGlobalItem_AttributeValue {
+export interface AddGlobalItemAttributeValue {
   /**
    * ID of attribute value. In the following cases, the value id needs to be uploaded as 0, and original_value_name is mandatory, needs to be filled in customized value. (1) AttributeInputType is TEXT_FILED; (2) AttributeInputType is COMBO_BOX or MULTIPLE_SELECT_COMBO_BOX, and the seller want to fill in a customized value.
    */
@@ -72,28 +74,28 @@ export interface AddGlobalItem_AttributeValue {
   value_unit?: string;
 }
 /**
- * AddGlobalItem_Attribute sub-interface for AddGlobalItemRequest
+ * AddGlobalItemAttribute sub-interface for AddGlobalItemRequest
  */
-export interface AddGlobalItem_Attribute {
+export interface AddGlobalItemAttribute {
   /**
    * ID of attribute.
    */
   attribute_id?: number;
-  attribute_value_list?: AddGlobalItem_AttributeValue[];
+  attribute_value_list?: AddGlobalItemAttributeValue[];
 }
 /**
- * AddGlobalItem_ImageInfo sub-interface for AddGlobalItem_Field
+ * AddGlobalItemImageInfo sub-interface for AddGlobalItemField
  */
-export interface AddGlobalItem_ImageInfo {
+export interface AddGlobalItemImageInfo {
   /**
    * Image id.
    */
   image_id?: string;
 }
 /**
- * AddGlobalItem_Field sub-interface for AddGlobalItem_ExtendedDescription
+ * AddGlobalItemField sub-interface for AddGlobalItemExtendedDescription
  */
-export interface AddGlobalItem_Field {
+export interface AddGlobalItemField {
   /**
    * type of extended description field ：values: See Data Definition- description_field_type (text , image).
    */
@@ -105,30 +107,30 @@ export interface AddGlobalItem_Field {
   /**
    * If field_type is image，image url will be set by this field.
    */
-  image_info?: AddGlobalItem_ImageInfo;
+  image_info?: AddGlobalItemImageInfo;
 }
 /**
- * AddGlobalItem_ExtendedDescription sub-interface for AddGlobalItem_DescriptionInfo
+ * AddGlobalItemExtendedDescription sub-interface for AddGlobalItemDescriptionInfo
  */
-export interface AddGlobalItem_ExtendedDescription {
+export interface AddGlobalItemExtendedDescription {
   /**
    * Field of extended description.
    */
-  field_list?: AddGlobalItem_Field[];
+  field_list?: AddGlobalItemField[];
 }
 /**
- * AddGlobalItem_DescriptionInfo sub-interface for AddGlobalItemRequest
+ * AddGlobalItemDescriptionInfo sub-interface for AddGlobalItemRequest
  */
-export interface AddGlobalItem_DescriptionInfo {
+export interface AddGlobalItemDescriptionInfo {
   /**
    * If description_type is extended , Description information should be set by this field.
    */
-  extended_description?: AddGlobalItem_ExtendedDescription;
+  extended_description?: AddGlobalItemExtendedDescription;
 }
 /**
- * AddGlobalItem_SellerStock sub-interface for AddGlobalItemRequest
+ * AddGlobalItemSellerStock sub-interface for AddGlobalItemRequest
  */
-export interface AddGlobalItem_SellerStock {
+export interface AddGlobalItemSellerStock {
   /**
    * location_id of stock
    */
@@ -139,9 +141,9 @@ export interface AddGlobalItem_SellerStock {
   stock: number;
 }
 /**
- * AddGlobalItem_SizeChartInfo sub-interface for AddGlobalItemRequest
+ * AddGlobalItemSizeChartInfo sub-interface for AddGlobalItemRequest
  */
-export interface AddGlobalItem_SizeChartInfo {
+export interface AddGlobalItemSizeChartInfo {
   /**
    * ID of size chart image. If you want to remove the image size chart of the item, please pass the "size_chart" empty. You only need to fill out either the image or template. If both are filled, only the template will be kept.Notes: Both CB shops and local shops are supported to set "size_chart".
    */
@@ -176,7 +178,7 @@ export interface AddGlobalItemRequest {
   /**
    * Image information of global item.
    */
-  image?: AddGlobalItem_Image;
+  image?: AddGlobalItemImage;
   /**
    * Original price of global item.
    */
@@ -192,11 +194,11 @@ export interface AddGlobalItemRequest {
   /**
    * Dimension information of global item.
    */
-  dimension?: AddGlobalItem_Dimension;
+  dimension?: AddGlobalItemDimension;
   /**
    * Preorder information of global item.
    */
-  pre_order: AddGlobalItem_PreOrder;
+  pre_order: AddGlobalItemPreOrder;
   /**
    * Condition of global item, "NEW" or "USED" is available.
    */
@@ -205,15 +207,15 @@ export interface AddGlobalItemRequest {
    * Video upload id of global item. Only accept one video_upload_id at most.
    */
   video_upload_id?: string[];
-  brand?: AddGlobalItem_Brand;
+  brand?: AddGlobalItemBrand;
   /**
    * Item attributes.
    */
-  attribute_list?: AddGlobalItem_Attribute[];
+  attribute_list?: AddGlobalItemAttribute[];
   /**
    * New description field. New description field. Only whitelist sellers can use it. If you use the field, please upload the description_type=extended otherwise api will return error. If you don't use this field, you don't need to upload the description_type or upload description_type=normal
    */
-  description_info?: AddGlobalItem_DescriptionInfo;
+  description_info?: AddGlobalItemDescriptionInfo;
   /**
    * Values: See Data Definition- description_type (normal , extended). If you want to use extended_description, this field must be inputed
    */
@@ -221,26 +223,22 @@ export interface AddGlobalItemRequest {
   /**
    * seller_stock of global item.
    */
-  seller_stock?: AddGlobalItem_SellerStock[];
+  seller_stock?: AddGlobalItemSellerStock[];
   /**
    * category recommendation service id
    */
   ds_cat_rcmd_id?: string;
-  size_chart_info?: AddGlobalItem_SizeChartInfo;
+  size_chart_info?: AddGlobalItemSizeChartInfo;
 }
 /**
- * AddGlobalItem_Response sub-interface for AddGlobalItemResponse
+ * AddGlobalItemResponseData sub-interface for AddGlobalItemResponse
  */
-export interface AddGlobalItem_Response {
+export interface AddGlobalItemResponseData {
   /**
    * Id of added global item.
    */
   global_item_id?: number;
 }
-/**
- * Response data payload for add_global_item
- */
-export type AddGlobalItemResponseData = AddGlobalItem_Response;
 /**
  * Response payload for add_global_item
  *
@@ -248,9 +246,9 @@ export type AddGlobalItemResponseData = AddGlobalItem_Response;
  */
 export type AddGlobalItemResponse = FetchResponse<AddGlobalItemResponseData>;
 /**
- * AddGlobalModel_SellerStock sub-interface for AddGlobalModel_GlobalModel
+ * AddGlobalModelSellerStock sub-interface for AddGlobalModelGlobalModel
  */
-export interface AddGlobalModel_SellerStock {
+export interface AddGlobalModelSellerStock {
   /**
    * location_id of stock, if the merchant has 3PF shop, the location_id cannot be empty, can use the get_merchant_warehouse_location_list API to obtain the location_id list of the merchant, if the merchant does not have 3PF shop (only has normal CBSC shop), the location_id can be empty
    */
@@ -261,9 +259,9 @@ export interface AddGlobalModel_SellerStock {
   stock: number;
 }
 /**
- * AddGlobalModel_Dimension sub-interface for AddGlobalModel_GlobalModel
+ * AddGlobalModelDimension sub-interface for AddGlobalModelGlobalModel
  */
-export interface AddGlobalModel_Dimension {
+export interface AddGlobalModelDimension {
   /**
    * The height of package for this global model, the unit is CM.
    */
@@ -278,18 +276,18 @@ export interface AddGlobalModel_Dimension {
   package_width: number;
 }
 /**
- * AddGlobalModel_PreOrder sub-interface for AddGlobalModel_GlobalModel
+ * AddGlobalModelPreOrder sub-interface for AddGlobalModelGlobalModel
  */
-export interface AddGlobalModel_PreOrder {
+export interface AddGlobalModelPreOrder {
   /**
    * Days to ship. Please get the days_to_ship range from the get_dts_limit API.
    */
   days_to_ship: number;
 }
 /**
- * AddGlobalModel_GlobalModel sub-interface for AddGlobalModelRequest
+ * AddGlobalModelGlobalModel sub-interface for AddGlobalModelRequest
  */
-export interface AddGlobalModel_GlobalModel {
+export interface AddGlobalModelGlobalModel {
   /**
    * Sku of global model. model_sku length information needs to be no more than 100 characters.
    */
@@ -301,7 +299,7 @@ export interface AddGlobalModel_GlobalModel {
   /**
    * seller_stock of global item
    */
-  seller_stock?: AddGlobalModel_SellerStock[];
+  seller_stock?: AddGlobalModelSellerStock[];
   /**
    * Original price of global item.
    */
@@ -313,11 +311,11 @@ export interface AddGlobalModel_GlobalModel {
   /**
    * The dimension of this global model.If don't set the dimension of this global model, will use the dimension of global item by default.
    */
-  dimension?: AddGlobalModel_Dimension;
+  dimension?: AddGlobalModelDimension;
   /**
    * Pre-order information of this global model.Notes: If don't set the DTS of this global model, will use the DTS of the global item by default.
    */
-  pre_order?: AddGlobalModel_PreOrder;
+  pre_order?: AddGlobalModelPreOrder;
 }
 /**
  * Request parameters for add_global_model
@@ -332,7 +330,7 @@ export interface AddGlobalModelRequest {
   /**
    * Global model setting list. Limit is  [1,50].
    */
-  global_model: AddGlobalModel_GlobalModel[];
+  global_model: AddGlobalModelGlobalModel[];
 }
 /**
  * Response data payload for add_global_model
@@ -365,18 +363,14 @@ export interface CategoryRecommendRequest {
   global_product_cover_image?: string;
 }
 /**
- * CategoryRecommend_Response sub-interface for CategoryRecommendResponse
+ * CategoryRecommendResponseData sub-interface for CategoryRecommendResponse
  */
-export interface CategoryRecommend_Response {
+export interface CategoryRecommendResponseData {
   /**
    * Shopee's unique identifier for a category.
    */
   category_id?: number[];
 }
-/**
- * Response data payload for category_recommend
- */
-export type CategoryRecommendResponseData = CategoryRecommend_Response;
 /**
  * Response payload for category_recommend
  *
@@ -384,18 +378,18 @@ export type CategoryRecommendResponseData = CategoryRecommend_Response;
  */
 export type CategoryRecommendResponse = FetchResponse<CategoryRecommendResponseData>;
 /**
- * CreatePublishTask_Image sub-interface for CreatePublishTask_Item
+ * CreatePublishTaskImage sub-interface for CreatePublishTaskItem
  */
-export interface CreatePublishTask_Image {
+export interface CreatePublishTaskImage {
   /**
    * Image id list of item.
    */
   image_id_list: string[];
 }
 /**
- * CreatePublishTask_Model sub-interface for CreatePublishTask_Item
+ * CreatePublishTaskModel sub-interface for CreatePublishTaskItem
  */
-export interface CreatePublishTask_Model {
+export interface CreatePublishTaskModel {
   /**
    * Tier index of model.
    */
@@ -410,9 +404,9 @@ export interface CreatePublishTask_Model {
   model_status?: string;
 }
 /**
- * CreatePublishTask_Logistic sub-interface for CreatePublishTask_Item
+ * CreatePublishTaskLogistic sub-interface for CreatePublishTaskItem
  */
-export interface CreatePublishTask_Logistic {
+export interface CreatePublishTaskLogistic {
   /**
    * Logistic id.
    */
@@ -435,9 +429,9 @@ export interface CreatePublishTask_Logistic {
   is_free?: boolean;
 }
 /**
- * CreatePublishTask_PreOrder sub-interface for CreatePublishTask_Item
+ * CreatePublishTaskPreOrder sub-interface for CreatePublishTaskItem
  */
-export interface CreatePublishTask_PreOrder {
+export interface CreatePublishTaskPreOrder {
   /**
    * If this item is preorder.
    */
@@ -448,18 +442,18 @@ export interface CreatePublishTask_PreOrder {
   days_to_ship?: number;
 }
 /**
- * CreatePublishTask_ImageInfo sub-interface for CreatePublishTask_Field
+ * CreatePublishTaskImageInfo sub-interface for CreatePublishTaskField
  */
-export interface CreatePublishTask_ImageInfo {
+export interface CreatePublishTaskImageInfo {
   /**
    * Image id.
    */
   image_id?: string;
 }
 /**
- * CreatePublishTask_Field sub-interface for CreatePublishTask_ExtendedDescription
+ * CreatePublishTaskField sub-interface for CreatePublishTaskExtendedDescription
  */
-export interface CreatePublishTask_Field {
+export interface CreatePublishTaskField {
   /**
    * Type of extended description field ：values: See Data Definition- description_field_type (text , image).
    */
@@ -471,47 +465,47 @@ export interface CreatePublishTask_Field {
   /**
    * If field_type is image，image url will be set by this field.
    */
-  image_info?: CreatePublishTask_ImageInfo;
+  image_info?: CreatePublishTaskImageInfo;
 }
 /**
- * CreatePublishTask_ExtendedDescription sub-interface for CreatePublishTask_DescriptionInfo
+ * CreatePublishTaskExtendedDescription sub-interface for CreatePublishTaskDescriptionInfo
  */
-export interface CreatePublishTask_ExtendedDescription {
+export interface CreatePublishTaskExtendedDescription {
   /**
    * Field of extended description.
    */
-  field_list?: CreatePublishTask_Field[];
+  field_list?: CreatePublishTaskField[];
 }
 /**
- * CreatePublishTask_DescriptionInfo sub-interface for CreatePublishTask_Item
+ * CreatePublishTaskDescriptionInfo sub-interface for CreatePublishTaskItem
  */
-export interface CreatePublishTask_DescriptionInfo {
+export interface CreatePublishTaskDescriptionInfo {
   /**
    * If description_type is extended , Description information should be set by this field.
    */
-  extended_description?: CreatePublishTask_ExtendedDescription;
+  extended_description?: CreatePublishTaskExtendedDescription;
 }
 /**
- * CreatePublishTask_VariationOption sub-interface for CreatePublishTask_StandardiseTierVariation
+ * CreatePublishTaskVariationOption sub-interface for CreatePublishTaskStandardiseTierVariation
  */
-export interface CreatePublishTask_VariationOption {
+export interface CreatePublishTaskVariationOption {
   variation_option_id?: number;
   variation_option_name?: string;
   image_id?: string;
 }
 /**
- * CreatePublishTask_StandardiseTierVariation sub-interface for CreatePublishTask_Item
+ * CreatePublishTaskStandardiseTierVariation sub-interface for CreatePublishTaskItem
  */
-export interface CreatePublishTask_StandardiseTierVariation {
+export interface CreatePublishTaskStandardiseTierVariation {
   variation_id?: number;
   variation_name?: string;
   variation_group_id?: number;
-  variation_option_list?: CreatePublishTask_VariationOption[];
+  variation_option_list?: CreatePublishTaskVariationOption[];
 }
 /**
- * CreatePublishTask_Item sub-interface for CreatePublishTaskRequest
+ * CreatePublishTaskItem sub-interface for CreatePublishTaskRequest
  */
-export interface CreatePublishTask_Item {
+export interface CreatePublishTaskItem {
   /**
    * Name of item. If you upload this field, we will take your value, so you should pass the value in the local language, if you don't upload this field, Shopee will automatically translate your global product name into the local language.
    */
@@ -531,11 +525,11 @@ export interface CreatePublishTask_Item {
   /**
    * Image information of item.
    */
-  image?: CreatePublishTask_Image;
+  image?: CreatePublishTaskImage;
   /**
    * Model information of item.
    */
-  model?: CreatePublishTask_Model[];
+  model?: CreatePublishTaskModel[];
   /**
    * Size chart of item. Only support image_id for now
    */
@@ -543,16 +537,16 @@ export interface CreatePublishTask_Item {
   /**
    * Logistic information of item.
    */
-  logistic?: CreatePublishTask_Logistic[];
+  logistic?: CreatePublishTaskLogistic[];
   /**
    * Preorder information of item.
    */
-  pre_order?: CreatePublishTask_PreOrder;
+  pre_order?: CreatePublishTaskPreOrder;
   /**
    * New description field. Only whitelist sellers can use it. If you use the field, please upload the description_type=extended otherwise api will return error. If you don't use this field, you don't need to upload the description_type or upload description_type=normal. If you upload this field, we will take your value, so you should pass the value in the local language, if you don't upload this field, Shopee will automatically translate your global product description into the local language.
    */
-  description_info?: CreatePublishTask_DescriptionInfo;
-  standardise_tier_variation?: CreatePublishTask_StandardiseTierVariation[];
+  description_info?: CreatePublishTaskDescriptionInfo;
+  standardise_tier_variation?: CreatePublishTaskStandardiseTierVariation[];
 }
 /**
  * Request parameters for create_publish_task
@@ -575,21 +569,17 @@ export interface CreatePublishTaskRequest {
   /**
    * Item information.
    */
-  item?: CreatePublishTask_Item;
+  item?: CreatePublishTaskItem;
 }
 /**
- * CreatePublishTask_Response sub-interface for CreatePublishTaskResponse
+ * CreatePublishTaskResponseData sub-interface for CreatePublishTaskResponse
  */
-export interface CreatePublishTask_Response {
+export interface CreatePublishTaskResponseData {
   /**
    * The id of publish task.
    */
   publish_task_id?: number;
 }
-/**
- * Response data payload for create_publish_task
- */
-export type CreatePublishTaskResponseData = CreatePublishTask_Response;
 /**
  * Response payload for create_publish_task
  *
@@ -608,9 +598,9 @@ export interface DeleteGlobalItemRequest {
   global_item_id: number;
 }
 /**
- * DeleteGlobalItem_FailureDeleteItem sub-interface for DeleteGlobalItem_Response
+ * DeleteGlobalItemFailureDeleteItem sub-interface for DeleteGlobalItemResponseData
  */
-export interface DeleteGlobalItem_FailureDeleteItem {
+export interface DeleteGlobalItemFailureDeleteItem {
   /**
    * The id of shop corresponding to the related item failed to delete.
    */
@@ -621,18 +611,14 @@ export interface DeleteGlobalItem_FailureDeleteItem {
   item_id?: number;
 }
 /**
- * DeleteGlobalItem_Response sub-interface for DeleteGlobalItemResponse
+ * DeleteGlobalItemResponseData sub-interface for DeleteGlobalItemResponse
  */
-export interface DeleteGlobalItem_Response {
+export interface DeleteGlobalItemResponseData {
   /**
    * If delete failed, this field shows the details.
    */
-  failure_delete_item?: DeleteGlobalItem_FailureDeleteItem[];
+  failure_delete_item?: DeleteGlobalItemFailureDeleteItem[];
 }
-/**
- * Response data payload for delete_global_item
- */
-export type DeleteGlobalItemResponseData = DeleteGlobalItem_Response;
 /**
  * Response payload for delete_global_item
  *
@@ -655,9 +641,9 @@ export interface DeleteGlobalModelRequest {
   global_model_id: number;
 }
 /**
- * DeleteGlobalModel_Failure sub-interface for DeleteGlobalModel_Response
+ * DeleteGlobalModelFailure sub-interface for DeleteGlobalModelResponseData
  */
-export interface DeleteGlobalModel_Failure {
+export interface DeleteGlobalModelFailure {
   /**
    * Failed shop id.
    */
@@ -672,19 +658,15 @@ export interface DeleteGlobalModel_Failure {
   model_id?: number;
 }
 /**
- * DeleteGlobalModel_Response sub-interface for DeleteGlobalModelResponse
+ * DeleteGlobalModelResponseData sub-interface for DeleteGlobalModelResponse
  */
-export interface DeleteGlobalModel_Response {
+export interface DeleteGlobalModelResponseData {
   /**
    * Global model id.
    */
   global_model_id?: number;
-  failures?: DeleteGlobalModel_Failure[];
+  failures?: DeleteGlobalModelFailure[];
 }
-/**
- * Response data payload for delete_global_model
- */
-export type DeleteGlobalModelResponseData = DeleteGlobalModel_Response;
 /**
  * Response payload for delete_global_model
  *
@@ -707,9 +689,9 @@ export interface GetAttributeTreeRequest {
   language?: string;
 }
 /**
- * GetAttributeTree_MultiLang sub-interface for GetAttributeTree_AttributeValue
+ * GetAttributeTreeMultiLang sub-interface for GetAttributeTreeAttributeValue
  */
-export interface GetAttributeTree_MultiLang {
+export interface GetAttributeTreeMultiLang {
   /**
    * Language
    */
@@ -720,9 +702,9 @@ export interface GetAttributeTree_MultiLang {
   value?: string;
 }
 /**
- * GetAttributeTree_AttributeValue sub-interface for GetAttributeTree_AttributeTree
+ * GetAttributeTreeAttributeValue sub-interface for GetAttributeTreeAttributeTree
  */
-export interface GetAttributeTree_AttributeValue {
+export interface GetAttributeTreeAttributeValue {
   /**
    * Value ID
    */
@@ -742,12 +724,12 @@ export interface GetAttributeTree_AttributeValue {
   /**
    * Translate results for value name display
    */
-  multi_lang?: GetAttributeTree_MultiLang;
+  multi_lang?: GetAttributeTreeMultiLang;
 }
 /**
- * GetAttributeTree_AttributeInfo sub-interface for GetAttributeTree_AttributeTree
+ * GetAttributeTreeAttributeInfo sub-interface for GetAttributeTreeAttributeTree
  */
-export interface GetAttributeTree_AttributeInfo {
+export interface GetAttributeTreeAttributeInfo {
   /**
    * SINGLE_DROP_DOWN = 1SINGLE_COMBO_BOX = 2FREE_TEXT_FILED        = 3MULTI_DROP_DOWN   = 4MULTI_COMBO_BOX   = 5
    */
@@ -787,9 +769,9 @@ export interface GetAttributeTree_AttributeInfo {
   support_search_value?: boolean;
 }
 /**
- * GetAttributeTree_AttributeTree sub-interface for GetAttributeTree_List
+ * GetAttributeTreeAttributeTree sub-interface for GetAttributeTreeList
  */
-export interface GetAttributeTree_AttributeTree {
+export interface GetAttributeTreeAttributeTree {
   /**
    * Attribute ID
    */
@@ -805,24 +787,24 @@ export interface GetAttributeTree_AttributeTree {
   /**
    * All available values for this attribute
    */
-  attribute_value_list?: GetAttributeTree_AttributeValue[];
+  attribute_value_list?: GetAttributeTreeAttributeValue[];
   /**
    * Attribute extra info
    */
-  attribute_info?: GetAttributeTree_AttributeInfo;
+  attribute_info?: GetAttributeTreeAttributeInfo;
   /**
    * Translate result for attribute name display
    */
-  multi_lang?: GetAttributeTree_MultiLang[];
+  multi_lang?: GetAttributeTreeMultiLang[];
 }
 /**
- * GetAttributeTree_List sub-interface for GetAttributeTree_Response
+ * GetAttributeTreeList sub-interface for GetAttributeTreeResponseData
  */
-export interface GetAttributeTree_List {
+export interface GetAttributeTreeList {
   /**
    * One category's attribute trees
    */
-  attribute_tree?: GetAttributeTree_AttributeTree[];
+  attribute_tree?: GetAttributeTreeAttributeTree[];
   /**
    * Category ID
    */
@@ -833,18 +815,14 @@ export interface GetAttributeTree_List {
   warning?: string;
 }
 /**
- * GetAttributeTree_Response sub-interface for GetAttributeTreeResponse
+ * GetAttributeTreeResponseData sub-interface for GetAttributeTreeResponse
  */
-export interface GetAttributeTree_Response {
+export interface GetAttributeTreeResponseData {
   /**
    * Each result corresponds to one category in category_ids
    */
-  list?: GetAttributeTree_List[];
+  list?: GetAttributeTreeList[];
 }
-/**
- * Response data payload for get_attribute_tree
- */
-export type GetAttributeTreeResponseData = GetAttributeTree_Response;
 /**
  * Response payload for get_attribute_tree
  *
@@ -875,9 +853,9 @@ export interface GetBrandListRequest {
   status: number;
 }
 /**
- * GetBrandList_Brand sub-interface for GetBrandList_Response
+ * GetBrandListBrand sub-interface for GetBrandListResponseData
  */
-export interface GetBrandList_Brand {
+export interface GetBrandListBrand {
   /**
    * Id of brand.
    */
@@ -892,10 +870,10 @@ export interface GetBrandList_Brand {
   display_brand_name?: string;
 }
 /**
- * GetBrandList_Response sub-interface for GetBrandListResponse
+ * GetBrandListResponseData sub-interface for GetBrandListResponse
  */
-export interface GetBrandList_Response {
-  brand_list?: GetBrandList_Brand[];
+export interface GetBrandListResponseData {
+  brand_list?: GetBrandListBrand[];
   /**
    * This is to indicate whether the item list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of items.
    */
@@ -914,10 +892,6 @@ export interface GetBrandList_Response {
   input_type?: string;
 }
 /**
- * Response data payload for get_brand_list
- */
-export type GetBrandListResponseData = GetBrandList_Response;
-/**
  * Response payload for get_brand_list
  *
  * Use this call to get a list of brand. Only for China mainland sellers and Korean sellers.
@@ -935,9 +909,9 @@ export interface GetCategoryRequest {
   language?: string;
 }
 /**
- * GetCategory_Category sub-interface for GetCategory_Response
+ * GetCategoryCategory sub-interface for GetCategoryResponseData
  */
-export interface GetCategory_Category {
+export interface GetCategoryCategory {
   /**
    * ID for category.
    */
@@ -960,15 +934,11 @@ export interface GetCategory_Category {
   has_children?: boolean;
 }
 /**
- * GetCategory_Response sub-interface for GetCategoryResponse
+ * GetCategoryResponseData sub-interface for GetCategoryResponse
  */
-export interface GetCategory_Response {
-  category_list?: GetCategory_Category[];
+export interface GetCategoryResponseData {
+  category_list?: GetCategoryCategory[];
 }
-/**
- * Response data payload for get_category
- */
-export type GetCategoryResponseData = GetCategory_Response;
 /**
  * Response payload for get_category
  *
@@ -991,9 +961,9 @@ export interface GetGlobalItemIdRequest {
   item_id_list: number[];
 }
 /**
- * GetGlobalItemId_ItemIdMap sub-interface for GetGlobalItemId_Response
+ * GetGlobalItemIdItemIdMap sub-interface for GetGlobalItemIdResponseData
  */
-export interface GetGlobalItemId_ItemIdMap {
+export interface GetGlobalItemIdItemIdMap {
   /**
    * Id of item.
    */
@@ -1004,15 +974,11 @@ export interface GetGlobalItemId_ItemIdMap {
   global_item_id?: number;
 }
 /**
- * GetGlobalItemId_Response sub-interface for GetGlobalItemIdResponse
+ * GetGlobalItemIdResponseData sub-interface for GetGlobalItemIdResponse
  */
-export interface GetGlobalItemId_Response {
-  item_id_map?: GetGlobalItemId_ItemIdMap[];
+export interface GetGlobalItemIdResponseData {
+  item_id_map?: GetGlobalItemIdItemIdMap[];
 }
-/**
- * Response data payload for get_global_item_id
- */
-export type GetGlobalItemIdResponseData = GetGlobalItemId_Response;
 /**
  * Response payload for get_global_item_id
  *
@@ -1031,9 +997,9 @@ export interface GetGlobalItemInfoRequest {
   global_item_id_list: number[];
 }
 /**
- * GetGlobalItemInfo_StockInfo sub-interface for GetGlobalItemInfo_GlobalItem
+ * GetGlobalItemInfoStockInfo sub-interface for GetGlobalItemInfoGlobalItem
  */
-export interface GetGlobalItemInfo_StockInfo {
+export interface GetGlobalItemInfoStockInfo {
   /**
    * The stock type.
    */
@@ -1052,9 +1018,9 @@ export interface GetGlobalItemInfo_StockInfo {
   reserved_stock?: number;
 }
 /**
- * GetGlobalItemInfo_PriceInfo sub-interface for GetGlobalItemInfo_GlobalItem
+ * GetGlobalItemInfoPriceInfo sub-interface for GetGlobalItemInfoGlobalItem
  */
-export interface GetGlobalItemInfo_PriceInfo {
+export interface GetGlobalItemInfoPriceInfo {
   /**
    * The three-digit code representing the currency unit used for the item in Shopee Listings.
    */
@@ -1073,9 +1039,9 @@ export interface GetGlobalItemInfo_PriceInfo {
   sip_item_price_source?: string;
 }
 /**
- * GetGlobalItemInfo_Image sub-interface for GetGlobalItemInfo_GlobalItem
+ * GetGlobalItemInfoImage sub-interface for GetGlobalItemInfoGlobalItem
  */
-export interface GetGlobalItemInfo_Image {
+export interface GetGlobalItemInfoImage {
   /**
    * List of image url.
    */
@@ -1086,9 +1052,9 @@ export interface GetGlobalItemInfo_Image {
   image_url_list?: string[];
 }
 /**
- * GetGlobalItemInfo_Dimension sub-interface for GetGlobalItemInfo_GlobalItem
+ * GetGlobalItemInfoDimension sub-interface for GetGlobalItemInfoGlobalItem
  */
-export interface GetGlobalItemInfo_Dimension {
+export interface GetGlobalItemInfoDimension {
   /**
    * The length of package for this global item, the unit is CM.
    */
@@ -1103,18 +1069,18 @@ export interface GetGlobalItemInfo_Dimension {
   package_height?: number;
 }
 /**
- * GetGlobalItemInfo_PreOrder sub-interface for GetGlobalItemInfo_GlobalItem
+ * GetGlobalItemInfoPreOrder sub-interface for GetGlobalItemInfoGlobalItem
  */
-export interface GetGlobalItemInfo_PreOrder {
+export interface GetGlobalItemInfoPreOrder {
   /**
    * Days to ship.
    */
   days_to_ship?: number;
 }
 /**
- * GetGlobalItemInfo_Video sub-interface for GetGlobalItemInfo_GlobalItem
+ * GetGlobalItemInfoVideo sub-interface for GetGlobalItemInfoGlobalItem
  */
-export interface GetGlobalItemInfo_Video {
+export interface GetGlobalItemInfoVideo {
   /**
    * Url of video.
    */
@@ -1129,9 +1095,9 @@ export interface GetGlobalItemInfo_Video {
   duration?: number;
 }
 /**
- * GetGlobalItemInfo_Brand sub-interface for GetGlobalItemInfo_GlobalItem
+ * GetGlobalItemInfoBrand sub-interface for GetGlobalItemInfoGlobalItem
  */
-export interface GetGlobalItemInfo_Brand {
+export interface GetGlobalItemInfoBrand {
   /**
    * Id of brand.
    */
@@ -1142,9 +1108,9 @@ export interface GetGlobalItemInfo_Brand {
   original_brand_name?: string;
 }
 /**
- * GetGlobalItemInfo_AttributeValue sub-interface for GetGlobalItemInfo_Attribute
+ * GetGlobalItemInfoAttributeValue sub-interface for GetGlobalItemInfoAttribute
  */
-export interface GetGlobalItemInfo_AttributeValue {
+export interface GetGlobalItemInfoAttributeValue {
   /**
    * Unique identifier for value of this item attribute.
    */
@@ -1159,9 +1125,9 @@ export interface GetGlobalItemInfo_AttributeValue {
   value_unit?: string;
 }
 /**
- * GetGlobalItemInfo_Attribute sub-interface for GetGlobalItemInfo_GlobalItem
+ * GetGlobalItemInfoAttribute sub-interface for GetGlobalItemInfoGlobalItem
  */
-export interface GetGlobalItemInfo_Attribute {
+export interface GetGlobalItemInfoAttribute {
   /**
    * The Identify of each category.
    */
@@ -1170,12 +1136,12 @@ export interface GetGlobalItemInfo_Attribute {
    * The name of each attribute.
    */
   original_attribute_name?: string;
-  attribute_value_list?: GetGlobalItemInfo_AttributeValue[];
+  attribute_value_list?: GetGlobalItemInfoAttributeValue[];
 }
 /**
- * GetGlobalItemInfo_ImageInfo sub-interface for GetGlobalItemInfo_Field
+ * GetGlobalItemInfoImageInfo sub-interface for GetGlobalItemInfoField
  */
-export interface GetGlobalItemInfo_ImageInfo {
+export interface GetGlobalItemInfoImageInfo {
   /**
    * Image id.
    */
@@ -1186,9 +1152,9 @@ export interface GetGlobalItemInfo_ImageInfo {
   image_url?: string;
 }
 /**
- * GetGlobalItemInfo_Field sub-interface for GetGlobalItemInfo_ExtendedDescription
+ * GetGlobalItemInfoField sub-interface for GetGlobalItemInfoExtendedDescription
  */
-export interface GetGlobalItemInfo_Field {
+export interface GetGlobalItemInfoField {
   /**
    * Type of extended description field: values: See Data Definition- description_field_type (text , image).
    */
@@ -1200,30 +1166,30 @@ export interface GetGlobalItemInfo_Field {
   /**
    * If field_type is image, image url will be returned through this field.
    */
-  image_info?: GetGlobalItemInfo_ImageInfo;
+  image_info?: GetGlobalItemInfoImageInfo;
 }
 /**
- * GetGlobalItemInfo_ExtendedDescription sub-interface for GetGlobalItemInfo_DescriptionInfo
+ * GetGlobalItemInfoExtendedDescription sub-interface for GetGlobalItemInfoDescriptionInfo
  */
-export interface GetGlobalItemInfo_ExtendedDescription {
+export interface GetGlobalItemInfoExtendedDescription {
   /**
    * Field of extended description
    */
-  field_list?: GetGlobalItemInfo_Field[];
+  field_list?: GetGlobalItemInfoField[];
 }
 /**
- * GetGlobalItemInfo_DescriptionInfo sub-interface for GetGlobalItemInfo_GlobalItem
+ * GetGlobalItemInfoDescriptionInfo sub-interface for GetGlobalItemInfoGlobalItem
  */
-export interface GetGlobalItemInfo_DescriptionInfo {
+export interface GetGlobalItemInfoDescriptionInfo {
   /**
    * If description_type is extended , Description information will be returned through this field.
    */
-  extended_description?: GetGlobalItemInfo_ExtendedDescription;
+  extended_description?: GetGlobalItemInfoExtendedDescription;
 }
 /**
- * GetGlobalItemInfo_GlobalItem sub-interface for GetGlobalItemInfo_Response
+ * GetGlobalItemInfoGlobalItem sub-interface for GetGlobalItemInfoResponseData
  */
-export interface GetGlobalItemInfo_GlobalItem {
+export interface GetGlobalItemInfoGlobalItem {
   /**
    * Shopee's unique identifier for an global item.
    */
@@ -1255,12 +1221,12 @@ export interface GetGlobalItemInfo_GlobalItem {
   /**
    * If the item has models, this field will not be returned, please get it through get_model_list api.
    */
-  stock_info?: GetGlobalItemInfo_StockInfo[];
+  stock_info?: GetGlobalItemInfoStockInfo[];
   /**
    * If the item has models, price_info will not be returned. Please get the price of each model through the get_global_model_list api.
    */
-  price_info?: GetGlobalItemInfo_PriceInfo[];
-  image?: GetGlobalItemInfo_Image;
+  price_info?: GetGlobalItemInfoPriceInfo[];
+  image?: GetGlobalItemInfoImage;
   /**
    * The weight of this global item, the unit is KG.If set the weight of global models under this item, will return the max weight of all global models during the switching period to ensure system compatibility, please switch to call v2.global_product.get_global_model_list to get the weight of models.
    */
@@ -1268,11 +1234,11 @@ export interface GetGlobalItemInfo_GlobalItem {
   /**
    * The dimension of this global item.If set the dimension of global models under this global item, will return the dimension with largest volume calculated by height*length*width during the switching period to ensure system compatibility, please switch to call v2.global_product.get_global_model_list to get the dimension of models.
    */
-  dimension?: GetGlobalItemInfo_Dimension;
+  dimension?: GetGlobalItemInfoDimension;
   /**
    * If set the DTS of global models under this item, will return the max DTS of all global models during the switching period to ensure system compatibility, please switch to call v2.global_product.get_global_model_list to get the DTS of models.
    */
-  pre_order?: GetGlobalItemInfo_PreOrder;
+  pre_order?: GetGlobalItemInfoPreOrder;
   /**
    * Url of size chart image.
    */
@@ -1285,17 +1251,17 @@ export interface GetGlobalItemInfo_GlobalItem {
    * Does it contain model.
    */
   has_model?: boolean;
-  video?: GetGlobalItemInfo_Video;
+  video?: GetGlobalItemInfoVideo;
   /**
    * Shopee's unique identifier for a category.
    */
   category_id?: number;
-  brand?: GetGlobalItemInfo_Brand;
-  attribute_list?: GetGlobalItemInfo_Attribute[];
+  brand?: GetGlobalItemInfoBrand;
+  attribute_list?: GetGlobalItemInfoAttribute[];
   /**
    * New description field.New description field. Only whitelist sellers can use it. If you use the field, please upload the description_type=extended otherwise api will return error. If you don't use this field, you don't need to upload the description_type or upload description_type=normal
    */
-  description_info?: GetGlobalItemInfo_DescriptionInfo;
+  description_info?: GetGlobalItemInfoDescriptionInfo;
   /**
    * Type of description : values: See Data Definition- description_type (normal , extended).
    */
@@ -1310,15 +1276,11 @@ export interface GetGlobalItemInfo_GlobalItem {
   size_chart_id?: number;
 }
 /**
- * GetGlobalItemInfo_Response sub-interface for GetGlobalItemInfoResponse
+ * GetGlobalItemInfoResponseData sub-interface for GetGlobalItemInfoResponse
  */
-export interface GetGlobalItemInfo_Response {
-  global_item_list?: GetGlobalItemInfo_GlobalItem[];
+export interface GetGlobalItemInfoResponseData {
+  global_item_list?: GetGlobalItemInfoGlobalItem[];
 }
-/**
- * Response data payload for get_global_item_info
- */
-export type GetGlobalItemInfoResponseData = GetGlobalItemInfo_Response;
 /**
  * Response payload for get_global_item_info
  *
@@ -1334,9 +1296,9 @@ export interface GetGlobalItemLimitRequest {
   category_id?: number;
 }
 /**
- * GetGlobalItemLimit_PriceLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitPriceLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_PriceLimit {
+export interface GetGlobalItemLimitPriceLimit {
   /**
    * Global item price min limit.
    */
@@ -1347,9 +1309,9 @@ export interface GetGlobalItemLimit_PriceLimit {
   max_limit?: number;
 }
 /**
- * GetGlobalItemLimit_StockLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitStockLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_StockLimit {
+export interface GetGlobalItemLimitStockLimit {
   /**
    * Global item stock min limit.
    */
@@ -1360,9 +1322,9 @@ export interface GetGlobalItemLimit_StockLimit {
   max_limit?: number;
 }
 /**
- * GetGlobalItemLimit_GlobalItemNameLengthLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitGlobalItemNameLengthLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_GlobalItemNameLengthLimit {
+export interface GetGlobalItemLimitGlobalItemNameLengthLimit {
   /**
    * Global item name length min limit.
    */
@@ -1373,9 +1335,9 @@ export interface GetGlobalItemLimit_GlobalItemNameLengthLimit {
   max_limit?: number;
 }
 /**
- * GetGlobalItemLimit_GlobalItemImageCountLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitGlobalItemImageCountLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_GlobalItemImageCountLimit {
+export interface GetGlobalItemLimitGlobalItemImageCountLimit {
   /**
    * Global item image count min limit.
    */
@@ -1386,9 +1348,9 @@ export interface GetGlobalItemLimit_GlobalItemImageCountLimit {
   max_limit?: number;
 }
 /**
- * GetGlobalItemLimit_GlobalItemDescriptionLengthLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitGlobalItemDescriptionLengthLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_GlobalItemDescriptionLengthLimit {
+export interface GetGlobalItemLimitGlobalItemDescriptionLengthLimit {
   /**
    * Global item description length min limit.
    */
@@ -1399,9 +1361,9 @@ export interface GetGlobalItemLimit_GlobalItemDescriptionLengthLimit {
   max_limit?: number;
 }
 /**
- * GetGlobalItemLimit_TierVariationNameLengthLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitTierVariationNameLengthLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_TierVariationNameLengthLimit {
+export interface GetGlobalItemLimitTierVariationNameLengthLimit {
   /**
    * Global item tier variation name length min limit.
    */
@@ -1412,9 +1374,9 @@ export interface GetGlobalItemLimit_TierVariationNameLengthLimit {
   max_limit?: number;
 }
 /**
- * GetGlobalItemLimit_TierVariationOptionLengthLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitTierVariationOptionLengthLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_TierVariationOptionLengthLimit {
+export interface GetGlobalItemLimitTierVariationOptionLengthLimit {
   /**
    * Global item tier variation option length min limit.
    */
@@ -1425,9 +1387,9 @@ export interface GetGlobalItemLimit_TierVariationOptionLengthLimit {
   max_limit?: number;
 }
 /**
- * GetGlobalItemLimit_ExtendedDescriptionLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitExtendedDescriptionLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_ExtendedDescriptionLimit {
+export interface GetGlobalItemLimitExtendedDescriptionLimit {
   /**
    * length min limit for item extended description text part
    */
@@ -1462,71 +1424,67 @@ export interface GetGlobalItemLimit_ExtendedDescriptionLimit {
   description_image_aspect_ratio_max?: number;
 }
 /**
- * GetGlobalItemLimit_DaysToShipRange sub-interface for GetGlobalItemLimit_DtsLimit
+ * GetGlobalItemLimitDaysToShipRange sub-interface for GetGlobalItemLimitDtsLimit
  */
-export interface GetGlobalItemLimit_DaysToShipRange {
+export interface GetGlobalItemLimitDaysToShipRange {
   min_limit?: number;
   max_limit?: number;
 }
 /**
- * GetGlobalItemLimit_DtsLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitDtsLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_DtsLimit {
+export interface GetGlobalItemLimitDtsLimit {
   /**
    * Allowed limit scope for Pre order
    */
-  days_to_ship_range_list?: GetGlobalItemLimit_DaysToShipRange[];
+  days_to_ship_range_list?: GetGlobalItemLimitDaysToShipRange[];
 }
 /**
- * GetGlobalItemLimit_WeightLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitWeightLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_WeightLimit {
+export interface GetGlobalItemLimitWeightLimit {
   /**
    * weight is mandatory or not
    */
   weight_mandatory?: boolean;
 }
 /**
- * GetGlobalItemLimit_DimensionLimit sub-interface for GetGlobalItemLimit_Response
+ * GetGlobalItemLimitDimensionLimit sub-interface for GetGlobalItemLimitResponseData
  */
-export interface GetGlobalItemLimit_DimensionLimit {
+export interface GetGlobalItemLimitDimensionLimit {
   /**
    * dimension is mandatory or not for the category
    */
   dimension_mandatory?: boolean;
 }
 /**
- * GetGlobalItemLimit_Response sub-interface for GetGlobalItemLimitResponse
+ * GetGlobalItemLimitResponseData sub-interface for GetGlobalItemLimitResponse
  */
-export interface GetGlobalItemLimit_Response {
-  price_limit?: GetGlobalItemLimit_PriceLimit;
-  stock_limit?: GetGlobalItemLimit_StockLimit;
-  global_item_name_length_limit?: GetGlobalItemLimit_GlobalItemNameLengthLimit;
-  global_item_image_count_limit?: GetGlobalItemLimit_GlobalItemImageCountLimit;
-  global_item_description_length_limit?: GetGlobalItemLimit_GlobalItemDescriptionLengthLimit;
-  tier_variation_name_length_limit?: GetGlobalItemLimit_TierVariationNameLengthLimit;
-  tier_variation_option_length_limit?: GetGlobalItemLimit_TierVariationOptionLengthLimit;
+export interface GetGlobalItemLimitResponseData {
+  price_limit?: GetGlobalItemLimitPriceLimit;
+  stock_limit?: GetGlobalItemLimitStockLimit;
+  global_item_name_length_limit?: GetGlobalItemLimitGlobalItemNameLengthLimit;
+  global_item_image_count_limit?: GetGlobalItemLimitGlobalItemImageCountLimit;
+  global_item_description_length_limit?: GetGlobalItemLimitGlobalItemDescriptionLengthLimit;
+  tier_variation_name_length_limit?: GetGlobalItemLimitTierVariationNameLengthLimit;
+  tier_variation_option_length_limit?: GetGlobalItemLimitTierVariationOptionLengthLimit;
   /**
    * Length ratio of Chinese characters to English characters in parameter verification. len(text)=len(Chinese characters)*text_length_multiplier+len(English characters )
    */
   text_length_multiplier?: number;
-  extended_description_limit?: GetGlobalItemLimit_ExtendedDescriptionLimit;
-  dts_limit?: GetGlobalItemLimit_DtsLimit;
-  weight_limit?: GetGlobalItemLimit_WeightLimit;
-  dimension_limit?: GetGlobalItemLimit_DimensionLimit;
+  extended_description_limit?: GetGlobalItemLimitExtendedDescriptionLimit;
+  dts_limit?: GetGlobalItemLimitDtsLimit;
+  weight_limit?: GetGlobalItemLimitWeightLimit;
+  dimension_limit?: GetGlobalItemLimitDimensionLimit;
 }
 /**
- * GetGlobalItemLimit_SizeChartLimit sub-interface for GetGlobalItemLimitResponse
+ * GetGlobalItemLimitSizeChartLimit sub-interface for GetGlobalItemLimitResponse
  */
-export interface GetGlobalItemLimit_SizeChartLimit {
+export interface GetGlobalItemLimitSizeChartLimit {
   size_chart_mandatory?: boolean;
   support_image_size_chart?: boolean;
   support_template_size_chart?: boolean;
 }
-/**
- * Response data payload for get_global_item_limit
- */
-export type GetGlobalItemLimitResponseData = GetGlobalItemLimit_Response;
 /**
  * Response payload for get_global_item_limit
  *
@@ -1557,9 +1515,9 @@ export interface GetGlobalItemListRequest {
   update_time_to?: Date | number;
 }
 /**
- * GetGlobalItemList_GlobalItem sub-interface for GetGlobalItemList_Response
+ * GetGlobalItemListGlobalItem sub-interface for GetGlobalItemListResponseData
  */
-export interface GetGlobalItemList_GlobalItem {
+export interface GetGlobalItemListGlobalItem {
   /**
    * Shopee's unique identifier for an global item.
    */
@@ -1570,10 +1528,10 @@ export interface GetGlobalItemList_GlobalItem {
   update_time?: Date | number;
 }
 /**
- * GetGlobalItemList_Response sub-interface for GetGlobalItemListResponse
+ * GetGlobalItemListResponseData sub-interface for GetGlobalItemListResponse
  */
-export interface GetGlobalItemList_Response {
-  global_item_list?: GetGlobalItemList_GlobalItem[];
+export interface GetGlobalItemListResponseData {
+  global_item_list?: GetGlobalItemListGlobalItem[];
   /**
    * Total global item count.
    */
@@ -1587,10 +1545,6 @@ export interface GetGlobalItemList_Response {
    */
   offset?: string;
 }
-/**
- * Response data payload for get_global_item_list
- */
-export type GetGlobalItemListResponseData = GetGlobalItemList_Response;
 /**
  * Response payload for get_global_item_list
  *
@@ -1609,9 +1563,9 @@ export interface GetGlobalModelListRequest {
   global_item_id: number;
 }
 /**
- * GetGlobalModelList_Image sub-interface for GetGlobalModelList_Option
+ * GetGlobalModelListImage sub-interface for GetGlobalModelListOption
  */
-export interface GetGlobalModelList_Image {
+export interface GetGlobalModelListImage {
   /**
    * Image url.
    */
@@ -1622,9 +1576,9 @@ export interface GetGlobalModelList_Image {
   image_id?: string;
 }
 /**
- * GetGlobalModelList_Option sub-interface for GetGlobalModelList_TierVariation
+ * GetGlobalModelListOption sub-interface for GetGlobalModelListTierVariation
  */
-export interface GetGlobalModelList_Option {
+export interface GetGlobalModelListOption {
   /**
    * Tier option.
    */
@@ -1632,12 +1586,12 @@ export interface GetGlobalModelList_Option {
   /**
    * Image information of tier.
    */
-  image?: GetGlobalModelList_Image;
+  image?: GetGlobalModelListImage;
 }
 /**
- * GetGlobalModelList_TierVariation sub-interface for GetGlobalModelList_Response
+ * GetGlobalModelListTierVariation sub-interface for GetGlobalModelListResponseData
  */
-export interface GetGlobalModelList_TierVariation {
+export interface GetGlobalModelListTierVariation {
   /**
    * Tier name.
    */
@@ -1645,21 +1599,21 @@ export interface GetGlobalModelList_TierVariation {
   /**
    * Tier option list for corresponding tier name.
    */
-  option_list?: GetGlobalModelList_Option[];
+  option_list?: GetGlobalModelListOption[];
 }
 /**
- * GetGlobalModelList_PriceInfo sub-interface for GetGlobalModelList_GlobalModel
+ * GetGlobalModelListPriceInfo sub-interface for GetGlobalModelListGlobalModel
  */
-export interface GetGlobalModelList_PriceInfo {
+export interface GetGlobalModelListPriceInfo {
   /**
    * Original price of global model.
    */
   original_price?: number;
 }
 /**
- * GetGlobalModelList_StockInfo sub-interface for GetGlobalModelList_GlobalModel
+ * GetGlobalModelListStockInfo sub-interface for GetGlobalModelListGlobalModel
  */
-export interface GetGlobalModelList_StockInfo {
+export interface GetGlobalModelListStockInfo {
   /**
    * Stock type. "1" means wms on hand, "2" means seller on hand.
    */
@@ -1682,9 +1636,9 @@ export interface GetGlobalModelList_StockInfo {
   reserved_stock?: number;
 }
 /**
- * GetGlobalModelList_Dimension sub-interface for GetGlobalModelList_GlobalModel
+ * GetGlobalModelListDimension sub-interface for GetGlobalModelListGlobalModel
  */
-export interface GetGlobalModelList_Dimension {
+export interface GetGlobalModelListDimension {
   /**
    * The height of package for this global model, the unit is CM.
    */
@@ -1699,18 +1653,18 @@ export interface GetGlobalModelList_Dimension {
   package_width?: number;
 }
 /**
- * GetGlobalModelList_PreOrder sub-interface for GetGlobalModelList_GlobalModel
+ * GetGlobalModelListPreOrder sub-interface for GetGlobalModelListGlobalModel
  */
-export interface GetGlobalModelList_PreOrder {
+export interface GetGlobalModelListPreOrder {
   /**
    * Days to ship.
    */
   days_to_ship?: number;
 }
 /**
- * GetGlobalModelList_GlobalModel sub-interface for GetGlobalModelList_Response
+ * GetGlobalModelListGlobalModel sub-interface for GetGlobalModelListResponseData
  */
-export interface GetGlobalModelList_GlobalModel {
+export interface GetGlobalModelListGlobalModel {
   /**
    * Id of global model.
    */
@@ -1722,11 +1676,11 @@ export interface GetGlobalModelList_GlobalModel {
   /**
    * Price info of global model.
    */
-  price_info?: GetGlobalModelList_PriceInfo;
+  price_info?: GetGlobalModelListPriceInfo;
   /**
    * Stock info of global model.
    */
-  stock_info?: GetGlobalModelList_StockInfo[];
+  stock_info?: GetGlobalModelListStockInfo[];
   /**
    * Tier index of global model.
    */
@@ -1738,20 +1692,20 @@ export interface GetGlobalModelList_GlobalModel {
   /**
    * The dimension of this global model.If don't set the dimension of this global model, will use the dimension of global item by default.
    */
-  dimension?: GetGlobalModelList_Dimension;
+  dimension?: GetGlobalModelListDimension;
   /**
    * Pre-order information of this global model.Notes: If don't set the DTS of this global model, will use the DTS of the global item by default.
    */
-  pre_order?: GetGlobalModelList_PreOrder;
+  pre_order?: GetGlobalModelListPreOrder;
   /**
    * If it it a FBS model
    */
   is_fulfillment_by_shopee?: boolean;
 }
 /**
- * GetGlobalModelList_VariationOption sub-interface for GetGlobalModelList_StandardiseTierVariation
+ * GetGlobalModelListVariationOption sub-interface for GetGlobalModelListStandardiseTierVariation
  */
-export interface GetGlobalModelList_VariationOption {
+export interface GetGlobalModelListVariationOption {
   /**
    * Standardise Tier variation Option ID.
    */
@@ -1770,9 +1724,9 @@ export interface GetGlobalModelList_VariationOption {
   image_url?: string;
 }
 /**
- * GetGlobalModelList_StandardiseTierVariation sub-interface for GetGlobalModelList_Response
+ * GetGlobalModelListStandardiseTierVariation sub-interface for GetGlobalModelListResponseData
  */
-export interface GetGlobalModelList_StandardiseTierVariation {
+export interface GetGlobalModelListStandardiseTierVariation {
   /**
    * Standardise Tier variation ID.
    */
@@ -1788,29 +1742,25 @@ export interface GetGlobalModelList_StandardiseTierVariation {
   /**
    * Standardise Tier variation Options List.
    */
-  variation_option_list?: GetGlobalModelList_VariationOption[];
+  variation_option_list?: GetGlobalModelListVariationOption[];
 }
 /**
- * GetGlobalModelList_Response sub-interface for GetGlobalModelListResponse
+ * GetGlobalModelListResponseData sub-interface for GetGlobalModelListResponse
  */
-export interface GetGlobalModelList_Response {
+export interface GetGlobalModelListResponseData {
   /**
    * Tier variation information of global item.
    */
-  tier_variation?: GetGlobalModelList_TierVariation[];
+  tier_variation?: GetGlobalModelListTierVariation[];
   /**
    * Global models.
    */
-  global_model?: GetGlobalModelList_GlobalModel[];
+  global_model?: GetGlobalModelListGlobalModel[];
   /**
    * Standardise Tier variation information of global item.
    */
-  standardise_tier_variation?: GetGlobalModelList_StandardiseTierVariation[];
+  standardise_tier_variation?: GetGlobalModelListStandardiseTierVariation[];
 }
-/**
- * Response data payload for get_global_model_list
- */
-export type GetGlobalModelListResponseData = GetGlobalModelList_Response;
 /**
  * Response payload for get_global_model_list
  *
@@ -1829,18 +1779,14 @@ export interface GetLocalAdjustmentRateRequest {
   shop_id: number;
 }
 /**
- * GetLocalAdjustmentRate_Response sub-interface for GetLocalAdjustmentRateResponse
+ * GetLocalAdjustmentRateResponseData sub-interface for GetLocalAdjustmentRateResponse
  */
-export interface GetLocalAdjustmentRate_Response {
+export interface GetLocalAdjustmentRateResponseData {
   /**
    * The multiplier used to adjust the cross-border original price to local price
    */
   local_adjustment_rate?: number;
 }
-/**
- * Response data payload for get_local_adjustment_rate
- */
-export type GetLocalAdjustmentRateResponseData = GetLocalAdjustmentRate_Response;
 /**
  * Response payload for get_local_adjustment_rate
  *
@@ -1859,9 +1805,9 @@ export interface GetPublishTaskResultRequest {
   publish_task_id: number;
 }
 /**
- * GetPublishTaskResult_Succes sub-interface for GetPublishTaskResult_Response
+ * GetPublishTaskResultSucces sub-interface for GetPublishTaskResultResponseData
  */
-export interface GetPublishTaskResult_Succes {
+export interface GetPublishTaskResultSucces {
   /**
    * The region of published item.
    */
@@ -1876,18 +1822,18 @@ export interface GetPublishTaskResult_Succes {
   item_id?: string;
 }
 /**
- * GetPublishTaskResult_Failed sub-interface for GetPublishTaskResult_Response
+ * GetPublishTaskResultFailed sub-interface for GetPublishTaskResultResponseData
  */
-export interface GetPublishTaskResult_Failed {
+export interface GetPublishTaskResultFailed {
   /**
    * Failed reason.
    */
   failed_reason?: string;
 }
 /**
- * GetPublishTaskResult_Response sub-interface for GetPublishTaskResultResponse
+ * GetPublishTaskResultResponseData sub-interface for GetPublishTaskResultResponse
  */
-export interface GetPublishTaskResult_Response {
+export interface GetPublishTaskResultResponseData {
   /**
    * Status of publish task.
    */
@@ -1895,16 +1841,12 @@ export interface GetPublishTaskResult_Response {
   /**
    * If publish task is successful, this field shows the published results.
    */
-  success?: GetPublishTaskResult_Succes;
+  success?: GetPublishTaskResultSucces;
   /**
    * If publish task is failed, this field shows the failed reason.
    */
-  failed?: GetPublishTaskResult_Failed;
+  failed?: GetPublishTaskResultFailed;
 }
-/**
- * Response data payload for get_publish_task_result
- */
-export type GetPublishTaskResultResponseData = GetPublishTaskResult_Response;
 /**
  * Response payload for get_publish_task_result
  *
@@ -1927,9 +1869,9 @@ export interface GetPublishableShopRequest {
   shop_id_list?: number[];
 }
 /**
- * GetPublishableShop_PublishableShop sub-interface for GetPublishableShop_Response
+ * GetPublishableShopPublishableShop sub-interface for GetPublishableShopResponseData
  */
-export interface GetPublishableShop_PublishableShop {
+export interface GetPublishableShopPublishableShop {
   /**
    * Id of publishable shop.
    */
@@ -1940,18 +1882,14 @@ export interface GetPublishableShop_PublishableShop {
   shop_region?: string;
 }
 /**
- * GetPublishableShop_Response sub-interface for GetPublishableShopResponse
+ * GetPublishableShopResponseData sub-interface for GetPublishableShopResponse
  */
-export interface GetPublishableShop_Response {
+export interface GetPublishableShopResponseData {
   /**
    * Detail of publishable shops.
    */
-  publishable_shop?: GetPublishableShop_PublishableShop[];
+  publishable_shop?: GetPublishableShopPublishableShop[];
 }
-/**
- * Response data payload for get_publishable_shop
- */
-export type GetPublishableShopResponseData = GetPublishableShop_Response;
 /**
  * Response payload for get_publishable_shop
  *
@@ -1974,9 +1912,9 @@ export interface GetPublishedListRequest {
   shop_id_list?: number[];
 }
 /**
- * GetPublishedList_PublishedItem sub-interface for GetPublishedList_Response
+ * GetPublishedListPublishedItem sub-interface for GetPublishedListResponseData
  */
-export interface GetPublishedList_PublishedItem {
+export interface GetPublishedListPublishedItem {
   /**
    * Shop id corresponding to the published item.
    */
@@ -1995,18 +1933,14 @@ export interface GetPublishedList_PublishedItem {
   item_status?: number;
 }
 /**
- * GetPublishedList_Response sub-interface for GetPublishedListResponse
+ * GetPublishedListResponseData sub-interface for GetPublishedListResponse
  */
-export interface GetPublishedList_Response {
+export interface GetPublishedListResponseData {
   /**
    * Detail of published items.
    */
-  published_item?: GetPublishedList_PublishedItem[];
+  published_item?: GetPublishedListPublishedItem[];
 }
-/**
- * Response data payload for get_published_list
- */
-export type GetPublishedListResponseData = GetPublishedList_Response;
 /**
  * Response payload for get_published_list
  *
@@ -2033,18 +1967,18 @@ export interface GetRecommendAttributeRequest {
   cover_image_id?: string;
 }
 /**
- * GetRecommendAttribute_AttributeValue sub-interface for GetRecommendAttribute_Attribute
+ * GetRecommendAttributeAttributeValue sub-interface for GetRecommendAttributeAttribute
  */
-export interface GetRecommendAttribute_AttributeValue {
+export interface GetRecommendAttributeAttributeValue {
   /**
    * ID of attribute value.
    */
   value_id?: number;
 }
 /**
- * GetRecommendAttribute_Attribute sub-interface for GetRecommendAttribute_Response
+ * GetRecommendAttributeAttribute sub-interface for GetRecommendAttributeResponseData
  */
-export interface GetRecommendAttribute_Attribute {
+export interface GetRecommendAttributeAttribute {
   /**
    * ID of attribute.
    */
@@ -2052,21 +1986,17 @@ export interface GetRecommendAttribute_Attribute {
   /**
    * Value list of this attribute.
    */
-  attribute_value_list?: GetRecommendAttribute_AttributeValue[];
+  attribute_value_list?: GetRecommendAttributeAttributeValue[];
 }
 /**
- * GetRecommendAttribute_Response sub-interface for GetRecommendAttributeResponse
+ * GetRecommendAttributeResponseData sub-interface for GetRecommendAttributeResponse
  */
-export interface GetRecommendAttribute_Response {
+export interface GetRecommendAttributeResponseData {
   /**
    * Attribute info list.
    */
-  attribute_list?: GetRecommendAttribute_Attribute[];
+  attribute_list?: GetRecommendAttributeAttribute[];
 }
-/**
- * Response data payload for get_recommend_attribute
- */
-export type GetRecommendAttributeResponseData = GetRecommendAttribute_Response;
 /**
  * Response payload for get_recommend_attribute
  *
@@ -2093,9 +2023,9 @@ export interface GetShopPublishableStatusRequest {
   page_size: number;
 }
 /**
- * GetShopPublishableStatus_ShopPublishableStatus sub-interface for GetShopPublishableStatus_Response
+ * GetShopPublishableStatusShopPublishableStatus sub-interface for GetShopPublishableStatusResponseData
  */
-export interface GetShopPublishableStatus_ShopPublishableStatus {
+export interface GetShopPublishableStatusShopPublishableStatus {
   /**
    * Id of publishable shop.
    */
@@ -2114,13 +2044,13 @@ export interface GetShopPublishableStatus_ShopPublishableStatus {
   unpublishable_reason?: string;
 }
 /**
- * GetShopPublishableStatus_Response sub-interface for GetShopPublishableStatusResponse
+ * GetShopPublishableStatusResponseData sub-interface for GetShopPublishableStatusResponse
  */
-export interface GetShopPublishableStatus_Response {
+export interface GetShopPublishableStatusResponseData {
   /**
    * Detail of publishable shops.
    */
-  shop_publishable_status_list?: GetShopPublishableStatus_ShopPublishableStatus[];
+  shop_publishable_status_list?: GetShopPublishableStatusShopPublishableStatus[];
   /**
    * This is to indicate whether the item list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of items.
    */
@@ -2130,10 +2060,6 @@ export interface GetShopPublishableStatus_Response {
    */
   next_offset?: number;
 }
-/**
- * Response data payload for get_shop_publishable_status
- */
-export type GetShopPublishableStatusResponseData = GetShopPublishableStatus_Response;
 /**
  * Response payload for get_shop_publishable_status
  *
@@ -2153,9 +2079,9 @@ export interface GetSizeChartDetailRequest {
   language?: string;
 }
 /**
- * GetSizeChartDetail_Measurement sub-interface for GetSizeChartDetail_Column
+ * GetSizeChartDetailMeasurement sub-interface for GetSizeChartDetailColumn
  */
-export interface GetSizeChartDetail_Measurement {
+export interface GetSizeChartDetailMeasurement {
   /**
    * there are 3 kinds of measurement type: Single Dropdown, Input Single Number, Input Range Number.
    */
@@ -2170,9 +2096,9 @@ export interface GetSizeChartDetail_Measurement {
   display_name?: string;
 }
 /**
- * GetSizeChartDetail_MeasurementValue sub-interface for GetSizeChartDetail_Column
+ * GetSizeChartDetailMeasurementValue sub-interface for GetSizeChartDetailColumn
  */
-export interface GetSizeChartDetail_MeasurementValue {
+export interface GetSizeChartDetailMeasurementValue {
   /**
    * if the input_type of measurement is single input number, measurement will have one value which is returned by this field.
    */
@@ -2191,31 +2117,31 @@ export interface GetSizeChartDetail_MeasurementValue {
   option?: string;
 }
 /**
- * GetSizeChartDetail_Column sub-interface for GetSizeChartDetail_SizeChartTable
+ * GetSizeChartDetailColumn sub-interface for GetSizeChartDetailSizeChartTable
  */
-export interface GetSizeChartDetail_Column {
+export interface GetSizeChartDetailColumn {
   /**
    * this is the column header which means a kind of measurement
    */
-  measurement?: GetSizeChartDetail_Measurement;
+  measurement?: GetSizeChartDetailMeasurement;
   /**
    * the list of measurement value
    */
-  measurement_value_list?: GetSizeChartDetail_MeasurementValue[];
+  measurement_value_list?: GetSizeChartDetailMeasurementValue[];
 }
 /**
- * GetSizeChartDetail_SizeChartTable sub-interface for GetSizeChartDetail_Response
+ * GetSizeChartDetailSizeChartTable sub-interface for GetSizeChartDetailResponseData
  */
-export interface GetSizeChartDetail_SizeChartTable {
+export interface GetSizeChartDetailSizeChartTable {
   /**
    * column list of new size chart table. it include one column (measurement) and multiple values (measurement value)
    */
-  column_list?: GetSizeChartDetail_Column[];
+  column_list?: GetSizeChartDetailColumn[];
 }
 /**
- * GetSizeChartDetail_Response sub-interface for GetSizeChartDetailResponse
+ * GetSizeChartDetailResponseData sub-interface for GetSizeChartDetailResponse
  */
-export interface GetSizeChartDetail_Response {
+export interface GetSizeChartDetailResponseData {
   /**
    * ID of new size chart
    */
@@ -2227,12 +2153,8 @@ export interface GetSizeChartDetail_Response {
   /**
    * new size chart is a table format which include multiple columns. each column has column header (measurement) and multiple values (measurement value) of this column.
    */
-  size_chart_table?: GetSizeChartDetail_SizeChartTable;
+  size_chart_table?: GetSizeChartDetailSizeChartTable;
 }
-/**
- * Response data payload for get_size_chart_detail
- */
-export type GetSizeChartDetailResponseData = GetSizeChartDetail_Response;
 /**
  * Response payload for get_size_chart_detail
  *
@@ -2250,23 +2172,19 @@ export interface GetSizeChartListRequest {
   cursor: string;
 }
 /**
- * GetSizeChartList_SizeChart sub-interface for GetSizeChartList_Response
+ * GetSizeChartListSizeChart sub-interface for GetSizeChartListResponseData
  */
-export interface GetSizeChartList_SizeChart {
+export interface GetSizeChartListSizeChart {
   size_chart_id?: number;
 }
 /**
- * GetSizeChartList_Response sub-interface for GetSizeChartListResponse
+ * GetSizeChartListResponseData sub-interface for GetSizeChartListResponse
  */
-export interface GetSizeChartList_Response {
-  size_chart_list?: GetSizeChartList_SizeChart[];
+export interface GetSizeChartListResponseData {
+  size_chart_list?: GetSizeChartListSizeChart[];
   total_count?: number;
   next_cursor?: string;
 }
-/**
- * Response data payload for get_size_chart_list
- */
-export type GetSizeChartListResponseData = GetSizeChartList_Response;
 /**
  * Response payload for get_size_chart_list
  *
@@ -2285,27 +2203,27 @@ export interface GetVariationsRequest {
   category_id: number;
 }
 /**
- * GetVariations_VariationOption sub-interface for GetVariations_VariationGroup
+ * GetVariationsVariationOption sub-interface for GetVariationsVariationGroup
  */
-export interface GetVariations_VariationOption {
+export interface GetVariationsVariationOption {
   variation_option_id?: number;
   variation_option_name?: string;
 }
 /**
- * GetVariations_VariationGroup sub-interface for GetVariations_StandardiseVariation
+ * GetVariationsVariationGroup sub-interface for GetVariationsStandardiseVariation
  */
-export interface GetVariations_VariationGroup {
+export interface GetVariationsVariationGroup {
   variation_group_id?: number;
   variation_group_name?: string;
-  variation_option_list?: GetVariations_VariationOption[];
+  variation_option_list?: GetVariationsVariationOption[];
 }
 /**
- * GetVariations_StandardiseVariation sub-interface for GetVariationsResponse
+ * GetVariationsStandardiseVariation sub-interface for GetVariationsResponse
  */
-export interface GetVariations_StandardiseVariation {
+export interface GetVariationsStandardiseVariation {
   variation_id?: number;
   variation_name?: string;
-  variation_group_list?: GetVariations_VariationGroup[];
+  variation_group_list?: GetVariationsVariationGroup[];
 }
 /**
  * Response data payload for get_variations
@@ -2316,7 +2234,7 @@ export interface GetVariationsResponseData {
    */
   warning?: string;
   data?: any;
-  standardise_variation_list?: GetVariations_StandardiseVariation[];
+  standardise_variation_list?: GetVariationsStandardiseVariation[];
 }
 /**
  * Response payload for get_variations
@@ -2325,9 +2243,9 @@ export interface GetVariationsResponseData {
  */
 export type GetVariationsResponse = FetchResponse<GetVariationsResponseData>;
 /**
- * InitTierVariation_SellerStock sub-interface for InitTierVariation_GlobalModel
+ * InitTierVariationSellerStock sub-interface for InitTierVariationGlobalModel
  */
-export interface InitTierVariation_SellerStock {
+export interface InitTierVariationSellerStock {
   /**
    * location_id of stock, if the merchant has 3PF shop, the location_id cannot be empty, can use the get_merchant_warehouse_location_list API to obtain the location_id list of the merchant, if the merchant does not have 3PF shop (only has normal CBSC shop), the location_id can be empty
    */
@@ -2338,9 +2256,9 @@ export interface InitTierVariation_SellerStock {
   stock: number;
 }
 /**
- * InitTierVariation_Dimension sub-interface for InitTierVariation_GlobalModel
+ * InitTierVariationDimension sub-interface for InitTierVariationGlobalModel
  */
-export interface InitTierVariation_Dimension {
+export interface InitTierVariationDimension {
   /**
    * The height of package for this global model, the unit is CM.
    */
@@ -2355,18 +2273,18 @@ export interface InitTierVariation_Dimension {
   package_width: number;
 }
 /**
- * InitTierVariation_PreOrder sub-interface for InitTierVariation_GlobalModel
+ * InitTierVariationPreOrder sub-interface for InitTierVariationGlobalModel
  */
-export interface InitTierVariation_PreOrder {
+export interface InitTierVariationPreOrder {
   /**
    * Days to ship. Please get the days_to_ship range from the get_dts_limit API.
    */
   days_to_ship: number;
 }
 /**
- * InitTierVariation_GlobalModel sub-interface for InitTierVariationRequest
+ * InitTierVariationGlobalModel sub-interface for InitTierVariationRequest
  */
-export interface InitTierVariation_GlobalModel {
+export interface InitTierVariationGlobalModel {
   /**
    * Original price of global model.
    */
@@ -2374,7 +2292,7 @@ export interface InitTierVariation_GlobalModel {
   /**
    * seller_stock of global item
    */
-  seller_stock?: InitTierVariation_SellerStock[];
+  seller_stock?: InitTierVariationSellerStock[];
   /**
    * Sku of global model. model_sku length information needs to be no more than 100 characters.
    */
@@ -2390,16 +2308,16 @@ export interface InitTierVariation_GlobalModel {
   /**
    * The dimension of this global model.If don't set the dimension of this global model, will use the dimension of global item by default.
    */
-  dimension?: InitTierVariation_Dimension;
+  dimension?: InitTierVariationDimension;
   /**
    * Pre-order information of this global model.Notes: If don't set the DTS of this global model, will use the DTS of the global item by default.
    */
-  pre_order?: InitTierVariation_PreOrder;
+  pre_order?: InitTierVariationPreOrder;
 }
 /**
- * InitTierVariation_VariationOption sub-interface for InitTierVariation_StandardiseTierVariation
+ * InitTierVariationVariationOption sub-interface for InitTierVariationStandardiseTierVariation
  */
-export interface InitTierVariation_VariationOption {
+export interface InitTierVariationVariationOption {
   /**
    * standardise tier variation option ID
    */
@@ -2414,9 +2332,9 @@ export interface InitTierVariation_VariationOption {
   image_id?: string;
 }
 /**
- * InitTierVariation_StandardiseTierVariation sub-interface for InitTierVariationRequest
+ * InitTierVariationStandardiseTierVariation sub-interface for InitTierVariationRequest
  */
-export interface InitTierVariation_StandardiseTierVariation {
+export interface InitTierVariationStandardiseTierVariation {
   /**
    * standardise tier variation ID
    */
@@ -2432,7 +2350,7 @@ export interface InitTierVariation_StandardiseTierVariation {
   /**
    * standardise tier variation option list
    */
-  variation_option_list: InitTierVariation_VariationOption[];
+  variation_option_list: InitTierVariationVariationOption[];
 }
 /**
  * Request parameters for init_tier_variation
@@ -2443,7 +2361,7 @@ export interface InitTierVariationRequest {
   /**
    * Model info list, model number at most 50
    */
-  global_model: InitTierVariation_GlobalModel[];
+  global_model: InitTierVariationGlobalModel[];
   /**
    * ID of global item.
    */
@@ -2451,7 +2369,7 @@ export interface InitTierVariationRequest {
   /**
    * There is at least one standardise_tier_variation and tier_variation.If you want to update one tier/two tier to no tier, can just pass the tier_variation and standardise_tier_variation as [], and pass the global_model >> tier_index as [], meanwhile pass the original_price, seller_stock, etc., to set the price and stock for the modified product with no tier structure.
    */
-  standardise_tier_variation?: InitTierVariation_StandardiseTierVariation[];
+  standardise_tier_variation?: InitTierVariationStandardiseTierVariation[];
 }
 /**
  * Response data payload for init_tier_variation
@@ -2483,30 +2401,26 @@ export interface SearchGlobalAttributeValueListRequest {
   limit: number;
 }
 /**
- * SearchGlobalAttributeValueList_Value sub-interface for SearchGlobalAttributeValueList_Response
+ * SearchGlobalAttributeValueListValue sub-interface for SearchGlobalAttributeValueListResponseData
  */
-export interface SearchGlobalAttributeValueList_Value {
+export interface SearchGlobalAttributeValueListValue {
   value_id?: number;
   value_name?: string;
 }
 /**
- * SearchGlobalAttributeValueList_PageInfo sub-interface for SearchGlobalAttributeValueList_Response
+ * SearchGlobalAttributeValueListPageInfo sub-interface for SearchGlobalAttributeValueListResponseData
  */
-export interface SearchGlobalAttributeValueList_PageInfo {
+export interface SearchGlobalAttributeValueListPageInfo {
   cursor?: number;
   has_next?: boolean;
 }
 /**
- * SearchGlobalAttributeValueList_Response sub-interface for SearchGlobalAttributeValueListResponse
+ * SearchGlobalAttributeValueListResponseData sub-interface for SearchGlobalAttributeValueListResponse
  */
-export interface SearchGlobalAttributeValueList_Response {
-  value_list?: SearchGlobalAttributeValueList_Value[];
-  page_info?: SearchGlobalAttributeValueList_PageInfo;
+export interface SearchGlobalAttributeValueListResponseData {
+  value_list?: SearchGlobalAttributeValueListValue[];
+  page_info?: SearchGlobalAttributeValueListPageInfo;
 }
-/**
- * Response data payload for search_global_attribute_value_list
- */
-export type SearchGlobalAttributeValueListResponseData = SearchGlobalAttributeValueList_Response;
 /**
  * Response payload for search_global_attribute_value_list
  *
@@ -2515,9 +2429,9 @@ export type SearchGlobalAttributeValueListResponseData = SearchGlobalAttributeVa
 export type SearchGlobalAttributeValueListResponse =
   FetchResponse<SearchGlobalAttributeValueListResponseData>;
 /**
- * SetSyncField_ShopSync sub-interface for SetSyncFieldRequest
+ * SetSyncFieldShopSync sub-interface for SetSyncFieldRequest
  */
-export interface SetSyncField_ShopSync {
+export interface SetSyncFieldShopSync {
   /**
    * Id of shop.
    */
@@ -2556,7 +2470,7 @@ export interface SetSyncFieldRequest {
   /**
    * Length limit is [1,50].
    */
-  shop_sync_list: SetSyncField_ShopSync[];
+  shop_sync_list: SetSyncFieldShopSync[];
 }
 /**
  * Response data payload for set_sync_field
@@ -2585,18 +2499,14 @@ export interface SupportSizeChartRequest {
   category_id: number;
 }
 /**
- * SupportSizeChart_Response sub-interface for SupportSizeChartResponse
+ * SupportSizeChartResponseData sub-interface for SupportSizeChartResponse
  */
-export interface SupportSizeChart_Response {
+export interface SupportSizeChartResponseData {
   /**
    * If category support size chart.
    */
   support_size_chart?: boolean;
 }
-/**
- * Response data payload for support_size_chart
- */
-export type SupportSizeChartResponseData = SupportSizeChart_Response;
 /**
  * Response payload for support_size_chart
  *
@@ -2604,9 +2514,9 @@ export type SupportSizeChartResponseData = SupportSizeChart_Response;
  */
 export type SupportSizeChartResponse = FetchResponse<SupportSizeChartResponseData>;
 /**
- * UpdateGlobalItem_Dimension sub-interface for UpdateGlobalItemRequest
+ * UpdateGlobalItemDimension sub-interface for UpdateGlobalItemRequest
  */
-export interface UpdateGlobalItem_Dimension {
+export interface UpdateGlobalItemDimension {
   /**
    * The length of package for this global item, the unit is CM.
    */
@@ -2621,36 +2531,36 @@ export interface UpdateGlobalItem_Dimension {
   package_height?: number;
 }
 /**
- * UpdateGlobalItem_PreOrder sub-interface for UpdateGlobalItemRequest
+ * UpdateGlobalItemPreOrder sub-interface for UpdateGlobalItemRequest
  */
-export interface UpdateGlobalItem_PreOrder {
+export interface UpdateGlobalItemPreOrder {
   /**
    * Days to ship.
    */
   days_to_ship: number;
 }
 /**
- * UpdateGlobalItem_Image sub-interface for UpdateGlobalItemRequest
+ * UpdateGlobalItemImage sub-interface for UpdateGlobalItemRequest
  */
-export interface UpdateGlobalItem_Image {
+export interface UpdateGlobalItemImage {
   /**
    * Image id list of global item.
    */
   image_id_list: string[];
 }
 /**
- * UpdateGlobalItem_Brand sub-interface for UpdateGlobalItemRequest
+ * UpdateGlobalItemBrand sub-interface for UpdateGlobalItemRequest
  */
-export interface UpdateGlobalItem_Brand {
+export interface UpdateGlobalItemBrand {
   /**
    * Id of brand.
    */
   brand_id?: number;
 }
 /**
- * UpdateGlobalItem_AttributeValue sub-interface for UpdateGlobalItem_Attribute
+ * UpdateGlobalItemAttributeValue sub-interface for UpdateGlobalItemAttribute
  */
-export interface UpdateGlobalItem_AttributeValue {
+export interface UpdateGlobalItemAttributeValue {
   /**
    * ID of attribute value. In the following cases, the value id needs to be uploaded as 0, and original_value_name is mandatory, needs to be filled in customized value. (1) AttributeInputType is TEXT_FILED; (2) AttributeInputType is COMBO_BOX or MULTIPLE_SELECT_COMBO_BOX, and the seller want to fill in a customized value.
    */
@@ -2665,28 +2575,28 @@ export interface UpdateGlobalItem_AttributeValue {
   value_unit?: string;
 }
 /**
- * UpdateGlobalItem_Attribute sub-interface for UpdateGlobalItemRequest
+ * UpdateGlobalItemAttribute sub-interface for UpdateGlobalItemRequest
  */
-export interface UpdateGlobalItem_Attribute {
+export interface UpdateGlobalItemAttribute {
   /**
    * ID of attribute.
    */
   attribute_id?: number;
-  attribute_value_list?: UpdateGlobalItem_AttributeValue[];
+  attribute_value_list?: UpdateGlobalItemAttributeValue[];
 }
 /**
- * UpdateGlobalItem_ImageInfo sub-interface for UpdateGlobalItem_Field
+ * UpdateGlobalItemImageInfo sub-interface for UpdateGlobalItemField
  */
-export interface UpdateGlobalItem_ImageInfo {
+export interface UpdateGlobalItemImageInfo {
   /**
    * Image id.
    */
   image_id?: string;
 }
 /**
- * UpdateGlobalItem_Field sub-interface for UpdateGlobalItem_ExtendedDescription
+ * UpdateGlobalItemField sub-interface for UpdateGlobalItemExtendedDescription
  */
-export interface UpdateGlobalItem_Field {
+export interface UpdateGlobalItemField {
   /**
    * Type of extended description field ：values: See Data Definition- description_field_type (text , image).
    */
@@ -2698,30 +2608,30 @@ export interface UpdateGlobalItem_Field {
   /**
    * If field_type is image, image url will be set by this field.
    */
-  image_info?: UpdateGlobalItem_ImageInfo;
+  image_info?: UpdateGlobalItemImageInfo;
 }
 /**
- * UpdateGlobalItem_ExtendedDescription sub-interface for UpdateGlobalItem_DescriptionInfo
+ * UpdateGlobalItemExtendedDescription sub-interface for UpdateGlobalItemDescriptionInfo
  */
-export interface UpdateGlobalItem_ExtendedDescription {
+export interface UpdateGlobalItemExtendedDescription {
   /**
    * Field of extended description.
    */
-  field_list?: UpdateGlobalItem_Field[];
+  field_list?: UpdateGlobalItemField[];
 }
 /**
- * UpdateGlobalItem_DescriptionInfo sub-interface for UpdateGlobalItemRequest
+ * UpdateGlobalItemDescriptionInfo sub-interface for UpdateGlobalItemRequest
  */
-export interface UpdateGlobalItem_DescriptionInfo {
+export interface UpdateGlobalItemDescriptionInfo {
   /**
    * If description_type is extended , Description information should be set by this field.
    */
-  extended_description?: UpdateGlobalItem_ExtendedDescription;
+  extended_description?: UpdateGlobalItemExtendedDescription;
 }
 /**
- * UpdateGlobalItem_SizeChartInfo sub-interface for UpdateGlobalItemRequest
+ * UpdateGlobalItemSizeChartInfo sub-interface for UpdateGlobalItemRequest
  */
-export interface UpdateGlobalItem_SizeChartInfo {
+export interface UpdateGlobalItemSizeChartInfo {
   /**
    * ID of size chart image. If you want to remove the image size chart of the item, please pass the "size_chart" empty. You only need to fill out either the image or template. If both are filled, only the template will be kept.Notes: Both CB shops and local shops are supported to set "size_chart".
    */
@@ -2764,11 +2674,11 @@ export interface UpdateGlobalItemRequest {
   /**
    * The dimension of this global item.Updating the dimension of this global item will overwrite the dimension of all global models under this global item.
    */
-  dimension?: UpdateGlobalItem_Dimension;
+  dimension?: UpdateGlobalItemDimension;
   /**
    * Preorder information of global item.Updating the DTS of global item will overwrite the DTS of all global models under the global item
    */
-  pre_order?: UpdateGlobalItem_PreOrder;
+  pre_order?: UpdateGlobalItemPreOrder;
   /**
    * Condition of global item, "NEW" or "USED" is available.
    */
@@ -2776,39 +2686,35 @@ export interface UpdateGlobalItemRequest {
   /**
    * Image information of global item.
    */
-  image?: UpdateGlobalItem_Image;
+  image?: UpdateGlobalItemImage;
   /**
    * Video upload id of global item.
    */
   video_upload_id?: string[];
-  brand?: UpdateGlobalItem_Brand;
+  brand?: UpdateGlobalItemBrand;
   /**
    * Item attributes.
    */
-  attribute_list?: UpdateGlobalItem_Attribute[];
+  attribute_list?: UpdateGlobalItemAttribute[];
   /**
    * New description field. New description field. Only whitelist sellers can use it. If you use the field, please upload the description_type=extended otherwise api will return error. If you don't use this field, you don't need to upload the description_type or upload description_type=normal
    */
-  description_info?: UpdateGlobalItem_DescriptionInfo;
+  description_info?: UpdateGlobalItemDescriptionInfo;
   /**
    * Values: See Data Definition- description_type (normal , extended). If you want to use extended_description or change description type ,this field must be inputed
    */
   description_type?: string;
-  size_chart_info?: UpdateGlobalItem_SizeChartInfo;
+  size_chart_info?: UpdateGlobalItemSizeChartInfo;
 }
 /**
- * UpdateGlobalItem_Response sub-interface for UpdateGlobalItemResponse
+ * UpdateGlobalItemResponseData sub-interface for UpdateGlobalItemResponse
  */
-export interface UpdateGlobalItem_Response {
+export interface UpdateGlobalItemResponseData {
   /**
    * Id of updated global item.
    */
   global_item_id?: number;
 }
-/**
- * Response data payload for update_global_item
- */
-export type UpdateGlobalItemResponseData = UpdateGlobalItem_Response;
 /**
  * Response payload for update_global_item
  *
@@ -2816,9 +2722,9 @@ export type UpdateGlobalItemResponseData = UpdateGlobalItem_Response;
  */
 export type UpdateGlobalItemResponse = FetchResponse<UpdateGlobalItemResponseData>;
 /**
- * UpdateGlobalModel_Dimension sub-interface for UpdateGlobalModel_GlobalModel
+ * UpdateGlobalModelDimension sub-interface for UpdateGlobalModelGlobalModel
  */
-export interface UpdateGlobalModel_Dimension {
+export interface UpdateGlobalModelDimension {
   /**
    * The height of package for this global model, the unit is CM.
    */
@@ -2833,18 +2739,18 @@ export interface UpdateGlobalModel_Dimension {
   package_width: number;
 }
 /**
- * UpdateGlobalModel_PreOrder sub-interface for UpdateGlobalModel_GlobalModel
+ * UpdateGlobalModelPreOrder sub-interface for UpdateGlobalModelGlobalModel
  */
-export interface UpdateGlobalModel_PreOrder {
+export interface UpdateGlobalModelPreOrder {
   /**
    * Days to ship. Please get the days_to_ship range from the get_dts_limit API.
    */
   days_to_ship: number;
 }
 /**
- * UpdateGlobalModel_GlobalModel sub-interface for UpdateGlobalModelRequest
+ * UpdateGlobalModelGlobalModel sub-interface for UpdateGlobalModelRequest
  */
-export interface UpdateGlobalModel_GlobalModel {
+export interface UpdateGlobalModelGlobalModel {
   /**
    * Sku of global model.
    */
@@ -2860,11 +2766,11 @@ export interface UpdateGlobalModel_GlobalModel {
   /**
    * The dimension of this global model.If don't set the dimension of this global model, will use the dimension of global item by default.
    */
-  dimension?: UpdateGlobalModel_Dimension;
+  dimension?: UpdateGlobalModelDimension;
   /**
    * Pre-order information of this global model.Notes: If don't set the DTS of this global model, will use the DTS of the global item by default.
    */
-  pre_order?: UpdateGlobalModel_PreOrder;
+  pre_order?: UpdateGlobalModelPreOrder;
 }
 /**
  * Request parameters for update_global_model
@@ -2879,7 +2785,7 @@ export interface UpdateGlobalModelRequest {
   /**
    * Sku setting for global model. Limit is [1,50].
    */
-  global_model: UpdateGlobalModel_GlobalModel[];
+  global_model: UpdateGlobalModelGlobalModel[];
 }
 /**
  * Response data payload for update_global_model
@@ -2928,9 +2834,9 @@ export interface UpdateLocalAdjustmentRateResponseData {
 export type UpdateLocalAdjustmentRateResponse =
   FetchResponse<UpdateLocalAdjustmentRateResponseData>;
 /**
- * UpdatePrice_Price sub-interface for UpdatePriceRequest
+ * UpdatePricePrice sub-interface for UpdatePriceRequest
  */
-export interface UpdatePrice_Price {
+export interface UpdatePricePrice {
   /**
    * ID of global model.
    */
@@ -2953,7 +2859,7 @@ export interface UpdatePriceRequest {
   /**
    * Price setting for global model. Limit is [1,50].
    */
-  price_list: UpdatePrice_Price[];
+  price_list: UpdatePricePrice[];
 }
 /**
  * Response data payload for update_price
@@ -3001,9 +2907,9 @@ export interface UpdateSizeChartResponseData {
  */
 export type UpdateSizeChartResponse = FetchResponse<UpdateSizeChartResponseData>;
 /**
- * UpdateStock_SellerStock sub-interface for UpdateStock_Stock
+ * UpdateStockSellerStock sub-interface for UpdateStockStock
  */
-export interface UpdateStock_SellerStock {
+export interface UpdateStockSellerStock {
   /**
    * location_id of stock, if the merchant has 3PF shop, the location_id cannot be empty, can use the get_merchant_warehouse_location_list API to obtain the location_id list of the merchant, if the merchant does not have 3PF shop (only has normal CBSC shop), the location_id can be empty
    */
@@ -3014,14 +2920,14 @@ export interface UpdateStock_SellerStock {
   stock: number;
 }
 /**
- * UpdateStock_Stock sub-interface for UpdateStockRequest
+ * UpdateStockStock sub-interface for UpdateStockRequest
  */
-export interface UpdateStock_Stock {
+export interface UpdateStockStock {
   /**
    * ID of global model.
    */
   global_model_id?: number;
-  seller_stock?: UpdateStock_SellerStock[];
+  seller_stock?: UpdateStockSellerStock[];
 }
 /**
  * Request parameters for update_stock
@@ -3036,7 +2942,7 @@ export interface UpdateStockRequest {
   /**
    * Stock setting for global model. Limit is [1,50].
    */
-  stock_list: UpdateStock_Stock[];
+  stock_list: UpdateStockStock[];
 }
 /**
  * Response data payload for update_stock
@@ -3054,9 +2960,9 @@ export interface UpdateStockResponseData {
  */
 export type UpdateStockResponse = FetchResponse<UpdateStockResponseData>;
 /**
- * UpdateTierVariation_Model sub-interface for UpdateTierVariationRequest
+ * UpdateTierVariationModel sub-interface for UpdateTierVariationRequest
  */
-export interface UpdateTierVariation_Model {
+export interface UpdateTierVariationModel {
   /**
    * ID of model
    */
@@ -3067,17 +2973,17 @@ export interface UpdateTierVariation_Model {
   tier_index: number;
 }
 /**
- * UpdateTierVariation_VariationOption sub-interface for UpdateTierVariation_StandardiseTierVariation
+ * UpdateTierVariationVariationOption sub-interface for UpdateTierVariationStandardiseTierVariation
  */
-export interface UpdateTierVariation_VariationOption {
+export interface UpdateTierVariationVariationOption {
   variation_option_id: number;
   variation_option_name?: string;
   image_id?: string;
 }
 /**
- * UpdateTierVariation_StandardiseTierVariation sub-interface for UpdateTierVariationRequest
+ * UpdateTierVariationStandardiseTierVariation sub-interface for UpdateTierVariationRequest
  */
-export interface UpdateTierVariation_StandardiseTierVariation {
+export interface UpdateTierVariationStandardiseTierVariation {
   /**
    * standardise tier variation ID
    */
@@ -3093,7 +2999,7 @@ export interface UpdateTierVariation_StandardiseTierVariation {
   /**
    * standardise tier variation option list
    */
-  variation_option_list: UpdateTierVariation_VariationOption[];
+  variation_option_list: UpdateTierVariationVariationOption[];
 }
 /**
  * Request parameters for update_tier_variation
@@ -3105,11 +3011,11 @@ export interface UpdateTierVariationRequest {
    * ID of global item.
    */
   global_item_id: number;
-  model_list?: UpdateTierVariation_Model[];
+  model_list?: UpdateTierVariationModel[];
   /**
    * item standardise tier variation There is at least one standardise_tier_variation and tier_variation
    */
-  standardise_tier_variation?: UpdateTierVariation_StandardiseTierVariation[];
+  standardise_tier_variation?: UpdateTierVariationStandardiseTierVariation[];
 }
 /**
  * Response data payload for update_tier_variation
