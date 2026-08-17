@@ -89,6 +89,8 @@ import {
   GetWeightRecommendationResponse,
   InitTierVariationRequest,
   InitTierVariationResponse,
+  PublishItemToOutletShopRequest,
+  PublishItemToOutletShopResponse,
   RegisterBrandRequest,
   RegisterBrandResponse,
   ReplyCommentRequest,
@@ -849,6 +851,25 @@ export class ProductManager extends BaseManager {
     return ShopeeFetch.fetch<InitTierVariationResponse>(
       this.config,
       "/product/init_tier_variation",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * This API supports publishing an existing item from the mart shop to an outlet shop.
+   *
+   * @param {PublishItemToOutletShopRequest} params Request parameters
+   * @returns {Promise<PublishItemToOutletShopResponse>} Promise resolving to the response
+   */
+  public async publishItemToOutletShop(
+    params?: PublishItemToOutletShopRequest
+  ): Promise<PublishItemToOutletShopResponse> {
+    return ShopeeFetch.fetch<PublishItemToOutletShopResponse>(
+      this.config,
+      "/product/publish_item_to_outlet_shop",
       {
         method: "POST",
         auth: true,

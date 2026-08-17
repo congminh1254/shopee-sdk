@@ -80,7 +80,11 @@ function unescapeJsonFields(obj: any): any {
 async function saveSchema(name: string, schema: any) {
   const schemasFolder = path.join(process.cwd(), "schemas");
   const unescaped = unescapeJsonFields(schema);
-  fs.writeFileSync(path.join(schemasFolder, `${name}.json`), JSON.stringify(unescaped, null, 2));
+  const cleanName = name
+    .replace(/\([^)]*\)/g, "")
+    .trim()
+    .replace(/\s+/g, "");
+  fs.writeFileSync(path.join(schemasFolder, `${cleanName}.json`), JSON.stringify(unescaped, null, 2));
 }
 
 // Main function

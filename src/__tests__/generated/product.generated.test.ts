@@ -3084,6 +3084,74 @@ describe("ProductManager (Generated Tests)", () => {
     });
   });
 
+  describe("publishItemToOutletShop", () => {
+    it("should correctly validate request and response formats", async () => {
+      const exampleRequest = {
+        mart_item_id: 123,
+        outlet_shop_id: 123,
+        publish_item: {
+          outlet_item_id: 123,
+          model: [
+            {
+              relate_mart_model_id: 123,
+              model_status: "test_string",
+              original_price: 123,
+              seller_stock: [
+                {
+                  location_id: "test_string",
+                  stock: 123,
+                },
+              ],
+              pre_order: {
+                is_pre_order: true,
+                days_to_ship: 123,
+              },
+            },
+          ],
+          logistic_info: [
+            {
+              logistic_id: 123,
+              enabled: true,
+              shipping_fee: 123,
+              size_id: 123,
+              is_free: true,
+            },
+          ],
+          purchase_limit_info: {
+            min_purchase_limit: 123,
+            max_purchase_limit: {
+              purchase_limit: 123,
+            },
+          },
+        },
+      };
+      const exampleResponse = {
+        item_id: 123,
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.publishItemToOutletShop(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/publish_item_to_outlet_shop",
+        expect.objectContaining({
+          method: "POST",
+          auth: true,
+          body: expect.objectContaining(exampleRequest),
+        })
+      );
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
   describe("registerBrand", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {

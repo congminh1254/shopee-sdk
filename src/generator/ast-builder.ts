@@ -324,8 +324,7 @@ export class AstBuilder {
     const result: (ts.InterfaceDeclaration | ts.TypeAliasDeclaration)[] = [];
     if (dataDecl) {
       const dataDeclWithDoc = addJsDoc(dataDecl, `Response data payload for ${endpointName}`) as
-        | ts.InterfaceDeclaration
-        | ts.TypeAliasDeclaration;
+        ts.InterfaceDeclaration | ts.TypeAliasDeclaration;
       result.push(dataDeclWithDoc);
     }
 
