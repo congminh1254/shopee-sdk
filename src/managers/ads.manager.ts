@@ -3,10 +3,14 @@
 import {
   CheckCreateGmsProductCampaignEligibilityRequest,
   CheckCreateGmsProductCampaignEligibilityResponse,
+  CreateAutoProductAdsRequest,
+  CreateAutoProductAdsResponse,
   CreateGmsProductCampaignRequest,
   CreateGmsProductCampaignResponse,
   CreateManualProductAdsRequest,
   CreateManualProductAdsResponse,
+  EditAutoProductAdsRequest,
+  EditAutoProductAdsResponse,
   EditGmsItemProductCampaignRequest,
   EditGmsItemProductCampaignResponse,
   EditGmsProductCampaignRequest,
@@ -75,6 +79,25 @@ export class AdsManager extends BaseManager {
     );
   }
   /**
+   * Use this API to create Auto Product Ads
+   *
+   * @param {CreateAutoProductAdsRequest} params Request parameters
+   * @returns {Promise<CreateAutoProductAdsResponse>} Promise resolving to the response
+   */
+  public async createAutoProductAds(
+    params?: CreateAutoProductAdsRequest
+  ): Promise<CreateAutoProductAdsResponse> {
+    return ShopeeFetch.fetch<CreateAutoProductAdsResponse>(
+      this.config,
+      "/ads/create_auto_product_ads",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
    * Create a GMS campaign
    *
    * @param {CreateGmsProductCampaignRequest} params Request parameters
@@ -105,6 +128,25 @@ export class AdsManager extends BaseManager {
     return ShopeeFetch.fetch<CreateManualProductAdsResponse>(
       this.config,
       "/ads/create_manual_product_ads",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Use this API to edit Auto Product Ads
+   *
+   * @param {EditAutoProductAdsRequest} params Request parameters
+   * @returns {Promise<EditAutoProductAdsResponse>} Promise resolving to the response
+   */
+  public async editAutoProductAds(
+    params?: EditAutoProductAdsRequest
+  ): Promise<EditAutoProductAdsResponse> {
+    return ShopeeFetch.fetch<EditAutoProductAdsResponse>(
+      this.config,
+      "/ads/edit_auto_product_ads",
       {
         method: "POST",
         auth: true,

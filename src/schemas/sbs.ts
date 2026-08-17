@@ -372,6 +372,98 @@ export interface GetExpiryReportResponseData {
  */
 export type GetExpiryReportResponse = FetchResponse<GetExpiryReportResponseData>;
 /**
+ * Request parameters for get_fulfillment_mapping_inventory_list
+ *
+ * This API is designed for sellers using Fulfillment Mapping and their ERP systems.It allows callers to query the corresponding mapping and inventory information using the MTSKU ID of either a Bundle SKU or a Parent SKU, supporting automated inventory reconciliation and planning, improving Parent SKU inventory visibility, and reducing manual operations and cross-channel overselling risks.
+ */
+export interface GetFulfillmentMappingInventoryListRequest {
+  /**
+   * The MTSKU ID of either a Bundle SKU or a Parent SKU in a fulfillment mapping relationship.Up to 100 comma-separated MTSKU IDs can be queried in one request.All MTSKU IDs must belong to the specified shop_id.When mtsku_ids is omitted, the API returns all fulfillment mapping records with available Bundle SKU stock under the shop. When mtsku_ids is provided, the API returns all matching fulfillment mapping records for the specified Bundle or Parent MTSKUs.For example, given the mapping relationship MTSKU A = MTSKU B + MTSKU C, MTSKU A is the Bundle SKU, while MTSKU B and MTSKU C are its Parent SKUs. The API can be queried using the MTSKU ID of A, B, or C. Regardless of which SKU is queried, the API returns the fulfillment mapping inventory information of MTSKU A and its Parent SKUs.
+   */
+  mtsku_ids?: string[];
+  /**
+   * The number of records returned by each query. You can fill in value from [1-100].If not filled in, the default value is 100.
+   */
+  page_size?: number;
+  /**
+   * The cursor for the next page query. The next_cursor will be returned from the response. If this field is not provided, the query starts from the first page by default.
+   */
+  next_cursor?: string;
+}
+/**
+ * GetFulfillmentMappingInventoryListParentMtsku sub-interface for GetFulfillmentMappingInventoryListStockContext
+ */
+export interface GetFulfillmentMappingInventoryListParentMtsku {
+  /**
+   * The MTSKU ID of a Parent SKU involved in the fulfillment mapping relationship.
+   */
+  parent_mtsku_id?: string;
+  /**
+   * Physical sellable stock of the parent MTSKU in the specified warehouse. It is the original quantity, not multiplied by mapping_formula. Example: mapping_formula = 2*MTSKU_A + 1*MTSKU_B; MTSKU_A stock = 14; returned parent_mtsku_stock = 14. Each Bundle SKU needs two MTSKU_A, so it supports floor(14/2)=7 bundles. The returned stock remains 14, not 28.
+   */
+  parent_mtsku_stock?: number;
+}
+/**
+ * GetFulfillmentMappingInventoryListStockContext sub-interface for GetFulfillmentMappingInventoryListList
+ */
+export interface GetFulfillmentMappingInventoryListStockContext {
+  /**
+   * The physical sellable stock for bundle MTSKU without any mapping convert stock.
+   */
+  physical_sellable_stock?: number;
+  /**
+   * The calculated mapping sellable stock that convert from Parent MTSKUs.
+   */
+  mapping_sellable_stock?: number;
+  parent_mtsku_list?: GetFulfillmentMappingInventoryListParentMtsku[];
+}
+/**
+ * GetFulfillmentMappingInventoryListList sub-interface for GetFulfillmentMappingInventoryListResponseData
+ */
+export interface GetFulfillmentMappingInventoryListList {
+  /**
+   * Bundle SKU.
+   */
+  bundle_mtsku_id?: string;
+  /**
+   * Fulfillment mapping type. (Enum:1-group; 2-lucky bag; 3-mapping list).
+   */
+  mapping_type?: number;
+  /**
+   * Shopee warehouse id.
+   */
+  whs_id?: string;
+  /**
+   * Stock detail.
+   */
+  stock_context?: GetFulfillmentMappingInventoryListStockContext;
+  /**
+   * The fulfillment mapping formula of the Bundle MTSKU. It describes the Parent MTSKU composition or alternative mapping relationships.Formatting rules:- The quantity before an MTSKU ID indicates the required quantity of that Parent MTSKU.- Within one mapping formula, + indicates that all listed Parent MTSKUs are required together.- For a Mapping List, [] encloses alternative mapping formulas, and , separates each alternative formula.Examples:- Group: 2 * MTSKU_A + 1 * MTSKU_B- Mapping List: [2 * MTSKU_A + 1 * MTSKU_B, 1 * MTSKU_C]- Lucky Bag: 2 * MTSKU_A
+   */
+  mapping_formula?: string;
+}
+/**
+ * GetFulfillmentMappingInventoryListResponseData sub-interface for GetFulfillmentMappingInventoryListResponse
+ */
+export interface GetFulfillmentMappingInventoryListResponseData {
+  list?: GetFulfillmentMappingInventoryListList[];
+  /**
+   * The amount of data that meets the query conditions.
+   */
+  total?: number;
+  /**
+   * If the returned value is a non-empty string, it indicates that there is more data available. Include this returned value in the next query request to continue retrieving data starting from the corresponding position indicated by the cursor.
+   */
+  next_cursor?: string;
+}
+/**
+ * Response payload for get_fulfillment_mapping_inventory_list
+ *
+ * This API is designed for sellers using Fulfillment Mapping and their ERP systems.It allows callers to query the corresponding mapping and inventory information using the MTSKU ID of either a Bundle SKU or a Parent SKU, supporting automated inventory reconciliation and planning, improving Parent SKU inventory visibility, and reducing manual operations and cross-channel overselling risks.
+ */
+export type GetFulfillmentMappingInventoryListResponse =
+  FetchResponse<GetFulfillmentMappingInventoryListResponseData>;
+/**
  * Request parameters for get_stock_aging
  *
  * Get Seller Center Stock Aging page data

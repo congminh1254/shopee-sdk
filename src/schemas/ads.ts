@@ -49,6 +49,48 @@ export interface CheckCreateGmsProductCampaignEligibilityResponseData {
 export type CheckCreateGmsProductCampaignEligibilityResponse =
   FetchResponse<CheckCreateGmsProductCampaignEligibilityResponseData>;
 /**
+ * Request parameters for create_auto_product_ads
+ *
+ * Use this API to create Auto Product Ads
+ */
+export interface CreateAutoProductAdsRequest {
+  /**
+   * A random string used to prevent duplicate ads. If an ads is created successfully, subsequent request using the same reference id will fail
+   */
+  reference_id: string;
+  /**
+   * The budget set for the Auto Product Ads
+   */
+  budget: number;
+  /**
+   * the start date per campaign. please kindly note that if you want to set unlimited date, you can just pass today's date as the start date
+   */
+  start_date: string;
+  /**
+   * the end date of each campaign. please kindly note that if you want to set an unlimited campaign, you can keep empty for the end date field
+   */
+  end_date?: string;
+}
+/**
+ * CreateAutoProductAdsResponseDataItem sub-interface for CreateAutoProductAdsResponse
+ */
+export interface CreateAutoProductAdsResponseDataItem {
+  /**
+   * The unique identifier for a campaign
+   */
+  campaign_id?: number;
+}
+/**
+ * Response data payload for create_auto_product_ads
+ */
+export type CreateAutoProductAdsResponseData = CreateAutoProductAdsResponseDataItem[];
+/**
+ * Response payload for create_auto_product_ads
+ *
+ * Use this API to create Auto Product Ads
+ */
+export type CreateAutoProductAdsResponse = FetchResponse<CreateAutoProductAdsResponseData>;
+/**
  * Request parameters for create_gms_product_campaign
  *
  * Create a GMS campaign
@@ -190,6 +232,56 @@ export type CreateManualProductAdsResponseData = CreateManualProductAdsResponseD
  * Use this API to create Manual Selection Product Ads
  */
 export type CreateManualProductAdsResponse = FetchResponse<CreateManualProductAdsResponseData>;
+/**
+ * Request parameters for edit_auto_product_ads
+ *
+ * Use this API to edit Auto Product Ads
+ */
+export interface EditAutoProductAdsRequest {
+  /**
+   * A random string used to prevent duplicate ads. If an ads is created successfully, subsequent request using the same reference id will fail
+   */
+  reference_id: string;
+  /**
+   * The unique identifier for a campaign
+   */
+  campaign_id: number;
+  /**
+   * Actions supported: "start", "pause", "resume", "stop", "change_budget", "change_duration"
+   */
+  edit_action: string;
+  /**
+   * The budget set for the Auto Product Ads
+   */
+  budget?: number;
+  /**
+   * the start date per campaign
+   */
+  start_date?: string;
+  /**
+   * the end date per campaign
+   */
+  end_date?: string;
+}
+/**
+ * EditAutoProductAdsResponseDataItem sub-interface for EditAutoProductAdsResponse
+ */
+export interface EditAutoProductAdsResponseDataItem {
+  /**
+   * The unique identifier for a campaign
+   */
+  campaign_id?: number;
+}
+/**
+ * Response data payload for edit_auto_product_ads
+ */
+export type EditAutoProductAdsResponseData = EditAutoProductAdsResponseDataItem[];
+/**
+ * Response payload for edit_auto_product_ads
+ *
+ * Use this API to edit Auto Product Ads
+ */
+export type EditAutoProductAdsResponse = FetchResponse<EditAutoProductAdsResponseData>;
 /**
  * Request parameters for edit_gms_item_product_campaign
  *

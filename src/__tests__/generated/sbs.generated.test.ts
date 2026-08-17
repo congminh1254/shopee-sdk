@@ -220,6 +220,59 @@ describe("SbsManager (Generated Tests)", () => {
     });
   });
 
+  describe("getFulfillmentMappingInventoryList", () => {
+    it("should correctly validate request and response formats", async () => {
+      const exampleRequest = {
+        mtsku_ids: ["58165469687_282851615193", "58165469687_282851615192"],
+        page_size: 2,
+        next_cursor: "eyJzb3J0X3ZhbHVlcyI6WyI1ODE2NTQ2OTY4N18yODI4NTE2MTUxOTNfTVlTIl19",
+      };
+      const exampleResponse = {
+        list: [
+          {
+            bundle_mtsku_id: "58165469687_282851615192",
+            mapping_type: 3,
+            whs_id: "MYS",
+            stock_context: {
+              physical_sellable_stock: 0,
+              mapping_sellable_stock: 0,
+              parent_mtsku_list: [
+                {
+                  parent_mtsku_id: "26050058034_240828857424",
+                  parent_mtsku_stock: 0,
+                },
+              ],
+            },
+            mapping_formula: "[1 * 26050058034_240828857424, 1 * 58165469687_282851615192]",
+          },
+        ],
+        total: 2,
+        next_cursor: "test_string",
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.getFulfillmentMappingInventoryList(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/sbs/get_fulfillment_mapping_inventory_list",
+        expect.objectContaining({
+          method: "GET",
+          auth: true,
+          params: expect.objectContaining(exampleRequest),
+        })
+      );
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
   describe("getStockAging", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
