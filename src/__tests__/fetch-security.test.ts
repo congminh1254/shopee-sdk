@@ -266,10 +266,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     expect(nullResult).toBeNull();
 
     // Cover lines 158-161: array at root
-    const arrayResponse = [
-      { create_time: 1710000000 },
-      { create_time: 1710000000 },
-    ];
+    const arrayResponse = [{ create_time: 1710000000 }, { create_time: 1710000000 }];
     mockFetch.mockResolvedValueOnce({
       status: 200,
       headers: new Map([["content-type", "application/json"]]),
@@ -307,7 +304,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
 
     expect(mockFetch).toHaveBeenCalledTimes(1);
     const [, fetchOpts] = mockFetch.mock.calls[0];
-    
+
     const formData = (fetchOpts as any).body;
     expect(formData).toBeDefined();
   });
