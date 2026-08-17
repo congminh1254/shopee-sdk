@@ -7,6 +7,8 @@ import {
   GetCurrentInventoryResponse,
   GetExpiryReportRequest,
   GetExpiryReportResponse,
+  GetFulfillmentMappingInventoryListRequest,
+  GetFulfillmentMappingInventoryListResponse,
   GetStockAgingRequest,
   GetStockAgingResponse,
   GetStockMovementRequest,
@@ -63,6 +65,25 @@ export class SbsManager extends BaseManager {
       auth: true,
       params: params,
     });
+  }
+  /**
+   * This API is designed for sellers using Fulfillment Mapping and their ERP systems.It allows callers to query the corresponding mapping and inventory information using the MTSKU ID of either a Bundle SKU or a Parent SKU, supporting automated inventory reconciliation and planning, improving Parent SKU inventory visibility, and reducing manual operations and cross-channel overselling risks.
+   *
+   * @param {GetFulfillmentMappingInventoryListRequest} params Request parameters
+   * @returns {Promise<GetFulfillmentMappingInventoryListResponse>} Promise resolving to the response
+   */
+  public async getFulfillmentMappingInventoryList(
+    params?: GetFulfillmentMappingInventoryListRequest
+  ): Promise<GetFulfillmentMappingInventoryListResponse> {
+    return ShopeeFetch.fetch<GetFulfillmentMappingInventoryListResponse>(
+      this.config,
+      "/sbs/get_fulfillment_mapping_inventory_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
   }
   /**
    * Get Seller Center Stock Aging page data
