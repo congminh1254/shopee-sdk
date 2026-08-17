@@ -1,5 +1,5 @@
 
-> @congminh1254/shopee-sdk@1.14.0 audit:specs
+> @congminh1254/shopee-sdk@2.0.0 audit:specs
 > tsx scripts/audit-specs.ts
 
 Shopee SDK Spec Audit
@@ -8,11 +8,70 @@ Strategy:
   2) HTTP methods must match spec definitions exactly
   3) Endpoint request/response must use explicit endpoint type definitions
   4) Spec request/response fields must exist in those endpoint types with exact names
-- Specs scanned: 443
+- Specs scanned: 444
 - SDK endpoints discovered: 439
-- Missing endpoints: 0
+- Missing endpoints: 1
 - SDK endpoints not in spec: 0
-- Method mismatches: 0
+- Method mismatches: 1
 - Missing request/response types: 0
 - Request field gaps: 0
-- Response field gaps: 0
+- Response field gaps: 8
+- Extra request fields: 0
+- Extra response fields: 28
+- Request type mismatches: 1
+- Response type mismatches: 3
+- Request optionality mismatches: 0
+
+Missing endpoints:
+  - product.publish_item_to_outlet_shop
+
+Method mismatches:
+  - payment.get_escrow_detail_batch: expected GET, found POST
+
+Response field gaps:
+  - payment.get_escrow_detail: order_income.items.activity_id, order_income.items.promotion_list.promotion_id
+  - payment.get_escrow_detail_batch: escrow_detail.order_income.items.activity_id, escrow_detail.order_income.items.promotion_list.promotion_id
+  - product.get_item_promotion: success_list.promotion.promotion_id, success_list.promotion.promotion_stock_info_v2.summary_info
+  - product.get_model_list: model.promotion_id
+  - returns.get_return_detail: activity.activity_id
+  - video.get_user_demographics: age, gender, location, identity, activity, content, shopping
+  - video.get_video_detail_audience_distribution: age, gender, location, identity, activity, content, shopping
+  - video.get_video_detail_metric_trend: metric_trend
+
+Extra response fields:
+  - ads.get_ads_facil_shop_rate: rate, update_at
+  - logistics.get_booking_tracking_number: tracking_number
+  - logistics.get_operating_hours: repsonse, repsonse.regular_operating_hour, repsonse.regular_operating_hour.monday, repsonse.regular_operating_hour.monday.start_time, repsonse.regular_operating_hour.monday.end_time, repsonse.regular_operating_hour.tuesday, repsonse.regular_operating_hour.tuesday.start_time, repsonse.regular_operating_hour.tuesday.end_time, repsonse.regular_operating_hour.wednesday, repsonse.regular_operating_hour.wednesday.start_time, repsonse.regular_operating_hour.wednesday.end_time, repsonse.regular_operating_hour.thursday, repsonse.regular_operating_hour.thursday.start_time, repsonse.regular_operating_hour.thursday.end_time, repsonse.regular_operating_hour.friday, repsonse.regular_operating_hour.friday.start_time, repsonse.regular_operating_hour.friday.end_time, repsonse.regular_operating_hour.saturday, repsonse.regular_operating_hour.saturday.start_time, repsonse.regular_operating_hour.saturday.end_time, repsonse.regular_operating_hour.sunday, repsonse.regular_operating_hour.sunday.start_time, repsonse.regular_operating_hour.sunday.end_time, repsonse.regular_operating_hour.public_holiday, repsonse.regular_operating_hour.public_holiday.start_time, repsonse.regular_operating_hour.public_holiday.end_time, repsonse.instant_operating_hour, repsonse.instant_operating_hour.monday, repsonse.instant_operating_hour.monday.start_time, repsonse.instant_operating_hour.monday.end_time, repsonse.instant_operating_hour.tuesday, repsonse.instant_operating_hour.tuesday.start_time, repsonse.instant_operating_hour.tuesday.end_time, repsonse.instant_operating_hour.wednesday, repsonse.instant_operating_hour.wednesday.start_time, repsonse.instant_operating_hour.wednesday.end_time, repsonse.instant_operating_hour.thursday, repsonse.instant_operating_hour.thursday.start_time, repsonse.instant_operating_hour.thursday.end_time, repsonse.instant_operating_hour.friday, repsonse.instant_operating_hour.friday.start_time, repsonse.instant_operating_hour.friday.end_time, repsonse.instant_operating_hour.saturday, repsonse.instant_operating_hour.saturday.start_time, repsonse.instant_operating_hour.saturday.end_time, repsonse.instant_operating_hour.sunday, repsonse.instant_operating_hour.sunday.start_time, repsonse.instant_operating_hour.sunday.end_time, repsonse.instant_operating_hour.public_holiday, repsonse.instant_operating_hour.public_holiday.start_time, repsonse.instant_operating_hour.public_holiday.end_time, repsonse.special_operating_hour, repsonse.special_operating_hour.name, repsonse.special_operating_hour.start_date, repsonse.special_operating_hour.end_date, repsonse.special_operating_hour.operating_hours, repsonse.special_operating_hour.operating_hours.date, repsonse.special_operating_hour.operating_hours.start_time, repsonse.special_operating_hour.operating_hours.end_time, repsonse.special_operating_hour.operating_hours.enable, repsonse.shop_collection_operating_hour, repsonse.shop_collection_operating_hour.monday, repsonse.shop_collection_operating_hour.monday.start_time, repsonse.shop_collection_operating_hour.monday.end_time, repsonse.shop_collection_operating_hour.tuesday, repsonse.shop_collection_operating_hour.tuesday.start_time, repsonse.shop_collection_operating_hour.tuesday.end_time, repsonse.shop_collection_operating_hour.wednesday, repsonse.shop_collection_operating_hour.wednesday.start_time, repsonse.shop_collection_operating_hour.wednesday.end_time, repsonse.shop_collection_operating_hour.thursday, repsonse.shop_collection_operating_hour.thursday.start_time, repsonse.shop_collection_operating_hour.thursday.end_time, repsonse.shop_collection_operating_hour.friday, repsonse.shop_collection_operating_hour.friday.start_time, repsonse.shop_collection_operating_hour.friday.end_time, repsonse.shop_collection_operating_hour.saturday, repsonse.shop_collection_operating_hour.saturday.start_time, repsonse.shop_collection_operating_hour.saturday.end_time, repsonse.shop_collection_operating_hour.sunday, repsonse.shop_collection_operating_hour.sunday.start_time, repsonse.shop_collection_operating_hour.sunday.end_time, repsonse.shop_collection_operating_hour.public_holiday, repsonse.shop_collection_operating_hour.public_holiday.start_time, repsonse.shop_collection_operating_hour.public_holiday.end_time
+  - logistics.mass_ship_order: success_list, success_list.package_number, fail_list, fail_list.package_number, fail_list.fail_reason
+  - media.cancel_video_upload: warning
+  - media.complete_video_upload: warning
+  - media.upload_video_part: warning
+  - merchant.get_merchant_info: merchant_name, auth_time, expire_time, merchant_currency, merchant_region, is_upgraded_cbsc
+  - merchant.get_shop_list_by_merchant: shop_list, shop_list.shop_id, shop_list.sip_affi_shops, shop_list.sip_affi_shops.affi_shop_id, more
+  - order.generate_fbs_invoices: error_msg, result_list, result_list.request_id, result_list.fail_error, result_list.fail_message
+  - order.get_buyer_invoice_info: invoice_info_list, invoice_info_list.order_sn, invoice_info_list.invoice_type, invoice_info_list.invoice_detail, invoice_info_list.invoice_detail.name, invoice_info_list.invoice_detail.email, invoice_info_list.invoice_detail.phone_number, invoice_info_list.invoice_detail.tax_id, invoice_info_list.invoice_detail.address, invoice_info_list.invoice_detail.id_card_address, invoice_info_list.invoice_detail.address_breakdown, invoice_info_list.invoice_detail.address_breakdown.region, invoice_info_list.invoice_detail.address_breakdown.state, invoice_info_list.invoice_detail.address_breakdown.city, invoice_info_list.invoice_detail.address_breakdown.town, invoice_info_list.invoice_detail.address_breakdown.postcode, invoice_info_list.invoice_detail.address_breakdown.detailed_address, invoice_info_list.invoice_detail.address_breakdown.additional_info, invoice_info_list.invoice_detail.address_breakdown.full_address, invoice_info_list.invoice_detail.company_head_office, invoice_info_list.invoice_detail.company_name, invoice_info_list.invoice_detail.company_branch_name, invoice_info_list.invoice_detail.company_branch_id, invoice_info_list.invoice_detail.company_type, invoice_info_list.invoice_detail.company_email, invoice_info_list.invoice_detail.company_tax_id, invoice_info_list.invoice_detail.company_address, invoice_info_list.invoice_detail.company_address_breakdown, invoice_info_list.invoice_detail.company_address_breakdown.company_region, invoice_info_list.invoice_detail.company_address_breakdown.company_state, invoice_info_list.invoice_detail.company_address_breakdown.company_city, invoice_info_list.invoice_detail.company_address_breakdown.company_district, invoice_info_list.invoice_detail.company_address_breakdown.company_town, invoice_info_list.invoice_detail.company_address_breakdown.company_postcode, invoice_info_list.invoice_detail.company_address_breakdown.company_detailed_address, invoice_info_list.invoice_detail.company_address_breakdown.company_additional_info, invoice_info_list.invoice_detail.company_address_breakdown.company_full_address, invoice_info_list.invoice_detail.household_address_breakdown, invoice_info_list.invoice_detail.household_address_breakdown.household_region, invoice_info_list.invoice_detail.household_address_breakdown.household_state, invoice_info_list.invoice_detail.household_address_breakdown.household_city, invoice_info_list.invoice_detail.household_address_breakdown.household_province, invoice_info_list.invoice_detail.household_address_breakdown.household_district, invoice_info_list.invoice_detail.household_address_breakdown.household_town, invoice_info_list.invoice_detail.household_address_breakdown.household_barangay, invoice_info_list.invoice_detail.household_address_breakdown.household_postcode, invoice_info_list.invoice_detail.household_address_breakdown.household_detailed_address, invoice_info_list.invoice_detail.household_address_breakdown.household_additional_info, invoice_info_list.invoice_detail.household_address_breakdown.household_full_address, invoice_info_list.invoice_detail.national_id, invoice_info_list.error, invoice_info_list.is_requested
+  - order.get_estimate_cancel_value: cancel_value_price
+  - order.get_fbs_invoices_result: error_msg, result_list, result_list.request_id, result_list.file_name, result_list.status
+  - payment.get_income_detail: income_detail_list, income_detail_list.next_page, income_detail_list.next_page.cursor, income_detail_list.next_page.page_size, income_detail_list.income_detail_list_item, income_detail_list.income_detail_list_item.payment_method, income_detail_list.income_detail_list_item.order_sn, income_detail_list.income_detail_list_item.description, income_detail_list.income_detail_list_item.status, income_detail_list.income_detail_list_item.currency, income_detail_list.income_detail_list_item.estimated_escrow_amount, income_detail_list.income_detail_list_item.estimated_payout_time, income_detail_list.income_detail_list_item.to_release_amount, income_detail_list.income_detail_list_item.creation_date, income_detail_list.income_detail_list_item.released_amount, income_detail_list.income_detail_list_item.actual_payout_time
+  - product.delete_item: warning
+  - product.delete_model: warning
+  - product.get_variations: warning, data, data.standardise_variation_list, data.standardise_variation_list.variation_id, data.standardise_variation_list.variation_name, data.standardise_variation_list.variation_group_list, data.standardise_variation_list.variation_group_list.variation_group_id, data.standardise_variation_list.variation_group_list.variation_group_name, data.standardise_variation_list.variation_group_list.variation_option_list, data.standardise_variation_list.variation_group_list.variation_option_list.variation_option_id, data.standardise_variation_list.variation_group_list.variation_option_list.variation_option_name
+  - product.update_kit_item: warning
+  - product.update_model: warning
+  - product.update_sip_item_price: warning
+  - product.update_tier_variation: warning
+  - public.get_merchants_by_partner: authed_merchant_list, authed_merchant_list.region, authed_merchant_list.merchant_id, authed_merchant_list.auth_time, authed_merchant_list.expire_time, more
+  - public.get_shopee_ip_ranges: ip_list
+  - public.get_shops_by_partner: authed_shop_list, authed_shop_list.region, authed_shop_list.shop_id, authed_shop_list.auth_time, authed_shop_list.expire_time, authed_shop_list.sip_affi_shop_list, authed_shop_list.sip_affi_shop_list.region, authed_shop_list.sip_affi_shop_list.affi_shop_id, more
+  - public.get_token_by_resend_code: shop_id_list, merchant_id_list, refresh_token, access_token, expire_in
+  - push.confirm_consumed_lost_push_message: warning
+  - shop.get_shop_info: shop_name, region, status, sip_affi_shops, sip_affi_shops.affi_shop_id, sip_affi_shops.region, is_cb, auth_time, expire_time, is_sip, is_upgraded_cbsc, merchant_id, shop_fulfillment_flag, is_main_shop, is_direct_shop, linked_main_shop_id, linked_direct_shop_list, linked_direct_shop_list.direct_shop_id, linked_direct_shop_list.direct_shop_region, is_one_awb, is_mart_shop, is_outlet_shop, mart_shop_id, outlet_shop_info_list, outlet_shop_info_list.outlet_shop_id, mart_outlet_structure_type
+  - shop.get_shop_notification: cursor, data, data.create_time, data.content, data.title, data.url
+
+Request type mismatches:
+  - product.update_item: field "image.image_id_list" expected type object, found array | string
+
+Response type mismatches:
+  - logistics.get_operating_hour_restrictions: field "shop_collection_operating_hour_restrictions.working_day_config.tuesday.operating_24_hour_toggle" expected type string, found boolean
+  - product.get_attribute_tree: field "list.attribute_tree.attribute_value_list.child_attribute_list" expected type object, found array
+  - product.init_tier_variation: field "model.tier_index" expected type object, found array
