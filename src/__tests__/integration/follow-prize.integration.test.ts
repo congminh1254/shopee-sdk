@@ -54,8 +54,7 @@ const { runTests, initSdk } = setupIntegrationTest();
       expect(addResponse).toBeDefined();
       expect(addResponse.error || "").toBe("");
       const responseData = addResponse.response as
-        | { campaign_id?: number; campagin_id?: number }
-        | undefined;
+        { campaign_id?: number; campagin_id?: number } | undefined;
       const testCampaignId = (responseData?.campaign_id ?? responseData?.campagin_id)!;
       expect(testCampaignId).toBeDefined();
 
