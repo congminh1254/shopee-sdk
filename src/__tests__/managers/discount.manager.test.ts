@@ -20,7 +20,7 @@ import {
 } from "../../schemas/discount.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("DiscountManager", () => {
@@ -85,7 +85,6 @@ describe("DiscountManager", () => {
           discount_id: 665123666665499,
           count: 2,
           error_list: [],
-          warning: "",
         },
       };
 
@@ -136,7 +135,6 @@ describe("DiscountManager", () => {
               fail_error: "discount.item_not_found",
             },
           ],
-          warning: "Some items failed to add",
         },
       };
 
@@ -343,6 +341,8 @@ describe("DiscountManager", () => {
 
       const result = await discountManager.getDiscountList({
         discount_status: DiscountStatus.ALL,
+        page_no: 1,
+        page_size: 20,
       });
 
       expect(result.response.discount_list).toHaveLength(1);
@@ -602,7 +602,7 @@ describe("DiscountManager", () => {
       const result = await discountManager.setSipDiscount({
         region: "TH",
         sip_discount_rate: 20,
-      } as any);
+      });
 
       expect(result.response.sip_discount_rate).toBe(20);
       expect(result.response.update_time as number).toBeGreaterThan(

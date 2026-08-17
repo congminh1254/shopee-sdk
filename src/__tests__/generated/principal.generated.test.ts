@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { PrincipalManager } from "../../managers/principal.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PrincipalManager (Generated Tests)", () => {
@@ -92,7 +92,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getClipVideoPerformance(exampleRequest as any);
+      const result = await manager.getClipVideoPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -169,7 +169,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getContentAffiliatePerformance(exampleRequest as any);
+      const result = await manager.getContentAffiliatePerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -248,7 +248,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPrincipalAffiliatePerformance(exampleRequest as any);
+      const result = await manager.getPrincipalAffiliatePerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -335,7 +335,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPrincipalLivestreamPerformance(exampleRequest as any);
+      const result = await manager.getPrincipalLivestreamPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -408,7 +408,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPrincipalSalesPerformanceDetail(exampleRequest as any);
+      const result = await manager.getPrincipalSalesPerformanceDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -486,7 +486,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPrincipalVideoPerformance(exampleRequest as any);
+      const result = await manager.getPrincipalVideoPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -573,7 +573,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getSessionLivestreamPerformance(exampleRequest as any);
+      const result = await manager.getSessionLivestreamPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -654,7 +654,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopAffiliatePerformance(exampleRequest as any);
+      const result = await manager.getShopAffiliatePerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -743,7 +743,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopLivestreamPerformance(exampleRequest as any);
+      const result = await manager.getShopLivestreamPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -838,7 +838,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopSalesPerformanceDetail(exampleRequest as any);
+      const result = await manager.getShopSalesPerformanceDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -918,7 +918,7 @@ describe("PrincipalManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopVideoPerformance(exampleRequest as any);
+      const result = await manager.getShopVideoPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

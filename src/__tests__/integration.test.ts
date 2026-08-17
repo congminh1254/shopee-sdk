@@ -6,7 +6,7 @@ import { AccessToken } from "../schemas/access-token.js";
 import { ItemStatus } from "../schemas/product.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ShopeeSDK Integration with Mock API", () => {
@@ -208,7 +208,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
     const itemList = await sdk.product.getItemList({
       offset: 0,
       page_size: 10,
-      item_status: ItemStatus.NORMAL as any,
+      item_status: ItemStatus.NORMAL,
     });
 
     const itemDetails = await sdk.product.getItemBaseInfo({
@@ -224,7 +224,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
       params: {
         offset: 0,
         page_size: 10,
-        item_status: ItemStatus.NORMAL as any,
+        item_status: ItemStatus.NORMAL,
       },
     });
 

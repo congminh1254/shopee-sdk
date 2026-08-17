@@ -15,7 +15,6 @@ export interface GetClipVideoPerformance_Video {
    * Currency used for amount-based metrics for the specified videos.Limitations:- Optional for every object in video_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_clip_video_performance
@@ -51,7 +50,6 @@ export interface GetClipVideoPerformanceRequest {
    * Zero-based offset of the first detail record to return.Limitations:- Only supported when video_list is omitted or an empty array.- Default value is 0.- Must be greater than or equal to 0.
    */
   cursor?: number;
-  [key: string]: any;
 }
 /**
  * GetClipVideoPerformance_Summary sub-interface for GetClipVideoPerformance_Response
@@ -113,7 +111,6 @@ export interface GetClipVideoPerformance_Summary {
    * Video orders / total video views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetClipVideoPerformance_Detail sub-interface for GetClipVideoPerformance_Response
@@ -195,7 +192,6 @@ export interface GetClipVideoPerformance_Detail {
    * Video orders / total video views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetClipVideoPerformance_Response sub-interface for GetClipVideoPerformanceResponse
@@ -213,7 +209,6 @@ export interface GetClipVideoPerformance_Response {
    * Offset to be used in the next request for fetching the next page of detail records.Notes:- Returned only when video_list is omitted or an empty array.- Calculated as cursor + returned_detail_count.- If returned_detail_count is less than page_size, it indicates there may be no more records.- If the request is already beyond the end of the result set, the API returns 0 detail records and next_cursor remains equal to the input cursor.
    */
   next_cursor?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_clip_video_performance
@@ -241,7 +236,6 @@ export interface GetContentAffiliatePerformance_Content {
    * Currency used for amount-based metrics for the specified content items.Limitations:- Optional for every object in content_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_content_affiliate_performance
@@ -277,7 +271,6 @@ export interface GetContentAffiliatePerformanceRequest {
    * Zero-based offset of the first detail record to return.Limitations:- Only supported when content_list is omitted or an empty array.- Default value is 0.- Must be greater than or equal to 0.
    */
   cursor?: number;
-  [key: string]: any;
 }
 /**
  * GetContentAffiliatePerformance_Summary sub-interface for GetContentAffiliatePerformance_Response
@@ -323,7 +316,6 @@ export interface GetContentAffiliatePerformance_Summary {
    * Total number of confirmed orders generated through affiliate marketing during the selected period. Confirmed orders are either non-Cash On Delivery (non-COD) orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
   orders_confirmed?: number;
-  [key: string]: any;
 }
 /**
  * GetContentAffiliatePerformance_Detail sub-interface for GetContentAffiliatePerformance_Response
@@ -389,7 +381,6 @@ export interface GetContentAffiliatePerformance_Detail {
    * Total number of confirmed orders generated through affiliate marketing during the selected period for this content item. Confirmed orders are either non-Cash On Delivery (non-COD) orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
   orders_confirmed?: number;
-  [key: string]: any;
 }
 /**
  * GetContentAffiliatePerformance_Response sub-interface for GetContentAffiliatePerformanceResponse
@@ -407,7 +398,6 @@ export interface GetContentAffiliatePerformance_Response {
    * Offset to be used in the next request for fetching the next page of detail records.Notes:- Returned only when content_list is omitted or an empty array.- Calculated as cursor + returned_detail_count.- If returned_detail_count is less than page_size, it indicates there may be no more records.- If the request is already beyond the end of the result set, the API returns 0 detail records and next_cursor remains equal to the input cursor.
    */
   next_cursor?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_content_affiliate_performance
@@ -432,7 +422,6 @@ export interface GetPrincipalAffiliatePerformance_Region {
    * Currency used for amount-based metrics for the region.Limitations:- Optional for every region object in region_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_principal_affiliate_performance
@@ -460,7 +449,6 @@ export interface GetPrincipalAffiliatePerformanceRequest {
    * Optional list of principal regions to be queried.Limitations:- When omitted or empty, the API queries all regions belonging to the specified principal_id.- Must contain at most 100 region objects.- Every region must belong to the specified principal_id.- Duplicate region values are merged when they use the same currency.- The same region cannot appear with different currencies.
    */
   region_list?: GetPrincipalAffiliatePerformance_Region[];
-  [key: string]: any;
 }
 /**
  * GetPrincipalAffiliatePerformance_Summary sub-interface for GetPrincipalAffiliatePerformance_Response
@@ -526,7 +514,6 @@ export interface GetPrincipalAffiliatePerformance_Summary {
    * Total number of unique new buyers with confirmed affiliate marketing orders from the selected principal during the selected period.
    */
   new_buyers_confirmed?: number;
-  [key: string]: any;
 }
 /**
  * GetPrincipalAffiliatePerformance_Detail sub-interface for GetPrincipalAffiliatePerformance_Response
@@ -596,7 +583,6 @@ export interface GetPrincipalAffiliatePerformance_Detail {
    * Total number of unique new buyers with confirmed affiliate marketing orders from this region during the selected period.
    */
   new_buyers_confirmed?: number;
-  [key: string]: any;
 }
 /**
  * GetPrincipalAffiliatePerformance_Response sub-interface for GetPrincipalAffiliatePerformanceResponse
@@ -610,7 +596,6 @@ export interface GetPrincipalAffiliatePerformance_Response {
    * List of region-level detail records that returns affiliate performance metrics for each selected region within the requested date range.Note:- Details are queried from shop-level source data and then merged into region-level results in the service layer.- For de-duplicated metrics such as buyers, new_buyers, and orders, values may differ from a true region-level de-duplicated aggregation when multiple shops in the same region share overlapping users or orders.
    */
   details?: GetPrincipalAffiliatePerformance_Detail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_principal_affiliate_performance
@@ -636,7 +621,6 @@ export interface GetPrincipalLivestreamPerformance_Region {
    * Currency used for amount-based metrics for the region.Limitations:- Optional for every region object in region_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_principal_livestream_performance
@@ -664,7 +648,6 @@ export interface GetPrincipalLivestreamPerformanceRequest {
    * Optional list of principal regions to be queried.Limitations:- When omitted or empty, the API queries all regions belonging to the specified principal_id except the aggregate regional bucket.- Must contain at most 100 region objects.- Every region must belong to the specified principal_id.- Duplicate region values are merged for filtering purposes.- Currency defaults to USD when omitted.- When the same region appears multiple times, the first provided currency is used.
    */
   region_list?: GetPrincipalLivestreamPerformance_Region[];
-  [key: string]: any;
 }
 /**
  * GetPrincipalLivestreamPerformance_Summary sub-interface for GetPrincipalLivestreamPerformance_Response
@@ -746,7 +729,6 @@ export interface GetPrincipalLivestreamPerformance_Summary {
    * Livestream orders / Livestream views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetPrincipalLivestreamPerformance_Detail sub-interface for GetPrincipalLivestreamPerformance_Response
@@ -832,7 +814,6 @@ export interface GetPrincipalLivestreamPerformance_Detail {
    * Livestream orders / Livestream views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetPrincipalLivestreamPerformance_Response sub-interface for GetPrincipalLivestreamPerformanceResponse
@@ -846,7 +827,6 @@ export interface GetPrincipalLivestreamPerformance_Response {
    * List of region-level detail records that returns livestream performance metrics for each selected region within the requested date range.Details are produced by aggregating shop-level livestream data into region-level results in the service layer.
    */
   details?: GetPrincipalLivestreamPerformance_Detail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_principal_livestream_performance
@@ -872,7 +852,6 @@ export interface GetPrincipalSalesPerformanceDetail_Region {
    * Currency used for amount-based metrics for the region.Limitations:- Optional for every region object in region_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_principal_sales_performance_detail
@@ -900,7 +879,6 @@ export interface GetPrincipalSalesPerformanceDetailRequest {
    * List of principal regions to be queried.Limitations:- Optional. If omitted or empty, the API queries all regions that belong to the specified principal.- Duplicate region entries are deduplicated internally.- The same region must not appear multiple times with different currency values.
    */
   region_list?: GetPrincipalSalesPerformanceDetail_Region[];
-  [key: string]: any;
 }
 /**
  * GetPrincipalSalesPerformanceDetail_Summary sub-interface for GetPrincipalSalesPerformanceDetail_Response
@@ -954,7 +932,6 @@ export interface GetPrincipalSalesPerformanceDetail_Summary {
    * Number of orders divided by total number of product clicks over the selected time period. This metric is only available after 31/12/2023.
    */
   order_conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetPrincipalSalesPerformanceDetail_Detail sub-interface for GetPrincipalSalesPerformanceDetail_Response
@@ -1012,7 +989,6 @@ export interface GetPrincipalSalesPerformanceDetail_Detail {
    * Number of orders divided by total number of product clicks over the selected time period. This metric is only available after 31/12/2023.
    */
   order_conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetPrincipalSalesPerformanceDetail_Response sub-interface for GetPrincipalSalesPerformanceDetailResponse
@@ -1026,7 +1002,6 @@ export interface GetPrincipalSalesPerformanceDetail_Response {
    * List of region-level detail records that returns performance metrics for each selected region within the requested date range.
    */
   details?: GetPrincipalSalesPerformanceDetail_Detail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_principal_sales_performance_detail
@@ -1052,7 +1027,6 @@ export interface GetPrincipalVideoPerformance_Region {
    * Currency used for amount-based metrics for the region.Limitations:- Optional for every region object in region_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_principal_video_performance
@@ -1080,7 +1054,6 @@ export interface GetPrincipalVideoPerformanceRequest {
    * Optional list of principal regions to be queried.Limitations:- When omitted or empty, the API queries all regions belonging to the specified principal_id except the aggregate regional bucket.- Must contain at most 100 region objects.- Every region must belong to the specified principal_id.- Duplicate region values are merged when they use the same currency.- The same region cannot appear with different currencies.- Currency defaults to USD when omitted.
    */
   region_list?: GetPrincipalVideoPerformance_Region[];
-  [key: string]: any;
 }
 /**
  * GetPrincipalVideoPerformance_Summary sub-interface for GetPrincipalVideoPerformance_Response
@@ -1146,7 +1119,6 @@ export interface GetPrincipalVideoPerformance_Summary {
    * Video orders / effective video views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetPrincipalVideoPerformance_Detail sub-interface for GetPrincipalVideoPerformance_Response
@@ -1212,7 +1184,6 @@ export interface GetPrincipalVideoPerformance_Detail {
    * Video orders / effective video views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetPrincipalVideoPerformance_Response sub-interface for GetPrincipalVideoPerformanceResponse
@@ -1226,7 +1197,6 @@ export interface GetPrincipalVideoPerformance_Response {
    * List of region-level detail records that returns video performance metrics for each selected region within the requested date range.Note:- details do not include total_video_duration.- unique_viewers and total_unique_buyers are unavailable for customize, month, quarter, year, and non-full-week weekly ranges.
    */
   details?: GetPrincipalVideoPerformance_Detail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_principal_video_performance
@@ -1255,7 +1225,6 @@ export interface GetSessionLivestreamPerformance_Session {
    * Currency used for amount-based metrics for the specified livestream sessions.Limitations:- Optional for every object in session_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_session_livestream_performance
@@ -1291,7 +1260,6 @@ export interface GetSessionLivestreamPerformanceRequest {
    * Zero-based offset of the first detail record to return.Limitations:- Only supported when session_list is omitted or an empty array.- Default value is 0.- Must be greater than or equal to 0.
    */
   cursor?: number;
-  [key: string]: any;
 }
 /**
  * GetSessionLivestreamPerformance_Summary sub-interface for GetSessionLivestreamPerformance_Response
@@ -1357,7 +1325,6 @@ export interface GetSessionLivestreamPerformance_Summary {
    * Livestream orders / Livestream views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetSessionLivestreamPerformance_Detail sub-interface for GetSessionLivestreamPerformance_Response
@@ -1443,7 +1410,6 @@ export interface GetSessionLivestreamPerformance_Detail {
    * Livestream orders / Livestream views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetSessionLivestreamPerformance_Response sub-interface for GetSessionLivestreamPerformanceResponse
@@ -1461,7 +1427,6 @@ export interface GetSessionLivestreamPerformance_Response {
    * Offset to be used in the next request for fetching the next page of detail records.Notes:- Returned only when session_list is omitted or an empty array.- Calculated as cursor + returned_detail_count.- If returned_detail_count is less than page_size, it indicates there may be no more records.- If the request is already beyond the end of the result set, the API returns 0 detail records and next_cursor remains equal to the input cursor.
    */
   next_cursor?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_session_livestream_performance
@@ -1486,7 +1451,6 @@ export interface GetShopAffiliatePerformance_Shop {
    * Currency used for amount-based metrics for the shop.Limitations:- Optional for every shop object in shop_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_shop_affiliate_performance
@@ -1514,7 +1478,6 @@ export interface GetShopAffiliatePerformanceRequest {
    * List of shops to be queried. This field is optional. If omitted or passed as an empty array, the API will return data for all shops under the specified principal_id.Limitations:- If provided, must contain at most 50 shops.- If omitted or passed as [], all shops under the specified principal_id will be queried.- If provided as a non-empty array, all shops must belong to the specified principal_id.Duplicate shops are not allowed.
    */
   shop_list?: GetShopAffiliatePerformance_Shop[];
-  [key: string]: any;
 }
 /**
  * GetShopAffiliatePerformance_Summary sub-interface for GetShopAffiliatePerformance_Response
@@ -1580,7 +1543,6 @@ export interface GetShopAffiliatePerformance_Summary {
    * Total number of unique new buyers with confirmed affiliate marketing orders from your shop set during the selected period.
    */
   new_buyers_confirmed?: number;
-  [key: string]: any;
 }
 /**
  * GetShopAffiliatePerformance_Detail sub-interface for GetShopAffiliatePerformance_Response
@@ -1658,7 +1620,6 @@ export interface GetShopAffiliatePerformance_Detail {
    * Total number of unique new buyers with confirmed affiliate marketing orders from this shop during the selected period.
    */
   new_buyers_confirmed?: number;
-  [key: string]: any;
 }
 /**
  * GetShopAffiliatePerformance_Response sub-interface for GetShopAffiliatePerformanceResponse
@@ -1672,7 +1633,6 @@ export interface GetShopAffiliatePerformance_Response {
    * List of shop-level detail records that returns affiliate performance metrics for each selected shop within the requested date range.
    */
   details?: GetShopAffiliatePerformance_Detail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_affiliate_performance
@@ -1697,7 +1657,6 @@ export interface GetShopLivestreamPerformance_Shop {
    * Currency used for amount-based metrics for the shop.Limitations:- Optional for every shop object in shop_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_shop_livestream_performance
@@ -1725,7 +1684,6 @@ export interface GetShopLivestreamPerformanceRequest {
    * List of shops to be queried. This field is optional. If omitted or passed as an empty array, the API will return data for all shops under the specified principal_id.Limitations:- If provided, must contain at most 50 shops.- If omitted or passed as [], all shops under the specified principal_id will be queried.- If provided as a non-empty array, all shops must belong to the specified principal_id.Duplicate shops are not allowed.
    */
   shop_list?: GetShopLivestreamPerformance_Shop[];
-  [key: string]: any;
 }
 /**
  * GetShopLivestreamPerformance_Summary sub-interface for GetShopLivestreamPerformance_Response
@@ -1807,7 +1765,6 @@ export interface GetShopLivestreamPerformance_Summary {
    * Livestream orders / Livestream views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetShopLivestreamPerformance_Detail sub-interface for GetShopLivestreamPerformance_Response
@@ -1901,7 +1858,6 @@ export interface GetShopLivestreamPerformance_Detail {
    * Livestream orders / Livestream views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetShopLivestreamPerformance_Response sub-interface for GetShopLivestreamPerformanceResponse
@@ -1915,7 +1871,6 @@ export interface GetShopLivestreamPerformance_Response {
    * List of shop-level detail records that returns livestream performance metrics for each selected shop within the requested date range.
    */
   details?: GetShopLivestreamPerformance_Detail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_livestream_performance
@@ -1940,7 +1895,6 @@ export interface GetShopSalesPerformanceDetail_Shop {
    * Currency used for amount-based metrics for the shop.Limitations:- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- default USD
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_shop_sales_performance_detail
@@ -1968,7 +1922,6 @@ export interface GetShopSalesPerformanceDetailRequest {
    * List of shops to be queried. This field is optional. If omitted or passed as an empty array, the API will return data for all shops under the specified principal_id.Limitations:- If provided, must contain at most 50 shops.- If omitted or passed as [], all shops under the specified principal_id will be queried.- If provided as a non-empty array, all shops must belong to the specified principal_id.Duplicate shops are not allowed.
    */
   shop_list?: GetShopSalesPerformanceDetail_Shop[];
-  [key: string]: any;
 }
 /**
  * GetShopSalesPerformanceDetail_Summary sub-interface for GetShopSalesPerformanceDetail_Response
@@ -2054,7 +2007,6 @@ export interface GetShopSalesPerformanceDetail_Summary {
    * Total cost of vouchers applied at checkout, including shipping fees and excluding other promotions, over the selected time period.
    */
   voucher_cost?: number;
-  [key: string]: any;
 }
 /**
  * GetShopSalesPerformanceDetail_Detail sub-interface for GetShopSalesPerformanceDetail_Response
@@ -2168,7 +2120,6 @@ export interface GetShopSalesPerformanceDetail_Detail {
    * Total cost of vouchers applied at checkout, including shipping fees and excluding other promotions, over the selected time period.
    */
   voucher_cost?: number;
-  [key: string]: any;
 }
 /**
  * GetShopSalesPerformanceDetail_Response sub-interface for GetShopSalesPerformanceDetailResponse
@@ -2182,7 +2133,6 @@ export interface GetShopSalesPerformanceDetail_Response {
    * List of shop-level detail records that returns performance metrics for each selected shop within the requested date range.
    */
   details?: GetShopSalesPerformanceDetail_Detail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_sales_performance_detail
@@ -2207,7 +2157,6 @@ export interface GetShopVideoPerformance_Shop {
    * Currency used for amount-based metrics for the shop.Limitations:- Optional for every shop object in shop_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
   currency?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_shop_video_performance
@@ -2235,7 +2184,6 @@ export interface GetShopVideoPerformanceRequest {
    * shops under the specified principal_id.Limitations:- If provided, must contain at most 50 shops.- If omitted or passed as [], all shops under the specified principal_id will be queried.- If provided as a non-empty array, all shops must belong to the specified principal_id.Duplicate shops are not allowed.
    */
   shop_list?: GetShopVideoPerformance_Shop[];
-  [key: string]: any;
 }
 /**
  * GetShopVideoPerformance_Summary sub-interface for GetShopVideoPerformance_Response
@@ -2301,7 +2249,6 @@ export interface GetShopVideoPerformance_Summary {
    * Video orders / effective video views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetShopVideoPerformance_Detail sub-interface for GetShopVideoPerformance_Response
@@ -2375,7 +2322,6 @@ export interface GetShopVideoPerformance_Detail {
    * Video orders / effective video views.
    */
   conversion_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetShopVideoPerformance_Response sub-interface for GetShopVideoPerformanceResponse
@@ -2389,7 +2335,6 @@ export interface GetShopVideoPerformance_Response {
    * List of shop-level detail records that returns video performance metrics for each selected shop within the requested date range.Note:- details do not include total_video_duration.- unique_viewers and total_unique_buyers are unavailable for customize, month, quarter, year, and non-full-week weekly ranges.
    */
   details?: GetShopVideoPerformance_Detail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_video_performance

@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { ReturnsManager } from "../../managers/returns.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ReturnsManager (Generated Tests)", () => {
@@ -39,7 +39,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.acceptOffer(exampleRequest as any);
+      const result = await manager.acceptOffer(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -73,7 +73,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.cancelDispute(exampleRequest as any);
+      const result = await manager.cancelDispute(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -105,7 +105,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.confirm(exampleRequest as any);
+      const result = await manager.confirm(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -140,7 +140,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.convertImage(exampleRequest as any);
+      const result = await manager.convertImage(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -201,7 +201,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.dispute(exampleRequest as any);
+      const result = await manager.dispute(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -245,7 +245,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAvailableSolutions(exampleRequest as any);
+      const result = await manager.getAvailableSolutions(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -282,10 +282,10 @@ describe("ReturnsManager (Generated Tests)", () => {
         return_sn: "2206140TA5PM808",
         refund_amount: 13.97,
         currency: "SGD",
-        create_time: "1655205084",
-        update_time: "1655219544",
+        create_time: 1655205084,
+        update_time: 1655219544,
         status: "ACCEPTED",
-        due_date: "1655377883",
+        due_date: 1655377883,
         tracking_number: "RNSHS00177569",
         dispute_reason: ["dispute_reason_1", "dispute_reason_2"],
         dispute_text_reason: ["dispute_remarks"],
@@ -313,8 +313,8 @@ describe("ReturnsManager (Generated Tests)", () => {
           },
         ],
         order_sn: "220614T9XV8JTN",
-        return_ship_due_date: "1655438205",
-        return_seller_due_date: "1655438205",
+        return_ship_due_date: 1655438205,
+        return_seller_due_date: 1655438205,
         activity: [
           {
             activity_id: "123456789",
@@ -334,11 +334,11 @@ describe("ReturnsManager (Generated Tests)", () => {
         ],
         seller_proof: {
           seller_proof_status: "PENDING",
-          seller_evidence_deadline: "1655438336",
+          seller_evidence_deadline: 1655438336,
         },
         seller_compensation: {
           seller_compensation_status: "PENDING_REQUEST",
-          seller_compensation_due_date: "1655438336",
+          seller_compensation_due_date: 1655438336,
           compensation_amount: 100,
           compensation_amount_list: [
             {
@@ -353,7 +353,7 @@ describe("ReturnsManager (Generated Tests)", () => {
           latest_offer_amount: 12.34,
           latest_offer_creator: "username",
           counter_limit: 0,
-          offer_due_date: "1655438336",
+          offer_due_date: 1655438336,
         },
         logistics_status: "LOGISTICS_REQUEST_CREATED",
         reverse_logistics_status: "LOGISTICS_REQUEST_CREATED",
@@ -402,7 +402,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getReturnDetail(exampleRequest as any);
+      const result = await manager.getReturnDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -456,7 +456,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getReturnDisputeReason(exampleRequest as any);
+      const result = await manager.getReturnDisputeReason(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -477,10 +477,10 @@ describe("ReturnsManager (Generated Tests)", () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
-        create_time_from: "1655392442",
-        create_time_to: "1655392542",
-        update_time_from: "1655392442",
-        update_time_to: "1655392542",
+        create_time_from: 1655392442,
+        create_time_to: 1655392542,
+        update_time_from: 1655392442,
+        update_time_to: 1655392542,
         status: "REQUESTED",
         negotiation_status: "TERMINATED",
         seller_proof_status: "PENDING",
@@ -497,10 +497,10 @@ describe("ReturnsManager (Generated Tests)", () => {
             return_sn: "200203171852695",
             refund_amount: 1409,
             currency: "SGD",
-            create_time: "1580721513",
-            update_time: "1580729377",
+            create_time: 1580721513,
+            update_time: 1580729377,
             status: "CANCELLED",
-            due_date: "1580721513",
+            due_date: 1580721513,
             tracking_number: "RNSHS00177569",
             dispute_reason: ["UNKNOWN"],
             dispute_text_reason: ["reason"],
@@ -527,8 +527,8 @@ describe("ReturnsManager (Generated Tests)", () => {
               },
             ],
             order_sn: "200203C6W0AR27",
-            return_ship_due_date: "1655438336",
-            return_seller_due_date: "1655438336",
+            return_ship_due_date: 1655438336,
+            return_seller_due_date: 1655438336,
             negotiation_status: "PENDING_RESPOND",
             seller_proof_status: "PENDING",
             seller_compensation_status: "PENDING_REQUEST",
@@ -560,7 +560,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getReturnList(exampleRequest as any);
+      const result = await manager.getReturnList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -586,14 +586,14 @@ describe("ReturnsManager (Generated Tests)", () => {
         return_refund_request_type: 0,
         validation_type: "seller_validation",
         reverse_logistics_status: "LOGISTICS_REQUEST_CREATED",
-        reverse_logistics_update_time: "1740728119",
-        estimated_delivery_date_max: "1740728121",
-        estimated_delivery_date_min: "1740626000",
+        reverse_logistics_update_time: 1740728119,
+        estimated_delivery_date_max: 1740728121,
+        estimated_delivery_date_min: 1740626000,
         collection_pin_code: "666188",
         tracking_number: "MY257829361436J",
         tracking_info: [
           {
-            update_time: "1740728119",
+            update_time: 1740728119,
             tracking_description: "Parcel has been picked up by our logistics partner",
             epop_image_list: [
               "https:",
@@ -631,7 +631,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getReverseTrackingInfo(exampleRequest as any);
+      const result = await manager.getReverseTrackingInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -676,7 +676,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShippingCarrier(exampleRequest as any);
+      const result = await manager.getShippingCarrier(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -710,7 +710,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.offer(exampleRequest as any);
+      const result = await manager.offer(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -756,7 +756,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.queryProof(exampleRequest as any);
+      const result = await manager.queryProof(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -794,7 +794,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.uploadProof(exampleRequest as any);
+      const result = await manager.uploadProof(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -833,7 +833,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.uploadShippingProof(exampleRequest as any);
+      const result = await manager.uploadShippingProof(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

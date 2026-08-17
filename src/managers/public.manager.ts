@@ -46,7 +46,6 @@ export class PublicManager extends BaseManager {
       "/public/get_merchants_by_partner",
       {
         method: "GET",
-        auth: true,
         params: params,
         timestampPaths: ["authed_merchant_list.auth_time", "authed_merchant_list.expire_time"],
       }
@@ -66,7 +65,6 @@ export class PublicManager extends BaseManager {
       "/public/get_shopee_ip_ranges",
       {
         method: "GET",
-        auth: true,
         params: params,
       }
     );
@@ -85,7 +83,6 @@ export class PublicManager extends BaseManager {
       "/public/get_shops_by_partner",
       {
         method: "GET",
-        auth: true,
         params: params,
         timestampPaths: ["authed_shop_list.auth_time", "authed_shop_list.expire_time"],
       }
@@ -105,7 +102,6 @@ export class PublicManager extends BaseManager {
       "/public/get_token_by_resend_code",
       {
         method: "POST",
-        auth: true,
         body: params,
       }
     );

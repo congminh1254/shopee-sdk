@@ -40,7 +40,6 @@ export interface GetAuthorisedResellerBrandRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 30.
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetAuthorisedResellerBrand_AuthorisedBrand sub-interface for GetAuthorisedResellerBrand_Response
@@ -54,7 +53,6 @@ export interface GetAuthorisedResellerBrand_AuthorisedBrand {
    * Name of the authorised brand.
    */
   brand_name?: string;
-  [key: string]: any;
 }
 /**
  * GetAuthorisedResellerBrand_Response sub-interface for GetAuthorisedResellerBrandResponse
@@ -73,7 +71,6 @@ export interface GetAuthorisedResellerBrand_Response {
    */
   more?: boolean;
   authorised_brand_list?: GetAuthorisedResellerBrand_AuthorisedBrand[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_authorised_reseller_brand
@@ -116,7 +113,6 @@ export interface GetBrShopOnboardingInfo_BillingAddress {
    * Neighborhood of the billing address.
    */
   neighborhood?: string;
-  [key: string]: any;
 }
 /**
  * GetBrShopOnboardingInfo_Response sub-interface for GetBrShopOnboardingInfoResponse
@@ -192,7 +188,6 @@ export interface GetBrShopOnboardingInfo_Response {
    * Indicate if the shop has passed KYC verification.
    */
   onboarding_passed?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_br_shop_onboarding_info
@@ -230,7 +225,6 @@ export interface GetProfile_Response {
    * The invoice issuer information for the shop. It could be "Shopee" or "Other" as the invoice issuer. This is for BR CNPJ seller only.
    */
   invoice_issuer?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_profile
@@ -280,7 +274,6 @@ export interface GetShopHolidayMode_Response {
    * Debug message.
    */
   debug_msg?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_holiday_mode
@@ -310,7 +303,6 @@ export interface GetShopInfo_SipAffiShop {
    * Affiliate Shop's area.
    */
   region?: string;
-  [key: string]: any;
 }
 /**
  * GetShopInfo_LinkedDirectShop sub-interface for GetShopInfoResponse
@@ -324,7 +316,6 @@ export interface GetShopInfo_LinkedDirectShop {
    * Shop Region of the Cross Border Direct Shop.
    */
   direct_shop_region?: string;
-  [key: string]: any;
 }
 /**
  * GetShopInfo_OutletShopInfo sub-interface for GetShopInfoResponse
@@ -334,7 +325,6 @@ export interface GetShopInfo_OutletShopInfo {
    * Shop ID of the Outlet Shop.
    */
   outlet_shop_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_info
@@ -424,7 +414,6 @@ export interface GetShopInfoResponseData {
    * (Only returned when requesting a Mart or Outlet Shop)Indicates the structure type of the Mart or Outlet shop. Applicable values are: normal_mart_shop, warehouse_mart_shop, normal_outlet_shop, warehouse_outlet_shop
    */
   mart_outlet_structure_type?: string;
-  [key: string]: any;
 }
 /**
  * Response payload for get_shop_info
@@ -446,7 +435,6 @@ export interface GetShopNotificationRequest {
    * Default 10; maximum 50
    */
   page_size?: number;
-  [key: string]: any;
 }
 /**
  * GetShopNotification_Data sub-interface for GetShopNotificationResponse
@@ -468,7 +456,6 @@ export interface GetShopNotification_Data {
    * Some notification may be attached with URL, it will redirect to seller center
    */
   url?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_notification
@@ -479,7 +466,6 @@ export interface GetShopNotificationResponseData {
    */
   cursor?: number;
   data?: GetShopNotification_Data;
-  [key: string]: any;
 }
 /**
  * Response payload for get_shop_notification
@@ -497,7 +483,6 @@ export interface GetWarehouseDetailRequest {
    * Type of warehouse. Applicable values: - 1: Pickup Warehouse- 2: Return WarehouseDefault value is 1 (Pickup Warehouse)
    */
   warehouse_type?: number;
-  [key: string]: any;
 }
 /**
  * GetWarehouseDetail_Response sub-interface for GetWarehouseDetailResponse
@@ -559,7 +544,6 @@ export interface GetWarehouseDetail_Response {
    * The holiday mode state of your address.0: not in holiday mode1: holiday mode active2: holiday mode is turning of3: holiday mode is turning on
    */
   holiday_mode_state?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_warehouse_detail
@@ -597,7 +581,6 @@ export interface SetShopHolidayModeRequest {
    * Description of the holiday
    */
   holiday_mode_description?: string;
-  [key: string]: any;
 }
 /**
  * SetShopHolidayMode_Response sub-interface for SetShopHolidayModeResponse
@@ -607,7 +590,6 @@ export interface SetShopHolidayMode_Response {
    * Debug message.
    */
   debug_msg?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for set_shop_holiday_mode
@@ -637,7 +619,6 @@ export interface UpdateProfileRequest {
    * The new shop description.
    */
   description?: string;
-  [key: string]: any;
 }
 /**
  * UpdateProfile_Response sub-interface for UpdateProfileResponse
@@ -655,7 +636,6 @@ export interface UpdateProfile_Response {
    * The content of the shop name after updated.
    */
   shop_name?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_profile

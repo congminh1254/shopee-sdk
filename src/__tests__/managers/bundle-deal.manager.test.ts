@@ -18,7 +18,7 @@ import {
 import { BundleDealRuleType, BundleDealTimeStatus } from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("BundleDealManager", () => {
@@ -61,6 +61,8 @@ describe("BundleDealManager", () => {
         end_time: 1610000000,
         name: "bundle name",
         purchase_limit: 3,
+        discount_value: 0,
+        discount_percentage: 0,
         additional_tiers: [
           {
             min_amount: 100,
@@ -82,6 +84,8 @@ describe("BundleDealManager", () => {
           end_time: 1610000000,
           name: "bundle name",
           purchase_limit: 3,
+          discount_value: 0,
+          discount_percentage: 0,
           additional_tiers: [
             {
               min_amount: 100,
@@ -116,6 +120,8 @@ describe("BundleDealManager", () => {
         end_time: 1610000000,
         name: "Percentage Bundle",
         purchase_limit: 5,
+        discount_value: 0,
+        fix_price: 0,
       });
 
       expect(result).toEqual(mockResponse);
@@ -138,7 +144,11 @@ describe("BundleDealManager", () => {
 
       const result = await bundleDealManager.addBundleDealItem({
         bundle_deal_id: 11111,
-        item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 3333 }],
+        item_list: [
+          { item_id: 1111, status: 1 },
+          { item_id: 2222, status: 1 },
+          { item_id: 3333, status: 1 },
+        ],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -149,7 +159,11 @@ describe("BundleDealManager", () => {
           auth: true,
           body: {
             bundle_deal_id: 11111,
-            item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 3333 }],
+            item_list: [
+              { item_id: 1111, status: 1 },
+              { item_id: 2222, status: 1 },
+              { item_id: 3333, status: 1 },
+            ],
           },
         }
       );
@@ -178,7 +192,11 @@ describe("BundleDealManager", () => {
 
       const result = await bundleDealManager.addBundleDealItem({
         bundle_deal_id: 11111,
-        item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 1234 }],
+        item_list: [
+          { item_id: 1111, status: 1 },
+          { item_id: 2222, status: 1 },
+          { item_id: 1234, status: 1 },
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -313,14 +331,12 @@ describe("BundleDealManager", () => {
             fix_price: 11,
             discount_percentage: 33,
             min_amount: 2,
-            additional_tiers: [
-              {
-                min_amount: 3,
-                fix_price: 10,
-                discount_value: 12,
-                discount_percentage: 35,
-              },
-            ],
+            additional_tiers: {
+              min_amount: 3,
+              fix_price: 10,
+              discount_value: 12,
+              discount_percentage: 35,
+            },
           },
           purchase_limit: 6,
         },
@@ -353,9 +369,14 @@ describe("BundleDealManager", () => {
         error: "",
         message: "",
         response: {
-          item_list: [1111, 2222, 3333, 4444],
+          item_list: [
+            { item_id: 1111, status: 1 },
+            { item_id: 2222, status: 1 },
+            { item_id: 3333, status: 1 },
+            { item_id: 4444, status: 1 },
+          ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -529,7 +550,11 @@ describe("BundleDealManager", () => {
 
       const result = await bundleDealManager.updateBundleDealItem({
         bundle_deal_id: 11111,
-        item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 3333 }],
+        item_list: [
+          { item_id: 1111, status: 1 },
+          { item_id: 2222, status: 1 },
+          { item_id: 3333, status: 1 },
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -556,7 +581,11 @@ describe("BundleDealManager", () => {
 
       const result = await bundleDealManager.updateBundleDealItem({
         bundle_deal_id: 11111,
-        item_list: [{ item_id: 1111 }, { item_id: 2222 }, { item_id: 12341213 }],
+        item_list: [
+          { item_id: 1111, status: 1 },
+          { item_id: 2222, status: 1 },
+          { item_id: 12341213, status: 1 },
+        ],
       });
 
       expect(result).toEqual(mockResponse);

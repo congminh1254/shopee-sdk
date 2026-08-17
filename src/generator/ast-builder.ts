@@ -141,27 +141,12 @@ export class AstBuilder {
           return prop;
         });
 
-        const indexSignature = ts.factory.createIndexSignature(
-          undefined,
-          [
-            ts.factory.createParameterDeclaration(
-              undefined,
-              undefined,
-              "key",
-              undefined,
-              ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
-              undefined
-            ),
-          ],
-          ts.factory.createKeywordTypeNode(ts.SyntaxKind.AnyKeyword)
-        );
-
         const interfaceDecl = ts.factory.createInterfaceDeclaration(
           [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
           resolvedName,
           undefined,
           undefined,
-          [...properties, indexSignature]
+          properties
         );
 
         declarations.push(
@@ -249,27 +234,12 @@ export class AstBuilder {
       return prop;
     });
 
-    const indexSignature = ts.factory.createIndexSignature(
-      undefined,
-      [
-        ts.factory.createParameterDeclaration(
-          undefined,
-          undefined,
-          "key",
-          undefined,
-          ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
-          undefined
-        ),
-      ],
-      ts.factory.createKeywordTypeNode(ts.SyntaxKind.AnyKeyword)
-    );
-
     const decl = ts.factory.createInterfaceDeclaration(
       [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
       typeName,
       undefined,
       undefined,
-      [...properties, indexSignature]
+      properties
     );
 
     return addJsDoc(
@@ -319,26 +289,12 @@ export class AstBuilder {
           return addJsDoc(prop, p.description) as ts.PropertySignature;
         });
 
-        const indexSignature = ts.factory.createIndexSignature(
-          undefined,
-          [
-            ts.factory.createParameterDeclaration(
-              undefined,
-              undefined,
-              "key",
-              undefined,
-              ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword)
-            ),
-          ],
-          ts.factory.createKeywordTypeNode(ts.SyntaxKind.AnyKeyword)
-        );
-
         dataDecl = ts.factory.createInterfaceDeclaration(
           [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
           dataName,
           undefined,
           undefined,
-          [...properties, indexSignature]
+          properties
         );
       } else {
         dataDecl = ts.factory.createTypeAliasDeclaration(

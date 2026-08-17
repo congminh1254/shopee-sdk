@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { MediaManager } from "../../managers/media.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("MediaManager (Generated Tests)", () => {
@@ -42,7 +42,7 @@ describe("MediaManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.cancelVideoUpload(exampleRequest as any);
+      const result = await manager.cancelVideoUpload(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -77,7 +77,7 @@ describe("MediaManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.completeVideoUpload(exampleRequest as any);
+      const result = await manager.completeVideoUpload(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -101,7 +101,7 @@ describe("MediaManager (Generated Tests)", () => {
       const exampleResponse = {
         status: "SUCCEEDED",
         reason: "test_string",
-        update_time: "1758018336",
+        update_time: 1758018336,
         video_info: {
           video_url:
             "http://play-src.vod.shopee.com/api/v4/11110201/mms/sg-11110201-6kh48-mepm7a0ttcw3c3.",
@@ -120,7 +120,7 @@ describe("MediaManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVideoUploadResult(exampleRequest as any);
+      const result = await manager.getVideoUploadResult(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -157,7 +157,7 @@ describe("MediaManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.initVideoUpload(exampleRequest as any);
+      const result = await manager.initVideoUpload(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -196,7 +196,7 @@ describe("MediaManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.uploadImage(exampleRequest as any);
+      const result = await manager.uploadImage(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -234,7 +234,7 @@ describe("MediaManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.uploadVideoPart(exampleRequest as any);
+      const result = await manager.uploadVideoPart(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

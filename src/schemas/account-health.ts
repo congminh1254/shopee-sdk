@@ -13,7 +13,6 @@ export interface GetLateOrdersRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100. Default is 10.
    */
   page_size?: number;
-  [key: string]: any;
 }
 /**
  * GetLateOrders_LateOrder sub-interface for GetLateOrders_Response
@@ -31,7 +30,6 @@ export interface GetLateOrders_LateOrder {
    * Late-by Days of this order.
    */
   late_by_days?: number;
-  [key: string]: any;
 }
 /**
  * GetLateOrders_Response sub-interface for GetLateOrdersResponse
@@ -45,7 +43,6 @@ export interface GetLateOrders_Response {
    * Total number of late orders.
    */
   total_count?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_late_orders
@@ -71,7 +68,6 @@ export interface GetListingsWithIssuesRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100. Default is 10.
    */
   page_size?: number;
-  [key: string]: any;
 }
 /**
  * GetListingsWithIssues_Listing sub-interface for GetListingsWithIssues_Response
@@ -85,7 +81,6 @@ export interface GetListingsWithIssues_Listing {
    * Reason of this item. Applicable values: 1: Prohibited2: Counterfeit3: Spam4: Inappropriate Image5: Insufficient Info6: Mall Listing Improvement7: Other Listing Improvement
    */
   reason?: number;
-  [key: string]: any;
 }
 /**
  * GetListingsWithIssues_Response sub-interface for GetListingsWithIssuesResponse
@@ -99,7 +94,6 @@ export interface GetListingsWithIssues_Response {
    * Total number of listing with issues.
    */
   total_count?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_listings_with_issues
@@ -129,7 +123,6 @@ export interface GetMetricSourceDetailRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100. Default is 10.
    */
   page_size?: number;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_NfrOrder sub-interface for GetMetricSourceDetail_Response
@@ -147,7 +140,6 @@ export interface GetMetricSourceDetail_NfrOrder {
    * Reason. Applicable values: 1001: Return Refund1002: Parcel Split Cancellation1003: First Mile Pick up fail1004: Order inclusion10005: Out of Stock10006: Undeliverable area10007: Cannot support COD10008: Logistics request cancelled10009: Logistics pickup failed10010: Logistics not ready10011: Inactive seller10012: Seller did not ship order10013: Order did not reach warehouse10014: Seller asked to cancel10015: Non-receipt10016: Wrong item10017: Damaged item10018: Incomplete product10019: Fake item10020: Functional Damage10021: Return Refund
    */
   detailed_reason?: number;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_CancellationOrder sub-interface for GetMetricSourceDetail_Response
@@ -165,7 +157,6 @@ export interface GetMetricSourceDetail_CancellationOrder {
    * Reason. Applicable values: 1001: Return Refund1002: Parcel Split Cancellation1003: First Mile Pick up fail1004: Order inclusion10005: Out of Stock10006: Undeliverable area10007: Cannot support COD10008: Logistics request cancelled10009: Logistics pickup failed10010: Logistics not ready10011: Inactive seller10012: Seller did not ship order10013: Order did not reach warehouse10014: Seller asked to cancel10015: Non-receipt10016: Wrong item10017: Damaged item10018: Incomplete product10019: Fake item10020: Functional Damage10021: Return Refund
    */
   detailed_reason?: number;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_ReturnRefundOrder sub-interface for GetMetricSourceDetail_Response
@@ -179,7 +170,6 @@ export interface GetMetricSourceDetail_ReturnRefundOrder {
    * Reason. Applicable values: 1001: Return Refund1002: Parcel Split Cancellation1003: First Mile Pick up fail1004: Order inclusion10005: Out of Stock10006: Undeliverable area10007: Cannot support COD10008: Logistics request cancelled10009: Logistics pickup failed10010: Logistics not ready10011: Inactive seller10012: Seller did not ship order10013: Order did not reach warehouse10014: Seller asked to cancel10015: Non-receipt10016: Wrong item10017: Damaged item10018: Incomplete product10019: Fake item10020: Functional Damage10021: Return Refund
    */
   detailed_reason?: number;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_LsrOrder sub-interface for GetMetricSourceDetail_Response
@@ -217,7 +207,6 @@ export interface GetMetricSourceDetail_LsrOrder {
    * Diagnosis of the issue.
    */
   diagnosis_scenario?: string[];
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_FhrOrder sub-interface for GetMetricSourceDetail_Response
@@ -271,7 +260,6 @@ export interface GetMetricSourceDetail_FhrOrder {
    * Diagnosis of the issue.
    */
   diagnosis_scenario?: string[];
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_OpfrDayDetailData sub-interface for GetMetricSourceDetail_Response
@@ -297,7 +285,6 @@ export interface GetMetricSourceDetail_OpfrDayDetailData {
    * Target.
    */
   target?: string;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_ViolationListing sub-interface for GetMetricSourceDetail_Response
@@ -315,7 +302,6 @@ export interface GetMetricSourceDetail_ViolationListing {
    * Updated on.
    */
   update_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_PreOrderListingViolationData sub-interface for GetMetricSourceDetail_Response
@@ -341,7 +327,6 @@ export interface GetMetricSourceDetail_PreOrderListingViolationData {
    * Target.
    */
   target?: string;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_PreOrderListing sub-interface for GetMetricSourceDetail_Response
@@ -355,7 +340,6 @@ export interface GetMetricSourceDetail_PreOrderListing {
    * Current Pre-order Status. Applicable values: 1: Yes2: No
    */
   current_pre_order_status?: number;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_SddListing sub-interface for GetMetricSourceDetail_Response
@@ -369,7 +353,6 @@ export interface GetMetricSourceDetail_SddListing {
    * Current SDD Status. Applicable values: 1: Yes0: No
    */
   current_sdd_status?: number;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_NddListing sub-interface for GetMetricSourceDetail_Response
@@ -383,7 +366,6 @@ export interface GetMetricSourceDetail_NddListing {
    * Current NDD Status. Applicable values: 1: Yes0: No
    */
   current_ndd_status?: number;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_AptOrder sub-interface for GetMetricSourceDetail_Response
@@ -421,7 +403,6 @@ export interface GetMetricSourceDetail_AptOrder {
    * First Mile Tracking No.
    */
   first_mile_tracking_no?: string;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_HdListing sub-interface for GetMetricSourceDetail_Response
@@ -435,7 +416,6 @@ export interface GetMetricSourceDetail_HdListing {
    * For 2030: % HD Listings, it refer to Current HD Status.For 2031: % HD Free Shipping Enabled, it refer to Free Shipping Enabled Status.Applicable values: 1: Yes2: No
    */
   current_status?: number;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_SaturdayShipment sub-interface for GetMetricSourceDetail_Response
@@ -473,7 +453,6 @@ export interface GetMetricSourceDetail_SaturdayShipment {
    * First Mile Tracking No.
    */
   first_mile_tracking_no?: string;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_OtdrOrder sub-interface for GetMetricSourceDetail_Response
@@ -507,7 +486,6 @@ export interface GetMetricSourceDetail_OtdrOrder {
    * Difference days between estimated delivery date and real delivery time
    */
   difference_between_edd_rdt?: string;
-  [key: string]: any;
 }
 /**
  * GetMetricSourceDetail_Response sub-interface for GetMetricSourceDetailResponse
@@ -578,7 +556,6 @@ export interface GetMetricSourceDetail_Response {
    * Total number of Affected Orders or Relevant Listings.
    */
   total_count?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_metric_source_detail
@@ -608,7 +585,6 @@ export interface GetPenaltyPointHistoryRequest {
    * Applicable values: 5: High Late Shipment Rate6: High Non-fulfilment Rate7: High number of non-fulfilled orders8: High number of late shipped orders9: Prohibited Listings10: Counterfeit / IP infringement11: Spam12: Copy/Steal images13: Re-uploading deleted listings with no change14: Bought counterfeit from mall15: Counterfeit caught by Shopee16: High percentage of pre-order listings17: Confirmed Fraud attempts (total)18: Confirmed Fraud attempts per week (All with vouchers only)19: Fake return address20: Shipping fraud/abuse21: High No. of Non-responded Chat22: Rude chat replies23: Request buyer to cancel order24: Rude reply to buyer's review25: Violate Return/Refund policy101: Tier Reason3026: Misuse of Shopee’s IP3028: Violate Shop Name Regulations3030: Direct transactions outside of the Shopee platform3032: Shipping empty / incomplete parcels3034: Severe Violations on Shopee Feed3036: Severe Violations on Shopee LIVE3038: Misuse of Local Vendor Tag3040: Use of misleading shop tag in listing image3042: Counterfeit / IP Infringement test3044: Repeat Offender - IP infringement and Counterfeit listings3046: Violation of Live Animals Selling Policy3048: Chat Spam3050: High Overseas Return Refunds Rate3052: Privacy breach in buyer's review reply3054: Order Brushing3056: porn image3058: Incorrect Product Categories3060: Extremely High Non-Fulfilment Rate3062: Penalty of Affiliate Marketing Solution (AMS) Overdue Invoice Payment3064: Government-related listing3066: Listing invalid gifted items3068: High non-fulfilment rate (Next Day Delivery Orders)3070: High Late Shipment Rate (Next Day Delivery Orders)3072: OPFR Violation Value3074: Direct transactions outside Shopee platform via chat3090: Prohibited Listings-Extreme Violations3091: Prohibited Listings-High Violations3092: Prohibited Listings-Mid Violations3093: Prohibited Listings-Low Violations3094: Counterfeit Listings-Extreme Violations3095: Counterfeit Listings-High Violations3096: Counterfeit Listings-Mid Violations3097: Counterfeit Listings-Low Violations3098: Spam Listings-Extreme Violations3099: Spam Listings-High Violations3100: Spam Listings-Mid Violations3101: Spam Listings-Low Violations3145: Return/Refund Rate (Non-integrated Channel)4130: Poor Product Quality
    */
   violation_type?: number;
-  [key: string]: any;
 }
 /**
  * GetPenaltyPointHistory_PenaltyPoint sub-interface for GetPenaltyPointHistory_Response
@@ -634,7 +610,6 @@ export interface GetPenaltyPointHistory_PenaltyPoint {
    * Applicable values: 5: High Late Shipment Rate6: High Non-fulfilment Rate7: High number of non-fulfilled orders8: High number of late shipped orders9: Prohibited Listings10: Counterfeit / IP infringement11: Spam12: Copy/Steal images13: Re-uploading deleted listings with no change14: Bought counterfeit from mall15: Counterfeit caught by Shopee16: High percentage of pre-order listings17: Confirmed Fraud attempts (total)18: Confirmed Fraud attempts per week (All with vouchers only)19: Fake return address20: Shipping fraud/abuse21: High No. of Non-responded Chat22: Rude chat replies23: Request buyer to cancel order24: Rude reply to buyer's review25: Violate Return/Refund policy101: Tier Reason3026: Misuse of Shopee’s IP3028: Violate Shop Name Regulations3030: Direct transactions outside of the Shopee platform3032: Shipping empty / incomplete parcels3034: Severe Violations on Shopee Feed3036: Severe Violations on Shopee LIVE3038: Misuse of Local Vendor Tag3040: Use of misleading shop tag in listing image3042: Counterfeit / IP Infringement test3044: Repeat Offender - IP infringement and Counterfeit listings3046: Violation of Live Animals Selling Policy3048: Chat Spam3050: High Overseas Return Refunds Rate3052: Privacy breach in buyer's review reply3054: Order Brushing3056: porn image3058: Incorrect Product Categories3060: Extremely High Non-Fulfilment Rate3062: Penalty of Affiliate Marketing Solution (AMS) Overdue Invoice Payment3064: Government-related listing3066: Listing invalid gifted items3068: High non-fulfilment rate (Next Day Delivery Orders)3070: High Late Shipment Rate (Next Day Delivery Orders)3072: OPFR Violation Value3074: Direct transactions outside Shopee platform via chat3090: Prohibited Listings-Extreme Violations3091: Prohibited Listings-High Violations3092: Prohibited Listings-Mid Violations3093: Prohibited Listings-Low Violations3094: Counterfeit Listings-Extreme Violations3095: Counterfeit Listings-High Violations3096: Counterfeit Listings-Mid Violations3097: Counterfeit Listings-Low Violations3098: Spam Listings-Extreme Violations3099: Spam Listings-High Violations3100: Spam Listings-Mid Violations3101: Spam Listings-Low Violations3145: Return/Refund Rate (Non-integrated Channel)4130: Poor Product Quality
    */
   violation_type?: number;
-  [key: string]: any;
 }
 /**
  * GetPenaltyPointHistory_Response sub-interface for GetPenaltyPointHistoryResponse
@@ -648,7 +623,6 @@ export interface GetPenaltyPointHistory_Response {
    * Total number of penalty point records.
    */
   total_count?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_penalty_point_history
@@ -678,7 +652,6 @@ export interface GetPunishmentHistoryRequest {
    * The status of punishment. Applicable values: 1: Ongoing2: Ended
    */
   punishment_status: number;
-  [key: string]: any;
 }
 /**
  * GetPunishmentHistory_Punishment sub-interface for GetPunishmentHistory_Response
@@ -716,7 +689,6 @@ export interface GetPunishmentHistory_Punishment {
    * Return the specific percentage of order limit when punishment_type is: 2008: Order LimitDaily Order Limit = X % * L28D ADO (Average Daily Order of this Shop in Past 28 Days)
    */
   order_limit?: string;
-  [key: string]: any;
 }
 /**
  * GetPunishmentHistory_Response sub-interface for GetPunishmentHistoryResponse
@@ -730,7 +702,6 @@ export interface GetPunishmentHistory_Response {
    * Total number of punishment records.
    */
   total_count?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_punishment_history
@@ -768,7 +739,6 @@ export interface GetShopPerformance_OverallPerformance {
    * The number of metrics that did not meet target under Customer Service Performance type.
    */
   custom_service_failed?: number;
-  [key: string]: any;
 }
 /**
  * GetShopPerformance_Target sub-interface for GetShopPerformance_Metric
@@ -782,7 +752,6 @@ export interface GetShopPerformance_Target {
    * Comparator of target: <, <=, >, >=, =
    */
   comparator?: string;
-  [key: string]: any;
 }
 /**
  * GetShopPerformance_Metric sub-interface for GetShopPerformance_Response
@@ -821,7 +790,6 @@ export interface GetShopPerformance_Metric {
    * (Only for whitelist TW sellers) The exemption_end_date value will not be empty if ALL conditions are met: - The shop is in the "POL Shop Whitelist"- Within the "Exemption Period"- The metric_id is 12 (Pre-order Listing %) or 15 (Days of Pre-order Listing Violation)
    */
   exemption_end_date?: string;
-  [key: string]: any;
 }
 /**
  * GetShopPerformance_Response sub-interface for GetShopPerformanceResponse
@@ -829,7 +797,6 @@ export interface GetShopPerformance_Metric {
 export interface GetShopPerformance_Response {
   overall_performance?: GetShopPerformance_OverallPerformance;
   metric_list?: GetShopPerformance_Metric[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_performance

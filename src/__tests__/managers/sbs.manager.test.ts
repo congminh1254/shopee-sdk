@@ -12,7 +12,7 @@ import {
 } from "../../schemas/sbs.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("SbsManager", () => {
@@ -47,13 +47,13 @@ describe("SbsManager", () => {
               bound_whs: [
                 {
                   whs_region: "SG",
-                  whs_ids: "SGL,SGC",
+                  whs_ids: ["SGL", "SGC"],
                 },
               ],
             },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -79,7 +79,6 @@ describe("SbsManager", () => {
         error: "",
         message: "",
         response: {
-          cursor: "eyJDdXJyZW50UGFnZU5vIjoxfQ==",
           item_list: [
             {
               warehouse_item_id: "900625438",
@@ -255,7 +254,7 @@ describe("SbsManager", () => {
     });
 
     it("should get expiry report with category filter", async () => {
-      const mockResponse: any = {
+      const mockResponse: GetExpiryReportResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -269,8 +268,8 @@ describe("SbsManager", () => {
       const result = await sbsManager.getExpiryReport({
         whs_region: "ID",
         category_id_l1: 100002,
-        whs_ids: "IDL,IDG",
-      } as any);
+        whs_ids: ["IDL", "IDG"],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_expiry_report", {
         method: "GET",
@@ -278,7 +277,7 @@ describe("SbsManager", () => {
         params: {
           whs_region: "ID",
           category_id_l1: 100002,
-          whs_ids: "IDL,IDG",
+          whs_ids: ["IDL", "IDG"],
         },
       });
 
@@ -476,7 +475,7 @@ describe("SbsManager", () => {
         whs_region: "CN",
         page_no: 1,
         page_size: 10,
-      } as any);
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_stock_movement", {
         method: "GET",
@@ -498,7 +497,7 @@ describe("SbsManager", () => {
     });
 
     it("should get stock movement with all filters", async () => {
-      const mockResponse: any = {
+      const mockResponse: GetStockMovementResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -517,11 +516,11 @@ describe("SbsManager", () => {
         start_time: "2025-01-01",
         end_time: "2025-01-31",
         whs_region: "MY",
-        whs_ids: "MYL,MYC",
+        whs_ids: ["MYL", "MYC"],
         category_id_l1: 100002,
         sku_id: "801866836_10006075010",
         item_id: "801866836",
-      } as any);
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_stock_movement", {
         method: "GET",
@@ -530,7 +529,7 @@ describe("SbsManager", () => {
           start_time: "2025-01-01",
           end_time: "2025-01-31",
           whs_region: "MY",
-          whs_ids: "MYL,MYC",
+          whs_ids: ["MYL", "MYC"],
           category_id_l1: 100002,
           sku_id: "801866836_10006075010",
           item_id: "801866836",

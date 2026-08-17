@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { AddOnDealManager } from "../../managers/add-on-deal.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AddOnDealManager (Generated Tests)", () => {
@@ -45,7 +45,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addAddOnDeal(exampleRequest as any);
+      const result = await manager.addAddOnDeal(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -89,7 +89,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addAddOnDealMainItem(exampleRequest as any);
+      const result = await manager.addAddOnDealMainItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -139,7 +139,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addAddOnDealSubItem(exampleRequest as any);
+      const result = await manager.addAddOnDealSubItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -171,7 +171,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteAddOnDeal(exampleRequest as any);
+      const result = await manager.deleteAddOnDeal(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -205,7 +205,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteAddOnDealMainItem(exampleRequest as any);
+      const result = await manager.deleteAddOnDealMainItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -251,7 +251,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteAddOnDealSubItem(exampleRequest as any);
+      const result = await manager.deleteAddOnDealSubItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -283,7 +283,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.endAddOnDeal(exampleRequest as any);
+      const result = await manager.endAddOnDeal(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -324,7 +324,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAddOnDeal(exampleRequest as any);
+      const result = await manager.getAddOnDeal(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -372,7 +372,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAddOnDealList(exampleRequest as any);
+      const result = await manager.getAddOnDealList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -410,7 +410,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAddOnDealMainItem(exampleRequest as any);
+      const result = await manager.getAddOnDealMainItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -454,7 +454,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAddOnDealSubItem(exampleRequest as any);
+      const result = await manager.getAddOnDealSubItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -500,7 +500,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateAddOnDeal(exampleRequest as any);
+      const result = await manager.updateAddOnDeal(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -543,7 +543,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateAddOnDealMainItem(exampleRequest as any);
+      const result = await manager.updateAddOnDealMainItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -594,7 +594,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateAddOnDealSubItem(exampleRequest as any);
+      const result = await manager.updateAddOnDealSubItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

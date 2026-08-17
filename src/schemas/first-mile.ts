@@ -48,7 +48,6 @@ export interface BindCourierDeliveryFirstMileTrackingNumber_Order {
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there isn't a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for bind_courier_delivery_first_mile_tracking_number
@@ -68,7 +67,6 @@ export interface BindCourierDeliveryFirstMileTrackingNumberRequest {
    * The list of order_sn. You can specify up to 50 order_sns in this call. One fm_tn maximum number of total bind orders is 10000.
    */
   order_list: BindCourierDeliveryFirstMileTrackingNumber_Order[];
-  [key: string]: any;
 }
 /**
  * BindCourierDeliveryFirstMileTrackingNumber_Success sub-interface for BindCourierDeliveryFirstMileTrackingNumber_Response
@@ -82,7 +80,6 @@ export interface BindCourierDeliveryFirstMileTrackingNumber_Success {
    * Shopee's unique identifier for the package under an order.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * BindCourierDeliveryFirstMileTrackingNumber_Fail sub-interface for BindCourierDeliveryFirstMileTrackingNumber_Response
@@ -104,7 +101,6 @@ export interface BindCourierDeliveryFirstMileTrackingNumber_Fail {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * BindCourierDeliveryFirstMileTrackingNumber_Response sub-interface for BindCourierDeliveryFirstMileTrackingNumberResponse
@@ -116,7 +112,6 @@ export interface BindCourierDeliveryFirstMileTrackingNumber_Response {
   binding_id?: string;
   success_list?: BindCourierDeliveryFirstMileTrackingNumber_Success[];
   fail_list?: BindCourierDeliveryFirstMileTrackingNumber_Fail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for bind_courier_delivery_first_mile_tracking_number
@@ -142,7 +137,6 @@ export interface BindFirstMileTrackingNumber_Order {
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for bind_first_mile_tracking_number
@@ -198,7 +192,6 @@ export interface BindFirstMileTrackingNumberRequest {
    * Warehouse type. Retrieved from v2.first_mile.get_transit_warehouse_list.0 = normal warehouse1 = vendor warehouseNote: When the first-mile delivery mode is "Drop Off", this field is expected to be a required field. However, to avoid affecting your existing services, this field will be temporarily optional until April 30, 2026. Please complete the integration before then to avoid any impact on your services if it is changed to a required field later.
    */
   warehouse_type?: number;
-  [key: string]: any;
 }
 /**
  * BindFirstMileTrackingNumber_Warning sub-interface for BindFirstMileTrackingNumberResponse
@@ -208,7 +201,6 @@ export interface BindFirstMileTrackingNumber_Warning {
    * Shopee's unique identifier for an order.
    */
   order_sn?: string;
-  [key: string]: any;
 }
 /**
  * BindFirstMileTrackingNumber_BindFirstMileTrackingNumber_Order sub-interface for BindFirstMileTrackingNumber_Response
@@ -230,7 +222,6 @@ export interface BindFirstMileTrackingNumber_BindFirstMileTrackingNumber_Order {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * BindFirstMileTrackingNumber_Response sub-interface for BindFirstMileTrackingNumberResponse
@@ -244,7 +235,6 @@ export interface BindFirstMileTrackingNumber_Response {
    * The list of orders.
    */
   order_list?: BindFirstMileTrackingNumber_BindFirstMileTrackingNumber_Order[];
-  [key: string]: any;
 }
 /**
  * Response data payload for bind_first_mile_tracking_number
@@ -269,7 +259,6 @@ export interface GenerateAndBindFirstMileTrackingNumber_Order {
    * Shopee's unique identifier for the package under an order. You should fill the field with empty string when there isn't a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * GenerateAndBindFirstMileTrackingNumber_CourierDeliveryInfo sub-interface for GenerateAndBindFirstMileTrackingNumberRequest
@@ -295,7 +284,6 @@ export interface GenerateAndBindFirstMileTrackingNumber_CourierDeliveryInfo {
    * The identity of courier service. Retrieved from v2.first_mile.get_courier_delivery_channel_list.
    */
   courier_service_id: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for generate_and_bind_first_mile_tracking_number
@@ -319,7 +307,6 @@ export interface GenerateAndBindFirstMileTrackingNumberRequest {
    * The set of information you need to generate FM tracking number and bind orders.
    */
   courier_delivery_info: GenerateAndBindFirstMileTrackingNumber_CourierDeliveryInfo;
-  [key: string]: any;
 }
 /**
  * GenerateAndBindFirstMileTrackingNumber_Success sub-interface for GenerateAndBindFirstMileTrackingNumber_Response
@@ -333,7 +320,6 @@ export interface GenerateAndBindFirstMileTrackingNumber_Success {
    * Shopee's unique identifier for the package under an order.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * GenerateAndBindFirstMileTrackingNumber_Fail sub-interface for GenerateAndBindFirstMileTrackingNumber_Response
@@ -355,7 +341,6 @@ export interface GenerateAndBindFirstMileTrackingNumber_Fail {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * GenerateAndBindFirstMileTrackingNumber_Response sub-interface for GenerateAndBindFirstMileTrackingNumberResponse
@@ -367,7 +352,6 @@ export interface GenerateAndBindFirstMileTrackingNumber_Response {
   binding_id?: string;
   success_list?: GenerateAndBindFirstMileTrackingNumber_Success[];
   fail_list?: GenerateAndBindFirstMileTrackingNumber_Fail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for generate_and_bind_first_mile_tracking_number
@@ -395,7 +379,6 @@ export interface GenerateFirstMileTrackingNumberRequest {
    * The number of first-mile tracking numbers generated. Up to 20 first-mile tracking numbers can be generated for one declaration day.
    */
   quantity?: number;
-  [key: string]: any;
 }
 /**
  * GenerateFirstMileTrackingNumber_Response sub-interface for GenerateFirstMileTrackingNumberResponse
@@ -405,7 +388,6 @@ export interface GenerateFirstMileTrackingNumber_Response {
    * The list of first mile tracking number that you generate
    */
   first_mile_tracking_number_list?: string[];
-  [key: string]: any;
 }
 /**
  * Response data payload for generate_first_mile_tracking_number
@@ -428,7 +410,6 @@ export interface GetChannelListRequest {
    * Use this field to specify the region you want to ship parcel. Available value: CN, KR
    */
   region?: Region | string | number;
-  [key: string]: any;
 }
 /**
  * GetChannelList_LogisticsChannel sub-interface for GetChannelList_Response
@@ -446,14 +427,12 @@ export interface GetChannelList_LogisticsChannel {
    * The shipment method for bound orders.Available values: pickup, dropoff, self_deliver.
    */
   shipment_method?: ShipmentMethod | string | number;
-  [key: string]: any;
 }
 /**
  * GetChannelList_Response sub-interface for GetChannelListResponse
  */
 export interface GetChannelList_Response {
   logistics_channel_list?: GetChannelList_LogisticsChannel[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_channel_list
@@ -475,7 +454,6 @@ export interface GetCourierDeliveryChannelListRequest {
    * Use this field to specify the region you want to ship parcel. Available value: CN
    */
   region?: string;
-  [key: string]: any;
 }
 /**
  * GetCourierDeliveryChannelList_Courier sub-interface for GetCourierDeliveryChannelList_LogisticsChannel
@@ -493,7 +471,6 @@ export interface GetCourierDeliveryChannelList_Courier {
    * The name of the service provided by courier.
    */
   courier_service_name?: string;
-  [key: string]: any;
 }
 /**
  * GetCourierDeliveryChannelList_LogisticsChannel sub-interface for GetCourierDeliveryChannelList_Response
@@ -508,14 +485,12 @@ export interface GetCourierDeliveryChannelList_LogisticsChannel {
    */
   logistics_product_name?: string;
   courier_list?: GetCourierDeliveryChannelList_Courier[];
-  [key: string]: any;
 }
 /**
  * GetCourierDeliveryChannelList_Response sub-interface for GetCourierDeliveryChannelListResponse
  */
 export interface GetCourierDeliveryChannelList_Response {
   logistics_channel_list?: GetCourierDeliveryChannelList_LogisticsChannel[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_courier_delivery_channel_list
@@ -546,7 +521,6 @@ export interface GetCourierDeliveryDetailRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. limit [1, 50].
    */
   page_size?: number;
-  [key: string]: any;
 }
 /**
  * GetCourierDeliveryDetail_Order sub-interface for GetCourierDeliveryDetail_Response
@@ -572,7 +546,6 @@ export interface GetCourierDeliveryDetail_Order {
    * Use this filed to indicate whether the order has arrived at transit warehouse.
    */
   arrived_transit_warehouse?: boolean;
-  [key: string]: any;
 }
 /**
  * GetCourierDeliveryDetail_Response sub-interface for GetCourierDeliveryDetailResponse
@@ -603,7 +576,6 @@ export interface GetCourierDeliveryDetail_Response {
    */
   next_cursor?: string;
   order_list?: GetCourierDeliveryDetail_Order[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_courier_delivery_detail
@@ -637,7 +609,6 @@ export interface GetCourierDeliveryTrackingNumberListRequest {
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
   cursor?: string;
-  [key: string]: any;
 }
 /**
  * GetCourierDeliveryTrackingNumberList_TrackingNumber sub-interface for GetCourierDeliveryTrackingNumberList_Response
@@ -663,7 +634,6 @@ export interface GetCourierDeliveryTrackingNumberList_TrackingNumber {
    * The declare date of binding ID/first-mile tracking number.
    */
   declare_date?: DeclareDate | string | number;
-  [key: string]: any;
 }
 /**
  * GetCourierDeliveryTrackingNumberList_Response sub-interface for GetCourierDeliveryTrackingNumberListResponse
@@ -678,7 +648,6 @@ export interface GetCourierDeliveryTrackingNumberList_Response {
    * If more is true, you should pass the next_cursor in the next request as cursor. The value of next_cursor will be empty string when more is false.
    */
   next_cursor?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_courier_delivery_tracking_number_list
@@ -702,7 +671,6 @@ export interface GetCourierDeliveryWaybillRequest {
    * Binding ID list of waybill. System limits maximum of Binding ID to 50.
    */
   binding_id_list: string[];
-  [key: string]: any;
 }
 /**
  * GetCourierDeliveryWaybill_Waybill sub-interface for GetCourierDeliveryWaybill_Response
@@ -716,14 +684,12 @@ export interface GetCourierDeliveryWaybill_Waybill {
    * URL for downloading waybill.
    */
   shipping_label_url?: string;
-  [key: string]: any;
 }
 /**
  * GetCourierDeliveryWaybill_Response sub-interface for GetCourierDeliveryWaybillResponse
  */
 export interface GetCourierDeliveryWaybill_Response {
   waybill_list?: GetCourierDeliveryWaybill_Waybill[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_courier_delivery_waybill
@@ -750,7 +716,6 @@ export interface GetDetailRequest {
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
   cursor?: string;
-  [key: string]: any;
 }
 /**
  * GetDetail_Order sub-interface for GetDetail_Response
@@ -776,7 +741,6 @@ export interface GetDetail_Order {
    * Use this filed to indicate whether the order has arrived at transit warehouse.
    */
   arrived_transit_warehouse?: boolean;
-  [key: string]: any;
 }
 /**
  * GetDetail_Response sub-interface for GetDetailResponse
@@ -814,7 +778,6 @@ export interface GetDetail_Response {
    * If more is true, you should pass the next_cursor in the next request as cursor. The value of next_cursor will be empty string when more is false.
    */
   next_cursor?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_detail
@@ -848,7 +811,6 @@ export interface GetTrackingNumberListRequest {
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
   cursor?: string;
-  [key: string]: any;
 }
 /**
  * GetTrackingNumberList_FirstMileTrackingNumber sub-interface for GetTrackingNumberList_Response
@@ -866,7 +828,6 @@ export interface GetTrackingNumberList_FirstMileTrackingNumber {
    * The specified delivery date.
    */
   declare_date?: string;
-  [key: string]: any;
 }
 /**
  * GetTrackingNumberList_Response sub-interface for GetTrackingNumberListResponse
@@ -884,7 +845,6 @@ export interface GetTrackingNumberList_Response {
    * If more is true, you should pass the next_cursor in the next request as cursor. The value of next_cursor will be empty string when more is false.
    */
   next_cursor?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_tracking_number_list
@@ -910,7 +870,6 @@ export interface GetTransitWarehouseListRequest {
    * Use this field to specify the shipment method you want to ship parcel. Available value: pickup, dropoff, self_deliver, courier_delivery.Note: Only when shipment_method = dropoff, the API response will include warehouses where warehouse_type = 1 (vendor warehouse).
    */
   shipment_method?: ShipmentMethod | string | number;
-  [key: string]: any;
 }
 /**
  * GetTransitWarehouseList_TransitWarehouse sub-interface for GetTransitWarehouseList_Response
@@ -932,14 +891,12 @@ export interface GetTransitWarehouseList_TransitWarehouse {
    * Warehouse type: 0 = normal warehouse1 = vendor warehouseNote: Only when shipment_method = dropoff, the API response will include warehouses where warehouse_type = 1 (vendor warehouse).
    */
   warehouse_type?: number;
-  [key: string]: any;
 }
 /**
  * GetTransitWarehouseList_Response sub-interface for GetTransitWarehouseListResponse
  */
 export interface GetTransitWarehouseList_Response {
   transit_warehouse_list?: GetTransitWarehouseList_TransitWarehouse[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_transit_warehouse_list
@@ -969,7 +926,6 @@ export interface GetUnbindOrderListRequest {
    * Indicate response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them.  Available values: logistics_status,package_number.
    */
   response_optional_fields?: ResponseOptionalFields | string | number;
-  [key: string]: any;
 }
 /**
  * GetUnbindOrderList_Order sub-interface for GetUnbindOrderList_Response
@@ -987,7 +943,6 @@ export interface GetUnbindOrderList_Order {
    * The Shopee logistics status for the order. Applicable values: See Data Definition- LogisticsStatus.
    */
   logistics_status?: string;
-  [key: string]: any;
 }
 /**
  * GetUnbindOrderList_Response sub-interface for GetUnbindOrderListResponse
@@ -1005,7 +960,6 @@ export interface GetUnbindOrderList_Response {
    * If more is true, you should pass the next_cursor in the next request as cursor. The value of next_cursor will be empty string when more is false.
    */
   next_cursor?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_unbind_order_list
@@ -1027,7 +981,6 @@ export interface GetWaybillRequest {
    * The first mile tracking number that you want to print waybill.limit [1, 50]
    */
   first_mile_tracking_number_list: string[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_waybill
@@ -1037,7 +990,6 @@ export interface GetWaybillResponseData {
    * The waybill file.
    */
   waybill?: any;
-  [key: string]: any;
 }
 /**
  * Response payload for get_waybill
@@ -1057,7 +1009,6 @@ export interface UnbindFirstMileTrackingNumber_Order {
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for unbind_first_mile_tracking_number
@@ -1073,7 +1024,6 @@ export interface UnbindFirstMileTrackingNumberRequest {
    * The list of order info you want to unbind from the given first mile tracking number.You can specify up to 50 orders in this call.
    */
   order_list: UnbindFirstMileTrackingNumber_Order[];
-  [key: string]: any;
 }
 /**
  * UnbindFirstMileTrackingNumber_Warning sub-interface for UnbindFirstMileTrackingNumberResponse
@@ -1087,7 +1037,6 @@ export interface UnbindFirstMileTrackingNumber_Warning {
    * Shopee's unique identifier for the package under an order.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * UnbindFirstMileTrackingNumber_UnbindFirstMileTrackingNumber_Order sub-interface for UnbindFirstMileTrackingNumber_Response
@@ -1109,7 +1058,6 @@ export interface UnbindFirstMileTrackingNumber_UnbindFirstMileTrackingNumber_Ord
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * UnbindFirstMileTrackingNumber_Response sub-interface for UnbindFirstMileTrackingNumberResponse
@@ -1123,7 +1071,6 @@ export interface UnbindFirstMileTrackingNumber_Response {
    * The binding result list of each order.
    */
   order_list?: UnbindFirstMileTrackingNumber_UnbindFirstMileTrackingNumber_Order[];
-  [key: string]: any;
 }
 /**
  * Response data payload for unbind_first_mile_tracking_number
@@ -1148,7 +1095,6 @@ export interface UnbindFirstMileTrackingNumberAll_Order {
    * Shopee's unique identifier for the package under an order. You should fill the field with empty string when there isn't a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for unbind_first_mile_tracking_number_all
@@ -1160,7 +1106,6 @@ export interface UnbindFirstMileTrackingNumberAllRequest {
    * The list of order info you want to unbind from the first mile tracking number or binding ID. You can specify up to 50 order_sns in this call.
    */
   order_list: UnbindFirstMileTrackingNumberAll_Order[];
-  [key: string]: any;
 }
 /**
  * UnbindFirstMileTrackingNumberAll_Success sub-interface for UnbindFirstMileTrackingNumberAll_Response
@@ -1182,7 +1127,6 @@ export interface UnbindFirstMileTrackingNumberAll_Success {
    * The generated first-mile tracking number, value might be blank.
    */
   first_mile_tracking_number?: string;
-  [key: string]: any;
 }
 /**
  * UnbindFirstMileTrackingNumberAll_Fail sub-interface for UnbindFirstMileTrackingNumberAll_Response
@@ -1204,7 +1148,6 @@ export interface UnbindFirstMileTrackingNumberAll_Fail {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * UnbindFirstMileTrackingNumberAll_Response sub-interface for UnbindFirstMileTrackingNumberAllResponse
@@ -1212,7 +1155,6 @@ export interface UnbindFirstMileTrackingNumberAll_Fail {
 export interface UnbindFirstMileTrackingNumberAll_Response {
   success_list?: UnbindFirstMileTrackingNumberAll_Success[];
   fail_list?: UnbindFirstMileTrackingNumberAll_Fail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for unbind_first_mile_tracking_number_all

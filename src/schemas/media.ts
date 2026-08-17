@@ -16,7 +16,6 @@ export interface CancelVideoUploadRequest {
    * The unique ID of the upload task, returned by v2.media.init_video_upload.
    */
   video_upload_id: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for cancel_video_upload
@@ -26,7 +25,6 @@ export interface CancelVideoUploadResponseData {
    * Indicate warning message you should take care.
    */
   warning?: string;
-  [key: string]: any;
 }
 /**
  * Response payload for cancel_video_upload
@@ -44,7 +42,6 @@ export interface CompleteVideoUploadRequest {
    * The unique ID of the upload task, returned by v2.media.init_video_upload.
    */
   video_upload_id: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for complete_video_upload
@@ -54,7 +51,6 @@ export interface CompleteVideoUploadResponseData {
    * Indicate warning message you should take care.
    */
   warning?: string;
-  [key: string]: any;
 }
 /**
  * Response payload for complete_video_upload
@@ -72,7 +68,6 @@ export interface GetVideoUploadResultRequest {
    * The unique ID of the upload task, returned by v2.media.init_video_upload.
    */
   video_upload_id: string;
-  [key: string]: any;
 }
 /**
  * GetVideoUploadResult_VideoInfo sub-interface for GetVideoUploadResult_Response
@@ -102,7 +97,6 @@ export interface GetVideoUploadResult_VideoInfo {
    * Video resolution, e.g., "1280x1280".
    */
   resolution?: string;
-  [key: string]: any;
 }
 /**
  * GetVideoUploadResult_Response sub-interface for GetVideoUploadResultResponse
@@ -124,7 +118,6 @@ export interface GetVideoUploadResult_Response {
    * Transcoded video info, will be returned if status is SUCCEEDED.
    */
   video_info?: GetVideoUploadResult_VideoInfo;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_video_upload_result
@@ -162,7 +155,6 @@ export interface InitVideoUploadRequest {
    * Video duration in seconds. Rules and restrictions by business and scene:- If business = 3 (Video) and scene = 1 (Shopee Video): 1s~180s.
    */
   duration: number;
-  [key: string]: any;
 }
 /**
  * InitVideoUpload_Response sub-interface for InitVideoUploadResponse
@@ -176,7 +168,6 @@ export interface InitVideoUpload_Response {
    * The size of each part. When uploading video chunks, the video must be split according to this part size for each upload request.
    */
   part_size?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for init_video_upload
@@ -206,7 +197,6 @@ export interface UploadImageRequest {
    * The image files to be uploaded. Rules and restrictions by business and scene:- If business = 2 (Returns) and scene = 1 (Return Seller Self Arrange Pickup Proof Image): Up to 3 images can be uploaded. Each image must not exceed 10MB. Supported formats: JPG, JPEG, PNG.
    */
   images: any;
-  [key: string]: any;
 }
 /**
  * UploadImage_Image sub-interface for UploadImage_Response
@@ -220,7 +210,6 @@ export interface UploadImage_Image {
    * URL of the uploaded image.
    */
   image_url?: string;
-  [key: string]: any;
 }
 /**
  * UploadImage_Response sub-interface for UploadImageResponse
@@ -230,7 +219,6 @@ export interface UploadImage_Response {
    * List of uploaded images.
    */
   image_list?: UploadImage_Image[];
-  [key: string]: any;
 }
 /**
  * Response data payload for upload_image
@@ -264,7 +252,6 @@ export interface UploadVideoPartRequest {
    * MD5 checksum of this part for data integrity validation.
    */
   part_md5: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for upload_video_part
@@ -274,7 +261,6 @@ export interface UploadVideoPartResponseData {
    * Indicate warning message you should take care.
    */
   warning?: string;
-  [key: string]: any;
 }
 /**
  * Response payload for upload_video_part

@@ -537,7 +537,7 @@ describe("ShopeeFetch", () => {
         status: 200,
         headers: {
           get: (name: string) => headers.get(name.toLowerCase()),
-        } as any,
+        },
         text: jest.fn(() => Promise.resolve("<html>Not JSON</html>")),
         json: jest.fn(),
       });
@@ -555,7 +555,7 @@ describe("ShopeeFetch", () => {
         status: 200,
         headers: {
           get: (name: string) => headers.get(name.toLowerCase()),
-        } as any,
+        },
         arrayBuffer: jest.fn(() => Promise.resolve(uint8.buffer)),
       });
 
@@ -573,7 +573,7 @@ describe("ShopeeFetch", () => {
         status: 200,
         headers: {
           get: (name: string) => headers.get(name.toLowerCase()),
-        } as any,
+        },
         arrayBuffer: jest.fn(() => Promise.resolve(uint8.buffer)),
       });
 

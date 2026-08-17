@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { ShopCategoryManager } from "../../managers/shop-category.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ShopCategoryManager (Generated Tests)", () => {
@@ -48,7 +48,7 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addItemList(exampleRequest as any);
+      const result = await manager.addItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -81,7 +81,7 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addShopCategory(exampleRequest as any);
+      const result = await manager.addShopCategory(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -116,7 +116,7 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteItemList(exampleRequest as any);
+      const result = await manager.deleteItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -149,7 +149,7 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteShopCategory(exampleRequest as any);
+      const result = await manager.deleteShopCategory(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -185,7 +185,7 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemList(exampleRequest as any);
+      const result = await manager.getItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -227,7 +227,7 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopCategoryList(exampleRequest as any);
+      const result = await manager.getShopCategoryList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -265,7 +265,7 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateShopCategory(exampleRequest as any);
+      const result = await manager.updateShopCategory(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

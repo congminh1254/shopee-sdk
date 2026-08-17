@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { VoucherManager } from "../../managers/voucher.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("VoucherManager (Generated Tests)", () => {
@@ -28,8 +28,8 @@ describe("VoucherManager (Generated Tests)", () => {
       const exampleRequest = {
         voucher_name: "testamount",
         voucher_code: "test",
-        start_time: "1624719600",
-        end_time: "1624978800",
+        start_time: 1624719600,
+        end_time: 1624978800,
         voucher_type: 1,
         reward_type: 1,
         usage_quantity: 20000,
@@ -52,7 +52,7 @@ describe("VoucherManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addVoucher(exampleRequest as any);
+      const result = await manager.addVoucher(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -84,7 +84,7 @@ describe("VoucherManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteVoucher(exampleRequest as any);
+      const result = await manager.deleteVoucher(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -116,7 +116,7 @@ describe("VoucherManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.endVoucher(exampleRequest as any);
+      const result = await manager.endVoucher(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -145,8 +145,8 @@ describe("VoucherManager (Generated Tests)", () => {
         reward_type: 1,
         usage_quantity: 1,
         current_usage: 0,
-        start_time: "1622198847",
-        end_time: "1622807247",
+        start_time: 1622198847,
+        end_time: 1622807247,
         is_admin: false,
         voucher_purpose: 0,
         display_channel_list: [1, 2],
@@ -156,7 +156,7 @@ describe("VoucherManager (Generated Tests)", () => {
         discount_amount: 11,
         cmt_voucher_status: 1,
         item_id_list: [123422, 122311],
-        display_start_time: "162078900",
+        display_start_time: 162078900,
         target_voucher: 123,
         usecase: 123,
       };
@@ -168,7 +168,7 @@ describe("VoucherManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVoucher(exampleRequest as any);
+      const result = await manager.getVoucher(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -202,14 +202,14 @@ describe("VoucherManager (Generated Tests)", () => {
             reward_type: 1,
             usage_quantity: 11,
             current_usage: 0,
-            start_time: "1656647700",
-            end_time: "1659243300",
+            start_time: 1656647700,
+            end_time: 1659243300,
             is_admin: false,
             voucher_purpose: 0,
             discount_amount: 60,
             percentage: 10,
             cmt_voucher_status: 1,
-            display_start_time: "1638342000",
+            display_start_time: 1638342000,
           },
         ],
       };
@@ -221,7 +221,7 @@ describe("VoucherManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVoucherList(exampleRequest as any);
+      const result = await manager.getVoucherList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -242,8 +242,8 @@ describe("VoucherManager (Generated Tests)", () => {
       const exampleRequest = {
         voucher_id: 123,
         voucher_name: "test",
-        start_time: "1624327200",
-        end_time: "1632448798",
+        start_time: 1624327200,
+        end_time: 1632448798,
         usage_quantity: 11,
         min_basket_price: 1,
         discount_amount: 1,
@@ -264,7 +264,7 @@ describe("VoucherManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateVoucher(exampleRequest as any);
+      const result = await manager.updateVoucher(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

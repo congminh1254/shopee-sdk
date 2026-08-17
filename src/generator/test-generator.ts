@@ -2,21 +2,40 @@ import fs from "node:fs";
 import path from "node:path";
 import { EndpointSpec, NormalizedParam, getManagerClassName, toCamelCase } from "./types.js";
 
-export function parsePrimitive(val: string, type: string): any {
+export function parsePrimitive(val: string, type: string): unknown {
   const lowerType = type.toLowerCase();
   if (lowerType === "boolean" || lowerType === "bool") {
     return val.toLowerCase() === "true" || val === "1" || val === "yes";
   }
   if (
-    ["number", "int", "integer", "int32", "int64", "float", "double", "numeric"].includes(lowerType)
+    [
+      "number",
+      "int",
+      "integer",
+      "int32",
+      "int64",
+      "float",
+      "double",
+      "numeric",
+      "date",
+      "datetime",
+    ].includes(lowerType) ||
+    lowerType.includes("date") ||
+    lowerType.includes("number")
   ) {
     const num = Number(val);
-    return isNaN(num) ? 1 : num;
+    if (!isNaN(num)) {
+      return num;
+    }
+    if (lowerType.includes("date")) {
+      return val;
+    }
+    return 1;
   }
   return val;
 }
 
-export function getDefaultPrimitive(type: string): any {
+export function getDefaultPrimitive(type: string): unknown {
   const lowerType = type.toLowerCase();
   if (lowerType === "boolean" || lowerType === "bool") {
     return true;
@@ -29,7 +48,7 @@ export function getDefaultPrimitive(type: string): any {
   return "test_string";
 }
 
-export function generateParamValue(param: NormalizedParam): any {
+export function generateParamValue(param: NormalizedParam): unknown {
   if (param.children && param.children.length > 0) {
     const isArray = param.type.endsWith("[]");
     const childObj = generateMockData(param.children);
@@ -57,8 +76,8 @@ export function generateParamValue(param: NormalizedParam): any {
   return getDefaultPrimitive(rawType);
 }
 
-export function generateMockData(params: NormalizedParam[]): Record<string, any> {
-  const obj: Record<string, any> = {};
+export function generateMockData(params: NormalizedParam[]): Record<string, unknown> {
+  const obj: Record<string, unknown> = {};
   for (const p of params) {
     obj[p.name] = generateParamValue(p);
   }
@@ -80,7 +99,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { ${managerClassName} } from "../../managers/${kebabName}.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("${managerClassName} (Generated Tests)", () => {
@@ -107,7 +126,7 @@ describe("${managerClassName} (Generated Tests)", () => {
     // For nested responses, the actual data is wrapped inside a "response" object
     // Check if the spec's responseParams has a root property named "response"
     const hasResponseWrapper = spec.responseParams.some((p) => p.name === "response");
-    let exampleResponse: any;
+    let exampleResponse: unknown;
     if (hasResponseWrapper) {
       const responseParam = spec.responseParams.find((p) => p.name === "response")!;
       exampleResponse = generateParamValue(responseParam);
@@ -128,7 +147,7 @@ describe("${managerClassName} (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.${methodName}(exampleRequest as any);
+      const result = await manager.${methodName}(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

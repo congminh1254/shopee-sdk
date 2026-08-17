@@ -70,7 +70,6 @@ export interface AddVoucherRequest {
    * The timing of when voucher is displayed on shop pages; so buyer is allowed to claim.display_start_time must be left empty if the display_channel_list is empty (when voucher is hidden), otherwise it will show error.
    */
   display_start_time?: number;
-  [key: string]: any;
 }
 /**
  * AddVoucher_Response sub-interface for AddVoucherResponse
@@ -80,7 +79,6 @@ export interface AddVoucher_Response {
    * The unique identifier for the created voucher.
    */
   voucher_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for add_voucher
@@ -102,7 +100,6 @@ export interface DeleteVoucherRequest {
    * The unique identifier for the voucher you want to delete.
    */
   voucher_id: number;
-  [key: string]: any;
 }
 /**
  * DeleteVoucher_Response sub-interface for DeleteVoucherResponse
@@ -112,7 +109,6 @@ export interface DeleteVoucher_Response {
    * The unique identifier for the voucher it is being deleted.
    */
   voucher_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_voucher
@@ -134,7 +130,6 @@ export interface EndVoucherRequest {
    * The unique identifier for the voucher you want to end now.
    */
   voucher_id: number;
-  [key: string]: any;
 }
 /**
  * EndVoucher_Response sub-interface for EndVoucherResponse
@@ -144,7 +139,6 @@ export interface EndVoucher_Response {
    * The unique identifier for the voucher it is being ended.
    */
   voucher_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for end_voucher
@@ -166,7 +160,6 @@ export interface GetVoucherRequest {
    * The unique identifier of a voucher used to query the voucher details.
    */
   voucher_id: number;
-  [key: string]: any;
 }
 /**
  * GetVoucher_Response sub-interface for GetVoucherResponse
@@ -256,7 +249,6 @@ export interface GetVoucher_Response {
    * usecase indicates a specific business scenario that the voucher is created and used for, i.e., new buyer voucher, live voucher, follow shop voucher, etc.shop voucher:1product voucher:2new buyer voucher:3repeat buyer voucher:4private voucher:5live voucher:6video voucher:7campaign voucher:8follow prize voucher:9membership voucher:10game prize voucher:11sample voucher:12
    */
   usecase?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_voucher
@@ -286,7 +278,6 @@ export interface GetVoucherListRequest {
    * The status filter for retrieving voucher list. Available value: upcoming/ongoing/expired/all.
    */
   status: Status | string | number;
-  [key: string]: any;
 }
 /**
  * GetVoucherList_Voucher sub-interface for GetVoucherList_Response
@@ -352,7 +343,6 @@ export interface GetVoucherList_Voucher {
    * The timing of when voucher is displayed on shop pages; so buyer is allowed to claim.
    */
   display_start_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetVoucherList_Response sub-interface for GetVoucherListResponse
@@ -366,7 +356,6 @@ export interface GetVoucherList_Response {
    * The list of voucher.
    */
   voucher_list?: GetVoucherList_Voucher[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_voucher_list
@@ -432,7 +421,6 @@ export interface UpdateVoucherRequest {
    * The timing of when voucher is displayed on shop pages; so buyer is allowed to claim.
    */
   display_start_time?: number;
-  [key: string]: any;
 }
 /**
  * UpdateVoucher_Response sub-interface for UpdateVoucherResponse
@@ -442,7 +430,6 @@ export interface UpdateVoucher_Response {
    * The unique identifier of the voucher which is being updated.
    */
   voucher_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_voucher

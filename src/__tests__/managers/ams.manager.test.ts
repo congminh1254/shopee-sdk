@@ -43,7 +43,7 @@ import {
 } from "../../schemas/ams.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AmsManager", () => {
@@ -111,7 +111,7 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          task_id: "task_789012",
+          success_list: [101, 102, 103],
         },
       };
 
@@ -140,7 +140,7 @@ describe("AmsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.task_id).toBe("task_789012");
+      expect(result.response.success_list).toEqual([101, 102, 103]);
     });
   });
 
@@ -151,7 +151,7 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          task_id: "task_edit_123",
+          success_list: [101, 102],
         },
       };
 
@@ -186,18 +186,18 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          item_list: [
-            { item_id: 101, suggested_rate: 5.0 },
-            { item_id: 102, suggested_rate: 6.5 },
+          rates: [
+            { item_id: 101, min_rate: 5.0, max_rate: 10.0 },
+            { item_id: 102, min_rate: 6.5, max_rate: 12.0 },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await amsManager.batchGetProductsSuggestedRate({
-        item_id_list: "101,102",
-      } as any);
+        item_id_list: ["101", "102"],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -205,12 +205,12 @@ describe("AmsManager", () => {
         {
           method: "GET",
           auth: true,
-          params: { item_id_list: "101,102" },
+          params: { item_id_list: ["101", "102"] },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.item_list).toHaveLength(2);
+      expect(result.response.rates).toHaveLength(2);
     });
   });
 
@@ -221,7 +221,7 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          task_id: "task_remove_456",
+          success_list: [101, 102],
         },
       };
 
@@ -288,8 +288,6 @@ describe("AmsManager", () => {
         message: "",
         response: {
           total_count: 2,
-          next_cursor: "cursor_abc",
-          has_more: true,
           item_list: [
             {
               item_id: 101,
@@ -327,7 +325,6 @@ describe("AmsManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.item_list).toHaveLength(2);
-      expect(result.response.has_more).toBe(true);
     });
   });
 
@@ -338,10 +335,8 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          status: "completed",
-          success_count: 10,
-          fail_count: 2,
-          fail_item_id_list: [103, 104],
+          status: "Done",
+          progress_rate: 100,
         },
       };
 
@@ -362,7 +357,7 @@ describe("AmsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.status).toBe("completed");
+      expect(result.response.status).toBe("Done");
     });
   });
 
@@ -374,9 +369,9 @@ describe("AmsManager", () => {
         message: "",
         response: {
           total_count: 5,
-          next_cursor: "",
+          cursor: "",
           has_more: false,
-          item_list: [{ item_id: 201, item_name: "Product A", suggested_rate: 4.5 }],
+          item_list: [{ item_id: 201, item_name: "Product A" }],
         },
       };
 
@@ -408,13 +403,12 @@ describe("AmsManager", () => {
         message: "",
         response: {
           total_count: 1,
-          data_list: [
+          list: [
             {
               item_id: 101,
               sales: "1500.00",
-              orders: 30,
+              item_sold: 30,
               est_commission: "75.00",
-              clicks: 500,
             },
           ],
         },
@@ -426,6 +420,8 @@ describe("AmsManager", () => {
         period_type: "Last30d",
         start_date: "20250101",
         end_date: "20250131",
+        page_no: 1,
+        page_size: 20,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -438,6 +434,8 @@ describe("AmsManager", () => {
             period_type: "Last30d",
             start_date: "20250101",
             end_date: "20250131",
+            page_no: 1,
+            page_size: 20,
           },
         }
       );
@@ -533,7 +531,6 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          campaign_id: 12345,
           fail_affiliate_list: [],
         },
       };
@@ -571,7 +568,6 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          campaign_id: 12345,
           fail_item_list: [],
         },
       };
@@ -610,9 +606,8 @@ describe("AmsManager", () => {
         message: "",
         response: {
           total_count: 10,
-          next_cursor: "cursor_xyz",
-          has_more: true,
-          item_list: [{ item_id: 301, item_name: "Product X", suggested_rate: 5.0 }],
+          cursor: "cursor_xyz",
+          item_list: [{ item_id: 301, item_name: "Product X" }],
         },
       };
 
@@ -644,7 +639,6 @@ describe("AmsManager", () => {
         message: "",
         response: {
           total_count: 2,
-          has_more: false,
           campaign_list: [
             {
               campaign_id: 12345,
@@ -652,10 +646,6 @@ describe("AmsManager", () => {
               campaign_status: "active",
               period_start_time: 1609459200,
               period_end_time: 32503651199,
-              is_set_budget: true,
-              budget: 500000,
-              create_time: 1609459200,
-              update_time: 1609459200,
             },
           ],
         },
@@ -684,13 +674,12 @@ describe("AmsManager", () => {
         message: "",
         response: {
           total_count: 1,
-          data_list: [
+          list: [
             {
               campaign_id: 12345,
               sales: "5000.00",
-              orders: 100,
+              item_sold: 100,
               est_commission: "250.00",
-              clicks: 2000,
             },
           ],
         },
@@ -702,6 +691,8 @@ describe("AmsManager", () => {
         period_type: "Last30d",
         start_date: "20250101",
         end_date: "20250131",
+        page_no: 1,
+        page_size: 20,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -714,6 +705,8 @@ describe("AmsManager", () => {
             period_type: "Last30d",
             start_date: "20250101",
             end_date: "20250131",
+            page_no: 1,
+            page_size: 20,
           },
         }
       );
@@ -729,9 +722,8 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          campaign_id: 12345,
           campaign_name: "Summer Sale",
-          campaign_status: "active",
+          commission_status: "active",
           period_start_time: 1609459200,
           period_end_time: 32503651199,
           is_set_budget: true,
@@ -765,14 +757,12 @@ describe("AmsManager", () => {
 
   describe("terminateTargetedCampaign", () => {
     it("should terminate targeted campaign successfully", async () => {
-      const mockResponse: GetContentPerformanceResponse = {
+      const mockResponse: TerminateTargetedCampaignResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          campaign_id: 12345,
-        },
-      } as any as any;
+        response: {},
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -792,14 +782,12 @@ describe("AmsManager", () => {
 
   describe("updateBasicInfoOfTargetedCampaign", () => {
     it("should update basic info of targeted campaign successfully", async () => {
-      const mockResponse: GetConversionReportResponse = {
+      const mockResponse: UpdateBasicInfoOfTargetedCampaignResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          campaign_id: 12345,
-        },
-      } as any as any;
+        response: {},
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -836,7 +824,7 @@ describe("AmsManager", () => {
         message: "",
         response: {
           total_count: 1,
-          data_list: [
+          list: [
             {
               affiliate_id: 11301234567,
               affiliate_name: "Top Affiliate",
@@ -855,6 +843,10 @@ describe("AmsManager", () => {
         period_type: "Last30d",
         start_date: "20250101",
         end_date: "20250131",
+        page_no: 1,
+        page_size: 20,
+        order_type: "PlacedOrder",
+        channel: "AllChannel",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_affiliate_performance", {
@@ -864,6 +856,10 @@ describe("AmsManager", () => {
           period_type: "Last30d",
           start_date: "20250101",
           end_date: "20250131",
+          page_no: 1,
+          page_size: 20,
+          order_type: "PlacedOrder",
+          channel: "AllChannel",
         },
       });
 
@@ -878,7 +874,7 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          open: true,
+          is_open: true,
           commission_rate: 5.0,
         },
       };
@@ -897,7 +893,7 @@ describe("AmsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.open).toBe(true);
+      expect(result.response.is_open).toBe(true);
     });
   });
 
@@ -908,11 +904,14 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          sales: "50000.00",
-          orders: 1000,
-          est_commission: "2500.00",
-          clicks: 20000,
-          roi: "20.0",
+          open_campaign_key_metircs: {
+            sales: "50000.00",
+            est_commission: "2500.00",
+          },
+          targeted_campaign_key_metircs: {
+            sales: "50000.00",
+            est_commission: "2500.00",
+          },
         },
       };
 
@@ -944,24 +943,21 @@ describe("AmsManager", () => {
 
   describe("getContentPerformance", () => {
     it("should get content performance successfully", async () => {
-      const mockResponse: GetOptimizationSuggestionProductResponse = {
+      const mockResponse: GetContentPerformanceResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
           total_count: 1,
-          data_list: [
+          list: [
             {
-              content_id: 12345,
-              content_type: "video",
+              content_id: "12345",
               sales: "3000.00",
               orders: 50,
-              est_commission: "150.00",
-              clicks: 1000,
             },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -969,11 +965,13 @@ describe("AmsManager", () => {
         period_type: "Last7d",
         start_date: "20250120",
         end_date: "20250127",
-        order_type: 2,
-        channel: "custom",
-        affiliate_id: "aff_123",
+        page_no: 1,
+        page_size: 20,
+        order_type: "PlacedOrder",
+        channel: "ShopeeVideo",
+        affiliate_id: 123,
         item_id: 456,
-      } as any);
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_content_performance", {
         method: "GET",
@@ -982,9 +980,11 @@ describe("AmsManager", () => {
           period_type: "Last7d",
           start_date: "20250120",
           end_date: "20250127",
-          order_type: 2,
-          channel: "custom",
-          affiliate_id: "aff_123",
+          page_no: 1,
+          page_size: 20,
+          order_type: "PlacedOrder",
+          channel: "ShopeeVideo",
+          affiliate_id: 123,
           item_id: 456,
         },
       });
@@ -995,40 +995,43 @@ describe("AmsManager", () => {
 
   describe("getConversionReport", () => {
     it("should get conversion report successfully", async () => {
-      const mockResponse: GetProductPerformanceResponse = {
+      const mockResponse: GetConversionReportResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
           total_count: 1,
-          data_list: [
+          list: [
             {
               order_sn: "ORDER123456",
-              item_id: 101,
               affiliate_id: 11301234567,
-              commission: "25.00",
-              order_time: 1609459200,
-              order_status: "completed",
+              order_brand_commission: "25.00",
+              place_order_time: "1609459200",
+              order_status: "Completed",
             },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await amsManager.getConversionReport({
         item_name: "Awesome Item",
-        order_status: 3,
-        attr_campaign_id: "campaign_xyz",
-      } as any);
+        order_status: "Completed",
+        attr_campaign_id: 12345,
+        page_no: 1,
+        page_size: 20,
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_conversion_report", {
         method: "GET",
         auth: true,
         params: {
           item_name: "Awesome Item",
-          order_status: 3,
-          attr_campaign_id: "campaign_xyz",
+          order_status: "Completed",
+          attr_campaign_id: 12345,
+          page_no: 1,
+          page_size: 20,
         },
       });
 
@@ -1045,8 +1048,8 @@ describe("AmsManager", () => {
         response: {
           total_count: 2,
           affiliate_list: [
-            { affiliate_id: 11301234567, affiliate_name: "Affiliate A", status: "active" },
-            { affiliate_id: 11301234568, affiliate_name: "Affiliate B", status: "active" },
+            { affiliate_id: 11301234567, affiliate_name: "Affiliate A" },
+            { affiliate_id: 11301234568, affiliate_name: "Affiliate B" },
           ],
         },
       };
@@ -1067,23 +1070,23 @@ describe("AmsManager", () => {
 
   describe("getOptimizationSuggestionProduct", () => {
     it("should get optimization suggestion products successfully", async () => {
-      const mockResponse: GetValidationListResponse = {
+      const mockResponse: GetOptimizationSuggestionProductResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          total_count: 1,
+          total: 1,
           item_list: [
             {
               item_id: 101,
               item_name: "Product A",
-              current_rate: 3.0,
-              suggested_rate: 5.0,
-              rcmd_reason: "high_conversion",
+              commission_rate: 3.0,
+              suggest_min_rate: 5.0,
+              rcmd_reason: ["high_conversion"],
             },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -1110,7 +1113,7 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          latest_data_date: "20250126",
+          last_report_date: "20250126",
         },
       };
 
@@ -1136,13 +1139,13 @@ describe("AmsManager", () => {
 
   describe("getProductPerformance", () => {
     it("should get product performance successfully", async () => {
-      const mockResponse: QueryAffiliateListResponse = {
+      const mockResponse: GetProductPerformanceResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
           total_count: 1,
-          data_list: [
+          list: [
             {
               item_id: 101,
               item_name: "Product A",
@@ -1153,7 +1156,7 @@ describe("AmsManager", () => {
             },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -1161,10 +1164,12 @@ describe("AmsManager", () => {
         period_type: "Last30d",
         start_date: "20250101",
         end_date: "20250131",
-        order_type: 1,
-        channel: "livestream",
+        page_no: 1,
+        page_size: 20,
+        order_type: "PlacedOrder",
+        channel: "LiveStreaming",
         item_id: 789,
-      } as any);
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_product_performance", {
         method: "GET",
@@ -1173,8 +1178,10 @@ describe("AmsManager", () => {
           period_type: "Last30d",
           start_date: "20250101",
           end_date: "20250131",
-          order_type: 1,
-          channel: "livestream",
+          page_no: 1,
+          page_size: 20,
+          order_type: "PlacedOrder",
+          channel: "LiveStreaming",
           item_id: 789,
         },
       });
@@ -1194,7 +1201,6 @@ describe("AmsManager", () => {
             {
               affiliate_id: 11301234569,
               affiliate_name: "Recommended Affiliate",
-              rcmd_reason: "high_performance",
             },
           ],
         },
@@ -1270,7 +1276,6 @@ describe("AmsManager", () => {
         error: "",
         message: "",
         response: {
-          suggested_rate: 5.0,
           min_rate: 1.0,
           max_rate: 10.0,
         },
@@ -1286,24 +1291,24 @@ describe("AmsManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.suggested_rate).toBe(5.0);
+      expect(result.response.min_rate).toBe(1.0);
     });
   });
 
   // Validation APIs
   describe("getValidationList", () => {
     it("should get validation list successfully", async () => {
-      const mockResponse: TerminateTargetedCampaignResponse = {
+      const mockResponse: GetValidationListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
           validation_list: [
-            { validation_id: 1, validation_month: "202501", status: "completed" },
-            { validation_id: 2, validation_month: "202502", status: "pending" },
+            { validation_id: "1", validation_month: 202501 },
+            { validation_id: "2", validation_month: 202502 },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -1326,13 +1331,12 @@ describe("AmsManager", () => {
         message: "",
         response: {
           total_count: 1,
-          data_list: [
+          list: [
             {
               order_sn: "ORDER123456",
-              item_id: 101,
               affiliate_id: 11301234567,
-              validated_commission: "25.00",
-              validation_status: "approved",
+              order_brand_commission: "25.00",
+              verified_status: "Verified",
             },
           ],
         },
@@ -1343,6 +1347,13 @@ describe("AmsManager", () => {
       const result = await amsManager.getValidationReport({
         order_sn: "ORDER999",
         item_id: 111,
+        page_no: 1,
+        page_size: 20,
+        validation_id: "val123",
+        validation_month: 202501,
+        campaign_source: "Seller",
+        place_order_time_start: 1609459200,
+        place_order_time_end: 1609545600,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_validation_report", {
@@ -1351,6 +1362,13 @@ describe("AmsManager", () => {
         params: {
           order_sn: "ORDER999",
           item_id: 111,
+          page_no: 1,
+          page_size: 20,
+          validation_id: "val123",
+          validation_month: 202501,
+          campaign_source: "Seller",
+          place_order_time_start: 1609459200,
+          place_order_time_end: 1609545600,
         },
       });
 
@@ -1361,7 +1379,7 @@ describe("AmsManager", () => {
   // Query APIs
   describe("queryAffiliateList", () => {
     it("should query affiliate list by ID successfully", async () => {
-      const mockResponse: UpdateBasicInfoOfTargetedCampaignResponse = {
+      const mockResponse: QueryAffiliateListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1370,25 +1388,25 @@ describe("AmsManager", () => {
             {
               affiliate_id: 11301234567,
               affiliate_name: "Affiliate A",
-              avatar_url: "https://example.com/avatar.jpg",
+              portrait_url: "https://example.com/avatar.jpg",
             },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await amsManager.queryAffiliateList({
-        query_type: "id",
-        affiliate_id_list: "11301234567",
-      } as any);
+        query_type: 1,
+        affiliate_id_list: ["11301234567"],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/query_affiliate_list", {
         method: "GET",
         auth: true,
         params: {
-          query_type: "id",
-          affiliate_id_list: "11301234567",
+          query_type: 1,
+          affiliate_id_list: ["11301234567"],
         },
       });
 
@@ -1396,7 +1414,7 @@ describe("AmsManager", () => {
     });
 
     it("should query affiliate list by name successfully", async () => {
-      const mockResponse: any = {
+      const mockResponse: QueryAffiliateListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -1413,15 +1431,15 @@ describe("AmsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await amsManager.queryAffiliateList({
-        query_type: "name",
+        query_type: 2,
         name: "Affiliate",
-      } as any);
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/query_affiliate_list", {
         method: "GET",
         auth: true,
         params: {
-          query_type: "name",
+          query_type: 2,
           name: "Affiliate",
         },
       });

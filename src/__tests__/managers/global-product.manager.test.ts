@@ -41,7 +41,7 @@ import {
 } from "../../schemas/global-product.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("GlobalProductManager", () => {
@@ -202,19 +202,17 @@ describe("GlobalProductManager", () => {
                 {
                   currency: "USD",
                   original_price: 29.99,
-                  current_price: 29.99,
                 },
               ],
               stock_info: [
                 {
                   stock_type: 1,
-                  current_stock: 100,
                   normal_stock: 100,
                   reserved_stock: 0,
                 },
               ],
               attribute_list: [],
-              item_status: "NORMAL",
+              global_item_status: "NORMAL",
               has_model: false,
               create_time: 1608967817,
               update_time: 1608967817,
@@ -269,6 +267,8 @@ describe("GlobalProductManager", () => {
         image: {
           image_id_list: ["image123"],
         },
+        original_price: 99.99,
+        pre_order: { days_to_ship: 7 },
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_item", {
@@ -282,6 +282,8 @@ describe("GlobalProductManager", () => {
           image: {
             image_id_list: ["image123"],
           },
+          original_price: 99.99,
+          pre_order: { days_to_ship: 7 },
         },
       });
 
@@ -364,16 +366,7 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          model_list: [
-            {
-              global_model_id: 789,
-              tier_index: [0, 0],
-            },
-            {
-              global_model_id: 790,
-              tier_index: [0, 1],
-            },
-          ],
+          warning: "",
         },
       };
 
@@ -381,20 +374,26 @@ describe("GlobalProductManager", () => {
 
       const result = await globalProductManager.initTierVariation({
         global_item_id: 123456,
-        tier_variation: [
+        standardise_tier_variation: [
           {
-            name: "Color",
-            option_list: [{ option: "Red" }, { option: "Blue" }],
+            variation_id: 1,
+            variation_name: "Color",
+            variation_option_list: [
+              { variation_option_id: 11, variation_option_name: "Red" },
+              { variation_option_id: 12, variation_option_name: "Blue" },
+            ],
           },
         ],
-        model_list: [
+        global_model: [
           {
-            tier_index: [0],
-            model_sku: "SKU-RED",
+            tier_index: 0,
+            global_model_sku: "SKU-RED",
+            original_price: 99.99,
           },
           {
-            tier_index: [1],
-            model_sku: "SKU-BLUE",
+            tier_index: 1,
+            global_model_sku: "SKU-BLUE",
+            original_price: 99.99,
           },
         ],
       });
@@ -412,7 +411,7 @@ describe("GlobalProductManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.model_list).toHaveLength(2);
+      expect(result.response.warning).toBe("");
     });
   });
 
@@ -423,12 +422,7 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          result_list: [
-            {
-              shop_id: 67890,
-              success: true,
-            },
-          ],
+          warning: "",
         },
       };
 
@@ -438,8 +432,12 @@ describe("GlobalProductManager", () => {
         global_item_id: 123456,
         stock_list: [
           {
-            shop_id: 67890,
-            normal_stock: 100,
+            global_model_id: 789,
+            seller_stock: [
+              {
+                stock: 100,
+              },
+            ],
           },
         ],
       });
@@ -451,15 +449,19 @@ describe("GlobalProductManager", () => {
           global_item_id: 123456,
           stock_list: [
             {
-              shop_id: 67890,
-              normal_stock: 100,
+              global_model_id: 789,
+              seller_stock: [
+                {
+                  stock: 100,
+                },
+              ],
             },
           ],
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.result_list[0].success).toBe(true);
+      expect(result.response.warning).toBe("");
     });
   });
 
@@ -470,12 +472,7 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          result_list: [
-            {
-              shop_id: 67890,
-              success: true,
-            },
-          ],
+          warning: "",
         },
       };
 
@@ -485,7 +482,7 @@ describe("GlobalProductManager", () => {
         global_item_id: 123456,
         price_list: [
           {
-            shop_id: 67890,
+            global_model_id: 789,
             original_price: 29.99,
           },
         ],
@@ -498,7 +495,7 @@ describe("GlobalProductManager", () => {
           global_item_id: 123456,
           price_list: [
             {
-              shop_id: 67890,
+              global_model_id: 789,
               original_price: 29.99,
             },
           ],
@@ -506,7 +503,7 @@ describe("GlobalProductManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.result_list[0].success).toBe(true);
+      expect(result.response.warning).toBe("");
     });
   });
 
@@ -517,15 +514,17 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          attribute_list: [
+          list: [
             {
-              attribute_id: 1000,
-              original_attribute_name: "Material",
-              display_attribute_name: "材质",
-              is_mandatory: true,
-              attribute_type: "SELECT",
-              attribute_value_list: [],
-            } as any,
+              category_id: 100182,
+              attribute_tree: [
+                {
+                  attribute_id: 1000,
+                  name: "Material",
+                  mandatory: true,
+                },
+              ],
+            },
           ],
         },
       };
@@ -533,7 +532,7 @@ describe("GlobalProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.getAttributeTree({
-        category_id: 100182,
+        category_id_list: [100182],
         language: "en",
       });
 
@@ -544,14 +543,14 @@ describe("GlobalProductManager", () => {
           method: "GET",
           auth: true,
           params: {
-            category_id: 100182,
+            category_id_list: "100182",
             language: "en",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.attribute_list).toHaveLength(1);
+      expect(result.response.list).toHaveLength(1);
     });
   });
 
@@ -571,7 +570,6 @@ describe("GlobalProductManager", () => {
           ],
           has_next_page: false,
           next_offset: 0,
-          total_count: 1,
         },
       };
 
@@ -580,6 +578,8 @@ describe("GlobalProductManager", () => {
       const result = await globalProductManager.getBrandList({
         category_id: 100182,
         page_size: 20,
+        offset: 0,
+        status: 1,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_brand_list", {
@@ -588,6 +588,8 @@ describe("GlobalProductManager", () => {
         params: {
           category_id: 100182,
           page_size: 20,
+          offset: 0,
+          status: 1,
         },
       });
 
@@ -604,7 +606,7 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          category_id_list: [100182, 100183, 100184],
+          category_id: [100182, 100183, 100184],
         },
       };
 
@@ -627,7 +629,7 @@ describe("GlobalProductManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.category_id_list).toHaveLength(3);
+      expect(result.response.category_id).toHaveLength(3);
     });
   });
 
@@ -638,15 +640,16 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          publish_task_id: "task_123",
+          publish_task_id: 123,
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.createPublishTask({
         global_item_id: 123456,
-        shop_list: [{ shop_id: 67890 }, { shop_id: 67891 }],
+        shop_id: 67890,
+        shop_region: "SG",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -657,13 +660,14 @@ describe("GlobalProductManager", () => {
           auth: true,
           body: {
             global_item_id: 123456,
-            shop_list: [{ shop_id: 67890 }, { shop_id: 67891 }],
+            shop_id: 67890,
+            shop_region: "SG",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.publish_task_id).toBe("task_123");
+      expect(result.response.publish_task_id).toBe(123);
     });
   });
 
@@ -674,22 +678,20 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          status: "SUCCESS",
-          result_list: [
-            {
-              shop_id: 67890,
-              item_id: 999,
-              success: true,
-            },
-          ],
+          publish_status: "SUCCESS",
+          success: {
+            shop_id: "67890",
+            item_id: "999",
+            region: "SG",
+          },
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.getPublishTaskResult({
-        publish_task_id: "task_123",
-      } as any);
+        publish_task_id: 123,
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -698,14 +700,14 @@ describe("GlobalProductManager", () => {
           method: "GET",
           auth: true,
           params: {
-            publish_task_id: "task_123",
+            publish_task_id: 123,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.status).toBe("SUCCESS");
-      expect(result.response.result_list[0].success).toBe(true);
+      expect(result.response.publish_status).toBe("SUCCESS");
+      expect(result.response.success?.item_id).toBe("999");
     });
   });
 
@@ -716,7 +718,12 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          global_item_id: 123456,
+          item_id_map: [
+            {
+              item_id: 999,
+              global_item_id: 123456,
+            },
+          ],
         },
       };
 
@@ -724,7 +731,7 @@ describe("GlobalProductManager", () => {
 
       const result = await globalProductManager.getGlobalItemId({
         shop_id: 67890,
-        item_id: 999,
+        item_id_list: [999],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -735,13 +742,13 @@ describe("GlobalProductManager", () => {
           auth: true,
           params: {
             shop_id: 67890,
-            item_id: 999,
+            item_id_list: "999",
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.global_item_id).toBe(123456);
+      expect(result.response.item_id_map![0].global_item_id).toBe(123456);
     });
   });
 
@@ -752,23 +759,22 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          result_list: [
-            {
-              shop_id: 67890,
-              success: true,
-            },
-          ],
+          warning: "",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.setSyncField({
-        global_item_id: 123456,
-        shop_list: [
+        shop_sync_list: [
           {
             shop_id: 67890,
-            sync_field_list: ["name", "price", "stock"],
+            shop_region: "SG",
+            name_and_description: true,
+            media_information: true,
+            tier_variation_name_and_option: true,
+            price: true,
+            days_to_ship: true,
           },
         ],
       });
@@ -777,18 +783,22 @@ describe("GlobalProductManager", () => {
         method: "POST",
         auth: true,
         body: {
-          global_item_id: 123456,
-          shop_list: [
+          shop_sync_list: [
             {
               shop_id: 67890,
-              sync_field_list: ["name", "price", "stock"],
+              shop_region: "SG",
+              name_and_description: true,
+              media_information: true,
+              tier_variation_name_and_option: true,
+              price: true,
+              days_to_ship: true,
             },
           ],
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.result_list[0].success).toBe(true);
+      expect(result.response.warning).toBe("");
     });
   });
 
@@ -799,7 +809,7 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          support: true,
+          support_size_chart: true,
         },
       };
 
@@ -822,7 +832,7 @@ describe("GlobalProductManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.support).toBe(true);
+      expect(result.response.support_size_chart).toBe(true);
     });
   });
 
@@ -850,13 +860,9 @@ describe("GlobalProductManager", () => {
             {
               global_model_id: 789,
               tier_index: [0],
-              price_info: [
-                {
-                  currency: "USD",
-                  original_price: 29.99,
-                  current_price: 29.99,
-                },
-              ],
+              price_info: {
+                original_price: 29.99,
+              },
               stock_info: [
                 {
                   stock_type: 1,
@@ -865,8 +871,6 @@ describe("GlobalProductManager", () => {
                   reserved_stock: 0,
                 },
               ],
-              create_time: 1608967817,
-              update_time: 1608967817,
             },
           ],
         },
@@ -903,12 +907,7 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          model_list: [
-            {
-              global_model_id: 789,
-              tier_index: [0, 1],
-            },
-          ],
+          warning: "",
         },
       };
 
@@ -916,10 +915,11 @@ describe("GlobalProductManager", () => {
 
       const result = await globalProductManager.addGlobalModel({
         global_item_id: 123456,
-        model_list: [
+        global_model: [
           {
             tier_index: [0, 1],
-            model_sku: "SKU-001",
+            global_model_sku: "SKU-001",
+            original_price: 99.99,
           },
         ],
       });
@@ -929,17 +929,18 @@ describe("GlobalProductManager", () => {
         auth: true,
         body: {
           global_item_id: 123456,
-          model_list: [
+          global_model: [
             {
               tier_index: [0, 1],
-              model_sku: "SKU-001",
+              global_model_sku: "SKU-001",
+              original_price: 99.99,
             },
           ],
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.model_list).toHaveLength(1);
+      expect(result.response.warning).toBe("");
     });
   });
 
@@ -950,11 +951,7 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          model_list: [
-            {
-              global_model_id: 789,
-            },
-          ],
+          warning: "",
         },
       };
 
@@ -962,10 +959,10 @@ describe("GlobalProductManager", () => {
 
       const result = await globalProductManager.updateGlobalModel({
         global_item_id: 123456,
-        model_list: [
+        global_model: [
           {
             global_model_id: 789,
-            model_sku: "SKU-002",
+            global_model_sku: "SKU-002",
           },
         ],
       });
@@ -978,10 +975,10 @@ describe("GlobalProductManager", () => {
           auth: true,
           body: {
             global_item_id: 123456,
-            model_list: [
+            global_model: [
               {
                 global_model_id: 789,
-                model_sku: "SKU-002",
+                global_model_sku: "SKU-002",
               },
             ],
           },
@@ -989,7 +986,7 @@ describe("GlobalProductManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.model_list[0].global_model_id).toBe(789);
+      expect(result.response.warning).toBe("");
     });
   });
 
@@ -1000,12 +997,8 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          model_list: [
-            {
-              global_model_id: 789,
-              success: true,
-            },
-          ],
+          global_model_id: 789,
+          failures: [],
         },
       };
 
@@ -1013,7 +1006,7 @@ describe("GlobalProductManager", () => {
 
       const result = await globalProductManager.deleteGlobalModel({
         global_item_id: 123456,
-        global_model_id_list: [789],
+        global_model_id: 789,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1024,13 +1017,13 @@ describe("GlobalProductManager", () => {
           auth: true,
           body: {
             global_item_id: 123456,
-            global_model_id_list: [789],
+            global_model_id: 789,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.model_list[0].success).toBe(true);
+      expect(result.response.global_model_id).toBe(789);
     });
   });
 
@@ -1047,10 +1040,15 @@ describe("GlobalProductManager", () => {
 
       const result = await globalProductManager.updateTierVariation({
         global_item_id: 123456,
-        tier_variation: [
+        standardise_tier_variation: [
           {
-            name: "Size",
-            option_list: [{ option: "S" }, { option: "M" }, { option: "L" }],
+            variation_id: 1,
+            variation_name: "Size",
+            variation_option_list: [
+              { variation_option_id: 11, variation_option_name: "S" },
+              { variation_option_id: 12, variation_option_name: "M" },
+              { variation_option_id: 13, variation_option_name: "L" },
+            ],
           },
         ],
       });
@@ -1061,9 +1059,20 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
-          body: expect.objectContaining({
+          body: {
             global_item_id: 123456,
-          }),
+            standardise_tier_variation: [
+              {
+                variation_id: 1,
+                variation_name: "Size",
+                variation_option_list: [
+                  { variation_option_id: 11, variation_option_name: "S" },
+                  { variation_option_id: 12, variation_option_name: "M" },
+                  { variation_option_id: 13, variation_option_name: "L" },
+                ],
+              },
+            ],
+          },
         }
       );
 
@@ -1078,13 +1087,14 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          limit_info: {
-            max_image_count: 9,
-            max_video_count: 1,
-            max_name_length: 120,
-            max_description_length: 3000,
-            support_video: true,
-            support_size_chart: true,
+          global_item_image_count_limit: {
+            max_limit: 9,
+          },
+          global_item_name_length_limit: {
+            max_limit: 120,
+          },
+          global_item_description_length_limit: {
+            max_limit: 3000,
           },
         },
       };
@@ -1108,7 +1118,7 @@ describe("GlobalProductManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.limit_info.max_image_count).toBe(9);
+      expect(result.response.global_item_image_count_limit?.max_limit).toBe(9);
     });
   });
 
@@ -1119,11 +1129,10 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          shop_list: [
+          publishable_shop: [
             {
               shop_id: 67890,
-              shop_name: "Test Shop",
-              region: "SG",
+              shop_region: "SG",
             },
           ],
         },
@@ -1148,7 +1157,7 @@ describe("GlobalProductManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.shop_list).toHaveLength(1);
+      expect(result.response.publishable_shop).toHaveLength(1);
     });
   });
 
@@ -1159,10 +1168,10 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          shop_list: [
+          shop_publishable_status_list: [
             {
               shop_id: 67890,
-              publishable: true,
+              shop_publishable_status: true,
             },
           ],
         },
@@ -1172,7 +1181,8 @@ describe("GlobalProductManager", () => {
 
       const result = await globalProductManager.getShopPublishableStatus({
         global_item_id: 123456,
-        shop_id_list: [67890],
+        offset: 0,
+        page_size: 20,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1183,13 +1193,14 @@ describe("GlobalProductManager", () => {
           auth: true,
           params: {
             global_item_id: 123456,
-            shop_id_list: [67890],
+            offset: 0,
+            page_size: 20,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.shop_list[0].publishable).toBe(true);
+      expect(result.response.shop_publishable_status_list?.[0].shop_publishable_status).toBe(true);
     });
   });
 
@@ -1200,12 +1211,11 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          shop_list: [
+          published_item: [
             {
               shop_id: 67890,
               item_id: 999,
-              shop_name: "Test Shop",
-              region: "SG",
+              shop_region: "SG",
             },
           ],
         },
@@ -1230,7 +1240,7 @@ describe("GlobalProductManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.shop_list).toHaveLength(1);
+      expect(result.response.published_item).toHaveLength(1);
     });
   });
 
@@ -1244,12 +1254,8 @@ describe("GlobalProductManager", () => {
           attribute_list: [
             {
               attribute_id: 1000,
-              original_attribute_name: "Material",
-              display_attribute_name: "Material",
-              is_mandatory: true,
-              attribute_type: "SELECT",
               attribute_value_list: [],
-            } as any,
+            },
           ],
         },
       };
@@ -1257,7 +1263,8 @@ describe("GlobalProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.getRecommendAttribute({
-        global_item_id: 123456,
+        global_item_name: "T-Shirt",
+        category_id: 100001,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1267,7 +1274,8 @@ describe("GlobalProductManager", () => {
           method: "GET",
           auth: true,
           params: {
-            global_item_id: 123456,
+            global_item_name: "T-Shirt",
+            category_id: 100001,
           },
         }
       );
@@ -1284,11 +1292,10 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          attribute_value_list: [
+          value_list: [
             {
               value_id: 1001,
-              original_value_name: "Cotton",
-              display_value_name: "Cotton",
+              value_name: "Cotton",
             },
           ],
         },
@@ -1297,9 +1304,10 @@ describe("GlobalProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.searchGlobalAttributeValueList({
-        category_id: 100182,
         attribute_id: 1000,
-        keyword: "cotton",
+        value_name: "cotton",
+        cursor: 0,
+        limit: 20,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1309,15 +1317,16 @@ describe("GlobalProductManager", () => {
           method: "POST",
           auth: true,
           body: {
-            category_id: 100182,
             attribute_id: 1000,
-            keyword: "cotton",
+            value_name: "cotton",
+            cursor: 0,
+            limit: 20,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.attribute_value_list).toHaveLength(1);
+      expect(result.response.value_list).toHaveLength(1);
     });
   });
 
@@ -1328,14 +1337,10 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          tier_variation: [
+          standardise_variation_list: [
             {
-              name: "Color",
-              option_list: [
-                {
-                  option: "Red",
-                },
-              ],
+              variation_id: 1001,
+              variation_name: "Color",
             },
           ],
         },
@@ -1344,19 +1349,19 @@ describe("GlobalProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.getVariations({
-        global_item_id: 123456,
+        category_id: 100001,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_variations", {
         method: "GET",
         auth: true,
         params: {
-          global_item_id: 123456,
+          category_id: 100001,
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.tier_variation).toHaveLength(1);
+      expect(result.response.standardise_variation_list).toHaveLength(1);
     });
   });
 
@@ -1367,20 +1372,14 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          adjustment_rate_list: [
-            {
-              shop_id: 67890,
-              adjustment_rate: 10.5,
-            },
-          ],
+          local_adjustment_rate: 10.5,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.getLocalAdjustmentRate({
-        global_item_id: 123456,
-        shop_id_list: [67890],
+        shop_id: 67890,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1390,14 +1389,13 @@ describe("GlobalProductManager", () => {
           method: "GET",
           auth: true,
           params: {
-            global_item_id: 123456,
-            shop_id_list: [67890],
+            shop_id: 67890,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.adjustment_rate_list).toHaveLength(1);
+      expect(result.response.local_adjustment_rate).toBe(10.5);
     });
   });
 
@@ -1408,25 +1406,15 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          result_list: [
-            {
-              shop_id: 67890,
-              success: true,
-            },
-          ],
+          warning: "",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.updateLocalAdjustmentRate({
-        global_item_id: 123456,
-        adjustment_rate_list: [
-          {
-            shop_id: 67890,
-            adjustment_rate: 10.5,
-          },
-        ],
+        shop_id: 67890,
+        adjustment_rate: 10.5,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1436,19 +1424,14 @@ describe("GlobalProductManager", () => {
           method: "POST",
           auth: true,
           body: {
-            global_item_id: 123456,
-            adjustment_rate_list: [
-              {
-                shop_id: 67890,
-                adjustment_rate: 10.5,
-              },
-            ],
+            shop_id: 67890,
+            adjustment_rate: 10.5,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.result_list[0].success).toBe(true);
+      expect(result.response.warning).toBe("");
     });
   });
 
@@ -1461,23 +1444,20 @@ describe("GlobalProductManager", () => {
         response: {
           size_chart_list: [
             {
-              size_chart_id: "chart123",
-              size_chart_name: "Standard Size Chart",
-              size_chart_table: {
-                header: ["Size", "Chest"],
-                rows: [["S", "90cm"]],
-              },
+              size_chart_id: 123,
             },
           ],
-          has_next_page: false,
-          next_offset: 0,
+          total_count: 1,
+          next_cursor: "1",
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.getSizeChartList({
+        category_id: 100001,
         page_size: 20,
+        cursor: "0",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1487,7 +1467,9 @@ describe("GlobalProductManager", () => {
           method: "GET",
           auth: true,
           params: {
+            category_id: 100001,
             page_size: 20,
+            cursor: "0",
           },
         }
       );
@@ -1504,25 +1486,30 @@ describe("GlobalProductManager", () => {
         error: "",
         message: "",
         response: {
-          size_chart: {
-            size_chart_id: "chart123",
-            size_chart_name: "Standard Size Chart",
-            size_chart_table: {
-              header: ["Size", "Chest", "Length"],
-              rows: [
-                ["S", "90cm", "60cm"],
-                ["M", "95cm", "65cm"],
-              ],
-            },
+          size_chart_id: 123,
+          size_chart_name: "Standard Size Chart",
+          size_chart_table: {
+            column_list: [
+              {
+                measurement: {
+                  display_name: "Chest",
+                },
+                measurement_value_list: [
+                  {
+                    value: 90,
+                  },
+                ],
+              },
+            ],
           },
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.getSizeChartDetail({
-        size_chart_id: "chart123",
-      } as any);
+        size_chart_id: 123,
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1531,13 +1518,13 @@ describe("GlobalProductManager", () => {
           method: "GET",
           auth: true,
           params: {
-            size_chart_id: "chart123",
+            size_chart_id: 123,
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.size_chart.size_chart_id).toBe("chart123");
+      expect(result.response.size_chart_id).toBe(123);
     });
   });
 
@@ -1553,8 +1540,8 @@ describe("GlobalProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await globalProductManager.updateSizeChart({
-        size_chart_id: "chart123",
-        size_chart_name: "Updated Size Chart",
+        global_item_id: 123456,
+        size_chart: "chart_image_id",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1564,8 +1551,8 @@ describe("GlobalProductManager", () => {
           method: "POST",
           auth: true,
           body: {
-            size_chart_id: "chart123",
-            size_chart_name: "Updated Size Chart",
+            global_item_id: 123456,
+            size_chart: "chart_image_id",
           },
         }
       );

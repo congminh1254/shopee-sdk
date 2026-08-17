@@ -9,7 +9,6 @@ export interface ConfirmConsumedLostPushMessageRequest {
    * The last_message_id returned by v2.push.get_lost_push_message.
    */
   last_message_id: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for confirm_consumed_lost_push_message
@@ -19,7 +18,6 @@ export interface ConfirmConsumedLostPushMessageResponseData {
    * Indicate waring details if hit waring. Empty if no waring happened.
    */
   warning?: string;
-  [key: string]: any;
 }
 /**
  * Response payload for confirm_consumed_lost_push_message
@@ -62,7 +60,6 @@ export interface GetAppPushConfig_Response {
    * Use this field to indicate which push config turn on, and you can receive the push message.1=Shop authorization for partners2=Shop deauthorization for partners3=Order status update push4=TrackingNo push5=Shopee Updates6=Banned item push7=item promotion push8=reserved stock change push9=promotionn update push10=webchat push11=video upload push12=openapi authorization expiry push13=brand register result
    */
   push_config_off_list?: number[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_app_push_config
@@ -100,7 +97,6 @@ export interface GetLostPushMessage_PushMessage {
    * Main Push message data.
    */
   data?: string;
-  [key: string]: any;
 }
 /**
  * GetLostPushMessage_Response sub-interface for GetLostPushMessageResponse
@@ -118,7 +114,6 @@ export interface GetLostPushMessage_Response {
    * Specifies the end entry of data returned in the current call.
    */
   last_message_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_lost_push_message
@@ -152,7 +147,6 @@ export interface SetAppPushConfigRequest {
    * Use this filed to set shops that need to be blocked.Please input no more than 500 shop id.
    */
   blocked_shop_id_list?: number[];
-  [key: string]: any;
 }
 /**
  * SetAppPushConfig_Response sub-interface for SetAppPushConfigResponse
@@ -162,7 +156,6 @@ export interface SetAppPushConfig_Response {
    * Use this field to indicate whether the configuration is set successfully.
    */
   result?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for set_app_push_config

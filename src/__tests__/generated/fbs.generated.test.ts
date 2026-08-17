@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { FbsManager } from "../../managers/fbs.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("FbsManager (Generated Tests)", () => {
@@ -38,7 +38,7 @@ describe("FbsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.queryBrShopBlockStatus(exampleRequest as any);
+      const result = await manager.queryBrShopBlockStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -70,7 +70,7 @@ describe("FbsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.queryBrShopEnrollmentStatus(exampleRequest as any);
+      const result = await manager.queryBrShopEnrollmentStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -124,7 +124,7 @@ describe("FbsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.queryBrShopInvoiceError(exampleRequest as any);
+      const result = await manager.queryBrShopInvoiceError(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -161,7 +161,7 @@ describe("FbsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.queryBrSkuBlockStatus(exampleRequest as any);
+      const result = await manager.queryBrSkuBlockStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { MerchantManager } from "../../managers/merchant.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("MerchantManager (Generated Tests)", () => {
@@ -28,8 +28,8 @@ describe("MerchantManager (Generated Tests)", () => {
       const exampleRequest = {};
       const exampleResponse = {
         merchant_name: "sellerplatform_uat_merchant",
-        auth_time: "1608114596",
-        expire_time: "1640342010",
+        auth_time: 1608114596,
+        expire_time: 1640342010,
         request_id: "a3a4277823b1019960cc92cfd972c506",
         merchant_currency: "CNY",
         merchant_region: "KR",
@@ -43,7 +43,7 @@ describe("MerchantManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMerchantInfo(exampleRequest as any);
+      const result = await manager.getMerchantInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -92,7 +92,7 @@ describe("MerchantManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMerchantPrepaidAccountList(exampleRequest as any);
+      const result = await manager.getMerchantPrepaidAccountList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -159,7 +159,7 @@ describe("MerchantManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMerchantWarehouseList(exampleRequest as any);
+      const result = await manager.getMerchantWarehouseList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -192,7 +192,7 @@ describe("MerchantManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMerchantWarehouseLocationList(exampleRequest as any);
+      const result = await manager.getMerchantWarehouseLocationList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -236,7 +236,7 @@ describe("MerchantManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopListByMerchant(exampleRequest as any);
+      const result = await manager.getShopListByMerchant(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -284,7 +284,7 @@ describe("MerchantManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getWarehouseEligibleShopList(exampleRequest as any);
+      const result = await manager.getWarehouseEligibleShopList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

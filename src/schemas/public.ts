@@ -21,7 +21,6 @@ export interface GetAccessTokenRequest {
    * The main_account_id of the seller that authorized the developer.
    */
   main_account_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_access_token
@@ -59,7 +58,6 @@ export interface GetAccessTokenResponseData {
    * Returned when the API call is successful. The validity period of the access_token, in seconds.
    */
   expire_in?: Date | number;
-  [key: string]: any;
 }
 /**
  * Response payload for get_access_token
@@ -81,7 +79,6 @@ export interface GetMerchantsByPartnerRequest {
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
   page_no?: number;
-  [key: string]: any;
 }
 /**
  * GetMerchantsByPartner_AuthedMerchant sub-interface for GetMerchantsByPartnerResponse
@@ -103,7 +100,6 @@ export interface GetMerchantsByPartner_AuthedMerchant {
    * Use this field to indicate the expiration date for merchant authorization.
    */
   expire_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_merchants_by_partner
@@ -117,7 +113,6 @@ export interface GetMerchantsByPartnerResponseData {
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
   more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response payload for get_merchants_by_partner
@@ -139,7 +134,6 @@ export interface GetShopeeIpRangesResponseData {
    * IP address ranges of Shopee
    */
   ip_list?: string[];
-  [key: string]: any;
 }
 /**
  * Response payload for get_shopee_ip_ranges
@@ -161,7 +155,6 @@ export interface GetShopsByPartnerRequest {
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
   page_no?: number;
-  [key: string]: any;
 }
 /**
  * GetShopsByPartner_SipAffiShop sub-interface for GetShopsByPartner_AuthedShop
@@ -175,7 +168,6 @@ export interface GetShopsByPartner_SipAffiShop {
    * Affiliate shop's id
    */
   affi_shop_id?: number;
-  [key: string]: any;
 }
 /**
  * GetShopsByPartner_AuthedShop sub-interface for GetShopsByPartnerResponse
@@ -201,7 +193,6 @@ export interface GetShopsByPartner_AuthedShop {
    * SIP affiliate shops info list
    */
   sip_affi_shop_list?: GetShopsByPartner_SipAffiShop[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shops_by_partner
@@ -215,7 +206,6 @@ export interface GetShopsByPartnerResponseData {
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
   more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response payload for get_shops_by_partner
@@ -233,7 +223,6 @@ export interface GetTokenByResendCodeRequest {
    * the code in redirect url after you resend code in shop authorization management page. valid for one-time use, expires in 10minutes.
    */
   resend_code: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_token_by_resend_code
@@ -259,7 +248,6 @@ export interface GetTokenByResendCodeResponseData {
    * Access_token expiration time, unit is second.
    */
   expire_in?: number;
-  [key: string]: any;
 }
 /**
  * Response payload for get_token_by_resend_code
@@ -301,7 +289,6 @@ export interface RefreshAccessTokenRequest {
    * Shopee's unique identifier for a principal.
    */
   principal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for refresh_access_token
@@ -343,7 +330,6 @@ export interface RefreshAccessTokenResponseData {
    * Returned when the API call is successful. The validity period of the access_token, in seconds.
    */
   expire_in?: Date | number;
-  [key: string]: any;
 }
 /**
  * Response payload for refresh_access_token

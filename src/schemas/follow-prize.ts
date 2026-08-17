@@ -58,7 +58,6 @@ export interface AddFollowPrizeRequest {
    * The max amount of discount/value a user can enjoy by using this particular follow prize. It is required to fill in when you are creating a discount percentage follow prize or coins cashback follow prize. max_price >=1
    */
   max_price?: number;
-  [key: string]: any;
 }
 /**
  * AddFollowPrize_Response sub-interface for AddFollowPrizeResponse
@@ -68,7 +67,6 @@ export interface AddFollowPrize_Response {
    * The unique identifier for the created follow prize.
    */
   campagin_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for add_follow_prize
@@ -90,7 +88,6 @@ export interface DeleteFollowPrizeRequest {
    * The unique identifier for the created follow prize.
    */
   campaign_id: number;
-  [key: string]: any;
 }
 /**
  * DeleteFollowPrize_Response sub-interface for DeleteFollowPrizeResponse
@@ -100,7 +97,6 @@ export interface DeleteFollowPrize_Response {
    * The unique identifier for the created follow prize.
    */
   campagin_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_follow_prize
@@ -122,7 +118,6 @@ export interface EndFollowPrizeRequest {
    * The unique identifier for the created follow prize.
    */
   campaign_id: number;
-  [key: string]: any;
 }
 /**
  * EndFollowPrize_Response sub-interface for EndFollowPrizeResponse
@@ -132,7 +127,6 @@ export interface EndFollowPrize_Response {
    * The unique identifier for the created follow prize.
    */
   campaign_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for end_follow_prize
@@ -154,7 +148,6 @@ export interface GetFollowPrizeDetailRequest {
    * The unique identifier for the created follow prize.
    */
   campaign_id?: number;
-  [key: string]: any;
 }
 /**
  * GetFollowPrizeDetail_Response sub-interface for GetFollowPrizeDetailResponse
@@ -204,7 +197,6 @@ export interface GetFollowPrizeDetail_Response {
    * The max amount of discount/value a user can enjoy by using this particular follow prize. Only fill in when you are creating a discount percentage follow prize or coins cashback follow prize.
    */
   max_price?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_follow_prize_detail
@@ -234,7 +226,6 @@ export interface GetFollowPrizeListRequest {
    * The status filter for retrieving follow prize list. Available value: upcoming/ongoing/expired/all.
    */
   status: Status | string | number;
-  [key: string]: any;
 }
 /**
  * GetFollowPrizeList_FollowPrize sub-interface for GetFollowPrizeList_Response
@@ -268,7 +259,6 @@ export interface GetFollowPrizeList_FollowPrize {
    * This is to indicate the quantity of voucher claimed.
    */
   claimed?: number;
-  [key: string]: any;
 }
 /**
  * GetFollowPrizeList_Response sub-interface for GetFollowPrizeListResponse
@@ -282,7 +272,6 @@ export interface GetFollowPrizeList_Response {
    * The list of follow prize.
    */
   follow_prize_list?: GetFollowPrizeList_FollowPrize[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_follow_prize_list
@@ -324,7 +313,6 @@ export interface UpdateFollowPrizeRequest {
    * The minimum spend required for using this follow prize.
    */
   min_spend?: number;
-  [key: string]: any;
 }
 /**
  * UpdateFollowPrize_Response sub-interface for UpdateFollowPrizeResponse
@@ -334,7 +322,6 @@ export interface UpdateFollowPrize_Response {
    * The unique identifier for the created follow prize.
    */
   campagin_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_follow_prize

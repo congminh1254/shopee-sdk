@@ -29,7 +29,7 @@ import {
 } from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ReturnsManager", () => {
@@ -53,7 +53,7 @@ describe("ReturnsManager", () => {
 
   describe("getReturnList", () => {
     it("should get list of returns with pagination", async () => {
-      const mockResponse: GetReturnDetailResponse = {
+      const mockResponse: GetReturnListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -72,7 +72,7 @@ describe("ReturnsManager", () => {
               status: "REQUESTED",
               due_date: 1580721513,
               tracking_number: "RNSHS00177569",
-              needs_logistics: true,
+              needs_logistics: "integrated",
               amount_before_discount: 100.0,
               user: {
                 username: "testuser",
@@ -100,7 +100,7 @@ describe("ReturnsManager", () => {
             },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -165,7 +165,7 @@ describe("ReturnsManager", () => {
 
   describe("getReturnDetail", () => {
     it("should get detailed information for a specific return", async () => {
-      const mockResponse: any = {
+      const mockResponse: GetReturnDetailResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -181,7 +181,7 @@ describe("ReturnsManager", () => {
           status: "ACCEPTED",
           due_date: 1655377883,
           tracking_number: "RNSHS00177569",
-          needs_logistics: false,
+          needs_logistics: "integrated",
           amount_before_discount: 13.99,
           user: {
             username: "gwlsg01",
@@ -279,7 +279,7 @@ describe("ReturnsManager", () => {
 
   describe("dispute", () => {
     it("should dispute a return with reason and images", async () => {
-      const mockResponse: any = {
+      const mockResponse: DisputeResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -293,12 +293,10 @@ describe("ReturnsManager", () => {
       const result = await returnsManager.dispute({
         return_sn: "200203171852695",
         email: "seller@example.com",
-        dispute_reason: 2,
         dispute_text_reason: "Product condition not as described by buyer",
-        images: ["https://cf.shopee.sg/file/evidence1.jpg"],
         dispute_reason_id: 1002,
-        image_list: ["image_id_1"],
-      } as any);
+        image_list: [{ module_index: 1, requirement: "evidence", image_url: ["image_id_1"] }],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/dispute", {
         method: "POST",
@@ -306,11 +304,9 @@ describe("ReturnsManager", () => {
         body: {
           return_sn: "200203171852695",
           email: "seller@example.com",
-          dispute_reason: 2,
           dispute_text_reason: "Product condition not as described by buyer",
-          images: ["https://cf.shopee.sg/file/evidence1.jpg"],
           dispute_reason_id: 1002,
-          image_list: ["image_id_1"],
+          image_list: [{ module_index: 1, requirement: "evidence", image_url: ["image_id_1"] }],
         },
       });
 
@@ -332,7 +328,7 @@ describe("ReturnsManager", () => {
       const result = await returnsManager.dispute({
         return_sn: "200203171852695",
         email: "seller@example.com",
-        dispute_reason: 1,
+        dispute_reason_id: 1,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/dispute", {
@@ -341,7 +337,7 @@ describe("ReturnsManager", () => {
         body: {
           return_sn: "200203171852695",
           email: "seller@example.com",
-          dispute_reason: 1,
+          dispute_reason_id: 1,
         },
       });
 
@@ -364,8 +360,6 @@ describe("ReturnsManager", () => {
 
       const result = await returnsManager.offer({
         return_sn: "200203171852695",
-        solution: 0,
-        refund_amount: 50.0,
         proposed_solution: "RETURN_REFUND",
         proposed_adjusted_refund_amount: 50.0,
       });
@@ -375,8 +369,6 @@ describe("ReturnsManager", () => {
         auth: true,
         body: {
           return_sn: "200203171852695",
-          solution: 0,
-          refund_amount: 50.0,
           proposed_solution: "RETURN_REFUND",
           proposed_adjusted_refund_amount: 50.0,
         },
@@ -423,16 +415,17 @@ describe("ReturnsManager", () => {
         error: "",
         message: "",
         response: {
-          solution: [
-            {
-              solution: 0,
-              max_refund_amount: 100.0,
-            },
-            {
-              solution: 1,
-              max_refund_amount: 100.0,
-            },
-          ],
+          return_sn: "200203171852695",
+          offer_refund: {
+            eligibility: true,
+            refund_amount_adjustable: true,
+            max_refund_amount: 100.0,
+          },
+          offer_return_refund: {
+            eligibility: true,
+            refund_amount_adjustable: true,
+            max_refund_amount: 100.0,
+          },
         },
       };
 
@@ -451,8 +444,8 @@ describe("ReturnsManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.solution).toHaveLength(2);
-      expect(result.response.solution[0].solution).toBe(0);
+      expect(result.response.offer_refund?.eligibility).toBe(true);
+      expect(result.response.offer_return_refund?.eligibility).toBe(true);
     });
   });
 
@@ -495,14 +488,14 @@ describe("ReturnsManager", () => {
         error: "",
         message: "",
         response: {
-          dispute_reason: [
+          dispute_reason_list: [
             {
-              reason_id: 1,
-              reason_text: "Product not as described",
+              dispute_reason: "Product not as described",
+              dispute_requirement: "Proof required",
             },
             {
-              reason_id: 2,
-              reason_text: "Product damaged in transit",
+              dispute_reason: "Product damaged in transit",
+              dispute_requirement: "Proof required",
             },
           ],
         },
@@ -527,8 +520,10 @@ describe("ReturnsManager", () => {
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.dispute_reason).toHaveLength(2);
-      expect(result.response.dispute_reason[0].reason_id).toBe(1);
+      expect(result.response.dispute_reason_list).toHaveLength(2);
+      expect(result.response.dispute_reason_list![0].dispute_reason).toBe(
+        "Product not as described"
+      );
     });
   });
 
@@ -539,22 +534,14 @@ describe("ReturnsManager", () => {
         error: "",
         message: "",
         response: {
-          images: [
-            {
-              url: "https://cf.shopee.sg/file/converted1.jpg",
-              thumbnail_url: "https://cf.shopee.sg/file/thumb1.jpg",
-            },
-            {
-              url: "https://cf.shopee.sg/file/converted2.jpg",
-            },
-          ],
+          url: "https://cf.shopee.sg/file/converted1.jpg",
+          thumbnail: "https://cf.shopee.sg/file/thumb1.jpg",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await returnsManager.convertImage({
-        images: [{ image: "base64_encoded_image_1" }, { image: "base64_encoded_image_2" }],
         return_sn: "200203171852695",
         upload_image: "image_data",
       });
@@ -563,14 +550,13 @@ describe("ReturnsManager", () => {
         method: "POST",
         auth: true,
         body: {
-          images: [{ image: "base64_encoded_image_1" }, { image: "base64_encoded_image_2" }],
           return_sn: "200203171852695",
           upload_image: "image_data",
         },
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.images).toHaveLength(2);
+      expect(result.response.url).toBe("https://cf.shopee.sg/file/converted1.jpg");
     });
   });
 
@@ -589,9 +575,6 @@ describe("ReturnsManager", () => {
 
       const result = await returnsManager.uploadProof({
         return_sn: "200203171852695",
-        proof_text: [{ text: "Product was not damaged when shipped" }],
-        proof_image: [{ url: "https://cf.shopee.sg/file/proof1.jpg" }],
-        proof_video: [{ url: "https://cf.shopee.sg/file/proof1.mp4" }],
         photo: [
           {
             url: "https://cf.shopee.sg/file/evidence.jpg",
@@ -606,9 +589,6 @@ describe("ReturnsManager", () => {
         auth: true,
         body: {
           return_sn: "200203171852695",
-          proof_text: [{ text: "Product was not damaged when shipped" }],
-          proof_image: [{ url: "https://cf.shopee.sg/file/proof1.jpg" }],
-          proof_video: [{ url: "https://cf.shopee.sg/file/proof1.mp4" }],
           photo: [
             {
               url: "https://cf.shopee.sg/file/evidence.jpg",
@@ -637,7 +617,7 @@ describe("ReturnsManager", () => {
 
       const result = await returnsManager.uploadProof({
         return_sn: "200203171852695",
-        proof_text: [{ text: "Evidence description" }],
+        description: "Evidence description",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_proof", {
@@ -645,7 +625,7 @@ describe("ReturnsManager", () => {
         auth: true,
         body: {
           return_sn: "200203171852695",
-          proof_text: [{ text: "Evidence description" }],
+          description: "Evidence description",
         },
       });
 
@@ -660,9 +640,9 @@ describe("ReturnsManager", () => {
         error: "",
         message: "",
         response: {
-          proof_text: [{ text: "Product was not damaged when shipped" }],
-          proof_image: [{ url: "https://cf.shopee.sg/file/proof1.jpg" }],
-          proof_video: [{ url: "https://cf.shopee.sg/file/proof1.mp4" }],
+          description: "Product was not damaged when shipped",
+          image: [{ url: "https://cf.shopee.sg/file/proof1.jpg" }],
+          video: [{ url: "https://cf.shopee.sg/file/proof1.mp4" }],
         },
       };
 
@@ -681,9 +661,9 @@ describe("ReturnsManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.proof_text).toHaveLength(1);
-      expect(result.response.proof_image).toHaveLength(1);
-      expect(result.response.proof_video).toHaveLength(1);
+      expect(result.response.description).toBe("Product was not damaged when shipped");
+      expect(result.response.image).toHaveLength(1);
+      expect(result.response.video).toHaveLength(1);
     });
   });
 
@@ -694,16 +674,14 @@ describe("ReturnsManager", () => {
         error: "",
         message: "",
         response: {
-          carrier_list: [
+          reverse_logistics_carrier_list: [
             {
-              carrier_id: 1,
-              carrier_name: "DHL Express",
-              required_fields: ["tracking_number", "pickup_date"],
+              reverse_logistics_carrier_id: 1,
+              reverse_logistics_carrier_name: "DHL Express",
             },
             {
-              carrier_id: 2,
-              carrier_name: "FedEx",
-              required_fields: ["tracking_number"],
+              reverse_logistics_carrier_id: 2,
+              reverse_logistics_carrier_name: "FedEx",
             },
           ],
         },
@@ -724,8 +702,10 @@ describe("ReturnsManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.carrier_list).toHaveLength(2);
-      expect(result.response.carrier_list[0].carrier_name).toBe("DHL Express");
+      expect(result.response.reverse_logistics_carrier_list).toHaveLength(2);
+      expect(
+        result.response.reverse_logistics_carrier_list![0].reverse_logistics_carrier_name
+      ).toBe("DHL Express");
     });
   });
 
@@ -744,12 +724,10 @@ describe("ReturnsManager", () => {
 
       const result = await returnsManager.uploadShippingProof({
         return_sn: "200203171852695",
-        carrier_id: 1,
         tracking_number: "DHL123456789",
         reverse_logistics_carrier_id: 12,
         reverse_logistics_carrier_name: "DHL Reverse",
         image_id_list: [{ image_id: "img1" }],
-        remarks: "fragile",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_shipping_proof", {
@@ -757,12 +735,10 @@ describe("ReturnsManager", () => {
         auth: true,
         body: {
           return_sn: "200203171852695",
-          carrier_id: 1,
           tracking_number: "DHL123456789",
           reverse_logistics_carrier_id: 12,
           reverse_logistics_carrier_name: "DHL Reverse",
           image_id_list: [{ image_id: "img1" }],
-          remarks: "fragile",
         },
       });
 
@@ -784,10 +760,8 @@ describe("ReturnsManager", () => {
 
       const result = await returnsManager.uploadShippingProof({
         return_sn: "200203171852695",
-        carrier_id: 1,
+        reverse_logistics_carrier_id: 1,
         tracking_number: "DHL123456789",
-        pickup_date: "2024-01-15",
-        pickup_time: "14:00",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_shipping_proof", {
@@ -795,10 +769,8 @@ describe("ReturnsManager", () => {
         auth: true,
         body: {
           return_sn: "200203171852695",
-          carrier_id: 1,
+          reverse_logistics_carrier_id: 1,
           tracking_number: "DHL123456789",
-          pickup_date: "2024-01-15",
-          pickup_time: "14:00",
         },
       });
 

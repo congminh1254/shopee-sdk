@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { PublicManager } from "../../managers/public.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PublicManager (Generated Tests)", () => {
@@ -52,7 +52,7 @@ describe("PublicManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAccessToken(exampleRequest as any);
+      const result = await manager.getAccessToken(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -79,8 +79,8 @@ describe("PublicManager (Generated Tests)", () => {
           {
             region: "SG",
             merchant_id: 1,
-            auth_time: "123",
-            expire_time: "12312",
+            auth_time: 123,
+            expire_time: 12312,
           },
         ],
         request_id: "asdasq",
@@ -96,14 +96,14 @@ describe("PublicManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMerchantsByPartner(exampleRequest as any);
+      const result = await manager.getMerchantsByPartner(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/public/get_merchants_by_partner",
         expect.objectContaining({
           method: "GET",
-          auth: true,
+          auth: false,
           params: expect.objectContaining(exampleRequest),
         })
       );
@@ -129,14 +129,14 @@ describe("PublicManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopeeIpRanges(exampleRequest as any);
+      const result = await manager.getShopeeIpRanges(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/public/get_shopee_ip_ranges",
         expect.objectContaining({
           method: "GET",
-          auth: true,
+          auth: false,
           params: expect.objectContaining(exampleRequest),
         })
       );
@@ -156,8 +156,8 @@ describe("PublicManager (Generated Tests)", () => {
           {
             region: "SG",
             shop_id: 123,
-            auth_time: "1610533441",
-            expire_time: "1642069441",
+            auth_time: 1610533441,
+            expire_time: 1642069441,
             sip_affi_shop_list: [
               {
                 region: "SG",
@@ -177,14 +177,14 @@ describe("PublicManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopsByPartner(exampleRequest as any);
+      const result = await manager.getShopsByPartner(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/public/get_shops_by_partner",
         expect.objectContaining({
           method: "GET",
-          auth: true,
+          auth: false,
           params: expect.objectContaining(exampleRequest),
         })
       );
@@ -216,14 +216,14 @@ describe("PublicManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTokenByResendCode(exampleRequest as any);
+      const result = await manager.getTokenByResendCode(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/public/get_token_by_resend_code",
         expect.objectContaining({
           method: "POST",
-          auth: true,
+          auth: false,
           body: expect.objectContaining(exampleRequest),
         })
       );
@@ -265,7 +265,7 @@ describe("PublicManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.refreshAccessToken(exampleRequest as any);
+      const result = await manager.refreshAccessToken(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

@@ -45,7 +45,6 @@ describe("AstBuilder", () => {
       expect(code).toContain("export interface AddItemRequest");
       expect(code).toContain("item_id: number;");
       expect(code).toContain("item_name?: string;");
-      expect(code).toContain("[key: string]: any;");
     });
   });
 

@@ -13,7 +13,7 @@ import {
 } from "../../schemas/merchant.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("MerchantManager", () => {
@@ -157,7 +157,7 @@ describe("MerchantManager", () => {
                 town: "Lomas de Padierna",
                 zip_code: "14240",
               },
-              enterprise_info: null,
+              enterprise_info: undefined,
             },
             {
               warehouse_id: 10001024,
@@ -184,13 +184,13 @@ describe("MerchantManager", () => {
             },
           ],
           cursor: {
-            next_id: null,
+            next_id: undefined,
             page_size: 30,
-            prev_id: null,
+            prev_id: undefined,
           },
           total_count: 2,
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -351,10 +351,10 @@ describe("MerchantManager", () => {
           cursor: {
             next_id: 222859324,
             page_size: 4,
-            prev_id: null,
+            prev_id: undefined,
           },
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 

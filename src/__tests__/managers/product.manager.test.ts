@@ -52,7 +52,7 @@ import {
 } from "../../schemas/product.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ProductManager", () => {
@@ -76,7 +76,7 @@ describe("ProductManager", () => {
 
   describe("getComment", () => {
     it("should get product comments with required parameters", async () => {
-      const mockResponse: GetItemListResponse = {
+      const mockResponse: GetCommentResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -84,7 +84,7 @@ describe("ProductManager", () => {
           item_comment_list: [
             {
               order_sn: "ORDER123",
-              comment_id: 123,
+              comment_id: "123",
               comment: "Great product!",
               buyer_username: "user123",
               item_id: 789,
@@ -103,7 +103,7 @@ describe("ProductManager", () => {
           more: false,
           next_cursor: "",
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -205,7 +205,7 @@ describe("ProductManager", () => {
 
   describe("getItemList", () => {
     it("should get item list with pagination", async () => {
-      const mockResponse: UpdateModelResponse = {
+      const mockResponse: GetItemListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -226,7 +226,7 @@ describe("ProductManager", () => {
           has_next_page: false,
           next_offset: 0,
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -235,8 +235,8 @@ describe("ProductManager", () => {
         page_size: 50,
         update_time_from: 1234567800,
         update_time_to: 1234567900,
-        item_status: [ItemStatus.NORMAL],
-      } as any);
+        item_status: ItemStatus.NORMAL,
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_list", {
         method: "GET",
@@ -246,7 +246,7 @@ describe("ProductManager", () => {
           page_size: 50,
           update_time_from: 1234567800,
           update_time_to: 1234567900,
-          item_status: [ItemStatus.NORMAL],
+          item_status: ItemStatus.NORMAL,
         },
       });
 
@@ -254,7 +254,7 @@ describe("ProductManager", () => {
     });
 
     it("should get item list with minimal parameters", async () => {
-      const mockResponse: InitTierVariationResponse = {
+      const mockResponse: GetItemListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -264,15 +264,15 @@ describe("ProductManager", () => {
           has_next_page: false,
           next_offset: 0,
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getItemList({
         offset: 0,
         page_size: 10,
-        item_status: [ItemStatus.NORMAL],
-      } as any);
+        item_status: ItemStatus.NORMAL,
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_list", {
         method: "GET",
@@ -280,7 +280,7 @@ describe("ProductManager", () => {
         params: {
           offset: 0,
           page_size: 10,
-          item_status: [ItemStatus.NORMAL],
+          item_status: ItemStatus.NORMAL,
         },
       });
 
@@ -603,11 +603,7 @@ describe("ProductManager", () => {
           success_list: [
             {
               model_id: 0,
-              seller_stock: [
-                {
-                  stock: 100,
-                },
-              ],
+              stock: 100,
             },
           ],
           failure_list: [],
@@ -660,12 +656,8 @@ describe("ProductManager", () => {
           success_list: [
             {
               model_id: 1001,
-              seller_stock: [
-                {
-                  location_id: "LOC-001",
-                  stock: 50,
-                },
-              ],
+              location_id: "LOC-001",
+              stock: 50,
             },
           ],
           failure_list: [],
@@ -689,7 +681,7 @@ describe("ProductManager", () => {
         ],
       });
 
-      expect(result.response.success_list?.[0].seller_stock[0].location_id).toBe("LOC-001");
+      expect(result.response.success_list?.[0].location_id).toBe("LOC-001");
     });
 
     it("should handle stock update failures", async () => {
@@ -783,10 +775,10 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          result: [
+          success_list: [
             {
               item_id: 123456,
-              success: true,
+              unlist: true,
             },
           ],
         },
@@ -817,7 +809,7 @@ describe("ProductManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.result?.[0].success).toBe(true);
+      expect(result.response.success_list?.[0].unlist).toBe(true);
     });
 
     it("should list items (unlist=false)", async () => {
@@ -826,10 +818,10 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          result: [
+          success_list: [
             {
               item_id: 123456,
-              success: true,
+              unlist: false,
             },
           ],
         },
@@ -846,7 +838,7 @@ describe("ProductManager", () => {
         ],
       });
 
-      expect(result.response.result?.[0].success).toBe(true);
+      expect(result.response.success_list?.[0].unlist).toBe(false);
     });
 
     it("should handle multiple items with mixed results", async () => {
@@ -855,14 +847,15 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          result: [
+          success_list: [
             {
               item_id: 123456,
-              success: true,
+              unlist: true,
             },
+          ],
+          failure_list: [
             {
               item_id: 789012,
-              success: false,
               failed_reason: "Item not found",
             },
           ],
@@ -884,9 +877,10 @@ describe("ProductManager", () => {
         ],
       });
 
-      expect(result.response.result).toHaveLength(2);
-      expect(result.response.result?.[0].success).toBe(true);
-      expect(result.response.result?.[1].success).toBe(false);
+      expect(result.response.success_list).toHaveLength(1);
+      expect(result.response.failure_list).toHaveLength(1);
+      expect(result.response.success_list?.[0].unlist).toBe(true);
+      expect(result.response.failure_list?.[0].failed_reason).toBe("Item not found");
     });
   });
 
@@ -901,13 +895,15 @@ describe("ProductManager", () => {
             {
               category_id: 100001,
               parent_category_id: 0,
-              category_name: "Electronics",
+              original_category_name: "Electronics",
+              display_category_name: "Electronics",
               has_children: true,
             },
             {
               category_id: 100002,
               parent_category_id: 100001,
-              category_name: "Mobile Phones",
+              original_category_name: "Mobile Phones",
+              display_category_name: "Mobile Phones",
               has_children: false,
             },
           ],
@@ -938,7 +934,8 @@ describe("ProductManager", () => {
             {
               category_id: 100001,
               parent_category_id: 0,
-              category_name: "电子产品",
+              original_category_name: "电子产品",
+              display_category_name: "电子产品",
               has_children: true,
             },
           ],
@@ -959,7 +956,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.category_list![0].category_name).toBe("电子产品");
+      expect(result.response.category_list![0].display_category_name).toBe("电子产品");
     });
 
     it("should handle empty category list", async () => {
@@ -988,7 +985,20 @@ describe("ProductManager", () => {
         message: "",
         response: {
           item_id: 123456,
-          warning: [],
+          description: "Test product description",
+          weight: 1.0,
+          pre_order: { is_pre_order: false, days_to_ship: 7 },
+          item_name: "Test Product",
+          images: { image_id_list: ["img123"], image_url_list: ["https://example.com/img123"] },
+          item_status: "NORMAL",
+          price_info: { current_price: 99.99, original_price: 99.99 },
+          logistic_info: [
+            { logistic_id: 20001, enabled: true, size_id: 1, shipping_fee: 5.0, is_free: false },
+          ],
+          attribute: [],
+          category_id: 100001,
+          dimension: { package_width: 0, package_height: 0, package_length: 0 },
+          condition: "NEW",
         },
       };
 
@@ -999,9 +1009,14 @@ describe("ProductManager", () => {
         description: "Test product description",
         item_name: "Test Product",
         category_id: 100001,
+        weight: 1.0,
+        logistic_info: [
+          { logistic_id: 20001, enabled: true, size_id: 1, shipping_fee: 5.0, is_free: false },
+        ],
         image: {
           image_id_list: ["img123"],
         },
+        dimension: { package_width: 0, package_height: 0, package_length: 0 },
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/add_item", {
@@ -1012,6 +1027,10 @@ describe("ProductManager", () => {
           description: "Test product description",
           item_name: "Test Product",
           category_id: 100001,
+          weight: 1.0,
+          logistic_info: [
+            { logistic_id: 20001, enabled: true, size_id: 1, shipping_fee: 5.0, is_free: false },
+          ],
         }),
       });
 
@@ -1027,7 +1046,24 @@ describe("ProductManager", () => {
         message: "",
         response: {
           item_id: 123456,
-          warning: [],
+          description: "Updated product description",
+          weight: 1.0,
+          pre_order: { is_pre_order: false, days_to_ship: 7 },
+          item_name: "Updated Product Name",
+          item_status: "NORMAL",
+          images: { image_id_list: ["img123"], image_url_list: ["https://example.com/img123"] },
+          logistic_info: [
+            {
+              logistic_id: 20001,
+              enabled: true,
+              estimated_shipping_fee: 5.0,
+              logistic_name: "Standard Delivery",
+              is_free: false,
+            },
+          ],
+          category_id: 100001,
+          dimension: { package_width: 0, package_height: 0, package_length: 0 },
+          condition: "NEW",
         },
       };
 
@@ -1036,7 +1072,7 @@ describe("ProductManager", () => {
       const result = await productManager.updateItem({
         item_id: 123456,
         item_name: "Updated Product Name",
-        original_price: 149.99,
+        item_sku: "SKU-001",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/update_item", {
@@ -1045,7 +1081,7 @@ describe("ProductManager", () => {
         body: {
           item_id: 123456,
           item_name: "Updated Product Name",
-          original_price: 149.99,
+          item_sku: "SKU-001",
         },
       });
 
@@ -1060,8 +1096,10 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          model_id_list: [1001, 1002],
-          warning: [],
+          model: [
+            { model_id: 1001, tier_index: [0, 0] },
+            { model_id: 1002, tier_index: [0, 1] },
+          ],
         },
       };
 
@@ -1073,12 +1111,12 @@ describe("ProductManager", () => {
           {
             tier_index: [0, 0],
             original_price: 99.99,
-            normal_stock: 100,
+            seller_stock: [{ stock: 100 }],
           },
           {
             tier_index: [0, 1],
             original_price: 109.99,
-            normal_stock: 50,
+            seller_stock: [{ stock: 50 }],
           },
         ],
       });
@@ -1091,30 +1129,29 @@ describe("ProductManager", () => {
         }),
       });
 
-      expect(result.response.model_id_list).toHaveLength(2);
+      expect(result.response.model).toHaveLength(2);
     });
   });
 
   describe("updateModel", () => {
     it("should update models successfully", async () => {
-      const mockResponse: SearchItemResponse = {
+      const mockResponse: UpdateModelResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          model_id_list: [1001],
-          warning: [],
+          warning: "some-warning",
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.updateModel({
         item_id: 123456,
-        model_list: [
+        model: [
           {
             model_id: 1001,
-            original_price: 119.99,
+            model_sku: "updated_sku",
           },
         ],
       });
@@ -1127,7 +1164,7 @@ describe("ProductManager", () => {
         }),
       });
 
-      expect(result.response.model_id_list).toContain(1001);
+      expect(result.response.warning).toBe("some-warning");
     });
   });
 
@@ -1138,7 +1175,7 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          success: true,
+          warning: "some-warning",
         },
       };
 
@@ -1146,7 +1183,7 @@ describe("ProductManager", () => {
 
       const result = await productManager.deleteModel({
         item_id: 123456,
-        model_id_list: [1001, 1002],
+        model_id: 1001,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/delete_model", {
@@ -1154,49 +1191,56 @@ describe("ProductManager", () => {
         auth: true,
         body: {
           item_id: 123456,
-          model_id_list: [1001, 1002],
+          model_id: 1001,
         },
       });
 
-      expect(result.response.success).toBe(true);
+      expect(result.response.warning).toBe("some-warning");
     });
   });
 
   describe("initTierVariation", () => {
     it("should initialize tier variations", async () => {
-      const mockResponse: GetItemListByContentDiagnosisResponse = {
+      const mockResponse: InitTierVariationResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          model_id_list: [2001, 2002],
-          warning: [],
+          item_id: 123456,
+          model: [
+            { model_id: 2001, tier_index: [0] },
+            { model_id: 2002, tier_index: [1] },
+          ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.initTierVariation({
         item_id: 123456,
-        tier_variation: [
+        standardise_tier_variation: [
           {
-            name: "Color",
-            option_list: [{ option: "Red" }, { option: "Blue" }],
+            variation_id: 1001,
+            variation_name: "Color",
+            variation_option_list: [
+              { variation_option_id: 2001, variation_option_name: "Red" },
+              { variation_option_id: 2002, variation_option_name: "Blue" },
+            ],
           },
         ],
         model: [
           {
-            tier_index: [0],
+            tier_index: 0,
             original_price: 99.99,
-            normal_stock: 50,
+            seller_stock: [{ stock: 50 }],
           },
           {
-            tier_index: [1],
+            tier_index: 1,
             original_price: 99.99,
-            normal_stock: 50,
+            seller_stock: [{ stock: 50 }],
           },
         ],
-      } as any);
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/init_tier_variation", {
         method: "POST",
@@ -1206,7 +1250,7 @@ describe("ProductManager", () => {
         }),
       });
 
-      expect(result.response.model_id_list).toHaveLength(2);
+      expect(result.response.model).toHaveLength(2);
     });
   });
 
@@ -1224,10 +1268,11 @@ describe("ProductManager", () => {
 
       const result = await productManager.updateTierVariation({
         item_id: 123456,
-        tier_variation: [
+        standardise_tier_variation: [
           {
-            name: "Size",
-            option_list: [{ option: "S" }, { option: "M" }, { option: "L" }],
+            variation_id: 1001,
+            variation_name: "Size",
+            variation_option_list: [{ variation_option_id: 3001, variation_option_name: "S" }],
           },
         ],
       });
@@ -1235,9 +1280,16 @@ describe("ProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/update_tier_variation", {
         method: "POST",
         auth: true,
-        body: expect.objectContaining({
+        body: {
           item_id: 123456,
-        }),
+          standardise_tier_variation: [
+            {
+              variation_id: 1001,
+              variation_name: "Size",
+              variation_option_list: [{ variation_option_id: 3001, variation_option_name: "S" }],
+            },
+          ],
+        },
       });
 
       expect(result.error).toBe("");
@@ -1246,21 +1298,14 @@ describe("ProductManager", () => {
 
   describe("searchItem", () => {
     it("should search items successfully", async () => {
-      const mockResponse: any = {
+      const mockResponse: SearchItemResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          item: [
-            {
-              item_id: 123456,
-              item_status: ItemStatus.NORMAL,
-              update_time: 1234567890,
-            },
-          ],
+          item_id_list: [123456],
           total_count: 1,
-          has_next_page: false,
-          next_offset: 0,
+          next_offset: "1",
         },
       };
 
@@ -1268,21 +1313,21 @@ describe("ProductManager", () => {
 
       const result = await productManager.searchItem({
         item_name: "Test Product",
-        offset: 0,
+        offset: "0",
         page_size: 20,
-      } as any);
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/search_item", {
         method: "GET",
         auth: true,
         params: {
           item_name: "Test Product",
-          offset: 0,
+          offset: "0",
           page_size: 20,
         },
       });
 
-      expect(result.response.item).toHaveLength(1);
+      expect(result.response.item_id_list).toHaveLength(1);
     });
   });
 
@@ -1296,14 +1341,10 @@ describe("ProductManager", () => {
           item_list: [
             {
               item_id: 123456,
-              sale_info: {
-                sale: 100,
-                sale_7d: 50,
-                sale_30d: 200,
-              },
-              view: 1000,
-              liked_count: 50,
-              cmt_count: 20,
+              sale: 100,
+              views: 1000,
+              likes: 50,
+              comment_count: 20,
             },
           ],
         },
@@ -1323,7 +1364,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.item_list![0].sale_info.sale).toBe(100);
+      expect(result.response.item_list![0].sale).toBe(100);
     });
   });
 
@@ -1334,16 +1375,14 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          attribute_list: [
+          list: [
             {
-              attribute_id: 1001,
-              original_attribute_name: "Brand",
-              is_mandatory: true,
-              input_type: "DROP_DOWN",
-              attribute_value_list: [
+              category_id: 100001,
+              attribute_tree: [
                 {
-                  value_id: 2001,
-                  original_value_name: "Nike",
+                  attribute_id: 1001,
+                  name: "Brand",
+                  mandatory: true,
                 },
               ],
             },
@@ -1354,7 +1393,7 @@ describe("ProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getAttributeTree({
-        category_id: 100001,
+        category_id_list: [100001],
         language: "en",
       });
 
@@ -1362,12 +1401,12 @@ describe("ProductManager", () => {
         method: "GET",
         auth: true,
         params: {
-          category_id: 100001,
+          category_id_list: [100001],
           language: "en",
         },
       });
 
-      expect(result.response.attribute_list).toHaveLength(1);
+      expect(result.response.list).toHaveLength(1);
     });
   });
 
@@ -1403,6 +1442,7 @@ describe("ProductManager", () => {
         category_id: 100001,
         offset: 0,
         page_size: 20,
+        status: 1,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_brand_list", {
@@ -1412,6 +1452,7 @@ describe("ProductManager", () => {
           category_id: 100001,
           offset: 0,
           page_size: 20,
+          status: 1,
         },
       });
 
@@ -1434,16 +1475,20 @@ describe("ProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.registerBrand({
-        category_id: 100001,
+        category_list: [100001],
         original_brand_name: "NewBrand",
+        product_image: { image_id_list: ["img123"] },
+        brand_region: "SG",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/register_brand", {
         method: "POST",
         auth: true,
         body: {
-          category_id: 100001,
+          category_list: [100001],
           original_brand_name: "NewBrand",
+          product_image: { image_id_list: ["img123"] },
+          brand_region: "SG",
         },
       });
 
@@ -1458,7 +1503,7 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          category_id_list: [100001, 100002, 100003],
+          category_id: [100001, 100002, 100003],
         },
       };
 
@@ -1476,7 +1521,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.category_id_list).toHaveLength(3);
+      expect(result.response.category_id).toHaveLength(3);
     });
   });
 
@@ -1487,13 +1532,9 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          item_limit: {
-            max_image_count: 9,
-            max_video_count: 1,
-            max_product_title_length: 120,
-            max_description_length: 3000,
-            max_extended_description_length: 25000,
-            is_video_required: false,
+          item_image_count_limit: {
+            min_limit: 1,
+            max_limit: 9,
           },
         },
       };
@@ -1512,7 +1553,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.item_limit.max_image_count).toBe(9);
+      expect(result.response.item_image_count_limit?.max_limit).toBe(9);
     });
   });
 
@@ -1523,13 +1564,13 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          item_promotion_list: [
+          success_list: [
             {
               item_id: 123456,
-              promotion_list: [
+              promotion: [
                 {
                   promotion_id: 9001,
-                  promotion_type: 1,
+                  promotion_type: "1",
                   start_time: 1609459200,
                   end_time: 1612137600,
                 },
@@ -1553,7 +1594,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.item_promotion_list[0].promotion_list).toHaveLength(1);
+      expect(result.response.success_list![0].promotion).toHaveLength(1);
     });
   });
 
@@ -1564,7 +1605,7 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          failed_item_id_list: [],
+          failure_list: [],
         },
       };
 
@@ -1582,7 +1623,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.failed_item_id_list).toEqual([]);
+      expect(result.response.failure_list).toEqual([]);
     });
   });
 
@@ -1596,7 +1637,7 @@ describe("ProductManager", () => {
           item_list: [
             {
               item_id: 123456,
-              boost_end_time: 1640995200,
+              cool_down_second: 3600,
             },
           ],
         },
@@ -1623,13 +1664,12 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          recommended_attribute_list: [
+          attribute_list: [
             {
               attribute_id: 1001,
-              recommended_value_list: [
+              attribute_value_list: [
                 {
                   value_id: 2001,
-                  original_value_name: "Cotton",
                 },
               ],
             },
@@ -1655,7 +1695,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.recommended_attribute_list).toHaveLength(1);
+      expect(result.response.attribute_list).toHaveLength(1);
     });
   });
 
@@ -1666,10 +1706,10 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          attribute_value_list: [
+          value_list: [
             {
               value_id: 2001,
-              original_value_name: "Cotton",
+              value_name: "Cotton",
             },
           ],
         },
@@ -1678,9 +1718,7 @@ describe("ProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.searchAttributeValueList({
-        category_id: 100001,
         attribute_id: 1001,
-        search_value: "Cotton",
         value_name: "Cotton Soft",
         cursor: 10,
         limit: 50,
@@ -1693,9 +1731,7 @@ describe("ProductManager", () => {
           method: "POST",
           auth: true,
           body: {
-            category_id: 100001,
             attribute_id: 1001,
-            search_value: "Cotton",
             value_name: "Cotton Soft",
             cursor: 10,
             limit: 50,
@@ -1703,7 +1739,7 @@ describe("ProductManager", () => {
         }
       );
 
-      expect(result.response.attribute_value_list).toHaveLength(1);
+      expect(result.response.value_list).toHaveLength(1);
     });
   });
 
@@ -1714,36 +1750,31 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          item: [
+          list: [
             {
-              item_id: 123456,
-              item_status: ItemStatus.NORMAL,
-              update_time: 1234567890,
+              main_item_id: 123456,
+              main_shop_id: 10001,
+              direct_item_id: 10002,
             },
           ],
-          total_count: 1,
-          has_next_page: false,
-          next_offset: 0,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getMainItemList({
-        offset: 0,
-        page_size: 20,
+        direct_item_id: [10002],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_main_item_list", {
         method: "GET",
         auth: true,
         params: {
-          offset: 0,
-          page_size: 20,
+          direct_item_id: "10002",
         },
       });
 
-      expect(result.response.item).toHaveLength(1);
+      expect(result.response.list).toHaveLength(1);
     });
   });
 
@@ -1754,14 +1785,13 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          item_violation_list: [
+          item_list: [
             {
               item_id: 123456,
-              violation_list: [
+              item_status_details: [
                 {
                   violation_type: "DESCRIPTION",
                   violation_reason: "Prohibited content",
-                  violated_item_info: ["description"],
                 },
               ],
             },
@@ -1783,7 +1813,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.item_violation_list[0].violation_list).toHaveLength(1);
+      expect(result.response.item_list![0].item_status_details).toHaveLength(1);
     });
   });
 
@@ -1794,7 +1824,7 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          weight: 1.5,
+          normal_weight_range: [1.0, 2.0],
         },
       };
 
@@ -1803,6 +1833,10 @@ describe("ProductManager", () => {
       const result = await productManager.getWeightRecommendation({
         category_id: 100001,
         item_name: "T-Shirt",
+        cover_image_id: "img123",
+        attribute_list: [],
+        brand_id: 10001,
+        description_type: "normal",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1814,11 +1848,15 @@ describe("ProductManager", () => {
           body: {
             category_id: 100001,
             item_name: "T-Shirt",
+            cover_image_id: "img123",
+            attribute_list: [],
+            brand_id: 10001,
+            description_type: "normal",
           },
         }
       );
 
-      expect(result.response.weight).toBe(1.5);
+      expect(result.response.normal_weight_range).toEqual([1.0, 2.0]);
     });
   });
 
@@ -1829,38 +1867,35 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          item: [
+          list: [
             {
-              item_id: 123456,
-              category_id: 100001,
-              item_name: "Direct Item",
-              item_status: ItemStatus.NORMAL,
-              update_time: 1234567890,
+              main_item_id: 123456,
+              direct_item_list: [
+                {
+                  direct_item_id: 10002,
+                  direct_shop_id: 10001,
+                },
+              ],
             },
           ],
-          total_count: 1,
-          has_next_page: false,
-          next_offset: 0,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getDirectItemList({
-        offset: 0,
-        page_size: 20,
+        main_item_id: [10001],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_direct_item_list", {
         method: "GET",
         auth: true,
         params: {
-          offset: 0,
-          page_size: 20,
+          main_item_id: "10001",
         },
       });
 
-      expect(result.response.item).toHaveLength(1);
+      expect(result.response.list).toHaveLength(1);
     });
   });
 
@@ -1871,11 +1906,11 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          item_list: [
+          success_item_list: [
             {
               item_id: 123456,
-              status: "PASSED",
-              failed_field_list: [],
+              quality_level: 2,
+              unfinished_task: [],
             },
           ],
         },
@@ -1899,37 +1934,36 @@ describe("ProductManager", () => {
         }
       );
 
-      expect(result.response.item_list[0].status).toBe("PASSED");
+      expect(result.response.success_item_list![0].quality_level).toBe(2);
     });
   });
 
   describe("getItemListByContentDiagnosis", () => {
     it("should get items filtered by content diagnosis", async () => {
-      const mockResponse: any = {
+      const mockResponse: GetItemListByContentDiagnosisResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          item: [
+          item_list: [
             {
               item_id: 123456,
-              item_status: ItemStatus.NORMAL,
-              update_time: 1234567890,
+              quality_level: 2,
             },
           ],
           total_count: 1,
           has_next_page: false,
-          next_offset: 0,
+          next_offset: "0",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getItemListByContentDiagnosis({
-        status: "PASSED",
-        offset: 0,
         page_size: 20,
-      } as any);
+        offset: "0",
+        quality_level: [2],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1938,14 +1972,14 @@ describe("ProductManager", () => {
           method: "POST",
           auth: true,
           body: {
-            status: "PASSED",
-            offset: 0,
             page_size: 20,
+            offset: "0",
+            quality_level: [2],
           },
         }
       );
 
-      expect(result.response.item).toHaveLength(1);
+      expect(result.response.item_list).toHaveLength(1);
     });
   });
 
@@ -1961,12 +1995,52 @@ describe("ProductManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await productManager.addKitItem({ item_setting: "data" } as any);
+      const result = await productManager.addKitItem({
+        item_setting: {
+          item_name: "Test Kit Item",
+          images: { image_id_list: ["img123"] },
+          description_type: "normal",
+          logistic_info: [{ logistic_id: 1, enabled: true }],
+          weight: 1.5,
+          model_list: [
+            {
+              tier_index: [0],
+              original_price: 100,
+              component_list: [{ component_item_id: 123, quantity: 2 }],
+            },
+          ],
+          tier_variation_list: [
+            {
+              option_list: [{ option: "Option 1" }],
+            },
+          ],
+        },
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/add_kit_item", {
         method: "POST",
         auth: true,
-        body: { item_setting: "data" },
+        body: {
+          item_setting: {
+            item_name: "Test Kit Item",
+            images: { image_id_list: ["img123"] },
+            description_type: "normal",
+            logistic_info: [{ logistic_id: 1, enabled: true }],
+            weight: 1.5,
+            model_list: [
+              {
+                tier_index: [0],
+                original_price: 100,
+                component_list: [{ component_item_id: 123, quantity: 2 }],
+              },
+            ],
+            tier_variation_list: [
+              {
+                option_list: [{ option: "Option 1" }],
+              },
+            ],
+          },
+        },
       });
 
       expect(result.response.item_id).toBe(123456);
@@ -1998,24 +2072,24 @@ describe("ProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: { item_list: [{ item_id: 123456 }] },
+        response: { product_info: { kit_item_id: 123456 } },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getKitItemInfo({
-        item_id_list: [123456],
+        item_id: 123456,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_kit_item_info", {
         method: "GET",
         auth: true,
         params: {
-          item_id_list: "123456",
+          item_id: 123456,
         },
       });
 
-      expect(result.response.item_list).toHaveLength(1);
+      expect(result.response.product_info).toBeDefined();
     });
 
     it("should call getKitItemLimit", async () => {
@@ -2023,7 +2097,7 @@ describe("ProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: { item_limit: { max_items: 10 } },
+        response: { price_limit: { min_price: 10 } },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -2040,7 +2114,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.item_limit).toBeDefined();
+      expect(result.response.price_limit).toBeDefined();
     });
 
     it("should call generateKitImage", async () => {
@@ -2049,25 +2123,25 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          image_info: { image_id: "img123", image_url: "http://example.com/img.jpg" },
+          kit_image: "img123_url",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.generateKitImage({
-        image_id_list: ["img1", "img2"],
+        component_list: [{ component_item_id: 10001, component_model_id: 20001 }],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/generate_kit_image", {
         method: "POST",
         auth: true,
         body: {
-          image_id_list: ["img1", "img2"],
+          component_list: [{ component_item_id: 10001, component_model_id: 20001 }],
         },
       });
 
-      expect(result.response.image_info).toBeDefined();
+      expect(result.response.kit_image).toBe("img123_url");
     });
 
     it("should call updateSipItemPrice", async () => {
@@ -2082,15 +2156,25 @@ describe("ProductManager", () => {
 
       const result = await productManager.updateSipItemPrice({
         item_id: 123456,
-        sip_item_price: 99.99,
-      } as any);
+        sip_item_price: [
+          {
+            model_id: 0,
+            sip_item_price: 99.99,
+          },
+        ],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/update_sip_item_price", {
         method: "POST",
         auth: true,
         body: {
           item_id: 123456,
-          sip_item_price: 99.99,
+          sip_item_price: [
+            {
+              model_id: 0,
+              sip_item_price: 99.99,
+            },
+          ],
         },
       });
 
@@ -2112,16 +2196,16 @@ describe("ProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getSizeChartList({
-        category_id: 12345,
-        page_size: 10,
-      } as any);
+        category_id: "12345",
+        page_size: "10",
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_size_chart_list", {
         method: "GET",
         auth: true,
         params: {
-          category_id: 12345,
-          page_size: 10,
+          category_id: "12345",
+          page_size: "10",
         },
       });
 
@@ -2133,24 +2217,24 @@ describe("ProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: { size_chart: { chart_id: "chart1" } },
+        response: { size_chart_id: 1234 },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getSizeChartDetail({
-        size_chart_id: "chart1",
-      } as any);
+        size_chart_id: 1234,
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_size_chart_detail", {
         method: "GET",
         auth: true,
         params: {
-          size_chart_id: "chart1",
+          size_chart_id: 1234,
         },
       });
 
-      expect(result.response.size_chart).toBeDefined();
+      expect(result.response.size_chart_id).toBe(1234);
     });
 
     it("should call getAllVehicleList", async () => {
@@ -2185,7 +2269,7 @@ describe("ProductManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getVehicleListByCompatibilityDetail({
-        item_id: 123456,
+        compatibility_details: "Brand",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -2195,7 +2279,7 @@ describe("ProductManager", () => {
           method: "GET",
           auth: true,
           params: {
-            item_id: 123456,
+            compatibility_details: "Brand",
           },
         }
       );
@@ -2208,24 +2292,24 @@ describe("ProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: { item_list: [{ item_id: 123456 }] },
+        response: { aitem_list: [{ item_id: 123456 }] },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getAitemByPitemId({
-        pitem_id_list: [789012],
+        pitem_id: 789012,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_aitem_by_pitem_id", {
         method: "GET",
         auth: true,
         params: {
-          pitem_id_list: "789012",
+          pitem_id: 789012,
         },
       });
 
-      expect(result.response.item_list).toHaveLength(1);
+      expect(result.response.aitem_list).toHaveLength(1);
     });
 
     it("should call getDirectShopRecommendedPrice", async () => {
@@ -2233,14 +2317,22 @@ describe("ProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: { recommended_price: 99.99 },
+        response: {
+          direct_item_price: [
+            {
+              model_id: 10001,
+              direct_shop_recommended_price: 99.99,
+            },
+          ],
+        },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await productManager.getDirectShopRecommendedPrice({
         category_id: 100001,
-        item_name: "Test Item",
+        main_item_id: 10001,
+        direct_shop_regions: ["SG"],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -2251,12 +2343,13 @@ describe("ProductManager", () => {
           auth: true,
           params: {
             category_id: 100001,
-            item_name: "Test Item",
+            main_item_id: 10001,
+            direct_shop_regions: "SG",
           },
         }
       );
 
-      expect(result.response.recommended_price).toBe(99.99);
+      expect(result.response.direct_item_price).toHaveLength(1);
     });
 
     it("should call getProductCertificationRule", async () => {
@@ -2264,7 +2357,7 @@ describe("ProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: { certification_list: [{ cert_id: 1 }] },
+        response: { certification_rule_list: [{ certification_id: 1 }] },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -2285,7 +2378,7 @@ describe("ProductManager", () => {
         }
       );
 
-      expect(result.response.certification_list).toHaveLength(1);
+      expect(result.response.certification_rule_list).toHaveLength(1);
     });
 
     it("should call searchUnpackagedModelList", async () => {
@@ -2300,7 +2393,8 @@ describe("ProductManager", () => {
 
       const result = await productManager.searchUnpackagedModelList({
         item_id: 123456,
-        search_value: "test",
+        item_name: "test",
+        page_size: 20,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -2311,7 +2405,8 @@ describe("ProductManager", () => {
           auth: true,
           body: {
             item_id: 123456,
-            search_value: "test",
+            item_name: "test",
+            page_size: 20,
           },
         }
       );
@@ -2548,24 +2643,26 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         response: {
-          standardise_variation_list: [
-            {
-              variation_id: 101054,
-              variation_name: "Color",
-              variation_group_list: [
-                {
-                  variation_group_id: 849982774362112,
-                  variation_group_name: "Group 1",
-                  variation_option_list: [
-                    {
-                      variation_option_id: 6245,
-                      variation_option_name: "Green",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+          data: {
+            standardise_variation_list: [
+              {
+                variation_id: 101054,
+                variation_name: "Color",
+                variation_group_list: [
+                  {
+                    variation_group_id: 849982774362112,
+                    variation_group_name: "Group 1",
+                    variation_option_list: [
+                      {
+                        variation_option_id: 6245,
+                        variation_option_name: "Green",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
         },
       };
 
@@ -2584,7 +2681,7 @@ describe("ProductManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.standardise_variation_list).toHaveLength(1);
+      expect(result.response?.data?.standardise_variation_list).toHaveLength(1);
     });
   });
 
@@ -2612,6 +2709,7 @@ describe("ProductManager", () => {
             image: {
               image_id_list: ["img1"],
             },
+            logistic_info: [{ logistic_id: 20001, enabled: true }],
           },
         ],
       };

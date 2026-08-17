@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { ProductManager } from "../../managers/product.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ProductManager (Generated Tests)", () => {
@@ -151,7 +151,7 @@ describe("ProductManager (Generated Tests)", () => {
             },
           ],
         },
-        scheduled_publish_time: "1733590920",
+        scheduled_publish_time: 1733590920,
         authorised_brand_id: 123,
         size_chart_info: {
           size_chart: "test_string",
@@ -281,7 +281,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addItem(exampleRequest as any);
+      const result = await manager.addItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -389,7 +389,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addKitItem(exampleRequest as any);
+      const result = await manager.addKitItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -468,7 +468,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addModel(exampleRequest as any);
+      const result = await manager.addModel(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -614,7 +614,7 @@ describe("ProductManager (Generated Tests)", () => {
                 },
               ],
             },
-            scheduled_publish_time: "1733590920",
+            scheduled_publish_time: 1733590920,
             authorised_brand_id: 123,
             size_chart_info: {
               size_chart: "test_string",
@@ -657,7 +657,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.batchAddItem(exampleRequest as any);
+      const result = await manager.batchAddItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -729,7 +729,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.batchPublishItemToOutletShop(exampleRequest as any);
+      const result = await manager.batchPublishItemToOutletShop(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -772,7 +772,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.batchUpdateOutletPrice(exampleRequest as any);
+      const result = await manager.batchUpdateOutletPrice(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -820,7 +820,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.batchUpdateOutletStock(exampleRequest as any);
+      const result = await manager.batchUpdateOutletStock(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -862,7 +862,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.boostItem(exampleRequest as any);
+      const result = await manager.boostItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -895,7 +895,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.categoryRecommend(exampleRequest as any);
+      const result = await manager.categoryRecommend(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -930,7 +930,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteItem(exampleRequest as any);
+      const result = await manager.deleteItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -966,7 +966,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteModel(exampleRequest as any);
+      const result = await manager.deleteModel(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1003,7 +1003,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.generateKitImage(exampleRequest as any);
+      const result = await manager.generateKitImage(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1047,7 +1047,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAitemByPitemId(exampleRequest as any);
+      const result = await manager.getAitemByPitemId(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1094,7 +1094,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAllVehicleList(exampleRequest as any);
+      const result = await manager.getAllVehicleList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1170,7 +1170,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAttributeTree(exampleRequest as any);
+      const result = await manager.getAttributeTree(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1218,7 +1218,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBatchTaskResult(exampleRequest as any);
+      const result = await manager.getBatchTaskResult(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1253,7 +1253,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBoostedList(exampleRequest as any);
+      const result = await manager.getBoostedList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1299,7 +1299,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBrandList(exampleRequest as any);
+      const result = await manager.getBrandList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1339,7 +1339,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getCategory(exampleRequest as any);
+      const result = await manager.getCategory(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1376,11 +1376,11 @@ describe("ProductManager (Generated Tests)", () => {
             rating_star: 5,
             editable: "EDITABLE",
             hidden: false,
-            create_time: "1603153057",
+            create_time: 1603153057,
             comment_reply: {
               reply: "Thank you for your support. Look forward to your next visit.",
               hidden: false,
-              create_time: "1712053073",
+              create_time: 1712053073,
             },
             model_id_list: [123],
             media: {
@@ -1399,7 +1399,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getComment(exampleRequest as any);
+      const result = await manager.getComment(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1441,7 +1441,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getDirectItemList(exampleRequest as any);
+      const result = await manager.getDirectItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1497,7 +1497,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getDirectShopRecommendedPrice(exampleRequest as any);
+      const result = await manager.getDirectShopRecommendedPrice(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1528,8 +1528,8 @@ describe("ProductManager (Generated Tests)", () => {
             item_name: "seller discount",
             description: "first product 001first product",
             item_sku: "test_string",
-            create_time: "1600572637",
-            update_time: "1600572640",
+            create_time: 1600572637,
+            update_time: 1600572640,
             attribute_list: [
               {
                 attribute_id: 4811,
@@ -1626,7 +1626,7 @@ describe("ProductManager (Generated Tests)", () => {
                 },
               ],
             },
-            scheduled_publish_time: "1733590920",
+            scheduled_publish_time: 1733590920,
             authorised_brand_id: 123,
             ssp_id: 123,
             is_fulfillment_by_shopee: true,
@@ -1744,7 +1744,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemBaseInfo(exampleRequest as any);
+      const result = await manager.getItemBaseInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1793,7 +1793,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemContentDiagnosisResult(exampleRequest as any);
+      const result = await manager.getItemContentDiagnosisResult(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1834,7 +1834,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemExtraInfo(exampleRequest as any);
+      const result = await manager.getItemExtraInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1928,7 +1928,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemLimit(exampleRequest as any);
+      const result = await manager.getItemLimit(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1949,8 +1949,8 @@ describe("ProductManager (Generated Tests)", () => {
       const exampleRequest = {
         offset: 0,
         page_size: 10,
-        update_time_from: "1611311600",
-        update_time_to: "1611311631",
+        update_time_from: 1611311600,
+        update_time_to: 1611311631,
         item_status: "NORMAL",
       };
       const exampleResponse = {
@@ -1958,7 +1958,7 @@ describe("ProductManager (Generated Tests)", () => {
           {
             item_id: 2500139861,
             item_status: "NORMAL",
-            update_time: "1608128470",
+            update_time: 1608128470,
             tag: {
               kit: true,
             },
@@ -1976,7 +1976,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemList(exampleRequest as any);
+      const result = await manager.getItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2025,7 +2025,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemListByContentDiagnosis(exampleRequest as any);
+      const result = await manager.getItemListByContentDiagnosis(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2086,7 +2086,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemPromotion(exampleRequest as any);
+      const result = await manager.getItemPromotion(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2119,8 +2119,8 @@ describe("ProductManager (Generated Tests)", () => {
                 violation_type: "Prohibited Listing",
                 violation_reason: "License Reason",
                 suggestion: "Upload license",
-                fix_deadline_time: "1705227588",
-                update_time: "1705054788",
+                fix_deadline_time: 1705227588,
+                update_time: 1705054788,
               },
             ],
             deboost_details: [
@@ -2135,8 +2135,8 @@ describe("ProductManager (Generated Tests)", () => {
                     category_name: "Personal Care",
                   },
                 ],
-                fix_deadline_time: "1705202227",
-                update_time: "1704943027",
+                fix_deadline_time: 1705202227,
+                update_time: 1704943027,
               },
             ],
             fail_error: "test_string",
@@ -2152,7 +2152,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemViolationInfo(exampleRequest as any);
+      const result = await manager.getItemViolationInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2286,7 +2286,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getKitItemInfo(exampleRequest as any);
+      const result = await manager.getKitItemInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2367,7 +2367,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getKitItemLimit(exampleRequest as any);
+      const result = await manager.getKitItemLimit(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2405,7 +2405,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMainItemList(exampleRequest as any);
+      const result = await manager.getMainItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2448,7 +2448,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMartItemByOutletItemId(exampleRequest as any);
+      const result = await manager.getMartItemByOutletItemId(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2492,7 +2492,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMartItemMappingById(exampleRequest as any);
+      const result = await manager.getMartItemMappingById(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2611,7 +2611,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getModelList(exampleRequest as any);
+      const result = await manager.getModelList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2662,7 +2662,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getProductCertificationRule(exampleRequest as any);
+      const result = await manager.getProductCertificationRule(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2705,7 +2705,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getRecommendAttribute(exampleRequest as any);
+      const result = await manager.getRecommendAttribute(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2757,7 +2757,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getSizeChartDetail(exampleRequest as any);
+      const result = await manager.getSizeChartDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2797,7 +2797,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getSizeChartList(exampleRequest as any);
+      const result = await manager.getSizeChartList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2852,7 +2852,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVariations(exampleRequest as any);
+      const result = await manager.getVariations(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2899,7 +2899,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVehicleListByCompatibilityDetail(exampleRequest as any);
+      const result = await manager.getVehicleListByCompatibilityDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2961,7 +2961,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getWeightRecommendation(exampleRequest as any);
+      const result = await manager.getWeightRecommendation(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3068,7 +3068,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.initTierVariation(exampleRequest as any);
+      const result = await manager.initTierVariation(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3091,21 +3091,23 @@ describe("ProductManager (Generated Tests)", () => {
         outlet_shop_id: 123,
         publish_item: {
           outlet_item_id: 123,
-          model: {
-            relate_mart_model_id: 123,
-            model_status: "test_string",
-            original_price: 123,
-            seller_stock: [
-              {
-                location_id: "test_string",
-                stock: 123,
+          model: [
+            {
+              relate_mart_model_id: 123,
+              model_status: "test_string",
+              original_price: 123,
+              seller_stock: [
+                {
+                  location_id: "test_string",
+                  stock: 123,
+                },
+              ],
+              pre_order: {
+                is_pre_order: true,
+                days_to_ship: 123,
               },
-            ],
-            pre_order: {
-              is_pre_order: true,
-              days_to_ship: 123,
             },
-          },
+          ],
           logistic_info: [
             {
               logistic_id: 123,
@@ -3134,7 +3136,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.publishItemToOutletShop(exampleRequest as any);
+      const result = await manager.publishItemToOutletShop(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3186,7 +3188,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.registerBrand(exampleRequest as any);
+      const result = await manager.registerBrand(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3229,7 +3231,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.replyComment(exampleRequest as any);
+      const result = await manager.replyComment(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3273,7 +3275,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.searchAttributeValueList(exampleRequest as any);
+      const result = await manager.searchAttributeValueList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3313,7 +3315,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.searchItem(exampleRequest as any);
+      const result = await manager.searchItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3359,7 +3361,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.searchUnpackagedModelList(exampleRequest as any);
+      const result = await manager.searchUnpackagedModelList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3407,7 +3409,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.unlistItem(exampleRequest as any);
+      const result = await manager.unlistItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3540,7 +3542,7 @@ describe("ProductManager (Generated Tests)", () => {
             },
           ],
         },
-        scheduled_publish_time: "1733590920",
+        scheduled_publish_time: 1733590920,
         authorised_brand_id: 123,
         size_chart_info: {
           size_chart: "test_string",
@@ -3631,7 +3633,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateItem(exampleRequest as any);
+      const result = await manager.updateItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3744,7 +3746,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateKitItem(exampleRequest as any);
+      const result = await manager.updateKitItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3797,7 +3799,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateModel(exampleRequest as any);
+      const result = await manager.updateModel(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3846,7 +3848,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updatePrice(exampleRequest as any);
+      const result = await manager.updatePrice(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3887,7 +3889,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateSipItemPrice(exampleRequest as any);
+      const result = await manager.updateSipItemPrice(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3942,7 +3944,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateStock(exampleRequest as any);
+      const result = await manager.updateStock(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -3997,7 +3999,7 @@ describe("ProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateTierVariation(exampleRequest as any);
+      const result = await manager.updateTierVariation(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

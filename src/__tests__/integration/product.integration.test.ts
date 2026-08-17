@@ -36,10 +36,12 @@ const { runTests, initSdk } = setupIntegrationTest();
       // Dynamically traverse leaf categories to find one with no mandatory attributes (limit to 10 for speed)
       for (const cat of leafCategories.slice(0, 10)) {
         try {
-          const attrResponse = await sdk.product.getAttributeTree({ category_id: cat.category_id });
-          if (attrResponse.response && attrResponse.response.attribute_list) {
-            const hasMandatory = attrResponse.response.attribute_list.some(
-              (attr: any) => attr.is_mandatory
+          const attrResponse = await sdk.product.getAttributeTree({
+            category_id_list: [cat.category_id!],
+          });
+          if (attrResponse.response?.list) {
+            const hasMandatory = attrResponse.response.list.some((item) =>
+              item.attribute_tree?.some((attr) => attr.mandatory)
             );
             if (!hasMandatory) {
               testCategoryId = cat.category_id!;
@@ -57,7 +59,7 @@ const { runTests, initSdk } = setupIntegrationTest();
     const itemsResponse = await sdk.product.getItemList({
       offset: 0,
       page_size: 10,
-      item_status: ItemStatus.NORMAL as any,
+      item_status: ItemStatus.NORMAL,
     });
 
     expect(itemsResponse).toBeDefined();
@@ -97,8 +99,8 @@ const { runTests, initSdk } = setupIntegrationTest();
     expect(limitResponse).toBeDefined();
     expect(limitResponse.request_id).toBeDefined();
     expect(limitResponse.response).toBeDefined();
-    if (limitResponse.response.item_limit) {
-      expect(typeof limitResponse.response.item_limit.max_product_title_length).toBe("number");
+    if (limitResponse.response.item_name_length_limit) {
+      expect(typeof limitResponse.response.item_name_length_limit.max_limit).toBe("number");
     }
   });
 
@@ -111,12 +113,14 @@ const { runTests, initSdk } = setupIntegrationTest();
       expect(recommendResponse).toBeDefined();
       expect(recommendResponse.request_id).toBeDefined();
       expect(recommendResponse.response).toBeDefined();
-      if (recommendResponse.response.category_id_list) {
-        expect(Array.isArray(recommendResponse.response.category_id_list)).toBe(true);
+      if (recommendResponse.response.category_id) {
+        expect(Array.isArray(recommendResponse.response.category_id)).toBe(true);
       }
     } catch (err) {
       if (err instanceof ShopeeApiError) {
-        expect((err.data as any).error).toBe("product.error_unknown");
+        if (typeof err.data === "object" && err.data !== null && "error" in err.data) {
+          expect(err.data.error).toBe("product.error_unknown");
+        }
       } else {
         throw err;
       }
@@ -127,17 +131,20 @@ const { runTests, initSdk } = setupIntegrationTest();
     try {
       const attributeResponse = await sdk.product.getRecommendAttribute({
         category_id: testCategoryId,
+        item_name: "T-Shirt",
       });
 
       expect(attributeResponse).toBeDefined();
       expect(attributeResponse.request_id).toBeDefined();
       expect(attributeResponse.response).toBeDefined();
-      if (attributeResponse.response.recommended_attribute_list) {
-        expect(Array.isArray(attributeResponse.response.recommended_attribute_list)).toBe(true);
+      if (attributeResponse.response.attribute_list) {
+        expect(Array.isArray(attributeResponse.response.attribute_list)).toBe(true);
       }
     } catch (err) {
       if (err instanceof ShopeeApiError) {
-        expect((err.data as any).error).toBe("product.error_unknown");
+        if (typeof err.data === "object" && err.data !== null && "error" in err.data) {
+          expect(err.data.error).toBe("product.error_unknown");
+        }
       } else {
         throw err;
       }
@@ -154,13 +161,10 @@ const { runTests, initSdk } = setupIntegrationTest();
     );
 
     const channelId = enabledChannel ? enabledChannel.logistics_channel_id : 20001;
-    const channelName = enabledChannel
-      ? enabledChannel.logistics_channel_name
-      : "Standard Delivery";
 
     // 2. Upload a temporary 200x200 image pixel to satisfy image requirements and avoid Sandbox rejection
     const imageBuffer = Buffer.from(
-      "iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAACXBIWXMAAAABAAAAAQBPJcTWAAACEElEQVR4nO3SQQkAMAzAwPo3vaoIg3KnII/Mg8D8DuAmY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBaJBcLKBp7i8n+mAAAAAElFTkSuQmCC",
+      "iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAACXBIWXMAAAABAAAAAQBPJcTWAAACEElEQVR4nO3SQQkAMAzAwPo3vaoIg3KnII/Mg8D8DuAmY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBaJBcLKBp7i8n+mAAAAAElFTkSuQmCC",
       "base64"
     );
     const uploadResponse = await sdk.mediaSpace.uploadImage({
@@ -190,8 +194,7 @@ const { runTests, initSdk } = setupIntegrationTest();
       },
       logistic_info: [
         {
-          logistic_id: channelId,
-          logistic_name: channelName,
+          logistic_id: channelId!,
           enabled: true,
           is_free: false,
         },

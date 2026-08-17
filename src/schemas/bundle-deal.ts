@@ -19,7 +19,6 @@ export interface AddBundleDeal_AdditionalTier {
    * The bundle deal discount% that the buyer can get when buying a bundle deal for additional tiers. Need to input it when the bundle deal rule type is 2
    */
   discount_percentage?: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for add_bundle_deal
@@ -67,7 +66,6 @@ export interface AddBundleDealRequest {
    * Use to create tiered discount for bundle deals, a max of 2 additional tiers are allowed to create.the rule of multiple tiers needs to follow this faq https://open.shopee.com/faq/53For additional tiers, the fix price, discount_percentage, discount_value should be consistent with tier 1
    */
   additional_tiers?: AddBundleDeal_AdditionalTier[];
-  [key: string]: any;
 }
 /**
  * AddBundleDeal_Response sub-interface for AddBundleDealResponse
@@ -77,7 +75,6 @@ export interface AddBundleDeal_Response {
    * Shopee's unique identifier for a bundle deal activity.
    */
   bundle_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for add_bundle_deal
@@ -101,7 +98,6 @@ export interface AddBundleDealItem_Item {
    * The status of bundle deal item：enable = 1；disable =0
    */
   status: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for add_bundle_deal_item
@@ -117,7 +113,6 @@ export interface AddBundleDealItemRequest {
    * The items added in this bundle deal promotion.
    */
   item_list: AddBundleDealItem_Item[];
-  [key: string]: any;
 }
 /**
  * AddBundleDealItem_Failed sub-interface for AddBundleDealItem_Response
@@ -135,7 +130,6 @@ export interface AddBundleDealItem_Failed {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * AddBundleDealItem_Response sub-interface for AddBundleDealItemResponse
@@ -149,7 +143,6 @@ export interface AddBundleDealItem_Response {
    * The list of succeed added items
    */
   success_list?: any[];
-  [key: string]: any;
 }
 /**
  * Response data payload for add_bundle_deal_item
@@ -171,7 +164,6 @@ export interface DeleteBundleDealRequest {
    * Shopee's unique identifier for a bundle deal activity.
    */
   bundle_deal_id: number;
-  [key: string]: any;
 }
 /**
  * DeleteBundleDeal_Response sub-interface for DeleteBundleDealResponse
@@ -181,7 +173,6 @@ export interface DeleteBundleDeal_Response {
    * Shopee's unique identifier for a bundle deal activity.
    */
   bundle_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_bundle_deal
@@ -201,7 +192,6 @@ export interface DeleteBundleDealItem_Item {
    * Shopee's unique identifier for an item.
    */
   item_id: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for delete_bundle_deal_item
@@ -217,7 +207,6 @@ export interface DeleteBundleDealItemRequest {
    * The items deleted in this bundle deal promotion.
    */
   item_list: DeleteBundleDealItem_Item[];
-  [key: string]: any;
 }
 /**
  * DeleteBundleDealItem_Failed sub-interface for DeleteBundleDealItem_Response
@@ -235,7 +224,6 @@ export interface DeleteBundleDealItem_Failed {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * DeleteBundleDealItem_Response sub-interface for DeleteBundleDealItemResponse
@@ -249,7 +237,6 @@ export interface DeleteBundleDealItem_Response {
    * The list of succeed added items
    */
   success_list?: any[];
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_bundle_deal_item
@@ -271,7 +258,6 @@ export interface EndBundleDealRequest {
    * Shopee's unique identifier for a bundle deal activity.
    */
   bundle_deal_id: number;
-  [key: string]: any;
 }
 /**
  * EndBundleDeal_Response sub-interface for EndBundleDealResponse
@@ -281,7 +267,6 @@ export interface EndBundleDeal_Response {
    * Shopee's unique identifier for a bundle deal activity.
    */
   bundle_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for end_bundle_deal
@@ -303,7 +288,6 @@ export interface GetBundleDealRequest {
    * Shopee's unique identifier for a bundle deal activity.
    */
   bundle_deal_id: number;
-  [key: string]: any;
 }
 /**
  * GetBundleDeal_AdditionalTier sub-interface for GetBundleDeal_BundleDealRule
@@ -325,7 +309,6 @@ export interface GetBundleDeal_AdditionalTier {
    * The bundle deal discount% that the buyer can get when buying a bundle deal for additional tiers. Need to input it when the bundle deal rule type is 2
    */
   discount_percentage?: number;
-  [key: string]: any;
 }
 /**
  * GetBundleDeal_BundleDealRule sub-interface for GetBundleDeal_Response
@@ -355,7 +338,6 @@ export interface GetBundleDeal_BundleDealRule {
    * Use to create tiered discount for bundle deals, a max of 2 additional tiers are allowed to create bundle deals like buy 2 get 10% off, buy 3 for 15% off, buy 4 for 20% off; For each tier, we will need to set the following 4 values based on bundle deal type +    min_amount = IntAttribute() +    fix_price = IntAttribute() +    discount_percentage = IntAttribute() +    discount_value = IntAttribute()  Note: for additional tiers, the fix price, discount_percentage, discount_value should be consistent with tier 1
    */
   additional_tiers?: GetBundleDeal_AdditionalTier;
-  [key: string]: any;
 }
 /**
  * GetBundleDeal_Response sub-interface for GetBundleDealResponse
@@ -382,7 +364,6 @@ export interface GetBundleDeal_Response {
    * Maximum number of bundle deals that can be bought by a buyer.
    */
   purchase_limit?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_bundle_deal
@@ -404,7 +385,6 @@ export interface GetBundleDealItemRequest {
    * Shopee's unique identifier for a bundle deal activity.
    */
   bundle_deal_id: number;
-  [key: string]: any;
 }
 /**
  * GetBundleDealItem_Item sub-interface for GetBundleDealItem_Response
@@ -418,7 +398,6 @@ export interface GetBundleDealItem_Item {
    * The status of items：enable = 1，disable =0
    */
   status?: number;
-  [key: string]: any;
 }
 /**
  * GetBundleDealItem_Response sub-interface for GetBundleDealItemResponse
@@ -432,7 +411,6 @@ export interface GetBundleDealItem_Response {
    * The number of  items in this bundle deal
    */
   total_count?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_bundle_deal_item
@@ -462,7 +440,6 @@ export interface GetBundleDealListRequest {
    * Data paging, represents the page number, starting from 1, the default is 1
    */
   page_no?: number;
-  [key: string]: any;
 }
 /**
  * GetBundleDealList_AdditionalTier sub-interface for GetBundleDealList_BundleDealRule
@@ -484,7 +461,6 @@ export interface GetBundleDealList_AdditionalTier {
    * The bundle deal discount% that the buyer can get when buying a bundle deal for additional tiers. Need to input it when the bundle deal rule type is 2
    */
   discount_percentage?: number;
-  [key: string]: any;
 }
 /**
  * GetBundleDealList_BundleDealRule sub-interface for GetBundleDealList_BundleDeal
@@ -514,7 +490,6 @@ export interface GetBundleDealList_BundleDealRule {
    * Use to create tiered discount for bundle deals, a max of 2 additional tiers are allowed to create bundle deals like buy 2 get 10% off, buy 3 for 15% off, buy 4 for 20% off; For each tier, we will need to set the following 4 values based on bundle deal type +    min_amount = IntAttribute() +    fix_price = IntAttribute() +    discount_percentage = IntAttribute() +    discount_value = IntAttribute() Note: for additional tiers, the fix price, discount_percentage, discount_value should be consistent with tier 1
    */
   additional_tiers?: GetBundleDealList_AdditionalTier[];
-  [key: string]: any;
 }
 /**
  * GetBundleDealList_BundleDeal sub-interface for GetBundleDealList_Response
@@ -541,7 +516,6 @@ export interface GetBundleDealList_BundleDeal {
    * Maximum number of bundle deals that can be bought by a buyer.
    */
   purchase_limit?: number;
-  [key: string]: any;
 }
 /**
  * GetBundleDealList_Response sub-interface for GetBundleDealListResponse
@@ -555,7 +529,6 @@ export interface GetBundleDealList_Response {
    * this field shows whether there are more bundle deals in next page or not
    */
   more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_bundle_deal_list
@@ -587,7 +560,6 @@ export interface UpdateBundleDeal_AdditionalTier {
    * The bundle deal discount% that the buyer can get when buying a bundle deal for additional tiers. Need to input it when the bundle deal rule type is 2
    */
   discount_percentage?: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for update_bundle_deal
@@ -639,7 +611,6 @@ export interface UpdateBundleDealRequest {
    * Use to create tiered discount for bundle deals, a max of 2 additional tiers are allowed to create bundle deals like buy 2 get 10% off, buy 3 for 15% off, buy 4 for 20% off; For each tier, we will need to set the following 4 values based on bundle deal type +    min_amount = IntAttribute() +    fix_price = IntAttribute() +    discount_percentage = IntAttribute() +    discount_value = IntAttribute()Note: for additional tiers, the fix price, discount_percentage, discount_value should be consistent with tier 1
    */
   additional_tiers?: UpdateBundleDeal_AdditionalTier;
-  [key: string]: any;
 }
 /**
  * UpdateBundleDeal_UpdateBundleDeal_AdditionalTier sub-interface for UpdateBundleDeal_BundleDealRule
@@ -661,7 +632,6 @@ export interface UpdateBundleDeal_UpdateBundleDeal_AdditionalTier {
    * The bundle deal discount% that the buyer can get when buying a bundle deal for additional tiers. Need to input it when the bundle deal rule type is 2
    */
   discount_percentage?: number;
-  [key: string]: any;
 }
 /**
  * UpdateBundleDeal_BundleDealRule sub-interface for UpdateBundleDeal_Response
@@ -691,7 +661,6 @@ export interface UpdateBundleDeal_BundleDealRule {
    * Use to create tiered discount for bundle deals, a max of 2 additional tiers are allowed to create bundle deals like buy 2 get 10% off, buy 3 for 15% off, buy 4 for 20% off; For each tier, we will need to set the following 4 values based on bundle deal type +    min_amount = IntAttribute() +    fix_price = IntAttribute() +    discount_percentage = IntAttribute() +    discount_value = IntAttribute()Note: for additional tiers, the fix price, discount_percentage, discount_value should be consistent with tier 1
    */
   additional_tiers?: UpdateBundleDeal_UpdateBundleDeal_AdditionalTier[];
-  [key: string]: any;
 }
 /**
  * UpdateBundleDeal_Response sub-interface for UpdateBundleDealResponse
@@ -718,7 +687,6 @@ export interface UpdateBundleDeal_Response {
    * Maximum number of bundle deals that can be bought by a buyer.
    */
   purchase_limit?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_bundle_deal
@@ -742,7 +710,6 @@ export interface UpdateBundleDealItem_Item {
    * The status of bundle deal item：enable = 1；disable =0
    */
   status: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for update_bundle_deal_item
@@ -758,7 +725,6 @@ export interface UpdateBundleDealItemRequest {
    * The items added in this bundle deal promotion.
    */
   item_list: UpdateBundleDealItem_Item[];
-  [key: string]: any;
 }
 /**
  * UpdateBundleDealItem_Failed sub-interface for UpdateBundleDealItem_Response
@@ -776,7 +742,6 @@ export interface UpdateBundleDealItem_Failed {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * UpdateBundleDealItem_Response sub-interface for UpdateBundleDealItemResponse
@@ -790,7 +755,6 @@ export interface UpdateBundleDealItem_Response {
    * The list of succeed added items
    */
   success_list?: any[];
-  [key: string]: any;
 }
 /**
  * Response data payload for update_bundle_deal_item

@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { AmsManager } from "../../managers/ams.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AmsManager (Generated Tests)", () => {
@@ -27,8 +27,8 @@ describe("AmsManager (Generated Tests)", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         commission_rate: 1.1,
-        period_start_time: "1735660800",
-        period_end_time: "1735660800",
+        period_start_time: 1735660800,
+        period_end_time: 1735660800,
       };
       const exampleResponse = {
         task_type: "batch_add_open_campaigns",
@@ -42,7 +42,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addAllProductsToOpenCampaign(exampleRequest as any);
+      const result = await manager.addAllProductsToOpenCampaign(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -63,8 +63,8 @@ describe("AmsManager (Generated Tests)", () => {
       const exampleRequest = {
         item_id_list: [123],
         commission_rate: 1.1,
-        period_start_time: "1735660800",
-        period_end_time: "1735660800",
+        period_start_time: 1735660800,
+        period_end_time: 1735660800,
       };
       const exampleResponse = {
         failed_list: [
@@ -84,7 +84,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.batchAddProductsToOpenCampaign(exampleRequest as any);
+      const result = await manager.batchAddProductsToOpenCampaign(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -105,8 +105,8 @@ describe("AmsManager (Generated Tests)", () => {
       const exampleRequest = {
         campaign_ids: [123],
         commission_rate: 1.1,
-        period_start_time: "1735660800",
-        period_end_time: "1735660800",
+        period_start_time: 1735660800,
+        period_end_time: 1735660800,
       };
       const exampleResponse = {
         failed_list: [
@@ -126,7 +126,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.batchEditProductsOpenCampaignSetting(exampleRequest as any);
+      const result = await manager.batchEditProductsOpenCampaignSetting(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -164,7 +164,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.batchGetProductsSuggestedRate(exampleRequest as any);
+      const result = await manager.batchGetProductsSuggestedRate(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -203,7 +203,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.batchRemoveProductsOpenCampaignSetting(exampleRequest as any);
+      const result = await manager.batchRemoveProductsOpenCampaignSetting(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -223,8 +223,8 @@ describe("AmsManager (Generated Tests)", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         campaign_name: "CAMPAIGN_NAME",
-        period_start_time: "1735660800",
-        period_end_time: "32503651199",
+        period_start_time: 1735660800,
+        period_end_time: 32503651199,
         is_set_budget: true,
         budget: 500000,
         seller_message: "Hello, pleasant cooperation.",
@@ -265,7 +265,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.createNewTargetedCampaign(exampleRequest as any);
+      const result = await manager.createNewTargetedCampaign(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -309,7 +309,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.editAffiliateListOfTargetedCampaign(exampleRequest as any);
+      const result = await manager.editAffiliateListOfTargetedCampaign(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -329,8 +329,8 @@ describe("AmsManager (Generated Tests)", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         commission_rate: 1.1,
-        period_start_time: "1735660800",
-        period_end_time: "1735660800",
+        period_start_time: 1735660800,
+        period_end_time: 1735660800,
       };
       const exampleResponse = {
         task_type: "batch_update_open_campaigns",
@@ -344,7 +344,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.editAllProductsOpenCampaignSetting(exampleRequest as any);
+      const result = await manager.editAllProductsOpenCampaignSetting(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -389,7 +389,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.editProductListOfTargetedCampaign(exampleRequest as any);
+      const result = await manager.editProductListOfTargetedCampaign(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -445,7 +445,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAffiliatePerformance(exampleRequest as any);
+      const result = await manager.getAffiliatePerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -476,7 +476,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAutoAddNewProductToggleStatus(exampleRequest as any);
+      const result = await manager.getAutoAddNewProductToggleStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -522,7 +522,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getCampaignKeyMetricsPerformance(exampleRequest as any);
+      const result = await manager.getCampaignKeyMetricsPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -581,7 +581,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getContentPerformance(exampleRequest as any);
+      const result = await manager.getContentPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -617,14 +617,14 @@ describe("AmsManager (Generated Tests)", () => {
         seller_campaign_type: "TargetCampaign",
         deduction_status: "PendingDeduction",
         deduction_method: "OrderEscrow",
-        place_order_time_start: "1753459200",
-        place_order_time_end: "1756051199",
-        order_completed_time_start: "1753459200",
-        order_completed_time_end: "1756051199",
-        conversion_completed_time_start: "1753459200",
-        conversion_completed_time_end: "1756051199",
-        ams_deduction_time_start: "1753459200",
-        ams_deduction_time_end: "1756051199",
+        place_order_time_start: 1753459200,
+        place_order_time_end: 1756051199,
+        order_completed_time_start: 1753459200,
+        order_completed_time_end: 1756051199,
+        conversion_completed_time_start: 1753459200,
+        conversion_completed_time_end: 1756051199,
+        ams_deduction_time_start: 1753459200,
+        ams_deduction_time_end: 1756051199,
       };
       const exampleResponse = {
         list: [
@@ -681,7 +681,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getConversionReport(exampleRequest as any);
+      const result = await manager.getConversionReport(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -754,7 +754,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getManagedAffiliateList(exampleRequest as any);
+      const result = await manager.getManagedAffiliateList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -787,13 +787,13 @@ describe("AmsManager (Generated Tests)", () => {
             campaign_id: 123,
             campaign_status: "Ongoing",
             commission_rate: 1.11,
-            period_start_time: "1735660800",
-            period_end_time: "1735660800",
-            pending_terminated_time: "1735660800",
+            period_start_time: 1735660800,
+            period_end_time: 1735660800,
+            pending_terminated_time: 1735660800,
             commission_protection_list: [
               {
                 commission_rate: 1.21,
-                protection_period_end_time: "1735660800",
+                protection_period_end_time: 1735660800,
               },
             ],
             max_commission_rate_current_day: 1.21,
@@ -811,7 +811,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getOpenCampaignAddedProduct(exampleRequest as any);
+      const result = await manager.getOpenCampaignAddedProduct(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -845,7 +845,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getOpenCampaignBatchTaskResult(exampleRequest as any);
+      const result = await manager.getOpenCampaignBatchTaskResult(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -894,7 +894,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getOpenCampaignNotAddedProduct(exampleRequest as any);
+      const result = await manager.getOpenCampaignNotAddedProduct(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -943,7 +943,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getOpenCampaignPerformance(exampleRequest as any);
+      const result = await manager.getOpenCampaignPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -974,8 +974,8 @@ describe("AmsManager (Generated Tests)", () => {
             rcmd_reason: ["severe_shortage", "high_popularity"],
             campaign_id: 123,
             commission_rate: 1.1,
-            period_start_time: "1735660800",
-            period_end_time: "1735660800",
+            period_start_time: 1735660800,
+            period_end_time: 1735660800,
             affiliate_count: 123,
             item_sold: 123,
             campaign_status: "Ongoing",
@@ -999,7 +999,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getOptimizationSuggestionProduct(exampleRequest as any);
+      const result = await manager.getOptimizationSuggestionProduct(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1031,7 +1031,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPerformanceDataUpdateTime(exampleRequest as any);
+      const result = await manager.getPerformanceDataUpdateTime(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1086,7 +1086,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getProductPerformance(exampleRequest as any);
+      const result = await manager.getProductPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1158,7 +1158,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getRecommendedAffiliateList(exampleRequest as any);
+      const result = await manager.getRecommendedAffiliateList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1202,7 +1202,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopPerformance(exampleRequest as any);
+      const result = await manager.getShopPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1233,7 +1233,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopSuggestedRate(exampleRequest as any);
+      const result = await manager.getShopSuggestedRate(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1280,7 +1280,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTargetedCampaignAddableProductList(exampleRequest as any);
+      const result = await manager.getTargetedCampaignAddableProductList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1304,8 +1304,8 @@ describe("AmsManager (Generated Tests)", () => {
         campaign_id_list: ["101", "102", "103"],
         campaign_name: "campaign a",
         campaign_status: "Upcoming",
-        period_start_time: "1735660800",
-        period_end_time: "32503651199",
+        period_start_time: 1735660800,
+        period_end_time: 32503651199,
         item_id: 101,
         item_name: "product a",
       };
@@ -1317,10 +1317,10 @@ describe("AmsManager (Generated Tests)", () => {
             campaign_name: "campaign a",
             campaign_status: "Ongoing",
             campaign_source: "Seller",
-            period_start_time: "1735660800",
-            period_end_time: "32503651199",
+            period_start_time: 1735660800,
+            period_end_time: 32503651199,
             last_editor: "example@example.com",
-            last_edit_time: "1735660800",
+            last_edit_time: 1735660800,
             affiliate_count: 20,
             item_count: 20,
             min_rate: 10,
@@ -1336,7 +1336,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTargetedCampaignList(exampleRequest as any);
+      const result = await manager.getTargetedCampaignList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1385,7 +1385,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTargetedCampaignPerformance(exampleRequest as any);
+      const result = await manager.getTargetedCampaignPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1409,13 +1409,13 @@ describe("AmsManager (Generated Tests)", () => {
       const exampleResponse = {
         campaign_name: "campaign name",
         commission_status: "Ongoing",
-        period_start_time: "1735660800",
-        period_end_time: "32503651199",
+        period_start_time: 1735660800,
+        period_end_time: 32503651199,
         is_set_budget: true,
         budget: 10000,
         budget_cost: 500.5,
         seller_message: "Hello, pleasant cooperation.",
-        pending_terminated_time: "1735660800",
+        pending_terminated_time: 1735660800,
         affiliate_list: [
           {
             affiliate_id: 11301234567,
@@ -1430,7 +1430,7 @@ describe("AmsManager (Generated Tests)", () => {
             commission_protection_list: [
               {
                 commission_rate: 1.1,
-                protection_period_end_time: "1735660800",
+                protection_period_end_time: 1735660800,
               },
             ],
           },
@@ -1444,7 +1444,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTargetedCampaignSettings(exampleRequest as any);
+      const result = await manager.getTargetedCampaignSettings(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1497,7 +1497,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getValidationList(exampleRequest as any);
+      const result = await manager.getValidationList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1529,8 +1529,8 @@ describe("AmsManager (Generated Tests)", () => {
         item_name: "item1",
         verified_status: "Valid",
         attr_campaign_id: 18071,
-        place_order_time_start: "1753459200",
-        place_order_time_end: "1756051199",
+        place_order_time_start: 1753459200,
+        place_order_time_end: 1756051199,
       };
       const exampleResponse = {
         list: [
@@ -1587,7 +1587,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getValidationReport(exampleRequest as any);
+      const result = await manager.getValidationReport(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1663,7 +1663,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.queryAffiliateList(exampleRequest as any);
+      const result = await manager.queryAffiliateList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1694,7 +1694,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.removeAllProductsOpenCampaignSetting(exampleRequest as any);
+      const result = await manager.removeAllProductsOpenCampaignSetting(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1728,7 +1728,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.terminateTargetedCampaign(exampleRequest as any);
+      const result = await manager.terminateTargetedCampaign(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1764,7 +1764,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateAutoAddNewProductSetting(exampleRequest as any);
+      const result = await manager.updateAutoAddNewProductSetting(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1785,8 +1785,8 @@ describe("AmsManager (Generated Tests)", () => {
       const exampleRequest = {
         campaign_id: 101,
         campaign_name: "campaign a",
-        period_start_time: "1735660800",
-        period_end_time: "32503651199",
+        period_start_time: 1735660800,
+        period_end_time: 32503651199,
         is_set_budget: true,
         budget: 10000,
       };
@@ -1804,7 +1804,7 @@ describe("AmsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateBasicInfoOfTargetedCampaign(exampleRequest as any);
+      const result = await manager.updateBasicInfoOfTargetedCampaign(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

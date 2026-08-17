@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { ShopFlashSaleManager } from "../../managers/shop-flash-sale.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ShopFlashSaleManager (Generated Tests)", () => {
@@ -67,7 +67,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addShopFlashSaleItems(exampleRequest as any);
+      const result = await manager.addShopFlashSaleItems(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -101,7 +101,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.createShopFlashSale(exampleRequest as any);
+      const result = await manager.createShopFlashSale(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -135,7 +135,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteShopFlashSale(exampleRequest as any);
+      const result = await manager.deleteShopFlashSale(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -181,7 +181,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteShopFlashSaleItems(exampleRequest as any);
+      const result = await manager.deleteShopFlashSaleItems(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -241,7 +241,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemCriteria(exampleRequest as any);
+      const result = await manager.getItemCriteria(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -266,8 +266,8 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         timeslot_id: 123,
         flash_sale_id: 123,
         status: 1,
-        start_time: "1721978628",
-        end_time: "1727335428",
+        start_time: 1721978628,
+        end_time: 1727335428,
         enabled_item_count: 10,
         item_count: 20,
         type: 1,
@@ -280,7 +280,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopFlashSale(exampleRequest as any);
+      const result = await manager.getShopFlashSale(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -353,7 +353,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopFlashSaleItems(exampleRequest as any);
+      const result = await manager.getShopFlashSaleItems(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -373,8 +373,8 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         type: 1,
-        start_time: "1721978628",
-        end_time: "1727335428",
+        start_time: 1721978628,
+        end_time: 1727335428,
         offset: 0,
         limit: 10,
       };
@@ -389,7 +389,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopFlashSaleList(exampleRequest as any);
+      const result = await manager.getShopFlashSaleList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -408,14 +408,14 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
   describe("getTimeSlotId", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
-        start_time: "1721978628",
-        end_time: "1727335428",
+        start_time: 1721978628,
+        end_time: 1727335428,
       };
       const exampleResponse = [
         {
           timeslot_id: 123,
-          start_time: "1721978628",
-          end_time: "1727335428",
+          start_time: 1721978628,
+          end_time: 1727335428,
         },
       ];
 
@@ -426,7 +426,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTimeSlotId(exampleRequest as any);
+      const result = await manager.getTimeSlotId(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -461,7 +461,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateShopFlashSale(exampleRequest as any);
+      const result = await manager.updateShopFlashSale(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -523,7 +523,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateShopFlashSaleItems(exampleRequest as any);
+      const result = await manager.updateShopFlashSaleItems(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

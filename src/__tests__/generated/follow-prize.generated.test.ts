@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { FollowPrizeManager } from "../../managers/follow-prize.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("FollowPrizeManager (Generated Tests)", () => {
@@ -27,8 +27,8 @@ describe("FollowPrizeManager (Generated Tests)", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         follow_prize_name: "shop_follow_prize_one",
-        start_time: "1621844677",
-        end_time: "1621944677",
+        start_time: 1621844677,
+        end_time: 1621944677,
         usage_quantity: 2000,
         min_spend: 200,
         reward_type: 1,
@@ -47,7 +47,7 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addFollowPrize(exampleRequest as any);
+      const result = await manager.addFollowPrize(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -79,7 +79,7 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteFollowPrize(exampleRequest as any);
+      const result = await manager.deleteFollowPrize(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -111,7 +111,7 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.endFollowPrize(exampleRequest as any);
+      const result = await manager.endFollowPrize(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -136,8 +136,8 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         campaign_status: "ongoing",
         campaign_id: 1551,
         usage_quantity: 100,
-        start_time: "1655891400",
-        end_time: "1656581220",
+        start_time: 1655891400,
+        end_time: 1656581220,
         min_spend: 100,
         reward_type: 3,
         follow_prize_name: "follow prize01",
@@ -153,7 +153,7 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getFollowPrizeDetail(exampleRequest as any);
+      const result = await manager.getFollowPrizeDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -183,8 +183,8 @@ describe("FollowPrizeManager (Generated Tests)", () => {
             campaign_id: 27,
             campaign_status: "upcoming",
             follow_prize_name: "shop_follow_prize3",
-            start_time: "1655341211",
-            end_time: "1657760411",
+            start_time: 1655341211,
+            end_time: 1657760411,
             usage_quantity: 2000,
             claimed: 0,
           },
@@ -198,7 +198,7 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getFollowPrizeList(exampleRequest as any);
+      const result = await manager.getFollowPrizeList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -219,8 +219,8 @@ describe("FollowPrizeManager (Generated Tests)", () => {
       const exampleRequest = {
         follow_prize_name: "shop_follow_prize",
         campaign_id: 123344,
-        start_time: "1655341211",
-        end_time: "1657760411",
+        start_time: 1655341211,
+        end_time: 1657760411,
         usage_quantity: 2000,
         min_spend: 123,
       };
@@ -235,7 +235,7 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateFollowPrize(exampleRequest as any);
+      const result = await manager.updateFollowPrize(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

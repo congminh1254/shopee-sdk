@@ -31,7 +31,7 @@ const { runTests, initSdk } = setupIntegrationTest();
       expect(result).toBeDefined();
       expect(result.request_id).toBeDefined();
       if (result.response) {
-        expect(result.response.status).toBeDefined();
+        expect(result.response.installment_status).toBeDefined();
       }
     } catch (err) {
       if (err instanceof ShopeeApiError) {

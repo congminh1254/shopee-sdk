@@ -62,7 +62,6 @@ export interface BatchShipOrder_Order {
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * BatchShipOrder_Pickup sub-interface for BatchShipOrderRequest
@@ -80,7 +79,6 @@ export interface BatchShipOrder_Pickup {
    * Need input this field when "tracking_number" is returned from "info_need". Please note that this tracking number is assigned by third-party shipping carrier for item shipment.
    */
   tracking_number?: string;
-  [key: string]: any;
 }
 /**
  * BatchShipOrder_Dropoff sub-interface for BatchShipOrderRequest
@@ -98,7 +96,6 @@ export interface BatchShipOrder_Dropoff {
    * Need input this field when "tracking_number" is returned from "info_need". Please note that this tracking number is assigned by third-party shipping carrier for item shipment.
    */
   tracking_number?: string;
-  [key: string]: any;
 }
 /**
  * BatchShipOrder_NonIntegrated sub-interface for BatchShipOrderRequest
@@ -108,7 +105,6 @@ export interface BatchShipOrder_NonIntegrated {
    * Optional parameter for non-integrated channel order. The tracking number assigned by the shipping carrier for item shipment.
    */
   tracking_number?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for batch_ship_order
@@ -132,7 +128,6 @@ export interface BatchShipOrderRequest {
    * Optional parameter when GetParameterForInit returns "non-integrated" or GetLogisticsInfo returns "non-integrated" under "info_needed".
    */
   non_integrated?: BatchShipOrder_NonIntegrated;
-  [key: string]: any;
 }
 /**
  * BatchShipOrder_Warning sub-interface for BatchShipOrderResponse
@@ -146,7 +141,6 @@ export interface BatchShipOrder_Warning {
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * BatchShipOrder_Result sub-interface for BatchShipOrder_Response
@@ -168,14 +162,12 @@ export interface BatchShipOrder_Result {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * BatchShipOrder_Response sub-interface for BatchShipOrderResponse
  */
 export interface BatchShipOrder_Response {
   result_list?: BatchShipOrder_Result[];
-  [key: string]: any;
 }
 /**
  * Response data payload for batch_ship_order
@@ -203,7 +195,6 @@ export interface BatchUpdateTpfWarehouseTrackingStatus_Package {
    * This is to indicate timestamp of the 3PF tracking status.Timestamp should be within order create time and order pick up by 3PL time.
    */
   update_time: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for batch_update_tpf_warehouse_tracking_status
@@ -224,7 +215,6 @@ export interface BatchUpdateTpfWarehouseTrackingStatusRequest {
    */
   tpf_tracking_status: string;
   package_list: BatchUpdateTpfWarehouseTrackingStatus_Package[];
-  [key: string]: any;
 }
 /**
  * BatchUpdateTpfWarehouseTrackingStatus_Success sub-interface for BatchUpdateTpfWarehouseTrackingStatus_Response
@@ -238,7 +228,6 @@ export interface BatchUpdateTpfWarehouseTrackingStatus_Success {
    * Shopee's unique identifier for the package under an order.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * BatchUpdateTpfWarehouseTrackingStatus_Fail sub-interface for BatchUpdateTpfWarehouseTrackingStatus_Response
@@ -260,7 +249,6 @@ export interface BatchUpdateTpfWarehouseTrackingStatus_Fail {
    * Reason for failure.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * BatchUpdateTpfWarehouseTrackingStatus_Response sub-interface for BatchUpdateTpfWarehouseTrackingStatusResponse
@@ -274,7 +262,6 @@ export interface BatchUpdateTpfWarehouseTrackingStatus_Response {
    * Update fail order list.
    */
   fail_list?: BatchUpdateTpfWarehouseTrackingStatus_Fail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for batch_update_tpf_warehouse_tracking_status
@@ -302,7 +289,6 @@ export interface CheckPolygonUpdateStatusRequest {
    * ID that needs to be checked. Please pass the task_id returned via the v2.logistics.upload_serviceable_polygon.
    */
   task_id: string;
-  [key: string]: any;
 }
 /**
  * CheckPolygonUpdateStatus_Response sub-interface for CheckPolygonUpdateStatusResponse
@@ -316,7 +302,6 @@ export interface CheckPolygonUpdateStatus_Response {
    * Details of the upload status, e.g "task in progress".
    */
   message?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for check_polygon_update_status
@@ -344,7 +329,6 @@ export interface CreateBookingShippingDocument_Booking {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL,NORMAL_JOB_AIR_WAYBILL,THERMAL_JOB_AIR_WAYBILL
    */
   shipping_document_type?: ShippingDocumentType | string | number;
-  [key: string]: any;
 }
 /**
  * Request parameters for create_booking_shipping_document
@@ -356,7 +340,6 @@ export interface CreateBookingShippingDocumentRequest {
    * The list of bookings you want to get. limit [1,50]
    */
   booking_list: CreateBookingShippingDocument_Booking[];
-  [key: string]: any;
 }
 /**
  * CreateBookingShippingDocument_Warning sub-interface for CreateBookingShippingDocumentResponse
@@ -366,7 +349,6 @@ export interface CreateBookingShippingDocument_Warning {
    * Shopee's unique identifier for a booking.
    */
   booking_sn?: string;
-  [key: string]: any;
 }
 /**
  * CreateBookingShippingDocument_Result sub-interface for CreateBookingShippingDocument_Response
@@ -384,7 +366,6 @@ export interface CreateBookingShippingDocument_Result {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * CreateBookingShippingDocument_Response sub-interface for CreateBookingShippingDocumentResponse
@@ -394,7 +375,6 @@ export interface CreateBookingShippingDocument_Response {
    * The list of the result data.
    */
   result_list?: CreateBookingShippingDocument_Result[];
-  [key: string]: any;
 }
 /**
  * Response data payload for create_booking_shipping_document
@@ -427,7 +407,6 @@ export interface CreateShippingDocument_Order {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
   shipping_document_type?: ShippingDocumentType | string | number;
-  [key: string]: any;
 }
 /**
  * Request parameters for create_shipping_document
@@ -439,7 +418,6 @@ export interface CreateShippingDocumentRequest {
    * The list of order you want to create shipping document. limit [1, 50]
    */
   order_list: CreateShippingDocument_Order[];
-  [key: string]: any;
 }
 /**
  * CreateShippingDocument_Warning sub-interface for CreateShippingDocumentResponse
@@ -453,7 +431,6 @@ export interface CreateShippingDocument_Warning {
    * Shopee's unique identifier for the package under an order.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * CreateShippingDocument_Result sub-interface for CreateShippingDocument_Response
@@ -475,7 +452,6 @@ export interface CreateShippingDocument_Result {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * CreateShippingDocument_Response sub-interface for CreateShippingDocumentResponse
@@ -485,7 +461,6 @@ export interface CreateShippingDocument_Response {
    * The list of the result data.
    */
   result_list?: CreateShippingDocument_Result[];
-  [key: string]: any;
 }
 /**
  * Response data payload for create_shipping_document
@@ -509,7 +484,6 @@ export interface CreateShippingDocumentJob_UnpackagedSkuRequest {
    * Number of copies for the generated labels (maximum 600 total across all requested SKUs).
    */
   quantity?: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for create_shipping_document_job
@@ -529,7 +503,6 @@ export interface CreateShippingDocumentJobRequest {
    * List of Package Numbers to generate labels for. (maximum 600 total)Note: The unpackaged_sku_requests and package_list cannot be populated at the same time, please select one.
    */
   package_list?: string[];
-  [key: string]: any;
 }
 /**
  * CreateShippingDocumentJob_Fail sub-interface for CreateShippingDocumentJob_Response
@@ -547,7 +520,6 @@ export interface CreateShippingDocumentJob_Fail {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * CreateShippingDocumentJob_Response sub-interface for CreateShippingDocumentJobResponse
@@ -565,7 +537,6 @@ export interface CreateShippingDocumentJob_Response {
    * List of Package Numbers or Unpackaged SKUs that failed in generating Shipping Document
    */
   fail_list?: CreateShippingDocumentJob_Fail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for create_shipping_document_job
@@ -588,7 +559,6 @@ export interface DeleteAddressRequest {
    * The identity of address you want to delete.
    */
   address_id: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_address
@@ -610,7 +580,6 @@ export interface DeleteSpecialOperatingHourRequest {
    * Name of the special operating hour which can be retrieved from v2.logistics.get_operating_hours
    */
   name: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_special_operating_hour
@@ -631,7 +600,6 @@ export interface DownloadBookingShippingDocument_Booking {
    * Shopee's unique identifier for a booking.
    */
   booking_sn: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for download_booking_shipping_document
@@ -647,7 +615,6 @@ export interface DownloadBookingShippingDocumentRequest {
    * The list of bookings you want to get. limit [1,50]
    */
   booking_list: DownloadBookingShippingDocument_Booking[];
-  [key: string]: any;
 }
 /**
  * Response data payload for download_booking_shipping_document
@@ -657,7 +624,6 @@ export interface DownloadBookingShippingDocumentResponseData {
    * The waybill file.
    */
   waybill?: any;
-  [key: string]: any;
 }
 /**
  * Response payload for download_booking_shipping_document
@@ -678,7 +644,6 @@ export interface DownloadShippingDocument_Order {
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for download_shipping_document
@@ -694,7 +659,6 @@ export interface DownloadShippingDocumentRequest {
    * The list of orders you need to download it's shipping document.
    */
   order_list: DownloadShippingDocument_Order[];
-  [key: string]: any;
 }
 /**
  * Response data payload for download_shipping_document
@@ -704,7 +668,6 @@ export interface DownloadShippingDocumentResponseData {
    * The waybill file.
    */
   waybill?: any;
-  [key: string]: any;
 }
 /**
  * Response payload for download_shipping_document
@@ -722,14 +685,12 @@ export interface DownloadShippingDocumentJobRequest {
    * Generated Job ID for status tracking and download the Shipping Document
    */
   job_id: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for download_shipping_document_job
  */
 export interface DownloadShippingDocumentJobResponseData {
   file?: any;
-  [key: string]: any;
 }
 /**
  * Response payload for download_shipping_document_job
@@ -752,7 +713,6 @@ export interface DownloadToLabelRequest {
    * Specifies the TO quantity, up to a maximum of 20 per request. If not specified, the default value is 1
    */
   quantity?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for download_to_label
@@ -762,7 +722,6 @@ export interface DownloadToLabelResponseData {
    * The waybill file.
    */
   waybill?: any;
-  [key: string]: any;
 }
 /**
  * Response payload for download_to_label
@@ -816,7 +775,6 @@ export interface GetAddressList_Address {
    * The flag of shop address.Available values: DEFAULT_ADDRESS, PICK_UP_ADDRESS, RETURN_ADDRESS, INBOUND_PICKUP_ADDRESS.
    */
   address_type?: AddressType | string | number;
-  [key: string]: any;
 }
 /**
  * GetAddressList_Response sub-interface for GetAddressListResponse
@@ -830,7 +788,6 @@ export interface GetAddressList_Response {
    * The address list of you shop
    */
   address_list?: GetAddressList_Address[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_address_list
@@ -866,7 +823,6 @@ export interface GetBookingShippingDocumentDataInfo_Style {
    * text horizontal align, supports left, center and right.
    */
   h_align?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentDataInfo_RecipientAddressInfo sub-interface for GetBookingShippingDocumentDataInfoRequest
@@ -880,7 +836,6 @@ export interface GetBookingShippingDocumentDataInfo_RecipientAddressInfo {
    * image style
    */
   style?: GetBookingShippingDocumentDataInfo_Style;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_booking_shipping_document_data_info
@@ -896,7 +851,6 @@ export interface GetBookingShippingDocumentDataInfoRequest {
    * recipient address to query as image
    */
   recipient_address_info?: GetBookingShippingDocumentDataInfo_RecipientAddressInfo[];
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentDataInfo_GetBookingShippingDocumentDataInfo_RecipientAddressInfo sub-interface for GetBookingShippingDocumentDataInfo_Response
@@ -910,7 +864,6 @@ export interface GetBookingShippingDocumentDataInfo_GetBookingShippingDocumentDa
    * base64 encoded png data string
    */
   image?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentDataInfo_RecipientSortCode sub-interface for GetBookingShippingDocumentDataInfo_ShippingDocumentInfo
@@ -928,7 +881,6 @@ export interface GetBookingShippingDocumentDataInfo_RecipientSortCode {
    * The third-level sort_code of recipient.
    */
   third_recipient_sort_code?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentDataInfo_SenderSortCode sub-interface for GetBookingShippingDocumentDataInfo_ShippingDocumentInfo
@@ -946,7 +898,6 @@ export interface GetBookingShippingDocumentDataInfo_SenderSortCode {
    * The third-level sort_code of sender.
    */
   third_sender_sort_code?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentDataInfo_ReturnSortCode sub-interface for GetBookingShippingDocumentDataInfo_ShippingDocumentInfo
@@ -956,7 +907,6 @@ export interface GetBookingShippingDocumentDataInfo_ReturnSortCode {
    * The first-level sort code for 3PL doing RTS.
    */
   return_first_sort_code?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentDataInfo_SpxReceiveStation sub-interface for GetBookingShippingDocumentDataInfo_ShippingDocumentInfo
@@ -966,7 +916,6 @@ export interface GetBookingShippingDocumentDataInfo_SpxReceiveStation {
    * The first pickup station.
    */
   spx_first_receive_station?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentDataInfo_ShippingDocumentInfo sub-interface for GetBookingShippingDocumentDataInfo_Response
@@ -1056,7 +1005,6 @@ export interface GetBookingShippingDocumentDataInfo_ShippingDocumentInfo {
    * Currently only applicable for Brazil, Indonesia, Vietnam, Philippines.For orders with Dangerous Goods, this value indicates the severity of the danger and requires special handling by the logistics provider. 0 = Not classified / no DG sub-type1 = DG_A2 = DG_B3 = DG_C4 = DG_D
    */
   dg_specific_type?: number;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentDataInfo_Response sub-interface for GetBookingShippingDocumentDataInfoResponse
@@ -1064,7 +1012,6 @@ export interface GetBookingShippingDocumentDataInfo_ShippingDocumentInfo {
 export interface GetBookingShippingDocumentDataInfo_Response {
   recipient_address_info?: GetBookingShippingDocumentDataInfo_GetBookingShippingDocumentDataInfo_RecipientAddressInfo;
   shipping_document_info?: GetBookingShippingDocumentDataInfo_ShippingDocumentInfo;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_booking_shipping_document_data_info
@@ -1086,7 +1033,6 @@ export interface GetBookingShippingDocumentParameter_Booking {
    * Shopee's unique identifier for a booking.
    */
   booking_sn: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_booking_shipping_document_parameter
@@ -1098,7 +1044,6 @@ export interface GetBookingShippingDocumentParameterRequest {
    * The list of bookings you want to get. limit [1,50]
    */
   booking_list: GetBookingShippingDocumentParameter_Booking[];
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentParameter_Warning sub-interface for GetBookingShippingDocumentParameterResponse
@@ -1108,7 +1053,6 @@ export interface GetBookingShippingDocumentParameter_Warning {
    * Shopee's unique identifier for a booking.
    */
   booking_sn?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentParameter_Result sub-interface for GetBookingShippingDocumentParameter_Response
@@ -1134,7 +1078,6 @@ export interface GetBookingShippingDocumentParameter_Result {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentParameter_Response sub-interface for GetBookingShippingDocumentParameterResponse
@@ -1144,7 +1087,6 @@ export interface GetBookingShippingDocumentParameter_Response {
    * The list of the result data.
    */
   result_list?: GetBookingShippingDocumentParameter_Result[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_booking_shipping_document_parameter
@@ -1170,7 +1112,6 @@ export interface GetBookingShippingDocumentResult_Booking {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL
    */
   shipping_document_type?: ShippingDocumentType | string | number;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_booking_shipping_document_result
@@ -1182,7 +1123,6 @@ export interface GetBookingShippingDocumentResultRequest {
    * The list of bookings you want to get. limit [1,50]
    */
   booking_list: GetBookingShippingDocumentResult_Booking[];
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentResult_Warning sub-interface for GetBookingShippingDocumentResultResponse
@@ -1192,7 +1132,6 @@ export interface GetBookingShippingDocumentResult_Warning {
    * Shopee's unique identifier for a booking.
    */
   booking_sn?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentResult_Result sub-interface for GetBookingShippingDocumentResult_Response
@@ -1214,7 +1153,6 @@ export interface GetBookingShippingDocumentResult_Result {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingDocumentResult_Response sub-interface for GetBookingShippingDocumentResultResponse
@@ -1224,7 +1162,6 @@ export interface GetBookingShippingDocumentResult_Response {
    * The list of the result data.
    */
   result_list?: GetBookingShippingDocumentResult_Result[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_booking_shipping_document_result
@@ -1248,7 +1185,6 @@ export interface GetBookingShippingParameterRequest {
    * Shopee's unique identifier for a booking.
    */
   booking_sn: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingParameter_InfoNeeded sub-interface for GetBookingShippingParameter_Response
@@ -1262,7 +1198,6 @@ export interface GetBookingShippingParameter_InfoNeeded {
    * Could contain 'address_id' and 'pickup_time_id'. Choose one address_id and its corresponding pickup_time_id to Init. If it has empty value, developer should still include "pickup" field in Init API.It could contains "tracking_number" returned from "info_need"for some channels, please also add it when init.
    */
   pickup?: string[];
-  [key: string]: any;
 }
 /**
  * GetBookingShippingParameter_TimeSlot sub-interface for GetBookingShippingParameter_Address
@@ -1292,7 +1227,6 @@ export interface GetBookingShippingParameter_TimeSlot {
    * return if error getting pickup time, otherwise omitted
    */
   msg?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingShippingParameter_Address sub-interface for GetBookingShippingParameter_Pickup
@@ -1338,7 +1272,6 @@ export interface GetBookingShippingParameter_Address {
    * List of pickup_time information corresponding to the address_id.Some logistics channels may not return any date or time for pickup time slots. In such cases, sellers can arrange shipment without selecting any time slot, and Shopee will arrange a suitable timing for these situations.
    */
   time_slot_list?: GetBookingShippingParameter_TimeSlot[];
-  [key: string]: any;
 }
 /**
  * GetBookingShippingParameter_Pickup sub-interface for GetBookingShippingParameter_Response
@@ -1348,7 +1281,6 @@ export interface GetBookingShippingParameter_Pickup {
    * List of available pickup address info.
    */
   address_list?: GetBookingShippingParameter_Address[];
-  [key: string]: any;
 }
 /**
  * GetBookingShippingParameter_Response sub-interface for GetBookingShippingParameterResponse
@@ -1362,7 +1294,6 @@ export interface GetBookingShippingParameter_Response {
    * Logistics information for pickup mode booking.
    */
   pickup?: GetBookingShippingParameter_Pickup;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_booking_shipping_parameter
@@ -1385,7 +1316,6 @@ export interface GetBookingTrackingInfoRequest {
    * Shopee's unique identifier for a booking.
    */
   booking_sn: string;
-  [key: string]: any;
 }
 /**
  * GetBookingTrackingInfo_TrackingInfo sub-interface for GetBookingTrackingInfo_Response
@@ -1403,7 +1333,6 @@ export interface GetBookingTrackingInfo_TrackingInfo {
    * The Shopee logistics status for the booking. TrackingLogisticsStatus:INITIALORDER_INITORDER_SUBMITTEDORDER_CREATEDPICKUP_REQUESTEDPICKUP_PENDINGPICKED_UPDELIVERY_PENDINGDELIVEREDLOSTUPDATEUPDATE_SUBMITTEDUPDATE_CREATEDRETURN_STARTEDRETURN_PENDINGCANCELCANCEL_CREATEDCANCELEDFAILED_ORDER_SUBMITTEDFAILED_ORDER_CREATEDFAILED_PICKUP_REQUESTEDFAILED_PICKED_UPFAILED_DELIVEREDFAILED_UPDATE_SUBMITTEDFAILED_UPDATE_CREATEDFAILED_RETURNEDFAILED_CANCEL_CREATEDFAILED_CANCELEDRETURNEDRETURN_INTIATED
    */
   logistics_status?: string;
-  [key: string]: any;
 }
 /**
  * GetBookingTrackingInfo_Response sub-interface for GetBookingTrackingInfoResponse
@@ -1421,7 +1350,6 @@ export interface GetBookingTrackingInfo_Response {
    * The tracking info of the booking.
    */
   tracking_info?: GetBookingTrackingInfo_TrackingInfo[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_booking_tracking_info
@@ -1443,7 +1371,6 @@ export interface GetBookingTrackingNumberRequest {
    * Shopee's unique identifier for a booking.
    */
   booking_sn: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_booking_tracking_number
@@ -1453,7 +1380,6 @@ export interface GetBookingTrackingNumberResponseData {
    * The tracking number of this booking.
    */
   tracking_number?: string;
-  [key: string]: any;
 }
 /**
  * Response payload for get_booking_tracking_number
@@ -1483,7 +1409,6 @@ export interface GetChannelList_Size {
    * The pre-defined shipping fee for the specific size.
    */
   default_price?: number;
-  [key: string]: any;
 }
 /**
  * GetChannelList_WeightLimit sub-interface for GetChannelList_LogisticsChannel
@@ -1497,7 +1422,6 @@ export interface GetChannelList_WeightLimit {
    * The min weight for an item on this logistic channel. If the value is 0 or null, that means there is no limit.
    */
   item_min_weight?: number;
-  [key: string]: any;
 }
 /**
  * GetChannelList_ItemMaxDimension sub-interface for GetChannelList_LogisticsChannel
@@ -1523,7 +1447,6 @@ export interface GetChannelList_ItemMaxDimension {
    * The sum of the item's dimension
    */
   dimension_sum?: number;
-  [key: string]: any;
 }
 /**
  * GetChannelList_VolumeLimit sub-interface for GetChannelList_LogisticsChannel
@@ -1537,7 +1460,6 @@ export interface GetChannelList_VolumeLimit {
    * The min volume for an item on this logistic channel. If the value is 0 or null, that means there is no limit for the item weight.
    */
   item_min_volume?: number;
-  [key: string]: any;
 }
 /**
  * GetChannelList_LogisticsCapability sub-interface for GetChannelList_LogisticsChannel
@@ -1547,7 +1469,6 @@ export interface GetChannelList_LogisticsCapability {
    * Indicate If it's a Seller logistics channel, if it's a Seller logistics channel will return true, otherwise it will return false.
    */
   seller_logistics?: boolean;
-  [key: string]: any;
 }
 /**
  * GetChannelList_PreparationTimeLimit sub-interface for GetChannelList_AutoCallDriverSetting
@@ -1561,7 +1482,6 @@ export interface GetChannelList_PreparationTimeLimit {
    * The maximum allowable preparation time, in minutes.
    */
   max_preparation_time?: number;
-  [key: string]: any;
 }
 /**
  * GetChannelList_AutoCallDriverSetting sub-interface for GetChannelList_LogisticsChannel
@@ -1583,7 +1503,6 @@ export interface GetChannelList_AutoCallDriverSetting {
    * The preparation time range allowed for this channel.Note: When calling v2.logistics.update_channel to set the Preparation Time for the channel, the time must not exceed this range.
    */
   preparation_time_limit?: GetChannelList_PreparationTimeLimit;
-  [key: string]: any;
 }
 /**
  * GetChannelList_ChannelRelationRule sub-interface for GetChannelList_LogisticsChannel
@@ -1597,7 +1516,6 @@ export interface GetChannelList_ChannelRelationRule {
    * Channels that must be disabled before or while disabling this parent channel.
    */
   related_dependent_block_channels?: number[];
-  [key: string]: any;
 }
 /**
  * GetChannelList_LogisticsChannel sub-interface for GetChannelList_Response
@@ -1688,7 +1606,6 @@ export interface GetChannelList_LogisticsChannel {
    * Indicate the related rules & channels of this logistic channel.
    */
   channel_relation_rules?: GetChannelList_ChannelRelationRule[];
-  [key: string]: any;
 }
 /**
  * GetChannelList_Response sub-interface for GetChannelListResponse
@@ -1698,7 +1615,6 @@ export interface GetChannelList_Response {
    * The list of logistics channel.
    */
   logistics_channel_list?: GetChannelList_LogisticsChannel[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_channel_list
@@ -1732,7 +1648,6 @@ export interface GetMartPackagingInfo_Dimension {
    * The height of the packaging in centimetres (cm).
    */
   height?: number;
-  [key: string]: any;
 }
 /**
  * GetMartPackagingInfo_PackagingFee sub-interface for GetMartPackagingInfo_Response
@@ -1742,7 +1657,6 @@ export interface GetMartPackagingInfo_PackagingFee {
    * The packaging fee price in the seller's local currency.
    */
   value?: number;
-  [key: string]: any;
 }
 /**
  * GetMartPackagingInfo_Response sub-interface for GetMartPackagingInfoResponse
@@ -1760,7 +1674,6 @@ export interface GetMartPackagingInfo_Response {
    * Returned only if enabled is set to True.
    */
   packaging_fee?: GetMartPackagingInfo_PackagingFee;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_mart_packaging_info
@@ -1780,7 +1693,6 @@ export interface GetMassShippingParameter_Package {
    * Shopee's unique identifier for the package under an order. You shouldn't fill the field with empty string when there isn't a package number.
    */
   package_number: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_mass_shipping_parameter
@@ -1800,7 +1712,6 @@ export interface GetMassShippingParameterRequest {
    * The list of packages you want to get shipping parameters. limit [1, 50].
    */
   package_list: GetMassShippingParameter_Package[];
-  [key: string]: any;
 }
 /**
  * GetMassShippingParameter_InfoNeeded sub-interface for GetMassShippingParameter_Response
@@ -1818,7 +1729,6 @@ export interface GetMassShippingParameter_InfoNeeded {
    * Could contain 'tracking_no'. If it contains 'tracking_no', should manually input these values in Init API. If it has empty value, developer should still include "non-integrated" field in Init API.
    */
   non_integrated?: string[];
-  [key: string]: any;
 }
 /**
  * GetMassShippingParameter_Branch sub-interface for GetMassShippingParameter_Dropoff
@@ -1856,7 +1766,6 @@ export interface GetMassShippingParameter_Branch {
    * The town of specify address.
    */
   town?: string;
-  [key: string]: any;
 }
 /**
  * GetMassShippingParameter_Dropoff sub-interface for GetMassShippingParameter_Response
@@ -1866,7 +1775,6 @@ export interface GetMassShippingParameter_Dropoff {
    * List of available dropoff branches info.
    */
   branch_list?: GetMassShippingParameter_Branch[];
-  [key: string]: any;
 }
 /**
  * GetMassShippingParameter_TimeSlot sub-interface for GetMassShippingParameter_Address
@@ -1888,7 +1796,6 @@ export interface GetMassShippingParameter_TimeSlot {
    * This field will have the value “recommended” for the time slot that Shopee suggests sellers choose. While it is advisable for sellers to choose the recommended time slot, they can also choose other time slots that do not have the recommended flag.
    */
   flags?: string[];
-  [key: string]: any;
 }
 /**
  * GetMassShippingParameter_Address sub-interface for GetMassShippingParameter_Pickup
@@ -1934,7 +1841,6 @@ export interface GetMassShippingParameter_Address {
    * List of pickup_time information corresponding to the address_id.Some logistics channels may not return any date or time for pickup time slots. In such cases, sellers can arrange shipment without selecting any time slot, and Shopee will arrange a suitable timing for these situations.
    */
   time_slot_list?: GetMassShippingParameter_TimeSlot[];
-  [key: string]: any;
 }
 /**
  * GetMassShippingParameter_Pickup sub-interface for GetMassShippingParameter_Response
@@ -1944,7 +1850,6 @@ export interface GetMassShippingParameter_Pickup {
    * List of available pickup address info. For Multi-Warehouse sellers, note that changing pickup address from Current may incur higher shipping fees.
    */
   address_list?: GetMassShippingParameter_Address[];
-  [key: string]: any;
 }
 /**
  * GetMassShippingParameter_Success sub-interface for GetMassShippingParameter_Response
@@ -1954,7 +1859,6 @@ export interface GetMassShippingParameter_Success {
    * Shopee's unique identifier for the package under an order.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * GetMassShippingParameter_Fail sub-interface for GetMassShippingParameter_Response
@@ -1968,7 +1872,6 @@ export interface GetMassShippingParameter_Fail {
    * Reason for failure.
    */
   fail_reason?: string;
-  [key: string]: any;
 }
 /**
  * GetMassShippingParameter_Response sub-interface for GetMassShippingParameterResponse
@@ -1994,7 +1897,6 @@ export interface GetMassShippingParameter_Response {
    * Fail package list.
    */
   fail_list?: GetMassShippingParameter_Fail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_mass_shipping_parameter
@@ -2014,7 +1916,6 @@ export interface GetMassTrackingNumber_Package {
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there isn't a package number.
    */
   package_number: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_mass_tracking_number
@@ -2030,7 +1931,6 @@ export interface GetMassTrackingNumberRequest {
    * Indicate response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them. Available values: plp_number, first_mile_tracking_number,last_mile_tracking_number.
    */
   response_optional_fields?: ResponseOptionalFields | string | number;
-  [key: string]: any;
 }
 /**
  * GetMassTrackingNumber_Success sub-interface for GetMassTrackingNumber_Response
@@ -2064,7 +1964,6 @@ export interface GetMassTrackingNumber_Success {
    * For drivers to quickly identify parcel to be picked up. Only returned for instant+sameday orders.
    */
   pickup_code?: string;
-  [key: string]: any;
 }
 /**
  * GetMassTrackingNumber_Fail sub-interface for GetMassTrackingNumber_Response
@@ -2078,7 +1977,6 @@ export interface GetMassTrackingNumber_Fail {
    * Reason for failure.
    */
   fail_reason?: string;
-  [key: string]: any;
 }
 /**
  * GetMassTrackingNumber_Response sub-interface for GetMassTrackingNumberResponse
@@ -2092,7 +1990,6 @@ export interface GetMassTrackingNumber_Response {
    * Fail package list.
    */
   fail_list?: GetMassTrackingNumber_Fail[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_mass_tracking_number
@@ -2142,7 +2039,6 @@ export interface GetOperatingHourRestrictions_Monday {
    * If the toggle value is true, the user can set the start_time to 00:00 and the end_time to 23:59 to indicate that the shop is operating 24 hours a day.
    */
   operating_24_hour_toggle?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_Tuesday sub-interface for GetOperatingHourRestrictions_WorkingDayConfig
@@ -2176,7 +2072,6 @@ export interface GetOperatingHourRestrictions_Tuesday {
    * If the toggle value is true, the user can set the start_time to 00:00 and the end_time to 23:59 to indicate that the shop is operating 24 hours a day.
    */
   operating_24_hour_toggle?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_Wednesday sub-interface for GetOperatingHourRestrictions_WorkingDayConfig
@@ -2210,7 +2105,6 @@ export interface GetOperatingHourRestrictions_Wednesday {
    * If the toggle value is true, the user can set the start_time to 00:00 and the end_time to 23:59 to indicate that the shop is operating 24 hours a day.
    */
   operating_24_hour_toggle?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_Thursday sub-interface for GetOperatingHourRestrictions_WorkingDayConfig
@@ -2244,7 +2138,6 @@ export interface GetOperatingHourRestrictions_Thursday {
    * If the toggle value is true, the user can set the start_time to 00:00 and the end_time to 23:59 to indicate that the shop is operating 24 hours a day.
    */
   operating_24_hour_toggle?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_Friday sub-interface for GetOperatingHourRestrictions_WorkingDayConfig
@@ -2278,7 +2171,6 @@ export interface GetOperatingHourRestrictions_Friday {
    * If the toggle value is true, the user can set the start_time to 00:00 and the end_time to 23:59 to indicate that the shop is operating 24 hours a day.
    */
   operating_24_hour_toggle?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_Saturday sub-interface for GetOperatingHourRestrictions_WorkingDayConfig
@@ -2312,7 +2204,6 @@ export interface GetOperatingHourRestrictions_Saturday {
    * If the toggle value is true, the user can set the start_time to 00:00 and the end_time to 23:59 to indicate that the shop is operating 24 hours a day.
    */
   operating_24_hour_toggle?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_Sunday sub-interface for GetOperatingHourRestrictions_WorkingDayConfig
@@ -2346,7 +2237,6 @@ export interface GetOperatingHourRestrictions_Sunday {
    * If the toggle value is true, the user can set the start_time to 00:00 and the end_time to 23:59 to indicate that the shop is operating 24 hours a day.
    */
   operating_24_hour_toggle?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_PublicHoliday sub-interface for GetOperatingHourRestrictions_WorkingDayConfig
@@ -2380,7 +2270,6 @@ export interface GetOperatingHourRestrictions_PublicHoliday {
    * If the toggle value is true, the user can set the start_time to 00:00 and the end_time to 23:59 to indicate that the shop is operating 24 hours a day.
    */
   operating_24_hour_toggle?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_WorkingDayConfig sub-interface for GetOperatingHourRestrictions_RegularOperatingHourRestriction
@@ -2418,7 +2307,6 @@ export interface GetOperatingHourRestrictions_WorkingDayConfig {
    * The restrictions specific for public holiday
    */
   public_holiday?: GetOperatingHourRestrictions_PublicHoliday;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_RegularOperatingHourRestriction sub-interface for GetOperatingHourRestrictions_Response
@@ -2432,7 +2320,6 @@ export interface GetOperatingHourRestrictions_RegularOperatingHourRestriction {
    * The restrictions specific to each day
    */
   working_day_config?: GetOperatingHourRestrictions_WorkingDayConfig;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_InstantOperatingHourRestriction sub-interface for GetOperatingHourRestrictions_Response
@@ -2446,7 +2333,6 @@ export interface GetOperatingHourRestrictions_InstantOperatingHourRestriction {
    * The restrictions specific to each day
    */
   working_day_config?: GetOperatingHourRestrictions_WorkingDayConfig;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_SpecialDay sub-interface for GetOperatingHourRestrictions_SpecialOperatingHourRestriction
@@ -2480,14 +2366,12 @@ export interface GetOperatingHourRestrictions_SpecialDay {
    * If the toggle value is true, the user can set the start_time to 00:00 and the end_time to 23:59 to indicate that the shop is operating 24 hours a day.
    */
   operating_24_hour_toggle?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_SpecialOperatingHourRestriction sub-interface for GetOperatingHourRestrictions_Response
  */
 export interface GetOperatingHourRestrictions_SpecialOperatingHourRestriction {
   special_day?: GetOperatingHourRestrictions_SpecialDay;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_GetOperatingHourRestrictions_Tuesday sub-interface for GetOperatingHourRestrictions_WorkingDayConfig
@@ -2521,7 +2405,6 @@ export interface GetOperatingHourRestrictions_GetOperatingHourRestrictions_Tuesd
    * If the toggle value is true, the user can set the start_time to 00:00 and the end_time to 23:59 to indicate that the shop is operating 24 hours a day.
    */
   operating_24_hour_toggle?: string;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_ShopCollectionOperatingHourRestriction sub-interface for GetOperatingHourRestrictions_Response
@@ -2535,7 +2418,6 @@ export interface GetOperatingHourRestrictions_ShopCollectionOperatingHourRestric
    * The restrictions specific to each day
    */
   working_day_config?: GetOperatingHourRestrictions_WorkingDayConfig;
-  [key: string]: any;
 }
 /**
  * GetOperatingHourRestrictions_Response sub-interface for GetOperatingHourRestrictionsResponse
@@ -2557,7 +2439,6 @@ export interface GetOperatingHourRestrictions_Response {
    * The restrictions for Shop Collection Operating Hours
    */
   shop_collection_operating_hour_restrictions?: GetOperatingHourRestrictions_ShopCollectionOperatingHourRestriction;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_operating_hour_restrictions
@@ -2588,7 +2469,6 @@ export interface GetOperatingHours_Monday {
    * End time for Monday
    */
   end_time?: string;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_Tuesday sub-interface for GetOperatingHours_RegularOperatingHour
@@ -2602,7 +2482,6 @@ export interface GetOperatingHours_Tuesday {
    * End time for Tuesday
    */
   end_time?: string;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_Wednesday sub-interface for GetOperatingHours_RegularOperatingHour
@@ -2616,7 +2495,6 @@ export interface GetOperatingHours_Wednesday {
    * End time for Wednesday
    */
   end_time?: string;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_Thursday sub-interface for GetOperatingHours_RegularOperatingHour
@@ -2630,7 +2508,6 @@ export interface GetOperatingHours_Thursday {
    * End time for Thursday
    */
   end_time?: string;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_Friday sub-interface for GetOperatingHours_RegularOperatingHour
@@ -2644,7 +2521,6 @@ export interface GetOperatingHours_Friday {
    * End time for Friday
    */
   end_time?: string;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_Saturday sub-interface for GetOperatingHours_RegularOperatingHour
@@ -2658,7 +2534,6 @@ export interface GetOperatingHours_Saturday {
    * End time for Saturday
    */
   end_time?: string;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_Sunday sub-interface for GetOperatingHours_RegularOperatingHour
@@ -2672,7 +2547,6 @@ export interface GetOperatingHours_Sunday {
    * End time for Sunday
    */
   end_time?: string;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_PublicHoliday sub-interface for GetOperatingHours_RegularOperatingHour
@@ -2686,7 +2560,6 @@ export interface GetOperatingHours_PublicHoliday {
    * End time for Public Holiday
    */
   end_time?: string;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_RegularOperatingHour sub-interface for GetOperatingHours_Repsonse
@@ -2724,7 +2597,6 @@ export interface GetOperatingHours_RegularOperatingHour {
    * The Operating hours for Public Holiday
    */
   public_holiday?: GetOperatingHours_PublicHoliday;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_InstantOperatingHour sub-interface for GetOperatingHours_Repsonse
@@ -2762,7 +2634,6 @@ export interface GetOperatingHours_InstantOperatingHour {
    * The Operating hours for Public Holiday
    */
   public_holiday?: GetOperatingHours_PublicHoliday;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_OperatingHour sub-interface for GetOperatingHours_SpecialOperatingHour
@@ -2784,7 +2655,6 @@ export interface GetOperatingHours_OperatingHour {
    * True: If it is open on that date.False: If it is closed on that date.
    */
   enable?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_SpecialOperatingHour sub-interface for GetOperatingHours_Repsonse
@@ -2803,7 +2673,6 @@ export interface GetOperatingHours_SpecialOperatingHour {
    */
   end_date?: string;
   operating_hours?: GetOperatingHours_OperatingHour[];
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_ShopCollectionOperatingHour sub-interface for GetOperatingHours_Repsonse
@@ -2841,7 +2710,6 @@ export interface GetOperatingHours_ShopCollectionOperatingHour {
    * The Operating hours for Public Holiday
    */
   public_holiday?: GetOperatingHours_PublicHoliday;
-  [key: string]: any;
 }
 /**
  * GetOperatingHours_Repsonse sub-interface for GetOperatingHoursResponse
@@ -2863,14 +2731,12 @@ export interface GetOperatingHours_Repsonse {
    * The details of Shop Collection Operating Hours
    */
   shop_collection_operating_hour?: GetOperatingHours_ShopCollectionOperatingHour;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_operating_hours
  */
 export interface GetOperatingHoursResponseData {
   repsonse?: GetOperatingHours_Repsonse;
-  [key: string]: any;
 }
 /**
  * Response payload for get_operating_hours
@@ -2900,7 +2766,6 @@ export interface GetPauseStatus_Response {
    * The remaining pause quota of the shop on the current day, in seconds, returned only when is_paused = false.
    */
   remaining_pause_quota?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_pause_status
@@ -2936,7 +2801,6 @@ export interface GetShippingDocumentDataInfo_Style {
    * text horizontal align, supports left, center and right.
    */
   h_align?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentDataInfo_RecipientAddressInfo sub-interface for GetShippingDocumentDataInfoRequest
@@ -2950,7 +2814,6 @@ export interface GetShippingDocumentDataInfo_RecipientAddressInfo {
    * image style
    */
   style?: GetShippingDocumentDataInfo_Style;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_shipping_document_data_info
@@ -2970,7 +2833,6 @@ export interface GetShippingDocumentDataInfoRequest {
    * recipient address to query as image
    */
   recipient_address_info?: GetShippingDocumentDataInfo_RecipientAddressInfo[];
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentDataInfo_GetShippingDocumentDataInfo_RecipientAddressInfo sub-interface for GetShippingDocumentDataInfo_Response
@@ -2984,7 +2846,6 @@ export interface GetShippingDocumentDataInfo_GetShippingDocumentDataInfo_Recipie
    * base64 encoded png data string
    */
   image?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentDataInfo_RecipientSortCode sub-interface for GetShippingDocumentDataInfo_ShippingDocumentInfo
@@ -3002,7 +2863,6 @@ export interface GetShippingDocumentDataInfo_RecipientSortCode {
    * The third-level sort_code of recipient.
    */
   third_recipient_sort_code?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentDataInfo_SenderSortCode sub-interface for GetShippingDocumentDataInfo_ShippingDocumentInfo
@@ -3020,7 +2880,6 @@ export interface GetShippingDocumentDataInfo_SenderSortCode {
    * The third-level sort_code of sender.
    */
   third_sender_sort_code?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentDataInfo_ReturnSortCode sub-interface for GetShippingDocumentDataInfo_ShippingDocumentInfo
@@ -3030,7 +2889,6 @@ export interface GetShippingDocumentDataInfo_ReturnSortCode {
    * The first-level sort code for 3PL doing RTS.
    */
   return_first_sort_code?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentDataInfo_BuyerPreferDeliveryTime sub-interface for GetShippingDocumentDataInfo_ThirdPartyLogisticInfo
@@ -3052,7 +2910,6 @@ export interface GetShippingDocumentDataInfo_BuyerPreferDeliveryTime {
    * The detailed instructions of the package delivering.
    */
   description?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentDataInfo_ThirdPartyLogisticInfo sub-interface for GetShippingDocumentDataInfo_ShippingDocumentInfo
@@ -3306,7 +3163,6 @@ export interface GetShippingDocumentDataInfo_ThirdPartyLogisticInfo {
    * [Only for TW channel:30017] The time buyer prefers to receive the packages.
    */
   buyer_prefer_delivery_time?: GetShippingDocumentDataInfo_BuyerPreferDeliveryTime;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentDataInfo_SpxReceiveStation sub-interface for GetShippingDocumentDataInfo_ShippingDocumentInfo
@@ -3316,7 +3172,6 @@ export interface GetShippingDocumentDataInfo_SpxReceiveStation {
    * The first pickup station.
    */
   spx_first_receive_station?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentDataInfo_ShippingDocumentInfo sub-interface for GetShippingDocumentDataInfo_Response
@@ -3522,7 +3377,6 @@ export interface GetShippingDocumentDataInfo_ShippingDocumentInfo {
    * This value indicates whether an order has a high / medium / low delivery success rate on each weekend (e.g. sat and sun respectively). For regions other than Malaysia, this field will always return empty.High = HMedium = MLow = L
    */
   weekend2_delivery_success_label?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentDataInfo_Response sub-interface for GetShippingDocumentDataInfoResponse
@@ -3530,7 +3384,6 @@ export interface GetShippingDocumentDataInfo_ShippingDocumentInfo {
 export interface GetShippingDocumentDataInfo_Response {
   recipient_address_info?: GetShippingDocumentDataInfo_GetShippingDocumentDataInfo_RecipientAddressInfo;
   shipping_document_info?: GetShippingDocumentDataInfo_ShippingDocumentInfo;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shipping_document_data_info
@@ -3553,7 +3406,6 @@ export interface GetShippingDocumentJobStatusRequest {
    * Generated Job ID for status tracking and download the Shipping Document
    */
   job_id: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentJobStatus_Response sub-interface for GetShippingDocumentJobStatusResponse
@@ -3571,7 +3423,6 @@ export interface GetShippingDocumentJobStatus_Response {
    * Requested Shipping Document current status. Available values: PROCESSING, READY, EXPIRED, FAILED
    */
   job_status?: JobStatus | string | number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shipping_document_job_status
@@ -3596,7 +3447,6 @@ export interface GetShippingDocumentParameter_Order {
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_shipping_document_parameter
@@ -3608,7 +3458,6 @@ export interface GetShippingDocumentParameterRequest {
    * The list of orders you want to get. limit [1,50]
    */
   order_list: GetShippingDocumentParameter_Order[];
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentParameter_Warning sub-interface for GetShippingDocumentParameterResponse
@@ -3622,7 +3471,6 @@ export interface GetShippingDocumentParameter_Warning {
    * Shopee's unique identifier for the package under an order.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentParameter_Result sub-interface for GetShippingDocumentParameter_Response
@@ -3652,7 +3500,6 @@ export interface GetShippingDocumentParameter_Result {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentParameter_Response sub-interface for GetShippingDocumentParameterResponse
@@ -3662,7 +3509,6 @@ export interface GetShippingDocumentParameter_Response {
    * The list of the result data.
    */
   result_list?: GetShippingDocumentParameter_Result[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shipping_document_parameter
@@ -3691,7 +3537,6 @@ export interface GetShippingDocumentResult_Order {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
   shipping_document_type?: ShippingDocumentType | string | number;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_shipping_document_result
@@ -3703,7 +3548,6 @@ export interface GetShippingDocumentResultRequest {
    * The list of orders, limit [1,50]
    */
   order_list: GetShippingDocumentResult_Order[];
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentResult_Warning sub-interface for GetShippingDocumentResultResponse
@@ -3717,7 +3561,6 @@ export interface GetShippingDocumentResult_Warning {
    * Shopee's unique identifier for the package under an order.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentResult_Result sub-interface for GetShippingDocumentResult_Response
@@ -3743,7 +3586,6 @@ export interface GetShippingDocumentResult_Result {
    * Indicate error details if one element hit error.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingDocumentResult_Response sub-interface for GetShippingDocumentResultResponse
@@ -3753,7 +3595,6 @@ export interface GetShippingDocumentResult_Response {
    * The result data list of the API response.
    */
   result_list?: GetShippingDocumentResult_Result[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shipping_document_result
@@ -3780,7 +3621,6 @@ export interface GetShippingParameterRequest {
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingParameter_InfoNeeded sub-interface for GetShippingParameter_Response
@@ -3798,7 +3638,6 @@ export interface GetShippingParameter_InfoNeeded {
    * Could contain 'tracking_no'. If it contains 'tracking_no', should manually input these values in Init API. If it has empty value, developer should still include "non-integrated" field in Init API.
    */
   non_integrated?: string[];
-  [key: string]: any;
 }
 /**
  * GetShippingParameter_Branch sub-interface for GetShippingParameter_Dropoff
@@ -3836,7 +3675,6 @@ export interface GetShippingParameter_Branch {
    * The town of specify address.
    */
   town?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingParameter_Slug sub-interface for GetShippingParameter_Dropoff
@@ -3850,7 +3688,6 @@ export interface GetShippingParameter_Slug {
    * The name of slug.
    */
   slug_name?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingParameter_Dropoff sub-interface for GetShippingParameter_Response
@@ -3864,7 +3701,6 @@ export interface GetShippingParameter_Dropoff {
    * List of available TW 3PL drop-off partners.
    */
   slug_list?: GetShippingParameter_Slug[];
-  [key: string]: any;
 }
 /**
  * GetShippingParameter_TimeSlot sub-interface for GetShippingParameter_Address
@@ -3886,7 +3722,6 @@ export interface GetShippingParameter_TimeSlot {
    * This field will have the value “recommended” for the time slot that Shopee suggests sellers choose. While it is advisable for sellers to choose the recommended time slot, they can also choose other time slots that do not have the recommended flag.
    */
   flags?: string[];
-  [key: string]: any;
 }
 /**
  * GetShippingParameter_Address sub-interface for GetShippingParameter_Pickup
@@ -3932,7 +3767,6 @@ export interface GetShippingParameter_Address {
    * List of pickup_time information corresponding to the address_id.Some logistics channels may not return any date or time for pickup time slots. In such cases, sellers can arrange shipment without selecting any time slot, and Shopee will arrange a suitable timing for these situations.
    */
   time_slot_list?: GetShippingParameter_TimeSlot[];
-  [key: string]: any;
 }
 /**
  * GetShippingParameter_Pickup sub-interface for GetShippingParameter_Response
@@ -3942,7 +3776,6 @@ export interface GetShippingParameter_Pickup {
    * List of available pickup address info.
    */
   address_list?: GetShippingParameter_Address[];
-  [key: string]: any;
 }
 /**
  * GetShippingParameter_Response sub-interface for GetShippingParameterResponse
@@ -3960,7 +3793,6 @@ export interface GetShippingParameter_Response {
    * Logistics information for pickup mode order.
    */
   pickup?: GetShippingParameter_Pickup;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shipping_parameter
@@ -3986,7 +3818,6 @@ export interface GetTrackingInfoRequest {
    * Shopee's unique identifier for the package under an order. You shouldn't fill the field with empty string when there is a package number.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * GetTrackingInfo_TrackingInfo sub-interface for GetTrackingInfo_Response
@@ -4008,7 +3839,6 @@ export interface GetTrackingInfo_TrackingInfo {
    * The OTP generated after the parcel enters the RTS (Return to Seller) process. Sellers need to provide this OTP to the driver to complete the return confirmation.Note: - This field only applies to orders under the SPX Instant & Sameday channel in ID region.- This field is only returned when the driver has initiated the return process to the seller. If the driver has not initiated the return process for the parcel, this field will be empty.
    */
   return_code?: string;
-  [key: string]: any;
 }
 /**
  * GetTrackingInfo_ReversedTrackingInfo sub-interface for GetTrackingInfo_Response
@@ -4022,7 +3852,6 @@ export interface GetTrackingInfo_ReversedTrackingInfo {
    * The description of the reversed logistics tracking info.
    */
   description?: string;
-  [key: string]: any;
 }
 /**
  * GetTrackingInfo_Response sub-interface for GetTrackingInfoResponse
@@ -4060,7 +3889,6 @@ export interface GetTrackingInfo_Response {
    * The tracking information of the reversed logistics.Note: Only apply to the cross-border segment of failed delivery parcels returned from the local return warehouse to the seller.
    */
   reversed_tracking_info?: GetTrackingInfo_ReversedTrackingInfo[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_tracking_info
@@ -4090,7 +3918,6 @@ export interface GetTrackingNumberRequest {
    * Indicate response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them. Available values: plp_number, first_mile_tracking_number,last_mile_tracking_number
    */
   response_optional_fields?: ResponseOptionalFields | string | number;
-  [key: string]: any;
 }
 /**
  * GetTrackingNumber_Response sub-interface for GetTrackingNumberResponse
@@ -4120,7 +3947,6 @@ export interface GetTrackingNumber_Response {
    * For drivers to quickly identify parcel to be picked up. Only returned for ID local orders who using instant+sameday for delivery.
    */
   pickup_code?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_tracking_number
@@ -4140,7 +3966,6 @@ export interface MassShipOrder_Package {
    * Shopee's unique identifier for the package under an order. You should't fill the field with empty string when there is't a package number.
    */
   package_number: string;
-  [key: string]: any;
 }
 /**
  * MassShipOrder_Pickup sub-interface for MassShipOrderRequest
@@ -4154,7 +3979,6 @@ export interface MassShipOrder_Pickup {
    * The pickup time id. Retrieved from v2.logistics.get_mass_shipping_parameter, you can only select one from the time_slot_list.Some logistics channels may not return any date or time for pickup time slots. In such cases, sellers can arrange shipment without selecting any time slot, and Shopee will arrange a suitable timing for these situations.
    */
   pickup_time_id?: string;
-  [key: string]: any;
 }
 /**
  * MassShipOrder_Dropoff sub-interface for MassShipOrderRequest
@@ -4172,7 +3996,6 @@ export interface MassShipOrder_Dropoff {
    * Need input this field when "tracking_number" is returned from "info_need". Please note that this tracking number is assigned by third-party shipping carrier for item shipment.
    */
   tracking_number?: string;
-  [key: string]: any;
 }
 /**
  * MassShipOrder_TrackingNumber sub-interface for MassShipOrder_NonIntegrated
@@ -4186,7 +4009,6 @@ export interface MassShipOrder_TrackingNumber {
    * Optional parameter for non-integrated channel order. The tracking number assigned by the shipping carrier for item shipment.
    */
   tracking_number: string;
-  [key: string]: any;
 }
 /**
  * MassShipOrder_NonIntegrated sub-interface for MassShipOrderRequest
@@ -4196,7 +4018,6 @@ export interface MassShipOrder_NonIntegrated {
    * Optional parameter for non-integrated channel order. The tracking number assigned by the shipping carrier for item shipment.
    */
   tracking_number?: MassShipOrder_TrackingNumber[];
-  [key: string]: any;
 }
 /**
  * Request parameters for mass_ship_order
@@ -4228,7 +4049,6 @@ export interface MassShipOrderRequest {
    * Optional parameter when get_mass_shipping_parameter returns "non-integrated" under "info_needed".
    */
   non_integrated?: MassShipOrder_NonIntegrated;
-  [key: string]: any;
 }
 /**
  * MassShipOrder_Success sub-interface for MassShipOrderResponse
@@ -4238,7 +4058,6 @@ export interface MassShipOrder_Success {
    * Shopee's unique identifier for the package under an order.
    */
   package_number?: string;
-  [key: string]: any;
 }
 /**
  * MassShipOrder_Fail sub-interface for MassShipOrderResponse
@@ -4252,7 +4071,6 @@ export interface MassShipOrder_Fail {
    * Reason for failure.
    */
   fail_reason?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for mass_ship_order
@@ -4266,7 +4084,6 @@ export interface MassShipOrderResponseData {
    * Fail package list.
    */
   fail_list?: MassShipOrder_Fail[];
-  [key: string]: any;
 }
 /**
  * Response payload for mass_ship_order
@@ -4286,7 +4103,6 @@ export interface SetAddressConfig_AddressTypeConfig {
    * The type of address. Available values: DEFAULT_ADDRESS, PICKUP_ADDRESS, RETURN_ADDRESS, INBOUND_PICKUP_ADDRESS.
    */
   address_type?: AddressType | string | number;
-  [key: string]: any;
 }
 /**
  * Request parameters for set_address_config
@@ -4302,7 +4118,6 @@ export interface SetAddressConfigRequest {
    * The config of your shop addres.
    */
   address_type_config?: SetAddressConfig_AddressTypeConfig;
-  [key: string]: any;
 }
 /**
  * Response data payload for set_address_config
@@ -4330,7 +4145,6 @@ export interface SetMartPackagingInfo_Dimension {
    * The height of the packaging in centimetres (cm).
    */
   height: number;
-  [key: string]: any;
 }
 /**
  * SetMartPackagingInfo_PackagingFee sub-interface for SetMartPackagingInfoRequest
@@ -4340,7 +4154,6 @@ export interface SetMartPackagingInfo_PackagingFee {
    * The packaging fee price in your region's local currency.For SG/MY/BR/MX seller: Sellers can set the price with two decimal place, other regions can only set the price as an integer.
    */
   value: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for set_mart_packaging_info
@@ -4360,7 +4173,6 @@ export interface SetMartPackagingInfoRequest {
    * Required if enabled is set to True.
    */
   packaging_fee?: SetMartPackagingInfo_PackagingFee;
-  [key: string]: any;
 }
 /**
  * SetMartPackagingInfo_SetMartPackagingInfo_Dimension sub-interface for SetMartPackagingInfo_Response
@@ -4378,7 +4190,6 @@ export interface SetMartPackagingInfo_SetMartPackagingInfo_Dimension {
    * The height of the packaging in centimetres (cm).
    */
   height?: number;
-  [key: string]: any;
 }
 /**
  * SetMartPackagingInfo_SetMartPackagingInfo_PackagingFee sub-interface for SetMartPackagingInfo_Response
@@ -4388,7 +4199,6 @@ export interface SetMartPackagingInfo_SetMartPackagingInfo_PackagingFee {
    * The packaging fee price in the seller's local currency.
    */
   value?: number;
-  [key: string]: any;
 }
 /**
  * SetMartPackagingInfo_Response sub-interface for SetMartPackagingInfoResponse
@@ -4406,7 +4216,6 @@ export interface SetMartPackagingInfo_Response {
    * Returned only if enabled is set to True.
    */
   packaging_fee?: SetMartPackagingInfo_SetMartPackagingInfo_PackagingFee;
-  [key: string]: any;
 }
 /**
  * Response data payload for set_mart_packaging_info
@@ -4428,7 +4237,6 @@ export interface SetPauseStatusRequest {
    * The target pause status that seller wants to update to. Applicable values: - true: Trigger pause. All relevant channels will be paused and will not have any new incoming orders (fulfillment of existing orders will not be affected). Meanwhile, the system will start deducting the daily pause quota and automatically calculate the pause end time based on the remaining quota.- false: Trigger manual resume. No channels are paused and may have new incoming orders. The remaining daily quota will stop being consumed and be retained until reset the next day.Note: Due to the system cache synchronization mechanism, there may be an approximately 15-second delay before the pause/resume operation takes effect. It is recommended to call the v2.logistics.get_pause_status for confirmation after the update.
    */
   is_paused: IsPaused | string | number;
-  [key: string]: any;
 }
 /**
  * SetPauseStatus_Response sub-interface for SetPauseStatusResponse
@@ -4446,7 +4254,6 @@ export interface SetPauseStatus_Response {
    * The remaining pause quota of the shop on the current day, in seconds, returned only when is_paused = false.
    */
   remaining_pause_quota?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for set_pause_status
@@ -4470,7 +4277,6 @@ export interface ShipBooking_Pickup {
    * The pickup time id. Retrieved from v2.logistics.get_shipping_booking_parameter, you can only select one from the time_slot_list.Some logistics channels may not return any date or time for pickup time slots. In such cases, sellers can arrange shipment without selecting any time slot, and Shopee will arrange a suitable timing for these situations.
    */
   pickup_time_id?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for ship_booking
@@ -4490,7 +4296,6 @@ export interface ShipBookingRequest {
    * Required parameter ONLY if get_shipping_parameter returns "dropoff" under "info_needed". Developer should still include "dropoff" field in the call even if "dropoff" has empty value. If you choose Regular shipping method, please use "tracking_no" to call Init API. If you choose JOB shipping method, please use "sender_real_name" to call Init API. Note that only one of "tracking_no" and "sender_real_name" can be selected.
    */
   dropoff?: any;
-  [key: string]: any;
 }
 /**
  * Response data payload for ship_booking
@@ -4518,7 +4323,6 @@ export interface ShipOrder_Pickup {
    * Need input this field when "tracking_number" is returned from "info_need". Please note that this tracking number is assigned by third-party shipping carrier for item shipment.
    */
   tracking_number?: string;
-  [key: string]: any;
 }
 /**
  * ShipOrder_Dropoff sub-interface for ShipOrderRequest
@@ -4540,7 +4344,6 @@ export interface ShipOrder_Dropoff {
    * The selected 3PL partner to drop-off parcels with.
    */
   slug?: string;
-  [key: string]: any;
 }
 /**
  * ShipOrder_NonIntegrated sub-interface for ShipOrderRequest
@@ -4550,7 +4353,6 @@ export interface ShipOrder_NonIntegrated {
    * Optional parameter for non-integrated channel order. The tracking number assigned by the shipping carrier for item shipment.
    */
   tracking_number?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for ship_order
@@ -4578,7 +4380,6 @@ export interface ShipOrderRequest {
    * Optional parameter when get_shipping_parameter returns "non-integrated" under "info_needed".
    */
   non_integrated?: ShipOrder_NonIntegrated;
-  [key: string]: any;
 }
 /**
  * Response data payload for ship_order
@@ -4640,7 +4441,6 @@ export interface UpdateAddressRequest {
    * Geolocation information for the address. Type: JSON stringNote: 1) To clear existing geo info, pass "" or {}.2) To keep existing geo info, do not include this field.3) The JSON may include optional fields:- formattedAddress (string): full formatted address.- region (object) – contains latitude and longitude as floats.- user_verified (boolean) – whether the geolocation is verified by the user.- user_adjusted (boolean) – whether the geolocation was adjusted by the user.
    */
   geo_info?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_address
@@ -4664,7 +4464,6 @@ export interface UpdateChannel_AutoCallDriverSetting {
    * Used to set the Preparation Time for this channel, in minutes. Required when auto_call_driver_enabled = true.Note: Please ensure the passed preparation_time value falls within the preparation_time_limit range returned by v2.logistics.get_channel_list.
    */
   preparation_time?: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for update_channel
@@ -4685,7 +4484,6 @@ export interface UpdateChannelRequest {
    */
   cod_enabled?: boolean;
   auto_call_driver_setting?: UpdateChannel_AutoCallDriverSetting;
-  [key: string]: any;
 }
 /**
  * UpdateChannel_UnsupportWarehouse sub-interface for UpdateChannel_UpdatedChannel
@@ -4699,7 +4497,6 @@ export interface UpdateChannel_UnsupportWarehouse {
    * Unsupported warehouse name
    */
   warehouse_name?: string;
-  [key: string]: any;
 }
 /**
  * UpdateChannel_UpdatedChannel sub-interface for UpdateChannel_Response
@@ -4717,7 +4514,6 @@ export interface UpdateChannel_UpdatedChannel {
    * List details of unsupported warehouses
    */
   unsupport_warehouse?: UpdateChannel_UnsupportWarehouse[];
-  [key: string]: any;
 }
 /**
  * UpdateChannel_Response sub-interface for UpdateChannelResponse
@@ -4745,7 +4541,6 @@ export interface UpdateChannel_Response {
   updated_channels?: UpdateChannel_UpdatedChannel[];
   is_multi_warehouse?: boolean;
   auto_call_driver_setting?: UpdateChannel_AutoCallDriverSetting;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_channel
@@ -4769,7 +4564,6 @@ export interface UpdateOperatingHours_Monday {
    * End time for operating hours on that day:The time should be in the format XX:YY, where YY is either 00 or 30.Except for a 24-hour, you can input a start_time of 00:00 and an end_time of 23:59
    */
   end_time: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_Tuesday sub-interface for UpdateOperatingHours_RegularOperatingHour
@@ -4783,7 +4577,6 @@ export interface UpdateOperatingHours_Tuesday {
    * End time for operating hours on that day:The time should be in the format XX:YY, where YY is either 00 or 30.Except for a 24-hour, you can input a start_time of 00:00 and an end_time of 23:59
    */
   end_time: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_Wednesday sub-interface for UpdateOperatingHours_RegularOperatingHour
@@ -4797,7 +4590,6 @@ export interface UpdateOperatingHours_Wednesday {
    * End time for operating hours on that day:The time should be in the format XX:YY, where YY is either 00 or 30.Except for a 24-hour, you can input a start_time of 00:00 and an end_time of 23:59
    */
   end_time: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_Thursday sub-interface for UpdateOperatingHours_RegularOperatingHour
@@ -4811,7 +4603,6 @@ export interface UpdateOperatingHours_Thursday {
    * End time for operating hours on that day:The time should be in the format XX:YY, where YY is either 00 or 30.Except for a 24-hour, you can input a start_time of 00:00 and an end_time of 23:59
    */
   end_time: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_Friday sub-interface for UpdateOperatingHours_RegularOperatingHour
@@ -4825,7 +4616,6 @@ export interface UpdateOperatingHours_Friday {
    * End time for operating hours on that day:The time should be in the format XX:YY, where YY is either 00 or 30.Except for a 24-hour, you can input a start_time of 00:00 and an end_time of 23:59
    */
   end_time: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_Saturday sub-interface for UpdateOperatingHours_RegularOperatingHour
@@ -4839,7 +4629,6 @@ export interface UpdateOperatingHours_Saturday {
    * End time for operating hours on that day:The time should be in the format XX:YY, where YY is either 00 or 30.Except for a 24-hour, you can input a start_time of 00:00 and an end_time of 23:59
    */
   end_time: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_Sunday sub-interface for UpdateOperatingHours_RegularOperatingHour
@@ -4853,7 +4642,6 @@ export interface UpdateOperatingHours_Sunday {
    * End time for operating hours on that day:The time should be in the format XX:YY, where YY is either 00 or 30.Except for a 24-hour, you can input a start_time of 00:00 and an end_time of 23:59
    */
   end_time: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_PublicHoliday sub-interface for UpdateOperatingHours_RegularOperatingHour
@@ -4867,7 +4655,6 @@ export interface UpdateOperatingHours_PublicHoliday {
    * End time for operating hours on that day:The time should be in the format XX:YY, where YY is either 00 or 30.Except for a 24-hour, you can input a start_time of 00:00 and an end_time of 23:59
    */
   end_time: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_RegularOperatingHour sub-interface for UpdateOperatingHoursRequest
@@ -4905,7 +4692,6 @@ export interface UpdateOperatingHours_RegularOperatingHour {
    * Operating hours for public holiday: You can skip this information if you want to mark the day as closed.
    */
   public_holiday?: UpdateOperatingHours_PublicHoliday;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_OperatingHour sub-interface for UpdateOperatingHours_SpecialOperatingHour
@@ -4927,7 +4713,6 @@ export interface UpdateOperatingHours_OperatingHour {
    * To specify this value as False if you're not operate on that date (close)
    */
   enable: boolean;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_SpecialOperatingHour sub-interface for UpdateOperatingHoursRequest
@@ -4949,7 +4734,6 @@ export interface UpdateOperatingHours_SpecialOperatingHour {
    * To specify the operating hours for each date
    */
   operating_hours: UpdateOperatingHours_OperatingHour[];
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_Thrusday sub-interface for UpdateOperatingHours_InstantOperatingHour
@@ -4963,7 +4747,6 @@ export interface UpdateOperatingHours_Thrusday {
    * End time for operating hours on that day:The time should be in the format XX:YY, where YY is either 00 or 30.Except for a 24-hour, you can input a start_time of 00:00 and an end_time of 23:59
    */
   end_time: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_InstantOperatingHour sub-interface for UpdateOperatingHoursRequest
@@ -5001,7 +4784,6 @@ export interface UpdateOperatingHours_InstantOperatingHour {
    * Operating hours for public holiday: You can skip this information if you want to mark the day as closed.
    */
   public_holiday?: UpdateOperatingHours_PublicHoliday;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_ShopCollectionOperatingHour sub-interface for UpdateOperatingHoursRequest
@@ -5039,7 +4821,6 @@ export interface UpdateOperatingHours_ShopCollectionOperatingHour {
    * Operating hours for Public Holiday: You can skip this information if you want to mark the day as closed.
    */
   public_holiday?: UpdateOperatingHours_PublicHoliday;
-  [key: string]: any;
 }
 /**
  * Request parameters for update_operating_hours
@@ -5063,7 +4844,6 @@ export interface UpdateOperatingHoursRequest {
    * Details of Shop Collection Operating Hours : You can skip this parameter if you are not creating/updating Shop Collection Operating Hours or if you do not have access to create/update Shop Collection Operating Hours
    */
   shop_collection_operating_hour?: UpdateOperatingHours_ShopCollectionOperatingHour;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_UpdateOperatingHours_RegularOperatingHour sub-interface for UpdateOperatingHours_Result
@@ -5077,7 +4857,6 @@ export interface UpdateOperatingHours_UpdateOperatingHours_RegularOperatingHour 
    * Fail reason
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_UpdateOperatingHours_SpecialOperatingHour sub-interface for UpdateOperatingHours_Result
@@ -5091,7 +4870,6 @@ export interface UpdateOperatingHours_UpdateOperatingHours_SpecialOperatingHour 
    * Fail reason
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_UpdateOperatingHours_InstantOperatingHour sub-interface for UpdateOperatingHours_Result
@@ -5105,7 +4883,6 @@ export interface UpdateOperatingHours_UpdateOperatingHours_InstantOperatingHour 
    * Fail reason
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_UpdateOperatingHours_ShopCollectionOperatingHour sub-interface for UpdateOperatingHours_Result
@@ -5119,7 +4896,6 @@ export interface UpdateOperatingHours_UpdateOperatingHours_ShopCollectionOperati
    * Fail reason
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_Result sub-interface for UpdateOperatingHours_Response
@@ -5141,14 +4917,12 @@ export interface UpdateOperatingHours_Result {
    * The result of create/update shop_collection_operating_hour.
    */
   shop_collection_operating_hour?: UpdateOperatingHours_UpdateOperatingHours_ShopCollectionOperatingHour;
-  [key: string]: any;
 }
 /**
  * UpdateOperatingHours_Response sub-interface for UpdateOperatingHoursResponse
  */
 export interface UpdateOperatingHours_Response {
   result_list?: UpdateOperatingHours_Result[];
-  [key: string]: any;
 }
 /**
  * Response data payload for update_operating_hours
@@ -5182,7 +4956,6 @@ export interface UpdateSelfCollectionOrderLogisticsRequest {
    * PIN code required for prescription orders when buyer collects at your shop.
    */
   pin?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_self_collection_order_logistics
@@ -5207,7 +4980,6 @@ export interface UpdateShippingOrder_Pickup {
    * The pickup time id. Retrieved from get_shipping_parameter.
    */
   pickup_time_id: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for update_shipping_order
@@ -5227,7 +4999,6 @@ export interface UpdateShippingOrderRequest {
    * Required parameter ONLY if GetParameterForInit returns "pickup" or if GetLogisticsInfo returns "pickup" under "info_needed" for the same order. Developer should still include "pickup" field in the call even if "pickup" has empty value.
    */
   pickup: UpdateShippingOrder_Pickup;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_shipping_order
@@ -5265,7 +5036,6 @@ export interface UpdateTrackingStatusRequest {
    * Only required when updating logistics_status to "logistics_delivery_failed". Only required for BR Instant Delivery channel (logistics_channel_id: 90026). Only accept the following values. - buyer_unreachable- buyer_unresponsive- no_delivery_location_consensus
    */
   failed_reason?: string;
-  [key: string]: any;
 }
 /**
  * UpdateTrackingStatus_Response sub-interface for UpdateTrackingStatusResponse
@@ -5275,7 +5045,6 @@ export interface UpdateTrackingStatus_Response {
    * Update results:- succeed- failed
    */
   update_result?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_tracking_status
@@ -5297,7 +5066,6 @@ export interface UploadServiceablePolygonRequest {
    * The .kml file to be uploaded to denote the serviceability area of the shops.Note: Please refer to “KML file format for v2.logistics.upload_serviceable_polygon” to understand the structure specifications and upload requirements for KML files.
    */
   file: any;
-  [key: string]: any;
 }
 /**
  * UploadServiceablePolygon_Response sub-interface for UploadServiceablePolygonResponse
@@ -5307,7 +5075,6 @@ export interface UploadServiceablePolygon_Response {
    * Use the task_id to call v2.logistics.check_polygon_update_status to check if the upload job has been completed.
    */
   task_id?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for upload_serviceable_polygon

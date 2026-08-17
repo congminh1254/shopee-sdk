@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { TopPicksManager } from "../../managers/top-picks.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("TopPicksManager (Generated Tests)", () => {
@@ -56,7 +56,7 @@ describe("TopPicksManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addTopPicks(exampleRequest as any);
+      const result = await manager.addTopPicks(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -88,7 +88,7 @@ describe("TopPicksManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteTopPicks(exampleRequest as any);
+      const result = await manager.deleteTopPicks(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -133,7 +133,7 @@ describe("TopPicksManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTopPicksList(exampleRequest as any);
+      const result = await manager.getTopPicksList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -183,7 +183,7 @@ describe("TopPicksManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateTopPicks(exampleRequest as any);
+      const result = await manager.updateTopPicks(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { SbsManager } from "../../managers/sbs.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("SbsManager (Generated Tests)", () => {
@@ -47,7 +47,7 @@ describe("SbsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBoundWhsInfo(exampleRequest as any);
+      const result = await manager.getBoundWhsInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -131,7 +131,7 @@ describe("SbsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getCurrentInventory(exampleRequest as any);
+      const result = await manager.getCurrentInventory(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -204,7 +204,7 @@ describe("SbsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getExpiryReport(exampleRequest as any);
+      const result = await manager.getExpiryReport(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -279,7 +279,7 @@ describe("SbsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getStockAging(exampleRequest as any);
+      const result = await manager.getStockAging(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -385,7 +385,7 @@ describe("SbsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getStockMovement(exampleRequest as any);
+      const result = await manager.getStockMovement(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { LogisticsManager } from "../../managers/logistics.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("LogisticsManager (Generated Tests)", () => {
@@ -64,7 +64,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.batchShipOrder(exampleRequest as any);
+      const result = await manager.batchShipOrder(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -117,7 +117,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.batchUpdateTpfWarehouseTrackingStatus(exampleRequest as any);
+      const result = await manager.batchUpdateTpfWarehouseTrackingStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -150,7 +150,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.checkPolygonUpdateStatus(exampleRequest as any);
+      const result = await manager.checkPolygonUpdateStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -194,7 +194,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.createBookingShippingDocument(exampleRequest as any);
+      const result = await manager.createBookingShippingDocument(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -240,7 +240,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.createShippingDocument(exampleRequest as any);
+      const result = await manager.createShippingDocument(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -288,7 +288,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.createShippingDocumentJob(exampleRequest as any);
+      const result = await manager.createShippingDocumentJob(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -322,7 +322,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteAddress(exampleRequest as any);
+      const result = await manager.deleteAddress(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -356,7 +356,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteSpecialOperatingHour(exampleRequest as any);
+      const result = await manager.deleteSpecialOperatingHour(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -393,7 +393,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.downloadBookingShippingDocument(exampleRequest as any);
+      const result = await manager.downloadBookingShippingDocument(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -431,7 +431,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.downloadShippingDocument(exampleRequest as any);
+      const result = await manager.downloadShippingDocument(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -463,7 +463,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.downloadShippingDocumentJob(exampleRequest as any);
+      const result = await manager.downloadShippingDocumentJob(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -496,7 +496,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.downloadToLabel(exampleRequest as any);
+      const result = await manager.downloadToLabel(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -539,7 +539,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAddressList(exampleRequest as any);
+      const result = await manager.getAddressList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -621,7 +621,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBookingShippingDocumentDataInfo(exampleRequest as any);
+      const result = await manager.getBookingShippingDocumentDataInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -665,7 +665,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBookingShippingDocumentParameter(exampleRequest as any);
+      const result = await manager.getBookingShippingDocumentParameter(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -709,7 +709,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBookingShippingDocumentResult(exampleRequest as any);
+      const result = await manager.getBookingShippingDocumentResult(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -769,7 +769,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBookingShippingParameter(exampleRequest as any);
+      const result = await manager.getBookingShippingParameter(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -795,7 +795,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         logistics_status: "LOGISTICS_REQUEST_CREATED",
         tracking_info: [
           {
-            update_time: "1587375600",
+            update_time: 1587375600,
             description: "Your parcel is ready to ship from the seller",
             logistics_status: "PICKED_UP",
           },
@@ -809,7 +809,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBookingTrackingInfo(exampleRequest as any);
+      const result = await manager.getBookingTrackingInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -844,7 +844,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBookingTrackingNumber(exampleRequest as any);
+      const result = await manager.getBookingTrackingNumber(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -932,7 +932,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getChannelList(exampleRequest as any);
+      const result = await manager.getChannelList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -970,7 +970,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMartPackagingInfo(exampleRequest as any);
+      const result = await manager.getMartPackagingInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1060,7 +1060,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMassShippingParameter(exampleRequest as any);
+      const result = await manager.getMassShippingParameter(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1113,7 +1113,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMassTrackingNumber(exampleRequest as any);
+      const result = await manager.getMassTrackingNumber(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1384,7 +1384,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getOperatingHourRestrictions(exampleRequest as any);
+      const result = await manager.getOperatingHourRestrictions(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1533,7 +1533,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getOperatingHours(exampleRequest as any);
+      const result = await manager.getOperatingHours(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1565,7 +1565,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPauseStatus(exampleRequest as any);
+      const result = await manager.getPauseStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1746,7 +1746,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShippingDocumentDataInfo(exampleRequest as any);
+      const result = await manager.getShippingDocumentDataInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1780,7 +1780,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShippingDocumentJobStatus(exampleRequest as any);
+      const result = await manager.getShippingDocumentJobStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1826,7 +1826,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShippingDocumentParameter(exampleRequest as any);
+      const result = await manager.getShippingDocumentParameter(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1872,7 +1872,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShippingDocumentResult(exampleRequest as any);
+      const result = await manager.getShippingDocumentResult(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1934,7 +1934,7 @@ describe("LogisticsManager (Generated Tests)", () => {
               address_flag: ["test_string"],
               time_slot_list: [
                 {
-                  date: "1608103685",
+                  date: 1608103685,
                   time_text: "test_string",
                   pickup_time_id: "test_string",
                   flags: ["recommended"],
@@ -1952,7 +1952,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShippingParameter(exampleRequest as any);
+      const result = await manager.getShippingParameter(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1980,7 +1980,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         logistics_status: "LOGISTICS_DELIVERY_FAILED",
         tracking_info: [
           {
-            update_time: "1726561500",
+            update_time: 1726561500,
             description: "包裹正退回物流中心",
             logistics_status: "FAILED_DELIVERED",
             return_code: "1234",
@@ -2004,7 +2004,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTrackingInfo(exampleRequest as any);
+      const result = await manager.getTrackingInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2043,7 +2043,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTrackingNumber(exampleRequest as any);
+      const result = await manager.getTrackingNumber(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2111,7 +2111,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.massShipOrder(exampleRequest as any);
+      const result = await manager.massShipOrder(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2149,7 +2149,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.setAddressConfig(exampleRequest as any);
+      const result = await manager.setAddressConfig(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2197,7 +2197,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.setMartPackagingInfo(exampleRequest as any);
+      const result = await manager.setMartPackagingInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2231,7 +2231,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.setPauseStatus(exampleRequest as any);
+      const result = await manager.setPauseStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2270,7 +2270,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.shipBooking(exampleRequest as any);
+      const result = await manager.shipBooking(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2319,7 +2319,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.shipOrder(exampleRequest as any);
+      const result = await manager.shipOrder(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2363,7 +2363,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateAddress(exampleRequest as any);
+      const result = await manager.updateAddress(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2421,7 +2421,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateChannel(exampleRequest as any);
+      const result = await manager.updateChannel(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2586,7 +2586,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateOperatingHours(exampleRequest as any);
+      const result = await manager.updateOperatingHours(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2623,7 +2623,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateSelfCollectionOrderLogistics(exampleRequest as any);
+      const result = await manager.updateSelfCollectionOrderLogistics(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2662,7 +2662,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateShippingOrder(exampleRequest as any);
+      const result = await manager.updateShippingOrder(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2698,7 +2698,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateTrackingStatus(exampleRequest as any);
+      const result = await manager.updateTrackingStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -2730,7 +2730,7 @@ describe("LogisticsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.uploadServiceablePolygon(exampleRequest as any);
+      const result = await manager.uploadServiceablePolygon(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

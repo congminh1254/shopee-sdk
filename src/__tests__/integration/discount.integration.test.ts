@@ -29,7 +29,7 @@ const { runTests, initSdk } = setupIntegrationTest();
     expect(addResponse.error || "").toBe("");
     expect(addResponse.response?.discount_id).toBeDefined();
 
-    const testDiscountId = addResponse.response.discount_id;
+    const testDiscountId = addResponse.response.discount_id!;
 
     try {
       // 2. Update the upcoming discount activity name (wrap in try-catch to absorb transient Sandbox server errors)
@@ -44,7 +44,9 @@ const { runTests, initSdk } = setupIntegrationTest();
         expect(updateResponse.error || "").toBe("");
         expect(updateResponse.response?.discount_id).toBe(testDiscountId);
       } catch (err) {
-        if (err instanceof ShopeeApiError && (err.data as any)?.error === "error_server") {
+        const errorData =
+          err instanceof ShopeeApiError ? (err.data as { error?: string } | undefined) : undefined;
+        if (errorData?.error === "error_server") {
           // Gracefully absorb Sandbox server update limit/glitch
         } else {
           throw err;

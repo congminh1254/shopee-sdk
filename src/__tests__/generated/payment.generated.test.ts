@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { PaymentManager } from "../../managers/payment.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PaymentManager (Generated Tests)", () => {
@@ -40,7 +40,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.generateIncomeReport(exampleRequest as any);
+      const result = await manager.generateIncomeReport(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -74,7 +74,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.generateIncomeStatement(exampleRequest as any);
+      const result = await manager.generateIncomeStatement(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -121,7 +121,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBillingTransactionInfo(exampleRequest as any);
+      const result = await manager.getBillingTransactionInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -254,7 +254,7 @@ describe("PaymentManager (Generated Tests)", () => {
           order_adjustment: [
             {
               amount: 10.1,
-              date: "1688107565",
+              date: 1688107565,
               currency: "TWD",
               adjustment_reason: "test_string",
             },
@@ -352,7 +352,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getEscrowDetail(exampleRequest as any);
+      const result = await manager.getEscrowDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -569,7 +569,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getEscrowDetailBatch(exampleRequest as any);
+      const result = await manager.getEscrowDetailBatch(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -588,8 +588,8 @@ describe("PaymentManager (Generated Tests)", () => {
   describe("getEscrowList", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
-        release_time_from: "1651680000",
-        release_time_to: "1651939200",
+        release_time_from: 1651680000,
+        release_time_to: 1651939200,
         page_size: 40,
         page_no: 1,
       };
@@ -598,7 +598,7 @@ describe("PaymentManager (Generated Tests)", () => {
           {
             order_sn: "220415N6SB140P",
             payout_amount: 5733.04,
-            escrow_release_time: "1651849648",
+            escrow_release_time: 1651849648,
           },
         ],
         more: true,
@@ -611,7 +611,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getEscrowList(exampleRequest as any);
+      const result = await manager.getEscrowList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -672,7 +672,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getIncomeDetail(exampleRequest as any);
+      const result = await manager.getIncomeDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -709,7 +709,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getIncomeOverview(exampleRequest as any);
+      const result = await manager.getIncomeOverview(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -746,7 +746,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getIncomeReport(exampleRequest as any);
+      const result = await manager.getIncomeReport(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -783,7 +783,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getIncomeStatement(exampleRequest as any);
+      const result = await manager.getIncomeStatement(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -826,7 +826,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemInstallmentStatus(exampleRequest as any);
+      const result = await manager.getItemInstallmentStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -859,7 +859,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPaymentMethodList(exampleRequest as any);
+      const result = await manager.getPaymentMethodList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -880,8 +880,8 @@ describe("PaymentManager (Generated Tests)", () => {
       const exampleRequest = {
         page_size: 10,
         page_no: 1,
-        payout_time_from: "1643365068",
-        payout_time_to: "1659003469",
+        payout_time_from: 1643365068,
+        payout_time_to: 1659003469,
       };
       const exampleResponse = {
         more: false,
@@ -893,7 +893,7 @@ describe("PaymentManager (Generated Tests)", () => {
               from_amount: 591797912,
               payout_amount: 25678.64,
               exchange_rate: "0.00",
-              payout_time: "1651842208",
+              payout_time: 1651842208,
               pay_service: "Payoneer",
               payee_id: "279016275538",
             },
@@ -925,7 +925,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPayoutDetail(exampleRequest as any);
+      const result = await manager.getPayoutDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -944,8 +944,8 @@ describe("PaymentManager (Generated Tests)", () => {
   describe("getPayoutInfo", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
-        payout_time_from: "1643365068",
-        payout_time_to: "1659003469",
+        payout_time_from: 1643365068,
+        payout_time_to: 1659003469,
         page_size: 10,
         cursor: '""',
       };
@@ -957,7 +957,7 @@ describe("PaymentManager (Generated Tests)", () => {
             from_amount: 1769.01,
             payout_amount: 1769.01,
             exchange_rate: '"1"',
-            payout_time: "1691050374",
+            payout_time: 1691050374,
             pay_service: "Payoneer",
             payee_id: '"279016275538"',
             encrypted_payout_id: '"16061973102097436445"',
@@ -974,7 +974,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPayoutInfo(exampleRequest as any);
+      const result = await manager.getPayoutInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1004,7 +1004,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopInstallmentStatus(exampleRequest as any);
+      const result = await manager.getShopInstallmentStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1072,7 +1072,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getWalletTransactionList(exampleRequest as any);
+      const result = await manager.getWalletTransactionList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1117,7 +1117,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.setItemInstallmentStatus(exampleRequest as any);
+      const result = await manager.setItemInstallmentStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1149,7 +1149,7 @@ describe("PaymentManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.setShopInstallmentStatus(exampleRequest as any);
+      const result = await manager.setShopInstallmentStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

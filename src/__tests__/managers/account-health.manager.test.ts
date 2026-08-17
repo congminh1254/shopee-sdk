@@ -14,7 +14,7 @@ import {
 import { MetricType, MetricUnit, PerformanceRating } from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AccountHealthManager", () => {
@@ -46,7 +46,7 @@ describe("AccountHealthManager", () => {
           overall_performance: {
             rating: PerformanceRating.Good,
             fulfillment_failed: 0,
-            listing_failed: 0,
+            listing_failed: [0],
             custom_service_failed: 0,
           },
           metric_list: [
@@ -65,7 +65,7 @@ describe("AccountHealthManager", () => {
             },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 

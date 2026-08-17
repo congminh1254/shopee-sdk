@@ -28,7 +28,7 @@ import {
   GetShopVideoPerformanceResponse,
 } from "../../schemas/principal.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PrincipalManager", () => {

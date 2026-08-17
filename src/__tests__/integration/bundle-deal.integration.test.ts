@@ -28,13 +28,15 @@ const { runTests, initSdk } = setupIntegrationTest();
         min_amount: 2,
         discount_percentage: 10,
         purchase_limit: 5,
+        discount_value: 0,
+        fix_price: 0,
       });
 
       expect(addResponse).toBeDefined();
       expect(addResponse.error || "").toBe("");
       expect(addResponse.response?.bundle_deal_id).toBeDefined();
 
-      const testDealId = addResponse.response.bundle_deal_id;
+      const testDealId = addResponse.response.bundle_deal_id!;
 
       try {
         // 2. Retrieve the details of the created bundle deal

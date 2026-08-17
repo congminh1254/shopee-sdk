@@ -37,7 +37,6 @@ export interface AcceptOfferRequest {
    * The serial number of return.
    */
   return_sn: string;
-  [key: string]: any;
 }
 /**
  * AcceptOffer_Response sub-interface for AcceptOfferResponse
@@ -47,7 +46,6 @@ export interface AcceptOffer_Response {
    * The serial number of return.
    */
   return_sn?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for accept_offer
@@ -73,7 +71,6 @@ export interface CancelDisputeRequest {
    * The operator's email address. For operation record keeping purposes (same as v2.returns.dispute API).
    */
   email: string;
-  [key: string]: any;
 }
 /**
  * CancelDispute_Response sub-interface for CancelDisputeResponse
@@ -87,7 +84,6 @@ export interface CancelDispute_Response {
    * To indicate whether the cancel dispute operation is successful or failed.
    */
   message?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for cancel_dispute
@@ -109,7 +105,6 @@ export interface ConfirmRequest {
    * The serial number of return.
    */
   return_sn: string;
-  [key: string]: any;
 }
 /**
  * Confirm_Response sub-interface for ConfirmResponse
@@ -119,7 +114,6 @@ export interface Confirm_Response {
    * The identifier for an API request for error tracking
    */
   return_sn?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for confirm
@@ -145,7 +139,6 @@ export interface ConvertImageRequest {
    * The proof picture to be uploaded must be within 10MB in size, and the format only supports .jpg, .jpeg, and .png. Only one picture is allowed to be uploaded per request. If multiple pictures are uploaded, only the first picture will be processed.
    */
   upload_image: any;
-  [key: string]: any;
 }
 /**
  * ConvertImage_Response sub-interface for ConvertImageResponse
@@ -159,7 +152,6 @@ export interface ConvertImage_Response {
    * The image thumbnail.
    */
   thumbnail?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for convert_image
@@ -187,7 +179,6 @@ export interface Dispute_Image {
    * The image URLs of current evidence module. It is recommended to pass in the URL returned by convert_image API.
    */
   image_url: string[];
-  [key: string]: any;
 }
 /**
  * Request parameters for dispute
@@ -217,7 +208,6 @@ export interface DisputeRequest {
    * The content of dispute reason.
    */
   dispute_text_reason?: string;
-  [key: string]: any;
 }
 /**
  * Dispute_Response sub-interface for DisputeResponse
@@ -228,7 +218,6 @@ export interface Dispute_Response {
    */
   return_sn?: string;
   msg?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for dispute
@@ -252,7 +241,6 @@ export interface GetAvailableSolutionsRequest {
    * The serial number of return.
    */
   return_sn: string;
-  [key: string]: any;
 }
 /**
  * GetAvailableSolutions_OfferReturnRefund sub-interface for GetAvailableSolutions_Response
@@ -274,7 +262,6 @@ export interface GetAvailableSolutions_OfferReturnRefund {
    * The min refund amount for ReturnRefund solution. Returned when refund_amount_adjustable is true.
    */
   min_refund_amount?: number;
-  [key: string]: any;
 }
 /**
  * GetAvailableSolutions_OfferRefund sub-interface for GetAvailableSolutions_Response
@@ -296,7 +283,6 @@ export interface GetAvailableSolutions_OfferRefund {
    * The min refund amount for Refund solution. Returned when refund_amount_adjustable is true.
    */
   min_refund_amount?: number;
-  [key: string]: any;
 }
 /**
  * GetAvailableSolutions_Response sub-interface for GetAvailableSolutionsResponse
@@ -308,7 +294,6 @@ export interface GetAvailableSolutions_Response {
   return_sn?: string;
   offer_return_refund?: GetAvailableSolutions_OfferReturnRefund;
   offer_refund?: GetAvailableSolutions_OfferRefund;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_available_solutions
@@ -330,7 +315,6 @@ export interface GetReturnDetailRequest {
    * The serial number of return.
    */
   return_sn: string;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_BuyerVideo sub-interface for GetReturnDetail_Response
@@ -344,7 +328,6 @@ export interface GetReturnDetail_BuyerVideo {
    * The url of video
    */
   video_url?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_User sub-interface for GetReturnDetail_Response
@@ -362,7 +345,6 @@ export interface GetReturnDetail_User {
    * Buyer's portrait, will be empty if it is a non-integrated return in TW region.
    */
   portrait?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_Item sub-interface for GetReturnDetail_Response
@@ -416,7 +398,6 @@ export interface GetReturnDetail_Item {
    * item's refund amount. only for shops whitelisted for Partial Qty RR.If not available, refer to item_price
    */
   refund_amount?: number;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_GetReturnDetail_Item sub-interface for GetReturnDetail_Activity
@@ -438,7 +419,6 @@ export interface GetReturnDetail_GetReturnDetail_Item {
    * item's origin price
    */
   original_price?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_Activity sub-interface for GetReturnDetail_Response
@@ -465,7 +445,6 @@ export interface GetReturnDetail_Activity {
    * item's refund amount for bundle deal cases, only for shops whitelisted for Partial Qty RR.
    */
   refund_amount?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_SellerProof sub-interface for GetReturnDetail_Response
@@ -479,7 +458,6 @@ export interface GetReturnDetail_SellerProof {
    * To indicate the deadline for submitting the evidence.
    */
   seller_evidence_deadline?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_CompensationAmount sub-interface for GetReturnDetail_SellerCompensation
@@ -490,7 +468,6 @@ export interface GetReturnDetail_CompensationAmount {
    */
   compensation_type?: string;
   compensation_amount?: number;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_SellerCompensation sub-interface for GetReturnDetail_Response
@@ -509,7 +486,6 @@ export interface GetReturnDetail_SellerCompensation {
    */
   compensation_amount?: number;
   compensation_amount_list?: GetReturnDetail_CompensationAmount[];
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_Negotiation sub-interface for GetReturnDetail_Response
@@ -539,7 +515,6 @@ export interface GetReturnDetail_Negotiation {
    * To indicate offer_due_date
    */
   offer_due_date?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_ReturnPickupAddress sub-interface for GetReturnDetail_Response
@@ -581,7 +556,6 @@ export interface GetReturnDetail_ReturnPickupAddress {
    * To indicate receiver's zip code
    */
   zipcode?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_ReturnAddress sub-interface for GetReturnDetail_Response
@@ -591,7 +565,6 @@ export interface GetReturnDetail_ReturnAddress {
    * To indicate the warehouse id where item will be returned to. Please call v2.shop.get_warehouse_detail to check the detailed warehouse information the item returned to with the field "location_id" of the v2.shop.get_warehouse_detail match to the field"whs_id"of the v2.return.get_return_detail.For fulfillment by Shopee (FBS) & multi warehouse sellers, R/R orders will be returned back to the nearest warehouse of buyer address instead of going back to only 1 default return address like a normal seller.If it's a normal seller, then the field will be response empty.
    */
   whs_id?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_FollowUpAction sub-interface for GetReturnDetail_Response
@@ -621,7 +594,6 @@ export interface GetReturnDetail_FollowUpAction {
    * Next step after a Resell failure. Returned only when current_status = 5 (Resell Failed).Note: Since Resell is currently applicable only to Failed Delivery parcels, this field will remain empty for now, and valid values will be returned once Resell becomes applicable to Return Refund parcels in the future.
    */
   resell_failed_next_step?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnDetail_Response sub-interface for GetReturnDetailResponse
@@ -776,7 +748,6 @@ export interface GetReturnDetail_Response {
    * [Only for validation_type = warehouse_validation] Warehouse handling actions for each item in the parcel.
    */
   follow_up_action_list?: GetReturnDetail_FollowUpAction[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_return_detail
@@ -798,7 +769,6 @@ export interface GetReturnDisputeReasonRequest {
    * The serial number of return.
    */
   return_sn: string;
-  [key: string]: any;
 }
 /**
  * GetReturnDisputeReason_SampleEvidence sub-interface for GetReturnDisputeReason_DisputeReason
@@ -816,7 +786,6 @@ export interface GetReturnDisputeReason_SampleEvidence {
    * The link of the thumbnail of sample evidence.
    */
   thumbnail?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnDisputeReason_EvidenceModule sub-interface for GetReturnDisputeReason_DisputeReason
@@ -834,7 +803,6 @@ export interface GetReturnDisputeReason_EvidenceModule {
    * Indicate if current evidence module is mandatory or not.
    */
   is_required?: boolean;
-  [key: string]: any;
 }
 /**
  * GetReturnDisputeReason_DisputeReason sub-interface for GetReturnDisputeReason_Response
@@ -856,7 +824,6 @@ export interface GetReturnDisputeReason_DisputeReason {
    * The associated evidence module list for current dispute reason.
    */
   evidence_module_list?: GetReturnDisputeReason_EvidenceModule[];
-  [key: string]: any;
 }
 /**
  * GetReturnDisputeReason_Response sub-interface for GetReturnDisputeReasonResponse
@@ -866,7 +833,6 @@ export interface GetReturnDisputeReason_Response {
    * The dispute_reason and associated evidence list.
    */
   dispute_reason_list?: GetReturnDisputeReason_DisputeReason[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_return_dispute_reason
@@ -924,7 +890,6 @@ export interface GetReturnListRequest {
    * This is for filtering return request by compensation status. See "Data Definition - SellerCompensationStatus"
    */
   seller_compensation_status?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnList_User sub-interface for GetReturnList_Return
@@ -942,7 +907,6 @@ export interface GetReturnList_User {
    * Buyer's portrait, will be empty if it is a non-integrated return in TW region.
    */
   portrait?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnList_Item sub-interface for GetReturnList_Return
@@ -992,7 +956,6 @@ export interface GetReturnList_Item {
    * The variation sku of item
    */
   variation_sku?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnList_FollowUpAction sub-interface for GetReturnList_Return
@@ -1022,7 +985,6 @@ export interface GetReturnList_FollowUpAction {
    * Next step after a Resell failure. Returned only when current_status = 5 (Resell Failed).Note: Since Resell is currently applicable only to Failed Delivery parcels, this field will remain empty for now, and valid values will be returned once Resell becomes applicable to Return Refund parcels in the future.
    */
   resell_failed_next_step?: string;
-  [key: string]: any;
 }
 /**
  * GetReturnList_Return sub-interface for GetReturnList_Response
@@ -1150,7 +1112,6 @@ export interface GetReturnList_Return {
    * [Only for validation_type = warehouse_validation] Warehouse handling actions for each item in the parcel.
    */
   follow_up_action_list?: GetReturnList_FollowUpAction[];
-  [key: string]: any;
 }
 /**
  * GetReturnList_Response sub-interface for GetReturnListResponse
@@ -1161,7 +1122,6 @@ export interface GetReturnList_Response {
    */
   more?: boolean;
   return?: GetReturnList_Return[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_return_list
@@ -1183,7 +1143,6 @@ export interface GetReverseTrackingInfoRequest {
    * Shopee's unique identifier for a return/refund request (serial number of return).
    */
   return_sn: ReturnSn | string | number;
-  [key: string]: any;
 }
 /**
  * GetReverseTrackingInfo_TrackingInfo sub-interface for GetReverseTrackingInfo_Response
@@ -1205,7 +1164,6 @@ export interface GetReverseTrackingInfo_TrackingInfo {
    * Image URLs of electronic proof of delivery (ePOD) after return parcel has been delivered to the seller for Normal RR.
    */
   epod_image_list?: string[];
-  [key: string]: any;
 }
 /**
  * GetReverseTrackingInfo_PostReturnLogisticsTrackingInfo sub-interface for GetReverseTrackingInfo_Response
@@ -1227,7 +1185,6 @@ export interface GetReverseTrackingInfo_PostReturnLogisticsTrackingInfo {
    * Image URLs of electronic proof of delivery (ePOD) after return parcel has been delivered to the seller for Normal RR with warehouse validation.
    */
   epod_image_list?: string[];
-  [key: string]: any;
 }
 /**
  * GetReverseTrackingInfo_Response sub-interface for GetReverseTrackingInfoResponse
@@ -1289,7 +1246,6 @@ export interface GetReverseTrackingInfo_Response {
    * Only available for Normal RR with return_solution = 0 (Return and Refund) and validation_type = warehouse_validation, and the warehouse ships the return parcel back to seller using integrated reverse logistics.In this scenario, the tracking logistics from warehouse to seller is called "post-return logistics", with the tracking information pushed by third party logistics provider to Shopee.Note: - If validation_type = warehouse_validation AND the warehouse uses an integrated logistics channel to ship the return parcel back to the seller, there are two segments of reverse logistics: - The buyer first ships the return parcel back to the warehouse. Use the fields reverse_logistics_status, reverse_logistics_update_time, tracking_number, and tracking_info to obtain tracking information for this first segment.- The warehouse then ships the return parcel back to the seller. Use the fields post_return_logistics_status, post_return_logistics_update_time, rts_tracking_number, and post_return_logistics_tracking_info to obtain tracking information for this second segment (post-return logistics).- For Cross-Border Returns, if the second segment exists, the API returns information for both the first and second segments. For Local Returns, if the second segment exists, the API prioritizes and returns only the second segment information.
    */
   post_return_logistics_tracking_info?: GetReverseTrackingInfo_PostReturnLogisticsTrackingInfo[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_reverse_tracking_info
@@ -1311,7 +1267,6 @@ export interface GetShippingCarrierRequest {
    * The serial number of return.
    */
   return_sn: string;
-  [key: string]: any;
 }
 /**
  * GetShippingCarrier_ShippingProofTemplate sub-interface for GetShippingCarrier_Response
@@ -1325,7 +1280,6 @@ export interface GetShippingCarrier_ShippingProofTemplate {
    * To indicate whether it is mandatory to provide shipping image file(s) when uploading shipping proof.
    */
   is_shipping_image_file_mandatory?: boolean;
-  [key: string]: any;
 }
 /**
  * GetShippingCarrier_ReverseLogisticsCarrier sub-interface for GetShippingCarrier_Response
@@ -1339,7 +1293,6 @@ export interface GetShippingCarrier_ReverseLogisticsCarrier {
    * To indicate the selected carrier name from the list of carrier names provided.
    */
   reverse_logistics_carrier_name?: string;
-  [key: string]: any;
 }
 /**
  * GetShippingCarrier_Response sub-interface for GetShippingCarrierResponse
@@ -1361,7 +1314,6 @@ export interface GetShippingCarrier_Response {
    * The list of logistics carriers available for sellers to choose.
    */
   reverse_logistics_carrier_list?: GetShippingCarrier_ReverseLogisticsCarrier[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shipping_carrier
@@ -1391,7 +1343,6 @@ export interface OfferRequest {
    * The new refund amount to be offered
    */
   proposed_adjusted_refund_amount?: number;
-  [key: string]: any;
 }
 /**
  * Offer_Response sub-interface for OfferResponse
@@ -1401,7 +1352,6 @@ export interface Offer_Response {
    * The serial number of return.
    */
   return_sn?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for offer
@@ -1423,7 +1373,6 @@ export interface QueryProofRequest {
    * The serial number of return.
    */
   return_sn: string;
-  [key: string]: any;
 }
 /**
  * QueryProof_Image sub-interface for QueryProof_Response
@@ -1437,7 +1386,6 @@ export interface QueryProof_Image {
    * The thumbnail of image.
    */
   thumbnail?: string;
-  [key: string]: any;
 }
 /**
  * QueryProof_Video sub-interface for QueryProof_Response
@@ -1451,7 +1399,6 @@ export interface QueryProof_Video {
    * The thumbnail of video
    */
   thumbnail?: string;
-  [key: string]: any;
 }
 /**
  * QueryProof_Response sub-interface for QueryProofResponse
@@ -1463,7 +1410,6 @@ export interface QueryProof_Response {
    * The text description in the dispute proof.
    */
   description?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for query_proof
@@ -1487,7 +1433,6 @@ export interface UploadProof_Photo {
    * The proof image thumbnail.
    */
   thumbnail: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for upload_proof
@@ -1504,7 +1449,6 @@ export interface UploadProofRequest {
    * text description in the dispute proof
    */
   description?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for upload_proof
@@ -1524,7 +1468,6 @@ export interface UploadShippingProof_ImageId {
    * Unique image_id.
    */
   image_id?: string;
-  [key: string]: any;
 }
 /**
  * Request parameters for upload_shipping_proof
@@ -1556,7 +1499,6 @@ export interface UploadShippingProofRequest {
    * Optional remarks
    */
   remarks?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for upload_shipping_proof

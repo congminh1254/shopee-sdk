@@ -40,7 +40,6 @@ export interface GetMerchantInfoResponseData {
    * Use this filed to indicate whether this merchant is upgraded to cbsc.
    */
   is_upgraded_cbsc?: boolean;
-  [key: string]: any;
 }
 /**
  * Response payload for get_merchant_info
@@ -62,7 +61,6 @@ export interface GetMerchantPrepaidAccountListRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data.Min: 1 Max:10
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetMerchantPrepaidAccountList_List sub-interface for GetMerchantPrepaidAccountList_Response
@@ -112,7 +110,6 @@ export interface GetMerchantPrepaidAccountList_List {
    * This is to indicate whether the prepaid account is Default Prepaid Account.
    */
   prepaid_account_is_default?: boolean;
-  [key: string]: any;
 }
 /**
  * GetMerchantPrepaidAccountList_Response sub-interface for GetMerchantPrepaidAccountListResponse
@@ -124,7 +121,6 @@ export interface GetMerchantPrepaidAccountList_Response {
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
   more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_merchant_prepaid_account_list
@@ -147,7 +143,6 @@ export interface GetMerchantWarehouseList_Cursor {
    * The size of one page. Limit is [1,30].
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_merchant_warehouse_list
@@ -163,7 +158,6 @@ export interface GetMerchantWarehouseListRequest {
    * 1 means pickup warehouse2 means return warehouse
    */
   warehouse_type: number;
-  [key: string]: any;
 }
 /**
  * GetMerchantWarehouseList_Address sub-interface for GetMerchantWarehouseList_Warehouse
@@ -201,7 +195,6 @@ export interface GetMerchantWarehouseList_Address {
    * Zipcode of your warehouse address.
    */
   zip_code?: string;
-  [key: string]: any;
 }
 /**
  * GetMerchantWarehouseList_EnterpriseInfo sub-interface for GetMerchantWarehouseList_Warehouse
@@ -211,7 +204,6 @@ export interface GetMerchantWarehouseList_EnterpriseInfo {
   cnpj?: string;
   state_registration_number?: string;
   is_freight_payer?: boolean;
-  [key: string]: any;
 }
 /**
  * GetMerchantWarehouseList_Warehouse sub-interface for GetMerchantWarehouseList_Response
@@ -239,7 +231,6 @@ export interface GetMerchantWarehouseList_Warehouse {
   location_id?: string;
   address?: GetMerchantWarehouseList_Address;
   enterprise_info?: GetMerchantWarehouseList_EnterpriseInfo;
-  [key: string]: any;
 }
 /**
  * GetMerchantWarehouseList_GetMerchantWarehouseList_Cursor sub-interface for GetMerchantWarehouseList_Response
@@ -248,7 +239,6 @@ export interface GetMerchantWarehouseList_GetMerchantWarehouseList_Cursor {
   next_id?: number;
   prev_id?: number;
   page_size?: number;
-  [key: string]: any;
 }
 /**
  * GetMerchantWarehouseList_Response sub-interface for GetMerchantWarehouseListResponse
@@ -260,7 +250,6 @@ export interface GetMerchantWarehouseList_Response {
   total_count?: number;
   warehouse_list?: GetMerchantWarehouseList_Warehouse[];
   cursor?: GetMerchantWarehouseList_GetMerchantWarehouseList_Cursor;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_merchant_warehouse_list
@@ -290,7 +279,6 @@ export interface GetMerchantWarehouseLocationList_Response {
    * The warehouse name filled in when creating the warehouse address
    */
   warehouse_name?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_merchant_warehouse_location_list
@@ -318,7 +306,6 @@ export interface GetShopListByMerchantRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call), and the "page_no" to start next call. This integer value is used to specify the maximum number of entries to return in a single "page" of data.No more than 500.
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetShopListByMerchant_SipAffiShop sub-interface for GetShopListByMerchant_Shop
@@ -328,7 +315,6 @@ export interface GetShopListByMerchant_SipAffiShop {
    * Affiliate shop's id.
    */
   affi_shop_id?: number;
-  [key: string]: any;
 }
 /**
  * GetShopListByMerchant_Shop sub-interface for GetShopListByMerchantResponse
@@ -342,7 +328,6 @@ export interface GetShopListByMerchant_Shop {
    * List of SIP affiliate shops.Only primary shop will return this parameter
    */
   sip_affi_shops?: GetShopListByMerchant_SipAffiShop[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_list_by_merchant
@@ -356,7 +341,6 @@ export interface GetShopListByMerchantResponseData {
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
   more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response payload for get_shop_list_by_merchant
@@ -374,7 +358,6 @@ export interface GetWarehouseEligibleShopList_Cursor {
    * The size of one page. Limit is [1,30].
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for get_warehouse_eligible_shop_list
@@ -394,7 +377,6 @@ export interface GetWarehouseEligibleShopListRequest {
    * // how to use DoubleSidedCursor// Get data for the first page: Please pass next_id = 0 or nil, page_size = {your page size}.// Get data for the next page: Please pass the Cursor from the previous response, and set prev_id=nil;// Get data for the prev page: Please pass the Cursor from the previous response, and set next_id=nil;// Stop fetching next data: The Cursor.next_id in the previous response is nil.// Stop fetching prev data: The Cursor.prev_id in the previous response is nil.
    */
   cursor: GetWarehouseEligibleShopList_Cursor;
-  [key: string]: any;
 }
 /**
  * GetWarehouseEligibleShopList_Shop sub-interface for GetWarehouseEligibleShopList_Response
@@ -408,7 +390,6 @@ export interface GetWarehouseEligibleShopList_Shop {
    * Name of the shop.
    */
   shop_name?: string;
-  [key: string]: any;
 }
 /**
  * GetWarehouseEligibleShopList_GetWarehouseEligibleShopList_Cursor sub-interface for GetWarehouseEligibleShopList_Response
@@ -417,7 +398,6 @@ export interface GetWarehouseEligibleShopList_GetWarehouseEligibleShopList_Curso
   next_id?: number;
   prev_id?: number;
   page_size?: number;
-  [key: string]: any;
 }
 /**
  * GetWarehouseEligibleShopList_Response sub-interface for GetWarehouseEligibleShopListResponse
@@ -428,7 +408,6 @@ export interface GetWarehouseEligibleShopList_Response {
    */
   shop_list?: GetWarehouseEligibleShopList_Shop[];
   cursor?: GetWarehouseEligibleShopList_GetWarehouseEligibleShopList_Cursor;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_warehouse_eligible_shop_list

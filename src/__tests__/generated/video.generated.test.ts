@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { VideoManager } from "../../managers/video.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("VideoManager (Generated Tests)", () => {
@@ -52,7 +52,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteVideo(exampleRequest as any);
+      const result = await manager.deleteVideo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -89,7 +89,7 @@ describe("VideoManager (Generated Tests)", () => {
             },
             scheduled_info: {
               scheduled_post: true,
-              scheduled_post_time: "1761734929450",
+              scheduled_post_time: 1761734929450,
             },
           },
         ],
@@ -111,7 +111,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.editVideoInfo(exampleRequest as any);
+      const result = await manager.editVideoInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -148,7 +148,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getCoverList(exampleRequest as any);
+      const result = await manager.getCoverList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -212,7 +212,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMetricTrend(exampleRequest as any);
+      const result = await manager.getMetricTrend(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -278,7 +278,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getOverviewPerformance(exampleRequest as any);
+      const result = await manager.getOverviewPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -334,7 +334,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getProdcutPerformanceList(exampleRequest as any);
+      const result = await manager.getProdcutPerformanceList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -370,7 +370,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getUserDemographics(exampleRequest as any);
+      const result = await manager.getUserDemographics(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -395,7 +395,7 @@ describe("VideoManager (Generated Tests)", () => {
       const exampleResponse = {
         video_upload_id: "id-11110201-6ko2m-mczrffx878mba3",
         post_id: "YwOo_gZqCACXbM0UAAAAAA==",
-        post_time: "1761188662147",
+        post_time: 1761188662147,
         video_url:
           "https://down-bs-id.vod.susercontent.com/c3/50007225/201/A3oxONdWALgpg8thEbEBACc.mp4",
         status: 300,
@@ -425,9 +425,9 @@ describe("VideoManager (Generated Tests)", () => {
         },
         scheduled_info: {
           scheduled_post: true,
-          scheduled_post_time: "1761734929450",
+          scheduled_post_time: 1761734929450,
         },
-        update_time: "1761188662147",
+        update_time: 1761188662147,
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -437,7 +437,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVideoDetail(exampleRequest as any);
+      const result = await manager.getVideoDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -475,7 +475,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVideoDetailAudienceDistribution(exampleRequest as any);
+      const result = await manager.getVideoDetailAudienceDistribution(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -508,7 +508,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVideoDetailMetricTrend(exampleRequest as any);
+      const result = await manager.getVideoDetailMetricTrend(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -532,7 +532,7 @@ describe("VideoManager (Generated Tests)", () => {
       const exampleResponse = {
         video_info: {
           post_id: "YwOo_gZqCACXbM0UAAAAAA==",
-          post_time: "1761188662147",
+          post_time: 1761188662147,
           video_url:
             "https://down-bs-id.vod.susercontent.com/c3/50007225/201/A3oxONdWALgpg8thEbEBACc.mp4",
           cover_image_url:
@@ -566,7 +566,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVideoDetailPerformance(exampleRequest as any);
+      const result = await manager.getVideoDetailPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -623,7 +623,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVideoDetailProductPerformance(exampleRequest as any);
+      const result = await manager.getVideoDetailProductPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -653,7 +653,7 @@ describe("VideoManager (Generated Tests)", () => {
           {
             video_upload_id: "id-11110201-6ko2m-mczrffx878mba3",
             post_id: "YwOo_gZqCACXbM0UAAAAAA==",
-            post_time: "1761188662147",
+            post_time: 1761188662147,
             video_url:
               "https://down-bs-id.vod.susercontent.com/c3/50007225/201/A3oxONdWALgpg8thEbEBACc.mp4",
             status: 300,
@@ -683,9 +683,9 @@ describe("VideoManager (Generated Tests)", () => {
             },
             scheduled_info: {
               scheduled_post: true,
-              scheduled_post_time: "1761734929450",
+              scheduled_post_time: 1761734929450,
             },
-            update_time: "1761734929450",
+            update_time: 1761734929450,
           },
         ],
       };
@@ -697,7 +697,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVideoList(exampleRequest as any);
+      const result = await manager.getVideoList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -731,7 +731,7 @@ describe("VideoManager (Generated Tests)", () => {
           {
             video_upload_id: "id-11110201-6ko2m-mczrffx878mba3",
             post_id: "YwOo_gZqCACXbM0UAAAAAA==",
-            post_time: "1761188662147",
+            post_time: 1761188662147,
             video_url:
               "https://down-bs-id.vod.susercontent.com/c3/50007225/201/A3oxONdWALgpg8thEbEBACc.mp4",
             status: 300,
@@ -763,7 +763,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVideoPerformanceList(exampleRequest as any);
+      const result = await manager.getVideoPerformanceList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -806,7 +806,7 @@ describe("VideoManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.postVideo(exampleRequest as any);
+      const result = await manager.postVideo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

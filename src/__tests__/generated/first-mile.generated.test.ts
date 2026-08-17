@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { FirstMileManager } from "../../managers/first-mile.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("FirstMileManager (Generated Tests)", () => {
@@ -60,9 +60,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.bindCourierDeliveryFirstMileTrackingNumber(
-        exampleRequest as any
-      );
+      const result = await manager.bindCourierDeliveryFirstMileTrackingNumber(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -118,7 +116,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.bindFirstMileTrackingNumber(exampleRequest as any);
+      const result = await manager.bindFirstMileTrackingNumber(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -179,7 +177,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.generateAndBindFirstMileTrackingNumber(exampleRequest as any);
+      const result = await manager.generateAndBindFirstMileTrackingNumber(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -212,7 +210,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.generateFirstMileTrackingNumber(exampleRequest as any);
+      const result = await manager.generateFirstMileTrackingNumber(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -250,7 +248,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getChannelList(exampleRequest as any);
+      const result = await manager.getChannelList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -294,7 +292,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getCourierDeliveryChannelList(exampleRequest as any);
+      const result = await manager.getCourierDeliveryChannelList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -328,7 +326,7 @@ describe("FirstMileManager (Generated Tests)", () => {
           {
             order_sn: "2410106R6X5Q85",
             package_number: "OFG182232162204802",
-            sls_tracking_number: "SG246207786489JU",
+            sls_tracking_number: 1,
             pick_up_done: false,
             arrived_transit_warehouse: false,
           },
@@ -342,7 +340,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getCourierDeliveryDetail(exampleRequest as any);
+      const result = await manager.getCourierDeliveryDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -387,7 +385,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getCourierDeliveryTrackingNumberList(exampleRequest as any);
+      const result = await manager.getCourierDeliveryTrackingNumberList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -425,7 +423,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getCourierDeliveryWaybill(exampleRequest as any);
+      const result = await manager.getCourierDeliveryWaybill(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -458,7 +456,7 @@ describe("FirstMileManager (Generated Tests)", () => {
           {
             order_sn: "20012328KKGVR0",
             package_number: "25333320394471234567",
-            sls_tracking_number: "TW211342705212345",
+            sls_tracking_number: 1,
             pick_up_done: false,
             arrived_transit_warehouse: false,
           },
@@ -473,7 +471,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getDetail(exampleRequest as any);
+      const result = await manager.getDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -516,7 +514,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTrackingNumberList(exampleRequest as any);
+      const result = await manager.getTrackingNumberList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -556,7 +554,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTransitWarehouseList(exampleRequest as any);
+      const result = await manager.getTransitWarehouseList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -598,7 +596,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getUnbindOrderList(exampleRequest as any);
+      const result = await manager.getUnbindOrderList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -630,7 +628,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getWaybill(exampleRequest as any);
+      const result = await manager.getWaybill(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -676,7 +674,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.unbindFirstMileTrackingNumber(exampleRequest as any);
+      const result = await manager.unbindFirstMileTrackingNumber(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -728,7 +726,7 @@ describe("FirstMileManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.unbindFirstMileTrackingNumberAll(exampleRequest as any);
+      const result = await manager.unbindFirstMileTrackingNumberAll(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

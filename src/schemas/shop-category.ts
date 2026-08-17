@@ -13,7 +13,6 @@ export interface AddItemListRequest {
    * Shopee's unique identifiers list for an item. Max. 100 items to be deleted per request.
    */
   item_list: number[];
-  [key: string]: any;
 }
 /**
  * AddItemList_InvalidItemId sub-interface for AddItemList_Response
@@ -31,7 +30,6 @@ export interface AddItemList_InvalidItemId {
    * The detailed reason of the failure and the hints of error fixing
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * AddItemList_Response sub-interface for AddItemListResponse
@@ -49,7 +47,6 @@ export interface AddItemList_Response {
    * Count of items under this shop category after deletion.
    */
   current_count?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for add_item_list
@@ -75,7 +72,6 @@ export interface AddShopCategoryRequest {
    * ShopCategory's sort weight. The maximum number should be 2147483546.
    */
   sort_weight?: number;
-  [key: string]: any;
 }
 /**
  * AddShopCategory_Response sub-interface for AddShopCategoryResponse
@@ -85,7 +81,6 @@ export interface AddShopCategory_Response {
    * ShopCategory's unique identifier.
    */
   shop_category_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for add_shop_category
@@ -111,7 +106,6 @@ export interface DeleteItemListRequest {
    * ShopCategory's unique identifier.
    */
   item_list: number[];
-  [key: string]: any;
 }
 /**
  * DeleteItemList_Response sub-interface for DeleteItemListResponse
@@ -129,7 +123,6 @@ export interface DeleteItemList_Response {
    * count of items under this shop category after deleting
    */
   current_count?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_item_list
@@ -151,7 +144,6 @@ export interface DeleteShopCategoryRequest {
    * ShopCategory's unique identifier.
    */
   shop_category_id: number;
-  [key: string]: any;
 }
 /**
  * DeleteShopCategory_Response sub-interface for DeleteShopCategoryResponse
@@ -165,7 +157,6 @@ export interface DeleteShopCategory_Response {
    * The return message of the operation result
    */
   msg?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_shop_category
@@ -195,7 +186,6 @@ export interface GetItemListRequest {
    * If many items are available to retrieve, you may need to call this api multiple times to retrieve all the data. And the default will be 0. page_size*page_no should be [0, 2147483446].
    */
   page_no?: number;
-  [key: string]: any;
 }
 /**
  * GetItemList_Response sub-interface for GetItemListResponse
@@ -213,7 +203,6 @@ export interface GetItemList_Response {
    * This is to indicate whether the item list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of items.
    */
   more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_item_list
@@ -239,7 +228,6 @@ export interface GetShopCategoryListRequest {
    * Specifies the total returned data per entry. The parameter range of page_no should be [1, 100]
    */
   page_no: number;
-  [key: string]: any;
 }
 /**
  * GetShopCategoryList_ShopCategory sub-interface for GetShopCategoryList_Response
@@ -261,7 +249,6 @@ export interface GetShopCategoryList_ShopCategory {
    * ShopCategory's sort weight.
    */
   sort_weight?: number;
-  [key: string]: any;
 }
 /**
  * GetShopCategoryList_Response sub-interface for GetShopCategoryListResponse
@@ -279,7 +266,6 @@ export interface GetShopCategoryList_Response {
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest.
    */
   more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_category_list
@@ -313,7 +299,6 @@ export interface UpdateShopCategoryRequest {
    * ShopCategory's status. Applicable values: NORMAL, INACTIVE, DELETED.
    */
   status?: string;
-  [key: string]: any;
 }
 /**
  * UpdateShopCategory_Response sub-interface for UpdateShopCategoryResponse
@@ -335,7 +320,6 @@ export interface UpdateShopCategory_Response {
    * ShopCategory's status. Applicable values: NORMAL, INACTIVE, DELETED.
    */
   status?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_shop_category

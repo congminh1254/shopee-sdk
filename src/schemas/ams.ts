@@ -31,7 +31,6 @@ export interface AddAllProductsToOpenCampaignRequest {
    * Period end time, in seconds, if missing, will set 32503651199 (2999-12-31 23:59:59) represent of no limit
    */
   period_end_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * AddAllProductsToOpenCampaign_Response sub-interface for AddAllProductsToOpenCampaignResponse
@@ -45,7 +44,6 @@ export interface AddAllProductsToOpenCampaign_Response {
    * Task id, used to query task progress when calling v2.ams.get_open_campaign_batch_task_result API
    */
   task_id?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for add_all_products_to_open_campaign
@@ -80,7 +78,6 @@ export interface BatchAddProductsToOpenCampaignRequest {
    * Period end time, in seconds, if missing, will set 32503651199 (2999-12-31 23:59:59) represent of no limit
    */
   period_end_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * BatchAddProductsToOpenCampaign_Failed sub-interface for BatchAddProductsToOpenCampaign_Response
@@ -98,7 +95,6 @@ export interface BatchAddProductsToOpenCampaign_Failed {
    * Fail Message
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * BatchAddProductsToOpenCampaign_Response sub-interface for BatchAddProductsToOpenCampaignResponse
@@ -109,7 +105,6 @@ export interface BatchAddProductsToOpenCampaign_Response {
    * Success Item ID List
    */
   success_list?: number[];
-  [key: string]: any;
 }
 /**
  * Response data payload for batch_add_products_to_open_campaign
@@ -144,7 +139,6 @@ export interface BatchEditProductsOpenCampaignSettingRequest {
    * Period end time, in seconds, if missing, will skip and do not updateCan set 32503651199 to make period no limit
    */
   period_end_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * BatchEditProductsOpenCampaignSetting_Failed sub-interface for BatchEditProductsOpenCampaignSetting_Response
@@ -162,7 +156,6 @@ export interface BatchEditProductsOpenCampaignSetting_Failed {
    * Fail message
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * BatchEditProductsOpenCampaignSetting_Response sub-interface for BatchEditProductsOpenCampaignSettingResponse
@@ -173,7 +166,6 @@ export interface BatchEditProductsOpenCampaignSetting_Response {
    * Success Campaign ID List
    */
   success_list?: number[];
-  [key: string]: any;
 }
 /**
  * Response data payload for batch_edit_products_open_campaign_setting
@@ -197,7 +189,6 @@ export interface BatchGetProductsSuggestedRateRequest {
    * The list of item_id, different item id should be split by comma and at most 20 items
    */
   item_id_list: string[];
-  [key: string]: any;
 }
 /**
  * BatchGetProductsSuggestedRate_Rate sub-interface for BatchGetProductsSuggestedRate_Response
@@ -215,14 +206,12 @@ export interface BatchGetProductsSuggestedRate_Rate {
    * Maximum suggested commission rate, 1.2 means 1.2%, support two decimal places
    */
   max_rate?: number;
-  [key: string]: any;
 }
 /**
  * BatchGetProductsSuggestedRate_Response sub-interface for BatchGetProductsSuggestedRateResponse
  */
 export interface BatchGetProductsSuggestedRate_Response {
   rates?: BatchGetProductsSuggestedRate_Rate[];
-  [key: string]: any;
 }
 /**
  * Response data payload for batch_get_products_suggested_rate
@@ -245,7 +234,6 @@ export interface BatchRemoveProductsOpenCampaignSettingRequest {
    * The list of campaign_id, max limit: 50
    */
   campaign_ids: number[];
-  [key: string]: any;
 }
 /**
  * BatchRemoveProductsOpenCampaignSetting_Failed sub-interface for BatchRemoveProductsOpenCampaignSetting_Response
@@ -263,7 +251,6 @@ export interface BatchRemoveProductsOpenCampaignSetting_Failed {
    * Fail message
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * BatchRemoveProductsOpenCampaignSetting_Response sub-interface for BatchRemoveProductsOpenCampaignSettingResponse
@@ -274,7 +261,6 @@ export interface BatchRemoveProductsOpenCampaignSetting_Response {
    * Success Campaign ID List
    */
   success_list?: number[];
-  [key: string]: any;
 }
 /**
  * Response data payload for batch_remove_products_open_campaign_setting
@@ -300,7 +286,6 @@ export interface CreateNewTargetedCampaign_Item {
    * Commission rate of current item, 1.1 means 1.1%, support two decimal places.
    */
   rate: number;
-  [key: string]: any;
 }
 /**
  * CreateNewTargetedCampaign_Affiliate sub-interface for CreateNewTargetedCampaignRequest
@@ -310,7 +295,6 @@ export interface CreateNewTargetedCampaign_Affiliate {
    * The unique key for affiliate.
    */
   affiliate_id: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for create_new_targeted_campaign
@@ -350,7 +334,6 @@ export interface CreateNewTargetedCampaignRequest {
    * The list of affiliates associated with the current campaign.
    */
   affiliate_list: CreateNewTargetedCampaign_Affiliate[];
-  [key: string]: any;
 }
 /**
  * CreateNewTargetedCampaign_FailItem sub-interface for CreateNewTargetedCampaign_Response
@@ -368,7 +351,6 @@ export interface CreateNewTargetedCampaign_FailItem {
    * Fail message.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * CreateNewTargetedCampaign_FailAffiliate sub-interface for CreateNewTargetedCampaign_Response
@@ -386,7 +368,6 @@ export interface CreateNewTargetedCampaign_FailAffiliate {
    * Fail message.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * CreateNewTargetedCampaign_Response sub-interface for CreateNewTargetedCampaignResponse
@@ -404,7 +385,6 @@ export interface CreateNewTargetedCampaign_Response {
    * Fail Affiliate List.
    */
   fail_affiliate_list?: CreateNewTargetedCampaign_FailAffiliate[];
-  [key: string]: any;
 }
 /**
  * Response data payload for create_new_targeted_campaign
@@ -425,7 +405,6 @@ export interface EditAffiliateListOfTargetedCampaign_Affiliate {
    * The unique key for affiliate.
    */
   affiliate_id: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for edit_affiliate_list_of_targeted_campaign
@@ -445,7 +424,6 @@ export interface EditAffiliateListOfTargetedCampaignRequest {
    * The list of affiliates to be modified.
    */
   affiliate_list: EditAffiliateListOfTargetedCampaign_Affiliate[];
-  [key: string]: any;
 }
 /**
  * EditAffiliateListOfTargetedCampaign_FailAffiliate sub-interface for EditAffiliateListOfTargetedCampaign_Response
@@ -463,7 +441,6 @@ export interface EditAffiliateListOfTargetedCampaign_FailAffiliate {
    * Indicate error details if hit error. Empty if no error happened.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * EditAffiliateListOfTargetedCampaign_Response sub-interface for EditAffiliateListOfTargetedCampaignResponse
@@ -473,7 +450,6 @@ export interface EditAffiliateListOfTargetedCampaign_Response {
    * Failed Affiliate List.
    */
   fail_affiliate_list?: EditAffiliateListOfTargetedCampaign_FailAffiliate[];
-  [key: string]: any;
 }
 /**
  * Response data payload for edit_affiliate_list_of_targeted_campaign
@@ -505,7 +481,6 @@ export interface EditAllProductsOpenCampaignSettingRequest {
    * Period end time, in seconds, if missing, will skip and do not updateCan set 32503651199 to make period no limit
    */
   period_end_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * EditAllProductsOpenCampaignSetting_Response sub-interface for EditAllProductsOpenCampaignSettingResponse
@@ -519,7 +494,6 @@ export interface EditAllProductsOpenCampaignSetting_Response {
    * Task id, used to query task progress when calling v2.ams.get_open_campaign_batch_task_result API
    */
   task_id?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for edit_all_products_open_campaign_setting
@@ -545,7 +519,6 @@ export interface EditProductListOfTargetedCampaign_Item {
    * Commission rate of current item, 1.1 means 1.1%, support two decimal places.
    */
   rate?: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for edit_product_list_of_targeted_campaign
@@ -565,7 +538,6 @@ export interface EditProductListOfTargetedCampaignRequest {
    * The list of items to be modified.
    */
   item_list: EditProductListOfTargetedCampaign_Item[];
-  [key: string]: any;
 }
 /**
  * EditProductListOfTargetedCampaign_FailItem sub-interface for EditProductListOfTargetedCampaign_Response
@@ -583,7 +555,6 @@ export interface EditProductListOfTargetedCampaign_FailItem {
    * Indicate error details if hit error. Empty if no error happened.
    */
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * EditProductListOfTargetedCampaign_Response sub-interface for EditProductListOfTargetedCampaignResponse
@@ -593,7 +564,6 @@ export interface EditProductListOfTargetedCampaign_Response {
    * Failed Item List.
    */
   fail_item_list?: EditProductListOfTargetedCampaign_FailItem[];
-  [key: string]: any;
 }
 /**
  * Response data payload for edit_product_list_of_targeted_campaign
@@ -645,7 +615,6 @@ export interface GetAffiliatePerformanceRequest {
    * Affiliate ID for query.
    */
   affiliate_id?: number;
-  [key: string]: any;
 }
 /**
  * GetAffiliatePerformance_List sub-interface for GetAffiliatePerformance_Response
@@ -695,7 +664,6 @@ export interface GetAffiliatePerformance_List {
    * Total number of new buyers who have purchased the product through the affiliate's promotion.
    */
   new_buyers?: number;
-  [key: string]: any;
 }
 /**
  * GetAffiliatePerformance_Response sub-interface for GetAffiliatePerformanceResponse
@@ -714,7 +682,6 @@ export interface GetAffiliatePerformance_Response {
    * Effective query date range. Invalid input ranges will be automatically shifted.
    */
   fetched_date_range?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_affiliate_performance
@@ -744,7 +711,6 @@ export interface GetAutoAddNewProductToggleStatus_Response {
    * Commission Rate, 1.11 means 1.11%, support two decimal places
    */
   commission_rate?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_auto_add_new_product_toggle_status
@@ -776,7 +742,6 @@ export interface GetCampaignKeyMetricsPerformanceRequest {
    * The end_date must be: - Equal to start_date for "Day" period type- Saturday for "Week" period type- The last day of a Month for "Month" period type. If the selected month is the current month, the end_date should be the latest data date- The latest data date for "Last7d" period type- The latest data date for "Last30d" period typeNote: - The end_date must be later than the start_date and earlier than the latest data date- The latest data date can be obtained by using "AmsMarker" in the v2.ams.get_performance_data_update_time API.
    */
   end_date: string;
-  [key: string]: any;
 }
 /**
  * GetCampaignKeyMetricsPerformance_OpenCampaignKeyMetirc sub-interface for GetCampaignKeyMetricsPerformance_Response
@@ -798,7 +763,6 @@ export interface GetCampaignKeyMetricsPerformance_OpenCampaignKeyMetirc {
    * Total estimated commission for orders placed from Open Campaigns.
    */
   est_commission?: string;
-  [key: string]: any;
 }
 /**
  * GetCampaignKeyMetricsPerformance_TargetedCampaignKeyMetirc sub-interface for GetCampaignKeyMetricsPerformance_Response
@@ -820,7 +784,6 @@ export interface GetCampaignKeyMetricsPerformance_TargetedCampaignKeyMetirc {
    * Total estimated commission for orders placed from Targeted Campaigns.
    */
   est_commission?: string;
-  [key: string]: any;
 }
 /**
  * GetCampaignKeyMetricsPerformance_Response sub-interface for GetCampaignKeyMetricsPerformanceResponse
@@ -838,7 +801,6 @@ export interface GetCampaignKeyMetricsPerformance_Response {
    * Effective query date range. Invalid input ranges will be automatically shifted.
    */
   fetched_date_range?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_campaign_key_metrics_performance
@@ -894,7 +856,6 @@ export interface GetContentPerformanceRequest {
    * Search for the contents with the searched product included (precise search).
    */
   item_id?: number;
-  [key: string]: any;
 }
 /**
  * GetContentPerformance_List sub-interface for GetContentPerformance_Response
@@ -952,7 +913,6 @@ export interface GetContentPerformance_List {
    * Channel. Applicable values: - ShopeeVideo- LiveStreaming
    */
   channel?: string;
-  [key: string]: any;
 }
 /**
  * GetContentPerformance_Response sub-interface for GetContentPerformanceResponse
@@ -971,7 +931,6 @@ export interface GetContentPerformance_Response {
    * Effective query date range. Invalid input ranges will be automatically shifted.
    */
   fetched_date_range?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_content_performance
@@ -1089,7 +1048,6 @@ export interface GetConversionReportRequest {
    * End time (inclusive) of fee deduction, in timestamp format.
    */
   ams_deduction_time_end?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetConversionReport_Item sub-interface for GetConversionReport_List
@@ -1175,7 +1133,6 @@ export interface GetConversionReport_Item {
    * Seller service fee amount charged for the item.seller_service_fee = item_brand_commission *  seller_service_fee_rate
    */
   seller_service_fee?: string;
-  [key: string]: any;
 }
 /**
  * GetConversionReport_List sub-interface for GetConversionReport_Response
@@ -1242,7 +1199,6 @@ export interface GetConversionReport_List {
    * Partner identifier for the campaign.
    */
   campaign_partner?: string;
-  [key: string]: any;
 }
 /**
  * GetConversionReport_Response sub-interface for GetConversionReportResponse
@@ -1260,7 +1216,6 @@ export interface GetConversionReport_Response {
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
   has_more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_conversion_report
@@ -1286,7 +1241,6 @@ export interface GetManagedAffiliateListRequest {
    * The number of affiliate returned by this request, Max is 100, default is 20.The max managed affiliates of affiliate is 2000.
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetManagedAffiliateList_PopularSocialMedia sub-interface for GetManagedAffiliateList_Affiliate
@@ -1300,7 +1254,6 @@ export interface GetManagedAffiliateList_PopularSocialMedia {
    * The follower count of this account.
    */
   follower_count?: number;
-  [key: string]: any;
 }
 /**
  * GetManagedAffiliateList_SocialMedia sub-interface for GetManagedAffiliateList_Affiliate
@@ -1318,7 +1271,6 @@ export interface GetManagedAffiliateList_SocialMedia {
    * Social media name of this account.
    */
   social_media_user_name?: string;
-  [key: string]: any;
 }
 /**
  * GetManagedAffiliateList_TopPopularContent sub-interface for GetManagedAffiliateList_Affiliate
@@ -1348,7 +1300,6 @@ export interface GetManagedAffiliateList_TopPopularContent {
    * The media link of this affiliate's content.
    */
   media_url?: string;
-  [key: string]: any;
 }
 /**
  * GetManagedAffiliateList_TopSellingProduct sub-interface for GetManagedAffiliateList_Affiliate
@@ -1358,7 +1309,6 @@ export interface GetManagedAffiliateList_TopSellingProduct {
    * The item id of this item.
    */
   item_id?: number;
-  [key: string]: any;
 }
 /**
  * GetManagedAffiliateList_Affiliate sub-interface for GetManagedAffiliateList_Response
@@ -1420,7 +1370,6 @@ export interface GetManagedAffiliateList_Affiliate {
    * Top selling items of the affiliate.
    */
   top_selling_products?: GetManagedAffiliateList_TopSellingProduct[];
-  [key: string]: any;
 }
 /**
  * GetManagedAffiliateList_Response sub-interface for GetManagedAffiliateListResponse
@@ -1434,7 +1383,6 @@ export interface GetManagedAffiliateList_Response {
    * Affiliate list managed by seller.Not all return fields will have values.
    */
   affiliate_list?: GetManagedAffiliateList_Affiliate[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_managed_affiliate_list
@@ -1472,7 +1420,6 @@ export interface GetOpenCampaignAddedProductRequest {
    * Search for item_name or item_id, item_id should be split by comma and at most 50 items.
    */
   search_content?: string;
-  [key: string]: any;
 }
 /**
  * GetOpenCampaignAddedProduct_CommissionProtection sub-interface for GetOpenCampaignAddedProduct_Item
@@ -1486,7 +1433,6 @@ export interface GetOpenCampaignAddedProduct_CommissionProtection {
    * Protection Period End Time
    */
   protection_period_end_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetOpenCampaignAddedProduct_Item sub-interface for GetOpenCampaignAddedProduct_Response
@@ -1532,7 +1478,6 @@ export interface GetOpenCampaignAddedProduct_Item {
    * Max Commission Rate Current Day, 1.1 means 1.1%, support two decimal places
    */
   max_commission_rate_current_day?: number;
-  [key: string]: any;
 }
 /**
  * GetOpenCampaignAddedProduct_Response sub-interface for GetOpenCampaignAddedProductResponse
@@ -1551,7 +1496,6 @@ export interface GetOpenCampaignAddedProduct_Response {
    * This is to indicate whether the item list is more than one page. If this value is true, you may want to continue to check next page to retrieve orders.
    */
   has_more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_open_campaign_added_product
@@ -1574,7 +1518,6 @@ export interface GetOpenCampaignBatchTaskResultRequest {
    * Task id, used to query task progress
    */
   task_id: string;
-  [key: string]: any;
 }
 /**
  * GetOpenCampaignBatchTaskResult_Response sub-interface for GetOpenCampaignBatchTaskResultResponse
@@ -1592,7 +1535,6 @@ export interface GetOpenCampaignBatchTaskResult_Response {
    * Error message, if it is not empty, it means there is an errorWill not return the detail error for each products, you can check the products detail by using GET API, or using the batch operate API
    */
   fail_reason?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_open_campaign_batch_task_result
@@ -1631,7 +1573,6 @@ export interface GetOpenCampaignNotAddedProductRequest {
    * Search for item name or item id. item id should be split by comma and at most 50 items. When search_content is passed, search_type is required.
    */
   search_content?: string;
-  [key: string]: any;
 }
 /**
  * GetOpenCampaignNotAddedProduct_Item sub-interface for GetOpenCampaignNotAddedProduct_Response
@@ -1665,7 +1606,6 @@ export interface GetOpenCampaignNotAddedProduct_Item {
    * If item already has open campaign, it cannot set up another open campaignThe item list may be delayed, so it is used to further filter items that already have open campaigns
    */
   with_open_campaign?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOpenCampaignNotAddedProduct_Response sub-interface for GetOpenCampaignNotAddedProductResponse
@@ -1684,7 +1624,6 @@ export interface GetOpenCampaignNotAddedProduct_Response {
    * This is to indicate whether the item list is more than one page. If this value is true, you may want to continue to check next page to retrieve orders.
    */
   has_more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_open_campaign_not_added_product
@@ -1727,7 +1666,6 @@ export interface GetOpenCampaignPerformanceRequest {
    * Item ID for query.
    */
   item_id?: number;
-  [key: string]: any;
 }
 /**
  * GetOpenCampaignPerformance_List sub-interface for GetOpenCampaignPerformance_Response
@@ -1757,7 +1695,6 @@ export interface GetOpenCampaignPerformance_List {
    * Estimated commission amount payable to affiliates for this item, based on current campaign data.
    */
   est_commission?: string;
-  [key: string]: any;
 }
 /**
  * GetOpenCampaignPerformance_Response sub-interface for GetOpenCampaignPerformanceResponse
@@ -1776,7 +1713,6 @@ export interface GetOpenCampaignPerformance_Response {
    * Effective query date range. Invalid input ranges will be automatically shifted.
    */
   fetched_date_range?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_open_campaign_performance
@@ -1807,7 +1743,6 @@ export interface GetOptimizationSuggestionProductRequest {
    * Recommended types. Applicable values: product_opportunitiesoptimize_increase_commission_rateoptimize_extend_promotion_period
    */
   rcmd_reason_filter: string;
-  [key: string]: any;
 }
 /**
  * GetOptimizationSuggestionProduct_Item sub-interface for GetOptimizationSuggestionProduct_Response
@@ -1881,7 +1816,6 @@ export interface GetOptimizationSuggestionProduct_Item {
    * Has subsidy rate
    */
   has_subsidy_data?: boolean;
-  [key: string]: any;
 }
 /**
  * GetOptimizationSuggestionProduct_Response sub-interface for GetOptimizationSuggestionProductResponse
@@ -1896,7 +1830,6 @@ export interface GetOptimizationSuggestionProduct_Response {
    * This is to indicate whether the item list is more than one page. If this value is true, you may want to continue to check next page to retrieve orders.
    */
   has_more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_optimization_suggestion_product
@@ -1920,7 +1853,6 @@ export interface GetPerformanceDataUpdateTimeRequest {
    * Marker type. Applicable values: - AmsMarker: Used to query the data update date for ams metrics.
    */
   marker_type: string;
-  [key: string]: any;
 }
 /**
  * GetPerformanceDataUpdateTime_Response sub-interface for GetPerformanceDataUpdateTimeResponse
@@ -1930,7 +1862,6 @@ export interface GetPerformanceDataUpdateTime_Response {
    * The latest date of AMS dashboard data metrics update.
    */
   last_report_date?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_performance_data_update_time
@@ -1981,7 +1912,6 @@ export interface GetProductPerformanceRequest {
    * Item ID for query.
    */
   item_id?: number;
-  [key: string]: any;
 }
 /**
  * GetProductPerformance_List sub-interface for GetProductPerformance_Response
@@ -2027,7 +1957,6 @@ export interface GetProductPerformance_List {
    * Total number of new buyers who have purchased the product through affiliate marketing.
    */
   new_buyers?: number;
-  [key: string]: any;
 }
 /**
  * GetProductPerformance_Response sub-interface for GetProductPerformanceResponse
@@ -2046,7 +1975,6 @@ export interface GetProductPerformance_Response {
    * Effective query date range. Invalid input ranges will be automatically shifted.
    */
   fetched_date_range?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_product_performance
@@ -2068,7 +1996,6 @@ export interface GetRecommendedAffiliateListRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. Note: The response size will up to 200.
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetRecommendedAffiliateList_PopularSocialMedia sub-interface for GetRecommendedAffiliateList_Affiliate
@@ -2082,7 +2009,6 @@ export interface GetRecommendedAffiliateList_PopularSocialMedia {
    * The follower count of this account.
    */
   follower_count?: number;
-  [key: string]: any;
 }
 /**
  * GetRecommendedAffiliateList_SocialMedia sub-interface for GetRecommendedAffiliateList_Affiliate
@@ -2100,7 +2026,6 @@ export interface GetRecommendedAffiliateList_SocialMedia {
    * Social media name of this account.
    */
   social_media_user_name?: string;
-  [key: string]: any;
 }
 /**
  * GetRecommendedAffiliateList_TopPopularContent sub-interface for GetRecommendedAffiliateList_Affiliate
@@ -2130,7 +2055,6 @@ export interface GetRecommendedAffiliateList_TopPopularContent {
    * The media link of this affiliate's content.
    */
   media_url?: string;
-  [key: string]: any;
 }
 /**
  * GetRecommendedAffiliateList_TopSellingProduct sub-interface for GetRecommendedAffiliateList_Affiliate
@@ -2140,7 +2064,6 @@ export interface GetRecommendedAffiliateList_TopSellingProduct {
    * The item id of this item.
    */
   item_id?: number;
-  [key: string]: any;
 }
 /**
  * GetRecommendedAffiliateList_Affiliate sub-interface for GetRecommendedAffiliateList_Response
@@ -2202,7 +2125,6 @@ export interface GetRecommendedAffiliateList_Affiliate {
    * Top selling items of the affiliate.
    */
   top_selling_products?: GetRecommendedAffiliateList_TopSellingProduct[];
-  [key: string]: any;
 }
 /**
  * GetRecommendedAffiliateList_Response sub-interface for GetRecommendedAffiliateListResponse
@@ -2216,7 +2138,6 @@ export interface GetRecommendedAffiliateList_Response {
    * Recommended Affiliate list. Not all return fields will have values.
    */
   affiliate_list?: GetRecommendedAffiliateList_Affiliate[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_recommended_affiliate_list
@@ -2255,7 +2176,6 @@ export interface GetShopPerformanceRequest {
    * Channel. Applicable values: - AllChannel- SocialMedia- ShopeeVideo- LiveStreaming
    */
   channel: string;
-  [key: string]: any;
 }
 /**
  * GetShopPerformance_Response sub-interface for GetShopPerformanceResponse
@@ -2297,7 +2217,6 @@ export interface GetShopPerformance_Response {
    * Effective query date range. Invalid input ranges will be automatically shifted.
    */
   fetched_date_range?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_performance
@@ -2327,7 +2246,6 @@ export interface GetShopSuggestedRate_Response {
    * Maximum suggested commission rate, 1.2 means 1.2%, support two decimal places
    */
   max_rate?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_suggested_rate
@@ -2365,7 +2283,6 @@ export interface GetTargetedCampaignAddableProductListRequest {
    * Search by item name or item ID, item_id should be split by comma and at most 50 items.Please specify search_type for it to be effective, otherwise search_content will be ignored.
    */
   search_content?: string;
-  [key: string]: any;
 }
 /**
  * GetTargetedCampaignAddableProductList_Item sub-interface for GetTargetedCampaignAddableProductList_Response
@@ -2395,7 +2312,6 @@ export interface GetTargetedCampaignAddableProductList_Item {
    * Is the current item in the blacklist.
    */
   is_in_blacklist?: boolean;
-  [key: string]: any;
 }
 /**
  * GetTargetedCampaignAddableProductList_Response sub-interface for GetTargetedCampaignAddableProductListResponse
@@ -2413,7 +2329,6 @@ export interface GetTargetedCampaignAddableProductList_Response {
    * Pass the content in the next request as cursor to get the next page data.
    */
   cursor?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_targeted_campaign_addable_product_list
@@ -2469,7 +2384,6 @@ export interface GetTargetedCampaignListRequest {
    * Item name for query.
    */
   item_name?: string;
-  [key: string]: any;
 }
 /**
  * GetTargetedCampaignList_Campaign sub-interface for GetTargetedCampaignList_Response
@@ -2523,7 +2437,6 @@ export interface GetTargetedCampaignList_Campaign {
    * The max commission rate of the current campaign.
    */
   max_rate?: number;
-  [key: string]: any;
 }
 /**
  * GetTargetedCampaignList_Response sub-interface for GetTargetedCampaignListResponse
@@ -2537,7 +2450,6 @@ export interface GetTargetedCampaignList_Response {
    * Targeted campaign list.
    */
   campaign_list?: GetTargetedCampaignList_Campaign[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_targeted_campaign_list
@@ -2579,7 +2491,6 @@ export interface GetTargetedCampaignPerformanceRequest {
    * Campaign ID for query.
    */
   campaign_id?: number;
-  [key: string]: any;
 }
 /**
  * GetTargetedCampaignPerformance_List sub-interface for GetTargetedCampaignPerformance_Response
@@ -2609,7 +2520,6 @@ export interface GetTargetedCampaignPerformance_List {
    * Campaign name.
    */
   campaign_name?: string;
-  [key: string]: any;
 }
 /**
  * GetTargetedCampaignPerformance_Response sub-interface for GetTargetedCampaignPerformanceResponse
@@ -2628,7 +2538,6 @@ export interface GetTargetedCampaignPerformance_Response {
    * Effective query date range. Invalid input ranges will be automatically shifted.
    */
   fetched_date_range?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_targeted_campaign_performance
@@ -2651,7 +2560,6 @@ export interface GetTargetedCampaignSettingsRequest {
    * Campaign id for query.Note: For campaigns with campaign_source = ShopeeManaged, cannot be queried for details through this API.
    */
   campaign_id: number;
-  [key: string]: any;
 }
 /**
  * GetTargetedCampaignSettings_Affiliate sub-interface for GetTargetedCampaignSettings_Response
@@ -2661,7 +2569,6 @@ export interface GetTargetedCampaignSettings_Affiliate {
    * The unique key for affiliate, can call v2.ams.query_affiliate_list to get affiliate details.
    */
   affiliate_id?: number;
-  [key: string]: any;
 }
 /**
  * GetTargetedCampaignSettings_CommissionProtection sub-interface for GetTargetedCampaignSettings_Item
@@ -2675,7 +2582,6 @@ export interface GetTargetedCampaignSettings_CommissionProtection {
    * Protection Period End Time.
    */
   protection_period_end_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetTargetedCampaignSettings_Item sub-interface for GetTargetedCampaignSettings_Response
@@ -2701,7 +2607,6 @@ export interface GetTargetedCampaignSettings_Item {
    * Commission Protection List.
    */
   commission_protection_list?: GetTargetedCampaignSettings_CommissionProtection[];
-  [key: string]: any;
 }
 /**
  * GetTargetedCampaignSettings_Response sub-interface for GetTargetedCampaignSettingsResponse
@@ -2751,7 +2656,6 @@ export interface GetTargetedCampaignSettings_Response {
    * The list of items associated with the current campaign.
    */
   item_list?: GetTargetedCampaignSettings_Item[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_targeted_campaign_settings
@@ -2794,7 +2698,6 @@ export interface GetValidationList_OnlineBill {
    * Commission amount pending deduction.
    */
   pending_amount?: number;
-  [key: string]: any;
 }
 /**
  * GetValidationList_OfflineBill sub-interface for GetValidationList_Validation
@@ -2820,7 +2723,6 @@ export interface GetValidationList_OfflineBill {
    * Commission amount already paid using AMS Credits.
    */
   ams_credit_deducted_amount?: number;
-  [key: string]: any;
 }
 /**
  * GetValidationList_Validation sub-interface for GetValidationList_Response
@@ -2850,14 +2752,12 @@ export interface GetValidationList_Validation {
    * List of billing details when payment method is Offline, grouped by order placement month.
    */
   offline_bills?: GetValidationList_OfflineBill[];
-  [key: string]: any;
 }
 /**
  * GetValidationList_Response sub-interface for GetValidationListResponse
  */
 export interface GetValidationList_Response {
   validation_list?: GetValidationList_Validation[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_validation_list
@@ -2935,7 +2835,6 @@ export interface GetValidationReportRequest {
    * End time (inclusive) of order placement, in timestamp format.
    */
   place_order_time_end: Date | number;
-  [key: string]: any;
 }
 /**
  * GetValidationReport_Item sub-interface for GetValidationReport_List
@@ -3021,7 +2920,6 @@ export interface GetValidationReport_Item {
    * Seller service fee amount charged for the item. seller_service_fee = item_brand_commission *  seller_service_fee_rate
    */
   seller_service_fee?: string;
-  [key: string]: any;
 }
 /**
  * GetValidationReport_List sub-interface for GetValidationReport_Response
@@ -3088,7 +2986,6 @@ export interface GetValidationReport_List {
    */
   buyer_status?: string;
   items?: GetValidationReport_Item[];
-  [key: string]: any;
 }
 /**
  * GetValidationReport_Response sub-interface for GetValidationReportResponse
@@ -3106,7 +3003,6 @@ export interface GetValidationReport_Response {
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
   has_more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_validation_report
@@ -3136,7 +3032,6 @@ export interface QueryAffiliateListRequest {
    * Query affiliate information by name use fuzzy matching.Will return first 200 affiliates' information is match number > 200.
    */
   name?: string;
-  [key: string]: any;
 }
 /**
  * QueryAffiliateList_PopularSocialMedia sub-interface for QueryAffiliateList_Affiliate
@@ -3150,7 +3045,6 @@ export interface QueryAffiliateList_PopularSocialMedia {
    * The follower count of this account.
    */
   follower_count?: number;
-  [key: string]: any;
 }
 /**
  * QueryAffiliateList_SocialMedia sub-interface for QueryAffiliateList_Affiliate
@@ -3168,7 +3062,6 @@ export interface QueryAffiliateList_SocialMedia {
    * Social media name of this account.
    */
   social_media_user_name?: string;
-  [key: string]: any;
 }
 /**
  * QueryAffiliateList_TopPopularContent sub-interface for QueryAffiliateList_Affiliate
@@ -3198,7 +3091,6 @@ export interface QueryAffiliateList_TopPopularContent {
    * The media link of this affiliate's content.
    */
   media_url?: string;
-  [key: string]: any;
 }
 /**
  * QueryAffiliateList_TopSellingProduct sub-interface for QueryAffiliateList_Affiliate
@@ -3208,7 +3100,6 @@ export interface QueryAffiliateList_TopSellingProduct {
    * The item id of this item.
    */
   item_id?: number;
-  [key: string]: any;
 }
 /**
  * QueryAffiliateList_Affiliate sub-interface for QueryAffiliateList_Response
@@ -3270,7 +3161,6 @@ export interface QueryAffiliateList_Affiliate {
    * Top selling items of the affiliate.
    */
   top_selling_products?: QueryAffiliateList_TopSellingProduct[];
-  [key: string]: any;
 }
 /**
  * QueryAffiliateList_Response sub-interface for QueryAffiliateListResponse
@@ -3284,7 +3174,6 @@ export interface QueryAffiliateList_Response {
    * Affiliate list by this query.Not all return fields will have values.
    */
   affiliate_list?: QueryAffiliateList_Affiliate[];
-  [key: string]: any;
 }
 /**
  * Response data payload for query_affiliate_list
@@ -3314,7 +3203,6 @@ export interface RemoveAllProductsOpenCampaignSetting_Response {
    * Task id, used to query task progress when calling v2.ams.get_open_campaign_batch_task_result API
    */
   task_id?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for remove_all_products_open_campaign_setting
@@ -3338,7 +3226,6 @@ export interface TerminateTargetedCampaignRequest {
    * The unique key for the current campaign.
    */
   campaign_id: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for terminate_targeted_campaign
@@ -3365,7 +3252,6 @@ export interface UpdateAutoAddNewProductSettingRequest {
    * Commission rate, 1.1 means 1.1%, support two decimal places
    */
   commission_rate?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_auto_add_new_product_setting
@@ -3408,7 +3294,6 @@ export interface UpdateBasicInfoOfTargetedCampaignRequest {
    * Budget value set for the current campaign.Note: TH not supported
    */
   budget?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_basic_info_of_targeted_campaign

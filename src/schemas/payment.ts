@@ -67,7 +67,6 @@ export interface GenerateIncomeReportRequest {
    * End time in epoch
    */
   release_time_to: number;
-  [key: string]: any;
 }
 /**
  * GenerateIncomeReport_Response sub-interface for GenerateIncomeReportResponse
@@ -77,7 +76,6 @@ export interface GenerateIncomeReport_Response {
    * Identifier of income report file.
    */
   id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for generate_income_report
@@ -107,7 +105,6 @@ export interface GenerateIncomeStatementRequest {
    * STATEMENT_TYPE_WEEKLY = 1;STATEMENT_TYPE_MONTHLY = 2;Local seller Income statement requires this value to be set.CB seller income statement does not require this.
    */
   statement_type: number;
-  [key: string]: any;
 }
 /**
  * GenerateIncomeStatement_Response sub-interface for GenerateIncomeStatementResponse
@@ -117,7 +114,6 @@ export interface GenerateIncomeStatement_Response {
    * Identifier of income statement file.
    */
   id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for generate_income_statement
@@ -151,7 +147,6 @@ export interface GetBillingTransactionInfoRequest {
    * Number of pages returned max:100
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetBillingTransactionInfo_Transaction sub-interface for GetBillingTransactionInfo_Response
@@ -193,7 +188,6 @@ export interface GetBillingTransactionInfo_Transaction {
    * Will be either "To Release" or "Released".
    */
   billing_transaction_status?: string;
-  [key: string]: any;
 }
 /**
  * GetBillingTransactionInfo_Response sub-interface for GetBillingTransactionInfoResponse
@@ -202,7 +196,6 @@ export interface GetBillingTransactionInfo_Response {
   transactions?: GetBillingTransactionInfo_Transaction;
   more?: boolean;
   next_cursor?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_billing_transaction_info
@@ -225,7 +218,6 @@ export interface GetEscrowDetailRequest {
    * Shopee's unique identifier for an order.
    */
   order_sn: string;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_KitItem sub-interface for GetEscrowDetail_Item
@@ -251,7 +243,6 @@ export interface GetEscrowDetail_KitItem {
    * The price of the item when it is listed within the kit (i.e. proportionally distributed) (only for BR local seller)
    */
   proportional_price?: number;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_Promotion sub-interface for GetEscrowDetail_Item
@@ -337,7 +328,6 @@ export interface GetEscrowDetail_Promotion {
    * Represents the unique identifier of a specific promotion applied to an item. Each promotion_id corresponds to a distinct promotion rule or campaign, defined under a particular promotion_type.
    */
   promotion_id?: any;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_Item sub-interface for GetEscrowDetail_OrderIncome
@@ -444,7 +434,6 @@ export interface GetEscrowDetail_Item {
    */
   kit_items?: GetEscrowDetail_KitItem;
   promotion_list?: GetEscrowDetail_Promotion[];
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_OrderAdjustment sub-interface for GetEscrowDetail_OrderIncome
@@ -466,7 +455,6 @@ export interface GetEscrowDetail_OrderAdjustment {
    * Reason for adjustment. Possible cases could be:- Return Refund deduction or compensation- logistic issue deduction or compensation- marketing fee deduction- payment related fee
    */
   adjustment_reason?: string;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_TenureInfo sub-interface for GetEscrowDetail_OrderIncome
@@ -480,7 +468,6 @@ export interface GetEscrowDetail_TenureInfo {
    * Tenure information. This will have value if payment channel used has tenure information, such as credit card.
    */
   instalment_plan?: string;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_NetCommissionFeeInfo sub-interface for GetEscrowDetail_OrderIncome
@@ -498,7 +485,6 @@ export interface GetEscrowDetail_NetCommissionFeeInfo {
    * The display name of the commission rule for reference and readability.
    */
   rule_display_name?: string;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_NetServiceFeeInfo sub-interface for GetEscrowDetail_OrderIncome
@@ -520,7 +506,6 @@ export interface GetEscrowDetail_NetServiceFeeInfo {
    * The category of the service fee, indicating the type of service the fee is charged for.
    */
   category?: string;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_SellerProductRebate sub-interface for GetEscrowDetail_OrderIncome
@@ -538,7 +523,6 @@ export interface GetEscrowDetail_SellerProductRebate {
    * This is the offset to gross service fee, reducing it to the net value.
    */
   service_fee_offset?: number;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_OrderIncome sub-interface for GetEscrowDetail_Response
@@ -966,7 +950,6 @@ export interface GetEscrowDetail_OrderIncome {
    * [Only for BR local shop]Represents the portion of Shopee voucher that is not consumed after fee offset.
    */
   remaining_voucher?: number;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_BuyerPaymentInfo sub-interface for GetEscrowDetail_Response
@@ -1068,7 +1051,6 @@ export interface GetEscrowDetail_BuyerPaymentInfo {
    * The voucher provided by Ads team to offset the amount need to be paid by buyer.
    */
   ads_voucher_discount?: number;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetail_Response sub-interface for GetEscrowDetailResponse
@@ -1091,7 +1073,6 @@ export interface GetEscrowDetail_Response {
    * The buyer payment info at order checkout moment. (snapshot value)
    */
   buyer_payment_info?: GetEscrowDetail_BuyerPaymentInfo;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_escrow_detail
@@ -1113,7 +1094,6 @@ export interface GetEscrowDetailBatchRequest {
    * Shopee's unique identifier for an order.limit [1,50] The number of recommended requests ranges from 1 to 20 orders.
    */
   order_sn_list: string[];
-  [key: string]: any;
 }
 /**
  * GetEscrowDetailBatch_KitItem sub-interface for GetEscrowDetailBatch_Item
@@ -1139,7 +1119,6 @@ export interface GetEscrowDetailBatch_KitItem {
    * The price of the item when it is listed within the kit (i.e. proportionally distributed) (Only for BR Local Sellers)
    */
   proportional_price?: number;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetailBatch_Promotion sub-interface for GetEscrowDetailBatch_Item
@@ -1153,7 +1132,6 @@ export interface GetEscrowDetailBatch_Promotion {
    * Represents the unique identifier of a specific promotion applied to an item. Each promotion_id corresponds to a distinct promotion rule or campaign, defined under a particular promotion_type.
    */
   promotion_id?: any;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetailBatch_Item sub-interface for GetEscrowDetailBatch_OrderIncome
@@ -1260,7 +1238,6 @@ export interface GetEscrowDetailBatch_Item {
    */
   kit_items?: GetEscrowDetailBatch_KitItem;
   promotion_list?: GetEscrowDetailBatch_Promotion[];
-  [key: string]: any;
 }
 /**
  * GetEscrowDetailBatch_NetCommissionFeeInfo sub-interface for GetEscrowDetailBatch_OrderIncome
@@ -1278,7 +1255,6 @@ export interface GetEscrowDetailBatch_NetCommissionFeeInfo {
    * The display name of the commission rule for reference and readability.
    */
   rule_display_name?: string;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetailBatch_NetServiceFeeInfo sub-interface for GetEscrowDetailBatch_OrderIncome
@@ -1300,7 +1276,6 @@ export interface GetEscrowDetailBatch_NetServiceFeeInfo {
    * The category of the service fee, indicating the type of service the fee is charged for.
    */
   category?: string;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetailBatch_SellerProductRebate sub-interface for GetEscrowDetailBatch_OrderIncome
@@ -1318,7 +1293,6 @@ export interface GetEscrowDetailBatch_SellerProductRebate {
    * This is the offset to gross service fee, reducing it to the net value.
    */
   service_fee_offset?: number;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetailBatch_OrderIncome sub-interface for GetEscrowDetailBatch_EscrowDetail
@@ -1696,7 +1670,6 @@ export interface GetEscrowDetailBatch_OrderIncome {
    * [Only for BR local shop]Represents the portion of Shopee voucher that is not consumed after fee offset.
    */
   remaining_voucher?: number;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetailBatch_BuyerPaymentInfo sub-interface for GetEscrowDetailBatch_EscrowDetail
@@ -1802,7 +1775,6 @@ export interface GetEscrowDetailBatch_BuyerPaymentInfo {
    * The voucher provided by Ads team to offset the amount need to be paid by buyer.it is an initial value (will not be updated after RR/cancellation)
    */
   ads_voucher_discount?: number;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetailBatch_EscrowDetail sub-interface for GetEscrowDetailBatch_Response
@@ -1825,7 +1797,6 @@ export interface GetEscrowDetailBatch_EscrowDetail {
    * The buyer payment info at order checkout moment. (snapshot value)
    */
   buyer_payment_info?: GetEscrowDetailBatch_BuyerPaymentInfo;
-  [key: string]: any;
 }
 /**
  * GetEscrowDetailBatch_Response sub-interface for GetEscrowDetailBatchResponse
@@ -1835,7 +1806,6 @@ export interface GetEscrowDetailBatch_Response {
    * The escrow detail for one order
    */
   escrow_detail?: GetEscrowDetailBatch_EscrowDetail;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_escrow_detail_batch
@@ -1869,7 +1839,6 @@ export interface GetEscrowListRequest {
    * The page number  min:1  default:1
    */
   page_no?: number;
-  [key: string]: any;
 }
 /**
  * GetEscrowList_Escrow sub-interface for GetEscrowList_Response
@@ -1887,7 +1856,6 @@ export interface GetEscrowList_Escrow {
    * The release time
    */
   escrow_release_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetEscrowList_Response sub-interface for GetEscrowListResponse
@@ -1901,7 +1869,6 @@ export interface GetEscrowList_Response {
    * This is to indicate whether the escrow list is more than one page. If this value is true, you may want to continue to check next page to retrieve escrow orders.
    */
   more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_escrow_list
@@ -1941,7 +1908,6 @@ export interface GetIncomeDetailRequest {
    * Number of income detail records to retrieve per page
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetIncomeDetail_NextPage sub-interface for GetIncomeDetail_IncomeDetail
@@ -1955,7 +1921,6 @@ export interface GetIncomeDetail_NextPage {
    * Number of records returned per page.
    */
   page_size?: number;
-  [key: string]: any;
 }
 /**
  * GetIncomeDetail_IncomeDetailListItem sub-interface for GetIncomeDetail_IncomeDetail
@@ -2005,7 +1970,6 @@ export interface GetIncomeDetail_IncomeDetailListItem {
    * Actual payout time (Unix timestamp) when funds were transferred.
    */
   actual_payout_time?: number;
-  [key: string]: any;
 }
 /**
  * GetIncomeDetail_IncomeDetail sub-interface for GetIncomeDetailResponse
@@ -2019,7 +1983,6 @@ export interface GetIncomeDetail_IncomeDetail {
    * List of income detail objects
    */
   income_detail_list_item?: GetIncomeDetail_IncomeDetailListItem[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_income_detail
@@ -2029,7 +1992,6 @@ export interface GetIncomeDetailResponseData {
    * List of income detail records returned for the specified time range and status.
    */
   income_detail_list?: GetIncomeDetail_IncomeDetail[];
-  [key: string]: any;
 }
 /**
  * Response payload for get_income_detail
@@ -2051,7 +2013,6 @@ export interface GetIncomeOverviewRequest {
    * Status of Seller Income payout (Enum - Desc)Local Shop1 -Released2 - PendingCB Shop0 - To Release1 - Released2 - PendingNote: By default, if Income Status was not provided in the request params (non mandatory), API response will return all values for all Income status based on either Local/CB
    */
   income_status?: number;
-  [key: string]: any;
 }
 /**
  * GetIncomeOverview_TotalIncome sub-interface for GetIncomeOverview_Response
@@ -2069,7 +2030,6 @@ export interface GetIncomeOverview_TotalIncome {
    * Total amount successfully released to the seller.<path></path>
    */
   released_amount?: number;
-  [key: string]: any;
 }
 /**
  * GetIncomeOverview_Response sub-interface for GetIncomeOverviewResponse
@@ -2083,7 +2043,6 @@ export interface GetIncomeOverview_Response {
    * Object containing total income components.
    */
   total_income?: GetIncomeOverview_TotalIncome;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_income_overview
@@ -2107,7 +2066,6 @@ export interface GetIncomeReportRequest {
    * The identifier for income report file request.
    */
   income_report_id: number;
-  [key: string]: any;
 }
 /**
  * GetIncomeReport_Response sub-interface for GetIncomeReportResponse
@@ -2133,7 +2091,6 @@ export interface GetIncomeReport_Response {
    * Link to download income report file.
    */
   file_link?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_income_report
@@ -2155,7 +2112,6 @@ export interface GetIncomeStatementRequest {
    * The identifier for income statement file request.return from the API v2.payment.generate_income_statement
    */
   income_statement_id: number;
-  [key: string]: any;
 }
 /**
  * GetIncomeStatement_Response sub-interface for GetIncomeStatementResponse
@@ -2181,7 +2137,6 @@ export interface GetIncomeStatement_Response {
    * Link to download income statement file.
    */
   file_link?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_income_statement
@@ -2203,7 +2158,6 @@ export interface GetItemInstallmentStatusRequest {
    * Item id array, Max :100
    */
   item_id_list: number[];
-  [key: string]: any;
 }
 /**
  * GetItemInstallmentStatus_ItemInstallment sub-interface for GetItemInstallmentStatus_Response
@@ -2217,7 +2171,6 @@ export interface GetItemInstallmentStatus_ItemInstallment {
    * The tenures of item support installment. [] represents with no installment
    */
   tenure_list?: number[];
-  [key: string]: any;
 }
 /**
  * GetItemInstallmentStatus_ItemPlanAhora sub-interface for GetItemInstallmentStatus_Response
@@ -2231,7 +2184,6 @@ export interface GetItemInstallmentStatus_ItemPlanAhora {
    * Only applicable for local AR sellers.
    */
   participate_plan_ahora?: boolean;
-  [key: string]: any;
 }
 /**
  * GetItemInstallmentStatus_Response sub-interface for GetItemInstallmentStatusResponse
@@ -2242,7 +2194,6 @@ export interface GetItemInstallmentStatus_Response {
    * Only applicable for local AR sellers.
    */
   item_plan_ahora_list?: GetItemInstallmentStatus_ItemPlanAhora[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_item_installment_status
@@ -2266,7 +2217,6 @@ export type GetPaymentMethodListRequest = Record<string, never>;
 export interface GetPaymentMethodList_Response {
   payment_method?: string[];
   region?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_payment_method_list
@@ -2300,7 +2250,6 @@ export interface GetPayoutDetailRequest {
    * End time
    */
   payout_time_to: Date | number;
-  [key: string]: any;
 }
 /**
  * GetPayoutDetail_PayoutInfo sub-interface for GetPayoutDetail_Payout
@@ -2338,7 +2287,6 @@ export interface GetPayoutDetail_PayoutInfo {
    * Seller's account to receive the payout.
    */
   payee_id?: string;
-  [key: string]: any;
 }
 /**
  * GetPayoutDetail_Escrow sub-interface for GetPayoutDetail_Payout
@@ -2356,7 +2304,6 @@ export interface GetPayoutDetail_Escrow {
    * Shopee's unique identifier for an order.
    */
   order_sn?: string;
-  [key: string]: any;
 }
 /**
  * GetPayoutDetail_OfflineAdjustment sub-interface for GetPayoutDetail_Payout
@@ -2386,7 +2333,6 @@ export interface GetPayoutDetail_OfflineAdjustment {
    * Shopee's unique identifier for an order.
    */
   order_sn?: string;
-  [key: string]: any;
 }
 /**
  * GetPayoutDetail_Payout sub-interface for GetPayoutDetail_Response
@@ -2401,7 +2347,6 @@ export interface GetPayoutDetail_Payout {
    * The list of offline adjustments.
    */
   offline_adjustment_list?: GetPayoutDetail_OfflineAdjustment[];
-  [key: string]: any;
 }
 /**
  * GetPayoutDetail_Response sub-interface for GetPayoutDetailResponse
@@ -2409,7 +2354,6 @@ export interface GetPayoutDetail_Payout {
 export interface GetPayoutDetail_Response {
   more?: boolean;
   payout_list?: GetPayoutDetail_Payout[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_payout_detail
@@ -2443,7 +2387,6 @@ export interface GetPayoutInfoRequest {
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
   cursor: string;
-  [key: string]: any;
 }
 /**
  * GetPayoutInfo_Payout sub-interface for GetPayoutInfo_Response
@@ -2485,7 +2428,6 @@ export interface GetPayoutInfo_Payout {
    * payout id used to query API "v2.get_billing_item_info" as request parameters. User can get detailed billing items under current payout
    */
   encrypted_payout_id?: string;
-  [key: string]: any;
 }
 /**
  * GetPayoutInfo_Response sub-interface for GetPayoutInfoResponse
@@ -2500,7 +2442,6 @@ export interface GetPayoutInfo_Response {
    * used for next batch data query. will return empty when all data been returned
    */
   next_cursor?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_payout_info
@@ -2526,7 +2467,6 @@ export interface GetShopInstallmentStatus_Response {
    * The installment status for the shop
    */
   installment_status?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_shop_installment_status
@@ -2576,7 +2516,6 @@ export interface GetWalletTransactionListRequest {
    * NOTE: Only 1 'transaction tab type' value should be passed in.Passing in more than 1 value (eg: comma separated values) will return default response. This is because the request param treats the value passed in as a single string.This to indicates the updated filtering type that client can use to specify which transaction type we want to return. it will have : Defaultwallet_order_incomewallet_adjustment_filterwallet_wallet_paymentwallet_refund_from_orderwallet_withdrawalsfast_escrow_repaymentfast_payseller_loancorporate_loanpix_transactions_filteropen_finance_transactions_filter Note for BR, wallet txn type that linked to pix_transactions_filter  and open_finance_transactions_filter are classified as default  type tab instead. therefore for Open API client who wants to query these 2 trx can put default as the filter in this type
    */
   transaction_tab_type?: string;
-  [key: string]: any;
 }
 /**
  * GetWalletTransactionList_PayOrder sub-interface for GetWalletTransactionList_Transaction
@@ -2590,7 +2529,6 @@ export interface GetWalletTransactionList_PayOrder {
    * Name of the shop.
    */
   shop_name?: string;
-  [key: string]: any;
 }
 /**
  * GetWalletTransactionList_Transaction sub-interface for GetWalletTransactionList_Response
@@ -2673,7 +2611,6 @@ export interface GetWalletTransactionList_Transaction {
    * The outlet shop name where this outlet transaction came from. (In the Original Instant Mart concept, outlet transactions are redirected to Mart.)
    */
   outlet_shop_name?: string;
-  [key: string]: any;
 }
 /**
  * GetWalletTransactionList_Response sub-interface for GetWalletTransactionListResponse
@@ -2681,7 +2618,6 @@ export interface GetWalletTransactionList_Transaction {
 export interface GetWalletTransactionList_Response {
   transaction_list?: GetWalletTransactionList_Transaction[];
   more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_wallet_transaction_list
@@ -2711,7 +2647,6 @@ export interface SetItemInstallmentStatusRequest {
    * Only applicable and required for local AR sellers.
    */
   participate_plan_ahora?: boolean;
-  [key: string]: any;
 }
 /**
  * SetItemInstallmentStatus_ItemInstallment sub-interface for SetItemInstallmentStatus_Response
@@ -2725,7 +2660,6 @@ export interface SetItemInstallmentStatus_ItemInstallment {
    * The tenures of item support installment. [] represents with no installment
    */
   tenure_list?: number[];
-  [key: string]: any;
 }
 /**
  * SetItemInstallmentStatus_ItemPlanAhora sub-interface for SetItemInstallmentStatus_Response
@@ -2739,7 +2673,6 @@ export interface SetItemInstallmentStatus_ItemPlanAhora {
    * Only applicable for local AR sellers.
    */
   participate_plan_ahor?: boolean;
-  [key: string]: any;
 }
 /**
  * SetItemInstallmentStatus_Response sub-interface for SetItemInstallmentStatusResponse
@@ -2750,7 +2683,6 @@ export interface SetItemInstallmentStatus_Response {
    * Only applicable for local AR sellers.
    */
   item_plan_ahora_list?: SetItemInstallmentStatus_ItemPlanAhora[];
-  [key: string]: any;
 }
 /**
  * Response data payload for set_item_installment_status
@@ -2772,14 +2704,12 @@ export interface SetShopInstallmentStatusRequest {
    * The status of installment contains 1 and 0.
    */
   installment_status: number;
-  [key: string]: any;
 }
 /**
  * SetShopInstallmentStatus_Response sub-interface for SetShopInstallmentStatusResponse
  */
 export interface SetShopInstallmentStatus_Response {
   installment_status?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for set_shop_installment_status

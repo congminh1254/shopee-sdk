@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { GlobalProductManager } from "../../managers/global-product.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("GlobalProductManager (Generated Tests)", () => {
@@ -99,7 +99,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addGlobalItem(exampleRequest as any);
+      const result = await manager.addGlobalItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -156,7 +156,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addGlobalModel(exampleRequest as any);
+      const result = await manager.addGlobalModel(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -189,7 +189,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.categoryRecommend(exampleRequest as any);
+      const result = await manager.categoryRecommend(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -280,7 +280,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.createPublishTask(exampleRequest as any);
+      const result = await manager.createPublishTask(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -317,7 +317,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteGlobalItem(exampleRequest as any);
+      const result = await manager.deleteGlobalItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -357,7 +357,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteGlobalModel(exampleRequest as any);
+      const result = await manager.deleteGlobalModel(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -432,7 +432,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAttributeTree(exampleRequest as any);
+      const result = await manager.getAttributeTree(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -477,7 +477,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBrandList(exampleRequest as any);
+      const result = await manager.getBrandList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -517,7 +517,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getCategory(exampleRequest as any);
+      const result = await manager.getCategory(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -555,7 +555,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getGlobalItemId(exampleRequest as any);
+      const result = await manager.getGlobalItemId(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -585,8 +585,8 @@ describe("GlobalProductManager (Generated Tests)", () => {
               "MY OLD NEW default no model itemMY OLD NEW default no model itemMY OLD NEW default no model item",
             global_item_sku: "sku1",
             global_item_status: "NORMAL",
-            create_time: "1605247451",
-            update_time: "1605247451",
+            create_time: 1605247451,
+            update_time: 1605247451,
             stock_info: [
               {
                 stock_type: 2,
@@ -684,7 +684,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getGlobalItemInfo(exampleRequest as any);
+      const result = await manager.getGlobalItemInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -768,7 +768,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getGlobalItemLimit(exampleRequest as any);
+      const result = await manager.getGlobalItemLimit(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -789,14 +789,14 @@ describe("GlobalProductManager (Generated Tests)", () => {
       const exampleRequest = {
         offset: "AAAAFA==",
         page_size: 10,
-        update_time_from: "1611311600",
-        update_time_to: "1611311631",
+        update_time_from: 1611311600,
+        update_time_to: 1611311631,
       };
       const exampleResponse = {
         global_item_list: [
           {
             global_item_id: 2300146833,
-            update_time: "1608967817",
+            update_time: 1608967817,
           },
         ],
         total_count: 826,
@@ -811,7 +811,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getGlobalItemList(exampleRequest as any);
+      const result = await manager.getGlobalItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -900,7 +900,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getGlobalModelList(exampleRequest as any);
+      const result = await manager.getGlobalModelList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -932,7 +932,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getLocalAdjustmentRate(exampleRequest as any);
+      const result = await manager.getLocalAdjustmentRate(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -972,7 +972,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPublishTaskResult(exampleRequest as any);
+      const result = await manager.getPublishTaskResult(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1010,7 +1010,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPublishableShop(exampleRequest as any);
+      const result = await manager.getPublishableShop(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1050,7 +1050,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPublishedList(exampleRequest as any);
+      const result = await manager.getPublishedList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1093,7 +1093,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getRecommendAttribute(exampleRequest as any);
+      const result = await manager.getRecommendAttribute(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1136,7 +1136,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopPublishableStatus(exampleRequest as any);
+      const result = await manager.getShopPublishableStatus(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1189,7 +1189,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getSizeChartDetail(exampleRequest as any);
+      const result = await manager.getSizeChartDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1229,7 +1229,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getSizeChartList(exampleRequest as any);
+      const result = await manager.getSizeChartList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1283,7 +1283,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getVariations(exampleRequest as any);
+      const result = await manager.getVariations(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1354,7 +1354,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.initTierVariation(exampleRequest as any);
+      const result = await manager.initTierVariation(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1398,7 +1398,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.searchGlobalAttributeValueList(exampleRequest as any);
+      const result = await manager.searchGlobalAttributeValueList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1443,7 +1443,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.setSyncField(exampleRequest as any);
+      const result = await manager.setSyncField(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1475,7 +1475,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.supportSizeChart(exampleRequest as any);
+      const result = await manager.supportSizeChart(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1558,7 +1558,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateGlobalItem(exampleRequest as any);
+      const result = await manager.updateGlobalItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1608,7 +1608,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateGlobalModel(exampleRequest as any);
+      const result = await manager.updateGlobalModel(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1644,7 +1644,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateLocalAdjustmentRate(exampleRequest as any);
+      const result = await manager.updateLocalAdjustmentRate(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1685,7 +1685,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updatePrice(exampleRequest as any);
+      const result = await manager.updatePrice(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1721,7 +1721,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateSizeChart(exampleRequest as any);
+      const result = await manager.updateSizeChart(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1767,7 +1767,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateStock(exampleRequest as any);
+      const result = await manager.updateStock(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1822,7 +1822,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateTierVariation(exampleRequest as any);
+      const result = await manager.updateTierVariation(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

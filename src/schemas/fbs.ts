@@ -17,7 +17,6 @@ export interface QueryBrShopBlockStatus_Response {
    * shop blocked status
    */
   is_block?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for query_br_shop_block_status
@@ -51,7 +50,6 @@ export interface QueryBrShopEnrollmentStatus_Response {
    * The time of this shop able to enroll FBS.
    */
   enable_enrollment_time?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for query_br_shop_enrollment_status
@@ -75,7 +73,6 @@ export interface QueryBrShopInvoiceErrorRequest {
    * max: 100
    */
   page_size?: number;
-  [key: string]: any;
 }
 /**
  * QueryBrShopInvoiceError_ShopSku sub-interface for QueryBrShopInvoiceError_List
@@ -101,7 +98,6 @@ export interface QueryBrShopInvoiceError_ShopSku {
    * Invoice issuance failed reason.
    */
   fail_reason?: string;
-  [key: string]: any;
 }
 /**
  * QueryBrShopInvoiceError_List sub-interface for QueryBrShopInvoiceError_Response
@@ -140,7 +136,6 @@ export interface QueryBrShopInvoiceError_List {
    * remind seller if this block issue is not solved , it will block the shop or item
    */
   reminder_desc?: string;
-  [key: string]: any;
 }
 /**
  * QueryBrShopInvoiceError_Response sub-interface for QueryBrShopInvoiceErrorResponse
@@ -148,7 +143,6 @@ export interface QueryBrShopInvoiceError_List {
 export interface QueryBrShopInvoiceError_Response {
   total?: number;
   list?: QueryBrShopInvoiceError_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for query_br_shop_invoice_error
@@ -167,7 +161,6 @@ export type QueryBrShopInvoiceErrorResponse = FetchResponse<QueryBrShopInvoiceEr
  */
 export interface QueryBrSkuBlockStatusRequest {
   shop_sku_id: string;
-  [key: string]: any;
 }
 /**
  * QueryBrSkuBlockStatus_Response sub-interface for QueryBrSkuBlockStatusResponse
@@ -197,7 +190,6 @@ export interface QueryBrSkuBlockStatus_Response {
    * Name of model
    */
   shop_model_name?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for query_br_sku_block_status

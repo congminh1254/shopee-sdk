@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { LiveStreamManager } from "../../managers/livestream.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("LiveStreamManager (Generated Tests)", () => {
@@ -43,7 +43,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addItemList(exampleRequest as any);
+      const result = await manager.addItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -74,7 +74,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.applyItemSet(exampleRequest as any);
+      const result = await manager.applyItemSet(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -105,7 +105,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.banUserComment(exampleRequest as any);
+      const result = await manager.banUserComment(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -140,7 +140,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.createSession(exampleRequest as any);
+      const result = await manager.createSession(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -176,7 +176,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteItemList(exampleRequest as any);
+      const result = await manager.deleteItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -206,7 +206,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteShowItem(exampleRequest as any);
+      const result = await manager.deleteShowItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -236,7 +236,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.endSession(exampleRequest as any);
+      const result = await manager.endSession(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -269,7 +269,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemCount(exampleRequest as any);
+      const result = await manager.getItemCount(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -325,7 +325,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemList(exampleRequest as any);
+      const result = await manager.getItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -380,7 +380,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemSetItemList(exampleRequest as any);
+      const result = await manager.getItemSetItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -422,7 +422,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getItemSetList(exampleRequest as any);
+      const result = await manager.getItemSetList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -450,7 +450,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
           {
             comment_id: 273887178,
             content: "hello",
-            timestamp: "1747744785",
+            timestamp: 1747744785,
             user_id: 123,
             username: "user1",
           },
@@ -464,7 +464,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getLatestCommentList(exampleRequest as any);
+      const result = await manager.getLatestCommentList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -519,7 +519,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getLikeItemList(exampleRequest as any);
+      const result = await manager.getLikeItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -573,7 +573,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getRecentItemList(exampleRequest as any);
+      const result = await manager.getRecentItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -625,7 +625,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getSessionDetail(exampleRequest as any);
+      const result = await manager.getSessionDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -680,7 +680,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getSessionItemMetric(exampleRequest as any);
+      const result = await manager.getSessionItemMetric(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -724,7 +724,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getSessionMetric(exampleRequest as any);
+      const result = await manager.getSessionMetric(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -768,7 +768,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShowItem(exampleRequest as any);
+      const result = await manager.getShowItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -801,7 +801,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.postComment(exampleRequest as any);
+      const result = await manager.postComment(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -833,7 +833,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.startSession(exampleRequest as any);
+      const result = await manager.startSession(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -864,7 +864,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.unbanUserComment(exampleRequest as any);
+      const result = await manager.unbanUserComment(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -900,7 +900,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateItemList(exampleRequest as any);
+      const result = await manager.updateItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -934,7 +934,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateSession(exampleRequest as any);
+      const result = await manager.updateSession(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -966,7 +966,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateShowItem(exampleRequest as any);
+      const result = await manager.updateShowItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -998,7 +998,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.uploadImage(exampleRequest as any);
+      const result = await manager.uploadImage(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

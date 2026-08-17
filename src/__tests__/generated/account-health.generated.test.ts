@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { AccountHealthManager } from "../../managers/account-health.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AccountHealthManager (Generated Tests)", () => {
@@ -47,7 +47,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getLateOrders(exampleRequest as any);
+      const result = await manager.getLateOrders(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -86,7 +86,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getListingsWithIssues(exampleRequest as any);
+      const result = await manager.getListingsWithIssues(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -253,7 +253,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMetricSourceDetail(exampleRequest as any);
+      const result = await manager.getMetricSourceDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -279,7 +279,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
       const exampleResponse = {
         penalty_point_list: [
           {
-            issue_time: "1728552398",
+            issue_time: 1728552398,
             latest_point_num: 0,
             original_point_num: 1,
             reference_id: 764539404640322300,
@@ -296,7 +296,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPenaltyPointHistory(exampleRequest as any);
+      const result = await manager.getPenaltyPointHistory(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -342,7 +342,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPunishmentHistory(exampleRequest as any);
+      const result = await manager.getPunishmentHistory(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -393,7 +393,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopPerformance(exampleRequest as any);
+      const result = await manager.getShopPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

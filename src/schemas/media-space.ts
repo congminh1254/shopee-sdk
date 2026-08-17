@@ -37,7 +37,6 @@ export interface CancelVideoUploadRequest {
    * The ID of this upload session, returned in init_video_upload.
    */
   video_upload_id: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for cancel_video_upload
@@ -47,7 +46,6 @@ export interface CancelVideoUploadResponseData {
    * Warning message.
    */
   warning?: string;
-  [key: string]: any;
 }
 /**
  * Response payload for cancel_video_upload
@@ -63,7 +61,6 @@ export interface CompleteVideoUpload_ReportData {
    * Time used for uploading the video file via upload_video_part api, in milliseconds. For video upload performance tracking purpose.
    */
   upload_cost: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for complete_video_upload
@@ -80,7 +77,6 @@ export interface CompleteVideoUploadRequest {
    */
   part_seq_list: number[];
   report_data: CompleteVideoUpload_ReportData;
-  [key: string]: any;
 }
 /**
  * Response data payload for complete_video_upload
@@ -90,7 +86,6 @@ export interface CompleteVideoUploadResponseData {
    * Warning message.
    */
   warning?: string;
-  [key: string]: any;
 }
 /**
  * Response payload for complete_video_upload
@@ -105,7 +100,6 @@ export type CompleteVideoUploadResponse = FetchResponse<CompleteVideoUploadRespo
  */
 export interface GetVideoUploadResultRequest {
   video_upload_id: string;
-  [key: string]: any;
 }
 /**
  * GetVideoUploadResult_VideoUrl sub-interface for GetVideoUploadResult_VideoInfo
@@ -119,7 +113,6 @@ export interface GetVideoUploadResult_VideoUrl {
    * Video playback URL.
    */
   video_url?: string;
-  [key: string]: any;
 }
 /**
  * GetVideoUploadResult_ThumbnailUrl sub-interface for GetVideoUploadResult_VideoInfo
@@ -133,7 +126,6 @@ export interface GetVideoUploadResult_ThumbnailUrl {
    * Image display URL.
    */
   image_url?: string;
-  [key: string]: any;
 }
 /**
  * GetVideoUploadResult_VideoInfo sub-interface for GetVideoUploadResult_Response
@@ -151,7 +143,6 @@ export interface GetVideoUploadResult_VideoInfo {
    * Duration of this video, in seconds.
    */
   duration?: number;
-  [key: string]: any;
 }
 /**
  * GetVideoUploadResult_Response sub-interface for GetVideoUploadResultResponse
@@ -169,7 +160,6 @@ export interface GetVideoUploadResult_Response {
    * Detail error message if video uploading/transcoding failed.
    */
   message?: Message | string | number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_video_upload_result
@@ -197,7 +187,6 @@ export interface InitVideoUploadRequest {
    * size of video file, in bytes, maximum is 30MB
    */
   file_size: number;
-  [key: string]: any;
 }
 /**
  * InitVideoUpload_Response sub-interface for InitVideoUploadResponse
@@ -207,7 +196,6 @@ export interface InitVideoUpload_Response {
    * The identifier of this upload session, used in following video upload request and item creating and/or updating
    */
   video_upload_id?: VideoUploadId | string | number;
-  [key: string]: any;
 }
 /**
  * Response data payload for init_video_upload
@@ -239,7 +227,6 @@ export interface UploadImageRequest {
    * only applicable to whitelisted sellers.only support 1:1 and 3:4; 1:1 by default.
    */
   ratio?: string;
-  [key: string]: any;
 }
 /**
  * UploadImage_ImageUrl sub-interface for UploadImage_ImageInfo
@@ -253,7 +240,6 @@ export interface UploadImage_ImageUrl {
    * image url
    */
   image_url?: string;
-  [key: string]: any;
 }
 /**
  * UploadImage_ImageInfo sub-interface for UploadImage_Response
@@ -267,7 +253,6 @@ export interface UploadImage_ImageInfo {
    * Image URL of each region
    */
   image_url_list?: UploadImage_ImageUrl[];
-  [key: string]: any;
 }
 /**
  * UploadImage_UploadImage_ImageInfo sub-interface for UploadImage_Response
@@ -286,7 +271,6 @@ export interface UploadImage_UploadImage_ImageInfo {
    */
   message?: string;
   image_info?: UploadImage_ImageInfo;
-  [key: string]: any;
 }
 /**
  * UploadImage_Response sub-interface for UploadImageResponse
@@ -294,7 +278,6 @@ export interface UploadImage_UploadImage_ImageInfo {
 export interface UploadImage_Response {
   image_info?: UploadImage_ImageInfo;
   image_info_list?: UploadImage_UploadImage_ImageInfo[];
-  [key: string]: any;
 }
 /**
  * Response data payload for upload_image
@@ -330,7 +313,6 @@ export interface UploadVideoPartRequest {
    * The content of this part of file.  Part size should be exactly 4MB, except last part of file.
    */
   part_content: any;
-  [key: string]: any;
 }
 /**
  * Response data payload for upload_video_part
@@ -340,7 +322,6 @@ export interface UploadVideoPartResponseData {
    * Warning message.
    */
   warning?: string;
-  [key: string]: any;
 }
 /**
  * Response payload for upload_video_part

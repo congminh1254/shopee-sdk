@@ -10,7 +10,7 @@ import {
 } from "../../schemas/public.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PublicManager", () => {
@@ -43,14 +43,14 @@ describe("PublicManager", () => {
             {
               shop_id: 123456,
               region: "SG",
-              sip_affi_shops: [],
+              sip_affi_shop_list: [],
               auth_time: 1640995200,
               expire_time: 1672531200,
             },
             {
               shop_id: 789012,
               region: "SG",
-              sip_affi_shops: [],
+              sip_affi_shop_list: [],
               auth_time: 1640995200,
               expire_time: 1672531200,
             },
@@ -83,7 +83,7 @@ describe("PublicManager", () => {
             {
               shop_id: 123456,
               region: "SG",
-              sip_affi_shops: [],
+              sip_affi_shop_list: [],
               auth_time: 1640995200,
               expire_time: 1672531200,
             },

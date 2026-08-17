@@ -13,7 +13,7 @@ import {
 } from "../../schemas/media.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("MediaManager", () => {
@@ -42,20 +42,10 @@ describe("MediaManager", () => {
         error: "",
         message: "",
         response: {
-          image_info_list: [
+          image_list: [
             {
-              id: 0,
-              error: "",
-              message: "",
-              image_info: {
-                image_id: "test_image_id",
-                image_url_list: [
-                  {
-                    image_url_region: "SG",
-                    image_url: "https://cf.shopee.sg/file/test_image",
-                  },
-                ],
-              },
+              image_id: "test_image_id",
+              image_url: "https://cf.shopee.sg/file/test_image",
             },
           ],
         },
@@ -64,56 +54,40 @@ describe("MediaManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaManager.uploadImage({
-        image: Buffer.from("image-bytes"),
+        business: 1,
+        scene: 1,
+        images: [{ image_data: "image-bytes-base64" }],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_image", {
         method: "POST",
         auth: true,
         body: {
-          image: Buffer.from("image-bytes"),
+          business: 1,
+          scene: 1,
+          images: [{ image_data: "image-bytes-base64" }],
         },
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.image_info_list).toHaveLength(1);
-      expect(result.response.image_info_list[0].image_info.image_id).toBe("test_image_id");
+      expect(result.response.image_list).toHaveLength(1);
+      expect(result.response.image_list![0].image_id).toBe("test_image_id");
     });
 
     it("should upload multiple images with scene and ratio", async () => {
-      const mockResponse: any = {
+      const mockResponse: UploadImageResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          image_info_list: [
+          image_list: [
             {
-              id: 0,
-              error: "",
-              message: "",
-              image_info: {
-                image_id: "test_image_id_1",
-                image_url_list: [
-                  {
-                    image_url_region: "SG",
-                    image_url: "https://cf.shopee.sg/file/test_image_1",
-                  },
-                ],
-              },
+              image_id: "test_image_id_1",
+              image_url: "https://cf.shopee.sg/file/test_image_1",
             },
             {
-              id: 1,
-              error: "",
-              message: "",
-              image_info: {
-                image_id: "test_image_id_2",
-                image_url_list: [
-                  {
-                    image_url_region: "SG",
-                    image_url: "https://cf.shopee.sg/file/test_image_2",
-                  },
-                ],
-              },
+              image_id: "test_image_id_2",
+              image_url: "https://cf.shopee.sg/file/test_image_2",
             },
           ],
         },
@@ -122,44 +96,34 @@ describe("MediaManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaManager.uploadImage({
-        image: [Buffer.from("image1"), Buffer.from("image2")],
-        scene: "normal",
-        ratio: "1:1",
-      } as any);
+        business: 2,
+        scene: 1,
+        images: [Buffer.from("image1"), Buffer.from("image2")],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_image", {
         method: "POST",
         auth: true,
         body: {
-          image: [Buffer.from("image1"), Buffer.from("image2")],
-          scene: "normal",
-          ratio: "1:1",
+          business: 2,
+          scene: 1,
+          images: [Buffer.from("image1"), Buffer.from("image2")],
         },
       });
 
-      expect(result.response.image_info_list).toHaveLength(2);
+      expect(result.response.image_list).toHaveLength(2);
     });
 
     it("should upload description image without processing", async () => {
-      const mockResponse: any = {
+      const mockResponse: UploadImageResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          image_info_list: [
+          image_list: [
             {
-              id: 0,
-              error: "",
-              message: "",
-              image_info: {
-                image_id: "desc_image_id",
-                image_url_list: [
-                  {
-                    image_url_region: "SG",
-                    image_url: "https://cf.shopee.sg/file/desc_image",
-                  },
-                ],
-              },
+              image_id: "desc_image_id",
+              image_url: "https://cf.shopee.sg/file/desc_image",
             },
           ],
         },
@@ -168,20 +132,22 @@ describe("MediaManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaManager.uploadImage({
-        image: Buffer.from("desc-image-bytes"),
-        scene: "desc",
-      } as any);
+        business: 2,
+        scene: 1,
+        images: Buffer.from("desc-image-bytes"),
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_image", {
         method: "POST",
         auth: true,
         body: {
-          image: Buffer.from("desc-image-bytes"),
-          scene: "desc",
+          business: 2,
+          scene: 1,
+          images: Buffer.from("desc-image-bytes"),
         },
       });
 
-      expect(result.response.image_info_list[0].image_info.image_id).toBe("desc_image_id");
+      expect(result.response.image_list![0].image_id).toBe("desc_image_id");
     });
   });
 
@@ -199,16 +165,22 @@ describe("MediaManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaManager.initVideoUpload({
-        file_md5: "2abf0b6e5ff90ff24437a0808f171a93",
         file_size: 1261876,
+        business: 1,
+        scene: 1,
+        file_name: "test.mp4",
+        duration: 10,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/init_video_upload", {
         method: "POST",
         auth: true,
         body: {
-          file_md5: "2abf0b6e5ff90ff24437a0808f171a93",
           file_size: 1261876,
+          business: 1,
+          scene: 1,
+          file_name: "test.mp4",
+          duration: 10,
         },
       });
 
@@ -231,16 +203,22 @@ describe("MediaManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaManager.initVideoUpload({
-        file_md5: "abcdef1234567890",
         file_size: 30 * 1024 * 1024, // 30MB
+        business: 1,
+        scene: 1,
+        file_name: "test.mp4",
+        duration: 10,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/init_video_upload", {
         method: "POST",
         auth: true,
         body: {
-          file_md5: "abcdef1234567890",
           file_size: 30 * 1024 * 1024,
+          business: 1,
+          scene: 1,
+          file_name: "test.mp4",
+          duration: 10,
         },
       });
 
@@ -262,7 +240,7 @@ describe("MediaManager", () => {
       const result = await mediaManager.uploadVideoPart({
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
         part_seq: 0,
-        content_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
+        part_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
         part_content: Buffer.from("part0"),
       });
 
@@ -271,7 +249,7 @@ describe("MediaManager", () => {
         body: {
           video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
           part_seq: 0,
-          content_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
+          part_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
           part_content: Buffer.from("part0"),
         },
       });
@@ -295,7 +273,7 @@ describe("MediaManager", () => {
       await mediaManager.uploadVideoPart({
         video_upload_id: videoUploadId,
         part_seq: 0,
-        content_md5: "md5_part_0",
+        part_md5: "part_md5_0",
         part_content: Buffer.from("part0"),
       });
 
@@ -303,7 +281,7 @@ describe("MediaManager", () => {
       await mediaManager.uploadVideoPart({
         video_upload_id: videoUploadId,
         part_seq: 1,
-        content_md5: "md5_part_1",
+        part_md5: "part_md5_1",
         part_content: Buffer.from("part1"),
       });
 
@@ -313,7 +291,7 @@ describe("MediaManager", () => {
         body: {
           video_upload_id: videoUploadId,
           part_seq: 0,
-          content_md5: "md5_part_0",
+          part_md5: "part_md5_0",
           part_content: Buffer.from("part0"),
         },
       });
@@ -322,7 +300,7 @@ describe("MediaManager", () => {
         body: {
           video_upload_id: videoUploadId,
           part_seq: 1,
-          content_md5: "md5_part_1",
+          part_md5: "part_md5_1",
           part_content: Buffer.from("part1"),
         },
       });
@@ -342,20 +320,12 @@ describe("MediaManager", () => {
 
       const result = await mediaManager.completeVideoUpload({
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
-        part_seq_list: [0, 1, 2, 3],
-        report_data: {
-          upload_cost: 11832,
-        },
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/complete_video_upload", {
         method: "POST",
         body: {
           video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
-          part_seq_list: [0, 1, 2, 3],
-          report_data: {
-            upload_cost: 11832,
-          },
         },
       });
 
@@ -374,20 +344,12 @@ describe("MediaManager", () => {
 
       const result = await mediaManager.completeVideoUpload({
         video_upload_id: "sg_small_video_id",
-        part_seq_list: [0],
-        report_data: {
-          upload_cost: 2500,
-        },
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/complete_video_upload", {
         method: "POST",
         body: {
           video_upload_id: "sg_small_video_id",
-          part_seq_list: [0],
-          report_data: {
-            upload_cost: 2500,
-          },
         },
       });
 
@@ -403,28 +365,9 @@ describe("MediaManager", () => {
         message: "",
         response: {
           status: "SUCCEEDED",
-          message: "success",
           video_info: {
-            video_url_list: [
-              {
-                video_url_region: "SG",
-                video_url: "https://cvf.shopee.sg/file/ddb50833eee1c9fda5c522a2e6fc0ea6",
-              },
-              {
-                video_url_region: "VN",
-                video_url: "https://cvf.shopee.vn/file/ddb50833eee1c9fda5c522a2e6fc0ea6",
-              },
-            ],
-            thumbnail_url_list: [
-              {
-                image_url_region: "SG",
-                image_url: "https://cf.shopee.sg/file/75eba55932c987851abc39895047dd54",
-              },
-              {
-                image_url_region: "VN",
-                image_url: "https://cf.shopee.vn/file/75eba55932c987851abc39895047dd54",
-              },
-            ],
+            video_url: "https://cvf.shopee.sg/file/ddb50833eee1c9fda5c522a2e6fc0ea6",
+            video_thumbnail_url: "https://cf.shopee.sg/file/75eba55932c987851abc39895047dd54",
             duration: 15,
           },
         },
@@ -448,16 +391,16 @@ describe("MediaManager", () => {
       expect(result.response.status).toBe("SUCCEEDED");
       expect(result.response.video_info).toBeDefined();
       expect(result.response.video_info?.duration).toBe(15);
-      expect(result.response.video_info?.video_url_list).toHaveLength(2);
+      expect(result.response.video_info?.video_url).toBeDefined();
     });
 
-    it("should get video upload result with TRANSCODING status", async () => {
+    it("should get video upload result with PROCESSING status", async () => {
       const mockResponse: GetVideoUploadResultResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
         response: {
-          status: "TRANSCODING",
+          status: "PROCESSING",
         },
       };
 
@@ -467,7 +410,7 @@ describe("MediaManager", () => {
         video_upload_id: "sg_transcoding_video_id",
       });
 
-      expect(result.response.status).toBe("TRANSCODING");
+      expect(result.response.status).toBe("PROCESSING");
       expect(result.response.video_info).toBeUndefined();
     });
 
@@ -478,7 +421,7 @@ describe("MediaManager", () => {
         message: "",
         response: {
           status: "FAILED",
-          message: "Video is too short",
+          reason: "Video is too short",
         },
       };
 
@@ -489,7 +432,7 @@ describe("MediaManager", () => {
       });
 
       expect(result.response.status).toBe("FAILED");
-      expect(result.response.message).toBe("Video is too short");
+      expect(result.response.reason).toBe("Video is too short");
       expect(result.response.video_info).toBeUndefined();
     });
 

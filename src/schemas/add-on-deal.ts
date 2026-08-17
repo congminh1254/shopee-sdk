@@ -33,7 +33,6 @@ export interface AddAddOnDealRequest {
    * promotion_purchase_limit
    */
   promotion_purchase_limit?: number;
-  [key: string]: any;
 }
 /**
  * AddAddOnDeal_Response sub-interface for AddAddOnDealResponse
@@ -43,7 +42,6 @@ export interface AddAddOnDeal_Response {
    * Shopee's unique identifier for an add on deal activity.
    */
   add_on_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for add_add_on_deal
@@ -67,7 +65,6 @@ export interface AddAddOnDealMainItem_MainItem {
    * The status of add on deal item：enable = 1；disable =2
    */
   status: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for add_add_on_deal_main_item
@@ -83,7 +80,6 @@ export interface AddAddOnDealMainItemRequest {
    * The main items added in this add on deal promotion.
    */
   main_item_list: AddAddOnDealMainItem_MainItem[];
-  [key: string]: any;
 }
 /**
  * AddAddOnDealMainItem_AddAddOnDealMainItem_MainItem sub-interface for AddAddOnDealMainItem_Response
@@ -97,7 +93,6 @@ export interface AddAddOnDealMainItem_AddAddOnDealMainItem_MainItem {
    * The status of add on deal item：enable = 1；disable =2
    */
   status?: number;
-  [key: string]: any;
 }
 /**
  * AddAddOnDealMainItem_Response sub-interface for AddAddOnDealMainItemResponse
@@ -111,7 +106,6 @@ export interface AddAddOnDealMainItem_Response {
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for add_add_on_deal_main_item
@@ -147,7 +141,6 @@ export interface AddAddOnDealSubItem_SubItem {
    * The purchase limit of sub item.
    */
   sub_item_limit?: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for add_add_on_deal_sub_item
@@ -163,7 +156,6 @@ export interface AddAddOnDealSubItemRequest {
    * The sub items added in this add on deal promotion.
    */
   sub_item_list: AddAddOnDealSubItem_SubItem[];
-  [key: string]: any;
 }
 /**
  * AddAddOnDealSubItem_AddAddOnDealSubItem_SubItem sub-interface for AddAddOnDealSubItem_Response
@@ -183,7 +175,6 @@ export interface AddAddOnDealSubItem_AddAddOnDealSubItem_SubItem {
   model_id?: number;
   fail_error?: string;
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * AddAddOnDealSubItem_Response sub-interface for AddAddOnDealSubItemResponse
@@ -197,7 +188,6 @@ export interface AddAddOnDealSubItem_Response {
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for add_add_on_deal_sub_item
@@ -219,7 +209,6 @@ export interface DeleteAddOnDealRequest {
    * Shopee's unique identifier for an add on deal activity.
    */
   add_on_deal_id: number;
-  [key: string]: any;
 }
 /**
  * DeleteAddOnDeal_Response sub-interface for DeleteAddOnDealResponse
@@ -229,7 +218,6 @@ export interface DeleteAddOnDeal_Response {
    * Shopee's unique identifier for an add on deal activity.
    */
   add_on_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_add_on_deal
@@ -255,7 +243,6 @@ export interface DeleteAddOnDealMainItemRequest {
    * The main items added in this add on deal promotion.
    */
   main_item_list: number[];
-  [key: string]: any;
 }
 /**
  * DeleteAddOnDealMainItem_Response sub-interface for DeleteAddOnDealMainItemResponse
@@ -269,7 +256,6 @@ export interface DeleteAddOnDealMainItem_Response {
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_add_on_deal_main_item
@@ -293,7 +279,6 @@ export interface DeleteAddOnDealSubItem_SubItem {
    * Shopee's unique identifier for a model.
    */
   model_id?: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for delete_add_on_deal_sub_item
@@ -309,7 +294,6 @@ export interface DeleteAddOnDealSubItemRequest {
    * The sub items added in this add on deal promotion.
    */
   sub_item_list: DeleteAddOnDealSubItem_SubItem[];
-  [key: string]: any;
 }
 /**
  * DeleteAddOnDealSubItem_DeleteAddOnDealSubItem_SubItem sub-interface for DeleteAddOnDealSubItem_Response
@@ -325,7 +309,6 @@ export interface DeleteAddOnDealSubItem_DeleteAddOnDealSubItem_SubItem {
   model_id?: number;
   fail_error?: string;
   fail_message?: string;
-  [key: string]: any;
 }
 /**
  * DeleteAddOnDealSubItem_Response sub-interface for DeleteAddOnDealSubItemResponse
@@ -339,7 +322,6 @@ export interface DeleteAddOnDealSubItem_Response {
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_add_on_deal_sub_item
@@ -361,7 +343,6 @@ export interface EndAddOnDealRequest {
    * The identifier of the API request for error tracking
    */
   add_on_deal_id: number;
-  [key: string]: any;
 }
 /**
  * EndAddOnDeal_Response sub-interface for EndAddOnDealResponse
@@ -371,7 +352,6 @@ export interface EndAddOnDeal_Response {
    * The identifier of the API request for error tracking
    */
   add_on_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for end_add_on_deal
@@ -393,7 +373,6 @@ export interface GetAddOnDealRequest {
    * Shopee's unique identifier for an add on deal activity.
    */
   add_on_deal_id: number;
-  [key: string]: any;
 }
 /**
  * GetAddOnDeal_Response sub-interface for GetAddOnDealResponse
@@ -436,7 +415,6 @@ export interface GetAddOnDeal_Response {
    */
   add_on_deal_name?: string;
   source?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_add_on_deal
@@ -466,7 +444,6 @@ export interface GetAddOnDealListRequest {
    * The default page size is 100
    */
   page_size?: number;
-  [key: string]: any;
 }
 /**
  * GetAddOnDealList_AddOnDeal sub-interface for GetAddOnDealList_Response
@@ -512,7 +489,6 @@ export interface GetAddOnDealList_AddOnDeal {
    * The display sequence of sub item in buyer side
    */
   sub_item_prioriry?: number[];
-  [key: string]: any;
 }
 /**
  * GetAddOnDealList_Response sub-interface for GetAddOnDealListResponse
@@ -526,7 +502,6 @@ export interface GetAddOnDealList_Response {
    * This is to indicate whether the promotion list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of promotions.
    */
   more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_add_on_deal_list
@@ -548,7 +523,6 @@ export interface GetAddOnDealMainItemRequest {
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id: number;
-  [key: string]: any;
 }
 /**
  * GetAddOnDealMainItem_MainItem sub-interface for GetAddOnDealMainItem_Response
@@ -562,7 +536,6 @@ export interface GetAddOnDealMainItem_MainItem {
    * The status of add on deal item：enable = 1；disable =2
    */
   status?: number;
-  [key: string]: any;
 }
 /**
  * GetAddOnDealMainItem_Response sub-interface for GetAddOnDealMainItemResponse
@@ -576,7 +549,6 @@ export interface GetAddOnDealMainItem_Response {
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_add_on_deal_main_item
@@ -598,7 +570,6 @@ export interface GetAddOnDealSubItemRequest {
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id: number;
-  [key: string]: any;
 }
 /**
  * GetAddOnDealSubItem_Price sub-interface for GetAddOnDealSubItem_SubItem
@@ -612,7 +583,6 @@ export interface GetAddOnDealSubItem_Price {
    * Add-on discount price after tax
    */
   promo_price?: number;
-  [key: string]: any;
 }
 /**
  * GetAddOnDealSubItem_SubItem sub-interface for GetAddOnDealSubItem_Response
@@ -635,7 +605,6 @@ export interface GetAddOnDealSubItem_SubItem {
    */
   model_id?: number;
   price?: GetAddOnDealSubItem_Price;
-  [key: string]: any;
 }
 /**
  * GetAddOnDealSubItem_Response sub-interface for GetAddOnDealSubItemResponse
@@ -649,7 +618,6 @@ export interface GetAddOnDealSubItem_Response {
    * Shopee's unique identifier for add on deal activity.
    */
   add_on_deal_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_add_on_deal_sub_item
@@ -699,7 +667,6 @@ export interface UpdateAddOnDealRequest {
    * Title of the add on deal
    */
   add_on_deal_name?: string;
-  [key: string]: any;
 }
 /**
  * UpdateAddOnDeal_Response sub-interface for UpdateAddOnDealResponse
@@ -737,7 +704,6 @@ export interface UpdateAddOnDeal_Response {
    * Title of the add on deal
    */
   add_on_deal_name?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_add_on_deal
@@ -761,7 +727,6 @@ export interface UpdateAddOnDealMainItem_MainItem {
    * The status of add on deal item：enable = 1；disable =2
    */
   status: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for update_add_on_deal_main_item
@@ -777,7 +742,6 @@ export interface UpdateAddOnDealMainItemRequest {
    * The main items added in this add on deal promotion.
    */
   main_item_list: UpdateAddOnDealMainItem_MainItem[];
-  [key: string]: any;
 }
 /**
  * UpdateAddOnDealMainItem_UpdateAddOnDealMainItem_MainItem sub-interface for UpdateAddOnDealMainItem_Response
@@ -791,7 +755,6 @@ export interface UpdateAddOnDealMainItem_UpdateAddOnDealMainItem_MainItem {
    * The status of add on deal item：enable = 1；disable =2
    */
   status?: number;
-  [key: string]: any;
 }
 /**
  * UpdateAddOnDealMainItem_Response sub-interface for UpdateAddOnDealMainItemResponse
@@ -801,7 +764,6 @@ export interface UpdateAddOnDealMainItem_Response {
    * The main items added in this add on deal promotion.
    */
   main_item_list?: UpdateAddOnDealMainItem_UpdateAddOnDealMainItem_MainItem[];
-  [key: string]: any;
 }
 /**
  * Response data payload for update_add_on_deal_main_item
@@ -837,7 +799,6 @@ export interface UpdateAddOnDealSubItem_SubItem {
    * The purchase limit of sub item.The purchase limit of each sub item. Only the add on discount can be set and the default limit of gift with mini.spend is 1
    */
   sub_item_limit?: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for update_add_on_deal_sub_item
@@ -853,7 +814,6 @@ export interface UpdateAddOnDealSubItemRequest {
    * The sub items added in this add on deal promotion.
    */
   sub_item_list: UpdateAddOnDealSubItem_SubItem[];
-  [key: string]: any;
 }
 /**
  * UpdateAddOnDealSubItem_UpdateAddOnDealSubItem_SubItem sub-interface for UpdateAddOnDealSubItem_Response
@@ -881,7 +841,6 @@ export interface UpdateAddOnDealSubItem_UpdateAddOnDealSubItem_SubItem {
    * The purchase limit of sub item.The purchase limit of each sub item. Only the add on discount can be set and the default limit of gift with mini.spend is 1
    */
   sub_item_limit?: number;
-  [key: string]: any;
 }
 /**
  * UpdateAddOnDealSubItem_Response sub-interface for UpdateAddOnDealSubItemResponse
@@ -891,7 +850,6 @@ export interface UpdateAddOnDealSubItem_Response {
    * The sub items added in this add on deal promotion.
    */
   sub_item_list?: UpdateAddOnDealSubItem_UpdateAddOnDealSubItem_SubItem[];
-  [key: string]: any;
 }
 /**
  * Response data payload for update_add_on_deal_sub_item

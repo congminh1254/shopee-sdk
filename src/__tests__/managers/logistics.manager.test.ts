@@ -9,7 +9,6 @@ import {
   GetPauseStatusResponse,
   GetShippingParameterResponse,
   GetTrackingNumberResponse,
-  SetPauseStatusResponse,
   ShipOrderResponse,
   GetAddressListResponse,
   CheckPolygonUpdateStatusResponse,
@@ -19,7 +18,7 @@ import {
 import { LogisticsStatus, TrackingLogisticsStatus } from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("LogisticsManager", () => {
@@ -50,34 +49,34 @@ describe("LogisticsManager", () => {
         response: {
           order_sn: "220101000000001",
           package_number: "PKG123456789",
-          logistics_status: "LOGISTICS_DELIVERED" as any,
+          logistics_status: "LOGISTICS_DELIVERED",
           collection_pin_code: "562891",
           tracking_info: [
             {
               update_time: 1640995200,
               description: "Package has been delivered",
-              logistics_status: "LOGISTICS_DELIVERED" as any,
+              logistics_status: "LOGISTICS_DELIVERED",
               return_code: "1234",
             },
             {
               update_time: 1640995100,
               description: "Package is out for delivery",
-              logistics_status: "LOGISTICS_DELIVERY" as any,
+              logistics_status: "LOGISTICS_DELIVERY",
             },
             {
               update_time: 1640995000,
               description: "Package has arrived at delivery station",
-              logistics_status: "LOGISTICS_ARRIVAL" as any,
+              logistics_status: "LOGISTICS_ARRIVAL",
             },
             {
               update_time: 1640994900,
               description: "Package is in transit",
-              logistics_status: "LOGISTICS_PICKUP_DONE" as any,
+              logistics_status: "LOGISTICS_PICKUP_DONE",
             },
             {
               update_time: 1640994800,
               description: "Package has been picked up",
-              logistics_status: "LOGISTICS_PICKUP_RETRY" as any,
+              logistics_status: "LOGISTICS_PICKUP_RETRY",
             },
           ],
         },
@@ -110,17 +109,17 @@ describe("LogisticsManager", () => {
         response: {
           order_sn: "220101000000002",
           package_number: "",
-          logistics_status: "LOGISTICS_PICKUP_DONE" as any,
+          logistics_status: "LOGISTICS_PICKUP_DONE",
           tracking_info: [
             {
               update_time: 1640995000,
               description: "Package has been picked up by courier",
-              logistics_status: "LOGISTICS_PICKUP_DONE" as any,
+              logistics_status: "LOGISTICS_PICKUP_DONE",
             },
             {
               update_time: 1640994900,
               description: "Package is ready for pickup",
-              logistics_status: "LOGISTICS_PICKUP_RETRY" as any,
+              logistics_status: "LOGISTICS_PICKUP_RETRY",
             },
           ],
         },
@@ -151,7 +150,7 @@ describe("LogisticsManager", () => {
         response: {
           order_sn: "220101000000003",
           package_number: "PKG987654321",
-          logistics_status: "LOGISTICS_REQUEST_CREATED" as any,
+          logistics_status: "LOGISTICS_REQUEST_CREATED",
           tracking_info: [],
         },
       };
@@ -179,7 +178,7 @@ describe("LogisticsManager", () => {
 
   describe("getChannelList", () => {
     it("should get list of available logistics channels", async () => {
-      const mockResponse: SetPauseStatusResponse = {
+      const mockResponse: GetChannelListResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -212,7 +211,7 @@ describe("LogisticsManager", () => {
               logistics_description: "Shopee Self Collect operating hours",
               block_seller_cover_shipping_fee: false,
               support_cross_border: false,
-              seller_logistic_has_configuration: null,
+              seller_logistic_has_configuration: false,
               logistics_capability: {
                 seller_logistics: false,
               },
@@ -245,14 +244,14 @@ describe("LogisticsManager", () => {
               logistics_description: "J&T branches operating hours",
               block_seller_cover_shipping_fee: false,
               support_cross_border: false,
-              seller_logistic_has_configuration: null,
+              seller_logistic_has_configuration: false,
               logistics_capability: {
                 seller_logistics: false,
               },
             },
           ],
         },
-      } as any as any;
+      };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -328,15 +327,15 @@ describe("LogisticsManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await logisticsManager.setPauseStatus({ is_paused: false } as any);
+      const result = await logisticsManager.setPauseStatus({ is_paused: "resume" });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/set_pause_status", {
         method: "POST",
         auth: true,
         body: {
-          is_paused: false,
+          is_paused: "resume",
         },
-      } as any);
+      });
       expect(result).toEqual(mockResponse);
     });
   });
@@ -672,9 +671,7 @@ describe("LogisticsManager", () => {
               town: "Downtown",
               address: "123 Main Street",
               zipcode: "123456",
-              address_flag: ["default_address", "pickup_address"],
-              address_status: "ACTIVE",
-              full_address: "123 Main Street, Downtown, Central, Singapore, Singapore 123456",
+              address_type: "DEFAULT_ADDRESS",
             },
             {
               address_id: 1174,
@@ -685,9 +682,7 @@ describe("LogisticsManager", () => {
               town: "Jurong",
               address: "456 West Avenue",
               zipcode: "654321",
-              address_flag: ["return_address"],
-              address_status: "ACTIVE",
-              full_address: "456 West Avenue, Jurong, West, Singapore, Singapore 654321",
+              address_type: "RETURN_ADDRESS",
             },
           ],
         },
@@ -759,7 +754,7 @@ describe("LogisticsManager", () => {
 
       await logisticsManager.massShipOrder({
         logistics_channel_id: 123,
-        package_list: [{ order_sn: "ORDER1", package_number: "PKG1" }],
+        package_list: [{ package_number: "PKG1" }],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/mass_ship_order", {
@@ -767,7 +762,7 @@ describe("LogisticsManager", () => {
         auth: true,
         body: {
           logistics_channel_id: 123,
-          package_list: [{ order_sn: "ORDER1", package_number: "PKG1" }],
+          package_list: [{ package_number: "PKG1" }],
         },
       });
     });
@@ -955,8 +950,13 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.createShippingDocument({
-        order_list: [{ order_sn: "ORDER1", tracking_number: "TRK123" }],
-        shipping_document_type: "NORMAL_AIR_WAYBILL",
+        order_list: [
+          {
+            order_sn: "ORDER1",
+            tracking_number: "TRK123",
+            shipping_document_type: "NORMAL_AIR_WAYBILL",
+          },
+        ],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -966,8 +966,13 @@ describe("LogisticsManager", () => {
           method: "POST",
           auth: true,
           body: {
-            order_list: [{ order_sn: "ORDER1", tracking_number: "TRK123" }],
-            shipping_document_type: "NORMAL_AIR_WAYBILL",
+            order_list: [
+              {
+                order_sn: "ORDER1",
+                tracking_number: "TRK123",
+                shipping_document_type: "NORMAL_AIR_WAYBILL",
+              },
+            ],
           },
         }
       );
@@ -999,8 +1004,7 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.getShippingDocumentResult({
-        order_list: [{ order_sn: "ORDER1" }],
-        shipping_document_type: "NORMAL_AIR_WAYBILL",
+        order_list: [{ order_sn: "ORDER1", shipping_document_type: "NORMAL_AIR_WAYBILL" }],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
@@ -1035,7 +1039,7 @@ describe("LogisticsManager", () => {
       await logisticsManager.downloadBookingShippingDocument({
         booking_list: [{ booking_sn: "BOOKING1" }],
         shipping_document_type: "NORMAL_AIR_WAYBILL",
-      } as any);
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1046,7 +1050,7 @@ describe("LogisticsManager", () => {
 
       await logisticsManager.getBookingShippingDocumentParameter({
         booking_list: [{ booking_sn: "BOOKING1" }],
-      } as any);
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1057,7 +1061,7 @@ describe("LogisticsManager", () => {
 
       await logisticsManager.getBookingShippingDocumentResult({
         booking_list: [{ booking_sn: "BOOKING1", shipping_document_type: "NORMAL_AIR_WAYBILL" }],
-      } as any);
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1084,9 +1088,9 @@ describe("LogisticsManager", () => {
 
       await logisticsManager.createShippingDocumentJob({
         shipping_document_type: "NORMAL_AIR_WAYBILL",
-        unpackaged_sku_requests: [{ order_sn: "ORDER1", unpackaged_sku_id: "SKU1" }],
-        package_list: [{ order_sn: "ORDER1" }],
-      } as any);
+        unpackaged_sku_requests: [{ unpackaged_sku_id: "SKU1", quantity: 1 }],
+        package_list: ["PACKAGE1"],
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1113,7 +1117,7 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.downloadToLabel({ sorting_group: "GROUP_A", quantity: 1 } as any);
+      await logisticsManager.downloadToLabel({ sorting_group: 1, quantity: 1 });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1133,7 +1137,10 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.updateShippingOrder({ order_sn: "ORDER1" });
+      await logisticsManager.updateShippingOrder({
+        order_sn: "ORDER1",
+        pickup: { address_id: 1, pickup_time_id: "time1" },
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1142,7 +1149,10 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.updateTrackingStatus({ order_sn: "ORDER1" });
+      await logisticsManager.updateTrackingStatus({
+        order_sn: "ORDER1",
+        logistics_status: "PICKUP_DONE",
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1194,7 +1204,7 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.deleteSpecialOperatingHour({});
+      await logisticsManager.deleteSpecialOperatingHour({ name: "New Year" });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1205,7 +1215,7 @@ describe("LogisticsManager", () => {
       const mockResponse = { request_id: "test", error: "", message: "", response: {} };
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      await logisticsManager.getMartPackagingInfo({ order_sn: "ORDER1" } as any);
+      await logisticsManager.getMartPackagingInfo();
 
       expect(mockShopeeFetch).toHaveBeenCalled();
     });
@@ -1226,7 +1236,15 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       await logisticsManager.batchUpdateTpfWarehouseTrackingStatus({
-        package_list: [{ package_number: "PKG1", tracking_status: "DELIVERED" }],
+        tpf_name: "TPF1",
+        tpf_tracking_status: "DELIVERED",
+        package_list: [
+          {
+            package_number: "PKG1",
+            order_sn: "ORDER1",
+            update_time: 1234567890,
+          },
+        ],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalled();
@@ -1356,9 +1374,8 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await logisticsManager.uploadServiceablePolygon({
-        address_id: 12345,
-        kml_content: '<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>',
-      } as any);
+        file: '<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>',
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1367,8 +1384,7 @@ describe("LogisticsManager", () => {
           method: "POST",
           auth: true,
           body: {
-            address_id: 12345,
-            kml_content: '<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>',
+            file: '<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>',
           },
         }
       );
@@ -1387,9 +1403,8 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await logisticsManager.uploadServiceablePolygon({
-        address_id: 12345,
-        kml_content: "invalid kml",
-      } as any);
+        file: "invalid kml",
+      });
 
       expect(result.error).toBe("error_invalid_kml");
       expect(result.message).toBe("KML file contains invalid polygon data");

@@ -8,7 +8,6 @@ export interface AddTopPicksRequest {
   name: string;
   item_id_list: number[];
   is_activated: boolean;
-  [key: string]: any;
 }
 /**
  * AddTopPicks_Item sub-interface for AddTopPicks_Collection
@@ -34,7 +33,6 @@ export interface AddTopPicks_Item {
    * The sales of item.
    */
   sales?: number;
-  [key: string]: any;
 }
 /**
  * AddTopPicks_Collection sub-interface for AddTopPicks_Response
@@ -56,7 +54,6 @@ export interface AddTopPicks_Collection {
    * The title of top picks.
    */
   name?: string;
-  [key: string]: any;
 }
 /**
  * AddTopPicks_Response sub-interface for AddTopPicksResponse
@@ -66,7 +63,6 @@ export interface AddTopPicks_Response {
    * The top picks list in this shop.
    */
   collection_list?: AddTopPicks_Collection[];
-  [key: string]: any;
 }
 /**
  * Response data payload for add_top_picks
@@ -88,7 +84,6 @@ export interface DeleteTopPicksRequest {
    * collection id
    */
   top_picks_id: number;
-  [key: string]: any;
 }
 /**
  * DeleteTopPicks_Response sub-interface for DeleteTopPicksResponse
@@ -98,7 +93,6 @@ export interface DeleteTopPicks_Response {
    * collection id
    */
   top_picks_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_top_picks
@@ -140,7 +134,6 @@ export interface GetTopPicksList_Item {
    * The sales of  item.
    */
   sales?: number;
-  [key: string]: any;
 }
 /**
  * GetTopPicksList_Collection sub-interface for GetTopPicksList_Response
@@ -162,7 +155,6 @@ export interface GetTopPicksList_Collection {
    * The title of  top picks.
    */
   name?: string;
-  [key: string]: any;
 }
 /**
  * GetTopPicksList_Response sub-interface for GetTopPicksListResponse
@@ -172,7 +164,6 @@ export interface GetTopPicksList_Response {
    * The top picks list in this shop.
    */
   collection_list?: GetTopPicksList_Collection[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_top_picks_list
@@ -206,7 +197,6 @@ export interface UpdateTopPicksRequest {
    * if true, we will close other collection and open this collection
    */
   is_activated?: boolean;
-  [key: string]: any;
 }
 /**
  * UpdateTopPicks_Item sub-interface for UpdateTopPicks_Collection
@@ -232,7 +222,6 @@ export interface UpdateTopPicks_Item {
    * The sales of item.
    */
   sales?: number;
-  [key: string]: any;
 }
 /**
  * UpdateTopPicks_Collection sub-interface for UpdateTopPicks_Response
@@ -254,7 +243,6 @@ export interface UpdateTopPicks_Collection {
    * collection name
    */
   name?: string;
-  [key: string]: any;
 }
 /**
  * UpdateTopPicks_Response sub-interface for UpdateTopPicksResponse
@@ -264,7 +252,6 @@ export interface UpdateTopPicks_Response {
    * The top picks list in this shop.
    */
   collection_list?: UpdateTopPicks_Collection[];
-  [key: string]: any;
 }
 /**
  * Response data payload for update_top_picks

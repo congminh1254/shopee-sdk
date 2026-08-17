@@ -19,7 +19,6 @@ export interface AddItemList_Item {
    * The shop id of this item.
    */
   shop_id: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for add_item_list
@@ -35,7 +34,6 @@ export interface AddItemListRequest {
    * The list of item to add.
    */
   item_list: AddItemList_Item[];
-  [key: string]: any;
 }
 /**
  * Response data payload for add_item_list
@@ -61,7 +59,6 @@ export interface ApplyItemSetRequest {
    * List of item set id to apply.
    */
   item_set_ids: number[];
-  [key: string]: any;
 }
 /**
  * Response data payload for apply_item_set
@@ -87,7 +84,6 @@ export interface BanUserCommentRequest {
    * The user id that will be banned from posting comments.
    */
   ban_user_id: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for ban_user_comment
@@ -121,7 +117,6 @@ export interface CreateSessionRequest {
    * Indicate whether the livestream session is for testing purpose only.
    */
   is_test?: boolean;
-  [key: string]: any;
 }
 /**
  * CreateSession_Response sub-interface for CreateSessionResponse
@@ -131,7 +126,6 @@ export interface CreateSession_Response {
    * The identifier of livestream session.
    */
   session_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for create_session
@@ -155,7 +149,6 @@ export interface DeleteItemList_Item {
    * The shop id of this item.
    */
   shop_id: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for delete_item_list
@@ -171,7 +164,6 @@ export interface DeleteItemListRequest {
    * The list of item to delete.
    */
   item_list: DeleteItemList_Item[];
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_item_list
@@ -193,7 +185,6 @@ export interface DeleteShowItemRequest {
    * The identifier of livestream session.
    */
   session_id: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_show_item
@@ -215,7 +206,6 @@ export interface EndSessionRequest {
    * The identifier of livestream session.
    */
   session_id: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for end_session
@@ -237,7 +227,6 @@ export interface GetItemCountRequest {
    * The identifier of livestream session.
    */
   session_id: number;
-  [key: string]: any;
 }
 /**
  * GetItemCount_Response sub-interface for GetItemCountResponse
@@ -251,7 +240,6 @@ export interface GetItemCount_Response {
    * The maximum number of items allowed in the shopping bag of this session.
    */
   max_item_count?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_item_count
@@ -281,7 +269,6 @@ export interface GetItemListRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetItemList_PriceInfo sub-interface for GetItemList_List
@@ -299,7 +286,6 @@ export interface GetItemList_PriceInfo {
    * The original price of the item in the listing currency.
    */
   original_price?: number;
-  [key: string]: any;
 }
 /**
  * GetItemList_AffiliateInfo sub-interface for GetItemList_List
@@ -325,7 +311,6 @@ export interface GetItemList_AffiliateInfo {
    * Campaign end time, it's unix timestamp in seconds.
    */
   campaign_end_time?: number;
-  [key: string]: any;
 }
 /**
  * GetItemList_List sub-interface for GetItemList_Response
@@ -353,7 +338,6 @@ export interface GetItemList_List {
   image_url?: string;
   price_info?: GetItemList_PriceInfo;
   affiliate_info?: GetItemList_AffiliateInfo;
-  [key: string]: any;
 }
 /**
  * GetItemList_Response sub-interface for GetItemListResponse
@@ -368,7 +352,6 @@ export interface GetItemList_Response {
    */
   next_offset?: number;
   list?: GetItemList_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_item_list
@@ -398,7 +381,6 @@ export interface GetItemSetItemListRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetItemSetItemList_PriceInfo sub-interface for GetItemSetItemList_List
@@ -416,7 +398,6 @@ export interface GetItemSetItemList_PriceInfo {
    * The original price of the item in the listing currency.
    */
   original_price?: number;
-  [key: string]: any;
 }
 /**
  * GetItemSetItemList_AffiliateInfo sub-interface for GetItemSetItemList_List
@@ -442,7 +423,6 @@ export interface GetItemSetItemList_AffiliateInfo {
    * Campaign end time, it's unix timestamp in seconds.
    */
   campaign_end_time?: number;
-  [key: string]: any;
 }
 /**
  * GetItemSetItemList_List sub-interface for GetItemSetItemList_Response
@@ -466,7 +446,6 @@ export interface GetItemSetItemList_List {
   image_url?: string;
   price_info?: GetItemSetItemList_PriceInfo;
   affiliate_info?: GetItemSetItemList_AffiliateInfo;
-  [key: string]: any;
 }
 /**
  * GetItemSetItemList_Response sub-interface for GetItemSetItemListResponse
@@ -481,7 +460,6 @@ export interface GetItemSetItemList_Response {
    */
   next_offset?: number;
   list?: GetItemSetItemList_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_item_set_item_list
@@ -511,7 +489,6 @@ export interface GetItemSetListRequest {
    * Search the item set with it's name matching the keyword.
    */
   keyword?: string;
-  [key: string]: any;
 }
 /**
  * GetItemSetList_List sub-interface for GetItemSetList_Response
@@ -529,7 +506,6 @@ export interface GetItemSetList_List {
    * The number of items in this item set.
    */
   item_count?: number;
-  [key: string]: any;
 }
 /**
  * GetItemSetList_Response sub-interface for GetItemSetListResponse
@@ -544,7 +520,6 @@ export interface GetItemSetList_Response {
    */
   next_offset?: number;
   list?: GetItemSetList_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_item_set_list
@@ -570,7 +545,6 @@ export interface GetLatestCommentListRequest {
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
   offset?: number;
-  [key: string]: any;
 }
 /**
  * GetLatestCommentList_List sub-interface for GetLatestCommentList_Response
@@ -596,7 +570,6 @@ export interface GetLatestCommentList_List {
    * The username of the one who posted comment.
    */
   username?: string;
-  [key: string]: any;
 }
 /**
  * GetLatestCommentList_Response sub-interface for GetLatestCommentListResponse
@@ -607,7 +580,6 @@ export interface GetLatestCommentList_Response {
    */
   next_offset?: number;
   list?: GetLatestCommentList_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_latest_comment_list
@@ -637,7 +609,6 @@ export interface GetLikeItemListRequest {
    * Search items with name matching this keyword.
    */
   keyword?: string;
-  [key: string]: any;
 }
 /**
  * GetLikeItemList_PriceInfo sub-interface for GetLikeItemList_List
@@ -655,7 +626,6 @@ export interface GetLikeItemList_PriceInfo {
    * The original price of the item in the listing currency.
    */
   original_price?: number;
-  [key: string]: any;
 }
 /**
  * GetLikeItemList_AffiliateInfo sub-interface for GetLikeItemList_List
@@ -681,7 +651,6 @@ export interface GetLikeItemList_AffiliateInfo {
    * Campaign end time, it's unix timestamp in seconds.
    */
   campaign_end_time?: number;
-  [key: string]: any;
 }
 /**
  * GetLikeItemList_List sub-interface for GetLikeItemList_Response
@@ -705,7 +674,6 @@ export interface GetLikeItemList_List {
   image_url?: string;
   price_info?: GetLikeItemList_PriceInfo;
   affiliate_info?: GetLikeItemList_AffiliateInfo;
-  [key: string]: any;
 }
 /**
  * GetLikeItemList_Response sub-interface for GetLikeItemListResponse
@@ -720,7 +688,6 @@ export interface GetLikeItemList_Response {
    */
   next_offset?: number;
   list?: GetLikeItemList_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_like_item_list
@@ -746,7 +713,6 @@ export interface GetRecentItemListRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetRecentItemList_PriceInfo sub-interface for GetRecentItemList_List
@@ -764,7 +730,6 @@ export interface GetRecentItemList_PriceInfo {
    * The original price of the item in the listing currency.
    */
   original_price?: number;
-  [key: string]: any;
 }
 /**
  * GetRecentItemList_AffiliateInfo sub-interface for GetRecentItemList_List
@@ -790,7 +755,6 @@ export interface GetRecentItemList_AffiliateInfo {
    * Campaign end time, it's unix timestamp in seconds.
    */
   campaign_end_time?: number;
-  [key: string]: any;
 }
 /**
  * GetRecentItemList_List sub-interface for GetRecentItemList_Response
@@ -814,7 +778,6 @@ export interface GetRecentItemList_List {
   image_url?: string;
   price_info?: GetRecentItemList_PriceInfo;
   affiliate_info?: GetRecentItemList_AffiliateInfo;
-  [key: string]: any;
 }
 /**
  * GetRecentItemList_Response sub-interface for GetRecentItemListResponse
@@ -829,7 +792,6 @@ export interface GetRecentItemList_Response {
    */
   next_offset?: number;
   list?: GetRecentItemList_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_recent_item_list
@@ -851,7 +813,6 @@ export interface GetSessionDetailRequest {
    * The identifier of livestream session.
    */
   session_id: number;
-  [key: string]: any;
 }
 /**
  * GetSessionDetail_StreamUrl sub-interface for GetSessionDetail_Response
@@ -873,7 +834,6 @@ export interface GetSessionDetail_StreamUrl {
    * The identifier of the stream domain, need to be passed in request for v2.livestream.start_session.
    */
   domain_id?: number;
-  [key: string]: any;
 }
 /**
  * GetSessionDetail_Response sub-interface for GetSessionDetailResponse
@@ -924,7 +884,6 @@ export interface GetSessionDetail_Response {
    */
   end_time?: number;
   stream_url_list?: GetSessionDetail_StreamUrl[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_session_detail
@@ -954,7 +913,6 @@ export interface GetSessionItemMetricRequest {
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. The limit of page_size if between 1 and 100.
    */
   page_size: number;
-  [key: string]: any;
 }
 /**
  * GetSessionItemMetric_PriceInfo sub-interface for GetSessionItemMetric_Item
@@ -972,7 +930,6 @@ export interface GetSessionItemMetric_PriceInfo {
    * The original price of the item in the listing currency.
    */
   original_price?: number;
-  [key: string]: any;
 }
 /**
  * GetSessionItemMetric_Item sub-interface for GetSessionItemMetric_List
@@ -995,7 +952,6 @@ export interface GetSessionItemMetric_Item {
    */
   image_url?: string;
   price_info?: GetSessionItemMetric_PriceInfo;
-  [key: string]: any;
 }
 /**
  * GetSessionItemMetric_Metric sub-interface for GetSessionItemMetric_List
@@ -1013,7 +969,6 @@ export interface GetSessionItemMetric_Metric {
    * Number of product sold.
    */
   sold_items?: number;
-  [key: string]: any;
 }
 /**
  * GetSessionItemMetric_List sub-interface for GetSessionItemMetric_Response
@@ -1021,7 +976,6 @@ export interface GetSessionItemMetric_Metric {
 export interface GetSessionItemMetric_List {
   item?: GetSessionItemMetric_Item;
   metric?: GetSessionItemMetric_Metric;
-  [key: string]: any;
 }
 /**
  * GetSessionItemMetric_Response sub-interface for GetSessionItemMetricResponse
@@ -1036,7 +990,6 @@ export interface GetSessionItemMetric_Response {
    */
   next_offset?: number;
   list?: GetSessionItemMetric_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_session_item_metric
@@ -1058,7 +1011,6 @@ export interface GetSessionMetricRequest {
    * The identifier of livestream session.
    */
   session_id: number;
-  [key: string]: any;
 }
 /**
  * GetSessionMetric_Response sub-interface for GetSessionMetricResponse
@@ -1116,7 +1068,6 @@ export interface GetSessionMetric_Response {
    * Average of Viewer duration watching in the stream.
    */
   avg_viewing_duration?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_session_metric
@@ -1138,7 +1089,6 @@ export interface GetShowItemRequest {
    * The identifier of livestream session.
    */
   session_id: number;
-  [key: string]: any;
 }
 /**
  * GetShowItem_PriceInfo sub-interface for GetShowItem_Item
@@ -1156,7 +1106,6 @@ export interface GetShowItem_PriceInfo {
    * The original price of the item in the listing currency.
    */
   original_price?: number;
-  [key: string]: any;
 }
 /**
  * GetShowItem_Item sub-interface for GetShowItem_Response
@@ -1183,7 +1132,6 @@ export interface GetShowItem_Item {
    */
   image_url?: string;
   price_info?: GetShowItem_PriceInfo;
-  [key: string]: any;
 }
 /**
  * GetShowItem_Response sub-interface for GetShowItemResponse
@@ -1194,7 +1142,6 @@ export interface GetShowItem_Response {
    */
   has_show_item?: boolean;
   item?: GetShowItem_Item;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_show_item
@@ -1220,7 +1167,6 @@ export interface PostCommentRequest {
    * The comment content, cannot exceed 150 characters.
    */
   content: string;
-  [key: string]: any;
 }
 /**
  * PostComment_Response sub-interface for PostCommentResponse
@@ -1230,7 +1176,6 @@ export interface PostComment_Response {
    * The identifier of the comment.
    */
   comment_id?: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for post_comment
@@ -1260,7 +1205,6 @@ export interface StartSessionRequest {
    * Only available in PH region.To support transparent experiences on Shopee Live,please select this option if AI-generated streameris used for live-streaming.Failure of doing so may lead to warning or termination.Learn more about the policy:PH: https://seller.shopee.ph/edu/article/25213
    */
   ai_stream?: AiStream | string | number;
-  [key: string]: any;
 }
 /**
  * Response data payload for start_session
@@ -1286,7 +1230,6 @@ export interface UnbanUserCommentRequest {
    * The user ID that will be unbanned from posting comments.
    */
   unban_user_id: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for unban_user_comment
@@ -1310,7 +1253,6 @@ export interface UpdateItemList_Item {
    * The shop id of this item.
    */
   shop_id: number;
-  [key: string]: any;
 }
 /**
  * Request parameters for update_item_list
@@ -1326,7 +1268,6 @@ export interface UpdateItemListRequest {
    * The list of item with updated order.
    */
   item_list: UpdateItemList_Item[];
-  [key: string]: any;
 }
 /**
  * Response data payload for update_item_list
@@ -1364,7 +1305,6 @@ export interface UpdateSessionRequest {
    * Indicate whether this livestream session if for testing purpose only.
    */
   is_test: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_session
@@ -1394,7 +1334,6 @@ export interface UpdateShowItemRequest {
    * The shop id of this item.
    */
   shop_id: number;
-  [key: string]: any;
 }
 /**
  * Response data payload for update_show_item
@@ -1416,7 +1355,6 @@ export interface UploadImageRequest {
    * The image file to upload.
    */
   image: any;
-  [key: string]: any;
 }
 /**
  * UploadImage_Response sub-interface for UploadImageResponse
@@ -1426,7 +1364,6 @@ export interface UploadImage_Response {
    * The image URL
    */
   image_url?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for upload_image

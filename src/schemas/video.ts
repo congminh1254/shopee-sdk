@@ -13,7 +13,6 @@ export interface DeleteVideoRequest {
    * You can only select one from video_upload_id_list and post_id_list: - If you want to delete video with draft status, please pass video_upload_id_list.- If you want to delete video with post status, please pass post_id_list.
    */
   post_id_list?: string[];
-  [key: string]: any;
 }
 /**
  * DeleteVideo_Success sub-interface for DeleteVideo_Response
@@ -27,7 +26,6 @@ export interface DeleteVideo_Success {
    * The post_id delete successfully.
    */
   success_post_id?: string;
-  [key: string]: any;
 }
 /**
  * DeleteVideo_Failure sub-interface for DeleteVideo_Response
@@ -45,7 +43,6 @@ export interface DeleteVideo_Failure {
    * Failed reason of the corresponding video_upload_id or post_id.
    */
   failed_reason?: string;
-  [key: string]: any;
 }
 /**
  * DeleteVideo_Response sub-interface for DeleteVideoResponse
@@ -59,7 +56,6 @@ export interface DeleteVideo_Response {
    * The list of video delete deleted.
    */
   failure_list?: DeleteVideo_Failure[];
-  [key: string]: any;
 }
 /**
  * Response data payload for delete_video
@@ -83,7 +79,6 @@ export interface EditVideoInfo_ItemInfo {
    * Product display name in Shopee Video.
    */
   custom_item_name?: string;
-  [key: string]: any;
 }
 /**
  * EditVideoInfo_AllowInfo sub-interface for EditVideoInfo_VideoUpload
@@ -97,7 +92,6 @@ export interface EditVideoInfo_AllowInfo {
    * Whether allow stitch.
    */
   allow_stitch: boolean;
-  [key: string]: any;
 }
 /**
  * EditVideoInfo_ScheduledInfo sub-interface for EditVideoInfo_VideoUpload
@@ -111,7 +105,6 @@ export interface EditVideoInfo_ScheduledInfo {
    * Scheduled post time, millisecond timestamp. When scheduled_post is true, scheduled_post_time must not empty.
    */
   scheduled_post_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * EditVideoInfo_VideoUpload sub-interface for EditVideoInfoRequest
@@ -141,7 +134,6 @@ export interface EditVideoInfo_VideoUpload {
    * When scheduled_post is true, scheduled_post_time must not empty.When scheduled_post is false, scheduled_post_time must empty.
    */
   scheduled_info: EditVideoInfo_ScheduledInfo;
-  [key: string]: any;
 }
 /**
  * Request parameters for edit_video_info
@@ -153,7 +145,6 @@ export interface EditVideoInfoRequest {
    * Video information collection, no more than 5.
    */
   video_upload_list: EditVideoInfo_VideoUpload[];
-  [key: string]: any;
 }
 /**
  * EditVideoInfo_Failure sub-interface for EditVideoInfo_Response
@@ -167,7 +158,6 @@ export interface EditVideoInfo_Failure {
    * Failed reason of the corresponding video_upload_id.
    */
   failed_reason?: string;
-  [key: string]: any;
 }
 /**
  * EditVideoInfo_Response sub-interface for EditVideoInfoResponse
@@ -181,7 +171,6 @@ export interface EditVideoInfo_Response {
    * The list of video_upload_id edit failed.
    */
   failure_list?: EditVideoInfo_Failure[];
-  [key: string]: any;
 }
 /**
  * Response data payload for edit_video_info
@@ -203,7 +192,6 @@ export interface GetCoverListRequest {
    * ID of uploaded video. Obtain from v2.media.get_video_upload_result.
    */
   video_upload_id: string;
-  [key: string]: any;
 }
 /**
  * GetCoverList_Response sub-interface for GetCoverListResponse
@@ -213,7 +201,6 @@ export interface GetCoverList_Response {
    * List of image url for each frame of the uploaded video, you can select one as the video cover when calling v2.video.edit_video_info.
    */
   image_url_list?: string[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_cover_list
@@ -239,7 +226,6 @@ export interface GetMetricTrendRequest {
    * The end_date format should be "YYYY-MM-DD".- For Day, Last7d, Last15d, and Last30d, the end_date must before current day.- For Week, the end_date must be Sunday and must be less than or equal to the current week.- For Month, the end_date must be the end of the month and must be less than or equal to the current month.
    */
   end_date: string;
-  [key: string]: any;
 }
 /**
  * GetMetricTrend_VideoTotalMetric sub-interface for GetMetricTrend_Response
@@ -357,14 +343,12 @@ export interface GetMetricTrend_VideoTotalMetric {
    * Data offline computation time.
    */
   data_period?: string;
-  [key: string]: any;
 }
 /**
  * GetMetricTrend_Response sub-interface for GetMetricTrendResponse
  */
 export interface GetMetricTrend_Response {
   video_total_metric_list?: GetMetricTrend_VideoTotalMetric[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_metric_trend
@@ -390,7 +374,6 @@ export interface GetOverviewPerformanceRequest {
    * The end_date format should be "YYYY-MM-DD".- For Day, Last7d, Last15d, and Last30d, the end_date must before current day.- For Week, the end_date must be Sunday and must be less than or equal to the current week.- For Month, the end_date must be the end of the month and must be less than or equal to the current month.
    */
   end_date: string;
-  [key: string]: any;
 }
 /**
  * GetOverviewPerformance_KeyMetric sub-interface for GetOverviewPerformance_Response
@@ -432,7 +415,6 @@ export interface GetOverviewPerformance_KeyMetric {
    * Total watch duration per video.
    */
   avg_view_duration?: number;
-  [key: string]: any;
 }
 /**
  * GetOverviewPerformance_Conversion sub-interface for GetOverviewPerformance_Response
@@ -490,7 +472,6 @@ export interface GetOverviewPerformance_Conversion {
    * Videos that generates confirmed revenues.
    */
   confirmed_revenue_generating_videos?: number;
-  [key: string]: any;
 }
 /**
  * GetOverviewPerformance_Engagement sub-interface for GetOverviewPerformance_Response
@@ -516,7 +497,6 @@ export interface GetOverviewPerformance_Engagement {
    * Number of new followers from all videos
    */
   video_new_followers?: number;
-  [key: string]: any;
 }
 /**
  * GetOverviewPerformance_Response sub-interface for GetOverviewPerformanceResponse
@@ -529,7 +509,6 @@ export interface GetOverviewPerformance_Response {
    * Data offline computation time.
    */
   fetched_date_range?: string;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_overview_performance
@@ -579,7 +558,6 @@ export interface GetProdcutPerformanceListRequest {
    * Search by product name.
    */
   item_name?: string;
-  [key: string]: any;
 }
 /**
  * GetProdcutPerformanceList_List sub-interface for GetProdcutPerformanceList_Response
@@ -633,7 +611,6 @@ export interface GetProdcutPerformanceList_List {
    * Data Date Range.
    */
   fetched_date_range?: string;
-  [key: string]: any;
 }
 /**
  * GetProdcutPerformanceList_Response sub-interface for GetProdcutPerformanceListResponse
@@ -651,7 +628,6 @@ export interface GetProdcutPerformanceList_Response {
    * The list of product that match the condition.
    */
   list?: GetProdcutPerformanceList_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_prodcut_performance_list
@@ -702,7 +678,6 @@ export interface GetUserDemographics_Response {
    * The types of products that your viewers is most interested in.Note: The type of shopping is a map. The key is top 10 product category, and the value is the number of video views corresponding to that product category.
    */
   shopping?: any;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_user_demographics
@@ -728,7 +703,6 @@ export interface GetVideoDetailRequest {
    * You can only select one from video_upload_id and post_id: - If you want to get detail information of video with draft status, please pass video_upload_id.- If you want to get detail information of video with post status, please pass post_id.
    */
   post_id?: string;
-  [key: string]: any;
 }
 /**
  * GetVideoDetail_Item sub-interface for GetVideoDetail_Response
@@ -766,7 +740,6 @@ export interface GetVideoDetail_Item {
    * Stock of the item.
    */
   stock?: number;
-  [key: string]: any;
 }
 /**
  * GetVideoDetail_AllowInfo sub-interface for GetVideoDetail_Response
@@ -780,7 +753,6 @@ export interface GetVideoDetail_AllowInfo {
    * Whether allow duet.
    */
   allow_duet?: boolean;
-  [key: string]: any;
 }
 /**
  * GetVideoDetail_ScheduledInfo sub-interface for GetVideoDetail_Response
@@ -794,7 +766,6 @@ export interface GetVideoDetail_ScheduledInfo {
    * Scheduled post time, millisecond timestamp.
    */
   scheduled_post_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetVideoDetail_Response sub-interface for GetVideoDetailResponse
@@ -864,7 +835,6 @@ export interface GetVideoDetail_Response {
    * The lasted update time the video.
    */
   update_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_video_detail
@@ -886,7 +856,6 @@ export interface GetVideoDetailAudienceDistributionRequest {
    * A unique identifier for Shopee videos.
    */
   post_id: string;
-  [key: string]: any;
 }
 /**
  * GetVideoDetailAudienceDistribution_Response sub-interface for GetVideoDetailAudienceDistributionResponse
@@ -920,7 +889,6 @@ export interface GetVideoDetailAudienceDistribution_Response {
    * The types of products that your viewers is most interested in.Note: The type of shopping is a map. The key is product category, and the value is the number of video views corresponding to that product category.
    */
   shopping?: any;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_video_detail_audience_distribution
@@ -948,7 +916,6 @@ export interface GetVideoDetailMetricTrendRequest {
    * The name of metric that require obtaining trend data. Applicable values: Views, Likes, Comments, Shares, FollowersGrowth, PlacedOrders, PlacedSales, UniqueBuyers, ConversionRate, SoldItems, SalesPerOrder, SalesPerBuyer
    */
   metric_name: string;
-  [key: string]: any;
 }
 /**
  * GetVideoDetailMetricTrend_Response sub-interface for GetVideoDetailMetricTrendResponse
@@ -958,7 +925,6 @@ export interface GetVideoDetailMetricTrend_Response {
    * The type of metric_trend is a map. The key is date (in millisecond timestamp format), and the value is the number corresponding to metric.
    */
   metric_trend?: any;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_video_detail_metric_trend
@@ -981,7 +947,6 @@ export interface GetVideoDetailPerformanceRequest {
    * A unique identifier for Shopee videos.
    */
   post_id: string;
-  [key: string]: any;
 }
 /**
  * GetVideoDetailPerformance_VideoInfo sub-interface for GetVideoDetailPerformance_Response
@@ -1015,7 +980,6 @@ export interface GetVideoDetailPerformance_VideoInfo {
    * Number of products linked with the Shopee Video.
    */
   related_item_count?: number;
-  [key: string]: any;
 }
 /**
  * GetVideoDetailPerformance_VideoPerformance sub-interface for GetVideoDetailPerformance_Response
@@ -1077,7 +1041,6 @@ export interface GetVideoDetailPerformance_VideoPerformance {
    * Amount of product sales from the video/amount of buyers from the video.
    */
   sales_per_buyer?: number;
-  [key: string]: any;
 }
 /**
  * GetVideoDetailPerformance_Response sub-interface for GetVideoDetailPerformanceResponse
@@ -1091,7 +1054,6 @@ export interface GetVideoDetailPerformance_Response {
    * Overall performance data of the video you are querying.
    */
   video_performance?: GetVideoDetailPerformance_VideoPerformance;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_video_detail_performance
@@ -1130,7 +1092,6 @@ export interface GetVideoDetailProductPerformanceRequest {
    * Name of the item.
    */
   item_name?: string;
-  [key: string]: any;
 }
 /**
  * GetVideoDetailProductPerformance_List sub-interface for GetVideoDetailProductPerformance_Response
@@ -1200,7 +1161,6 @@ export interface GetVideoDetailProductPerformance_List {
    * Amount of product sales from the video/amount of buyers from the video.
    */
   sales_per_buyer?: number;
-  [key: string]: any;
 }
 /**
  * GetVideoDetailProductPerformance_Response sub-interface for GetVideoDetailProductPerformanceResponse
@@ -1218,7 +1178,6 @@ export interface GetVideoDetailProductPerformance_Response {
    * This is to indicate whether the video list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of data.
    */
   has_more?: boolean;
-  [key: string]: any;
 }
 /**
  * Response data payload for get_video_detail_product_performance
@@ -1250,7 +1209,6 @@ export interface GetVideoListRequest {
    * Search tpye for video in draft status or video already post to Shopee Video.1: draft2: post
    */
   list_type: number[];
-  [key: string]: any;
 }
 /**
  * GetVideoList_Item sub-interface for GetVideoList_List
@@ -1288,7 +1246,6 @@ export interface GetVideoList_Item {
    * Stock of the item.
    */
   stock?: number;
-  [key: string]: any;
 }
 /**
  * GetVideoList_AllowInfo sub-interface for GetVideoList_List
@@ -1302,7 +1259,6 @@ export interface GetVideoList_AllowInfo {
    * Whether allow duet.
    */
   allow_duet?: boolean;
-  [key: string]: any;
 }
 /**
  * GetVideoList_ScheduledInfo sub-interface for GetVideoList_List
@@ -1316,7 +1272,6 @@ export interface GetVideoList_ScheduledInfo {
    * Scheduled post time, millisecond timestamp.
    */
   scheduled_post_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetVideoList_List sub-interface for GetVideoList_Response
@@ -1386,7 +1341,6 @@ export interface GetVideoList_List {
    * The lasted update time the video.
    */
   update_time?: Date | number;
-  [key: string]: any;
 }
 /**
  * GetVideoList_Response sub-interface for GetVideoListResponse
@@ -1404,7 +1358,6 @@ export interface GetVideoList_Response {
    * The list of video that match the condition.
    */
   list?: GetVideoList_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_video_list
@@ -1450,7 +1403,6 @@ export interface GetVideoPerformanceListRequest {
    * Use this field to specify whether the returned list is sorted in ascending or descending order_by. Available values:ascdesc
    */
   sort: string;
-  [key: string]: any;
 }
 /**
  * GetVideoPerformanceList_List sub-interface for GetVideoPerformanceList_Response
@@ -1540,7 +1492,6 @@ export interface GetVideoPerformanceList_List {
    * Data Date Range.
    */
   fetched_date_range?: string;
-  [key: string]: any;
 }
 /**
  * GetVideoPerformanceList_Response sub-interface for GetVideoPerformanceListResponse
@@ -1558,7 +1509,6 @@ export interface GetVideoPerformanceList_Response {
    * The list of video that match the condition.
    */
   list?: GetVideoPerformanceList_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_video_performance_list
@@ -1580,7 +1530,6 @@ export interface PostVideoRequest {
    * ID of uploaded video. Obtain from v2.media.get_video_upload_result. No more than 5.
    */
   video_upload_id_list: string[];
-  [key: string]: any;
 }
 /**
  * PostVideo_Success sub-interface for PostVideo_Response
@@ -1594,7 +1543,6 @@ export interface PostVideo_Success {
    * The unique identifier for post Shopee Video.
    */
   post_id?: string;
-  [key: string]: any;
 }
 /**
  * PostVideo_Failure sub-interface for PostVideo_Response
@@ -1608,7 +1556,6 @@ export interface PostVideo_Failure {
    * Failed reason of the corresponding video_upload_id.
    */
   failed_reason?: string;
-  [key: string]: any;
 }
 /**
  * PostVideo_Response sub-interface for PostVideoResponse
@@ -1622,7 +1569,6 @@ export interface PostVideo_Response {
    * The list of video post failed.
    */
   failure_list?: PostVideo_Failure[];
-  [key: string]: any;
 }
 /**
  * Response data payload for post_video

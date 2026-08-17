@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { DiscountManager } from "../../managers/discount.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("DiscountManager (Generated Tests)", () => {
@@ -27,8 +27,8 @@ describe("DiscountManager (Generated Tests)", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         discount_name: "test-create",
-        start_time: "1624864213",
-        end_time: "1625382613",
+        start_time: 1624864213,
+        end_time: 1625382613,
       };
       const exampleResponse = {
         discount_id: 665123666665499,
@@ -41,7 +41,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addDiscount(exampleRequest as any);
+      const result = await manager.addDiscount(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -97,7 +97,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addDiscountItem(exampleRequest as any);
+      const result = await manager.addDiscountItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -120,7 +120,7 @@ describe("DiscountManager (Generated Tests)", () => {
       };
       const exampleResponse = {
         discount_id: 665123666665499,
-        modify_time: "1610434295",
+        modify_time: 1610434295,
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -130,7 +130,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteDiscount(exampleRequest as any);
+      const result = await manager.deleteDiscount(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -172,7 +172,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteDiscountItem(exampleRequest as any);
+      const result = await manager.deleteDiscountItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -204,7 +204,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteSipDiscount(exampleRequest as any);
+      const result = await manager.deleteSipDiscount(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -227,7 +227,7 @@ describe("DiscountManager (Generated Tests)", () => {
       };
       const exampleResponse = {
         discount_id: 66512366666549900,
-        modify_time: "1656408546",
+        modify_time: 1656408546,
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -237,7 +237,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.endDiscount(exampleRequest as any);
+      const result = await manager.endDiscount(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -296,9 +296,9 @@ describe("DiscountManager (Generated Tests)", () => {
             purchase_limit: 1,
           },
         ],
-        start_time: "1604408400",
+        start_time: 1604408400,
         discount_id: 1000029882,
-        end_time: "1605276000",
+        end_time: 1605276000,
         more: false,
       };
 
@@ -309,7 +309,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getDiscount(exampleRequest as any);
+      const result = await manager.getDiscount(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -331,16 +331,16 @@ describe("DiscountManager (Generated Tests)", () => {
         discount_status: "ongoing",
         page_no: 1,
         page_size: 100,
-        update_time_from: "1643860467",
-        update_time_to: "1646020467",
+        update_time_from: 1643860467,
+        update_time_to: 1646020467,
       };
       const exampleResponse = {
         discount_list: [
           {
             status: "ongoing",
             discount_name: "testqwert001",
-            start_time: "1644910200",
-            end_time: "1645864200",
+            start_time: 1644910200,
+            end_time: 1645864200,
             discount_id: 665270257590299,
             source: 0,
           },
@@ -355,7 +355,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getDiscountList(exampleRequest as any);
+      const result = await manager.getDiscountList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -382,10 +382,10 @@ describe("DiscountManager (Generated Tests)", () => {
             region: "SG",
             status: "ongoing",
             sip_discount_rate: 10,
-            start_time: "1741235212",
-            end_time: "1756787212",
-            create_time: "1741233412",
-            update_time: "1741233412",
+            start_time: 1741235212,
+            end_time: 1756787212,
+            create_time: 1741233412,
+            update_time: 1741233412,
           },
         ],
       };
@@ -397,7 +397,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getSipDiscounts(exampleRequest as any);
+      const result = await manager.getSipDiscounts(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -423,10 +423,10 @@ describe("DiscountManager (Generated Tests)", () => {
         region: "TH",
         status: "upcoming",
         sip_discount_rate: 15,
-        start_time: "1741688426",
-        end_time: "1757240426",
-        create_time: "1741686627",
-        update_time: "1741686627",
+        start_time: 1741688426,
+        end_time: 1757240426,
+        create_time: 1741686627,
+        update_time: 1741686627,
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -436,7 +436,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.setSipDiscount(exampleRequest as any);
+      const result = await manager.setSipDiscount(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -462,7 +462,7 @@ describe("DiscountManager (Generated Tests)", () => {
       };
       const exampleResponse = {
         discount_id: 661460179119131,
-        modify_time: "1656408546",
+        modify_time: 1656408546,
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -472,7 +472,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateDiscount(exampleRequest as any);
+      const result = await manager.updateDiscount(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -526,7 +526,7 @@ describe("DiscountManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateDiscountItem(exampleRequest as any);
+      const result = await manager.updateDiscountItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

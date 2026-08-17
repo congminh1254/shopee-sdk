@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { AdsManager } from "../../managers/ads.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AdsManager (Generated Tests)", () => {
@@ -38,7 +38,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.checkCreateGmsProductCampaignEligibility(exampleRequest as any);
+      const result = await manager.checkCreateGmsProductCampaignEligibility(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -74,7 +74,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.createGmsProductCampaign(exampleRequest as any);
+      const result = await manager.createGmsProductCampaign(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -129,7 +129,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.createManualProductAds(exampleRequest as any);
+      const result = await manager.createManualProductAds(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -163,7 +163,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.editGmsItemProductCampaign(exampleRequest as any);
+      const result = await manager.editGmsItemProductCampaign(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -201,7 +201,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.editGmsProductCampaign(exampleRequest as any);
+      const result = await manager.editGmsProductCampaign(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -251,7 +251,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.editManualProductAdKeywords(exampleRequest as any);
+      const result = await manager.editManualProductAdKeywords(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -300,7 +300,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.editManualProductAds(exampleRequest as any);
+      const result = await manager.editManualProductAds(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -331,7 +331,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAdsFacilShopRate(exampleRequest as any);
+      const result = await manager.getAdsFacilShopRate(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -381,7 +381,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAllCpcAdsDailyPerformance(exampleRequest as any);
+      const result = await manager.getAllCpcAdsDailyPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -431,7 +431,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAllCpcAdsHourlyPerformance(exampleRequest as any);
+      const result = await manager.getAllCpcAdsHourlyPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -474,7 +474,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getCreateProductAdBudgetSuggestion(exampleRequest as any);
+      const result = await manager.getCreateProductAdBudgetSuggestion(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -526,7 +526,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getGmsCampaignPerformance(exampleRequest as any);
+      const result = await manager.getGmsCampaignPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -587,7 +587,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getGmsItemPerformance(exampleRequest as any);
+      const result = await manager.getGmsItemPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -655,7 +655,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getProductCampaignDailyPerformance(exampleRequest as any);
+      const result = await manager.getProductCampaignDailyPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -723,7 +723,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getProductCampaignHourlyPerformance(exampleRequest as any);
+      const result = await manager.getProductCampaignHourlyPerformance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -765,7 +765,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getProductLevelCampaignIdList(exampleRequest as any);
+      const result = await manager.getProductLevelCampaignIdList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -845,7 +845,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getProductLevelCampaignSettingInfo(exampleRequest as any);
+      const result = await manager.getProductLevelCampaignSettingInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -889,7 +889,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getProductRecommendedRoiTarget(exampleRequest as any);
+      const result = await manager.getProductRecommendedRoiTarget(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -924,7 +924,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getRecommendedItemList(exampleRequest as any);
+      const result = await manager.getRecommendedItemList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -966,7 +966,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getRecommendedKeywordList(exampleRequest as any);
+      const result = await manager.getRecommendedKeywordList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -986,7 +986,7 @@ describe("AdsManager (Generated Tests)", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {};
       const exampleResponse = {
-        data_timestamp: "1689052069",
+        data_timestamp: 1689052069,
         auto_top_up: "true",
         campaign_surge: "false",
       };
@@ -998,7 +998,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopToggleInfo(exampleRequest as any);
+      const result = await manager.getShopToggleInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1018,7 +1018,7 @@ describe("AdsManager (Generated Tests)", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {};
       const exampleResponse = {
-        data_timestamp: "1689052069",
+        data_timestamp: 1689052069,
         total_balance: 123.55,
       };
 
@@ -1029,7 +1029,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getTotalBalance(exampleRequest as any);
+      const result = await manager.getTotalBalance(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1065,7 +1065,7 @@ describe("AdsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.listGmsUserDeletedItem(exampleRequest as any);
+      const result = await manager.listGmsUserDeletedItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

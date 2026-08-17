@@ -260,6 +260,11 @@ function parseParams(
 
     let tsType = mapType(node.type, fieldName);
 
+    // Override: Shopee spec incorrectly defines publish_item.model as object, but it is an array of models.
+    if (nodePath === "publish_item.model") {
+      tsType = "object[]";
+    }
+
     const hasChildren = node.children && node.children.length > 0;
 
     // Check if there is an enum in the description
@@ -330,11 +335,8 @@ export function parseSchemaFile(filePath: string): EndpointSpec | null {
   const rawPath = schema.path || `/api/v2/${moduleName}/${endpointName}`;
   const pathVal = rawPath.replace("/api/v2/", "/"); // shopee fetch uses "/module/endpoint" format
 
-  // Public APIs might have no auth, but by default auth is true
-  const isPublic = ["public.get_access_token", "public.refresh_access_token"].includes(
-    `${moduleName}.${endpointName}`
-  );
-  const auth = !isPublic;
+  // Only public manager does not need auth
+  const auth = moduleName !== "public";
 
   const rawDefine = schema.define;
   const defineStr = typeof rawDefine === "string" ? rawDefine : rawDefine?.content || "";

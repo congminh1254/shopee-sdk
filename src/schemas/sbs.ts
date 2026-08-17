@@ -17,7 +17,6 @@ export interface GetBoundWhsInfo_BoundWh {
    * the warehouse id bound with the shop
    */
   whs_ids?: string[];
-  [key: string]: any;
 }
 /**
  * GetBoundWhsInfo_List sub-interface for GetBoundWhsInfo_Response
@@ -25,14 +24,12 @@ export interface GetBoundWhsInfo_BoundWh {
 export interface GetBoundWhsInfo_List {
   shop_id?: number;
   bound_whs?: GetBoundWhsInfo_BoundWh[];
-  [key: string]: any;
 }
 /**
  * GetBoundWhsInfo_Response sub-interface for GetBoundWhsInfoResponse
  */
 export interface GetBoundWhsInfo_Response {
   list?: GetBoundWhsInfo_List[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_bound_whs_info
@@ -94,7 +91,6 @@ export interface GetCurrentInventoryRequest {
    * The warehouse region you want to query, can only query one region in a requestOptional value: BR、CN、ID、MY、MX、TH、TW、PH、VN、SGIf do not pass, will get error "block by gateway due to invalid cid"
    */
   whs_region: string;
-  [key: string]: any;
 }
 /**
  * GetCurrentInventory_Whs sub-interface for GetCurrentInventory_Sku
@@ -164,7 +160,6 @@ export interface GetCurrentInventory_Whs {
    * Sales qty last 90 days
    */
   last_90_sold?: number;
-  [key: string]: any;
 }
 /**
  * GetCurrentInventory_ShopSku sub-interface for GetCurrentInventory_Sku
@@ -182,7 +177,6 @@ export interface GetCurrentInventory_ShopSku {
    * shop_model_id= item level model_idFor Global Item, warehouse_item_id=Global Item idFor Local Item, shop_item_id=item_id
    */
   shop_model_id?: string;
-  [key: string]: any;
 }
 /**
  * GetCurrentInventory_Sku sub-interface for GetCurrentInventory_Item
@@ -216,7 +210,6 @@ export interface GetCurrentInventory_Sku {
    */
   whs_list?: GetCurrentInventory_Whs[];
   shop_sku_list?: GetCurrentInventory_ShopSku[];
-  [key: string]: any;
 }
 /**
  * GetCurrentInventory_Item sub-interface for GetCurrentInventory_Response
@@ -238,7 +231,6 @@ export interface GetCurrentInventory_Item {
    * Data list of mtsku
    */
   sku_list?: GetCurrentInventory_Sku[];
-  [key: string]: any;
 }
 /**
  * GetCurrentInventory_Response sub-interface for GetCurrentInventoryResponse
@@ -248,7 +240,6 @@ export interface GetCurrentInventory_Response {
    * Data list of item sku
    */
   item_list?: GetCurrentInventory_Item[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_current_inventory
@@ -291,7 +282,6 @@ export interface GetExpiryReportRequest {
    * Num value: BR、CN、ID、MY、MX、TH、TW、PH、VN、SGIf do not pass, will get error "block by gateway due to invalid cid"
    */
   whs_region: string;
-  [key: string]: any;
 }
 /**
  * GetExpiryReport_ShopSku sub-interface for GetExpiryReport_Sku
@@ -309,7 +299,6 @@ export interface GetExpiryReport_ShopSku {
    * shop_model_id= item level model_idFor Global Item, warehouse_item_id=Global Item idFor Local Item, shop_item_id=item_id
    */
   shop_model_id?: string;
-  [key: string]: any;
 }
 /**
  * GetExpiryReport_Whs sub-interface for GetExpiryReport_Sku
@@ -343,7 +332,6 @@ export interface GetExpiryReport_Whs {
    * Total stocks on hand.
    */
   total_qty?: number;
-  [key: string]: any;
 }
 /**
  * GetExpiryReport_Sku sub-interface for GetExpiryReport_Item
@@ -364,7 +352,6 @@ export interface GetExpiryReport_Sku {
   variation?: string;
   shop_sku_list?: GetExpiryReport_ShopSku[];
   whs_list?: GetExpiryReport_Whs[];
-  [key: string]: any;
 }
 /**
  * GetExpiryReport_Item sub-interface for GetExpiryReport_Response
@@ -377,14 +364,12 @@ export interface GetExpiryReport_Item {
   item_name?: string;
   item_image?: string;
   sku_list?: GetExpiryReport_Sku[];
-  [key: string]: any;
 }
 /**
  * GetExpiryReport_Response sub-interface for GetExpiryReportResponse
  */
 export interface GetExpiryReport_Response {
   item_list?: GetExpiryReport_Item[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_expiry_report
@@ -438,7 +423,6 @@ export interface GetStockAgingRequest {
    * BR、CN、ID、MY、MX、TH、TW、PH、VN、SGIf do not pass, will get error "block by gateway due to invalid cid"
    */
   whs_region: string;
-  [key: string]: any;
 }
 /**
  * GetStockAging_Whs sub-interface for GetStockAging_Sku
@@ -477,7 +461,6 @@ export interface GetStockAging_Whs {
    */
   excess_stock?: number;
   aging_storage_tag?: number;
-  [key: string]: any;
 }
 /**
  * GetStockAging_ShopSku sub-interface for GetStockAging_Sku
@@ -495,7 +478,6 @@ export interface GetStockAging_ShopSku {
    * shop_model_id= item level model_idFor Global Item, warehouse_item_id=Global Item idFor Local Item, shop_item_id=item_id
    */
   shop_model_id?: string;
-  [key: string]: any;
 }
 /**
  * GetStockAging_Sku sub-interface for GetStockAging_Item
@@ -523,7 +505,6 @@ export interface GetStockAging_Sku {
    */
   whs_list?: GetStockAging_Whs[];
   shop_sku_list?: GetStockAging_ShopSku[];
-  [key: string]: any;
 }
 /**
  * GetStockAging_Item sub-interface for GetStockAging_Response
@@ -545,7 +526,6 @@ export interface GetStockAging_Item {
    * Data list of mtsku
    */
   sku_list?: GetStockAging_Sku[];
-  [key: string]: any;
 }
 /**
  * GetStockAging_Response sub-interface for GetStockAgingResponse
@@ -555,7 +535,6 @@ export interface GetStockAging_Response {
    * Data list of item sku
    */
   item_list?: GetStockAging_Item[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_stock_aging
@@ -608,7 +587,6 @@ export interface GetStockMovementRequest {
    * Warehouse Region. Enum values: BR, CN, ID, MY, MX, TH, TW, PH, VN, SGIf do not pass, will get error "block by gateway due to invalid cid"
    */
   whs_region: string;
-  [key: string]: any;
 }
 /**
  * GetStockMovement_Whs sub-interface for GetStockMovement_Sku
@@ -638,7 +616,6 @@ export interface GetStockMovement_Whs {
    * Total warehouse inventory at the end time.
    */
   end_on_hand_total?: number;
-  [key: string]: any;
 }
 /**
  * GetStockMovement_StartQty sub-interface for GetStockMovement_Sku
@@ -657,7 +634,6 @@ export interface GetStockMovement_StartQty {
    */
   start_reserved?: number;
   start_unsellable?: number;
-  [key: string]: any;
 }
 /**
  * GetStockMovement_EndQty sub-interface for GetStockMovement_Sku
@@ -670,7 +646,6 @@ export interface GetStockMovement_EndQty {
   end_sellable?: number;
   end_reserved?: number;
   end_unsellable?: number;
-  [key: string]: any;
 }
 /**
  * GetStockMovement_InboundQty sub-interface for GetStockMovement_Sku
@@ -688,7 +663,6 @@ export interface GetStockMovement_InboundQty {
    * Total number of SKUs returned by buyers and received into the warehouse during the selected time period.
    */
   inbound_returned?: number;
-  [key: string]: any;
 }
 /**
  * GetStockMovement_OutboundQty sub-interface for GetStockMovement_Sku
@@ -710,7 +684,6 @@ export interface GetStockMovement_OutboundQty {
    * Total disposal quantity during the selected time period.
    */
   outbound_disposed?: number;
-  [key: string]: any;
 }
 /**
  * GetStockMovement_AdjustQty sub-interface for GetStockMovement_Sku
@@ -728,7 +701,6 @@ export interface GetStockMovement_AdjustQty {
    * Total quantity of transfer orders created by the warehouse during the selected time period
    */
   adjust_trans_whs?: number;
-  [key: string]: any;
 }
 /**
  * GetStockMovement_ShopSku sub-interface for GetStockMovement_Sku
@@ -746,7 +718,6 @@ export interface GetStockMovement_ShopSku {
    * shop_model_id= item level model_id
    */
   shop_model_id?: string;
-  [key: string]: any;
 }
 /**
  * GetStockMovement_Sku sub-interface for GetStockMovement_Item
@@ -785,7 +756,6 @@ export interface GetStockMovement_Sku {
    */
   adjust_qty?: GetStockMovement_AdjustQty;
   shop_sku_list?: GetStockMovement_ShopSku[];
-  [key: string]: any;
 }
 /**
  * GetStockMovement_Item sub-interface for GetStockMovement_Response
@@ -807,7 +777,6 @@ export interface GetStockMovement_Item {
    * Data list of mtsku
    */
   sku_list?: GetStockMovement_Sku[];
-  [key: string]: any;
 }
 /**
  * GetStockMovement_Response sub-interface for GetStockMovementResponse
@@ -821,7 +790,6 @@ export interface GetStockMovement_Response {
    * Data list of item sku
    */
   item_list?: GetStockMovement_Item[];
-  [key: string]: any;
 }
 /**
  * Response data payload for get_stock_movement

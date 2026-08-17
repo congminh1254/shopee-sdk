@@ -25,7 +25,7 @@ const { runTests, initSdk } = setupIntegrationTest();
       expect(addResponse.error || "").toBe("");
       expect(addResponse.response?.shop_category_id).toBeDefined();
 
-      const testCategoryId = addResponse.response.shop_category_id;
+      const testCategoryId = addResponse.response.shop_category_id!;
 
       try {
         // 2. Retrieve collections and verify presence

@@ -13,7 +13,7 @@ import {
 } from "../../schemas/media-space.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("MediaSpaceManager", () => {
@@ -68,6 +68,7 @@ describe("MediaSpaceManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaSpaceManager.uploadImage({
+        image: Buffer.from("image-bytes"),
         scene: "normal",
         ratio: "1:1",
       });
@@ -75,6 +76,7 @@ describe("MediaSpaceManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_image", {
         method: "POST",
         body: {
+          image: Buffer.from("image-bytes"),
           scene: "normal",
           ratio: "1:1",
         },
@@ -111,12 +113,14 @@ describe("MediaSpaceManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaSpaceManager.uploadImage({
+        image: Buffer.from("image-bytes"),
         scene: "desc",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_image", {
         method: "POST",
         body: {
+          image: Buffer.from("image-bytes"),
           scene: "desc",
         },
       });
@@ -174,6 +178,7 @@ describe("MediaSpaceManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaSpaceManager.uploadImage({
+        image: Buffer.from("image-bytes"),
         scene: "normal",
       });
 
@@ -209,6 +214,7 @@ describe("MediaSpaceManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await mediaSpaceManager.uploadImage({
+        image: Buffer.from("image-bytes"),
         scene: "normal",
         ratio: "3:4",
       });
@@ -216,6 +222,7 @@ describe("MediaSpaceManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_image", {
         method: "POST",
         body: {
+          image: Buffer.from("image-bytes"),
           scene: "normal",
           ratio: "3:4",
         },
@@ -294,6 +301,7 @@ describe("MediaSpaceManager", () => {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
         part_seq: 0,
         content_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
+        part_content: Buffer.from("part-bytes"),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_video_part", {
@@ -302,6 +310,7 @@ describe("MediaSpaceManager", () => {
           video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
           part_seq: 0,
           content_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
+          part_content: Buffer.from("part-bytes"),
         },
       });
 
@@ -323,6 +332,7 @@ describe("MediaSpaceManager", () => {
         video_upload_id: "sg_test_upload_id",
         part_seq: 0,
         content_md5: "part0_md5",
+        part_content: Buffer.from("part0"),
       });
 
       // Upload part 1
@@ -330,6 +340,7 @@ describe("MediaSpaceManager", () => {
         video_upload_id: "sg_test_upload_id",
         part_seq: 1,
         content_md5: "part1_md5",
+        part_content: Buffer.from("part1"),
       });
 
       // Upload part 2
@@ -337,6 +348,7 @@ describe("MediaSpaceManager", () => {
         video_upload_id: "sg_test_upload_id",
         part_seq: 2,
         content_md5: "part2_md5",
+        part_content: Buffer.from("part2"),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledTimes(3);
@@ -350,6 +362,7 @@ describe("MediaSpaceManager", () => {
             video_upload_id: "sg_test_upload_id",
             part_seq: 0,
             content_md5: "part0_md5",
+            part_content: Buffer.from("part0"),
           },
         }
       );
@@ -363,6 +376,7 @@ describe("MediaSpaceManager", () => {
             video_upload_id: "sg_test_upload_id",
             part_seq: 2,
             content_md5: "part2_md5",
+            part_content: Buffer.from("part2"),
           },
         }
       );

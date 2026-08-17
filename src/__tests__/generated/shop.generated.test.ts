@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { ShopManager } from "../../managers/shop.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ShopManager (Generated Tests)", () => {
@@ -48,7 +48,7 @@ describe("ShopManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAuthorisedResellerBrand(exampleRequest as any);
+      const result = await manager.getAuthorisedResellerBrand(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -100,7 +100,7 @@ describe("ShopManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBrShopOnboardingInfo(exampleRequest as any);
+      const result = await manager.getBrShopOnboardingInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -133,7 +133,7 @@ describe("ShopManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getProfile(exampleRequest as any);
+      const result = await manager.getProfile(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -154,10 +154,10 @@ describe("ShopManager (Generated Tests)", () => {
       const exampleRequest = {};
       const exampleResponse = {
         holiday_mode_on: true,
-        holiday_mode_mtime: "1763435974",
+        holiday_mode_mtime: 1763435974,
         holiday_mode_type: 1,
-        holiday_mode_start_time: "1770883200",
-        holiday_mode_end_time: "1773305999",
+        holiday_mode_start_time: 1770883200,
+        holiday_mode_end_time: 1773305999,
         holiday_mode_description: '"Spring Festival"',
         debug_msg: '""',
       };
@@ -169,7 +169,7 @@ describe("ShopManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopHolidayMode(exampleRequest as any);
+      const result = await manager.getShopHolidayMode(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -200,8 +200,8 @@ describe("ShopManager (Generated Tests)", () => {
         ],
         is_cb: true,
         request_id: "0b8f39a76e6ada92247b416c768363ee",
-        auth_time: "1610533441",
-        expire_time: "1642069441",
+        auth_time: 1610533441,
+        expire_time: 1642069441,
         is_sip: true,
         is_upgraded_cbsc: true,
         merchant_id: 1000000400,
@@ -234,7 +234,7 @@ describe("ShopManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopInfo(exampleRequest as any);
+      const result = await manager.getShopInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -273,7 +273,7 @@ describe("ShopManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShopNotification(exampleRequest as any);
+      const result = await manager.getShopNotification(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -320,7 +320,7 @@ describe("ShopManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getWarehouseDetail(exampleRequest as any);
+      const result = await manager.getWarehouseDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -341,8 +341,8 @@ describe("ShopManager (Generated Tests)", () => {
       const exampleRequest = {
         holiday_mode_on: true,
         holiday_mode_type: 1,
-        holiday_mode_start_time: "1770883200",
-        holiday_mode_end_time: "1773305999",
+        holiday_mode_start_time: 1770883200,
+        holiday_mode_end_time: 1773305999,
         holiday_mode_description: '"Spring Festival"',
       };
       const exampleResponse = {
@@ -356,7 +356,7 @@ describe("ShopManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.setShopHolidayMode(exampleRequest as any);
+      const result = await manager.setShopHolidayMode(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -392,7 +392,7 @@ describe("ShopManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateProfile(exampleRequest as any);
+      const result = await manager.updateProfile(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

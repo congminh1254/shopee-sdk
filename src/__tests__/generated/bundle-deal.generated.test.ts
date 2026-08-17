@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { BundleDealManager } from "../../managers/bundle-deal.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("BundleDealManager (Generated Tests)", () => {
@@ -31,8 +31,8 @@ describe("BundleDealManager (Generated Tests)", () => {
         fix_price: 11,
         discount_percentage: 33,
         min_amount: 1,
-        start_time: "1600000000",
-        end_time: "1610000000",
+        start_time: 1600000000,
+        end_time: 1610000000,
         name: "bundle name",
         purchase_limit: 3,
         additional_tiers: [
@@ -55,7 +55,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addBundleDeal(exampleRequest as any);
+      const result = await manager.addBundleDeal(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -100,7 +100,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.addBundleDealItem(exampleRequest as any);
+      const result = await manager.addBundleDealItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -132,7 +132,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteBundleDeal(exampleRequest as any);
+      const result = await manager.deleteBundleDeal(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -176,7 +176,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.deleteBundleDealItem(exampleRequest as any);
+      const result = await manager.deleteBundleDealItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -208,7 +208,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.endBundleDeal(exampleRequest as any);
+      const result = await manager.endBundleDeal(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -232,8 +232,8 @@ describe("BundleDealManager (Generated Tests)", () => {
       const exampleResponse = {
         bundle_deal_id: 113891,
         name: "Bundle Deal Test",
-        start_time: "1655654412",
-        end_time: "1658246412",
+        start_time: 1655654412,
+        end_time: 1658246412,
         bundle_deal_rule: {
           rule_type: 1,
           discount_value: 11,
@@ -257,7 +257,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBundleDeal(exampleRequest as any);
+      const result = await manager.getBundleDeal(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -295,7 +295,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBundleDealItem(exampleRequest as any);
+      const result = await manager.getBundleDealItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -323,8 +323,8 @@ describe("BundleDealManager (Generated Tests)", () => {
           {
             bundle_deal_id: 1111432,
             name: "Bundle Deal Test",
-            start_time: "1655654412",
-            end_time: "1658246412",
+            start_time: 1655654412,
+            end_time: 1658246412,
             bundle_deal_rule: {
               rule_type: 1,
               discount_value: 11,
@@ -353,7 +353,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBundleDealList(exampleRequest as any);
+      const result = await manager.getBundleDealList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -377,8 +377,8 @@ describe("BundleDealManager (Generated Tests)", () => {
         fix_price: 11,
         discount_percentage: 33,
         min_amount: 123,
-        start_time: "1655654412",
-        end_time: "1658246412",
+        start_time: 1655654412,
+        end_time: 1658246412,
         name: "bundle name",
         purchase_limit: 3,
         bundle_deal_id: 6833,
@@ -392,8 +392,8 @@ describe("BundleDealManager (Generated Tests)", () => {
       const exampleResponse = {
         bundle_deal_id: 6833,
         name: "bundle name",
-        start_time: "1655654412",
-        end_time: "1658246412",
+        start_time: 1655654412,
+        end_time: 1658246412,
         bundle_deal_rule: {
           rule_type: 1,
           discount_value: 11,
@@ -419,7 +419,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateBundleDeal(exampleRequest as any);
+      const result = await manager.updateBundleDeal(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -464,7 +464,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateBundleDealItem(exampleRequest as any);
+      const result = await manager.updateBundleDealItem(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

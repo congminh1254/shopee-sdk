@@ -25,9 +25,9 @@ const { runTests, initSdk } = setupIntegrationTest();
         if (activeList.response?.follow_prize_list) {
           for (const item of activeList.response.follow_prize_list) {
             if (item.campaign_status === "upcoming") {
-              await sdk.followPrize.deleteFollowPrize({ campaign_id: item.campaign_id });
+              await sdk.followPrize.deleteFollowPrize({ campaign_id: item.campaign_id! });
             } else if (item.campaign_status === "ongoing") {
-              await sdk.followPrize.endFollowPrize({ campaign_id: item.campaign_id });
+              await sdk.followPrize.endFollowPrize({ campaign_id: item.campaign_id! });
             }
           }
         }
@@ -53,8 +53,10 @@ const { runTests, initSdk } = setupIntegrationTest();
 
       expect(addResponse).toBeDefined();
       expect(addResponse.error || "").toBe("");
-      const testCampaignId =
-        (addResponse.response as any)?.campaign_id || (addResponse.response as any)?.campagin_id;
+      const responseData = addResponse.response as
+        | { campaign_id?: number; campagin_id?: number }
+        | undefined;
+      const testCampaignId = (responseData?.campaign_id ?? responseData?.campagin_id)!;
       expect(testCampaignId).toBeDefined();
 
       // Sleep for 2 seconds to allow Sandbox propagation

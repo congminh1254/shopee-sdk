@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { OrderManager } from "../../managers/order.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("OrderManager (Generated Tests)", () => {
@@ -45,7 +45,7 @@ describe("OrderManager (Generated Tests)", () => {
         ],
       };
       const exampleResponse = {
-        update_time: "1603184533",
+        update_time: 1603184533,
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -55,7 +55,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.cancelOrder(exampleRequest as any);
+      const result = await manager.cancelOrder(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -92,7 +92,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.downloadFbsInvoices(exampleRequest as any);
+      const result = await manager.downloadFbsInvoices(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -124,7 +124,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.downloadInvoiceDoc(exampleRequest as any);
+      const result = await manager.downloadInvoiceDoc(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -170,7 +170,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.generateFbsInvoices(exampleRequest as any);
+      const result = await manager.generateFbsInvoices(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -201,8 +201,8 @@ describe("OrderManager (Generated Tests)", () => {
             booking_status: "CANCELLED",
             match_status: "MATCH_PENDING",
             shipping_carrier: "Standard Delivery",
-            create_time: "1607930885",
-            update_time: "1608134691",
+            create_time: 1607930885,
+            update_time: 1608134691,
             ship_by_date: 1608103685,
             recipient_address: {
               name: "Max",
@@ -236,7 +236,7 @@ describe("OrderManager (Generated Tests)", () => {
             cancel_by: "system",
             cancel_reason: "BACKEND_LOGISTICS_NOT_STARTED",
             fulfillment_flag: "fulfilled_by_shopee",
-            pickup_done_time: "0",
+            pickup_done_time: 0,
           },
         ],
       };
@@ -248,7 +248,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBookingDetail(exampleRequest as any);
+      const result = await manager.getBookingDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -293,7 +293,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBookingList(exampleRequest as any);
+      const result = await manager.getBookingList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -390,7 +390,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBuyerInvoiceInfo(exampleRequest as any);
+      const result = await manager.getBuyerInvoiceInfo(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -431,7 +431,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getEstimateCancelValue(exampleRequest as any);
+      const result = await manager.getEstimateCancelValue(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -475,7 +475,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getFbsInvoicesResult(exampleRequest as any);
+      const result = await manager.getFbsInvoicesResult(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -513,10 +513,10 @@ describe("OrderManager (Generated Tests)", () => {
             payment_method: "Bank Transfer",
             estimated_shipping_fee: 4,
             message_to_seller: "test_string",
-            create_time: "1607930885",
-            update_time: "1608134691",
+            create_time: 1607930885,
+            update_time: 1608134691,
             days_to_ship: 2,
-            ship_by_date: "1608103685",
+            ship_by_date: 1608103685,
             buyer_user_id: 9193214,
             buyer_username: "Tom",
             recipient_address: {
@@ -537,7 +537,7 @@ describe("OrderManager (Generated Tests)", () => {
             actual_shipping_fee: 0,
             goods_to_declare: false,
             note: "haha",
-            note_update_time: "1608103685",
+            note_update_time: 1608103685,
             item_list: [
               {
                 item_id: 2600144043,
@@ -581,7 +581,7 @@ describe("OrderManager (Generated Tests)", () => {
                 returned_qty: 123,
               },
             ],
-            pay_time: "1607930885",
+            pay_time: 1607930885,
             dropshipper: "test_string",
             dropshipper_phone: "test_string",
             split_up: false,
@@ -591,7 +591,7 @@ describe("OrderManager (Generated Tests)", () => {
             actual_shipping_fee_confirmed: false,
             buyer_cpf_id: "test_string",
             fulfillment_flag: "fulfilled_by_shopee",
-            pickup_done_time: "0",
+            pickup_done_time: 0,
             package_list: [
               {
                 package_number: '"61630084074470"',
@@ -669,7 +669,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getOrderDetail(exampleRequest as any);
+      const result = await manager.getOrderDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -689,8 +689,8 @@ describe("OrderManager (Generated Tests)", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         time_range_field: "create_time",
-        time_from: "1607235072",
-        time_to: "1608271872",
+        time_from: 1607235072,
+        time_to: 1608271872,
         page_size: 20,
         cursor: "test_string",
         order_status: "READY_TO_SHIP",
@@ -717,7 +717,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getOrderList(exampleRequest as any);
+      const result = await manager.getOrderList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -796,7 +796,7 @@ describe("OrderManager (Generated Tests)", () => {
             is_shipment_arranged: "false",
             status_info_tag: {
               tag_id: 0,
-              timestamp: "0",
+              timestamp: 0,
             },
             can_split_order: false,
             can_unsplit_order: false,
@@ -807,7 +807,7 @@ describe("OrderManager (Generated Tests)", () => {
             prescription_rejection_time: "test_string",
             is_buyer_shop_collection: true,
             buyer_proof_of_collection: ["test_string"],
-            preparation_end_time: "1772276400",
+            preparation_end_time: 1772276400,
             driver_info: {
               driver_name: "test_string",
               driver_phone: "test_string",
@@ -836,7 +836,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPackageDetail(exampleRequest as any);
+      const result = await manager.getPackageDetail(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -875,7 +875,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getPendingBuyerInvoiceOrderList(exampleRequest as any);
+      const result = await manager.getPendingBuyerInvoiceOrderList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -915,7 +915,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getShipmentList(exampleRequest as any);
+      const result = await manager.getShipmentList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -953,7 +953,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getWarehouseFilterConfig(exampleRequest as any);
+      const result = await manager.getWarehouseFilterConfig(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -976,7 +976,7 @@ describe("OrderManager (Generated Tests)", () => {
         operation: "ACCEPT",
       };
       const exampleResponse = {
-        update_time: "14981918191",
+        update_time: 14981918191,
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -986,7 +986,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.handleBuyerCancellation(exampleRequest as any);
+      const result = await manager.handleBuyerCancellation(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1029,7 +1029,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.handlePrescriptionCheck(exampleRequest as any);
+      const result = await manager.handlePrescriptionCheck(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1097,7 +1097,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.searchPackageList(exampleRequest as any);
+      const result = await manager.searchPackageList(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1132,7 +1132,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.setNote(exampleRequest as any);
+      const result = await manager.setNote(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1191,7 +1191,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.splitOrder(exampleRequest as any);
+      const result = await manager.splitOrder(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1225,7 +1225,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.unsplitOrder(exampleRequest as any);
+      const result = await manager.unsplitOrder(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1261,7 +1261,7 @@ describe("OrderManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.uploadInvoiceDoc(exampleRequest as any);
+      const result = await manager.uploadInvoiceDoc(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

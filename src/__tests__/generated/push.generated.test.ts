@@ -4,7 +4,7 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { PushManager } from "../../managers/push.manager.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PushManager (Generated Tests)", () => {
@@ -42,7 +42,7 @@ describe("PushManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.confirmConsumedLostPushMessage(exampleRequest as any);
+      const result = await manager.confirmConsumedLostPushMessage(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -64,7 +64,7 @@ describe("PushManager (Generated Tests)", () => {
       const exampleResponse = {
         callback_url: "https://open.shopee.com/",
         live_push_status: "suspended",
-        suspended_time: "1577416181",
+        suspended_time: 1577416181,
         blocked_shop_id: [10010, 20020, 30030],
         push_config_on_list: [1, 2, 3],
         push_config_off_list: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
@@ -77,7 +77,7 @@ describe("PushManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getAppPushConfig(exampleRequest as any);
+      const result = await manager.getAppPushConfig(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -101,7 +101,7 @@ describe("PushManager (Generated Tests)", () => {
           {
             shop_id: 727720655,
             code: 3,
-            timestamp: "1660123127",
+            timestamp: 1660123127,
             data: "[object Object]",
           },
         ],
@@ -116,7 +116,7 @@ describe("PushManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getLostPushMessage(exampleRequest as any);
+      const result = await manager.getLostPushMessage(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -151,7 +151,7 @@ describe("PushManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.setAppPushConfig(exampleRequest as any);
+      const result = await manager.setAppPushConfig(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
