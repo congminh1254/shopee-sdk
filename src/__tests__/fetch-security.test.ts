@@ -3,7 +3,7 @@ import http from "node:http";
 import { ShopeeConfig, ShopeeSDK } from "../sdk.js";
 import { ShopeeRegion } from "../schemas/region.js";
 import { AccessToken } from "../schemas/access-token.js";
-import { ShopeeApiError } from "../errors.js";
+import { ShopeeApiError, ShopeeSdkError } from "../errors.js";
 
 // Mock fetch function
 const mockFetch = jest.fn() as unknown as jest.Mock<
@@ -36,6 +36,7 @@ interface TestTimestampResponse {
     ship_time: Date;
   }[];
   list_values: (Date | number)[];
+  invalid_time: string;
 }
 
 describe("ShopeeFetch Security and Retry Constraints", () => {
@@ -43,6 +44,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
   let mockSdk: ShopeeSDK;
 
   beforeEach(() => {
+    mockFetch.mockReset();
     jest.clearAllMocks();
 
     mockSdk = {
@@ -255,6 +257,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
         },
       ],
       list_values: [1710000000, 0],
+      invalid_time: "not-a-number",
     };
 
     mockFetch.mockResolvedValueOnce({
@@ -270,6 +273,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
         "nested.non_existent",
         "item_list.ship_time",
         "list_values",
+        "invalid_time",
       ],
     });
 
@@ -279,6 +283,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     expect(result.item_list[0].ship_time).toBeInstanceOf(Date);
     expect(result.list_values[0]).toBeInstanceOf(Date);
     expect(result.list_values[1]).toBe(0);
+    expect(result.invalid_time).toBe("not-a-number");
 
     // Cover line 151: non-object responses
     mockFetch.mockResolvedValueOnce({
@@ -322,6 +327,8 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     const jpgBuffer = Buffer.from([0xff, 0xd8, 0xff, 0xe0, 0x00, 0x01]);
     // GIF header: 47 49 46 38
     const gifBuffer = Buffer.from([0x47, 0x49, 0x46, 0x38, 0x00, 0x01]);
+    // Short buffer (less than 4 bytes)
+    const shortBuffer = Buffer.from([0x01, 0x02]);
 
     await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
       method: "POST",
@@ -329,6 +336,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
         png: pngBuffer,
         jpg: jpgBuffer,
         gif: gifBuffer,
+        short: shortBuffer,
       },
     });
 
@@ -337,5 +345,50 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
 
     const formData = fetchOpts?.body as FormData;
     expect(formData).toBeDefined();
+  });
+
+  it("should handle header content-type cases and fetch error fallbacks", async () => {
+    // 1. Capitalized Content-Type header branch (json)
+    mockFetch.mockResolvedValueOnce({
+      status: 200,
+      headers: new Map([["Content-Type", "application/json"]]),
+      json: jest.fn(() => Promise.resolve({ success: true })),
+    });
+    const res1 = await ShopeeFetch.fetch(mockConfig, "/test/endpoint");
+    expect(res1).toEqual({ success: true });
+
+    // 2. Empty Content-Type header branch (falls back to json)
+    mockFetch.mockResolvedValueOnce({
+      status: 200,
+      headers: new Map([]),
+      json: jest.fn(() => Promise.resolve({ success: true })),
+    });
+    const res2 = await ShopeeFetch.fetch(mockConfig, "/test/endpoint");
+    expect(res2).toEqual({ success: true });
+
+    // 3. Octet-stream Content-Type header branch (calls arrayBuffer)
+    mockFetch.mockResolvedValueOnce({
+      status: 200,
+      headers: new Map([["Content-Type", "application/octet-stream"]]),
+      arrayBuffer: jest.fn(() => Promise.resolve(Buffer.from("binary-data"))),
+    });
+    const res3 = await ShopeeFetch.fetch(mockConfig, "/test/endpoint");
+    expect(res3).toEqual(Buffer.from("binary-data"));
+
+    // 4. Fallbacks for error.message and error.name (throwing objects/strings)
+    mockFetch.mockRejectedValueOnce({ name: "TypeError" });
+    await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
+      new ShopeeSdkError("Network error: [object Object]")
+    );
+
+    mockFetch.mockRejectedValueOnce({ message: "Network crash" });
+    await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
+      new ShopeeSdkError("Unexpected error: Network crash")
+    );
+
+    mockFetch.mockRejectedValueOnce("raw-string-error");
+    await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
+      new ShopeeSdkError("Unknown error occurred: raw-string-error")
+    );
   });
 });
