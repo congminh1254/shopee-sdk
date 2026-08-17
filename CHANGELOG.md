@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/congminh1254/shopee-sdk/compare/v1.15.1...v2.0.0) (2026-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* implement v2.0 spec-driven generator, tests, and audit overrides ([#228](https://github.com/congminh1254/shopee-sdk/issues/228))
+
+### Features
+
+* implement v2.0 spec-driven generator, tests, and audit overrides ([#228](https://github.com/congminh1254/shopee-sdk/issues/228)) ([6eb5b2e](https://github.com/congminh1254/shopee-sdk/commit/6eb5b2ed19f66880c14755c18a06abbea5f34926))
+
 ## [1.15.1](https://github.com/congminh1254/shopee-sdk/compare/v1.15.0...v1.15.1) (2026-08-16)
 
 
