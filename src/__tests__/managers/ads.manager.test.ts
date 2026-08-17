@@ -105,8 +105,8 @@ describe("AdsManager", () => {
         message: "",
         response: {
           data_timestamp: 1609459200,
-          auto_top_up: "on",
-          campaign_surge: "off",
+          auto_top_up: true,
+          campaign_surge: false,
         },
       };
 
@@ -120,8 +120,8 @@ describe("AdsManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.auto_top_up).toBe("on");
-      expect(result.response.campaign_surge).toBe("off");
+      expect(result.response.auto_top_up).toBe(true);
+      expect(result.response.campaign_surge).toBe(false);
     });
   });
 

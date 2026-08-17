@@ -805,7 +805,7 @@ describe("OrderManager", () => {
 
       const result = await orderManager.handlePrescriptionCheck({
         order_sn: "220101000000001",
-        is_approved: "TRUE",
+        is_approved: true,
         reject_reason_code: 0,
         items: [{ item_id: 111111, model_id: 222222, group_id: 0 }],
         pharmacist_name: "John Doe",
@@ -817,7 +817,7 @@ describe("OrderManager", () => {
         auth: true,
         body: {
           order_sn: "220101000000001",
-          is_approved: "TRUE",
+          is_approved: true,
           reject_reason_code: 0,
           items: [{ item_id: 111111, model_id: 222222, group_id: 0 }],
           pharmacist_name: "John Doe",

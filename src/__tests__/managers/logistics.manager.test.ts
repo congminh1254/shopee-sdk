@@ -327,13 +327,13 @@ describe("LogisticsManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await logisticsManager.setPauseStatus({ is_paused: "resume" });
+      const result = await logisticsManager.setPauseStatus({ is_paused: false });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/set_pause_status", {
         method: "POST",
         auth: true,
         body: {
-          is_paused: "resume",
+          is_paused: false,
         },
       });
       expect(result).toEqual(mockResponse);

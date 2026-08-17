@@ -21,20 +21,6 @@ export enum ReferenceId {
   RECOMMENDATION = "recommendation",
 }
 /**
- * Enum generated for field AutoTopUp
- */
-export enum AutoTopUp {
-  ON = "on",
-  OFF = "off",
-}
-/**
- * Enum generated for field CampaignSurge
- */
-export enum CampaignSurge {
-  ON = "on",
-  OFF = "off",
-}
-/**
  * Request parameters for check_create_gms_product_campaign_eligibility
  *
  * Check the seller's eligibility in creating a GMS campaign
@@ -1780,11 +1766,11 @@ export interface GetShopToggleInfo_Response {
   /**
    * auto_top_up toggle on/off
    */
-  auto_top_up?: AutoTopUp | string | number;
+  auto_top_up?: boolean;
   /**
    * campaign_surge toggle on/off
    */
-  campaign_surge?: CampaignSurge | string | number;
+  campaign_surge?: boolean;
 }
 /**
  * Response data payload for get_shop_toggle_info

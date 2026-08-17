@@ -72,7 +72,7 @@ describe("ReturnsManager", () => {
               status: "REQUESTED",
               due_date: 1580721513,
               tracking_number: "RNSHS00177569",
-              needs_logistics: "integrated",
+              needs_logistics: true,
               amount_before_discount: 100.0,
               user: {
                 username: "testuser",
@@ -181,7 +181,7 @@ describe("ReturnsManager", () => {
           status: "ACCEPTED",
           due_date: 1655377883,
           tracking_number: "RNSHS00177569",
-          needs_logistics: "integrated",
+          needs_logistics: true,
           amount_before_discount: 13.99,
           user: {
             username: "gwlsg01",

@@ -107,20 +107,6 @@ export enum OrderStatus {
   CANCELLED = "CANCELLED",
 }
 /**
- * Enum generated for field IsShipmentArranged
- */
-export enum IsShipmentArranged {
-  LOGISTICS_STATUS = "logistics_status",
-  FULFILLMENT_STATUS = "fulfillment_status",
-}
-/**
- * Enum generated for field IsApproved
- */
-export enum IsApproved {
-  TRUE = "TRUE",
-  FALSE = "FALSE",
-}
-/**
  * CancelOrder_Item sub-interface for CancelOrderRequest
  */
 export interface CancelOrder_Item {
@@ -1972,7 +1958,7 @@ export interface GetPackageDetail_Package {
   /**
    * Only effective when the package's logistics_status/fulfillment_status is LOGISTICS_READY. This parameter further distinguishes between two scenarios:- true: Package shipment has been arranged (Seller has processed shipment, system is generating tracking number, not yet updated to LOGISTICS_REQUEST_CREATED, no duplicate action needed)- false: Package awaiting shipment arrangement (Seller hasn't processed shipment yet, shipping arrangement required)
    */
-  is_shipment_arranged?: IsShipmentArranged | string | number;
+  is_shipment_arranged?: boolean;
   /**
    * Package shipping urgency tag information.
    */
@@ -2269,7 +2255,7 @@ export interface HandlePrescriptionCheckRequest {
   /**
    * Approve or reject the prescription. Available values: TRUE, FALSE.
    */
-  is_approved: IsApproved | string | number;
+  is_approved: boolean;
   /**
    * Reject reason code. Available values: 1 = Invalid Prescription (counterfeit/incorrect format)2 = Incorrect Dosage3 = No Prescription4 = Unclear Image5 = Free Text
    */
@@ -2416,7 +2402,7 @@ export interface SearchPackageList_Packages {
   /**
    * Only effective when the package's logistics_status/fulfillment_status is LOGISTICS_READY. This parameter further distinguishes between two scenarios:- true: Package shipment has been arranged (Seller has processed shipment, system is generating tracking number, not yet updated to LOGISTICS_REQUEST_CREATED, no duplicate action needed)- false: Package awaiting shipment arrangement (Seller hasn't processed shipment yet, shipping arrangement required)
    */
-  is_shipment_arranged?: IsShipmentArranged | string | number;
+  is_shipment_arranged?: boolean;
 }
 /**
  * SearchPackageList_SearchPackageList_Pagination sub-interface for SearchPackageList_Response

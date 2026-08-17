@@ -822,7 +822,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       const exampleRequest = {
         session_id: 6236215,
         domain_id: 1,
-        ai_stream: "true",
+        ai_stream: true,
       };
       const exampleResponse = "test_string";
 

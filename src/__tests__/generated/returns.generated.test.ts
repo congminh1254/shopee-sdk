@@ -289,7 +289,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         tracking_number: "RNSHS00177569",
         dispute_reason: ["dispute_reason_1", "dispute_reason_2"],
         dispute_text_reason: ["dispute_remarks"],
-        needs_logistics: "false",
+        needs_logistics: false,
         amount_before_discount: 13.99,
         user: {
           username: "gwlsg01",
@@ -504,7 +504,7 @@ describe("ReturnsManager (Generated Tests)", () => {
             tracking_number: "RNSHS00177569",
             dispute_reason: ["UNKNOWN"],
             dispute_text_reason: ["reason"],
-            needs_logistics: "true",
+            needs_logistics: true,
             amount_before_discount: 1409,
             user: {
               username: "abcdefg",

@@ -1,12 +1,5 @@
 import { FetchResponse } from "./fetch.js";
 /**
- * Enum generated for field NeedsLogistics
- */
-export enum NeedsLogistics {
-  INTEGRATED = "integrated",
-  NON = "non",
-}
-/**
  * Enum generated for field ReturnRefundType
  */
 export enum ReturnRefundType {
@@ -660,7 +653,7 @@ export interface GetReturnDetail_Response {
   /**
    * Items to be sent back to seller. Can be either integrated/non-integrated.
    */
-  needs_logistics?: NeedsLogistics | string | number;
+  needs_logistics?: boolean;
   /**
    * Order price before discount.
    */
@@ -1049,7 +1042,7 @@ export interface GetReturnList_Return {
   /**
    * Items to be sent back to seller. Can be either integrated/non-integrated.
    */
-  needs_logistics?: NeedsLogistics | string | number;
+  needs_logistics?: boolean;
   /**
    * Order price before discount.
    */

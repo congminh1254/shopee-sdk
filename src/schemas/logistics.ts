@@ -44,13 +44,6 @@ export enum JobStatus {
   FAILED = "FAILED",
 }
 /**
- * Enum generated for field IsPaused
- */
-export enum IsPaused {
-  PAUSE = "pause",
-  RESUME = "resume",
-}
-/**
  * BatchShipOrder_Order sub-interface for BatchShipOrderRequest
  */
 export interface BatchShipOrder_Order {
@@ -4236,7 +4229,7 @@ export interface SetPauseStatusRequest {
   /**
    * The target pause status that seller wants to update to. Applicable values: - true: Trigger pause. All relevant channels will be paused and will not have any new incoming orders (fulfillment of existing orders will not be affected). Meanwhile, the system will start deducting the daily pause quota and automatically calculate the pause end time based on the remaining quota.- false: Trigger manual resume. No channels are paused and may have new incoming orders. The remaining daily quota will stop being consumed and be retained until reset the next day.Note: Due to the system cache synchronization mechanism, there may be an approximately 15-second delay before the pause/resume operation takes effect. It is recommended to call the v2.logistics.get_pause_status for confirmation after the update.
    */
-  is_paused: IsPaused | string | number;
+  is_paused: boolean;
 }
 /**
  * SetPauseStatus_Response sub-interface for SetPauseStatusResponse

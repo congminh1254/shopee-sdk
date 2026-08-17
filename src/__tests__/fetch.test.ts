@@ -21,6 +21,7 @@ const mockFetch = jest.fn() as unknown as jest.Mock<
 jest.unstable_mockModule("node-fetch", () => ({
   default: mockFetch,
   Blob: globalThis.Blob,
+  File: globalThis.File,
   FormData: globalThis.FormData,
   Headers: globalThis.Headers,
 }));

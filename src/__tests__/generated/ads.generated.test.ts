@@ -987,8 +987,8 @@ describe("AdsManager (Generated Tests)", () => {
       const exampleRequest = {};
       const exampleResponse = {
         data_timestamp: 1689052069,
-        auto_top_up: "true",
-        campaign_surge: "false",
+        auto_top_up: true,
+        campaign_surge: false,
       };
 
       mockFetch.mockResolvedValueOnce({

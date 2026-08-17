@@ -20,13 +20,6 @@ export enum ShopFulfillmentFlag {
   CB = "CB",
 }
 /**
- * Enum generated for field IsOneAwb
- */
-export enum IsOneAwb {
-  COM = "com",
-  ANNOUNCEMENTS = "announcements",
-}
-/**
  * Request parameters for get_authorised_reseller_brand
  *
  * Get the authorised reseller brand list for the shop.
@@ -393,7 +386,7 @@ export interface GetShopInfoResponseData {
   /**
    * Use this filed to indicate if the shop is in 1-AWB whitelist. If is_one_awb return true, please use new AWB size (10cm x 15cm thermal paper) to print AWB. For more details, please refer to: https://open.shopee.com/announcements/1138?category=3&is_top=false
    */
-  is_one_awb?: IsOneAwb | string | number;
+  is_one_awb?: boolean;
   /**
    * Indicates whether the current shop is a Mart Shop.
    */

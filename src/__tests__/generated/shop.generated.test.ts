@@ -215,7 +215,7 @@ describe("ShopManager (Generated Tests)", () => {
             direct_shop_region: "SG",
           },
         ],
-        is_one_awb: "true",
+        is_one_awb: true,
         is_mart_shop: false,
         is_outlet_shop: false,
         mart_shop_id: 1234567890,

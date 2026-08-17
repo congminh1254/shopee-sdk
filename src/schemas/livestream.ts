@@ -1,13 +1,5 @@
 import { FetchResponse } from "./fetch.js";
 /**
- * Enum generated for field AiStream
- */
-export enum AiStream {
-  PH = "ph",
-  EDU = "edu",
-  ARTICLE = "article",
-}
-/**
  * AddItemList_Item sub-interface for AddItemListRequest
  */
 export interface AddItemList_Item {
@@ -1204,7 +1196,7 @@ export interface StartSessionRequest {
   /**
    * Only available in PH region.To support transparent experiences on Shopee Live,please select this option if AI-generated streameris used for live-streaming.Failure of doing so may lead to warning or termination.Learn more about the policy:PH: https://seller.shopee.ph/edu/article/25213
    */
-  ai_stream?: AiStream | string | number;
+  ai_stream?: boolean;
 }
 /**
  * Response data payload for start_session

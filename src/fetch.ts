@@ -1,4 +1,4 @@
-import fetch, { Blob, FormData, RequestInit, Response, Headers, HeadersInit } from "node-fetch";
+import fetch, { Blob, File, FormData, RequestInit, Response, Headers, HeadersInit } from "node-fetch";
 import { ShopeeConfig } from "./sdk.js";
 import { FetchOptions } from "./schemas/fetch.js";
 import { ShopeeApiError, ShopeeSdkError } from "./errors.js";
@@ -37,7 +37,26 @@ function appendFormValue(formData: FormData, key: string, value: unknown): void 
   }
 
   if (Buffer.isBuffer(value)) {
-    formData.append(key, new Blob([new Uint8Array(value)]), `${key}.bin`);
+    let ext = "bin";
+    if (value.length >= 4) {
+      const hex = value.toString("hex", 0, 4).toLowerCase();
+      if (hex.startsWith("89504e47")) {
+        ext = "png";
+      } else if (hex.startsWith("ffd8ff")) {
+        ext = "jpg";
+      } else if (hex.startsWith("47494638")) {
+        ext = "gif";
+      }
+    }
+    let mime = "application/octet-stream";
+    if (ext === "png") {
+      mime = "image/png";
+    } else if (ext === "jpg") {
+      mime = "image/jpeg";
+    } else if (ext === "gif") {
+      mime = "image/gif";
+    }
+    formData.append(key, new File([new Uint8Array(value)], `${key}.${ext}`, { type: mime }));
     return;
   }
 

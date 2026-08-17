@@ -264,11 +264,18 @@ function parseParams(
     if (nodePath === "publish_item.model") {
       tsType = "object[]";
     }
+    // Override: Shopee spec defines image_id_list as object[] but it is an array of string image IDs.
+    if (fieldName === "image_id_list" && tsType === "any[]") {
+      tsType = "string[]";
+    }
 
     const hasChildren = node.children && node.children.length > 0;
+    const isBooleanType =
+      node.type &&
+      (node.type.trim().toLowerCase() === "boolean" || node.type.trim().toLowerCase() === "bool");
 
     // Check if there is an enum in the description
-    if (!hasChildren) {
+    if (!hasChildren && !isBooleanType) {
       const parsedEnum = parseEnumFromDescription(fieldName, node.description || "", node.type);
       if (parsedEnum) {
         enums.push(parsedEnum);

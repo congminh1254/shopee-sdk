@@ -2216,7 +2216,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   describe("setPauseStatus", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
-        is_paused: "test_string",
+        is_paused: true,
       };
       const exampleResponse = {
         is_paused: true,

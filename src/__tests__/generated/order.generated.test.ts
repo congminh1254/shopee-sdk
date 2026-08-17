@@ -793,7 +793,7 @@ describe("OrderManager (Generated Tests)", () => {
             virtual_contact_number: "test_string",
             package_query_number: "false",
             sorting_group: "North",
-            is_shipment_arranged: "false",
+            is_shipment_arranged: false,
             status_info_tag: {
               tag_id: 0,
               timestamp: 0,
@@ -1006,7 +1006,7 @@ describe("OrderManager (Generated Tests)", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         order_sn: "test_string",
-        is_approved: "test_string",
+        is_approved: true,
         reject_reason_code: 123,
         items: [
           {
@@ -1076,7 +1076,7 @@ describe("OrderManager (Generated Tests)", () => {
             logistics_channel_id: 50021,
             product_location_id: '"VN0005EIZ"',
             sorting_group: '"North"',
-            is_shipment_arranged: "false",
+            is_shipment_arranged: false,
           },
         ],
         pagination: {

@@ -14,13 +14,6 @@ export enum GtinCode {
   MODEL = "model",
 }
 /**
- * Enum generated for field MainComponent
- */
-export enum MainComponent {
-  ITEM = "item",
-  MODEL = "model",
-}
-/**
  * Enum generated for field Language
  */
 export enum Language {
@@ -1015,7 +1008,7 @@ export interface AddKitItem_Component {
   /**
    * Whether this item/model is the main component for this kit.One kit item can only have one item/model as main component.
    */
-  main_component?: MainComponent | string | number;
+  main_component?: boolean;
 }
 /**
  * AddKitItem_Model sub-interface for AddKitItem_ItemSetting
@@ -4993,7 +4986,7 @@ export interface GetKitItemInfo_Component {
   /**
    * Whether this item/model is the main component for this kit.
    */
-  main_component?: MainComponent | string | number;
+  main_component?: boolean;
   component_item_or_model_image?: string;
   component_item_or_model_sku?: string;
 }
@@ -7297,7 +7290,7 @@ export interface UpdateItem_Image {
   /**
    * Image ID.
    */
-  image_id_list: any[];
+  image_id_list: string[];
   /**
    * Ratio of image, OptionalAllowed ratios :"1:1" (default) "3:4"
    */
@@ -8039,7 +8032,7 @@ export interface UpdateKitItem_Component {
   /**
    * Whether this item/model is the main component for this kit.One kit item can only have one item/model as main component.
    */
-  main_component?: MainComponent | string | number;
+  main_component?: boolean;
 }
 /**
  * UpdateKitItem_Model sub-interface for UpdateKitItem_ItemSetting
