@@ -1,4 +1,4 @@
-import { RequestInit } from "node-fetch";
+
 
 export type FetchOptions = Omit<RequestInit, "body"> & {
   params?: any;

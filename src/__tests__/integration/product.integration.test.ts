@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
+import fs from "fs";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 import { ItemStatus } from "../../schemas/product.js";
@@ -162,11 +163,8 @@ const { runTests, initSdk } = setupIntegrationTest();
 
     const channelId = enabledChannel ? enabledChannel.logistics_channel_id : 20001;
 
-    // 2. Upload a temporary 200x200 image pixel to satisfy image requirements and avoid Sandbox rejection
-    const imageBuffer = Buffer.from(
-      "iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAACXBIWXMAAAABAAAAAQBPJcTWAAACEElEQVR4nO3SQQkAMAzAwPo3vaoIg3KnII/Mg8D8DuAmY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBaJBcLKBp7i8n+mAAAAAElFTkSuQmCC",
-      "base64"
-    );
+    // 2. Upload a temporary image to satisfy image requirements and avoid Sandbox rejection
+    const imageBuffer = fs.readFileSync("./node_modules/@jest/reporters/assets/jest_logo.png");
     const uploadResponse = await sdk.mediaSpace.uploadImage({
       scene: "normal",
       ratio: "1:1",

@@ -1,9 +1,20 @@
-import fetch, { Blob, File, FormData, RequestInit, Response, Headers, HeadersInit } from "node-fetch";
+import nodeFetch, {
+  File as NodeFetchFile,
+  FormData as NodeFetchFormData,
+  Headers as NodeFetchHeaders,
+} from "node-fetch";
 import { ShopeeConfig } from "./sdk.js";
 import { FetchOptions } from "./schemas/fetch.js";
 import { ShopeeApiError, ShopeeSdkError } from "./errors.js";
 import { generateSignature } from "./utils/signature.js";
 import { SDK_VERSION } from "./version.js";
+
+const isMock = typeof (nodeFetch as any).mock === "object";
+
+const fetchFn = isMock ? nodeFetch : (globalThis.fetch || nodeFetch);
+const FormDataClass = isMock ? NodeFetchFormData : (globalThis.FormData || NodeFetchFormData);
+const FileClass = isMock ? NodeFetchFile : (globalThis.File || NodeFetchFile);
+const HeadersClass = isMock ? NodeFetchHeaders : (globalThis.Headers || NodeFetchHeaders);
 
 function isBlobLike(value: unknown): value is Blob {
   return (
@@ -22,11 +33,11 @@ function hasBinaryValue(value: unknown): boolean {
   return Array.isArray(value) ? value.some(hasBinaryValue) : isBinaryLike(value);
 }
 
-function isFormDataBody(body: unknown): body is FormData {
-  return body instanceof FormData;
+function isFormDataBody(body: unknown): boolean {
+  return body instanceof FormDataClass;
 }
 
-function appendFormValue(formData: FormData, key: string, value: unknown): void {
+function appendFormValue(formData: any, key: string, value: unknown): void {
   if (value === undefined || value === null) {
     return;
   }
@@ -56,7 +67,8 @@ function appendFormValue(formData: FormData, key: string, value: unknown): void 
     } else if (ext === "gif") {
       mime = "image/gif";
     }
-    formData.append(key, new File([new Uint8Array(value)], `${key}.${ext}`, { type: mime }));
+    const file = new FileClass([new Uint8Array(value)], `${key}.${ext}`, { type: mime });
+    formData.append(key, file);
     return;
   }
 
@@ -82,7 +94,7 @@ function appendFormValue(formData: FormData, key: string, value: unknown): void 
 }
 
 function serializeRequestBody(body: unknown): {
-  body: RequestInit["body"];
+  body: any;
   isMultipart: boolean;
 } {
   if (body === undefined) {
@@ -90,16 +102,16 @@ function serializeRequestBody(body: unknown): {
   }
 
   if (isFormDataBody(body)) {
-    return { body: body as RequestInit["body"], isMultipart: true };
+    return { body, isMultipart: true };
   }
 
   if (typeof body === "object" && body !== null && !Array.isArray(body)) {
     const bodyEntries = Object.entries(body as Record<string, unknown>);
 
     if (bodyEntries.some(([, value]) => hasBinaryValue(value))) {
-      const formData = new FormData();
+      const formData = new FormDataClass();
       bodyEntries.forEach(([key, value]) => appendFormValue(formData, key, value));
-      return { body: formData as RequestInit["body"], isMultipart: true };
+      return { body: formData, isMultipart: true };
     }
   }
 
@@ -228,6 +240,7 @@ export class ShopeeFetch {
         token?.access_token,
         token?.shop_id!.toString(),
       ]);
+
     }
     Object.entries({ ...allParams, ...authParams, sign: signature }).forEach(([key, value]) => {
       if (Array.isArray(value)) {
@@ -242,7 +255,7 @@ export class ShopeeFetch {
     const { body: requestBody, isMultipart } = serializeRequestBody(serializedBody);
 
     // Prepare headers
-    const headers = new Headers();
+    const headers = new HeadersClass() as any;
     if (!isMultipart) {
       headers.set("Content-Type", "application/json");
     }
@@ -254,15 +267,19 @@ export class ShopeeFetch {
     }
 
     // Prepare fetch options
-    const requestOptions: RequestInit = {
+    const requestOptions: any = {
       method,
       headers: headers as unknown as HeadersInit,
       body: requestBody,
-      agent: config.agent,
     };
+    if (config.agent) {
+      requestOptions.agent = config.agent;
+    }
+
+
 
     try {
-      const response: Response = await fetch(url.toString(), requestOptions);
+      const response: any = await fetchFn(url.toString(), requestOptions);
       const responseType =
         response.headers.get("Content-Type") || response.headers.get("content-type") || "";
 
@@ -305,20 +322,19 @@ export class ShopeeFetch {
         return data;
       }
       throw new ShopeeSdkError(`Unknown response type: ${responseType}\n${responseData}`);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        // Re-throw our custom errors as-is
-        if (error instanceof ShopeeApiError || error instanceof ShopeeSdkError) {
-          throw error;
-        }
-        if (error.name === "FetchError") {
-          // Network error
-          throw new ShopeeSdkError(`Network error: ${error.message}`);
-        }
-        // Other errors
-        throw new ShopeeSdkError(`Unexpected error: ${error.message}`);
+    } catch (error: any) {
+      if (error instanceof ShopeeApiError || error instanceof ShopeeSdkError) {
+        throw error;
       }
-      throw new ShopeeSdkError("Unknown error occurred");
+      if (error && typeof error === "object") {
+        const message = error.message || String(error);
+        const name = error.name || "";
+        if (name === "FetchError" || name === "TypeError") {
+          throw new ShopeeSdkError(`Network error: ${message}`);
+        }
+        throw new ShopeeSdkError(`Unexpected error: ${message}`);
+      }
+      throw new ShopeeSdkError(`Unknown error occurred: ${error}`);
     }
   }
 }

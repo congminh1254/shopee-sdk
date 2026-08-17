@@ -28,9 +28,7 @@ const { runTests, initSdk } = setupIntegrationTest();
         min_amount: 2,
         discount_percentage: 10,
         purchase_limit: 5,
-        discount_value: 0,
-        fix_price: 0,
-      });
+      } as any);
 
       expect(addResponse).toBeDefined();
       expect(addResponse.error || "").toBe("");
