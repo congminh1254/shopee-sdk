@@ -171,7 +171,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
   });
 
   it("should set custom agent when provided in config", async () => {
-    const customAgent = { name: "custom-agent" };
+    const customAgent = { name: "custom-agent" } as any;
     const configWithAgent = { ...mockConfig, agent: customAgent };
 
     mockFetch.mockResolvedValueOnce({
