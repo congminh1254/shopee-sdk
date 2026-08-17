@@ -2,8 +2,12 @@ import { ShopeeSDK } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { getSandboxConfig, hasSandboxPartnerCredentials } from "../utils/env-helper.js";
 import { AccessToken } from "../../schemas/access-token.js";
+import { jest } from "@jest/globals";
 
 export function setupIntegrationTest() {
+  // Retry failing integration tests up to 3 times
+  jest.retryTimes(3, { logErrorsBeforeRetry: true });
+
   const runTests = hasSandboxPartnerCredentials();
   let sdk: ShopeeSDK;
   let hasValidToken = false;
