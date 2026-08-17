@@ -25,7 +25,7 @@ import {
 } from "../../schemas/payment.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PaymentManager", () => {
@@ -152,8 +152,8 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.order_income.escrow_amount).toBe(22.5);
-      expect(result.response.order_income.items).toHaveLength(1);
+      expect(result.response.order_income!.escrow_amount).toBe(22.5);
+      expect(result.response.order_income!.items).toHaveLength(1);
       expect(result.response.buyer_user_name).toBe("testbuyer123");
     });
 
@@ -262,8 +262,8 @@ describe("PaymentManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.return_order_sn_list).toHaveLength(2);
-      expect(result.response.order_income.seller_discount).toBe(2.0);
-      expect(result.response.order_income.drc_adjustable_refund).toBe(2.0);
+      expect(result.response.order_income!.seller_discount).toBe(2.0);
+      expect(result.response.order_income!.drc_adjustable_refund).toBe(2.0);
     });
 
     it("should handle orders with no escrow detail breakdown", async () => {
@@ -362,9 +362,9 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.order_income.escrow_amount).toBe(15.0);
-      expect(result.response.order_income.final_shipping_fee).toBe(0.0);
-      expect(result.response.order_income.commission_fee).toBe(0.0);
+      expect(result.response.order_income!.escrow_amount).toBe(15.0);
+      expect(result.response.order_income!.final_shipping_fee).toBe(0.0);
+      expect(result.response.order_income!.commission_fee).toBe(0.0);
     });
   });
 
@@ -457,12 +457,12 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.order_income.th_import_duty).toBe(1.5);
-      expect(result.response.order_income.withholding_vat_tax).toBe(0.3);
-      expect(result.response.order_income.withholding_pit_tax).toBe(0.2);
-      expect(result.response.order_income.seller_order_processing_fee).toBe(0.5);
-      expect(result.response.order_income.net_commission_fee).toBe(2.5);
-      expect(result.response.order_income.net_service_fee).toBe(0.4);
+      expect(result.response.order_income!.th_import_duty).toBe(1.5);
+      expect(result.response.order_income!.withholding_vat_tax).toBe(0.3);
+      expect(result.response.order_income!.withholding_pit_tax).toBe(0.2);
+      expect(result.response.order_income!.seller_order_processing_fee).toBe(0.5);
+      expect(result.response.order_income!.net_commission_fee).toBe(2.5);
+      expect(result.response.order_income!.net_service_fee).toBe(0.4);
     });
   });
 
@@ -521,23 +521,22 @@ describe("PaymentManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          order_income_list: [
-            {
+        response: [
+          {
+            escrow_detail: {
               order_sn: "220101000000001",
               buyer_user_name: "testbuyer1",
               return_order_sn_list: [],
               order_income: {
                 escrow_amount: 100.0,
-                buyer_total_amount: 105.0,
+                buyer_total_amount_pri: 105.0,
                 original_price: 100.0,
                 seller_discount: 0.0,
                 shopee_discount: 0.0,
                 voucher_from_seller: 0.0,
                 voucher_from_shopee: 0.0,
                 coins: 0.0,
-                buyer_paid_shipping_fee: 5.0,
-                buyer_transaction_fee: 0.0,
+                buyer_paid_packaging_fee: 5.0,
                 cross_border_tax: 0.0,
                 payment_promotion: 0.0,
                 commission_fee: 5.0,
@@ -550,14 +549,14 @@ describe("PaymentManager", () => {
                 final_shipping_fee: 5.0,
                 actual_shipping_fee: 5.0,
                 shopee_shipping_rebate: 0.0,
-                shipping_fee_discount_from_3pl: 0.0,
+                shipping_fee_discount_from_pl: 0.0,
                 seller_shipping_discount: 0.0,
-                seller_voucher_code: [],
+                seller_voucher_code: 0,
                 drc_adjustable_refund: 0.0,
                 cost_of_goods_sold: 100.0,
                 original_cost_of_goods_sold: 100.0,
                 original_shopee_discount: 0.0,
-                seller_return_refund: 0.0,
+                seller_return_refund_pri: 0.0,
                 items: [],
                 reverse_shipping_fee: 0.0,
                 final_product_protection: 0.0,
@@ -585,8 +584,8 @@ describe("PaymentManager", () => {
                 shopee_coins_redeemed: 0.0,
               },
             },
-          ],
-        },
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -604,7 +603,7 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.order_income_list).toHaveLength(1);
+      expect(result.response).toHaveLength(1);
     });
 
     it("should include th_import_duty in batch escrow order income", async () => {
@@ -612,23 +611,22 @@ describe("PaymentManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          order_income_list: [
-            {
+        response: [
+          {
+            escrow_detail: {
               order_sn: "220101TH0000002",
               buyer_user_name: "thbuyer2",
               return_order_sn_list: [],
               order_income: {
                 escrow_amount: 47.5,
-                buyer_total_amount: 50.0,
+                buyer_total_amount_pri: 50.0,
                 original_price: 50.0,
                 seller_discount: 0.0,
                 shopee_discount: 0.0,
                 voucher_from_seller: 0.0,
                 voucher_from_shopee: 0.0,
                 coins: 0.0,
-                buyer_paid_shipping_fee: 0.0,
-                buyer_transaction_fee: 0.0,
+                buyer_paid_packaging_fee: 0.0,
                 cross_border_tax: 0.0,
                 payment_promotion: 0.0,
                 commission_fee: 1.5,
@@ -641,14 +639,14 @@ describe("PaymentManager", () => {
                 final_shipping_fee: 0.0,
                 actual_shipping_fee: 0.0,
                 shopee_shipping_rebate: 0.0,
-                shipping_fee_discount_from_3pl: 0.0,
+                shipping_fee_discount_from_pl: 0.0,
                 seller_shipping_discount: 0.0,
-                seller_voucher_code: [],
+                seller_voucher_code: 0,
                 drc_adjustable_refund: 0.0,
                 cost_of_goods_sold: 50.0,
                 original_cost_of_goods_sold: 50.0,
                 original_shopee_discount: 0.0,
-                seller_return_refund: 0.0,
+                seller_return_refund_pri: 0.0,
                 items: [],
                 reverse_shipping_fee: 0.0,
                 final_product_protection: 0.0,
@@ -695,8 +693,8 @@ describe("PaymentManager", () => {
                 shopee_coins_redeemed: 0.0,
               },
             },
-          ],
-        },
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -706,15 +704,15 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.order_income_list[0].order_income.th_import_duty).toBe(0.75);
-      expect(result.response.order_income_list[0].order_income.fbs_fee).toBe(0.5);
+      expect(result.response[0].escrow_detail?.order_income?.th_import_duty).toBe(0.75);
+      expect(result.response[0].escrow_detail?.order_income?.fbs_fee).toBe(0.5);
       expect(
-        result.response.order_income_list[0].order_income.net_commission_fee_info_list
+        result.response[0].escrow_detail?.order_income?.net_commission_fee_info_list
       ).toHaveLength(1);
       expect(
-        result.response.order_income_list[0].order_income.net_service_fee_info_list
+        result.response[0].escrow_detail?.order_income?.net_service_fee_info_list
       ).toHaveLength(1);
-      expect(result.response.order_income_list[0].order_income.seller_product_rebate?.amount).toBe(
+      expect(result.response[0].escrow_detail?.order_income?.seller_product_rebate?.amount).toBe(
         0.1
       );
     });
@@ -815,8 +813,7 @@ describe("PaymentManager", () => {
         error: "",
         message: "",
         response: {
-          tenure_list: [3, 6, 12],
-          status: "ENABLED",
+          installment_status: 1,
         },
       };
 
@@ -834,8 +831,7 @@ describe("PaymentManager", () => {
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.tenure_list).toHaveLength(3);
-      expect(result.response.status).toBe("ENABLED");
+      expect(result.response.installment_status).toBe(1);
     });
   });
 
@@ -951,30 +947,28 @@ describe("PaymentManager", () => {
         error: "",
         message: "",
         response: {
-          income_report_id: "REPORT_123456",
+          id: 123456,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.generateIncomeReport({
-        start_time: 1651680000,
-        end_time: 1651939200,
-        currency: "SGD",
+        release_time_from: 1651680000,
+        release_time_to: 1651939200,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/generate_income_report", {
         method: "GET",
         auth: true,
         params: {
-          start_time: 1651680000,
-          end_time: 1651939200,
-          currency: "SGD",
+          release_time_from: 1651680000,
+          release_time_to: 1651939200,
         },
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.income_report_id).toBe("REPORT_123456");
+      expect(result.response.id).toBe(123456);
     });
   });
 
@@ -985,30 +979,29 @@ describe("PaymentManager", () => {
         error: "",
         message: "",
         response: {
-          income_report_id: "REPORT_123456",
-          status: "COMPLETED",
-          url: "https://example.com/report.csv",
-          create_time: 1651680000,
+          id: 123456,
+          status: 1,
+          file_link: "https://example.com/report.csv",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.getIncomeReport({
-        income_report_id: "REPORT_123456",
+        income_report_id: 123456,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_report", {
         method: "GET",
         auth: true,
         params: {
-          income_report_id: "REPORT_123456",
+          income_report_id: 123456,
         },
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.status).toBe("COMPLETED");
-      expect(result.response.url).toBe("https://example.com/report.csv");
+      expect(result.response.status).toBe(1);
+      expect(result.response.file_link).toBe("https://example.com/report.csv");
     });
   });
 
@@ -1019,15 +1012,16 @@ describe("PaymentManager", () => {
         error: "",
         message: "",
         response: {
-          income_statement_id: "STATEMENT_123456",
+          id: 123456,
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.generateIncomeStatement({
-        start_time: 1651680000,
-        end_time: 1651939200,
+        release_time_from: 1651680000,
+        release_time_to: 1651939200,
+        statement_type: 1,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1037,14 +1031,15 @@ describe("PaymentManager", () => {
           method: "GET",
           auth: true,
           params: {
-            start_time: 1651680000,
-            end_time: 1651939200,
+            release_time_from: 1651680000,
+            release_time_to: 1651939200,
+            statement_type: 1,
           },
         }
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.income_statement_id).toBe("STATEMENT_123456");
+      expect(result.response.id).toBe(123456);
     });
   });
 
@@ -1055,30 +1050,29 @@ describe("PaymentManager", () => {
         error: "",
         message: "",
         response: {
-          income_statement_id: "STATEMENT_123456",
-          status: "COMPLETED",
-          url: "https://example.com/statement.pdf",
-          create_time: 1651680000,
+          id: 123456,
+          status: 1,
+          file_link: "https://example.com/statement.pdf",
         },
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await paymentManager.getIncomeStatement({
-        income_statement_id: "STATEMENT_123456",
+        income_statement_id: 123456,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_statement", {
         method: "GET",
         auth: true,
         params: {
-          income_statement_id: "STATEMENT_123456",
+          income_statement_id: 123456,
         },
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.status).toBe("COMPLETED");
-      expect(result.response.url).toBe("https://example.com/statement.pdf");
+      expect(result.response.status).toBe(1);
+      expect(result.response.file_link).toBe("https://example.com/statement.pdf");
     });
   });
 
@@ -1089,15 +1083,13 @@ describe("PaymentManager", () => {
         error: "",
         message: "",
         response: {
-          transactions: [
-            {
-              amount: 1000.0,
-              currency: "USD",
-              order_sn: "220101000000001",
-              billing_transaction_type: "ORDER_PAYMENT",
-              billing_transaction_status: "COMPLETED",
-            },
-          ],
+          transactions: {
+            amount: 1000.0,
+            currency: "USD",
+            order_sn: "220101000000001",
+            billing_transaction_type: "ORDER_PAYMENT",
+            billing_transaction_status: "COMPLETED",
+          },
           more: false,
           next_cursor: "",
         },
@@ -1126,7 +1118,7 @@ describe("PaymentManager", () => {
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.transactions).toHaveLength(1);
+      expect(result.response.transactions?.amount).toBe(1000.0);
     });
   });
 
@@ -1139,11 +1131,10 @@ describe("PaymentManager", () => {
         response: {
           payout_list: [
             {
-              payout_id: "PAYOUT_123456",
-              payout_amount: 5000.0,
-              payout_time: 1651680000,
-              currency: "USD",
-              exchange_rate: 1.35,
+              payout_info: {
+                payout_amount: 5000.0,
+                exchange_rate: "1.35",
+              },
             },
           ],
           more: false,
@@ -1184,12 +1175,11 @@ describe("PaymentManager", () => {
         response: {
           payout_list: [
             {
-              payout_id: "PAYOUT_789012",
+              encrypted_payout_id: "PAYOUT_789012",
               payout_amount: 7500.0,
               payout_time: 1651680000,
-              currency: "USD",
-              exchange_rate: 1.35,
-              payout_fee: 25.0,
+              payout_currency: "USD",
+              exchange_rate: "1.35",
             },
           ],
           more: false,
@@ -1201,8 +1191,8 @@ describe("PaymentManager", () => {
       const result = await paymentManager.getPayoutInfo({
         payout_time_from: 1651680000,
         payout_time_to: 1651939200,
-        page_no: 1,
         page_size: 40,
+        cursor: "",
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payout_info", {
@@ -1211,14 +1201,14 @@ describe("PaymentManager", () => {
         params: {
           payout_time_from: 1651680000,
           payout_time_to: 1651939200,
-          page_no: 1,
           page_size: 40,
+          cursor: "",
         },
       });
 
       expect(result).toEqual(mockResponse);
       expect(result.response.payout_list).toHaveLength(1);
-      expect(result.response.payout_list[0].payout_fee).toBe(25.0);
+      expect(result.response.payout_list![0].payout_amount).toBe(7500.0);
     });
   });
 
@@ -1244,6 +1234,7 @@ describe("PaymentManager", () => {
             page_size: 10,
           },
         },
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1284,6 +1275,7 @@ describe("PaymentManager", () => {
           pending_amount: 4010,
           released_amount: 1545,
         },
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);

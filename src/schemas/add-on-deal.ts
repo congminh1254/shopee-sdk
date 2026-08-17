@@ -1,426 +1,809 @@
-import { BaseResponse } from "./base.js";
+// NOTE: This file is auto-generated. Do not edit directly.
 
+import { FetchResponse } from "./fetch.js";
 /**
- * Add-on deal promotion types
+ * Request parameters for add_add_on_deal
+ *
+ * Add Add-on Deal
  */
-export enum AddOnDealPromotionType {
-  /** Add-on discount promotion */
-  ADD_ON_DISCOUNT = 0,
-  /** Gift with minimum spend promotion */
-  GIFT_WITH_MIN_SPEND = 1,
+export interface AddAddOnDealRequest {
+  /**
+   * Title of the add on deal
+   */
+  add_on_deal_name: string;
+  /**
+   * The time when add on deal activity start.
+   */
+  start_time: number;
+  /**
+   * The time when add on deal activity end
+   */
+  end_time: number;
+  /**
+   * The type of add on deal：add on discount =0；gift with mini spend=1
+   */
+  promotion_type: number;
+  /**
+   * The minimum purchase amount that needs to be met to buy the gift with min.Spend
+   */
+  purchase_min_spend?: number;
+  /**
+   * Number of gifts that buyers can get
+   */
+  per_gift_num?: number;
+  /**
+   * promotion_purchase_limit
+   */
+  promotion_purchase_limit?: number;
 }
-
 /**
- * Add-on deal promotion status for filtering
+ * AddAddOnDealResponseData sub-interface for AddAddOnDealResponse
  */
-export enum AddOnDealPromotionStatus {
-  /** All add-on deals regardless of status */
-  ALL = "all",
-  /** Currently active add-on deals */
-  ONGOING = "ongoing",
-  /** Add-on deals that have not started yet */
-  UPCOMING = "upcoming",
-  /** Add-on deals that have ended */
-  EXPIRED = "expired",
+export interface AddAddOnDealResponseData {
+  /**
+   * Shopee's unique identifier for an add on deal activity.
+   */
+  add_on_deal_id?: number;
 }
-
 /**
- * Main item status
+ * Response payload for add_add_on_deal
+ *
+ * Add Add-on Deal
  */
-export enum AddOnDealMainItemStatus {
-  /** Deleted status */
-  DELETED = 0,
-  /** Active status */
-  ACTIVE = 1,
-}
-
+export type AddAddOnDealResponse = FetchResponse<AddAddOnDealResponseData>;
 /**
- * Sub item status
+ * AddAddOnDealMainItemMainItem sub-interface for AddAddOnDealMainItemRequest
  */
-export enum AddOnDealSubItemStatus {
-  /** Deleted status */
-  DELETED = 0,
-  /** Active status */
-  ACTIVE = 1,
-}
-
-/**
- * Main item in add-on deal
- */
-export interface AddOnDealMainItem {
-  /** Shopee's unique identifier for an item */
+export interface AddAddOnDealMainItemMainItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
   item_id: number;
-  /** Status of the main item (0=deleted, 1=active) */
-  status: AddOnDealMainItemStatus;
+  /**
+   * The status of add on deal item：enable = 1；disable =2
+   */
+  status: number;
 }
-
 /**
- * Sub item (discounted/gift item) in add-on deal
+ * Request parameters for add_add_on_deal_main_item
+ *
+ * Add Add-on Deal Main Item
  */
-export interface AddOnDealSubItem {
-  /** Shopee's unique identifier for an item */
-  item_id: number;
-  /** Shopee's unique identifier for a model (variation) */
-  model_id: number;
-  /** Discounted price or gift price for the sub item */
-  sub_item_input_price: number;
-  /** Maximum quantity of this sub item that can be purchased per order */
-  sub_item_limit?: number;
-  /** Status of the sub item (0=deleted, 1=active) */
-  status: AddOnDealSubItemStatus;
+export interface AddAddOnDealMainItemRequest {
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
+  add_on_deal_id: number;
+  /**
+   * The main items added in this add on deal promotion.
+   */
+  main_item_list: AddAddOnDealMainItemMainItem[];
 }
-
 /**
- * Failed item in batch operations
+ * AddAddOnDealMainItem_AddAddOnDealMainItemMainItem sub-interface for AddAddOnDealMainItemResponseData
  */
-export interface AddOnDealFailedItem {
-  /** Shopee's unique identifier for an item */
-  item_id: number;
-  /** Shopee's unique identifier for a model (variation) - only for sub items */
+export interface AddAddOnDealMainItem_AddAddOnDealMainItemMainItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id?: number;
+  /**
+   * The status of add on deal item：enable = 1；disable =2
+   */
+  status?: number;
+}
+/**
+ * AddAddOnDealMainItemResponseData sub-interface for AddAddOnDealMainItemResponse
+ */
+export interface AddAddOnDealMainItemResponseData {
+  /**
+   * The main items added in this add on deal promotion.
+   */
+  main_item_list?: AddAddOnDealMainItem_AddAddOnDealMainItemMainItem[];
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
+  add_on_deal_id?: number;
+}
+/**
+ * Response payload for add_add_on_deal_main_item
+ *
+ * Add Add-on Deal Main Item
+ */
+export type AddAddOnDealMainItemResponse = FetchResponse<AddAddOnDealMainItemResponseData>;
+/**
+ * AddAddOnDealSubItemSubItem sub-interface for AddAddOnDealSubItemRequest
+ */
+export interface AddAddOnDealSubItemSubItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id?: number;
+  /**
+   * Shopee's unique identifier for a model.
+   */
   model_id?: number;
-  /** Error code */
-  fail_error: string;
-  /** Error message */
-  fail_message: string;
+  /**
+   * The status of add on deal item：enable = 1；disable =2
+   */
+  status?: number;
+  /**
+   * Add-on discount price before tax
+   */
+  sub_item_input_price?: number;
+  /**
+   * The purchase limit of sub item.
+   */
+  sub_item_limit?: number;
 }
-
 /**
- * Add-on deal information
+ * Request parameters for add_add_on_deal_sub_item
+ *
+ * Add Add-on Deal Sub Item
  */
-export interface AddOnDealInfo {
-  /** Shopee's unique identifier for an add on deal activity */
+export interface AddAddOnDealSubItemRequest {
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
   add_on_deal_id: number;
-  /** Title of the add on deal */
-  add_on_deal_name: string;
-  /** The time when add on deal activity start */
-  start_time: number;
-  /** The time when add on deal activity end */
-  end_time: number;
-  /** The type of add on deal (0=add on discount, 1=gift with min spend) */
-  promotion_type: AddOnDealPromotionType;
-  /** The minimum purchase amount that needs to be met to buy the gift with min spend */
-  purchase_min_spend?: number;
-  /** Number of gifts that buyers can get */
-  per_gift_num?: number;
-  /** Max number of add-on products that a customer can purchase per order */
-  promotion_purchase_limit?: number;
-  /** The display sequence of sub items in buyer side */
-  sub_item_priority: number[];
-  /** The create source of add on deal (0=shopee admin, 1=seller) */
-  source: number;
+  /**
+   * The sub items added in this add on deal promotion.
+   */
+  sub_item_list: AddAddOnDealSubItemSubItem[];
 }
-
 /**
- * Parameters for adding a new add-on deal
+ * AddAddOnDealSubItem_AddAddOnDealSubItemSubItem sub-interface for AddAddOnDealSubItemResponseData
  */
-export interface AddAddOnDealParams {
-  /** Title of the add on deal (max 25 characters) */
-  add_on_deal_name: string;
-  /** The time when add on deal activity start (must be 1 hour later than current time) */
-  start_time: number;
-  /** The time when add on deal activity end (must be 1 hour later than start time) */
-  end_time: number;
-  /** The type of add on deal (0=add on discount, 1=gift with min spend) */
-  promotion_type: AddOnDealPromotionType;
-  /** The minimum purchase amount that needs to be met to buy the gift with min spend */
-  purchase_min_spend?: number;
-  /** Number of gifts that buyers can get (1-50) */
-  per_gift_num?: number;
-  /** Max number of add-on products that a customer can purchase per order (1-100) */
-  promotion_purchase_limit?: number;
+export interface AddAddOnDealSubItem_AddAddOnDealSubItemSubItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id?: number;
+  /**
+   * The status of add on deal item：enable = 1；disable =2
+   */
+  status?: number;
+  /**
+   * Shopee's unique identifier for a model.
+   */
+  model_id?: number;
+  fail_error?: string;
+  fail_message?: string;
 }
-
 /**
- * Parameters for adding main items to an add-on deal
+ * AddAddOnDealSubItemResponseData sub-interface for AddAddOnDealSubItemResponse
  */
-export interface AddAddOnDealMainItemParams {
-  /** Shopee's unique identifier for an add on deal activity */
-  add_on_deal_id: number;
-  /** List of main items to add */
-  main_item_list: AddOnDealMainItem[];
+export interface AddAddOnDealSubItemResponseData {
+  /**
+   * The sub items added in this add on deal promotion.
+   */
+  sub_item_list?: AddAddOnDealSubItem_AddAddOnDealSubItemSubItem[];
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
+  add_on_deal_id?: number;
 }
-
 /**
- * Parameters for adding sub items to an add-on deal
+ * Response payload for add_add_on_deal_sub_item
+ *
+ * Add Add-on Deal Sub Item
  */
-export interface AddAddOnDealSubItemParams {
-  /** Shopee's unique identifier for an add on deal activity */
-  add_on_deal_id: number;
-  /** List of sub items to add */
-  sub_item_list: AddOnDealSubItem[];
-}
-
+export type AddAddOnDealSubItemResponse = FetchResponse<AddAddOnDealSubItemResponseData>;
 /**
- * Parameters for deleting an add-on deal
+ * Request parameters for delete_add_on_deal
+ *
+ * Delete Add-on Deal
  */
-export interface DeleteAddOnDealParams {
-  /** Shopee's unique identifier for an add on deal activity */
+export interface DeleteAddOnDealRequest {
+  /**
+   * Shopee's unique identifier for an add on deal activity.
+   */
   add_on_deal_id: number;
 }
-
 /**
- * Parameters for deleting main items from an add-on deal
+ * DeleteAddOnDealResponseData sub-interface for DeleteAddOnDealResponse
  */
-export interface DeleteAddOnDealMainItemParams {
-  /** Shopee's unique identifier for an add on deal activity */
-  add_on_deal_id: number;
-  /** List of item IDs to delete */
-  item_id_list: number[];
+export interface DeleteAddOnDealResponseData {
+  /**
+   * Shopee's unique identifier for an add on deal activity.
+   */
+  add_on_deal_id?: number;
 }
-
 /**
- * Parameters for deleting sub items from an add-on deal
+ * Response payload for delete_add_on_deal
+ *
+ * Delete Add-on Deal
  */
-export interface DeleteAddOnDealSubItemParams {
-  /** Shopee's unique identifier for an add on deal activity */
+export type DeleteAddOnDealResponse = FetchResponse<DeleteAddOnDealResponseData>;
+/**
+ * Request parameters for delete_add_on_deal_main_item
+ *
+ * Delete Add-on Deal Main Item
+ */
+export interface DeleteAddOnDealMainItemRequest {
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
   add_on_deal_id: number;
-  /** List of sub items to delete */
-  sub_item_list: Array<{
-    /** Shopee's unique identifier for an item */
-    item_id: number;
-    /** Shopee's unique identifier for a model (variation) */
-    model_id: number;
-  }>;
+  /**
+   * The main items added in this add on deal promotion.
+   */
+  main_item_list: number[];
 }
-
 /**
- * Parameters for ending an add-on deal
+ * DeleteAddOnDealMainItemResponseData sub-interface for DeleteAddOnDealMainItemResponse
  */
-export interface EndAddOnDealParams {
-  /** Shopee's unique identifier for an add on deal activity */
+export interface DeleteAddOnDealMainItemResponseData {
+  /**
+   * The main items added in this add on deal promotion.
+   */
+  main_item_list?: number[];
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
+  add_on_deal_id?: number;
+}
+/**
+ * Response payload for delete_add_on_deal_main_item
+ *
+ * Delete Add-on Deal Main Item
+ */
+export type DeleteAddOnDealMainItemResponse = FetchResponse<DeleteAddOnDealMainItemResponseData>;
+/**
+ * DeleteAddOnDealSubItemSubItem sub-interface for DeleteAddOnDealSubItemRequest
+ */
+export interface DeleteAddOnDealSubItemSubItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id?: number;
+  /**
+   * Shopee's unique identifier for a model.
+   */
+  model_id?: number;
+}
+/**
+ * Request parameters for delete_add_on_deal_sub_item
+ *
+ * Delete Add-on Deal Sub Item
+ */
+export interface DeleteAddOnDealSubItemRequest {
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
+  add_on_deal_id: number;
+  /**
+   * The sub items added in this add on deal promotion.
+   */
+  sub_item_list: DeleteAddOnDealSubItemSubItem[];
+}
+/**
+ * DeleteAddOnDealSubItem_DeleteAddOnDealSubItemSubItem sub-interface for DeleteAddOnDealSubItemResponseData
+ */
+export interface DeleteAddOnDealSubItem_DeleteAddOnDealSubItemSubItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id?: number;
+  /**
+   * Shopee's unique identifier for a model.
+   */
+  model_id?: number;
+  fail_error?: string;
+  fail_message?: string;
+}
+/**
+ * DeleteAddOnDealSubItemResponseData sub-interface for DeleteAddOnDealSubItemResponse
+ */
+export interface DeleteAddOnDealSubItemResponseData {
+  /**
+   * The sub items added in this add on deal promotion.
+   */
+  sub_item_list?: DeleteAddOnDealSubItem_DeleteAddOnDealSubItemSubItem[];
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
+  add_on_deal_id?: number;
+}
+/**
+ * Response payload for delete_add_on_deal_sub_item
+ *
+ * Delete Add-on Deal Sub Item
+ */
+export type DeleteAddOnDealSubItemResponse = FetchResponse<DeleteAddOnDealSubItemResponseData>;
+/**
+ * Request parameters for end_add_on_deal
+ *
+ * End Add-on Deal
+ */
+export interface EndAddOnDealRequest {
+  /**
+   * The identifier of the API request for error tracking
+   */
   add_on_deal_id: number;
 }
-
 /**
- * Parameters for getting an add-on deal
+ * EndAddOnDealResponseData sub-interface for EndAddOnDealResponse
  */
-export interface GetAddOnDealParams {
-  /** Shopee's unique identifier for an add on deal activity */
-  add_on_deal_id: number;
-  [key: string]: string | number | boolean | (string | number | boolean)[] | null | undefined;
+export interface EndAddOnDealResponseData {
+  /**
+   * The identifier of the API request for error tracking
+   */
+  add_on_deal_id?: number;
 }
-
 /**
- * Parameters for getting add-on deal list
+ * Response payload for end_add_on_deal
+ *
+ * End Add-on Deal
  */
-export interface GetAddOnDealListParams {
-  /** Filter by promotion status (default: all) */
-  promotion_status: AddOnDealPromotionStatus;
-  /** Page number (1-1000, default: 1) */
-  page_no?: number;
-  /** Number of items per page (1-100, default: 100) */
-  page_size?: number;
-  [key: string]: string | number | boolean | (string | number | boolean)[] | null | undefined;
-}
-
+export type EndAddOnDealResponse = FetchResponse<EndAddOnDealResponseData>;
 /**
- * Parameters for getting main items in an add-on deal
+ * Request parameters for get_add_on_deal
+ *
+ * Get Add-on Deal
  */
-export interface GetAddOnDealMainItemParams {
-  /** Shopee's unique identifier for an add on deal activity */
+export interface GetAddOnDealRequest {
+  /**
+   * Shopee's unique identifier for an add on deal activity.
+   */
   add_on_deal_id: number;
-  [key: string]: string | number | boolean | (string | number | boolean)[] | null | undefined;
 }
-
 /**
- * Parameters for getting sub items in an add-on deal
+ * GetAddOnDealResponseData sub-interface for GetAddOnDealResponse
  */
-export interface GetAddOnDealSubItemParams {
-  /** Shopee's unique identifier for an add on deal activity */
-  add_on_deal_id: number;
-  [key: string]: string | number | boolean | (string | number | boolean)[] | null | undefined;
-}
-
-/**
- * Parameters for updating an add-on deal
- */
-export interface UpdateAddOnDealParams {
-  /** Shopee's unique identifier for an add on deal activity */
-  add_on_deal_id: number;
-  /** Title of the add on deal */
-  add_on_deal_name?: string;
-  /** The time when add on deal activity start */
+export interface GetAddOnDealResponseData {
+  /**
+   * The time when add on deal activity start.
+   */
   start_time?: number;
-  /** The time when add on deal activity end */
+  /**
+   * The time when add on deal activity end
+   */
   end_time?: number;
-  /** The minimum purchase amount that needs to be met to buy the gift with min spend */
+  /**
+   * The type of add on deal：add on discount =0；gift with mini spend=1
+   */
+  promotion_type?: number;
+  /**
+   * The minimum purchase amount that needs to be met to buy the gift with min.Spend
+   */
   purchase_min_spend?: number;
-  /** Number of gifts that buyers can get */
+  /**
+   * Shopee's unique identifier for an add on deal activity.
+   */
+  add_on_deal_id?: number;
+  /**
+   * Number of gifts that buyers can get
+   */
   per_gift_num?: number;
-  /** Max number of add-on products that a customer can purchase per order */
-  promotion_purchase_limit?: number;
-  /** The order of sub items */
+  /**
+   * The order of the sub item
+   */
   sub_item_priority?: number[];
+  /**
+   * Max. number of add-on products that a customer can purchase per order.
+   */
+  promotion_purchase_limit?: number;
+  /**
+   * Title of the add on deal
+   */
+  add_on_deal_name?: string;
+  source?: number;
 }
-
 /**
- * Parameters for updating main items in an add-on deal
+ * Response payload for get_add_on_deal
+ *
+ * Get Add-on Deal
  */
-export interface UpdateAddOnDealMainItemParams {
-  /** Shopee's unique identifier for an add on deal activity */
+export type GetAddOnDealResponse = FetchResponse<GetAddOnDealResponseData>;
+/**
+ * Request parameters for get_add_on_deal_list
+ *
+ * Get Add-on Deal List
+ */
+export interface GetAddOnDealListRequest {
+  /**
+   * The Status of add on deal，default status is all
+   */
+  promotion_status: string;
+  /**
+   * The default page number is 1
+   */
+  page_no?: number;
+  /**
+   * The default page size is 100
+   */
+  page_size?: number;
+}
+/**
+ * GetAddOnDealListAddOnDeal sub-interface for GetAddOnDealListResponseData
+ */
+export interface GetAddOnDealListAddOnDeal {
+  /**
+   * The time when add on deal activity start.
+   */
+  start_time?: number;
+  /**
+   * The time when add on deal activity end
+   */
+  end_time?: number;
+  /**
+   * The type of add on deal：add on discount =0；gift with mini spend=1
+   */
+  promotion_type?: number;
+  /**
+   * The minimum purchase amount that needs to be met to buy the gift with min.Spend
+   */
+  purchase_min_spend?: number;
+  /**
+   * Shopee's unique identifier for an add on deal activity.
+   */
+  add_on_deal_id?: number;
+  /**
+   * Number of gifts that buyers can get
+   */
+  per_gift_num?: number;
+  /**
+   * Max. number of add-on products that a customer can purchase per order.
+   */
+  promotion_purchase_limit?: number;
+  /**
+   * Title of the add on deal
+   */
+  add_on_deal_name?: string;
+  /**
+   * The create source of bundle deal：Seller=1，shopee admin=0
+   */
+  source?: number;
+  /**
+   * The display sequence of sub item in buyer side
+   */
+  sub_item_prioriry?: number[];
+}
+/**
+ * GetAddOnDealListResponseData sub-interface for GetAddOnDealListResponse
+ */
+export interface GetAddOnDealListResponseData {
+  /**
+   * The list of add on deal id
+   */
+  add_on_deal_list?: GetAddOnDealListAddOnDeal[];
+  /**
+   * This is to indicate whether the promotion list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of promotions.
+   */
+  more?: boolean;
+}
+/**
+ * Response payload for get_add_on_deal_list
+ *
+ * Get Add-on Deal List
+ */
+export type GetAddOnDealListResponse = FetchResponse<GetAddOnDealListResponseData>;
+/**
+ * Request parameters for get_add_on_deal_main_item
+ *
+ * Get Add-on Deal Main Item
+ */
+export interface GetAddOnDealMainItemRequest {
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
   add_on_deal_id: number;
-  /** List of main items to update */
-  main_item_list: AddOnDealMainItem[];
 }
-
 /**
- * Parameters for updating sub items in an add-on deal
+ * GetAddOnDealMainItemMainItem sub-interface for GetAddOnDealMainItemResponseData
  */
-export interface UpdateAddOnDealSubItemParams {
-  /** Shopee's unique identifier for an add on deal activity */
+export interface GetAddOnDealMainItemMainItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id?: number;
+  /**
+   * The status of add on deal item：enable = 1；disable =2
+   */
+  status?: number;
+}
+/**
+ * GetAddOnDealMainItemResponseData sub-interface for GetAddOnDealMainItemResponse
+ */
+export interface GetAddOnDealMainItemResponseData {
+  /**
+   * The main items added in this add on deal promotion.
+   */
+  main_item_list?: GetAddOnDealMainItemMainItem[];
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
+  add_on_deal_id?: number;
+}
+/**
+ * Response payload for get_add_on_deal_main_item
+ *
+ * Get Add-on Deal Main Item
+ */
+export type GetAddOnDealMainItemResponse = FetchResponse<GetAddOnDealMainItemResponseData>;
+/**
+ * Request parameters for get_add_on_deal_sub_item
+ *
+ * Get Add-on Deal Sub Item
+ */
+export interface GetAddOnDealSubItemRequest {
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
   add_on_deal_id: number;
-  /** List of sub items to update */
-  sub_item_list: AddOnDealSubItem[];
 }
-
 /**
- * Response for the add add-on deal API
+ * GetAddOnDealSubItemPrice sub-interface for GetAddOnDealSubItemSubItem
  */
-export interface AddAddOnDealResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-  };
+export interface GetAddOnDealSubItemPrice {
+  /**
+   * Add-on discount price before tax
+   */
+  promo_input_price?: number;
+  /**
+   * Add-on discount price after tax
+   */
+  promo_price?: number;
 }
-
 /**
- * Response for the add add-on deal main item API
+ * GetAddOnDealSubItemSubItem sub-interface for GetAddOnDealSubItemResponseData
  */
-export interface AddAddOnDealMainItemResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-    /** List of main items that were added */
-    main_item_list: AddOnDealMainItem[];
-  };
+export interface GetAddOnDealSubItemSubItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id?: number;
+  /**
+   * The status of add on deal item：enable = 1；disable =2
+   */
+  status?: number;
+  /**
+   * The purchase limit of each sub item. Only the add on discount can be set and the default limit of gift with mini.spend is 1
+   */
+  sub_item_limit?: number;
+  /**
+   * Shopee's unique identifier for a model.
+   */
+  model_id?: number;
+  price?: GetAddOnDealSubItemPrice;
 }
-
 /**
- * Response for the add add-on deal sub item API
+ * GetAddOnDealSubItemResponseData sub-interface for GetAddOnDealSubItemResponse
  */
-export interface AddAddOnDealSubItemResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-    /** List of sub items that failed to be added */
-    sub_item_list: AddOnDealFailedItem[];
-  };
+export interface GetAddOnDealSubItemResponseData {
+  /**
+   * The sub items added in this add on deal promotion.
+   */
+  sub_item_list?: GetAddOnDealSubItemSubItem[];
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
+  add_on_deal_id?: number;
 }
-
 /**
- * Response for the delete add-on deal API
+ * Response payload for get_add_on_deal_sub_item
+ *
+ * Get Add-on Deal Sub Item
  */
-export interface DeleteAddOnDealResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-  };
-}
-
+export type GetAddOnDealSubItemResponse = FetchResponse<GetAddOnDealSubItemResponseData>;
 /**
- * Response for the delete add-on deal main item API
+ * Request parameters for update_add_on_deal
+ *
+ * Update Add-on Deal
  */
-export interface DeleteAddOnDealMainItemResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-    /** List of item IDs that failed to be deleted */
-    failed_item_id_list: number[];
-  };
+export interface UpdateAddOnDealRequest {
+  /**
+   * Shopee's unique identifier for an add on deal activity.
+   */
+  add_on_deal_id: number;
+  /**
+   * The time when bundle deal activity start.The start time must be 1 hour than current time.
+   */
+  start_time?: number;
+  /**
+   * The time when bundle deal activity end. The end time must be later than start time.
+   */
+  end_time?: number;
+  /**
+   * The minimum purchase amount that needs to be met to buy the gift with min.Spend
+   */
+  purchase_min_spend?: number;
+  /**
+   * Number of gifts that buyers can get
+   */
+  per_gift_num?: number;
+  /**
+   * Max. number of add-on products that a customer can purchase per order.
+   */
+  promotion_purchase_limit?: number;
+  /**
+   * The order of sub item
+   */
+  sub_item_priority?: number[];
+  /**
+   * Title of the add on deal
+   */
+  add_on_deal_name?: string;
 }
-
 /**
- * Response for the delete add-on deal sub item API
+ * UpdateAddOnDealResponseData sub-interface for UpdateAddOnDealResponse
  */
-export interface DeleteAddOnDealSubItemResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-    /** List of sub items that failed to be deleted */
-    sub_item_list: AddOnDealFailedItem[];
-  };
+export interface UpdateAddOnDealResponseData {
+  /**
+   * The time when add on deal activity start.
+   */
+  start_time?: number;
+  /**
+   * The time when add on deal activity end
+   */
+  end_time?: number;
+  /**
+   * The type of add on deal：add on discount =0；gift with mini spend=1
+   */
+  promotion_type?: number;
+  /**
+   * The minimum purchase amount that needs to be met to buy the gift with min.Spend
+   */
+  purchase_min_spend?: number;
+  /**
+   * Shopee's unique identifier for an add on deal activity.
+   */
+  add_on_deal_id?: number;
+  /**
+   * Number of gifts that buyers can get
+   */
+  per_gift_num?: number;
+  /**
+   * Max. number of add-on products that a customer can purchase per order.
+   */
+  promotion_purchase_limit?: number;
+  /**
+   * Title of the add on deal
+   */
+  add_on_deal_name?: string;
 }
-
 /**
- * Response for the end add-on deal API
+ * Response payload for update_add_on_deal
+ *
+ * Update Add-on Deal
  */
-export interface EndAddOnDealResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-  };
-}
-
+export type UpdateAddOnDealResponse = FetchResponse<UpdateAddOnDealResponseData>;
 /**
- * Response for the get add-on deal API
+ * UpdateAddOnDealMainItemMainItem sub-interface for UpdateAddOnDealMainItemRequest
  */
-export interface GetAddOnDealResponse extends BaseResponse {
-  response: AddOnDealInfo;
+export interface UpdateAddOnDealMainItemMainItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id: number;
+  /**
+   * The status of add on deal item：enable = 1；disable =2
+   */
+  status: number;
 }
-
 /**
- * Response for the get add-on deal list API
+ * Request parameters for update_add_on_deal_main_item
+ *
+ * Update Add-on Deal Main Item
  */
-export interface GetAddOnDealListResponse extends BaseResponse {
-  response: {
-    /** List of add-on deals */
-    add_on_deal_list: AddOnDealInfo[];
-    /** Whether there are more pages */
-    more: boolean;
-  };
+export interface UpdateAddOnDealMainItemRequest {
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
+  add_on_deal_id: number;
+  /**
+   * The main items added in this add on deal promotion.
+   */
+  main_item_list: UpdateAddOnDealMainItemMainItem[];
 }
-
 /**
- * Response for the get add-on deal main item API
+ * UpdateAddOnDealMainItem_UpdateAddOnDealMainItemMainItem sub-interface for UpdateAddOnDealMainItemResponseData
  */
-export interface GetAddOnDealMainItemResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-    /** List of main items */
-    main_item_list: AddOnDealMainItem[];
-  };
+export interface UpdateAddOnDealMainItem_UpdateAddOnDealMainItemMainItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id?: number;
+  /**
+   * The status of add on deal item：enable = 1；disable =2
+   */
+  status?: number;
 }
-
 /**
- * Response for the get add-on deal sub item API
+ * UpdateAddOnDealMainItemResponseData sub-interface for UpdateAddOnDealMainItemResponse
  */
-export interface GetAddOnDealSubItemResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-    /** List of sub items */
-    sub_item_list: AddOnDealSubItem[];
-  };
+export interface UpdateAddOnDealMainItemResponseData {
+  /**
+   * The main items added in this add on deal promotion.
+   */
+  main_item_list?: UpdateAddOnDealMainItem_UpdateAddOnDealMainItemMainItem[];
 }
-
 /**
- * Response for the update add-on deal API
+ * Response payload for update_add_on_deal_main_item
+ *
+ * Update Add-on Deal Main Item
  */
-export interface UpdateAddOnDealResponse extends BaseResponse {
-  response: AddOnDealInfo;
-}
-
+export type UpdateAddOnDealMainItemResponse = FetchResponse<UpdateAddOnDealMainItemResponseData>;
 /**
- * Response for the update add-on deal main item API
+ * UpdateAddOnDealSubItemSubItem sub-interface for UpdateAddOnDealSubItemRequest
  */
-export interface UpdateAddOnDealMainItemResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-    /** List of main items that were updated */
-    main_item_list: AddOnDealMainItem[];
-  };
+export interface UpdateAddOnDealSubItemSubItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id?: number;
+  /**
+   * Shopee's unique identifier for a model.
+   */
+  model_id?: number;
+  /**
+   * The status of add on deal item：enable = 1；disable =2
+   */
+  status?: number;
+  /**
+   * Add-on discount price before tax
+   */
+  sub_item_input_price?: number;
+  /**
+   * The purchase limit of sub item.The purchase limit of each sub item. Only the add on discount can be set and the default limit of gift with mini.spend is 1
+   */
+  sub_item_limit?: number;
 }
-
 /**
- * Response for the update add-on deal sub item API
+ * Request parameters for update_add_on_deal_sub_item
+ *
+ * Update Add-on Deal Sub Item
  */
-export interface UpdateAddOnDealSubItemResponse extends BaseResponse {
-  response: {
-    /** Shopee's unique identifier for an add on deal activity */
-    add_on_deal_id: number;
-    /** List of sub items that failed to be updated */
-    sub_item_list: AddOnDealFailedItem[];
-  };
+export interface UpdateAddOnDealSubItemRequest {
+  /**
+   * Shopee's unique identifier for add on deal activity.
+   */
+  add_on_deal_id: number;
+  /**
+   * The sub items added in this add on deal promotion.
+   */
+  sub_item_list: UpdateAddOnDealSubItemSubItem[];
 }
+/**
+ * UpdateAddOnDealSubItem_UpdateAddOnDealSubItemSubItem sub-interface for UpdateAddOnDealSubItemResponseData
+ */
+export interface UpdateAddOnDealSubItem_UpdateAddOnDealSubItemSubItem {
+  /**
+   * Shopee's unique identifier for an item.
+   */
+  item_id?: number;
+  /**
+   * The status of add on deal item：enable = 1；disable =2
+   */
+  status?: number;
+  /**
+   * Shopee's unique identifier for a model.
+   */
+  model_id?: number;
+  fail_error?: string;
+  fail_message?: string;
+  /**
+   * The discounted price of sub item
+   */
+  sub_item_input_price?: number;
+  /**
+   * The purchase limit of sub item.The purchase limit of each sub item. Only the add on discount can be set and the default limit of gift with mini.spend is 1
+   */
+  sub_item_limit?: number;
+}
+/**
+ * UpdateAddOnDealSubItemResponseData sub-interface for UpdateAddOnDealSubItemResponse
+ */
+export interface UpdateAddOnDealSubItemResponseData {
+  /**
+   * The sub items added in this add on deal promotion.
+   */
+  sub_item_list?: UpdateAddOnDealSubItem_UpdateAddOnDealSubItemSubItem[];
+}
+/**
+ * Response payload for update_add_on_deal_sub_item
+ *
+ * Update Add-on Deal Sub Item
+ */
+export type UpdateAddOnDealSubItemResponse = FetchResponse<UpdateAddOnDealSubItemResponseData>;

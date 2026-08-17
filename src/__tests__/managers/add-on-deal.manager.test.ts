@@ -18,14 +18,16 @@ import {
   UpdateAddOnDealResponse,
   UpdateAddOnDealMainItemResponse,
   UpdateAddOnDealSubItemResponse,
+} from "../../schemas/add-on-deal.js";
+import {
   AddOnDealPromotionType,
   AddOnDealPromotionStatus,
   AddOnDealMainItemStatus,
   AddOnDealSubItemStatus,
-} from "../../schemas/add-on-deal.js";
+} from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AddOnDealManager", () => {
@@ -263,7 +265,7 @@ describe("AddOnDealManager", () => {
       });
 
       expect(result.response.sub_item_list).toHaveLength(1);
-      expect(result.response.sub_item_list[0].fail_error).toBe("error_unknown");
+      expect(result.response.sub_item_list![0].fail_error).toBe("error_unknown");
     });
   });
 
@@ -304,7 +306,7 @@ describe("AddOnDealManager", () => {
         message: "",
         response: {
           add_on_deal_id: 20141,
-          failed_item_id_list: [],
+          main_item_list: [],
         },
       };
 
@@ -312,7 +314,7 @@ describe("AddOnDealManager", () => {
 
       const result = await addOnDealManager.deleteAddOnDealMainItem({
         add_on_deal_id: 20141,
-        item_id_list: [38001406131, 38001406132],
+        main_item_list: [38001406131, 38001406132],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -323,13 +325,13 @@ describe("AddOnDealManager", () => {
           auth: true,
           body: {
             add_on_deal_id: 20141,
-            item_id_list: [38001406131, 38001406132],
+            main_item_list: [38001406131, 38001406132],
           },
         }
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.failed_item_id_list).toHaveLength(0);
+      expect(result.response.main_item_list).toHaveLength(0);
     });
   });
 
@@ -472,7 +474,7 @@ describe("AddOnDealManager", () => {
               purchase_min_spend: 3.0,
               per_gift_num: 1,
               promotion_purchase_limit: 12,
-              sub_item_priority: [],
+              sub_item_prioriry: [],
               source: 1,
             },
           ],
@@ -596,14 +598,18 @@ describe("AddOnDealManager", () => {
             {
               item_id: 3800024281,
               model_id: 2741736,
-              sub_item_input_price: 159293.0,
+              price: {
+                promo_input_price: 159293.0,
+              },
               sub_item_limit: 10,
               status: AddOnDealSubItemStatus.ACTIVE,
             },
             {
               item_id: 3800024281,
               model_id: 2741743,
-              sub_item_input_price: 159295.0,
+              price: {
+                promo_input_price: 159295.0,
+              },
               status: AddOnDealSubItemStatus.ACTIVE,
             },
           ],
@@ -648,8 +654,6 @@ describe("AddOnDealManager", () => {
           purchase_min_spend: 0,
           per_gift_num: 0,
           promotion_purchase_limit: 100,
-          sub_item_priority: [100760424],
-          source: 1,
         },
       };
 
@@ -672,7 +676,7 @@ describe("AddOnDealManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.sub_item_priority).toHaveLength(1);
+      expect(result.response.add_on_deal_id).toBe(12069);
     });
   });
 
@@ -683,7 +687,6 @@ describe("AddOnDealManager", () => {
         error: "",
         message: "",
         response: {
-          add_on_deal_id: 20141,
           main_item_list: [
             {
               item_id: 38001406131,
@@ -724,7 +727,7 @@ describe("AddOnDealManager", () => {
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.main_item_list[0].status).toBe(AddOnDealMainItemStatus.DELETED);
+      expect(result.response.main_item_list![0].status).toBe(AddOnDealMainItemStatus.DELETED);
     });
   });
 
@@ -735,7 +738,6 @@ describe("AddOnDealManager", () => {
         error: "",
         message: "",
         response: {
-          add_on_deal_id: 20141,
           sub_item_list: [],
         },
       };

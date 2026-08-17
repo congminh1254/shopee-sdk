@@ -7,10 +7,10 @@
 **Project**: Shopee SDK - A complete TypeScript SDK for Shopee Open API  
 **Language**: TypeScript (ES2020, NodeNext modules)  
 **Package**: `@congminh1254/shopee-sdk` (npm)  
-**Node Version**: >= 18.0.0  
+**Node Version**: >= 20.0.0  
 **Main Entry**: `src/sdk.ts` → `lib/sdk.js` (compiled)  
 **Dependencies**: Minimal (only `node-fetch`)  
-**Test Coverage**: 95%+, 734 comprehensive tests
+**Test Coverage**: 95%+, 1160 comprehensive tests
 
 ## 🏗️ Project Structure
 

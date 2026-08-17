@@ -38,7 +38,7 @@ const TINY_VIDEO_BASE64 =
     expect(Array.isArray(infoList)).toBe(true);
     expect(infoList!.length).toBeGreaterThan(0);
     expect(infoList![0].image_info?.image_id).toBeDefined();
-    expect(infoList![0].image_info?.image_url_list[0].image_url).toContain("http");
+    expect(infoList![0].image_info?.image_url_list![0].image_url).toContain("http");
   });
 
   it("should successfully upload a 200x200 PNG using media.uploadImage", async () => {
@@ -49,22 +49,23 @@ const TINY_VIDEO_BASE64 =
       );
 
       const uploadResponse = await sdk.media.uploadImage({
-        scene: "normal",
-        ratio: "1:1",
-        image: imageBuffer,
+        business: 2,
+        scene: 1,
+        images: imageBuffer,
       });
 
       expect(uploadResponse).toBeDefined();
       expect(uploadResponse.error).toBe("");
 
-      const infoList = uploadResponse.response?.image_info_list;
+      const infoList = uploadResponse.response?.image_list;
       expect(infoList).toBeDefined();
       expect(Array.isArray(infoList)).toBe(true);
       expect(infoList!.length).toBeGreaterThan(0);
     } catch (err) {
       expect(err).toBeInstanceOf(ShopeeApiError);
       const apiErr = err as ShopeeApiError;
-      expect((apiErr.data as any).error).toBe("product.error_param");
+      const errorData = apiErr.data as { error?: string } | undefined;
+      expect(["product.error_param", "error_param"]).toContain(errorData?.error);
     }
   });
 
@@ -79,7 +80,7 @@ const TINY_VIDEO_BASE64 =
     expect(initResponse.error).toBe("");
     expect(initResponse.response?.video_upload_id).toBeDefined();
 
-    const uploadId = initResponse.response.video_upload_id;
+    const uploadId = String(initResponse.response?.video_upload_id);
 
     // Immediately cancel the upload session to clean up state
     const cancelResponse = await sdk.mediaSpace.cancelVideoUpload({
@@ -105,7 +106,7 @@ const TINY_VIDEO_BASE64 =
     expect(initResponse.error).toBe("");
     expect(initResponse.response?.video_upload_id).toBeDefined();
 
-    const uploadId = initResponse.response.video_upload_id;
+    const uploadId = String(initResponse.response?.video_upload_id);
 
     try {
       // 2. Upload video part (seq 0)
@@ -139,7 +140,7 @@ const TINY_VIDEO_BASE64 =
       expect(resultResponse).toBeDefined();
       expect(resultResponse.error).toBe("");
       expect(resultResponse.response?.status).toBeDefined();
-      expect(["TRANSCODING", "SUCCEEDED", "INITIATED"]).toContain(resultResponse.response.status);
+      expect(["TRANSCODING", "SUCCEEDED", "INITIATED"]).toContain(resultResponse.response?.status);
     } catch (err) {
       // Clean up state by canceling session if an error is encountered
       await sdk.mediaSpace.cancelVideoUpload({

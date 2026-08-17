@@ -1,106 +1,69 @@
-import { ShopeeConfig } from "../sdk.js";
-import { BaseManager } from "./base.manager.js";
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import {
-  GetMerchantInfoParams,
+  GetMerchantInfoRequest,
   GetMerchantInfoResponse,
-  GetMerchantPrepaidAccountListParams,
+  GetMerchantPrepaidAccountListRequest,
   GetMerchantPrepaidAccountListResponse,
-  GetMerchantWarehouseListParams,
+  GetMerchantWarehouseListRequest,
   GetMerchantWarehouseListResponse,
-  GetMerchantWarehouseLocationListParams,
+  GetMerchantWarehouseLocationListRequest,
   GetMerchantWarehouseLocationListResponse,
-  GetShopListByMerchantParams,
+  GetShopListByMerchantRequest,
   GetShopListByMerchantResponse,
-  GetWarehouseEligibleShopListParams,
+  GetWarehouseEligibleShopListRequest,
   GetWarehouseEligibleShopListResponse,
 } from "../schemas/merchant.js";
+import { ShopeeConfig } from "../sdk.js";
+import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
-
 export class MerchantManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
   /**
-   * Get information of merchant
-   * @returns {Promise<GetMerchantInfoResponse>} The response containing merchant information including name, authorization time, currency, region, and CBSC status
+   * Use this call to get information of merchant
    *
-   * This endpoint retrieves comprehensive information about the merchant including:
-   * - Merchant name and region
-   * - Authorization and expiration times
-   * - Supported currency
-   * - CNSC/CBSC upgrade status
+   * @param {GetMerchantInfoRequest} params Request parameters
+   * @returns {Promise<GetMerchantInfoResponse>} Promise resolving to the response
    */
-  async getMerchantInfo(params?: GetMerchantInfoParams): Promise<GetMerchantInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetMerchantInfoResponse>(
-      this.config,
-      "/merchant/get_merchant_info",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
+  public async getMerchantInfo(params?: GetMerchantInfoRequest): Promise<GetMerchantInfoResponse> {
+    return ShopeeFetch.fetch<GetMerchantInfoResponse>(this.config, "/merchant/get_merchant_info", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: ["auth_time", "expire_time"],
+    });
   }
-
   /**
-   * Get seller's courier prepaid account list
-   * @param {GetMerchantPrepaidAccountListParams} params - Pagination parameters
-   * @param {number} params.page_no - Page number starting from 1
-   * @param {number} params.page_size - Number of items per page (max 100)
-   * @returns {Promise<GetMerchantPrepaidAccountListResponse>} The response containing list of prepaid accounts with courier details
+   * Use this api to get seller’s courier prepaid account.
    *
-   * This endpoint retrieves the merchant's prepaid courier accounts including:
-   * - Account IDs and default status
-   * - Courier information (name, key)
-   * - Partner credentials (may be masked for security)
-   * - Account configuration details
+   * @param {GetMerchantPrepaidAccountListRequest} params Request parameters
+   * @returns {Promise<GetMerchantPrepaidAccountListResponse>} Promise resolving to the response
    */
-  async getMerchantPrepaidAccountList(
-    params: GetMerchantPrepaidAccountListParams
+  public async getMerchantPrepaidAccountList(
+    params?: GetMerchantPrepaidAccountListRequest
   ): Promise<GetMerchantPrepaidAccountListResponse> {
-    const response = await ShopeeFetch.fetch<GetMerchantPrepaidAccountListResponse>(
+    return ShopeeFetch.fetch<GetMerchantPrepaidAccountListResponse>(
       this.config,
       "/merchant/get_merchant_prepaid_account_list",
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<
-          string,
-          string | number | boolean | undefined | null | (string | number | boolean)[]
-        >,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Get merchant warehouse list with pagination
-   * @param {GetMerchantWarehouseListParams} params - Parameters with cursor for pagination
-   * @param {DoubleSidedCursor} params.cursor - Cursor for pagination (next_id, prev_id, page_size)
-   * @returns {Promise<GetMerchantWarehouseListResponse>} The response containing list of warehouses with full address details
+   * Get merchant warehouse with page
    *
-   * This endpoint retrieves the merchant's warehouse list including:
-   * - Warehouse IDs, names, and types (pickup/return)
-   * - Complete address information (street, city, state, region, zip code)
-   * - Location identifiers
-   * - Enterprise information (for applicable regions like Brazil)
-   * - Support for double-sided cursor pagination (next/prev)
-   *
-   * Pagination guide:
-   * - First page: Set next_id = 0 or null
-   * - Next page: Use next_id from previous response, set prev_id = null
-   * - Previous page: Use prev_id from previous response, set next_id = null
-   * - No more next data: next_id in response is null
-   * - No more prev data: prev_id in response is null
+   * @param {GetMerchantWarehouseListRequest} params Request parameters
+   * @returns {Promise<GetMerchantWarehouseListResponse>} Promise resolving to the response
    */
-  async getMerchantWarehouseList(
-    params: GetMerchantWarehouseListParams
+  public async getMerchantWarehouseList(
+    params?: GetMerchantWarehouseListRequest
   ): Promise<GetMerchantWarehouseListResponse> {
-    const response = await ShopeeFetch.fetch<GetMerchantWarehouseListResponse>(
+    return ShopeeFetch.fetch<GetMerchantWarehouseListResponse>(
       this.config,
       "/merchant/get_merchant_warehouse_list",
       {
@@ -109,91 +72,55 @@ export class MerchantManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Get merchant warehouse location list
-   * @returns {Promise<GetMerchantWarehouseLocationListResponse>} The response containing list of warehouse locations with location IDs and names
+   * get merchant warehouse location list
    *
-   * This endpoint retrieves a simplified list of warehouse locations including:
-   * - Location IDs
-   * - Warehouse names
-   *
-   * This is useful for getting a quick overview of available warehouse locations
-   * without the full address details provided by getMerchantWarehouseList.
+   * @param {GetMerchantWarehouseLocationListRequest} params Request parameters
+   * @returns {Promise<GetMerchantWarehouseLocationListResponse>} Promise resolving to the response
    */
-  async getMerchantWarehouseLocationList(
-    params?: GetMerchantWarehouseLocationListParams
+  public async getMerchantWarehouseLocationList(
+    params?: GetMerchantWarehouseLocationListRequest
   ): Promise<GetMerchantWarehouseLocationListResponse> {
-    const response = await ShopeeFetch.fetch<GetMerchantWarehouseLocationListResponse>(
+    return ShopeeFetch.fetch<GetMerchantWarehouseLocationListResponse>(
       this.config,
       "/merchant/get_merchant_warehouse_location_list",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Get shop list bound to merchant
-   * @param {GetShopListByMerchantParams} params - Pagination parameters
-   * @param {number} params.page_no - Page number starting from 1
-   * @param {number} params.page_size - Number of items per page (max 500)
-   * @returns {Promise<GetShopListByMerchantResponse>} The response containing list of shops with SIP affiliate information
+   * Use this call to get shop_list bound to merchant_id.
    *
-   * This endpoint retrieves all shops that are authorized to the partner and bound to the merchant including:
-   * - Shop IDs
-   * - SIP affiliate shops (only returned for primary shops)
-   * - CNSC status indicator
-   * - Pagination support with more flag
+   * @param {GetShopListByMerchantRequest} params Request parameters
+   * @returns {Promise<GetShopListByMerchantResponse>} Promise resolving to the response
    */
-  async getShopListByMerchant(
-    params: GetShopListByMerchantParams
+  public async getShopListByMerchant(
+    params?: GetShopListByMerchantRequest
   ): Promise<GetShopListByMerchantResponse> {
-    const response = await ShopeeFetch.fetch<GetShopListByMerchantResponse>(
+    return ShopeeFetch.fetch<GetShopListByMerchantResponse>(
       this.config,
       "/merchant/get_shop_list_by_merchant",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Get eligible shop list by warehouse id
-   * @param {GetWarehouseEligibleShopListParams} params - Parameters with warehouse ID, type, and cursor
-   * @param {number} params.warehouse_id - Warehouse address identifier
-   * @param {number} params.warehouse_type - 1 = pickup warehouse, 2 = return warehouse
-   * @param {DoubleSidedCursor} params.cursor - Cursor for pagination
-   * @returns {Promise<GetWarehouseEligibleShopListResponse>} The response containing list of eligible shops with names
    *
-   * This endpoint retrieves shops that are eligible for a specific warehouse including:
-   * - Shop IDs and names
-   * - Support for double-sided cursor pagination
-   *
-   * Useful for determining which shops can use a particular warehouse for
-   * pickups (warehouse_type = 1) or returns (warehouse_type = 2).
-   *
-   * Pagination guide:
-   * - First page: Set next_id = 0 or null, specify page_size
-   * - Next page: Use next_id from previous response, set prev_id = null
-   * - Previous page: Use prev_id from previous response, set next_id = null
-   * - Page size limit: [1, 30]
+   * @param {GetWarehouseEligibleShopListRequest} params Request parameters
+   * @returns {Promise<GetWarehouseEligibleShopListResponse>} Promise resolving to the response
    */
-  async getWarehouseEligibleShopList(
-    params: GetWarehouseEligibleShopListParams
+  public async getWarehouseEligibleShopList(
+    params?: GetWarehouseEligibleShopListRequest
   ): Promise<GetWarehouseEligibleShopListResponse> {
-    const response = await ShopeeFetch.fetch<GetWarehouseEligibleShopListResponse>(
+    return ShopeeFetch.fetch<GetWarehouseEligibleShopListResponse>(
       this.config,
       "/merchant/get_warehouse_eligible_shop_list",
       {
@@ -202,7 +129,5 @@ export class MerchantManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
 }

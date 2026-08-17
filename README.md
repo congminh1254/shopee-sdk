@@ -15,6 +15,7 @@ Build powerful Shopee integrations with confidence using our fully-featured SDK 
 ## 📚 Documentation
 
 * **[Complete Documentation](./docs/README.md)** - Comprehensive guides and API references
+* **[Migration Guide v2.0](./docs/migration-v2.md)** - Guide to upgrading from v1.x to v2.0
 * **[AI Onboarding & LLM Guide](./llms.txt)** - A high-context onboarding guide specifically written for AI Agents and LLMs to quickly understand the codebase architecture and start coding.
 
 ### Quick Links
@@ -68,7 +69,7 @@ npm install @congminh1254/shopee-sdk
 
 ### What You Get
 
-✅ Complete TypeScript definitions for all 29 API managers  
+✅ Complete TypeScript definitions for all 30 API managers  
 ✅ Automatic token refresh and management  
 ✅ Built-in error handling and retry logic  
 ✅ Zero dependencies (except node-fetch)  
@@ -138,7 +139,7 @@ See the [Setup Guide](./docs/guides/setup.md) and [Authentication Guide](./docs/
 - **Type-safe** - Full TypeScript definitions prevent errors before they happen
 - **Actively maintained** - Regular updates to stay in sync with Shopee API changes
 
-### 💪 Complete API Coverage - All 29 Managers Implemented
+### 💪 Complete API Coverage - All 30 Managers Implemented
 
 Unlike other SDKs with partial coverage, we provide **complete access** to every Shopee API:
 
@@ -223,7 +224,7 @@ This SDK is built with reliability and correctness as first-class citizens, boas
 
 ### 1. Unit Tests
 
-- **Mock Manager Coverage**: Over **690+ unit tests** validating standard parameters, response layouts, request sign-generation, and error boundaries for all 29 API managers.
+- **Mock Manager Coverage**: Over **1,160+ unit tests** validating standard parameters, response layouts, request sign-generation, and error boundaries for all 30 API managers.
 - **100% Code Coverage**: All core and manager logic files maintain a strict **100% statement, branch, and line code coverage**.
 - Run unit tests:
   ```bash

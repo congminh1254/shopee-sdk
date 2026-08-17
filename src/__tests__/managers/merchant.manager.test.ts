@@ -13,7 +13,7 @@ import {
 } from "../../schemas/merchant.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("MerchantManager", () => {
@@ -48,6 +48,7 @@ describe("MerchantManager", () => {
         merchant_currency: "CNY",
         merchant_region: "CN",
         is_upgraded_cbsc: true,
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -127,7 +128,7 @@ describe("MerchantManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response?.list).toHaveLength(2);
-      expect(result.response?.list[0].prepaid_account_is_default).toBe(true);
+      expect(result.response?.list![0].prepaid_account_is_default).toBe(true);
       expect(result.response?.total).toBe(2);
     });
   });
@@ -156,7 +157,7 @@ describe("MerchantManager", () => {
                 town: "Lomas de Padierna",
                 zip_code: "14240",
               },
-              enterprise_info: null,
+              enterprise_info: undefined,
             },
             {
               warehouse_id: 10001024,
@@ -183,9 +184,9 @@ describe("MerchantManager", () => {
             },
           ],
           cursor: {
-            next_id: null,
+            next_id: undefined,
             page_size: 30,
-            prev_id: null,
+            prev_id: undefined,
           },
           total_count: 2,
         },
@@ -219,8 +220,8 @@ describe("MerchantManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response?.warehouse_list).toHaveLength(2);
-      expect(result.response?.warehouse_list[0].warehouse_name).toBe("MX Warehouse 1");
-      expect(result.response?.warehouse_list[1].enterprise_info?.cnpj).toBe("52069476000182");
+      expect(result.response?.warehouse_list![0].warehouse_name).toBe("MX Warehouse 1");
+      expect(result.response?.warehouse_list![1].enterprise_info?.cnpj).toBe("52069476000182");
       expect(result.response?.total_count).toBe(2);
     });
   });
@@ -290,6 +291,7 @@ describe("MerchantManager", () => {
           },
         ],
         more: false,
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -349,7 +351,7 @@ describe("MerchantManager", () => {
           cursor: {
             next_id: 222859324,
             page_size: 4,
-            prev_id: null,
+            prev_id: undefined,
           },
         },
       };
@@ -384,8 +386,8 @@ describe("MerchantManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response?.shop_list).toHaveLength(4);
-      expect(result.response?.shop_list[0].shop_name).toBe("test_shop11");
-      expect(result.response?.cursor.next_id).toBe(222859324);
+      expect(result.response?.shop_list![0].shop_name).toBe("test_shop11");
+      expect(result.response?.cursor!.next_id).toBe(222859324);
     });
   });
 });

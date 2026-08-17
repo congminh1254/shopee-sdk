@@ -1,201 +1,95 @@
-import { ShopeeConfig } from "../sdk.js";
-import { BaseManager } from "./base.manager.js";
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import {
-  GetBoundWhsInfoParams,
+  GetBoundWhsInfoRequest,
   GetBoundWhsInfoResponse,
-  GetCurrentInventoryParams,
+  GetCurrentInventoryRequest,
   GetCurrentInventoryResponse,
-  GetExpiryReportParams,
+  GetExpiryReportRequest,
   GetExpiryReportResponse,
-  GetStockAgingParams,
+  GetStockAgingRequest,
   GetStockAgingResponse,
-  GetStockMovementParams,
+  GetStockMovementRequest,
   GetStockMovementResponse,
 } from "../schemas/sbs.js";
+import { ShopeeConfig } from "../sdk.js";
+import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
-
 export class SbsManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
   /**
-   * Get bound warehouse by shop id.
+   * get bound warehouse by shop id
    *
-   * @param params - Parameters for getting bound warehouse info (empty object)
-   *
-   * @returns A promise that resolves to the bound warehouse info response containing:
-   * - list: List of shops with bound warehouses
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetBoundWhsInfoRequest} params Request parameters
+   * @returns {Promise<GetBoundWhsInfoResponse>} Promise resolving to the response
    */
-  async getBoundWhsInfo(params: GetBoundWhsInfoParams = {}): Promise<GetBoundWhsInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetBoundWhsInfoResponse>(
-      this.config,
-      "/sbs/get_bound_whs_info",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
+  public async getBoundWhsInfo(params?: GetBoundWhsInfoRequest): Promise<GetBoundWhsInfoResponse> {
+    return ShopeeFetch.fetch<GetBoundWhsInfoResponse>(this.config, "/sbs/get_bound_whs_info", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
   }
-
   /**
-   * Get Seller Center Current Inventory Page Data.
-   * This API provides detailed inventory information including sellable, reserved,
-   * and unsellable quantities across different warehouses.
+   * Get Seller Center Current Inventory Page Data
    *
-   * @param params - Parameters for getting current inventory
-   * @param params.whs_region - Warehouse region (required): BR, CN, ID, MY, MX, TH, TW, PH, VN, SG
-   * @param params.page_no - Page number (default: 1)
-   * @param params.page_size - Page size, 1-100 (default: 10)
-   * @param params.search_type - Search type: 0=All data; 1=Product Name; 2=SKU ID; 3=Variations; 4=Item ID
-   * @param params.keyword - Search keyword
-   * @param params.whs_ids - Warehouse IDs, comma-separated
-   * @param params.not_moving_tag - Not moving tag: Blank=All; 0=No; 1=Yes
-   * @param params.inbound_pending_approval - Inbound pending approval: Blank=All; 0=No; 1=Yes
-   * @param params.products_with_inventory - Products with inventory: Blank=All; 0=No; 1=Yes
-   * @param params.category_id - Category id (first-tier)
-   * @param params.stock_levels - Stock levels (comma-separated): 1=Low Stock & No Sellable stock; 2=Low Stock & To replenish; 3=Low Stock & Replenished; 4=Excess
-   *
-   * @returns A promise that resolves to the current inventory response containing:
-   * - cursor: Pagination cursor
-   * - item_list: List of items with inventory details
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetCurrentInventoryRequest} params Request parameters
+   * @returns {Promise<GetCurrentInventoryResponse>} Promise resolving to the response
    */
-  async getCurrentInventory(
-    params: GetCurrentInventoryParams
+  public async getCurrentInventory(
+    params?: GetCurrentInventoryRequest
   ): Promise<GetCurrentInventoryResponse> {
-    const response = await ShopeeFetch.fetch<GetCurrentInventoryResponse>(
+    return ShopeeFetch.fetch<GetCurrentInventoryResponse>(
       this.config,
       "/sbs/get_current_inventory",
       {
         method: "GET",
         auth: true,
-        params: params as unknown as Record<
-          string,
-          string | number | boolean | undefined | null | (string | number | boolean)[]
-        >,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get Seller Center Expiry Report page data.
-   * This API provides information about expiring, expired, and damaged stocks.
+   * Seller Center Expiry Report page data
    *
-   * @param params - Parameters for getting expiry report
-   * @param params.whs_region - Warehouse region (required): BR, CN, ID, MY, MX, TH, TW, PH, VN, SG
-   * @param params.page_no - Page number (default: 1)
-   * @param params.page_size - Page size, 1-40 (default: 10)
-   * @param params.whs_ids - Warehouse IDs, comma-separated
-   * @param params.expiry_status - Expiry status (comma-separated): 0=Expired, 2=Expiring, 4=expiry_blocked, 5=damaged, 6=normal
-   * @param params.category_id_l1 - Only Level 1 Category can be filtered
-   * @param params.sku_id - SKU ID
-   * @param params.item_id - Item ID
-   * @param params.variation - Variation
-   * @param params.item_name - Item name
-   *
-   * @returns A promise that resolves to the expiry report response containing:
-   * - item_list: List of items with expiry information
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetExpiryReportRequest} params Request parameters
+   * @returns {Promise<GetExpiryReportResponse>} Promise resolving to the response
    */
-  async getExpiryReport(params: GetExpiryReportParams): Promise<GetExpiryReportResponse> {
-    const response = await ShopeeFetch.fetch<GetExpiryReportResponse>(
-      this.config,
-      "/sbs/get_expiry_report",
-      {
-        method: "GET",
-        auth: true,
-        params: params as unknown as Record<
-          string,
-          string | number | boolean | undefined | null | (string | number | boolean)[]
-        >,
-      }
-    );
-    return response;
+  public async getExpiryReport(params?: GetExpiryReportRequest): Promise<GetExpiryReportResponse> {
+    return ShopeeFetch.fetch<GetExpiryReportResponse>(this.config, "/sbs/get_expiry_report", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
   }
-
   /**
-   * Get Seller Center Stock Aging page data.
-   * This API provides stock aging information showing how long items have been in stock.
+   * Get Seller Center Stock Aging page data
    *
-   * @param params - Parameters for getting stock aging
-   * @param params.whs_region - Warehouse region (required): BR, CN, ID, MY, MX, TH, TW, PH, VN, SG
-   * @param params.page_no - Page number (default: 1)
-   * @param params.page_size - Page size, 1-100 (default: 10)
-   * @param params.search_type - Search type: 1=Product Name; 2=SKU ID; 3=Variations; 4=Item ID
-   * @param params.keyword - Search keyword
-   * @param params.whs_ids - Warehouse IDs, comma-separated
-   * @param params.aging_storage_tag - Aging storage tag: 0=false; 1=true
-   * @param params.excess_storage_tag - Excess storage tag: 0=false; 1=true
-   * @param params.category_id - L1-level product category ID
-   *
-   * @returns A promise that resolves to the stock aging response containing:
-   * - item_list: List of items with stock aging details
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetStockAgingRequest} params Request parameters
+   * @returns {Promise<GetStockAgingResponse>} Promise resolving to the response
    */
-  async getStockAging(params: GetStockAgingParams): Promise<GetStockAgingResponse> {
-    const response = await ShopeeFetch.fetch<GetStockAgingResponse>(
-      this.config,
-      "/sbs/get_stock_aging",
-      {
-        method: "GET",
-        auth: true,
-        params: params as unknown as Record<
-          string,
-          string | number | boolean | undefined | null | (string | number | boolean)[]
-        >,
-      }
-    );
-    return response;
+  public async getStockAging(params?: GetStockAgingRequest): Promise<GetStockAgingResponse> {
+    return ShopeeFetch.fetch<GetStockAgingResponse>(this.config, "/sbs/get_stock_aging", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
   }
-
   /**
-   * Get Seller Center Stock Movement page data.
-   * This API provides stock movement information including inbound, outbound, and adjustments.
+   * Get Seller Center，Stock Movement page data
    *
-   * @param params - Parameters for getting stock movement
-   * @param params.start_time - Start date in YYYY-MM-DD format (required)
-   * @param params.end_time - End date in YYYY-MM-DD format (required)
-   * @param params.whs_region - Warehouse region (required): BR, CN, ID, MY, MX, TH, TW, PH, VN, SG
-   * @param params.page_no - Page number (default: 1)
-   * @param params.page_size - Page size, 1-20 (default: 10)
-   * @param params.whs_ids - Warehouse IDs, comma-separated
-   * @param params.category_id_l1 - L1-level category_id
-   * @param params.sku_id - SKU ID
-   * @param params.item_id - Item ID
-   * @param params.item_name - Item name
-   * @param params.variation - Variation
-   *
-   * @returns A promise that resolves to the stock movement response containing:
-   * - total: Total number of items
-   * - start_time: Start time
-   * - end_time: End time
-   * - query_end_time: Query end time
-   * - item_list: List of items with stock movement details
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetStockMovementRequest} params Request parameters
+   * @returns {Promise<GetStockMovementResponse>} Promise resolving to the response
    */
-  async getStockMovement(params: GetStockMovementParams): Promise<GetStockMovementResponse> {
-    const response = await ShopeeFetch.fetch<GetStockMovementResponse>(
-      this.config,
-      "/sbs/get_stock_movement",
-      {
-        method: "GET",
-        auth: true,
-        params: params as unknown as Record<
-          string,
-          string | number | boolean | undefined | null | (string | number | boolean)[]
-        >,
-      }
-    );
-    return response;
+  public async getStockMovement(
+    params?: GetStockMovementRequest
+  ): Promise<GetStockMovementResponse> {
+    return ShopeeFetch.fetch<GetStockMovementResponse>(this.config, "/sbs/get_stock_movement", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
   }
 }

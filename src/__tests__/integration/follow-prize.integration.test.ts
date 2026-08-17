@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
-import { FollowPrizeStatus, FollowPrizeRewardType } from "../../schemas/follow-prize.js";
+import { FollowPrizeStatus, FollowPrizeRewardType } from "../utils/legacy-enums.js";
 
 const { runTests, initSdk } = setupIntegrationTest();
 
@@ -25,9 +25,9 @@ const { runTests, initSdk } = setupIntegrationTest();
         if (activeList.response?.follow_prize_list) {
           for (const item of activeList.response.follow_prize_list) {
             if (item.campaign_status === "upcoming") {
-              await sdk.followPrize.deleteFollowPrize({ campaign_id: item.campaign_id });
+              await sdk.followPrize.deleteFollowPrize({ campaign_id: item.campaign_id! });
             } else if (item.campaign_status === "ongoing") {
-              await sdk.followPrize.endFollowPrize({ campaign_id: item.campaign_id });
+              await sdk.followPrize.endFollowPrize({ campaign_id: item.campaign_id! });
             }
           }
         }
@@ -53,9 +53,14 @@ const { runTests, initSdk } = setupIntegrationTest();
 
       expect(addResponse).toBeDefined();
       expect(addResponse.error || "").toBe("");
-      const testCampaignId =
-        (addResponse.response as any)?.campaign_id || (addResponse.response as any)?.campagin_id;
+      const responseData = addResponse.response as
+        | { campaign_id?: number; campagin_id?: number }
+        | undefined;
+      const testCampaignId = (responseData?.campaign_id ?? responseData?.campagin_id)!;
       expect(testCampaignId).toBeDefined();
+
+      // Sleep for 2 seconds to allow Sandbox propagation
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       try {
         // 2. Retrieve the details of the created campaign
@@ -84,6 +89,8 @@ const { runTests, initSdk } = setupIntegrationTest();
         });
         expect(getUpdatedResponse.response?.follow_prize_name).toBe(updatedName);
       } finally {
+        // Sleep for 2 seconds to allow Sandbox propagation
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         // 4. Clean up by deleting the upcoming follow prize campaign
         const deleteResponse = await sdk.followPrize.deleteFollowPrize({
           campaign_id: testCampaignId,

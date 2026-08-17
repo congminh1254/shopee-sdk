@@ -10,13 +10,11 @@ import {
   GetPunishmentHistoryResponse,
   GetListingsWithIssuesResponse,
   GetLateOrdersResponse,
-  MetricType,
-  MetricUnit,
-  PerformanceRating,
 } from "../../schemas/account-health.js";
+import { MetricType, MetricUnit, PerformanceRating } from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AccountHealthManager", () => {
@@ -48,7 +46,7 @@ describe("AccountHealthManager", () => {
           overall_performance: {
             rating: PerformanceRating.Good,
             fulfillment_failed: 0,
-            listing_failed: 0,
+            listing_failed: [0],
             custom_service_failed: 0,
           },
           metric_list: [
@@ -83,9 +81,9 @@ describe("AccountHealthManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.overall_performance.rating).toBe(PerformanceRating.Good);
+      expect(result.response.overall_performance!.rating).toBe(PerformanceRating.Good);
       expect(result.response.metric_list).toHaveLength(1);
-      expect(result.response.metric_list[0].metric_name).toBe("Non-Fulfilment Rate");
+      expect(result.response.metric_list![0].metric_name).toBe("Non-Fulfilment Rate");
     });
   });
 
@@ -304,7 +302,7 @@ describe("AccountHealthManager", () => {
     });
 
     it("should get ended punishment history", async () => {
-      const mockResponse: GetPunishmentHistoryResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -343,7 +341,7 @@ describe("AccountHealthManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.punishment_list[0].listing_limit).toBe(100);
+      expect(result.response.punishment_list![0].listing_limit).toBe(100);
     });
   });
 
@@ -384,7 +382,7 @@ describe("AccountHealthManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.listing_list).toHaveLength(1);
-      expect(result.response.listing_list[0].item_id).toBe(123456);
+      expect(result.response.listing_list![0].item_id).toBe(123456);
       expect(result.response.total_count).toBe(1);
     });
 
@@ -457,7 +455,7 @@ describe("AccountHealthManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.late_order_list).toHaveLength(1);
-      expect(result.response.late_order_list[0].order_sn).toBe("210101ABCDEF");
+      expect(result.response.late_order_list![0].order_sn).toBe("210101ABCDEF");
       expect(result.response.total_count).toBe(1);
     });
 

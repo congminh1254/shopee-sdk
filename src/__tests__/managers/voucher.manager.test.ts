@@ -10,11 +10,11 @@ import {
   UpdateVoucherResponse,
   GetVoucherResponse,
   GetVoucherListResponse,
-  VoucherStatus,
 } from "../../schemas/voucher.js";
+import { VoucherStatus } from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("VoucherManager", () => {
@@ -408,7 +408,6 @@ describe("VoucherManager", () => {
               voucher_type: 1,
               reward_type: 2,
               percentage: 20,
-              min_basket_price: 50.0,
               start_time: 1640995200,
               end_time: 1641081600,
               display_start_time: 1640908800,
@@ -424,7 +423,6 @@ describe("VoucherManager", () => {
               voucher_type: 1,
               reward_type: 1,
               discount_amount: 10.0,
-              min_basket_price: 30.0,
               start_time: 1641168000,
               end_time: 1641254400,
               display_start_time: 1641081600,
@@ -475,7 +473,6 @@ describe("VoucherManager", () => {
               voucher_type: 1,
               reward_type: 2,
               percentage: 20,
-              min_basket_price: 50.0,
               start_time: 1640995200,
               end_time: 1641081600,
               display_start_time: 1640908800,
@@ -504,7 +501,7 @@ describe("VoucherManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.voucher_list).toHaveLength(1);
-      expect(result.response.voucher_list[0].voucher_type).toBe(1);
+      expect(result.response.voucher_list![0].voucher_type).toBe(1);
     });
   });
 });

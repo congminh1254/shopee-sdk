@@ -23,7 +23,7 @@ import {
 } from "../../schemas/first-mile.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("FirstMileManager", () => {
@@ -418,12 +418,7 @@ describe("FirstMileManager", () => {
         error: "",
         message: "",
         response: {
-          waybill_list: [
-            {
-              first_mile_tracking_number: "CNF731738838434210105",
-              waybill: "base64_encoded_pdf_content",
-            },
-          ],
+          waybill: "base64_encoded_pdf_content",
         },
       };
 
@@ -442,7 +437,7 @@ describe("FirstMileManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect((result.response as any)?.waybill_list).toHaveLength(1);
+      expect(result.response?.waybill).toBe("base64_encoded_pdf_content");
     });
   });
 

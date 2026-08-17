@@ -1,214 +1,313 @@
-import { BaseResponse } from "./base.js";
+// NOTE: This file is auto-generated. Do not edit directly.
 
+import { FetchResponse } from "./fetch.js";
 /**
- * Status of follow prizes for filtering in follow prize list query
+ * Enum generated for field CampaignStatus
  */
-export enum FollowPrizeStatus {
-  /** All follow prizes regardless of status */
-  ALL = "all",
-  /** Follow prizes that have not started yet */
+export enum CampaignStatus {
   UPCOMING = "upcoming",
-  /** Currently active follow prizes */
   ONGOING = "ongoing",
-  /** Follow prizes that have ended */
   EXPIRED = "expired",
 }
-
 /**
- * Reward type for follow prize
+ * Enum generated for field Status
  */
-export enum FollowPrizeRewardType {
-  /** Discount - fix amount */
-  DISCOUNT_FIX_AMOUNT = 1,
-  /** Discount - by percentage */
-  DISCOUNT_BY_PERCENTAGE = 2,
-  /** Coin cash back */
-  COIN_CASH_BACK = 3,
+export enum Status {
+  UPCOMING = "upcoming",
+  ONGOING = "ongoing",
+  EXPIRED = "expired",
+  ALL = "all",
 }
-
 /**
- * Parameters for adding a new follow prize
+ * Request parameters for add_follow_prize
+ *
+ * OpenAPI add Follow Prize
  */
-export interface AddFollowPrizeParams {
-  /** The name of the follow prize, max length is 20 characters */
+export interface AddFollowPrizeRequest {
+  /**
+   * The name of the follow prize,The follow prize name length max limit is 20.
+   */
   follow_prize_name: string;
-  /** The timing from when the follow prize is valid (unix timestamp) */
-  start_time: number;
-  /** The timing until when the follow prize is still valid (unix timestamp). Must be at least 1 day after start_time */
-  end_time: number;
-  /** The usage quantity of the follow prize (1-200000) */
+  /**
+   * The timing from when the follow prize is valid,the start time later than the current time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
+   */
+  start_time: Date | number;
+  /**
+   * The timing until when the follow prize is still valid,the end time must be greater than the start time by at least 1 day and end time cannot exceed 3 months after start time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
+   */
+  end_time: Date | number;
+  /**
+   * Please enter a value between 1 and 200000.
+   */
   usage_quantity: number;
-  /** The minimum spend required for using this follow prize */
+  /**
+   * The minimum spend required for using this follow prize.
+   */
   min_spend: number;
-  /** The reward type of the follow prize (1: discount fix amount, 2: discount by percentage, 3: coin cash back) */
-  reward_type: FollowPrizeRewardType;
-  /** The discount amount. Required when reward_type is 1 (fix amount) */
+  /**
+   * The reward type of the follow prize.The available values are:1:discount---fix amount,2:discount---by percentage,3:coin cash back.
+   */
+  reward_type: number;
+  /**
+   * The discount amount set for this particular follow prize.Only fill in when you are creating a fix amount follow prize.
+   */
   discount_amount?: number;
-  /** The discount percentage. Required when reward_type is 2 (percentage) or 3 (coin cash back) */
+  /**
+   * The discount percentage set for this particular follow prize. Only fill in when you are creating a discount percentage follow prize or coins cashback follow prize.Discount percentage (reward_type ==2) or Percentage of coins cash back (reward_type==3).
+   */
   percentage?: number;
-  /** The max amount of discount/value. Required when reward_type is 2 or 3 */
+  /**
+   * The max amount of discount/value a user can enjoy by using this particular follow prize. It is required to fill in when you are creating a discount percentage follow prize or coins cashback follow prize. max_price >=1
+   */
   max_price?: number;
 }
-
 /**
- * Parameters for deleting a follow prize
+ * AddFollowPrizeResponseData sub-interface for AddFollowPrizeResponse
  */
-export interface DeleteFollowPrizeParams {
-  /** The unique identifier for the follow prize */
+export interface AddFollowPrizeResponseData {
+  /**
+   * The unique identifier for the created follow prize.
+   */
+  campagin_id?: number;
+}
+/**
+ * Response payload for add_follow_prize
+ *
+ * OpenAPI add Follow Prize
+ */
+export type AddFollowPrizeResponse = FetchResponse<AddFollowPrizeResponseData>;
+/**
+ * Request parameters for delete_follow_prize
+ *
+ * delete_follow_prize
+ */
+export interface DeleteFollowPrizeRequest {
+  /**
+   * The unique identifier for the created follow prize.
+   */
   campaign_id: number;
 }
-
 /**
- * Parameters for ending a follow prize immediately
+ * DeleteFollowPrizeResponseData sub-interface for DeleteFollowPrizeResponse
  */
-export interface EndFollowPrizeParams {
-  /** The unique identifier for the follow prize */
+export interface DeleteFollowPrizeResponseData {
+  /**
+   * The unique identifier for the created follow prize.
+   */
+  campagin_id?: number;
+}
+/**
+ * Response payload for delete_follow_prize
+ *
+ * delete_follow_prize
+ */
+export type DeleteFollowPrizeResponse = FetchResponse<DeleteFollowPrizeResponseData>;
+/**
+ * Request parameters for end_follow_prize
+ *
+ * end follow prize
+ */
+export interface EndFollowPrizeRequest {
+  /**
+   * The unique identifier for the created follow prize.
+   */
   campaign_id: number;
 }
-
 /**
- * Parameters for getting follow prize detail
+ * EndFollowPrizeResponseData sub-interface for EndFollowPrizeResponse
  */
-export interface GetFollowPrizeDetailParams {
-  /** The unique identifier for the follow prize */
-  campaign_id: number;
-  [key: string]: string | number | boolean | undefined;
+export interface EndFollowPrizeResponseData {
+  /**
+   * The unique identifier for the created follow prize.
+   */
+  campaign_id?: number;
 }
-
 /**
- * Parameters for getting a list of follow prizes
+ * Response payload for end_follow_prize
+ *
+ * end follow prize
  */
-export interface GetFollowPrizeListParams {
-  /** The status filter for retrieving follow prize list */
-  status: FollowPrizeStatus;
-  /** Specifies the page number of data to return. Default 1 */
-  page_no?: number;
-  /** Maximum number of entries to retrieve per page. Default 20, max 100 */
-  page_size?: number;
-  [key: string]: string | number | boolean | undefined;
+export type EndFollowPrizeResponse = FetchResponse<EndFollowPrizeResponseData>;
+/**
+ * Request parameters for get_follow_prize_detail
+ *
+ * get_follow_prize_detail
+ */
+export interface GetFollowPrizeDetailRequest {
+  /**
+   * The unique identifier for the created follow prize.
+   */
+  campaign_id?: number;
 }
-
 /**
- * Parameters for updating a follow prize
+ * GetFollowPrizeDetailResponseData sub-interface for GetFollowPrizeDetailResponse
  */
-export interface UpdateFollowPrizeParams {
-  /** The unique identifier for the follow prize */
-  campaign_id: number;
-  /** The name of the follow prize */
-  follow_prize_name?: string;
-  /** The timing from when the follow prize is valid */
-  start_time?: number;
-  /** The timing until when the follow prize is still valid */
-  end_time?: number;
-  /** The usage quantity of the follow prize */
+export interface GetFollowPrizeDetailResponseData {
+  /**
+   * The status of follow prize,the campagin status have upcoming/ongoing/expired.
+   */
+  campaign_status?: CampaignStatus | string | number;
+  /**
+   * The unique identifier for the created follow prize.
+   */
+  campaign_id?: number;
+  /**
+   * Please enter a value between 1 and 200000.
+   */
   usage_quantity?: number;
-  /** The minimum spend required for using this follow prize */
+  /**
+   * The timing from when the follow prize is valid,the start time later than the current time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
+   */
+  start_time?: Date | number;
+  /**
+   * The timing until when the follow prize is still valid,the end time must be greater than the start time by at least 1 day and end time cannot exceed 3 months after start time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
+   */
+  end_time?: Date | number;
+  /**
+   * The minimum spend required for using this follow prize.
+   */
+  min_spend?: number;
+  /**
+   * The reward type of the follow prize.The available values are:1:discount---fix amount,2:discount---by percentage,3:coin cash back.
+   */
+  reward_type?: number;
+  /**
+   * The name of the follow prize,The follow prize name length max limit is 20.
+   */
+  follow_prize_name?: string;
+  /**
+   * The discount amount set for this particular follow prize.Only fill in when you are creating a fix amount follow prize.
+   */
+  discount_amount?: number;
+  /**
+   * The discount percentage set for this particular follow prize. Only fill in when you are creating a discount percentage follow prize or coins cashback follow prize.Discount percentage (reward_type ==2) or Percentage of coins cash back (reward_type==3).
+   */
+  percentage?: number;
+  /**
+   * The max amount of discount/value a user can enjoy by using this particular follow prize. Only fill in when you are creating a discount percentage follow prize or coins cashback follow prize.
+   */
+  max_price?: number;
+}
+/**
+ * Response payload for get_follow_prize_detail
+ *
+ * get_follow_prize_detail
+ */
+export type GetFollowPrizeDetailResponse = FetchResponse<GetFollowPrizeDetailResponseData>;
+/**
+ * Request parameters for get_follow_prize_list
+ *
+ * OpenAPI get_follow_prize_list
+ */
+export interface GetFollowPrizeListRequest {
+  /**
+   * Specifies the page number of data to return in the current call. Default to be 1.
+   */
+  page_no?: number;
+  /**
+   * Use the 'page_size' filters to control the maximum number of entries to retrieve per page (i.e., per call). Default to be 20 and allowed input is from 1- 100.
+   */
+  page_size?: number;
+  /**
+   * The status filter for retrieving follow prize list. Available value: upcoming/ongoing/expired/all.
+   */
+  status: Status | string | number;
+}
+/**
+ * GetFollowPrizeListFollowPrize sub-interface for GetFollowPrizeListResponseData
+ */
+export interface GetFollowPrizeListFollowPrize {
+  /**
+   * The unique identifier for the created follow prize.
+   */
+  campaign_id?: number;
+  /**
+   * The status of follow prize,the campagin status have upcoming/ongoing/expired.
+   */
+  campaign_status?: CampaignStatus | string | number;
+  /**
+   * The name of the follow prize,The follow prize name length max limit is 20.
+   */
+  follow_prize_name?: string;
+  /**
+   * The timing from when the follow prize is valid,the start time later than the current time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
+   */
+  start_time?: Date | number;
+  /**
+   * The timing until when the follow prize is still valid,the end time must be greater than the start time by at least 1 day and end time cannot exceed 3 months after start time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
+   */
+  end_time?: Date | number;
+  /**
+   * Please enter a value between 1 and 200000.
+   */
+  usage_quantity?: number;
+  /**
+   * This is to indicate the quantity of voucher claimed.
+   */
+  claimed?: number;
+}
+/**
+ * GetFollowPrizeListResponseData sub-interface for GetFollowPrizeListResponse
+ */
+export interface GetFollowPrizeListResponseData {
+  /**
+   * This is to indicate whether the comment list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of comments.
+   */
+  more?: boolean;
+  /**
+   * The list of follow prize.
+   */
+  follow_prize_list?: GetFollowPrizeListFollowPrize[];
+}
+/**
+ * Response payload for get_follow_prize_list
+ *
+ * OpenAPI get_follow_prize_list
+ */
+export type GetFollowPrizeListResponse = FetchResponse<GetFollowPrizeListResponseData>;
+/**
+ * Request parameters for update_follow_prize
+ *
+ * update_follow_prize
+ */
+export interface UpdateFollowPrizeRequest {
+  /**
+   * The name of the follow prize,The follow prize name length max limit is 20.
+   */
+  follow_prize_name?: string;
+  /**
+   * The unique identifier for the created follow prize.
+   */
+  campaign_id: number;
+  /**
+   * The timing from when the follow prize is valid,the start time later than the current time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
+   */
+  start_time?: Date | number;
+  /**
+   * The timing until when the follow prize is still valid,the end time must be greater than the start time by at least 1 day and end time cannot exceed 3 months after start time.If the start time and end time passed in by the seller overlap with other upcoming/ongoing activities, it will prompt "Another Follow Prize voucher already exists during this time period, please set another period."
+   */
+  end_time?: Date | number;
+  /**
+   * Please enter a value between 1 and 200000.
+   */
+  usage_quantity?: number;
+  /**
+   * The minimum spend required for using this follow prize.
+   */
   min_spend?: number;
 }
-
 /**
- * Follow prize information in detail response
+ * UpdateFollowPrizeResponseData sub-interface for UpdateFollowPrizeResponse
  */
-export interface FollowPrizeDetail {
-  /** The status of follow prize (upcoming/ongoing/expired) */
-  campaign_status: string;
-  /** The unique identifier for the follow prize */
-  campaign_id: number;
-  /** The usage quantity of the follow prize */
-  usage_quantity: number;
-  /** The timing from when the follow prize is valid */
-  start_time: number;
-  /** The timing until when the follow prize is still valid */
-  end_time: number;
-  /** The minimum spend required for using this follow prize */
-  min_spend: number;
-  /** The reward type of the follow prize */
-  reward_type: FollowPrizeRewardType;
-  /** The name of the follow prize */
-  follow_prize_name: string;
-  /** The discount amount (for fix amount type) */
-  discount_amount?: number;
-  /** The discount percentage (for percentage or coin cash back type) */
-  percentage?: number;
-  /** The max amount of discount/value */
-  max_price?: number;
+export interface UpdateFollowPrizeResponseData {
+  /**
+   * The unique identifier for the created follow prize.
+   */
+  campagin_id?: number;
 }
-
 /**
- * Follow prize information in list response
+ * Response payload for update_follow_prize
+ *
+ * update_follow_prize
  */
-export interface FollowPrizeInfo {
-  /** The unique identifier for the follow prize */
-  campaign_id: number;
-  /** The status of follow prize (upcoming/ongoing/expired) */
-  campaign_status: string;
-  /** The name of the follow prize */
-  follow_prize_name: string;
-  /** The timing from when the follow prize is valid */
-  start_time: number;
-  /** The timing until when the follow prize is still valid */
-  end_time: number;
-  /** The usage quantity of the follow prize */
-  usage_quantity: number;
-  /** The quantity of voucher claimed */
-  claimed: number;
-}
-
-/**
- * Response for the add follow prize API
- */
-export interface AddFollowPrizeResponse extends BaseResponse {
-  response: {
-    /** The unique identifier for the created follow prize */
-    campagin_id: number; // Note: API has typo "campagin_id" instead of "campaign_id"
-  };
-}
-
-/**
- * Response for the delete follow prize API
- */
-export interface DeleteFollowPrizeResponse extends BaseResponse {
-  response: {
-    /** The unique identifier for the deleted follow prize */
-    campagin_id: number; // Note: API has typo "campagin_id" instead of "campaign_id"
-  };
-}
-
-/**
- * Response for the end follow prize API
- */
-export interface EndFollowPrizeResponse extends BaseResponse {
-  response: {
-    /** The unique identifier for the ended follow prize */
-    campaign_id: number;
-  };
-}
-
-/**
- * Response for the get follow prize detail API
- */
-export interface GetFollowPrizeDetailResponse extends BaseResponse {
-  response: FollowPrizeDetail;
-}
-
-/**
- * Response for the get follow prize list API
- */
-export interface GetFollowPrizeListResponse extends BaseResponse {
-  response: {
-    /** Indicates whether there are more pages to retrieve */
-    more: boolean;
-    /** The list of follow prizes matching the query parameters */
-    follow_prize_list: FollowPrizeInfo[];
-  };
-}
-
-/**
- * Response for the update follow prize API
- */
-export interface UpdateFollowPrizeResponse extends BaseResponse {
-  response: {
-    /** The unique identifier for the updated follow prize */
-    campagin_id: number; // Note: API has typo "campagin_id" instead of "campaign_id"
-  };
-}
+export type UpdateFollowPrizeResponse = FetchResponse<UpdateFollowPrizeResponseData>;

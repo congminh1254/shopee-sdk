@@ -1,455 +1,117 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
+import {
+  CancelVideoUploadRequest,
+  CancelVideoUploadResponse,
+  CompleteVideoUploadRequest,
+  CompleteVideoUploadResponse,
+  GetVideoUploadResultRequest,
+  GetVideoUploadResultResponse,
+  InitVideoUploadRequest,
+  InitVideoUploadResponse,
+  UploadImageRequest,
+  UploadImageResponse,
+  UploadVideoPartRequest,
+  UploadVideoPartResponse,
+} from "../schemas/media.js";
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
-import {
-  UploadMediaImageParams,
-  UploadMediaImageResponse,
-  UploadImageParams,
-  UploadImageResponse,
-  InitVideoUploadParams,
-  InitVideoUploadResponse,
-  UploadVideoPartParams,
-  UploadVideoPartResponse,
-  CompleteVideoUploadParams,
-  CompleteVideoUploadResponse,
-  GetVideoUploadResultParams,
-  GetVideoUploadResultResponse,
-  CancelVideoUploadParams,
-  CancelVideoUploadResponse,
-  InitMediaVideoUploadParams,
-  InitMediaVideoUploadResponse,
-  UploadMediaVideoPartParams,
-  UploadMediaVideoPartResponse,
-  CompleteMediaVideoUploadParams,
-  CompleteMediaVideoUploadResponse,
-  GetMediaVideoUploadResultParams,
-  GetMediaVideoUploadResultResponse,
-  CancelMediaVideoUploadParams,
-  CancelMediaVideoUploadResponse,
-} from "../schemas/media.js";
 import { ShopeeFetch } from "../fetch.js";
-
-/**
- * MediaManager handles media upload operations for the Shopee API
- *
- * Provides methods for:
- * - Image upload for various business scenarios
- * - Video upload with multi-part upload support
- * - Video upload status tracking
- */
 export class MediaManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
   /**
-   * Upload images for specific business scenarios (e.g., returns)
+   * Use this API to cancel an ongoing video upload task. If the upload has already succeeded, failed, or been cancelled, this operation will fail and return error.
    *
-   * @param {UploadMediaImageParams} params - Parameters for uploading images
-   * @param {number} params.business - Business type (2 = Returns)
-   * @param {number} params.scene - Scene type (1 = Return Seller Self Arrange Pickup Proof)
-   * @param {Buffer | Array<Buffer>} params.images - Image files to upload
-   * @returns {Promise<UploadMediaImageResponse>} Response containing uploaded image information
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.media.uploadMediaImage({
-   *   business: 2,
-   *   scene: 1,
-   *   images: Buffer.from('image-bytes')
-   * });
-   * console.log('Uploaded images:', result.response.image_list);
-   * ```
-   *
-   * **Restrictions:**
-   * - business = 2, scene = 1: Up to 3 images, max 10MB each, formats: JPG, JPEG, PNG
-   *
-   * @throws {Error} When the API request fails
+   * @param {CancelVideoUploadRequest} params Request parameters
+   * @returns {Promise<CancelVideoUploadResponse>} Promise resolving to the response
    */
-  async uploadMediaImage(params: UploadMediaImageParams): Promise<UploadMediaImageResponse> {
-    const response = await ShopeeFetch.fetch<UploadMediaImageResponse>(
-      this.config,
-      "/media/upload_image",
-      {
-        method: "POST",
-        body: params,
-      }
-    );
-
-    return response;
+  public async cancelVideoUpload(
+    params?: CancelVideoUploadRequest
+  ): Promise<CancelVideoUploadResponse> {
+    return ShopeeFetch.fetch<CancelVideoUploadResponse>(this.config, "/media/cancel_video_upload", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
-
   /**
-   * Upload multiple image files for general use
+   * Use this API to finalize a video upload task. Once called, the system will transcode all uploaded video parts and prepare the video for use. All parts must be fully uploaded before calling this API.
    *
-   * @param {UploadImageParams} params - Parameters for uploading images
-   * @param {Buffer | Array<Buffer>} params.image - Image files (up to 9 images)
-   * @param {string} [params.scene] - Scene type ("normal" or "desc")
-   * @param {string} [params.ratio] - Image ratio ("1:1" or "3:4", whitelisted sellers only)
-   * @returns {Promise<UploadImageResponse>} Response containing uploaded image information
-   *
-   * @example
-   * ```typescript
-   * // Upload product images (square processing)
-   * const result = await sdk.media.uploadImage({
-   *   image: [Buffer.from('image-1'), Buffer.from('image-2')],
-   *   scene: 'normal',
-   *   ratio: '1:1'
-   * });
-   *
-   * // Upload description images (no processing)
-   * const descResult = await sdk.media.uploadImage({
-   *   image: Buffer.from('desc-image-bytes'),
-   *   scene: 'desc'
-   * });
-   * ```
-   *
-   * **Image Requirements:**
-   * - Maximum: 9 images per request
-   * - Maximum size: 10MB per image
-   * - Formats: JPG, JPEG, PNG
-   * - Scene "normal": Image processed as square (recommended for item images)
-   * - Scene "desc": No processing (recommended for extended descriptions)
-   *
-   * @throws {Error} When the API request fails
+   * @param {CompleteVideoUploadRequest} params Request parameters
+   * @returns {Promise<CompleteVideoUploadResponse>} Promise resolving to the response
    */
-  async uploadImage(params: UploadImageParams): Promise<UploadImageResponse> {
-    const response = await ShopeeFetch.fetch<UploadImageResponse>(
-      this.config,
-      "/media_space/upload_image",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Initiate a video upload session
-   *
-   * @param {InitVideoUploadParams} params - Parameters for initiating video upload
-   * @param {string} params.file_md5 - MD5 hash of the video file
-   * @param {number} params.file_size - Size of video file in bytes (max 30MB)
-   * @returns {Promise<InitVideoUploadResponse>} Response containing video_upload_id
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.media.initVideoUpload({
-   *   file_md5: '2abf0b6e5ff90ff24437a0808f171a93',
-   *   file_size: 1261876
-   * });
-   * const videoUploadId = result.response.video_upload_id;
-   * ```
-   *
-   * **Video Requirements:**
-   * - Duration: 10-60 seconds (inclusive)
-   * - Maximum size: 30MB
-   * - Must upload by parts after initialization
-   *
-   * @throws {Error} When the API request fails
-   * - error_file_size: File size is too large (max 30MB)
-   */
-  async initVideoUpload(params: InitVideoUploadParams): Promise<InitVideoUploadResponse> {
-    const response = await ShopeeFetch.fetch<InitVideoUploadResponse>(
-      this.config,
-      "/media_space/init_video_upload",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Upload a video file by parts
-   *
-   * @param {UploadVideoPartParams} params - Parameters for uploading video part
-   * @param {string} params.video_upload_id - Upload ID from initVideoUpload
-   * @param {number} params.part_seq - Sequence number starting from 0
-   * @param {string} params.content_md5 - MD5 hash of this part
-   * @param {Buffer} params.part_content - Content of this part
-   * @returns {Promise<UploadVideoPartResponse>} Response indicating upload success
-   *
-   * @example
-   * ```typescript
-   * // Upload video parts sequentially
-   * for (let i = 0; i < partCount; i++) {
-   *   await sdk.media.uploadVideoPart({
-   *     video_upload_id: videoUploadId,
-   *     part_seq: i,
-   *     content_md5: partMd5,
-   *     part_content: Buffer.from('part-bytes')
-   *   });
-   * }
-   * ```
-   *
-   * **Part Requirements:**
-   * - Part size: Exactly 4MB except for the last part
-   * - Must provide MD5 hash for each part
-   * - Upload parts sequentially starting from 0
-   *
-   * @throws {Error} When the API request fails
-   * - error_invalid_upload_id: Invalid upload_id
-   * - error_invalid_part_seq: Invalid part_seq
-   * - error_invalid_part_size: Invalid part_size
-   */
-  async uploadVideoPart(params: UploadVideoPartParams): Promise<UploadVideoPartResponse> {
-    const response = await ShopeeFetch.fetch<UploadVideoPartResponse>(
-      this.config,
-      "/media_space/upload_video_part",
-      {
-        method: "POST",
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Complete the video upload and start transcoding
-   *
-   * @param {CompleteVideoUploadParams} params - Parameters for completing video upload
-   * @param {string} params.video_upload_id - Upload ID from initVideoUpload
-   * @param {number[]} params.part_seq_list - List of all uploaded part sequences
-   * @param {object} params.report_data - Upload performance tracking data
-   * @param {number} params.report_data.upload_cost - Upload time in milliseconds
-   * @returns {Promise<CompleteVideoUploadResponse>} Response indicating completion
-   *
-   * @example
-   * ```typescript
-   * const startTime = Date.now();
-   * // ... upload all parts ...
-   * const uploadCost = Date.now() - startTime;
-   *
-   * await sdk.media.completeVideoUpload({
-   *   video_upload_id: videoUploadId,
-   *   part_seq_list: [0, 1, 2, 3],
-   *   report_data: {
-   *     upload_cost: uploadCost
-   *   }
-   * });
-   * ```
-   *
-   * **Notes:**
-   * - Call this after all parts are uploaded successfully
-   * - Transcoding process begins after this call
-   * - Use getVideoUploadResult to check transcoding status
-   *
-   * @throws {Error} When the API request fails
-   * - error_invalid_upload_id: Invalid upload_id
-   * - error_already_completed: Upload already completed
-   */
-  async completeVideoUpload(
-    params: CompleteVideoUploadParams
+  public async completeVideoUpload(
+    params?: CompleteVideoUploadRequest
   ): Promise<CompleteVideoUploadResponse> {
-    const response = await ShopeeFetch.fetch<CompleteVideoUploadResponse>(
-      this.config,
-      "/media_space/complete_video_upload",
-      {
-        method: "POST",
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Query the upload status and result of a video upload
-   *
-   * @param {GetVideoUploadResultParams} params - Parameters for querying video status
-   * @param {string} params.video_upload_id - Upload ID from initVideoUpload
-   * @returns {Promise<GetVideoUploadResultResponse>} Response containing upload status and video info
-   *
-   * @example
-   * ```typescript
-   * const result = await sdk.media.getVideoUploadResult({
-   *   video_upload_id: videoUploadId
-   * });
-   *
-   * if (result.response.status === 'SUCCEEDED') {
-   *   console.log('Video URL:', result.response.video_info.video_url_list);
-   *   console.log('Duration:', result.response.video_info.duration);
-   * } else if (result.response.status === 'FAILED') {
-   *   console.error('Upload failed:', result.response.message);
-   * }
-   * ```
-   *
-   * **Upload Status:**
-   * - INITIATED: Waiting for parts or complete_video_upload call
-   * - TRANSCODING: Transcoding the video file
-   * - SUCCEEDED: Transcoding completed, video ready to use
-   * - FAILED: Upload failed, check message for details
-   * - CANCELLED: Upload was cancelled
-   *
-   * @throws {Error} When the API request fails
-   * - error_invalid_upload_id: Invalid upload_id
-   */
-  async getVideoUploadResult(
-    params: GetVideoUploadResultParams
-  ): Promise<GetVideoUploadResultResponse> {
-    const response = await ShopeeFetch.fetch<GetVideoUploadResultResponse>(
-      this.config,
-      "/media_space/get_video_upload_result",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Cancel a video upload session
-   *
-   * @param {CancelVideoUploadParams} params - Parameters for cancelling video upload
-   * @param {string} params.video_upload_id - Upload ID from initVideoUpload
-   * @returns {Promise<CancelVideoUploadResponse>} Response indicating cancellation
-   *
-   * @example
-   * ```typescript
-   * await sdk.media.cancelVideoUpload({
-   *   video_upload_id: videoUploadId
-   * });
-   * console.log('Video upload cancelled');
-   * ```
-   *
-   * **Use Cases:**
-   * - Cancel upload on user request
-   * - Cancel failed upload to free resources
-   * - Cancel when upload takes too long
-   *
-   * @throws {Error} When the API request fails
-   * - error_invalid_upload_id: Invalid upload_id
-   * - error_already_completed: Upload already completed (cannot cancel)
-   */
-  async cancelVideoUpload(params: CancelVideoUploadParams): Promise<CancelVideoUploadResponse> {
-    const response = await ShopeeFetch.fetch<CancelVideoUploadResponse>(
-      this.config,
-      "/media_space/cancel_video_upload",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Initiate a video upload session under the media module
-   *
-   * @param {InitMediaVideoUploadParams} params - Parameters for initiating video upload
-   * @returns {Promise<InitMediaVideoUploadResponse>} Response containing video_upload_id and part_size
-   */
-  async initMediaVideoUpload(
-    params: InitMediaVideoUploadParams
-  ): Promise<InitMediaVideoUploadResponse> {
-    const response = await ShopeeFetch.fetch<InitMediaVideoUploadResponse>(
-      this.config,
-      "/media/init_video_upload",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Upload a video part under the media module
-   *
-   * @param {UploadMediaVideoPartParams} params - Parameters for uploading video part
-   * @returns {Promise<UploadMediaVideoPartResponse>} Response indicating upload success
-   */
-  async uploadMediaVideoPart(
-    params: UploadMediaVideoPartParams
-  ): Promise<UploadMediaVideoPartResponse> {
-    const response = await ShopeeFetch.fetch<UploadMediaVideoPartResponse>(
-      this.config,
-      "/media/upload_video_part",
-      {
-        method: "POST",
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Complete the video upload under the media module
-   *
-   * @param {CompleteMediaVideoUploadParams} params - Parameters for completing video upload
-   * @returns {Promise<CompleteMediaVideoUploadResponse>} Response indicating completion
-   */
-  async completeMediaVideoUpload(
-    params: CompleteMediaVideoUploadParams
-  ): Promise<CompleteMediaVideoUploadResponse> {
-    const response = await ShopeeFetch.fetch<CompleteMediaVideoUploadResponse>(
+    return ShopeeFetch.fetch<CompleteVideoUploadResponse>(
       this.config,
       "/media/complete_video_upload",
       {
         method: "POST",
+        auth: true,
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Query the upload status and result of a video upload under the media module
+   * Use this API to retrieve the current status and result of a video upload task. You can also use video_upload_result_push to get notified immediately when a video upload reaches a final status (SUCCEEDED, FAILED, or CANCELLED).
    *
-   * @param {GetMediaVideoUploadResultParams} params - Parameters for querying video status
-   * @returns {Promise<GetMediaVideoUploadResultResponse>} Response containing upload status and video info
+   * @param {GetVideoUploadResultRequest} params Request parameters
+   * @returns {Promise<GetVideoUploadResultResponse>} Promise resolving to the response
    */
-  async getMediaVideoUploadResult(
-    params: GetMediaVideoUploadResultParams
-  ): Promise<GetMediaVideoUploadResultResponse> {
-    const response = await ShopeeFetch.fetch<GetMediaVideoUploadResultResponse>(
+  public async getVideoUploadResult(
+    params?: GetVideoUploadResultRequest
+  ): Promise<GetVideoUploadResultResponse> {
+    return ShopeeFetch.fetch<GetVideoUploadResultResponse>(
       this.config,
       "/media/get_video_upload_result",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
+        timestampPaths: ["response.update_time"],
       }
     );
-
-    return response;
   }
-
   /**
-   * Cancel a video upload session under the media module
+   * Use this API to initialize a new video upload task and obtain a unique upload session ID.
    *
-   * @param {CancelMediaVideoUploadParams} params - Parameters for cancelling video upload
-   * @returns {Promise<CancelMediaVideoUploadResponse>} Response indicating cancellation
+   * @param {InitVideoUploadRequest} params Request parameters
+   * @returns {Promise<InitVideoUploadResponse>} Promise resolving to the response
    */
-  async cancelMediaVideoUpload(
-    params: CancelMediaVideoUploadParams
-  ): Promise<CancelMediaVideoUploadResponse> {
-    const response = await ShopeeFetch.fetch<CancelMediaVideoUploadResponse>(
-      this.config,
-      "/media/cancel_video_upload",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
+  public async initVideoUpload(params?: InitVideoUploadRequest): Promise<InitVideoUploadResponse> {
+    return ShopeeFetch.fetch<InitVideoUploadResponse>(this.config, "/media/init_video_upload", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Use this API to upload images and support different business scenarios through business and scene parameters.
+   *
+   * @param {UploadImageRequest} params Request parameters
+   * @returns {Promise<UploadImageResponse>} Promise resolving to the response
+   */
+  public async uploadImage(params?: UploadImageRequest): Promise<UploadImageResponse> {
+    return ShopeeFetch.fetch<UploadImageResponse>(this.config, "/media/upload_image", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Use this API to upload a video file in parts.
+   *
+   * @param {UploadVideoPartRequest} params Request parameters
+   * @returns {Promise<UploadVideoPartResponse>} Promise resolving to the response
+   */
+  public async uploadVideoPart(params?: UploadVideoPartRequest): Promise<UploadVideoPartResponse> {
+    return ShopeeFetch.fetch<UploadVideoPartResponse>(this.config, "/media/upload_video_part", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
 }

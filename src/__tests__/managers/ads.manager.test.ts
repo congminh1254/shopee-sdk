@@ -30,7 +30,7 @@ import {
 } from "../../schemas/ads.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AdsManager", () => {
@@ -170,7 +170,7 @@ describe("AdsManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.suggested_keywords).toHaveLength(2);
-      expect(result.response.suggested_keywords[0].keyword).toBe("phone case");
+      expect(result.response.suggested_keywords![0].keyword).toBe("phone case");
     });
 
     it("should handle optional input_keyword parameter", async () => {
@@ -402,7 +402,7 @@ describe("AdsManager", () => {
       const result = await adsManager.getProductCampaignDailyPerformance({
         start_date: "2021-01-01",
         end_date: "2021-01-31",
-        campaign_id_list: "1001",
+        campaign_id_list: ["1001"],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -414,13 +414,13 @@ describe("AdsManager", () => {
           params: {
             start_date: "2021-01-01",
             end_date: "2021-01-31",
-            campaign_id_list: "1001",
+            campaign_id_list: ["1001"],
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response[0].campaign_list[0].campaign_id).toBe(1001);
+      expect(result.response![0]!.campaign_list![0]!.campaign_id).toBe(1001);
     });
   });
 
@@ -474,7 +474,7 @@ describe("AdsManager", () => {
 
       const result = await adsManager.getProductCampaignHourlyPerformance({
         performance_date: "2021-01-01",
-        campaign_id_list: "1001",
+        campaign_id_list: ["1001"],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -485,12 +485,12 @@ describe("AdsManager", () => {
           auth: true,
           params: {
             performance_date: "2021-01-01",
-            campaign_id_list: "1001",
+            campaign_id_list: ["1001"],
           },
         }
       );
 
-      expect(result.response[0].campaign_list[0].metrics_list[0].hour).toBe(15);
+      expect(result.response![0]!.campaign_list![0]!.metrics_list![0]!.hour).toBe(15);
     });
   });
 
@@ -527,7 +527,7 @@ describe("AdsManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.campaign_list).toHaveLength(3);
-      expect(result.response.campaign_list[0].campaign_id).toBe(1001);
+      expect(result.response.campaign_list![0].campaign_id).toBe(1001);
     });
   });
 
@@ -564,8 +564,8 @@ describe("AdsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await adsManager.getProductLevelCampaignSettingInfo({
-        info_type_list: "1",
-        campaign_id_list: "1001",
+        info_type_list: ["1"],
+        campaign_id_list: ["1001"],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -575,14 +575,14 @@ describe("AdsManager", () => {
           method: "GET",
           auth: true,
           params: {
-            info_type_list: "1",
-            campaign_id_list: "1001",
+            info_type_list: ["1"],
+            campaign_id_list: ["1001"],
           },
         }
       );
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_list[0].common_info?.ad_name).toBe("Summer Sale");
+      expect(result.response.campaign_list![0].common_info?.ad_name).toBe("Summer Sale");
     });
   });
 
@@ -629,7 +629,7 @@ describe("AdsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.exact.value).toBe(5.9);
+      expect(result.response.exact!.value).toBe(5.9);
     });
   });
 
@@ -725,9 +725,11 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          campaign_id: 333444,
-        },
+        response: [
+          {
+            campaign_id: 333444,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -755,7 +757,7 @@ describe("AdsManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_id).toBe(333444);
+      expect(result.response[0].campaign_id).toBe(333444);
     });
 
     it("should create manual product ads with manual bidding and keywords", async () => {
@@ -763,9 +765,11 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          campaign_id: 333445,
-        },
+        response: [
+          {
+            campaign_id: 333445,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -786,7 +790,7 @@ describe("AdsManager", () => {
         enhanced_cpc: true,
       });
 
-      expect(result.response.campaign_id).toBe(333445);
+      expect(result.response[0].campaign_id).toBe(333445);
     });
   });
 
@@ -891,9 +895,11 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          campaign_id: 333444,
-        },
+        response: [
+          {
+            campaign_id: 333444,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -901,12 +907,12 @@ describe("AdsManager", () => {
       const result = await adsManager.editManualProductAdKeywords({
         reference_id: "keyword-ref-001",
         campaign_id: 333444,
-        edit_action: "add",
         selected_keywords: [
           {
             keyword: "wireless earbuds",
             match_type: "broad",
             bid_price_per_click: 0.75,
+            edit_action: "add",
           },
         ],
       });
@@ -926,6 +932,7 @@ describe("AdsManager", () => {
                 keyword: "wireless earbuds",
                 match_type: "broad",
                 bid_price_per_click: 0.75,
+                edit_action: "add",
               },
             ],
           },
@@ -933,7 +940,7 @@ describe("AdsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_id).toBe(333444);
+      expect(result.response[0].campaign_id).toBe(333444);
     });
   });
 
@@ -943,9 +950,11 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          campaign_id: 333444,
-        },
+        response: [
+          {
+            campaign_id: 333444,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -969,7 +978,7 @@ describe("AdsManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.campaign_id).toBe(333444);
+      expect(result.response[0].campaign_id).toBe(333444);
     });
   });
 
@@ -980,7 +989,7 @@ describe("AdsManager", () => {
         error: "",
         message: "",
         response: {
-          shop_rate: 0.05,
+          rate: 0.05,
         },
       };
 
@@ -994,7 +1003,7 @@ describe("AdsManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.shop_rate).toBe(0.05);
+      expect(result.response.rate).toBe(0.05);
     });
   });
 
@@ -1038,7 +1047,7 @@ describe("AdsManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.budget.recommended_budget).toBe(150.0);
+      expect(result.response.budget!.recommended_budget).toBe(150.0);
     });
 
     it("should get budget suggestion for manual product ads", async () => {
@@ -1066,7 +1075,7 @@ describe("AdsManager", () => {
         enhanced_cpc: "true",
       });
 
-      expect(result.response.budget.min_budget).toBe(30.0);
+      expect(result.response.budget!.min_budget).toBe(30.0);
     });
   });
 
@@ -1081,11 +1090,10 @@ describe("AdsManager", () => {
           report: {
             impression: 10000,
             clicks: 500,
-            ctr: 5.0,
             expense: 250.0,
-            gmv: 2500.0,
-            roas: 10.0,
-            orders: 100,
+            broad_gmv: 2500.0,
+            broad_roi: 10.0,
+            broad_order: 100,
           },
         },
       };
@@ -1114,7 +1122,7 @@ describe("AdsManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.campaign_id).toBe(111222);
-      expect(result.response.report.roas).toBe(10.0);
+      expect(result.response.report!.broad_roi).toBe(10.0);
     });
   });
 
@@ -1129,23 +1137,25 @@ describe("AdsManager", () => {
           result_list: [
             {
               item_id: 123456,
-              impression: 5000,
-              clicks: 250,
-              ctr: 5.0,
-              expense: 125.0,
-              gmv: 1250.0,
-              roas: 10.0,
-              orders: 50,
+              report: {
+                impression: 5000,
+                clicks: 250,
+                expense: 125.0,
+                broad_gmv: 1250.0,
+                broad_roi: 10.0,
+                broad_order: 50,
+              },
             },
             {
               item_id: 789012,
-              impression: 5000,
-              clicks: 250,
-              ctr: 5.0,
-              expense: 125.0,
-              gmv: 1250.0,
-              roas: 10.0,
-              orders: 50,
+              report: {
+                impression: 5000,
+                clicks: 250,
+                expense: 125.0,
+                broad_gmv: 1250.0,
+                broad_roi: 10.0,
+                broad_order: 50,
+              },
             },
           ],
           total: 2,

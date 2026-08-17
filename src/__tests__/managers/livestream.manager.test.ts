@@ -32,7 +32,7 @@ import {
 } from "../../schemas/livestream.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("LiveStreamManager", () => {
@@ -223,12 +223,14 @@ describe("LiveStreamManager", () => {
           update_time: 1747651742003,
           start_time: 1747651742003,
           end_time: 1747651742003,
-          stream_url_list: {
-            push_url: "rtmp://push-zl.lvb.test.shopee.co.id/live",
-            push_key: "id-test-1987885338002432-6905656?zlSecret=test",
-            play_url: "http://play-zl.livestream.test.shopee.co.id/live/test.flv",
-            domain_id: 57,
-          },
+          stream_url_list: [
+            {
+              push_url: "rtmp://push-zl.lvb.test.shopee.co.id/live",
+              push_key: "id-test-1987885338002432-6905656?zlSecret=test",
+              play_url: "http://play-zl.livestream.test.shopee.co.id/live/test.flv",
+              domain_id: 57,
+            },
+          ],
         },
       };
 
@@ -304,12 +306,16 @@ describe("LiveStreamManager", () => {
           next_offset: 10,
           list: [
             {
-              item_id: 123456,
-              shop_id: 67890,
-              name: "Test Product",
-              clicks: 100,
-              orders: 10,
-              gmv: 500.0,
+              item: {
+                item_id: 123456,
+                shop_id: 67890,
+                name: "Test Product",
+              },
+              metric: {
+                item_clicks: 100,
+                atc: 10,
+                sold_items: 5,
+              },
             },
           ],
         },
@@ -389,8 +395,8 @@ describe("LiveStreamManager", () => {
       const result = await liveStreamManager.updateItemList({
         session_id: 6236215,
         item_list: [
-          { item_id: 123, shop_id: 456, item_no: 2 },
-          { item_id: 789, shop_id: 456, item_no: 1 },
+          { item_id: 123, shop_id: 456 },
+          { item_id: 789, shop_id: 456 },
         ],
       });
 
@@ -399,8 +405,8 @@ describe("LiveStreamManager", () => {
         body: {
           session_id: 6236215,
           item_list: [
-            { item_id: 123, shop_id: 456, item_no: 2 },
-            { item_id: 789, shop_id: 456, item_no: 1 },
+            { item_id: 123, shop_id: 456 },
+            { item_id: 789, shop_id: 456 },
           ],
         },
       });
@@ -499,7 +505,7 @@ describe("LiveStreamManager", () => {
         error: "",
         message: "",
         response: {
-          total_count: 25,
+          item_count: 25,
         },
       };
 
@@ -517,7 +523,7 @@ describe("LiveStreamManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.total_count).toBe(25);
+      expect(result.response.item_count).toBe(25);
     });
   });
 
@@ -532,7 +538,6 @@ describe("LiveStreamManager", () => {
           next_offset: 10,
           list: [
             {
-              item_no: 1,
               item_id: 123,
               shop_id: 456,
               name: "Recent Product",
@@ -557,7 +562,6 @@ describe("LiveStreamManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await liveStreamManager.getRecentItemList({
-        session_id: 6236215,
         offset: 0,
         page_size: 10,
       });
@@ -565,7 +569,6 @@ describe("LiveStreamManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_recent_item_list", {
         method: "GET",
         params: {
-          session_id: 6236215,
           offset: 0,
           page_size: 10,
         },
@@ -586,7 +589,6 @@ describe("LiveStreamManager", () => {
           next_offset: 10,
           list: [
             {
-              item_no: 1,
               item_id: 123,
               shop_id: 456,
               name: "Liked Product",
@@ -611,7 +613,6 @@ describe("LiveStreamManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await liveStreamManager.getLikeItemList({
-        session_id: 6236215,
         offset: 0,
         page_size: 10,
         keyword: "Summer",
@@ -620,7 +621,6 @@ describe("LiveStreamManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_like_item_list", {
         method: "GET",
         params: {
-          session_id: 6236215,
           offset: 0,
           page_size: 10,
           keyword: "Summer",
@@ -644,7 +644,6 @@ describe("LiveStreamManager", () => {
 
       const result = await liveStreamManager.applyItemSet({
         session_id: 6236215,
-        item_set_id: 12345,
         item_set_ids: [12345, 67890],
       });
 
@@ -652,7 +651,6 @@ describe("LiveStreamManager", () => {
         method: "POST",
         body: {
           session_id: 6236215,
-          item_set_id: 12345,
           item_set_ids: [12345, 67890],
         },
       });
@@ -673,12 +671,12 @@ describe("LiveStreamManager", () => {
           list: [
             {
               item_set_id: 12345,
-              name: "Summer Collection",
+              item_set_name: "Summer Collection",
               item_count: 50,
             },
             {
               item_set_id: 12346,
-              name: "Winter Sale",
+              item_set_name: "Winter Sale",
               item_count: 30,
             },
           ],
@@ -718,7 +716,6 @@ describe("LiveStreamManager", () => {
           next_offset: 10,
           list: [
             {
-              item_no: 1,
               item_id: 111,
               shop_id: 456,
               name: "Set Item 1",
@@ -804,7 +801,7 @@ describe("LiveStreamManager", () => {
     });
 
     it("should handle no show item", async () => {
-      const mockResponse: GetShowItemResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -892,7 +889,6 @@ describe("LiveStreamManager", () => {
 
       const result = await liveStreamManager.postComment({
         session_id: 6236215,
-        comment: "Great product!",
         content: "Great product content!",
       });
 
@@ -900,7 +896,6 @@ describe("LiveStreamManager", () => {
         method: "POST",
         body: {
           session_id: 6236215,
-          comment: "Great product!",
           content: "Great product content!",
         },
       });
@@ -916,22 +911,21 @@ describe("LiveStreamManager", () => {
         error: "",
         message: "",
         response: {
-          more: false,
           next_offset: 10,
           list: [
             {
               comment_id: 1001,
               user_id: 5001,
               username: "user123",
-              comment: "Love this stream!",
-              comment_time: 1735870969,
+              content: "Love this stream!",
+              timestamp: 1735870969,
             },
             {
               comment_id: 1002,
               user_id: 5002,
               username: "user456",
-              comment: "When will you restock?",
-              comment_time: 1735871000,
+              content: "When will you restock?",
+              timestamp: 1735871000,
             },
           ],
         },
@@ -942,7 +936,6 @@ describe("LiveStreamManager", () => {
       const result = await liveStreamManager.getLatestCommentList({
         session_id: 6236215,
         offset: 0,
-        page_size: 10,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -953,7 +946,6 @@ describe("LiveStreamManager", () => {
           params: {
             session_id: 6236215,
             offset: 0,
-            page_size: 10,
           },
         }
       );
@@ -976,7 +968,6 @@ describe("LiveStreamManager", () => {
 
       const result = await liveStreamManager.banUserComment({
         session_id: 6236215,
-        user_id: 5001,
         ban_user_id: 5001,
       });
 
@@ -984,7 +975,6 @@ describe("LiveStreamManager", () => {
         method: "POST",
         body: {
           session_id: 6236215,
-          user_id: 5001,
           ban_user_id: 5001,
         },
       });
@@ -1006,7 +996,6 @@ describe("LiveStreamManager", () => {
 
       const result = await liveStreamManager.unbanUserComment({
         session_id: 6236215,
-        user_id: 5001,
         unban_user_id: 5001,
       });
 
@@ -1014,7 +1003,6 @@ describe("LiveStreamManager", () => {
         method: "POST",
         body: {
           session_id: 6236215,
-          user_id: 5001,
           unban_user_id: 5001,
         },
       });

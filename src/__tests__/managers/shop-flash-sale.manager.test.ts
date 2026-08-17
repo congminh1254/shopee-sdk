@@ -15,13 +15,15 @@ import {
   UpdateShopFlashSaleItemsResponse,
   DeleteShopFlashSaleItemsResponse,
   GetItemCriteriaResponse,
+} from "../../schemas/shop-flash-sale.js";
+import {
   ShopFlashSaleStatus,
   ShopFlashSaleType,
   ShopFlashSaleItemStatus,
-} from "../../schemas/shop-flash-sale.js";
+} from "../utils/legacy-enums.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ShopFlashSaleManager", () => {

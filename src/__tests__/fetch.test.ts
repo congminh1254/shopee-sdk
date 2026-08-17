@@ -21,6 +21,7 @@ const mockFetch = jest.fn() as unknown as jest.Mock<
 jest.unstable_mockModule("node-fetch", () => ({
   default: mockFetch,
   Blob: globalThis.Blob,
+  File: globalThis.File,
   FormData: globalThis.FormData,
   Headers: globalThis.Headers,
 }));
@@ -537,7 +538,7 @@ describe("ShopeeFetch", () => {
         status: 200,
         headers: {
           get: (name: string) => headers.get(name.toLowerCase()),
-        } as any,
+        },
         text: jest.fn(() => Promise.resolve("<html>Not JSON</html>")),
         json: jest.fn(),
       });
@@ -555,7 +556,7 @@ describe("ShopeeFetch", () => {
         status: 200,
         headers: {
           get: (name: string) => headers.get(name.toLowerCase()),
-        } as any,
+        },
         arrayBuffer: jest.fn(() => Promise.resolve(uint8.buffer)),
       });
 
@@ -573,7 +574,7 @@ describe("ShopeeFetch", () => {
         status: 200,
         headers: {
           get: (name: string) => headers.get(name.toLowerCase()),
-        } as any,
+        },
         arrayBuffer: jest.fn(() => Promise.resolve(uint8.buffer)),
       });
 

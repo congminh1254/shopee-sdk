@@ -10,11 +10,11 @@ import {
   DeleteShopCategoryResponse,
   AddItemListResponse,
   DeleteItemListResponse,
-  GetShopCategoryItemListResponse,
+  GetItemListResponse,
 } from "../../schemas/shop-category.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ShopCategoryManager", () => {
@@ -49,14 +49,12 @@ describe("ShopCategoryManager", () => {
               status: 2,
               name: "rule-based joandy test",
               sort_weight: 52,
-              created_by: "Seller | Rule Selection",
             },
             {
               shop_category_id: 136321997,
               status: 2,
               name: "12345",
               sort_weight: 31,
-              created_by: "Seller | Rule Selection",
             },
           ],
           more: true,
@@ -102,7 +100,6 @@ describe("ShopCategoryManager", () => {
               status: 2,
               name: "Pants & Leggings",
               sort_weight: -1,
-              created_by: "System | Pants & Leggings",
             },
           ],
           more: false,
@@ -375,18 +372,7 @@ describe("ShopCategoryManager", () => {
         response: {
           shop_category_id: 29333,
           current_count: 0,
-          invalid_item_id_list: [
-            {
-              item_id: 100908152,
-              fail_message: "The item id you provided not exist in category. Please check.",
-              fail_error: "err_not_exist_item",
-            },
-            {
-              item_id: 100908153,
-              fail_message: "The item id you provided not exist in category. Please check.",
-              fail_error: "err_not_exist_item",
-            },
-          ],
+          invalid_item_id: [100908152, 100908153],
         },
       };
 
@@ -408,7 +394,7 @@ describe("ShopCategoryManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.current_count).toBe(0);
-      expect(result.response.invalid_item_id_list).toHaveLength(2);
+      expect(result.response.invalid_item_id).toHaveLength(2);
     });
 
     it("should successfully delete valid items", async () => {
@@ -430,13 +416,13 @@ describe("ShopCategoryManager", () => {
       });
 
       expect(result.response.current_count).toBe(2);
-      expect(result.response.invalid_item_id_list).toBeUndefined();
+      expect(result.response.invalid_item_id).toBeUndefined();
     });
   });
 
   describe("getItemList", () => {
     it("should get items in a shop category", async () => {
-      const mockResponse: GetShopCategoryItemListResponse = {
+      const mockResponse: GetItemListResponse = {
         request_id: "375ae1023f7396e34904fddfaafed901",
         error: "",
         message: "",
@@ -472,7 +458,7 @@ describe("ShopCategoryManager", () => {
     });
 
     it("should get items with default pagination", async () => {
-      const mockResponse: GetShopCategoryItemListResponse = {
+      const mockResponse: GetItemListResponse = {
         request_id: "375ae1023f7396e34904fddfaafed901",
         error: "",
         message: "",
@@ -495,7 +481,7 @@ describe("ShopCategoryManager", () => {
     });
 
     it("should handle empty item list", async () => {
-      const mockResponse: GetShopCategoryItemListResponse = {
+      const mockResponse: GetItemListResponse = {
         request_id: "375ae1023f7396e34904fddfaafed901",
         error: "",
         message: "",

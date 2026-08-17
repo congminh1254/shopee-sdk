@@ -10,13 +10,13 @@ import {
   GetWarehouseDetailResponse,
   GetShopNotificationResponse,
   GetAuthorisedResellerBrandResponse,
-  GetBRShopOnboardingInfoResponse,
+  GetBrShopOnboardingInfoResponse,
   GetShopHolidayModeResponse,
   SetShopHolidayModeResponse,
 } from "../../schemas/shop.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("ShopManager", () => {
@@ -138,6 +138,7 @@ describe("ShopManager", () => {
         linked_main_shop_id: 0,
         auth_time: 1741944925,
         expire_time: 1773503999,
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -174,6 +175,7 @@ describe("ShopManager", () => {
         auth_time: 1610533441,
         expire_time: 1642069441,
         merchant_id: 1000000400,
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -195,6 +197,7 @@ describe("ShopManager", () => {
         is_sip: false,
         auth_time: 0,
         expire_time: 0,
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -396,6 +399,7 @@ describe("ShopManager", () => {
           title: "Test Notification",
           url: "https://seller.shopee.sg/notifications",
         },
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -432,6 +436,7 @@ describe("ShopManager", () => {
           title: "Next Title",
           url: "https://seller.shopee.sg/notifications",
         },
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -465,6 +470,7 @@ describe("ShopManager", () => {
           title: "-",
           url: "-",
         },
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -529,8 +535,8 @@ describe("ShopManager", () => {
       expect(result.response.total_count).toBe(2);
       expect(result.response.more).toBe(false);
       expect(result.response.authorised_brand_list).toHaveLength(2);
-      expect(result.response.authorised_brand_list[0].brand_id).toBe(1);
-      expect(result.response.authorised_brand_list[0].brand_name).toBe("test brand 1");
+      expect(result.response.authorised_brand_list![0].brand_id).toBe(1);
+      expect(result.response.authorised_brand_list![0].brand_name).toBe("test brand 1");
     });
 
     it("should handle pagination with more pages", async () => {
@@ -587,9 +593,9 @@ describe("ShopManager", () => {
     });
   });
 
-  describe("getBRShopOnboardingInfo", () => {
+  describe("getBrShopOnboardingInfo", () => {
     it("should get BR shop onboarding info successfully", async () => {
-      const mockResponse: GetBRShopOnboardingInfoResponse = {
+      const mockResponse: GetBrShopOnboardingInfoResponse = {
         request_id: "2e17701b64d646e293bfa53f1882d440",
         error: "",
         message: "",
@@ -608,7 +614,7 @@ describe("ShopManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await shopManager.getBRShopOnboardingInfo();
+      const result = await shopManager.getBrShopOnboardingInfo();
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -626,7 +632,7 @@ describe("ShopManager", () => {
     });
 
     it("should handle rejected BR shop onboarding", async () => {
-      const mockResponse: GetBRShopOnboardingInfoResponse = {
+      const mockResponse: GetBrShopOnboardingInfoResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -638,7 +644,7 @@ describe("ShopManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await shopManager.getBRShopOnboardingInfo();
+      const result = await shopManager.getBrShopOnboardingInfo();
 
       expect(result.response?.onboarding_status).toBe(3);
       expect(result.response?.onboarding_passed).toBe(false);
@@ -738,6 +744,7 @@ describe("ShopManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -762,6 +769,7 @@ describe("ShopManager", () => {
         request_id: "test-request-id",
         error: "error_param",
         message: "Invalid time range",
+        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);

@@ -6,11 +6,11 @@ import { ShopeeFetch } from "../../fetch.js";
 import {
   GetShopsByPartnerResponse,
   GetMerchantsByPartnerResponse,
-  GetShopeeIpRangeResponse,
+  GetShopeeIpRangesResponse,
 } from "../../schemas/public.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PublicManager", () => {
@@ -43,14 +43,14 @@ describe("PublicManager", () => {
             {
               shop_id: 123456,
               region: "SG",
-              sip_affi_shops: [],
+              sip_affi_shop_list: [],
               auth_time: 1640995200,
               expire_time: 1672531200,
             },
             {
               shop_id: 789012,
               region: "SG",
-              sip_affi_shops: [],
+              sip_affi_shop_list: [],
               auth_time: 1640995200,
               expire_time: 1672531200,
             },
@@ -83,7 +83,7 @@ describe("PublicManager", () => {
             {
               shop_id: 123456,
               region: "SG",
-              sip_affi_shops: [],
+              sip_affi_shop_list: [],
               auth_time: 1640995200,
               expire_time: 1672531200,
             },
@@ -207,9 +207,9 @@ describe("PublicManager", () => {
     });
   });
 
-  describe("getShopeeIpRange", () => {
+  describe("getShopeeIpRanges", () => {
     it("should get Shopee IP ranges", async () => {
-      const mockResponse: GetShopeeIpRangeResponse = {
+      const mockResponse: GetShopeeIpRangesResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -220,7 +220,7 @@ describe("PublicManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await publicManager.getShopeeIpRange();
+      const result = await publicManager.getShopeeIpRanges();
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shopee_ip_ranges", {
         method: "GET",
@@ -230,7 +230,7 @@ describe("PublicManager", () => {
     });
 
     it("should handle empty IP ranges response", async () => {
-      const mockResponse: GetShopeeIpRangeResponse = {
+      const mockResponse: GetShopeeIpRangesResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -241,7 +241,7 @@ describe("PublicManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await publicManager.getShopeeIpRange();
+      const result = await publicManager.getShopeeIpRanges();
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shopee_ip_ranges", {
         method: "GET",

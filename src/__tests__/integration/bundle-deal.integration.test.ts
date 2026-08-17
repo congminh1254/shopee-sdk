@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
-import { BundleDealTimeStatus, BundleDealRuleType } from "../../schemas/bundle-deal.js";
+import { BundleDealTimeStatus, BundleDealRuleType } from "../utils/legacy-enums.js";
 
 const { runTests, initSdk } = setupIntegrationTest();
 
@@ -28,13 +28,13 @@ const { runTests, initSdk } = setupIntegrationTest();
         min_amount: 2,
         discount_percentage: 10,
         purchase_limit: 5,
-      });
+      } as any);
 
       expect(addResponse).toBeDefined();
       expect(addResponse.error || "").toBe("");
       expect(addResponse.response?.bundle_deal_id).toBeDefined();
 
-      const testDealId = addResponse.response.bundle_deal_id;
+      const testDealId = addResponse.response.bundle_deal_id!;
 
       try {
         // 2. Retrieve the details of the created bundle deal

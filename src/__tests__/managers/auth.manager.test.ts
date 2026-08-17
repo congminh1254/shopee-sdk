@@ -5,8 +5,7 @@ import { ShopeeRegion } from "../../schemas/region.js";
 import { AccessToken } from "../../schemas/access-token.js";
 import { ShopeeFetch } from "../../fetch.js";
 
-// Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("AuthManager", () => {

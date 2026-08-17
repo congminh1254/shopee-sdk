@@ -1,397 +1,98 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
+import {
+  GenerateIncomeReportRequest,
+  GenerateIncomeReportResponse,
+  GenerateIncomeStatementRequest,
+  GenerateIncomeStatementResponse,
+  GetBillingTransactionInfoRequest,
+  GetBillingTransactionInfoResponse,
+  GetEscrowDetailRequest,
+  GetEscrowDetailResponse,
+  GetEscrowDetailBatchRequest,
+  GetEscrowDetailBatchResponse,
+  GetEscrowListRequest,
+  GetEscrowListResponse,
+  GetIncomeDetailRequest,
+  GetIncomeDetailResponse,
+  GetIncomeOverviewRequest,
+  GetIncomeOverviewResponse,
+  GetIncomeReportRequest,
+  GetIncomeReportResponse,
+  GetIncomeStatementRequest,
+  GetIncomeStatementResponse,
+  GetItemInstallmentStatusRequest,
+  GetItemInstallmentStatusResponse,
+  GetPaymentMethodListRequest,
+  GetPaymentMethodListResponse,
+  GetPayoutDetailRequest,
+  GetPayoutDetailResponse,
+  GetPayoutInfoRequest,
+  GetPayoutInfoResponse,
+  GetShopInstallmentStatusRequest,
+  GetShopInstallmentStatusResponse,
+  GetWalletTransactionListRequest,
+  GetWalletTransactionListResponse,
+  SetItemInstallmentStatusRequest,
+  SetItemInstallmentStatusResponse,
+  SetShopInstallmentStatusRequest,
+  SetShopInstallmentStatusResponse,
+} from "../schemas/payment.js";
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
-import {
-  GetEscrowDetailParams,
-  GetEscrowDetailResponse,
-  GetEscrowListParams,
-  GetEscrowListResponse,
-  GetEscrowDetailBatchParams,
-  GetEscrowDetailBatchResponse,
-  GetWalletTransactionListParams,
-  GetWalletTransactionListResponse,
-  GetPaymentMethodListResponse,
-  GetShopInstallmentStatusResponse,
-  SetShopInstallmentStatusParams,
-  SetShopInstallmentStatusResponse,
-  GetItemInstallmentStatusParams,
-  GetItemInstallmentStatusResponse,
-  SetItemInstallmentStatusParams,
-  SetItemInstallmentStatusResponse,
-  GenerateIncomeReportParams,
-  GenerateIncomeReportResponse,
-  GetIncomeReportParams,
-  GetIncomeReportResponse,
-  GenerateIncomeStatementParams,
-  GenerateIncomeStatementResponse,
-  GetIncomeStatementParams,
-  GetIncomeStatementResponse,
-  GetBillingTransactionInfoParams,
-  GetBillingTransactionInfoResponse,
-  GetPayoutDetailParams,
-  GetPayoutDetailResponse,
-  GetPayoutInfoParams,
-  GetPayoutInfoResponse,
-  GetIncomeDetailParams,
-  GetIncomeDetailResponse,
-  GetIncomeOverviewParams,
-  GetIncomeOverviewResponse,
-} from "../schemas/payment.js";
 import { ShopeeFetch } from "../fetch.js";
-
 export class PaymentManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
-  /**
-   * Use this API to fetch the accounting detail of order.
-   *
-   * @param params - Parameters for getting escrow detail
-   * @param params.order_sn - Shopee's unique identifier for an order
-   *
-   * @returns A promise that resolves to the escrow detail response containing:
-   * - order_sn: Order identifier
-   * - buyer_user_name: Username of buyer
-   * - return_order_sn_list: List of return order numbers
-   * - order_income: Detailed breakdown of order income including:
-   *   - escrow_amount: Expected amount seller will receive
-   *   - buyer_total_amount: Total amount paid by buyer
-   *   - items: List of items with pricing details
-   *   - fees and adjustments: Various fees, taxes and adjustments
-   * - buyer_payment_info: Payment details from buyer's perspective
-   *
-   * @throws {Error} When the API request fails or returns an error:
-   * - error_param: Missing or invalid parameters
-   * - error_auth: Authentication or permission errors
-   * - error_server: Internal server errors
-   * - error_not_found: Order income details not found
-   */
-  async getEscrowDetail(params: GetEscrowDetailParams): Promise<GetEscrowDetailResponse> {
-    const response = await ShopeeFetch.fetch<GetEscrowDetailResponse>(
-      this.config,
-      "/payment/get_escrow_detail",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Use this API to fetch the accounting list of order.
-   *
-   * @param params - Parameters for getting escrow list
-   * @param params.release_time_from - Query start time (timestamp)
-   * @param params.release_time_to - Query end time (timestamp)
-   * @param params.page_size - Number of pages returned, max: 100, default: 40
-   * @param params.page_no - The page number, min: 1, default: 1
-   *
-   * @returns A promise that resolves to the escrow list response containing:
-   * - escrow_list: List of escrow orders with order_sn, payout_amount, and escrow_release_time
-   * - more: Indicates whether there are more pages
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getEscrowList(params: GetEscrowListParams): Promise<GetEscrowListResponse> {
-    const response = await ShopeeFetch.fetch<GetEscrowListResponse>(
-      this.config,
-      "/payment/get_escrow_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Use this API to fetch the details of order income by batch.
-   *
-   * @param params - Parameters for getting escrow detail batch
-   * @param params.order_sn_list - List of order SNs, limit [1,50]. Recommended 1-20 orders per request
-   *
-   * @returns A promise that resolves to the escrow detail batch response
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getEscrowDetailBatch(
-    params: GetEscrowDetailBatchParams
-  ): Promise<GetEscrowDetailBatchResponse> {
-    const response = await ShopeeFetch.fetch<GetEscrowDetailBatchResponse>(
-      this.config,
-      "/payment/get_escrow_detail_batch",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Use this API to get the transaction records of wallet. Only applicable for local shops.
-   *
-   * @param params - Parameters for getting wallet transaction list
-   * @param params.create_time_from - The start time of the query (timestamp)
-   * @param params.create_time_to - The end time of the query (timestamp)
-   * @param params.page_no - Offset for pagination, start from 0
-   * @param params.page_size - The number of records returned per page, min 1, max 100, default 40
-   * @param params.transaction_type - Transaction types filter
-   *
-   * @returns A promise that resolves to the wallet transaction list response
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getWalletTransactionList(
-    params: GetWalletTransactionListParams
-  ): Promise<GetWalletTransactionListResponse> {
-    const response = await ShopeeFetch.fetch<GetWalletTransactionListResponse>(
-      this.config,
-      "/payment/get_wallet_transaction_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Obtain payment method (no authentication required).
-   *
-   * @returns A promise that resolves to the payment method list response
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getPaymentMethodList(): Promise<GetPaymentMethodListResponse> {
-    const response = await ShopeeFetch.fetch<GetPaymentMethodListResponse>(
-      this.config,
-      "/payment/get_payment_method_list",
-      {
-        method: "GET",
-        auth: false,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get the installment state of shop.
-   *
-   * @returns A promise that resolves to the shop installment status response
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getShopInstallmentStatus(): Promise<GetShopInstallmentStatusResponse> {
-    const response = await ShopeeFetch.fetch<GetShopInstallmentStatusResponse>(
-      this.config,
-      "/payment/get_shop_installment_status",
-      {
-        method: "GET",
-        auth: true,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Sets the staging capability of shop level.
-   *
-   * @param params - Parameters for setting shop installment status
-   * @param params.installment_status - Installment status: 1=enable, 0=disable
-   *
-   * @returns A promise that resolves to the set shop installment status response
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async setShopInstallmentStatus(
-    params: SetShopInstallmentStatusParams
-  ): Promise<SetShopInstallmentStatusResponse> {
-    const response = await ShopeeFetch.fetch<SetShopInstallmentStatusResponse>(
-      this.config,
-      "/payment/set_shop_installment_status",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get item installment tenures. Only for TH、TW.
-   *
-   * @param params - Parameters for getting item installment status
-   * @param params.item_id_list - List of item IDs
-   *
-   * @returns A promise that resolves to the item installment status response
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getItemInstallmentStatus(
-    params: GetItemInstallmentStatusParams
-  ): Promise<GetItemInstallmentStatusResponse> {
-    const response = await ShopeeFetch.fetch<GetItemInstallmentStatusResponse>(
-      this.config,
-      "/payment/get_item_installment_status",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Set item installment. Only for TH、TW.
-   *
-   * @param params - Parameters for setting item installment status
-   * @param params.item_id_list - List of item IDs
-   * @param params.tenure_list - List of tenure months to enable
-   *
-   * @returns A promise that resolves to the set item installment status response
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async setItemInstallmentStatus(
-    params: SetItemInstallmentStatusParams
-  ): Promise<SetItemInstallmentStatusResponse> {
-    const response = await ShopeeFetch.fetch<SetItemInstallmentStatusResponse>(
-      this.config,
-      "/payment/set_item_installment_status",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
   /**
    * Trigger income report generation.
    *
-   * @param params - Parameters for generating income report
-   * @param params.start_time - Start time for the report (timestamp)
-   * @param params.end_time - End time for the report (timestamp)
-   * @param params.currency - Currency for the report
-   *
-   * @returns A promise that resolves to the generate income report response
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GenerateIncomeReportRequest} params Request parameters
+   * @returns {Promise<GenerateIncomeReportResponse>} Promise resolving to the response
    */
-  async generateIncomeReport(
-    params: GenerateIncomeReportParams
+  public async generateIncomeReport(
+    params?: GenerateIncomeReportRequest
   ): Promise<GenerateIncomeReportResponse> {
-    const response = await ShopeeFetch.fetch<GenerateIncomeReportResponse>(
+    return ShopeeFetch.fetch<GenerateIncomeReportResponse>(
       this.config,
       "/payment/generate_income_report",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
-  /**
-   * To query income report status and provide file link if the income report is ready to be downloaded.
-   *
-   * @param params - Parameters for getting income report
-   * @param params.income_report_id - Income report ID
-   *
-   * @returns A promise that resolves to the get income report response
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getIncomeReport(params: GetIncomeReportParams): Promise<GetIncomeReportResponse> {
-    const response = await ShopeeFetch.fetch<GetIncomeReportResponse>(
-      this.config,
-      "/payment/get_income_report",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
   /**
    * Trigger income statement generation.
    *
-   * @param params - Parameters for generating income statement
-   * @param params.start_time - Start time for the statement (timestamp)
-   * @param params.end_time - End time for the statement (timestamp)
-   *
-   * @returns A promise that resolves to the generate income statement response
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GenerateIncomeStatementRequest} params Request parameters
+   * @returns {Promise<GenerateIncomeStatementResponse>} Promise resolving to the response
    */
-  async generateIncomeStatement(
-    params: GenerateIncomeStatementParams
+  public async generateIncomeStatement(
+    params?: GenerateIncomeStatementRequest
   ): Promise<GenerateIncomeStatementResponse> {
-    const response = await ShopeeFetch.fetch<GenerateIncomeStatementResponse>(
+    return ShopeeFetch.fetch<GenerateIncomeStatementResponse>(
       this.config,
       "/payment/generate_income_statement",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * To query income statement status and provide file link if the income statement is ready to be downloaded.
+   * This API is applicable for Cross Border (CB) sellers only to get the detailed payout transaction data, both released and to-be released transaction can be found in here
    *
-   * @param params - Parameters for getting income statement
-   * @param params.income_statement_id - Income statement ID
-   *
-   * @returns A promise that resolves to the get income statement response
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetBillingTransactionInfoRequest} params Request parameters
+   * @returns {Promise<GetBillingTransactionInfoResponse>} Promise resolving to the response
    */
-  async getIncomeStatement(params: GetIncomeStatementParams): Promise<GetIncomeStatementResponse> {
-    const response = await ShopeeFetch.fetch<GetIncomeStatementResponse>(
-      this.config,
-      "/payment/get_income_statement",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * This API is applicable for Cross Border (CB) sellers only to get the detailed payout transaction data,
-   * both released and to-be released transaction can be found in here.
-   *
-   * @param params - Parameters for getting billing transaction info
-   * @param params.billing_transaction_info_type - Billing transaction info type
-   * @param params.encrypted_payout_ids - Encrypted payout IDs (optional)
-   * @param params.cursor - Cursor for pagination
-   * @param params.page_size - Page size, max 100
-   *
-   * @returns A promise that resolves to the billing transaction info response
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getBillingTransactionInfo(
-    params: GetBillingTransactionInfoParams
+  public async getBillingTransactionInfo(
+    params?: GetBillingTransactionInfoRequest
   ): Promise<GetBillingTransactionInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetBillingTransactionInfoResponse>(
+    return ShopeeFetch.fetch<GetBillingTransactionInfoResponse>(
       this.config,
       "/payment/get_billing_transaction_info",
       {
@@ -400,96 +101,270 @@ export class PaymentManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * This API is applicable for Cross Border (CB) sellers only to get the shop's payout data.
-   * @deprecated Use getPayoutInfo instead
+   * Use this API to fetch the accounting detail of order.
    *
-   * @param params - Parameters for getting payout detail
-   * @param params.payout_time_from - Payout time from (timestamp)
-   * @param params.payout_time_to - Payout time to (timestamp)
-   * @param params.page_no - Page number, default 1
-   * @param params.page_size - Page size, max 100, default 40
-   *
-   * @returns A promise that resolves to the payout detail response
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetEscrowDetailRequest} params Request parameters
+   * @returns {Promise<GetEscrowDetailResponse>} Promise resolving to the response
    */
-  async getPayoutDetail(params: GetPayoutDetailParams): Promise<GetPayoutDetailResponse> {
-    const response = await ShopeeFetch.fetch<GetPayoutDetailResponse>(
+  public async getEscrowDetail(params?: GetEscrowDetailRequest): Promise<GetEscrowDetailResponse> {
+    return ShopeeFetch.fetch<GetEscrowDetailResponse>(this.config, "/payment/get_escrow_detail", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: ["response.order_income.order_adjustment.date"],
+    });
+  }
+  /**
+   * Use this API to fetch the details of order income by batch.
+   *
+   * @param {GetEscrowDetailBatchRequest} params Request parameters
+   * @returns {Promise<GetEscrowDetailBatchResponse>} Promise resolving to the response
+   */
+  public async getEscrowDetailBatch(
+    params?: GetEscrowDetailBatchRequest
+  ): Promise<GetEscrowDetailBatchResponse> {
+    return ShopeeFetch.fetch<GetEscrowDetailBatchResponse>(
       this.config,
-      "/payment/get_payout_detail",
+      "/payment/get_escrow_detail_batch",
       {
-        method: "GET",
+        method: "POST",
         auth: true,
-        params,
+        body: params,
       }
     );
-    return response;
   }
-
   /**
-   * This is a new API which applicable for Cross Border (CB) sellers only to get the shop's payout data,
-   * will be used for the original API v2.get_payout_details replacement.
+   * Use this API to fetch the accounting list of order.
    *
-   * @param params - Parameters for getting payout info
-   * @param params.payout_time_from - Payout time from (timestamp)
-   * @param params.payout_time_to - Payout time to (timestamp)
-   * @param params.page_no - Page number, default 1
-   * @param params.page_size - Page size, max 100, default 40
-   *
-   * @returns A promise that resolves to the payout info response
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetEscrowListRequest} params Request parameters
+   * @returns {Promise<GetEscrowListResponse>} Promise resolving to the response
    */
-  async getPayoutInfo(params: GetPayoutInfoParams): Promise<GetPayoutInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetPayoutInfoResponse>(
-      this.config,
-      "/payment/get_payout_info",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
+  public async getEscrowList(params?: GetEscrowListRequest): Promise<GetEscrowListResponse> {
+    return ShopeeFetch.fetch<GetEscrowListResponse>(this.config, "/payment/get_escrow_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: [
+        "release_time_from",
+        "release_time_to",
+        "response.escrow_list.escrow_release_time",
+      ],
+    });
   }
-
   /**
-   * Retrieves detailed order-level income information across various income statuses for a specified time period.
+   * Retrieves detailed order-level income information across various income statuses for a specified time period. This API enables partners to display granular transaction-level income data consistent with Seller Center’s “Income Details” view, segmented by income status and payout stage.
    *
-   * @param params - Parameters for getting income details
+   * The API dynamically adapts data fields based on the seller’s shop type (Local or Cross Border) and the selected income status (e.g., Pending, To Release, Released).
+   *
+   * @param {GetIncomeDetailRequest} params Request parameters
+   * @returns {Promise<GetIncomeDetailResponse>} Promise resolving to the response
    */
-  async getIncomeDetail(params: GetIncomeDetailParams): Promise<GetIncomeDetailResponse> {
-    const response = await ShopeeFetch.fetch<GetIncomeDetailResponse>(
-      this.config,
-      "/payment/get_income_detail",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
+  public async getIncomeDetail(params?: GetIncomeDetailRequest): Promise<GetIncomeDetailResponse> {
+    return ShopeeFetch.fetch<GetIncomeDetailResponse>(this.config, "/payment/get_income_detail", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
   }
-
   /**
-   * Retrieves a consolidated snapshot of the seller's income amounts categorized by income status for a specified shop.
+   * Retrieves a consolidated snapshot of the seller’s income amounts categorized by income status for a specified shop. This API provides a holistic overview similar to Seller Center’s “Income Overview” section, allowing external systems to reflect the same current payout view.
    *
-   * @param params - Optional parameters for getting income overview
+   * Data is dynamically determined based on the shop type (Local or Cross Border) and the income status requested. Historical income results are not retrievable, providing consistent information as Seller Centre.
+   *
+   * @param {GetIncomeOverviewRequest} params Request parameters
+   * @returns {Promise<GetIncomeOverviewResponse>} Promise resolving to the response
    */
-  async getIncomeOverview(params?: GetIncomeOverviewParams): Promise<GetIncomeOverviewResponse> {
-    const response = await ShopeeFetch.fetch<GetIncomeOverviewResponse>(
+  public async getIncomeOverview(
+    params?: GetIncomeOverviewRequest
+  ): Promise<GetIncomeOverviewResponse> {
+    return ShopeeFetch.fetch<GetIncomeOverviewResponse>(
       this.config,
       "/payment/get_income_overview",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
+  }
+  /**
+   * To query income report status and provide file link if the income report is ready to be downloaded.
+   *
+   * @param {GetIncomeReportRequest} params Request parameters
+   * @returns {Promise<GetIncomeReportResponse>} Promise resolving to the response
+   */
+  public async getIncomeReport(params?: GetIncomeReportRequest): Promise<GetIncomeReportResponse> {
+    return ShopeeFetch.fetch<GetIncomeReportResponse>(this.config, "/payment/get_income_report", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * To query income statement status and provide file link if the income statement is ready to be downloaded.
+   *
+   * @param {GetIncomeStatementRequest} params Request parameters
+   * @returns {Promise<GetIncomeStatementResponse>} Promise resolving to the response
+   */
+  public async getIncomeStatement(
+    params?: GetIncomeStatementRequest
+  ): Promise<GetIncomeStatementResponse> {
+    return ShopeeFetch.fetch<GetIncomeStatementResponse>(
+      this.config,
+      "/payment/get_income_statement",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get item installment tenures.Only for TH、TW.
+   *
+   * @param {GetItemInstallmentStatusRequest} params Request parameters
+   * @returns {Promise<GetItemInstallmentStatusResponse>} Promise resolving to the response
+   */
+  public async getItemInstallmentStatus(
+    params?: GetItemInstallmentStatusRequest
+  ): Promise<GetItemInstallmentStatusResponse> {
+    return ShopeeFetch.fetch<GetItemInstallmentStatusResponse>(
+      this.config,
+      "/payment/get_item_installment_status",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Obtain payment method (no authentication required)
+   *
+   * @param {GetPaymentMethodListRequest} params Request parameters
+   * @returns {Promise<GetPaymentMethodListResponse>} Promise resolving to the response
+   */
+  public async getPaymentMethodList(
+    params?: GetPaymentMethodListRequest
+  ): Promise<GetPaymentMethodListResponse> {
+    return ShopeeFetch.fetch<GetPaymentMethodListResponse>(
+      this.config,
+      "/payment/get_payment_method_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * This API is applicable for Cross Border (CB) sellers only to get the shop's payout data, such as the payout amount, currency, FX rate, the payout's associated order income and adjustment records etc.
+   *
+   * @param {GetPayoutDetailRequest} params Request parameters
+   * @returns {Promise<GetPayoutDetailResponse>} Promise resolving to the response
+   */
+  public async getPayoutDetail(params?: GetPayoutDetailRequest): Promise<GetPayoutDetailResponse> {
+    return ShopeeFetch.fetch<GetPayoutDetailResponse>(this.config, "/payment/get_payout_detail", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: [
+        "payout_time_from",
+        "payout_time_to",
+        "response.payout_list.payout_info.payout_time",
+      ],
+    });
+  }
+  /**
+   * This is a new API which applicable for Cross Border (CB) sellers only to get the shop's payout data, will be used for the original API v2.get_payout_details replacement, we provide data such as the payout amount, currency, FX rate, the payout's associated order income and adjustment records etc.
+   *
+   * @param {GetPayoutInfoRequest} params Request parameters
+   * @returns {Promise<GetPayoutInfoResponse>} Promise resolving to the response
+   */
+  public async getPayoutInfo(params?: GetPayoutInfoRequest): Promise<GetPayoutInfoResponse> {
+    return ShopeeFetch.fetch<GetPayoutInfoResponse>(this.config, "/payment/get_payout_info", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: ["payout_time_from", "payout_time_to", "response.payout_list.payout_time"],
+    });
+  }
+  /**
+   * Get the installment state of shop.
+   *
+   * @param {GetShopInstallmentStatusRequest} params Request parameters
+   * @returns {Promise<GetShopInstallmentStatusResponse>} Promise resolving to the response
+   */
+  public async getShopInstallmentStatus(
+    params?: GetShopInstallmentStatusRequest
+  ): Promise<GetShopInstallmentStatusResponse> {
+    return ShopeeFetch.fetch<GetShopInstallmentStatusResponse>(
+      this.config,
+      "/payment/get_shop_installment_status",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Use this API to get the transaction records of wallet. Only applicable for local shops
+   *
+   * @param {GetWalletTransactionListRequest} params Request parameters
+   * @returns {Promise<GetWalletTransactionListResponse>} Promise resolving to the response
+   */
+  public async getWalletTransactionList(
+    params?: GetWalletTransactionListRequest
+  ): Promise<GetWalletTransactionListResponse> {
+    return ShopeeFetch.fetch<GetWalletTransactionListResponse>(
+      this.config,
+      "/payment/get_wallet_transaction_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Set item installment.Only for TH、TW.
+   *
+   * @param {SetItemInstallmentStatusRequest} params Request parameters
+   * @returns {Promise<SetItemInstallmentStatusResponse>} Promise resolving to the response
+   */
+  public async setItemInstallmentStatus(
+    params?: SetItemInstallmentStatusRequest
+  ): Promise<SetItemInstallmentStatusResponse> {
+    return ShopeeFetch.fetch<SetItemInstallmentStatusResponse>(
+      this.config,
+      "/payment/set_item_installment_status",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Sets the staging capability of shop level.
+   *
+   * @param {SetShopInstallmentStatusRequest} params Request parameters
+   * @returns {Promise<SetShopInstallmentStatusResponse>} Promise resolving to the response
+   */
+  public async setShopInstallmentStatus(
+    params?: SetShopInstallmentStatusRequest
+  ): Promise<SetShopInstallmentStatusResponse> {
+    return ShopeeFetch.fetch<SetShopInstallmentStatusResponse>(
+      this.config,
+      "/payment/set_shop_installment_status",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
   }
 }

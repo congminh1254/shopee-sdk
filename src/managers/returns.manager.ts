@@ -1,389 +1,291 @@
+// NOTE: This file is auto-generated. Do not edit directly.
+
+import {
+  AcceptOfferRequest,
+  AcceptOfferResponse,
+  CancelDisputeRequest,
+  CancelDisputeResponse,
+  ConfirmRequest,
+  ConfirmResponse,
+  ConvertImageRequest,
+  ConvertImageResponse,
+  DisputeRequest,
+  DisputeResponse,
+  GetAvailableSolutionsRequest,
+  GetAvailableSolutionsResponse,
+  GetReturnDetailRequest,
+  GetReturnDetailResponse,
+  GetReturnDisputeReasonRequest,
+  GetReturnDisputeReasonResponse,
+  GetReturnListRequest,
+  GetReturnListResponse,
+  GetReverseTrackingInfoRequest,
+  GetReverseTrackingInfoResponse,
+  GetShippingCarrierRequest,
+  GetShippingCarrierResponse,
+  OfferRequest,
+  OfferResponse,
+  QueryProofRequest,
+  QueryProofResponse,
+  UploadProofRequest,
+  UploadProofResponse,
+  UploadShippingProofRequest,
+  UploadShippingProofResponse,
+} from "../schemas/returns.js";
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
-import {
-  GetReturnListParams,
-  GetReturnListResponse,
-  GetReturnDetailParams,
-  GetReturnDetailResponse,
-  ConfirmParams,
-  ConfirmResponse,
-  DisputeParams,
-  DisputeResponse,
-  OfferParams,
-  OfferResponse,
-  AcceptOfferParams,
-  AcceptOfferResponse,
-  GetAvailableSolutionsParams,
-  GetAvailableSolutionsResponse,
-  CancelDisputeParams,
-  CancelDisputeResponse,
-  GetReturnDisputeReasonParams,
-  GetReturnDisputeReasonResponse,
-  ConvertImageParams,
-  ConvertImageResponse,
-  UploadProofParams,
-  UploadProofResponse,
-  QueryProofParams,
-  QueryProofResponse,
-  GetShippingCarrierParams,
-  GetShippingCarrierResponse,
-  UploadShippingProofParams,
-  UploadShippingProofResponse,
-  GetReverseTrackingInfoParams,
-  GetReverseTrackingInfoResponse,
-} from "../schemas/returns.js";
 import { ShopeeFetch } from "../fetch.js";
-
 export class ReturnsManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
   /**
-   * Use this API to get detail information of many returns by shop ID.
+   * v2.returns.accept_offer
    *
-   * @param params - Parameters for getting return list
-   * @param params.page_no - Page number (required)
-   * @param params.page_size - Page size, max 100 (required)
-   * @param params.create_time_from - Filter by create time from (timestamp)
-   * @param params.create_time_to - Filter by create time to (timestamp)
-   * @param params.update_time_from - Filter by update time from (timestamp)
-   * @param params.update_time_to - Filter by update time to (timestamp)
-   * @param params.status - Filter by return status
-   * @param params.negotiation_status - Filter by negotiation status
-   * @param params.seller_proof_status - Filter by seller proof status
-   * @param params.seller_compensation_status - Filter by seller compensation status
-   *
-   * @returns A promise that resolves to the return list response containing:
-   * - more: Whether there are more pages
-   * - return: List of return details
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {AcceptOfferRequest} params Request parameters
+   * @returns {Promise<AcceptOfferResponse>} Promise resolving to the response
    */
-  async getReturnList(params: GetReturnListParams): Promise<GetReturnListResponse> {
-    const response = await ShopeeFetch.fetch<GetReturnListResponse>(
-      this.config,
-      "/returns/get_return_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Use this API to get detail information of a return by return serial number.
-   *
-   * @param params - Parameters for getting return detail
-   * @param params.return_sn - Return serial number (required)
-   *
-   * @returns A promise that resolves to the return detail response containing:
-   * - Complete return information including items, user, status, etc.
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getReturnDetail(params: GetReturnDetailParams): Promise<GetReturnDetailResponse> {
-    const response = await ShopeeFetch.fetch<GetReturnDetailResponse>(
-      this.config,
-      "/returns/get_return_detail",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Confirm refund for a return request.
-   *
-   * @param params - Parameters for confirming return
-   * @param params.return_sn - Return serial number (required)
-   *
-   * @returns A promise that resolves to the confirm response containing:
-   * - return_sn: The confirmed return serial number
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async confirm(params: ConfirmParams): Promise<ConfirmResponse> {
-    const response = await ShopeeFetch.fetch<ConfirmResponse>(this.config, "/returns/confirm", {
+  public async acceptOffer(params?: AcceptOfferRequest): Promise<AcceptOfferResponse> {
+    return ShopeeFetch.fetch<AcceptOfferResponse>(this.config, "/returns/accept_offer", {
       method: "POST",
       auth: true,
       body: params,
     });
-    return response;
   }
-
   /**
-   * Dispute a return request. Support raising dispute when return_status is REQUESTED/PROCESSING/ACCEPTED.
+   * Sellers can only cancel compensation disputes, not normal disputes. This means that sellers can only cancel disputes when the return_status is ACCEPTED and the compensation_status is COMPENSATION_REQUESTED.
    *
-   * @param params - Parameters for disputing return
-   * @param params.return_sn - Return serial number (required)
-   * @param params.email - Email for contact (required)
-   * @param params.dispute_reason - Dispute reason ID (required)
-   * @param params.dispute_text_reason - Text explanation for dispute
-   * @param params.images - Image URLs for dispute evidence
-   *
-   * @returns A promise that resolves to the dispute response containing:
-   * - return_sn: The disputed return serial number
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {CancelDisputeRequest} params Request parameters
+   * @returns {Promise<CancelDisputeResponse>} Promise resolving to the response
    */
-  async dispute(params: DisputeParams): Promise<DisputeResponse> {
-    const response = await ShopeeFetch.fetch<DisputeResponse>(this.config, "/returns/dispute", {
+  public async cancelDispute(params?: CancelDisputeRequest): Promise<CancelDisputeResponse> {
+    return ShopeeFetch.fetch<CancelDisputeResponse>(this.config, "/returns/cancel_dispute", {
       method: "POST",
       auth: true,
       body: params,
     });
-    return response;
   }
-
   /**
-   * Offer a solution to the buyer during negotiation.
+   * Confirm refund
    *
-   * @param params - Parameters for offering solution
-   * @param params.return_sn - Return serial number (required)
-   * @param params.solution - Solution to offer (required)
-   * @param params.refund_amount - Refund amount (if applicable)
-   *
-   * @returns A promise that resolves to the offer response containing:
-   * - return_sn: The return serial number
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {ConfirmRequest} params Request parameters
+   * @returns {Promise<ConfirmResponse>} Promise resolving to the response
    */
-  async offer(params: OfferParams): Promise<OfferResponse> {
-    const response = await ShopeeFetch.fetch<OfferResponse>(this.config, "/returns/offer", {
+  public async confirm(params?: ConfirmRequest): Promise<ConfirmResponse> {
+    return ShopeeFetch.fetch<ConfirmResponse>(this.config, "/returns/confirm", {
       method: "POST",
       auth: true,
       body: params,
     });
-    return response;
   }
-
   /**
-   * Accept an offer from the buyer.
+   * Convert a specific format and pictures within 10M into url.
    *
-   * @param params - Parameters for accepting offer
-   * @param params.return_sn - Return serial number (required)
-   *
-   * @returns A promise that resolves to the accept offer response containing:
-   * - return_sn: The return serial number
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {ConvertImageRequest} params Request parameters
+   * @returns {Promise<ConvertImageResponse>} Promise resolving to the response
    */
-  async acceptOffer(params: AcceptOfferParams): Promise<AcceptOfferResponse> {
-    const response = await ShopeeFetch.fetch<AcceptOfferResponse>(
-      this.config,
-      "/returns/accept_offer",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
+  public async convertImage(params?: ConvertImageRequest): Promise<ConvertImageResponse> {
+    return ShopeeFetch.fetch<ConvertImageResponse>(this.config, "/returns/convert_image", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
-
+  /**
+   * Dispute return.
+   *
+   * Support to raise dispute when return_status in REQUESTED / PROCESSING/ACCEPTED
+   *
+   * @param {DisputeRequest} params Request parameters
+   * @returns {Promise<DisputeResponse>} Promise resolving to the response
+   */
+  public async dispute(params?: DisputeRequest): Promise<DisputeResponse> {
+    return ShopeeFetch.fetch<DisputeResponse>(this.config, "/returns/dispute", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
   /**
    * Get the available solutions offered to buyers.
    *
-   * @param params - Parameters for getting available solutions
-   * @param params.return_sn - Return serial number (required)
-   *
-   * @returns A promise that resolves to the available solutions response containing:
-   * - solution: List of available solution options with max refund amounts
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetAvailableSolutionsRequest} params Request parameters
+   * @returns {Promise<GetAvailableSolutionsResponse>} Promise resolving to the response
    */
-  async getAvailableSolutions(
-    params: GetAvailableSolutionsParams
+  public async getAvailableSolutions(
+    params?: GetAvailableSolutionsRequest
   ): Promise<GetAvailableSolutionsResponse> {
-    const response = await ShopeeFetch.fetch<GetAvailableSolutionsResponse>(
+    return ShopeeFetch.fetch<GetAvailableSolutionsResponse>(
       this.config,
       "/returns/get_available_solutions",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Cancel a compensation dispute. Sellers can only cancel compensation disputes, not normal disputes.
-   * This means sellers can only cancel disputes when return_status is ACCEPTED and compensation_status is COMPENSATION_REQUESTED.
+   * Use this api to get detail information of a return by return sn.
    *
-   * @param params - Parameters for cancelling dispute
-   * @param params.return_sn - Return serial number (required)
-   *
-   * @returns A promise that resolves to the cancel dispute response containing:
-   * - return_sn: The return serial number
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetReturnDetailRequest} params Request parameters
+   * @returns {Promise<GetReturnDetailResponse>} Promise resolving to the response
    */
-  async cancelDispute(params: CancelDisputeParams): Promise<CancelDisputeResponse> {
-    const response = await ShopeeFetch.fetch<CancelDisputeResponse>(
-      this.config,
-      "/returns/cancel_dispute",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
+  public async getReturnDetail(params?: GetReturnDetailRequest): Promise<GetReturnDetailResponse> {
+    return ShopeeFetch.fetch<GetReturnDetailResponse>(this.config, "/returns/get_return_detail", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: [
+        "response.create_time",
+        "response.update_time",
+        "response.due_date",
+        "response.return_ship_due_date",
+        "response.return_seller_due_date",
+        "response.seller_proof.seller_evidence_deadline",
+        "response.seller_compensation.seller_compensation_due_date",
+        "response.negotiation.offer_due_date",
+      ],
+    });
   }
-
   /**
-   * Get the dispute return reasons available for a return.
+   * To get the dispute return reason.
    *
-   * @param params - Parameters for getting dispute reasons
-   * @param params.return_sn - Return serial number (required)
-   *
-   * @returns A promise that resolves to the dispute reason response containing:
-   * - dispute_reason: List of available dispute reasons with IDs and text
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetReturnDisputeReasonRequest} params Request parameters
+   * @returns {Promise<GetReturnDisputeReasonResponse>} Promise resolving to the response
    */
-  async getReturnDisputeReason(
-    params: GetReturnDisputeReasonParams
+  public async getReturnDisputeReason(
+    params?: GetReturnDisputeReasonRequest
   ): Promise<GetReturnDisputeReasonResponse> {
-    const response = await ShopeeFetch.fetch<GetReturnDisputeReasonResponse>(
+    return ShopeeFetch.fetch<GetReturnDisputeReasonResponse>(
       this.config,
       "/returns/get_return_dispute_reason",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Convert image files to URLs. Supports specific formats and pictures within 10MB.
+   * Use this api to get detail information of many return by shop id.
    *
-   * @param params - Parameters for converting images
-   * @param params.images - Array of images to convert (required)
-   *
-   * @returns A promise that resolves to the convert image response containing:
-   * - images: Array of converted image URLs
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetReturnListRequest} params Request parameters
+   * @returns {Promise<GetReturnListResponse>} Promise resolving to the response
    */
-  async convertImage(params: ConvertImageParams): Promise<ConvertImageResponse> {
-    const response = await ShopeeFetch.fetch<ConvertImageResponse>(
-      this.config,
-      "/returns/convert_image",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
+  public async getReturnList(params?: GetReturnListRequest): Promise<GetReturnListResponse> {
+    return ShopeeFetch.fetch<GetReturnListResponse>(this.config, "/returns/get_return_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: [
+        "create_time_from",
+        "create_time_to",
+        "update_time_from",
+        "update_time_to",
+        "response.return.create_time",
+        "response.return.update_time",
+        "response.return.due_date",
+        "response.return.return_ship_due_date",
+        "response.return.return_seller_due_date",
+      ],
+    });
   }
-
   /**
-   * Upload evidence for a return, including text, pictures, and videos.
+   * Get reverse and post-return logistics information of return request. For Normal RR, return complete reverse logistics information, for In-transit RR and Return-on-the-Spot, only return latest reverse logistics status, without providing complete reverse logistics information. For seller_validation, only one segment of reverse (buyer to seller), use tracking_info, for warehouse_validation, two segment of reverse (buyer to warehouse and warehouse to seller), use post_return_logistics_tracking_info.
    *
-   * @param params - Parameters for uploading proof
-   * @param params.return_sn - Return serial number (required)
-   * @param params.proof_text - Array of text evidence
-   * @param params.proof_image - Array of image URLs as evidence
-   * @param params.proof_video - Array of video URLs as evidence
-   *
-   * @returns A promise that resolves to the upload proof response containing:
-   * - return_sn: The return serial number
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetReverseTrackingInfoRequest} params Request parameters
+   * @returns {Promise<GetReverseTrackingInfoResponse>} Promise resolving to the response
    */
-  async uploadProof(params: UploadProofParams): Promise<UploadProofResponse> {
-    const response = await ShopeeFetch.fetch<UploadProofResponse>(
+  public async getReverseTrackingInfo(
+    params?: GetReverseTrackingInfoRequest
+  ): Promise<GetReverseTrackingInfoResponse> {
+    return ShopeeFetch.fetch<GetReverseTrackingInfoResponse>(
       this.config,
-      "/returns/upload_proof",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Query the evidence uploaded through the upload evidence API.
-   *
-   * @param params - Parameters for querying proof
-   * @param params.return_sn - Return serial number (required)
-   *
-   * @returns A promise that resolves to the query proof response containing:
-   * - proof_text: Uploaded text evidence
-   * - proof_image: Uploaded image evidence
-   * - proof_video: Uploaded video evidence
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async queryProof(params: QueryProofParams): Promise<QueryProofResponse> {
-    const response = await ShopeeFetch.fetch<QueryProofResponse>(
-      this.config,
-      "/returns/query_proof",
+      "/returns/get_reverse_tracking_info",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
+        timestampPaths: [
+          "response.reverse_logistics_update_time",
+          "response.estimated_delivery_date_max",
+          "response.estimated_delivery_date_min",
+          "response.tracking_info.update_time",
+          "response.post_return_logistics_update_time",
+          "response.post_return_logistics_tracking_info.update_time",
+        ],
       }
     );
-    return response;
   }
-
   /**
-   * Get the list of shipping carriers and required parameters for uploading shipping proof.
-   * Only for TW and BR returns with is_seller_arrange = true.
+   * Use this API to get the list of shipping carriers and request parameters needed before calling v2.returns.upload_shipping_proof. Only for TW and BR returns with is_seller_arrange = true.
    *
-   * @param params - Parameters for getting shipping carriers
-   * @param params.return_sn - Return serial number (required)
-   *
-   * @returns A promise that resolves to the shipping carrier response containing:
-   * - carrier_list: List of available shipping carriers with required fields
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {GetShippingCarrierRequest} params Request parameters
+   * @returns {Promise<GetShippingCarrierResponse>} Promise resolving to the response
    */
-  async getShippingCarrier(params: GetShippingCarrierParams): Promise<GetShippingCarrierResponse> {
-    const response = await ShopeeFetch.fetch<GetShippingCarrierResponse>(
+  public async getShippingCarrier(
+    params?: GetShippingCarrierRequest
+  ): Promise<GetShippingCarrierResponse> {
+    return ShopeeFetch.fetch<GetShippingCarrierResponse>(
       this.config,
       "/returns/get_shipping_carrier",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
   }
-
   /**
-   * Upload shipping proof for seller-arranged returns.
-   * Only for TW and BR returns with is_seller_arrange = true. This is not to upload evidence for disputes.
+   * v2.returns.offer
    *
-   * @param params - Parameters for uploading shipping proof
-   * @param params.return_sn - Return serial number (required)
-   * @param params.carrier_id - Carrier ID (required)
-   * @param params.tracking_number - Tracking number (required)
-   *
-   * @returns A promise that resolves to the upload shipping proof response containing:
-   * - return_sn: The return serial number
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {OfferRequest} params Request parameters
+   * @returns {Promise<OfferResponse>} Promise resolving to the response
    */
-  async uploadShippingProof(
-    params: UploadShippingProofParams
+  public async offer(params?: OfferRequest): Promise<OfferResponse> {
+    return ShopeeFetch.fetch<OfferResponse>(this.config, "/returns/offer", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Support sellers to query the evidence uploaded through the upload evidence API.
+   *
+   * @param {QueryProofRequest} params Request parameters
+   * @returns {Promise<QueryProofResponse>} Promise resolving to the response
+   */
+  public async queryProof(params?: QueryProofRequest): Promise<QueryProofResponse> {
+    return ShopeeFetch.fetch<QueryProofResponse>(this.config, "/returns/query_proof", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Support sellers to upload evidence, including text and pictures and videos converted into URLs.
+   *
+   * @param {UploadProofRequest} params Request parameters
+   * @returns {Promise<UploadProofResponse>} Promise resolving to the response
+   */
+  public async uploadProof(params?: UploadProofRequest): Promise<UploadProofResponse> {
+    return ShopeeFetch.fetch<UploadProofResponse>(this.config, "/returns/upload_proof", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Use this API to upload shipping proof (Only for TW and BR returns with is_seller_arrange = true). This is not to upload evidence for disputes.
+   *
+   * @param {UploadShippingProofRequest} params Request parameters
+   * @returns {Promise<UploadShippingProofResponse>} Promise resolving to the response
+   */
+  public async uploadShippingProof(
+    params?: UploadShippingProofRequest
   ): Promise<UploadShippingProofResponse> {
-    const response = await ShopeeFetch.fetch<UploadShippingProofResponse>(
+    return ShopeeFetch.fetch<UploadShippingProofResponse>(
       this.config,
       "/returns/upload_shipping_proof",
       {
@@ -392,50 +294,5 @@ export class ReturnsManager extends BaseManager {
         body: params,
       }
     );
-    return response;
-  }
-
-  /**
-   * Get reverse and post-return logistics information of return request.
-   *
-   * For Normal RR, returns complete reverse logistics information. For In-transit RR and Return-on-the-Spot,
-   * only returns latest reverse logistics status without providing complete reverse logistics information.
-   *
-   * For seller_validation, only one segment of reverse (buyer to seller), use tracking_info.
-   * For warehouse_validation, two segments of reverse (buyer to warehouse and warehouse to seller),
-   * use post_return_logistics_tracking_info for the second segment.
-   *
-   * @param params - Parameters for getting reverse tracking info
-   * @param params.return_sn - Shopee's unique identifier for a return/refund request (required)
-   *
-   * @returns A promise that resolves to the reverse tracking info response containing:
-   * - return_sn: Return serial number
-   * - return_refund_request_type: Type of return refund request (0=Normal RR, 1=In-transit RR, 2=Return-on-the-Spot)
-   * - validation_type: Whether seller or warehouse validates (seller_validation/warehouse_validation)
-   * - reverse_logistics_status: Latest reverse logistic status
-   * - reverse_logistics_update_time: Last update time of reverse logistics status
-   * - estimated_delivery_date_max/min: Estimated delivery dates (for Normal RR with integrated reverse logistics)
-   * - tracking_number: Tracking number for reverse logistics
-   * - tracking_info: Detailed tracking information list
-   * - post_return_logistics_status: Status for warehouse to seller logistics (warehouse_validation only)
-   * - post_return_logistics_update_time: Update time for post-return logistics
-   * - rts_tracking_number: Return to Seller tracking number
-   * - post_return_logistics_tracking_info: Tracking info for warehouse to seller logistics
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getReverseTrackingInfo(
-    params: GetReverseTrackingInfoParams
-  ): Promise<GetReverseTrackingInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetReverseTrackingInfoResponse>(
-      this.config,
-      "/returns/get_reverse_tracking_info",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
   }
 }

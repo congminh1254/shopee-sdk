@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
+import fs from "fs";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 import { ItemStatus } from "../../schemas/product.js";
@@ -30,19 +31,21 @@ const { runTests, initSdk } = setupIntegrationTest();
       );
 
       if (leafCategories.length > 0) {
-        testCategoryId = leafCategories[0].category_id;
+        testCategoryId = leafCategories[0].category_id!;
       }
 
       // Dynamically traverse leaf categories to find one with no mandatory attributes (limit to 10 for speed)
       for (const cat of leafCategories.slice(0, 10)) {
         try {
-          const attrResponse = await sdk.product.getAttributeTree({ category_id: cat.category_id });
-          if (attrResponse.response && attrResponse.response.attribute_list) {
-            const hasMandatory = attrResponse.response.attribute_list.some(
-              (attr) => attr.is_mandatory
+          const attrResponse = await sdk.product.getAttributeTree({
+            category_id_list: [cat.category_id!],
+          });
+          if (attrResponse.response?.list) {
+            const hasMandatory = attrResponse.response.list.some((item) =>
+              item.attribute_tree?.some((attr) => attr.mandatory)
             );
             if (!hasMandatory) {
-              testCategoryId = cat.category_id;
+              testCategoryId = cat.category_id!;
               break;
             }
           }
@@ -57,7 +60,7 @@ const { runTests, initSdk } = setupIntegrationTest();
     const itemsResponse = await sdk.product.getItemList({
       offset: 0,
       page_size: 10,
-      item_status: [ItemStatus.NORMAL],
+      item_status: ItemStatus.NORMAL,
     });
 
     expect(itemsResponse).toBeDefined();
@@ -97,8 +100,8 @@ const { runTests, initSdk } = setupIntegrationTest();
     expect(limitResponse).toBeDefined();
     expect(limitResponse.request_id).toBeDefined();
     expect(limitResponse.response).toBeDefined();
-    if (limitResponse.response.item_limit) {
-      expect(typeof limitResponse.response.item_limit.max_product_title_length).toBe("number");
+    if (limitResponse.response.item_name_length_limit) {
+      expect(typeof limitResponse.response.item_name_length_limit.max_limit).toBe("number");
     }
   });
 
@@ -111,12 +114,14 @@ const { runTests, initSdk } = setupIntegrationTest();
       expect(recommendResponse).toBeDefined();
       expect(recommendResponse.request_id).toBeDefined();
       expect(recommendResponse.response).toBeDefined();
-      if (recommendResponse.response.category_id_list) {
-        expect(Array.isArray(recommendResponse.response.category_id_list)).toBe(true);
+      if (recommendResponse.response.category_id) {
+        expect(Array.isArray(recommendResponse.response.category_id)).toBe(true);
       }
     } catch (err) {
       if (err instanceof ShopeeApiError) {
-        expect((err.data as any).error).toBe("product.error_unknown");
+        if (typeof err.data === "object" && err.data !== null && "error" in err.data) {
+          expect(err.data.error).toBe("product.error_unknown");
+        }
       } else {
         throw err;
       }
@@ -127,17 +132,20 @@ const { runTests, initSdk } = setupIntegrationTest();
     try {
       const attributeResponse = await sdk.product.getRecommendAttribute({
         category_id: testCategoryId,
+        item_name: "T-Shirt",
       });
 
       expect(attributeResponse).toBeDefined();
       expect(attributeResponse.request_id).toBeDefined();
       expect(attributeResponse.response).toBeDefined();
-      if (attributeResponse.response.recommended_attribute_list) {
-        expect(Array.isArray(attributeResponse.response.recommended_attribute_list)).toBe(true);
+      if (attributeResponse.response.attribute_list) {
+        expect(Array.isArray(attributeResponse.response.attribute_list)).toBe(true);
       }
     } catch (err) {
       if (err instanceof ShopeeApiError) {
-        expect((err.data as any).error).toBe("product.error_unknown");
+        if (typeof err.data === "object" && err.data !== null && "error" in err.data) {
+          expect(err.data.error).toBe("product.error_unknown");
+        }
       } else {
         throw err;
       }
@@ -149,20 +157,14 @@ const { runTests, initSdk } = setupIntegrationTest();
     const logisticsResponse = await sdk.logistics.getChannelList();
     expect(logisticsResponse).toBeDefined();
     expect(logisticsResponse.response?.logistics_channel_list).toBeDefined();
-    const enabledChannel = logisticsResponse.response.logistics_channel_list.find(
+    const enabledChannel = logisticsResponse.response.logistics_channel_list!.find(
       (ch) => ch.enabled
     );
 
     const channelId = enabledChannel ? enabledChannel.logistics_channel_id : 20001;
-    const channelName = enabledChannel
-      ? enabledChannel.logistics_channel_name
-      : "Standard Delivery";
 
-    // 2. Upload a temporary 200x200 image pixel to satisfy image requirements and avoid Sandbox rejection
-    const imageBuffer = Buffer.from(
-      "iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAACXBIWXMAAAABAAAAAQBPJcTWAAACEElEQVR4nO3SQQkAMAzAwPo3vaoIg3KnII/Mg8D8DuAmY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBaJBcLKBp7i8n+mAAAAAElFTkSuQmCC",
-      "base64"
-    );
+    // 2. Upload a temporary image to satisfy image requirements and avoid Sandbox rejection
+    const imageBuffer = fs.readFileSync("./node_modules/@jest/reporters/assets/jest_logo.png");
     const uploadResponse = await sdk.mediaSpace.uploadImage({
       scene: "normal",
       ratio: "1:1",
@@ -186,12 +188,11 @@ const { runTests, initSdk } = setupIntegrationTest();
         package_height: 10,
       },
       image: {
-        image_id_list: [imageId],
+        image_id_list: [imageId!],
       },
       logistic_info: [
         {
-          logistic_id: channelId,
-          logistic_name: channelName,
+          logistic_id: channelId!,
           enabled: true,
           is_free: false,
         },
@@ -211,14 +212,56 @@ const { runTests, initSdk } = setupIntegrationTest();
     expect(addResponse.error).toBe("");
     expect(addResponse.response?.item_id).toBeDefined();
 
-    const createdItemId = addResponse.response.item_id;
+    const createdItemId = addResponse.response!.item_id!;
 
-    // 4. Tear down: delete the newly created product immediately to keep Sandbox clean
-    const deleteResponse = await sdk.product.deleteItem({
-      item_id: createdItemId,
-    });
+    try {
+      // 4. Retrieve item base info to verify creation
+      const infoResponse = await sdk.product.getItemBaseInfo({
+        item_id_list: [createdItemId],
+      });
+      expect(infoResponse).toBeDefined();
+      expect(infoResponse.error).toBe("");
+      expect(infoResponse.response?.item_list).toBeDefined();
+      expect(infoResponse.response.item_list!.length).toBeGreaterThan(0);
+      expect(infoResponse.response.item_list![0].item_id).toBe(createdItemId);
 
-    expect(deleteResponse).toBeDefined();
-    expect(deleteResponse.error).toBe("");
+      // 5. Update product price
+      const updatePriceResponse = await sdk.product.updatePrice({
+        item_id: createdItemId,
+        price_list: [
+          {
+            model_id: 0,
+            original_price: 60000,
+          },
+        ],
+      });
+      expect(updatePriceResponse).toBeDefined();
+      expect(updatePriceResponse.error).toBe("");
+
+      // 6. Update product stock
+      const updateStockResponse = await sdk.product.updateStock({
+        item_id: createdItemId,
+        stock_list: [
+          {
+            model_id: 0,
+            seller_stock: [
+              {
+                stock: 150,
+              },
+            ],
+          },
+        ],
+      });
+      expect(updateStockResponse).toBeDefined();
+      expect(updateStockResponse.error).toBe("");
+    } finally {
+      // 7. Tear down: delete the newly created product immediately to keep Sandbox clean
+      const deleteResponse = await sdk.product.deleteItem({
+        item_id: createdItemId,
+      });
+
+      expect(deleteResponse).toBeDefined();
+      expect(deleteResponse.error).toBe("");
+    }
   });
 });

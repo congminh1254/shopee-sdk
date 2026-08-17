@@ -95,15 +95,16 @@ To ensure generated code is robust and passes the static AST analysis, adhere st
 
 ### B. Type Naming Conventions
 * **Request Interface**: `<PascalCaseEndpointName>Request` (e.g., `GetItemLimitRequest`).
-* **Response Interface**: `<PascalCaseEndpointName>Response extends FetchResponse<{ ... }>` (e.g., `GetItemLimitResponse`).
-* **Sub-interfaces**: If a schema contains nested object properties, define them as standalone interfaces rather than using inline object declarations (e.g., `interface ItemLimitInfo`).
+* **Response Data Interface/Type**: `<PascalCaseEndpointName>ResponseData` (e.g., `GetItemLimitResponseData`).
+* **Response Type Alias**: `export type <PascalCaseEndpointName>Response = FetchResponse<<PascalCaseEndpointName>ResponseData>` (e.g., `export type GetItemLimitResponse = FetchResponse<GetItemLimitResponseData>`).
+* **Sub-interfaces**: Generated for nested object properties, named `<PascalCaseEndpointName>_<SingularizedFieldName>` (e.g., `GetLateOrders_LateOrder`).
 * **Case Style**: Maintain `snake_case` naming for properties inside payload types exactly as defined in the Shopee JSON Schema specs (do not camelCase the API fields).
 
 ### C. Manager Method Template
 Manager class methods must conform to this signature:
 ```typescript
 public async <endpointName>(
-  params: <EndpointName>Request
+  params?: <EndpointName>Request
 ): Promise<<EndpointName>Response> {
   return ShopeeFetch.fetch<<EndpointName>Response>(
     this.config,
@@ -111,7 +112,8 @@ public async <endpointName>(
     {
       method: "POST", // OR "GET" based on the "method" field in JSON Schema
       body: params,   // OR params: params for GET requests
-      auth: true,     // Or false if the API is public
+      auth: true,     // Included only if auth is required (omitted for public endpoints)
+      timestampPaths: [...], // Included if response contains date/timestamp fields (optional)
     }
   );
 }

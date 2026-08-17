@@ -20,7 +20,7 @@ import {
 } from "../../schemas/discount.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("DiscountManager", () => {
@@ -85,7 +85,6 @@ describe("DiscountManager", () => {
           discount_id: 665123666665499,
           count: 2,
           error_list: [],
-          warning: "",
         },
       };
 
@@ -136,7 +135,6 @@ describe("DiscountManager", () => {
               fail_error: "discount.item_not_found",
             },
           ],
-          warning: "Some items failed to add",
         },
       };
 
@@ -343,6 +341,8 @@ describe("DiscountManager", () => {
 
       const result = await discountManager.getDiscountList({
         discount_status: DiscountStatus.ALL,
+        page_no: 1,
+        page_size: 20,
       });
 
       expect(result.response.discount_list).toHaveLength(1);
@@ -539,7 +539,7 @@ describe("DiscountManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.discount_list).toHaveLength(1);
-      expect(result.response.discount_list[0].region).toBe("SG");
+      expect(result.response.discount_list![0].region).toBe("SG");
     });
   });
 
@@ -582,7 +582,7 @@ describe("DiscountManager", () => {
     });
 
     it("should update an existing SIP discount", async () => {
-      const mockResponse: SetSipDiscountResponse = {
+      const mockResponse: any = {
         request_id: "test-request-id",
         error: "",
         message: "",
@@ -605,7 +605,9 @@ describe("DiscountManager", () => {
       });
 
       expect(result.response.sip_discount_rate).toBe(20);
-      expect(result.response.update_time).toBeGreaterThan(result.response.create_time);
+      expect(result.response.update_time as number).toBeGreaterThan(
+        result.response.create_time as number
+      );
     });
   });
 

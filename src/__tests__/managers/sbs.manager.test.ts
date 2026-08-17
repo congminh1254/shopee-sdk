@@ -12,7 +12,7 @@ import {
 } from "../../schemas/sbs.js";
 
 // Mock ShopeeFetch.fetch static method
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("SbsManager", () => {
@@ -47,7 +47,7 @@ describe("SbsManager", () => {
               bound_whs: [
                 {
                   whs_region: "SG",
-                  whs_ids: "SGL,SGC",
+                  whs_ids: ["SGL", "SGC"],
                 },
               ],
             },
@@ -67,8 +67,8 @@ describe("SbsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.list).toHaveLength(1);
-      expect(result.response.list[0].shop_id).toBe(67890);
-      expect(result.response.list[0].bound_whs[0].whs_region).toBe("SG");
+      expect(result.response.list![0].shop_id).toBe(67890);
+      expect(result.response!.list![0].bound_whs![0].whs_region).toBe("SG");
     });
   });
 
@@ -79,7 +79,6 @@ describe("SbsManager", () => {
         error: "",
         message: "",
         response: {
-          cursor: "eyJDdXJyZW50UGFnZU5vIjoxfQ==",
           item_list: [
             {
               warehouse_item_id: "900625438",
@@ -146,8 +145,8 @@ describe("SbsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.item_list).toHaveLength(1);
-      expect(result.response.item_list[0].warehouse_item_id).toBe("900625438");
-      expect(result.response.item_list[0].sku_list[0].whs_list[0].sellable_qty).toBe(47);
+      expect(result.response.item_list![0].warehouse_item_id).toBe("900625438");
+      expect(result.response!.item_list![0].sku_list![0].whs_list![0].sellable_qty).toBe(47);
     });
 
     it("should get current inventory with filters", async () => {
@@ -251,7 +250,7 @@ describe("SbsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.item_list).toHaveLength(1);
-      expect(result.response.item_list[0].sku_list[0].whs_list[0].expiring_qty).toBe(5);
+      expect(result.response!.item_list![0].sku_list![0].whs_list![0].expiring_qty).toBe(5);
     });
 
     it("should get expiry report with category filter", async () => {
@@ -269,7 +268,7 @@ describe("SbsManager", () => {
       const result = await sbsManager.getExpiryReport({
         whs_region: "ID",
         category_id_l1: 100002,
-        whs_ids: "IDL,IDG",
+        whs_ids: ["IDL", "IDG"],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/sbs/get_expiry_report", {
@@ -278,7 +277,7 @@ describe("SbsManager", () => {
         params: {
           whs_region: "ID",
           category_id_l1: 100002,
-          whs_ids: "IDL,IDG",
+          whs_ids: ["IDL", "IDG"],
         },
       });
 
@@ -352,7 +351,9 @@ describe("SbsManager", () => {
 
       expect(result).toEqual(mockResponse);
       expect(result.response.item_list).toHaveLength(1);
-      expect(result.response.item_list[0].sku_list[0].whs_list[0].qty_of_stock_age_one).toBe(10);
+      expect(result.response!.item_list![0].sku_list![0].whs_list![0].qty_of_stock_age_one).toBe(
+        10
+      );
     });
 
     it("should get stock aging with search filters", async () => {
@@ -491,8 +492,8 @@ describe("SbsManager", () => {
       expect(result).toEqual(mockResponse);
       expect(result.response.total).toBe(3);
       expect(result.response.item_list).toHaveLength(1);
-      expect(result.response.item_list[0].sku_list[0].start_qty.start_on_hand_total).toBe(50);
-      expect(result.response.item_list[0].sku_list[0].end_qty.end_on_hand_total).toBe(55);
+      expect(result.response!.item_list![0].sku_list![0].start_qty!.start_on_hand_total).toBe(50);
+      expect(result.response!.item_list![0].sku_list![0].end_qty!.end_on_hand_total).toBe(55);
     });
 
     it("should get stock movement with all filters", async () => {
@@ -515,7 +516,7 @@ describe("SbsManager", () => {
         start_time: "2025-01-01",
         end_time: "2025-01-31",
         whs_region: "MY",
-        whs_ids: "MYL,MYC",
+        whs_ids: ["MYL", "MYC"],
         category_id_l1: 100002,
         sku_id: "801866836_10006075010",
         item_id: "801866836",
@@ -528,7 +529,7 @@ describe("SbsManager", () => {
           start_time: "2025-01-01",
           end_time: "2025-01-31",
           whs_region: "MY",
-          whs_ids: "MYL,MYC",
+          whs_ids: ["MYL", "MYC"],
           category_id_l1: 100002,
           sku_id: "801866836_10006075010",
           item_id: "801866836",

@@ -1,58 +1,56 @@
-import { ShopeeConfig } from "../sdk.js";
-import { BaseManager } from "./base.manager.js";
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import {
-  BindCourierDeliveryFirstMileTrackingNumberParams,
+  BindCourierDeliveryFirstMileTrackingNumberRequest,
   BindCourierDeliveryFirstMileTrackingNumberResponse,
-  BindFirstMileTrackingNumberParams,
+  BindFirstMileTrackingNumberRequest,
   BindFirstMileTrackingNumberResponse,
-  GenerateAndBindFirstMileTrackingNumberParams,
+  GenerateAndBindFirstMileTrackingNumberRequest,
   GenerateAndBindFirstMileTrackingNumberResponse,
-  GenerateFirstMileTrackingNumberParams,
+  GenerateFirstMileTrackingNumberRequest,
   GenerateFirstMileTrackingNumberResponse,
-  GetChannelListParams,
+  GetChannelListRequest,
   GetChannelListResponse,
-  GetCourierDeliveryChannelListParams,
+  GetCourierDeliveryChannelListRequest,
   GetCourierDeliveryChannelListResponse,
-  GetCourierDeliveryDetailParams,
+  GetCourierDeliveryDetailRequest,
   GetCourierDeliveryDetailResponse,
-  GetCourierDeliveryTrackingNumberListParams,
+  GetCourierDeliveryTrackingNumberListRequest,
   GetCourierDeliveryTrackingNumberListResponse,
-  GetCourierDeliveryWaybillParams,
+  GetCourierDeliveryWaybillRequest,
   GetCourierDeliveryWaybillResponse,
-  GetDetailParams,
+  GetDetailRequest,
   GetDetailResponse,
-  GetTrackingNumberListParams,
+  GetTrackingNumberListRequest,
   GetTrackingNumberListResponse,
-  GetTransitWarehouseListParams,
+  GetTransitWarehouseListRequest,
   GetTransitWarehouseListResponse,
-  GetUnbindOrderListParams,
+  GetUnbindOrderListRequest,
   GetUnbindOrderListResponse,
-  GetWaybillParams,
+  GetWaybillRequest,
   GetWaybillResponse,
-  UnbindFirstMileTrackingNumberParams,
+  UnbindFirstMileTrackingNumberRequest,
   UnbindFirstMileTrackingNumberResponse,
-  UnbindFirstMileTrackingNumberAllParams,
+  UnbindFirstMileTrackingNumberAllRequest,
   UnbindFirstMileTrackingNumberAllResponse,
 } from "../schemas/first-mile.js";
+import { ShopeeConfig } from "../sdk.js";
+import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
-
 export class FirstMileManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
   /**
    * Use this api to bind first mile tracking number for courier delivery method.
    *
-   * @param params - Parameters for binding courier delivery first mile tracking number
-   * @returns A promise that resolves to the bind response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.bind_courier_delivery_first_mile_tracking_number
+   * @param {BindCourierDeliveryFirstMileTrackingNumberRequest} params Request parameters
+   * @returns {Promise<BindCourierDeliveryFirstMileTrackingNumberResponse>} Promise resolving to the response
    */
-  async bindCourierDeliveryFirstMileTrackingNumber(
-    params: BindCourierDeliveryFirstMileTrackingNumberParams
+  public async bindCourierDeliveryFirstMileTrackingNumber(
+    params?: BindCourierDeliveryFirstMileTrackingNumberRequest
   ): Promise<BindCourierDeliveryFirstMileTrackingNumberResponse> {
-    const response = await ShopeeFetch.fetch<BindCourierDeliveryFirstMileTrackingNumberResponse>(
+    return ShopeeFetch.fetch<BindCourierDeliveryFirstMileTrackingNumberResponse>(
       this.config,
       "/first_mile/bind_courier_delivery_first_mile_tracking_number",
       {
@@ -61,22 +59,17 @@ export class FirstMileManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to bind first mile tracking number.
    *
-   * @param params - Parameters for binding first mile tracking number
-   * @returns A promise that resolves to the bind response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.bind_first_mile_tracking_number
+   * @param {BindFirstMileTrackingNumberRequest} params Request parameters
+   * @returns {Promise<BindFirstMileTrackingNumberResponse>} Promise resolving to the response
    */
-  async bindFirstMileTrackingNumber(
-    params: BindFirstMileTrackingNumberParams
+  public async bindFirstMileTrackingNumber(
+    params?: BindFirstMileTrackingNumberRequest
   ): Promise<BindFirstMileTrackingNumberResponse> {
-    const response = await ShopeeFetch.fetch<BindFirstMileTrackingNumberResponse>(
+    return ShopeeFetch.fetch<BindFirstMileTrackingNumberResponse>(
       this.config,
       "/first_mile/bind_first_mile_tracking_number",
       {
@@ -85,22 +78,17 @@ export class FirstMileManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to generate first mile tracking number for courier delivery method.
    *
-   * @param params - Parameters for generating and binding first mile tracking number
-   * @returns A promise that resolves to the generate and bind response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.generate_and_bind_first_mile_tracking_number
+   * @param {GenerateAndBindFirstMileTrackingNumberRequest} params Request parameters
+   * @returns {Promise<GenerateAndBindFirstMileTrackingNumberResponse>} Promise resolving to the response
    */
-  async generateAndBindFirstMileTrackingNumber(
-    params: GenerateAndBindFirstMileTrackingNumberParams
+  public async generateAndBindFirstMileTrackingNumber(
+    params?: GenerateAndBindFirstMileTrackingNumberRequest
   ): Promise<GenerateAndBindFirstMileTrackingNumberResponse> {
-    const response = await ShopeeFetch.fetch<GenerateAndBindFirstMileTrackingNumberResponse>(
+    return ShopeeFetch.fetch<GenerateAndBindFirstMileTrackingNumberResponse>(
       this.config,
       "/first_mile/generate_and_bind_first_mile_tracking_number",
       {
@@ -109,22 +97,17 @@ export class FirstMileManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to generate first mile tracking number.
    *
-   * @param params - Parameters for generating first mile tracking number
-   * @returns A promise that resolves to the generate response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.generate_first_mile_tracking_number
+   * @param {GenerateFirstMileTrackingNumberRequest} params Request parameters
+   * @returns {Promise<GenerateFirstMileTrackingNumberResponse>} Promise resolving to the response
    */
-  async generateFirstMileTrackingNumber(
-    params: GenerateFirstMileTrackingNumberParams
+  public async generateFirstMileTrackingNumber(
+    params?: GenerateFirstMileTrackingNumberRequest
   ): Promise<GenerateFirstMileTrackingNumberResponse> {
-    const response = await ShopeeFetch.fetch<GenerateFirstMileTrackingNumberResponse>(
+    return ShopeeFetch.fetch<GenerateFirstMileTrackingNumberResponse>(
       this.config,
       "/first_mile/generate_first_mile_tracking_number",
       {
@@ -133,92 +116,68 @@ export class FirstMileManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to get first mile channel list.
    *
-   * @param params - Parameters for getting channel list (optional region filter)
-   * @returns A promise that resolves to the channel list response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.get_channel_list
+   * @param {GetChannelListRequest} params Request parameters
+   * @returns {Promise<GetChannelListResponse>} Promise resolving to the response
    */
-  async getChannelList(params?: GetChannelListParams): Promise<GetChannelListResponse> {
-    const response = await ShopeeFetch.fetch<GetChannelListResponse>(
-      this.config,
-      "/first_mile/get_channel_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
+  public async getChannelList(params?: GetChannelListRequest): Promise<GetChannelListResponse> {
+    return ShopeeFetch.fetch<GetChannelListResponse>(this.config, "/first_mile/get_channel_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
   }
-
   /**
    * Use this api to get courier information for courier delivery method.
    *
-   * @param params - Parameters for getting courier delivery channel list (optional region filter)
-   * @returns A promise that resolves to the courier delivery channel list response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.get_courier_delivery_channel_list
+   * @param {GetCourierDeliveryChannelListRequest} params Request parameters
+   * @returns {Promise<GetCourierDeliveryChannelListResponse>} Promise resolving to the response
    */
-  async getCourierDeliveryChannelList(
-    params?: GetCourierDeliveryChannelListParams
+  public async getCourierDeliveryChannelList(
+    params?: GetCourierDeliveryChannelListRequest
   ): Promise<GetCourierDeliveryChannelListResponse> {
-    const response = await ShopeeFetch.fetch<GetCourierDeliveryChannelListResponse>(
+    return ShopeeFetch.fetch<GetCourierDeliveryChannelListResponse>(
       this.config,
       "/first_mile/get_courier_delivery_channel_list",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to get first mile detail for courier delivery method.
    *
-   * @param params - Parameters for getting courier delivery detail
-   * @returns A promise that resolves to the courier delivery detail response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.get_courier_delivery_detail
+   * @param {GetCourierDeliveryDetailRequest} params Request parameters
+   * @returns {Promise<GetCourierDeliveryDetailResponse>} Promise resolving to the response
    */
-  async getCourierDeliveryDetail(
-    params: GetCourierDeliveryDetailParams
+  public async getCourierDeliveryDetail(
+    params?: GetCourierDeliveryDetailRequest
   ): Promise<GetCourierDeliveryDetailResponse> {
-    const response = await ShopeeFetch.fetch<GetCourierDeliveryDetailResponse>(
+    return ShopeeFetch.fetch<GetCourierDeliveryDetailResponse>(
       this.config,
       "/first_mile/get_courier_delivery_detail",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to get tracking number for courier delivery method.
    *
-   * @param params - Parameters for getting courier delivery tracking number list
-   * @returns A promise that resolves to the courier delivery tracking number list response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.get_courier_delivery_tracking_number_list
+   * @param {GetCourierDeliveryTrackingNumberListRequest} params Request parameters
+   * @returns {Promise<GetCourierDeliveryTrackingNumberListResponse>} Promise resolving to the response
    */
-  async getCourierDeliveryTrackingNumberList(
-    params: GetCourierDeliveryTrackingNumberListParams
+  public async getCourierDeliveryTrackingNumberList(
+    params?: GetCourierDeliveryTrackingNumberListRequest
   ): Promise<GetCourierDeliveryTrackingNumberListResponse> {
-    const response = await ShopeeFetch.fetch<GetCourierDeliveryTrackingNumberListResponse>(
+    return ShopeeFetch.fetch<GetCourierDeliveryTrackingNumberListResponse>(
       this.config,
       "/first_mile/get_courier_delivery_tracking_number_list",
       {
@@ -227,22 +186,17 @@ export class FirstMileManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to get first mile waybill file for courier delivery method.
    *
-   * @param params - Parameters for getting courier delivery waybill
-   * @returns A promise that resolves to the courier delivery waybill response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.get_courier_delivery_waybill
+   * @param {GetCourierDeliveryWaybillRequest} params Request parameters
+   * @returns {Promise<GetCourierDeliveryWaybillResponse>} Promise resolving to the response
    */
-  async getCourierDeliveryWaybill(
-    params: GetCourierDeliveryWaybillParams
+  public async getCourierDeliveryWaybill(
+    params?: GetCourierDeliveryWaybillRequest
   ): Promise<GetCourierDeliveryWaybillResponse> {
-    const response = await ShopeeFetch.fetch<GetCourierDeliveryWaybillResponse>(
+    return ShopeeFetch.fetch<GetCourierDeliveryWaybillResponse>(
       this.config,
       "/first_mile/get_courier_delivery_waybill",
       {
@@ -251,136 +205,100 @@ export class FirstMileManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to get first mile detail.
    *
-   * @param params - Parameters for getting first mile detail
-   * @returns A promise that resolves to the first mile detail response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.get_detail
+   * @param {GetDetailRequest} params Request parameters
+   * @returns {Promise<GetDetailResponse>} Promise resolving to the response
    */
-  async getDetail(params: GetDetailParams): Promise<GetDetailResponse> {
-    const response = await ShopeeFetch.fetch<GetDetailResponse>(
-      this.config,
-      "/first_mile/get_detail",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
+  public async getDetail(params?: GetDetailRequest): Promise<GetDetailResponse> {
+    return ShopeeFetch.fetch<GetDetailResponse>(this.config, "/first_mile/get_detail", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
   }
-
   /**
    * Use this api to get first mile tracking number list.
    *
-   * @param params - Parameters for getting tracking number list
-   * @returns A promise that resolves to the tracking number list response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.get_tracking_number_list
+   * @param {GetTrackingNumberListRequest} params Request parameters
+   * @returns {Promise<GetTrackingNumberListResponse>} Promise resolving to the response
    */
-  async getTrackingNumberList(
-    params: GetTrackingNumberListParams
+  public async getTrackingNumberList(
+    params?: GetTrackingNumberListRequest
   ): Promise<GetTrackingNumberListResponse> {
-    const response = await ShopeeFetch.fetch<GetTrackingNumberListResponse>(
+    return ShopeeFetch.fetch<GetTrackingNumberListResponse>(
       this.config,
       "/first_mile/get_tracking_number_list",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to get transit warehouse list which is used for first mile tracking number generation for courier delivery method.
    *
-   * @param params - Parameters for getting transit warehouse list (optional region filter)
-   * @returns A promise that resolves to the transit warehouse list response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.get_transit_warehouse_list
+   * @param {GetTransitWarehouseListRequest} params Request parameters
+   * @returns {Promise<GetTransitWarehouseListResponse>} Promise resolving to the response
    */
-  async getTransitWarehouseList(
-    params?: GetTransitWarehouseListParams
+  public async getTransitWarehouseList(
+    params?: GetTransitWarehouseListRequest
   ): Promise<GetTransitWarehouseListResponse> {
-    const response = await ShopeeFetch.fetch<GetTransitWarehouseListResponse>(
+    return ShopeeFetch.fetch<GetTransitWarehouseListResponse>(
       this.config,
       "/first_mile/get_transit_warehouse_list",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Use this api to get unbind order list.
+   * Use this api to get unbind order list. It will only return orders unbound to first-mile that were created within the past 6 months.
    *
-   * @param params - Parameters for getting unbind order list
-   * @returns A promise that resolves to the unbind order list response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.get_unbind_order_list
+   * @param {GetUnbindOrderListRequest} params Request parameters
+   * @returns {Promise<GetUnbindOrderListResponse>} Promise resolving to the response
    */
-  async getUnbindOrderList(params?: GetUnbindOrderListParams): Promise<GetUnbindOrderListResponse> {
-    const response = await ShopeeFetch.fetch<GetUnbindOrderListResponse>(
+  public async getUnbindOrderList(
+    params?: GetUnbindOrderListRequest
+  ): Promise<GetUnbindOrderListResponse> {
+    return ShopeeFetch.fetch<GetUnbindOrderListResponse>(
       this.config,
       "/first_mile/get_unbind_order_list",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to get first mile waybill file.
    *
-   * @param params - Parameters for getting waybill
-   * @returns A promise that resolves to the waybill response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.get_waybill
+   * @param {GetWaybillRequest} params Request parameters
+   * @returns {Promise<GetWaybillResponse>} Promise resolving to the response
    */
-  async getWaybill(params: GetWaybillParams): Promise<GetWaybillResponse> {
-    const response = await ShopeeFetch.fetch<GetWaybillResponse>(
-      this.config,
-      "/first_mile/get_waybill",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
+  public async getWaybill(params?: GetWaybillRequest): Promise<GetWaybillResponse> {
+    return ShopeeFetch.fetch<GetWaybillResponse>(this.config, "/first_mile/get_waybill", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
-
   /**
    * Use this api to unbind first mile.
    *
-   * @param params - Parameters for unbinding first mile tracking number
-   * @returns A promise that resolves to the unbind response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.unbind_first_mile_tracking_number
+   * @param {UnbindFirstMileTrackingNumberRequest} params Request parameters
+   * @returns {Promise<UnbindFirstMileTrackingNumberResponse>} Promise resolving to the response
    */
-  async unbindFirstMileTrackingNumber(
-    params: UnbindFirstMileTrackingNumberParams
+  public async unbindFirstMileTrackingNumber(
+    params?: UnbindFirstMileTrackingNumberRequest
   ): Promise<UnbindFirstMileTrackingNumberResponse> {
-    const response = await ShopeeFetch.fetch<UnbindFirstMileTrackingNumberResponse>(
+    return ShopeeFetch.fetch<UnbindFirstMileTrackingNumberResponse>(
       this.config,
       "/first_mile/unbind_first_mile_tracking_number",
       {
@@ -389,22 +307,17 @@ export class FirstMileManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
    * Use this api to unbind orders from first mile tracking number or binding ID.
    *
-   * @param params - Parameters for unbinding all first mile tracking numbers
-   * @returns A promise that resolves to the unbind response
-   *
-   * @see https://open.shopee.com/documents/v2/v2.first_mile.unbind_first_mile_tracking_number_all
+   * @param {UnbindFirstMileTrackingNumberAllRequest} params Request parameters
+   * @returns {Promise<UnbindFirstMileTrackingNumberAllResponse>} Promise resolving to the response
    */
-  async unbindFirstMileTrackingNumberAll(
-    params: UnbindFirstMileTrackingNumberAllParams
+  public async unbindFirstMileTrackingNumberAll(
+    params?: UnbindFirstMileTrackingNumberAllRequest
   ): Promise<UnbindFirstMileTrackingNumberAllResponse> {
-    const response = await ShopeeFetch.fetch<UnbindFirstMileTrackingNumberAllResponse>(
+    return ShopeeFetch.fetch<UnbindFirstMileTrackingNumberAllResponse>(
       this.config,
       "/first_mile/unbind_first_mile_tracking_number_all",
       {
@@ -413,7 +326,5 @@ export class FirstMileManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
 }

@@ -1,7 +1,7 @@
 import { ShopeeConfig } from "../sdk.js";
 import { ShopeeFetch } from "../fetch.js";
 import { AccessToken } from "../schemas/access-token.js";
-import { GetTokenByResendCodeParams } from "../schemas/public.js";
+import { GetTokenByResendCodeRequest } from "../schemas/public.js";
 import { BaseManager } from "./base.manager.js";
 
 export class AuthManager extends BaseManager {
@@ -47,7 +47,7 @@ export class AuthManager extends BaseManager {
   }
 
   public async getAccessTokenByResendCode(
-    params: GetTokenByResendCodeParams
+    params: GetTokenByResendCodeRequest
   ): Promise<AccessToken> {
     const response: AccessToken = await ShopeeFetch.fetch<AccessToken>(
       this.config,

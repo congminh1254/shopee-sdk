@@ -1,1328 +1,194 @@
-import { BaseManager } from "./base.manager.js";
-import { ShopeeConfig } from "../sdk.js";
-import { ShopeeFetch } from "../fetch.js";
-import {
-  GetCommentParams,
-  GetCommentResponse,
-  ReplyCommentParams,
-  ReplyCommentResponse,
-  GetItemListParams,
-  GetItemListResponse,
-  GetItemBaseInfoParams,
-  GetItemBaseInfoResponse,
-  GetModelListParams,
-  GetModelListResponse,
-  UpdatePriceParams,
-  UpdatePriceResponse,
-  UpdateStockParams,
-  UpdateStockResponse,
-  DeleteItemParams,
-  DeleteItemResponse,
-  UnlistItemParams,
-  UnlistItemResponse,
-  GetProductCategoryParams,
-  GetProductCategoryResponse,
-  AddItemParams,
-  AddItemResponse,
-  UpdateItemParams,
-  UpdateItemResponse,
-  AddModelParams,
-  AddModelResponse,
-  UpdateModelParams,
-  UpdateModelResponse,
-  DeleteModelParams,
-  DeleteModelResponse,
-  InitTierVariationParams,
-  InitTierVariationResponse,
-  UpdateTierVariationParams,
-  UpdateTierVariationResponse,
-  SearchItemParams,
-  SearchItemResponse,
-  GetItemExtraInfoParams,
-  GetItemExtraInfoResponse,
-  GetAttributeTreeParams,
-  GetAttributeTreeResponse,
-  GetBrandListParams,
-  GetBrandListResponse,
-  RegisterBrandParams,
-  RegisterBrandResponse,
-  CategoryRecommendParams,
-  CategoryRecommendResponse,
-  GetItemLimitParams,
-  GetItemLimitResponse,
-  GetItemPromotionParams,
-  GetItemPromotionResponse,
-  BoostItemParams,
-  BoostItemResponse,
-  GetBoostedListResponse,
-  GetRecommendAttributeParams,
-  GetRecommendAttributeResponse,
-  SearchAttributeValueListParams,
-  SearchAttributeValueListResponse,
-  GetMainItemListParams,
-  GetMainItemListResponse,
-  GetItemViolationInfoParams,
-  GetItemViolationInfoResponse,
-  GetWeightRecommendationParams,
-  GetWeightRecommendationResponse,
-  GetDirectItemListParams,
-  GetDirectItemListResponse,
-  GetItemContentDiagnosisResultParams,
-  GetItemContentDiagnosisResultResponse,
-  GetItemListByContentDiagnosisParams,
-  GetItemListByContentDiagnosisResponse,
-  AddKitItemParams,
-  AddKitItemResponse,
-  UpdateKitItemParams,
-  UpdateKitItemResponse,
-  GetKitItemInfoParams,
-  GetKitItemInfoResponse,
-  GetKitItemLimitParams,
-  GetKitItemLimitResponse,
-  GenerateKitImageParams,
-  GenerateKitImageResponse,
-  UpdateSipItemPriceParams,
-  UpdateSipItemPriceResponse,
-  GetSizeChartListParams,
-  GetSizeChartListResponse,
-  GetSizeChartDetailParams,
-  GetSizeChartDetailResponse,
-  GetAllVehicleListParams,
-  GetAllVehicleListResponse,
-  GetVehicleListByCompatibilityDetailParams,
-  GetVehicleListByCompatibilityDetailResponse,
-  GetAitemByPitemIdParams,
-  GetAitemByPitemIdResponse,
-  GetDirectShopRecommendedPriceParams,
-  GetDirectShopRecommendedPriceResponse,
-  GetProductCertificationRuleParams,
-  GetProductCertificationRuleResponse,
-  SearchUnpackagedModelListParams,
-  SearchUnpackagedModelListResponse,
-  GetMartItemByOutletItemIdParams,
-  GetMartItemByOutletItemIdResponse,
-  GetMartItemMappingByIdParams,
-  GetMartItemMappingByIdResponse,
-  PublishItemToOutletShopParams,
-  PublishItemToOutletShopResponse,
-  GetVariationsParams,
-  GetVariationsResponse,
-  BatchAddItemParams,
-  BatchAddItemResponse,
-  BatchPublishItemToOutletShopParams,
-  BatchPublishItemToOutletShopResponse,
-  BatchUpdateOutletPriceParams,
-  BatchUpdateOutletPriceResponse,
-  BatchUpdateOutletStockParams,
-  BatchUpdateOutletStockResponse,
-  GetBatchTaskResultParams,
-  GetBatchTaskResultResponse,
-} from "../schemas/product.js";
+// NOTE: This file is auto-generated. Do not edit directly.
 
+import {
+  AddItemRequest,
+  AddItemResponse,
+  AddKitItemRequest,
+  AddKitItemResponse,
+  AddModelRequest,
+  AddModelResponse,
+  BatchAddItemRequest,
+  BatchAddItemResponse,
+  BatchPublishItemToOutletShopRequest,
+  BatchPublishItemToOutletShopResponse,
+  BatchUpdateOutletPriceRequest,
+  BatchUpdateOutletPriceResponse,
+  BatchUpdateOutletStockRequest,
+  BatchUpdateOutletStockResponse,
+  BoostItemRequest,
+  BoostItemResponse,
+  CategoryRecommendRequest,
+  CategoryRecommendResponse,
+  DeleteItemRequest,
+  DeleteItemResponse,
+  DeleteModelRequest,
+  DeleteModelResponse,
+  GenerateKitImageRequest,
+  GenerateKitImageResponse,
+  GetAitemByPitemIdRequest,
+  GetAitemByPitemIdResponse,
+  GetAllVehicleListRequest,
+  GetAllVehicleListResponse,
+  GetAttributeTreeRequest,
+  GetAttributeTreeResponse,
+  GetBatchTaskResultRequest,
+  GetBatchTaskResultResponse,
+  GetBoostedListRequest,
+  GetBoostedListResponse,
+  GetBrandListRequest,
+  GetBrandListResponse,
+  GetCategoryRequest,
+  GetCategoryResponse,
+  GetCommentRequest,
+  GetCommentResponse,
+  GetDirectItemListRequest,
+  GetDirectItemListResponse,
+  GetDirectShopRecommendedPriceRequest,
+  GetDirectShopRecommendedPriceResponse,
+  GetItemBaseInfoRequest,
+  GetItemBaseInfoResponse,
+  GetItemContentDiagnosisResultRequest,
+  GetItemContentDiagnosisResultResponse,
+  GetItemExtraInfoRequest,
+  GetItemExtraInfoResponse,
+  GetItemLimitRequest,
+  GetItemLimitResponse,
+  GetItemListRequest,
+  GetItemListResponse,
+  GetItemListByContentDiagnosisRequest,
+  GetItemListByContentDiagnosisResponse,
+  GetItemPromotionRequest,
+  GetItemPromotionResponse,
+  GetItemViolationInfoRequest,
+  GetItemViolationInfoResponse,
+  GetKitItemInfoRequest,
+  GetKitItemInfoResponse,
+  GetKitItemLimitRequest,
+  GetKitItemLimitResponse,
+  GetMainItemListRequest,
+  GetMainItemListResponse,
+  GetMartItemByOutletItemIdRequest,
+  GetMartItemByOutletItemIdResponse,
+  GetMartItemMappingByIdRequest,
+  GetMartItemMappingByIdResponse,
+  GetModelListRequest,
+  GetModelListResponse,
+  GetProductCertificationRuleRequest,
+  GetProductCertificationRuleResponse,
+  GetRecommendAttributeRequest,
+  GetRecommendAttributeResponse,
+  GetSizeChartDetailRequest,
+  GetSizeChartDetailResponse,
+  GetSizeChartListRequest,
+  GetSizeChartListResponse,
+  GetVariationsRequest,
+  GetVariationsResponse,
+  GetVehicleListByCompatibilityDetailRequest,
+  GetVehicleListByCompatibilityDetailResponse,
+  GetWeightRecommendationRequest,
+  GetWeightRecommendationResponse,
+  InitTierVariationRequest,
+  InitTierVariationResponse,
+  PublishItemToOutletShopRequest,
+  PublishItemToOutletShopResponse,
+  RegisterBrandRequest,
+  RegisterBrandResponse,
+  ReplyCommentRequest,
+  ReplyCommentResponse,
+  SearchAttributeValueListRequest,
+  SearchAttributeValueListResponse,
+  SearchItemRequest,
+  SearchItemResponse,
+  SearchUnpackagedModelListRequest,
+  SearchUnpackagedModelListResponse,
+  UnlistItemRequest,
+  UnlistItemResponse,
+  UpdateItemRequest,
+  UpdateItemResponse,
+  UpdateKitItemRequest,
+  UpdateKitItemResponse,
+  UpdateModelRequest,
+  UpdateModelResponse,
+  UpdatePriceRequest,
+  UpdatePriceResponse,
+  UpdateSipItemPriceRequest,
+  UpdateSipItemPriceResponse,
+  UpdateStockRequest,
+  UpdateStockResponse,
+  UpdateTierVariationRequest,
+  UpdateTierVariationResponse,
+} from "../schemas/product.js";
+import { ShopeeConfig } from "../sdk.js";
+import { BaseManager } from "./base.manager.js";
+import { ShopeeFetch } from "../fetch.js";
 export class ProductManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
   /**
-   * Get comments for products
+   * Add a new item.
    *
-   * Use this API to get comments by shop_id, item_id, or comment_id. Can retrieve up to 1000 comments.
-   *
-   * @param params - The parameters for getting comments
-   * @param params.item_id - The identity of product item
-   * @param params.comment_id - The identity of comment
-   * @param params.cursor - Specifies the starting entry of data to return. Default is empty string
-   * @param params.page_size - Maximum number of entries to return per page (between 1 and 100)
-   *
-   * @returns A promise that resolves to the comment response containing:
-   * - request_id: The identifier for API request tracking
-   * - error: Error type if any error occurred
-   * - message: Error details if any error occurred
-   * - response: The response data containing comment list, pagination info
-   *
-   * @throws {Error} When the API request fails or returns an error
+   * @param {AddItemRequest} params Request parameters
+   * @returns {Promise<AddItemResponse>} Promise resolving to the response
    */
-  async getComment(params: GetCommentParams): Promise<GetCommentResponse> {
-    const response = await ShopeeFetch.fetch<GetCommentResponse>(
-      this.config,
-      `/product/get_comment`,
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
+  public async addItem(params?: AddItemRequest): Promise<AddItemResponse> {
+    return ShopeeFetch.fetch<AddItemResponse>(this.config, "/product/add_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+      timestampPaths: ["scheduled_publish_time"],
+    });
   }
-
   /**
-   * Reply to buyer comments in batch
+   * Create the kit item by selecting multiple items and setting main component and quantity per kit.
    *
-   * Use this API to reply to comments from buyers in batch. You can reply to multiple comments at once.
-   *
-   * @param params - The parameters for replying to comments
-   * @param params.comment_list - List of comments to reply to (between 1 and 100 items)
-   * @param params.comment_list[].comment_id - The identity of comment to reply to
-   * @param params.comment_list[].comment - The content of the reply (between 1 and 500 characters)
-   *
-   * @returns A promise that resolves to the reply response containing:
-   * - request_id: The identifier for API request tracking
-   * - error: Error type if any error occurred
-   * - message: Error details if any error occurred
-   * - response: The response data containing result list and warnings
-   *
-   * @throws {Error} When the API request fails or returns an error
-   * - product.duplicate_request: You have already replied to this comment
-   * - product.comment_length_invalid: Comment length should be between 1 and 500
-   * - product.error_permission: Reply comment failed due to invalid shop token
-   * - product.error_not_exist: The comment you replied to does not exist
-   * - product.duplicate_comment_id: Duplicate comment id in the request
+   * @param {AddKitItemRequest} params Request parameters
+   * @returns {Promise<AddKitItemResponse>} Promise resolving to the response
    */
-  async replyComment(params: ReplyCommentParams): Promise<ReplyCommentResponse> {
-    const response = await ShopeeFetch.fetch<ReplyCommentResponse>(
-      this.config,
-      `/product/reply_comment`,
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Use this call to get a list of items.
-   *
-   * @param params - Parameters for getting item list
-   * @param params.offset - Specifies the starting entry of data to return. Default is 0.
-   * @param params.page_size - The size of one page (1-100).
-   * @param params.update_time_from - Start of date range for item update time.
-   * @param params.update_time_to - End of date range for item update time.
-   * @param params.item_status - Array of item statuses to filter by.
-   *
-   * @returns A promise that resolves to the item list response containing:
-   * - item: List of item details (item_id, item_status, update_time, tag)
-   * - total_count: Total number of items matching the filter
-   * - has_next_page: Boolean indicating if there are more items
-   * - next_offset: Offset for the next page if has_next_page is true
-   * - warning: Optional warning message
-   *
-   * @throws {Error} When the API request fails or returns an error:
-   * - error_update_time_range: update_time_to before update_time_from
-   * - error_param_item_status: Invalid item status
-   * - error_param_shop_id_not_found: Shop ID not found
-   * - error_param: Offset over limit
-   * - error_item_not_found: Product not found
-   */
-  async getItemList(params: GetItemListParams): Promise<GetItemListResponse> {
-    const response = await ShopeeFetch.fetch<GetItemListResponse>(
-      this.config,
-      "/product/get_item_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Use this API to get basic info of items by a list of item_ids.
-   *
-   * @param params - Parameters for getting item base info
-   * @param params.item_id_list - List of Shopee's unique identifiers for items. Max 50.
-   * @param params.need_tax_info - If true, tax_info will be included in the response.
-   * @param params.need_complaint_policy - If true, complaint_policy will be included in the response (PL region only).
-   *
-   * @returns A promise that resolves to the item base info response containing:
-   * - item_list: List of detailed item base information including:
-   *   - item_id, category_id, item_name, description, item_sku, create_time, update_time
-   *   - attribute_list: Item attributes
-   *   - price_info: Pricing details (if no models)
-   *   - image: Image URLs and IDs
-   *   - weight, dimension: Physical characteristics
-   *   - logistic_info: Enabled logistics channels and fees
-   *   - pre_order: Pre-order status and days to ship
-   *   - wholesales: Wholesale pricing tiers
-   *   - condition, size_chart, item_status, deboost, has_model, promotion_id
-   *   - video_info: Video URLs, thumbnails, and duration
-   *   - brand: Brand ID and name
-   *   - item_dangerous: Dangerous goods status
-   *   - gtin_code, size_chart_id, promotion_image, compatibility_info, scheduled_publish_time
-   *   - authorised_brand_id, ssp_id, is_fulfillment_by_shopee
-   *   - complaint_policy: (If requested and applicable)
-   *   - tax_info: (If requested)
-   *   - description_info, description_type: Normal or extended description details
-   *   - stock_info_v2: Detailed stock information (summary, seller, Shopee, advance)
-   *   - certification_info: Product certifications
-   * - warning: Optional warning message
-   * - Note: The top-level complaint_policy and tax_info in the response object seem redundant as they are also part of each item in item_list if requested.
-   *
-   * @throws {Error} When the API request fails or returns an error:
-   * - error_item_not_found: Item ID not found
-   * - error_param_shop_id_not_found: Shop ID not found
-   * - error_invalid_language: Invalid language
-   * - error_query_over_itemid_size: Too many item_ids in list
-   */
-  async getItemBaseInfo(params: GetItemBaseInfoParams): Promise<GetItemBaseInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetItemBaseInfoResponse>(
-      this.config,
-      "/product/get_item_base_info",
-      {
-        method: "GET",
-        auth: true,
-        params: {
-          ...params,
-          item_id_list: params.item_id_list.join(","),
-        },
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get model list of an item
-   *
-   * Use this API to get model list of an item.
-   *
-   * @param params - The parameters for getting the model list
-   * @param params.item_id - The ID of the item
-   *
-   * @returns A promise that resolves to the model list response containing:
-   * - tier_variation: Variation config of item with option_list and name
-   * - model: List of model information including price_info, model_id, tier_index, model_sku, model_status, etc.
-   * - standardise_tier_variation: Standardise variation config of item (if available)
-   *
-   * @throws {Error} When the API request fails or returns an error:
-   * - error_item_not_found: Item_id is not found
-   * - error_param_shop_id_not_found: Shop_id is not found
-   * - error_item_not_found: Product not found
-   */
-  async getModelList(params: GetModelListParams): Promise<GetModelListResponse> {
-    const response = await ShopeeFetch.fetch<GetModelListResponse>(
-      this.config,
-      "/product/get_model_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Update price of items
-   *
-   * Use this API to update item price. Can update up to 50 models in one call.
-   *
-   * @param params - Parameters for updating price
-   * @param params.item_id - The ID of the item
-   * @param params.price_list - List of prices to update (1-50 items). Each item contains:
-   *   - model_id: Model ID (use 0 for items without models)
-   *   - original_price: New original price
-   *
-   * @returns A promise that resolves to the update price response containing:
-   * - success_list: List of successfully updated prices
-   * - failure_list: List of failed updates with reasons
-   *
-   * @throws {Error} When the API request fails or returns an error:
-   * - error_item_not_found: Item_id is not found
-   * - error_param_shop_id_not_found: Shop_id is not found
-   * - error_param: Invalid parameters
-   */
-  async updatePrice(params: UpdatePriceParams): Promise<UpdatePriceResponse> {
-    const response = await ShopeeFetch.fetch<UpdatePriceResponse>(
-      this.config,
-      "/product/update_price",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Update stock of items
-   *
-   * Use this API to update item stock. Can update up to 50 models in one call.
-   * This API updates only "seller_stock".
-   *
-   * @param params - Parameters for updating stock
-   * @param params.item_id - The ID of the item
-   * @param params.stock_list - List of stock updates (1-50 items). Each item contains:
-   *   - model_id: Model ID (use 0 for items without models)
-   *   - seller_stock: Array of seller stock updates with location_id and stock amount
-   *
-   * @returns A promise that resolves to the update stock response containing:
-   * - success_list: List of successfully updated stock
-   * - failure_list: List of failed updates with reasons
-   *
-   * @throws {Error} When the API request fails or returns an error:
-   * - error_item_not_found: Item_id is not found
-   * - error_param_shop_id_not_found: Shop_id is not found
-   * - error_param: Invalid parameters
-   */
-  async updateStock(params: UpdateStockParams): Promise<UpdateStockResponse> {
-    const response = await ShopeeFetch.fetch<UpdateStockResponse>(
-      this.config,
-      "/product/update_stock",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Delete a product item
-   *
-   * Use this API to delete a product item.
-   *
-   * @param params - Parameters for deleting item
-   * @param params.item_id - The ID of the item to delete
-   *
-   * @returns A promise that resolves to the delete response
-   *
-   * @throws {Error} When the API request fails or returns an error:
-   * - error_item_not_found: Item_id is not found
-   * - error_param_shop_id_not_found: Shop_id is not found
-   * - error_cannot_delete_item: Delete item failed
-   */
-  async deleteItem(params: DeleteItemParams): Promise<DeleteItemResponse> {
-    const response = await ShopeeFetch.fetch<DeleteItemResponse>(
-      this.config,
-      "/product/delete_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Unlist or list items
-   *
-   * Use this API to unlist or list items. Can process up to 50 items in one call.
-   *
-   * @param params - Parameters for unlisting/listing items
-   * @param params.item_list - List of items to unlist/list (1-50 items). Each item contains:
-   *   - item_id: Shopee's unique identifier for an item
-   *   - unlist: true to unlist, false to list
-   *
-   * @returns A promise that resolves to the unlist response containing:
-   * - result: List of operation results with success status and error messages
-   *
-   * @throws {Error} When the API request fails or returns an error:
-   * - error_item_not_found: Item_id is not found
-   * - error_param_shop_id_not_found: Shop_id is not found
-   * - error_param: Invalid parameters
-   */
-  async unlistItem(params: UnlistItemParams): Promise<UnlistItemResponse> {
-    const response = await ShopeeFetch.fetch<UnlistItemResponse>(
-      this.config,
-      "/product/unlist_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Get category tree
-   *
-   * Use this API to get category tree data.
-   *
-   * @param params - Parameters for getting categories
-   * @param params.language - Language for category names (optional)
-   *
-   * @returns A promise that resolves to the category response containing:
-   * - category_list: List of categories with id, parent_id, name, and has_children
-   *
-   * @throws {Error} When the API request fails or returns an error:
-   * - error_param: Invalid parameters
-   */
-  async getCategory(params?: GetProductCategoryParams): Promise<GetProductCategoryResponse> {
-    const response = await ShopeeFetch.fetch<GetProductCategoryResponse>(
-      this.config,
-      "/product/get_category",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Add a new item
-   *
-   * Use this API to add a new product item to the shop.
-   *
-   * @param params - Parameters for adding item
-   * @returns Promise resolving to add item response with item_id
-   */
-  async addItem(params: AddItemParams): Promise<AddItemResponse> {
-    const response = await ShopeeFetch.fetch<AddItemResponse>(this.config, "/product/add_item", {
+  public async addKitItem(params?: AddKitItemRequest): Promise<AddKitItemResponse> {
+    return ShopeeFetch.fetch<AddKitItemResponse>(this.config, "/product/add_kit_item", {
       method: "POST",
       auth: true,
       body: params,
     });
-    return response;
   }
-
   /**
-   * Update an existing item
+   * Add model. More detail please check: https://open.shopee.com/developer-guide/219
    *
-   * Use this API to update an existing product item.
-   *
-   * @param params - Parameters for updating item
-   * @returns Promise resolving to update item response
+   * @param {AddModelRequest} params Request parameters
+   * @returns {Promise<AddModelResponse>} Promise resolving to the response
    */
-  async updateItem(params: UpdateItemParams): Promise<UpdateItemResponse> {
-    const response = await ShopeeFetch.fetch<UpdateItemResponse>(
-      this.config,
-      "/product/update_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Add models/variations to an item
-   *
-   * Use this API to add product models/variations.
-   *
-   * @param params - Parameters for adding models
-   * @returns Promise resolving to add model response with model IDs
-   */
-  async addModel(params: AddModelParams): Promise<AddModelResponse> {
-    const response = await ShopeeFetch.fetch<AddModelResponse>(this.config, "/product/add_model", {
+  public async addModel(params?: AddModelRequest): Promise<AddModelResponse> {
+    return ShopeeFetch.fetch<AddModelResponse>(this.config, "/product/add_model", {
       method: "POST",
       auth: true,
       body: params,
     });
-    return response;
   }
-
   /**
-   * Update models/variations
+   * Create asynchronous task to batch add item
    *
-   * Use this API to update product models/variations.
-   *
-   * @param params - Parameters for updating models
-   * @returns Promise resolving to update model response
+   * @param {BatchAddItemRequest} params Request parameters
+   * @returns {Promise<BatchAddItemResponse>} Promise resolving to the response
    */
-  async updateModel(params: UpdateModelParams): Promise<UpdateModelResponse> {
-    const response = await ShopeeFetch.fetch<UpdateModelResponse>(
-      this.config,
-      "/product/update_model",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
+  public async batchAddItem(params?: BatchAddItemRequest): Promise<BatchAddItemResponse> {
+    return ShopeeFetch.fetch<BatchAddItemResponse>(this.config, "/product/batch_add_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+      timestampPaths: ["item_list.scheduled_publish_time"],
+    });
   }
-
   /**
-   * Delete models/variations
+   * Create asynchronous task to batch publish outlet item
    *
-   * Use this API to delete product models/variations.
-   *
-   * @param params - Parameters for deleting models
-   * @returns Promise resolving to delete model response
+   * @param {BatchPublishItemToOutletShopRequest} params Request parameters
+   * @returns {Promise<BatchPublishItemToOutletShopResponse>} Promise resolving to the response
    */
-  async deleteModel(params: DeleteModelParams): Promise<DeleteModelResponse> {
-    const response = await ShopeeFetch.fetch<DeleteModelResponse>(
-      this.config,
-      "/product/delete_model",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Initialize tier variations
-   *
-   * Use this API to initialize tier variations for an item.
-   *
-   * @param params - Parameters for initializing tier variations
-   * @returns Promise resolving to init tier variation response
-   */
-  async initTierVariation(params: InitTierVariationParams): Promise<InitTierVariationResponse> {
-    const response = await ShopeeFetch.fetch<InitTierVariationResponse>(
-      this.config,
-      "/product/init_tier_variation",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Update tier variations
-   *
-   * Use this API to update tier variations for an item.
-   *
-   * @param params - Parameters for updating tier variations
-   * @returns Promise resolving to update tier variation response
-   */
-  async updateTierVariation(
-    params: UpdateTierVariationParams
-  ): Promise<UpdateTierVariationResponse> {
-    const response = await ShopeeFetch.fetch<UpdateTierVariationResponse>(
-      this.config,
-      "/product/update_tier_variation",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Search items
-   *
-   * Use this API to search for items in the shop.
-   *
-   * @param params - Parameters for searching items
-   * @returns Promise resolving to search item response
-   */
-  async searchItem(params: SearchItemParams): Promise<SearchItemResponse> {
-    const response = await ShopeeFetch.fetch<SearchItemResponse>(
-      this.config,
-      "/product/search_item",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get item extra info
-   *
-   * Use this API to get extra information (sales, views, likes) for items.
-   *
-   * @param params - Parameters for getting item extra info
-   * @returns Promise resolving to item extra info response
-   */
-  async getItemExtraInfo(params: GetItemExtraInfoParams): Promise<GetItemExtraInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetItemExtraInfoResponse>(
-      this.config,
-      "/product/get_item_extra_info",
-      {
-        method: "GET",
-        auth: true,
-        params: {
-          ...params,
-          item_id_list: params.item_id_list.join(","),
-        },
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get attribute tree
-   *
-   * Use this API to get the attribute tree for a category.
-   *
-   * @param params - Parameters for getting attribute tree
-   * @returns Promise resolving to attribute tree response
-   */
-  async getAttributeTree(params: GetAttributeTreeParams): Promise<GetAttributeTreeResponse> {
-    const response = await ShopeeFetch.fetch<GetAttributeTreeResponse>(
-      this.config,
-      "/product/get_attribute_tree",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get brand list
-   *
-   * Use this API to get the list of brands for a category.
-   *
-   * @param params - Parameters for getting brand list
-   * @returns Promise resolving to brand list response
-   */
-  async getBrandList(params: GetBrandListParams): Promise<GetBrandListResponse> {
-    const response = await ShopeeFetch.fetch<GetBrandListResponse>(
-      this.config,
-      "/product/get_brand_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Register a brand
-   *
-   * Use this API to register a new brand.
-   *
-   * @param params - Parameters for registering brand
-   * @returns Promise resolving to register brand response
-   */
-  async registerBrand(params: RegisterBrandParams): Promise<RegisterBrandResponse> {
-    const response = await ShopeeFetch.fetch<RegisterBrandResponse>(
-      this.config,
-      "/product/register_brand",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get category recommendation
-   *
-   * Use this API to get category recommendations based on item name.
-   *
-   * @param params - Parameters for category recommendation
-   * @returns Promise resolving to category recommendation response
-   */
-  async categoryRecommend(params: CategoryRecommendParams): Promise<CategoryRecommendResponse> {
-    const response = await ShopeeFetch.fetch<CategoryRecommendResponse>(
-      this.config,
-      "/product/category_recommend",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get item limits
-   *
-   * Use this API to get item limits for a category.
-   *
-   * @param params - Parameters for getting item limits
-   * @returns Promise resolving to item limit response
-   */
-  async getItemLimit(params: GetItemLimitParams): Promise<GetItemLimitResponse> {
-    const response = await ShopeeFetch.fetch<GetItemLimitResponse>(
-      this.config,
-      "/product/get_item_limit",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get item promotion
-   *
-   * Use this API to get promotion information for items.
-   *
-   * @param params - Parameters for getting item promotion
-   * @returns Promise resolving to item promotion response
-   */
-  async getItemPromotion(params: GetItemPromotionParams): Promise<GetItemPromotionResponse> {
-    const response = await ShopeeFetch.fetch<GetItemPromotionResponse>(
-      this.config,
-      "/product/get_item_promotion",
-      {
-        method: "GET",
-        auth: true,
-        params: {
-          ...params,
-          item_id_list: params.item_id_list.join(","),
-        },
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Boost items
-   *
-   * Use this API to boost items for better visibility.
-   *
-   * @param params - Parameters for boosting items
-   * @returns Promise resolving to boost item response
-   */
-  async boostItem(params: BoostItemParams): Promise<BoostItemResponse> {
-    const response = await ShopeeFetch.fetch<BoostItemResponse>(
-      this.config,
-      "/product/boost_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get boosted item list
-   *
-   * Use this API to get the list of boosted items.
-   *
-   * @returns Promise resolving to boosted list response
-   */
-  async getBoostedList(): Promise<GetBoostedListResponse> {
-    const response = await ShopeeFetch.fetch<GetBoostedListResponse>(
-      this.config,
-      "/product/get_boosted_list",
-      {
-        method: "GET",
-        auth: true,
-        params: {},
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get recommended attributes
-   *
-   * Use this API to get recommended attributes for a category.
-   *
-   * @param params - Parameters for getting recommended attributes
-   * @returns Promise resolving to recommended attributes response
-   */
-  async getRecommendAttribute(
-    params: GetRecommendAttributeParams
-  ): Promise<GetRecommendAttributeResponse> {
-    const response = await ShopeeFetch.fetch<GetRecommendAttributeResponse>(
-      this.config,
-      "/product/get_recommend_attribute",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Search attribute values
-   *
-   * Use this API to search for attribute values.
-   *
-   * @param params - Parameters for searching attribute values
-   * @returns Promise resolving to attribute value list response
-   */
-  async searchAttributeValueList(
-    params: SearchAttributeValueListParams
-  ): Promise<SearchAttributeValueListResponse> {
-    const response = await ShopeeFetch.fetch<SearchAttributeValueListResponse>(
-      this.config,
-      "/product/search_attribute_value_list",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get main item list
-   *
-   * Use this API to get the main item list.
-   *
-   * @param params - Parameters for getting main item list
-   * @returns Promise resolving to main item list response
-   */
-  async getMainItemList(params?: GetMainItemListParams): Promise<GetMainItemListResponse> {
-    const response = await ShopeeFetch.fetch<GetMainItemListResponse>(
-      this.config,
-      "/product/get_main_item_list",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get item violation info
-   *
-   * Use this API to get violation information for items.
-   *
-   * @param params - Parameters for getting item violation info
-   * @returns Promise resolving to item violation info response
-   */
-  async getItemViolationInfo(
-    params: GetItemViolationInfoParams
-  ): Promise<GetItemViolationInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetItemViolationInfoResponse>(
-      this.config,
-      "/product/get_item_violation_info",
-      {
-        method: "GET",
-        auth: true,
-        params: {
-          ...params,
-          item_id_list: params.item_id_list.join(","),
-        },
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get weight recommendation
-   *
-   * Use this API to get weight recommendations for an item.
-   *
-   * @param params - Parameters for getting weight recommendation
-   * @returns Promise resolving to weight recommendation response
-   */
-  async getWeightRecommendation(
-    params: GetWeightRecommendationParams
-  ): Promise<GetWeightRecommendationResponse> {
-    const response = await ShopeeFetch.fetch<GetWeightRecommendationResponse>(
-      this.config,
-      "/product/get_weight_recommendation",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get direct item list
-   *
-   * Use this API to get the direct item list.
-   *
-   * @param params - Parameters for getting direct item list
-   * @returns Promise resolving to direct item list response
-   */
-  async getDirectItemList(params?: GetDirectItemListParams): Promise<GetDirectItemListResponse> {
-    const response = await ShopeeFetch.fetch<GetDirectItemListResponse>(
-      this.config,
-      "/product/get_direct_item_list",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get item content diagnosis result
-   *
-   * Use this API to get content diagnosis results for items.
-   *
-   * @param params - Parameters for getting content diagnosis result
-   * @returns Promise resolving to content diagnosis result response
-   */
-  async getItemContentDiagnosisResult(
-    params: GetItemContentDiagnosisResultParams
-  ): Promise<GetItemContentDiagnosisResultResponse> {
-    const response = await ShopeeFetch.fetch<GetItemContentDiagnosisResultResponse>(
-      this.config,
-      "/product/get_item_content_diagnosis_result",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get item list by content diagnosis
-   *
-   * Use this API to get items filtered by content diagnosis status.
-   *
-   * @param params - Parameters for getting item list by content diagnosis
-   * @returns Promise resolving to item list by content diagnosis response
-   */
-  async getItemListByContentDiagnosis(
-    params: GetItemListByContentDiagnosisParams
-  ): Promise<GetItemListByContentDiagnosisResponse> {
-    const response = await ShopeeFetch.fetch<GetItemListByContentDiagnosisResponse>(
-      this.config,
-      "/product/get_item_list_by_content_diagnosis",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  // Kit Item Management
-  async addKitItem(params: AddKitItemParams): Promise<AddKitItemResponse> {
-    const response = await ShopeeFetch.fetch<AddKitItemResponse>(
-      this.config,
-      "/product/add_kit_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  async updateKitItem(params: UpdateKitItemParams): Promise<UpdateKitItemResponse> {
-    const response = await ShopeeFetch.fetch<UpdateKitItemResponse>(
-      this.config,
-      "/product/update_kit_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  async getKitItemInfo(params: GetKitItemInfoParams): Promise<GetKitItemInfoResponse> {
-    const response = await ShopeeFetch.fetch<GetKitItemInfoResponse>(
-      this.config,
-      "/product/get_kit_item_info",
-      {
-        method: "GET",
-        auth: true,
-        params: {
-          ...params,
-          item_id_list: params.item_id_list.join(","),
-        },
-      }
-    );
-    return response;
-  }
-
-  async getKitItemLimit(params: GetKitItemLimitParams): Promise<GetKitItemLimitResponse> {
-    const response = await ShopeeFetch.fetch<GetKitItemLimitResponse>(
-      this.config,
-      "/product/get_kit_item_limit",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  async generateKitImage(params: GenerateKitImageParams): Promise<GenerateKitImageResponse> {
-    const response = await ShopeeFetch.fetch<GenerateKitImageResponse>(
-      this.config,
-      "/product/generate_kit_image",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  async updateSipItemPrice(params: UpdateSipItemPriceParams): Promise<UpdateSipItemPriceResponse> {
-    const response = await ShopeeFetch.fetch<UpdateSipItemPriceResponse>(
-      this.config,
-      "/product/update_sip_item_price",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  // Size Chart Management
-  async getSizeChartList(params: GetSizeChartListParams): Promise<GetSizeChartListResponse> {
-    const response = await ShopeeFetch.fetch<GetSizeChartListResponse>(
-      this.config,
-      "/product/get_size_chart_list",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  async getSizeChartDetail(params: GetSizeChartDetailParams): Promise<GetSizeChartDetailResponse> {
-    const response = await ShopeeFetch.fetch<GetSizeChartDetailResponse>(
-      this.config,
-      "/product/get_size_chart_detail",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  // Vehicle Compatibility
-  async getAllVehicleList(params?: GetAllVehicleListParams): Promise<GetAllVehicleListResponse> {
-    const response = await ShopeeFetch.fetch<GetAllVehicleListResponse>(
-      this.config,
-      "/product/get_all_vehicle_list",
-      {
-        method: "GET",
-        auth: true,
-        params: params || {},
-      }
-    );
-    return response;
-  }
-
-  async getVehicleListByCompatibilityDetail(
-    params: GetVehicleListByCompatibilityDetailParams
-  ): Promise<GetVehicleListByCompatibilityDetailResponse> {
-    const response = await ShopeeFetch.fetch<GetVehicleListByCompatibilityDetailResponse>(
-      this.config,
-      "/product/get_vehicle_list_by_compatibility_detail",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  // Specialized Functions
-  async getAitemByPitemId(params: GetAitemByPitemIdParams): Promise<GetAitemByPitemIdResponse> {
-    const response = await ShopeeFetch.fetch<GetAitemByPitemIdResponse>(
-      this.config,
-      "/product/get_aitem_by_pitem_id",
-      {
-        method: "GET",
-        auth: true,
-        params: {
-          ...params,
-          pitem_id_list: params.pitem_id_list?.join(","),
-        },
-      }
-    );
-    return response;
-  }
-
-  async getDirectShopRecommendedPrice(
-    params: GetDirectShopRecommendedPriceParams
-  ): Promise<GetDirectShopRecommendedPriceResponse> {
-    const response = await ShopeeFetch.fetch<GetDirectShopRecommendedPriceResponse>(
-      this.config,
-      "/product/get_direct_shop_recommended_price",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-    return response;
-  }
-
-  async getProductCertificationRule(
-    params: GetProductCertificationRuleParams
-  ): Promise<GetProductCertificationRuleResponse> {
-    const response = await ShopeeFetch.fetch<GetProductCertificationRuleResponse>(
-      this.config,
-      "/product/get_product_certification_rule",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  async searchUnpackagedModelList(
-    params: SearchUnpackagedModelListParams
-  ): Promise<SearchUnpackagedModelListResponse> {
-    const response = await ShopeeFetch.fetch<SearchUnpackagedModelListResponse>(
-      this.config,
-      "/product/search_unpackaged_model_list",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get the mapping information between a Mart item and its corresponding outlet item by item ID.
-   */
-  async getMartItemMappingById(
-    params: GetMartItemMappingByIdParams
-  ): Promise<GetMartItemMappingByIdResponse> {
-    const response = await ShopeeFetch.fetch<GetMartItemMappingByIdResponse>(
-      this.config,
-      "/product/get_mart_item_mapping_by_id",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get the mapping information between a Mart item and its corresponding outlet item by outlet item ID.
-   */
-  async getMartItemByOutletItemId(
-    params: GetMartItemByOutletItemIdParams
-  ): Promise<GetMartItemByOutletItemIdResponse> {
-    const response = await ShopeeFetch.fetch<GetMartItemByOutletItemIdResponse>(
-      this.config,
-      "/product/get_mart_item_by_outlet_item_id",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * This API supports publishing an existing item from the mart shop to an outlet shop.
-   */
-  async publishItemToOutletShop(
-    params: PublishItemToOutletShopParams
-  ): Promise<PublishItemToOutletShopResponse> {
-    const response = await ShopeeFetch.fetch<PublishItemToOutletShopResponse>(
-      this.config,
-      "/product/publish_item_to_outlet_shop",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Get the standardized tier variation defined by Shopee
-   *
-   * @param params - The parameters for getting variations
-   * @param params.category_id - Leaf category id
-   *
-   * @returns A promise that resolves to the variations response containing:
-   * - standardise_variation_list: Standardised variation tree
-   *
-   * @throws {Error} When the API request fails or returns an error
-   */
-  async getVariations(params: GetVariationsParams): Promise<GetVariationsResponse> {
-    const response = await ShopeeFetch.fetch<GetVariationsResponse>(
-      this.config,
-      "/product/get_variations",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Batch add items.
-   *
-   * @param params - The parameters for batch adding items
-   * @returns Promise resolving to the batch add item response
-   */
-  async batchAddItem(params: BatchAddItemParams): Promise<BatchAddItemResponse> {
-    const response = await ShopeeFetch.fetch<BatchAddItemResponse>(
-      this.config,
-      "/product/batch_add_item",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-    return response;
-  }
-
-  /**
-   * Batch publish items to outlet shop.
-   *
-   * @param params - The parameters for batch publishing items to outlet shop
-   * @returns Promise resolving to the batch publish response
-   */
-  async batchPublishItemToOutletShop(
-    params: BatchPublishItemToOutletShopParams
+  public async batchPublishItemToOutletShop(
+    params?: BatchPublishItemToOutletShopRequest
   ): Promise<BatchPublishItemToOutletShopResponse> {
-    const response = await ShopeeFetch.fetch<BatchPublishItemToOutletShopResponse>(
+    return ShopeeFetch.fetch<BatchPublishItemToOutletShopResponse>(
       this.config,
       "/product/batch_publish_item_to_outlet_shop",
       {
@@ -1331,19 +197,17 @@ export class ProductManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Batch update outlet price.
+   * Create asynchronous task to batch update outlet item's price
    *
-   * @param params - The parameters for batch updating outlet price
-   * @returns Promise resolving to the batch update price response
+   * @param {BatchUpdateOutletPriceRequest} params Request parameters
+   * @returns {Promise<BatchUpdateOutletPriceResponse>} Promise resolving to the response
    */
-  async batchUpdateOutletPrice(
-    params: BatchUpdateOutletPriceParams
+  public async batchUpdateOutletPrice(
+    params?: BatchUpdateOutletPriceRequest
   ): Promise<BatchUpdateOutletPriceResponse> {
-    const response = await ShopeeFetch.fetch<BatchUpdateOutletPriceResponse>(
+    return ShopeeFetch.fetch<BatchUpdateOutletPriceResponse>(
       this.config,
       "/product/batch_update_outlet_price",
       {
@@ -1352,19 +216,17 @@ export class ProductManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Batch update outlet stock.
+   * Create asynchronous task to batch update outlet stock
    *
-   * @param params - The parameters for batch updating outlet stock
-   * @returns Promise resolving to the batch update stock response
+   * @param {BatchUpdateOutletStockRequest} params Request parameters
+   * @returns {Promise<BatchUpdateOutletStockResponse>} Promise resolving to the response
    */
-  async batchUpdateOutletStock(
-    params: BatchUpdateOutletStockParams
+  public async batchUpdateOutletStock(
+    params?: BatchUpdateOutletStockRequest
   ): Promise<BatchUpdateOutletStockResponse> {
-    const response = await ShopeeFetch.fetch<BatchUpdateOutletStockResponse>(
+    return ShopeeFetch.fetch<BatchUpdateOutletStockResponse>(
       this.config,
       "/product/batch_update_outlet_stock",
       {
@@ -1373,25 +235,840 @@ export class ProductManager extends BaseManager {
         body: params,
       }
     );
-    return response;
   }
-
   /**
-   * Get batch task result.
+   * Boost item.
    *
-   * @param params - The parameters for getting batch task result
-   * @returns Promise resolving to the batch task result response
+   * @param {BoostItemRequest} params Request parameters
+   * @returns {Promise<BoostItemResponse>} Promise resolving to the response
    */
-  async getBatchTaskResult(params?: GetBatchTaskResultParams): Promise<GetBatchTaskResultResponse> {
-    const response = await ShopeeFetch.fetch<GetBatchTaskResultResponse>(
+  public async boostItem(params?: BoostItemRequest): Promise<BoostItemResponse> {
+    return ShopeeFetch.fetch<BoostItemResponse>(this.config, "/product/boost_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Recommend category by item name.
+   *
+   * @param {CategoryRecommendRequest} params Request parameters
+   * @returns {Promise<CategoryRecommendResponse>} Promise resolving to the response
+   */
+  public async categoryRecommend(
+    params?: CategoryRecommendRequest
+  ): Promise<CategoryRecommendResponse> {
+    return ShopeeFetch.fetch<CategoryRecommendResponse>(
+      this.config,
+      "/product/category_recommend",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Use this call to delete a product item.
+   *
+   * @param {DeleteItemRequest} params Request parameters
+   * @returns {Promise<DeleteItemResponse>} Promise resolving to the response
+   */
+  public async deleteItem(params?: DeleteItemRequest): Promise<DeleteItemResponse> {
+    return ShopeeFetch.fetch<DeleteItemResponse>(this.config, "/product/delete_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Delete item model.
+   *
+   * @param {DeleteModelRequest} params Request parameters
+   * @returns {Promise<DeleteModelResponse>} Promise resolving to the response
+   */
+  public async deleteModel(params?: DeleteModelRequest): Promise<DeleteModelResponse> {
+    return ShopeeFetch.fetch<DeleteModelResponse>(this.config, "/product/delete_model", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * This API generates a single consolidated image by combining the cover images of all selected items. It is typically used to create a unified product display image for kits or bundles.
+   *
+   * @param {GenerateKitImageRequest} params Request parameters
+   * @returns {Promise<GenerateKitImageResponse>} Promise resolving to the response
+   */
+  public async generateKitImage(
+    params?: GenerateKitImageRequest
+  ): Promise<GenerateKitImageResponse> {
+    return ShopeeFetch.fetch<GenerateKitImageResponse>(this.config, "/product/generate_kit_image", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Get the list of A Items under SIP Affiliate Shop corresponding to P Items under SIP Primary Shop.
+   *
+   * @param {GetAitemByPitemIdRequest} params Request parameters
+   * @returns {Promise<GetAitemByPitemIdResponse>} Promise resolving to the response
+   */
+  public async getAitemByPitemId(
+    params?: GetAitemByPitemIdRequest
+  ): Promise<GetAitemByPitemIdResponse> {
+    return ShopeeFetch.fetch<GetAitemByPitemIdResponse>(
+      this.config,
+      "/product/get_aitem_by_pitem_id",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Use this Open API to get all vehicle list.
+   *
+   * @param {GetAllVehicleListRequest} params Request parameters
+   * @returns {Promise<GetAllVehicleListResponse>} Promise resolving to the response
+   */
+  public async getAllVehicleList(
+    params?: GetAllVehicleListRequest
+  ): Promise<GetAllVehicleListResponse> {
+    return ShopeeFetch.fetch<GetAllVehicleListResponse>(
+      this.config,
+      "/product/get_all_vehicle_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get the attribute tree for categories
+   *
+   * @param {GetAttributeTreeRequest} params Request parameters
+   * @returns {Promise<GetAttributeTreeResponse>} Promise resolving to the response
+   */
+  public async getAttributeTree(
+    params?: GetAttributeTreeRequest
+  ): Promise<GetAttributeTreeResponse> {
+    return ShopeeFetch.fetch<GetAttributeTreeResponse>(this.config, "/product/get_attribute_tree", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Query batch task result
+   *
+   * @param {GetBatchTaskResultRequest} params Request parameters
+   * @returns {Promise<GetBatchTaskResultResponse>} Promise resolving to the response
+   */
+  public async getBatchTaskResult(
+    params?: GetBatchTaskResultRequest
+  ): Promise<GetBatchTaskResultResponse> {
+    return ShopeeFetch.fetch<GetBatchTaskResultResponse>(
       this.config,
       "/product/get_batch_task_result",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-    return response;
+  }
+  /**
+   * Get boosted item list.
+   *
+   * @param {GetBoostedListRequest} params Request parameters
+   * @returns {Promise<GetBoostedListResponse>} Promise resolving to the response
+   */
+  public async getBoostedList(params?: GetBoostedListRequest): Promise<GetBoostedListResponse> {
+    return ShopeeFetch.fetch<GetBoostedListResponse>(this.config, "/product/get_boosted_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Get the brand data of a leaf category. More detail please check: https://open.shopee.com/developer-guide/209
+   *
+   * @param {GetBrandListRequest} params Request parameters
+   * @returns {Promise<GetBrandListResponse>} Promise resolving to the response
+   */
+  public async getBrandList(params?: GetBrandListRequest): Promise<GetBrandListResponse> {
+    return ShopeeFetch.fetch<GetBrandListResponse>(this.config, "/product/get_brand_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Get category tree data. More detail please check https://open.shopee.com/developer-guide/209
+   *
+   * @param {GetCategoryRequest} params Request parameters
+   * @returns {Promise<GetCategoryResponse>} Promise resolving to the response
+   */
+  public async getCategory(params?: GetCategoryRequest): Promise<GetCategoryResponse> {
+    return ShopeeFetch.fetch<GetCategoryResponse>(this.config, "/product/get_category", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Use this api to get comment by shop_id, item_id, or comment_id, get up to 1000 comments.
+   *
+   * @param {GetCommentRequest} params Request parameters
+   * @returns {Promise<GetCommentResponse>} Promise resolving to the response
+   */
+  public async getComment(params?: GetCommentRequest): Promise<GetCommentResponse> {
+    return ShopeeFetch.fetch<GetCommentResponse>(this.config, "/product/get_comment", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: [
+        "response.item_comment_list.create_time",
+        "response.item_comment_list.comment_reply.create_time",
+      ],
+    });
+  }
+  /**
+   * get direct item by main item.
+   *
+   * @param {GetDirectItemListRequest} params Request parameters
+   * @returns {Promise<GetDirectItemListResponse>} Promise resolving to the response
+   */
+  public async getDirectItemList(
+    params?: GetDirectItemListRequest
+  ): Promise<GetDirectItemListResponse> {
+    return ShopeeFetch.fetch<GetDirectItemListResponse>(
+      this.config,
+      "/product/get_direct_item_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * get recommend price for direct shop.
+   *
+   * @param {GetDirectShopRecommendedPriceRequest} params Request parameters
+   * @returns {Promise<GetDirectShopRecommendedPriceResponse>} Promise resolving to the response
+   */
+  public async getDirectShopRecommendedPrice(
+    params?: GetDirectShopRecommendedPriceRequest
+  ): Promise<GetDirectShopRecommendedPriceResponse> {
+    return ShopeeFetch.fetch<GetDirectShopRecommendedPriceResponse>(
+      this.config,
+      "/product/get_direct_shop_recommended_price",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Use this api to get basic info of item by item_id list.
+   *
+   * @param {GetItemBaseInfoRequest} params Request parameters
+   * @returns {Promise<GetItemBaseInfoResponse>} Promise resolving to the response
+   */
+  public async getItemBaseInfo(params?: GetItemBaseInfoRequest): Promise<GetItemBaseInfoResponse> {
+    return ShopeeFetch.fetch<GetItemBaseInfoResponse>(this.config, "/product/get_item_base_info", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: [
+        "response.item_list.create_time",
+        "response.item_list.update_time",
+        "response.item_list.scheduled_publish_time",
+      ],
+    });
+  }
+  /**
+   * Get the content quality details (including content quality level, content issues, and system suggestions) for specific product list.
+   *
+   * @param {GetItemContentDiagnosisResultRequest} params Request parameters
+   * @returns {Promise<GetItemContentDiagnosisResultResponse>} Promise resolving to the response
+   */
+  public async getItemContentDiagnosisResult(
+    params?: GetItemContentDiagnosisResultRequest
+  ): Promise<GetItemContentDiagnosisResultResponse> {
+    return ShopeeFetch.fetch<GetItemContentDiagnosisResultResponse>(
+      this.config,
+      "/product/get_item_content_diagnosis_result",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Use this api to get extra info of item by item_id list.
+   *
+   * @param {GetItemExtraInfoRequest} params Request parameters
+   * @returns {Promise<GetItemExtraInfoResponse>} Promise resolving to the response
+   */
+  public async getItemExtraInfo(
+    params?: GetItemExtraInfoRequest
+  ): Promise<GetItemExtraInfoResponse> {
+    return ShopeeFetch.fetch<GetItemExtraInfoResponse>(
+      this.config,
+      "/product/get_item_extra_info",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get item upload control.
+   *
+   * @param {GetItemLimitRequest} params Request parameters
+   * @returns {Promise<GetItemLimitResponse>} Promise resolving to the response
+   */
+  public async getItemLimit(params?: GetItemLimitRequest): Promise<GetItemLimitResponse> {
+    return ShopeeFetch.fetch<GetItemLimitResponse>(this.config, "/product/get_item_limit", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Use this call to get a list of items.
+   *
+   * @param {GetItemListRequest} params Request parameters
+   * @returns {Promise<GetItemListResponse>} Promise resolving to the response
+   */
+  public async getItemList(params?: GetItemListRequest): Promise<GetItemListResponse> {
+    return ShopeeFetch.fetch<GetItemListResponse>(this.config, "/product/get_item_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: ["update_time_from", "update_time_to", "response.item.update_time"],
+    });
+  }
+  /**
+   * Query the list of products and their content quality details by content quality level or content issues.
+   *
+   * @param {GetItemListByContentDiagnosisRequest} params Request parameters
+   * @returns {Promise<GetItemListByContentDiagnosisResponse>} Promise resolving to the response
+   */
+  public async getItemListByContentDiagnosis(
+    params?: GetItemListByContentDiagnosisRequest
+  ): Promise<GetItemListByContentDiagnosisResponse> {
+    return ShopeeFetch.fetch<GetItemListByContentDiagnosisResponse>(
+      this.config,
+      "/product/get_item_list_by_content_diagnosis",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Get item promotion info.
+   *
+   * @param {GetItemPromotionRequest} params Request parameters
+   * @returns {Promise<GetItemPromotionResponse>} Promise resolving to the response
+   */
+  public async getItemPromotion(
+    params?: GetItemPromotionRequest
+  ): Promise<GetItemPromotionResponse> {
+    return ShopeeFetch.fetch<GetItemPromotionResponse>(this.config, "/product/get_item_promotion", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: [
+        "response.success_list.promotion.start_time",
+        "response.success_list.promotion.end_time",
+      ],
+    });
+  }
+  /**
+   * get item violation info
+   *
+   * @param {GetItemViolationInfoRequest} params Request parameters
+   * @returns {Promise<GetItemViolationInfoResponse>} Promise resolving to the response
+   */
+  public async getItemViolationInfo(
+    params?: GetItemViolationInfoRequest
+  ): Promise<GetItemViolationInfoResponse> {
+    return ShopeeFetch.fetch<GetItemViolationInfoResponse>(
+      this.config,
+      "/product/get_item_violation_info",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: [
+          "response.item_list.item_status_details.fix_deadline_time",
+          "response.item_list.item_status_details.update_time",
+          "response.item_list.deboost_details.fix_deadline_time",
+          "response.item_list.deboost_details.update_time",
+        ],
+      }
+    );
+  }
+  /**
+   * Get the kit basic information and kit components.
+   *
+   * @param {GetKitItemInfoRequest} params Request parameters
+   * @returns {Promise<GetKitItemInfoResponse>} Promise resolving to the response
+   */
+  public async getKitItemInfo(params?: GetKitItemInfoRequest): Promise<GetKitItemInfoResponse> {
+    return ShopeeFetch.fetch<GetKitItemInfoResponse>(this.config, "/product/get_kit_item_info", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Get the limit of Kit item.
+   *
+   * @param {GetKitItemLimitRequest} params Request parameters
+   * @returns {Promise<GetKitItemLimitResponse>} Promise resolving to the response
+   */
+  public async getKitItemLimit(params?: GetKitItemLimitRequest): Promise<GetKitItemLimitResponse> {
+    return ShopeeFetch.fetch<GetKitItemLimitResponse>(this.config, "/product/get_kit_item_limit", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * get main item by direct item.
+   *
+   * @param {GetMainItemListRequest} params Request parameters
+   * @returns {Promise<GetMainItemListResponse>} Promise resolving to the response
+   */
+  public async getMainItemList(params?: GetMainItemListRequest): Promise<GetMainItemListResponse> {
+    return ShopeeFetch.fetch<GetMainItemListResponse>(this.config, "/product/get_main_item_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Get the mapping information between a Mart item and its corresponding outlet item by outlet item ID.
+   *
+   * @param {GetMartItemByOutletItemIdRequest} params Request parameters
+   * @returns {Promise<GetMartItemByOutletItemIdResponse>} Promise resolving to the response
+   */
+  public async getMartItemByOutletItemId(
+    params?: GetMartItemByOutletItemIdRequest
+  ): Promise<GetMartItemByOutletItemIdResponse> {
+    return ShopeeFetch.fetch<GetMartItemByOutletItemIdResponse>(
+      this.config,
+      "/product/get_mart_item_by_outlet_item_id",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Get the mapping information between a Mart item and its corresponding outlet item by item ID.
+   *
+   * @param {GetMartItemMappingByIdRequest} params Request parameters
+   * @returns {Promise<GetMartItemMappingByIdResponse>} Promise resolving to the response
+   */
+  public async getMartItemMappingById(
+    params?: GetMartItemMappingByIdRequest
+  ): Promise<GetMartItemMappingByIdResponse> {
+    return ShopeeFetch.fetch<GetMartItemMappingByIdResponse>(
+      this.config,
+      "/product/get_mart_item_mapping_by_id",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Get model list of an item.
+   *
+   * @param {GetModelListRequest} params Request parameters
+   * @returns {Promise<GetModelListResponse>} Promise resolving to the response
+   */
+  public async getModelList(params?: GetModelListRequest): Promise<GetModelListResponse> {
+    return ShopeeFetch.fetch<GetModelListResponse>(this.config, "/product/get_model_list", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Get product certification rule
+   *
+   * @param {GetProductCertificationRuleRequest} params Request parameters
+   * @returns {Promise<GetProductCertificationRuleResponse>} Promise resolving to the response
+   */
+  public async getProductCertificationRule(
+    params?: GetProductCertificationRuleRequest
+  ): Promise<GetProductCertificationRuleResponse> {
+    return ShopeeFetch.fetch<GetProductCertificationRuleResponse>(
+      this.config,
+      "/product/get_product_certification_rule",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Get recommend attributes.
+   *
+   * @param {GetRecommendAttributeRequest} params Request parameters
+   * @returns {Promise<GetRecommendAttributeResponse>} Promise resolving to the response
+   */
+  public async getRecommendAttribute(
+    params?: GetRecommendAttributeRequest
+  ): Promise<GetRecommendAttributeResponse> {
+    return ShopeeFetch.fetch<GetRecommendAttributeResponse>(
+      this.config,
+      "/product/get_recommend_attribute",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get new size chart detail. Now only local shop support to use this api to get new size chart detail.
+   *
+   * @param {GetSizeChartDetailRequest} params Request parameters
+   * @returns {Promise<GetSizeChartDetailResponse>} Promise resolving to the response
+   */
+  public async getSizeChartDetail(
+    params?: GetSizeChartDetailRequest
+  ): Promise<GetSizeChartDetailResponse> {
+    return ShopeeFetch.fetch<GetSizeChartDetailResponse>(
+      this.config,
+      "/product/get_size_chart_detail",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get new size chart list. Now only support local shop to use new size chart.
+   *
+   * @param {GetSizeChartListRequest} params Request parameters
+   * @returns {Promise<GetSizeChartListResponse>} Promise resolving to the response
+   */
+  public async getSizeChartList(
+    params?: GetSizeChartListRequest
+  ): Promise<GetSizeChartListResponse> {
+    return ShopeeFetch.fetch<GetSizeChartListResponse>(
+      this.config,
+      "/product/get_size_chart_list",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get the standardized tier variation defined by Shopee, which is currently a three-layer tree structure.
+   * The top layer is variations, the second layer is groups, groups are used to divide options, and the third layer is options.
+   *
+   * @param {GetVariationsRequest} params Request parameters
+   * @returns {Promise<GetVariationsResponse>} Promise resolving to the response
+   */
+  public async getVariations(params?: GetVariationsRequest): Promise<GetVariationsResponse> {
+    return ShopeeFetch.fetch<GetVariationsResponse>(this.config, "/product/get_variation_tree", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Use this Open API to get vehicle list by brand, model, year, and version.
+   *
+   * @param {GetVehicleListByCompatibilityDetailRequest} params Request parameters
+   * @returns {Promise<GetVehicleListByCompatibilityDetailResponse>} Promise resolving to the response
+   */
+  public async getVehicleListByCompatibilityDetail(
+    params?: GetVehicleListByCompatibilityDetailRequest
+  ): Promise<GetVehicleListByCompatibilityDetailResponse> {
+    return ShopeeFetch.fetch<GetVehicleListByCompatibilityDetailResponse>(
+      this.config,
+      "/product/get_vehicle_list_by_compatibility_detail",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
+   * Get recommended weight. Now only BR shop support to use this api to get recommended weight.
+   *
+   * @param {GetWeightRecommendationRequest} params Request parameters
+   * @returns {Promise<GetWeightRecommendationResponse>} Promise resolving to the response
+   */
+  public async getWeightRecommendation(
+    params?: GetWeightRecommendationRequest
+  ): Promise<GetWeightRecommendationResponse> {
+    return ShopeeFetch.fetch<GetWeightRecommendationResponse>(
+      this.config,
+      "/product/get_weight_recommendation",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * This API allows you to update the tier structure of a product. Defining only color creates one tier, while color + size creates two tiers (maximum supported). Supported changes include: no tier ↔ one/two tiers, one tier ↔ two/no tier, and two tiers ↔ one/no tier. For details, see Developer Guide.  Please wait at least 5 seconds after creating an item before creating variants, as processing may be delayed.
+   *
+   * @param {InitTierVariationRequest} params Request parameters
+   * @returns {Promise<InitTierVariationResponse>} Promise resolving to the response
+   */
+  public async initTierVariation(
+    params?: InitTierVariationRequest
+  ): Promise<InitTierVariationResponse> {
+    return ShopeeFetch.fetch<InitTierVariationResponse>(
+      this.config,
+      "/product/init_tier_variation",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * This API supports publishing an existing item from the mart shop to an outlet shop.
+   *
+   * @param {PublishItemToOutletShopRequest} params Request parameters
+   * @returns {Promise<PublishItemToOutletShopResponse>} Promise resolving to the response
+   */
+  public async publishItemToOutletShop(
+    params?: PublishItemToOutletShopRequest
+  ): Promise<PublishItemToOutletShopResponse> {
+    return ShopeeFetch.fetch<PublishItemToOutletShopResponse>(
+      this.config,
+      "/product/publish_item_to_outlet_shop",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Use this call to register a brand.
+   *
+   * @param {RegisterBrandRequest} params Request parameters
+   * @returns {Promise<RegisterBrandResponse>} Promise resolving to the response
+   */
+  public async registerBrand(params?: RegisterBrandRequest): Promise<RegisterBrandResponse> {
+    return ShopeeFetch.fetch<RegisterBrandResponse>(this.config, "/product/register_brand", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Use this api to reply comments from buyers in batch.
+   *
+   * @param {ReplyCommentRequest} params Request parameters
+   * @returns {Promise<ReplyCommentResponse>} Promise resolving to the response
+   */
+  public async replyComment(params?: ReplyCommentRequest): Promise<ReplyCommentResponse> {
+    return ShopeeFetch.fetch<ReplyCommentResponse>(this.config, "/product/reply_comment", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * this api is for searching attribute value list for attribute with support_search_value flag
+   *
+   * @param {SearchAttributeValueListRequest} params Request parameters
+   * @returns {Promise<SearchAttributeValueListResponse>} Promise resolving to the response
+   */
+  public async searchAttributeValueList(
+    params?: SearchAttributeValueListRequest
+  ): Promise<SearchAttributeValueListResponse> {
+    return ShopeeFetch.fetch<SearchAttributeValueListResponse>(
+      this.config,
+      "/product/search_attribute_value_list",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Use this call to search item.
+   *
+   * @param {SearchItemRequest} params Request parameters
+   * @returns {Promise<SearchItemResponse>} Promise resolving to the response
+   */
+  public async searchItem(params?: SearchItemRequest): Promise<SearchItemResponse> {
+    return ShopeeFetch.fetch<SearchItemResponse>(this.config, "/product/search_item", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Use this API to retrieve Unpackaged SKU ID information for items that toggle on logistics channel 30029.
+   *
+   * @param {SearchUnpackagedModelListRequest} params Request parameters
+   * @returns {Promise<SearchUnpackagedModelListResponse>} Promise resolving to the response
+   */
+  public async searchUnpackagedModelList(
+    params?: SearchUnpackagedModelListRequest
+  ): Promise<SearchUnpackagedModelListResponse> {
+    return ShopeeFetch.fetch<SearchUnpackagedModelListResponse>(
+      this.config,
+      "/product/search_unpackaged_model_list",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Unlist item.
+   *
+   * @param {UnlistItemRequest} params Request parameters
+   * @returns {Promise<UnlistItemResponse>} Promise resolving to the response
+   */
+  public async unlistItem(params?: UnlistItemRequest): Promise<UnlistItemResponse> {
+    return ShopeeFetch.fetch<UnlistItemResponse>(this.config, "/product/unlist_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Update item.
+   *
+   * @param {UpdateItemRequest} params Request parameters
+   * @returns {Promise<UpdateItemResponse>} Promise resolving to the response
+   */
+  public async updateItem(params?: UpdateItemRequest): Promise<UpdateItemResponse> {
+    return ShopeeFetch.fetch<UpdateItemResponse>(this.config, "/product/update_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+      timestampPaths: ["scheduled_publish_time"],
+    });
+  }
+  /**
+   * Update the kit basic information and kit components, only support adding kit variations and updating existing kit variation’s image, price, and model_sku, don’t support deleting existing kit variations and updating the items, main component and quantity per kit of existing kit variations.
+   *
+   * @param {UpdateKitItemRequest} params Request parameters
+   * @returns {Promise<UpdateKitItemResponse>} Promise resolving to the response
+   */
+  public async updateKitItem(params?: UpdateKitItemRequest): Promise<UpdateKitItemResponse> {
+    return ShopeeFetch.fetch<UpdateKitItemResponse>(this.config, "/product/update_kit_item", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Update seller sku/ pre order/ model status for model.
+   *
+   * @param {UpdateModelRequest} params Request parameters
+   * @returns {Promise<UpdateModelResponse>} Promise resolving to the response
+   */
+  public async updateModel(params?: UpdateModelRequest): Promise<UpdateModelResponse> {
+    return ShopeeFetch.fetch<UpdateModelResponse>(this.config, "/product/update_model", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Update price.
+   *
+   * @param {UpdatePriceRequest} params Request parameters
+   * @returns {Promise<UpdatePriceResponse>} Promise resolving to the response
+   */
+  public async updatePrice(params?: UpdatePriceRequest): Promise<UpdatePriceResponse> {
+    return ShopeeFetch.fetch<UpdatePriceResponse>(this.config, "/product/update_price", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * Update sip item price.
+   *
+   * @param {UpdateSipItemPriceRequest} params Request parameters
+   * @returns {Promise<UpdateSipItemPriceResponse>} Promise resolving to the response
+   */
+  public async updateSipItemPrice(
+    params?: UpdateSipItemPriceRequest
+  ): Promise<UpdateSipItemPriceResponse> {
+    return ShopeeFetch.fetch<UpdateSipItemPriceResponse>(
+      this.config,
+      "/product/update_sip_item_price",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Use this API to update one item_id for each call, but still can support updating multiple model_ids stock of the same item_id (If you need batch modification, please call multiple times)This API will update only "seller_stock".Whenever there is a promotion ongoing or upcoming, the total stock must be larger than or equal to real-time “reserved_stock” promotion stock (Please check v2.get_item_promotion API for more details). Items that are deleted will not be allowed to modify stock.
+   *
+   * @param {UpdateStockRequest} params Request parameters
+   * @returns {Promise<UpdateStockResponse>} Promise resolving to the response
+   */
+  public async updateStock(params?: UpdateStockRequest): Promise<UpdateStockResponse> {
+    return ShopeeFetch.fetch<UpdateStockResponse>(this.config, "/product/update_stock", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
+   * This api can only be used without changing the tier structure, you can add options, delete options, and update the option image by this api. More detail please check: https://open.shopee.com/developer-guide/219
+   *
+   * @param {UpdateTierVariationRequest} params Request parameters
+   * @returns {Promise<UpdateTierVariationResponse>} Promise resolving to the response
+   */
+  public async updateTierVariation(
+    params?: UpdateTierVariationRequest
+  ): Promise<UpdateTierVariationResponse> {
+    return ShopeeFetch.fetch<UpdateTierVariationResponse>(
+      this.config,
+      "/product/update_tier_variation",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
   }
 }

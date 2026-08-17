@@ -30,7 +30,7 @@ describe("auditRepositorySpecs", () => {
         method: 2,
         params: {
           request_params: [{ name: "item_id" }, { name: "page_size" }],
-          response: [
+          response_params: [
             {
               name: "response",
               children: [{ name: "item_list" }, { name: "has_next_page" }],
@@ -45,7 +45,7 @@ describe("auditRepositorySpecs", () => {
         method: 2,
         params: {
           request_params: [],
-          response: [{ name: "response", children: [] }],
+          response_params: [{ name: "response", children: [] }],
         },
       })
     );
@@ -104,7 +104,7 @@ describe("auditRepositorySpecs", () => {
             { name: "item_id", type: "int64", required: "True" },
             { name: "query", type: "string", required: "False" },
           ],
-          response: [
+          response_params: [
             {
               name: "response",
               children: [
@@ -195,7 +195,7 @@ describe("auditRepositorySpecs", () => {
         method: 1,
         params: {
           request_params: [],
-          response: [{ name: "response", children: [] }],
+          response_params: [{ name: "response", children: [] }],
         },
       })
     );
@@ -238,7 +238,7 @@ describe("auditRepositorySpecs", () => {
         method: 2,
         params: {
           request_params: [{ name: "item_id" }],
-          response: [
+          response_params: [
             {
               name: "response",
               children: [{ name: "item_list" }],
@@ -292,7 +292,7 @@ describe("auditRepositorySpecs", () => {
         method: 2,
         params: {
           request_params: [{ name: "item_id" }],
-          response: [
+          response_params: [
             {
               name: "response",
               children: [{ name: "item_list" }],

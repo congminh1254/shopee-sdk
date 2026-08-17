@@ -1,95 +1,90 @@
-import { ShopeeConfig } from "../sdk.js";
-import { ShopeeFetch } from "../fetch.js";
-import {
-  SetAppPushConfigParams,
-  SetAppPushConfigResponse,
-  GetAppPushConfigResponse,
-  GetLostPushMessageResponse,
-  ConfirmConsumedLostPushMessageParams,
-  ConfirmConsumedLostPushMessageResponse,
-} from "../schemas/push.js";
-import { BaseManager } from "./base.manager.js";
+// NOTE: This file is auto-generated. Do not edit directly.
 
+import {
+  ConfirmConsumedLostPushMessageRequest,
+  ConfirmConsumedLostPushMessageResponse,
+  GetAppPushConfigRequest,
+  GetAppPushConfigResponse,
+  GetLostPushMessageRequest,
+  GetLostPushMessageResponse,
+  SetAppPushConfigRequest,
+  SetAppPushConfigResponse,
+} from "../schemas/push.js";
+import { ShopeeConfig } from "../sdk.js";
+import { BaseManager } from "./base.manager.js";
+import { ShopeeFetch } from "../fetch.js";
 export class PushManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
-  public async setAppPushConfig(params: SetAppPushConfigParams): Promise<SetAppPushConfigResponse> {
-    const response = await ShopeeFetch.fetch<SetAppPushConfigResponse>(
-      this.config,
-      "/push/set_app_push_config",
-      {
-        method: "POST",
-        body: params as Record<string, string | number | boolean>,
-      }
-    );
-
-    return response;
-  }
-
-  public async getAppPushConfig(): Promise<GetAppPushConfigResponse> {
-    const response = await ShopeeFetch.fetch<GetAppPushConfigResponse>(
-      this.config,
-      "/push/get_app_push_config",
-      {
-        method: "GET",
-      }
-    );
-
-    return response;
-  }
-
   /**
-   * Get the lost push messages that were lost within 3 days of the current time and not confirmed to have been consumed
-   * @returns {Promise<GetLostPushMessageResponse>} Response containing up to 100 lost push messages
+   * Confirm consumed lost push message
    *
-   * This API retrieves the earliest 100 lost push messages from the past 3 days that haven't been confirmed as consumed.
-   * If there are more than 100 messages, the response will indicate this via the has_next_page field,
-   * and you'll need to make additional calls to retrieve the remaining messages.
-   *
-   * The returned messages contain:
-   * - shop_id: The shop identifier (absent for partner level pushes)
-   * - code: The push notification identifier
-   * - timestamp: When the message was lost
-   * - data: The actual push message content (as a JSON string)
-   */
-  public async getLostPushMessage(): Promise<GetLostPushMessageResponse> {
-    const response = await ShopeeFetch.fetch<GetLostPushMessageResponse>(
-      this.config,
-      "/push/get_lost_push_message",
-      {
-        method: "GET",
-      }
-    );
-
-    return response;
-  }
-
-  /**
-   * Confirm that lost push messages have been consumed up to a specific message ID
-   * @param {ConfirmConsumedLostPushMessageParams} params - Parameters for confirming consumed lost push messages
-   * @param {number} params.last_message_id - The last_message_id returned by getLostPushMessage
-   * @returns {Promise<ConfirmConsumedLostPushMessageResponse>} Response indicating the confirmation result
-   *
-   * This API confirms that all lost push messages up to and including the specified last_message_id
-   * have been successfully consumed/processed by your application. After confirmation, these messages
-   * will no longer be returned by the getLostPushMessage API.
-   *
-   * Use this method after you have successfully processed the messages returned by getLostPushMessage.
+   * @param {ConfirmConsumedLostPushMessageRequest} params Request parameters
+   * @returns {Promise<ConfirmConsumedLostPushMessageResponse>} Promise resolving to the response
    */
   public async confirmConsumedLostPushMessage(
-    params: ConfirmConsumedLostPushMessageParams
+    params?: ConfirmConsumedLostPushMessageRequest
   ): Promise<ConfirmConsumedLostPushMessageResponse> {
-    const response = await ShopeeFetch.fetch<ConfirmConsumedLostPushMessageResponse>(
+    return ShopeeFetch.fetch<ConfirmConsumedLostPushMessageResponse>(
       this.config,
       "/push/confirm_consumed_lost_push_message",
       {
         method: "POST",
+        auth: true,
         body: params,
       }
     );
-
-    return response;
+  }
+  /**
+   * you can get your app current push config setting through this api
+   *
+   * @param {GetAppPushConfigRequest} params Request parameters
+   * @returns {Promise<GetAppPushConfigResponse>} Promise resolving to the response
+   */
+  public async getAppPushConfig(
+    params?: GetAppPushConfigRequest
+  ): Promise<GetAppPushConfigResponse> {
+    return ShopeeFetch.fetch<GetAppPushConfigResponse>(this.config, "/push/get_app_push_config", {
+      method: "GET",
+      auth: true,
+      params: params,
+      timestampPaths: ["response.suspended_time"],
+    });
+  }
+  /**
+   * Get the lost push messages that were lost within 3 days of the current time and not confirmed to have been consumed
+   *
+   * @param {GetLostPushMessageRequest} params Request parameters
+   * @returns {Promise<GetLostPushMessageResponse>} Promise resolving to the response
+   */
+  public async getLostPushMessage(
+    params?: GetLostPushMessageRequest
+  ): Promise<GetLostPushMessageResponse> {
+    return ShopeeFetch.fetch<GetLostPushMessageResponse>(
+      this.config,
+      "/push/get_lost_push_message",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+        timestampPaths: ["response.push_message_list.timestamp"],
+      }
+    );
+  }
+  /**
+   * you can turn on or turn off your app push config setting through this open api
+   *
+   * @param {SetAppPushConfigRequest} params Request parameters
+   * @returns {Promise<SetAppPushConfigResponse>} Promise resolving to the response
+   */
+  public async setAppPushConfig(
+    params?: SetAppPushConfigRequest
+  ): Promise<SetAppPushConfigResponse> {
+    return ShopeeFetch.fetch<SetAppPushConfigResponse>(this.config, "/push/set_app_push_config", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
 }

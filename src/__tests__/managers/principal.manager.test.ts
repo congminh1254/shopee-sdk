@@ -4,31 +4,31 @@ import { ShopeeConfig } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { ShopeeFetch } from "../../fetch.js";
 import {
-  GetClipVideoPerformanceParams,
+  GetClipVideoPerformanceRequest,
   GetClipVideoPerformanceResponse,
-  GetContentAffiliatePerformanceParams,
+  GetContentAffiliatePerformanceRequest,
   GetContentAffiliatePerformanceResponse,
-  GetPrincipalAffiliatePerformanceParams,
+  GetPrincipalAffiliatePerformanceRequest,
   GetPrincipalAffiliatePerformanceResponse,
-  GetPrincipalLivestreamPerformanceParams,
+  GetPrincipalLivestreamPerformanceRequest,
   GetPrincipalLivestreamPerformanceResponse,
-  GetPrincipalSalesPerformanceDetailParams,
+  GetPrincipalSalesPerformanceDetailRequest,
   GetPrincipalSalesPerformanceDetailResponse,
-  GetPrincipalVideoPerformanceParams,
+  GetPrincipalVideoPerformanceRequest,
   GetPrincipalVideoPerformanceResponse,
-  GetSessionLivestreamPerformanceParams,
+  GetSessionLivestreamPerformanceRequest,
   GetSessionLivestreamPerformanceResponse,
-  GetShopAffiliatePerformanceParams,
+  GetShopAffiliatePerformanceRequest,
   GetShopAffiliatePerformanceResponse,
-  GetShopLivestreamPerformanceParams,
+  GetShopLivestreamPerformanceRequest,
   GetShopLivestreamPerformanceResponse,
-  GetShopSalesPerformanceDetailParams,
+  GetShopSalesPerformanceDetailRequest,
   GetShopSalesPerformanceDetailResponse,
-  GetShopVideoPerformanceParams,
+  GetShopVideoPerformanceRequest,
   GetShopVideoPerformanceResponse,
 } from "../../schemas/principal.js";
 
-const mockFetch = jest.fn() as any;
+const mockFetch = jest.fn() as unknown as jest.MockedFunction<typeof ShopeeFetch.fetch>;
 ShopeeFetch.fetch = mockFetch;
 
 describe("PrincipalManager", () => {
@@ -61,7 +61,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetClipVideoPerformanceParams = {
+      const params: GetClipVideoPerformanceRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",
@@ -95,7 +95,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetContentAffiliatePerformanceParams = {
+      const params: GetContentAffiliatePerformanceRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",
@@ -129,7 +129,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetPrincipalAffiliatePerformanceParams = {
+      const params: GetPrincipalAffiliatePerformanceRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",
@@ -163,7 +163,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetPrincipalLivestreamPerformanceParams = {
+      const params: GetPrincipalLivestreamPerformanceRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",
@@ -197,7 +197,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetPrincipalSalesPerformanceDetailParams = {
+      const params: GetPrincipalSalesPerformanceDetailRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",
@@ -231,7 +231,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetPrincipalVideoPerformanceParams = {
+      const params: GetPrincipalVideoPerformanceRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",
@@ -265,7 +265,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetSessionLivestreamPerformanceParams = {
+      const params: GetSessionLivestreamPerformanceRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",
@@ -299,7 +299,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetShopAffiliatePerformanceParams = {
+      const params: GetShopAffiliatePerformanceRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",
@@ -333,7 +333,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetShopLivestreamPerformanceParams = {
+      const params: GetShopLivestreamPerformanceRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",
@@ -367,7 +367,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetShopSalesPerformanceDetailParams = {
+      const params: GetShopSalesPerformanceDetailRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",
@@ -401,7 +401,7 @@ describe("PrincipalManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const params: GetShopVideoPerformanceParams = {
+      const params: GetShopVideoPerformanceRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
         timezone: "2026-01-01",

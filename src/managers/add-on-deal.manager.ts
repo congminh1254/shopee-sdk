@@ -1,76 +1,65 @@
-import { ShopeeConfig } from "../sdk.js";
-import { BaseManager } from "./base.manager.js";
+// NOTE: This file is auto-generated. Do not edit directly.
+
 import {
-  AddAddOnDealParams,
+  AddAddOnDealRequest,
   AddAddOnDealResponse,
-  AddAddOnDealMainItemParams,
+  AddAddOnDealMainItemRequest,
   AddAddOnDealMainItemResponse,
-  AddAddOnDealSubItemParams,
+  AddAddOnDealSubItemRequest,
   AddAddOnDealSubItemResponse,
-  DeleteAddOnDealParams,
+  DeleteAddOnDealRequest,
   DeleteAddOnDealResponse,
-  DeleteAddOnDealMainItemParams,
+  DeleteAddOnDealMainItemRequest,
   DeleteAddOnDealMainItemResponse,
-  DeleteAddOnDealSubItemParams,
+  DeleteAddOnDealSubItemRequest,
   DeleteAddOnDealSubItemResponse,
-  EndAddOnDealParams,
+  EndAddOnDealRequest,
   EndAddOnDealResponse,
-  GetAddOnDealParams,
+  GetAddOnDealRequest,
   GetAddOnDealResponse,
-  GetAddOnDealListParams,
+  GetAddOnDealListRequest,
   GetAddOnDealListResponse,
-  GetAddOnDealMainItemParams,
+  GetAddOnDealMainItemRequest,
   GetAddOnDealMainItemResponse,
-  GetAddOnDealSubItemParams,
+  GetAddOnDealSubItemRequest,
   GetAddOnDealSubItemResponse,
-  UpdateAddOnDealParams,
+  UpdateAddOnDealRequest,
   UpdateAddOnDealResponse,
-  UpdateAddOnDealMainItemParams,
+  UpdateAddOnDealMainItemRequest,
   UpdateAddOnDealMainItemResponse,
-  UpdateAddOnDealSubItemParams,
+  UpdateAddOnDealSubItemRequest,
   UpdateAddOnDealSubItemResponse,
 } from "../schemas/add-on-deal.js";
+import { ShopeeConfig } from "../sdk.js";
+import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
-
 export class AddOnDealManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
   }
-
   /**
-   * Create a new add-on deal activity
-   * @param {AddAddOnDealParams} params - Parameters for creating a new add-on deal
-   * @returns {Promise<AddAddOnDealResponse>} The response containing the created add-on deal ID
+   * Add Add-on Deal
    *
-   * Note: A maximum of 1000 add-on deals can be created.
-   * The start time must be 1 hour later than current time.
-   * The end time must be 1 hour later than start time.
+   * @param {AddAddOnDealRequest} params Request parameters
+   * @returns {Promise<AddAddOnDealResponse>} Promise resolving to the response
    */
-  async addAddOnDeal(params: AddAddOnDealParams): Promise<AddAddOnDealResponse> {
-    const response = await ShopeeFetch.fetch<AddAddOnDealResponse>(
-      this.config,
-      "/add_on_deal/add_add_on_deal",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
+  public async addAddOnDeal(params?: AddAddOnDealRequest): Promise<AddAddOnDealResponse> {
+    return ShopeeFetch.fetch<AddAddOnDealResponse>(this.config, "/add_on_deal/add_add_on_deal", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
-
   /**
-   * Add main items to an existing add-on deal activity
-   * @param {AddAddOnDealMainItemParams} params - Parameters for adding main items to an add-on deal
-   * @returns {Promise<AddAddOnDealMainItemResponse>} The response containing the list of added main items
+   * Add Add-on Deal Main Item
    *
-   * Main items are the products that customers must purchase to be eligible for the add-on deal.
+   * @param {AddAddOnDealMainItemRequest} params Request parameters
+   * @returns {Promise<AddAddOnDealMainItemResponse>} Promise resolving to the response
    */
-  async addAddOnDealMainItem(
-    params: AddAddOnDealMainItemParams
+  public async addAddOnDealMainItem(
+    params?: AddAddOnDealMainItemRequest
   ): Promise<AddAddOnDealMainItemResponse> {
-    const response = await ShopeeFetch.fetch<AddAddOnDealMainItemResponse>(
+    return ShopeeFetch.fetch<AddAddOnDealMainItemResponse>(
       this.config,
       "/add_on_deal/add_add_on_deal_main_item",
       {
@@ -79,22 +68,17 @@ export class AddOnDealManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Add sub items (discounted or gift items) to an existing add-on deal activity
-   * @param {AddAddOnDealSubItemParams} params - Parameters for adding sub items to an add-on deal
-   * @returns {Promise<AddAddOnDealSubItemResponse>} The response containing any failed sub items
+   * Add Add-on Deal Sub Item
    *
-   * Sub items are the products offered at a discount or as gifts when customers purchase main items.
-   * The response includes a list of items that failed to be added with error details.
+   * @param {AddAddOnDealSubItemRequest} params Request parameters
+   * @returns {Promise<AddAddOnDealSubItemResponse>} Promise resolving to the response
    */
-  async addAddOnDealSubItem(
-    params: AddAddOnDealSubItemParams
+  public async addAddOnDealSubItem(
+    params?: AddAddOnDealSubItemRequest
   ): Promise<AddAddOnDealSubItemResponse> {
-    const response = await ShopeeFetch.fetch<AddAddOnDealSubItemResponse>(
+    return ShopeeFetch.fetch<AddAddOnDealSubItemResponse>(
       this.config,
       "/add_on_deal/add_add_on_deal_sub_item",
       {
@@ -103,20 +87,15 @@ export class AddOnDealManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Delete an existing add-on deal activity
-   * @param {DeleteAddOnDealParams} params - Parameters for deleting an add-on deal
-   * @returns {Promise<DeleteAddOnDealResponse>} The response containing the deleted add-on deal ID
+   * Delete Add-on Deal
    *
-   * Note: Can only delete upcoming add-on deals that haven't started yet.
-   * Will return an error if attempting to delete an add-on deal that has already started.
+   * @param {DeleteAddOnDealRequest} params Request parameters
+   * @returns {Promise<DeleteAddOnDealResponse>} Promise resolving to the response
    */
-  async deleteAddOnDeal(params: DeleteAddOnDealParams): Promise<DeleteAddOnDealResponse> {
-    const response = await ShopeeFetch.fetch<DeleteAddOnDealResponse>(
+  public async deleteAddOnDeal(params?: DeleteAddOnDealRequest): Promise<DeleteAddOnDealResponse> {
+    return ShopeeFetch.fetch<DeleteAddOnDealResponse>(
       this.config,
       "/add_on_deal/delete_add_on_deal",
       {
@@ -125,23 +104,17 @@ export class AddOnDealManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Delete main items from an existing add-on deal activity
-   * @param {DeleteAddOnDealMainItemParams} params - Parameters for deleting main items from an add-on deal
-   * @returns {Promise<DeleteAddOnDealMainItemResponse>} The response containing any failed item deletions
+   * Delete Add-on Deal Main Item
    *
-   * The response includes:
-   * - add_on_deal_id: The ID of the add-on deal
-   * - failed_item_id_list: List of item IDs that failed to be deleted
+   * @param {DeleteAddOnDealMainItemRequest} params Request parameters
+   * @returns {Promise<DeleteAddOnDealMainItemResponse>} Promise resolving to the response
    */
-  async deleteAddOnDealMainItem(
-    params: DeleteAddOnDealMainItemParams
+  public async deleteAddOnDealMainItem(
+    params?: DeleteAddOnDealMainItemRequest
   ): Promise<DeleteAddOnDealMainItemResponse> {
-    const response = await ShopeeFetch.fetch<DeleteAddOnDealMainItemResponse>(
+    return ShopeeFetch.fetch<DeleteAddOnDealMainItemResponse>(
       this.config,
       "/add_on_deal/delete_add_on_deal_main_item",
       {
@@ -150,22 +123,17 @@ export class AddOnDealManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Delete sub items from an existing add-on deal activity
-   * @param {DeleteAddOnDealSubItemParams} params - Parameters for deleting sub items from an add-on deal
-   * @returns {Promise<DeleteAddOnDealSubItemResponse>} The response containing any failed sub item deletions
+   * Delete Add-on Deal Sub Item
    *
-   * The response includes a list of sub items that failed to be deleted with error details.
-   * Note: At least one sub item should remain in the add-on deal.
+   * @param {DeleteAddOnDealSubItemRequest} params Request parameters
+   * @returns {Promise<DeleteAddOnDealSubItemResponse>} Promise resolving to the response
    */
-  async deleteAddOnDealSubItem(
-    params: DeleteAddOnDealSubItemParams
+  public async deleteAddOnDealSubItem(
+    params?: DeleteAddOnDealSubItemRequest
   ): Promise<DeleteAddOnDealSubItemResponse> {
-    const response = await ShopeeFetch.fetch<DeleteAddOnDealSubItemResponse>(
+    return ShopeeFetch.fetch<DeleteAddOnDealSubItemResponse>(
       this.config,
       "/add_on_deal/delete_add_on_deal_sub_item",
       {
@@ -174,142 +142,98 @@ export class AddOnDealManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * End an ongoing add-on deal activity immediately
-   * @param {EndAddOnDealParams} params - Parameters for ending an add-on deal
-   * @returns {Promise<EndAddOnDealResponse>} The response containing the ended add-on deal ID
+   * End Add-on Deal
    *
-   * Note: Can only end add-on deals that are currently ongoing/active.
-   * Will return an error if attempting to end an upcoming or expired add-on deal.
+   * @param {EndAddOnDealRequest} params Request parameters
+   * @returns {Promise<EndAddOnDealResponse>} Promise resolving to the response
    */
-  async endAddOnDeal(params: EndAddOnDealParams): Promise<EndAddOnDealResponse> {
-    const response = await ShopeeFetch.fetch<EndAddOnDealResponse>(
-      this.config,
-      "/add_on_deal/end_add_on_deal",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-      }
-    );
-
-    return response;
+  public async endAddOnDeal(params?: EndAddOnDealRequest): Promise<EndAddOnDealResponse> {
+    return ShopeeFetch.fetch<EndAddOnDealResponse>(this.config, "/add_on_deal/end_add_on_deal", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
-
   /**
-   * Get detailed information about an add-on deal activity
-   * @param {GetAddOnDealParams} params - Parameters for getting add-on deal details
-   * @returns {Promise<GetAddOnDealResponse>} The response containing comprehensive add-on deal information
+   * Get Add-on Deal
    *
-   * The response includes:
-   * - Basic add-on deal details (ID, name, start/end time, etc.)
-   * - Promotion type and configuration
-   * - Purchase limits and requirements
-   * - Sub item display priority
-   * - Source information
+   * @param {GetAddOnDealRequest} params Request parameters
+   * @returns {Promise<GetAddOnDealResponse>} Promise resolving to the response
    */
-  async getAddOnDeal(params: GetAddOnDealParams): Promise<GetAddOnDealResponse> {
-    const response = await ShopeeFetch.fetch<GetAddOnDealResponse>(
-      this.config,
-      "/add_on_deal/get_add_on_deal",
-      {
-        method: "GET",
-        auth: true,
-        params,
-      }
-    );
-
-    return response;
+  public async getAddOnDeal(params?: GetAddOnDealRequest): Promise<GetAddOnDealResponse> {
+    return ShopeeFetch.fetch<GetAddOnDealResponse>(this.config, "/add_on_deal/get_add_on_deal", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
   }
-
   /**
-   * Get a list of add-on deal activities with pagination
-   * @param {GetAddOnDealListParams} params - Parameters for retrieving add-on deal list
-   * @param {AddOnDealPromotionStatus} params.promotion_status - Filter by promotion status (all, ongoing, upcoming, expired)
-   * @param {number} [params.page_no] - Page number to retrieve (default: 1, max: 1000)
-   * @param {number} [params.page_size] - Number of items per page (default: 100, max: 100)
-   * @returns {Promise<GetAddOnDealListResponse>} The response containing a paginated list of add-on deals
+   * Get Add-on Deal List
    *
-   * The response includes:
-   * - add_on_deal_list: List of add-on deals with full details
-   * - more: Boolean indicating if there are more pages
+   * @param {GetAddOnDealListRequest} params Request parameters
+   * @returns {Promise<GetAddOnDealListResponse>} Promise resolving to the response
    */
-  async getAddOnDealList(params: GetAddOnDealListParams): Promise<GetAddOnDealListResponse> {
-    const response = await ShopeeFetch.fetch<GetAddOnDealListResponse>(
+  public async getAddOnDealList(
+    params?: GetAddOnDealListRequest
+  ): Promise<GetAddOnDealListResponse> {
+    return ShopeeFetch.fetch<GetAddOnDealListResponse>(
       this.config,
       "/add_on_deal/get_add_on_deal_list",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Get main items in an add-on deal activity
-   * @param {GetAddOnDealMainItemParams} params - Parameters for getting main items
-   * @returns {Promise<GetAddOnDealMainItemResponse>} The response containing the list of main items
+   * Get Add-on Deal Main Item
    *
-   * Main items are the products that customers must purchase to be eligible for the add-on deal.
+   * @param {GetAddOnDealMainItemRequest} params Request parameters
+   * @returns {Promise<GetAddOnDealMainItemResponse>} Promise resolving to the response
    */
-  async getAddOnDealMainItem(
-    params: GetAddOnDealMainItemParams
+  public async getAddOnDealMainItem(
+    params?: GetAddOnDealMainItemRequest
   ): Promise<GetAddOnDealMainItemResponse> {
-    const response = await ShopeeFetch.fetch<GetAddOnDealMainItemResponse>(
+    return ShopeeFetch.fetch<GetAddOnDealMainItemResponse>(
       this.config,
       "/add_on_deal/get_add_on_deal_main_item",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Get sub items (discounted or gift items) in an add-on deal activity
-   * @param {GetAddOnDealSubItemParams} params - Parameters for getting sub items
-   * @returns {Promise<GetAddOnDealSubItemResponse>} The response containing the list of sub items
+   * Get Add-on Deal Sub Item
    *
-   * Sub items are the products offered at a discount or as gifts when customers purchase main items.
+   * @param {GetAddOnDealSubItemRequest} params Request parameters
+   * @returns {Promise<GetAddOnDealSubItemResponse>} Promise resolving to the response
    */
-  async getAddOnDealSubItem(
-    params: GetAddOnDealSubItemParams
+  public async getAddOnDealSubItem(
+    params?: GetAddOnDealSubItemRequest
   ): Promise<GetAddOnDealSubItemResponse> {
-    const response = await ShopeeFetch.fetch<GetAddOnDealSubItemResponse>(
+    return ShopeeFetch.fetch<GetAddOnDealSubItemResponse>(
       this.config,
       "/add_on_deal/get_add_on_deal_sub_item",
       {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Update an existing add-on deal activity
-   * @param {UpdateAddOnDealParams} params - Parameters for updating an add-on deal
-   * @returns {Promise<UpdateAddOnDealResponse>} The response containing the updated add-on deal information
+   * Update Add-on Deal
    *
-   * Note: For ongoing add-on deals, update capabilities may be limited.
-   * Only certain fields can be modified depending on the add-on deal status.
-   * The start time of upcoming add-on deals cannot be shortened.
-   * Promotion end time can only be changed to an earlier timing.
+   * @param {UpdateAddOnDealRequest} params Request parameters
+   * @returns {Promise<UpdateAddOnDealResponse>} Promise resolving to the response
    */
-  async updateAddOnDeal(params: UpdateAddOnDealParams): Promise<UpdateAddOnDealResponse> {
-    const response = await ShopeeFetch.fetch<UpdateAddOnDealResponse>(
+  public async updateAddOnDeal(params?: UpdateAddOnDealRequest): Promise<UpdateAddOnDealResponse> {
+    return ShopeeFetch.fetch<UpdateAddOnDealResponse>(
       this.config,
       "/add_on_deal/update_add_on_deal",
       {
@@ -318,21 +242,17 @@ export class AddOnDealManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Update main items in an existing add-on deal activity
-   * @param {UpdateAddOnDealMainItemParams} params - Parameters for updating main items
-   * @returns {Promise<UpdateAddOnDealMainItemResponse>} The response containing the updated main items
+   * Update Add-on Deal Main Item
    *
-   * Main items are the products that customers must purchase to be eligible for the add-on deal.
+   * @param {UpdateAddOnDealMainItemRequest} params Request parameters
+   * @returns {Promise<UpdateAddOnDealMainItemResponse>} Promise resolving to the response
    */
-  async updateAddOnDealMainItem(
-    params: UpdateAddOnDealMainItemParams
+  public async updateAddOnDealMainItem(
+    params?: UpdateAddOnDealMainItemRequest
   ): Promise<UpdateAddOnDealMainItemResponse> {
-    const response = await ShopeeFetch.fetch<UpdateAddOnDealMainItemResponse>(
+    return ShopeeFetch.fetch<UpdateAddOnDealMainItemResponse>(
       this.config,
       "/add_on_deal/update_add_on_deal_main_item",
       {
@@ -341,22 +261,17 @@ export class AddOnDealManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
-
   /**
-   * Update sub items in an existing add-on deal activity
-   * @param {UpdateAddOnDealSubItemParams} params - Parameters for updating sub items
-   * @returns {Promise<UpdateAddOnDealSubItemResponse>} The response containing any failed sub item updates
+   * Update Add-on Deal Sub Item
    *
-   * Sub items are the products offered at a discount or as gifts when customers purchase main items.
-   * The response includes a list of sub items that failed to be updated with error details.
+   * @param {UpdateAddOnDealSubItemRequest} params Request parameters
+   * @returns {Promise<UpdateAddOnDealSubItemResponse>} Promise resolving to the response
    */
-  async updateAddOnDealSubItem(
-    params: UpdateAddOnDealSubItemParams
+  public async updateAddOnDealSubItem(
+    params?: UpdateAddOnDealSubItemRequest
   ): Promise<UpdateAddOnDealSubItemResponse> {
-    const response = await ShopeeFetch.fetch<UpdateAddOnDealSubItemResponse>(
+    return ShopeeFetch.fetch<UpdateAddOnDealSubItemResponse>(
       this.config,
       "/add_on_deal/update_add_on_deal_sub_item",
       {
@@ -365,7 +280,5 @@ export class AddOnDealManager extends BaseManager {
         body: params,
       }
     );
-
-    return response;
   }
 }

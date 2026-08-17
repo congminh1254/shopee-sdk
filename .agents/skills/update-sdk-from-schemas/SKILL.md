@@ -40,14 +40,16 @@ Group the identified changes and implement them according to the following rules
      // Match fields from JSON schema's "request_params"
    }
    
-   export interface <EndpointName>Response extends FetchResponse<{
+   export interface <EndpointName>ResponseData {
      // Match fields from JSON schema's "response" children
-   }> {}
+   }
+   
+   export type <EndpointName>Response = FetchResponse<<EndpointName>ResponseData>;
    ```
 4. **Implement Manager Method**: In `src/managers/<module>.manager.ts`, add the corresponding public async method:
    ```typescript
    public async <endpointName>(
-     params: <EndpointName>Request
+     params?: <EndpointName>Request
    ): Promise<<EndpointName>Response> {
      return ShopeeFetch.fetch<<EndpointName>Response>(
        this.config,
@@ -55,7 +57,8 @@ Group the identified changes and implement them according to the following rules
        {
          method: "POST", // OR "GET" based on schema method
          body: params,   // OR params: params for GET
-         auth: true,     // Or false if public.json
+         auth: true,     // Included only if auth is required (omitted for public endpoints)
+         timestampPaths: [...], // Included if response contains date/timestamp fields (optional)
        }
      );
    }
