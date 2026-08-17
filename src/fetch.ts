@@ -295,7 +295,7 @@ export class ShopeeFetch {
       if (isJson) {
         // Type guard for JSON response with error field
         const jsonData = responseData as Record<string, unknown>;
-        if (jsonData.error) {
+        if (jsonData && jsonData.error) {
           // Handle invalid access token error
           const isAuthError =
             jsonData.error === "invalid_access_token" ||
