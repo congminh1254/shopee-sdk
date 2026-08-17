@@ -1,11 +1,14 @@
 import { jest, describe, beforeEach, it, expect } from "@jest/globals";
+import http from "node:http";
 import { ShopeeConfig, ShopeeSDK } from "../sdk.js";
 import { ShopeeRegion } from "../schemas/region.js";
 import { AccessToken } from "../schemas/access-token.js";
 import { ShopeeApiError } from "../errors.js";
 
 // Mock fetch function
-const mockFetch = jest.fn() as unknown as jest.Mock<(url: string, options?: any) => Promise<any>>;
+const mockFetch = jest.fn() as unknown as jest.Mock<
+  (url: string, options?: RequestInit) => Promise<unknown>
+>;
 
 // Mock the node-fetch module
 jest.unstable_mockModule("node-fetch", () => ({
@@ -18,6 +21,23 @@ jest.unstable_mockModule("node-fetch", () => ({
 
 const { ShopeeFetch } = await import("../fetch.js");
 
+interface CustomRequestInit extends RequestInit {
+  agent?: http.Agent;
+  _retryCount?: number;
+}
+
+interface TestTimestampResponse {
+  create_time: Date;
+  nested: {
+    update_time: Date;
+    other_field: string;
+  };
+  item_list: {
+    ship_time: Date;
+  }[];
+  list_values: (Date | number)[];
+}
+
 describe("ShopeeFetch Security and Retry Constraints", () => {
   let mockConfig: ShopeeConfig;
   let mockSdk: ShopeeSDK;
@@ -26,9 +46,9 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     jest.clearAllMocks();
 
     mockSdk = {
-      getAuthToken: jest.fn(),
-      refreshToken: jest.fn(),
-    } as Partial<ShopeeSDK> as ShopeeSDK;
+      getAuthToken: jest.fn<() => Promise<AccessToken | null>>(),
+      refreshToken: jest.fn<() => Promise<AccessToken | null>>(),
+    } as unknown as ShopeeSDK;
 
     mockConfig = {
       partner_id: 12345,
@@ -51,7 +71,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
       expired_at: Date.now() + 3600000,
       shop_id: 67890,
     };
-    (mockSdk.getAuthToken as any).mockResolvedValue(activeToken);
+    jest.mocked(mockSdk.getAuthToken).mockResolvedValue(activeToken);
 
     // First response is invalid token error, second response is success
     mockFetch
@@ -86,7 +106,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
       expired_at: Date.now() + 3600000,
       shop_id: 67890,
     };
-    (mockSdk.getAuthToken as any).mockResolvedValue(activeToken);
+    jest.mocked(mockSdk.getAuthToken).mockResolvedValue(activeToken);
 
     mockFetch
       .mockResolvedValueOnce({
@@ -120,7 +140,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
       expired_at: Date.now() + 3600000,
       shop_id: 67890,
     };
-    (mockSdk.getAuthToken as any).mockResolvedValue(activeToken);
+    jest.mocked(mockSdk.getAuthToken).mockResolvedValue(activeToken);
 
     // Return token error both times
     mockFetch
@@ -171,7 +191,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
   });
 
   it("should set custom agent when provided in config", async () => {
-    const customAgent = { name: "custom-agent" } as any;
+    const customAgent = new http.Agent();
     const configWithAgent = { ...mockConfig, agent: customAgent };
 
     mockFetch.mockResolvedValueOnce({
@@ -184,7 +204,8 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
 
     expect(mockFetch).toHaveBeenCalledTimes(1);
     const [, fetchOpts] = mockFetch.mock.calls[0];
-    expect((fetchOpts as any).agent).toBe(customAgent);
+    const customOpts = fetchOpts as CustomRequestInit;
+    expect(customOpts.agent).toBe(customAgent);
   });
 
   it("should serialize Date objects and preserve binary objects or objects with custom prototype", async () => {
@@ -194,7 +215,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
       json: jest.fn(() => Promise.resolve({ success: true })),
     });
 
-    const customProtoObj = Object.create({ custom: true });
+    const customProtoObj = Object.create({ custom: true }) as { field: string };
     customProtoObj.field = "value";
 
     const testDate = new Date(1710000000000); // 2024-03-09T16:00:00.000Z
@@ -210,7 +231,12 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
 
     expect(mockFetch).toHaveBeenCalledTimes(1);
     const [, fetchOpts] = mockFetch.mock.calls[0];
-    const parsedBody = JSON.parse((fetchOpts as any).body);
+    const bodyString = fetchOpts?.body as string;
+    const parsedBody = JSON.parse(bodyString) as {
+      date: number;
+      customObj: { field: string };
+      nested: number[];
+    };
     expect(parsedBody.date).toBe(Math.floor(testDate.getTime() / 1000));
     expect(parsedBody.customObj).toEqual({ field: "value" });
     expect(parsedBody.nested[0]).toBe(Math.floor(testDate.getTime() / 1000));
@@ -237,7 +263,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
       json: jest.fn(() => Promise.resolve(rawResponse)),
     });
 
-    const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
+    const result = await ShopeeFetch.fetch<TestTimestampResponse>(mockConfig, "/test/endpoint", {
       timestampPaths: [
         "create_time",
         "nested.update_time",
@@ -247,12 +273,12 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
       ],
     });
 
-    expect((result as any).create_time).toBeInstanceOf(Date);
-    expect((result as any).create_time.getTime()).toBe(1710000000 * 1000);
-    expect((result as any).nested.update_time).toBeInstanceOf(Date);
-    expect((result as any).item_list[0].ship_time).toBeInstanceOf(Date);
-    expect((result as any).list_values[0]).toBeInstanceOf(Date);
-    expect((result as any).list_values[1]).toBe(0);
+    expect(result.create_time).toBeInstanceOf(Date);
+    expect(result.create_time.getTime()).toBe(1710000000 * 1000);
+    expect(result.nested.update_time).toBeInstanceOf(Date);
+    expect(result.item_list[0].ship_time).toBeInstanceOf(Date);
+    expect(result.list_values[0]).toBeInstanceOf(Date);
+    expect(result.list_values[1]).toBe(0);
 
     // Cover line 151: non-object responses
     mockFetch.mockResolvedValueOnce({
@@ -272,11 +298,15 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
       headers: new Map([["content-type", "application/json"]]),
       json: jest.fn(() => Promise.resolve(arrayResponse)),
     });
-    const arrayResult = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
-      timestampPaths: ["create_time"],
-    });
-    expect((arrayResult as any)[0].create_time).toBeInstanceOf(Date);
-    expect((arrayResult as any)[1].create_time).toBeInstanceOf(Date);
+    const arrayResult = await ShopeeFetch.fetch<{ create_time: Date }[]>(
+      mockConfig,
+      "/test/endpoint",
+      {
+        timestampPaths: ["create_time"],
+      }
+    );
+    expect(arrayResult[0].create_time).toBeInstanceOf(Date);
+    expect(arrayResult[1].create_time).toBeInstanceOf(Date);
   });
 
   it("should detect PNG, JPG, and GIF mime types from buffers", async () => {
@@ -305,7 +335,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     expect(mockFetch).toHaveBeenCalledTimes(1);
     const [, fetchOpts] = mockFetch.mock.calls[0];
 
-    const formData = (fetchOpts as any).body;
+    const formData = fetchOpts?.body as FormData;
     expect(formData).toBeDefined();
   });
 });
