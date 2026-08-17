@@ -11,10 +11,10 @@ import { SDK_VERSION } from "./version.js";
 
 const isMock = typeof (nodeFetch as any).mock === "object";
 
-const fetchFn = isMock ? nodeFetch : (globalThis.fetch || nodeFetch);
-const FormDataClass = isMock ? NodeFetchFormData : (globalThis.FormData || NodeFetchFormData);
-const FileClass = isMock ? NodeFetchFile : (globalThis.File || NodeFetchFile);
-const HeadersClass = isMock ? NodeFetchHeaders : (globalThis.Headers || NodeFetchHeaders);
+const fetchFn = isMock ? nodeFetch : globalThis.fetch || nodeFetch;
+const FormDataClass = isMock ? NodeFetchFormData : globalThis.FormData || NodeFetchFormData;
+const FileClass = isMock ? NodeFetchFile : globalThis.File || NodeFetchFile;
+const HeadersClass = isMock ? NodeFetchHeaders : globalThis.Headers || NodeFetchHeaders;
 
 function isBlobLike(value: unknown): value is Blob {
   return (
@@ -240,7 +240,6 @@ export class ShopeeFetch {
         token?.access_token,
         token?.shop_id!.toString(),
       ]);
-
     }
     Object.entries({ ...allParams, ...authParams, sign: signature }).forEach(([key, value]) => {
       if (Array.isArray(value)) {
@@ -275,8 +274,6 @@ export class ShopeeFetch {
     if (config.agent) {
       requestOptions.agent = config.agent;
     }
-
-
 
     try {
       const response: any = await fetchFn(url.toString(), requestOptions);

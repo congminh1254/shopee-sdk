@@ -1,5 +1,3 @@
-
-
 export type FetchOptions = Omit<RequestInit, "body"> & {
   params?: any;
   body?: unknown;
