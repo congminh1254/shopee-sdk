@@ -90,6 +90,20 @@ export enum TimeRangeField {
   UPDATE_TIME = "update_time",
 }
 /**
+ * Enum generated for field WarehouseId
+ */
+export enum WarehouseId {
+  LOCATED = "located",
+  STORED = "stored",
+}
+/**
+ * Enum generated for field MappingType
+ */
+export enum MappingType {
+  STRUCTURE = "structure",
+  TYPE = "type",
+}
+/**
  * Enum generated for field PrescriptionImages
  */
 export enum PrescriptionImages {
@@ -1017,6 +1031,31 @@ export interface GetOrderDetailRecipientAddress {
   geolocation?: GetOrderDetailGeolocation;
 }
 /**
+ * GetOrderDetailComponent sub-interface for GetOrderDetailItem
+ */
+export interface GetOrderDetailComponent {
+  /**
+   * The unique identifier (SKU ID) of the underlying physical component item (Parent SKU).
+   */
+  parent_sku_id?: string;
+  /**
+   * The physical barcode or UPC of the Parent SKU, used for scanning and inventory picking in the warehouse.
+   */
+  barcode_upc?: string;
+  /**
+   * The mapping ratio/quantity of this specific Parent SKU required for ONE unit of the Bundle SKU (e.g., if Bundle A contains 2 units of Parent SKU B, quantity = 2)
+   */
+  quantity?: number;
+  /**
+   * The ID of the warehouse where the Parent SKU component is located/stored.
+   */
+  warehouse_id?: WarehouseId | string | number;
+  /**
+   * The structure/type of mapping defined for the bundle. Available values:1: Group2: Lucky bag3: Mapping List
+   */
+  mapping_type?: MappingType | string | number;
+}
+/**
  * GetOrderDetailImageInfo sub-interface for GetOrderDetailItem
  */
 export interface GetOrderDetailImageInfo {
@@ -1070,6 +1109,18 @@ export interface GetOrderDetailItem {
    * The number of identical items purchased at the same time by the same buyer from one listing/item.
    */
   model_quantity_purchased?: number;
+  /**
+   * Flag indicating whether the item contains any bundle items configured with Fulfillment Mapping (FFM). Returns 'true' if the item uses FFM logic, 'false' otherwise. Field will only be returned if shop is whitelisted.
+   */
+  is_fulfillment_mapping?: boolean;
+  /**
+   * The unique identifier (SKU ID) of the front-facing Bundle SKU purchased by the buyer on Shopee. Field will only be returned if shop is whitelisted and is_fulfillment_mapping returns true.
+   */
+  bundle_sku_id?: string;
+  /**
+   * List of underlying Parent SKUs (component level) associated with the mapped Bundle SKU, used by WMS/ERP for physical picking and fulfillment. If is_fulfillment_mapping returns 'false', this array will not be returned. Array will only be returned if shop is whitelisted and is_fulfillment_mapping returns true.
+   */
+  components?: GetOrderDetailComponent[];
   /**
    * The original price of the item in the listing currency.
    */
@@ -1664,6 +1715,31 @@ export interface GetPackageDetailRequest {
   package_number_list: string[];
 }
 /**
+ * GetPackageDetailComponent sub-interface for GetPackageDetailItem
+ */
+export interface GetPackageDetailComponent {
+  /**
+   * The unique identifier (SKU ID) of the underlying physical component item (Parent SKU).
+   */
+  parent_sku_id?: string;
+  /**
+   * The physical barcode or UPC of the Parent SKU, used for scanning and inventory picking in the warehouse.
+   */
+  barcode_upc?: string;
+  /**
+   * The mapping ratio/quantity of this specific Parent SKU required for ONE unit of the Bundle SKU (e.g., if Bundle A contains 2 units of Parent SKU B, quantity = 2)
+   */
+  quantity?: number;
+  /**
+   * The ID of the warehouse where the Parent SKU component is located/stored.
+   */
+  warehouse_id?: WarehouseId | string | number;
+  /**
+   * The structure/type of mapping defined for the bundle. Available values:1: Group2: Lucky bag3: Mapping List
+   */
+  mapping_type?: MappingType | string | number;
+}
+/**
  * GetPackageDetailItem sub-interface for GetPackageDetailPackage
  */
 export interface GetPackageDetailItem {
@@ -1687,6 +1763,18 @@ export interface GetPackageDetailItem {
    * The number of identical items/variations purchased at the same time by the same buyer from one listing/item.
    */
   model_quantity?: number;
+  /**
+   * Flag indicating whether the item contains any bundle items configured with Fulfillment Mapping (FFM). Returns 'true' if the item uses FFM logic, 'false' otherwise. Field will only be returned if shop is whitelisted.
+   */
+  is_fulfillment_mapping?: boolean;
+  /**
+   * The unique identifier (SKU ID) of the front-facing Bundle SKU purchased by the buyer on Shopee. Field will only be returned if shop is whitelisted and is_fulfillment_mapping returns true.
+   */
+  bundle_sku_id?: string;
+  /**
+   * List of underlying Parent SKUs (component level) associated with the mapped Bundle SKU, used by WMS/ERP for physical picking and fulfillment. If is_fulfillment_mapping returns 'false', this array will not be returned. Array will only be returned if shop is whitelisted and is_fulfillment_mapping returns true.
+   */
+  components?: GetPackageDetailComponent[];
   /**
    * The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.
    */

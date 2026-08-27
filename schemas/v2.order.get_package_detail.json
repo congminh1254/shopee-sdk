@@ -522,6 +522,72 @@
                     "key": "CdkJTx"
                   },
                   {
+                    "description": "<p>Flag indicating whether the item contains any bundle items configured with Fulfillment Mapping (FFM). Returns 'true' if the item uses FFM logic, 'false' otherwise. Field will only be returned if shop is whitelisted.</p>",
+                    "name": "is_fulfillment_mapping",
+                    "sample": "",
+                    "type": "boolean",
+                    "required": null,
+                    "key": "ERzsYpy"
+                  },
+                  {
+                    "description": "<p>The unique identifier (SKU ID) of the front-facing Bundle SKU purchased by the buyer on Shopee. Field will only be returned if shop is whitelisted and is_fulfillment_mapping returns true.</p>",
+                    "name": "bundle_sku_id",
+                    "sample": "",
+                    "type": "string",
+                    "required": null,
+                    "key": "jifbJwF"
+                  },
+                  {
+                    "description": "<p>List of underlying Parent SKUs (component level) associated with the mapped Bundle SKU, used by WMS/ERP for physical picking and fulfillment. If is_fulfillment_mapping returns 'false', this array will not be returned. Array will only be returned if shop is whitelisted and is_fulfillment_mapping returns true.</p>",
+                    "name": "components",
+                    "sample": "",
+                    "type": "object[]",
+                    "required": null,
+                    "key": "RdnnPdW",
+                    "children": [
+                      {
+                        "description": "<p>The unique identifier (SKU ID) of the underlying physical component item (Parent SKU).</p>",
+                        "name": "parent_sku_id",
+                        "sample": "",
+                        "type": "string",
+                        "required": null,
+                        "key": "FsxZCY"
+                      },
+                      {
+                        "description": "<p>The physical barcode or UPC of the Parent SKU, used for scanning and inventory picking in the warehouse.</p>",
+                        "name": "barcode_upc",
+                        "sample": "",
+                        "type": "string",
+                        "required": null,
+                        "key": "wRyWceC"
+                      },
+                      {
+                        "description": "<p>The mapping ratio/quantity of this specific Parent SKU required for ONE unit of the Bundle SKU (e.g., if Bundle A contains 2 units of Parent SKU B, quantity = 2)</p>",
+                        "name": "quantity",
+                        "sample": "",
+                        "type": "int64",
+                        "required": null,
+                        "key": "CsBRtJD"
+                      },
+                      {
+                        "description": "<p>The ID of the warehouse where the Parent SKU component is located/stored.</p>",
+                        "name": "warehouse_id",
+                        "sample": "",
+                        "type": "string",
+                        "required": null,
+                        "key": "YxdppTy"
+                      },
+                      {
+                        "description": "<p>The structure/type of mapping defined for the bundle. Available values:</p><p>1: Group</p><p>2: Lucky bag</p><p>3: Mapping List</p>",
+                        "name": "mapping_type",
+                        "sample": "",
+                        "type": "string",
+                        "required": null,
+                        "key": "aexyAmJ"
+                      }
+                    ]
+                  },
+                  {
                     "description": "<p>The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.</p>",
                     "name": "order_item_id",
                     "sample": "2200149592",
@@ -1114,6 +1180,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_package_detail",
   "update_log_list": [
     {
+      "date": "2026-08-27",
+      "content": "Add \"is_fulfillment_mapping\"\"bundle_sku_id\"\"components\" as Response Parameter"
+    },
+    {
       "date": "2026-08-06",
       "content": "Add invoice pending object"
     },
@@ -1128,10 +1198,6 @@
     {
       "date": "2026-04-09",
       "content": "Add new option for driver_status"
-    },
-    {
-      "date": "2026-02-28",
-      "content": "Add preparation_end_time and driver_info response parameters"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/order/get_package_detail",
