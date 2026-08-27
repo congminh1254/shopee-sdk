@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/congminh1254/shopee-sdk/compare/v2.0.0...v2.1.0) (2026-08-27)
+
+
+### Features
+
+* **order:** add fulfillment mapping fields to order schemas ([#238](https://github.com/congminh1254/shopee-sdk/issues/238)) ([1b01b41](https://github.com/congminh1254/shopee-sdk/commit/1b01b41a4cd47fe215a7bf83580694553bfbc503))
+
 ## [2.0.0](https://github.com/congminh1254/shopee-sdk/compare/v1.15.1...v2.0.0) (2026-08-17)
 
 
