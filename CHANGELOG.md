@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/congminh1254/shopee-sdk/compare/v2.1.0...v2.2.0) (2026-08-28)
+
+
+### Features
+
+* **payment:** add buyer instant fee field to escrow detail schemas ([#240](https://github.com/congminh1254/shopee-sdk/issues/240)) ([14c77ac](https://github.com/congminh1254/shopee-sdk/commit/14c77ac1f2ff122f768eb059add5634f9f3d7042))
+
 ## [2.1.0](https://github.com/congminh1254/shopee-sdk/compare/v2.0.0...v2.1.0) (2026-08-27)
 
 
