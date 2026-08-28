@@ -1041,6 +1041,10 @@ export interface GetEscrowDetailBuyerPaymentInfo {
    * The voucher provided by Ads team to offset the amount need to be paid by buyer.
    */
   ads_voucher_discount?: number;
+  /**
+   * The subscription fee paid by buyer for instant(Only for BR Local Shops)
+   */
+  buyer_instant_fee?: number;
 }
 /**
  * GetEscrowDetailResponseData sub-interface for GetEscrowDetailResponse
@@ -1761,6 +1765,10 @@ export interface GetEscrowDetailBatchBuyerPaymentInfo {
    * The voucher provided by Ads team to offset the amount need to be paid by buyer.it is an initial value (will not be updated after RR/cancellation)
    */
   ads_voucher_discount?: number;
+  /**
+   * The subscription fee paid by buyer for instant(Only for BR Local Shops)
+   */
+  buyer_instant_fee?: number;
 }
 /**
  * GetEscrowDetailBatchEscrowDetail sub-interface for GetEscrowDetailBatchResponseDataItem
