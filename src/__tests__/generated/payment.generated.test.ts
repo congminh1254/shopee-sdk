@@ -342,6 +342,7 @@ describe("PaymentManager (Generated Tests)", () => {
           discount_pix: 123,
           bcrs_deposit: 0.1,
           ads_voucher_discount: 123,
+          buyer_instant_fee: 123,
         },
       };
 
@@ -557,6 +558,7 @@ describe("PaymentManager (Generated Tests)", () => {
               discount_pix: 123,
               bcrs_deposit: 0.1,
               ads_voucher_discount: 123,
+              buyer_instant_fee: 123,
             },
           },
         },

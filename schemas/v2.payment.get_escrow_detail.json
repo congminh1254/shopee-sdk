@@ -1707,6 +1707,14 @@
                 "type": "float",
                 "required": null,
                 "key": "FrmSeaz"
+              },
+              {
+                "description": "<p>The subscription fee paid by buyer for instant</p><p>(Only for BR Local Shops)</p>",
+                "name": "buyer_instant_fee",
+                "sample": "",
+                "type": "float",
+                "required": null,
+                "key": "bcizNSa"
               }
             ]
           }
@@ -1775,6 +1783,7 @@
             "shopee_discount": 10,
             "voucher_from_seller": 10,
             "voucher_from_shopee": 10,
+            "voucher_from_external_party": 0.1,
             "coins": 0.1,
             "buyer_paid_shipping_fee": 0.1,
             "buyer_transaction_fee": 0.1,
@@ -1808,6 +1817,7 @@
                 "model_id": 0,
                 "model_name": " ",
                 "model_sku": " ",
+                "line_item_id": 2600144043,
                 "original_price": 139,
                 "original_price_pri": 110,
                 "selling_price": 100,
@@ -1826,11 +1836,11 @@
                 "ams_commission_fee": 0.1,
                 "is_kit": true,
                 "kit_items": {
-                  "mt_item_id": 0.1,
-                  "mt_model_id": 0.1,
+                  "original_product_id": 0.1,
+                  "original_model_id": 0.1,
                   "total_qty": 0.1,
-                  "parent_item_price": 0.1,
-                  "item_price_prorated": 0.1
+                  "original_price": 0.1,
+                  "proportional_price": 0.1
                 },
                 "promotion_list": [
                   {
@@ -1895,6 +1905,7 @@
             },
             "withholding_vat_tax": 1,
             "withholding_pit_tax": 2,
+            "withholding_cit_tax": 3,
             "tax_registration_code": "8881234567-888",
             "seller_order_processing_fee": 3,
             "buyer_paid_packaging_fee": 0.1,
@@ -1947,7 +1958,9 @@
             "trade_in_bonus": 0.1,
             "bulky_handling_fee": 0.1,
             "discount_pix": 0.1,
-            "bcrs_deposit": 0.1
+            "bcrs_deposit": 0.1,
+            "ads_voucher_discount": 0.1,
+            "buyer_instant_fee": 0.1
           }
         },
         "request_id": "10fff653c945a390f8e1323c6bdffff4",
@@ -1960,6 +1973,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/payment/get_escrow_detail",
   "update_log_list": [
+    {
+      "date": "2026-08-28",
+      "content": "add \"buyer instant fee\" field for BR local shops"
+    },
     {
       "date": "2026-07-31",
       "content": "update the type of the \"promotion_id\" and \"activity_id\" to uint64"
@@ -1975,10 +1992,6 @@
     {
       "date": "2026-07-17",
       "content": "add \"line_item_id\""
-    },
-    {
-      "date": "2026-07-06",
-      "content": "add \"withholding_cit_tax\" under order_income"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/payment/get_escrow_detail",
