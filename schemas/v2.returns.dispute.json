@@ -328,12 +328,12 @@
     },
     {
       "name": "error_network",
-      "description": "Inner error, please try later. [4].",
+      "description": "Inner http call failed",
       "solution": null
     },
     {
       "name": "error_network",
-      "description": "Inner http call failed",
+      "description": "Inner error, please try later. [4].",
       "solution": null
     },
     {
