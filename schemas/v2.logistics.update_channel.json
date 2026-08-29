@@ -106,6 +106,14 @@
       "solution": null
     },
     {
+      "name": "logistics_error",
+      "description": "This channel is now related to SPX Hemat channel (80029), to enable or disable it please update SPX Hemat channel instead",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
       "name": "logistics.compulsory_channel_rule",
       "description": "{parent_channel} cannot be modified. Please enable at least 1 of the following channel(s) first: {seller channel name list}",
       "solution": null
