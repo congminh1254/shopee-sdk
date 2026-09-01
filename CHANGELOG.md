@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/congminh1254/shopee-sdk/compare/v2.2.0...v2.3.0) (2026-09-01)
+
+
+### Features
+
+* **returns:** add partial quantity and refund adjustment fields to return schemas ([#243](https://github.com/congminh1254/shopee-sdk/issues/243)) ([1cb628c](https://github.com/congminh1254/shopee-sdk/commit/1cb628c4718bd9d2c9cd4da9ebe2ac06fbffb4e7))
+
 ## [2.2.0](https://github.com/congminh1254/shopee-sdk/compare/v2.1.0...v2.2.0) (2026-08-28)
 
 
