@@ -719,6 +719,14 @@ export interface GetReturnDetailResponseData {
    * [Only for validation_type = warehouse_validation] Warehouse handling actions for each item in the parcel.
    */
   follow_up_action_list?: GetReturnDetailFollowUpAction[];
+  /**
+   * To indicate whether the return includes items with partial quantities.
+   */
+  is_partial_quantity_return?: boolean;
+  /**
+   * To indicate whether the actual refund amount is less than the maximum allowable refund.
+   */
+  is_refund_amount_adjusted?: boolean;
 }
 /**
  * Response payload for get_return_detail
@@ -1075,6 +1083,14 @@ export interface GetReturnListReturn {
    * [Only for validation_type = warehouse_validation] Warehouse handling actions for each item in the parcel.
    */
   follow_up_action_list?: GetReturnListFollowUpAction[];
+  /**
+   * To indicate whether the return includes items with partial quantities.
+   */
+  is_partial_quantity_return?: boolean;
+  /**
+   * To indicate whether the actual refund amount is less than the maximum allowable refund.
+   */
+  is_refund_amount_adjusted?: boolean;
 }
 /**
  * GetReturnListResponseData sub-interface for GetReturnListResponse
