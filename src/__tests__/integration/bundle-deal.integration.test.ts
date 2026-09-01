@@ -58,6 +58,9 @@ const { runTests, initSdk } = setupIntegrationTest();
         expect(updateResponse.error || "").toBe("");
         expect(updateResponse.response?.bundle_deal_id).toBe(testDealId);
 
+        // Sleep for 2 seconds to allow Sandbox propagation
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
         // Re-verify name update
         const getUpdatedResponse = await sdk.bundleDeal.getBundleDeal({
           bundle_deal_id: testDealId,
