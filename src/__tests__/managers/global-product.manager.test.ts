@@ -264,6 +264,7 @@ describe("GlobalProductManager", () => {
         global_item_name: "New Product",
         description: "Product description",
         weight: 1.5,
+        condition: "NEW",
         image: {
           image_id_list: ["image123"],
         },
@@ -279,6 +280,7 @@ describe("GlobalProductManager", () => {
           global_item_name: "New Product",
           description: "Product description",
           weight: 1.5,
+          condition: "NEW",
           image: {
             image_id_list: ["image123"],
           },
