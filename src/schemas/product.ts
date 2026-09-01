@@ -566,7 +566,7 @@ export interface AddItemRequest {
    */
   item_sku?: string;
   /**
-   * Condition of item, could be USED or NEW
+   * Condition of item, USED、Used and used will be mapped to Used; NEW、New and new will be mapped to New. Required for BR.
    */
   condition?: string;
   /**

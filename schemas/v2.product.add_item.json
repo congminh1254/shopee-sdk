@@ -1230,7 +1230,7 @@
         "required": "False",
         "sample": "NEW",
         "type": "string",
-        "description": "Condition of item, could be USED or NEW",
+        "description": "<p>Condition of item, USED、Used and used will be mapped to Used; NEW、New and new will be mapped to New. Required for BR.</p>",
         "key": "MZSYsFy"
       },
       {
@@ -2720,6 +2720,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/product/add_item",
   "update_log_list": [
     {
+      "date": "2026-09-01",
+      "content": "Condition is required for BR"
+    },
+    {
       "date": "2026-06-24",
       "content": "2026-06-17"
     },
@@ -2734,10 +2738,6 @@
     {
       "date": "2025-04-28",
       "content": "Add permit_id"
-    },
-    {
-      "date": "2025-04-23",
-      "content": "Add PH certification_info"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/product/add_item",

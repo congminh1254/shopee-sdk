@@ -200,9 +200,9 @@ export interface AddGlobalItemRequest {
    */
   pre_order: AddGlobalItemPreOrder;
   /**
-   * Condition of global item, "NEW" or "USED" is available.
+   * Condition of global item, USED、Used and used will be mapped to Used; NEW、New and new will be mapped to New.
    */
-  condition?: string;
+  condition: string;
   /**
    * Video upload id of global item. Only accept one video_upload_id at most.
    */

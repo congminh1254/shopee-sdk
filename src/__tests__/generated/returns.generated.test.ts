@@ -393,6 +393,8 @@ describe("ReturnsManager (Generated Tests)", () => {
             resell_failed_next_step: '""',
           },
         ],
+        is_partial_quantity_return: true,
+        is_refund_amount_adjusted: true,
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -549,6 +551,8 @@ describe("ReturnsManager (Generated Tests)", () => {
                 resell_failed_next_step: '""',
               },
             ],
+            is_partial_quantity_return: true,
+            is_refund_amount_adjusted: true,
           },
         ],
       };

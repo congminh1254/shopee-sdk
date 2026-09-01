@@ -1385,6 +1385,22 @@
                 "key": "CYEdBRP"
               }
             ]
+          },
+          {
+            "description": "<p>To indicate whether the return includes items with partial quantities.</p>",
+            "name": "is_partial_quantity_return",
+            "sample": "true",
+            "type": "boolean",
+            "required": null,
+            "key": "DQeeTtz"
+          },
+          {
+            "description": "<p>To indicate whether the actual refund amount is less than the maximum allowable refund.</p>",
+            "name": "is_refund_amount_adjusted",
+            "sample": "true",
+            "type": "boolean",
+            "required": null,
+            "key": "ZkGtkQH"
           }
         ],
         "key": "daaxcaQ"
