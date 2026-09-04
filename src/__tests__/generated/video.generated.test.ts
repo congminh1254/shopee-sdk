@@ -93,6 +93,7 @@ describe("VideoManager (Generated Tests)", () => {
             },
           },
         ],
+        aigc_label: true,
       };
       const exampleResponse = {
         success_list: ["sg-11110199-6v99e-mgezdwct5eyya0"],
