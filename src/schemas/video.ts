@@ -143,6 +143,10 @@ export interface EditVideoInfoRequest {
    * Video information collection, no more than 5.
    */
   video_upload_list: EditVideoInfoVideoUpload[];
+  /**
+   * Indicates whether the video contains AI-generated or AI-assisted content, such as visuals, voice, avatars, or scripts. Set to true if it does; otherwise, set to false. An AI label will be shown to viewers when set to true.
+   */
+  aigc_label: boolean;
 }
 /**
  * EditVideoInfoFailure sub-interface for EditVideoInfoResponseData
