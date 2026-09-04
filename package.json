@@ -1,6 +1,6 @@
 {
   "name": "@congminh1254/shopee-sdk",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Shopee SDK maintaining by community",
   "type": "module",
   "main": "./lib/sdk.js",

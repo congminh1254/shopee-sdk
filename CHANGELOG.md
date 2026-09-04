@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/congminh1254/shopee-sdk/compare/v2.3.0...v2.4.0) (2026-09-04)
+
+
+### Features
+
+* **video:** add aigc_label field to video schemas ([#249](https://github.com/congminh1254/shopee-sdk/issues/249)) ([bc1abe5](https://github.com/congminh1254/shopee-sdk/commit/bc1abe5e48dac5c364b080f61b0d351c82140303))
+
 ## [2.3.0](https://github.com/congminh1254/shopee-sdk/compare/v2.2.0...v2.3.0) (2026-09-01)
 
 
