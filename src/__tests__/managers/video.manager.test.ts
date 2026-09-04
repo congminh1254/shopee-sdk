@@ -177,6 +177,7 @@ describe("VideoManager", () => {
             },
           },
         ],
+        aigc_label: false,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/edit_video_info", {
@@ -197,6 +198,7 @@ describe("VideoManager", () => {
               },
             },
           ],
+          aigc_label: false,
         },
       });
 
@@ -239,6 +241,7 @@ describe("VideoManager", () => {
             },
           },
         ],
+        aigc_label: false,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/edit_video_info", {
@@ -266,6 +269,7 @@ describe("VideoManager", () => {
               },
             },
           ],
+          aigc_label: false,
         },
       });
 
@@ -305,6 +309,7 @@ describe("VideoManager", () => {
             },
           },
         ],
+        aigc_label: false,
       });
 
       expect(result.response.failure_list).toHaveLength(1);
