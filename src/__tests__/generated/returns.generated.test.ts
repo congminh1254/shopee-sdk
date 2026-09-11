@@ -395,6 +395,8 @@ describe("ReturnsManager (Generated Tests)", () => {
         ],
         is_partial_quantity_return: true,
         is_refund_amount_adjusted: true,
+        shipping_fee_responsibility: "SHOPEE",
+        shipping_fee_responsibility_reason: "SHIPPING_FEE_RESPONSIBILITY_REASON_1",
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -553,6 +555,7 @@ describe("ReturnsManager (Generated Tests)", () => {
             ],
             is_partial_quantity_return: true,
             is_refund_amount_adjusted: true,
+            shipping_fee_responsibility: "SHOPEE",
           },
         ],
       };

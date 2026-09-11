@@ -533,7 +533,7 @@ export interface GetReturnDetailReturnPickupAddress {
  */
 export interface GetReturnDetailReturnAddress {
   /**
-   * To indicate the warehouse id where item will be returned to. Please call v2.shop.get_warehouse_detail to check the detailed warehouse information the item returned to with the field "location_id" of the v2.shop.get_warehouse_detail match to the field"whs_id"of the v2.return.get_return_detail.For fulfillment by Shopee (FBS) & multi warehouse sellers, R/R orders will be returned back to the nearest warehouse of buyer address instead of going back to only 1 default return address like a normal seller.If it's a normal seller, then the field will be response empty.
+   * To indicate the warehouse id where item will be returned to. Return warehouse address identifier. It should be unique for every warehouse address.Only available when return address is warehouse.For fulfillment by Shopee (FBS) & multi warehouse sellers, R/R orders will be returned back to the nearest warehouse of buyer address instead of going back to only 1 default return address like a normal seller.If it's a normal seller, then the field will be response empty.
    */
   whs_id?: string;
 }
@@ -727,6 +727,14 @@ export interface GetReturnDetailResponseData {
    * To indicate whether the actual refund amount is less than the maximum allowable refund.
    */
   is_refund_amount_adjusted?: boolean;
+  /**
+   * [Only for Local BR Sellers] To indicate the party responsible for the applicable shipping fees before accounting for Shopee Easy Return Programme coverage. Applicable Values: Pending, Seller, Shopee
+   */
+  shipping_fee_responsibility?: string;
+  /**
+   * [Only for Local BR Sellers] To indicate the reason corresponding to the Shipping Fee Responsibility. Applicable values: See Data Definition- Shipping Fee Responsibility Reason
+   */
+  shipping_fee_responsibility_reason?: string;
 }
 /**
  * Response payload for get_return_detail
@@ -1091,6 +1099,10 @@ export interface GetReturnListReturn {
    * To indicate whether the actual refund amount is less than the maximum allowable refund.
    */
   is_refund_amount_adjusted?: boolean;
+  /**
+   * [Only for Local BR Sellers] To indicate the party responsible for the applicable shipping fees before accounting for Shopee Easy Return Programme coverage. Applicable Values: Pending, Seller, Shopee
+   */
+  shipping_fee_responsibility?: string;
 }
 /**
  * GetReturnListResponseData sub-interface for GetReturnListResponse

@@ -1141,6 +1141,14 @@
                 "type": "boolean",
                 "required": null,
                 "key": "jazmTpF"
+              },
+              {
+                "description": "<p><b>[Only for Local BR Sellers]</b>&nbsp;To indicate the party responsible for the applicable shipping fees before accounting for Shopee Easy Return Programme coverage. Applicable Values: Pending, Seller, Shopee</p>",
+                "name": "shipping_fee_responsibility",
+                "sample": "SHOPEE",
+                "type": "string",
+                "required": null,
+                "key": "cGKmyjZ"
               }
             ],
             "name": "return",
