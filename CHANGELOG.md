@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/congminh1254/shopee-sdk/compare/v2.4.0...v2.5.0) (2026-09-11)
+
+
+### Features
+
+* **returns:** add shipping fee responsibility fields to return schemas ([#258](https://github.com/congminh1254/shopee-sdk/issues/258)) ([2899e37](https://github.com/congminh1254/shopee-sdk/commit/2899e3774767891707bb92a04836340a40b47e11))
+
 ## [2.4.0](https://github.com/congminh1254/shopee-sdk/compare/v2.3.0...v2.4.0) (2026-09-04)
 
 
