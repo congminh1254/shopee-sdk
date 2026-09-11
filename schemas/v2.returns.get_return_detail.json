@@ -1239,7 +1239,7 @@
             "key": "CHZmnar",
             "children": [
               {
-                "description": "<p>To indicate the warehouse id where item will be returned to.&nbsp;<br /></p><p>Please call&nbsp;v2.shop.get_warehouse_detail to check the detailed warehouse information the item returned to with the field \"location_id\" of the&nbsp;v2.shop.get_warehouse_detail match to the field\"whs_id\"of the v2.return.get_return_detail.<br /></p><p><br /></p><p>For fulfillment by Shopee (FBS) &amp; multi warehouse sellers, R/R orders will be returned back to the nearest warehouse of buyer address instead of going back to only 1 default return address like a normal seller.If it's a normal seller, then the field will be response empty.<br /></p>",
+                "description": "<p>To indicate the warehouse id where item will be returned to.&nbsp;<br /></p><p><br /></p><p>Return warehouse address identifier. It should be unique for every warehouse address.</p><p>Only available when return address is&nbsp;warehouse.</p><p><br /></p><p>For fulfillment by Shopee (FBS) &amp; multi warehouse sellers, R/R orders will be returned back to the nearest warehouse of buyer address instead of going back to only 1 default return address like a normal seller.If it's a normal seller, then the field will be response empty.<br /></p>",
                 "name": "whs_id",
                 "sample": "SGC",
                 "type": "string",
@@ -1401,6 +1401,22 @@
             "type": "boolean",
             "required": null,
             "key": "ZkGtkQH"
+          },
+          {
+            "description": "<p><b>[Only for Local BR Sellers]&nbsp;</b>To indicate the party responsible for the applicable shipping fees before accounting for Shopee Easy Return Programme coverage.&nbsp;Applicable Values: Pending, Seller, Shopee</p>",
+            "name": "shipping_fee_responsibility",
+            "sample": "SHOPEE",
+            "type": "string",
+            "required": null,
+            "key": "tPFcAzn"
+          },
+          {
+            "description": "<p><b>[Only for Local BR Sellers]&nbsp;</b>To indicate the reason corresponding to the Shipping Fee Responsibility. Applicable values: See Data Definition- Shipping Fee Responsibility Reason</p>",
+            "name": "shipping_fee_responsibility_reason",
+            "sample": "SHIPPING_FEE_RESPONSIBILITY_REASON_1",
+            "type": "string",
+            "required": null,
+            "key": "Brhcma"
           }
         ],
         "key": "daaxcaQ"
