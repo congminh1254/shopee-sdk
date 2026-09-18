@@ -1,6 +1,6 @@
 {
-  "api_id": 531,
-  "api_name": "v2.media_space.init_video_upload",
+  "api_id": 3357,
+  "api_name": "v2.buybox.get_buybox_models_by_shop_id",
   "api_type": "Shop",
   "common_params": [
     {
@@ -35,22 +35,13 @@
     }
   ],
   "define": {
-    "content": "<p>Initiate video upload session.<br><br>Video duration should be between 10s and 60s (inclusive).</p>",
+    "content": "<p>Get the paginated Buybox model list for the authorized shop.</p>",
     "raw_content": [
       {
         "name": "paragraph",
         "children": [
           {
-            "data": "Initiate video upload session."
-          },
-          {
-            "name": "softBreak"
-          },
-          {
-            "name": "softBreak"
-          },
-          {
-            "data": "Video duration should be between 10s and 60s (inclusive)."
+            "data": "Get the paginated Buybox model list for the authorized shop."
           }
         ]
       }
@@ -58,73 +49,13 @@
   },
   "error_list": [
     {
-      "name": "error_network",
-      "description": "Inner http call failed",
+      "name": "buybox_invalid_pagination",
+      "description": "The pagination parameters are invalid. Provide a non-negative offset and a valid limit.",
       "solution": null
     },
     {
-      "name": "error_data",
-      "description": "parse data failed",
-      "solution": null
-    },
-    {
-      "name": "error_data",
-      "description": "data not exist",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "parameter invalid",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "The information you queried is not found.",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "Wrong parameters, detail: {msg}.",
-      "solution": null
-    },
-    {
-      "name": "error_server",
-      "description": "Something wrong. Please try later.\t",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "request not from gateway",
-      "solution": null
-    },
-    {
-      "name": "error_server",
-      "description": "Unknown error.",
-      "solution": null
-    },
-    {
-      "name": "error_server",
-      "description": "Unknown error.",
-      "solution": null
-    },
-    {
-      "name": "error_server",
-      "description": "Unknown internal error.",
-      "solution": null
-    },
-    {
-      "name": "error_server",
-      "description": "Unknown internal error.",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "Invalid parameter.",
-      "solution": null
-    },
-    {
-      "name": "error_file_size",
-      "description": "File size is too large. Video size should be less than 30M.",
+      "name": "buybox_system_error",
+      "description": "An unexpected system error occurred. Try again later.",
       "solution": null
     }
   ],
@@ -309,118 +240,214 @@
   "gateway_api_id": 0,
   "is_get_method": 0,
   "method": 1,
-  "module_id": 91,
-  "module_name": "MediaSpace",
+  "module_id": 140,
+  "module_name": "Buybox",
   "params": {
     "request_params": [
       {
-        "name": "file_md5",
-        "limits": "",
-        "required": "True",
-        "sample": "2abf0b6e5ff90ff24437a0808f171a93",
-        "type": "string",
-        "description": "md5 of video file",
-        "key": "PPmAnyd"
+        "description": "<p>Pagination offset. Must be non-negative.</p>",
+        "name": "offset",
+        "sample": "0",
+        "type": "int32",
+        "required": "False",
+        "key": "PanfayR"
       },
       {
-        "name": "file_size",
-        "limits": "",
-        "required": "True",
-        "sample": "1261876",
-        "type": "int64",
-        "description": "size of video file, in bytes, maximum is 30MB",
-        "key": "nKTpwMJ"
+        "description": "<p>Page size. Valid range is 1 to 250.</p>",
+        "name": "limit",
+        "sample": "100",
+        "type": "int32",
+        "required": "False",
+        "key": "SybpAQ"
       }
     ],
     "response_params": [
       {
-        "sample": "",
+        "description": "",
+        "name": "error",
+        "sample": "error_param",
         "type": "string",
+        "required": null,
+        "key": "isfSbpA"
+      },
+      {
+        "description": "",
         "name": "message",
-        "description": "Indicate error details if hit error. Empty if no error happened.",
-        "key": "SHPifxY"
-      },
-      {
-        "sample": "2f047a807e0e482188c5dac9b69bf90e",
+        "sample": "Invalid request parameters.",
         "type": "string",
-        "name": "request_id",
-        "description": "The identifier of the API request for error tracking",
-        "key": "MKGnZBy"
+        "required": null,
+        "key": "yZFbzyE"
       },
       {
-        "sample": "",
-        "type": "object",
+        "description": "",
+        "name": "request_id",
+        "sample": "b6b2c7a0f4d84f7f9a3f58c0d2e2f031",
+        "type": "string",
+        "required": null,
+        "key": "ESjPkne"
+      },
+      {
         "description": "",
         "name": "response",
+        "sample": "",
+        "type": "object",
+        "required": null,
+        "key": "WFcsyHt",
         "children": [
           {
-            "sample": "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
-            "type": "string",
-            "name": "video_upload_id",
-            "description": "The identifier of this upload session, used in following video upload request and item creating and/or updating",
-            "key": "waTBECk"
+            "description": "",
+            "name": "model_list",
+            "sample": "",
+            "type": "object[]",
+            "required": null,
+            "key": "KSMTRCb",
+            "children": [
+              {
+                "description": "",
+                "name": "model_id",
+                "sample": "600000",
+                "type": "int64",
+                "required": null,
+                "key": "NSXCHtQ"
+              },
+              {
+                "description": "",
+                "name": "is_model_mapped",
+                "sample": "true",
+                "type": "boolean",
+                "required": null,
+                "key": "iPXwPGP"
+              },
+              {
+                "description": "",
+                "name": "is_eligible",
+                "sample": "true",
+                "type": "boolean",
+                "required": null,
+                "key": "yTxrRtS"
+              },
+              {
+                "description": "",
+                "name": "model_toggle_on_status",
+                "sample": "false",
+                "type": "boolean",
+                "required": null,
+                "key": "kAJjxkr"
+              },
+              {
+                "description": "",
+                "name": "last_updated_time",
+                "sample": "1610000000",
+                "type": "timestamp",
+                "required": null,
+                "key": "cYMRNZw"
+              }
+            ]
+          },
+          {
+            "description": "",
+            "name": "page_info",
+            "sample": "",
+            "type": "object",
+            "required": null,
+            "key": "XzhrkhX",
+            "children": [
+              {
+                "description": "",
+                "name": "offset",
+                "sample": "0",
+                "type": "int32",
+                "required": null,
+                "key": "kwExsFe"
+              },
+              {
+                "description": "",
+                "name": "limit",
+                "sample": "100",
+                "type": "int32",
+                "required": null,
+                "key": "kCfaQrH"
+              },
+              {
+                "description": "",
+                "name": "total_count",
+                "sample": "1",
+                "type": "int32",
+                "required": null,
+                "key": "dEPGMKJ"
+              }
+            ]
+          },
+          {
+            "description": "",
+            "name": "shop_id",
+            "sample": "600000",
+            "type": "int64",
+            "required": null,
+            "key": "MdjwzSJ"
           }
-        ],
-        "key": "hKFxnfp"
-      },
-      {
-        "sample": "",
-        "type": "string",
-        "name": "error",
-        "description": "Indicate error type if hit error. Empty if no error happened.",
-        "key": "raFNJKn"
+        ]
       }
     ]
   },
-  "perm_mtime": 1621247802,
-  "perm_operator": "sys",
+  "perm_mtime": 1789627786,
+  "perm_operator": "guanlin.ma@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
-  "priority": 80106,
-  "rate_limit": [
-    0,
-    0,
-    0
-  ],
-  "request_sample": [
-    {
-      "type": "Payload",
-      "value": {
-        "file_size": 1261876,
-        "file_md5": "2abf0b6e5ff90ff24437a0808f171a93"
-      }
-    }
-  ],
+  "priority": 80737,
+  "rate_limit": "",
+  "request_sample": [],
   "response_sample": [
     {
       "type": "JSON",
-      "value": "{\n  \"error\":\"\"\n  \"message\": \"\",\n  \"request_id\": \"2f047a807e0e482188c5dac9b69bf90e\",\n  \"response\": {\n    \"video_upload_id\": \"sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000\"\n  }\n}"
+      "value": {
+        "error": "",
+        "message": "",
+        "response": {
+          "model_list": [
+            {
+              "model_id": 600000,
+              "is_model_mapped": true,
+              "is_eligible": true,
+              "model_toggle_on_status": false,
+              "last_updated_time": 1610000000
+            }
+          ],
+          "page_info": {
+            "offset": 0,
+            "limit": 100,
+            "total_count": 1
+          },
+          "shop_id": 600000
+        },
+        "request_id": "b6b2c7a0f4d84f7f9a3f58c0d2e2f031"
+      }
     }
   ],
   "status": 1,
   "tag": "",
-  "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/media_space/init_video_upload",
-  "update_log_list": [],
-  "url": "https://partner.shopeemobile.com/api/v2/media_space/init_video_upload",
+  "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/buybox/get_buybox_models_by_shop_id",
+  "update_log_list": [
+    {
+      "date": "2026-09-17",
+      "content": "New API"
+    }
+  ],
+  "url": "https://partner.shopeemobile.com/api/v2/buybox/get_buybox_models_by_shop_id",
   "version": "",
   "error_example": [
     {
       "type": "JSON",
       "value": {
-        "error": "product.error_param",
-        "message": "invalid parameter invalid file_md5: 2abf0b6e5ff90ff24437a0808f171a93we",
-        "warning": "",
-        "request_id": "a175727b99317f1ce33f8f3520d57089"
+        "error": "error_param",
+        "message": "Invalid request parameters.",
+        "response": {},
+        "request_id": "b6b2c7a0f4d84f7f9a3f58c0d2e2f031"
       }
     }
   ],
-  "api_permission": [
-    "ERP System",
-    "Seller In House System",
-    "Product Management",
-    "Swam ERP"
-  ],
-  "path": "/api/v2/media_space/init_video_upload",
+  "api_permission": [],
+  "path": "/api/v2/buybox/get_buybox_models_by_shop_id",
   "related_documents": {
     "developer_guides": [],
     "faqs": []

@@ -8,8 +8,8 @@ Strategy:
   2) HTTP methods must match spec definitions exactly
   3) Endpoint request/response must use explicit endpoint type definitions
   4) Spec request/response fields must exist in those endpoint types with exact names
-- Specs scanned: 444
-- SDK endpoints discovered: 442
+- Specs scanned: 450
+- SDK endpoints discovered: 448
 - Missing endpoints: 0
 - SDK endpoints not in spec: 0
 - Method mismatches: 1

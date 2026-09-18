@@ -34,7 +34,8 @@ import { AmsManager } from "./managers/ams.manager.js";
 import { VideoManager } from "./managers/video.manager.js";
 import { PrincipalManager } from "./managers/principal.manager.js";
 import { Agent } from "node:http";
-
+import { BusinessInsightsManager } from "./managers/business-insights.manager.js";
+import { BuyboxManager } from "./managers/buybox.manager.js";
 export interface ShopeeConfig {
   partner_id: number;
   partner_key: string;
@@ -45,7 +46,6 @@ export interface ShopeeConfig {
   shop_id?: number;
   agent?: Agent;
 }
-
 export class ShopeeSDK {
   private config: ShopeeConfig;
   private tokenStorage: TokenStorage;
@@ -79,6 +79,8 @@ export class ShopeeSDK {
   public readonly ams: AmsManager;
   public readonly video: VideoManager;
   public readonly principal: PrincipalManager;
+  public readonly businessInsights: BusinessInsightsManager;
+  public readonly buybox: BuyboxManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       ...config,
@@ -91,10 +93,8 @@ export class ShopeeSDK {
         (config.region ? SHOPEE_AUTH_URLS[config.region] : SHOPEE_AUTH_URLS[ShopeeRegion.GLOBAL]),
       sdk: this,
     };
-
     // Initialize token storage
     this.tokenStorage = tokenStorage || new InMemoryTokenStorage();
-
     // Initialize managers
     this.ads = new AdsManager(this.config);
     this.product = new ProductManager(this.config);
@@ -126,32 +126,28 @@ export class ShopeeSDK {
     this.ams = new AmsManager(this.config);
     this.video = new VideoManager(this.config);
     this.principal = new PrincipalManager(this.config);
+    this.businessInsights = new BusinessInsightsManager(this.config);
+    this.buybox = new BuyboxManager(this.config);
   }
-
   public getConfig(): ShopeeConfig {
     return this.config;
   }
-
   public setRegion(region: ShopeeRegion): void {
     this.config.region = region;
     this.config.base_url = SHOPEE_BASE_URLS[region];
     this.config.base_auth_url = SHOPEE_AUTH_URLS[region];
   }
-
   public setBaseUrl(baseUrl: string): void {
     this.config.base_url = baseUrl;
     this.config.region = undefined;
   }
-
   public setBaseAuthUrl(baseAuthUrl: string): void {
     this.config.base_auth_url = baseAuthUrl;
     this.config.region = undefined;
   }
-
   public setFetchAgent(fetchAgent: Agent) {
     this.config.agent = fetchAgent;
   }
-
   public getAuthorizationUrl(
     redirect_uri: string,
     options?: {
@@ -163,7 +159,6 @@ export class ShopeeSDK {
     const state = options?.state;
     const authBaseUrl =
       this.config.base_auth_url || SHOPEE_AUTH_URLS[this.config.region || ShopeeRegion.GLOBAL];
-
     const url = new URL(authBaseUrl);
     url.searchParams.append("partner_id", this.config.partner_id.toString());
     url.searchParams.append("auth_type", authType);
@@ -172,10 +167,8 @@ export class ShopeeSDK {
     if (state) {
       url.searchParams.append("state", state);
     }
-
     return url.toString();
   }
-
   public async authenticateWithCode(
     code: string,
     shopId?: number,
@@ -185,11 +178,9 @@ export class ShopeeSDK {
     await this.tokenStorage.store(token);
     return token;
   }
-
   public async getAuthToken(): Promise<AccessToken | null> {
     return this.tokenStorage.get();
   }
-
   public async refreshToken(shop_id?: number, merchant_id?: number): Promise<AccessToken | null> {
     const old_token = await this.tokenStorage.get();
     if (!old_token) {
@@ -203,10 +194,8 @@ export class ShopeeSDK {
     if (!token) {
       return null;
     }
-
     await this.tokenStorage.store(token);
     return token;
   }
 }
-
 export default ShopeeSDK;

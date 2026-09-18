@@ -64,7 +64,7 @@ describe("MediaSpaceManager (Generated Tests)", () => {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
         part_seq_list: [0, 1, 2],
         report_data: {
-          upload_cost: 11832,
+          upload_cost: "11832",
         },
       };
       const exampleResponse = {
@@ -117,7 +117,7 @@ describe("MediaSpaceManager (Generated Tests)", () => {
               image_url: "https://cf.shopee.sg/file/75eba55932c987851abc39895047dd54",
             },
           ],
-          duration: 15,
+          duration: "15",
         },
         message: "Video is too short",
       };
