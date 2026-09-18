@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.0](https://github.com/congminh1254/shopee-sdk/compare/v2.5.0...v2.6.0) (2026-09-18)
+
+
+### Features
+
+* **buybox:** add buybox and business insights endpoints ([#261](https://github.com/congminh1254/shopee-sdk/issues/261)) ([9aef488](https://github.com/congminh1254/shopee-sdk/commit/9aef488daf1ed28760f1bd249073d993f2d4fd46))
+
 ## [2.5.0](https://github.com/congminh1254/shopee-sdk/compare/v2.4.0...v2.5.0) (2026-09-11)
 
 
