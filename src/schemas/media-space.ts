@@ -62,7 +62,7 @@ export interface CompleteVideoUploadReportData {
   /**
    * Time used for uploading the video file via upload_video_part api, in milliseconds. For video upload performance tracking purpose.
    */
-  upload_cost: number;
+  upload_cost: any;
 }
 /**
  * Request parameters for complete_video_upload
@@ -144,7 +144,7 @@ export interface GetVideoUploadResultVideoInfo {
   /**
    * Duration of this video, in seconds.
    */
-  duration?: number;
+  duration?: any;
 }
 /**
  * GetVideoUploadResultResponseData sub-interface for GetVideoUploadResultResponse
@@ -172,9 +172,7 @@ export type GetVideoUploadResultResponse = FetchResponse<GetVideoUploadResultRes
 /**
  * Request parameters for init_video_upload
  *
- * Initiate video upload session.
- *
- * Video duration should be between 10s and 60s (inclusive).
+ * Initiate video upload session.Video duration should be between 10s and 60s (inclusive).
  */
 export interface InitVideoUploadRequest {
   /**
@@ -198,9 +196,7 @@ export interface InitVideoUploadResponseData {
 /**
  * Response payload for init_video_upload
  *
- * Initiate video upload session.
- *
- * Video duration should be between 10s and 60s (inclusive).
+ * Initiate video upload session.Video duration should be between 10s and 60s (inclusive).
  */
 export type InitVideoUploadResponse = FetchResponse<InitVideoUploadResponseData>;
 /**
@@ -282,9 +278,7 @@ export type UploadImageResponse = FetchResponse<UploadImageResponseData>;
 /**
  * Request parameters for upload_video_part
  *
- * Upload video file by part using the upload_id in initiate_video_upload.
- *
- * The request Content-Type of this API should be of multipart/form-data
+ * Upload video file by part using the upload_id in initiate_video_upload.The request Content-Type of this API should be of multipart/form-data
  */
 export interface UploadVideoPartRequest {
   /**
@@ -316,8 +310,6 @@ export interface UploadVideoPartResponseData {
 /**
  * Response payload for upload_video_part
  *
- * Upload video file by part using the upload_id in initiate_video_upload.
- *
- * The request Content-Type of this API should be of multipart/form-data
+ * Upload video file by part using the upload_id in initiate_video_upload.The request Content-Type of this API should be of multipart/form-data
  */
 export type UploadVideoPartResponse = FetchResponse<UploadVideoPartResponseData>;

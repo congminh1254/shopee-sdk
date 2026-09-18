@@ -1,6 +1,6 @@
 {
-  "api_id": 531,
-  "api_name": "v2.media_space.init_video_upload",
+  "api_id": 3361,
+  "api_name": "v2.buybox.update_buybox_model_enrollment",
   "api_type": "Shop",
   "common_params": [
     {
@@ -35,22 +35,13 @@
     }
   ],
   "define": {
-    "content": "<p>Initiate video upload session.<br><br>Video duration should be between 10s and 60s (inclusive).</p>",
+    "content": "<p>Update Buybox model enrollment status for the authorized shop.</p>",
     "raw_content": [
       {
         "name": "paragraph",
         "children": [
           {
-            "data": "Initiate video upload session."
-          },
-          {
-            "name": "softBreak"
-          },
-          {
-            "name": "softBreak"
-          },
-          {
-            "data": "Video duration should be between 10s and 60s (inclusive)."
+            "data": "Update Buybox model enrollment status for the authorized shop."
           }
         ]
       }
@@ -58,73 +49,38 @@
   },
   "error_list": [
     {
-      "name": "error_network",
-      "description": "Inner http call failed",
+      "name": "buybox_enrollment_update_failed",
+      "description": "The model enrollment status could not be fully updated. Try again later.",
       "solution": null
     },
     {
-      "name": "error_data",
-      "description": "parse data failed",
+      "name": "buybox_invalid_enrollment_status",
+      "description": "The enrollment status is invalid. Provide a valid target enrollment status.",
       "solution": null
     },
     {
-      "name": "error_data",
-      "description": "data not exist",
+      "name": "buybox_invalid_model_id",
+      "description": "The model ID is invalid. Provide a valid positive model ID.",
       "solution": null
     },
     {
-      "name": "error_param",
-      "description": "parameter invalid",
+      "name": "buybox_model_not_eligible",
+      "description": "The model is not eligible to participate in Buybox. Review the eligibility requirements before trying again.",
       "solution": null
     },
     {
-      "name": "error_param",
-      "description": "The information you queried is not found.",
+      "name": "buybox_model_not_found",
+      "description": "The model was not found under the authorized shop. Check the model ID and try again.",
       "solution": null
     },
     {
-      "name": "error_param",
-      "description": "Wrong parameters, detail: {msg}.",
+      "name": "buybox_model_not_mapped",
+      "description": "The model does not have an active Buybox mapping and cannot be updated.",
       "solution": null
     },
     {
-      "name": "error_server",
-      "description": "Something wrong. Please try later.\t",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "request not from gateway",
-      "solution": null
-    },
-    {
-      "name": "error_server",
-      "description": "Unknown error.",
-      "solution": null
-    },
-    {
-      "name": "error_server",
-      "description": "Unknown error.",
-      "solution": null
-    },
-    {
-      "name": "error_server",
-      "description": "Unknown internal error.",
-      "solution": null
-    },
-    {
-      "name": "error_server",
-      "description": "Unknown internal error.",
-      "solution": null
-    },
-    {
-      "name": "error_param",
-      "description": "Invalid parameter.",
-      "solution": null
-    },
-    {
-      "name": "error_file_size",
-      "description": "File size is too large. Video size should be less than 30M.",
+      "name": "buybox_system_error",
+      "description": "An unexpected system error occurred. Try again later.",
       "solution": null
     }
   ],
@@ -309,118 +265,166 @@
   "gateway_api_id": 0,
   "is_get_method": 0,
   "method": 1,
-  "module_id": 91,
-  "module_name": "MediaSpace",
+  "module_id": 140,
+  "module_name": "Buybox",
   "params": {
     "request_params": [
       {
-        "name": "file_md5",
-        "limits": "",
+        "description": "",
+        "name": "model_id",
+        "sample": "600000",
+        "type": "int64",
         "required": "True",
-        "sample": "2abf0b6e5ff90ff24437a0808f171a93",
-        "type": "string",
-        "description": "md5 of video file",
-        "key": "PPmAnyd"
+        "key": "ErCwNXP"
       },
       {
-        "name": "file_size",
-        "limits": "",
+        "description": "",
+        "name": "model_toggle_on_status",
+        "sample": "true",
+        "type": "boolean",
         "required": "True",
-        "sample": "1261876",
-        "type": "int64",
-        "description": "size of video file, in bytes, maximum is 30MB",
-        "key": "nKTpwMJ"
+        "key": "XXQRkhS"
       }
     ],
     "response_params": [
       {
-        "sample": "",
+        "name": "error",
         "type": "string",
+        "sample": "error_param",
+        "description": "",
+        "key": "CtnCsSk"
+      },
+      {
+        "description": "",
         "name": "message",
-        "description": "Indicate error details if hit error. Empty if no error happened.",
-        "key": "SHPifxY"
-      },
-      {
-        "sample": "2f047a807e0e482188c5dac9b69bf90e",
+        "sample": "Invalid request parameters.",
         "type": "string",
-        "name": "request_id",
-        "description": "The identifier of the API request for error tracking",
-        "key": "MKGnZBy"
+        "required": null,
+        "key": "bzGRERp"
       },
       {
-        "sample": "",
-        "type": "object",
+        "description": "",
+        "name": "request_id",
+        "sample": "b6b2c7a0f4d84f7f9a3f58c0d2e2f031",
+        "type": "string",
+        "required": null,
+        "key": "tcGkJaj"
+      },
+      {
         "description": "",
         "name": "response",
+        "sample": "",
+        "type": "object",
+        "required": null,
+        "key": "fQJbweK",
         "children": [
           {
-            "sample": "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
-            "type": "string",
-            "name": "video_upload_id",
-            "description": "The identifier of this upload session, used in following video upload request and item creating and/or updating",
-            "key": "waTBECk"
+            "description": "",
+            "name": "model_id",
+            "sample": "600000",
+            "type": "int64",
+            "required": null,
+            "key": "Pwncbz"
+          },
+          {
+            "description": "",
+            "name": "model_toggle_on_status",
+            "sample": "true",
+            "type": "boolean",
+            "required": null,
+            "key": "azDjFXM"
+          },
+          {
+            "description": "",
+            "name": "last_updated_time",
+            "sample": "1610000000",
+            "type": "timestamp",
+            "required": null,
+            "key": "xcJkYzd"
+          },
+          {
+            "description": "",
+            "name": "shop_id",
+            "sample": "600000",
+            "type": "int64",
+            "required": null,
+            "key": "cNyJQed"
           }
-        ],
-        "key": "hKFxnfp"
-      },
-      {
-        "sample": "",
-        "type": "string",
-        "name": "error",
-        "description": "Indicate error type if hit error. Empty if no error happened.",
-        "key": "raFNJKn"
+        ]
       }
     ]
   },
-  "perm_mtime": 1621247802,
-  "perm_operator": "sys",
+  "perm_mtime": 1789627819,
+  "perm_operator": "guanlin.ma@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
-  "priority": 80106,
-  "rate_limit": [
-    0,
-    0,
-    0
-  ],
+  "priority": 80741,
+  "rate_limit": "",
   "request_sample": [
     {
       "type": "Payload",
       "value": {
-        "file_size": 1261876,
-        "file_md5": "2abf0b6e5ff90ff24437a0808f171a93"
+        "model_id": 600000,
+        "model_toggle_on_status": true
       }
+    },
+    {
+      "type": "Java",
+      "value": "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"https://partner.shopeemobile.com/api/v2/buybox/update_buybox_model_enrollment?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\")\n.header(\"Content-Type\",\"application/json\")\n.body(\"{\n   \\\"model_id\\\": 600000,\n   \\\"model_toggle_on_status\\\": true\n}\")\n.asString();"
+    },
+    {
+      "type": "PHP",
+      "value": "<?php\n\n$curl = curl_init();\n\ncurl_setopt_array($curl, array(\n  CURLOPT_URL => 'https://partner.shopeemobile.com/api/v2/buybox/update_buybox_model_enrollment?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp',\n  CURLOPT_RETURNTRANSFER => true,\n  CURLOPT_ENCODING => '',\n  CURLOPT_MAXREDIRS => 10,\n  CURLOPT_TIMEOUT => 0,\n  CURLOPT_FOLLOWLOCATION => true,\n  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,\n  CURLOPT_CUSTOMREQUEST => 'POST',\n  CURLOPT_POSTFIELDS => '{\n    \"model_id\": 600000,\n    \"model_toggle_on_status\": true\n}',\n  CURLOPT_HTTPHEADER => array(\n    'Content-Type: application/json'\n  ),\n));\n\n$response = curl_exec($curl);\n\ncurl_close($curl);\necho $response;\n"
+    },
+    {
+      "type": "cURL",
+      "value": "curl --location --request POST 'https://partner.shopeemobile.com/api/v2/buybox/update_buybox_model_enrollment?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n   \"model_id\": 600000,\n   \"model_toggle_on_status\": true\n}'\n"
+    },
+    {
+      "type": "Python",
+      "value": "import requests\nimport json\n\nurl = \"https://partner.shopeemobile.com/api/v2/buybox/update_buybox_model_enrollment?access_token=access_token&partner_id=partner_id&shop_id=shop_id&sign=sign&timestamp=timestamp\"\n\npayload=json.dumps({\n  \"model_id\": 600000,\n  \"model_toggle_on_status\": True\n})\nheaders = {\n  'Content-Type': 'application/json'\n}\nresponse = requests.RPCRequest(\"POST\",url,headers=headers, data=payload, allow_redirects=False)\n\nprint(response.text)\n"
     }
   ],
   "response_sample": [
     {
       "type": "JSON",
-      "value": "{\n  \"error\":\"\"\n  \"message\": \"\",\n  \"request_id\": \"2f047a807e0e482188c5dac9b69bf90e\",\n  \"response\": {\n    \"video_upload_id\": \"sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000\"\n  }\n}"
+      "value": {
+        "error": "",
+        "message": "",
+        "response": {
+          "model_id": 600000,
+          "model_toggle_on_status": true,
+          "last_updated_time": 1610000000,
+          "shop_id": 600000
+        },
+        "request_id": "b6b2c7a0f4d84f7f9a3f58c0d2e2f031"
+      }
     }
   ],
   "status": 1,
   "tag": "",
-  "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/media_space/init_video_upload",
-  "update_log_list": [],
-  "url": "https://partner.shopeemobile.com/api/v2/media_space/init_video_upload",
+  "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/buybox/update_buybox_model_enrollment",
+  "update_log_list": [
+    {
+      "date": "-",
+      "content": "New API"
+    }
+  ],
+  "url": "https://partner.shopeemobile.com/api/v2/buybox/update_buybox_model_enrollment",
   "version": "",
   "error_example": [
     {
       "type": "JSON",
       "value": {
-        "error": "product.error_param",
-        "message": "invalid parameter invalid file_md5: 2abf0b6e5ff90ff24437a0808f171a93we",
-        "warning": "",
-        "request_id": "a175727b99317f1ce33f8f3520d57089"
+        "error": "error_param",
+        "message": "Invalid request parameters.",
+        "response": {},
+        "request_id": "b6b2c7a0f4d84f7f9a3f58c0d2e2f031"
       }
     }
   ],
-  "api_permission": [
-    "ERP System",
-    "Seller In House System",
-    "Product Management",
-    "Swam ERP"
-  ],
-  "path": "/api/v2/media_space/init_video_upload",
+  "api_permission": [],
+  "path": "/api/v2/buybox/update_buybox_model_enrollment",
   "related_documents": {
     "developer_guides": [],
     "faqs": []
