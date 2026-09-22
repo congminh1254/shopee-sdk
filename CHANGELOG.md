@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.0](https://github.com/congminh1254/shopee-sdk/compare/v2.6.0...v2.7.0) (2026-09-22)
+
+
+### Features
+
+* **product:** add ssp_id and cssp_id fields to product schemas ([#264](https://github.com/congminh1254/shopee-sdk/issues/264)) ([53ffd6d](https://github.com/congminh1254/shopee-sdk/commit/53ffd6db3251503f1c6f5180c047a7c009e40ca7))
+
 ## [2.6.0](https://github.com/congminh1254/shopee-sdk/compare/v2.5.0...v2.6.0) (2026-09-18)
 
 
