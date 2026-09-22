@@ -1953,6 +1953,22 @@
         "type": "int64",
         "required": "False",
         "key": "DDzDsTB"
+      },
+      {
+        "description": "<p>The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.</p>",
+        "name": "ssp_id",
+        "sample": "",
+        "type": "int64",
+        "required": "False",
+        "key": "RkMQDjD"
+      },
+      {
+        "description": "<p>The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.</p>",
+        "name": "cssp_id",
+        "sample": "",
+        "type": "int64",
+        "required": "False",
+        "key": "awbQbJx"
       }
     ],
     "response_params": [

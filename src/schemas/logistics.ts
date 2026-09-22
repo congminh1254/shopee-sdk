@@ -626,7 +626,7 @@ export interface DownloadShippingDocumentRequest {
    */
   shipping_document_type?: ShippingDocumentType | string | number;
   /**
-   * The list of orders you need to download it's shipping document.
+   * The list of orders you need to download it's shipping document. Limit [1, 50]. Orders must be from the same courier
    */
   order_list: DownloadShippingDocumentOrder[];
 }

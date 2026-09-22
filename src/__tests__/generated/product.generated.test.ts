@@ -180,6 +180,8 @@ describe("ProductManager (Generated Tests)", () => {
           },
         },
         medicine_id: 123,
+        ssp_id: 123,
+        cssp_id: 123,
       };
       const exampleResponse = {
         description: "description",
@@ -431,6 +433,8 @@ describe("ProductManager (Generated Tests)", () => {
               is_pre_order: false,
               days_to_ship: 2,
             },
+            ssp_id: 123,
+            cssp_id: 123,
           },
         ],
       };
@@ -643,6 +647,8 @@ describe("ProductManager (Generated Tests)", () => {
               },
             },
             medicine_id: 123,
+            ssp_id: 123,
+            cssp_id: 123,
           },
         ],
       };
@@ -2585,6 +2591,8 @@ describe("ProductManager (Generated Tests)", () => {
               package_width: 11,
             },
             is_fulfillment_by_shopee: true,
+            ssp_id: 123,
+            cssp_id: 123,
           },
         ],
         standardise_tier_variation: [
@@ -3003,6 +3011,8 @@ describe("ProductManager (Generated Tests)", () => {
               is_pre_order: false,
               days_to_ship: 2,
             },
+            ssp_id: 123,
+            cssp_id: 123,
           },
         ],
         standardise_tier_variation: [
@@ -3057,6 +3067,8 @@ describe("ProductManager (Generated Tests)", () => {
               package_length: 11,
               package_width: 11,
             },
+            ssp_id: 123,
+            cssp_id: 123,
           },
         ],
       };

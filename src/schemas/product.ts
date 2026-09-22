@@ -636,6 +636,14 @@ export interface AddItemRequest {
    * [Only for ID local sellers] as a unique identifier for each standardized medicine, the medicine id can only be obtained offline
    */
   medicine_id?: number;
+  /**
+   * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
+   */
+  ssp_id?: number;
+  /**
+   * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
+   */
+  cssp_id?: number;
 }
 /**
  * AddItem_AddItemPreOrder sub-interface for AddItemResponseData
@@ -1238,6 +1246,14 @@ export interface AddModelModel {
    * Pre-order information of this model.Notes: If don't set the DTS of this model, will use the DTS of the item by default.
    */
   pre_order?: AddModelPreOrder;
+  /**
+   * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
+   */
+  ssp_id?: number;
+  /**
+   * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
+   */
+  cssp_id?: number;
 }
 /**
  * Request parameters for add_model
@@ -1898,6 +1914,14 @@ export interface BatchAddItemItem {
    * [Only for ID local sellers] as a unique identifier for each standardized medicine, the medicine id can only be obtained offline
    */
   medicine_id?: number;
+  /**
+   * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
+   */
+  ssp_id?: number;
+  /**
+   * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
+   */
+  cssp_id?: number;
 }
 /**
  * Request parameters for batch_add_item
@@ -5646,6 +5670,14 @@ export interface GetModelListModel {
    * whether model is fulfillment by shopee
    */
   is_fulfillment_by_shopee?: boolean;
+  /**
+   * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
+   */
+  ssp_id?: number;
+  /**
+   * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
+   */
+  cssp_id?: number;
 }
 /**
  * GetModelListVariationOption sub-interface for GetModelListStandardiseTierVariation
@@ -6328,6 +6360,14 @@ export interface InitTierVariationModel {
    * Pre-order information of this model.Notes: If don't set the DTS of this model, will use the DTS of the item by default.
    */
   pre_order?: InitTierVariationPreOrder;
+  /**
+   * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
+   */
+  ssp_id?: number;
+  /**
+   * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
+   */
+  cssp_id?: number;
 }
 /**
  * InitTierVariationVariationOption sub-interface for InitTierVariationStandardiseTierVariation
@@ -6370,7 +6410,7 @@ export interface InitTierVariationStandardiseTierVariation {
 /**
  * Request parameters for init_tier_variation
  *
- * This API allows you to update the tier structure of a product. Defining only color creates one tier, while color + size creates two tiers (maximum supported). Supported changes include: no tier ↔ one/two tiers, one tier ↔ two/no tier, and two tiers ↔ one/no tier. For details, see Developer Guide.  Please wait at least 5 seconds after creating an item before creating variants, as processing may be delayed.
+ * This API allows you to update the tier structure of a product. Defining only color creates one tier, while color + size creates two tiers (maximum supported). Supported changes include: no tier ↔ one/two tiers, one tier ↔ two/no tier, and two tiers ↔ one/no tier. For details, see Developer Guide. Please wait at least 5 seconds after creating an item before creating variants, as processing may be delayed.
  */
 export interface InitTierVariationRequest {
   /**
@@ -6489,6 +6529,14 @@ export interface InitTierVariation_InitTierVariationModel {
    * The dimension of this model.If don't set the dimension of this model, will use the dimension of item by default.
    */
   dimension?: InitTierVariation_InitTierVariationDimension;
+  /**
+   * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
+   */
+  ssp_id?: number;
+  /**
+   * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
+   */
+  cssp_id?: number;
 }
 /**
  * InitTierVariationResponseData sub-interface for InitTierVariationResponse
@@ -6507,7 +6555,7 @@ export interface InitTierVariationResponseData {
 /**
  * Response payload for init_tier_variation
  *
- * This API allows you to update the tier structure of a product. Defining only color creates one tier, while color + size creates two tiers (maximum supported). Supported changes include: no tier ↔ one/two tiers, one tier ↔ two/no tier, and two tiers ↔ one/no tier. For details, see Developer Guide.  Please wait at least 5 seconds after creating an item before creating variants, as processing may be delayed.
+ * This API allows you to update the tier structure of a product. Defining only color creates one tier, while color + size creates two tiers (maximum supported). Supported changes include: no tier ↔ one/two tiers, one tier ↔ two/no tier, and two tiers ↔ one/no tier. For details, see Developer Guide. Please wait at least 5 seconds after creating an item before creating variants, as processing may be delayed.
  */
 export type InitTierVariationResponse = FetchResponse<InitTierVariationResponseData>;
 /**
