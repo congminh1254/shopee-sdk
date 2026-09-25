@@ -35,7 +35,6 @@ export class BuyboxManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["response.data_updated_time"],
       }
     );
   }
@@ -55,7 +54,6 @@ export class BuyboxManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["response.model_list.last_updated_time"],
       }
     );
   }
@@ -75,7 +73,6 @@ export class BuyboxManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["response.model_list.last_updated_time"],
       }
     );
   }
@@ -95,7 +92,6 @@ export class BuyboxManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["response.data_updated_time"],
       }
     );
   }
@@ -115,7 +111,6 @@ export class BuyboxManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["response.last_updated_time"],
       }
     );
   }

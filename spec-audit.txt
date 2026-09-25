@@ -8,8 +8,8 @@ Strategy:
   2) HTTP methods must match spec definitions exactly
   3) Endpoint request/response must use explicit endpoint type definitions
   4) Spec request/response fields must exist in those endpoint types with exact names
-- Specs scanned: 450
-- SDK endpoints discovered: 448
+- Specs scanned: 455
+- SDK endpoints discovered: 453
 - Missing endpoints: 0
 - SDK endpoints not in spec: 0
 - Method mismatches: 1
@@ -17,7 +17,7 @@ Strategy:
 - Request field gaps: 0
 - Response field gaps: 8
 - Extra request fields: 0
-- Extra response fields: 28
+- Extra response fields: 30
 - Request type mismatches: 1
 - Response type mismatches: 3
 - Request optionality mismatches: 0
@@ -53,6 +53,8 @@ Extra response fields:
   - product.delete_item: warning
   - product.delete_model: warning
   - product.get_variations: warning, data, data.standardise_variation_list, data.standardise_variation_list.variation_id, data.standardise_variation_list.variation_name, data.standardise_variation_list.variation_group_list, data.standardise_variation_list.variation_group_list.variation_group_id, data.standardise_variation_list.variation_group_list.variation_group_name, data.standardise_variation_list.variation_group_list.variation_option_list, data.standardise_variation_list.variation_group_list.variation_option_list.variation_option_id, data.standardise_variation_list.variation_group_list.variation_option_list.variation_option_name
+  - product.link_item_to_ssp: warning
+  - product.unlink_item_from_ssp: warning
   - product.update_kit_item: warning
   - product.update_model: warning
   - product.update_sip_item_price: warning

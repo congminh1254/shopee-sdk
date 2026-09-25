@@ -2821,6 +2821,172 @@ describe("ProductManager (Generated Tests)", () => {
     });
   });
 
+  describe("getSspDetail", () => {
+    it("should correctly validate request and response formats", async () => {
+      const exampleRequest = {
+        ssp_id: 22865,
+        cssp_id: 400012701718692,
+      };
+      const exampleResponse = {
+        ssp_info: {
+          ssp_id: 1000000000,
+          title: "wireless headphones",
+          images: ["sg-11134201-example"],
+          category_path: [
+            {
+              category_id: 100001,
+              category_name: "Audio",
+              display_name: "Audio",
+            },
+          ],
+          description: "Standardized product description",
+          attributes: [
+            {
+              attr_id: 10001,
+              attr_name: "Color",
+              attr_display_name: "Color",
+              attr_val_info: [
+                {
+                  attr_val_id: 10002,
+                  attr_val: "Black",
+                  attr_val_display_name: "Black",
+                  custom_value: "test_string",
+                },
+              ],
+              input_type: 0,
+              input_validator: 0,
+              format_type: 0,
+              datetime_format: 0,
+            },
+          ],
+          brand: {
+            brand_id: 10001,
+            display_name: "Audio",
+          },
+          tier_variation: [
+            {
+              name: "Color",
+              options: ["Black"],
+              images: ["sg-11134201-example"],
+            },
+          ],
+          cssps: [
+            {
+              ssp_id: 1000000000,
+              cssp_id: 1000000000,
+              title: "wireless headphones",
+              images: ["sg-11134201-example"],
+              tier_indices: [0],
+              desc: "Country-specific product description",
+              brand_id: 10001,
+              attributes: [
+                {
+                  attr_id: 10001,
+                  attr_name: "Color",
+                  attr_display_name: "Color",
+                  attr_val_info: [
+                    {
+                      attr_val_id: 10002,
+                      attr_val: "Black",
+                      attr_val_display_name: "Black",
+                      custom_value: "test_string",
+                    },
+                  ],
+                  input_type: 0,
+                  input_validator: 0,
+                  format_type: 0,
+                  datetime_format: 0,
+                },
+              ],
+              tier_variation: [
+                {
+                  name: "Color",
+                  options: ["Black"],
+                  images: ["sg-11134201-example"],
+                },
+              ],
+              brand_name: "Example Brand",
+            },
+          ],
+          profile_type: 0,
+        },
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.getSspDetail(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_ssp_detail",
+        expect.objectContaining({
+          method: "GET",
+          auth: true,
+          params: expect.objectContaining(exampleRequest),
+        })
+      );
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
+  describe("getSspRecommendation", () => {
+    it("should correctly validate request and response formats", async () => {
+      const exampleRequest = {};
+      const exampleResponse = {
+        auto_enroll_items: [
+          {
+            item_id: 1000000000,
+            ssp_id: 1000000000,
+            model_cssp: {
+              model_id: 1000000001,
+              cssp_id: 1000000000,
+              ssp_id: 1000000000,
+            },
+          },
+        ],
+        possible_to_be_enroll_items: [
+          {
+            item_id: 1000000000,
+            ssp_id: 1000000000,
+            model_cssp: {
+              model_id: 1000000001,
+              cssp_id: 1000000000,
+              ssp_id: 1000000000,
+            },
+          },
+        ],
+        auto_enroll_time: 1786588000,
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.getSspRecommendation(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/get_ssp_recommendation",
+        expect.objectContaining({
+          method: "GET",
+          auth: true,
+          params: expect.objectContaining(exampleRequest),
+        })
+      );
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
   describe("getVariations", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
@@ -3096,6 +3262,48 @@ describe("ProductManager (Generated Tests)", () => {
     });
   });
 
+  describe("linkItemToSsp", () => {
+    it("should correctly validate request and response formats", async () => {
+      const exampleRequest = {
+        item_id: 3603897037,
+        model_cssp_pairs: [
+          {
+            model_id: 123,
+            cssp_id: 123,
+            ssp_id: 123,
+          },
+        ],
+      };
+      const exampleResponse = {
+        error: "test_string",
+        message: "test_string",
+        warning: "test_string",
+        request_id: "98eae35efff24dd0974c21a847127184",
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.linkItemToSsp(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/link_item_to_ssp",
+        expect.objectContaining({
+          method: "POST",
+          auth: true,
+          body: expect.objectContaining(exampleRequest),
+        })
+      );
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
   describe("publishItemToOutletShop", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
@@ -3343,6 +3551,122 @@ describe("ProductManager (Generated Tests)", () => {
     });
   });
 
+  describe("searchSspList", () => {
+    it("should correctly validate request and response formats", async () => {
+      const exampleRequest = {
+        title: "wireless headphones",
+        image_id_list: ["ph-11134207-81z1k-ms9az2bpxibk04"],
+      };
+      const exampleResponse = {
+        ssp_list: [
+          {
+            ssp_id: 1000000000,
+            title: "wireless headphones",
+            images: ["sg-11134201-example"],
+            category_path: [
+              {
+                category_id: 100001,
+                category_name: "Audio",
+                display_name: "Audio",
+              },
+            ],
+            description: "Standardized product description",
+            attributes: [
+              {
+                attr_id: 10001,
+                attr_name: "Color",
+                attr_display_name: "Color",
+                attr_val_info: [
+                  {
+                    attr_val_id: 10002,
+                    attr_val: "Black",
+                    attr_val_display_name: "Black",
+                    custom_value: "test_string",
+                  },
+                ],
+                input_type: 0,
+                input_validator: 0,
+                format_type: 0,
+                datetime_format: 0,
+              },
+            ],
+            brand: {
+              brand_id: 10001,
+              display_name: "Audio",
+            },
+            tier_variation: [
+              {
+                name: "Color",
+                options: ["Black"],
+                images: ["sg-11134201-example"],
+              },
+            ],
+            cssps: [
+              {
+                ssp_id: 1000000000,
+                cssp_id: 1000000000,
+                title: "wireless headphones",
+                images: ["sg-11134201-example"],
+                tier_indices: [0],
+                desc: "Country-specific product description",
+                brand_id: 10001,
+                attributes: [
+                  {
+                    attr_id: 10001,
+                    attr_name: "Color",
+                    attr_display_name: "Color",
+                    attr_val_info: [
+                      {
+                        attr_val_id: 10002,
+                        attr_val: "Black",
+                        attr_val_display_name: "Black",
+                        custom_value: "test_string",
+                      },
+                    ],
+                    input_type: 0,
+                    input_validator: 0,
+                    format_type: 0,
+                    datetime_format: 0,
+                  },
+                ],
+                tier_variation: [
+                  {
+                    name: "Color",
+                    options: ["Black"],
+                    images: ["sg-11134201-example"],
+                  },
+                ],
+                brand_name: "Example Brand",
+              },
+            ],
+            profile_type: 0,
+          },
+        ],
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.searchSspList(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/search_ssp_list",
+        expect.objectContaining({
+          method: "POST",
+          auth: true,
+          body: expect.objectContaining(exampleRequest),
+        })
+      );
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
   describe("searchUnpackagedModelList", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
@@ -3378,6 +3702,48 @@ describe("ProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/product/search_unpackaged_model_list",
+        expect.objectContaining({
+          method: "POST",
+          auth: true,
+          body: expect.objectContaining(exampleRequest),
+        })
+      );
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
+  describe("unlinkItemFromSsp", () => {
+    it("should correctly validate request and response formats", async () => {
+      const exampleRequest = {
+        item_id: 3944904935,
+        model_cssp_pairs: [
+          {
+            model_id: 260003143310,
+            cssp_id: 8122415000010099,
+            ssp_id: 22865,
+          },
+        ],
+      };
+      const exampleResponse = {
+        error: "test_string",
+        message: "test_string",
+        warning: "test_string",
+        request_id: "98eae35efff24dd0974c21a847127184",
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.unlinkItemFromSsp(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/product/unlink_item_from_ssp",
         expect.objectContaining({
           method: "POST",
           auth: true,

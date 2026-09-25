@@ -81,6 +81,10 @@ import {
   GetSizeChartDetailResponse,
   GetSizeChartListRequest,
   GetSizeChartListResponse,
+  GetSspDetailRequest,
+  GetSspDetailResponse,
+  GetSspRecommendationRequest,
+  GetSspRecommendationResponse,
   GetVariationsRequest,
   GetVariationsResponse,
   GetVehicleListByCompatibilityDetailRequest,
@@ -89,6 +93,8 @@ import {
   GetWeightRecommendationResponse,
   InitTierVariationRequest,
   InitTierVariationResponse,
+  LinkItemToSspRequest,
+  LinkItemToSspResponse,
   PublishItemToOutletShopRequest,
   PublishItemToOutletShopResponse,
   RegisterBrandRequest,
@@ -99,8 +105,12 @@ import {
   SearchAttributeValueListResponse,
   SearchItemRequest,
   SearchItemResponse,
+  SearchSspListRequest,
+  SearchSspListResponse,
   SearchUnpackagedModelListRequest,
   SearchUnpackagedModelListResponse,
+  UnlinkItemFromSspRequest,
+  UnlinkItemFromSspResponse,
   UnlistItemRequest,
   UnlistItemResponse,
   UpdateItemRequest,
@@ -788,6 +798,38 @@ export class ProductManager extends BaseManager {
     );
   }
   /**
+   * Get the details of an SSP or CSSP. At least one of ssp_id and cssp_id is required, and cssp_id takes priority when both are provided.The response covers the product content such as the category path, attributes, brand and variations. Each entry in cssps is a country-specific SSP under the SSP, and its tier_indices point to the selected options of the parent tier_variation.
+   *
+   * @param {GetSspDetailRequest} params Request parameters
+   * @returns {Promise<GetSspDetailResponse>} Promise resolving to the response
+   */
+  public async getSspDetail(params?: GetSspDetailRequest): Promise<GetSspDetailResponse> {
+    return ShopeeFetch.fetch<GetSspDetailResponse>(this.config, "/product/get_ssp_detail", {
+      method: "GET",
+      auth: true,
+      params: params,
+    });
+  }
+  /**
+   * Get the SSP enrollment recommendations of the authorized shop, separating items that can be enrolled automatically from items that may be enrolled after further action.auto_enroll_time is the automatic enrollment time in seconds as a future timestamp, returned for automatic enrollment only.
+   *
+   * @param {GetSspRecommendationRequest} params Request parameters
+   * @returns {Promise<GetSspRecommendationResponse>} Promise resolving to the response
+   */
+  public async getSspRecommendation(
+    params?: GetSspRecommendationRequest
+  ): Promise<GetSspRecommendationResponse> {
+    return ShopeeFetch.fetch<GetSspRecommendationResponse>(
+      this.config,
+      "/product/get_ssp_recommendation",
+      {
+        method: "GET",
+        auth: true,
+        params: params,
+      }
+    );
+  }
+  /**
    * Get the standardized tier variation defined by Shopee, which is currently a three-layer tree structure.
    * The top layer is variations, the second layer is groups, groups are used to divide options, and the third layer is options.
    *
@@ -857,6 +899,19 @@ export class ProductManager extends BaseManager {
         body: params,
       }
     );
+  }
+  /**
+   * Link one or more models of an item to their country-specific SSPs. item_id and model_cssp_pairs are required, and each pair must contain model_id and cssp_id; ssp_id is optional.
+   *
+   * @param {LinkItemToSspRequest} params Request parameters
+   * @returns {Promise<LinkItemToSspResponse>} Promise resolving to the response
+   */
+  public async linkItemToSsp(params?: LinkItemToSspRequest): Promise<LinkItemToSspResponse> {
+    return ShopeeFetch.fetch<LinkItemToSspResponse>(this.config, "/product/link_item_to_ssp", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
   }
   /**
    * This API supports publishing an existing item from the mart shop to an outlet shop.
@@ -936,6 +991,19 @@ export class ProductManager extends BaseManager {
     });
   }
   /**
+   * Search SSPs by title or by image. At most 50 results are returned.When image_id_list is provided, the search is based on image similarity and title is ignored; otherwise title must contain at least three characters.
+   *
+   * @param {SearchSspListRequest} params Request parameters
+   * @returns {Promise<SearchSspListResponse>} Promise resolving to the response
+   */
+  public async searchSspList(params?: SearchSspListRequest): Promise<SearchSspListResponse> {
+    return ShopeeFetch.fetch<SearchSspListResponse>(this.config, "/product/search_ssp_list", {
+      method: "POST",
+      auth: true,
+      body: params,
+    });
+  }
+  /**
    * Use this API to retrieve Unpackaged SKU ID information for items that toggle on logistics channel 30029.
    *
    * @param {SearchUnpackagedModelListRequest} params Request parameters
@@ -947,6 +1015,25 @@ export class ProductManager extends BaseManager {
     return ShopeeFetch.fetch<SearchUnpackagedModelListResponse>(
       this.config,
       "/product/search_unpackaged_model_list",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Remove the SSP links of one or more models of an item. item_id and model_cssp_pairs are required, and each pair must contain model_id and cssp_id; ssp_id is optional.
+   *
+   * @param {UnlinkItemFromSspRequest} params Request parameters
+   * @returns {Promise<UnlinkItemFromSspResponse>} Promise resolving to the response
+   */
+  public async unlinkItemFromSsp(
+    params?: UnlinkItemFromSspRequest
+  ): Promise<UnlinkItemFromSspResponse> {
+    return ShopeeFetch.fetch<UnlinkItemFromSspResponse>(
+      this.config,
+      "/product/unlink_item_from_ssp",
       {
         method: "POST",
         auth: true,

@@ -720,7 +720,9 @@
   "version": "",
   "error_example": [],
   "api_permission": [
-    "ERP System"
+    "ERP System",
+    "Seller In House System",
+    "Product Management"
   ],
   "path": "/api/v2/business_insights/get_marketing_hot_listing",
   "related_documents": {

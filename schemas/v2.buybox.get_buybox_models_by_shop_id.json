@@ -337,8 +337,8 @@
               {
                 "description": "",
                 "name": "last_updated_time",
-                "sample": "1610000000",
-                "type": "timestamp",
+                "sample": "2026-01-19",
+                "type": "string",
                 "required": null,
                 "key": "cYMRNZw"
               }
@@ -401,8 +401,9 @@
     {
       "type": "JSON",
       "value": {
-        "error": "",
-        "message": "",
+        "error": "error_param",
+        "message": "Invalid request parameters.",
+        "request_id": "b6b2c7a0f4d84f7f9a3f58c0d2e2f031",
         "response": {
           "model_list": [
             {
@@ -410,7 +411,7 @@
               "is_model_mapped": true,
               "is_eligible": true,
               "model_toggle_on_status": false,
-              "last_updated_time": 1610000000
+              "last_updated_time": "2026-01-19"
             }
           ],
           "page_info": {
@@ -419,8 +420,7 @@
             "total_count": 1
           },
           "shop_id": 600000
-        },
-        "request_id": "b6b2c7a0f4d84f7f9a3f58c0d2e2f031"
+        }
       }
     }
   ],
@@ -446,7 +446,11 @@
       }
     }
   ],
-  "api_permission": [],
+  "api_permission": [
+    "ERP System",
+    "Seller In House System",
+    "Product Management"
+  ],
   "path": "/api/v2/buybox/get_buybox_models_by_shop_id",
   "related_documents": {
     "developer_guides": [],
