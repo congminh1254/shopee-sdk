@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.0](https://github.com/congminh1254/shopee-sdk/compare/v2.7.0...v2.8.0) (2026-09-25)
+
+
+### Features
+
+* **product:** add SSP endpoints ([#267](https://github.com/congminh1254/shopee-sdk/issues/267)) ([66a2285](https://github.com/congminh1254/shopee-sdk/commit/66a2285870fb995c879f85e27eda6c4a88ffb18f))
+
 ## [2.7.0](https://github.com/congminh1254/shopee-sdk/compare/v2.6.0...v2.7.0) (2026-09-22)
 
 
