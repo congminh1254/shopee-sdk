@@ -21,7 +21,7 @@ export interface GetBuyboxModelPerformancePerformance {
  */
 export interface GetBuyboxModelPerformanceResponseData {
   performance_list?: GetBuyboxModelPerformancePerformance[];
-  data_updated_time?: Date | number;
+  data_updated_time?: string;
 }
 /**
  * Response payload for get_buybox_model_performance
@@ -46,7 +46,7 @@ export interface GetBuyboxModelsByModelIdModel {
   is_model_mapped?: boolean;
   is_eligible?: boolean;
   model_toggle_on_status?: boolean;
-  last_updated_time?: Date | number;
+  last_updated_time?: string;
 }
 /**
  * GetBuyboxModelsByModelIdResponseData sub-interface for GetBuyboxModelsByModelIdResponse
@@ -83,7 +83,7 @@ export interface GetBuyboxModelsByShopIdModel {
   is_model_mapped?: boolean;
   is_eligible?: boolean;
   model_toggle_on_status?: boolean;
-  last_updated_time?: Date | number;
+  last_updated_time?: string;
 }
 /**
  * GetBuyboxModelsByShopIdPageInfo sub-interface for GetBuyboxModelsByShopIdResponseData
@@ -120,7 +120,7 @@ export interface GetBuyboxShopPerformanceResponseData {
   past_7_days_sold_count?: number;
   total_sold_count?: number;
   sales?: number;
-  data_updated_time?: Date | number;
+  data_updated_time?: string;
   shop_id?: number;
 }
 /**
@@ -144,7 +144,7 @@ export interface UpdateBuyboxModelEnrollmentRequest {
 export interface UpdateBuyboxModelEnrollmentResponseData {
   model_id?: number;
   model_toggle_on_status?: boolean;
-  last_updated_time?: Date | number;
+  last_updated_time?: string;
   shop_id?: number;
 }
 /**

@@ -35,7 +35,7 @@ describe("BuyboxManager (Generated Tests)", () => {
             past_7_days_sold_count: 100,
           },
         ],
-        data_updated_time: 1610000000,
+        data_updated_time: "2026-01-19",
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -73,7 +73,7 @@ describe("BuyboxManager (Generated Tests)", () => {
             is_model_mapped: true,
             is_eligible: true,
             model_toggle_on_status: false,
-            last_updated_time: 1610000000,
+            last_updated_time: "2026-01-19",
           },
         ],
       };
@@ -114,7 +114,7 @@ describe("BuyboxManager (Generated Tests)", () => {
             is_model_mapped: true,
             is_eligible: true,
             model_toggle_on_status: false,
-            last_updated_time: 1610000000,
+            last_updated_time: "2026-01-19",
           },
         ],
         page_info: {
@@ -155,7 +155,7 @@ describe("BuyboxManager (Generated Tests)", () => {
         past_7_days_sold_count: 100,
         total_sold_count: 1000,
         sales: 1234.56,
-        data_updated_time: 1610000000,
+        data_updated_time: "2026-01-19",
         shop_id: 600000,
       };
 
@@ -191,7 +191,7 @@ describe("BuyboxManager (Generated Tests)", () => {
       const exampleResponse = {
         model_id: 600000,
         model_toggle_on_status: true,
-        last_updated_time: 1610000000,
+        last_updated_time: "2026-01-19",
         shop_id: 600000,
       };
 
