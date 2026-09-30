@@ -70,8 +70,11 @@
     },
     {
       "name": "order.error_limit",
-      "description": "Can not cancel this order",
-      "solution": null
+      "description": "Can not cancel this order:{msg}",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
     },
     {
       "name": "order. error_param",
