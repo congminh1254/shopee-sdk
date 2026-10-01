@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.9.0](https://github.com/congminh1254/shopee-sdk/compare/v2.8.0...v2.9.0) (2026-10-01)
+
+
+### Features
+
+* **payment:** add pay_per_sale field to payment schemas ([#271](https://github.com/congminh1254/shopee-sdk/issues/271)) ([fa357d4](https://github.com/congminh1254/shopee-sdk/commit/fa357d476cf803f9057f6eeb4d567abe40252194))
+
 ## [2.8.0](https://github.com/congminh1254/shopee-sdk/compare/v2.7.0...v2.8.0) (2026-09-25)
 
 
