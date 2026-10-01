@@ -316,6 +316,7 @@ describe("PaymentManager (Generated Tests)", () => {
           ads_escrow_top_up_fee_or_technical_support_fee: 123,
           th_import_duty: 123,
           remaining_voucher: 10,
+          pay_per_sale: 123,
         },
         buyer_payment_info: {
           buyer_payment_method: "test_string",
@@ -529,6 +530,7 @@ describe("PaymentManager (Generated Tests)", () => {
               pix_discount: 123,
               prorated_pix_discount_offset_return_items: 123,
               ads_escrow_top_up_fee_or_technical_support_fee: 123,
+              pay_per_sale: 123,
               th_import_duty: 123,
               remaining_voucher: 10,
             },
