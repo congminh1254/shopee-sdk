@@ -1,6 +1,6 @@
 {
   "api_id": 3373,
-  "api_name": "v2.business_insights.get_marketing_hot_listing",
+  "api_name": "v2.business_insights.get_marketing_hot_listing（only BR now）",
   "api_type": "Shop",
   "common_params": [
     {
@@ -715,7 +715,12 @@
   "status": 1,
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/business_insights/get_marketing_hot_listing",
-  "update_log_list": [],
+  "update_log_list": [
+    {
+      "date": "2026-10-09",
+      "content": "add a sign（only for br）"
+    }
+  ],
   "url": "https://partner.shopeemobile.com/api/v2/business_insights/get_marketing_hot_listing",
   "version": "",
   "error_example": [],

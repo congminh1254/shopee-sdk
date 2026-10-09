@@ -1,8 +1,8 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
 import {
-  GetMarketingHotListingRequest,
-  GetMarketingHotListingResponse,
+  GetMarketingHotListingonlybrnowRequest,
+  GetMarketingHotListingonlybrnowResponse,
 } from "../schemas/business-insights.js";
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
@@ -14,13 +14,13 @@ export class BusinessInsightsManager extends BaseManager {
   /**
    * Provide all metrics currently available on the Business Insights Buybox dashboard, including metrics not explicitly requested by Local (for example, CTR), covering both:Shop-level performanceProduct-level performance
    *
-   * @param {GetMarketingHotListingRequest} params Request parameters
-   * @returns {Promise<GetMarketingHotListingResponse>} Promise resolving to the response
+   * @param {GetMarketingHotListingonlybrnowRequest} params Request parameters
+   * @returns {Promise<GetMarketingHotListingonlybrnowResponse>} Promise resolving to the response
    */
-  public async getMarketingHotListing(
-    params?: GetMarketingHotListingRequest
-  ): Promise<GetMarketingHotListingResponse> {
-    return ShopeeFetch.fetch<GetMarketingHotListingResponse>(
+  public async getMarketingHotListingonlybrnow(
+    params?: GetMarketingHotListingonlybrnowRequest
+  ): Promise<GetMarketingHotListingonlybrnowResponse> {
+    return ShopeeFetch.fetch<GetMarketingHotListingonlybrnowResponse>(
       this.config,
       "/business_insights/get_marketing_hot_listing",
       {
