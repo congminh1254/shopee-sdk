@@ -2,11 +2,11 @@
 
 import { FetchResponse } from "./fetch.js";
 /**
- * Request parameters for get_marketing_hot_listing
+ * Request parameters for get_marketing_hot_listing（onlyBRnow）
  *
  * Provide all metrics currently available on the Business Insights Buybox dashboard, including metrics not explicitly requested by Local (for example, CTR), covering both:Shop-level performanceProduct-level performance
  */
-export interface GetMarketingHotListingRequest {
+export interface GetMarketingHotListingonlybrnowRequest {
   /**
    * Start of the requested time range as a Unix timestamp in seconds.
    */
@@ -25,9 +25,9 @@ export interface GetMarketingHotListingRequest {
   product_id_list?: string[];
 }
 /**
- * Response data payload for get_marketing_hot_listing
+ * Response data payload for get_marketing_hot_listing（onlyBRnow）
  */
-export interface GetMarketingHotListingResponseData {
+export interface GetMarketingHotListingonlybrnowResponseData {
   /**
    * Business status code. 0 indicates success.
    */
@@ -214,8 +214,9 @@ export interface GetMarketingHotListingResponseData {
   result_performance_click_through_rate?: number;
 }
 /**
- * Response payload for get_marketing_hot_listing
+ * Response payload for get_marketing_hot_listing（onlyBRnow）
  *
  * Provide all metrics currently available on the Business Insights Buybox dashboard, including metrics not explicitly requested by Local (for example, CTR), covering both:Shop-level performanceProduct-level performance
  */
-export type GetMarketingHotListingResponse = FetchResponse<GetMarketingHotListingResponseData>;
+export type GetMarketingHotListingonlybrnowResponse =
+  FetchResponse<GetMarketingHotListingonlybrnowResponseData>;

@@ -23,7 +23,7 @@ describe("BusinessInsightsManager (Generated Tests)", () => {
     manager = new BusinessInsightsManager(mockConfig);
   });
 
-  describe("getMarketingHotListing", () => {
+  describe("getMarketingHotListingonlybrnow", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         start_time: 123,
@@ -87,7 +87,7 @@ describe("BusinessInsightsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMarketingHotListing(exampleRequest);
+      const result = await manager.getMarketingHotListingonlybrnow(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
