@@ -393,11 +393,6 @@ export function parseSchemaFile(filePath: string): EndpointSpec | null {
     apiName,
     moduleName,
     endpointName,
-    // Preserve the public names generated before full-width annotations were stripped.
-    legacyEndpointName:
-      moduleName === "buybox" && schema.api_name?.endsWith("（only for BR now）")
-        ? `${endpointName}（onlyforBRnow）`
-        : undefined,
     method,
     path: pathVal,
     auth,
