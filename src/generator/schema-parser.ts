@@ -370,7 +370,11 @@ export function parseSchemaFile(filePath: string): EndpointSpec | null {
 
   const rawDefine = schema.define;
   const defineStr = typeof rawDefine === "string" ? rawDefine : rawDefine?.content || "";
-  const description = cleanDescription(defineStr);
+  const description =
+    cleanDescription(defineStr) +
+    (moduleName === "buybox" && schema.api_name?.endsWith("（only for BR now）")
+      ? "\n\nOnly available in Brazil (BR)."
+      : "");
 
   const enums: ParsedEnum[] = [];
   const timestampPaths: string[] = [];
@@ -389,6 +393,11 @@ export function parseSchemaFile(filePath: string): EndpointSpec | null {
     apiName,
     moduleName,
     endpointName,
+    // Preserve the public names generated before full-width annotations were stripped.
+    legacyEndpointName:
+      moduleName === "buybox" && schema.api_name?.endsWith("（only for BR now）")
+        ? `${endpointName}（onlyforBRnow）`
+        : undefined,
     method,
     path: pathVal,
     auth,

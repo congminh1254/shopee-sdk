@@ -32,6 +32,7 @@ export interface EndpointSpec {
   apiName: string;
   moduleName: string;
   endpointName: string;
+  legacyEndpointName?: string;
   method: "GET" | "POST";
   path: string;
   auth: boolean;
@@ -66,4 +67,9 @@ export function getManagerClassName(moduleName: string): string {
 export function getSdkPropertyName(moduleName: string): string {
   if (moduleName.toLowerCase() === "livestream") return "livestream";
   return toCamelCase(moduleName);
+}
+
+/** Remove documentation annotations from endpoint filenames. */
+export function normalizeSchemaName(name: string): string {
+  return name.replace(/\([^)]*\)|（[^）]*）/g, "").replace(/\s+/g, "");
 }
