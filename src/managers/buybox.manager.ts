@@ -1,16 +1,16 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
 import {
-  GetBuyboxModelPerformanceRequest,
-  GetBuyboxModelPerformanceResponse,
-  GetBuyboxModelsByModelIdRequest,
-  GetBuyboxModelsByModelIdResponse,
-  GetBuyboxModelsByShopIdRequest,
-  GetBuyboxModelsByShopIdResponse,
-  GetBuyboxShopPerformanceRequest,
-  GetBuyboxShopPerformanceResponse,
-  UpdateBuyboxModelEnrollmentRequest,
-  UpdateBuyboxModelEnrollmentResponse,
+  GetBuyboxModelPerformanceonlyforbrnowRequest,
+  GetBuyboxModelPerformanceonlyforbrnowResponse,
+  GetBuyboxModelsByModelIdonlyforbrnowRequest,
+  GetBuyboxModelsByModelIdonlyforbrnowResponse,
+  GetBuyboxModelsByShopIdonlyforbrnowRequest,
+  GetBuyboxModelsByShopIdonlyforbrnowResponse,
+  GetBuyboxShopPerformanceonlyforbrnowRequest,
+  GetBuyboxShopPerformanceonlyforbrnowResponse,
+  UpdateBuyboxModelEnrollmentonlyforbrnowRequest,
+  UpdateBuyboxModelEnrollmentonlyforbrnowResponse,
 } from "../schemas/buybox.js";
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
@@ -22,13 +22,13 @@ export class BuyboxManager extends BaseManager {
   /**
    * Get Buybox model performance by model IDs for the authorized shop.
    *
-   * @param {GetBuyboxModelPerformanceRequest} params Request parameters
-   * @returns {Promise<GetBuyboxModelPerformanceResponse>} Promise resolving to the response
+   * @param {GetBuyboxModelPerformanceonlyforbrnowRequest} params Request parameters
+   * @returns {Promise<GetBuyboxModelPerformanceonlyforbrnowResponse>} Promise resolving to the response
    */
-  public async getBuyboxModelPerformance(
-    params?: GetBuyboxModelPerformanceRequest
-  ): Promise<GetBuyboxModelPerformanceResponse> {
-    return ShopeeFetch.fetch<GetBuyboxModelPerformanceResponse>(
+  public async getBuyboxModelPerformanceonlyforbrnow(
+    params?: GetBuyboxModelPerformanceonlyforbrnowRequest
+  ): Promise<GetBuyboxModelPerformanceonlyforbrnowResponse> {
+    return ShopeeFetch.fetch<GetBuyboxModelPerformanceonlyforbrnowResponse>(
       this.config,
       "/buybox/get_buybox_model_performance",
       {
@@ -41,13 +41,13 @@ export class BuyboxManager extends BaseManager {
   /**
    * Get Buybox model information by model IDs for the authorized shop.
    *
-   * @param {GetBuyboxModelsByModelIdRequest} params Request parameters
-   * @returns {Promise<GetBuyboxModelsByModelIdResponse>} Promise resolving to the response
+   * @param {GetBuyboxModelsByModelIdonlyforbrnowRequest} params Request parameters
+   * @returns {Promise<GetBuyboxModelsByModelIdonlyforbrnowResponse>} Promise resolving to the response
    */
-  public async getBuyboxModelsByModelId(
-    params?: GetBuyboxModelsByModelIdRequest
-  ): Promise<GetBuyboxModelsByModelIdResponse> {
-    return ShopeeFetch.fetch<GetBuyboxModelsByModelIdResponse>(
+  public async getBuyboxModelsByModelIdonlyforbrnow(
+    params?: GetBuyboxModelsByModelIdonlyforbrnowRequest
+  ): Promise<GetBuyboxModelsByModelIdonlyforbrnowResponse> {
+    return ShopeeFetch.fetch<GetBuyboxModelsByModelIdonlyforbrnowResponse>(
       this.config,
       "/buybox/get_buybox_models_by_model_id",
       {
@@ -60,13 +60,13 @@ export class BuyboxManager extends BaseManager {
   /**
    * Get the paginated Buybox model list for the authorized shop.
    *
-   * @param {GetBuyboxModelsByShopIdRequest} params Request parameters
-   * @returns {Promise<GetBuyboxModelsByShopIdResponse>} Promise resolving to the response
+   * @param {GetBuyboxModelsByShopIdonlyforbrnowRequest} params Request parameters
+   * @returns {Promise<GetBuyboxModelsByShopIdonlyforbrnowResponse>} Promise resolving to the response
    */
-  public async getBuyboxModelsByShopId(
-    params?: GetBuyboxModelsByShopIdRequest
-  ): Promise<GetBuyboxModelsByShopIdResponse> {
-    return ShopeeFetch.fetch<GetBuyboxModelsByShopIdResponse>(
+  public async getBuyboxModelsByShopIdonlyforbrnow(
+    params?: GetBuyboxModelsByShopIdonlyforbrnowRequest
+  ): Promise<GetBuyboxModelsByShopIdonlyforbrnowResponse> {
+    return ShopeeFetch.fetch<GetBuyboxModelsByShopIdonlyforbrnowResponse>(
       this.config,
       "/buybox/get_buybox_models_by_shop_id",
       {
@@ -79,13 +79,13 @@ export class BuyboxManager extends BaseManager {
   /**
    * Get Buybox shop performance for the authorized shop.
    *
-   * @param {GetBuyboxShopPerformanceRequest} params Request parameters
-   * @returns {Promise<GetBuyboxShopPerformanceResponse>} Promise resolving to the response
+   * @param {GetBuyboxShopPerformanceonlyforbrnowRequest} params Request parameters
+   * @returns {Promise<GetBuyboxShopPerformanceonlyforbrnowResponse>} Promise resolving to the response
    */
-  public async getBuyboxShopPerformance(
-    params?: GetBuyboxShopPerformanceRequest
-  ): Promise<GetBuyboxShopPerformanceResponse> {
-    return ShopeeFetch.fetch<GetBuyboxShopPerformanceResponse>(
+  public async getBuyboxShopPerformanceonlyforbrnow(
+    params?: GetBuyboxShopPerformanceonlyforbrnowRequest
+  ): Promise<GetBuyboxShopPerformanceonlyforbrnowResponse> {
+    return ShopeeFetch.fetch<GetBuyboxShopPerformanceonlyforbrnowResponse>(
       this.config,
       "/buybox/get_buybox_shop_performance",
       {
@@ -98,13 +98,13 @@ export class BuyboxManager extends BaseManager {
   /**
    * Update Buybox model enrollment status for the authorized shop.
    *
-   * @param {UpdateBuyboxModelEnrollmentRequest} params Request parameters
-   * @returns {Promise<UpdateBuyboxModelEnrollmentResponse>} Promise resolving to the response
+   * @param {UpdateBuyboxModelEnrollmentonlyforbrnowRequest} params Request parameters
+   * @returns {Promise<UpdateBuyboxModelEnrollmentonlyforbrnowResponse>} Promise resolving to the response
    */
-  public async updateBuyboxModelEnrollment(
-    params?: UpdateBuyboxModelEnrollmentRequest
-  ): Promise<UpdateBuyboxModelEnrollmentResponse> {
-    return ShopeeFetch.fetch<UpdateBuyboxModelEnrollmentResponse>(
+  public async updateBuyboxModelEnrollmentonlyforbrnow(
+    params?: UpdateBuyboxModelEnrollmentonlyforbrnowRequest
+  ): Promise<UpdateBuyboxModelEnrollmentonlyforbrnowResponse> {
+    return ShopeeFetch.fetch<UpdateBuyboxModelEnrollmentonlyforbrnowResponse>(
       this.config,
       "/buybox/update_buybox_model_enrollment",
       {

@@ -1,6 +1,6 @@
 {
   "api_id": 3361,
-  "api_name": "v2.buybox.update_buybox_model_enrollment",
+  "api_name": "v2.buybox.update_buybox_model_enrollment（only for BR now）",
   "api_type": "Shop",
   "common_params": [
     {
@@ -405,6 +405,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/buybox/update_buybox_model_enrollment",
   "update_log_list": [
+    {
+      "date": "2026-10-10",
+      "content": "add a sign （only for BR now）"
+    },
     {
       "date": "-",
       "content": "New API"

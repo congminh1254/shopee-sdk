@@ -1,6 +1,6 @@
 {
-  "api_id": 3358,
-  "api_name": "v2.buybox.get_buybox_models_by_model_id",
+  "api_id": 3357,
+  "api_name": "v2.buybox.get_buybox_models_by_shop_id（only for BR now）",
   "api_type": "Shop",
   "common_params": [
     {
@@ -35,13 +35,13 @@
     }
   ],
   "define": {
-    "content": "<p>Get Buybox model information by model IDs for the authorized shop.</p>",
+    "content": "<p>Get the paginated Buybox model list for the authorized shop.</p>",
     "raw_content": [
       {
         "name": "paragraph",
         "children": [
           {
-            "data": "Get Buybox model information by model IDs for the authorized shop."
+            "data": "Get the paginated Buybox model list for the authorized shop."
           }
         ]
       }
@@ -49,23 +49,8 @@
   },
   "error_list": [
     {
-      "name": "buybox_duplicate_model_id",
-      "description": "The model ID list contains duplicate values. Remove the duplicate model IDs and try again.",
-      "solution": null
-    },
-    {
-      "name": "buybox_invalid_model_id",
-      "description": "The model ID is invalid. Provide a valid positive model ID.",
-      "solution": null
-    },
-    {
-      "name": "buybox_invalid_model_id_list",
-      "description": "The model ID list is invalid. Provide a valid list of positive model IDs.",
-      "solution": null
-    },
-    {
-      "name": "buybox_model_not_found",
-      "description": "The model was not found under the authorized shop. Check the model ID and try again.",
+      "name": "buybox_invalid_pagination",
+      "description": "The pagination parameters are invalid. Provide a non-negative offset and a valid limit.",
       "solution": null
     },
     {
@@ -260,24 +245,30 @@
   "params": {
     "request_params": [
       {
-        "description": "",
-        "name": "model_id_list",
-        "sample": [
-          600000,
-          600001
-        ],
-        "type": "int64[]",
-        "required": "True",
-        "key": "mwSJpAt"
+        "description": "<p>Pagination offset. Must be non-negative.</p>",
+        "name": "offset",
+        "sample": "0",
+        "type": "int32",
+        "required": "False",
+        "key": "PanfayR"
+      },
+      {
+        "description": "<p>Page size. Valid range is 1 to 250.</p>",
+        "name": "limit",
+        "sample": "100",
+        "type": "int32",
+        "required": "False",
+        "key": "SybpAQ"
       }
     ],
     "response_params": [
       {
-        "name": "error",
-        "type": "string",
-        "sample": "error_param",
         "description": "",
-        "key": "eMEEbcf"
+        "name": "error",
+        "sample": "error_param",
+        "type": "string",
+        "required": null,
+        "key": "isfSbpA"
       },
       {
         "description": "",
@@ -285,7 +276,7 @@
         "sample": "Invalid request parameters.",
         "type": "string",
         "required": null,
-        "key": "wPYywcP"
+        "key": "yZFbzyE"
       },
       {
         "description": "",
@@ -293,7 +284,7 @@
         "sample": "b6b2c7a0f4d84f7f9a3f58c0d2e2f031",
         "type": "string",
         "required": null,
-        "key": "iPwmMGd"
+        "key": "ESjPkne"
       },
       {
         "description": "",
@@ -301,7 +292,7 @@
         "sample": "",
         "type": "object",
         "required": null,
-        "key": "ZrEzHDf",
+        "key": "WFcsyHt",
         "children": [
           {
             "description": "",
@@ -309,7 +300,7 @@
             "sample": "",
             "type": "object[]",
             "required": null,
-            "key": "HSfQQKw",
+            "key": "KSMTRCb",
             "children": [
               {
                 "description": "",
@@ -317,7 +308,7 @@
                 "sample": "600000",
                 "type": "int64",
                 "required": null,
-                "key": "phCDCbm"
+                "key": "NSXCHtQ"
               },
               {
                 "description": "",
@@ -325,7 +316,7 @@
                 "sample": "true",
                 "type": "boolean",
                 "required": null,
-                "key": "saYttYB"
+                "key": "iPXwPGP"
               },
               {
                 "description": "",
@@ -333,7 +324,7 @@
                 "sample": "true",
                 "type": "boolean",
                 "required": null,
-                "key": "yDwWkPY"
+                "key": "yTxrRtS"
               },
               {
                 "description": "",
@@ -341,7 +332,7 @@
                 "sample": "false",
                 "type": "boolean",
                 "required": null,
-                "key": "YsQcYBz"
+                "key": "kAJjxkr"
               },
               {
                 "description": "",
@@ -349,19 +340,61 @@
                 "sample": "2026-01-19",
                 "type": "string",
                 "required": null,
-                "key": "nZQydEG"
+                "key": "cYMRNZw"
               }
             ]
+          },
+          {
+            "description": "",
+            "name": "page_info",
+            "sample": "",
+            "type": "object",
+            "required": null,
+            "key": "XzhrkhX",
+            "children": [
+              {
+                "description": "",
+                "name": "offset",
+                "sample": "0",
+                "type": "int32",
+                "required": null,
+                "key": "kwExsFe"
+              },
+              {
+                "description": "",
+                "name": "limit",
+                "sample": "100",
+                "type": "int32",
+                "required": null,
+                "key": "kCfaQrH"
+              },
+              {
+                "description": "",
+                "name": "total_count",
+                "sample": "1",
+                "type": "int32",
+                "required": null,
+                "key": "dEPGMKJ"
+              }
+            ]
+          },
+          {
+            "description": "",
+            "name": "shop_id",
+            "sample": "600000",
+            "type": "int64",
+            "required": null,
+            "key": "MdjwzSJ"
           }
         ]
       }
     ]
   },
-  "perm_mtime": 1789627792,
+  "perm_mtime": 1789627786,
   "perm_operator": "guanlin.ma@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
-  "priority": 80738,
+  "priority": 80737,
   "rate_limit": "",
   "request_sample": [],
   "response_sample": [
@@ -380,21 +413,31 @@
               "model_toggle_on_status": false,
               "last_updated_time": "2026-01-19"
             }
-          ]
+          ],
+          "page_info": {
+            "offset": 0,
+            "limit": 100,
+            "total_count": 1
+          },
+          "shop_id": 600000
         }
       }
     }
   ],
   "status": 1,
   "tag": "",
-  "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/buybox/get_buybox_models_by_model_id",
+  "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/buybox/get_buybox_models_by_shop_id",
   "update_log_list": [
+    {
+      "date": "2026-10-10",
+      "content": "add a sign （only for BR now）"
+    },
     {
       "date": "2026-09-17",
       "content": "New API"
     }
   ],
-  "url": "https://partner.shopeemobile.com/api/v2/buybox/get_buybox_models_by_model_id",
+  "url": "https://partner.shopeemobile.com/api/v2/buybox/get_buybox_models_by_shop_id",
   "version": "",
   "error_example": [
     {
@@ -412,7 +455,7 @@
     "Seller In House System",
     "Product Management"
   ],
-  "path": "/api/v2/buybox/get_buybox_models_by_model_id",
+  "path": "/api/v2/buybox/get_buybox_models_by_shop_id",
   "related_documents": {
     "developer_guides": [],
     "faqs": []

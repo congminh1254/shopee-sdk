@@ -2,46 +2,46 @@
 
 import { FetchResponse } from "./fetch.js";
 /**
- * Request parameters for get_buybox_model_performance
+ * Request parameters for get_buybox_model_performance（onlyforBRnow）
  *
  * Get Buybox model performance by model IDs for the authorized shop.
  */
-export interface GetBuyboxModelPerformanceRequest {
+export interface GetBuyboxModelPerformanceonlyforbrnowRequest {
   model_id_list: number[];
 }
 /**
- * GetBuyboxModelPerformancePerformance sub-interface for GetBuyboxModelPerformanceResponseData
+ * GetBuyboxModelPerformanceonlyforbrnowPerformance sub-interface for GetBuyboxModelPerformanceonlyforbrnowResponseData
  */
-export interface GetBuyboxModelPerformancePerformance {
+export interface GetBuyboxModelPerformanceonlyforbrnowPerformance {
   model_id?: number;
   past_7_days_sold_count?: number;
 }
 /**
- * GetBuyboxModelPerformanceResponseData sub-interface for GetBuyboxModelPerformanceResponse
+ * GetBuyboxModelPerformanceonlyforbrnowResponseData sub-interface for GetBuyboxModelPerformanceonlyforbrnowResponse
  */
-export interface GetBuyboxModelPerformanceResponseData {
-  performance_list?: GetBuyboxModelPerformancePerformance[];
+export interface GetBuyboxModelPerformanceonlyforbrnowResponseData {
+  performance_list?: GetBuyboxModelPerformanceonlyforbrnowPerformance[];
   data_updated_time?: string;
 }
 /**
- * Response payload for get_buybox_model_performance
+ * Response payload for get_buybox_model_performance（onlyforBRnow）
  *
  * Get Buybox model performance by model IDs for the authorized shop.
  */
-export type GetBuyboxModelPerformanceResponse =
-  FetchResponse<GetBuyboxModelPerformanceResponseData>;
+export type GetBuyboxModelPerformanceonlyforbrnowResponse =
+  FetchResponse<GetBuyboxModelPerformanceonlyforbrnowResponseData>;
 /**
- * Request parameters for get_buybox_models_by_model_id
+ * Request parameters for get_buybox_models_by_model_id（onlyforBRnow）
  *
  * Get Buybox model information by model IDs for the authorized shop.
  */
-export interface GetBuyboxModelsByModelIdRequest {
+export interface GetBuyboxModelsByModelIdonlyforbrnowRequest {
   model_id_list: number[];
 }
 /**
- * GetBuyboxModelsByModelIdModel sub-interface for GetBuyboxModelsByModelIdResponseData
+ * GetBuyboxModelsByModelIdonlyforbrnowModel sub-interface for GetBuyboxModelsByModelIdonlyforbrnowResponseData
  */
-export interface GetBuyboxModelsByModelIdModel {
+export interface GetBuyboxModelsByModelIdonlyforbrnowModel {
   model_id?: number;
   is_model_mapped?: boolean;
   is_eligible?: boolean;
@@ -49,23 +49,24 @@ export interface GetBuyboxModelsByModelIdModel {
   last_updated_time?: string;
 }
 /**
- * GetBuyboxModelsByModelIdResponseData sub-interface for GetBuyboxModelsByModelIdResponse
+ * GetBuyboxModelsByModelIdonlyforbrnowResponseData sub-interface for GetBuyboxModelsByModelIdonlyforbrnowResponse
  */
-export interface GetBuyboxModelsByModelIdResponseData {
-  model_list?: GetBuyboxModelsByModelIdModel[];
+export interface GetBuyboxModelsByModelIdonlyforbrnowResponseData {
+  model_list?: GetBuyboxModelsByModelIdonlyforbrnowModel[];
 }
 /**
- * Response payload for get_buybox_models_by_model_id
+ * Response payload for get_buybox_models_by_model_id（onlyforBRnow）
  *
  * Get Buybox model information by model IDs for the authorized shop.
  */
-export type GetBuyboxModelsByModelIdResponse = FetchResponse<GetBuyboxModelsByModelIdResponseData>;
+export type GetBuyboxModelsByModelIdonlyforbrnowResponse =
+  FetchResponse<GetBuyboxModelsByModelIdonlyforbrnowResponseData>;
 /**
- * Request parameters for get_buybox_models_by_shop_id
+ * Request parameters for get_buybox_models_by_shop_id（onlyforBRnow）
  *
  * Get the paginated Buybox model list for the authorized shop.
  */
-export interface GetBuyboxModelsByShopIdRequest {
+export interface GetBuyboxModelsByShopIdonlyforbrnowRequest {
   /**
    * Pagination offset. Must be non-negative.
    */
@@ -76,9 +77,9 @@ export interface GetBuyboxModelsByShopIdRequest {
   limit?: number;
 }
 /**
- * GetBuyboxModelsByShopIdModel sub-interface for GetBuyboxModelsByShopIdResponseData
+ * GetBuyboxModelsByShopIdonlyforbrnowModel sub-interface for GetBuyboxModelsByShopIdonlyforbrnowResponseData
  */
-export interface GetBuyboxModelsByShopIdModel {
+export interface GetBuyboxModelsByShopIdonlyforbrnowModel {
   model_id?: number;
   is_model_mapped?: boolean;
   is_eligible?: boolean;
@@ -86,37 +87,38 @@ export interface GetBuyboxModelsByShopIdModel {
   last_updated_time?: string;
 }
 /**
- * GetBuyboxModelsByShopIdPageInfo sub-interface for GetBuyboxModelsByShopIdResponseData
+ * GetBuyboxModelsByShopIdonlyforbrnowPageInfo sub-interface for GetBuyboxModelsByShopIdonlyforbrnowResponseData
  */
-export interface GetBuyboxModelsByShopIdPageInfo {
+export interface GetBuyboxModelsByShopIdonlyforbrnowPageInfo {
   offset?: number;
   limit?: number;
   total_count?: number;
 }
 /**
- * GetBuyboxModelsByShopIdResponseData sub-interface for GetBuyboxModelsByShopIdResponse
+ * GetBuyboxModelsByShopIdonlyforbrnowResponseData sub-interface for GetBuyboxModelsByShopIdonlyforbrnowResponse
  */
-export interface GetBuyboxModelsByShopIdResponseData {
-  model_list?: GetBuyboxModelsByShopIdModel[];
-  page_info?: GetBuyboxModelsByShopIdPageInfo;
+export interface GetBuyboxModelsByShopIdonlyforbrnowResponseData {
+  model_list?: GetBuyboxModelsByShopIdonlyforbrnowModel[];
+  page_info?: GetBuyboxModelsByShopIdonlyforbrnowPageInfo;
   shop_id?: number;
 }
 /**
- * Response payload for get_buybox_models_by_shop_id
+ * Response payload for get_buybox_models_by_shop_id（onlyforBRnow）
  *
  * Get the paginated Buybox model list for the authorized shop.
  */
-export type GetBuyboxModelsByShopIdResponse = FetchResponse<GetBuyboxModelsByShopIdResponseData>;
+export type GetBuyboxModelsByShopIdonlyforbrnowResponse =
+  FetchResponse<GetBuyboxModelsByShopIdonlyforbrnowResponseData>;
 /**
- * Request parameters for get_buybox_shop_performance
+ * Request parameters for get_buybox_shop_performance（onlyforBRnow）
  *
  * Get Buybox shop performance for the authorized shop.
  */
-export type GetBuyboxShopPerformanceRequest = Record<string, never>;
+export type GetBuyboxShopPerformanceonlyforbrnowRequest = Record<string, never>;
 /**
- * GetBuyboxShopPerformanceResponseData sub-interface for GetBuyboxShopPerformanceResponse
+ * GetBuyboxShopPerformanceonlyforbrnowResponseData sub-interface for GetBuyboxShopPerformanceonlyforbrnowResponse
  */
-export interface GetBuyboxShopPerformanceResponseData {
+export interface GetBuyboxShopPerformanceonlyforbrnowResponseData {
   past_7_days_sold_count?: number;
   total_sold_count?: number;
   sales?: number;
@@ -124,33 +126,34 @@ export interface GetBuyboxShopPerformanceResponseData {
   shop_id?: number;
 }
 /**
- * Response payload for get_buybox_shop_performance
+ * Response payload for get_buybox_shop_performance（onlyforBRnow）
  *
  * Get Buybox shop performance for the authorized shop.
  */
-export type GetBuyboxShopPerformanceResponse = FetchResponse<GetBuyboxShopPerformanceResponseData>;
+export type GetBuyboxShopPerformanceonlyforbrnowResponse =
+  FetchResponse<GetBuyboxShopPerformanceonlyforbrnowResponseData>;
 /**
- * Request parameters for update_buybox_model_enrollment
+ * Request parameters for update_buybox_model_enrollment（onlyforBRnow）
  *
  * Update Buybox model enrollment status for the authorized shop.
  */
-export interface UpdateBuyboxModelEnrollmentRequest {
+export interface UpdateBuyboxModelEnrollmentonlyforbrnowRequest {
   model_id: number;
   model_toggle_on_status: boolean;
 }
 /**
- * UpdateBuyboxModelEnrollmentResponseData sub-interface for UpdateBuyboxModelEnrollmentResponse
+ * UpdateBuyboxModelEnrollmentonlyforbrnowResponseData sub-interface for UpdateBuyboxModelEnrollmentonlyforbrnowResponse
  */
-export interface UpdateBuyboxModelEnrollmentResponseData {
+export interface UpdateBuyboxModelEnrollmentonlyforbrnowResponseData {
   model_id?: number;
   model_toggle_on_status?: boolean;
   last_updated_time?: string;
   shop_id?: number;
 }
 /**
- * Response payload for update_buybox_model_enrollment
+ * Response payload for update_buybox_model_enrollment（onlyforBRnow）
  *
  * Update Buybox model enrollment status for the authorized shop.
  */
-export type UpdateBuyboxModelEnrollmentResponse =
-  FetchResponse<UpdateBuyboxModelEnrollmentResponseData>;
+export type UpdateBuyboxModelEnrollmentonlyforbrnowResponse =
+  FetchResponse<UpdateBuyboxModelEnrollmentonlyforbrnowResponseData>;

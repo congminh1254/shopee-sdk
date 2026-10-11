@@ -23,7 +23,7 @@ describe("BuyboxManager (Generated Tests)", () => {
     manager = new BuyboxManager(mockConfig);
   });
 
-  describe("getBuyboxModelPerformance", () => {
+  describe("getBuyboxModelPerformanceonlyforbrnow", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         model_id_list: [600000, 600001],
@@ -45,7 +45,7 @@ describe("BuyboxManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBuyboxModelPerformance(exampleRequest);
+      const result = await manager.getBuyboxModelPerformanceonlyforbrnow(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -61,7 +61,7 @@ describe("BuyboxManager (Generated Tests)", () => {
     });
   });
 
-  describe("getBuyboxModelsByModelId", () => {
+  describe("getBuyboxModelsByModelIdonlyforbrnow", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         model_id_list: [600000, 600001],
@@ -85,7 +85,7 @@ describe("BuyboxManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBuyboxModelsByModelId(exampleRequest);
+      const result = await manager.getBuyboxModelsByModelIdonlyforbrnow(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -101,7 +101,7 @@ describe("BuyboxManager (Generated Tests)", () => {
     });
   });
 
-  describe("getBuyboxModelsByShopId", () => {
+  describe("getBuyboxModelsByShopIdonlyforbrnow", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         offset: 0,
@@ -132,7 +132,7 @@ describe("BuyboxManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBuyboxModelsByShopId(exampleRequest);
+      const result = await manager.getBuyboxModelsByShopIdonlyforbrnow(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -148,7 +148,7 @@ describe("BuyboxManager (Generated Tests)", () => {
     });
   });
 
-  describe("getBuyboxShopPerformance", () => {
+  describe("getBuyboxShopPerformanceonlyforbrnow", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {};
       const exampleResponse = {
@@ -166,7 +166,7 @@ describe("BuyboxManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getBuyboxShopPerformance(exampleRequest);
+      const result = await manager.getBuyboxShopPerformanceonlyforbrnow(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -182,7 +182,7 @@ describe("BuyboxManager (Generated Tests)", () => {
     });
   });
 
-  describe("updateBuyboxModelEnrollment", () => {
+  describe("updateBuyboxModelEnrollmentonlyforbrnow", () => {
     it("should correctly validate request and response formats", async () => {
       const exampleRequest = {
         model_id: 600000,
@@ -202,7 +202,7 @@ describe("BuyboxManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.updateBuyboxModelEnrollment(exampleRequest);
+      const result = await manager.updateBuyboxModelEnrollmentonlyforbrnow(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,

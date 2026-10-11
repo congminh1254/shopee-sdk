@@ -11,7 +11,7 @@ Strategy:
 - Specs scanned: 455
 - SDK endpoints discovered: 453
 - Missing endpoints: 0
-- SDK endpoints not in spec: 1
+- SDK endpoints not in spec: 6
 - Method mismatches: 1
 - Missing request/response types: 0
 - Request field gaps: 0
@@ -27,6 +27,11 @@ Method mismatches:
 
 SDK endpoints not covered by spec:
   - business_insights.get_marketing_hot_listing
+  - buybox.get_buybox_model_performance
+  - buybox.get_buybox_models_by_model_id
+  - buybox.get_buybox_models_by_shop_id
+  - buybox.get_buybox_shop_performance
+  - buybox.update_buybox_model_enrollment
 
 Response field gaps:
   - payment.get_escrow_detail: order_income.items.activity_id, order_income.items.promotion_list.promotion_id
