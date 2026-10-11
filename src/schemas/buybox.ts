@@ -2,46 +2,52 @@
 
 import { FetchResponse } from "./fetch.js";
 /**
- * Request parameters for get_buybox_model_performance（onlyforBRnow）
+ * Request parameters for get_buybox_model_performance
  *
  * Get Buybox model performance by model IDs for the authorized shop.
+ *
+ * Only available in Brazil (BR).
  */
-export interface GetBuyboxModelPerformanceonlyforbrnowRequest {
+export interface GetBuyboxModelPerformanceRequest {
   model_id_list: number[];
 }
 /**
- * GetBuyboxModelPerformanceonlyforbrnowPerformance sub-interface for GetBuyboxModelPerformanceonlyforbrnowResponseData
+ * GetBuyboxModelPerformancePerformance sub-interface for GetBuyboxModelPerformanceResponseData
  */
-export interface GetBuyboxModelPerformanceonlyforbrnowPerformance {
+export interface GetBuyboxModelPerformancePerformance {
   model_id?: number;
   past_7_days_sold_count?: number;
 }
 /**
- * GetBuyboxModelPerformanceonlyforbrnowResponseData sub-interface for GetBuyboxModelPerformanceonlyforbrnowResponse
+ * GetBuyboxModelPerformanceResponseData sub-interface for GetBuyboxModelPerformanceResponse
  */
-export interface GetBuyboxModelPerformanceonlyforbrnowResponseData {
-  performance_list?: GetBuyboxModelPerformanceonlyforbrnowPerformance[];
+export interface GetBuyboxModelPerformanceResponseData {
+  performance_list?: GetBuyboxModelPerformancePerformance[];
   data_updated_time?: string;
 }
 /**
- * Response payload for get_buybox_model_performance（onlyforBRnow）
+ * Response payload for get_buybox_model_performance
  *
  * Get Buybox model performance by model IDs for the authorized shop.
+ *
+ * Only available in Brazil (BR).
  */
-export type GetBuyboxModelPerformanceonlyforbrnowResponse =
-  FetchResponse<GetBuyboxModelPerformanceonlyforbrnowResponseData>;
+export type GetBuyboxModelPerformanceResponse =
+  FetchResponse<GetBuyboxModelPerformanceResponseData>;
 /**
- * Request parameters for get_buybox_models_by_model_id（onlyforBRnow）
+ * Request parameters for get_buybox_models_by_model_id
  *
  * Get Buybox model information by model IDs for the authorized shop.
+ *
+ * Only available in Brazil (BR).
  */
-export interface GetBuyboxModelsByModelIdonlyforbrnowRequest {
+export interface GetBuyboxModelsByModelIdRequest {
   model_id_list: number[];
 }
 /**
- * GetBuyboxModelsByModelIdonlyforbrnowModel sub-interface for GetBuyboxModelsByModelIdonlyforbrnowResponseData
+ * GetBuyboxModelsByModelIdModel sub-interface for GetBuyboxModelsByModelIdResponseData
  */
-export interface GetBuyboxModelsByModelIdonlyforbrnowModel {
+export interface GetBuyboxModelsByModelIdModel {
   model_id?: number;
   is_model_mapped?: boolean;
   is_eligible?: boolean;
@@ -49,24 +55,27 @@ export interface GetBuyboxModelsByModelIdonlyforbrnowModel {
   last_updated_time?: string;
 }
 /**
- * GetBuyboxModelsByModelIdonlyforbrnowResponseData sub-interface for GetBuyboxModelsByModelIdonlyforbrnowResponse
+ * GetBuyboxModelsByModelIdResponseData sub-interface for GetBuyboxModelsByModelIdResponse
  */
-export interface GetBuyboxModelsByModelIdonlyforbrnowResponseData {
-  model_list?: GetBuyboxModelsByModelIdonlyforbrnowModel[];
+export interface GetBuyboxModelsByModelIdResponseData {
+  model_list?: GetBuyboxModelsByModelIdModel[];
 }
 /**
- * Response payload for get_buybox_models_by_model_id（onlyforBRnow）
+ * Response payload for get_buybox_models_by_model_id
  *
  * Get Buybox model information by model IDs for the authorized shop.
+ *
+ * Only available in Brazil (BR).
  */
-export type GetBuyboxModelsByModelIdonlyforbrnowResponse =
-  FetchResponse<GetBuyboxModelsByModelIdonlyforbrnowResponseData>;
+export type GetBuyboxModelsByModelIdResponse = FetchResponse<GetBuyboxModelsByModelIdResponseData>;
 /**
- * Request parameters for get_buybox_models_by_shop_id（onlyforBRnow）
+ * Request parameters for get_buybox_models_by_shop_id
  *
  * Get the paginated Buybox model list for the authorized shop.
+ *
+ * Only available in Brazil (BR).
  */
-export interface GetBuyboxModelsByShopIdonlyforbrnowRequest {
+export interface GetBuyboxModelsByShopIdRequest {
   /**
    * Pagination offset. Must be non-negative.
    */
@@ -77,9 +86,9 @@ export interface GetBuyboxModelsByShopIdonlyforbrnowRequest {
   limit?: number;
 }
 /**
- * GetBuyboxModelsByShopIdonlyforbrnowModel sub-interface for GetBuyboxModelsByShopIdonlyforbrnowResponseData
+ * GetBuyboxModelsByShopIdModel sub-interface for GetBuyboxModelsByShopIdResponseData
  */
-export interface GetBuyboxModelsByShopIdonlyforbrnowModel {
+export interface GetBuyboxModelsByShopIdModel {
   model_id?: number;
   is_model_mapped?: boolean;
   is_eligible?: boolean;
@@ -87,38 +96,41 @@ export interface GetBuyboxModelsByShopIdonlyforbrnowModel {
   last_updated_time?: string;
 }
 /**
- * GetBuyboxModelsByShopIdonlyforbrnowPageInfo sub-interface for GetBuyboxModelsByShopIdonlyforbrnowResponseData
+ * GetBuyboxModelsByShopIdPageInfo sub-interface for GetBuyboxModelsByShopIdResponseData
  */
-export interface GetBuyboxModelsByShopIdonlyforbrnowPageInfo {
+export interface GetBuyboxModelsByShopIdPageInfo {
   offset?: number;
   limit?: number;
   total_count?: number;
 }
 /**
- * GetBuyboxModelsByShopIdonlyforbrnowResponseData sub-interface for GetBuyboxModelsByShopIdonlyforbrnowResponse
+ * GetBuyboxModelsByShopIdResponseData sub-interface for GetBuyboxModelsByShopIdResponse
  */
-export interface GetBuyboxModelsByShopIdonlyforbrnowResponseData {
-  model_list?: GetBuyboxModelsByShopIdonlyforbrnowModel[];
-  page_info?: GetBuyboxModelsByShopIdonlyforbrnowPageInfo;
+export interface GetBuyboxModelsByShopIdResponseData {
+  model_list?: GetBuyboxModelsByShopIdModel[];
+  page_info?: GetBuyboxModelsByShopIdPageInfo;
   shop_id?: number;
 }
 /**
- * Response payload for get_buybox_models_by_shop_id（onlyforBRnow）
+ * Response payload for get_buybox_models_by_shop_id
  *
  * Get the paginated Buybox model list for the authorized shop.
+ *
+ * Only available in Brazil (BR).
  */
-export type GetBuyboxModelsByShopIdonlyforbrnowResponse =
-  FetchResponse<GetBuyboxModelsByShopIdonlyforbrnowResponseData>;
+export type GetBuyboxModelsByShopIdResponse = FetchResponse<GetBuyboxModelsByShopIdResponseData>;
 /**
- * Request parameters for get_buybox_shop_performance（onlyforBRnow）
+ * Request parameters for get_buybox_shop_performance
  *
  * Get Buybox shop performance for the authorized shop.
+ *
+ * Only available in Brazil (BR).
  */
-export type GetBuyboxShopPerformanceonlyforbrnowRequest = Record<string, never>;
+export type GetBuyboxShopPerformanceRequest = Record<string, never>;
 /**
- * GetBuyboxShopPerformanceonlyforbrnowResponseData sub-interface for GetBuyboxShopPerformanceonlyforbrnowResponse
+ * GetBuyboxShopPerformanceResponseData sub-interface for GetBuyboxShopPerformanceResponse
  */
-export interface GetBuyboxShopPerformanceonlyforbrnowResponseData {
+export interface GetBuyboxShopPerformanceResponseData {
   past_7_days_sold_count?: number;
   total_sold_count?: number;
   sales?: number;
@@ -126,34 +138,79 @@ export interface GetBuyboxShopPerformanceonlyforbrnowResponseData {
   shop_id?: number;
 }
 /**
- * Response payload for get_buybox_shop_performance（onlyforBRnow）
+ * Response payload for get_buybox_shop_performance
  *
  * Get Buybox shop performance for the authorized shop.
+ *
+ * Only available in Brazil (BR).
  */
-export type GetBuyboxShopPerformanceonlyforbrnowResponse =
-  FetchResponse<GetBuyboxShopPerformanceonlyforbrnowResponseData>;
+export type GetBuyboxShopPerformanceResponse = FetchResponse<GetBuyboxShopPerformanceResponseData>;
 /**
- * Request parameters for update_buybox_model_enrollment（onlyforBRnow）
+ * Request parameters for update_buybox_model_enrollment
  *
  * Update Buybox model enrollment status for the authorized shop.
+ *
+ * Only available in Brazil (BR).
  */
-export interface UpdateBuyboxModelEnrollmentonlyforbrnowRequest {
+export interface UpdateBuyboxModelEnrollmentRequest {
   model_id: number;
   model_toggle_on_status: boolean;
 }
 /**
- * UpdateBuyboxModelEnrollmentonlyforbrnowResponseData sub-interface for UpdateBuyboxModelEnrollmentonlyforbrnowResponse
+ * UpdateBuyboxModelEnrollmentResponseData sub-interface for UpdateBuyboxModelEnrollmentResponse
  */
-export interface UpdateBuyboxModelEnrollmentonlyforbrnowResponseData {
+export interface UpdateBuyboxModelEnrollmentResponseData {
   model_id?: number;
   model_toggle_on_status?: boolean;
   last_updated_time?: string;
   shop_id?: number;
 }
 /**
- * Response payload for update_buybox_model_enrollment（onlyforBRnow）
+ * Response payload for update_buybox_model_enrollment
  *
  * Update Buybox model enrollment status for the authorized shop.
+ *
+ * Only available in Brazil (BR).
  */
-export type UpdateBuyboxModelEnrollmentonlyforbrnowResponse =
-  FetchResponse<UpdateBuyboxModelEnrollmentonlyforbrnowResponseData>;
+export type UpdateBuyboxModelEnrollmentResponse =
+  FetchResponse<UpdateBuyboxModelEnrollmentResponseData>;
+/** @deprecated Use GetBuyboxModelPerformanceRequest instead. */
+export type GetBuyboxModelPerformanceonlyforbrnowRequest = GetBuyboxModelPerformanceRequest;
+/** @deprecated Use GetBuyboxModelPerformancePerformance instead. */
+export type GetBuyboxModelPerformanceonlyforbrnowPerformance = GetBuyboxModelPerformancePerformance;
+/** @deprecated Use GetBuyboxModelPerformanceResponseData instead. */
+export type GetBuyboxModelPerformanceonlyforbrnowResponseData =
+  GetBuyboxModelPerformanceResponseData;
+/** @deprecated Use GetBuyboxModelPerformanceResponse instead. */
+export type GetBuyboxModelPerformanceonlyforbrnowResponse = GetBuyboxModelPerformanceResponse;
+/** @deprecated Use GetBuyboxModelsByModelIdRequest instead. */
+export type GetBuyboxModelsByModelIdonlyforbrnowRequest = GetBuyboxModelsByModelIdRequest;
+/** @deprecated Use GetBuyboxModelsByModelIdModel instead. */
+export type GetBuyboxModelsByModelIdonlyforbrnowModel = GetBuyboxModelsByModelIdModel;
+/** @deprecated Use GetBuyboxModelsByModelIdResponseData instead. */
+export type GetBuyboxModelsByModelIdonlyforbrnowResponseData = GetBuyboxModelsByModelIdResponseData;
+/** @deprecated Use GetBuyboxModelsByModelIdResponse instead. */
+export type GetBuyboxModelsByModelIdonlyforbrnowResponse = GetBuyboxModelsByModelIdResponse;
+/** @deprecated Use GetBuyboxModelsByShopIdRequest instead. */
+export type GetBuyboxModelsByShopIdonlyforbrnowRequest = GetBuyboxModelsByShopIdRequest;
+/** @deprecated Use GetBuyboxModelsByShopIdModel instead. */
+export type GetBuyboxModelsByShopIdonlyforbrnowModel = GetBuyboxModelsByShopIdModel;
+/** @deprecated Use GetBuyboxModelsByShopIdPageInfo instead. */
+export type GetBuyboxModelsByShopIdonlyforbrnowPageInfo = GetBuyboxModelsByShopIdPageInfo;
+/** @deprecated Use GetBuyboxModelsByShopIdResponseData instead. */
+export type GetBuyboxModelsByShopIdonlyforbrnowResponseData = GetBuyboxModelsByShopIdResponseData;
+/** @deprecated Use GetBuyboxModelsByShopIdResponse instead. */
+export type GetBuyboxModelsByShopIdonlyforbrnowResponse = GetBuyboxModelsByShopIdResponse;
+/** @deprecated Use GetBuyboxShopPerformanceRequest instead. */
+export type GetBuyboxShopPerformanceonlyforbrnowRequest = GetBuyboxShopPerformanceRequest;
+/** @deprecated Use GetBuyboxShopPerformanceResponseData instead. */
+export type GetBuyboxShopPerformanceonlyforbrnowResponseData = GetBuyboxShopPerformanceResponseData;
+/** @deprecated Use GetBuyboxShopPerformanceResponse instead. */
+export type GetBuyboxShopPerformanceonlyforbrnowResponse = GetBuyboxShopPerformanceResponse;
+/** @deprecated Use UpdateBuyboxModelEnrollmentRequest instead. */
+export type UpdateBuyboxModelEnrollmentonlyforbrnowRequest = UpdateBuyboxModelEnrollmentRequest;
+/** @deprecated Use UpdateBuyboxModelEnrollmentResponseData instead. */
+export type UpdateBuyboxModelEnrollmentonlyforbrnowResponseData =
+  UpdateBuyboxModelEnrollmentResponseData;
+/** @deprecated Use UpdateBuyboxModelEnrollmentResponse instead. */
+export type UpdateBuyboxModelEnrollmentonlyforbrnowResponse = UpdateBuyboxModelEnrollmentResponse;

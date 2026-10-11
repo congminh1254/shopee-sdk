@@ -6,6 +6,7 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
+import { normalizeSchemaName } from "../src/generator/types.js";
 
 const BASE_URL = "https://open.shopee.com/opservice/api/v1/doc/module/?version=2";
 const DETAIL_URL = "https://open.shopee.com/opservice/api/v1/doc/api/?version=2&api_name=";
@@ -80,10 +81,7 @@ function unescapeJsonFields(obj: any): any {
 async function saveSchema(name: string, schema: any) {
   const schemasFolder = path.join(process.cwd(), "schemas");
   const unescaped = unescapeJsonFields(schema);
-  const cleanName = name
-    .replace(/\([^)]*\)/g, "")
-    .trim()
-    .replace(/\s+/g, "");
+  const cleanName = normalizeSchemaName(name);
   fs.writeFileSync(path.join(schemasFolder, `${cleanName}.json`), JSON.stringify(unescaped, null, 2));
 }
 
