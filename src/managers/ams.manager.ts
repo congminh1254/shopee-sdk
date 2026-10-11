@@ -88,7 +88,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<AddAllProductsToOpenCampaignResponse>} Promise resolving to the response
    */
   public async addAllProductsToOpenCampaign(
-    params?: AddAllProductsToOpenCampaignRequest
+    params: AddAllProductsToOpenCampaignRequest
   ): Promise<AddAllProductsToOpenCampaignResponse> {
     return ShopeeFetch.fetch<AddAllProductsToOpenCampaignResponse>(
       this.config,
@@ -97,7 +97,6 @@ export class AmsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["period_start_time", "period_end_time"],
       }
     );
   }
@@ -108,7 +107,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<BatchAddProductsToOpenCampaignResponse>} Promise resolving to the response
    */
   public async batchAddProductsToOpenCampaign(
-    params?: BatchAddProductsToOpenCampaignRequest
+    params: BatchAddProductsToOpenCampaignRequest
   ): Promise<BatchAddProductsToOpenCampaignResponse> {
     return ShopeeFetch.fetch<BatchAddProductsToOpenCampaignResponse>(
       this.config,
@@ -117,7 +116,6 @@ export class AmsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["period_start_time", "period_end_time"],
       }
     );
   }
@@ -128,7 +126,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<BatchEditProductsOpenCampaignSettingResponse>} Promise resolving to the response
    */
   public async batchEditProductsOpenCampaignSetting(
-    params?: BatchEditProductsOpenCampaignSettingRequest
+    params: BatchEditProductsOpenCampaignSettingRequest
   ): Promise<BatchEditProductsOpenCampaignSettingResponse> {
     return ShopeeFetch.fetch<BatchEditProductsOpenCampaignSettingResponse>(
       this.config,
@@ -137,7 +135,6 @@ export class AmsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["period_start_time", "period_end_time"],
       }
     );
   }
@@ -148,7 +145,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<BatchGetProductsSuggestedRateResponse>} Promise resolving to the response
    */
   public async batchGetProductsSuggestedRate(
-    params?: BatchGetProductsSuggestedRateRequest
+    params: BatchGetProductsSuggestedRateRequest
   ): Promise<BatchGetProductsSuggestedRateResponse> {
     return ShopeeFetch.fetch<BatchGetProductsSuggestedRateResponse>(
       this.config,
@@ -167,7 +164,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<BatchRemoveProductsOpenCampaignSettingResponse>} Promise resolving to the response
    */
   public async batchRemoveProductsOpenCampaignSetting(
-    params?: BatchRemoveProductsOpenCampaignSettingRequest
+    params: BatchRemoveProductsOpenCampaignSettingRequest
   ): Promise<BatchRemoveProductsOpenCampaignSettingResponse> {
     return ShopeeFetch.fetch<BatchRemoveProductsOpenCampaignSettingResponse>(
       this.config,
@@ -186,7 +183,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<CreateNewTargetedCampaignResponse>} Promise resolving to the response
    */
   public async createNewTargetedCampaign(
-    params?: CreateNewTargetedCampaignRequest
+    params: CreateNewTargetedCampaignRequest
   ): Promise<CreateNewTargetedCampaignResponse> {
     return ShopeeFetch.fetch<CreateNewTargetedCampaignResponse>(
       this.config,
@@ -195,7 +192,6 @@ export class AmsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["period_start_time", "period_end_time"],
       }
     );
   }
@@ -206,7 +202,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<EditAffiliateListOfTargetedCampaignResponse>} Promise resolving to the response
    */
   public async editAffiliateListOfTargetedCampaign(
-    params?: EditAffiliateListOfTargetedCampaignRequest
+    params: EditAffiliateListOfTargetedCampaignRequest
   ): Promise<EditAffiliateListOfTargetedCampaignResponse> {
     return ShopeeFetch.fetch<EditAffiliateListOfTargetedCampaignResponse>(
       this.config,
@@ -234,7 +230,6 @@ export class AmsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["period_start_time", "period_end_time"],
       }
     );
   }
@@ -245,7 +240,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<EditProductListOfTargetedCampaignResponse>} Promise resolving to the response
    */
   public async editProductListOfTargetedCampaign(
-    params?: EditProductListOfTargetedCampaignRequest
+    params: EditProductListOfTargetedCampaignRequest
   ): Promise<EditProductListOfTargetedCampaignResponse> {
     return ShopeeFetch.fetch<EditProductListOfTargetedCampaignResponse>(
       this.config,
@@ -264,7 +259,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetAffiliatePerformanceResponse>} Promise resolving to the response
    */
   public async getAffiliatePerformance(
-    params?: GetAffiliatePerformanceRequest
+    params: GetAffiliatePerformanceRequest
   ): Promise<GetAffiliatePerformanceResponse> {
     return ShopeeFetch.fetch<GetAffiliatePerformanceResponse>(
       this.config,
@@ -302,7 +297,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetCampaignKeyMetricsPerformanceResponse>} Promise resolving to the response
    */
   public async getCampaignKeyMetricsPerformance(
-    params?: GetCampaignKeyMetricsPerformanceRequest
+    params: GetCampaignKeyMetricsPerformanceRequest
   ): Promise<GetCampaignKeyMetricsPerformanceResponse> {
     return ShopeeFetch.fetch<GetCampaignKeyMetricsPerformanceResponse>(
       this.config,
@@ -321,7 +316,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetContentPerformanceResponse>} Promise resolving to the response
    */
   public async getContentPerformance(
-    params?: GetContentPerformanceRequest
+    params: GetContentPerformanceRequest
   ): Promise<GetContentPerformanceResponse> {
     return ShopeeFetch.fetch<GetContentPerformanceResponse>(
       this.config,
@@ -340,7 +335,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetConversionReportResponse>} Promise resolving to the response
    */
   public async getConversionReport(
-    params?: GetConversionReportRequest
+    params: GetConversionReportRequest
   ): Promise<GetConversionReportResponse> {
     return ShopeeFetch.fetch<GetConversionReportResponse>(
       this.config,
@@ -349,16 +344,6 @@ export class AmsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
-        timestampPaths: [
-          "place_order_time_start",
-          "place_order_time_end",
-          "order_completed_time_start",
-          "order_completed_time_end",
-          "conversion_completed_time_start",
-          "conversion_completed_time_end",
-          "ams_deduction_time_start",
-          "ams_deduction_time_end",
-        ],
       }
     );
   }
@@ -369,7 +354,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetManagedAffiliateListResponse>} Promise resolving to the response
    */
   public async getManagedAffiliateList(
-    params?: GetManagedAffiliateListRequest
+    params: GetManagedAffiliateListRequest
   ): Promise<GetManagedAffiliateListResponse> {
     return ShopeeFetch.fetch<GetManagedAffiliateListResponse>(
       this.config,
@@ -388,7 +373,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetOpenCampaignAddedProductResponse>} Promise resolving to the response
    */
   public async getOpenCampaignAddedProduct(
-    params?: GetOpenCampaignAddedProductRequest
+    params: GetOpenCampaignAddedProductRequest
   ): Promise<GetOpenCampaignAddedProductResponse> {
     return ShopeeFetch.fetch<GetOpenCampaignAddedProductResponse>(
       this.config,
@@ -413,7 +398,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetOpenCampaignBatchTaskResultResponse>} Promise resolving to the response
    */
   public async getOpenCampaignBatchTaskResult(
-    params?: GetOpenCampaignBatchTaskResultRequest
+    params: GetOpenCampaignBatchTaskResultRequest
   ): Promise<GetOpenCampaignBatchTaskResultResponse> {
     return ShopeeFetch.fetch<GetOpenCampaignBatchTaskResultResponse>(
       this.config,
@@ -432,7 +417,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetOpenCampaignNotAddedProductResponse>} Promise resolving to the response
    */
   public async getOpenCampaignNotAddedProduct(
-    params?: GetOpenCampaignNotAddedProductRequest
+    params: GetOpenCampaignNotAddedProductRequest
   ): Promise<GetOpenCampaignNotAddedProductResponse> {
     return ShopeeFetch.fetch<GetOpenCampaignNotAddedProductResponse>(
       this.config,
@@ -451,7 +436,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetOpenCampaignPerformanceResponse>} Promise resolving to the response
    */
   public async getOpenCampaignPerformance(
-    params?: GetOpenCampaignPerformanceRequest
+    params: GetOpenCampaignPerformanceRequest
   ): Promise<GetOpenCampaignPerformanceResponse> {
     return ShopeeFetch.fetch<GetOpenCampaignPerformanceResponse>(
       this.config,
@@ -470,7 +455,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetOptimizationSuggestionProductResponse>} Promise resolving to the response
    */
   public async getOptimizationSuggestionProduct(
-    params?: GetOptimizationSuggestionProductRequest
+    params: GetOptimizationSuggestionProductRequest
   ): Promise<GetOptimizationSuggestionProductResponse> {
     return ShopeeFetch.fetch<GetOptimizationSuggestionProductResponse>(
       this.config,
@@ -493,7 +478,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetPerformanceDataUpdateTimeResponse>} Promise resolving to the response
    */
   public async getPerformanceDataUpdateTime(
-    params?: GetPerformanceDataUpdateTimeRequest
+    params: GetPerformanceDataUpdateTimeRequest
   ): Promise<GetPerformanceDataUpdateTimeResponse> {
     return ShopeeFetch.fetch<GetPerformanceDataUpdateTimeResponse>(
       this.config,
@@ -512,7 +497,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetProductPerformanceResponse>} Promise resolving to the response
    */
   public async getProductPerformance(
-    params?: GetProductPerformanceRequest
+    params: GetProductPerformanceRequest
   ): Promise<GetProductPerformanceResponse> {
     return ShopeeFetch.fetch<GetProductPerformanceResponse>(
       this.config,
@@ -531,7 +516,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetRecommendedAffiliateListResponse>} Promise resolving to the response
    */
   public async getRecommendedAffiliateList(
-    params?: GetRecommendedAffiliateListRequest
+    params: GetRecommendedAffiliateListRequest
   ): Promise<GetRecommendedAffiliateListResponse> {
     return ShopeeFetch.fetch<GetRecommendedAffiliateListResponse>(
       this.config,
@@ -550,7 +535,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetShopPerformanceResponse>} Promise resolving to the response
    */
   public async getShopPerformance(
-    params?: GetShopPerformanceRequest
+    params: GetShopPerformanceRequest
   ): Promise<GetShopPerformanceResponse> {
     return ShopeeFetch.fetch<GetShopPerformanceResponse>(this.config, "/ams/get_shop_performance", {
       method: "GET",
@@ -584,7 +569,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetTargetedCampaignAddableProductListResponse>} Promise resolving to the response
    */
   public async getTargetedCampaignAddableProductList(
-    params?: GetTargetedCampaignAddableProductListRequest
+    params: GetTargetedCampaignAddableProductListRequest
   ): Promise<GetTargetedCampaignAddableProductListResponse> {
     return ShopeeFetch.fetch<GetTargetedCampaignAddableProductListResponse>(
       this.config,
@@ -603,7 +588,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetTargetedCampaignListResponse>} Promise resolving to the response
    */
   public async getTargetedCampaignList(
-    params?: GetTargetedCampaignListRequest
+    params: GetTargetedCampaignListRequest
   ): Promise<GetTargetedCampaignListResponse> {
     return ShopeeFetch.fetch<GetTargetedCampaignListResponse>(
       this.config,
@@ -613,8 +598,6 @@ export class AmsManager extends BaseManager {
         auth: true,
         params: params,
         timestampPaths: [
-          "period_start_time",
-          "period_end_time",
           "response.campaign_list.period_start_time",
           "response.campaign_list.period_end_time",
           "response.campaign_list.last_edit_time",
@@ -629,7 +612,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetTargetedCampaignPerformanceResponse>} Promise resolving to the response
    */
   public async getTargetedCampaignPerformance(
-    params?: GetTargetedCampaignPerformanceRequest
+    params: GetTargetedCampaignPerformanceRequest
   ): Promise<GetTargetedCampaignPerformanceResponse> {
     return ShopeeFetch.fetch<GetTargetedCampaignPerformanceResponse>(
       this.config,
@@ -648,7 +631,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetTargetedCampaignSettingsResponse>} Promise resolving to the response
    */
   public async getTargetedCampaignSettings(
-    params?: GetTargetedCampaignSettingsRequest
+    params: GetTargetedCampaignSettingsRequest
   ): Promise<GetTargetedCampaignSettingsResponse> {
     return ShopeeFetch.fetch<GetTargetedCampaignSettingsResponse>(
       this.config,
@@ -688,7 +671,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<GetValidationReportResponse>} Promise resolving to the response
    */
   public async getValidationReport(
-    params?: GetValidationReportRequest
+    params: GetValidationReportRequest
   ): Promise<GetValidationReportResponse> {
     return ShopeeFetch.fetch<GetValidationReportResponse>(
       this.config,
@@ -697,7 +680,6 @@ export class AmsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
-        timestampPaths: ["place_order_time_start", "place_order_time_end"],
       }
     );
   }
@@ -708,7 +690,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<QueryAffiliateListResponse>} Promise resolving to the response
    */
   public async queryAffiliateList(
-    params?: QueryAffiliateListRequest
+    params: QueryAffiliateListRequest
   ): Promise<QueryAffiliateListResponse> {
     return ShopeeFetch.fetch<QueryAffiliateListResponse>(this.config, "/ams/query_affiliate_list", {
       method: "GET",
@@ -742,7 +724,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<TerminateTargetedCampaignResponse>} Promise resolving to the response
    */
   public async terminateTargetedCampaign(
-    params?: TerminateTargetedCampaignRequest
+    params: TerminateTargetedCampaignRequest
   ): Promise<TerminateTargetedCampaignResponse> {
     return ShopeeFetch.fetch<TerminateTargetedCampaignResponse>(
       this.config,
@@ -761,7 +743,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<UpdateAutoAddNewProductSettingResponse>} Promise resolving to the response
    */
   public async updateAutoAddNewProductSetting(
-    params?: UpdateAutoAddNewProductSettingRequest
+    params: UpdateAutoAddNewProductSettingRequest
   ): Promise<UpdateAutoAddNewProductSettingResponse> {
     return ShopeeFetch.fetch<UpdateAutoAddNewProductSettingResponse>(
       this.config,
@@ -780,7 +762,7 @@ export class AmsManager extends BaseManager {
    * @returns {Promise<UpdateBasicInfoOfTargetedCampaignResponse>} Promise resolving to the response
    */
   public async updateBasicInfoOfTargetedCampaign(
-    params?: UpdateBasicInfoOfTargetedCampaignRequest
+    params: UpdateBasicInfoOfTargetedCampaignRequest
   ): Promise<UpdateBasicInfoOfTargetedCampaignResponse> {
     return ShopeeFetch.fetch<UpdateBasicInfoOfTargetedCampaignResponse>(
       this.config,
@@ -789,7 +771,6 @@ export class AmsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["period_start_time", "period_end_time"],
       }
     );
   }

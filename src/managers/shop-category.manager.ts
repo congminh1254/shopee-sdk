@@ -29,7 +29,7 @@ export class ShopCategoryManager extends BaseManager {
    * @param {AddItemListRequest} params Request parameters
    * @returns {Promise<AddItemListResponse>} Promise resolving to the response
    */
-  public async addItemList(params?: AddItemListRequest): Promise<AddItemListResponse> {
+  public async addItemList(params: AddItemListRequest): Promise<AddItemListResponse> {
     return ShopeeFetch.fetch<AddItemListResponse>(this.config, "/shop_category/add_item_list", {
       method: "POST",
       auth: true,
@@ -42,7 +42,7 @@ export class ShopCategoryManager extends BaseManager {
    * @param {AddShopCategoryRequest} params Request parameters
    * @returns {Promise<AddShopCategoryResponse>} Promise resolving to the response
    */
-  public async addShopCategory(params?: AddShopCategoryRequest): Promise<AddShopCategoryResponse> {
+  public async addShopCategory(params: AddShopCategoryRequest): Promise<AddShopCategoryResponse> {
     return ShopeeFetch.fetch<AddShopCategoryResponse>(
       this.config,
       "/shop_category/add_shop_category",
@@ -59,7 +59,7 @@ export class ShopCategoryManager extends BaseManager {
    * @param {DeleteItemListRequest} params Request parameters
    * @returns {Promise<DeleteItemListResponse>} Promise resolving to the response
    */
-  public async deleteItemList(params?: DeleteItemListRequest): Promise<DeleteItemListResponse> {
+  public async deleteItemList(params: DeleteItemListRequest): Promise<DeleteItemListResponse> {
     return ShopeeFetch.fetch<DeleteItemListResponse>(
       this.config,
       "/shop_category/delete_item_list",
@@ -77,7 +77,7 @@ export class ShopCategoryManager extends BaseManager {
    * @returns {Promise<DeleteShopCategoryResponse>} Promise resolving to the response
    */
   public async deleteShopCategory(
-    params?: DeleteShopCategoryRequest
+    params: DeleteShopCategoryRequest
   ): Promise<DeleteShopCategoryResponse> {
     return ShopeeFetch.fetch<DeleteShopCategoryResponse>(
       this.config,
@@ -95,7 +95,7 @@ export class ShopCategoryManager extends BaseManager {
    * @param {GetItemListRequest} params Request parameters
    * @returns {Promise<GetItemListResponse>} Promise resolving to the response
    */
-  public async getItemList(params?: GetItemListRequest): Promise<GetItemListResponse> {
+  public async getItemList(params: GetItemListRequest): Promise<GetItemListResponse> {
     return ShopeeFetch.fetch<GetItemListResponse>(this.config, "/shop_category/get_item_list", {
       method: "GET",
       auth: true,
@@ -109,7 +109,7 @@ export class ShopCategoryManager extends BaseManager {
    * @returns {Promise<GetShopCategoryListResponse>} Promise resolving to the response
    */
   public async getShopCategoryList(
-    params?: GetShopCategoryListRequest
+    params: GetShopCategoryListRequest
   ): Promise<GetShopCategoryListResponse> {
     return ShopeeFetch.fetch<GetShopCategoryListResponse>(
       this.config,
@@ -128,7 +128,7 @@ export class ShopCategoryManager extends BaseManager {
    * @returns {Promise<UpdateShopCategoryResponse>} Promise resolving to the response
    */
   public async updateShopCategory(
-    params?: UpdateShopCategoryRequest
+    params: UpdateShopCategoryRequest
   ): Promise<UpdateShopCategoryResponse> {
     return ShopeeFetch.fetch<UpdateShopCategoryResponse>(
       this.config,

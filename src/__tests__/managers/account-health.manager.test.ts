@@ -74,10 +74,7 @@ describe("AccountHealthManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/account_health/get_shop_performance",
-        {
-          method: "GET",
-          auth: true,
-        }
+        { method: "GET", auth: true, params: undefined }
       );
 
       expect(result.error).toBe("");
@@ -121,6 +118,27 @@ describe("AccountHealthManager", () => {
           params: {
             metric_id: 3,
           },
+          timestampPaths: [
+            "response.lsr_order_list.shipping_deadline",
+            "response.lsr_order_list.actual_shipping_time",
+            "response.lsr_order_list.actual_pick_up_time",
+            "response.fhr_order_list.confirm_time",
+            "response.fhr_order_list.handover_deadline",
+            "response.fhr_order_list.fast_handover_due_date",
+            "response.fhr_order_list.arrange_pick_up_time",
+            "response.fhr_order_list.handover_time",
+            "response.violation_listing_list.update_time",
+            "response.apt_order_list.order_create_time",
+            "response.apt_order_list.arrange_pick_up_time",
+            "response.apt_order_list.actual_pick_up_time",
+            "response.saturday_shipment_list.order_create_time",
+            "response.saturday_shipment_list.arrange_pick_up_time",
+            "response.saturday_shipment_list.actual_pick_up_time",
+            "response.otdr_order_list.paid_time",
+            "response.otdr_order_list.estimated_delivery_date",
+            "response.otdr_order_list.actual_pick_up_time",
+            "response.otdr_order_list.real_delivery_time",
+          ],
         }
       );
 
@@ -167,6 +185,27 @@ describe("AccountHealthManager", () => {
             page_no: 1,
             page_size: 20,
           },
+          timestampPaths: [
+            "response.lsr_order_list.shipping_deadline",
+            "response.lsr_order_list.actual_shipping_time",
+            "response.lsr_order_list.actual_pick_up_time",
+            "response.fhr_order_list.confirm_time",
+            "response.fhr_order_list.handover_deadline",
+            "response.fhr_order_list.fast_handover_due_date",
+            "response.fhr_order_list.arrange_pick_up_time",
+            "response.fhr_order_list.handover_time",
+            "response.violation_listing_list.update_time",
+            "response.apt_order_list.order_create_time",
+            "response.apt_order_list.arrange_pick_up_time",
+            "response.apt_order_list.actual_pick_up_time",
+            "response.saturday_shipment_list.order_create_time",
+            "response.saturday_shipment_list.arrange_pick_up_time",
+            "response.saturday_shipment_list.actual_pick_up_time",
+            "response.otdr_order_list.paid_time",
+            "response.otdr_order_list.estimated_delivery_date",
+            "response.otdr_order_list.actual_pick_up_time",
+            "response.otdr_order_list.real_delivery_time",
+          ],
         }
       );
 
@@ -210,6 +249,7 @@ describe("AccountHealthManager", () => {
           params: {
             page_size: 10,
           },
+          timestampPaths: ["response.penalty_point_list.issue_time"],
         }
       );
 
@@ -248,6 +288,7 @@ describe("AccountHealthManager", () => {
             page_size: 20,
             violation_type: 6,
           },
+          timestampPaths: ["response.penalty_point_list.issue_time"],
         }
       );
 
@@ -293,6 +334,11 @@ describe("AccountHealthManager", () => {
             punishment_status: 1,
             page_size: 15,
           },
+          timestampPaths: [
+            "response.punishment_list.issue_time",
+            "response.punishment_list.start_time",
+            "response.punishment_list.end_time",
+          ],
         }
       );
 
@@ -337,6 +383,11 @@ describe("AccountHealthManager", () => {
           params: {
             punishment_status: 2,
           },
+          timestampPaths: [
+            "response.punishment_list.issue_time",
+            "response.punishment_list.start_time",
+            "response.punishment_list.end_time",
+          ],
         }
       );
 
@@ -451,6 +502,7 @@ describe("AccountHealthManager", () => {
         params: {
           page_size: 15,
         },
+        timestampPaths: ["response.late_order_list.shipping_deadline"],
       });
 
       expect(result.error).toBe("");
@@ -484,6 +536,7 @@ describe("AccountHealthManager", () => {
           page_no: 2,
           page_size: 50,
         },
+        timestampPaths: ["response.late_order_list.shipping_deadline"],
       });
 
       expect(result.response.total_count).toBe(0);

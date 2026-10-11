@@ -38,7 +38,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetClipVideoPerformanceResponse>} Promise resolving to the response
    */
   public async getClipVideoPerformance(
-    params?: GetClipVideoPerformanceRequest
+    params: GetClipVideoPerformanceRequest
   ): Promise<GetClipVideoPerformanceResponse> {
     return ShopeeFetch.fetch<GetClipVideoPerformanceResponse>(
       this.config,
@@ -57,7 +57,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetContentAffiliatePerformanceResponse>} Promise resolving to the response
    */
   public async getContentAffiliatePerformance(
-    params?: GetContentAffiliatePerformanceRequest
+    params: GetContentAffiliatePerformanceRequest
   ): Promise<GetContentAffiliatePerformanceResponse> {
     return ShopeeFetch.fetch<GetContentAffiliatePerformanceResponse>(
       this.config,
@@ -76,7 +76,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetPrincipalAffiliatePerformanceResponse>} Promise resolving to the response
    */
   public async getPrincipalAffiliatePerformance(
-    params?: GetPrincipalAffiliatePerformanceRequest
+    params: GetPrincipalAffiliatePerformanceRequest
   ): Promise<GetPrincipalAffiliatePerformanceResponse> {
     return ShopeeFetch.fetch<GetPrincipalAffiliatePerformanceResponse>(
       this.config,
@@ -95,7 +95,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetPrincipalLivestreamPerformanceResponse>} Promise resolving to the response
    */
   public async getPrincipalLivestreamPerformance(
-    params?: GetPrincipalLivestreamPerformanceRequest
+    params: GetPrincipalLivestreamPerformanceRequest
   ): Promise<GetPrincipalLivestreamPerformanceResponse> {
     return ShopeeFetch.fetch<GetPrincipalLivestreamPerformanceResponse>(
       this.config,
@@ -114,7 +114,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetPrincipalSalesPerformanceDetailResponse>} Promise resolving to the response
    */
   public async getPrincipalSalesPerformanceDetail(
-    params?: GetPrincipalSalesPerformanceDetailRequest
+    params: GetPrincipalSalesPerformanceDetailRequest
   ): Promise<GetPrincipalSalesPerformanceDetailResponse> {
     return ShopeeFetch.fetch<GetPrincipalSalesPerformanceDetailResponse>(
       this.config,
@@ -133,7 +133,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetPrincipalVideoPerformanceResponse>} Promise resolving to the response
    */
   public async getPrincipalVideoPerformance(
-    params?: GetPrincipalVideoPerformanceRequest
+    params: GetPrincipalVideoPerformanceRequest
   ): Promise<GetPrincipalVideoPerformanceResponse> {
     return ShopeeFetch.fetch<GetPrincipalVideoPerformanceResponse>(
       this.config,
@@ -152,7 +152,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetSessionLivestreamPerformanceResponse>} Promise resolving to the response
    */
   public async getSessionLivestreamPerformance(
-    params?: GetSessionLivestreamPerformanceRequest
+    params: GetSessionLivestreamPerformanceRequest
   ): Promise<GetSessionLivestreamPerformanceResponse> {
     return ShopeeFetch.fetch<GetSessionLivestreamPerformanceResponse>(
       this.config,
@@ -171,7 +171,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetShopAffiliatePerformanceResponse>} Promise resolving to the response
    */
   public async getShopAffiliatePerformance(
-    params?: GetShopAffiliatePerformanceRequest
+    params: GetShopAffiliatePerformanceRequest
   ): Promise<GetShopAffiliatePerformanceResponse> {
     return ShopeeFetch.fetch<GetShopAffiliatePerformanceResponse>(
       this.config,
@@ -190,7 +190,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetShopLivestreamPerformanceResponse>} Promise resolving to the response
    */
   public async getShopLivestreamPerformance(
-    params?: GetShopLivestreamPerformanceRequest
+    params: GetShopLivestreamPerformanceRequest
   ): Promise<GetShopLivestreamPerformanceResponse> {
     return ShopeeFetch.fetch<GetShopLivestreamPerformanceResponse>(
       this.config,
@@ -209,7 +209,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetShopSalesPerformanceDetailResponse>} Promise resolving to the response
    */
   public async getShopSalesPerformanceDetail(
-    params?: GetShopSalesPerformanceDetailRequest
+    params: GetShopSalesPerformanceDetailRequest
   ): Promise<GetShopSalesPerformanceDetailResponse> {
     return ShopeeFetch.fetch<GetShopSalesPerformanceDetailResponse>(
       this.config,
@@ -228,7 +228,7 @@ export class PrincipalManager extends BaseManager {
    * @returns {Promise<GetShopVideoPerformanceResponse>} Promise resolving to the response
    */
   public async getShopVideoPerformance(
-    params?: GetShopVideoPerformanceRequest
+    params: GetShopVideoPerformanceRequest
   ): Promise<GetShopVideoPerformanceResponse> {
     return ShopeeFetch.fetch<GetShopVideoPerformanceResponse>(
       this.config,

@@ -2,20 +2,26 @@
 
 import { FetchResponse } from "./fetch.js";
 /**
- * Enum generated for field Region
+ * Enum generated for field BindFirstMileTrackingNumberRequestRegion
  */
-export enum Region {
+export enum BindFirstMileTrackingNumberRequestRegion {
+  CN = "cn",
+  KR = "kr",
+}
+/**
+ * Enum generated for field GetChannelListRequestRegion
+ */
+export enum GetChannelListRequestRegion {
   CN = "CN",
   KR = "KR",
 }
 /**
- * Enum generated for field ShipmentMethod
+ * Enum generated for field GetChannelListResponseResponseLogisticsChannelListShipmentMethod
  */
-export enum ShipmentMethod {
+export enum GetChannelListResponseResponseLogisticsChannelListShipmentMethod {
   PICKUP = "pickup",
   DROPOFF = "dropoff",
   SELF_DELIVER = "self_deliver",
-  COURIER_DELIVERY = "courier_delivery",
 }
 /**
  * Enum generated for field SlsTrackingNumber
@@ -30,6 +36,15 @@ export enum SlsTrackingNumber {
 export enum DeclareDate {
   ID = "ID",
   FIRST = "first",
+}
+/**
+ * Enum generated for field GetTransitWarehouseListRequestShipmentMethod
+ */
+export enum GetTransitWarehouseListRequestShipmentMethod {
+  PICKUP = "pickup",
+  DROPOFF = "dropoff",
+  SELF_DELIVER = "self_deliver",
+  COURIER_DELIVERY = "courier_delivery",
 }
 /**
  * Enum generated for field ResponseOptionalFields
@@ -152,7 +167,7 @@ export interface BindFirstMileTrackingNumberRequest {
   /**
    * Use this field to specify the region you want to ship parcel.Available value: cn,kr. Please fill in the field according to the region of the Merchant to which the shop belongs.
    */
-  region: Region | string | number;
+  region: BindFirstMileTrackingNumberRequestRegion | string | number;
   /**
    * The identity of first-mile logistic channel.If you using "dropoff" or "pickup" as shipment method, please call v2.first_mile.get_channel_list to get the logsitc_channel_id then fill it.If you using "self_deliver"as shipment method then the logistics_channel_id should be "null".
    */
@@ -393,7 +408,7 @@ export interface GetChannelListRequest {
   /**
    * Use this field to specify the region you want to ship parcel. Available value: CN, KR
    */
-  region?: Region | string | number;
+  region?: GetChannelListRequestRegion | string | number;
 }
 /**
  * GetChannelListLogisticsChannel sub-interface for GetChannelListResponseData
@@ -410,7 +425,8 @@ export interface GetChannelListLogisticsChannel {
   /**
    * The shipment method for bound orders.Available values: pickup, dropoff, self_deliver.
    */
-  shipment_method?: ShipmentMethod | string | number;
+  shipment_method?:
+    GetChannelListResponseResponseLogisticsChannelListShipmentMethod | string | number;
 }
 /**
  * GetChannelListResponseData sub-interface for GetChannelListResponse
@@ -824,7 +840,7 @@ export interface GetTransitWarehouseListRequest {
   /**
    * Use this field to specify the shipment method you want to ship parcel. Available value: pickup, dropoff, self_deliver, courier_delivery.Note: Only when shipment_method = dropoff, the API response will include warehouses where warehouse_type = 1 (vendor warehouse).
    */
-  shipment_method?: ShipmentMethod | string | number;
+  shipment_method?: GetTransitWarehouseListRequestShipmentMethod | string | number;
 }
 /**
  * GetTransitWarehouseListTransitWarehouse sub-interface for GetTransitWarehouseListResponseData

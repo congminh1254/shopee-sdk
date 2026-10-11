@@ -59,6 +59,7 @@ describe("MerchantManager", () => {
         method: "GET",
         auth: true,
         params: undefined,
+        timestampPaths: ["auth_time", "expire_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -251,11 +252,7 @@ describe("MerchantManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/merchant/get_merchant_warehouse_location_list",
-        {
-          method: "GET",
-          auth: true,
-          params: undefined,
-        }
+        { method: "GET", auth: true, params: undefined }
       );
 
       expect(result).toEqual(mockResponse);

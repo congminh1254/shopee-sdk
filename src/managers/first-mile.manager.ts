@@ -48,7 +48,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<BindCourierDeliveryFirstMileTrackingNumberResponse>} Promise resolving to the response
    */
   public async bindCourierDeliveryFirstMileTrackingNumber(
-    params?: BindCourierDeliveryFirstMileTrackingNumberRequest
+    params: BindCourierDeliveryFirstMileTrackingNumberRequest
   ): Promise<BindCourierDeliveryFirstMileTrackingNumberResponse> {
     return ShopeeFetch.fetch<BindCourierDeliveryFirstMileTrackingNumberResponse>(
       this.config,
@@ -67,7 +67,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<BindFirstMileTrackingNumberResponse>} Promise resolving to the response
    */
   public async bindFirstMileTrackingNumber(
-    params?: BindFirstMileTrackingNumberRequest
+    params: BindFirstMileTrackingNumberRequest
   ): Promise<BindFirstMileTrackingNumberResponse> {
     return ShopeeFetch.fetch<BindFirstMileTrackingNumberResponse>(
       this.config,
@@ -86,7 +86,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<GenerateAndBindFirstMileTrackingNumberResponse>} Promise resolving to the response
    */
   public async generateAndBindFirstMileTrackingNumber(
-    params?: GenerateAndBindFirstMileTrackingNumberRequest
+    params: GenerateAndBindFirstMileTrackingNumberRequest
   ): Promise<GenerateAndBindFirstMileTrackingNumberResponse> {
     return ShopeeFetch.fetch<GenerateAndBindFirstMileTrackingNumberResponse>(
       this.config,
@@ -105,7 +105,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<GenerateFirstMileTrackingNumberResponse>} Promise resolving to the response
    */
   public async generateFirstMileTrackingNumber(
-    params?: GenerateFirstMileTrackingNumberRequest
+    params: GenerateFirstMileTrackingNumberRequest
   ): Promise<GenerateFirstMileTrackingNumberResponse> {
     return ShopeeFetch.fetch<GenerateFirstMileTrackingNumberResponse>(
       this.config,
@@ -156,7 +156,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<GetCourierDeliveryDetailResponse>} Promise resolving to the response
    */
   public async getCourierDeliveryDetail(
-    params?: GetCourierDeliveryDetailRequest
+    params: GetCourierDeliveryDetailRequest
   ): Promise<GetCourierDeliveryDetailResponse> {
     return ShopeeFetch.fetch<GetCourierDeliveryDetailResponse>(
       this.config,
@@ -175,7 +175,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<GetCourierDeliveryTrackingNumberListResponse>} Promise resolving to the response
    */
   public async getCourierDeliveryTrackingNumberList(
-    params?: GetCourierDeliveryTrackingNumberListRequest
+    params: GetCourierDeliveryTrackingNumberListRequest
   ): Promise<GetCourierDeliveryTrackingNumberListResponse> {
     return ShopeeFetch.fetch<GetCourierDeliveryTrackingNumberListResponse>(
       this.config,
@@ -194,7 +194,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<GetCourierDeliveryWaybillResponse>} Promise resolving to the response
    */
   public async getCourierDeliveryWaybill(
-    params?: GetCourierDeliveryWaybillRequest
+    params: GetCourierDeliveryWaybillRequest
   ): Promise<GetCourierDeliveryWaybillResponse> {
     return ShopeeFetch.fetch<GetCourierDeliveryWaybillResponse>(
       this.config,
@@ -212,7 +212,7 @@ export class FirstMileManager extends BaseManager {
    * @param {GetDetailRequest} params Request parameters
    * @returns {Promise<GetDetailResponse>} Promise resolving to the response
    */
-  public async getDetail(params?: GetDetailRequest): Promise<GetDetailResponse> {
+  public async getDetail(params: GetDetailRequest): Promise<GetDetailResponse> {
     return ShopeeFetch.fetch<GetDetailResponse>(this.config, "/first_mile/get_detail", {
       method: "GET",
       auth: true,
@@ -226,7 +226,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<GetTrackingNumberListResponse>} Promise resolving to the response
    */
   public async getTrackingNumberList(
-    params?: GetTrackingNumberListRequest
+    params: GetTrackingNumberListRequest
   ): Promise<GetTrackingNumberListResponse> {
     return ShopeeFetch.fetch<GetTrackingNumberListResponse>(
       this.config,
@@ -282,7 +282,7 @@ export class FirstMileManager extends BaseManager {
    * @param {GetWaybillRequest} params Request parameters
    * @returns {Promise<GetWaybillResponse>} Promise resolving to the response
    */
-  public async getWaybill(params?: GetWaybillRequest): Promise<GetWaybillResponse> {
+  public async getWaybill(params: GetWaybillRequest): Promise<GetWaybillResponse> {
     return ShopeeFetch.fetch<GetWaybillResponse>(this.config, "/first_mile/get_waybill", {
       method: "POST",
       auth: true,
@@ -296,7 +296,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<UnbindFirstMileTrackingNumberResponse>} Promise resolving to the response
    */
   public async unbindFirstMileTrackingNumber(
-    params?: UnbindFirstMileTrackingNumberRequest
+    params: UnbindFirstMileTrackingNumberRequest
   ): Promise<UnbindFirstMileTrackingNumberResponse> {
     return ShopeeFetch.fetch<UnbindFirstMileTrackingNumberResponse>(
       this.config,
@@ -315,7 +315,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<UnbindFirstMileTrackingNumberAllResponse>} Promise resolving to the response
    */
   public async unbindFirstMileTrackingNumberAll(
-    params?: UnbindFirstMileTrackingNumberAllRequest
+    params: UnbindFirstMileTrackingNumberAllRequest
   ): Promise<UnbindFirstMileTrackingNumberAllResponse> {
     return ShopeeFetch.fetch<UnbindFirstMileTrackingNumberAllResponse>(
       this.config,

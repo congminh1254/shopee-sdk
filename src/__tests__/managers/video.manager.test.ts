@@ -640,7 +640,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_user_demographics", {
         method: "GET",
         auth: true,
-        params: {},
+        params: undefined,
       });
 
       expect(result.error).toBe("");
@@ -676,6 +676,11 @@ describe("VideoManager", () => {
         params: {
           video_upload_id: "upload123",
         },
+        timestampPaths: [
+          "response.post_time",
+          "response.scheduled_info.scheduled_post_time",
+          "response.update_time",
+        ],
       });
 
       expect(result.error).toBe("");
@@ -705,6 +710,11 @@ describe("VideoManager", () => {
           video_upload_id: "upload123",
           post_id: "post123",
         },
+        timestampPaths: [
+          "response.post_time",
+          "response.scheduled_info.scheduled_post_time",
+          "response.update_time",
+        ],
       });
 
       expect(result.error).toBe("");
@@ -885,6 +895,7 @@ describe("VideoManager", () => {
           params: {
             post_id: "post123",
           },
+          timestampPaths: ["response.video_info.post_time"],
         }
       );
 
@@ -916,6 +927,7 @@ describe("VideoManager", () => {
           params: {
             post_id: "post123",
           },
+          timestampPaths: ["response.video_info.post_time"],
         }
       );
 
@@ -1045,6 +1057,11 @@ describe("VideoManager", () => {
           page_size: 10,
           list_type: [2],
         },
+        timestampPaths: [
+          "response.list.post_time",
+          "response.list.scheduled_info.scheduled_post_time",
+          "response.list.update_time",
+        ],
       });
 
       expect(result.error).toBe("");
@@ -1077,8 +1094,13 @@ describe("VideoManager", () => {
         params: {
           page_no: 1,
           page_size: 10,
-          list_type: 2,
+          list_type: [2],
         },
+        timestampPaths: [
+          "response.list.post_time",
+          "response.list.scheduled_info.scheduled_post_time",
+          "response.list.update_time",
+        ],
       });
 
       expect(result.error).toBe("");
@@ -1134,6 +1156,7 @@ describe("VideoManager", () => {
             order_by: "Views",
             sort: "desc",
           },
+          timestampPaths: ["response.list.post_time"],
         }
       );
 
@@ -1174,6 +1197,7 @@ describe("VideoManager", () => {
             order_by: "Views",
             sort: "desc",
           },
+          timestampPaths: ["response.list.post_time"],
         }
       );
 

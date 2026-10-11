@@ -24,7 +24,7 @@ describe("MediaManager (Generated Tests)", () => {
   });
 
   describe("cancelVideoUpload", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         video_upload_id: "sg-11110201-6kh48-mepm7a0ttcw3c3",
       };
@@ -44,22 +44,19 @@ describe("MediaManager (Generated Tests)", () => {
 
       const result = await manager.cancelVideoUpload(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media/cancel_video_upload",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/cancel_video_upload", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("completeVideoUpload", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         video_upload_id: "sg-11110201-6kh48-mepm7a0ttcw3c3",
       };
@@ -79,27 +76,24 @@ describe("MediaManager (Generated Tests)", () => {
 
       const result = await manager.completeVideoUpload(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media/complete_video_upload",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/complete_video_upload", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getVideoUploadResult", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         video_upload_id: "sg-11110201-6kh48-mepm7a0ttcw3c3",
       };
       const exampleResponse = {
-        status: "SUCCEEDED",
+        status: "transcoded",
         reason: "test_string",
         update_time: 1758018336,
         video_info: {
@@ -122,22 +116,20 @@ describe("MediaManager (Generated Tests)", () => {
 
       const result = await manager.getVideoUploadResult(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media/get_video_upload_result",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/get_video_upload_result", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.update_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("initVideoUpload", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         business: 3,
         scene: 1,
@@ -159,22 +151,19 @@ describe("MediaManager (Generated Tests)", () => {
 
       const result = await manager.initVideoUpload(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media/init_video_upload",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/init_video_upload", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("uploadImage", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         business: 2,
         scene: 1,
@@ -198,22 +187,19 @@ describe("MediaManager (Generated Tests)", () => {
 
       const result = await manager.uploadImage(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media/upload_image",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_image", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("uploadVideoPart", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         video_upload_id: "sg-11110201-6kh48-mepm7a0ttcw3c3",
         part_seq: 0,
@@ -236,15 +222,12 @@ describe("MediaManager (Generated Tests)", () => {
 
       const result = await manager.uploadVideoPart(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/media/upload_video_part",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_video_part", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

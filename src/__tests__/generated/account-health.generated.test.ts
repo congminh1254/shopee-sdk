@@ -24,7 +24,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
   });
 
   describe("getLateOrders", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
@@ -49,22 +49,20 @@ describe("AccountHealthManager (Generated Tests)", () => {
 
       const result = await manager.getLateOrders(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/account_health/get_late_orders",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/account_health/get_late_orders", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.late_order_list.shipping_deadline"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getListingsWithIssues", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
@@ -88,14 +86,15 @@ describe("AccountHealthManager (Generated Tests)", () => {
 
       const result = await manager.getListingsWithIssues(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/account_health/get_listings_with_issues",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -103,7 +102,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
   });
 
   describe("getMetricSourceDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         metric_id: 1,
         page_no: 1,
@@ -255,14 +254,36 @@ describe("AccountHealthManager (Generated Tests)", () => {
 
       const result = await manager.getMetricSourceDetail(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/account_health/get_metric_source_detail",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+          timestampPaths: [
+            "response.lsr_order_list.shipping_deadline",
+            "response.lsr_order_list.actual_shipping_time",
+            "response.lsr_order_list.actual_pick_up_time",
+            "response.fhr_order_list.confirm_time",
+            "response.fhr_order_list.handover_deadline",
+            "response.fhr_order_list.fast_handover_due_date",
+            "response.fhr_order_list.arrange_pick_up_time",
+            "response.fhr_order_list.handover_time",
+            "response.violation_listing_list.update_time",
+            "response.apt_order_list.order_create_time",
+            "response.apt_order_list.arrange_pick_up_time",
+            "response.apt_order_list.actual_pick_up_time",
+            "response.saturday_shipment_list.order_create_time",
+            "response.saturday_shipment_list.arrange_pick_up_time",
+            "response.saturday_shipment_list.actual_pick_up_time",
+            "response.otdr_order_list.paid_time",
+            "response.otdr_order_list.estimated_delivery_date",
+            "response.otdr_order_list.actual_pick_up_time",
+            "response.otdr_order_list.real_delivery_time",
+          ],
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -270,7 +291,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
   });
 
   describe("getPenaltyPointHistory", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
@@ -298,14 +319,16 @@ describe("AccountHealthManager (Generated Tests)", () => {
 
       const result = await manager.getPenaltyPointHistory(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/account_health/get_penalty_point_history",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+          timestampPaths: ["response.penalty_point_list.issue_time"],
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -313,7 +336,7 @@ describe("AccountHealthManager (Generated Tests)", () => {
   });
 
   describe("getPunishmentHistory", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
@@ -344,22 +367,24 @@ describe("AccountHealthManager (Generated Tests)", () => {
 
       const result = await manager.getPunishmentHistory(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/account_health/get_punishment_history",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/account_health/get_punishment_history", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.punishment_list.issue_time",
+          "response.punishment_list.start_time",
+          "response.punishment_list.end_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         overall_performance: {
@@ -395,15 +420,12 @@ describe("AccountHealthManager (Generated Tests)", () => {
 
       const result = await manager.getShopPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/account_health/get_shop_performance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/account_health/get_shop_performance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

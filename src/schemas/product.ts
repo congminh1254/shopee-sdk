@@ -710,7 +710,7 @@ export interface AddItem_AddItemLogisticInfo {
   is_free: boolean;
 }
 /**
- * AddItem_AddItemAttributeValue sub-interface for AddItemAttribute
+ * AddItem_AddItemAttributeValue sub-interface for AddItem_AddItemAttribute
  */
 export interface AddItem_AddItemAttributeValue {
   /**
@@ -725,6 +725,16 @@ export interface AddItem_AddItemAttributeValue {
    * Unit of attribute value
    */
   value_unit?: string;
+}
+/**
+ * AddItem_AddItemAttribute sub-interface for AddItemResponseData
+ */
+export interface AddItem_AddItemAttribute {
+  /**
+   * Attribute ID
+   */
+  attribute_id: number;
+  attribute_value_list?: AddItem_AddItemAttributeValue[];
 }
 /**
  * AddItemVideoInfo sub-interface for AddItemResponseData
@@ -829,7 +839,7 @@ export interface AddItemResponseData {
   /**
    * Item attributes
    */
-  attribute: AddItemAttribute[];
+  attribute: AddItem_AddItemAttribute[];
   /**
    * Category ID
    */

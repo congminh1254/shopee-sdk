@@ -28,7 +28,7 @@ export class MediaSpaceManager extends BaseManager {
    * @returns {Promise<CancelVideoUploadResponse>} Promise resolving to the response
    */
   public async cancelVideoUpload(
-    params?: CancelVideoUploadRequest
+    params: CancelVideoUploadRequest
   ): Promise<CancelVideoUploadResponse> {
     return ShopeeFetch.fetch<CancelVideoUploadResponse>(
       this.config,
@@ -47,7 +47,7 @@ export class MediaSpaceManager extends BaseManager {
    * @returns {Promise<CompleteVideoUploadResponse>} Promise resolving to the response
    */
   public async completeVideoUpload(
-    params?: CompleteVideoUploadRequest
+    params: CompleteVideoUploadRequest
   ): Promise<CompleteVideoUploadResponse> {
     return ShopeeFetch.fetch<CompleteVideoUploadResponse>(
       this.config,
@@ -66,7 +66,7 @@ export class MediaSpaceManager extends BaseManager {
    * @returns {Promise<GetVideoUploadResultResponse>} Promise resolving to the response
    */
   public async getVideoUploadResult(
-    params?: GetVideoUploadResultRequest
+    params: GetVideoUploadResultRequest
   ): Promise<GetVideoUploadResultResponse> {
     return ShopeeFetch.fetch<GetVideoUploadResultResponse>(
       this.config,
@@ -84,7 +84,7 @@ export class MediaSpaceManager extends BaseManager {
    * @param {InitVideoUploadRequest} params Request parameters
    * @returns {Promise<InitVideoUploadResponse>} Promise resolving to the response
    */
-  public async initVideoUpload(params?: InitVideoUploadRequest): Promise<InitVideoUploadResponse> {
+  public async initVideoUpload(params: InitVideoUploadRequest): Promise<InitVideoUploadResponse> {
     return ShopeeFetch.fetch<InitVideoUploadResponse>(
       this.config,
       "/media_space/init_video_upload",
@@ -101,7 +101,7 @@ export class MediaSpaceManager extends BaseManager {
    * @param {UploadImageRequest} params Request parameters
    * @returns {Promise<UploadImageResponse>} Promise resolving to the response
    */
-  public async uploadImage(params?: UploadImageRequest): Promise<UploadImageResponse> {
+  public async uploadImage(params: UploadImageRequest): Promise<UploadImageResponse> {
     return ShopeeFetch.fetch<UploadImageResponse>(this.config, "/media_space/upload_image", {
       method: "POST",
       auth: true,
@@ -114,7 +114,7 @@ export class MediaSpaceManager extends BaseManager {
    * @param {UploadVideoPartRequest} params Request parameters
    * @returns {Promise<UploadVideoPartResponse>} Promise resolving to the response
    */
-  public async uploadVideoPart(params?: UploadVideoPartRequest): Promise<UploadVideoPartResponse> {
+  public async uploadVideoPart(params: UploadVideoPartRequest): Promise<UploadVideoPartResponse> {
     return ShopeeFetch.fetch<UploadVideoPartResponse>(
       this.config,
       "/media_space/upload_video_part",

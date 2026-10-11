@@ -43,7 +43,7 @@ export class AddOnDealManager extends BaseManager {
    * @param {AddAddOnDealRequest} params Request parameters
    * @returns {Promise<AddAddOnDealResponse>} Promise resolving to the response
    */
-  public async addAddOnDeal(params?: AddAddOnDealRequest): Promise<AddAddOnDealResponse> {
+  public async addAddOnDeal(params: AddAddOnDealRequest): Promise<AddAddOnDealResponse> {
     return ShopeeFetch.fetch<AddAddOnDealResponse>(this.config, "/add_on_deal/add_add_on_deal", {
       method: "POST",
       auth: true,
@@ -57,7 +57,7 @@ export class AddOnDealManager extends BaseManager {
    * @returns {Promise<AddAddOnDealMainItemResponse>} Promise resolving to the response
    */
   public async addAddOnDealMainItem(
-    params?: AddAddOnDealMainItemRequest
+    params: AddAddOnDealMainItemRequest
   ): Promise<AddAddOnDealMainItemResponse> {
     return ShopeeFetch.fetch<AddAddOnDealMainItemResponse>(
       this.config,
@@ -76,7 +76,7 @@ export class AddOnDealManager extends BaseManager {
    * @returns {Promise<AddAddOnDealSubItemResponse>} Promise resolving to the response
    */
   public async addAddOnDealSubItem(
-    params?: AddAddOnDealSubItemRequest
+    params: AddAddOnDealSubItemRequest
   ): Promise<AddAddOnDealSubItemResponse> {
     return ShopeeFetch.fetch<AddAddOnDealSubItemResponse>(
       this.config,
@@ -94,7 +94,7 @@ export class AddOnDealManager extends BaseManager {
    * @param {DeleteAddOnDealRequest} params Request parameters
    * @returns {Promise<DeleteAddOnDealResponse>} Promise resolving to the response
    */
-  public async deleteAddOnDeal(params?: DeleteAddOnDealRequest): Promise<DeleteAddOnDealResponse> {
+  public async deleteAddOnDeal(params: DeleteAddOnDealRequest): Promise<DeleteAddOnDealResponse> {
     return ShopeeFetch.fetch<DeleteAddOnDealResponse>(
       this.config,
       "/add_on_deal/delete_add_on_deal",
@@ -112,7 +112,7 @@ export class AddOnDealManager extends BaseManager {
    * @returns {Promise<DeleteAddOnDealMainItemResponse>} Promise resolving to the response
    */
   public async deleteAddOnDealMainItem(
-    params?: DeleteAddOnDealMainItemRequest
+    params: DeleteAddOnDealMainItemRequest
   ): Promise<DeleteAddOnDealMainItemResponse> {
     return ShopeeFetch.fetch<DeleteAddOnDealMainItemResponse>(
       this.config,
@@ -131,7 +131,7 @@ export class AddOnDealManager extends BaseManager {
    * @returns {Promise<DeleteAddOnDealSubItemResponse>} Promise resolving to the response
    */
   public async deleteAddOnDealSubItem(
-    params?: DeleteAddOnDealSubItemRequest
+    params: DeleteAddOnDealSubItemRequest
   ): Promise<DeleteAddOnDealSubItemResponse> {
     return ShopeeFetch.fetch<DeleteAddOnDealSubItemResponse>(
       this.config,
@@ -149,7 +149,7 @@ export class AddOnDealManager extends BaseManager {
    * @param {EndAddOnDealRequest} params Request parameters
    * @returns {Promise<EndAddOnDealResponse>} Promise resolving to the response
    */
-  public async endAddOnDeal(params?: EndAddOnDealRequest): Promise<EndAddOnDealResponse> {
+  public async endAddOnDeal(params: EndAddOnDealRequest): Promise<EndAddOnDealResponse> {
     return ShopeeFetch.fetch<EndAddOnDealResponse>(this.config, "/add_on_deal/end_add_on_deal", {
       method: "POST",
       auth: true,
@@ -162,7 +162,7 @@ export class AddOnDealManager extends BaseManager {
    * @param {GetAddOnDealRequest} params Request parameters
    * @returns {Promise<GetAddOnDealResponse>} Promise resolving to the response
    */
-  public async getAddOnDeal(params?: GetAddOnDealRequest): Promise<GetAddOnDealResponse> {
+  public async getAddOnDeal(params: GetAddOnDealRequest): Promise<GetAddOnDealResponse> {
     return ShopeeFetch.fetch<GetAddOnDealResponse>(this.config, "/add_on_deal/get_add_on_deal", {
       method: "GET",
       auth: true,
@@ -176,7 +176,7 @@ export class AddOnDealManager extends BaseManager {
    * @returns {Promise<GetAddOnDealListResponse>} Promise resolving to the response
    */
   public async getAddOnDealList(
-    params?: GetAddOnDealListRequest
+    params: GetAddOnDealListRequest
   ): Promise<GetAddOnDealListResponse> {
     return ShopeeFetch.fetch<GetAddOnDealListResponse>(
       this.config,
@@ -195,7 +195,7 @@ export class AddOnDealManager extends BaseManager {
    * @returns {Promise<GetAddOnDealMainItemResponse>} Promise resolving to the response
    */
   public async getAddOnDealMainItem(
-    params?: GetAddOnDealMainItemRequest
+    params: GetAddOnDealMainItemRequest
   ): Promise<GetAddOnDealMainItemResponse> {
     return ShopeeFetch.fetch<GetAddOnDealMainItemResponse>(
       this.config,
@@ -214,7 +214,7 @@ export class AddOnDealManager extends BaseManager {
    * @returns {Promise<GetAddOnDealSubItemResponse>} Promise resolving to the response
    */
   public async getAddOnDealSubItem(
-    params?: GetAddOnDealSubItemRequest
+    params: GetAddOnDealSubItemRequest
   ): Promise<GetAddOnDealSubItemResponse> {
     return ShopeeFetch.fetch<GetAddOnDealSubItemResponse>(
       this.config,
@@ -232,7 +232,7 @@ export class AddOnDealManager extends BaseManager {
    * @param {UpdateAddOnDealRequest} params Request parameters
    * @returns {Promise<UpdateAddOnDealResponse>} Promise resolving to the response
    */
-  public async updateAddOnDeal(params?: UpdateAddOnDealRequest): Promise<UpdateAddOnDealResponse> {
+  public async updateAddOnDeal(params: UpdateAddOnDealRequest): Promise<UpdateAddOnDealResponse> {
     return ShopeeFetch.fetch<UpdateAddOnDealResponse>(
       this.config,
       "/add_on_deal/update_add_on_deal",
@@ -250,7 +250,7 @@ export class AddOnDealManager extends BaseManager {
    * @returns {Promise<UpdateAddOnDealMainItemResponse>} Promise resolving to the response
    */
   public async updateAddOnDealMainItem(
-    params?: UpdateAddOnDealMainItemRequest
+    params: UpdateAddOnDealMainItemRequest
   ): Promise<UpdateAddOnDealMainItemResponse> {
     return ShopeeFetch.fetch<UpdateAddOnDealMainItemResponse>(
       this.config,
@@ -269,7 +269,7 @@ export class AddOnDealManager extends BaseManager {
    * @returns {Promise<UpdateAddOnDealSubItemResponse>} Promise resolving to the response
    */
   public async updateAddOnDealSubItem(
-    params?: UpdateAddOnDealSubItemRequest
+    params: UpdateAddOnDealSubItemRequest
   ): Promise<UpdateAddOnDealSubItemResponse> {
     return ShopeeFetch.fetch<UpdateAddOnDealSubItemResponse>(
       this.config,

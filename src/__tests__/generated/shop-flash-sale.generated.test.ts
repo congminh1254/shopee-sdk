@@ -24,7 +24,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
   });
 
   describe("addShopFlashSaleItems", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         flash_sale_id: 123,
         items: [
@@ -69,14 +69,15 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.addShopFlashSaleItems(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/shop_flash_sale/add_shop_flash_sale_items",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -84,7 +85,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
   });
 
   describe("createShopFlashSale", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         timeslot_id: 123,
       };
@@ -103,14 +104,15 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.createShopFlashSale(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/shop_flash_sale/create_shop_flash_sale",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -118,7 +120,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
   });
 
   describe("deleteShopFlashSale", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         flash_sale_id: 123,
       };
@@ -137,14 +139,15 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.deleteShopFlashSale(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/shop_flash_sale/delete_shop_flash_sale",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -152,7 +155,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
   });
 
   describe("deleteShopFlashSaleItems", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         flash_sale_id: 123,
         item_ids: [123],
@@ -183,14 +186,15 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.deleteShopFlashSaleItems(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/shop_flash_sale/delete_shop_flash_sale_items",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -198,7 +202,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
   });
 
   describe("getItemCriteria", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         criteria: [
@@ -243,22 +247,19 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.getItemCriteria(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop_flash_sale/get_item_criteria",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop_flash_sale/get_item_criteria", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopFlashSale", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         flash_sale_id: 123,
       };
@@ -282,22 +283,20 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.getShopFlashSale(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop_flash_sale/get_shop_flash_sale",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop_flash_sale/get_shop_flash_sale", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.start_time", "response.end_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopFlashSaleItems", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         flash_sale_id: 123,
         offset: 123,
@@ -355,14 +354,15 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.getShopFlashSaleItems(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/shop_flash_sale/get_shop_flash_sale_items",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -370,7 +370,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
   });
 
   describe("getShopFlashSaleList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         type: 1,
         start_time: 1721978628,
@@ -391,14 +391,16 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.getShopFlashSaleList(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/shop_flash_sale/get_shop_flash_sale_list",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+          timestampPaths: ["flash_sale_list.start_time", "flash_sale_list.end_time"],
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -406,7 +408,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
   });
 
   describe("getTimeSlotId", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_time: 1721978628,
         end_time: 1727335428,
@@ -428,22 +430,20 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.getTimeSlotId(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop_flash_sale/get_time_slot_id",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop_flash_sale/get_time_slot_id", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.start_time", "response.end_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateShopFlashSale", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         flash_sale_id: 123,
         status: 1,
@@ -463,14 +463,15 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.updateShopFlashSale(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/shop_flash_sale/update_shop_flash_sale",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -478,7 +479,7 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
   });
 
   describe("updateShopFlashSaleItems", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         flash_sale_id: 123,
         items: [
@@ -525,14 +526,15 @@ describe("ShopFlashSaleManager (Generated Tests)", () => {
 
       const result = await manager.updateShopFlashSaleItems(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/shop_flash_sale/update_shop_flash_sale_items",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);

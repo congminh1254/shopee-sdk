@@ -27,7 +27,7 @@ export class FollowPrizeManager extends BaseManager {
    * @param {AddFollowPrizeRequest} params Request parameters
    * @returns {Promise<AddFollowPrizeResponse>} Promise resolving to the response
    */
-  public async addFollowPrize(params?: AddFollowPrizeRequest): Promise<AddFollowPrizeResponse> {
+  public async addFollowPrize(params: AddFollowPrizeRequest): Promise<AddFollowPrizeResponse> {
     return ShopeeFetch.fetch<AddFollowPrizeResponse>(
       this.config,
       "/follow_prize/add_follow_prize",
@@ -35,7 +35,6 @@ export class FollowPrizeManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["start_time", "end_time"],
       }
     );
   }
@@ -46,7 +45,7 @@ export class FollowPrizeManager extends BaseManager {
    * @returns {Promise<DeleteFollowPrizeResponse>} Promise resolving to the response
    */
   public async deleteFollowPrize(
-    params?: DeleteFollowPrizeRequest
+    params: DeleteFollowPrizeRequest
   ): Promise<DeleteFollowPrizeResponse> {
     return ShopeeFetch.fetch<DeleteFollowPrizeResponse>(
       this.config,
@@ -64,7 +63,7 @@ export class FollowPrizeManager extends BaseManager {
    * @param {EndFollowPrizeRequest} params Request parameters
    * @returns {Promise<EndFollowPrizeResponse>} Promise resolving to the response
    */
-  public async endFollowPrize(params?: EndFollowPrizeRequest): Promise<EndFollowPrizeResponse> {
+  public async endFollowPrize(params: EndFollowPrizeRequest): Promise<EndFollowPrizeResponse> {
     return ShopeeFetch.fetch<EndFollowPrizeResponse>(
       this.config,
       "/follow_prize/end_follow_prize",
@@ -102,7 +101,7 @@ export class FollowPrizeManager extends BaseManager {
    * @returns {Promise<GetFollowPrizeListResponse>} Promise resolving to the response
    */
   public async getFollowPrizeList(
-    params?: GetFollowPrizeListRequest
+    params: GetFollowPrizeListRequest
   ): Promise<GetFollowPrizeListResponse> {
     return ShopeeFetch.fetch<GetFollowPrizeListResponse>(
       this.config,
@@ -125,7 +124,7 @@ export class FollowPrizeManager extends BaseManager {
    * @returns {Promise<UpdateFollowPrizeResponse>} Promise resolving to the response
    */
   public async updateFollowPrize(
-    params?: UpdateFollowPrizeRequest
+    params: UpdateFollowPrizeRequest
   ): Promise<UpdateFollowPrizeResponse> {
     return ShopeeFetch.fetch<UpdateFollowPrizeResponse>(
       this.config,
@@ -134,7 +133,6 @@ export class FollowPrizeManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["start_time", "end_time"],
       }
     );
   }

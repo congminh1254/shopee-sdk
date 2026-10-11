@@ -65,7 +65,7 @@ export class AccountHealthManager extends BaseManager {
    * @returns {Promise<GetMetricSourceDetailResponse>} Promise resolving to the response
    */
   public async getMetricSourceDetail(
-    params?: GetMetricSourceDetailRequest
+    params: GetMetricSourceDetailRequest
   ): Promise<GetMetricSourceDetailResponse> {
     return ShopeeFetch.fetch<GetMetricSourceDetailResponse>(
       this.config,
@@ -125,7 +125,7 @@ export class AccountHealthManager extends BaseManager {
    * @returns {Promise<GetPunishmentHistoryResponse>} Promise resolving to the response
    */
   public async getPunishmentHistory(
-    params?: GetPunishmentHistoryRequest
+    params: GetPunishmentHistoryRequest
   ): Promise<GetPunishmentHistoryResponse> {
     return ShopeeFetch.fetch<GetPunishmentHistoryResponse>(
       this.config,

@@ -24,7 +24,7 @@ describe("AdsManager (Generated Tests)", () => {
   });
 
   describe("checkCreateGmsProductCampaignEligibility", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         is_eligible: false,
@@ -40,14 +40,15 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.checkCreateGmsProductCampaignEligibility(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ads/check_create_gms_product_campaign_eligibility",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -55,7 +56,7 @@ describe("AdsManager (Generated Tests)", () => {
   });
 
   describe("createAutoProductAds", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         reference_id: "asdf-1234-qwerty",
         budget: 10.5,
@@ -77,22 +78,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.createAutoProductAds(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/create_auto_product_ads",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/create_auto_product_ads", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("createGmsProductCampaign", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "30-11-2025",
         end_date: "30-11-2025",
@@ -113,22 +111,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.createGmsProductCampaign(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/create_gms_product_campaign",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/create_gms_product_campaign", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("createManualProductAds", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         reference_id: "asdf-1234-qwerty",
         budget: 10.5,
@@ -151,7 +146,7 @@ describe("AdsManager (Generated Tests)", () => {
           },
         ],
         enhanced_cpc: true,
-        smart_creative_setting: "default",
+        smart_creative_setting: "on",
       };
       const exampleResponse = [
         {
@@ -168,22 +163,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.createManualProductAds(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/create_manual_product_ads",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/create_manual_product_ads", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("editAutoProductAds", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         reference_id: "asd-qwer",
         campaign_id: 1234,
@@ -207,22 +199,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.editAutoProductAds(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/edit_auto_product_ads",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_auto_product_ads", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("editGmsItemProductCampaign", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 325325235,
         edit_action: "add",
@@ -241,22 +230,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.editGmsItemProductCampaign(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/edit_gms_item_product_campaign",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_gms_item_product_campaign", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("editGmsProductCampaign", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 12412421,
         edit_action: "change_budget",
@@ -279,22 +265,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.editGmsProductCampaign(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/edit_gms_product_campaign",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_gms_product_campaign", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("editManualProductAdKeywords", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         reference_id: "asdf-1234-qwerty",
         campaign_id: 112233,
@@ -329,22 +312,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.editManualProductAdKeywords(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/edit_manual_product_ad_keywords",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_manual_product_ad_keywords", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("editManualProductAds", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         reference_id: "asdf-1234-qwerty",
         campaign_id: 112234,
@@ -361,7 +341,7 @@ describe("AdsManager (Generated Tests)", () => {
           },
         ],
         enhanced_cpc: true,
-        smart_creative_setting: "default",
+        smart_creative_setting: "on",
       };
       const exampleResponse = [
         {
@@ -378,22 +358,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.editManualProductAds(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/edit_manual_product_ads",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_manual_product_ads", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAdsFacilShopRate", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         rate: 123,
@@ -409,22 +386,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getAdsFacilShopRate(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_ads_facil_shop_rate",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_ads_facil_shop_rate", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAllCpcAdsDailyPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "17-03-2021",
         end_date: "18-03-2021",
@@ -459,22 +433,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getAllCpcAdsDailyPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_all_cpc_ads_daily_performance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_all_cpc_ads_daily_performance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAllCpcAdsHourlyPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         performance_date: "17-03-2021",
       };
@@ -509,14 +480,15 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getAllCpcAdsHourlyPerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ads/get_all_cpc_ads_hourly_performance",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -524,7 +496,7 @@ describe("AdsManager (Generated Tests)", () => {
   });
 
   describe("getCreateProductAdBudgetSuggestion", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         reference_id: "asdf-1234-qwerty",
         product_selection: "auto",
@@ -552,14 +524,15 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getCreateProductAdBudgetSuggestion(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ads/get_create_product_ad_budget_suggestion",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -567,7 +540,7 @@ describe("AdsManager (Generated Tests)", () => {
   });
 
   describe("getGmsCampaignPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 13251251,
         start_date: "11-11-2025",
@@ -604,22 +577,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getGmsCampaignPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_gms_campaign_performance",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_gms_campaign_performance", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getGmsItemPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 123531513,
         start_date: "11-11-2025",
@@ -665,22 +635,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getGmsItemPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_gms_item_performance",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_gms_item_performance", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getProductCampaignDailyPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "17-03-2021",
         end_date: "19-03-2021",
@@ -733,14 +700,15 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getProductCampaignDailyPerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ads/get_product_campaign_daily_performance",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -748,7 +716,7 @@ describe("AdsManager (Generated Tests)", () => {
   });
 
   describe("getProductCampaignHourlyPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         performance_date: "17-07-2024",
         campaign_id_list: ["11111", "22222"],
@@ -801,14 +769,15 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getProductCampaignHourlyPerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ads/get_product_campaign_hourly_performance",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -816,7 +785,7 @@ describe("AdsManager (Generated Tests)", () => {
   });
 
   describe("getProductLevelCampaignIdList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         ad_type: "all",
         offset: 0,
@@ -843,14 +812,15 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getProductLevelCampaignIdList(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ads/get_product_level_campaign_id_list",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -858,7 +828,7 @@ describe("AdsManager (Generated Tests)", () => {
   });
 
   describe("getProductLevelCampaignSettingInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         info_type_list: ["1", "2", "3", "4"],
         campaign_id_list: ["11111", "22222", "33333"],
@@ -923,14 +893,15 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getProductLevelCampaignSettingInfo(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ads/get_product_level_campaign_setting_info",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -938,9 +909,9 @@ describe("AdsManager (Generated Tests)", () => {
   });
 
   describe("getProductRecommendedRoiTarget", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
-        reference_id: "asdf-1234-qwerty",
+        reference_id: "suggestion",
         item_id: 112233,
       };
       const exampleResponse = {
@@ -967,14 +938,15 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getProductRecommendedRoiTarget(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ads/get_product_recommended_roi_target",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -982,7 +954,7 @@ describe("AdsManager (Generated Tests)", () => {
   });
 
   describe("getRecommendedItemList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = [
         {
@@ -1002,22 +974,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getRecommendedItemList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_recommended_item_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_recommended_item_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getRecommendedKeywordList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         item_id: 1111,
         input_keyword: "keyword",
@@ -1044,22 +1013,19 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getRecommendedKeywordList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_recommended_keyword_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_recommended_keyword_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopToggleInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         data_timestamp: 1689052069,
@@ -1076,22 +1042,20 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getShopToggleInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_shop_toggle_info",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_shop_toggle_info", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.data_timestamp"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getTotalBalance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         data_timestamp: 1689052069,
@@ -1107,22 +1071,20 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.getTotalBalance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/get_total_balance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_total_balance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.data_timestamp"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("listGmsUserDeletedItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         offset: 100,
         limit: 100,
@@ -1143,15 +1105,12 @@ describe("AdsManager (Generated Tests)", () => {
 
       const result = await manager.listGmsUserDeletedItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ads/list_gms_user_deleted_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/list_gms_user_deleted_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

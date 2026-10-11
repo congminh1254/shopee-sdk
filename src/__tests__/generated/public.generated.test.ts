@@ -24,7 +24,7 @@ describe("PublicManager (Generated Tests)", () => {
   });
 
   describe("getAccessToken", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         code: "5a5477794a55537954697169514f4653",
         partner_id: 1001141,
@@ -54,22 +54,20 @@ describe("PublicManager (Generated Tests)", () => {
 
       const result = await manager.getAccessToken(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/auth/token/get",
-        expect.objectContaining({
-          method: "POST",
-          auth: false,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/auth/token/get", {
+        method: "POST",
+
+        body: exampleRequest,
+        timestampPaths: ["expire_in"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getMerchantsByPartner", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_size: 1,
         page_no: 1,
@@ -98,22 +96,20 @@ describe("PublicManager (Generated Tests)", () => {
 
       const result = await manager.getMerchantsByPartner(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_merchants_by_partner",
-        expect.objectContaining({
-          method: "GET",
-          auth: false,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/public/get_merchants_by_partner", {
+        method: "GET",
+
+        params: exampleRequest,
+        timestampPaths: ["authed_merchant_list.auth_time", "authed_merchant_list.expire_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopeeIpRanges", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         request_id: "a3a4277823b1019960cc92cfd972c506",
@@ -131,22 +127,19 @@ describe("PublicManager (Generated Tests)", () => {
 
       const result = await manager.getShopeeIpRanges(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_shopee_ip_ranges",
-        expect.objectContaining({
-          method: "GET",
-          auth: false,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shopee_ip_ranges", {
+        method: "GET",
+
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopsByPartner", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_size: 1,
         page_no: 1,
@@ -179,22 +172,20 @@ describe("PublicManager (Generated Tests)", () => {
 
       const result = await manager.getShopsByPartner(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_shops_by_partner",
-        expect.objectContaining({
-          method: "GET",
-          auth: false,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shops_by_partner", {
+        method: "GET",
+
+        params: exampleRequest,
+        timestampPaths: ["authed_shop_list.auth_time", "authed_shop_list.expire_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getTokenByResendCode", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         resend_code: "resend5a4d6e6a7a745a767276586f53476849",
       };
@@ -218,22 +209,19 @@ describe("PublicManager (Generated Tests)", () => {
 
       const result = await manager.getTokenByResendCode(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/public/get_token_by_resend_code",
-        expect.objectContaining({
-          method: "POST",
-          auth: false,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/public/get_token_by_resend_code", {
+        method: "POST",
+
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("refreshAccessToken", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         refresh_token: "4c7259534969484e71734d695a6e6d55",
         partner_id: 2001887,
@@ -267,15 +255,13 @@ describe("PublicManager (Generated Tests)", () => {
 
       const result = await manager.refreshAccessToken(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/auth/access_token/get",
-        expect.objectContaining({
-          method: "POST",
-          auth: false,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/auth/access_token/get", {
+        method: "POST",
+
+        body: exampleRequest,
+        timestampPaths: ["expire_in"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

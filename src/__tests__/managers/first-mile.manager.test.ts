@@ -497,11 +497,7 @@ describe("FirstMileManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/get_transit_warehouse_list",
-        {
-          method: "GET",
-          auth: true,
-          params: undefined,
-        }
+        { method: "GET", auth: true, params: undefined }
       );
 
       expect(result).toEqual(mockResponse);

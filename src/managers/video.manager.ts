@@ -58,12 +58,11 @@ export class VideoManager extends BaseManager {
    * @param {EditVideoInfoRequest} params Request parameters
    * @returns {Promise<EditVideoInfoResponse>} Promise resolving to the response
    */
-  public async editVideoInfo(params?: EditVideoInfoRequest): Promise<EditVideoInfoResponse> {
+  public async editVideoInfo(params: EditVideoInfoRequest): Promise<EditVideoInfoResponse> {
     return ShopeeFetch.fetch<EditVideoInfoResponse>(this.config, "/video/edit_video_info", {
       method: "POST",
       auth: true,
       body: params,
-      timestampPaths: ["video_upload_list.scheduled_info.scheduled_post_time"],
     });
   }
   /**
@@ -72,7 +71,7 @@ export class VideoManager extends BaseManager {
    * @param {GetCoverListRequest} params Request parameters
    * @returns {Promise<GetCoverListResponse>} Promise resolving to the response
    */
-  public async getCoverList(params?: GetCoverListRequest): Promise<GetCoverListResponse> {
+  public async getCoverList(params: GetCoverListRequest): Promise<GetCoverListResponse> {
     return ShopeeFetch.fetch<GetCoverListResponse>(this.config, "/video/get_cover_list", {
       method: "GET",
       auth: true,
@@ -85,7 +84,7 @@ export class VideoManager extends BaseManager {
    * @param {GetMetricTrendRequest} params Request parameters
    * @returns {Promise<GetMetricTrendResponse>} Promise resolving to the response
    */
-  public async getMetricTrend(params?: GetMetricTrendRequest): Promise<GetMetricTrendResponse> {
+  public async getMetricTrend(params: GetMetricTrendRequest): Promise<GetMetricTrendResponse> {
     return ShopeeFetch.fetch<GetMetricTrendResponse>(this.config, "/video/get_metric_trend", {
       method: "GET",
       auth: true,
@@ -99,7 +98,7 @@ export class VideoManager extends BaseManager {
    * @returns {Promise<GetOverviewPerformanceResponse>} Promise resolving to the response
    */
   public async getOverviewPerformance(
-    params?: GetOverviewPerformanceRequest
+    params: GetOverviewPerformanceRequest
   ): Promise<GetOverviewPerformanceResponse> {
     return ShopeeFetch.fetch<GetOverviewPerformanceResponse>(
       this.config,
@@ -118,7 +117,7 @@ export class VideoManager extends BaseManager {
    * @returns {Promise<GetProdcutPerformanceListResponse>} Promise resolving to the response
    */
   public async getProdcutPerformanceList(
-    params?: GetProdcutPerformanceListRequest
+    params: GetProdcutPerformanceListRequest
   ): Promise<GetProdcutPerformanceListResponse> {
     return ShopeeFetch.fetch<GetProdcutPerformanceListResponse>(
       this.config,
@@ -174,7 +173,7 @@ export class VideoManager extends BaseManager {
    * @returns {Promise<GetVideoDetailAudienceDistributionResponse>} Promise resolving to the response
    */
   public async getVideoDetailAudienceDistribution(
-    params?: GetVideoDetailAudienceDistributionRequest
+    params: GetVideoDetailAudienceDistributionRequest
   ): Promise<GetVideoDetailAudienceDistributionResponse> {
     return ShopeeFetch.fetch<GetVideoDetailAudienceDistributionResponse>(
       this.config,
@@ -193,7 +192,7 @@ export class VideoManager extends BaseManager {
    * @returns {Promise<GetVideoDetailMetricTrendResponse>} Promise resolving to the response
    */
   public async getVideoDetailMetricTrend(
-    params?: GetVideoDetailMetricTrendRequest
+    params: GetVideoDetailMetricTrendRequest
   ): Promise<GetVideoDetailMetricTrendResponse> {
     return ShopeeFetch.fetch<GetVideoDetailMetricTrendResponse>(
       this.config,
@@ -212,7 +211,7 @@ export class VideoManager extends BaseManager {
    * @returns {Promise<GetVideoDetailPerformanceResponse>} Promise resolving to the response
    */
   public async getVideoDetailPerformance(
-    params?: GetVideoDetailPerformanceRequest
+    params: GetVideoDetailPerformanceRequest
   ): Promise<GetVideoDetailPerformanceResponse> {
     return ShopeeFetch.fetch<GetVideoDetailPerformanceResponse>(
       this.config,
@@ -232,7 +231,7 @@ export class VideoManager extends BaseManager {
    * @returns {Promise<GetVideoDetailProductPerformanceResponse>} Promise resolving to the response
    */
   public async getVideoDetailProductPerformance(
-    params?: GetVideoDetailProductPerformanceRequest
+    params: GetVideoDetailProductPerformanceRequest
   ): Promise<GetVideoDetailProductPerformanceResponse> {
     return ShopeeFetch.fetch<GetVideoDetailProductPerformanceResponse>(
       this.config,
@@ -250,7 +249,7 @@ export class VideoManager extends BaseManager {
    * @param {GetVideoListRequest} params Request parameters
    * @returns {Promise<GetVideoListResponse>} Promise resolving to the response
    */
-  public async getVideoList(params?: GetVideoListRequest): Promise<GetVideoListResponse> {
+  public async getVideoList(params: GetVideoListRequest): Promise<GetVideoListResponse> {
     return ShopeeFetch.fetch<GetVideoListResponse>(this.config, "/video/get_video_list", {
       method: "GET",
       auth: true,
@@ -269,7 +268,7 @@ export class VideoManager extends BaseManager {
    * @returns {Promise<GetVideoPerformanceListResponse>} Promise resolving to the response
    */
   public async getVideoPerformanceList(
-    params?: GetVideoPerformanceListRequest
+    params: GetVideoPerformanceListRequest
   ): Promise<GetVideoPerformanceListResponse> {
     return ShopeeFetch.fetch<GetVideoPerformanceListResponse>(
       this.config,
@@ -288,7 +287,7 @@ export class VideoManager extends BaseManager {
    * @param {PostVideoRequest} params Request parameters
    * @returns {Promise<PostVideoResponse>} Promise resolving to the response
    */
-  public async postVideo(params?: PostVideoRequest): Promise<PostVideoResponse> {
+  public async postVideo(params: PostVideoRequest): Promise<PostVideoResponse> {
     return ShopeeFetch.fetch<PostVideoResponse>(this.config, "/video/post_video", {
       method: "POST",
       auth: true,

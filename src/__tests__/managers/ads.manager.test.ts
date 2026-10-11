@@ -71,6 +71,8 @@ describe("AdsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_total_balance", {
         method: "GET",
         auth: true,
+        params: undefined,
+        timestampPaths: ["response.data_timestamp"],
       });
 
       expect(result.error).toBe("");
@@ -117,6 +119,8 @@ describe("AdsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_shop_toggle_info", {
         method: "GET",
         auth: true,
+        params: undefined,
+        timestampPaths: ["response.data_timestamp"],
       });
 
       expect(result.error).toBe("");
@@ -238,6 +242,7 @@ describe("AdsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_recommended_item_list", {
         method: "GET",
         auth: true,
+        params: undefined,
       });
 
       expect(result.error).toBe("");
@@ -519,10 +524,7 @@ describe("AdsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ads/get_product_level_campaign_id_list",
-        {
-          method: "GET",
-          auth: true,
-        }
+        { method: "GET", auth: true, params: undefined }
       );
 
       expect(result.error).toBe("");
@@ -651,10 +653,7 @@ describe("AdsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ads/check_create_gms_product_campaign_eligibility",
-        {
-          method: "GET",
-          auth: true,
-        }
+        { method: "GET", auth: true, params: undefined }
       );
 
       expect(result.error).toBe("");
@@ -926,7 +925,6 @@ describe("AdsManager", () => {
           body: {
             reference_id: "keyword-ref-001",
             campaign_id: 333444,
-            edit_action: "add",
             selected_keywords: [
               {
                 keyword: "wireless earbuds",
@@ -1000,6 +998,7 @@ describe("AdsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/get_ads_facil_shop_rate", {
         method: "GET",
         auth: true,
+        params: undefined,
       });
 
       expect(result.error).toBe("");
@@ -1247,7 +1246,7 @@ describe("AdsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ads/list_gms_user_deleted_item", {
         method: "POST",
         auth: true,
-        body: {},
+        body: undefined,
       });
 
       expect(result.error).toBe("");

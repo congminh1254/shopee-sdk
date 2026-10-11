@@ -73,11 +73,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_clip_video_performance",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -107,11 +103,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_content_affiliate_performance",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -141,11 +133,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_principal_affiliate_performance",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -175,11 +163,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_principal_livestream_performance",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -209,11 +193,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_principal_sales_performance_detail",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -243,11 +223,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_principal_video_performance",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -277,11 +253,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_session_livestream_performance",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -311,11 +283,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_shop_affiliate_performance",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -345,11 +313,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_shop_livestream_performance",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -379,11 +343,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_shop_sales_performance_detail",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -413,11 +373,7 @@ describe("PrincipalManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_shop_video_performance",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);

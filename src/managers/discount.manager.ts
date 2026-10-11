@@ -39,12 +39,11 @@ export class DiscountManager extends BaseManager {
    * @param {AddDiscountRequest} params Request parameters
    * @returns {Promise<AddDiscountResponse>} Promise resolving to the response
    */
-  public async addDiscount(params?: AddDiscountRequest): Promise<AddDiscountResponse> {
+  public async addDiscount(params: AddDiscountRequest): Promise<AddDiscountResponse> {
     return ShopeeFetch.fetch<AddDiscountResponse>(this.config, "/discount/add_discount", {
       method: "POST",
       auth: true,
       body: params,
-      timestampPaths: ["start_time", "end_time"],
     });
   }
   /**
@@ -53,7 +52,7 @@ export class DiscountManager extends BaseManager {
    * @param {AddDiscountItemRequest} params Request parameters
    * @returns {Promise<AddDiscountItemResponse>} Promise resolving to the response
    */
-  public async addDiscountItem(params?: AddDiscountItemRequest): Promise<AddDiscountItemResponse> {
+  public async addDiscountItem(params: AddDiscountItemRequest): Promise<AddDiscountItemResponse> {
     return ShopeeFetch.fetch<AddDiscountItemResponse>(this.config, "/discount/add_discount_item", {
       method: "POST",
       auth: true,
@@ -66,7 +65,7 @@ export class DiscountManager extends BaseManager {
    * @param {DeleteDiscountRequest} params Request parameters
    * @returns {Promise<DeleteDiscountResponse>} Promise resolving to the response
    */
-  public async deleteDiscount(params?: DeleteDiscountRequest): Promise<DeleteDiscountResponse> {
+  public async deleteDiscount(params: DeleteDiscountRequest): Promise<DeleteDiscountResponse> {
     return ShopeeFetch.fetch<DeleteDiscountResponse>(this.config, "/discount/delete_discount", {
       method: "POST",
       auth: true,
@@ -81,7 +80,7 @@ export class DiscountManager extends BaseManager {
    * @returns {Promise<DeleteDiscountItemResponse>} Promise resolving to the response
    */
   public async deleteDiscountItem(
-    params?: DeleteDiscountItemRequest
+    params: DeleteDiscountItemRequest
   ): Promise<DeleteDiscountItemResponse> {
     return ShopeeFetch.fetch<DeleteDiscountItemResponse>(
       this.config,
@@ -100,7 +99,7 @@ export class DiscountManager extends BaseManager {
    * @returns {Promise<DeleteSipDiscountResponse>} Promise resolving to the response
    */
   public async deleteSipDiscount(
-    params?: DeleteSipDiscountRequest
+    params: DeleteSipDiscountRequest
   ): Promise<DeleteSipDiscountResponse> {
     return ShopeeFetch.fetch<DeleteSipDiscountResponse>(
       this.config,
@@ -118,7 +117,7 @@ export class DiscountManager extends BaseManager {
    * @param {EndDiscountRequest} params Request parameters
    * @returns {Promise<EndDiscountResponse>} Promise resolving to the response
    */
-  public async endDiscount(params?: EndDiscountRequest): Promise<EndDiscountResponse> {
+  public async endDiscount(params: EndDiscountRequest): Promise<EndDiscountResponse> {
     return ShopeeFetch.fetch<EndDiscountResponse>(this.config, "/discount/end_discount", {
       method: "POST",
       auth: true,
@@ -132,7 +131,7 @@ export class DiscountManager extends BaseManager {
    * @param {GetDiscountRequest} params Request parameters
    * @returns {Promise<GetDiscountResponse>} Promise resolving to the response
    */
-  public async getDiscount(params?: GetDiscountRequest): Promise<GetDiscountResponse> {
+  public async getDiscount(params: GetDiscountRequest): Promise<GetDiscountResponse> {
     return ShopeeFetch.fetch<GetDiscountResponse>(this.config, "/discount/get_discount", {
       method: "GET",
       auth: true,
@@ -146,17 +145,12 @@ export class DiscountManager extends BaseManager {
    * @param {GetDiscountListRequest} params Request parameters
    * @returns {Promise<GetDiscountListResponse>} Promise resolving to the response
    */
-  public async getDiscountList(params?: GetDiscountListRequest): Promise<GetDiscountListResponse> {
+  public async getDiscountList(params: GetDiscountListRequest): Promise<GetDiscountListResponse> {
     return ShopeeFetch.fetch<GetDiscountListResponse>(this.config, "/discount/get_discount_list", {
       method: "GET",
       auth: true,
       params: params,
-      timestampPaths: [
-        "update_time_from",
-        "update_time_to",
-        "response.discount_list.start_time",
-        "response.discount_list.end_time",
-      ],
+      timestampPaths: ["response.discount_list.start_time", "response.discount_list.end_time"],
     });
   }
   /**
@@ -184,7 +178,7 @@ export class DiscountManager extends BaseManager {
    * @param {SetSipDiscountRequest} params Request parameters
    * @returns {Promise<SetSipDiscountResponse>} Promise resolving to the response
    */
-  public async setSipDiscount(params?: SetSipDiscountRequest): Promise<SetSipDiscountResponse> {
+  public async setSipDiscount(params: SetSipDiscountRequest): Promise<SetSipDiscountResponse> {
     return ShopeeFetch.fetch<SetSipDiscountResponse>(this.config, "/discount/set_sip_discount", {
       method: "POST",
       auth: true,
@@ -203,7 +197,7 @@ export class DiscountManager extends BaseManager {
    * @param {UpdateDiscountRequest} params Request parameters
    * @returns {Promise<UpdateDiscountResponse>} Promise resolving to the response
    */
-  public async updateDiscount(params?: UpdateDiscountRequest): Promise<UpdateDiscountResponse> {
+  public async updateDiscount(params: UpdateDiscountRequest): Promise<UpdateDiscountResponse> {
     return ShopeeFetch.fetch<UpdateDiscountResponse>(this.config, "/discount/update_discount", {
       method: "POST",
       auth: true,
@@ -218,7 +212,7 @@ export class DiscountManager extends BaseManager {
    * @returns {Promise<UpdateDiscountItemResponse>} Promise resolving to the response
    */
   public async updateDiscountItem(
-    params?: UpdateDiscountItemRequest
+    params: UpdateDiscountItemRequest
   ): Promise<UpdateDiscountItemResponse> {
     return ShopeeFetch.fetch<UpdateDiscountItemResponse>(
       this.config,

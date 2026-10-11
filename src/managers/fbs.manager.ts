@@ -81,7 +81,7 @@ export class FbsManager extends BaseManager {
    * @returns {Promise<QueryBrSkuBlockStatusResponse>} Promise resolving to the response
    */
   public async queryBrSkuBlockStatus(
-    params?: QueryBrSkuBlockStatusRequest
+    params: QueryBrSkuBlockStatusRequest
   ): Promise<QueryBrSkuBlockStatusResponse> {
     return ShopeeFetch.fetch<QueryBrSkuBlockStatusResponse>(
       this.config,

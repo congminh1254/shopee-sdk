@@ -61,9 +61,8 @@ describe("schema-parser", () => {
   });
 
   describe("parseSchemaFile", () => {
-    it("should return null for invalid filenames", () => {
-      const parsed = parseSchemaFile("invalid_name.json");
-      expect(parsed).toBeNull();
+    it("should reject invalid filenames", () => {
+      expect(() => parseSchemaFile("invalid_name.json")).toThrow("Unsupported schema filename");
     });
 
     it("should correctly extract module and endpoint names for valid files", () => {

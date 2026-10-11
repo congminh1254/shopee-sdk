@@ -35,12 +35,11 @@ export class BundleDealManager extends BaseManager {
    * @param {AddBundleDealRequest} params Request parameters
    * @returns {Promise<AddBundleDealResponse>} Promise resolving to the response
    */
-  public async addBundleDeal(params?: AddBundleDealRequest): Promise<AddBundleDealResponse> {
+  public async addBundleDeal(params: AddBundleDealRequest): Promise<AddBundleDealResponse> {
     return ShopeeFetch.fetch<AddBundleDealResponse>(this.config, "/bundle_deal/add_bundle_deal", {
       method: "POST",
       auth: true,
       body: params,
-      timestampPaths: ["start_time", "end_time"],
     });
   }
   /**
@@ -50,7 +49,7 @@ export class BundleDealManager extends BaseManager {
    * @returns {Promise<AddBundleDealItemResponse>} Promise resolving to the response
    */
   public async addBundleDealItem(
-    params?: AddBundleDealItemRequest
+    params: AddBundleDealItemRequest
   ): Promise<AddBundleDealItemResponse> {
     return ShopeeFetch.fetch<AddBundleDealItemResponse>(
       this.config,
@@ -69,7 +68,7 @@ export class BundleDealManager extends BaseManager {
    * @returns {Promise<DeleteBundleDealResponse>} Promise resolving to the response
    */
   public async deleteBundleDeal(
-    params?: DeleteBundleDealRequest
+    params: DeleteBundleDealRequest
   ): Promise<DeleteBundleDealResponse> {
     return ShopeeFetch.fetch<DeleteBundleDealResponse>(
       this.config,
@@ -88,7 +87,7 @@ export class BundleDealManager extends BaseManager {
    * @returns {Promise<DeleteBundleDealItemResponse>} Promise resolving to the response
    */
   public async deleteBundleDealItem(
-    params?: DeleteBundleDealItemRequest
+    params: DeleteBundleDealItemRequest
   ): Promise<DeleteBundleDealItemResponse> {
     return ShopeeFetch.fetch<DeleteBundleDealItemResponse>(
       this.config,
@@ -106,7 +105,7 @@ export class BundleDealManager extends BaseManager {
    * @param {EndBundleDealRequest} params Request parameters
    * @returns {Promise<EndBundleDealResponse>} Promise resolving to the response
    */
-  public async endBundleDeal(params?: EndBundleDealRequest): Promise<EndBundleDealResponse> {
+  public async endBundleDeal(params: EndBundleDealRequest): Promise<EndBundleDealResponse> {
     return ShopeeFetch.fetch<EndBundleDealResponse>(this.config, "/bundle_deal/end_bundle_deal", {
       method: "POST",
       auth: true,
@@ -119,7 +118,7 @@ export class BundleDealManager extends BaseManager {
    * @param {GetBundleDealRequest} params Request parameters
    * @returns {Promise<GetBundleDealResponse>} Promise resolving to the response
    */
-  public async getBundleDeal(params?: GetBundleDealRequest): Promise<GetBundleDealResponse> {
+  public async getBundleDeal(params: GetBundleDealRequest): Promise<GetBundleDealResponse> {
     return ShopeeFetch.fetch<GetBundleDealResponse>(this.config, "/bundle_deal/get_bundle_deal", {
       method: "GET",
       auth: true,
@@ -134,7 +133,7 @@ export class BundleDealManager extends BaseManager {
    * @returns {Promise<GetBundleDealItemResponse>} Promise resolving to the response
    */
   public async getBundleDealItem(
-    params?: GetBundleDealItemRequest
+    params: GetBundleDealItemRequest
   ): Promise<GetBundleDealItemResponse> {
     return ShopeeFetch.fetch<GetBundleDealItemResponse>(
       this.config,
@@ -176,7 +175,7 @@ export class BundleDealManager extends BaseManager {
    * @returns {Promise<UpdateBundleDealResponse>} Promise resolving to the response
    */
   public async updateBundleDeal(
-    params?: UpdateBundleDealRequest
+    params: UpdateBundleDealRequest
   ): Promise<UpdateBundleDealResponse> {
     return ShopeeFetch.fetch<UpdateBundleDealResponse>(
       this.config,
@@ -185,7 +184,7 @@ export class BundleDealManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["start_time", "end_time", "response.start_time", "response.end_time"],
+        timestampPaths: ["response.start_time", "response.end_time"],
       }
     );
   }
@@ -196,7 +195,7 @@ export class BundleDealManager extends BaseManager {
    * @returns {Promise<UpdateBundleDealItemResponse>} Promise resolving to the response
    */
   public async updateBundleDealItem(
-    params?: UpdateBundleDealItemRequest
+    params: UpdateBundleDealItemRequest
   ): Promise<UpdateBundleDealItemResponse> {
     return ShopeeFetch.fetch<UpdateBundleDealItemResponse>(
       this.config,

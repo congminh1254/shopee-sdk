@@ -192,6 +192,7 @@ describe("TopPicksManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/top_picks/get_top_picks_list", {
         method: "GET",
         auth: true,
+        params: undefined,
       });
 
       expect(result).toEqual(mockResponse);

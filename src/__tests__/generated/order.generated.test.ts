@@ -24,7 +24,7 @@ describe("OrderManager (Generated Tests)", () => {
   });
 
   describe("cancelOrder", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201020SQQ5K2EP",
         cancel_reason: "OUT_OF_STOCK",
@@ -57,22 +57,20 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.cancelOrder(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/cancel_order",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/cancel_order", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+        timestampPaths: ["response.update_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("downloadFbsInvoices", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         request_id_list: [
           {
@@ -94,22 +92,20 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.downloadFbsInvoices(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/download_fbs_invoices",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/download_fbs_invoices", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+        timestampPaths: ["timestamp"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("downloadInvoiceDoc", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201218V2Y6E59M",
       };
@@ -126,22 +122,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.downloadInvoiceDoc(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/download_invoice_doc",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/download_invoice_doc", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("generateFbsInvoices", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         batch_download: {
           start: 20250601,
@@ -172,25 +165,22 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.generateFbsInvoices(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/generate_fbs_invoices",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/generate_fbs_invoices", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBookingDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         booking_sn_list: ["201214JAJXU6G7", "201214JASXYXY6"],
-        response_optional_fields: "total_amount",
+        response_optional_fields: "item_list",
       };
       const exampleResponse = {
         booking_list: [
@@ -198,7 +188,7 @@ describe("OrderManager (Generated Tests)", () => {
             booking_sn: "201214JASXYXY6",
             order_sn: "201218V2Y6E59M",
             region: "MY",
-            booking_status: "CANCELLED",
+            booking_status: "READY_TO_SHIP",
             match_status: "MATCH_PENDING",
             shipping_carrier: "Standard Delivery",
             create_time: 1607930885,
@@ -207,10 +197,10 @@ describe("OrderManager (Generated Tests)", () => {
             recipient_address: {
               name: "Max",
               phone: "3828203",
-              town: "Sara",
-              district: "Dada",
-              city: "Asajaya",
-              state: "Sarawak",
+              town: "and",
+              district: "and",
+              city: "and",
+              state: "state",
               region: "MY",
               zipcode: "40009",
               full_address: "C-15-14 BLOK C JALAN 30/146, Asajaya, 40009, Sarawak",
@@ -250,22 +240,24 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getBookingDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_booking_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/get_booking_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.booking_list.create_time",
+          "response.booking_list.update_time",
+          "response.booking_list.pickup_done_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBookingList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         time_range_field: "create_time",
         time_from: 1607235072,
@@ -295,22 +287,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getBookingList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_booking_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/get_booking_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBuyerInvoiceInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         queries: [
           {
@@ -392,22 +381,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getBuyerInvoiceInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_buyer_invoice_info",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/get_buyer_invoice_info", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getEstimateCancelValue", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "2012300NQJVTYN",
         partial_cancel_item_list: [
@@ -433,22 +419,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getEstimateCancelValue(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_estimate_cancel_value",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/get_estimate_cancel_value", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getFbsInvoicesResult", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         request_id_list: [
           {
@@ -477,26 +460,23 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getFbsInvoicesResult(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_fbs_invoices_result",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/get_fbs_invoices_result", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getOrderDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn_list: ["201214JAJXU6G7", "201214JASXYXY6"],
         request_order_status_pending: true,
-        response_optional_fields: "total_amount",
+        response_optional_fields: "buyer_user_id",
       };
       const exampleResponse = {
         order_list: [
@@ -522,10 +502,10 @@ describe("OrderManager (Generated Tests)", () => {
             recipient_address: {
               name: "Max",
               phone: "3828203",
-              town: "Sara",
-              district: "Dada",
-              city: "Asajaya",
-              state: "Sarawak",
+              town: "and",
+              district: "and",
+              city: "and",
+              state: "state",
               region: "MY",
               zipcode: "40009",
               full_address: "C-15-14 BLOK C JALAN 30/146, Asajaya, 40009, Sarawak",
@@ -554,8 +534,8 @@ describe("OrderManager (Generated Tests)", () => {
                     parent_sku_id: "test_string",
                     barcode_upc: "test_string",
                     quantity: 123,
-                    warehouse_id: "test_string",
-                    mapping_type: "test_string",
+                    warehouse_id: "located",
+                    mapping_type: "structure",
                   },
                 ],
                 model_original_price: 1000,
@@ -643,7 +623,7 @@ describe("OrderManager (Generated Tests)", () => {
             order_chargeable_weight_gram: 123,
             prescription_check_status: 123,
             pharmacist_name: "test_string",
-            prescription_images: "test_string",
+            prescription_images: "id",
             prescription_approval_time: "test_string",
             prescription_rejection_time: "test_string",
             prescription_reject_reason: "Insufficient prescription detail",
@@ -682,29 +662,40 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getOrderDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_order_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/get_order_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.order_list.create_time",
+          "response.order_list.update_time",
+          "response.order_list.ship_by_date",
+          "response.order_list.note_update_time",
+          "response.order_list.pay_time",
+          "response.order_list.pickup_done_time",
+          "response.order_list.invoice_data.issue_date",
+          "response.order_list.prescription_approval_time",
+          "response.order_list.prescription_rejection_time",
+          "response.order_list.edt_from",
+          "response.order_list.edt_to",
+          "response.order_list.return_request_due_date",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getOrderList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         time_range_field: "create_time",
         time_from: 1607235072,
         time_to: 1608271872,
         page_size: 20,
         cursor: "test_string",
-        order_status: "READY_TO_SHIP",
+        order_status: "UNPAID",
         response_optional_fields: "order_status",
         request_order_status_pending: true,
         logistics_channel_id: 91007,
@@ -714,7 +705,7 @@ describe("OrderManager (Generated Tests)", () => {
         order_list: [
           {
             order_sn: "201218V2Y6E59M",
-            order_status: "READY_TO_SHIP",
+            order_status: "UNPAID",
             booking_sn: "2404098R48U37H",
           },
         ],
@@ -730,22 +721,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getOrderList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_order_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/get_order_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getPackageDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         package_number_list: ["OFG1156498731071468", "OFG199593509207187"],
       };
@@ -781,8 +769,8 @@ describe("OrderManager (Generated Tests)", () => {
                     parent_sku_id: "test_string",
                     barcode_upc: "test_string",
                     quantity: 123,
-                    warehouse_id: "test_string",
-                    mapping_type: "test_string",
+                    warehouse_id: "located",
+                    mapping_type: "structure",
                   },
                 ],
                 order_item_id: 2200149592,
@@ -798,10 +786,10 @@ describe("OrderManager (Generated Tests)", () => {
             recipient_address: {
               name: "b***r",
               phone: "******78",
-              town: "****",
-              district: "****",
-              city: "****",
-              state: "****",
+              town: "and",
+              district: "and",
+              city: "and",
+              state: "state",
               region: "****",
               zipcode: "****",
               full_address: "******11",
@@ -824,7 +812,7 @@ describe("OrderManager (Generated Tests)", () => {
             can_unsplit_order: false,
             is_pre_order: false,
             pharmacist_name: "test_string",
-            prescription_images: "test_string",
+            prescription_images: "id",
             prescription_approval_time: "test_string",
             prescription_rejection_time: "test_string",
             is_buyer_shop_collection: true,
@@ -860,22 +848,25 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getPackageDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_package_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/get_package_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.package_list.status_info_tag.timestamp",
+          "response.package_list.prescription_approval_time",
+          "response.package_list.prescription_rejection_time",
+          "response.package_list.preparation_end_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getPendingBuyerInvoiceOrderList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         cursor: '""',
         page_size: 10,
@@ -899,14 +890,15 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getPendingBuyerInvoiceOrderList(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/order/get_pending_buyer_invoice_order_list",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -914,7 +906,7 @@ describe("OrderManager (Generated Tests)", () => {
   });
 
   describe("getShipmentList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         cursor: '""',
         page_size: 20,
@@ -939,22 +931,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getShipmentList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_shipment_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/get_shipment_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getWarehouseFilterConfig", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         warehouse_filters: [
@@ -977,22 +966,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.getWarehouseFilterConfig(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/get_warehouse_filter_config",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/get_warehouse_filter_config", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("handleBuyerCancellation", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201016F6B94MQK",
         operation: "ACCEPT",
@@ -1010,22 +996,20 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.handleBuyerCancellation(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/handle_buyer_cancellation",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/handle_buyer_cancellation", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+        timestampPaths: ["response.update_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("handlePrescriptionCheck", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "test_string",
         is_approved: true,
@@ -1053,22 +1037,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.handlePrescriptionCheck(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/handle_prescription_check",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/handle_prescription_check", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("searchPackageList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         filter: {
           package_status: 2,
@@ -1121,22 +1102,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.searchPackageList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/search_package_list",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/search_package_list", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("setNote", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201224EM1FMFG1",
         note: "Thank you",
@@ -1156,22 +1134,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.setNote(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/set_note",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/set_note", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("splitOrder", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "2012300NQJVTYN",
         package_list: [
@@ -1215,22 +1190,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.splitOrder(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/split_order",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/split_order", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("unsplitOrder", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "2012312AVA7HVN",
       };
@@ -1249,22 +1221,19 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.unsplitOrder(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/unsplit_order",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/unsplit_order", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("uploadInvoiceDoc", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201218V2Y6E59M",
         file_type: 1,
@@ -1285,15 +1254,12 @@ describe("OrderManager (Generated Tests)", () => {
 
       const result = await manager.uploadInvoiceDoc(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/order/upload_invoice_doc",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/order/upload_invoice_doc", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

@@ -82,6 +82,9 @@ const products = await sdk.product.getItemList({
 
 We welcome contributions! Please see our [Contributing Guide](../README.md#contributing) for details.
 
+See [Developing the code generator](./guides/code-generation.md) for output ownership,
+validation safeguards, regression tests, and migration guidance.
+
 ## License
 
 MIT License - see [LICENSE](../LICENSE) file for details.

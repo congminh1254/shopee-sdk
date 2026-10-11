@@ -214,7 +214,7 @@ describe("MediaManager", () => {
         method: "POST",
         auth: true,
         body: {
-          file_size: 30 * 1024 * 1024,
+          file_size: 30 * 1024 * 1024, // 30MB
           business: 1,
           scene: 1,
           file_name: "test.mp4",
@@ -246,6 +246,7 @@ describe("MediaManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_video_part", {
         method: "POST",
+        auth: true,
         body: {
           video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
           part_seq: 0,
@@ -288,6 +289,7 @@ describe("MediaManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledTimes(2);
       expect(mockShopeeFetch).toHaveBeenNthCalledWith(1, mockConfig, "/media/upload_video_part", {
         method: "POST",
+        auth: true,
         body: {
           video_upload_id: videoUploadId,
           part_seq: 0,
@@ -297,6 +299,7 @@ describe("MediaManager", () => {
       });
       expect(mockShopeeFetch).toHaveBeenNthCalledWith(2, mockConfig, "/media/upload_video_part", {
         method: "POST",
+        auth: true,
         body: {
           video_upload_id: videoUploadId,
           part_seq: 1,
@@ -324,6 +327,7 @@ describe("MediaManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/complete_video_upload", {
         method: "POST",
+        auth: true,
         body: {
           video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
         },
@@ -348,6 +352,7 @@ describe("MediaManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media/complete_video_upload", {
         method: "POST",
+        auth: true,
         body: {
           video_upload_id: "sg_small_video_id",
         },
@@ -385,6 +390,7 @@ describe("MediaManager", () => {
         params: {
           video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
         },
+        timestampPaths: ["response.update_time"],
       });
 
       expect(result).toEqual(mockResponse);

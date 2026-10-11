@@ -24,7 +24,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("addAllProductsToOpenCampaign", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         commission_rate: 1.1,
         period_start_time: 1735660800,
@@ -44,22 +44,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.addAllProductsToOpenCampaign(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/add_all_products_to_open_campaign",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/add_all_products_to_open_campaign", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("batchAddProductsToOpenCampaign", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         item_id_list: [123],
         commission_rate: 1.1,
@@ -86,14 +83,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.batchAddProductsToOpenCampaign(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/batch_add_products_to_open_campaign",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -101,7 +99,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("batchEditProductsOpenCampaignSetting", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_ids: [123],
         commission_rate: 1.1,
@@ -128,14 +126,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.batchEditProductsOpenCampaignSetting(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/batch_edit_products_open_campaign_setting",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -143,7 +142,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("batchGetProductsSuggestedRate", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         item_id_list: ["1", "12", "123"],
       };
@@ -166,22 +165,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.batchGetProductsSuggestedRate(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/batch_get_products_suggested_rate",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/batch_get_products_suggested_rate", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("batchRemoveProductsOpenCampaignSetting", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_ids: [123],
       };
@@ -205,14 +201,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.batchRemoveProductsOpenCampaignSetting(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/batch_remove_products_open_campaign_setting",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -220,7 +217,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("createNewTargetedCampaign", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_name: "CAMPAIGN_NAME",
         period_start_time: 1735660800,
@@ -267,22 +264,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.createNewTargetedCampaign(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/create_new_targeted_campaign",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/create_new_targeted_campaign", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("editAffiliateListOfTargetedCampaign", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 101,
         edit_type: "add",
@@ -311,14 +305,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.editAffiliateListOfTargetedCampaign(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/edit_affiliate_list_of_targeted_campaign",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -326,7 +321,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("editAllProductsOpenCampaignSetting", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         commission_rate: 1.1,
         period_start_time: 1735660800,
@@ -346,14 +341,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.editAllProductsOpenCampaignSetting(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/edit_all_products_open_campaign_setting",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -361,7 +357,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("editProductListOfTargetedCampaign", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 101,
         edit_type: "add",
@@ -391,14 +387,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.editProductListOfTargetedCampaign(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/edit_product_list_of_targeted_campaign",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -406,7 +403,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("getAffiliatePerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         period_type: "Last30d",
         start_date: "20250801",
@@ -447,22 +444,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getAffiliatePerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_affiliate_performance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_affiliate_performance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAutoAddNewProductToggleStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         is_open: true,
@@ -478,14 +472,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getAutoAddNewProductToggleStatus(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/get_auto_add_new_product_toggle_status",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -493,7 +488,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("getCampaignKeyMetricsPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         period_type: "Last30d",
         start_date: "20250801",
@@ -524,14 +519,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getCampaignKeyMetricsPerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/get_campaign_key_metrics_performance",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -539,7 +535,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("getContentPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         period_type: "Last30d",
         start_date: "20250801",
@@ -583,22 +579,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getContentPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_content_performance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_content_performance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getConversionReport", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 20,
@@ -613,7 +606,7 @@ describe("AmsManager (Generated Tests)", () => {
         verified_status: "Unverified",
         buyer_status: "New",
         attr_campaign_id: 18017,
-        campaign_partner: "auto.1",
+        campaign_partner: "Name",
         seller_campaign_type: "TargetCampaign",
         deduction_status: "PendingDeduction",
         deduction_method: "OrderEscrow",
@@ -683,22 +676,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getConversionReport(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_conversion_report",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_conversion_report", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getManagedAffiliateList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 20,
@@ -730,7 +720,7 @@ describe("AmsManager (Generated Tests)", () => {
             promote_category_ids: [100013, 100644, 100010],
             top_popular_contents: [
               {
-                platform: "shopee live",
+                platform: "video",
                 comment_count: 100,
                 like_count: 300,
                 view_count: 1000,
@@ -756,22 +746,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getManagedAffiliateList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_managed_affiliate_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_managed_affiliate_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getOpenCampaignAddedProduct", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_size: 20,
         cursor: "1234,5678",
@@ -813,22 +800,25 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getOpenCampaignAddedProduct(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_open_campaign_added_product",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_open_campaign_added_product", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.item_list.period_start_time",
+          "response.item_list.period_end_time",
+          "response.item_list.pending_terminated_time",
+          "response.item_list.commission_protection_list.protection_period_end_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getOpenCampaignBatchTaskResult", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         task_id: "abcd-abcd-abcd",
       };
@@ -847,14 +837,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getOpenCampaignBatchTaskResult(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/get_open_campaign_batch_task_result",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -862,7 +853,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("getOpenCampaignNotAddedProduct", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_size: 20,
         cursor: "1234,5678",
@@ -896,14 +887,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getOpenCampaignNotAddedProduct(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/get_open_campaign_not_added_product",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -911,7 +903,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("getOpenCampaignPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         period_type: "Last30d",
         start_date: "20250801",
@@ -945,22 +937,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getOpenCampaignPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_open_campaign_performance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_open_campaign_performance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getOptimizationSuggestionProduct", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 20,
@@ -1001,14 +990,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getOptimizationSuggestionProduct(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/get_optimization_suggestion_product",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+          timestampPaths: [
+            "response.item_list.period_start_time",
+            "response.item_list.period_end_time",
+          ],
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1016,7 +1010,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("getPerformanceDataUpdateTime", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         marker_type: "AmsMarker",
       };
@@ -1033,22 +1027,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getPerformanceDataUpdateTime(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_performance_data_update_time",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_performance_data_update_time", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getProductPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         period_type: "Last30d",
         start_date: "20250801",
@@ -1088,22 +1079,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getProductPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_product_performance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_product_performance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getRecommendedAffiliateList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_size: 50,
       };
@@ -1134,7 +1122,7 @@ describe("AmsManager (Generated Tests)", () => {
             promote_category_ids: [100013, 100644, 100010],
             top_popular_contents: [
               {
-                platform: "shopee live",
+                platform: "video",
                 comment_count: 100,
                 like_count: 300,
                 view_count: 1000,
@@ -1160,22 +1148,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getRecommendedAffiliateList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_recommended_affiliate_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_recommended_affiliate_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         period_type: "Last30d",
         start_date: "20250801",
@@ -1204,22 +1189,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getShopPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_shop_performance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_shop_performance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopSuggestedRate", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         min_rate: 1.1,
@@ -1235,22 +1217,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getShopSuggestedRate(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_shop_suggested_rate",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_shop_suggested_rate", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getTargetedCampaignAddableProductList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_size: 20,
         cursor: "abcd",
@@ -1282,14 +1261,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getTargetedCampaignAddableProductList(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/get_targeted_campaign_addable_product_list",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1297,7 +1277,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("getTargetedCampaignList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_size: 20,
         page_no: 1,
@@ -1338,22 +1318,24 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getTargetedCampaignList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_targeted_campaign_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_targeted_campaign_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.campaign_list.period_start_time",
+          "response.campaign_list.period_end_time",
+          "response.campaign_list.last_edit_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getTargetedCampaignPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         period_type: "Last30d",
         start_date: "20250801",
@@ -1387,22 +1369,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getTargetedCampaignPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_targeted_campaign_performance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_targeted_campaign_performance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getTargetedCampaignSettings", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 101,
       };
@@ -1446,22 +1425,25 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getTargetedCampaignSettings(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_targeted_campaign_settings",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_targeted_campaign_settings", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.period_start_time",
+          "response.period_end_time",
+          "response.pending_terminated_time",
+          "response.item_list.commission_protection_list.protection_period_end_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getValidationList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         validation_list: [
@@ -1499,22 +1481,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getValidationList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_validation_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_validation_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getValidationReport", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 20,
@@ -1589,22 +1568,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.getValidationReport(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/get_validation_report",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_validation_report", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("queryAffiliateList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         query_type: 1,
         affiliate_id_list: ["1", "2", "3"],
@@ -1665,22 +1641,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.queryAffiliateList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/query_affiliate_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/query_affiliate_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("removeAllProductsOpenCampaignSetting", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         task_type: "batch_remove_open_campaigns",
@@ -1696,14 +1669,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.removeAllProductsOpenCampaignSetting(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/remove_all_products_open_campaign_setting",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1711,7 +1685,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("terminateTargetedCampaign", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 101,
       };
@@ -1730,22 +1704,19 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.terminateTargetedCampaign(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/ams/terminate_targeted_campaign",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ams/terminate_targeted_campaign", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateAutoAddNewProductSetting", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         open: true,
         commission_rate: 1.1,
@@ -1766,14 +1737,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.updateAutoAddNewProductSetting(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/update_auto_add_new_product_setting",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1781,7 +1753,7 @@ describe("AmsManager (Generated Tests)", () => {
   });
 
   describe("updateBasicInfoOfTargetedCampaign", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 101,
         campaign_name: "campaign a",
@@ -1806,14 +1778,15 @@ describe("AmsManager (Generated Tests)", () => {
 
       const result = await manager.updateBasicInfoOfTargetedCampaign(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/update_basic_info_of_targeted_campaign",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);

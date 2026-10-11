@@ -65,9 +65,8 @@ describe("PublicManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shops_by_partner", {
         method: "GET",
-        params: {
-          partner_id: 12345,
-        },
+        params: undefined,
+        timestampPaths: ["authed_shop_list.auth_time", "authed_shop_list.expire_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -98,10 +97,8 @@ describe("PublicManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shops_by_partner", {
         method: "GET",
-        params: {
-          partner_id: 12345,
-          page_size: 1,
-        },
+        params: { page_size: 1 },
+        timestampPaths: ["authed_shop_list.auth_time", "authed_shop_list.expire_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -124,10 +121,8 @@ describe("PublicManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shops_by_partner", {
         method: "GET",
-        params: {
-          partner_id: 12345,
-          page_no: 2,
-        },
+        params: { page_no: 2 },
+        timestampPaths: ["authed_shop_list.auth_time", "authed_shop_list.expire_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -165,9 +160,8 @@ describe("PublicManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_merchants_by_partner", {
         method: "GET",
-        params: {
-          partner_id: 12345,
-        },
+        params: undefined,
+        timestampPaths: ["authed_merchant_list.auth_time", "authed_merchant_list.expire_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -197,10 +191,8 @@ describe("PublicManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_merchants_by_partner", {
         method: "GET",
-        params: {
-          partner_id: 12345,
-          page_size: 1,
-        },
+        params: { page_size: 1 },
+        timestampPaths: ["authed_merchant_list.auth_time", "authed_merchant_list.expire_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -224,6 +216,7 @@ describe("PublicManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shopee_ip_ranges", {
         method: "GET",
+        params: undefined,
       });
 
       expect(result).toEqual(mockResponse);
@@ -245,6 +238,7 @@ describe("PublicManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/public/get_shopee_ip_ranges", {
         method: "GET",
+        params: undefined,
       });
 
       expect(result).toEqual(mockResponse);

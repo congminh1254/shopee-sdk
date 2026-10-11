@@ -65,7 +65,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {AddItemListRequest} params Request parameters
    * @returns {Promise<AddItemListResponse>} Promise resolving to the response
    */
-  public async addItemList(params?: AddItemListRequest): Promise<AddItemListResponse> {
+  public async addItemList(params: AddItemListRequest): Promise<AddItemListResponse> {
     return ShopeeFetch.fetch<AddItemListResponse>(this.config, "/livestream/add_item_list", {
       method: "POST",
       auth: true,
@@ -78,7 +78,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {ApplyItemSetRequest} params Request parameters
    * @returns {Promise<ApplyItemSetResponse>} Promise resolving to the response
    */
-  public async applyItemSet(params?: ApplyItemSetRequest): Promise<ApplyItemSetResponse> {
+  public async applyItemSet(params: ApplyItemSetRequest): Promise<ApplyItemSetResponse> {
     return ShopeeFetch.fetch<ApplyItemSetResponse>(this.config, "/livestream/apply_item_set", {
       method: "POST",
       auth: true,
@@ -91,7 +91,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {BanUserCommentRequest} params Request parameters
    * @returns {Promise<BanUserCommentResponse>} Promise resolving to the response
    */
-  public async banUserComment(params?: BanUserCommentRequest): Promise<BanUserCommentResponse> {
+  public async banUserComment(params: BanUserCommentRequest): Promise<BanUserCommentResponse> {
     return ShopeeFetch.fetch<BanUserCommentResponse>(this.config, "/livestream/ban_user_comment", {
       method: "POST",
       auth: true,
@@ -104,7 +104,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {CreateSessionRequest} params Request parameters
    * @returns {Promise<CreateSessionResponse>} Promise resolving to the response
    */
-  public async createSession(params?: CreateSessionRequest): Promise<CreateSessionResponse> {
+  public async createSession(params: CreateSessionRequest): Promise<CreateSessionResponse> {
     return ShopeeFetch.fetch<CreateSessionResponse>(this.config, "/livestream/create_session", {
       method: "POST",
       auth: true,
@@ -117,7 +117,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {DeleteItemListRequest} params Request parameters
    * @returns {Promise<DeleteItemListResponse>} Promise resolving to the response
    */
-  public async deleteItemList(params?: DeleteItemListRequest): Promise<DeleteItemListResponse> {
+  public async deleteItemList(params: DeleteItemListRequest): Promise<DeleteItemListResponse> {
     return ShopeeFetch.fetch<DeleteItemListResponse>(this.config, "/livestream/delete_item_list", {
       method: "POST",
       auth: true,
@@ -130,7 +130,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {DeleteShowItemRequest} params Request parameters
    * @returns {Promise<DeleteShowItemResponse>} Promise resolving to the response
    */
-  public async deleteShowItem(params?: DeleteShowItemRequest): Promise<DeleteShowItemResponse> {
+  public async deleteShowItem(params: DeleteShowItemRequest): Promise<DeleteShowItemResponse> {
     return ShopeeFetch.fetch<DeleteShowItemResponse>(this.config, "/livestream/delete_show_item", {
       method: "POST",
       auth: true,
@@ -143,7 +143,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {EndSessionRequest} params Request parameters
    * @returns {Promise<EndSessionResponse>} Promise resolving to the response
    */
-  public async endSession(params?: EndSessionRequest): Promise<EndSessionResponse> {
+  public async endSession(params: EndSessionRequest): Promise<EndSessionResponse> {
     return ShopeeFetch.fetch<EndSessionResponse>(this.config, "/livestream/end_session", {
       method: "POST",
       auth: true,
@@ -156,7 +156,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {GetItemCountRequest} params Request parameters
    * @returns {Promise<GetItemCountResponse>} Promise resolving to the response
    */
-  public async getItemCount(params?: GetItemCountRequest): Promise<GetItemCountResponse> {
+  public async getItemCount(params: GetItemCountRequest): Promise<GetItemCountResponse> {
     return ShopeeFetch.fetch<GetItemCountResponse>(this.config, "/livestream/get_item_count", {
       method: "GET",
       auth: true,
@@ -169,7 +169,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {GetItemListRequest} params Request parameters
    * @returns {Promise<GetItemListResponse>} Promise resolving to the response
    */
-  public async getItemList(params?: GetItemListRequest): Promise<GetItemListResponse> {
+  public async getItemList(params: GetItemListRequest): Promise<GetItemListResponse> {
     return ShopeeFetch.fetch<GetItemListResponse>(this.config, "/livestream/get_item_list", {
       method: "GET",
       auth: true,
@@ -183,7 +183,7 @@ export class LiveStreamManager extends BaseManager {
    * @returns {Promise<GetItemSetItemListResponse>} Promise resolving to the response
    */
   public async getItemSetItemList(
-    params?: GetItemSetItemListRequest
+    params: GetItemSetItemListRequest
   ): Promise<GetItemSetItemListResponse> {
     return ShopeeFetch.fetch<GetItemSetItemListResponse>(
       this.config,
@@ -201,7 +201,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {GetItemSetListRequest} params Request parameters
    * @returns {Promise<GetItemSetListResponse>} Promise resolving to the response
    */
-  public async getItemSetList(params?: GetItemSetListRequest): Promise<GetItemSetListResponse> {
+  public async getItemSetList(params: GetItemSetListRequest): Promise<GetItemSetListResponse> {
     return ShopeeFetch.fetch<GetItemSetListResponse>(this.config, "/livestream/get_item_set_list", {
       method: "GET",
       auth: true,
@@ -215,7 +215,7 @@ export class LiveStreamManager extends BaseManager {
    * @returns {Promise<GetLatestCommentListResponse>} Promise resolving to the response
    */
   public async getLatestCommentList(
-    params?: GetLatestCommentListRequest
+    params: GetLatestCommentListRequest
   ): Promise<GetLatestCommentListResponse> {
     return ShopeeFetch.fetch<GetLatestCommentListResponse>(
       this.config,
@@ -234,7 +234,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {GetLikeItemListRequest} params Request parameters
    * @returns {Promise<GetLikeItemListResponse>} Promise resolving to the response
    */
-  public async getLikeItemList(params?: GetLikeItemListRequest): Promise<GetLikeItemListResponse> {
+  public async getLikeItemList(params: GetLikeItemListRequest): Promise<GetLikeItemListResponse> {
     return ShopeeFetch.fetch<GetLikeItemListResponse>(
       this.config,
       "/livestream/get_like_item_list",
@@ -252,7 +252,7 @@ export class LiveStreamManager extends BaseManager {
    * @returns {Promise<GetRecentItemListResponse>} Promise resolving to the response
    */
   public async getRecentItemList(
-    params?: GetRecentItemListRequest
+    params: GetRecentItemListRequest
   ): Promise<GetRecentItemListResponse> {
     return ShopeeFetch.fetch<GetRecentItemListResponse>(
       this.config,
@@ -271,7 +271,7 @@ export class LiveStreamManager extends BaseManager {
    * @returns {Promise<GetSessionDetailResponse>} Promise resolving to the response
    */
   public async getSessionDetail(
-    params?: GetSessionDetailRequest
+    params: GetSessionDetailRequest
   ): Promise<GetSessionDetailResponse> {
     return ShopeeFetch.fetch<GetSessionDetailResponse>(
       this.config,
@@ -290,7 +290,7 @@ export class LiveStreamManager extends BaseManager {
    * @returns {Promise<GetSessionItemMetricResponse>} Promise resolving to the response
    */
   public async getSessionItemMetric(
-    params?: GetSessionItemMetricRequest
+    params: GetSessionItemMetricRequest
   ): Promise<GetSessionItemMetricResponse> {
     return ShopeeFetch.fetch<GetSessionItemMetricResponse>(
       this.config,
@@ -309,7 +309,7 @@ export class LiveStreamManager extends BaseManager {
    * @returns {Promise<GetSessionMetricResponse>} Promise resolving to the response
    */
   public async getSessionMetric(
-    params?: GetSessionMetricRequest
+    params: GetSessionMetricRequest
   ): Promise<GetSessionMetricResponse> {
     return ShopeeFetch.fetch<GetSessionMetricResponse>(
       this.config,
@@ -327,7 +327,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {GetShowItemRequest} params Request parameters
    * @returns {Promise<GetShowItemResponse>} Promise resolving to the response
    */
-  public async getShowItem(params?: GetShowItemRequest): Promise<GetShowItemResponse> {
+  public async getShowItem(params: GetShowItemRequest): Promise<GetShowItemResponse> {
     return ShopeeFetch.fetch<GetShowItemResponse>(this.config, "/livestream/get_show_item", {
       method: "GET",
       auth: true,
@@ -340,7 +340,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {PostCommentRequest} params Request parameters
    * @returns {Promise<PostCommentResponse>} Promise resolving to the response
    */
-  public async postComment(params?: PostCommentRequest): Promise<PostCommentResponse> {
+  public async postComment(params: PostCommentRequest): Promise<PostCommentResponse> {
     return ShopeeFetch.fetch<PostCommentResponse>(this.config, "/livestream/post_comment", {
       method: "POST",
       auth: true,
@@ -353,7 +353,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {StartSessionRequest} params Request parameters
    * @returns {Promise<StartSessionResponse>} Promise resolving to the response
    */
-  public async startSession(params?: StartSessionRequest): Promise<StartSessionResponse> {
+  public async startSession(params: StartSessionRequest): Promise<StartSessionResponse> {
     return ShopeeFetch.fetch<StartSessionResponse>(this.config, "/livestream/start_session", {
       method: "POST",
       auth: true,
@@ -367,7 +367,7 @@ export class LiveStreamManager extends BaseManager {
    * @returns {Promise<UnbanUserCommentResponse>} Promise resolving to the response
    */
   public async unbanUserComment(
-    params?: UnbanUserCommentRequest
+    params: UnbanUserCommentRequest
   ): Promise<UnbanUserCommentResponse> {
     return ShopeeFetch.fetch<UnbanUserCommentResponse>(
       this.config,
@@ -385,7 +385,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {UpdateItemListRequest} params Request parameters
    * @returns {Promise<UpdateItemListResponse>} Promise resolving to the response
    */
-  public async updateItemList(params?: UpdateItemListRequest): Promise<UpdateItemListResponse> {
+  public async updateItemList(params: UpdateItemListRequest): Promise<UpdateItemListResponse> {
     return ShopeeFetch.fetch<UpdateItemListResponse>(this.config, "/livestream/update_item_list", {
       method: "POST",
       auth: true,
@@ -398,7 +398,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {UpdateSessionRequest} params Request parameters
    * @returns {Promise<UpdateSessionResponse>} Promise resolving to the response
    */
-  public async updateSession(params?: UpdateSessionRequest): Promise<UpdateSessionResponse> {
+  public async updateSession(params: UpdateSessionRequest): Promise<UpdateSessionResponse> {
     return ShopeeFetch.fetch<UpdateSessionResponse>(this.config, "/livestream/update_session", {
       method: "POST",
       auth: true,
@@ -411,7 +411,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {UpdateShowItemRequest} params Request parameters
    * @returns {Promise<UpdateShowItemResponse>} Promise resolving to the response
    */
-  public async updateShowItem(params?: UpdateShowItemRequest): Promise<UpdateShowItemResponse> {
+  public async updateShowItem(params: UpdateShowItemRequest): Promise<UpdateShowItemResponse> {
     return ShopeeFetch.fetch<UpdateShowItemResponse>(this.config, "/livestream/update_show_item", {
       method: "POST",
       auth: true,
@@ -424,7 +424,7 @@ export class LiveStreamManager extends BaseManager {
    * @param {UploadImageRequest} params Request parameters
    * @returns {Promise<UploadImageResponse>} Promise resolving to the response
    */
-  public async uploadImage(params?: UploadImageRequest): Promise<UploadImageResponse> {
+  public async uploadImage(params: UploadImageRequest): Promise<UploadImageResponse> {
     return ShopeeFetch.fetch<UploadImageResponse>(this.config, "/livestream/upload_image", {
       method: "POST",
       auth: true,

@@ -24,7 +24,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("batchShipOrder", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_list: [
           {
@@ -66,22 +66,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.batchShipOrder(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/batch_ship_order",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/batch_ship_order", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("batchUpdateTpfWarehouseTrackingStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         tpf_name: "Shopee 3PF",
         tpf_tracking_status: "3pf_warehouse_outbound_done",
@@ -119,14 +116,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.batchUpdateTpfWarehouseTrackingStatus(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/batch_update_tpf_warehouse_tracking_status",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -134,7 +132,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("checkPolygonUpdateStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         task_id: "test_task_id",
       };
@@ -152,22 +150,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.checkPolygonUpdateStatus(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/check_polygon_update_status",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/check_polygon_update_status", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("createBookingShippingDocument", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         booking_list: [
           {
@@ -196,14 +191,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.createBookingShippingDocument(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/create_booking_shipping_document",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -211,7 +207,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("createShippingDocument", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_list: [
           {
@@ -242,22 +238,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.createShippingDocument(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/create_shipping_document",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/create_shipping_document", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("createShippingDocumentJob", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         shipping_document_type: "THERMAL_UNPACKAGED_LABEL",
         unpackaged_sku_requests: [
@@ -290,14 +283,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.createShippingDocumentJob(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/create_shipping_document_job",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -305,7 +299,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("deleteAddress", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         address_id: 14278,
       };
@@ -324,22 +318,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.deleteAddress(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/delete_address",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/delete_address", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteSpecialOperatingHour", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         name: "3.3 Campaign",
       };
@@ -358,14 +349,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.deleteSpecialOperatingHour(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/delete_special_operating_hour",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -373,7 +365,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("downloadBookingShippingDocument", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         shipping_document_type: "NORMAL_AIR_WAYBILL",
         booking_list: [
@@ -395,14 +387,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.downloadBookingShippingDocument(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/download_booking_shipping_document",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -410,7 +403,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("downloadShippingDocument", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         shipping_document_type: "NORMAL_AIR_WAYBILL",
         order_list: [
@@ -433,22 +426,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.downloadShippingDocument(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/download_shipping_document",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/download_shipping_document", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("downloadShippingDocumentJob", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         job_id: "SDK0001_a86148a97a6e04ce2ed468968de344b7",
       };
@@ -465,14 +455,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.downloadShippingDocumentJob(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/download_shipping_document_job",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -480,7 +471,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("downloadToLabel", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         sorting_group: 1,
         quantity: 1,
@@ -498,22 +489,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.downloadToLabel(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/download_to_label",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/download_to_label", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAddressList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         show_pickup_address: false,
@@ -527,7 +515,7 @@ describe("LogisticsManager (Generated Tests)", () => {
             zipcode: "test_string",
             district: "test_string",
             town: "test_string",
-            address_type: "DEFAULT_ADDRESS,PICK_UP_ADDRESS",
+            address_type: "DEFAULT_ADDRESS",
           },
         ],
       };
@@ -541,22 +529,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getAddressList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_address_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_address_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBookingShippingDocumentDataInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         booking_sn: "201201E81SYYKE",
         recipient_address_info: [
@@ -623,14 +608,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getBookingShippingDocumentDataInfo(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_booking_shipping_document_data_info",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -638,7 +624,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("getBookingShippingDocumentParameter", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         booking_list: [
           {
@@ -667,14 +653,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getBookingShippingDocumentParameter(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_booking_shipping_document_parameter",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -682,7 +669,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("getBookingShippingDocumentResult", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         booking_list: [
           {
@@ -711,14 +698,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getBookingShippingDocumentResult(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_booking_shipping_document_result",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -726,7 +714,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("getBookingShippingParameter", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         booking_sn: "201214JASXYXY6",
       };
@@ -771,14 +759,16 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getBookingShippingParameter(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_booking_shipping_parameter",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+          timestampPaths: ["response.pickup.address_list.time_slot_list.date"],
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -786,7 +776,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("getBookingTrackingInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         booking_sn: "201201E81SYYKE",
       };
@@ -811,22 +801,20 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getBookingTrackingInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_booking_tracking_info",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_booking_tracking_info", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.tracking_info.update_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBookingTrackingNumber", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         booking_sn: "201201E81SYYKE",
       };
@@ -846,22 +834,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getBookingTrackingNumber(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_booking_tracking_number",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_booking_tracking_number", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getChannelList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         logistics_channel_list: [
@@ -934,22 +919,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getChannelList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_channel_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_channel_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getMartPackagingInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         enable: true,
@@ -972,22 +954,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getMartPackagingInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_mart_packaging_info",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_mart_packaging_info", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getMassShippingParameter", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         logistics_channel_id: 50021,
         product_location_id: '"VN0002BIZ"',
@@ -1062,29 +1041,27 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getMassShippingParameter(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_mass_shipping_parameter",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_mass_shipping_parameter", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+        timestampPaths: ["response.pickup.address_list.time_slot_list.date"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getMassTrackingNumber", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         package_list: [
           {
             package_number: "test_string",
           },
         ],
-        response_optional_fields: "first_mile_tracking_number",
+        response_optional_fields: "plp_number",
       };
       const exampleResponse = {
         success_list: [
@@ -1115,22 +1092,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getMassTrackingNumber(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_mass_tracking_number",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_mass_tracking_number", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getOperatingHourRestrictions", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         regular_operating_hour_restrictions: {
@@ -1386,14 +1360,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getOperatingHourRestrictions(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_operating_hour_restrictions",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1401,7 +1376,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("getOperatingHours", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         request_id: "3dad66f43b8447d282ae6da36626c6b7",
@@ -1535,22 +1510,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getOperatingHours(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_operating_hours",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_operating_hours", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getPauseStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         is_paused: true,
@@ -1567,22 +1539,20 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getPauseStatus(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_pause_status",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_pause_status", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.pause_end_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShippingDocumentDataInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201224EM1FMFG1",
         package_number: "9087129345",
@@ -1748,14 +1718,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getShippingDocumentDataInfo(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_shipping_document_data_info",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1763,14 +1734,14 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("getShippingDocumentJobStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         job_id: "SDK0001_a86148a97a6e04ce2ed468968de344b7",
       };
       const exampleResponse = {
         job_id: "SDK0001_a86148a97a6e04ce2ed468968de344b7",
         job_name: "SKU ID (Thermal).*0.pdf",
-        job_status: "READY",
+        job_status: "PROCESSING",
       };
 
       mockFetch.mockResolvedValueOnce({
@@ -1782,14 +1753,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getShippingDocumentJobStatus(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_shipping_document_job_status",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1797,7 +1769,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("getShippingDocumentParameter", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_list: [
           {
@@ -1828,14 +1800,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getShippingDocumentParameter(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_shipping_document_parameter",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1843,7 +1816,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("getShippingDocumentResult", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_list: [
           {
@@ -1874,14 +1847,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getShippingDocumentResult(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_shipping_document_result",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1889,7 +1863,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("getShippingParameter", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201214JASXYXY6",
         package_number: "OFG134731496217591",
@@ -1954,22 +1928,20 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getShippingParameter(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_shipping_parameter",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_shipping_parameter", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.pickup.address_list.time_slot_list.date"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getTrackingInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "2409177JCSRTEU",
         package_number: "test_string",
@@ -2006,26 +1978,24 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getTrackingInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_tracking_info",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_tracking_info", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.tracking_info.update_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getTrackingNumber", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201214JASXYXY6",
         package_number: "test_string",
-        response_optional_fields: "first_mile_tracking_number",
+        response_optional_fields: "plp_number",
       };
       const exampleResponse = {
         tracking_number: "MY200448706479IT",
@@ -2045,22 +2015,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.getTrackingNumber(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/get_tracking_number",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_tracking_number", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("massShipOrder", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         logistics_channel_id: 50021,
         product_location_id: "test_string",
@@ -2113,27 +2080,24 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.massShipOrder(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/mass_ship_order",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/mass_ship_order", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("setAddressConfig", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         show_pickup_address: true,
         address_type_config: {
           address_id: 1234,
-          address_type: "PICKUP_ADDRESS,RETURN_ADDRESS",
+          address_type: "DEFAULT_ADDRESS",
         },
       };
       const exampleResponse = {
@@ -2151,22 +2115,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.setAddressConfig(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/set_address_config",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/set_address_config", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("setMartPackagingInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         enable: true,
         dimension: {
@@ -2199,22 +2160,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.setMartPackagingInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/set_mart_packaging_info",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/set_mart_packaging_info", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("setPauseStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         is_paused: true,
       };
@@ -2233,22 +2191,20 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.setPauseStatus(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/set_pause_status",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/set_pause_status", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+        timestampPaths: ["response.pause_end_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("shipBooking", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         booking_sn: "201214JASXYXY6",
         pickup: {
@@ -2272,22 +2228,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.shipBooking(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/ship_booking",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/ship_booking", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("shipOrder", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201212DCXHJUIKJ",
         package_number: "test_string",
@@ -2321,22 +2274,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.shipOrder(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/ship_order",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/ship_order", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateAddress", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         address_id: 123456,
         region: "Brazil",
@@ -2365,22 +2315,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.updateAddress(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/update_address",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/update_address", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateChannel", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         logistics_channel_id: 14623,
         enabled: true,
@@ -2423,22 +2370,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.updateChannel(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/update_channel",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/update_channel", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateOperatingHours", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         regular_operating_hour: {
           monday: {
@@ -2588,22 +2532,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.updateOperatingHours(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/update_operating_hours",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/update_operating_hours", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateSelfCollectionOrderLogistics", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         package_number: "OFG211171863281841",
         self_collection_logistics_action: "order_collected",
@@ -2625,14 +2566,15 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.updateSelfCollectionOrderLogistics(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/update_self_collection_order_logistics",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -2640,7 +2582,7 @@ describe("LogisticsManager (Generated Tests)", () => {
   });
 
   describe("updateShippingOrder", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201214JASXYXY6",
         package_number: "test_string",
@@ -2664,22 +2606,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.updateShippingOrder(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/update_shipping_order",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/update_shipping_order", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateTrackingStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "201212DCXHJUIKJ",
         tracking_number: "1234567890",
@@ -2700,22 +2639,19 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.updateTrackingStatus(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/update_tracking_status",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/update_tracking_status", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("uploadServiceablePolygon", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         file: "test_string",
       };
@@ -2732,15 +2668,12 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       const result = await manager.uploadServiceablePolygon(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/logistics/upload_serviceable_polygon",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/upload_serviceable_polygon", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

@@ -24,7 +24,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
   });
 
   describe("addAddOnDeal", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_name: "add on deal name test",
         start_time: 1624864213,
@@ -47,22 +47,19 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.addAddOnDeal(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/add_add_on_deal",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/add_add_on_deal", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("addAddOnDealMainItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 20141,
         main_item_list: [
@@ -91,22 +88,19 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.addAddOnDealMainItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/add_add_on_deal_main_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/add_add_on_deal_main_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("addAddOnDealSubItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 1,
         sub_item_list: [
@@ -141,22 +135,19 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.addAddOnDealSubItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/add_add_on_deal_sub_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/add_add_on_deal_sub_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteAddOnDeal", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 11223123,
       };
@@ -173,22 +164,19 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.deleteAddOnDeal(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/delete_add_on_deal",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/delete_add_on_deal", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteAddOnDealMainItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 12068,
         main_item_list: [100197906],
@@ -207,14 +195,15 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.deleteAddOnDealMainItem(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/add_on_deal/delete_add_on_deal_main_item",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -222,7 +211,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
   });
 
   describe("deleteAddOnDealSubItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 20141,
         sub_item_list: [
@@ -253,14 +242,15 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.deleteAddOnDealSubItem(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/add_on_deal/delete_add_on_deal_sub_item",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -268,7 +258,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
   });
 
   describe("endAddOnDeal", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 12068,
       };
@@ -285,22 +275,19 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.endAddOnDeal(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/end_add_on_deal",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/end_add_on_deal", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAddOnDeal", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 12069,
       };
@@ -326,22 +313,19 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.getAddOnDeal(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/get_add_on_deal",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/get_add_on_deal", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAddOnDealList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         promotion_status: "all",
         page_no: 1,
@@ -374,22 +358,19 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.getAddOnDealList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/get_add_on_deal_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/get_add_on_deal_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAddOnDealMainItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 12069,
       };
@@ -412,22 +393,19 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.getAddOnDealMainItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/get_add_on_deal_main_item",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/get_add_on_deal_main_item", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAddOnDealSubItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 12069,
       };
@@ -456,22 +434,19 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.getAddOnDealSubItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/get_add_on_deal_sub_item",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/get_add_on_deal_sub_item", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateAddOnDeal", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 12069,
         start_time: 1656511212,
@@ -502,22 +477,19 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.updateAddOnDeal(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/add_on_deal/update_add_on_deal",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/update_add_on_deal", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateAddOnDealMainItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 12069,
         main_item_list: [
@@ -545,14 +517,15 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.updateAddOnDealMainItem(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/add_on_deal/update_add_on_deal_main_item",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -560,7 +533,7 @@ describe("AddOnDealManager (Generated Tests)", () => {
   });
 
   describe("updateAddOnDealSubItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         add_on_deal_id: 12069,
         sub_item_list: [
@@ -596,14 +569,15 @@ describe("AddOnDealManager (Generated Tests)", () => {
 
       const result = await manager.updateAddOnDealSubItem(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/add_on_deal/update_add_on_deal_sub_item",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);

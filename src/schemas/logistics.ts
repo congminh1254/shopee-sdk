@@ -2,9 +2,18 @@
 
 import { FetchResponse } from "./fetch.js";
 /**
- * Enum generated for field ShippingDocumentType
+ * Enum generated for field CreateBookingShippingDocumentRequestBookingListShippingDocumentType
  */
-export enum ShippingDocumentType {
+export enum CreateBookingShippingDocumentRequestBookingListShippingDocumentType {
+  NORMAL_AIR_WAYBILL = "NORMAL_AIR_WAYBILL",
+  THERMAL_AIR_WAYBILL = "THERMAL_AIR_WAYBILL",
+  NORMAL_JOB_AIR_WAYBILL = "NORMAL_JOB_AIR_WAYBILL",
+  THERMAL_JOB_AIR_WAYBILL = "THERMAL_JOB_AIR_WAYBILL",
+}
+/**
+ * Enum generated for field CreateShippingDocumentRequestOrderListShippingDocumentType
+ */
+export enum CreateShippingDocumentRequestOrderListShippingDocumentType {
   NORMAL_AIR_WAYBILL = "NORMAL_AIR_WAYBILL",
   THERMAL_AIR_WAYBILL = "THERMAL_AIR_WAYBILL",
   NORMAL_JOB_AIR_WAYBILL = "NORMAL_JOB_AIR_WAYBILL",
@@ -12,13 +21,37 @@ export enum ShippingDocumentType {
   THERMAL_UNPACKAGED_LABEL = "THERMAL_UNPACKAGED_LABEL",
 }
 /**
- * Enum generated for field AddressType
+ * Enum generated for field DownloadBookingShippingDocumentRequestShippingDocumentType
  */
-export enum AddressType {
+export enum DownloadBookingShippingDocumentRequestShippingDocumentType {
+  NORMAL_AIR_WAYBILL = "NORMAL_AIR_WAYBILL",
+  THERMAL_AIR_WAYBILL = "THERMAL_AIR_WAYBILL",
+}
+/**
+ * Enum generated for field DownloadShippingDocumentRequestShippingDocumentType
+ */
+export enum DownloadShippingDocumentRequestShippingDocumentType {
+  NORMAL_AIR_WAYBILL = "NORMAL_AIR_WAYBILL",
+  THERMAL_AIR_WAYBILL = "THERMAL_AIR_WAYBILL",
+  NORMAL_JOB_AIR_WAYBILL = "NORMAL_JOB_AIR_WAYBILL",
+  THERMAL_JOB_AIR_WAYBILL = "THERMAL_JOB_AIR_WAYBILL",
+  THERMAL_UNPACKAGED_LABEL = "THERMAL_UNPACKAGED_LABEL",
+}
+/**
+ * Enum generated for field GetAddressListResponseResponseAddressListAddressType
+ */
+export enum GetAddressListResponseResponseAddressListAddressType {
   DEFAULT_ADDRESS = "DEFAULT_ADDRESS",
-  PICKUP_ADDRESS = "PICKUP_ADDRESS",
+  PICK_UP_ADDRESS = "PICK_UP_ADDRESS",
   RETURN_ADDRESS = "RETURN_ADDRESS",
   INBOUND_PICKUP_ADDRESS = "INBOUND_PICKUP_ADDRESS",
+}
+/**
+ * Enum generated for field GetBookingShippingDocumentResultRequestBookingListShippingDocumentType
+ */
+export enum GetBookingShippingDocumentResultRequestBookingListShippingDocumentType {
+  NORMAL_AIR_WAYBILL = "NORMAL_AIR_WAYBILL",
+  THERMAL_AIR_WAYBILL = "THERMAL_AIR_WAYBILL",
 }
 /**
  * Enum generated for field Status
@@ -44,6 +77,25 @@ export enum JobStatus {
   READY = "READY",
   EXPIRED = "EXPIRED",
   FAILED = "FAILED",
+}
+/**
+ * Enum generated for field GetShippingDocumentResultRequestOrderListShippingDocumentType
+ */
+export enum GetShippingDocumentResultRequestOrderListShippingDocumentType {
+  NORMAL_AIR_WAYBILL = "NORMAL_AIR_WAYBILL",
+  THERMAL_AIR_WAYBILL = "THERMAL_AIR_WAYBILL",
+  NORMAL_JOB_AIR_WAYBILL = "NORMAL_JOB_AIR_WAYBILL",
+  THERMAL_JOB_AIR_WAYBILL = "THERMAL_JOB_AIR_WAYBILL",
+  THERMAL_UNPACKAGED_LABEL = "THERMAL_UNPACKAGED_LABEL",
+}
+/**
+ * Enum generated for field SetAddressConfigRequestAddressTypeConfigAddressType
+ */
+export enum SetAddressConfigRequestAddressTypeConfigAddressType {
+  DEFAULT_ADDRESS = "DEFAULT_ADDRESS",
+  PICKUP_ADDRESS = "PICKUP_ADDRESS",
+  RETURN_ADDRESS = "RETURN_ADDRESS",
+  INBOUND_PICKUP_ADDRESS = "INBOUND_PICKUP_ADDRESS",
 }
 /**
  * BatchShipOrderOrder sub-interface for BatchShipOrderRequest
@@ -310,7 +362,8 @@ export interface CreateBookingShippingDocumentBooking {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL,NORMAL_JOB_AIR_WAYBILL,THERMAL_JOB_AIR_WAYBILL
    */
-  shipping_document_type?: ShippingDocumentType | string | number;
+  shipping_document_type?:
+    CreateBookingShippingDocumentRequestBookingListShippingDocumentType | string | number;
 }
 /**
  * Request parameters for create_booking_shipping_document
@@ -384,7 +437,8 @@ export interface CreateShippingDocumentOrder {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
-  shipping_document_type?: ShippingDocumentType | string | number;
+  shipping_document_type?:
+    CreateShippingDocumentRequestOrderListShippingDocumentType | string | number;
 }
 /**
  * Request parameters for create_shipping_document
@@ -580,7 +634,8 @@ export interface DownloadBookingShippingDocumentRequest {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL
    */
-  shipping_document_type?: ShippingDocumentType | string | number;
+  shipping_document_type?:
+    DownloadBookingShippingDocumentRequestShippingDocumentType | string | number;
   /**
    * The list of bookings you want to get. limit [1,50]
    */
@@ -624,7 +679,7 @@ export interface DownloadShippingDocumentRequest {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
-  shipping_document_type?: ShippingDocumentType | string | number;
+  shipping_document_type?: DownloadShippingDocumentRequestShippingDocumentType | string | number;
   /**
    * The list of orders you need to download it's shipping document. Limit [1, 50]. Orders must be from the same courier
    */
@@ -744,7 +799,7 @@ export interface GetAddressListAddress {
   /**
    * The flag of shop address.Available values: DEFAULT_ADDRESS, PICK_UP_ADDRESS, RETURN_ADDRESS, INBOUND_PICKUP_ADDRESS.
    */
-  address_type?: AddressType | string | number;
+  address_type?: GetAddressListResponseResponseAddressListAddressType | string | number;
 }
 /**
  * GetAddressListResponseData sub-interface for GetAddressListResponse
@@ -1067,7 +1122,8 @@ export interface GetBookingShippingDocumentResultBooking {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL
    */
-  shipping_document_type?: ShippingDocumentType | string | number;
+  shipping_document_type?:
+    GetBookingShippingDocumentResultRequestBookingListShippingDocumentType | string | number;
 }
 /**
  * Request parameters for get_booking_shipping_document_result
@@ -2301,7 +2357,7 @@ export interface GetOperatingHourRestrictionsSpecialOperatingHourRestriction {
   special_day?: GetOperatingHourRestrictionsSpecialDay;
 }
 /**
- * GetOperatingHourRestrictions_GetOperatingHourRestrictionsTuesday sub-interface for GetOperatingHourRestrictionsWorkingDayConfig
+ * GetOperatingHourRestrictions_GetOperatingHourRestrictionsTuesday sub-interface for GetOperatingHourRestrictions_GetOperatingHourRestrictionsWorkingDayConfig
  */
 export interface GetOperatingHourRestrictions_GetOperatingHourRestrictionsTuesday {
   /**
@@ -2334,6 +2390,43 @@ export interface GetOperatingHourRestrictions_GetOperatingHourRestrictionsTuesda
   operating_24_hour_toggle?: string;
 }
 /**
+ * GetOperatingHourRestrictions_GetOperatingHourRestrictionsWorkingDayConfig sub-interface for GetOperatingHourRestrictionsShopCollectionOperatingHourRestriction
+ */
+export interface GetOperatingHourRestrictions_GetOperatingHourRestrictionsWorkingDayConfig {
+  /**
+   * The restrictions specific for Monday
+   */
+  monday?: GetOperatingHourRestrictionsMonday;
+  /**
+   * The restrictions specific for Tuesday
+   */
+  tuesday?: GetOperatingHourRestrictions_GetOperatingHourRestrictionsTuesday;
+  /**
+   * The restrictions specific for Wednesday
+   */
+  wednesday?: GetOperatingHourRestrictionsWednesday;
+  /**
+   * The restrictions specific for Thursday
+   */
+  thursday?: GetOperatingHourRestrictionsThursday;
+  /**
+   * The restrictions specific for Friday
+   */
+  friday?: GetOperatingHourRestrictionsFriday;
+  /**
+   * The restrictions specific for Saturday
+   */
+  saturday?: GetOperatingHourRestrictionsSaturday;
+  /**
+   * The restrictions specific for Sunday
+   */
+  sunday?: GetOperatingHourRestrictionsSunday;
+  /**
+   * The restrictions specific for Public Holiday
+   */
+  public_holiday?: GetOperatingHourRestrictionsPublicHoliday;
+}
+/**
  * GetOperatingHourRestrictionsShopCollectionOperatingHourRestriction sub-interface for GetOperatingHourRestrictionsResponseData
  */
 export interface GetOperatingHourRestrictionsShopCollectionOperatingHourRestriction {
@@ -2344,7 +2437,7 @@ export interface GetOperatingHourRestrictionsShopCollectionOperatingHourRestrict
   /**
    * The restrictions specific to each day
    */
-  working_day_config?: GetOperatingHourRestrictionsWorkingDayConfig;
+  working_day_config?: GetOperatingHourRestrictions_GetOperatingHourRestrictionsWorkingDayConfig;
 }
 /**
  * GetOperatingHourRestrictionsResponseData sub-interface for GetOperatingHourRestrictionsResponse
@@ -3443,7 +3536,8 @@ export interface GetShippingDocumentResultOrder {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
-  shipping_document_type?: ShippingDocumentType | string | number;
+  shipping_document_type?:
+    GetShippingDocumentResultRequestOrderListShippingDocumentType | string | number;
 }
 /**
  * Request parameters for get_shipping_document_result
@@ -3993,7 +4087,7 @@ export interface SetAddressConfigAddressTypeConfig {
   /**
    * The type of address. Available values: DEFAULT_ADDRESS, PICKUP_ADDRESS, RETURN_ADDRESS, INBOUND_PICKUP_ADDRESS.
    */
-  address_type?: AddressType | string | number;
+  address_type?: SetAddressConfigRequestAddressTypeConfigAddressType | string | number;
 }
 /**
  * Request parameters for set_address_config

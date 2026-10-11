@@ -75,6 +75,7 @@ describe("MediaSpaceManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_image", {
         method: "POST",
+        auth: true,
         body: {
           image: Buffer.from("image-bytes"),
           scene: "normal",
@@ -119,6 +120,7 @@ describe("MediaSpaceManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_image", {
         method: "POST",
+        auth: true,
         body: {
           image: Buffer.from("image-bytes"),
           scene: "desc",
@@ -221,6 +223,7 @@ describe("MediaSpaceManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_image", {
         method: "POST",
+        auth: true,
         body: {
           image: Buffer.from("image-bytes"),
           scene: "normal",
@@ -306,6 +309,7 @@ describe("MediaSpaceManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_video_part", {
         method: "POST",
+        auth: true,
         body: {
           video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
           part_seq: 0,
@@ -358,6 +362,7 @@ describe("MediaSpaceManager", () => {
         "/media_space/upload_video_part",
         {
           method: "POST",
+          auth: true,
           body: {
             video_upload_id: "sg_test_upload_id",
             part_seq: 0,
@@ -372,6 +377,7 @@ describe("MediaSpaceManager", () => {
         "/media_space/upload_video_part",
         {
           method: "POST",
+          auth: true,
           body: {
             video_upload_id: "sg_test_upload_id",
             part_seq: 2,
@@ -407,6 +413,7 @@ describe("MediaSpaceManager", () => {
         "/media_space/complete_video_upload",
         {
           method: "POST",
+          auth: true,
           body: {
             video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
             part_seq_list: [0, 1, 2, 3],

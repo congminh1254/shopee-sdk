@@ -24,7 +24,7 @@ describe("ReturnsManager (Generated Tests)", () => {
   });
 
   describe("acceptOffer", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "211101140608253",
       };
@@ -41,22 +41,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.acceptOffer(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/accept_offer",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/accept_offer", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("cancelDispute", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "2412100F5217W3H",
         email: "test@example.com",
@@ -75,22 +72,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.cancelDispute(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/cancel_dispute",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/cancel_dispute", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("confirm", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "200203171852695",
       };
@@ -107,22 +101,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.confirm(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/confirm",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/confirm", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("convertImage", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "220707155172370",
         upload_image: "test_string",
@@ -142,22 +133,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.convertImage(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/convert_image",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/convert_image", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("dispute", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "24112301K66SQXM",
         email: "test@example.com",
@@ -203,22 +191,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.dispute(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/dispute",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/dispute", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAvailableSolutions", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "220106202649696",
       };
@@ -247,22 +232,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.getAvailableSolutions(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_available_solutions",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_available_solutions", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getReturnDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "2206150VT13E3MQ",
       };
@@ -373,7 +355,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         return_address: {
           whs_id: "SGC",
         },
-        return_refund_type: "RRAOC",
+        return_refund_type: "Return",
         return_solution: 0,
         is_seller_arrange: true,
         is_shipping_proof_mandatory: true,
@@ -408,22 +390,29 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.getReturnDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_return_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_return_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.create_time",
+          "response.update_time",
+          "response.due_date",
+          "response.return_ship_due_date",
+          "response.return_seller_due_date",
+          "response.seller_proof.seller_evidence_deadline",
+          "response.seller_compensation.seller_compensation_due_date",
+          "response.negotiation.offer_due_date",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getReturnDisputeReason", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "24112301K66SQXM",
       };
@@ -462,22 +451,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.getReturnDisputeReason(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_return_dispute_reason",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_return_dispute_reason", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getReturnList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
@@ -536,7 +522,7 @@ describe("ReturnsManager (Generated Tests)", () => {
             negotiation_status: "PENDING_RESPOND",
             seller_proof_status: "PENDING",
             seller_compensation_status: "PENDING_REQUEST",
-            return_refund_type: "RRAOC",
+            return_refund_type: "Return",
             return_solution: 0,
             is_seller_arrange: false,
             is_shipping_proof_mandatory: false,
@@ -569,27 +555,31 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.getReturnList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_return_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_return_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.return.create_time",
+          "response.return.update_time",
+          "response.return.due_date",
+          "response.return.return_ship_due_date",
+          "response.return.return_seller_due_date",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getReverseTrackingInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
-        return_sn: "2206150VT13E3MQ",
+        return_sn: "return",
       };
       const exampleResponse = {
-        return_sn: "2206150VT13E3MQ",
+        return_sn: "return",
         return_refund_request_type: 0,
         validation_type: "seller_validation",
         reverse_logistics_status: "LOGISTICS_REQUEST_CREATED",
@@ -624,7 +614,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         post_return_logistics_tracking_info: [
           {
             update_time: "test_string",
-            tracking_description: "test_string",
+            tracking_description: "return",
             epop_image_list: ["test_string"],
             epod_image_list: ["test_string"],
           },
@@ -640,22 +630,27 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.getReverseTrackingInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_reverse_tracking_info",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_reverse_tracking_info", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.reverse_logistics_update_time",
+          "response.estimated_delivery_date_max",
+          "response.estimated_delivery_date_min",
+          "response.tracking_info.update_time",
+          "response.post_return_logistics_update_time",
+          "response.post_return_logistics_tracking_info.update_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShippingCarrier", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "2206150VT13E3MQ",
       };
@@ -685,22 +680,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.getShippingCarrier(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/get_shipping_carrier",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_shipping_carrier", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("offer", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "211101140608253",
         proposed_solution: "RETURN_REFUND",
@@ -719,22 +711,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.offer(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/offer",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/offer", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("queryProof", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "123456",
       };
@@ -765,22 +754,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.queryProof(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/query_proof",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/query_proof", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("uploadProof", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "211019111701669",
         photo: [
@@ -803,22 +789,19 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.uploadProof(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/upload_proof",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_proof", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("uploadShippingProof", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "test_string",
         reverse_logistics_carrier_id: 123,
@@ -842,15 +825,12 @@ describe("ReturnsManager (Generated Tests)", () => {
 
       const result = await manager.uploadShippingProof(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/returns/upload_shipping_proof",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_shipping_proof", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

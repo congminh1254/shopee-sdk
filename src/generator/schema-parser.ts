@@ -1,11 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
+import { validateSchema } from "./schema-validation.js";
 import {
   EndpointSpec,
   NormalizedParam,
   ParsedEnum,
   ParsedEnumMember,
   SpecFieldNode,
+  normalizeSchemaName,
   toPascalCase,
 } from "./types.js";
 
@@ -268,6 +270,7 @@ function parseParams(
     const description = cleanDescription(node.description);
 
     let tsType = mapType(node.type, fieldName);
+    let enumDefinition: ParsedEnum | undefined;
 
     // Apply static overrides
     if (NODE_PATH_TYPE_OVERRIDES[nodePath]) {
@@ -287,6 +290,7 @@ function parseParams(
     if (!hasChildren && !isBooleanType) {
       const parsedEnum = parseEnumFromDescription(fieldName, node.description || "", node.type);
       if (parsedEnum) {
+        enumDefinition = parsedEnum;
         enums.push(parsedEnum);
         tsType = parsedEnum.name;
       } else {
@@ -313,7 +317,8 @@ function parseParams(
 
     // Determine optionality
     const optional =
-      node.required === "False" ||
+      String(node.required).toLowerCase() === "false" ||
+      String(node.required).toLowerCase() === "no" ||
       node.required === false ||
       node.required === null ||
       node.required === undefined;
@@ -324,6 +329,7 @@ function parseParams(
       description,
       optional,
       sample: node.sample,
+      enum: enumDefinition,
     };
 
     if (node.children && node.children.length > 0) {
@@ -342,18 +348,27 @@ function parseParams(
   return result;
 }
 
-export function parseSchemaFile(filePath: string): EndpointSpec | null {
+export function parseSchemaFile(filePath: string): EndpointSpec {
   const fileName = path.basename(filePath);
   // Match v2.<module>.<endpoint>.json
-  const match = /^v2\.([a-z0-9_-]+)\.([^.]+)\.json$/.exec(fileName);
-  if (!match) return null;
+  const match = /^v2\.([a-z0-9_-]+)\.([^.]+)\.json$/.exec(normalizeSchemaName(fileName));
+  if (!match) throw new Error(`Unsupported schema filename: ${fileName}`);
 
   const moduleName = match[1];
   const endpointName = match[2].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   const apiName = `v2.${moduleName}.${endpointName}`;
 
   const raw = fs.readFileSync(filePath, "utf-8");
-  const schema = JSON.parse(raw);
+  let schema: unknown;
+  try {
+    schema = JSON.parse(raw);
+    validateSchema(schema);
+  } catch (error) {
+    throw new Error(
+      `Invalid schema ${fileName}: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error }
+    );
+  }
 
   const methodVal = schema.method;
   let method: "GET" | "POST" = methodVal === 2 ? "GET" : "POST";
@@ -372,14 +387,14 @@ export function parseSchemaFile(filePath: string): EndpointSpec | null {
   const defineStr = typeof rawDefine === "string" ? rawDefine : rawDefine?.content || "";
   const description =
     cleanDescription(defineStr) +
-    (moduleName === "buybox" && schema.api_name?.endsWith("（only for BR now）")
+    (/[(（]only\s*(?:for\s*)?BR\s*now[)）]/i.test(schema.api_name ?? "")
       ? "\n\nOnly available in Brazil (BR)."
       : "");
 
   const enums: ParsedEnum[] = [];
   const timestampPaths: string[] = [];
 
-  const requestParams = parseParams(schema.params?.request_params ?? [], enums, timestampPaths, "");
+  const requestParams = parseParams(schema.params?.request_params ?? [], enums, [], "");
 
   // Extract response object fields (passing the entire root level to preserve the "response" property node)
   const responseParams = parseParams(
@@ -406,11 +421,13 @@ export function parseSchemaFile(filePath: string): EndpointSpec | null {
 
 export function parseAllSchemas(schemasDir: string): Map<string, EndpointSpec[]> {
   const result = new Map<string, EndpointSpec[]>();
-  const files = fs.readdirSync(schemasDir).filter((f) => f.endsWith(".json"));
+  const files = fs
+    .readdirSync(schemasDir)
+    .filter((f) => f.endsWith(".json"))
+    .sort();
 
   for (const file of files) {
     const spec = parseSchemaFile(path.join(schemasDir, file));
-    if (!spec) continue;
 
     const list = result.get(spec.moduleName) || [];
     list.push(spec);

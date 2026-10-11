@@ -2,39 +2,18 @@
 
 import { FetchResponse } from "./fetch.js";
 /**
- * Enum generated for field ResponseOptionalFields
+ * Enum generated for field GetBookingDetailRequestResponseOptionalFields
  */
-export enum ResponseOptionalFields {
-  BUYER_USER_ID = "buyer_user_id",
-  BUYER_USERNAME = "buyer_username",
-  ESTIMATED_SHIPPING_FEE = "estimated_shipping_fee",
-  RECIPIENT_ADDRESS = "recipient_address",
-  ACTUAL_SHIPPING_FEE = "actual_shipping_fee",
-  GOODS_TO_DECLARE = "goods_to_declare",
-  NOTE = "note",
-  NOTE_UPDATE_TIME = "note_update_time",
+export enum GetBookingDetailRequestResponseOptionalFields {
   ITEM_LIST = "item_list",
-  PAY_TIME = "pay_time",
-  DROPSHIPPER = "dropshipper",
-  DROPSHIPPER_PHONE = "dropshipper_phone",
-  SPLIT_UP = "split_up",
-  BUYER_CANCEL_REASON = "buyer_cancel_reason",
   CANCEL_BY = "cancel_by",
   CANCEL_REASON = "cancel_reason",
-  ACTUAL_SHIPPING_FEE_CONFIRMED = "actual_shipping_fee_confirmed",
-  BUYER_CPF_ID = "buyer_cpf_id",
   FULFILLMENT_FLAG = "fulfillment_flag",
   PICKUP_DONE_TIME = "pickup_done_time",
-  PACKAGE_LIST = "package_list",
   SHIPPING_CARRIER = "shipping_carrier",
-  PAYMENT_METHOD = "payment_method",
-  TOTAL_AMOUNT = "total_amount",
-  INVOICE_DATA = "invoice_data",
-  ORDER_CHARGEABLE_WEIGHT_GRAM = "order_chargeable_weight_gram",
-  RETURN_REQUEST_DUE_DATE = "return_request_due_date",
-  EDT = "edt",
-  PAYMENT_INFO = "payment_info",
-  INTERNATIONAL_LABEL = "international_label",
+  RECIPIENT_ADDRESS = "recipient_address",
+  DROPSHIPPER = "dropshipper",
+  DROPSHIPPER_PHONE = "dropshipper_phone",
 }
 /**
  * Enum generated for field BookingStatus
@@ -90,6 +69,41 @@ export enum TimeRangeField {
   UPDATE_TIME = "update_time",
 }
 /**
+ * Enum generated for field GetOrderDetailRequestResponseOptionalFields
+ */
+export enum GetOrderDetailRequestResponseOptionalFields {
+  BUYER_USER_ID = "buyer_user_id",
+  BUYER_USERNAME = "buyer_username",
+  ESTIMATED_SHIPPING_FEE = "estimated_shipping_fee",
+  RECIPIENT_ADDRESS = "recipient_address",
+  ACTUAL_SHIPPING_FEE = "actual_shipping_fee",
+  GOODS_TO_DECLARE = "goods_to_declare",
+  NOTE = "note",
+  NOTE_UPDATE_TIME = "note_update_time",
+  ITEM_LIST = "item_list",
+  PAY_TIME = "pay_time",
+  DROPSHIPPER = "dropshipper",
+  DROPSHIPPER_PHONE = "dropshipper_phone",
+  SPLIT_UP = "split_up",
+  BUYER_CANCEL_REASON = "buyer_cancel_reason",
+  CANCEL_BY = "cancel_by",
+  CANCEL_REASON = "cancel_reason",
+  ACTUAL_SHIPPING_FEE_CONFIRMED = "actual_shipping_fee_confirmed",
+  BUYER_CPF_ID = "buyer_cpf_id",
+  FULFILLMENT_FLAG = "fulfillment_flag",
+  PICKUP_DONE_TIME = "pickup_done_time",
+  PACKAGE_LIST = "package_list",
+  SHIPPING_CARRIER = "shipping_carrier",
+  PAYMENT_METHOD = "payment_method",
+  TOTAL_AMOUNT = "total_amount",
+  INVOICE_DATA = "invoice_data",
+  ORDER_CHARGEABLE_WEIGHT_GRAM = "order_chargeable_weight_gram",
+  RETURN_REQUEST_DUE_DATE = "return_request_due_date",
+  EDT = "edt",
+  PAYMENT_INFO = "payment_info",
+  INTERNATIONAL_LABEL = "international_label",
+}
+/**
  * Enum generated for field WarehouseId
  */
 export enum WarehouseId {
@@ -111,9 +125,22 @@ export enum PrescriptionImages {
   FILE = "file",
 }
 /**
- * Enum generated for field OrderStatus
+ * Enum generated for field GetOrderListRequestOrderStatus
  */
-export enum OrderStatus {
+export enum GetOrderListRequestOrderStatus {
+  UNPAID = "UNPAID",
+  READY_TO_SHIP = "READY_TO_SHIP",
+  PROCESSED = "PROCESSED",
+  SHIPPED = "SHIPPED",
+  COMPLETED = "COMPLETED",
+  IN_CANCEL = "IN_CANCEL",
+  CANCELLED = "CANCELLED",
+  INVOICE_PENDING = "INVOICE_PENDING",
+}
+/**
+ * Enum generated for field GetOrderListResponseResponseOrderListOrderStatus
+ */
+export enum GetOrderListResponseResponseOrderListOrderStatus {
   UNPAID = "UNPAID",
   READY_TO_SHIP = "READY_TO_SHIP",
   PROCESSED = "PROCESSED",
@@ -334,7 +361,7 @@ export interface GetBookingDetailRequest {
   /**
    * The response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them. Available values: item_list,cancel_by,cancel_reason,fulfillment_flag,pickup_done_time,shipping_carrier, recipient_address, dropshipper, dropshipper_phone
    */
-  response_optional_fields?: ResponseOptionalFields | string | number;
+  response_optional_fields?: GetBookingDetailRequestResponseOptionalFields | string | number;
 }
 /**
  * GetBookingDetailRecipientAddress sub-interface for GetBookingDetailBooking
@@ -970,7 +997,7 @@ export interface GetOrderDetailRequest {
   /**
    * a response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them.  Available values: buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address,actual_shipping_fee ,goods_to_declare,note,note_update_time,item_list,pay_time,dropshipper, dropshipper_phone,split_up,buyer_cancel_reason,cancel_by,cancel_reason,actual_shipping_fee_confirmed,buyer_cpf_id,fulfillment_flag,pickup_done_time,package_list,shipping_carrier,payment_method,total_amount,buyer_username,invoice_data,order_chargeable_weight_gram,return_request_due_date,edt,payment_info,international_label
    */
-  response_optional_fields?: ResponseOptionalFields | string | number;
+  response_optional_fields?: GetOrderDetailRequestResponseOptionalFields | string | number;
 }
 /**
  * GetOrderDetailGeolocation sub-interface for GetOrderDetailRecipientAddress
@@ -1652,7 +1679,7 @@ export interface GetOrderListRequest {
   /**
    * The order_status filter for retriveing orders and each one only every request. Available value: UNPAID/READY_TO_SHIP/PROCESSED/SHIPPED/COMPLETED/IN_CANCEL/CANCELLED/INVOICE_PENDING
    */
-  order_status?: OrderStatus | string | number;
+  order_status?: GetOrderListRequestOrderStatus | string | number;
   /**
    * Optional fields in response. Available value: order_status.
    */
@@ -1677,7 +1704,7 @@ export interface GetOrderListOrder {
   /**
    * The order_status filter for retriveing orders and each one only every request. Available value: UNPAID/READY_TO_SHIP/PROCESSED/SHIPPED/COMPLETED/IN_CANCEL/CANCELLED
    */
-  order_status?: OrderStatus | string | number;
+  order_status?: GetOrderListResponseResponseOrderListOrderStatus | string | number;
   /**
    * Return by default. Shopee's unique identifier for a booking.Only returned for advance fulfilment matched order only.
    */

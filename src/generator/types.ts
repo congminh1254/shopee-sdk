@@ -1,9 +1,9 @@
 export interface SpecFieldNode {
   name?: string;
   type?: string;
-  required?: any;
+  required?: boolean | string | null;
   description?: string;
-  sample?: any;
+  sample?: unknown;
   children?: SpecFieldNode[];
 }
 
@@ -12,8 +12,9 @@ export interface NormalizedParam {
   type: string;
   description: string;
   optional: boolean;
-  sample?: any;
+  sample?: unknown;
   children?: NormalizedParam[];
+  enum?: ParsedEnum;
 }
 
 export interface ParsedEnumMember {

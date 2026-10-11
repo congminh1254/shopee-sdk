@@ -24,14 +24,14 @@ describe("MerchantManager (Generated Tests)", () => {
   });
 
   describe("getMerchantInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         merchant_name: "sellerplatform_uat_merchant",
         auth_time: 1608114596,
         expire_time: 1640342010,
         request_id: "a3a4277823b1019960cc92cfd972c506",
-        merchant_currency: "CNY",
+        merchant_currency: "CNSC",
         merchant_region: "KR",
         is_upgraded_cbsc: true,
       };
@@ -45,22 +45,20 @@ describe("MerchantManager (Generated Tests)", () => {
 
       const result = await manager.getMerchantInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/merchant/get_merchant_info",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_merchant_info", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["auth_time", "expire_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getMerchantPrepaidAccountList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
@@ -94,14 +92,15 @@ describe("MerchantManager (Generated Tests)", () => {
 
       const result = await manager.getMerchantPrepaidAccountList(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/merchant/get_merchant_prepaid_account_list",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -109,7 +108,7 @@ describe("MerchantManager (Generated Tests)", () => {
   });
 
   describe("getMerchantWarehouseList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         cursor: {
           next_id: 123,
@@ -161,22 +160,19 @@ describe("MerchantManager (Generated Tests)", () => {
 
       const result = await manager.getMerchantWarehouseList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/merchant/get_merchant_warehouse_list",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_merchant_warehouse_list", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getMerchantWarehouseLocationList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = [
         {
@@ -194,14 +190,15 @@ describe("MerchantManager (Generated Tests)", () => {
 
       const result = await manager.getMerchantWarehouseLocationList(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/merchant/get_merchant_warehouse_location_list",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -209,7 +206,7 @@ describe("MerchantManager (Generated Tests)", () => {
   });
 
   describe("getShopListByMerchant", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 100,
@@ -238,22 +235,19 @@ describe("MerchantManager (Generated Tests)", () => {
 
       const result = await manager.getShopListByMerchant(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/merchant/get_shop_list_by_merchant",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_shop_list_by_merchant", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getWarehouseEligibleShopList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         warehouse_id: 123,
         warehouse_type: 123,
@@ -286,14 +280,15 @@ describe("MerchantManager (Generated Tests)", () => {
 
       const result = await manager.getWarehouseEligibleShopList(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/merchant/get_warehouse_eligible_shop_list",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);

@@ -28,7 +28,7 @@ export class BuyboxManager extends BaseManager {
    * @returns {Promise<GetBuyboxModelPerformanceResponse>} Promise resolving to the response
    */
   public async getBuyboxModelPerformance(
-    params?: GetBuyboxModelPerformanceRequest
+    params: GetBuyboxModelPerformanceRequest
   ): Promise<GetBuyboxModelPerformanceResponse> {
     return ShopeeFetch.fetch<GetBuyboxModelPerformanceResponse>(
       this.config,
@@ -49,7 +49,7 @@ export class BuyboxManager extends BaseManager {
    * @returns {Promise<GetBuyboxModelsByModelIdResponse>} Promise resolving to the response
    */
   public async getBuyboxModelsByModelId(
-    params?: GetBuyboxModelsByModelIdRequest
+    params: GetBuyboxModelsByModelIdRequest
   ): Promise<GetBuyboxModelsByModelIdResponse> {
     return ShopeeFetch.fetch<GetBuyboxModelsByModelIdResponse>(
       this.config,
@@ -112,7 +112,7 @@ export class BuyboxManager extends BaseManager {
    * @returns {Promise<UpdateBuyboxModelEnrollmentResponse>} Promise resolving to the response
    */
   public async updateBuyboxModelEnrollment(
-    params?: UpdateBuyboxModelEnrollmentRequest
+    params: UpdateBuyboxModelEnrollmentRequest
   ): Promise<UpdateBuyboxModelEnrollmentResponse> {
     return ShopeeFetch.fetch<UpdateBuyboxModelEnrollmentResponse>(
       this.config,

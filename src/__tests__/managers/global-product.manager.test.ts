@@ -122,7 +122,7 @@ describe("GlobalProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_category", {
         method: "GET",
         auth: true,
-        params: {},
+        params: undefined,
       });
 
       expect(result.error).toBe("");
@@ -171,6 +171,7 @@ describe("GlobalProductManager", () => {
             update_time_from: 1611311600,
             update_time_to: 1611311631,
           },
+          timestampPaths: ["response.global_item_list.update_time"],
         }
       );
 
@@ -236,6 +237,10 @@ describe("GlobalProductManager", () => {
           params: {
             global_item_id_list: [123456],
           },
+          timestampPaths: [
+            "response.global_item_list.create_time",
+            "response.global_item_list.update_time",
+          ],
         }
       );
 
@@ -406,9 +411,31 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
-          body: expect.objectContaining({
+          body: {
             global_item_id: 123456,
-          }),
+            standardise_tier_variation: [
+              {
+                variation_id: 1,
+                variation_name: "Color",
+                variation_option_list: [
+                  { variation_option_id: 11, variation_option_name: "Red" },
+                  { variation_option_id: 12, variation_option_name: "Blue" },
+                ],
+              },
+            ],
+            global_model: [
+              {
+                tier_index: 0,
+                global_model_sku: "SKU-RED",
+                original_price: 99.99,
+              },
+              {
+                tier_index: 1,
+                global_model_sku: "SKU-BLUE",
+                original_price: 99.99,
+              },
+            ],
+          },
         }
       );
 
@@ -545,7 +572,7 @@ describe("GlobalProductManager", () => {
           method: "GET",
           auth: true,
           params: {
-            category_id_list: "100182",
+            category_id_list: [100182],
             language: "en",
           },
         }
@@ -744,7 +771,7 @@ describe("GlobalProductManager", () => {
           auth: true,
           params: {
             shop_id: 67890,
-            item_id_list: "999",
+            item_id_list: [999],
           },
         }
       );

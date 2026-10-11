@@ -85,7 +85,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<CreateAutoProductAdsResponse>} Promise resolving to the response
    */
   public async createAutoProductAds(
-    params?: CreateAutoProductAdsRequest
+    params: CreateAutoProductAdsRequest
   ): Promise<CreateAutoProductAdsResponse> {
     return ShopeeFetch.fetch<CreateAutoProductAdsResponse>(
       this.config,
@@ -104,7 +104,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<CreateGmsProductCampaignResponse>} Promise resolving to the response
    */
   public async createGmsProductCampaign(
-    params?: CreateGmsProductCampaignRequest
+    params: CreateGmsProductCampaignRequest
   ): Promise<CreateGmsProductCampaignResponse> {
     return ShopeeFetch.fetch<CreateGmsProductCampaignResponse>(
       this.config,
@@ -123,7 +123,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<CreateManualProductAdsResponse>} Promise resolving to the response
    */
   public async createManualProductAds(
-    params?: CreateManualProductAdsRequest
+    params: CreateManualProductAdsRequest
   ): Promise<CreateManualProductAdsResponse> {
     return ShopeeFetch.fetch<CreateManualProductAdsResponse>(
       this.config,
@@ -142,7 +142,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<EditAutoProductAdsResponse>} Promise resolving to the response
    */
   public async editAutoProductAds(
-    params?: EditAutoProductAdsRequest
+    params: EditAutoProductAdsRequest
   ): Promise<EditAutoProductAdsResponse> {
     return ShopeeFetch.fetch<EditAutoProductAdsResponse>(
       this.config,
@@ -161,7 +161,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<EditGmsItemProductCampaignResponse>} Promise resolving to the response
    */
   public async editGmsItemProductCampaign(
-    params?: EditGmsItemProductCampaignRequest
+    params: EditGmsItemProductCampaignRequest
   ): Promise<EditGmsItemProductCampaignResponse> {
     return ShopeeFetch.fetch<EditGmsItemProductCampaignResponse>(
       this.config,
@@ -180,7 +180,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<EditGmsProductCampaignResponse>} Promise resolving to the response
    */
   public async editGmsProductCampaign(
-    params?: EditGmsProductCampaignRequest
+    params: EditGmsProductCampaignRequest
   ): Promise<EditGmsProductCampaignResponse> {
     return ShopeeFetch.fetch<EditGmsProductCampaignResponse>(
       this.config,
@@ -199,7 +199,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<EditManualProductAdKeywordsResponse>} Promise resolving to the response
    */
   public async editManualProductAdKeywords(
-    params?: EditManualProductAdKeywordsRequest
+    params: EditManualProductAdKeywordsRequest
   ): Promise<EditManualProductAdKeywordsResponse> {
     return ShopeeFetch.fetch<EditManualProductAdKeywordsResponse>(
       this.config,
@@ -218,7 +218,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<EditManualProductAdsResponse>} Promise resolving to the response
    */
   public async editManualProductAds(
-    params?: EditManualProductAdsRequest
+    params: EditManualProductAdsRequest
   ): Promise<EditManualProductAdsResponse> {
     return ShopeeFetch.fetch<EditManualProductAdsResponse>(
       this.config,
@@ -256,7 +256,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<GetAllCpcAdsDailyPerformanceResponse>} Promise resolving to the response
    */
   public async getAllCpcAdsDailyPerformance(
-    params?: GetAllCpcAdsDailyPerformanceRequest
+    params: GetAllCpcAdsDailyPerformanceRequest
   ): Promise<GetAllCpcAdsDailyPerformanceResponse> {
     return ShopeeFetch.fetch<GetAllCpcAdsDailyPerformanceResponse>(
       this.config,
@@ -275,7 +275,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<GetAllCpcAdsHourlyPerformanceResponse>} Promise resolving to the response
    */
   public async getAllCpcAdsHourlyPerformance(
-    params?: GetAllCpcAdsHourlyPerformanceRequest
+    params: GetAllCpcAdsHourlyPerformanceRequest
   ): Promise<GetAllCpcAdsHourlyPerformanceResponse> {
     return ShopeeFetch.fetch<GetAllCpcAdsHourlyPerformanceResponse>(
       this.config,
@@ -294,7 +294,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<GetCreateProductAdBudgetSuggestionResponse>} Promise resolving to the response
    */
   public async getCreateProductAdBudgetSuggestion(
-    params?: GetCreateProductAdBudgetSuggestionRequest
+    params: GetCreateProductAdBudgetSuggestionRequest
   ): Promise<GetCreateProductAdBudgetSuggestionResponse> {
     return ShopeeFetch.fetch<GetCreateProductAdBudgetSuggestionResponse>(
       this.config,
@@ -313,7 +313,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<GetGmsCampaignPerformanceResponse>} Promise resolving to the response
    */
   public async getGmsCampaignPerformance(
-    params?: GetGmsCampaignPerformanceRequest
+    params: GetGmsCampaignPerformanceRequest
   ): Promise<GetGmsCampaignPerformanceResponse> {
     return ShopeeFetch.fetch<GetGmsCampaignPerformanceResponse>(
       this.config,
@@ -334,7 +334,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<GetGmsItemPerformanceResponse>} Promise resolving to the response
    */
   public async getGmsItemPerformance(
-    params?: GetGmsItemPerformanceRequest
+    params: GetGmsItemPerformanceRequest
   ): Promise<GetGmsItemPerformanceResponse> {
     return ShopeeFetch.fetch<GetGmsItemPerformanceResponse>(
       this.config,
@@ -353,7 +353,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<GetProductCampaignDailyPerformanceResponse>} Promise resolving to the response
    */
   public async getProductCampaignDailyPerformance(
-    params?: GetProductCampaignDailyPerformanceRequest
+    params: GetProductCampaignDailyPerformanceRequest
   ): Promise<GetProductCampaignDailyPerformanceResponse> {
     return ShopeeFetch.fetch<GetProductCampaignDailyPerformanceResponse>(
       this.config,
@@ -372,7 +372,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<GetProductCampaignHourlyPerformanceResponse>} Promise resolving to the response
    */
   public async getProductCampaignHourlyPerformance(
-    params?: GetProductCampaignHourlyPerformanceRequest
+    params: GetProductCampaignHourlyPerformanceRequest
   ): Promise<GetProductCampaignHourlyPerformanceResponse> {
     return ShopeeFetch.fetch<GetProductCampaignHourlyPerformanceResponse>(
       this.config,
@@ -410,7 +410,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<GetProductLevelCampaignSettingInfoResponse>} Promise resolving to the response
    */
   public async getProductLevelCampaignSettingInfo(
-    params?: GetProductLevelCampaignSettingInfoRequest
+    params: GetProductLevelCampaignSettingInfoRequest
   ): Promise<GetProductLevelCampaignSettingInfoResponse> {
     return ShopeeFetch.fetch<GetProductLevelCampaignSettingInfoResponse>(
       this.config,
@@ -429,7 +429,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<GetProductRecommendedRoiTargetResponse>} Promise resolving to the response
    */
   public async getProductRecommendedRoiTarget(
-    params?: GetProductRecommendedRoiTargetRequest
+    params: GetProductRecommendedRoiTargetRequest
   ): Promise<GetProductRecommendedRoiTargetResponse> {
     return ShopeeFetch.fetch<GetProductRecommendedRoiTargetResponse>(
       this.config,
@@ -467,7 +467,7 @@ export class AdsManager extends BaseManager {
    * @returns {Promise<GetRecommendedKeywordListResponse>} Promise resolving to the response
    */
   public async getRecommendedKeywordList(
-    params?: GetRecommendedKeywordListRequest
+    params: GetRecommendedKeywordListRequest
   ): Promise<GetRecommendedKeywordListResponse> {
     return ShopeeFetch.fetch<GetRecommendedKeywordListResponse>(
       this.config,
