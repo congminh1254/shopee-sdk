@@ -1,6 +1,6 @@
 {
   "api_id": 3359,
-  "api_name": "v2.buybox.get_buybox_shop_performance",
+  "api_name": "v2.buybox.get_buybox_shop_performance（only for BR now）",
   "api_type": "Shop",
   "common_params": [
     {
@@ -365,6 +365,10 @@
   "tag": "",
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/buybox/get_buybox_shop_performance",
   "update_log_list": [
+    {
+      "date": "2026-10-10",
+      "content": "add a sign （only for BR now）"
+    },
     {
       "date": "2026-09-24",
       "content": "New API"
