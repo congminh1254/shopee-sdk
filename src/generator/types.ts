@@ -32,7 +32,6 @@ export interface EndpointSpec {
   apiName: string;
   moduleName: string;
   endpointName: string;
-  legacyEndpointName?: string;
   method: "GET" | "POST";
   path: string;
   auth: boolean;

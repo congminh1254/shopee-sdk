@@ -192,32 +192,7 @@ export class FileMerger {
       uniqueAstNodes.push(node as ts.Statement);
     }
 
-    // Keep previously published Buybox type names as deprecated aliases.
-    const legacyAliases: ts.Statement[] = [];
-    for (const spec of specs) {
-      if (!spec.legacyEndpointName) continue;
-      const prefix = toPascalCase(spec.endpointName);
-      const legacyPrefix = toPascalCase(spec.legacyEndpointName);
-      for (const node of uniqueAstNodes) {
-        if (!ts.isInterfaceDeclaration(node) && !ts.isTypeAliasDeclaration(node)) continue;
-        const name = node.name.text;
-        if (!name.startsWith(prefix)) continue;
-        const alias = ts.factory.createTypeAliasDeclaration(
-          [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
-          legacyPrefix + name.slice(prefix.length),
-          undefined,
-          ts.factory.createTypeReferenceNode(name, undefined)
-        );
-        ts.addSyntheticLeadingComment(
-          alias,
-          ts.SyntaxKind.MultiLineCommentTrivia,
-          `* @deprecated Use ${name} instead. `,
-          true
-        );
-        legacyAliases.push(alias);
-      }
-    }
-    finalStatements = [...extraImports, ...finalStatements, ...uniqueAstNodes, ...legacyAliases];
+    finalStatements = [...extraImports, ...finalStatements, ...uniqueAstNodes];
 
     // Create printer and output source file
     const outputSource = ts.factory.updateSourceFile(sourceFile, finalStatements);
@@ -258,10 +233,6 @@ export class ${className} extends BaseManager {
       generatedMethodNames.add(toCamelCase(spec.endpointName));
       generatedTypesToImport.add(`${toPascalCase(spec.endpointName)}Request`);
       generatedTypesToImport.add(`${toPascalCase(spec.endpointName)}Response`);
-      if (spec.legacyEndpointName) {
-        generatedTypesToImport.add(`${toPascalCase(spec.legacyEndpointName)}Request`);
-        generatedTypesToImport.add(`${toPascalCase(spec.legacyEndpointName)}Response`);
-      }
     }
 
     // Filter statements, separate imports
@@ -307,21 +278,6 @@ export class ${className} extends BaseManager {
         spec.description
       );
     });
-
-    // Retain the old public method names on every regeneration.
-    for (const spec of specs) {
-      if (!spec.legacyEndpointName) continue;
-      generatedMethods.push(
-        this.astBuilder.buildManagerMethod(
-          spec.legacyEndpointName,
-          spec.method,
-          spec.path,
-          spec.auth,
-          spec.timestampPaths,
-          `@deprecated Use ${toCamelCase(spec.endpointName)} instead.\nOnly available in Brazil (BR).`
-        )
-      );
-    }
 
     // Merge class members
     const updatedClass = ts.factory.updateClassDeclaration(
