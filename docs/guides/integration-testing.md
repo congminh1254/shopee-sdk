@@ -31,6 +31,8 @@ Optional read coverage uses:
 - `SHOPEE_SANDBOX_MERCHANT_ID`, `SHOPEE_SANDBOX_MERCHANT_ACCESS_TOKEN`, and
   `SHOPEE_SANDBOX_MERCHANT_REFRESH_TOKEN` for a separately authorized merchant.
 - `SHOPEE_SANDBOX_ITEM_IDS` for a comma-separated list of existing shop item IDs.
+- `SHOPEE_SANDBOX_INSTALLMENT_ENABLED=1` for a shop on Shopee's credit-card
+  installment whitelist. The CI workflow reads this optional repository variable.
 - `SHOPEE_SANDBOX_EXTENDED_READS=1` for recommendation endpoints supported by the
   selected sandbox. Unsupported optional features are skipped, not accepted as a
   successful API call returning an error.
