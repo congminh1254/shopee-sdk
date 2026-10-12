@@ -28,16 +28,16 @@ describe("ReturnsManager (Generated Tests)", () => {
       const exampleRequest = {
         return_sn: "211101140608253",
       };
-      const exampleResponse = {
-        return_sn: "211101140608253",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          return_sn: "211101140608253",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.acceptOffer(exampleRequest);
 
@@ -45,10 +45,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/accept_offer", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -58,17 +59,17 @@ describe("ReturnsManager (Generated Tests)", () => {
         return_sn: "2412100F5217W3H",
         email: "test@example.com",
       };
-      const exampleResponse = {
-        return_sn: "2412100F5217W3H",
-        message: "SUCCESS",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          return_sn: "2412100F5217W3H",
+          message: "SUCCESS",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.cancelDispute(exampleRequest);
 
@@ -76,10 +77,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/cancel_dispute", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -88,16 +90,16 @@ describe("ReturnsManager (Generated Tests)", () => {
       const exampleRequest = {
         return_sn: "200203171852695",
       };
-      const exampleResponse = {
-        return_sn: "200203171852695",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          return_sn: "200203171852695",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.confirm(exampleRequest);
 
@@ -105,10 +107,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/confirm", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -116,20 +119,20 @@ describe("ReturnsManager (Generated Tests)", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         return_sn: "220707155172370",
-        upload_image: "test_string",
-      };
-      const exampleResponse = {
-        url: "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
-        thumbnail:
-          "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
+        upload_image: Buffer.from("test_binary"),
       };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          url: "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
+          thumbnail:
+            "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.convertImage(exampleRequest);
 
@@ -137,10 +140,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/convert_image", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -177,17 +181,17 @@ describe("ReturnsManager (Generated Tests)", () => {
         ],
         dispute_text_reason: "Received return item(s), buyer's claim incorrect",
       };
-      const exampleResponse = {
-        return_sn: "200203171852695",
-        msg: "dispute return success",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          return_sn: "200203171852695",
+          msg: "dispute return success",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.dispute(exampleRequest);
 
@@ -195,10 +199,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/dispute", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -207,28 +212,28 @@ describe("ReturnsManager (Generated Tests)", () => {
       const exampleRequest = {
         return_sn: "220106202649696",
       };
-      const exampleResponse = {
-        return_sn: "220106202649696",
-        offer_return_refund: {
-          eligibility: true,
-          refund_amount_adjustable: true,
-          max_refund_amount: 15,
-          min_refund_amount: 5,
-        },
-        offer_refund: {
-          eligibility: true,
-          refund_amount_adjustable: true,
-          max_refund_amount: 10,
-          min_refund_amount: 5,
-        },
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          return_sn: "220106202649696",
+          offer_return_refund: {
+            eligibility: true,
+            refund_amount_adjustable: true,
+            max_refund_amount: 15,
+            min_refund_amount: 5,
+          },
+          offer_refund: {
+            eligibility: true,
+            refund_amount_adjustable: true,
+            max_refund_amount: 10,
+            min_refund_amount: 5,
+          },
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getAvailableSolutions(exampleRequest);
 
@@ -236,10 +241,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_available_solutions", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -248,145 +254,145 @@ describe("ReturnsManager (Generated Tests)", () => {
       const exampleRequest = {
         return_sn: "2206150VT13E3MQ",
       };
+
       const exampleResponse = {
-        image: ["https:", "", "cf.shopee.sg", "file", "166f23cbfb31bd882f51cfe7f90d3826"],
-        buyer_videos: [
-          {
-            thumbnail_url:
-              "https://down-ws-sg.img.susercontent.com/sg-11110158-23040-t1taxpkdkgpvf7",
-            video_url:
-              "https://play-ws.vod.shopee.com/api/v4/11110158/mms/sg-11110158-6jrnk-lf6a3juz7hw96f.ori.mp4",
-          },
-        ],
-        reason: "NOT_RECEIPT",
-        text_reason: "not received",
-        reassessed_request_reason: "ITEM_MISSING",
-        return_sn: "2206140TA5PM808",
-        refund_amount: 13.97,
-        currency: "SGD",
-        create_time: 1655205084,
-        update_time: 1655219544,
-        status: "ACCEPTED",
-        due_date: 1655377883,
-        tracking_number: "RNSHS00177569",
-        dispute_reason: ["dispute_reason_1", "dispute_reason_2"],
-        dispute_text_reason: ["dispute_remarks"],
-        needs_logistics: false,
-        amount_before_discount: 13.99,
-        user: {
-          username: "gwlsg01",
-          email: "********oo@shopee.com",
-          portrait: "https://cf.shopee.sg/file/166f23cbfb31bd882f51cfe7f90d3826",
-        },
-        item: [
-          {
-            model_id: 2001586745,
-            name: "[Self collection point] Orange macaron",
-            images: ["https:", "", "cf.shopee.sg", "file", "4ecbb6fa567e42c1b1e02993ad53df12"],
-            amount: 1,
-            item_price: 10,
-            is_add_on_deal: false,
-            is_main_item: false,
-            add_on_deal_id: 0,
-            item_id: 2700126223,
-            item_sku: "USB",
-            variation_sku: "RED",
-            refund_amount: 12.34,
-          },
-        ],
-        order_sn: "220614T9XV8JTN",
-        return_ship_due_date: 1655438205,
-        return_seller_due_date: 1655438205,
-        activity: [
-          {
-            activity_id: "123456789",
-            activity_type: "BUNDLE",
-            original_price: "12.34",
-            discounted_price: "12.34",
-            items: [
-              {
-                item_id: 12345678,
-                variation_id: 12345678,
-                quantity_purchased: 2,
-                original_price: "12.34",
-              },
-            ],
-            refund_amount: '"12.34"',
-          },
-        ],
-        seller_proof: {
-          seller_proof_status: "PENDING",
-          seller_evidence_deadline: 1655438336,
-        },
-        seller_compensation: {
-          seller_compensation_status: "PENDING_REQUEST",
-          seller_compensation_due_date: 1655438336,
-          compensation_amount: 100,
-          compensation_amount_list: [
+        response: {
+          image: ["https:", "", "cf.shopee.sg", "file", "166f23cbfb31bd882f51cfe7f90d3826"],
+          buyer_videos: [
             {
-              compensation_type: "LOGISTICS_RELATED_COMPENSATION",
-              compensation_amount: 100,
+              thumbnail_url:
+                "https://down-ws-sg.img.susercontent.com/sg-11110158-23040-t1taxpkdkgpvf7",
+              video_url:
+                "https://play-ws.vod.shopee.com/api/v4/11110158/mms/sg-11110158-6jrnk-lf6a3juz7hw96f.ori.mp4",
             },
           ],
-        },
-        negotiation: {
-          negotiation_status: "PENDING_RESPOND",
-          latest_solution: "RETURN_REFUND",
-          latest_offer_amount: 12.34,
-          latest_offer_creator: "username",
-          counter_limit: 0,
-          offer_due_date: 1655438336,
-        },
-        logistics_status: "LOGISTICS_REQUEST_CREATED",
-        reverse_logistics_status: "LOGISTICS_REQUEST_CREATED",
-        return_pickup_address: {
-          address: "BLOCK 106, HENDERSON CRESCENT",
-          name: "name",
-          phone: "6512345678",
-          town: "Batino",
-          district: "Calamba City",
-          city: "Laguna",
-          state: "South Luzon",
-          region: "SG",
-          zipcode: "150106",
-        },
-        virtual_contact_number: "0928000886",
-        package_query_number: "66668888",
-        return_address: {
-          whs_id: "SGC",
-        },
-        return_refund_type: "Return",
-        return_solution: 0,
-        is_seller_arrange: true,
-        is_shipping_proof_mandatory: true,
-        has_uploaded_shipping_proof: false,
-        is_reverse_logistics_channel_integrated: false,
-        reverse_logistics_channel_name: "test_reverse_logistics_channel_name",
-        return_refund_request_type: 0,
-        validation_type: "seller_validation",
-        is_arrived_at_warehouse: 3,
-        follow_up_action_list: [
-          {
-            item_id: 2700126223,
-            model_id: 2000458802,
-            qty: 2,
-            current_status: 2,
-            related_order_sn_list: ["test_string"],
-            resell_failed_next_step: '""',
+          reason: "NOT_RECEIPT",
+          text_reason: "not received",
+          reassessed_request_reason: "ITEM_MISSING",
+          return_sn: "2206140TA5PM808",
+          refund_amount: 13.97,
+          currency: "SGD",
+          create_time: 1655205084,
+          update_time: 1655219544,
+          status: "ACCEPTED",
+          due_date: 1655377883,
+          tracking_number: "RNSHS00177569",
+          dispute_reason: ["dispute_reason_1", "dispute_reason_2"],
+          dispute_text_reason: ["dispute_remarks"],
+          needs_logistics: false,
+          amount_before_discount: 13.99,
+          user: {
+            username: "gwlsg01",
+            email: "********oo@shopee.com",
+            portrait: "https://cf.shopee.sg/file/166f23cbfb31bd882f51cfe7f90d3826",
           },
-        ],
-        is_partial_quantity_return: true,
-        is_refund_amount_adjusted: true,
-        shipping_fee_responsibility: "SHOPEE",
-        shipping_fee_responsibility_reason: "SHIPPING_FEE_RESPONSIBILITY_REASON_1",
-      };
-
-      mockFetch.mockResolvedValueOnce({
+          item: [
+            {
+              model_id: 2001586745,
+              name: "[Self collection point] Orange macaron",
+              images: ["https:", "", "cf.shopee.sg", "file", "4ecbb6fa567e42c1b1e02993ad53df12"],
+              amount: 1,
+              item_price: 10,
+              is_add_on_deal: false,
+              is_main_item: false,
+              add_on_deal_id: 0,
+              item_id: 2700126223,
+              item_sku: "USB",
+              variation_sku: "RED",
+              refund_amount: 12.34,
+            },
+          ],
+          order_sn: "220614T9XV8JTN",
+          return_ship_due_date: 1655438205,
+          return_seller_due_date: 1655438205,
+          activity: [
+            {
+              activity_id: 123456789,
+              activity_type: "BUNDLE",
+              original_price: "12.34",
+              discounted_price: "12.34",
+              items: [
+                {
+                  item_id: 12345678,
+                  variation_id: 12345678,
+                  quantity_purchased: 2,
+                  original_price: "12.34",
+                },
+              ],
+              refund_amount: '"12.34"',
+            },
+          ],
+          seller_proof: {
+            seller_proof_status: "PENDING",
+            seller_evidence_deadline: 1655438336,
+          },
+          seller_compensation: {
+            seller_compensation_status: "PENDING_REQUEST",
+            seller_compensation_due_date: 1655438336,
+            compensation_amount: 100,
+            compensation_amount_list: [
+              {
+                compensation_type: "LOGISTICS_RELATED_COMPENSATION",
+                compensation_amount: 100,
+              },
+            ],
+          },
+          negotiation: {
+            negotiation_status: "PENDING_RESPOND",
+            latest_solution: "RETURN_REFUND",
+            latest_offer_amount: 12.34,
+            latest_offer_creator: "username",
+            counter_limit: 0,
+            offer_due_date: 1655438336,
+          },
+          logistics_status: "LOGISTICS_REQUEST_CREATED",
+          reverse_logistics_status: "LOGISTICS_REQUEST_CREATED",
+          return_pickup_address: {
+            address: "BLOCK 106, HENDERSON CRESCENT",
+            name: "name",
+            phone: "6512345678",
+            town: "Batino",
+            district: "Calamba City",
+            city: "Laguna",
+            state: "South Luzon",
+            region: "SG",
+            zipcode: "150106",
+          },
+          virtual_contact_number: "0928000886",
+          package_query_number: "66668888",
+          return_address: {
+            whs_id: "SGC",
+          },
+          return_refund_type: "Return",
+          return_solution: 0,
+          is_seller_arrange: true,
+          is_shipping_proof_mandatory: true,
+          has_uploaded_shipping_proof: false,
+          is_reverse_logistics_channel_integrated: false,
+          reverse_logistics_channel_name: "test_reverse_logistics_channel_name",
+          return_refund_request_type: 0,
+          validation_type: "seller_validation",
+          is_arrived_at_warehouse: 3,
+          follow_up_action_list: [
+            {
+              item_id: 2700126223,
+              model_id: 2000458802,
+              qty: 2,
+              current_status: 2,
+              related_order_sn_list: ["test_string"],
+              resell_failed_next_step: '""',
+            },
+          ],
+          is_partial_quantity_return: true,
+          is_refund_amount_adjusted: true,
+          shipping_fee_responsibility: "SHOPEE",
+          shipping_fee_responsibility_reason: "SHIPPING_FEE_RESPONSIBILITY_REASON_1",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getReturnDetail(exampleRequest);
 
@@ -394,6 +400,7 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_return_detail", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
         timestampPaths: [
           "response.create_time",
@@ -407,7 +414,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         ],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -416,38 +423,38 @@ describe("ReturnsManager (Generated Tests)", () => {
       const exampleRequest = {
         return_sn: "24112301K66SQXM",
       };
-      const exampleResponse = {
-        dispute_reason_list: [
-          {
-            dispute_reason: "50",
-            dispute_requirement:
-              "Regarding to your refund request, Shopee would like to request more information as follows :",
-            sample_evidence: [
-              {
-                type: 1,
-                url: "https://fileproxy.scsusercontent.com/api/v2/files/c2hvcGVlLWRyYzAx/bf10d801_e9c9e5473d3345d08671a8cc3bc1a6de.jpg",
-                thumbnail:
-                  "https://fileproxy.scsusercontent.com/api/v2/files/c2hvcGVlLWRyYzAx/bf10d801_e9c9e5473d3345d08671a8cc3bc1a6de_tn.jpg",
-              },
-            ],
-            evidence_module_list: [
-              {
-                module_index: 1,
-                requirement:
-                  "Photo(s) or Video of unboxing the returned parcel with the consignment note (Airway Bill).",
-                is_required: true,
-              },
-            ],
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          dispute_reason_list: [
+            {
+              dispute_reason: "50",
+              dispute_requirement:
+                "Regarding to your refund request, Shopee would like to request more information as follows :",
+              sample_evidence: [
+                {
+                  type: 1,
+                  url: "https://fileproxy.scsusercontent.com/api/v2/files/c2hvcGVlLWRyYzAx/bf10d801_e9c9e5473d3345d08671a8cc3bc1a6de.jpg",
+                  thumbnail:
+                    "https://fileproxy.scsusercontent.com/api/v2/files/c2hvcGVlLWRyYzAx/bf10d801_e9c9e5473d3345d08671a8cc3bc1a6de_tn.jpg",
+                },
+              ],
+              evidence_module_list: [
+                {
+                  module_index: 1,
+                  requirement:
+                    "Photo(s) or Video of unboxing the returned parcel with the consignment note (Airway Bill).",
+                  is_required: true,
+                },
+              ],
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getReturnDisputeReason(exampleRequest);
 
@@ -455,10 +462,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_return_dispute_reason", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -476,82 +484,88 @@ describe("ReturnsManager (Generated Tests)", () => {
         seller_proof_status: "PENDING",
         seller_compensation_status: "NOT_REQUIRED",
       };
-      const exampleResponse = {
-        more: true,
-        return: [
-          {
-            image: ["https:", "", "cf.shopee.sg", "file", "166f23cbfb31bd882f51cfe7f90d3826"],
-            reason: "PHYSICAL_DMG",
-            text_reason: "return reason",
-            reassessed_request_reason: "ITEM_MISSING",
-            return_sn: "200203171852695",
-            refund_amount: 1409,
-            currency: "SGD",
-            create_time: 1580721513,
-            update_time: 1580729377,
-            status: "CANCELLED",
-            due_date: 1580721513,
-            tracking_number: "RNSHS00177569",
-            dispute_reason: ["UNKNOWN"],
-            dispute_text_reason: ["reason"],
-            needs_logistics: true,
-            amount_before_discount: 1409,
-            user: {
-              username: "abcdefg",
-              email: "***********r1@shopee.com",
-              portrait: "https://cf.shopee.sg/file/166f23cbfb31bd882f51cfe7f90d3826",
-            },
-            item: [
-              {
-                model_id: 0,
-                name: "agsabdmnambd",
-                images: ["https:", "", "cf.shopee.sg", "file", "166f23cbfb31bd882f51cfe7f90d3826"],
-                amount: 1,
-                item_price: 1409.9,
-                is_add_on_deal: false,
-                is_main_item: false,
-                add_on_deal_id: 0,
-                item_id: 2147533133,
-                item_sku: "USB",
-                variation_sku: "RED",
-              },
-            ],
-            order_sn: "200203C6W0AR27",
-            return_ship_due_date: 1655438336,
-            return_seller_due_date: 1655438336,
-            negotiation_status: "PENDING_RESPOND",
-            seller_proof_status: "PENDING",
-            seller_compensation_status: "PENDING_REQUEST",
-            return_refund_type: "Return",
-            return_solution: 0,
-            is_seller_arrange: false,
-            is_shipping_proof_mandatory: false,
-            return_refund_request_type: 0,
-            validation_type: "seller_validation",
-            is_arrived_at_warehouse: 3,
-            follow_up_action_list: [
-              {
-                item_id: 2700126223,
-                model_id: 2000458802,
-                qty: 2,
-                current_status: 2,
-                related_order_sn_list: ["test_string"],
-                resell_failed_next_step: '""',
-              },
-            ],
-            is_partial_quantity_return: true,
-            is_refund_amount_adjusted: true,
-            shipping_fee_responsibility: "SHOPEE",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          more: true,
+          return: [
+            {
+              image: ["https:", "", "cf.shopee.sg", "file", "166f23cbfb31bd882f51cfe7f90d3826"],
+              reason: "PHYSICAL_DMG",
+              text_reason: "return reason",
+              reassessed_request_reason: "ITEM_MISSING",
+              return_sn: "200203171852695",
+              refund_amount: 1409,
+              currency: "SGD",
+              create_time: 1580721513,
+              update_time: 1580729377,
+              status: "CANCELLED",
+              due_date: 1580721513,
+              tracking_number: "RNSHS00177569",
+              dispute_reason: ["UNKNOWN"],
+              dispute_text_reason: ["reason"],
+              needs_logistics: true,
+              amount_before_discount: 1409,
+              user: {
+                username: "abcdefg",
+                email: "***********r1@shopee.com",
+                portrait: "https://cf.shopee.sg/file/166f23cbfb31bd882f51cfe7f90d3826",
+              },
+              item: [
+                {
+                  model_id: 0,
+                  name: "agsabdmnambd",
+                  images: [
+                    "https:",
+                    "",
+                    "cf.shopee.sg",
+                    "file",
+                    "166f23cbfb31bd882f51cfe7f90d3826",
+                  ],
+                  amount: 1,
+                  item_price: 1409.9,
+                  is_add_on_deal: false,
+                  is_main_item: false,
+                  add_on_deal_id: 0,
+                  item_id: 2147533133,
+                  item_sku: "USB",
+                  variation_sku: "RED",
+                },
+              ],
+              order_sn: "200203C6W0AR27",
+              return_ship_due_date: 1655438336,
+              return_seller_due_date: 1655438336,
+              negotiation_status: "PENDING_RESPOND",
+              seller_proof_status: "PENDING",
+              seller_compensation_status: "PENDING_REQUEST",
+              return_refund_type: "Return",
+              return_solution: 0,
+              is_seller_arrange: false,
+              is_shipping_proof_mandatory: false,
+              return_refund_request_type: 0,
+              validation_type: "seller_validation",
+              is_arrived_at_warehouse: 3,
+              follow_up_action_list: [
+                {
+                  item_id: 2700126223,
+                  model_id: 2000458802,
+                  qty: 2,
+                  current_status: 2,
+                  related_order_sn_list: ["test_string"],
+                  resell_failed_next_step: '""',
+                },
+              ],
+              is_partial_quantity_return: true,
+              is_refund_amount_adjusted: true,
+              shipping_fee_responsibility: "SHOPEE",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getReturnList(exampleRequest);
 
@@ -559,6 +573,7 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_return_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
         timestampPaths: [
           "response.return.create_time",
@@ -569,7 +584,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         ],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -578,55 +593,55 @@ describe("ReturnsManager (Generated Tests)", () => {
       const exampleRequest = {
         return_sn: "return",
       };
-      const exampleResponse = {
-        return_sn: "return",
-        return_refund_request_type: 0,
-        validation_type: "seller_validation",
-        reverse_logistics_status: "LOGISTICS_REQUEST_CREATED",
-        reverse_logistics_update_time: 1740728119,
-        estimated_delivery_date_max: 1740728121,
-        estimated_delivery_date_min: 1740626000,
-        collection_pin_code: "666188",
-        tracking_number: "MY257829361436J",
-        tracking_info: [
-          {
-            update_time: 1740728119,
-            tracking_description: "Parcel has been picked up by our logistics partner",
-            epop_image_list: [
-              "https:",
-              "",
-              "cf.shopee.sg",
-              "file",
-              "4ecbb6fa567e42c1b1e02993ad53df12",
-            ],
-            epod_image_list: [
-              "https:",
-              "",
-              "cf.shopee.sg",
-              "file",
-              "4ecbb6fa567e42c1b1e02993ad53df12",
-            ],
-          },
-        ],
-        post_return_logistics_status: "test_string",
-        post_return_logistics_update_time: "test_string",
-        rts_tracking_number: "test_string",
-        post_return_logistics_tracking_info: [
-          {
-            update_time: "test_string",
-            tracking_description: "return",
-            epop_image_list: ["test_string"],
-            epod_image_list: ["test_string"],
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          return_sn: "return",
+          return_refund_request_type: 0,
+          validation_type: "seller_validation",
+          reverse_logistics_status: "LOGISTICS_REQUEST_CREATED",
+          reverse_logistics_update_time: 1740728119,
+          estimated_delivery_date_max: 1740728121,
+          estimated_delivery_date_min: 1740626000,
+          collection_pin_code: "666188",
+          tracking_number: "MY257829361436J",
+          tracking_info: [
+            {
+              update_time: 1740728119,
+              tracking_description: "Parcel has been picked up by our logistics partner",
+              epop_image_list: [
+                "https:",
+                "",
+                "cf.shopee.sg",
+                "file",
+                "4ecbb6fa567e42c1b1e02993ad53df12",
+              ],
+              epod_image_list: [
+                "https:",
+                "",
+                "cf.shopee.sg",
+                "file",
+                "4ecbb6fa567e42c1b1e02993ad53df12",
+              ],
+            },
+          ],
+          post_return_logistics_status: "test_string",
+          post_return_logistics_update_time: "test_string",
+          rts_tracking_number: "test_string",
+          post_return_logistics_tracking_info: [
+            {
+              update_time: "test_string",
+              tracking_description: "return",
+              epop_image_list: ["test_string"],
+              epod_image_list: ["test_string"],
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getReverseTrackingInfo(exampleRequest);
 
@@ -634,6 +649,7 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_reverse_tracking_info", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
         timestampPaths: [
           "response.reverse_logistics_update_time",
@@ -645,7 +661,7 @@ describe("ReturnsManager (Generated Tests)", () => {
         ],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -654,29 +670,29 @@ describe("ReturnsManager (Generated Tests)", () => {
       const exampleRequest = {
         return_sn: "2206150VT13E3MQ",
       };
-      const exampleResponse = {
-        is_shipping_proof_mandatory: true,
-        has_uploaded_seller_arrange_proof: false,
-        shipping_proof_template: [
-          {
-            is_tracking_number_required: true,
-            is_shipping_image_file_mandatory: true,
-          },
-        ],
-        reverse_logistics_carrier_list: [
-          {
-            reverse_logistics_carrier_id: 0,
-            reverse_logistics_carrier_name: "test_reverse_logistics_carrier_name",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          is_shipping_proof_mandatory: true,
+          has_uploaded_seller_arrange_proof: false,
+          shipping_proof_template: [
+            {
+              is_tracking_number_required: true,
+              is_shipping_image_file_mandatory: true,
+            },
+          ],
+          reverse_logistics_carrier_list: [
+            {
+              reverse_logistics_carrier_id: 0,
+              reverse_logistics_carrier_name: "test_reverse_logistics_carrier_name",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getShippingCarrier(exampleRequest);
 
@@ -684,10 +700,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/get_shipping_carrier", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -698,16 +715,16 @@ describe("ReturnsManager (Generated Tests)", () => {
         proposed_solution: "RETURN_REFUND",
         proposed_adjusted_refund_amount: 100,
       };
-      const exampleResponse = {
-        return_sn: "211101140608253",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          return_sn: "211101140608253",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.offer(exampleRequest);
 
@@ -715,10 +732,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/offer", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -727,30 +745,30 @@ describe("ReturnsManager (Generated Tests)", () => {
       const exampleRequest = {
         return_sn: "123456",
       };
-      const exampleResponse = {
-        image: [
-          {
-            url: "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
-            thumbnail:
-              "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
-          },
-        ],
-        video: [
-          {
-            url: "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
-            thumbnail:
-              "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
-          },
-        ],
-        description: "some description",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          image: [
+            {
+              url: "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
+              thumbnail:
+                "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
+            },
+          ],
+          video: [
+            {
+              url: "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
+              thumbnail:
+                "https://file-proxy.seller.test.shopee.com/api/v2/files/c2hvcGVlLWRyYzAx/6cd5662c25964655827057bb2bfa69e2.png",
+            },
+          ],
+          description: "some description",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.queryProof(exampleRequest);
 
@@ -758,10 +776,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/query_proof", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -778,14 +797,14 @@ describe("ReturnsManager (Generated Tests)", () => {
         ],
         description: "test",
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.uploadProof(exampleRequest);
 
@@ -793,10 +812,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_proof", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -814,14 +834,14 @@ describe("ReturnsManager (Generated Tests)", () => {
         ],
         remarks: "test_string",
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.uploadShippingProof(exampleRequest);
 
@@ -829,10 +849,11 @@ describe("ReturnsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/returns/upload_shipping_proof", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

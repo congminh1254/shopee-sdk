@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * Enum generated for field BindFirstMileTrackingNumberRequestRegion
  */
@@ -167,7 +167,7 @@ export interface BindFirstMileTrackingNumberRequest {
   /**
    * Use this field to specify the region you want to ship parcel.Available value: cn,kr. Please fill in the field according to the region of the Merchant to which the shop belongs.
    */
-  region: BindFirstMileTrackingNumberRequestRegion | string | number;
+  region: BindFirstMileTrackingNumberRequestRegion | string;
   /**
    * The identity of first-mile logistic channel.If you using "dropoff" or "pickup" as shipment method, please call v2.first_mile.get_channel_list to get the logsitc_channel_id then fill it.If you using "self_deliver"as shipment method then the logistics_channel_id should be "null".
    */
@@ -275,7 +275,7 @@ export interface GenerateAndBindFirstMileTrackingNumberCourierDeliveryInfo {
   /**
    * The identity of address. Retrieved from v2.logistics.get_address_list, address_type need to be FIRST_MILE_PICKUP_ADDRESS.
    */
-  address_id: number;
+  address_id: Integer;
   /**
    * The identity of transit warehouse address. Retrieved from v2.first_mile.get_transit_warehouse_list.
    */
@@ -283,11 +283,11 @@ export interface GenerateAndBindFirstMileTrackingNumberCourierDeliveryInfo {
   /**
    * The definition of logistics product ID: 1010003 (kuaidi100 to C) - seller book courier pickup and pay offline1010004 (kuaidi100 prepaid(MP)) - seller can use prepaid account to place courier order, so prepaid_account_id is required
    */
-  logistics_product_id: number;
+  logistics_product_id: Integer;
   /**
    * ID of prepaid account. Retrieved from v2.merchant.get_merchant_prepaid_account_list.
    */
-  prepaid_account_id?: number;
+  prepaid_account_id?: Integer;
   /**
    * The identity of courier service. Retrieved from v2.first_mile.get_courier_delivery_channel_list.
    */
@@ -408,7 +408,7 @@ export interface GetChannelListRequest {
   /**
    * Use this field to specify the region you want to ship parcel. Available value: CN, KR
    */
-  region?: GetChannelListRequestRegion | string | number;
+  region?: GetChannelListRequestRegion | string;
 }
 /**
  * GetChannelListLogisticsChannel sub-interface for GetChannelListResponseData
@@ -425,8 +425,7 @@ export interface GetChannelListLogisticsChannel {
   /**
    * The shipment method for bound orders.Available values: pickup, dropoff, self_deliver.
    */
-  shipment_method?:
-    GetChannelListResponseResponseLogisticsChannelListShipmentMethod | string | number;
+  shipment_method?: GetChannelListResponseResponseLogisticsChannelListShipmentMethod | string;
 }
 /**
  * GetChannelListResponseData sub-interface for GetChannelListResponse
@@ -475,7 +474,7 @@ export interface GetCourierDeliveryChannelListLogisticsChannel {
   /**
    * The identity of logistics product ID: 1010003: kuaidi100 to C1010004: kuaidi100 prepaid(MP)
    */
-  logistics_product_id?: number;
+  logistics_product_id?: Integer;
   /**
    * The name of logistics product ID: - kuaidi100 to C- kuaidi100 prepaid(MP)
    */
@@ -512,7 +511,7 @@ export interface GetCourierDeliveryDetailRequest {
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. limit [1, 50].
    */
-  page_size?: number;
+  page_size?: Integer;
 }
 /**
  * GetCourierDeliveryDetailOrder sub-interface for GetCourierDeliveryDetailResponseData
@@ -529,7 +528,7 @@ export interface GetCourierDeliveryDetailOrder {
   /**
    * The tracking number of SLS for orders/forders.
    */
-  sls_tracking_number?: SlsTrackingNumber | string | number;
+  sls_tracking_number?: SlsTrackingNumber | string;
   /**
    * Use this filed to indicate whether the order has been picked up by carrier.
    */
@@ -592,7 +591,7 @@ export interface GetCourierDeliveryTrackingNumberListRequest {
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. limit [1, 50]
    */
-  page_size?: number;
+  page_size?: Integer;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
@@ -621,7 +620,7 @@ export interface GetCourierDeliveryTrackingNumberListTrackingNumber {
   /**
    * The declare date of binding ID/first-mile tracking number.
    */
-  declare_date?: DeclareDate | string | number;
+  declare_date?: DeclareDate | string;
 }
 /**
  * GetCourierDeliveryTrackingNumberListResponseData sub-interface for GetCourierDeliveryTrackingNumberListResponse
@@ -711,7 +710,7 @@ export interface GetDetailOrder {
   /**
    * The tracking number of SLS for orders/forders.
    */
-  sls_tracking_number?: SlsTrackingNumber | string | number;
+  sls_tracking_number?: SlsTrackingNumber | string;
   /**
    * Use this filed to indicate whether the order has been picked up by carrier.
    */
@@ -840,7 +839,7 @@ export interface GetTransitWarehouseListRequest {
   /**
    * Use this field to specify the shipment method you want to ship parcel. Available value: pickup, dropoff, self_deliver, courier_delivery.Note: Only when shipment_method = dropoff, the API response will include warehouses where warehouse_type = 1 (vendor warehouse).
    */
-  shipment_method?: GetTransitWarehouseListRequestShipmentMethod | string | number;
+  shipment_method?: GetTransitWarehouseListRequestShipmentMethod | string;
 }
 /**
  * GetTransitWarehouseListTransitWarehouse sub-interface for GetTransitWarehouseListResponseData
@@ -892,7 +891,7 @@ export interface GetUnbindOrderListRequest {
   /**
    * Indicate response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them.  Available values: logistics_status,package_number.
    */
-  response_optional_fields?: ResponseOptionalFields | string | number;
+  response_optional_fields?: ResponseOptionalFields | string;
 }
 /**
  * GetUnbindOrderListOrder sub-interface for GetUnbindOrderListResponseData
@@ -945,21 +944,7 @@ export interface GetWaybillRequest {
    */
   first_mile_tracking_number_list: string[];
 }
-/**
- * Response data payload for get_waybill
- */
-export interface GetWaybillResponseData {
-  /**
-   * The waybill file.
-   */
-  waybill?: any;
-}
-/**
- * Response payload for get_waybill
- *
- * Use this api to get first mile waybill file.
- */
-export type GetWaybillResponse = FetchResponse<GetWaybillResponseData>;
+export type GetWaybillResponse = Buffer;
 /**
  * UnbindFirstMileTrackingNumberOrder sub-interface for UnbindFirstMileTrackingNumberRequest
  */

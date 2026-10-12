@@ -26,22 +26,19 @@ describe("MerchantManager (Generated Tests)", () => {
   describe("getMerchantInfo", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
+
       const exampleResponse = {
         merchant_name: "sellerplatform_uat_merchant",
         auth_time: 1608114596,
         expire_time: 1640342010,
-        request_id: "a3a4277823b1019960cc92cfd972c506",
+        request_id: "test-request-id",
         merchant_currency: "CNSC",
         merchant_region: "KR",
         is_upgraded_cbsc: true,
-      };
-
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getMerchantInfo(exampleRequest);
 
@@ -49,11 +46,12 @@ describe("MerchantManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_merchant_info", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
         timestampPaths: ["auth_time", "expire_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -63,32 +61,32 @@ describe("MerchantManager (Generated Tests)", () => {
         page_no: 1,
         page_size: 10,
       };
-      const exampleResponse = {
-        total: 8,
-        list: [
-          {
-            prepaid_account_id: 123,
-            prepaid_account_courier_key: "test_string",
-            prepaid_account_courier_name: "test_string",
-            prepaid_account_partner_id: "test_string",
-            prepaid_account_partner_key: "test_string",
-            prepaid_account_partner_secret: "test_string",
-            prepaid_account_partner_name: "test_string",
-            prepaid_account_partner_net: "test_string",
-            prepaid_account_partner_code: "test_string",
-            prepaid_account_check_man: "test_string",
-            prepaid_account_is_default: true,
-          },
-        ],
-        more: false,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          total: 8,
+          list: [
+            {
+              prepaid_account_id: 123,
+              prepaid_account_courier_key: "test_string",
+              prepaid_account_courier_name: "test_string",
+              prepaid_account_partner_id: "test_string",
+              prepaid_account_partner_key: "test_string",
+              prepaid_account_partner_secret: "test_string",
+              prepaid_account_partner_name: "test_string",
+              prepaid_account_partner_net: "test_string",
+              prepaid_account_partner_code: "test_string",
+              prepaid_account_check_man: "test_string",
+              prepaid_account_is_default: true,
+            },
+          ],
+          more: false,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getMerchantPrepaidAccountList(exampleRequest);
 
@@ -99,11 +97,12 @@ describe("MerchantManager (Generated Tests)", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -117,46 +116,46 @@ describe("MerchantManager (Generated Tests)", () => {
         },
         warehouse_type: 123,
       };
-      const exampleResponse = {
-        total_count: 123,
-        warehouse_list: [
-          {
-            warehouse_id: 123,
-            warehouse_name: "test_string",
-            warehouse_type: 123,
-            warehouse_region: "test_string",
-            location_id: "test_string",
-            address: {
-              address_name: "test_string",
-              region: "test_string",
-              address: "test_string",
-              city: "test_string",
-              district: "test_string",
-              state: "test_string",
-              town: "test_string",
-              zip_code: "test_string",
-            },
-            enterprise_info: {
-              company_name: "test_string",
-              cnpj: "test_string",
-              state_registration_number: "test_string",
-              is_freight_payer: true,
-            },
-          },
-        ],
-        cursor: {
-          next_id: 123,
-          prev_id: 123,
-          page_size: 123,
-        },
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          total_count: 123,
+          warehouse_list: [
+            {
+              warehouse_id: 123,
+              warehouse_name: "test_string",
+              warehouse_type: 123,
+              warehouse_region: "test_string",
+              location_id: "test_string",
+              address: {
+                address_name: "test_string",
+                region: "test_string",
+                address: "test_string",
+                city: "test_string",
+                district: "test_string",
+                state: "test_string",
+                town: "test_string",
+                zip_code: "test_string",
+              },
+              enterprise_info: {
+                company_name: "test_string",
+                cnpj: "test_string",
+                state_registration_number: "test_string",
+                is_freight_payer: true,
+              },
+            },
+          ],
+          cursor: {
+            next_id: 123,
+            prev_id: 123,
+            page_size: 123,
+          },
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getMerchantWarehouseList(exampleRequest);
 
@@ -164,29 +163,30 @@ describe("MerchantManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_merchant_warehouse_list", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
   describe("getMerchantWarehouseLocationList", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
-      const exampleResponse = [
-        {
-          location_id: "CNZ",
-          warehouse_name: "warehouse1",
-        },
-      ];
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: [
+          {
+            location_id: "CNZ",
+            warehouse_name: "warehouse1",
+          },
+        ],
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getMerchantWarehouseLocationList(exampleRequest);
 
@@ -197,11 +197,12 @@ describe("MerchantManager (Generated Tests)", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -211,8 +212,9 @@ describe("MerchantManager (Generated Tests)", () => {
         page_no: 1,
         page_size: 100,
       };
+
       const exampleResponse = {
-        request_id: "a3a4277823b1019960cc92cfd972c506",
+        request_id: "test-request-id",
         shop_list: [
           {
             shop_id: 600000,
@@ -224,14 +226,10 @@ describe("MerchantManager (Generated Tests)", () => {
           },
         ],
         more: false,
-      };
-
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getShopListByMerchant(exampleRequest);
 
@@ -239,10 +237,11 @@ describe("MerchantManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_shop_list_by_merchant", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -257,26 +256,26 @@ describe("MerchantManager (Generated Tests)", () => {
           page_size: 123,
         },
       };
-      const exampleResponse = {
-        shop_list: [
-          {
-            shop_id: 123,
-            shop_name: "test_string",
-          },
-        ],
-        cursor: {
-          next_id: 123,
-          prev_id: 123,
-          page_size: 123,
-        },
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          shop_list: [
+            {
+              shop_id: 123,
+              shop_name: "test_string",
+            },
+          ],
+          cursor: {
+            next_id: 123,
+            prev_id: 123,
+            page_size: 123,
+          },
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getWarehouseEligibleShopList(exampleRequest);
 
@@ -287,11 +286,12 @@ describe("MerchantManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

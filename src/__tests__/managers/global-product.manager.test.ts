@@ -96,6 +96,7 @@ describe("GlobalProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_category", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: { language: "zh-hans" },
       });
 
@@ -122,6 +123,7 @@ describe("GlobalProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_category", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: undefined,
       });
 
@@ -166,6 +168,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             page_size: 10,
             update_time_from: 1611311600,
@@ -234,6 +237,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             global_item_id_list: [123456],
           },
@@ -280,6 +284,7 @@ describe("GlobalProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_item", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: {
           category_id: 100182,
           global_item_name: "New Product",
@@ -323,6 +328,7 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             global_item_id: 123456,
             global_item_name: "Updated Product",
@@ -356,6 +362,7 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             global_item_id: 123456,
           },
@@ -372,9 +379,7 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          warning: "",
-        },
+        warning: "",
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -393,12 +398,12 @@ describe("GlobalProductManager", () => {
         ],
         global_model: [
           {
-            tier_index: 0,
+            tier_index: [0],
             global_model_sku: "SKU-RED",
             original_price: 99.99,
           },
           {
-            tier_index: 1,
+            tier_index: [1],
             global_model_sku: "SKU-BLUE",
             original_price: 99.99,
           },
@@ -411,6 +416,7 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             global_item_id: 123456,
             standardise_tier_variation: [
@@ -425,12 +431,12 @@ describe("GlobalProductManager", () => {
             ],
             global_model: [
               {
-                tier_index: 0,
+                tier_index: [0],
                 global_model_sku: "SKU-RED",
                 original_price: 99.99,
               },
               {
-                tier_index: 1,
+                tier_index: [1],
                 global_model_sku: "SKU-BLUE",
                 original_price: 99.99,
               },
@@ -440,7 +446,7 @@ describe("GlobalProductManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.warning).toBe("");
+      expect(result.warning).toBe("");
     });
   });
 
@@ -450,9 +456,7 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          warning: "",
-        },
+        warning: "",
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -474,6 +478,7 @@ describe("GlobalProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_stock", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: {
           global_item_id: 123456,
           stock_list: [
@@ -490,7 +495,7 @@ describe("GlobalProductManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.warning).toBe("");
+      expect(result.warning).toBe("");
     });
   });
 
@@ -500,9 +505,7 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          warning: "",
-        },
+        warning: "",
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -520,6 +523,7 @@ describe("GlobalProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_price", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: {
           global_item_id: 123456,
           price_list: [
@@ -532,7 +536,7 @@ describe("GlobalProductManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.warning).toBe("");
+      expect(result.warning).toBe("");
     });
   });
 
@@ -571,6 +575,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             category_id_list: [100182],
             language: "en",
@@ -614,6 +619,7 @@ describe("GlobalProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_brand_list", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: {
           category_id: 100182,
           page_size: 20,
@@ -651,6 +657,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             global_item_name: "iPhone Case",
           },
@@ -687,6 +694,7 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             global_item_id: 123456,
             shop_id: 67890,
@@ -728,6 +736,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             publish_task_id: 123,
           },
@@ -769,6 +778,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             shop_id: 67890,
             item_id_list: [999],
@@ -787,9 +797,7 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          warning: "",
-        },
+        warning: "",
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -811,6 +819,7 @@ describe("GlobalProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/set_sync_field", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: {
           shop_sync_list: [
             {
@@ -827,7 +836,7 @@ describe("GlobalProductManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.warning).toBe("");
+      expect(result.warning).toBe("");
     });
   });
 
@@ -854,6 +863,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             category_id: 100182,
           },
@@ -917,6 +927,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             global_item_id: 123456,
           },
@@ -935,9 +946,7 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          warning: "",
-        },
+        warning: "",
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -956,6 +965,7 @@ describe("GlobalProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_model", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: {
           global_item_id: 123456,
           global_model: [
@@ -969,7 +979,7 @@ describe("GlobalProductManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.warning).toBe("");
+      expect(result.warning).toBe("");
     });
   });
 
@@ -979,9 +989,7 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          warning: "",
-        },
+        warning: "",
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1002,6 +1010,7 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             global_item_id: 123456,
             global_model: [
@@ -1015,7 +1024,7 @@ describe("GlobalProductManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.warning).toBe("");
+      expect(result.warning).toBe("");
     });
   });
 
@@ -1044,6 +1053,7 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             global_item_id: 123456,
             global_model_id: 789,
@@ -1062,7 +1072,6 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1088,6 +1097,7 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             global_item_id: 123456,
             standardise_tier_variation: [
@@ -1140,6 +1150,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             category_id: 100182,
           },
@@ -1179,6 +1190,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             global_item_id: 123456,
           },
@@ -1220,6 +1232,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             global_item_id: 123456,
             offset: 0,
@@ -1262,6 +1275,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             global_item_id: 123456,
           },
@@ -1302,6 +1316,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             global_item_name: "T-Shirt",
             category_id: 100001,
@@ -1345,6 +1360,7 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             attribute_id: 1000,
             value_name: "cotton",
@@ -1365,14 +1381,12 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          standardise_variation_list: [
-            {
-              variation_id: 1001,
-              variation_name: "Color",
-            },
-          ],
-        },
+        standardise_variation_list: [
+          {
+            variation_id: 1001,
+            variation_name: "Color",
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1384,13 +1398,14 @@ describe("GlobalProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_variations", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: {
           category_id: 100001,
         },
       });
 
       expect(result.error).toBe("");
-      expect(result.response.standardise_variation_list).toHaveLength(1);
+      expect(result.standardise_variation_list).toHaveLength(1);
     });
   });
 
@@ -1417,6 +1432,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             shop_id: 67890,
           },
@@ -1434,9 +1450,7 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          warning: "",
-        },
+        warning: "",
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1452,6 +1466,7 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             shop_id: 67890,
             adjustment_rate: 10.5,
@@ -1460,7 +1475,7 @@ describe("GlobalProductManager", () => {
       );
 
       expect(result.error).toBe("");
-      expect(result.response.warning).toBe("");
+      expect(result.warning).toBe("");
     });
   });
 
@@ -1495,6 +1510,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             category_id: 100001,
             page_size: 20,
@@ -1546,6 +1562,7 @@ describe("GlobalProductManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             size_chart_id: 123,
           },
@@ -1563,7 +1580,6 @@ describe("GlobalProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1579,6 +1595,7 @@ describe("GlobalProductManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             global_item_id: 123456,
             size_chart: "chart_image_id",

@@ -1,13 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
-/**
- * Enum generated for field TierIndex
- */
-export enum TierIndex {
-  TIER = "tier",
-  TWO = "two",
-}
+import { FetchResponse, ResponseMetadata, Integer } from "./fetch.js";
 /**
  * AddGlobalItemImage sub-interface for AddGlobalItemRequest
  */
@@ -24,15 +17,15 @@ export interface AddGlobalItemDimension {
   /**
    * Package length of global item.
    */
-  package_length: number;
+  package_length: Integer;
   /**
    * Package width of global item.
    */
-  package_width: number;
+  package_width: Integer;
   /**
    * Package height of global item.
    */
-  package_height: number;
+  package_height: Integer;
 }
 /**
  * AddGlobalItemPreOrder sub-interface for AddGlobalItemRequest
@@ -41,7 +34,7 @@ export interface AddGlobalItemPreOrder {
   /**
    * Days to ship.
    */
-  days_to_ship: number;
+  days_to_ship: Integer;
 }
 /**
  * AddGlobalItemBrand sub-interface for AddGlobalItemRequest
@@ -50,7 +43,7 @@ export interface AddGlobalItemBrand {
   /**
    * Id of brand.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * Original name of brand.
    */
@@ -63,7 +56,7 @@ export interface AddGlobalItemAttributeValue {
   /**
    * ID of attribute value. In the following cases, the value id needs to be uploaded as 0, and original_value_name is mandatory, needs to be filled in customized value. (1) AttributeInputType is TEXT_FILED; (2) AttributeInputType is COMBO_BOX or MULTIPLE_SELECT_COMBO_BOX, and the seller want to fill in a customized value.
    */
-  value_id?: number;
+  value_id?: Integer;
   /**
    * Name of attribute value. original_value_name from global_product.get_attributes api. If value id=0, this field is required. If AttributeType is DATE_TYPE or TIMESTAMP_TYPE, you can upload timestamp(string type) as the original_value_name.
    */
@@ -80,7 +73,7 @@ export interface AddGlobalItemAttribute {
   /**
    * ID of attribute.
    */
-  attribute_id?: number;
+  attribute_id?: Integer;
   attribute_value_list?: AddGlobalItemAttributeValue[];
 }
 /**
@@ -151,7 +144,7 @@ export interface AddGlobalItemSizeChartInfo {
   /**
    * ID of template size chart. If you want to remove the template size chart of the item, please pass the "size_chart_id" as 0. You only need to fill out either the image or template. If both are filled, only the template will be kept.Notes: Both local shops and CB shops are supported to set "size_chart_id" now and seller need set the size_chart template in CBSC in advance
    */
-  size_chart_id?: number;
+  size_chart_id?: Integer;
 }
 /**
  * Request parameters for add_global_item
@@ -162,7 +155,7 @@ export interface AddGlobalItemRequest {
   /**
    * Category id of global item.
    */
-  category_id: number;
+  category_id: Integer;
   /**
    * Name of global item.
    */
@@ -186,7 +179,7 @@ export interface AddGlobalItemRequest {
   /**
    * Normal stock of global item.
    */
-  normal_stock?: number;
+  normal_stock?: Integer;
   /**
    * Weight of global item.
    */
@@ -237,7 +230,7 @@ export interface AddGlobalItemResponseData {
   /**
    * Id of added global item.
    */
-  global_item_id?: number;
+  global_item_id?: Integer;
 }
 /**
  * Response payload for add_global_item
@@ -326,7 +319,7 @@ export interface AddGlobalModelRequest {
   /**
    * ID of global item.
    */
-  global_item_id: number;
+  global_item_id: Integer;
   /**
    * Global model setting list. Limit is  [1,50].
    */
@@ -346,7 +339,7 @@ export interface AddGlobalModelResponseData {
  *
  * Add global model. Only for China mainland sellers and Korean sellers.
  */
-export type AddGlobalModelResponse = FetchResponse<AddGlobalModelResponseData>;
+export type AddGlobalModelResponse = ResponseMetadata & AddGlobalModelResponseData;
 /**
  * Request parameters for category_recommend
  *
@@ -557,7 +550,7 @@ export interface CreatePublishTaskRequest {
   /**
    * Id of global item.
    */
-  global_item_id: number;
+  global_item_id: Integer;
   /**
    * Id of shop to publish to.
    */
@@ -578,7 +571,7 @@ export interface CreatePublishTaskResponseData {
   /**
    * The id of publish task.
    */
-  publish_task_id?: number;
+  publish_task_id?: Integer;
 }
 /**
  * Response payload for create_publish_task
@@ -720,7 +713,7 @@ export interface GetAttributeTreeAttributeValue {
   /**
    * Child attributes for the value of parent attributeThe structure content is the same as attribute_tree
    */
-  child_attribute_list?: any[];
+  child_attribute_list?: unknown[];
   /**
    * Translate results for value name display
    */
@@ -994,7 +987,7 @@ export interface GetGlobalItemInfoRequest {
   /**
    * Global item id list. Length limit is [1,20].
    */
-  global_item_id_list: number[];
+  global_item_id_list: Integer[];
 }
 /**
  * GetGlobalItemInfoStockInfo sub-interface for GetGlobalItemInfoGlobalItem
@@ -1193,7 +1186,7 @@ export interface GetGlobalItemInfoGlobalItem {
   /**
    * Shopee's unique identifier for an global item.
    */
-  global_item_id?: number;
+  global_item_id?: Integer;
   /**
    * Name of the global item.
    */
@@ -1265,7 +1258,7 @@ export interface GetGlobalItemInfoGlobalItem {
   /**
    * Type of description : values: See Data Definition- description_type (normal , extended).
    */
-  description_type?: any;
+  description_type?: unknown;
   /**
    * whether item is fulfillment by shopee
    */
@@ -1273,7 +1266,7 @@ export interface GetGlobalItemInfoGlobalItem {
   /**
    * size_chart 模板ID
    */
-  size_chart_id?: number;
+  size_chart_id?: Integer;
 }
 /**
  * GetGlobalItemInfoResponseData sub-interface for GetGlobalItemInfoResponse
@@ -1293,7 +1286,7 @@ export type GetGlobalItemInfoResponse = FetchResponse<GetGlobalItemInfoResponseD
  * Get global item upload control.
  */
 export interface GetGlobalItemLimitRequest {
-  category_id?: number;
+  category_id?: Integer;
 }
 /**
  * GetGlobalItemLimitPriceLimit sub-interface for GetGlobalItemLimitResponseData
@@ -1315,11 +1308,11 @@ export interface GetGlobalItemLimitStockLimit {
   /**
    * Global item stock min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Global item stock max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetGlobalItemLimitGlobalItemNameLengthLimit sub-interface for GetGlobalItemLimitResponseData
@@ -1328,11 +1321,11 @@ export interface GetGlobalItemLimitGlobalItemNameLengthLimit {
   /**
    * Global item name length min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Global item name length max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetGlobalItemLimitGlobalItemImageCountLimit sub-interface for GetGlobalItemLimitResponseData
@@ -1341,11 +1334,11 @@ export interface GetGlobalItemLimitGlobalItemImageCountLimit {
   /**
    * Global item image count min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Global item image count max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetGlobalItemLimitGlobalItemDescriptionLengthLimit sub-interface for GetGlobalItemLimitResponseData
@@ -1354,11 +1347,11 @@ export interface GetGlobalItemLimitGlobalItemDescriptionLengthLimit {
   /**
    * Global item description length min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Global item description length max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetGlobalItemLimitTierVariationNameLengthLimit sub-interface for GetGlobalItemLimitResponseData
@@ -1367,11 +1360,11 @@ export interface GetGlobalItemLimitTierVariationNameLengthLimit {
   /**
    * Global item tier variation name length min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Global item tier variation name length max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetGlobalItemLimitTierVariationOptionLengthLimit sub-interface for GetGlobalItemLimitResponseData
@@ -1380,11 +1373,11 @@ export interface GetGlobalItemLimitTierVariationOptionLengthLimit {
   /**
    * Global item tier variation option length min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Global item tier variation option length max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetGlobalItemLimitExtendedDescriptionLimit sub-interface for GetGlobalItemLimitResponseData
@@ -1427,8 +1420,8 @@ export interface GetGlobalItemLimitExtendedDescriptionLimit {
  * GetGlobalItemLimitDaysToShipRange sub-interface for GetGlobalItemLimitDtsLimit
  */
 export interface GetGlobalItemLimitDaysToShipRange {
-  min_limit?: number;
-  max_limit?: number;
+  min_limit?: Integer;
+  max_limit?: Integer;
 }
 /**
  * GetGlobalItemLimitDtsLimit sub-interface for GetGlobalItemLimitResponseData
@@ -1560,7 +1553,7 @@ export interface GetGlobalModelListRequest {
   /**
    * The id of global item.
    */
-  global_item_id: number;
+  global_item_id: Integer;
 }
 /**
  * GetGlobalModelListImage sub-interface for GetGlobalModelListOption
@@ -1668,7 +1661,7 @@ export interface GetGlobalModelListGlobalModel {
   /**
    * Id of global model.
    */
-  global_model_id?: number;
+  global_model_id?: Integer;
   /**
    * Sku of global model.
    */
@@ -1776,7 +1769,7 @@ export interface GetLocalAdjustmentRateRequest {
   /**
    * The unique identifier of the shop whose adjustment rate is being queried
    */
-  shop_id: number;
+  shop_id: Integer;
 }
 /**
  * GetLocalAdjustmentRateResponseData sub-interface for GetLocalAdjustmentRateResponse
@@ -2167,7 +2160,7 @@ export type GetSizeChartDetailResponse = FetchResponse<GetSizeChartDetailRespons
  * Get size chart list
  */
 export interface GetSizeChartListRequest {
-  category_id: number;
+  category_id: Integer;
   page_size: number;
   cursor: string;
 }
@@ -2206,14 +2199,14 @@ export interface GetVariationsRequest {
  * GetVariationsVariationOption sub-interface for GetVariationsVariationGroup
  */
 export interface GetVariationsVariationOption {
-  variation_option_id?: number;
+  variation_option_id?: Integer;
   variation_option_name?: string;
 }
 /**
  * GetVariationsVariationGroup sub-interface for GetVariationsStandardiseVariation
  */
 export interface GetVariationsVariationGroup {
-  variation_group_id?: number;
+  variation_group_id?: Integer;
   variation_group_name?: string;
   variation_option_list?: GetVariationsVariationOption[];
 }
@@ -2221,7 +2214,7 @@ export interface GetVariationsVariationGroup {
  * GetVariationsStandardiseVariation sub-interface for GetVariationsResponse
  */
 export interface GetVariationsStandardiseVariation {
-  variation_id?: number;
+  variation_id?: Integer;
   variation_name?: string;
   variation_group_list?: GetVariationsVariationGroup[];
 }
@@ -2233,7 +2226,7 @@ export interface GetVariationsResponseData {
    * Warning message.
    */
   warning?: string;
-  data?: any;
+  data?: unknown;
   standardise_variation_list?: GetVariationsStandardiseVariation[];
 }
 /**
@@ -2241,7 +2234,7 @@ export interface GetVariationsResponseData {
  *
  * Get the standardized tier variation defined by Shopee, which is currently a three-layer tree structure. The top layer is variations, the second layer is groups, groups are used to divide options, and the third layer is options.
  */
-export type GetVariationsResponse = FetchResponse<GetVariationsResponseData>;
+export type GetVariationsResponse = ResponseMetadata & GetVariationsResponseData;
 /**
  * InitTierVariationSellerStock sub-interface for InitTierVariationGlobalModel
  */
@@ -2253,7 +2246,7 @@ export interface InitTierVariationSellerStock {
   /**
    * stock
    */
-  stock: number;
+  stock: Integer;
 }
 /**
  * InitTierVariationDimension sub-interface for InitTierVariationGlobalModel
@@ -2300,7 +2293,7 @@ export interface InitTierVariationGlobalModel {
   /**
    * Tier index of global model. Index starts from 0.If you want to update one tier/two tier to no tier, can just pass the tier_variation and standardise_tier_variation as [], and pass the global_model >> tier_index as [], meanwhile pass the original_price, seller_stock, etc., to set the price and stock for the modified product with no tier structure.
    */
-  tier_index: TierIndex | string | number;
+  tier_index: number[];
   /**
    * The weight of this global model, the unit is KG.If don't set the weight of this global model, will use the weight of global item by default.If set the dimension of this global model, them must set the weight of this global model.
    */
@@ -2385,7 +2378,7 @@ export interface InitTierVariationResponseData {
  *
  * Only for China mainland sellers and Korean sellers. If you only define color, it is one tier, if you define color and size, it is two tier. Support two tier structures at most. This API can change no tier to one tier, no tier to two tier, one tier to two tier, two tier to one tier, one tier to no tier, two tier to no tier. Please create variants after an interval of 5 seconds after creating an item, as there may be a delay.
  */
-export type InitTierVariationResponse = FetchResponse<InitTierVariationResponseData>;
+export type InitTierVariationResponse = ResponseMetadata & InitTierVariationResponseData;
 /**
  * Request parameters for search_global_attribute_value_list
  *
@@ -2394,24 +2387,24 @@ export type InitTierVariationResponse = FetchResponse<InitTierVariationResponseD
 export interface SearchGlobalAttributeValueListRequest {
   attribute_id: number;
   value_name?: string;
-  cursor: number;
+  cursor: Integer;
   /**
    * The range is 1 to 100
    */
-  limit: number;
+  limit: Integer;
 }
 /**
  * SearchGlobalAttributeValueListValue sub-interface for SearchGlobalAttributeValueListResponseData
  */
 export interface SearchGlobalAttributeValueListValue {
-  value_id?: number;
+  value_id?: Integer;
   value_name?: string;
 }
 /**
  * SearchGlobalAttributeValueListPageInfo sub-interface for SearchGlobalAttributeValueListResponseData
  */
 export interface SearchGlobalAttributeValueListPageInfo {
-  cursor?: number;
+  cursor?: Integer;
   has_next?: boolean;
 }
 /**
@@ -2486,7 +2479,7 @@ export interface SetSyncFieldResponseData {
  *
  * Set auto sync field. Only for China mainland sellers and Korean sellers.
  */
-export type SetSyncFieldResponse = FetchResponse<SetSyncFieldResponseData>;
+export type SetSyncFieldResponse = ResponseMetadata & SetSyncFieldResponseData;
 /**
  * Request parameters for support_size_chart
  *
@@ -2639,7 +2632,7 @@ export interface UpdateGlobalItemSizeChartInfo {
   /**
    * ID of template size chart. If you want to remove the template size chart of the item, please pass the "size_chart_id" as 0. You only need to fill out either the image or template. If both are filled, only the template will be kept.Notes: Both local shops and CB shops are supported to set "size_chart_id" now and seller need set the size_chart template in CBSC in advance
    */
-  size_chart_id?: number;
+  size_chart_id?: Integer;
 }
 /**
  * Request parameters for update_global_item
@@ -2650,7 +2643,7 @@ export interface UpdateGlobalItemRequest {
   /**
    * Id of global item.
    */
-  global_item_id: number;
+  global_item_id: Integer;
   /**
    * Category id of global item.
    */
@@ -2713,7 +2706,7 @@ export interface UpdateGlobalItemResponseData {
   /**
    * Id of updated global item.
    */
-  global_item_id?: number;
+  global_item_id?: Integer;
 }
 /**
  * Response payload for update_global_item
@@ -2758,7 +2751,7 @@ export interface UpdateGlobalModelGlobalModel {
   /**
    * ID of global model.
    */
-  global_model_id: number;
+  global_model_id: Integer;
   /**
    * The weight of this global model, the unit is KG.If don't set the weight of this global model, will use the weight of global item by default.If set the dimension of this global model, them must set the weight of this global model.
    */
@@ -2781,7 +2774,7 @@ export interface UpdateGlobalModelRequest {
   /**
    * ID of global item.
    */
-  global_item_id: number;
+  global_item_id: Integer;
   /**
    * Sku setting for global model. Limit is [1,50].
    */
@@ -2801,7 +2794,7 @@ export interface UpdateGlobalModelResponseData {
  *
  * Update global model. Only for China mainland sellers and Korean sellers.
  */
-export type UpdateGlobalModelResponse = FetchResponse<UpdateGlobalModelResponseData>;
+export type UpdateGlobalModelResponse = ResponseMetadata & UpdateGlobalModelResponseData;
 /**
  * Request parameters for update_local_adjustment_rate
  *
@@ -2815,7 +2808,7 @@ export interface UpdateLocalAdjustmentRateRequest {
   /**
    * The unique identifier of the shop to which the adjustment rate applies
    */
-  shop_id: number;
+  shop_id: Integer;
 }
 /**
  * Response data payload for update_local_adjustment_rate
@@ -2831,8 +2824,8 @@ export interface UpdateLocalAdjustmentRateResponseData {
  *
  * A multiplier that automatically converts your CB stock price into the local-warehouse price. It ensures your local inventory prices reflect regional costs, currency factors, and margin targets.
  */
-export type UpdateLocalAdjustmentRateResponse =
-  FetchResponse<UpdateLocalAdjustmentRateResponseData>;
+export type UpdateLocalAdjustmentRateResponse = ResponseMetadata &
+  UpdateLocalAdjustmentRateResponseData;
 /**
  * UpdatePricePrice sub-interface for UpdatePriceRequest
  */
@@ -2875,7 +2868,7 @@ export interface UpdatePriceResponseData {
  *
  * Update global price. Only for China mainland sellers and Korean sellers.
  */
-export type UpdatePriceResponse = FetchResponse<UpdatePriceResponseData>;
+export type UpdatePriceResponse = ResponseMetadata & UpdatePriceResponseData;
 /**
  * Request parameters for update_size_chart
  *
@@ -2905,7 +2898,7 @@ export interface UpdateSizeChartResponseData {
  *
  * Update size chart for global item. Only for China mainland sellers and Korean sellers.
  */
-export type UpdateSizeChartResponse = FetchResponse<UpdateSizeChartResponseData>;
+export type UpdateSizeChartResponse = ResponseMetadata & UpdateSizeChartResponseData;
 /**
  * UpdateStockSellerStock sub-interface for UpdateStockStock
  */
@@ -2926,7 +2919,7 @@ export interface UpdateStockStock {
   /**
    * ID of global model.
    */
-  global_model_id?: number;
+  global_model_id?: Integer;
   seller_stock?: UpdateStockSellerStock[];
 }
 /**
@@ -2938,7 +2931,7 @@ export interface UpdateStockRequest {
   /**
    * ID of global item.
    */
-  global_item_id: number;
+  global_item_id: Integer;
   /**
    * Stock setting for global model. Limit is [1,50].
    */
@@ -2958,7 +2951,7 @@ export interface UpdateStockResponseData {
  *
  * Update global stock. Only for China mainland sellers and Korean sellers.
  */
-export type UpdateStockResponse = FetchResponse<UpdateStockResponseData>;
+export type UpdateStockResponse = ResponseMetadata & UpdateStockResponseData;
 /**
  * UpdateTierVariationModel sub-interface for UpdateTierVariationRequest
  */
@@ -2966,7 +2959,7 @@ export interface UpdateTierVariationModel {
   /**
    * ID of model
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * Model's tier_variation
    */
@@ -3010,7 +3003,7 @@ export interface UpdateTierVariationRequest {
   /**
    * ID of global item.
    */
-  global_item_id: number;
+  global_item_id: Integer;
   model_list?: UpdateTierVariationModel[];
   /**
    * item standardise tier variation There is at least one standardise_tier_variation and tier_variation
@@ -3031,4 +3024,4 @@ export interface UpdateTierVariationResponseData {
  *
  * Update global product tier variation. Only for China mainland sellers and Korean sellers.This api can only be used without changing the tier structure, you can add options, delete options, and update the option image by this api.
  */
-export type UpdateTierVariationResponse = FetchResponse<UpdateTierVariationResponseData>;
+export type UpdateTierVariationResponse = ResponseMetadata & UpdateTierVariationResponseData;

@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer, BinaryFile } from "./fetch.js";
 /**
  * Enum generated for field ReturnRefundType
  */
@@ -121,7 +121,7 @@ export interface ConvertImageRequest {
   /**
    * The proof picture to be uploaded must be within 10MB in size, and the format only supports .jpg, .jpeg, and .png. Only one picture is allowed to be uploaded per request. If multiple pictures are uploaded, only the first picture will be processed.
    */
-  upload_image: any;
+  upload_image: BinaryFile;
 }
 /**
  * ConvertImageResponseData sub-interface for ConvertImageResponse
@@ -324,7 +324,7 @@ export interface GetReturnDetailItem {
   /**
    * Shopee's unique identifier for a variation of an item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Name of item in local language.
    */
@@ -352,11 +352,11 @@ export interface GetReturnDetailItem {
   /**
    * The unique identity of an addon deal.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id?: Integer;
   /**
    * The id of item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The sku of item.
    */
@@ -377,15 +377,15 @@ export interface GetReturnDetail_GetReturnDetailItem {
   /**
    * The id of item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Shopee's unique identifier for a variation of an item.
    */
-  variation_id?: number;
+  variation_id?: Integer;
   /**
    * item's quantity purchase
    */
-  quantity_purchased?: number;
+  quantity_purchased?: Integer;
   /**
    * item's origin price
    */
@@ -398,7 +398,7 @@ export interface GetReturnDetailActivity {
   /**
    * The id of activity.
    */
-  activity_id?: any;
+  activity_id?: Integer;
   /**
    * The type of activity.
    */
@@ -544,11 +544,11 @@ export interface GetReturnDetailFollowUpAction {
   /**
    * Unique identifier of the item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Unique identifier of the model under the item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Quantity of items or models under the same current status.
    */
@@ -678,7 +678,7 @@ export interface GetReturnDetailResponseData {
   /**
    * To indicate whether the return is RRBOC (Return/Refund request raised before Order Complete) or RRAOC (Return/Refund request raised after Order Complete).
    */
-  return_refund_type?: ReturnRefundType | string | number;
+  return_refund_type?: ReturnRefundType | string;
   /**
    * To indicate the most updated solution of the Return/Refund request (NOTE: this is not the solution during negotiation). Applicable value: - 0: Return and Refund- 1: Refund Only
    */
@@ -832,11 +832,11 @@ export interface GetReturnListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0. if data is more than one page, the offset can be some entry to start next call.
    */
-  page_no: number;
+  page_no: Integer;
   /**
    * if many items are available to retrieve, you may need to call GetReturnList multiple times to retrieve all the data. Each result set is returned as a page of entries. Default is 40. Use the Pagination filters to control the maximum number of entries (<= 100) to retrieve per page (i.e., per call), the offset number to start next call. This integer value is usUed to specify the maximum number of entries to return in a single ""page"" of data.
    */
-  page_size: number;
+  page_size: Integer;
   /**
    * The create_time_from and create_time_to fields specify a date range for retrieving orders (based on the order create time). The create_time_from field is the starting date range. The maximum date range that may be specified with the create_time_from and create_time_to fields is 15 days.
    */
@@ -894,7 +894,7 @@ export interface GetReturnListItem {
   /**
    * Shopee's unique identifier for a variation of an item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Name of item in local language.
    */
@@ -906,7 +906,7 @@ export interface GetReturnListItem {
   /**
    * Amount of this item.
    */
-  amount?: number;
+  amount?: Integer;
   /**
    * The price of item.
    */
@@ -922,11 +922,11 @@ export interface GetReturnListItem {
   /**
    * The unique identity of an addon deal.
    */
-  add_on_deal_id?: number;
+  add_on_deal_id?: Integer;
   /**
    * The id of item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The sku of item.
    */
@@ -943,11 +943,11 @@ export interface GetReturnListFollowUpAction {
   /**
    * Unique identifier of the item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Unique identifier of the model under the item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Quantity of items or models under the same current status.
    */
@@ -1062,7 +1062,7 @@ export interface GetReturnListReturn {
   /**
    * To indicate whether the return is RRBOC (Return/Refund request raised before Order Complete) or RRAOC (Return/Refund request raised after Order Complete).
    */
-  return_refund_type?: ReturnRefundType | string | number;
+  return_refund_type?: ReturnRefundType | string;
   /**
    * To indicate the most updated solution of the Return/Refund request (NOTE: this is not the solution during negotiation). Applicable value: - 0: Return and Refund- 1: Refund Only
    */
@@ -1129,7 +1129,7 @@ export interface GetReverseTrackingInfoRequest {
   /**
    * Shopee's unique identifier for a return/refund request (serial number of return).
    */
-  return_sn: ReturnSn | string | number;
+  return_sn: ReturnSn | string;
 }
 /**
  * GetReverseTrackingInfoTrackingInfo sub-interface for GetReverseTrackingInfoResponseData
@@ -1163,7 +1163,7 @@ export interface GetReverseTrackingInfoPostReturnLogisticsTrackingInfo {
   /**
    * The description of reverse logistics tracking info for Normal RR from warehouse to seller, pushed by third party logistics provider to Shopee.These would match the tracking description displayed to sellers on Seller Center return/refund detail page.
    */
-  tracking_description?: TrackingDescription | string | number;
+  tracking_description?: TrackingDescription | string;
   /**
    * Image URLs of electronic proof of pickup (ePOP) after return parcel has been picked up from the warehouse for Normal RR with warehouse validation.
    */
@@ -1180,7 +1180,7 @@ export interface GetReverseTrackingInfoResponseData {
   /**
    * Shopee's unique identifier for a return/refund request (serial number of return).
    */
-  return_sn?: ReturnSn | string | number;
+  return_sn?: ReturnSn | string;
   /**
    * To indicate the type of return refund request, whether it is a Normal RR request, an In-transit RR request, and a Return on the Spot: 0: Normal RR (RR is raised by the buyer after delivery done / estimated delivery date)1: In-transit RR (RR is raised by the buyer while item is still in-transit to buyer)2: Return-on-the-Spot (RR is raised by the driver after buyer rejected parcel at delivery)For more details, see Data Definition- Return Refund Request Type.
    */
@@ -1271,7 +1271,7 @@ export interface GetShippingCarrierReverseLogisticsCarrier {
   /**
    * To indicate the id of the non-integrated reverse logistics channel used by seller.
    */
-  reverse_logistics_carrier_id?: number;
+  reverse_logistics_carrier_id?: Integer;
   /**
    * To indicate the selected carrier name from the list of carrier names provided.
    */
@@ -1424,7 +1424,7 @@ export interface UploadProofRequest {
 /**
  * Response data payload for upload_proof
  */
-export type UploadProofResponseData = any;
+export type UploadProofResponseData = unknown;
 /**
  * Response payload for upload_proof
  *
@@ -1453,7 +1453,7 @@ export interface UploadShippingProofRequest {
   /**
    * Unique ID of non-integrated reverse logistics channel used by seller.
    */
-  reverse_logistics_carrier_id: number;
+  reverse_logistics_carrier_id: Integer;
   /**
    * Non-integrated reverse logistics channel name used by seller.
    */
@@ -1474,7 +1474,7 @@ export interface UploadShippingProofRequest {
 /**
  * Response data payload for upload_shipping_proof
  */
-export type UploadShippingProofResponseData = any;
+export type UploadShippingProofResponseData = unknown;
 /**
  * Response payload for upload_shipping_proof
  *

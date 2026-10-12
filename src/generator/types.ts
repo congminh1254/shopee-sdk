@@ -1,3 +1,4 @@
+import type { AuthMode } from "../schemas/fetch.js";
 export interface SpecFieldNode {
   name?: string;
   type?: string;
@@ -36,6 +37,7 @@ export interface EndpointSpec {
   method: "GET" | "POST";
   path: string;
   auth: boolean;
+  authMode?: AuthMode;
   description: string;
   requestParams: NormalizedParam[];
   responseParams: NormalizedParam[];

@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * AddBundleDealAdditionalTier sub-interface for AddBundleDealRequest
  */
@@ -140,7 +140,7 @@ export interface AddBundleDealItemResponseData {
   /**
    * The list of succeed added items
    */
-  success_list?: any[];
+  success_list?: unknown[];
 }
 /**
  * Response payload for add_bundle_deal_item
@@ -226,7 +226,7 @@ export interface DeleteBundleDealItemResponseData {
   /**
    * The list of succeed added items
    */
-  success_list?: any[];
+  success_list?: unknown[];
 }
 /**
  * Response payload for delete_bundle_deal_item
@@ -371,7 +371,7 @@ export interface GetBundleDealItemItem {
   /**
    * Shopee's unique identifier for a bundle deal activity.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The status of items：enable = 1，disable =0
    */
@@ -671,7 +671,7 @@ export interface UpdateBundleDealItemItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The status of bundle deal item：enable = 1；disable =0
    */
@@ -686,7 +686,7 @@ export interface UpdateBundleDealItemRequest {
   /**
    * Shopee's unique identifier for a bundle deal activity.
    */
-  bundle_deal_id: number;
+  bundle_deal_id: Integer;
   /**
    * The items added in this bundle deal promotion.
    */
@@ -699,7 +699,7 @@ export interface UpdateBundleDealItemFailed {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Indicate error type if one element hit error.
    */
@@ -720,7 +720,7 @@ export interface UpdateBundleDealItemResponseData {
   /**
    * The list of succeed added items
    */
-  success_list?: any[];
+  success_list?: unknown[];
 }
 /**
  * Response payload for update_bundle_deal_item

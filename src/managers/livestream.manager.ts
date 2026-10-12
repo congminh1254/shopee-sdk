@@ -69,6 +69,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<AddItemListResponse>(this.config, "/livestream/add_item_list", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -82,6 +83,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<ApplyItemSetResponse>(this.config, "/livestream/apply_item_set", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -95,6 +97,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<BanUserCommentResponse>(this.config, "/livestream/ban_user_comment", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -108,6 +111,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<CreateSessionResponse>(this.config, "/livestream/create_session", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -121,6 +125,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<DeleteItemListResponse>(this.config, "/livestream/delete_item_list", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -134,6 +139,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<DeleteShowItemResponse>(this.config, "/livestream/delete_show_item", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -147,6 +153,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<EndSessionResponse>(this.config, "/livestream/end_session", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -160,6 +167,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<GetItemCountResponse>(this.config, "/livestream/get_item_count", {
       method: "GET",
       auth: true,
+      authMode: "user",
       params: params,
     });
   }
@@ -173,6 +181,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<GetItemListResponse>(this.config, "/livestream/get_item_list", {
       method: "GET",
       auth: true,
+      authMode: "user",
       params: params,
     });
   }
@@ -191,6 +200,7 @@ export class LiveStreamManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -205,6 +215,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<GetItemSetListResponse>(this.config, "/livestream/get_item_set_list", {
       method: "GET",
       auth: true,
+      authMode: "user",
       params: params,
     });
   }
@@ -223,6 +234,7 @@ export class LiveStreamManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
         timestampPaths: ["response.list.timestamp"],
       }
@@ -241,6 +253,7 @@ export class LiveStreamManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -260,6 +273,7 @@ export class LiveStreamManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -279,6 +293,7 @@ export class LiveStreamManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -298,6 +313,7 @@ export class LiveStreamManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -317,6 +333,7 @@ export class LiveStreamManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -331,6 +348,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<GetShowItemResponse>(this.config, "/livestream/get_show_item", {
       method: "GET",
       auth: true,
+      authMode: "user",
       params: params,
     });
   }
@@ -344,6 +362,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<PostCommentResponse>(this.config, "/livestream/post_comment", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -357,6 +376,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<StartSessionResponse>(this.config, "/livestream/start_session", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -375,6 +395,7 @@ export class LiveStreamManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: params,
       }
     );
@@ -389,6 +410,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<UpdateItemListResponse>(this.config, "/livestream/update_item_list", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -402,6 +424,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<UpdateSessionResponse>(this.config, "/livestream/update_session", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -415,6 +438,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<UpdateShowItemResponse>(this.config, "/livestream/update_show_item", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -428,6 +452,7 @@ export class LiveStreamManager extends BaseManager {
     return ShopeeFetch.fetch<UploadImageResponse>(this.config, "/livestream/upload_image", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }

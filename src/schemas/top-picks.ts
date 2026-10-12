@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * Request parameters for add_top_picks
  *
@@ -8,7 +8,7 @@ import { FetchResponse } from "./fetch.js";
  */
 export interface AddTopPicksRequest {
   name: string;
-  item_id_list: number[];
+  item_id_list: Integer[];
   is_activated: boolean;
 }
 /**

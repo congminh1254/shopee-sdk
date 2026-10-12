@@ -146,7 +146,7 @@ export interface GetFollowPrizeDetailResponseData {
   /**
    * The status of follow prize,the campagin status have upcoming/ongoing/expired.
    */
-  campaign_status?: CampaignStatus | string | number;
+  campaign_status?: CampaignStatus | string;
   /**
    * The unique identifier for the created follow prize.
    */
@@ -211,7 +211,7 @@ export interface GetFollowPrizeListRequest {
   /**
    * The status filter for retrieving follow prize list. Available value: upcoming/ongoing/expired/all.
    */
-  status: Status | string | number;
+  status: Status | string;
 }
 /**
  * GetFollowPrizeListFollowPrize sub-interface for GetFollowPrizeListResponseData
@@ -224,7 +224,7 @@ export interface GetFollowPrizeListFollowPrize {
   /**
    * The status of follow prize,the campagin status have upcoming/ongoing/expired.
    */
-  campaign_status?: CampaignStatus | string | number;
+  campaign_status?: CampaignStatus | string;
   /**
    * The name of the follow prize,The follow prize name length max limit is 20.
    */

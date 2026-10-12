@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata, Integer } from "./fetch.js";
 /**
  * Enum generated for field BuyerServiceFee
  */
@@ -64,11 +64,11 @@ export interface GenerateIncomeReportRequest {
   /**
    * Start time in epoch
    */
-  release_time_from: number;
+  release_time_from: Integer;
   /**
    * End time in epoch
    */
-  release_time_to: number;
+  release_time_to: Integer;
 }
 /**
  * GenerateIncomeReportResponseData sub-interface for GenerateIncomeReportResponse
@@ -77,7 +77,7 @@ export interface GenerateIncomeReportResponseData {
   /**
    * Identifier of income report file.
    */
-  id?: number;
+  id?: Integer;
 }
 /**
  * Response payload for generate_income_report
@@ -94,11 +94,11 @@ export interface GenerateIncomeStatementRequest {
   /**
    * The release_time_from must be- Monday (local time) for a weekly report- The 1st day (local time) of a Month for a monthly report
    */
-  release_time_from: number;
+  release_time_from: Integer;
   /**
    * The release_time_to must be- Sunday (local time) for a weekly report- The last day (local time) of a Month for a monthly report
    */
-  release_time_to: number;
+  release_time_to: Integer;
   /**
    * STATEMENT_TYPE_WEEKLY = 1;STATEMENT_TYPE_MONTHLY = 2;Local seller Income statement requires this value to be set.CB seller income statement does not require this.
    */
@@ -111,7 +111,7 @@ export interface GenerateIncomeStatementResponseData {
   /**
    * Identifier of income statement file.
    */
-  id?: number;
+  id?: Integer;
 }
 /**
  * Response payload for generate_income_statement
@@ -317,7 +317,7 @@ export interface GetEscrowDetailPromotion {
   /**
    * Represents the unique identifier of a specific promotion applied to an item. Each promotion_id corresponds to a distinct promotion rule or campaign, defined under a particular promotion_type.
    */
-  promotion_id?: any;
+  promotion_id?: Integer;
 }
 /**
  * GetEscrowDetailItem sub-interface for GetEscrowDetailOrderIncome
@@ -326,7 +326,7 @@ export interface GetEscrowDetailItem {
   /**
    * ID of item
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of item
    */
@@ -338,7 +338,7 @@ export interface GetEscrowDetailItem {
   /**
    * ID of the model that belongs to the same item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Name of the model that belongs to the same item. A seller can offer variations of the same item. For example, the seller could create a fixed-priced listing for a t-shirt design and offer the shirt in different colors and sizes. In this case, each color and size combination is a separate variation. Each variation can have a different quantity and price.
    */
@@ -350,7 +350,7 @@ export interface GetEscrowDetailItem {
   /**
    * The identity of order item. In case the order item is a bundle deal, this value will be unique to distinguish the order item.
    */
-  line_item_id?: number;
+  line_item_id?: Integer;
   /**
    * The original price of the item before ANY promotion/discount in the listing currency. It returns the subtotal of that specific item if quantity exceeds 1.
    */
@@ -398,7 +398,7 @@ export interface GetEscrowDetailItem {
   /**
    * If bundle_deal the is id of bundle deal, if add_on_deal this is id of add on deal.
    */
-  activity_id?: any;
+  activity_id?: Integer;
   /**
    * Meaning a main or sub item for add_on_deal.
    */
@@ -1125,7 +1125,7 @@ export interface GetEscrowDetailBatchPromotion {
   /**
    * Represents the unique identifier of a specific promotion applied to an item. Each promotion_id corresponds to a distinct promotion rule or campaign, defined under a particular promotion_type.
    */
-  promotion_id?: any;
+  promotion_id?: Integer;
 }
 /**
  * GetEscrowDetailBatchItem sub-interface for GetEscrowDetailBatchOrderIncome
@@ -1134,7 +1134,7 @@ export interface GetEscrowDetailBatchItem {
   /**
    * ID of item
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of item
    */
@@ -1146,7 +1146,7 @@ export interface GetEscrowDetailBatchItem {
   /**
    * ID of the model that belongs to the same item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Name of the model that belongs to the same item. A seller can offer variations of the same item. For example, the seller could create a fixed-priced listing for a t-shirt design and offer the shirt in different colors and sizes. In this case, each color and size combination is a separate variation. Each variation can have a different quantity and price.
    */
@@ -1158,7 +1158,7 @@ export interface GetEscrowDetailBatchItem {
   /**
    * The identity of order item. In case the order item is a bundle deal, this value will be unique to distinguish the order item.
    */
-  line_item_id?: number;
+  line_item_id?: Integer;
   /**
    * The original price of the item before ANY promotion/discount in the listing currency. It returns the subtotal of that specific item if quantity exceeds 1.
    */
@@ -1206,7 +1206,7 @@ export interface GetEscrowDetailBatchItem {
   /**
    * If bundle_deal the is id of bundle deal, if add_on_deal this is id of add on deal.
    */
-  activity_id?: any;
+  activity_id?: Integer;
   /**
    * Meaning a main or sub item for add_on_deal.
    */
@@ -1680,7 +1680,7 @@ export interface GetEscrowDetailBatchBuyerPaymentInfo {
   /**
    * An additional service fee charged by shopee to Buyer at checkout. currently only applicable to ID region.it is an initial value (will not be updated after RR/cancellation)
    */
-  buyer_service_fee?: BuyerServiceFee | string | number;
+  buyer_service_fee?: BuyerServiceFee | string;
   /**
    * The tax amount paid by buyer.currently this is a custom tax charged to CB orders in TW,CL,MX
    */
@@ -1905,7 +1905,7 @@ export interface GetIncomeDetailRequest {
   /**
    * Number of income detail records to retrieve per page
    */
-  page_size: number;
+  page_size: Integer;
 }
 /**
  * GetIncomeDetailNextPage sub-interface for GetIncomeDetailIncomeDetail
@@ -1951,7 +1951,7 @@ export interface GetIncomeDetailIncomeDetailListItem {
   /**
    * Estimated payout time (Unix timestamp). Applicable for Pending/To Release status.
    */
-  estimated_payout_time?: number;
+  estimated_payout_time?: Integer;
   /**
    * Amount that is queued for release to seller (Cross Border only).
    */
@@ -1959,7 +1959,7 @@ export interface GetIncomeDetailIncomeDetailListItem {
   /**
    * Order creation timestamp (Unix format).
    */
-  creation_date?: number;
+  creation_date?: Integer;
   /**
    * Amount successfully released to the seller.
    */
@@ -1967,7 +1967,7 @@ export interface GetIncomeDetailIncomeDetailListItem {
   /**
    * Actual payout time (Unix timestamp) when funds were transferred.
    */
-  actual_payout_time?: number;
+  actual_payout_time?: Integer;
 }
 /**
  * GetIncomeDetailIncomeDetail sub-interface for GetIncomeDetailResponse
@@ -1980,7 +1980,7 @@ export interface GetIncomeDetailIncomeDetail {
   /**
    * List of income detail objects
    */
-  income_detail_list_item?: GetIncomeDetailIncomeDetailListItem[];
+  income_detail_list_item?: GetIncomeDetailIncomeDetailListItem;
 }
 /**
  * Response data payload for get_income_detail
@@ -1989,7 +1989,7 @@ export interface GetIncomeDetailResponseData {
   /**
    * List of income detail records returned for the specified time range and status.
    */
-  income_detail_list?: GetIncomeDetailIncomeDetail[];
+  income_detail_list?: GetIncomeDetailIncomeDetail;
 }
 /**
  * Response payload for get_income_detail
@@ -1998,7 +1998,7 @@ export interface GetIncomeDetailResponseData {
  *
  * The API dynamically adapts data fields based on the seller’s shop type (Local or Cross Border) and the selected income status (e.g., Pending, To Release, Released).
  */
-export type GetIncomeDetailResponse = FetchResponse<GetIncomeDetailResponseData>;
+export type GetIncomeDetailResponse = ResponseMetadata & GetIncomeDetailResponseData;
 /**
  * Request parameters for get_income_overview
  *
@@ -2059,7 +2059,7 @@ export interface GetIncomeReportRequest {
   /**
    * The identifier for income report file request.
    */
-  income_report_id: number;
+  income_report_id: Integer;
 }
 /**
  * GetIncomeReportResponseData sub-interface for GetIncomeReportResponse
@@ -2068,7 +2068,7 @@ export interface GetIncomeReportResponseData {
   /**
    * The identifier for income statement file request.
    */
-  id?: number;
+  id?: Integer;
   /**
    * Income report file name.
    */
@@ -2080,7 +2080,7 @@ export interface GetIncomeReportResponseData {
   /**
    * File generation time.
    */
-  generated_time?: number;
+  generated_time?: Integer;
   /**
    * Link to download income report file.
    */
@@ -2101,7 +2101,7 @@ export interface GetIncomeStatementRequest {
   /**
    * The identifier for income statement file request.return from the API v2.payment.generate_income_statement
    */
-  income_statement_id: number;
+  income_statement_id: Integer;
 }
 /**
  * GetIncomeStatementResponseData sub-interface for GetIncomeStatementResponse
@@ -2110,7 +2110,7 @@ export interface GetIncomeStatementResponseData {
   /**
    * The identifier for income statement file request.
    */
-  id?: number;
+  id?: Integer;
   /**
    * Income statement file name.
    */
@@ -2122,7 +2122,7 @@ export interface GetIncomeStatementResponseData {
   /**
    * File generation time.
    */
-  generated_time?: number;
+  generated_time?: Integer;
   /**
    * Link to download income statement file.
    */
@@ -2264,7 +2264,7 @@ export interface GetPayoutDetailPayoutInfo {
   /**
    * The service provider of seller. Available value: payoneer, pingpong, lianlian.
    */
-  pay_service?: PayService | string | number;
+  pay_service?: PayService | string;
   /**
    * Seller's account to receive the payout.
    */
@@ -2310,7 +2310,7 @@ export interface GetPayoutDetailOfflineAdjustment {
   /**
    * Dimension of offline adjustment. Available value: shop, order.
    */
-  adjustment_level?: AdjustmentLevel | string | number;
+  adjustment_level?: AdjustmentLevel | string;
   /**
    * Shopee's unique identifier for an order.
    */
@@ -2397,7 +2397,7 @@ export interface GetPayoutInfoPayout {
   /**
    * The service provider of seller. Available value: payoneer, pingpong, lianlian.
    */
-  pay_service?: PayService | string | number;
+  pay_service?: PayService | string;
   /**
    * Seller's account to receive the payout.
    */
@@ -2477,7 +2477,7 @@ export interface GetWalletTransactionListRequest {
   /**
    * Transaction type APIs: ESCROW_VERIFIED_ADD = 101;  // Escrow has been verified and paid to seller     ESCROW_VERIFIED_MINUS = 102; // Escrow has been verified and charged from seller as escrow amount is negative    WITHDRAWAL_CREATED = 201; // The seller has created a withdrawal, so it’s deducted from balance      WITHDRAWAL_COMPLETED = 202; // The withdrawal has been completed, so the ongoing amount decreases.        WITHDRAWAL_CANCELLED = 203; // The withdrawal has been canceled, so the amount is added back to the seller balance. Ongoing amount decreases as well.      ADJUSTMENT_ADD = 401; // One adjustment item has been paid to seller     ADJUSTMENT_MINUS = 402; // One adjustment item has been charged from seller      FBS_ADJUSTMENT_ADD = 404; //One adjustment item related to Shopee fulfillment order is added to seller      FBS_ADJUSTMENT_MINUS = 405; // One adjustment item related to Shopee fulfillment order is deducted from seller      ADJUSTMENT_CENTER_ADD = 406; // One adjustment item has been added to seller wallet     ADJUSTMENT_CENTER_DEDUCT = 407; // One adjustment item has been deducted from seller wallet     FSF_COST_PASSING_DEDUCT = 408; FSF cost passing for canceled/invalid orders     PERCEPTION_VAT_TAX_DEDUCT = 409; Extra charge for perception regime VAT tax (Argentina)     PERCEPTION_TURNOVER_TAX_DEDUCT = 410; Extra charge for perception regime turnover tax (Argentina)     PAID_ADS_CHARGE = 450; // Paid ads are charged from seller     PAID_ADS_REFUND = 451; // Paid ads are refunded to seller     FAST_ESCROW_DISBURSE = 452; // ADD. // The first disbursement of fast escrow has been paid to seller     AFFILIATE_ADS_SELLER_FEE = 455; // DEDUCT // Affiliate ads seller fee is charged from seller     AFFILIATE_ADS_SELLER_FEE_REFUND = 456; // ADD // Affiliate ads seller fee is refunded to sellerFAST_ESCROW_DEDUCT = 458; // Fast escrow is deducted from seller balance in the event of return and refund FAST_ESCROW_DISBURSE_REMAIN = 459; // The second disbursement of fast escrow has been paid to seller     AFFILIATE_FEE_DEDUCT = 460; // Affiliate MKT fee is charged from seller for using affiliate MKT services
    */
-  transaction_type?: TransactionType | string | number;
+  transaction_type?: TransactionType | string;
   /**
    * It's to indicate whether user wants to only return : MONEY_IN = addition MONEY_OUT = Deductionif not specified, we will return allNote special case for TW JKO Pay, we will ignore Money_flow
    */
@@ -2507,7 +2507,7 @@ export interface GetWalletTransactionListTransaction {
   /**
    * The status of the transaction，available values: FAILED,COMPLETED,PENDING,INITIAL.
    */
-  status?: Status | string | number;
+  status?: Status | string;
   /**
    * The type of transaction.
    */
@@ -2572,11 +2572,11 @@ export interface GetWalletTransactionListTransaction {
   /**
    * Description:A new response parameter added after: https://confluence.shopee.io/display/SPCT/%5BPRD%5D+%5BOpen+API%5D+Update+on+New+Open+API+to+fetch+Seller+wallet+Transaction This returns the updated transaction tab types that client can use to specify which transaction types they want to return. It will have the following tab typesDefaultwallet_order_incomewallet_adjustment_filterwallet_wallet_paymentwallet_refund_from_orderwallet_withdrawalsfast_escrow_repaymentfast_payseller_loancorporate_loanpix_transactions_filteropen_finance_transactions_filter Note for BR, currently in SOP live configuration, wallet txn type that linked to pix_transactions_filter  and open_finance_transactions_filter  are classified as default  type tab instead. therefore for Open API client who wants to query these 2 txn can put default as the filter in this type
    */
-  transaction_tab_type?: TransactionTabType | string | number;
+  transaction_tab_type?: TransactionTabType | string;
   /**
    * New response parameter provided after: https://confluence.shopee.io/display/SPCT/%5BPRD%5D+%5BOpen+API%5D+Update+on+New+Open+API+to+fetch+Seller+wallet+Transaction It's to indicate the money flowMONEY_IN = addition MONEY_OUT = deductionif not specified in request, will return bothNote special case for TW JKO Pay, we will ignore Money_flow
    */
-  money_flow?: MoneyFlow | string | number;
+  money_flow?: MoneyFlow | string;
   /**
    * The outlet shop name where this outlet transaction came from. (In the Original Instant Mart concept, outlet transactions are redirected to Mart.)
    */

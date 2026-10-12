@@ -312,7 +312,7 @@ describe("ShopeeSDK", () => {
 
       const token = await sdk.refreshToken();
 
-      expect(mockGetRefreshToken).toHaveBeenCalledWith("test_refresh_token", undefined, undefined);
+      expect(mockGetRefreshToken).toHaveBeenCalledWith("test_refresh_token", 67890, undefined);
       expect(mockStore).toHaveBeenCalledWith(newToken);
       expect(token).toEqual(newToken);
     });

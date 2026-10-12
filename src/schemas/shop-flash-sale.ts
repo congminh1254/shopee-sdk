@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * AddShopFlashSaleItemsModel sub-interface for AddShopFlashSaleItemsItem
  */
@@ -8,7 +8,7 @@ export interface AddShopFlashSaleItemsModel {
   /**
    * If the item has variation, this param is necessary.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * promotion price without tax
    */
@@ -22,7 +22,7 @@ export interface AddShopFlashSaleItemsModel {
  * AddShopFlashSaleItemsItem sub-interface for AddShopFlashSaleItemsRequest
  */
 export interface AddShopFlashSaleItemsItem {
-  item_id: number;
+  item_id: Integer;
   /**
    * min=0, 0 means no limit
    */
@@ -46,7 +46,7 @@ export interface AddShopFlashSaleItemsItem {
  * add shop flash sale item
  */
 export interface AddShopFlashSaleItemsRequest {
-  flash_sale_id: number;
+  flash_sale_id: Integer;
   items: AddShopFlashSaleItemsItem[];
 }
 /**
@@ -66,11 +66,11 @@ export interface AddShopFlashSaleItemsUnqualifiedCondition {
  * AddShopFlashSaleItemsFailedItem sub-interface for AddShopFlashSaleItemsResponseData
  */
 export interface AddShopFlashSaleItemsFailedItem {
-  item_id?: number;
+  item_id?: Integer;
   /**
    * If the item has no variation, this field will be empty
    */
-  model_id?: number;
+  model_id?: Integer;
   err_code?: number;
   /**
    * the reason why the model cannot be added
@@ -102,14 +102,14 @@ export interface CreateShopFlashSaleRequest {
   /**
    * can get it from v2.shop_flash_sale.get_time_slot_id API, and you can only use the timeslot which start_time > now
    */
-  timeslot_id: number;
+  timeslot_id: Integer;
 }
 /**
  * CreateShopFlashSaleResponseData sub-interface for CreateShopFlashSaleResponse
  */
 export interface CreateShopFlashSaleResponseData {
-  timeslot_id?: number;
-  flash_sale_id?: number;
+  timeslot_id?: Integer;
+  flash_sale_id?: Integer;
   /**
    * the status of shop flash sale0: deleted1: enabled2: disabled3: system_rejected
    */
@@ -130,14 +130,14 @@ export interface DeleteShopFlashSaleRequest {
   /**
    * cannot delete ongoing and expired shop flash sale
    */
-  flash_sale_id: number;
+  flash_sale_id: Integer;
 }
 /**
  * DeleteShopFlashSaleResponseData sub-interface for DeleteShopFlashSaleResponse
  */
 export interface DeleteShopFlashSaleResponseData {
-  timeslot_id?: number;
-  flash_sale_id?: number;
+  timeslot_id?: Integer;
+  flash_sale_id?: Integer;
   /**
    * the status of shop flash sale0: deleted1: enabled2: disabled3: system_rejected
    */
@@ -155,11 +155,11 @@ export type DeleteShopFlashSaleResponse = FetchResponse<DeleteShopFlashSaleRespo
  * delete shop flash sale items
  */
 export interface DeleteShopFlashSaleItemsRequest {
-  flash_sale_id: number;
+  flash_sale_id: Integer;
   /**
    * if you delete a item, will delete all models of the item
    */
-  item_ids: number[];
+  item_ids: Integer[];
 }
 /**
  * DeleteShopFlashSaleItemsUnqualifiedCondition sub-interface for DeleteShopFlashSaleItemsFailedItem
@@ -172,11 +172,11 @@ export interface DeleteShopFlashSaleItemsUnqualifiedCondition {
  * DeleteShopFlashSaleItemsFailedItem sub-interface for DeleteShopFlashSaleItemsResponseData
  */
 export interface DeleteShopFlashSaleItemsFailedItem {
-  item_id?: number;
+  item_id?: Integer;
   /**
    * If the item has no variation, this field will be empty
    */
-  model_id?: number;
+  model_id?: Integer;
   err_code?: number;
   /**
    * the reason why the model cannot be added
@@ -209,7 +209,7 @@ export type GetItemCriteriaRequest = Record<string, never>;
  * GetItemCriteriaCriteria sub-interface for GetItemCriteriaResponseData
  */
 export interface GetItemCriteriaCriteria {
-  criteria_id?: number;
+  criteria_id?: Integer;
   /**
    * Product Rating(0.0-5.0), -1 means no limit
    */
@@ -245,19 +245,19 @@ export interface GetItemCriteriaCriteria {
   /**
    * Discount Limit, 10 means 10%, -1 means no limit
    */
-  min_discount?: number;
+  min_discount?: Integer;
   /**
    * Discount Limit, 100 means 100%, -1 means no limit
    */
-  max_discount?: number;
+  max_discount?: Integer;
   /**
    * Discount Limit, -1 means no limit, real min discount price = min_discount_price / 100000
    */
-  min_discount_price?: number;
+  min_discount_price?: Integer;
   /**
    * Discount Limit, -1 means no limit, real max discount price = max_discount_price / 100000
    */
-  max_discount_price?: number;
+  max_discount_price?: Integer;
   /**
    * lower than lowest price in last 7 days (exclude Shopee Flash Deals)
    */
@@ -270,7 +270,7 @@ export interface GetItemCriteriaCategory {
   /**
    * o means this is All category
    */
-  category_id?: number;
+  category_id?: Integer;
   /**
    * category name
    */
@@ -278,13 +278,13 @@ export interface GetItemCriteriaCategory {
   /**
    * the parent category id, 0 means this category is L1 category
    */
-  parent_id?: number;
+  parent_id?: Integer;
 }
 /**
  * GetItemCriteriaPairId sub-interface for GetItemCriteriaResponseData
  */
 export interface GetItemCriteriaPairId {
-  criteria_id?: number;
+  criteria_id?: Integer;
   /**
    * these are the categories that the shop has items, and the criteria will apply to these categories
    */
@@ -305,7 +305,7 @@ export interface GetItemCriteriaResponseData {
   /**
    * Due to regulations, the promotion of some products in these categories are prohibited in this region
    */
-  overlap_block_category_ids?: number[];
+  overlap_block_category_ids?: Integer[];
 }
 /**
  * Response payload for get_item_criteria
@@ -319,14 +319,14 @@ export type GetItemCriteriaResponse = FetchResponse<GetItemCriteriaResponseData>
  * get shop flash sale detail
  */
 export interface GetShopFlashSaleRequest {
-  flash_sale_id: number;
+  flash_sale_id: Integer;
 }
 /**
  * GetShopFlashSaleResponseData sub-interface for GetShopFlashSaleResponse
  */
 export interface GetShopFlashSaleResponseData {
-  timeslot_id?: number;
-  flash_sale_id?: number;
+  timeslot_id?: Integer;
+  flash_sale_id?: Integer;
   /**
    * the status of shop flash sale0: deleted1: enabled2: disabled
    */
@@ -364,15 +364,15 @@ export type GetShopFlashSaleResponse = FetchResponse<GetShopFlashSaleResponseDat
  * get shop flash sale items and item detail
  */
 export interface GetShopFlashSaleItemsRequest {
-  flash_sale_id: number;
+  flash_sale_id: Integer;
   /**
    * min=0,max=1000
    */
-  offset: number;
+  offset: Integer;
   /**
    * min=1,max=100
    */
-  limit: number;
+  limit: Integer;
 }
 /**
  * GetShopFlashSaleItemsUnqualifiedCondition sub-interface for GetShopFlashSaleItemsModel
@@ -385,8 +385,8 @@ export interface GetShopFlashSaleItemsUnqualifiedCondition {
  * GetShopFlashSaleItemsModel sub-interface for GetShopFlashSaleItemsResponseData
  */
 export interface GetShopFlashSaleItemsModel {
-  item_id?: number;
-  model_id?: number;
+  item_id?: Integer;
+  model_id?: Integer;
   model_name?: string;
   /**
    * the status of model in shop flash sale0: disable1: enable2: delete4: system_rejected, the model is rejected by system5: manual_rejected, the model is rejected manually
@@ -404,12 +404,12 @@ export interface GetShopFlashSaleItemsModel {
   /**
    * 0 means NO LIMIT
    */
-  purchase_limit?: number;
-  campaign_stock?: number;
+  purchase_limit?: Integer;
+  campaign_stock?: Integer;
   /**
    * Active inventory
    */
-  stock?: number;
+  stock?: Integer;
   /**
    * if the status is 4 or 5, this field will show the reason why this model was rejected
    */
@@ -423,7 +423,7 @@ export interface GetShopFlashSaleItemsModel {
  * GetShopFlashSaleItemsItemInfo sub-interface for GetShopFlashSaleItemsResponseData
  */
 export interface GetShopFlashSaleItemsItemInfo {
-  item_id?: number;
+  item_id?: Integer;
   item_name?: string;
   /**
    * item status0: Deleted1: Normal2: reviewing3: banned4: invalid5: invalid hide6: offensive hide7: auditing8: normal unlist
@@ -452,15 +452,15 @@ export interface GetShopFlashSaleItemsItemInfo {
   /**
    * 0 means NO LIMITpurchase limit of item, if the item has variation, this field will be empty
    */
-  purchase_limit?: number;
+  purchase_limit?: Integer;
   /**
    * campaign stock of item, if the item has no variation, this field will has value
    */
-  campaign_stock?: number;
+  campaign_stock?: Integer;
   /**
    * Active inventory of item, if the item has no variation, this field will has value
    */
-  stock?: number;
+  stock?: Integer;
   /**
    * if the item_status is 4 or 5, this field will show the reason why this item was rejectedif the item has variation, this field will be empty
    */
@@ -474,7 +474,7 @@ export interface GetShopFlashSaleItemsItemInfo {
  * GetShopFlashSaleItemsResponseData sub-interface for GetShopFlashSaleItemsResponse
  */
 export interface GetShopFlashSaleItemsResponseData {
-  total_count?: number;
+  total_count?: Integer;
   /**
    * If the item has variation, the infomation of model will be in this field
    */
@@ -508,11 +508,11 @@ export interface GetShopFlashSaleListRequest {
   /**
    * min=0,max=1000
    */
-  offset: number;
+  offset: Integer;
   /**
    * min=1,max=100
    */
-  limit: number;
+  limit: Integer;
 }
 /**
  * GetShopFlashSaleListResponseData sub-interface for GetShopFlashSaleListResponse
@@ -521,14 +521,14 @@ export interface GetShopFlashSaleListResponseData {
   /**
    * the number of shop flash sale that the shop has
    */
-  total_count?: number;
+  total_count?: Integer;
 }
 /**
  * GetShopFlashSaleListFlashSale sub-interface for GetShopFlashSaleListResponse
  */
 export interface GetShopFlashSaleListFlashSale {
-  timeslot_id?: number;
-  flash_sale_id?: number;
+  timeslot_id?: Integer;
+  flash_sale_id?: Integer;
   /**
    * the status of shop flash sale0: deleted1: enabled2: disabled3: system_rejected, you cannot edit the shop flash sale in 'system_rejected' status
    */
@@ -556,11 +556,11 @@ export interface GetShopFlashSaleListFlashSale {
   /**
    * No. of Reminders Set
    */
-  remindme_count?: number;
+  remindme_count?: Integer;
   /**
    * No. of Product Clicks
    */
-  click_count?: number;
+  click_count?: Integer;
 }
 /**
  * Response payload for get_shop_flash_sale_list
@@ -587,7 +587,7 @@ export interface GetTimeSlotIdRequest {
  * GetTimeSlotIdResponseDataItem sub-interface for GetTimeSlotIdResponse
  */
 export interface GetTimeSlotIdResponseDataItem {
-  timeslot_id?: number;
+  timeslot_id?: Integer;
   /**
    * the start time of time slot
    */
@@ -613,7 +613,7 @@ export type GetTimeSlotIdResponse = FetchResponse<GetTimeSlotIdResponseData>;
  * edit shop flash sale(enable, disable)
  */
 export interface UpdateShopFlashSaleRequest {
-  flash_sale_id: number;
+  flash_sale_id: Integer;
   /**
    * the status of shop flash sale you want to set, you cannot edit the shop flash sale in 'system_rejected' statusDisabling this Flash Sale will disable all items in this session1: enable2: disbaled
    */
@@ -623,8 +623,8 @@ export interface UpdateShopFlashSaleRequest {
  * UpdateShopFlashSaleResponseData sub-interface for UpdateShopFlashSaleResponse
  */
 export interface UpdateShopFlashSaleResponseData {
-  timeslot_id?: number;
-  flash_sale_id?: number;
+  timeslot_id?: Integer;
+  flash_sale_id?: Integer;
   /**
    * the status of shop flash sale0: deleted1: enabled2: disabled3: system_rejected, you cannot edit the shop flash sale in 'system_rejected' status
    */
@@ -643,7 +643,7 @@ export interface UpdateShopFlashSaleItemsModel {
   /**
    * If the item has variation, this param is necessary.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * you can use this field to set the status of model0: disable1: enable
    */
@@ -661,7 +661,7 @@ export interface UpdateShopFlashSaleItemsModel {
  * UpdateShopFlashSaleItemsItem sub-interface for UpdateShopFlashSaleItemsRequest
  */
 export interface UpdateShopFlashSaleItemsItem {
-  item_id: number;
+  item_id: Integer;
   /**
    * min=0, 0 means no limitif the item is in enabled status or the item has models in enabled status, you can't set this field
    */
@@ -689,7 +689,7 @@ export interface UpdateShopFlashSaleItemsItem {
  * edit shop flash sale item, you can only edit the models in disbaled or enabled status
  */
 export interface UpdateShopFlashSaleItemsRequest {
-  flash_sale_id: number;
+  flash_sale_id: Integer;
   items: UpdateShopFlashSaleItemsItem[];
 }
 /**
@@ -703,11 +703,11 @@ export interface UpdateShopFlashSaleItemsUnqualifiedCondition {
  * UpdateShopFlashSaleItemsFailedItem sub-interface for UpdateShopFlashSaleItemsResponseData
  */
 export interface UpdateShopFlashSaleItemsFailedItem {
-  item_id?: number;
+  item_id?: Integer;
   /**
    * If the item has no variation, this field will be empty
    */
-  model_id?: number;
+  model_id?: Integer;
   err_code?: number;
   /**
    * the reason why the model cannot be added

@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer, BinaryFile } from "./fetch.js";
 /**
  * AddItemListItem sub-interface for AddItemListRequest
  */
@@ -8,11 +8,11 @@ export interface AddItemListItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The shop id of this item.
    */
-  shop_id: number;
+  shop_id: Integer;
 }
 /**
  * Request parameters for add_item_list
@@ -23,7 +23,7 @@ export interface AddItemListRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * The list of item to add.
    */
@@ -32,7 +32,7 @@ export interface AddItemListRequest {
 /**
  * Response data payload for add_item_list
  */
-export type AddItemListResponseData = any;
+export type AddItemListResponseData = unknown;
 /**
  * Response payload for add_item_list
  *
@@ -48,16 +48,16 @@ export interface ApplyItemSetRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * List of item set id to apply.
    */
-  item_set_ids: number[];
+  item_set_ids: Integer[];
 }
 /**
  * Response data payload for apply_item_set
  */
-export type ApplyItemSetResponseData = any;
+export type ApplyItemSetResponseData = unknown;
 /**
  * Response payload for apply_item_set
  *
@@ -73,16 +73,16 @@ export interface BanUserCommentRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * The user id that will be banned from posting comments.
    */
-  ban_user_id: number;
+  ban_user_id: Integer;
 }
 /**
  * Response data payload for ban_user_comment
  */
-export type BanUserCommentResponseData = any;
+export type BanUserCommentResponseData = unknown;
 /**
  * Response payload for ban_user_comment
  *
@@ -119,7 +119,7 @@ export interface CreateSessionResponseData {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id?: Integer;
 }
 /**
  * Response payload for create_session
@@ -134,11 +134,11 @@ export interface DeleteItemListItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The shop id of this item.
    */
-  shop_id: number;
+  shop_id: Integer;
 }
 /**
  * Request parameters for delete_item_list
@@ -149,7 +149,7 @@ export interface DeleteItemListRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * The list of item to delete.
    */
@@ -158,7 +158,7 @@ export interface DeleteItemListRequest {
 /**
  * Response data payload for delete_item_list
  */
-export type DeleteItemListResponseData = any;
+export type DeleteItemListResponseData = unknown;
 /**
  * Response payload for delete_item_list
  *
@@ -174,12 +174,12 @@ export interface DeleteShowItemRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
 }
 /**
  * Response data payload for delete_show_item
  */
-export type DeleteShowItemResponseData = any;
+export type DeleteShowItemResponseData = unknown;
 /**
  * Response payload for delete_show_item
  *
@@ -195,12 +195,12 @@ export interface EndSessionRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
 }
 /**
  * Response data payload for end_session
  */
-export type EndSessionResponseData = any;
+export type EndSessionResponseData = unknown;
 /**
  * Response payload for end_session
  *
@@ -216,7 +216,7 @@ export interface GetItemCountRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
 }
 /**
  * GetItemCountResponseData sub-interface for GetItemCountResponse
@@ -225,11 +225,11 @@ export interface GetItemCountResponseData {
   /**
    * The number of items in the shopping bag of this session.
    */
-  item_count?: number;
+  item_count?: Integer;
   /**
    * The maximum number of items allowed in the shopping bag of this session.
    */
-  max_item_count?: number;
+  max_item_count?: Integer;
 }
 /**
  * Response payload for get_item_count
@@ -246,7 +246,7 @@ export interface GetItemListRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
@@ -292,11 +292,11 @@ export interface GetItemListAffiliateInfo {
   /**
    * Campaign start time, it's unix timestamp in seconds.
    */
-  campaign_start_time?: number;
+  campaign_start_time?: Integer;
   /**
    * Campaign end time, it's unix timestamp in seconds.
    */
-  campaign_end_time?: number;
+  campaign_end_time?: Integer;
 }
 /**
  * GetItemListList sub-interface for GetItemListResponseData
@@ -305,15 +305,15 @@ export interface GetItemListList {
   /**
    * The order of this item in the shopping bag of current session, start from 1.
    */
-  item_no?: number;
+  item_no?: Integer;
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The shop id of this item.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Name of the item in local language.
    */
@@ -336,7 +336,7 @@ export interface GetItemListResponseData {
   /**
    * If more is true, this value need set to next request offset.
    */
-  next_offset?: number;
+  next_offset?: Integer;
   list?: GetItemListList[];
 }
 /**
@@ -354,7 +354,7 @@ export interface GetItemSetItemListRequest {
   /**
    * The identifier of the item set.
    */
-  item_set_id: number;
+  item_set_id: Integer;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
@@ -400,11 +400,11 @@ export interface GetItemSetItemListAffiliateInfo {
   /**
    * Campaign start time, it's unix timestamp in seconds.
    */
-  campaign_start_time?: number;
+  campaign_start_time?: Integer;
   /**
    * Campaign end time, it's unix timestamp in seconds.
    */
-  campaign_end_time?: number;
+  campaign_end_time?: Integer;
 }
 /**
  * GetItemSetItemListList sub-interface for GetItemSetItemListResponseData
@@ -413,11 +413,11 @@ export interface GetItemSetItemListList {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The shop id of this item.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Name of the item in local language.
    */
@@ -440,7 +440,7 @@ export interface GetItemSetItemListResponseData {
   /**
    * If more is true, this value need set to next request offset.
    */
-  next_offset?: number;
+  next_offset?: Integer;
   list?: GetItemSetItemListList[];
 }
 /**
@@ -475,7 +475,7 @@ export interface GetItemSetListList {
   /**
    * The identifier of the item set.
    */
-  item_set_id?: number;
+  item_set_id?: Integer;
   /**
    * The name of the item set.
    */
@@ -483,7 +483,7 @@ export interface GetItemSetListList {
   /**
    * The number of items in this item set.
    */
-  item_count?: number;
+  item_count?: Integer;
 }
 /**
  * GetItemSetListResponseData sub-interface for GetItemSetListResponse
@@ -496,7 +496,7 @@ export interface GetItemSetListResponseData {
   /**
    * If more is true, this value need set to next request offset.
    */
-  next_offset?: number;
+  next_offset?: Integer;
   list?: GetItemSetListList[];
 }
 /**
@@ -514,7 +514,7 @@ export interface GetLatestCommentListRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
@@ -527,7 +527,7 @@ export interface GetLatestCommentListList {
   /**
    * The identifier of comment.
    */
-  comment_id?: number;
+  comment_id?: Integer;
   /**
    * The content of comment.
    */
@@ -539,7 +539,7 @@ export interface GetLatestCommentListList {
   /**
    * The user id of the one who posted the comment.
    */
-  user_id?: number;
+  user_id?: Integer;
   /**
    * The username of the one who posted comment.
    */
@@ -616,11 +616,11 @@ export interface GetLikeItemListAffiliateInfo {
   /**
    * Campaign start time, it's unix timestamp in seconds.
    */
-  campaign_start_time?: number;
+  campaign_start_time?: Integer;
   /**
    * Campaign end time, it's unix timestamp in seconds.
    */
-  campaign_end_time?: number;
+  campaign_end_time?: Integer;
 }
 /**
  * GetLikeItemListList sub-interface for GetLikeItemListResponseData
@@ -629,11 +629,11 @@ export interface GetLikeItemListList {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The shop id of this item.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Name of the item in local language.
    */
@@ -716,11 +716,11 @@ export interface GetRecentItemListAffiliateInfo {
   /**
    * Campaign start time, it's unix timestamp in seconds.
    */
-  campaign_start_time?: number;
+  campaign_start_time?: Integer;
   /**
    * Campaign end time, it's unix timestamp in seconds.
    */
-  campaign_end_time?: number;
+  campaign_end_time?: Integer;
 }
 /**
  * GetRecentItemListList sub-interface for GetRecentItemListResponseData
@@ -729,11 +729,11 @@ export interface GetRecentItemListList {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The shop id of this item.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Name of the item in local language.
    */
@@ -756,7 +756,7 @@ export interface GetRecentItemListResponseData {
   /**
    * If more is true, this value need set to next request offset.
    */
-  next_offset?: number;
+  next_offset?: Integer;
   list?: GetRecentItemListList[];
 }
 /**
@@ -774,7 +774,7 @@ export interface GetSessionDetailRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
 }
 /**
  * GetSessionDetailStreamUrl sub-interface for GetSessionDetailResponseData
@@ -795,7 +795,7 @@ export interface GetSessionDetailStreamUrl {
   /**
    * The identifier of the stream domain, need to be passed in request for v2.livestream.start_session.
    */
-  domain_id?: number;
+  domain_id?: Integer;
 }
 /**
  * GetSessionDetailResponseData sub-interface for GetSessionDetailResponse
@@ -804,7 +804,7 @@ export interface GetSessionDetailResponseData {
   /**
    * The identifier of livestream session.
    */
-  session_id?: number;
+  session_id?: Integer;
   /**
    * The title of the livestream session.
    */
@@ -832,19 +832,19 @@ export interface GetSessionDetailResponseData {
   /**
    * The creation time of the livestream session. It's unix timestamp in seconds.
    */
-  create_time?: number;
+  create_time?: Integer;
   /**
    * The update time of the livestream session. It's unix timestamp in seconds.
    */
-  update_time?: number;
+  update_time?: Integer;
   /**
    * The start time of the livestream session, 0 if session is not started yet. It's unix timestamp in seconds.
    */
-  start_time?: number;
+  start_time?: Integer;
   /**
    * The end time of livestream session, 0 if session is not ended yet. It's unix timestamp in seconds.
    */
-  end_time?: number;
+  end_time?: Integer;
   stream_url_list?: GetSessionDetailStreamUrl[];
 }
 /**
@@ -862,7 +862,7 @@ export interface GetSessionItemMetricRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
@@ -896,11 +896,11 @@ export interface GetSessionItemMetricItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The shop id of the item.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Name of the item in local language.
    */
@@ -918,15 +918,15 @@ export interface GetSessionItemMetricMetric {
   /**
    * Number of product clicks.
    */
-  item_clicks?: number;
+  item_clicks?: Integer;
   /**
    * Number of "Add To Cart" button clicked for all products in the orange bag during livestream.
    */
-  atc?: number;
+  atc?: Integer;
   /**
    * Number of product sold.
    */
-  sold_items?: number;
+  sold_items?: Integer;
 }
 /**
  * GetSessionItemMetricList sub-interface for GetSessionItemMetricResponseData
@@ -964,7 +964,7 @@ export interface GetSessionMetricRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
 }
 /**
  * GetSessionMetricResponseData sub-interface for GetSessionMetricResponse
@@ -977,7 +977,7 @@ export interface GetSessionMetricResponseData {
   /**
    * Number of "Add To Cart" button clicked for all products in the orange bag during livestream.
    */
-  atc?: number;
+  atc?: Integer;
   /**
    * Number of products clicks divided by Number of Livestream views.
    */
@@ -989,39 +989,39 @@ export interface GetSessionMetricResponseData {
   /**
    * Number of placed orders (paid and unpaid) during Livestream, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Number of viewers during stream.
    */
-  ccu?: number;
+  ccu?: Integer;
   /**
    * Number of Concurrent viewers in the stream that have watched for more than 1 minute.
    */
-  engage_ccu_1m?: number;
+  engage_ccu_1m?: Integer;
   /**
    * Highest number of viewers during stream.
    */
-  peak_ccu?: number;
+  peak_ccu?: Integer;
   /**
    * Number of "Like" clicked during livestream.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Number of comments acquired during the stream.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Number of shares created during the stream.
    */
-  shares?: number;
+  shares?: Integer;
   /**
    * Number of views from the stream.
    */
-  views?: number;
+  views?: Integer;
   /**
    * Average of Viewer duration watching in the stream.
    */
-  avg_viewing_duration?: number;
+  avg_viewing_duration?: Integer;
 }
 /**
  * Response payload for get_session_metric
@@ -1038,7 +1038,7 @@ export interface GetShowItemRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
 }
 /**
  * GetShowItemPriceInfo sub-interface for GetShowItemItem
@@ -1064,15 +1064,15 @@ export interface GetShowItemItem {
   /**
    * The order of this item in the shopping bag of current session, start from 1. Only return item_no when showing item is in the shopping bag of current session.
    */
-  item_no?: number;
+  item_no?: Integer;
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The shop id of this item.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Name of the item in local language.
    */
@@ -1108,7 +1108,7 @@ export interface PostCommentRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * The comment content, cannot exceed 150 characters.
    */
@@ -1121,7 +1121,7 @@ export interface PostCommentResponseData {
   /**
    * The identifier of the comment.
    */
-  comment_id?: number;
+  comment_id?: Integer;
 }
 /**
  * Response payload for post_comment
@@ -1138,11 +1138,11 @@ export interface StartSessionRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * The identifier of the stream domain.
    */
-  domain_id: number;
+  domain_id: Integer;
   /**
    * Only available in PH region.To support transparent experiences on Shopee Live,please select this option if AI-generated streameris used for live-streaming.Failure of doing so may lead to warning or termination.Learn more about the policy:PH: https://seller.shopee.ph/edu/article/25213
    */
@@ -1151,7 +1151,7 @@ export interface StartSessionRequest {
 /**
  * Response data payload for start_session
  */
-export type StartSessionResponseData = any;
+export type StartSessionResponseData = unknown;
 /**
  * Response payload for start_session
  *
@@ -1167,16 +1167,16 @@ export interface UnbanUserCommentRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * The user ID that will be unbanned from posting comments.
    */
-  unban_user_id: number;
+  unban_user_id: Integer;
 }
 /**
  * Response data payload for unban_user_comment
  */
-export type UnbanUserCommentResponseData = any;
+export type UnbanUserCommentResponseData = unknown;
 /**
  * Response payload for unban_user_comment
  *
@@ -1190,11 +1190,11 @@ export interface UpdateItemListItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The shop id of this item.
    */
-  shop_id: number;
+  shop_id: Integer;
 }
 /**
  * Request parameters for update_item_list
@@ -1205,7 +1205,7 @@ export interface UpdateItemListRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * The list of item with updated order.
    */
@@ -1214,7 +1214,7 @@ export interface UpdateItemListRequest {
 /**
  * Response data payload for update_item_list
  */
-export type UpdateItemListResponseData = any;
+export type UpdateItemListResponseData = unknown;
 /**
  * Response payload for update_item_list
  *
@@ -1230,7 +1230,7 @@ export interface UpdateSessionRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * The title of the livestream session, cannot exceed 200 characters.
    */
@@ -1251,7 +1251,7 @@ export interface UpdateSessionRequest {
 /**
  * Response data payload for update_session
  */
-export type UpdateSessionResponseData = any;
+export type UpdateSessionResponseData = unknown;
 /**
  * Response payload for update_session
  *
@@ -1267,20 +1267,20 @@ export interface UpdateShowItemRequest {
   /**
    * The identifier of livestream session.
    */
-  session_id: number;
+  session_id: Integer;
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The shop id of this item.
    */
-  shop_id: number;
+  shop_id: Integer;
 }
 /**
  * Response data payload for update_show_item
  */
-export type UpdateShowItemResponseData = any;
+export type UpdateShowItemResponseData = unknown;
 /**
  * Response payload for update_show_item
  *
@@ -1296,7 +1296,7 @@ export interface UploadImageRequest {
   /**
    * The image file to upload.
    */
-  image: any;
+  image: BinaryFile;
 }
 /**
  * UploadImageResponseData sub-interface for UploadImageResponse

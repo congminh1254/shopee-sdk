@@ -45,3 +45,36 @@ Consumers must migrate to the corrected generated types; backward compatibility
 aliases are not maintained. Upstream documentation exceptions should be recorded
 explicitly with a comment and regression test, rather than hidden by permissive
 assertions.
+
+## Request and response contracts
+
+Authentication comes from `common_params` and the documentation API scope:
+partner requests omit tokens; shop, merchant, and user requests bind their respective
+identity to the signature; principal requests use a token without a shop identity.
+Generated options use `authMode` for scopes beyond shop authentication. Configure
+`merchant_id` or `user_id` explicitly and use a token issued for that identity. Use
+separate SDK instances/storage for distinct authorization scopes.
+
+Enum fields retain their scalar/array shape and their string/number primitive type.
+Flat responses remain flat, `response` payloads remain wrapped, and file-only download
+responses are `Buffer`s. Error/message metadata may be absent on successful responses.
+Fields with incomplete object definitions are `unknown`, requiring consumer narrowing.
+Unsupported type names stop generation with a filename-specific diagnostic.
+
+`int64`/`uint64` fields use `Integer` (`number | string`). Safe JSON integer tokens stay
+numbers; larger decimal integer tokens stay exact strings. Supply large request IDs as
+decimal strings: unsafe numeric requests are rejected. Unsafe integer-valued response
+literals written with a decimal point/exponent are rejected rather than rounded;
+ordinary finite fractional values use JavaScript number semantics. `BinaryFile` accepts
+`Buffer | Blob`, and multipart image collections may also accept arrays of files.
+
+On module removal, only files bearing the generator ownership header are deleted.
+Their SDK registrations and barrel exports are removed in the same validated batch.
+Handwritten managers remain intact. New schema barrel entries use namespaces when a
+module has no existing export, avoiding collisions between module-local type names.
+
+`npm run fetch-schemas` downloads into a temporary catalog and publishes only after
+every selected endpoint succeeds and validates. Partial failures and duplicate or
+unsafe filenames preserve the previous catalog; helper source files are retained.
+Embedded integer samples use the same precision policy as runtime JSON. This prevents
+generator cleanup from interpreting an incomplete download as intentional API removal.

@@ -565,7 +565,6 @@ describe("LogisticsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -598,7 +597,6 @@ describe("LogisticsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -633,7 +631,6 @@ describe("LogisticsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -678,7 +675,7 @@ describe("LogisticsManager", () => {
               town: "Downtown",
               address: "123 Main Street",
               zipcode: "123456",
-              address_type: "DEFAULT_ADDRESS",
+              address_type: ["DEFAULT_ADDRESS"],
             },
             {
               address_id: 1174,
@@ -689,7 +686,7 @@ describe("LogisticsManager", () => {
               town: "Jurong",
               address: "456 West Avenue",
               zipcode: "654321",
-              address_type: "RETURN_ADDRESS",
+              address_type: ["RETURN_ADDRESS"],
             },
           ],
         },
@@ -1330,7 +1327,6 @@ describe("LogisticsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1363,7 +1359,6 @@ describe("LogisticsManager", () => {
         request_id: "test-request-id",
         error: "error_param",
         message: "Invalid zipcode format",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1390,7 +1385,7 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await logisticsManager.uploadServiceablePolygon({
-        file: '<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>',
+        file: Buffer.from('<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>'),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
@@ -1400,7 +1395,7 @@ describe("LogisticsManager", () => {
           method: "POST",
           auth: true,
           body: {
-            file: '<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>',
+            file: Buffer.from('<?xml version="1.0" encoding="UTF-8"?><kml>...</kml>'),
           },
         }
       );
@@ -1419,7 +1414,7 @@ describe("LogisticsManager", () => {
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
       const result = await logisticsManager.uploadServiceablePolygon({
-        file: "invalid kml",
+        file: Buffer.from("invalid kml"),
       });
 
       expect(result.error).toBe("error_invalid_kml");

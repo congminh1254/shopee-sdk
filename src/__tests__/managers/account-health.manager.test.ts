@@ -46,7 +46,7 @@ describe("AccountHealthManager", () => {
           overall_performance: {
             rating: PerformanceRating.Good,
             fulfillment_failed: 0,
-            listing_failed: [0],
+            listing_failed: 0,
             custom_service_failed: 0,
           },
           metric_list: [

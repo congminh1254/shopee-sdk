@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { parseResponseJson } from "../utils/response-json.js";
 import path from "node:path";
 import { validateSchema } from "./schema-validation.js";
 import {
@@ -27,11 +28,13 @@ export function cleanDescription(desc: unknown): string {
 
 // Type overrides to resolve Shopee's inaccurate documentation schemas
 const NODE_PATH_TYPE_OVERRIDES: Record<string, string> = {
+  // get_income_detail uses an object containing list and next_page despite its name.
+  "v2.payment.get_income_detail:income_detail_list": "unknown",
   "publish_item.model": "object[]",
 };
 
 const FIELD_NAME_TYPE_OVERRIDES: Record<string, { expectedType: string; resolvedType: string }> = {
-  image_id_list: { expectedType: "any[]", resolvedType: "string[]" },
+  image_id_list: { expectedType: "unknown[]", resolvedType: "string[]" },
 };
 
 function deduplicateMembers(members: ParsedEnumMember[]): ParsedEnumMember[] {
@@ -69,7 +72,7 @@ export function parseEnumFromDescription(
       "numeric",
       "number",
       "timestamp",
-    ].includes(nodeType.trim().toLowerCase());
+    ].includes(nodeType.replace(/\s+/g, "").replace(/\[\]$/, "").toLowerCase());
 
   // 1. Available values pattern (e.g. "Available value: upcoming/ongoing/expired" or "Available values: all, upcoming, ongoing")
   const availableValuesRegex = /available\s+values?\s*:\s*([a-zA-Z0-9_\s,/|-]+)/i;
@@ -194,57 +197,40 @@ export function parseEnumFromDescription(
   return null;
 }
 
-function mapType(schemaType: string | undefined, name?: string): string {
-  if (!schemaType) return "any";
-  const t = schemaType.toLowerCase().trim();
-  if (name) {
-    const lowerName = name.toLowerCase().trim();
-    const isList =
-      lowerName.endsWith("_list") ||
-      lowerName.endsWith("_ids") ||
-      lowerName.endsWith("_sns") ||
-      lowerName.includes("array") ||
-      (lowerName.includes("list") && !lowerName.includes("listen") && !lowerName.includes("blist"));
-
-    if (isList) {
-      if (
-        ["int", "integer", "int32", "int64", "float", "double", "numeric", "number"].includes(t)
-      ) {
-        return "number[]";
-      }
-      if (t === "string") {
-        return "string[]";
-      }
-      if (t === "object") {
-        return "any[]";
-      }
-    }
-  }
-  if (t === "string") return "string";
-  if (t === "boolean" || t === "bool") return "boolean";
-  if (["int", "integer", "int32", "int64", "float", "double", "numeric", "number"].includes(t)) {
-    return "number";
-  }
-  if (t === "timestamp") return "Date";
-  if (t === "string[]" || t === "string []") return "string[]";
-  if (
-    [
-      "int[]",
-      "integer[]",
-      "int32[]",
-      "int64[]",
-      "float[]",
-      "number[]",
-      "int []",
-      "int64 []",
-    ].includes(t)
-  ) {
-    return "number[]";
-  }
-  if (t === "boolean[]") return "boolean[]";
-  if (t.includes("object[]") || t.includes("list")) return "any[]";
-  if (t.includes("object") || t.includes("dict")) return "any";
-  return "any";
+export function mapType(schemaType: string | undefined, name?: string): string {
+  if (!schemaType) throw new Error(`Missing type for field ${name ?? "unnamed"}`);
+  const raw = schemaType.toLowerCase().replace(/\s+/g, "");
+  const array = raw.endsWith("[]");
+  const base = array ? raw.slice(0, -2) : raw;
+  const mapped: Record<string, string> = {
+    string: "string",
+    boolean: "boolean",
+    bool: "boolean",
+    int: "number",
+    integer: "number",
+    int32: "number",
+    float: "number",
+    double: "number",
+    numeric: "number",
+    number: "number",
+    int64: "Integer",
+    uint64: "Integer",
+    timestamp: "Date",
+    file: "BinaryFile",
+    object: "unknown",
+    dict: "Record<string, unknown>",
+    list: "unknown",
+  };
+  if (!Object.hasOwn(mapped, base))
+    throw new Error(`Unsupported field type ${schemaType} for ${name ?? "unnamed"}`);
+  // Keep known corrections for documentation that labels a list as a scalar.
+  const inferredArray =
+    name &&
+    /^list$|_(?:list|ids|sns)$|array/.test(name) &&
+    ["string", "int", "integer", "int32", "int64", "uint64", "float", "number", "object"].includes(
+      base
+    );
+  return mapped[base] + (array || inferredArray || base === "list" ? "[]" : "");
 }
 
 // Recursively parse parameter lists into NormalizedParam structures
@@ -252,7 +238,8 @@ function parseParams(
   nodes: SpecFieldNode[],
   enums: ParsedEnum[],
   timestampPaths: string[],
-  currentPath: string
+  currentPath: string,
+  apiName: string
 ): NormalizedParam[] {
   const result: NormalizedParam[] = [];
 
@@ -270,12 +257,13 @@ function parseParams(
     const description = cleanDescription(node.description);
 
     let tsType = mapType(node.type, fieldName);
+    if (fieldName === "images" && node.type === "file") tsType = "BinaryFiles";
     let enumDefinition: ParsedEnum | undefined;
 
     // Apply static overrides
-    if (NODE_PATH_TYPE_OVERRIDES[nodePath]) {
-      tsType = NODE_PATH_TYPE_OVERRIDES[nodePath];
-    }
+    const override =
+      NODE_PATH_TYPE_OVERRIDES[`${apiName}:${nodePath}`] ?? NODE_PATH_TYPE_OVERRIDES[nodePath];
+    if (override) tsType = override;
     const fieldOverride = FIELD_NAME_TYPE_OVERRIDES[fieldName];
     if (fieldOverride && tsType === fieldOverride.expectedType) {
       tsType = fieldOverride.resolvedType;
@@ -287,12 +275,12 @@ function parseParams(
       (node.type.trim().toLowerCase() === "boolean" || node.type.trim().toLowerCase() === "bool");
 
     // Check if there is an enum in the description
-    if (!hasChildren && !isBooleanType) {
+    if (!hasChildren && !isBooleanType && node.type?.toLowerCase() !== "file") {
       const parsedEnum = parseEnumFromDescription(fieldName, node.description || "", node.type);
       if (parsedEnum) {
         enumDefinition = parsedEnum;
         enums.push(parsedEnum);
-        tsType = parsedEnum.name;
+        tsType = parsedEnum.name + (tsType.endsWith("[]") ? "[]" : "");
       } else {
         // Warning if the description mentions enum-like words but we failed to parse an enum
         const descLower = description.toLowerCase();
@@ -333,7 +321,7 @@ function parseParams(
     };
 
     if (node.children && node.children.length > 0) {
-      const childParams = parseParams(node.children, enums, timestampPaths, nodePath);
+      const childParams = parseParams(node.children, enums, timestampPaths, nodePath, apiName);
       param.children = childParams;
 
       // Adjust type if it is an object array
@@ -348,7 +336,7 @@ function parseParams(
   return result;
 }
 
-export function parseSchemaFile(filePath: string): EndpointSpec {
+function parseSchema(filePath: string): EndpointSpec {
   const fileName = path.basename(filePath);
   // Match v2.<module>.<endpoint>.json
   const match = /^v2\.([a-z0-9_-]+)\.([^.]+)\.json$/.exec(normalizeSchemaName(fileName));
@@ -361,7 +349,7 @@ export function parseSchemaFile(filePath: string): EndpointSpec {
   const raw = fs.readFileSync(filePath, "utf-8");
   let schema: unknown;
   try {
-    schema = JSON.parse(raw);
+    schema = parseResponseJson(raw);
     validateSchema(schema);
   } catch (error) {
     throw new Error(
@@ -380,8 +368,18 @@ export function parseSchemaFile(filePath: string): EndpointSpec {
   const rawPath = schema.path || `/api/v2/${moduleName}/${endpointName}`;
   const pathVal = rawPath.replace("/api/v2/", "/"); // shopee fetch uses "/module/endpoint" format
 
-  // Only public manager does not need auth
-  const auth = moduleName !== "public";
+  const names = new Set(schema.common_params?.map((param) => param.name) ?? []);
+  // Missing documentation metadata is a partner fixture; actual schemas declare their scope.
+  const authMode = !names.has("access_token")
+    ? "partner"
+    : names.has("merchant_id")
+      ? "merchant"
+      : names.has("shop_id")
+        ? "shop"
+        : names.has("user_id") || schema.api_type === "User"
+          ? "user"
+          : "token";
+  const auth = authMode !== "partner";
 
   const rawDefine = schema.define;
   const defineStr = typeof rawDefine === "string" ? rawDefine : rawDefine?.content || "";
@@ -394,14 +392,15 @@ export function parseSchemaFile(filePath: string): EndpointSpec {
   const enums: ParsedEnum[] = [];
   const timestampPaths: string[] = [];
 
-  const requestParams = parseParams(schema.params?.request_params ?? [], enums, [], "");
+  const requestParams = parseParams(schema.params?.request_params ?? [], enums, [], "", apiName);
 
   // Extract response object fields (passing the entire root level to preserve the "response" property node)
   const responseParams = parseParams(
     schema.params?.response_params ?? [],
     enums,
     timestampPaths,
-    ""
+    "",
+    apiName
   );
 
   return {
@@ -411,6 +410,7 @@ export function parseSchemaFile(filePath: string): EndpointSpec {
     method,
     path: pathVal,
     auth,
+    authMode,
     description,
     requestParams,
     responseParams,
@@ -435,4 +435,16 @@ export function parseAllSchemas(schemasDir: string): Map<string, EndpointSpec[]>
   }
 
   return result;
+}
+
+export function parseSchemaFile(filePath: string): EndpointSpec {
+  try {
+    return parseSchema(filePath);
+  } catch (error) {
+    if (error instanceof Error && error.message.startsWith("Invalid schema ")) throw error;
+    throw new Error(
+      `Invalid schema ${path.basename(filePath)}: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error }
+    );
+  }
 }

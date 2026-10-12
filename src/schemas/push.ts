@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata } from "./fetch.js";
 /**
  * Request parameters for confirm_consumed_lost_push_message
  *
@@ -26,8 +26,8 @@ export interface ConfirmConsumedLostPushMessageResponseData {
  *
  * Confirm consumed lost push message
  */
-export type ConfirmConsumedLostPushMessageResponse =
-  FetchResponse<ConfirmConsumedLostPushMessageResponseData>;
+export type ConfirmConsumedLostPushMessageResponse = ResponseMetadata &
+  ConfirmConsumedLostPushMessageResponseData;
 /**
  * Request parameters for get_app_push_config
  *

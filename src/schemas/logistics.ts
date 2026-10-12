@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata, Integer, BinaryFile } from "./fetch.js";
 /**
  * Enum generated for field CreateBookingShippingDocumentRequestBookingListShippingDocumentType
  */
@@ -237,7 +237,7 @@ export interface BatchUpdateTpfWarehouseTrackingStatusPackage {
   /**
    * This is to indicate timestamp of the 3PF tracking status.Timestamp should be within order create time and order pick up by 3PL time.
    */
-  update_time: number;
+  update_time: Integer;
 }
 /**
  * Request parameters for batch_update_tpf_warehouse_tracking_status
@@ -363,7 +363,7 @@ export interface CreateBookingShippingDocumentBooking {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL,NORMAL_JOB_AIR_WAYBILL,THERMAL_JOB_AIR_WAYBILL
    */
   shipping_document_type?:
-    CreateBookingShippingDocumentRequestBookingListShippingDocumentType | string | number;
+    CreateBookingShippingDocumentRequestBookingListShippingDocumentType | string;
 }
 /**
  * Request parameters for create_booking_shipping_document
@@ -437,8 +437,7 @@ export interface CreateShippingDocumentOrder {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
-  shipping_document_type?:
-    CreateShippingDocumentRequestOrderListShippingDocumentType | string | number;
+  shipping_document_type?: CreateShippingDocumentRequestOrderListShippingDocumentType | string;
 }
 /**
  * Request parameters for create_shipping_document
@@ -511,7 +510,7 @@ export interface CreateShippingDocumentJobUnpackagedSkuRequest {
   /**
    * Number of copies for the generated labels (maximum 600 total across all requested SKUs).
    */
-  quantity?: number;
+  quantity?: Integer;
 }
 /**
  * Request parameters for create_shipping_document_job
@@ -587,13 +586,13 @@ export interface DeleteAddressRequest {
 /**
  * Response data payload for delete_address
  */
-export type DeleteAddressResponseData = Record<string, never>;
+export type DeleteAddressResponseData = Record<never, never>;
 /**
  * Response payload for delete_address
  *
  * Use this api to delete address.
  */
-export type DeleteAddressResponse = FetchResponse<DeleteAddressResponseData>;
+export type DeleteAddressResponse = ResponseMetadata & DeleteAddressResponseData;
 /**
  * Request parameters for delete_special_operating_hour
  *
@@ -608,14 +607,14 @@ export interface DeleteSpecialOperatingHourRequest {
 /**
  * Response data payload for delete_special_operating_hour
  */
-export type DeleteSpecialOperatingHourResponseData = Record<string, never>;
+export type DeleteSpecialOperatingHourResponseData = Record<never, never>;
 /**
  * Response payload for delete_special_operating_hour
  *
  * This API is used to delete a specific special operating hour for a seller. This API allows sellers to manage their operating hours by removing any special operating hours that are no longer needed. To use this API, the name of the special operating hour to be deleted should be obtained from the v2.logistics.get_operating_hours API.
  */
-export type DeleteSpecialOperatingHourResponse =
-  FetchResponse<DeleteSpecialOperatingHourResponseData>;
+export type DeleteSpecialOperatingHourResponse = ResponseMetadata &
+  DeleteSpecialOperatingHourResponseData;
 /**
  * DownloadBookingShippingDocumentBooking sub-interface for DownloadBookingShippingDocumentRequest
  */
@@ -634,29 +633,13 @@ export interface DownloadBookingShippingDocumentRequest {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL
    */
-  shipping_document_type?:
-    DownloadBookingShippingDocumentRequestShippingDocumentType | string | number;
+  shipping_document_type?: DownloadBookingShippingDocumentRequestShippingDocumentType | string;
   /**
    * The list of bookings you want to get. limit [1,50]
    */
   booking_list: DownloadBookingShippingDocumentBooking[];
 }
-/**
- * Response data payload for download_booking_shipping_document
- */
-export interface DownloadBookingShippingDocumentResponseData {
-  /**
-   * The waybill file.
-   */
-  waybill?: any;
-}
-/**
- * Response payload for download_booking_shipping_document
- *
- * Use this api to download shipping_document. You have to call v2.logistics.create_booking_shipping_document to create a new shipping document task first and call v2.logistics.get_booking_shipping_document_result to get the task status second. If the task is READY, you can download this shipping document.
- */
-export type DownloadBookingShippingDocumentResponse =
-  FetchResponse<DownloadBookingShippingDocumentResponseData>;
+export type DownloadBookingShippingDocumentResponse = Buffer;
 /**
  * DownloadShippingDocumentOrder sub-interface for DownloadShippingDocumentRequest
  */
@@ -679,27 +662,13 @@ export interface DownloadShippingDocumentRequest {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
-  shipping_document_type?: DownloadShippingDocumentRequestShippingDocumentType | string | number;
+  shipping_document_type?: DownloadShippingDocumentRequestShippingDocumentType | string;
   /**
    * The list of orders you need to download it's shipping document. Limit [1, 50]. Orders must be from the same courier
    */
   order_list: DownloadShippingDocumentOrder[];
 }
-/**
- * Response data payload for download_shipping_document
- */
-export interface DownloadShippingDocumentResponseData {
-  /**
-   * The waybill file.
-   */
-  waybill?: any;
-}
-/**
- * Response payload for download_shipping_document
- *
- * Use this api to download shipping_document. You have to call v2.logistics.create_shipping_document to create a new shipping document task first and call v2.logistics.get_shipping_document_resut to get the task status second. If the task is READY, you can download this shipping document.
- */
-export type DownloadShippingDocumentResponse = FetchResponse<DownloadShippingDocumentResponseData>;
+export type DownloadShippingDocumentResponse = Buffer;
 /**
  * Request parameters for download_shipping_document_job
  *
@@ -711,19 +680,7 @@ export interface DownloadShippingDocumentJobRequest {
    */
   job_id: string;
 }
-/**
- * Response data payload for download_shipping_document_job
- */
-export interface DownloadShippingDocumentJobResponseData {
-  file?: any;
-}
-/**
- * Response payload for download_shipping_document_job
- *
- * This API allows users to download the shipping document associated with a specific job ID. It checks the job status before proceeding with the download.
- */
-export type DownloadShippingDocumentJobResponse =
-  FetchResponse<DownloadShippingDocumentJobResponseData>;
+export type DownloadShippingDocumentJobResponse = Buffer;
 /**
  * Request parameters for download_to_label
  *
@@ -739,21 +696,7 @@ export interface DownloadToLabelRequest {
    */
   quantity?: number;
 }
-/**
- * Response data payload for download_to_label
- */
-export interface DownloadToLabelResponseData {
-  /**
-   * The waybill file.
-   */
-  waybill?: any;
-}
-/**
- * Response payload for download_to_label
- *
- * Use the API to download the TO label that should be attached to the carton before drop-off at the warehouse (Only for TW channel_id:30029).
- */
-export type DownloadToLabelResponse = FetchResponse<DownloadToLabelResponseData>;
+export type DownloadToLabelResponse = Buffer;
 /**
  * Request parameters for get_address_list
  *
@@ -767,7 +710,7 @@ export interface GetAddressListAddress {
   /**
    * The identity of address.
    */
-  address_id?: number;
+  address_id?: Integer;
   /**
    * The region of specify address.
    */
@@ -799,7 +742,7 @@ export interface GetAddressListAddress {
   /**
    * The flag of shop address.Available values: DEFAULT_ADDRESS, PICK_UP_ADDRESS, RETURN_ADDRESS, INBOUND_PICKUP_ADDRESS.
    */
-  address_type?: GetAddressListResponseResponseAddressListAddressType | string | number;
+  address_type?: (GetAddressListResponseResponseAddressListAddressType | string)[];
 }
 /**
  * GetAddressListResponseData sub-interface for GetAddressListResponse
@@ -831,7 +774,7 @@ export interface GetBookingShippingDocumentDataInfoStyle {
   /**
    * supports 1 - 108
    */
-  font_size?: number;
+  font_size?: Integer;
   /**
    * color string like "#AbCd12"
    */
@@ -945,11 +888,11 @@ export interface GetBookingShippingDocumentDataInfoShippingDocumentInfo {
   /**
    * Use this field to indicate booking weight when calculate the shipping fee. The unit of weigh is gram.
    */
-  booking_weight?: number;
+  booking_weight?: Integer;
   /**
    * The identity of logistic channel.
    */
-  logistics_channel_id?: number;
+  logistics_channel_id?: Integer;
   /**
    * The logistics service provider for the booking.
    */
@@ -1001,7 +944,7 @@ export interface GetBookingShippingDocumentDataInfoShippingDocumentInfo {
   /**
    * Use this field to indicate order contains dangerous goods or not.0: Non-dangerous good1: Dangerous good2: Prohibited
    */
-  is_lm_dg_bool?: number;
+  is_lm_dg_bool?: Integer;
   /**
    * The sub-district of recipient's address.
    */
@@ -1123,7 +1066,7 @@ export interface GetBookingShippingDocumentResultBooking {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL
    */
   shipping_document_type?:
-    GetBookingShippingDocumentResultRequestBookingListShippingDocumentType | string | number;
+    GetBookingShippingDocumentResultRequestBookingListShippingDocumentType | string;
 }
 /**
  * Request parameters for get_booking_shipping_document_result
@@ -1156,7 +1099,7 @@ export interface GetBookingShippingDocumentResultResult {
   /**
    * The status of the shipping document task you querying with booking_sn. Available values: READY/FAILED/PROCESSING
    */
-  status?: Status | string | number;
+  status?: Status | string;
   /**
    * Indicate error type if one element hit error.
    */
@@ -1242,7 +1185,7 @@ export interface GetBookingShippingParameterAddress {
   /**
    * The identity of address.
    */
-  address_id?: number;
+  address_id?: Integer;
   /**
    * The region of specify address.
    */
@@ -1385,7 +1328,8 @@ export interface GetBookingTrackingNumberResponseData {
  *
  * After arranging shipment (v2.logistics.ship_booking) for the integrated channel, use this api to get the tracking_number, which is a required parameter for creating shipping labels. The api response can return tracking_number empty, since this info is dependent from the 3PL, due to this it is allowed to keep calling the api within 5 minutes interval, until the tracking_number is returned.
  */
-export type GetBookingTrackingNumberResponse = FetchResponse<GetBookingTrackingNumberResponseData>;
+export type GetBookingTrackingNumberResponse = ResponseMetadata &
+  GetBookingTrackingNumberResponseData;
 /**
  * Request parameters for get_channel_list
  *
@@ -1510,11 +1454,11 @@ export interface GetChannelListChannelRelationRule {
   /**
    * Channels that will be auto-enabled in the same request if this channel is enabled.
    */
-  related_enabled_channels?: number[];
+  related_enabled_channels?: Integer[];
   /**
    * Channels that must be disabled before or while disabling this parent channel.
    */
-  related_dependent_block_channels?: number[];
+  related_dependent_block_channels?: Integer[];
 }
 /**
  * GetChannelListLogisticsChannel sub-interface for GetChannelListResponseData
@@ -1523,7 +1467,7 @@ export interface GetChannelListLogisticsChannel {
   /**
    * The identity of logistic channel.
    */
-  logistics_channel_id?: number;
+  logistics_channel_id?: Integer;
   /**
    * The name of logistic channel.
    */
@@ -1567,7 +1511,7 @@ export interface GetChannelListLogisticsChannel {
   /**
    * Indicate the parent logistic channel ID. If it’s 0, it indicates the channel is a checkout(masked) channel; if it’s not 0, indicate the channel is a fulfillment channel and has a checkout channel(checkout channel’s channel_id equals this mask_channel_id) on top of it. Multiple channels may share the same mask_channel_id.
    */
-  mask_channel_id?: number;
+  mask_channel_id?: Integer;
   /**
    * Indicate whether the channel is blocked to use seller cover shipping fee function.if the channel does not allow sellers to cover shipping fee, then the block_seller_cover_shipping_fee field will return true, otherwise it will return false.
    */
@@ -1694,7 +1638,7 @@ export interface GetMassShippingParameterRequest {
   /**
    * The API can only batch request the shipping parameter for multiple packages under the same product_location_id and same logistics_channel_id. Use this field to specify the logistics_channel_id for the request. If not specified, will use the logistics_channel_id corresponds to the first package_number by default.
    */
-  logistics_channel_id?: number;
+  logistics_channel_id?: Integer;
   /**
    * The API can only batch request the shipping parameter for multiple packages under the same product_location_id and same logistics_channel_id. Use this field to specify the product_location_id for the request. If not specified, will use the product_location_id corresponds to the first package_number by default.
    */
@@ -1728,7 +1672,7 @@ export interface GetMassShippingParameterBranch {
   /**
    * The identity of logistics branch.
    */
-  branch_id?: number;
+  branch_id?: Integer;
   /**
    * The region of specify address.
    */
@@ -1795,7 +1739,7 @@ export interface GetMassShippingParameterAddress {
   /**
    * The identity of address.
    */
-  address_id?: number;
+  address_id?: Integer;
   /**
    * The region of specify address.
    */
@@ -1917,7 +1861,7 @@ export interface GetMassTrackingNumberRequest {
   /**
    * Indicate response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them. Available values: plp_number, first_mile_tracking_number,last_mile_tracking_number.
    */
-  response_optional_fields?: ResponseOptionalFields | string | number;
+  response_optional_fields?: ResponseOptionalFields | string;
 }
 /**
  * GetMassTrackingNumberSuccess sub-interface for GetMassTrackingNumberResponseData
@@ -2001,7 +1945,7 @@ export interface GetOperatingHourRestrictionsMonday {
   /**
    * Minimum number of hours required for the seller to operate on that day.
    */
-  minimum_operating_hour?: number;
+  minimum_operating_hour?: Integer;
   /**
    * The start hour for that day should not be set earlier than this time.
    */
@@ -2034,7 +1978,7 @@ export interface GetOperatingHourRestrictionsTuesday {
   /**
    * Minimum number of hours required for the seller to operate on that day.
    */
-  minimum_operating_hour?: number;
+  minimum_operating_hour?: Integer;
   /**
    * The start hour for that day should not be set earlier than this time.
    */
@@ -2067,7 +2011,7 @@ export interface GetOperatingHourRestrictionsWednesday {
   /**
    * Minimum number of hours required for the seller to operate on that day.
    */
-  minimum_operating_hour?: number;
+  minimum_operating_hour?: Integer;
   /**
    * The start hour for that day should not be set earlier than this time.
    */
@@ -2100,7 +2044,7 @@ export interface GetOperatingHourRestrictionsThursday {
   /**
    * Minimum number of hours required for the seller to operate on that day.
    */
-  minimum_operating_hour?: number;
+  minimum_operating_hour?: Integer;
   /**
    * The start hour for that day should not be set earlier than this time.
    */
@@ -2133,7 +2077,7 @@ export interface GetOperatingHourRestrictionsFriday {
   /**
    * Minimum number of hours required for the seller to operate on that day.
    */
-  minimum_operating_hour?: number;
+  minimum_operating_hour?: Integer;
   /**
    * The start hour for that day should not be set earlier than this time.
    */
@@ -2166,7 +2110,7 @@ export interface GetOperatingHourRestrictionsSaturday {
   /**
    * Minimum number of hours required for the seller to operate on that day.
    */
-  minimum_operating_hour?: number;
+  minimum_operating_hour?: Integer;
   /**
    * The start hour for that day should not be set earlier than this time.
    */
@@ -2199,7 +2143,7 @@ export interface GetOperatingHourRestrictionsSunday {
   /**
    * Minimum number of hours required for the seller to operate on that day.
    */
-  minimum_operating_hour?: number;
+  minimum_operating_hour?: Integer;
   /**
    * The start hour for that day should not be set earlier than this time.
    */
@@ -2232,7 +2176,7 @@ export interface GetOperatingHourRestrictionsPublicHoliday {
   /**
    * Minimum number of hours required for the seller to operate on that day.
    */
-  minimum_operating_hour?: number;
+  minimum_operating_hour?: Integer;
   /**
    * The start hour for that day should not be set earlier than this time.
    */
@@ -2298,7 +2242,7 @@ export interface GetOperatingHourRestrictionsRegularOperatingHourRestriction {
   /**
    * Minimum number of days the seller needs to designate as working days per week (including Monday to Sunday, but excluding public holidays from the count).
    */
-  minimum_working_days_in_week?: number;
+  minimum_working_days_in_week?: Integer;
   /**
    * The restrictions specific to each day
    */
@@ -2311,7 +2255,7 @@ export interface GetOperatingHourRestrictionsInstantOperatingHourRestriction {
   /**
    * Minimum number of days the seller needs to designate as working days per week (including Monday to Sunday, but excluding public holidays from the count).
    */
-  minimum_working_days_in_week?: number;
+  minimum_working_days_in_week?: Integer;
   /**
    * The restrictions specific to each day
    */
@@ -2328,7 +2272,7 @@ export interface GetOperatingHourRestrictionsSpecialDay {
   /**
    * Minimum number of hours required for the seller to operate on that day.
    */
-  minimum_operating_hour?: number;
+  minimum_operating_hour?: Integer;
   /**
    * The start hour for that day should not be set earlier than this time.
    */
@@ -2367,7 +2311,7 @@ export interface GetOperatingHourRestrictions_GetOperatingHourRestrictionsTuesda
   /**
    * Minimum number of hours required for the seller to operate on that day.
    */
-  minimum_operating_hour?: number;
+  minimum_operating_hour?: Integer;
   /**
    * The start hour for that day should not be set earlier than this time.
    */
@@ -2433,7 +2377,7 @@ export interface GetOperatingHourRestrictionsShopCollectionOperatingHourRestrict
   /**
    * Minimum number of days the seller needs to designate as working days per week (including Monday to Sunday, but excluding public holidays from the count).
    */
-  minimum_working_days_in_week?: number;
+  minimum_working_days_in_week?: Integer;
   /**
    * The restrictions specific to each day
    */
@@ -2759,7 +2703,7 @@ export interface GetOperatingHoursResponseData {
  *
  * This API is utilized to retrieve the existing operating hours of sellers including Pickup Operating Hours,  Special Hours, Instant Operating Hours, and Shop Collection Operating Hours.
  */
-export type GetOperatingHoursResponse = FetchResponse<GetOperatingHoursResponseData>;
+export type GetOperatingHoursResponse = ResponseMetadata & GetOperatingHoursResponseData;
 /**
  * Request parameters for get_pause_status
  *
@@ -2781,7 +2725,7 @@ export interface GetPauseStatusResponseData {
   /**
    * The remaining pause quota of the shop on the current day, in seconds, returned only when is_paused = false.
    */
-  remaining_pause_quota?: number;
+  remaining_pause_quota?: Integer;
 }
 /**
  * Response payload for get_pause_status
@@ -3430,7 +3374,7 @@ export interface GetShippingDocumentJobStatusResponseData {
   /**
    * Requested Shipping Document current status. Available values: PROCESSING, READY, EXPIRED, FAILED
    */
-  job_status?: JobStatus | string | number;
+  job_status?: JobStatus | string;
 }
 /**
  * Response payload for get_shipping_document_job_status
@@ -3536,8 +3480,7 @@ export interface GetShippingDocumentResultOrder {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
-  shipping_document_type?:
-    GetShippingDocumentResultRequestOrderListShippingDocumentType | string | number;
+  shipping_document_type?: GetShippingDocumentResultRequestOrderListShippingDocumentType | string;
 }
 /**
  * Request parameters for get_shipping_document_result
@@ -3727,7 +3670,7 @@ export interface GetShippingParameterAddress {
   /**
    * The identity of address.
    */
-  address_id?: number;
+  address_id?: Integer;
   /**
    * The region of specify address.
    */
@@ -3840,7 +3783,7 @@ export interface GetTrackingInfoReversedTrackingInfo {
   /**
    * The time when the reversed logistics tracking info is updated.
    */
-  update_time?: number;
+  update_time?: Integer;
   /**
    * The description of the reversed logistics tracking info.
    */
@@ -3906,7 +3849,7 @@ export interface GetTrackingNumberRequest {
   /**
    * Indicate response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them. Available values: plp_number, first_mile_tracking_number,last_mile_tracking_number
    */
-  response_optional_fields?: ResponseOptionalFields | string | number;
+  response_optional_fields?: ResponseOptionalFields | string;
 }
 /**
  * GetTrackingNumberResponseData sub-interface for GetTrackingNumberResponse
@@ -3959,7 +3902,7 @@ export interface MassShipOrderPickup {
   /**
    * The identity of address.
    */
-  address_id?: number;
+  address_id?: Integer;
   /**
    * The pickup time id. Retrieved from v2.logistics.get_mass_shipping_parameter, you can only select one from the time_slot_list.Some logistics channels may not return any date or time for pickup time slots. In such cases, sellers can arrange shipment without selecting any time slot, and Shopee will arrange a suitable timing for these situations.
    */
@@ -3972,7 +3915,7 @@ export interface MassShipOrderDropoff {
   /**
    * The identity of branch.
    */
-  branch_id?: number;
+  branch_id?: Integer;
   /**
    * The real name of sender.
    */
@@ -4013,7 +3956,7 @@ export interface MassShipOrderRequest {
   /**
    * The API can only batch arrange shipment for multiple packages under the same product_location_id and same logistics_channel_id. Use this field to specify the logistics_channel_id for the request. If not specified, will use the logistics_channel_id corresponds to the first package_number by default.
    */
-  logistics_channel_id?: number;
+  logistics_channel_id?: Integer;
   /**
    * The API can only batch arrange shipment for multiple packages under the same product_location_id and same logistics_channel_id. Use this field to specify the product_location_id for the request. If not specified, will use the product_location_id corresponds to the first package_number by default.
    */
@@ -4075,7 +4018,7 @@ export interface MassShipOrderResponseData {
  *
  * Use this api to initiate logistics including arrange pickup, dropoff or shipment for non-integrated logistic channels. Should call v2.logistics.get_mass_shipping_parameter to fetch all required params first. It's recommended to initiate logistics one hour after the orders were placed since there is one-hour window buyer can cancel any order without request to seller. The API can only batch arrange shipment for multiple packages under the same product_location_id and same logistics_channel_id.
  */
-export type MassShipOrderResponse = FetchResponse<MassShipOrderResponseData>;
+export type MassShipOrderResponse = ResponseMetadata & MassShipOrderResponseData;
 /**
  * SetAddressConfigAddressTypeConfig sub-interface for SetAddressConfigRequest
  */
@@ -4083,11 +4026,11 @@ export interface SetAddressConfigAddressTypeConfig {
   /**
    * The identifier id of the address.
    */
-  address_id?: number;
+  address_id?: Integer;
   /**
    * The type of address. Available values: DEFAULT_ADDRESS, PICKUP_ADDRESS, RETURN_ADDRESS, INBOUND_PICKUP_ADDRESS.
    */
-  address_type?: SetAddressConfigRequestAddressTypeConfigAddressType | string | number;
+  address_type?: (SetAddressConfigRequestAddressTypeConfigAddressType | string)[];
 }
 /**
  * Request parameters for set_address_config
@@ -4107,13 +4050,13 @@ export interface SetAddressConfigRequest {
 /**
  * Response data payload for set_address_config
  */
-export type SetAddressConfigResponseData = Record<string, never>;
+export type SetAddressConfigResponseData = Record<never, never>;
 /**
  * Response payload for set_address_config
  *
  * Use this API to set address config of your shop.
  */
-export type SetAddressConfigResponse = FetchResponse<SetAddressConfigResponseData>;
+export type SetAddressConfigResponse = ResponseMetadata & SetAddressConfigResponseData;
 /**
  * SetMartPackagingInfoDimension sub-interface for SetMartPackagingInfoRequest
  */
@@ -4234,7 +4177,7 @@ export interface SetPauseStatusResponseData {
   /**
    * The remaining pause quota of the shop on the current day, in seconds, returned only when is_paused = false.
    */
-  remaining_pause_quota?: number;
+  remaining_pause_quota?: Integer;
 }
 /**
  * Response payload for set_pause_status
@@ -4249,7 +4192,7 @@ export interface ShipBookingPickup {
   /**
    * The identity of address. Retrieved from v2.logistics.get_booking_shipping_parameter.
    */
-  address_id: number;
+  address_id: Integer;
   /**
    * The pickup time id. Retrieved from v2.logistics.get_shipping_booking_parameter, you can only select one from the time_slot_list.Some logistics channels may not return any date or time for pickup time slots. In such cases, sellers can arrange shipment without selecting any time slot, and Shopee will arrange a suitable timing for these situations.
    */
@@ -4272,18 +4215,18 @@ export interface ShipBookingRequest {
   /**
    * Required parameter ONLY if get_shipping_parameter returns "dropoff" under "info_needed". Developer should still include "dropoff" field in the call even if "dropoff" has empty value. If you choose Regular shipping method, please use "tracking_no" to call Init API. If you choose JOB shipping method, please use "sender_real_name" to call Init API. Note that only one of "tracking_no" and "sender_real_name" can be selected.
    */
-  dropoff?: any;
+  dropoff?: unknown;
 }
 /**
  * Response data payload for ship_booking
  */
-export type ShipBookingResponseData = Record<string, never>;
+export type ShipBookingResponseData = Record<never, never>;
 /**
  * Response payload for ship_booking
  *
  * Use this api to initiate logistics including arrange pickup, dropoff. Should call v2.logistics.get_booking_shipping_parameter to fetch all required param first.
  */
-export type ShipBookingResponse = FetchResponse<ShipBookingResponseData>;
+export type ShipBookingResponse = ResponseMetadata & ShipBookingResponseData;
 /**
  * ShipOrderPickup sub-interface for ShipOrderRequest
  */
@@ -4291,7 +4234,7 @@ export interface ShipOrderPickup {
   /**
    * The identity of address. Retrieved from v2.logistics.get_shipping_parameter.
    */
-  address_id: number;
+  address_id: Integer;
   /**
    * The pickup time id. Retrieved from v2.logistics.get_shipping_parameter, you can only select one from the time_slot_list. Some logistics channels may not return any date or time for pickup time slots. In such cases, sellers can arrange shipment without selecting any time slot, and Shopee will arrange a suitable timing for these situations.
    */
@@ -4308,7 +4251,7 @@ export interface ShipOrderDropoff {
   /**
    * The identity of branch.
    */
-  branch_id?: number;
+  branch_id?: Integer;
   /**
    * The real name of sender.
    */
@@ -4361,13 +4304,13 @@ export interface ShipOrderRequest {
 /**
  * Response data payload for ship_order
  */
-export type ShipOrderResponseData = Record<string, never>;
+export type ShipOrderResponseData = Record<never, never>;
 /**
  * Response payload for ship_order
  *
  * Use this api to initiate logistics including arrange pickup, dropoff or shipment for non-integrated logistic channels. Should call v2.logistics.get_shipping_parameter to fetch all required param first. It's recommended to initiate logistics one hour after the orders were placed.
  */
-export type ShipOrderResponse = FetchResponse<ShipOrderResponseData>;
+export type ShipOrderResponse = ResponseMetadata & ShipOrderResponseData;
 /**
  * Request parameters for update_address
  *
@@ -4377,7 +4320,7 @@ export interface UpdateAddressRequest {
   /**
    * Unique identifier for the address. You can get the address_id via v2.logistics.get_address_list.
    */
-  address_id: number;
+  address_id: Integer;
   /**
    * The region of the address.Note: Do not allow to update the region of the address.
    */
@@ -4422,13 +4365,13 @@ export interface UpdateAddressRequest {
 /**
  * Response data payload for update_address
  */
-export type UpdateAddressResponseData = Record<string, never>;
+export type UpdateAddressResponseData = Record<never, never>;
 /**
  * Response payload for update_address
  *
  * Use this API to update the address of a shop.
  */
-export type UpdateAddressResponse = FetchResponse<UpdateAddressResponseData>;
+export type UpdateAddressResponse = ResponseMetadata & UpdateAddressResponseData;
 /**
  * UpdateChannelAutoCallDriverSetting sub-interface for UpdateChannelRequest
  */
@@ -4451,7 +4394,7 @@ export interface UpdateChannelRequest {
   /**
    * The identity of logistic channel.
    */
-  logistics_channel_id: number;
+  logistics_channel_id: Integer;
   /**
    * Whether to enable this logistic channel.
    */
@@ -4469,7 +4412,7 @@ export interface UpdateChannelUnsupportWarehouse {
   /**
    * Unsupported warehouse ID
    */
-  warehouse_id?: number;
+  warehouse_id?: Integer;
   /**
    * Unsupported warehouse name
    */
@@ -4482,7 +4425,7 @@ export interface UpdateChannelUpdatedChannel {
   /**
    * Logistics channel ID
    */
-  channel_id?: number;
+  channel_id?: Integer;
   /**
    * Logistics channel name
    */
@@ -4499,7 +4442,7 @@ export interface UpdateChannelResponseData {
   /**
    * Shopee's unique identifier for a shop.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Whether this logistic channel is enabled.
    */
@@ -4511,7 +4454,7 @@ export interface UpdateChannelResponseData {
   /**
    * The identity of logistic channel.
    */
-  logistics_channel_id?: number;
+  logistics_channel_id?: Integer;
   /**
    * List of channels that are updated in the operation (inclusive of dependent logistics channels)
    */
@@ -4929,14 +4872,14 @@ export interface UpdateSelfCollectionOrderLogisticsRequest {
 /**
  * Response data payload for update_self_collection_order_logistics
  */
-export type UpdateSelfCollectionOrderLogisticsResponseData = Record<string, never>;
+export type UpdateSelfCollectionOrderLogisticsResponseData = Record<never, never>;
 /**
  * Response payload for update_self_collection_order_logistics
  *
  * Use this api to update the order status for buyer to collect the orders directly from your pharmacy. This includes indicating that order is ready for collection, and that the order has been picked up by the buyer. You should call v2.logistics.get_order_detail or v2.logistics.get_package_detail first to get the package_number of such orders.
  */
-export type UpdateSelfCollectionOrderLogisticsResponse =
-  FetchResponse<UpdateSelfCollectionOrderLogisticsResponseData>;
+export type UpdateSelfCollectionOrderLogisticsResponse = ResponseMetadata &
+  UpdateSelfCollectionOrderLogisticsResponseData;
 /**
  * UpdateShippingOrderPickup sub-interface for UpdateShippingOrderRequest
  */
@@ -4944,7 +4887,7 @@ export interface UpdateShippingOrderPickup {
   /**
    * The identity of address. Retrieved from get_shipping_parameter.
    */
-  address_id: number;
+  address_id: Integer;
   /**
    * The pickup time id. Retrieved from get_shipping_parameter.
    */
@@ -4972,13 +4915,13 @@ export interface UpdateShippingOrderRequest {
 /**
  * Response data payload for update_shipping_order
  */
-export type UpdateShippingOrderResponseData = Record<string, never>;
+export type UpdateShippingOrderResponseData = Record<never, never>;
 /**
  * Response payload for update_shipping_order
  *
  * For pickup method only, use this api to update pickup address and pickup time for packages meet: 1) package's fulfillment status is LOGISTICS_PICKUP_RETRY; or 2) package's fulfillment status is 'LOGISTICS_REQUEST_CREATED' and meets the Instant Order Reschedule Pickup conditions.
  */
-export type UpdateShippingOrderResponse = FetchResponse<UpdateShippingOrderResponseData>;
+export type UpdateShippingOrderResponse = ResponseMetadata & UpdateShippingOrderResponseData;
 /**
  * Request parameters for update_tracking_status
  *
@@ -5030,7 +4973,7 @@ export interface UploadServiceablePolygonRequest {
   /**
    * The .kml file to be uploaded to denote the serviceability area of the shops.Note: Please refer to “KML file format for v2.logistics.upload_serviceable_polygon” to understand the structure specifications and upload requirements for KML files.
    */
-  file: any;
+  file: BinaryFile;
 }
 /**
  * UploadServiceablePolygonResponseData sub-interface for UploadServiceablePolygonResponse

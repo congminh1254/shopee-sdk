@@ -90,6 +90,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -107,6 +108,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -126,6 +128,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -145,6 +148,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -164,6 +168,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -183,6 +188,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -202,6 +208,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -216,6 +223,7 @@ export class GlobalProductManager extends BaseManager {
     return ShopeeFetch.fetch<GetBrandListResponse>(this.config, "/global_product/get_brand_list", {
       method: "GET",
       auth: true,
+      authMode: "merchant",
       params: params,
     });
   }
@@ -229,6 +237,7 @@ export class GlobalProductManager extends BaseManager {
     return ShopeeFetch.fetch<GetCategoryResponse>(this.config, "/global_product/get_category", {
       method: "GET",
       auth: true,
+      authMode: "merchant",
       params: params,
     });
   }
@@ -245,6 +254,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -264,6 +274,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
         timestampPaths: [
           "response.global_item_list.create_time",
@@ -287,6 +298,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -306,6 +318,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
         timestampPaths: ["response.global_item_list.update_time"],
       }
@@ -326,6 +339,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -345,6 +359,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -364,6 +379,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -383,6 +399,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -402,6 +419,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -421,6 +439,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -440,6 +459,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -459,6 +479,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -478,6 +499,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -492,6 +514,7 @@ export class GlobalProductManager extends BaseManager {
     return ShopeeFetch.fetch<GetVariationsResponse>(this.config, "/global_product/get_variations", {
       method: "GET",
       auth: true,
+      authMode: "merchant",
       params: params,
     });
   }
@@ -510,6 +533,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -529,6 +553,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -543,6 +568,7 @@ export class GlobalProductManager extends BaseManager {
     return ShopeeFetch.fetch<SetSyncFieldResponse>(this.config, "/global_product/set_sync_field", {
       method: "POST",
       auth: true,
+      authMode: "merchant",
       body: params,
     });
   }
@@ -561,6 +587,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: params,
       }
     );
@@ -580,6 +607,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -599,6 +627,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -618,6 +647,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -632,6 +662,7 @@ export class GlobalProductManager extends BaseManager {
     return ShopeeFetch.fetch<UpdatePriceResponse>(this.config, "/global_product/update_price", {
       method: "POST",
       auth: true,
+      authMode: "merchant",
       body: params,
     });
   }
@@ -648,6 +679,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );
@@ -662,6 +694,7 @@ export class GlobalProductManager extends BaseManager {
     return ShopeeFetch.fetch<UpdateStockResponse>(this.config, "/global_product/update_stock", {
       method: "POST",
       auth: true,
+      authMode: "merchant",
       body: params,
     });
   }
@@ -680,6 +713,7 @@ export class GlobalProductManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: params,
       }
     );

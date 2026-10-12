@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata, Integer } from "./fetch.js";
 /**
  * Enum generated for field MerchantCurrency
  */
@@ -33,7 +33,7 @@ export interface GetMerchantInfoResponseData {
   /**
    * The three-digit code representing the currency unit used for the item in this merchant. If currency haven't been setting in CNSC/KRSC, it will be empty.China merchant support CNY and USD currently.Korea merchant support KRW and USD currently. Hong kong merchant support USD currently, will support HKD later.
    */
-  merchant_currency?: MerchantCurrency | string | number;
+  merchant_currency?: MerchantCurrency | string;
   /**
    * Region of the merchant. Including KR, HK and CN.
    */
@@ -48,7 +48,7 @@ export interface GetMerchantInfoResponseData {
  *
  * Use this call to get information of merchant
  */
-export type GetMerchantInfoResponse = FetchResponse<GetMerchantInfoResponseData>;
+export type GetMerchantInfoResponse = ResponseMetadata & GetMerchantInfoResponseData;
 /**
  * Request parameters for get_merchant_prepaid_account_list
  *
@@ -71,7 +71,7 @@ export interface GetMerchantPrepaidAccountListList {
   /**
    * Record ID
    */
-  prepaid_account_id?: number;
+  prepaid_account_id?: Integer;
   /**
    * Courier Company Key (快递公司编码).
    */
@@ -308,7 +308,7 @@ export interface GetShopListByMerchantSipAffiShop {
   /**
    * Affiliate shop's id.
    */
-  affi_shop_id?: number;
+  affi_shop_id?: Integer;
 }
 /**
  * GetShopListByMerchantShop sub-interface for GetShopListByMerchantResponse
@@ -317,7 +317,7 @@ export interface GetShopListByMerchantShop {
   /**
    * Shopee's unique identifier for a shop.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * List of SIP affiliate shops.Only primary shop will return this parameter
    */
@@ -341,7 +341,7 @@ export interface GetShopListByMerchantResponseData {
  *
  * Use this call to get shop_list bound to merchant_id.
  */
-export type GetShopListByMerchantResponse = FetchResponse<GetShopListByMerchantResponseData>;
+export type GetShopListByMerchantResponse = ResponseMetadata & GetShopListByMerchantResponseData;
 /**
  * GetWarehouseEligibleShopListCursor sub-interface for GetWarehouseEligibleShopListRequest
  */

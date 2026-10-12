@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * Request parameters for query_br_shop_block_status
  *
@@ -14,7 +14,7 @@ export interface QueryBrShopBlockStatusResponseData {
   /**
    * Shopee's unique identifier for a shop.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * shop blocked status
    */
@@ -39,7 +39,7 @@ export interface QueryBrShopEnrollmentStatusResponseData {
   /**
    * Shopee's unique identifier for a shop
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * 1: enable enrollment2: disable enrollment3: already enrollment
    */
@@ -47,7 +47,7 @@ export interface QueryBrShopEnrollmentStatusResponseData {
   /**
    * The time of this shop able to enroll FBS.
    */
-  enable_enrollment_time?: number;
+  enable_enrollment_time?: Integer;
 }
 /**
  * Response payload for query_br_shop_enrollment_status
@@ -75,11 +75,11 @@ export interface QueryBrShopInvoiceErrorShopSku {
   /**
    * ID of item
    */
-  shop_item_id?: number;
+  shop_item_id?: Integer;
   /**
    * ID of model
    */
-  shop_model_id?: number;
+  shop_model_id?: Integer;
   /**
    * Name of item
    */
@@ -100,7 +100,7 @@ export interface QueryBrShopInvoiceErrorList {
   /**
    * Shopee's unique identifier for a shop.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * 1: Inbound2: Return From Warehouse3: Sales order invoice4: Move Transfer5：IA
    */
@@ -120,7 +120,7 @@ export interface QueryBrShopInvoiceErrorList {
   /**
    * The expired time of this failed invoice. If expired, then this request order would be cancelled.
    */
-  invoice_deadline_time?: number;
+  invoice_deadline_time?: Integer;
   shop_sku_list?: QueryBrShopInvoiceErrorShopSku[];
   /**
    * Invoice ID
@@ -135,7 +135,7 @@ export interface QueryBrShopInvoiceErrorList {
  * QueryBrShopInvoiceErrorResponseData sub-interface for QueryBrShopInvoiceErrorResponse
  */
 export interface QueryBrShopInvoiceErrorResponseData {
-  total?: number;
+  total?: Integer;
   list?: QueryBrShopInvoiceErrorList[];
 }
 /**
@@ -167,11 +167,11 @@ export interface QueryBrSkuBlockStatusResponseData {
   /**
    * ID of item
    */
-  shop_item_id?: number;
+  shop_item_id?: Integer;
   /**
    * ID of model
    */
-  shop_model_id?: number;
+  shop_model_id?: Integer;
   /**
    * Name of Item
    */

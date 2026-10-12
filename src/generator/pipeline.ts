@@ -6,6 +6,7 @@ import { parseAllSchemas } from "./schema-parser.js";
 import { resolveEnumNames } from "./enum-resolver.js";
 import { AstBuilder } from "./ast-builder.js";
 import { FileWriter } from "./file-writer.js";
+import { removeRegistrations, updateExports } from "./registration-cleanup.js";
 import { updateSdkRegistration } from "./sdk-updater.js";
 import { generateModuleTests } from "./test-generator.js";
 
@@ -92,6 +93,31 @@ export function generateRepository(
       fs.writeFileSync(versionFile, `export const SDK_VERSION = ${JSON.stringify(version)};\n`);
     }
     const outputs: string[] = [];
+    const removed: string[] = [];
+    const staleArtifacts: string[] = [];
+    const ownedModules = new Set<string>();
+    for (const directory of ["managers", "schemas"]) {
+      const suffix = directory === "managers" ? ".manager.ts" : ".ts";
+      for (const name of fs.readdirSync(path.join(stageRoot, "src", directory))) {
+        if (!name.endsWith(suffix)) continue;
+        const file = path.join(stageRoot, "src", directory, name);
+        if (fs.readFileSync(file, "utf8").startsWith("// NOTE: This file is auto-generated."))
+          ownedModules.add(name.slice(0, -suffix.length));
+      }
+    }
+    for (const module of ownedModules) {
+      if (modules.includes(module)) continue;
+      removed.push(module);
+      for (const relative of [`src/managers/${module}.manager.ts`, `src/schemas/${module}.ts`]) {
+        const file = path.join(stageRoot, relative);
+        if (!fs.existsSync(file)) continue;
+        if (!fs.readFileSync(file, "utf8").startsWith("// NOTE: This file is auto-generated."))
+          throw new Error(`Refusing to remove handwritten counterpart ${relative}`);
+        staleArtifacts.push(relative);
+      }
+    }
+    for (const relative of staleArtifacts) fs.unlinkSync(path.join(stageRoot, relative));
+    removeRegistrations(path.join(stageRoot, "src/sdk.ts"), removed);
     const generatedTestsDir = "src/__tests__/generated";
     fs.mkdirSync(path.join(stageRoot, generatedTestsDir), { recursive: true });
     // Remove stale tests in the stage, never in the checkout before validation.
@@ -112,12 +138,12 @@ export function generateRepository(
       outputs.push(schema, manager, tests);
     }
     updateSdkRegistration(path.join(stageRoot, "src/sdk.ts"), modules);
-    outputs.push("src/sdk.ts");
+    outputs.push("src/sdk.ts", ...updateExports(stageRoot, modules, removed));
     validate(stageRoot, outputs);
     const stale = oldTests
       .map((name) => `${generatedTestsDir}/${name}`)
       .filter((name) => !outputs.includes(name));
-    publishOutputs(repoRoot, stageRoot, outputs, stale);
+    publishOutputs(repoRoot, stageRoot, outputs, [...stale, ...staleArtifacts]);
     return outputs;
   } finally {
     fs.rmSync(stageRoot, { recursive: true, force: true });

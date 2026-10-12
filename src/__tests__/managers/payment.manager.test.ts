@@ -569,7 +569,7 @@ describe("PaymentManager", () => {
               },
               buyer_payment_info: {
                 buyer_payment_method: "Credit Card",
-                buyer_service_fee: 0.0,
+                buyer_service_fee: "0.0",
                 buyer_tax_amount: 0.0,
                 buyer_total_amount: 105.0,
                 credit_card_promotion: 0.0,
@@ -678,7 +678,7 @@ describe("PaymentManager", () => {
               },
               buyer_payment_info: {
                 buyer_payment_method: "PayNow",
-                buyer_service_fee: 0.0,
+                buyer_service_fee: "0.0",
                 buyer_tax_amount: 0.0,
                 buyer_total_amount: 50.0,
                 credit_card_promotion: 0.0,
@@ -799,7 +799,6 @@ describe("PaymentManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payment_method_list", {
         method: "GET",
-        auth: true,
         params: undefined,
       });
 
@@ -1222,22 +1221,19 @@ describe("PaymentManager", () => {
         error: "",
         message: "",
         income_detail_list: {
-          list: [
-            {
-              actual_payout_time: 1762532978,
-              currency: "IDR",
-              order_sn: "251101MPY3RDD3",
-              payment_method: "Cash on Delivery",
-              released_amount: 19246,
-              status: "Dana telah dilepaskan",
-            },
-          ],
+          income_detail_list_item: {
+            actual_payout_time: 1762532978,
+            currency: "IDR",
+            order_sn: "251101MPY3RDD3",
+            payment_method: "Cash on Delivery",
+            released_amount: 19246,
+            status: "Dana telah dilepaskan",
+          },
           next_page: {
             cursor: "216223606250140",
             page_size: 10,
           },
         },
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1263,7 +1259,9 @@ describe("PaymentManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.income_detail_list?.list).toHaveLength(1);
+      expect(result.income_detail_list?.income_detail_list_item).toMatchObject({
+        order_sn: "251101MPY3RDD3",
+      });
       expect(result.income_detail_list?.next_page?.cursor).toBe("216223606250140");
     });
   });

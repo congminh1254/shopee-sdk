@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * Request parameters for delete_video
  *
@@ -72,7 +72,7 @@ export interface EditVideoInfoItemInfo {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Product display name in Shopee Video.
    */
@@ -236,43 +236,43 @@ export interface GetMetricTrendVideoTotalMetric {
   /**
    * The number of placed orders from all videos in the period selected.
    */
-  placed_orders?: number;
+  placed_orders?: Integer;
   /**
    * The number of confirmed orders from all videos in the period selected.
    */
-  confirmed_orders?: number;
+  confirmed_orders?: Integer;
   /**
    * Number of item sold from placed orders in the video.
    */
-  placed_item_sold?: number;
+  placed_item_sold?: Integer;
   /**
    * Number of item sold from confirmed orders in the video.
    */
-  confirmed_item_sold?: number;
+  confirmed_item_sold?: Integer;
   /**
    * Number of viewers in the video.
    */
-  total_viewers?: number;
+  total_viewers?: Integer;
   /**
    * Number of views from the video that lasted for more than 3 seconds.
    */
-  effective_views?: number;
+  effective_views?: Integer;
   /**
    * Total watch duration per video.
    */
-  avg_view_duration?: number;
+  avg_view_duration?: Integer;
   /**
    * Number of unique buyers who placed order from the video.
    */
-  placed_buyers?: number;
+  placed_buyers?: Integer;
   /**
    * Number of unique buyers who confirmed order from the video.
    */
-  confirmed_buyers?: number;
+  confirmed_buyers?: Integer;
   /**
    * Number of "Add To Cart" button clicked for all products in the orange bag during video viewing.
    */
-  total_atc?: number;
+  total_atc?: Integer;
   /**
    * Number of products clicks divided by Number of video views.
    */
@@ -304,35 +304,35 @@ export interface GetMetricTrendVideoTotalMetric {
   /**
    * Videos with at least one product in the orange bag
    */
-  video_with_products?: number;
+  video_with_products?: Integer;
   /**
    * Videos that generates placed revenues.
    */
-  placed_revenue_generating_videos?: number;
+  placed_revenue_generating_videos?: Integer;
   /**
    * Videos that generates confirmed revenues.
    */
-  confirmed_revenue_generating_videos?: number;
+  confirmed_revenue_generating_videos?: Integer;
   /**
    * Number of views from all videos.
    */
-  total_views?: number;
+  total_views?: Integer;
   /**
    * Number of likes from all videos.
    */
-  total_likes?: number;
+  total_likes?: Integer;
   /**
    * Number of shares from all videos.
    */
-  total_shares?: number;
+  total_shares?: Integer;
   /**
    * Number of comments from all videos.
    */
-  total_comments?: number;
+  total_comments?: Integer;
   /**
    * Number of new followers from all videos.
    */
-  video_new_followers?: number;
+  video_new_followers?: Integer;
   /**
    * Data offline computation time.
    */
@@ -380,31 +380,31 @@ export interface GetOverviewPerformanceKeyMetric {
   /**
    * The number of placed orders from all videos in the period selected.
    */
-  placed_orders?: number;
+  placed_orders?: Integer;
   /**
    * The number of confirmed orders from all videos in the period selected.
    */
-  confirmed_orders?: number;
+  confirmed_orders?: Integer;
   /**
    * Number of item sold from placed orders in the video.
    */
-  placed_item_sold?: number;
+  placed_item_sold?: Integer;
   /**
    * Number of item sold from confirmed orders in the video.
    */
-  confirmed_item_sold?: number;
+  confirmed_item_sold?: Integer;
   /**
    * Number of viewers of the video.
    */
-  total_viewers?: number;
+  total_viewers?: Integer;
   /**
    * Number of views for the video that lasted for more than 3 seconds.
    */
-  effective_views?: number;
+  effective_views?: Integer;
   /**
    * Total watch duration per video.
    */
-  avg_view_duration?: number;
+  avg_view_duration?: Integer;
 }
 /**
  * GetOverviewPerformanceConversion sub-interface for GetOverviewPerformanceResponseData
@@ -413,15 +413,15 @@ export interface GetOverviewPerformanceConversion {
   /**
    * Number of unique buyers who placed order from the video.
    */
-  placed_buyers?: number;
+  placed_buyers?: Integer;
   /**
    * Number of unique buyers who confirmed order from the video.
    */
-  confirmed_buyers?: number;
+  confirmed_buyers?: Integer;
   /**
    * Number of "Add To Cart" button clicked for all products in the orange bag during video viewing.
    */
-  total_atc?: number;
+  total_atc?: Integer;
   /**
    * Number of products clicks divided by Number of video views.
    */
@@ -453,15 +453,15 @@ export interface GetOverviewPerformanceConversion {
   /**
    * Videos with at least one product in the orange bag.
    */
-  video_with_products?: number;
+  video_with_products?: Integer;
   /**
    * Videos that generates placed revenues.
    */
-  placed_revenue_generating_videos?: number;
+  placed_revenue_generating_videos?: Integer;
   /**
    * Videos that generates confirmed revenues.
    */
-  confirmed_revenue_generating_videos?: number;
+  confirmed_revenue_generating_videos?: Integer;
 }
 /**
  * GetOverviewPerformanceEngagement sub-interface for GetOverviewPerformanceResponseData
@@ -470,23 +470,23 @@ export interface GetOverviewPerformanceEngagement {
   /**
    * Number of views from all videos
    */
-  total_views?: number;
+  total_views?: Integer;
   /**
    * Number of likes from all videos
    */
-  total_likes?: number;
+  total_likes?: Integer;
   /**
    * Number of shares from all videos
    */
-  total_shares?: number;
+  total_shares?: Integer;
   /**
    * Number of comments from all videos
    */
-  total_comments?: number;
+  total_comments?: Integer;
   /**
    * Number of new followers from all videos
    */
-  video_new_followers?: number;
+  video_new_followers?: Integer;
 }
 /**
  * GetOverviewPerformanceResponseData sub-interface for GetOverviewPerformanceResponse
@@ -539,7 +539,7 @@ export interface GetProdcutPerformanceListRequest {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Search by product name.
    */
@@ -552,11 +552,11 @@ export interface GetProdcutPerformanceListList {
   /**
    * Shopee's unique identifier for a shop.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of the item.
    */
@@ -572,11 +572,11 @@ export interface GetProdcutPerformanceListList {
   /**
    * The number of placed orders for the item.
    */
-  placed_orders?: number;
+  placed_orders?: Integer;
   /**
    * The number of confirmed orders for the item.
    */
-  confirmed_orders?: number;
+  confirmed_orders?: Integer;
   /**
    * The placed value of orders for the item.
    */
@@ -588,11 +588,11 @@ export interface GetProdcutPerformanceListList {
   /**
    * Number of unique buyers who placed order for the item.
    */
-  placed_unique_buyers?: number;
+  placed_unique_buyers?: Integer;
   /**
    * Number of unique buyers who confirmed order for the item.
    */
-  confirmed_unique_buyers?: number;
+  confirmed_unique_buyers?: Integer;
   /**
    * Data Date Range.
    */
@@ -635,31 +635,31 @@ export interface GetUserDemographicsResponseData {
   /**
    * The age distribution of your viewers.Note: The type of age is a map. The key is an enumerated value corresponding to an age range: -1: Unknown1: 18-24 years old2: 25-34 years old3: 35-44 years old4: 45+ years oldThe value is the number of viewers in each age group.
    */
-  age?: any;
+  age?: unknown;
   /**
    * The gender distribution of your viewers.Note: The type of gender is a map. The key is one of: MaleFemalePredicted MalePredicted FemaleThe value is the number of viewers for each gender type.
    */
-  gender?: any;
+  gender?: unknown;
   /**
    * The geographic distribution of your viewers. Note: The type of location is a map. The key is top 10 city, and the value is the number of viewers in each city.
    */
-  location?: any;
+  location?: unknown;
   /**
    * The distribution of viewers based on whether they follow your Shopee Video profile.Note: The type of identity is a map. The key is either "follow" or "unfollow", indicating followers and non-followers respectively, and the value is number of page views generated by each group.
    */
-  identity?: any;
+  identity?: unknown;
   /**
    * The distribution of video views across different hours of the day.Note: The type of activity is a map. The key is the hour of the day (ranging from 0 to 23), and the value is the number of video views generated during that specific hour.
    */
-  activity?: any;
+  activity?: unknown;
   /**
    * The types of videos that your viewer is most interested in.Note: The type of content is a map. The key is top 10 content category, and the value is the number of video views corresponding to that content category.
    */
-  content?: any;
+  content?: unknown;
   /**
    * The types of products that your viewers is most interested in.Note: The type of shopping is a map. The key is top 10 product category, and the value is the number of video views corresponding to that product category.
    */
-  shopping?: any;
+  shopping?: unknown;
 }
 /**
  * Response payload for get_user_demographics
@@ -689,11 +689,11 @@ export interface GetVideoDetailItem {
   /**
    * Shopee's unique identifier for a shop of the item.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of the item.
    */
@@ -717,7 +717,7 @@ export interface GetVideoDetailItem {
   /**
    * Stock of the item.
    */
-  stock?: number;
+  stock?: Integer;
 }
 /**
  * GetVideoDetailAllowInfo sub-interface for GetVideoDetailResponseData
@@ -784,15 +784,15 @@ export interface GetVideoDetailResponseData {
   /**
    * View count of post Shopee Video. Only have value when the video status is 300 (POSTED).
    */
-  views?: number;
+  views?: Integer;
   /**
    * Like count of post Shopee Video. Only have value when the video status is 300 (POSTED).
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Comment count the post Shopee Video. Only have value when the video status is 300 (POSTED).
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Whether there is video metric data.
    */
@@ -838,31 +838,31 @@ export interface GetVideoDetailAudienceDistributionResponseData {
   /**
    * The age distribution of your viewers.Note: The type of age is a map. The key is an enumerated value corresponding to an age range: -1: Unknown1: 18-24 years old2: 25-34 years old3: 35-44 years old4: 45+ years oldThe value is the number of viewers in each age group.
    */
-  age?: any;
+  age?: unknown;
   /**
    * The gender distribution of your viewers.Note: The type of gender is a map. The key is one of: malefemalepredictedMalepredictedFemaleunknownThe value is the number of viewers for each gender type.
    */
-  gender?: any;
+  gender?: unknown;
   /**
    * The geographic distribution of your viewers. Note: The type of location is a map. The key is top 10 city, and the value is the number of viewers in each city.
    */
-  location?: any;
+  location?: unknown;
   /**
    * The distribution of viewers based on whether they follow your Shopee Video profile.Note: The type of identity is a map. The key is one of: 0: Non-follower1: FollowerThe value is number of user views generated by each group.
    */
-  identity?: any;
+  identity?: unknown;
   /**
    * The distribution of video views across different hours of the day.Note: The type of activity is a map. The key is the hour of the day (ranging from 0 to 23), and the value is the number of video views generated during that specific hour.
    */
-  activity?: any;
+  activity?: unknown;
   /**
    * The types of videos that your viewer is most interested in.Note: The type of content is a map. The key is content category, and the value is the number of video views corresponding to that content category.
    */
-  content?: any;
+  content?: unknown;
   /**
    * The types of products that your viewers is most interested in.Note: The type of shopping is a map. The key is product category, and the value is the number of video views corresponding to that product category.
    */
-  shopping?: any;
+  shopping?: unknown;
 }
 /**
  * Response payload for get_video_detail_audience_distribution
@@ -893,7 +893,7 @@ export interface GetVideoDetailMetricTrendResponseData {
   /**
    * The type of metric_trend is a map. The key is date (in millisecond timestamp format), and the value is the number corresponding to metric.
    */
-  metric_trend?: any;
+  metric_trend?: unknown;
 }
 /**
  * Response payload for get_video_detail_metric_trend
@@ -940,11 +940,11 @@ export interface GetVideoDetailPerformanceVideoInfo {
   /**
    * Video duration time in millisecond.
    */
-  duration?: number;
+  duration?: Integer;
   /**
    * Number of products linked with the Shopee Video.
    */
-  related_item_count?: number;
+  related_item_count?: Integer;
 }
 /**
  * GetVideoDetailPerformanceVideoPerformance sub-interface for GetVideoDetailPerformanceResponseData
@@ -953,27 +953,27 @@ export interface GetVideoDetailPerformanceVideoPerformance {
   /**
    * Amount of views from the video.
    */
-  views?: number;
+  views?: Integer;
   /**
    * Total likes from the video.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Total comments from the video.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Total shares from the video.
    */
-  shares?: number;
+  shares?: Integer;
   /**
    * Amount of new followers from the Video.
    */
-  followers_growth?: number;
+  followers_growth?: Integer;
   /**
    * Amount of product orders from the video.
    */
-  placed_orders?: number;
+  placed_orders?: Integer;
   /**
    * Amount of product sales from the video.
    */
@@ -981,7 +981,7 @@ export interface GetVideoDetailPerformanceVideoPerformance {
   /**
    * Buyers of the products in the video.
    */
-  unique_buyers?: number;
+  unique_buyers?: Integer;
   /**
    * Amount of products sold from the video/amount of views from the video.
    */
@@ -989,11 +989,11 @@ export interface GetVideoDetailPerformanceVideoPerformance {
   /**
    * Amount of products sold from the video.
    */
-  sold_items?: number;
+  sold_items?: Integer;
   /**
    * The product click value of orders for item.
    */
-  product_clicks?: number;
+  product_clicks?: Integer;
   /**
    * The product click rate value of orders for item.
    */
@@ -1036,11 +1036,11 @@ export interface GetVideoDetailProductPerformanceRequest {
   /**
    * The start index of request. Starting from 1.
    */
-  page_no: number;
+  page_no: Integer;
   /**
    * The number of item returned by this request. Max is 20.
    */
-  page_size: number;
+  page_size: Integer;
   /**
    * The unique identifier for post Shopee Video.
    */
@@ -1048,7 +1048,7 @@ export interface GetVideoDetailProductPerformanceRequest {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of the item.
    */
@@ -1061,11 +1061,11 @@ export interface GetVideoDetailProductPerformanceList {
   /**
    * Shopee's unique identifier for a shop.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of the item.
    */
@@ -1081,15 +1081,15 @@ export interface GetVideoDetailProductPerformanceList {
   /**
    * Like count the post Shopee Video.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Comment count the post Shopee Video.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Amount of product orders from the video.
    */
-  placed_orders?: number;
+  placed_orders?: Integer;
   /**
    * Amount of product sales from the video.
    */
@@ -1097,15 +1097,15 @@ export interface GetVideoDetailProductPerformanceList {
   /**
    * Buyers of the product in the video.
    */
-  unique_buyers?: number;
+  unique_buyers?: Integer;
   /**
    * Amount of products sold from the video.
    */
-  sold_items?: number;
+  sold_items?: Integer;
   /**
    * Amount of product clicks from the video.
    */
-  product_clicks?: number;
+  product_clicks?: Integer;
   /**
    * Amount of product clicks from the video/Product view from video.
    */
@@ -1134,7 +1134,7 @@ export interface GetVideoDetailProductPerformanceResponseData {
   /**
    * The total count of video that match the condition.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the video list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of data.
    */
@@ -1164,7 +1164,7 @@ export interface GetVideoListRequest {
   /**
    * Search tpye for video in draft status or video already post to Shopee Video.1: draft2: post
    */
-  list_type: number[];
+  list_type: number;
 }
 /**
  * GetVideoListItem sub-interface for GetVideoListList
@@ -1173,11 +1173,11 @@ export interface GetVideoListItem {
   /**
    * Shopee's unique identifier for a shop of the item.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of the item.
    */
@@ -1201,7 +1201,7 @@ export interface GetVideoListItem {
   /**
    * Stock of the item.
    */
-  stock?: number;
+  stock?: Integer;
 }
 /**
  * GetVideoListAllowInfo sub-interface for GetVideoListList
@@ -1264,19 +1264,19 @@ export interface GetVideoListList {
   /**
    * Video duration time in millisecond.
    */
-  duration?: number;
+  duration?: Integer;
   /**
    * View count of post Shopee Video. Only have value when the video status is 300 (POSTED).
    */
-  views?: number;
+  views?: Integer;
   /**
    * Like count the post Shopee Video. Only have value when the video status is 300 (POSTED).
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Comment count the post Shopee Video. Only have value when the video status is 300 (POSTED).
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Whether there is video metric data.
    */
@@ -1305,7 +1305,7 @@ export interface GetVideoListResponseData {
   /**
    * The total count of video that match the condition.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the video list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of data.
    */
@@ -1379,7 +1379,7 @@ export interface GetVideoPerformanceListList {
   /**
    * Video current status. Applicable values:300: POSTED400: DELETED
    */
-  status?: number;
+  status?: Integer;
   /**
    * Cover image url of the Shopee Video.
    */
@@ -1395,23 +1395,23 @@ export interface GetVideoPerformanceListList {
   /**
    * View count of post Shopee Video. Only have value when the video status is 300 (POSTED).
    */
-  views?: number;
+  views?: Integer;
   /**
    * Like count the post Shopee Video. Only have value when the video status is 300 (POSTED).
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Comment count the post Shopee Video. Only have value when the video status is 300 (POSTED).
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Share count the post Shopee Video. Only have value when the video status is 300 (POSTED).
    */
-  shares?: number;
+  shares?: Integer;
   /**
    * Total watch duration per video.
    */
-  avg_views_duration?: number;
+  avg_views_duration?: Integer;
   /**
    * Video completion rate.
    */
@@ -1419,11 +1419,11 @@ export interface GetVideoPerformanceListList {
   /**
    * The number of placed orders for the video.
    */
-  placed_orders?: number;
+  placed_orders?: Integer;
   /**
    * The number of confirmed orders for the video.
    */
-  confirmed_orders?: number;
+  confirmed_orders?: Integer;
   /**
    * The placed value of orders for the video.
    */
@@ -1435,11 +1435,11 @@ export interface GetVideoPerformanceListList {
   /**
    * Number of item sold from placed orders in the video.
    */
-  placed_item_sold?: number;
+  placed_item_sold?: Integer;
   /**
    * Number of item sold from confirmed orders in the video.
    */
-  confirmed_item_sold?: number;
+  confirmed_item_sold?: Integer;
   /**
    * Data Date Range.
    */

@@ -68,7 +68,7 @@ function fixture(dir: string): void {
   );
   fs.writeFileSync(
     path.join(dir, "src/schemas/fetch.ts"),
-    "export interface FetchResponse<T> { response: T; request_id: string; error: string; message: string }"
+    fs.readFileSync(path.resolve("src/schemas/fetch.ts"), "utf8")
   );
   fs.writeFileSync(
     path.join(dir, "src/fetch.ts"),
@@ -369,6 +369,42 @@ describe("generator correctness", () => {
       expect(result.stderr).toContain("Invalid schema v2.demo.get_item.json");
       expect(result.stdout).not.toContain("Generation completed successfully");
     }));
+
+  it(
+    "removes generated modules and registrations while preserving handwritten managers",
+    () =>
+      temporary((dir) => {
+        fixture(dir);
+        const extra = path.join(dir, "schemas/v2.other.get_item.json");
+        fs.copyFileSync(path.join(dir, "schemas/v2.demo.get_item.json"), extra);
+        fs.writeFileSync(
+          path.join(dir, "src/managers/custom.manager.ts"),
+          "export class CustomManager {};"
+        );
+        generateRepository(dir, validateStage);
+        expect(fs.readFileSync(path.join(dir, "src/managers/index.ts"), "utf8")).toContain(
+          "other.manager.js"
+        );
+        fs.unlinkSync(extra);
+        generateRepository(dir, validateStage);
+        expect(fs.existsSync(path.join(dir, "src/managers/other.manager.ts"))).toBe(false);
+        expect(fs.existsSync(path.join(dir, "src/schemas/other.ts"))).toBe(false);
+        expect(
+          fs.existsSync(path.join(dir, "src/__tests__/generated/other.generated.test.ts"))
+        ).toBe(false);
+        expect(fs.readFileSync(path.join(dir, "src/sdk.ts"), "utf8")).not.toContain("OtherManager");
+        expect(fs.readFileSync(path.join(dir, "src/managers/index.ts"), "utf8")).not.toContain(
+          "other.manager.js"
+        );
+        expect(fs.readFileSync(path.join(dir, "src/schemas/index.ts"), "utf8")).not.toContain(
+          "other.js"
+        );
+        expect(fs.readFileSync(path.join(dir, "src/managers/custom.manager.ts"), "utf8")).toContain(
+          "CustomManager"
+        );
+      }),
+    60000
+  );
 
   it(
     "generates, formats, lints and type-checks an isolated fixture repeatably",

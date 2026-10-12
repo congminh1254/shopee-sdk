@@ -413,14 +413,7 @@ describe("FirstMileManager", () => {
 
   describe("getWaybill", () => {
     it("should get waybill", async () => {
-      const mockResponse: GetWaybillResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          waybill: "base64_encoded_pdf_content",
-        },
-      };
+      const mockResponse: GetWaybillResponse = Buffer.from("test binary");
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -437,7 +430,7 @@ describe("FirstMileManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response?.waybill).toBe("base64_encoded_pdf_content");
+      expect(result.toString()).toBe("test binary");
     });
   });
 

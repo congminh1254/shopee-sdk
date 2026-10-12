@@ -30,16 +30,16 @@ describe("DiscountManager (Generated Tests)", () => {
         start_time: 1624864213,
         end_time: 1625382613,
       };
-      const exampleResponse = {
-        discount_id: 665123666665499,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          discount_id: 665123666665499,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addDiscount(exampleRequest);
 
@@ -47,10 +47,11 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/add_discount", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -74,25 +75,25 @@ describe("DiscountManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        discount_id: 665123666665499,
-        count: 1,
-        error_list: [
-          {
-            item_id: 1776783,
-            model_id: 1776782,
-            fail_message: "time error",
-            fail_error: "discount.error_time",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          discount_id: 665123666665499,
+          count: 1,
+          error_list: [
+            {
+              item_id: 1776783,
+              model_id: 1776782,
+              fail_message: "time error",
+              fail_error: "discount.error_time",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addDiscountItem(exampleRequest);
 
@@ -100,10 +101,11 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/add_discount_item", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -112,17 +114,17 @@ describe("DiscountManager (Generated Tests)", () => {
       const exampleRequest = {
         discount_id: 665123666665499,
       };
-      const exampleResponse = {
-        discount_id: 665123666665499,
-        modify_time: 1610434295,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          discount_id: 665123666665499,
+          modify_time: 1610434295,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteDiscount(exampleRequest);
 
@@ -130,11 +132,12 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/delete_discount", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
         timestampPaths: ["response.modify_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -145,24 +148,24 @@ describe("DiscountManager (Generated Tests)", () => {
         item_id: 1776783,
         model_id: 1467683,
       };
-      const exampleResponse = {
-        discount_id: 665123666665499,
-        error_list: [
-          {
-            item_id: 1776783,
-            model_id: 1467683,
-            fail_message: "time error",
-            fail_error: "discount.error_time",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          discount_id: 665123666665499,
+          error_list: [
+            {
+              item_id: 1776783,
+              model_id: 1467683,
+              fail_message: "time error",
+              fail_error: "discount.error_time",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteDiscountItem(exampleRequest);
 
@@ -170,10 +173,11 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/delete_discount_item", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -182,16 +186,16 @@ describe("DiscountManager (Generated Tests)", () => {
       const exampleRequest = {
         region: "TW",
       };
-      const exampleResponse = {
-        region: "TW",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          region: "TW",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteSipDiscount(exampleRequest);
 
@@ -199,10 +203,11 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/delete_sip_discount", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -211,17 +216,17 @@ describe("DiscountManager (Generated Tests)", () => {
       const exampleRequest = {
         discount_id: 66512366666549900,
       };
-      const exampleResponse = {
-        discount_id: 66512366666549900,
-        modify_time: 1656408546,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          discount_id: 66512366666549900,
+          modify_time: 1656408546,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.endDiscount(exampleRequest);
 
@@ -229,11 +234,12 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/end_discount", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
         timestampPaths: ["response.modify_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -244,54 +250,54 @@ describe("DiscountManager (Generated Tests)", () => {
         page_no: 1,
         page_size: 50,
       };
-      const exampleResponse = {
-        status: "ongoing",
-        discount_name: "test-upload-keep",
-        item_list: [
-          {
-            item_id: 2800140208,
-            item_name: "hahahahahah",
-            normal_stock: 10,
-            item_promotion_stock: 12,
-            item_original_price: 11.1,
-            item_promotion_price: 1.92,
-            item_inflated_price_of_original_price: 12.1,
-            item_inflated_price_of_promotion_price: 12,
-            item_local_price: 9.99,
-            item_local_promotion_price: 1.72,
-            item_local_price_inflated: 123,
-            item_local_promotion_price_inflated: 123,
-            model_list: [
-              {
-                model_id: 1755762,
-                model_name: "hahahahah",
-                model_normal_stock: 2,
-                model_promotion_stock: 10,
-                model_original_price: 1.9,
-                model_promotion_price: 1.86,
-                model_inflated_price_of_original_price: 2.2,
-                model_inflated_price_of_promotion_price: 2.1,
-                model_local_price: 1.71,
-                model_local_promotion_price: 1.67,
-                model_local_price_inflated: 123,
-                model_local_promotion_price_inflated: 123,
-              },
-            ],
-            purchase_limit: 1,
-          },
-        ],
-        start_time: 1604408400,
-        discount_id: 1000029882,
-        end_time: 1605276000,
-        more: false,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          status: "ongoing",
+          discount_name: "test-upload-keep",
+          item_list: [
+            {
+              item_id: 2800140208,
+              item_name: "hahahahahah",
+              normal_stock: 10,
+              item_promotion_stock: 12,
+              item_original_price: 11.1,
+              item_promotion_price: 1.92,
+              item_inflated_price_of_original_price: 12.1,
+              item_inflated_price_of_promotion_price: 12,
+              item_local_price: 9.99,
+              item_local_promotion_price: 1.72,
+              item_local_price_inflated: 123,
+              item_local_promotion_price_inflated: 123,
+              model_list: [
+                {
+                  model_id: 1755762,
+                  model_name: "hahahahah",
+                  model_normal_stock: 2,
+                  model_promotion_stock: 10,
+                  model_original_price: 1.9,
+                  model_promotion_price: 1.86,
+                  model_inflated_price_of_original_price: 2.2,
+                  model_inflated_price_of_promotion_price: 2.1,
+                  model_local_price: 1.71,
+                  model_local_promotion_price: 1.67,
+                  model_local_price_inflated: 123,
+                  model_local_promotion_price_inflated: 123,
+                },
+              ],
+              purchase_limit: 1,
+            },
+          ],
+          start_time: 1604408400,
+          discount_id: 1000029882,
+          end_time: 1605276000,
+          more: false,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getDiscount(exampleRequest);
 
@@ -299,11 +305,12 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_discount", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
         timestampPaths: ["response.start_time", "response.end_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -316,26 +323,26 @@ describe("DiscountManager (Generated Tests)", () => {
         update_time_from: 1643860467,
         update_time_to: 1646020467,
       };
-      const exampleResponse = {
-        discount_list: [
-          {
-            status: "ongoing",
-            discount_name: "testqwert001",
-            start_time: 1644910200,
-            end_time: 1645864200,
-            discount_id: 665270257590299,
-            source: 0,
-          },
-        ],
-        more: false,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          discount_list: [
+            {
+              status: "ongoing",
+              discount_name: "testqwert001",
+              start_time: 1644910200,
+              end_time: 1645864200,
+              discount_id: 665270257590299,
+              source: 0,
+            },
+          ],
+          more: false,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getDiscountList(exampleRequest);
 
@@ -343,11 +350,12 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_discount_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
         timestampPaths: ["response.discount_list.start_time", "response.discount_list.end_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -356,26 +364,26 @@ describe("DiscountManager (Generated Tests)", () => {
       const exampleRequest = {
         region: "SG",
       };
-      const exampleResponse = {
-        discount_list: [
-          {
-            region: "SG",
-            status: "upcoming",
-            sip_discount_rate: 10,
-            start_time: 1741235212,
-            end_time: 1756787212,
-            create_time: 1741233412,
-            update_time: 1741233412,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          discount_list: [
+            {
+              region: "SG",
+              status: "upcoming",
+              sip_discount_rate: 10,
+              start_time: 1741235212,
+              end_time: 1756787212,
+              create_time: 1741233412,
+              update_time: 1741233412,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getSipDiscounts(exampleRequest);
 
@@ -383,6 +391,7 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_sip_discounts", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
         timestampPaths: [
           "response.discount_list.start_time",
@@ -392,7 +401,7 @@ describe("DiscountManager (Generated Tests)", () => {
         ],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -402,22 +411,22 @@ describe("DiscountManager (Generated Tests)", () => {
         region: "TH",
         sip_discount_rate: 15,
       };
-      const exampleResponse = {
-        region: "TH",
-        status: "upcoming",
-        sip_discount_rate: 15,
-        start_time: 1741688426,
-        end_time: 1757240426,
-        create_time: 1741686627,
-        update_time: 1741686627,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          region: "TH",
+          status: "upcoming",
+          sip_discount_rate: 15,
+          start_time: 1741688426,
+          end_time: 1757240426,
+          create_time: 1741686627,
+          update_time: 1741686627,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.setSipDiscount(exampleRequest);
 
@@ -425,6 +434,7 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/set_sip_discount", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
         timestampPaths: [
           "response.start_time",
@@ -434,7 +444,7 @@ describe("DiscountManager (Generated Tests)", () => {
         ],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -446,17 +456,17 @@ describe("DiscountManager (Generated Tests)", () => {
         end_time: 1656494739,
         start_time: 1656403800,
       };
-      const exampleResponse = {
-        discount_id: 661460179119131,
-        modify_time: 1656408546,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          discount_id: 661460179119131,
+          modify_time: 1656408546,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateDiscount(exampleRequest);
 
@@ -464,11 +474,12 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/update_discount", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
         timestampPaths: ["response.modify_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -490,25 +501,25 @@ describe("DiscountManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        discount_id: 1000029745,
-        count: 1,
-        error_list: [
-          {
-            item_id: 1776783,
-            model_id: 1776782,
-            fail_message: "time error",
-            fail_error: "discount.error_time",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          discount_id: 1000029745,
+          count: 1,
+          error_list: [
+            {
+              item_id: 1776783,
+              model_id: 1776782,
+              fail_message: "time error",
+              fail_error: "discount.error_time",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateDiscountItem(exampleRequest);
 
@@ -516,10 +527,11 @@ describe("DiscountManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/update_discount_item", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll } from "@jest/globals";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 
-const { runTests, initSdk } = setupIntegrationTest();
+const { runTests, initSdk } = setupIntegrationTest({ auth: "partner" });
 
 (runTests ? describe : describe.skip)("ShopeeSDK PublicManager Sandbox Integration Tests", () => {
   let sdk: ShopeeSDK;
@@ -16,9 +16,9 @@ const { runTests, initSdk } = setupIntegrationTest();
 
     expect(response).toBeDefined();
     expect(response.request_id).toBeDefined();
-    if (response.response) {
-      expect(response.response.ip_list).toBeDefined();
-      expect(Array.isArray(response.response.ip_list)).toBe(true);
+    {
+      expect(response.ip_list).toBeDefined();
+      expect(Array.isArray(response.ip_list)).toBe(true);
     }
   }, 60000);
 
@@ -27,8 +27,8 @@ const { runTests, initSdk } = setupIntegrationTest();
 
     expect(response).toBeDefined();
     expect(response.request_id).toBeDefined();
-    if (response.response) {
-      expect(Array.isArray(response.response.authed_shop_list)).toBe(true);
+    {
+      expect(Array.isArray(response.authed_shop_list)).toBe(true);
     }
   }, 60000);
 });

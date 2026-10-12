@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata, Integer, BinaryFile } from "./fetch.js";
 /**
  * Enum generated for field RequestId
  */
@@ -54,7 +54,7 @@ export interface CancelVideoUploadResponseData {
  *
  * Cancel a video upload session
  */
-export type CancelVideoUploadResponse = FetchResponse<CancelVideoUploadResponseData>;
+export type CancelVideoUploadResponse = ResponseMetadata & CancelVideoUploadResponseData;
 /**
  * CompleteVideoUploadReportData sub-interface for CompleteVideoUploadRequest
  */
@@ -62,7 +62,7 @@ export interface CompleteVideoUploadReportData {
   /**
    * Time used for uploading the video file via upload_video_part api, in milliseconds. For video upload performance tracking purpose.
    */
-  upload_cost: any;
+  upload_cost: Integer;
 }
 /**
  * Request parameters for complete_video_upload
@@ -77,7 +77,7 @@ export interface CompleteVideoUploadRequest {
   /**
    * All uploaded sequence number.
    */
-  part_seq_list: number[];
+  part_seq_list: Integer[];
   report_data: CompleteVideoUploadReportData;
 }
 /**
@@ -94,7 +94,7 @@ export interface CompleteVideoUploadResponseData {
  *
  * Complete the video upload and starts the transcoding process when all parts are uploaded successfully.
  */
-export type CompleteVideoUploadResponse = FetchResponse<CompleteVideoUploadResponseData>;
+export type CompleteVideoUploadResponse = ResponseMetadata & CompleteVideoUploadResponseData;
 /**
  * Request parameters for get_video_upload_result
  *
@@ -144,7 +144,7 @@ export interface GetVideoUploadResultVideoInfo {
   /**
    * Duration of this video, in seconds.
    */
-  duration?: any;
+  duration?: Integer;
 }
 /**
  * GetVideoUploadResultResponseData sub-interface for GetVideoUploadResultResponse
@@ -153,7 +153,7 @@ export interface GetVideoUploadResultResponseData {
   /**
    * Current status of this video upload session. could be: INITIATED(waiting for part uploading and/or the complete_video_upload API call), TRANSCODING(has received all video parts, and is transcoding the video file), SUCCEEDED(transcoding completed, and this upload_id can now be used for item adding/updating), FAILED(this upload failed, see the message filed for some info), CANCELLED(this upload is cancelled)
    */
-  status?: Status | string | number;
+  status?: Status | string;
   /**
    * Transcoded video info, will be present if status is SUCCEEDED.
    */
@@ -161,7 +161,7 @@ export interface GetVideoUploadResultResponseData {
   /**
    * Detail error message if video uploading/transcoding failed.
    */
-  message?: Message | string | number;
+  message?: Message | string;
 }
 /**
  * Response payload for get_video_upload_result
@@ -182,7 +182,7 @@ export interface InitVideoUploadRequest {
   /**
    * size of video file, in bytes, maximum is 30MB
    */
-  file_size: number;
+  file_size: Integer;
 }
 /**
  * InitVideoUploadResponseData sub-interface for InitVideoUploadResponse
@@ -191,7 +191,7 @@ export interface InitVideoUploadResponseData {
   /**
    * The identifier of this upload session, used in following video upload request and item creating and/or updating
    */
-  video_upload_id?: VideoUploadId | string | number;
+  video_upload_id?: VideoUploadId | string;
 }
 /**
  * Response payload for init_video_upload
@@ -208,7 +208,7 @@ export interface UploadImageRequest {
   /**
    * image files. Max 10.0 MB each. Image format accepted: JPG, JPEG, PNG. image number should be less than 9
    */
-  image: any;
+  image: BinaryFile;
   /**
    * The scene where the picture is used, The value range is normal or desc; normal: we will process the image as a square image, it is recommended to use when uploading item image; desc: we will not process the image, it is recommended to use when uploading the image of extend_description, if you do not upload this field, it will be normal.
    */
@@ -288,7 +288,7 @@ export interface UploadVideoPartRequest {
   /**
    * Sequence of the current part, starts from 0
    */
-  part_seq: number;
+  part_seq: Integer;
   /**
    * md5 of this part
    */
@@ -296,7 +296,7 @@ export interface UploadVideoPartRequest {
   /**
    * The content of this part of file.  Part size should be exactly 4MB, except last part of file.
    */
-  part_content: any;
+  part_content: BinaryFile;
 }
 /**
  * Response data payload for upload_video_part
@@ -312,4 +312,4 @@ export interface UploadVideoPartResponseData {
  *
  * Upload video file by part using the upload_id in initiate_video_upload.The request Content-Type of this API should be of multipart/form-data
  */
-export type UploadVideoPartResponse = FetchResponse<UploadVideoPartResponseData>;
+export type UploadVideoPartResponse = ResponseMetadata & UploadVideoPartResponseData;

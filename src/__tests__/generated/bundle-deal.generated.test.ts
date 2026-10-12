@@ -44,16 +44,16 @@ describe("BundleDealManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        bundle_deal_id: 11111,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          bundle_deal_id: 11111,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addBundleDeal(exampleRequest);
 
@@ -61,10 +61,11 @@ describe("BundleDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/add_bundle_deal", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -79,23 +80,23 @@ describe("BundleDealManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        failed_list: [
-          {
-            item_id: 1234221,
-            fail_error: "bundle.bundle_deal_no_shipping_channel",
-            fail_message: "This product does not set shipping channel.",
-          },
-        ],
-        success_list: ["test_string"],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          failed_list: [
+            {
+              item_id: 1234221,
+              fail_error: "bundle.bundle_deal_no_shipping_channel",
+              fail_message: "This product does not set shipping channel.",
+            },
+          ],
+          success_list: ["test_string"],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addBundleDealItem(exampleRequest);
 
@@ -103,10 +104,11 @@ describe("BundleDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/add_bundle_deal_item", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -115,16 +117,16 @@ describe("BundleDealManager (Generated Tests)", () => {
       const exampleRequest = {
         bundle_deal_id: 11111,
       };
-      const exampleResponse = {
-        bundle_deal_id: 11111,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          bundle_deal_id: 11111,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteBundleDeal(exampleRequest);
 
@@ -132,10 +134,11 @@ describe("BundleDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/delete_bundle_deal", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -149,23 +152,23 @@ describe("BundleDealManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        failed_list: [
-          {
-            item_id: 1234,
-            fail_error: "bundle.bundle_deal_item_not_exist",
-            fail_message: "Please update item of bundel deal",
-          },
-        ],
-        success_list: ["test_string"],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          failed_list: [
+            {
+              item_id: 1234,
+              fail_error: "bundle.bundle_deal_item_not_exist",
+              fail_message: "Please update item of bundel deal",
+            },
+          ],
+          success_list: ["test_string"],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteBundleDealItem(exampleRequest);
 
@@ -173,10 +176,11 @@ describe("BundleDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/delete_bundle_deal_item", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -185,16 +189,16 @@ describe("BundleDealManager (Generated Tests)", () => {
       const exampleRequest = {
         bundle_deal_id: 11111,
       };
-      const exampleResponse = {
-        bundle_deal_id: 11111,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          bundle_deal_id: 11111,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.endBundleDeal(exampleRequest);
 
@@ -202,10 +206,11 @@ describe("BundleDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/end_bundle_deal", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -214,33 +219,33 @@ describe("BundleDealManager (Generated Tests)", () => {
       const exampleRequest = {
         bundle_deal_id: 113891,
       };
-      const exampleResponse = {
-        bundle_deal_id: 113891,
-        name: "Bundle Deal Test",
-        start_time: 1655654412,
-        end_time: 1658246412,
-        bundle_deal_rule: {
-          rule_type: 1,
-          discount_value: 11,
-          fix_price: 11,
-          discount_percentage: 33,
-          min_amount: 2,
-          additional_tiers: {
-            min_amount: 2,
-            fix_price: 11,
-            discount_value: 11,
-            discount_percentage: 33,
-          },
-        },
-        purchase_limit: 6,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          bundle_deal_id: 113891,
+          name: "Bundle Deal Test",
+          start_time: 1655654412,
+          end_time: 1658246412,
+          bundle_deal_rule: {
+            rule_type: 1,
+            discount_value: 11,
+            fix_price: 11,
+            discount_percentage: 33,
+            min_amount: 2,
+            additional_tiers: {
+              min_amount: 2,
+              fix_price: 11,
+              discount_value: 11,
+              discount_percentage: 33,
+            },
+          },
+          purchase_limit: 6,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getBundleDeal(exampleRequest);
 
@@ -248,11 +253,12 @@ describe("BundleDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/get_bundle_deal", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
         timestampPaths: ["response.start_time", "response.end_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -261,22 +267,22 @@ describe("BundleDealManager (Generated Tests)", () => {
       const exampleRequest = {
         bundle_deal_id: 113891,
       };
-      const exampleResponse = {
-        item_list: [
-          {
-            item_id: 13567304112,
-            status: 1,
-          },
-        ],
-        total_count: 1,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          item_list: [
+            {
+              item_id: 13567304112,
+              status: 1,
+            },
+          ],
+          total_count: 1,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getBundleDealItem(exampleRequest);
 
@@ -284,10 +290,11 @@ describe("BundleDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/get_bundle_deal_item", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -298,40 +305,40 @@ describe("BundleDealManager (Generated Tests)", () => {
         time_status: 2,
         page_no: 1,
       };
-      const exampleResponse = {
-        bundle_deal_list: [
-          {
-            bundle_deal_id: 1111432,
-            name: "Bundle Deal Test",
-            start_time: 1655654412,
-            end_time: 1658246412,
-            bundle_deal_rule: {
-              rule_type: 1,
-              discount_value: 11,
-              fix_price: 11,
-              discount_percentage: 33,
-              min_amount: 123,
-              additional_tiers: [
-                {
-                  min_amount: 123,
-                  fix_price: 11,
-                  discount_value: 11,
-                  discount_percentage: 33,
-                },
-              ],
-            },
-            purchase_limit: 6,
-          },
-        ],
-        more: true,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          bundle_deal_list: [
+            {
+              bundle_deal_id: 1111432,
+              name: "Bundle Deal Test",
+              start_time: 1655654412,
+              end_time: 1658246412,
+              bundle_deal_rule: {
+                rule_type: 1,
+                discount_value: 11,
+                fix_price: 11,
+                discount_percentage: 33,
+                min_amount: 123,
+                additional_tiers: [
+                  {
+                    min_amount: 123,
+                    fix_price: 11,
+                    discount_value: 11,
+                    discount_percentage: 33,
+                  },
+                ],
+              },
+              purchase_limit: 6,
+            },
+          ],
+          more: true,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getBundleDealList(exampleRequest);
 
@@ -339,6 +346,7 @@ describe("BundleDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/get_bundle_deal_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
         timestampPaths: [
           "response.bundle_deal_list.start_time",
@@ -346,7 +354,7 @@ describe("BundleDealManager (Generated Tests)", () => {
         ],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -370,35 +378,35 @@ describe("BundleDealManager (Generated Tests)", () => {
           discount_percentage: 20,
         },
       };
-      const exampleResponse = {
-        bundle_deal_id: 6833,
-        name: "bundle name",
-        start_time: 1655654412,
-        end_time: 1658246412,
-        bundle_deal_rule: {
-          rule_type: 1,
-          discount_value: 11,
-          fix_price: 11,
-          discount_percentage: 33,
-          min_amount: 123,
-          additional_tiers: [
-            {
-              min_amount: 123,
-              fix_price: 11,
-              discount_value: 11,
-              discount_percentage: 33,
-            },
-          ],
-        },
-        purchase_limit: 3,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          bundle_deal_id: 6833,
+          name: "bundle name",
+          start_time: 1655654412,
+          end_time: 1658246412,
+          bundle_deal_rule: {
+            rule_type: 1,
+            discount_value: 11,
+            fix_price: 11,
+            discount_percentage: 33,
+            min_amount: 123,
+            additional_tiers: [
+              {
+                min_amount: 123,
+                fix_price: 11,
+                discount_value: 11,
+                discount_percentage: 33,
+              },
+            ],
+          },
+          purchase_limit: 3,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateBundleDeal(exampleRequest);
 
@@ -406,11 +414,12 @@ describe("BundleDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/update_bundle_deal", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
         timestampPaths: ["response.start_time", "response.end_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -425,23 +434,23 @@ describe("BundleDealManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        failed_list: [
-          {
-            item_id: 12341213,
-            fail_error: "bundle.bundle_deal_no_shipping_channel",
-            fail_message: "This product does not set shipping channel.",
-          },
-        ],
-        success_list: ["test_string"],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          failed_list: [
+            {
+              item_id: 12341213,
+              fail_error: "bundle.bundle_deal_no_shipping_channel",
+              fail_message: "This product does not set shipping channel.",
+            },
+          ],
+          success_list: ["test_string"],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateBundleDealItem(exampleRequest);
 
@@ -449,10 +458,11 @@ describe("BundleDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/update_bundle_deal_item", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

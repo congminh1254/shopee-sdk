@@ -34,16 +34,16 @@ describe("AddOnDealManager (Generated Tests)", () => {
         per_gift_num: 11,
         promotion_purchase_limit: 12,
       };
-      const exampleResponse = {
-        add_on_deal_id: 20142,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          add_on_deal_id: 20142,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addAddOnDeal(exampleRequest);
 
@@ -51,10 +51,11 @@ describe("AddOnDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/add_add_on_deal", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -69,22 +70,22 @@ describe("AddOnDealManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        main_item_list: [
-          {
-            item_id: 38001406131,
-            status: 1,
-          },
-        ],
-        add_on_deal_id: 20141,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          main_item_list: [
+            {
+              item_id: 38001406131,
+              status: 1,
+            },
+          ],
+          add_on_deal_id: 20141,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addAddOnDealMainItem(exampleRequest);
 
@@ -92,10 +93,11 @@ describe("AddOnDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/add_add_on_deal_main_item", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -113,25 +115,25 @@ describe("AddOnDealManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        sub_item_list: [
-          {
-            item_id: 3800024281,
-            status: 1,
-            model_id: 2741743,
-            fail_error: "error_unknown",
-            fail_message: "Unkown error key ADD_ON_DEAL_PURCHASE_LIMIT_OVER",
-          },
-        ],
-        add_on_deal_id: 20141,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          sub_item_list: [
+            {
+              item_id: 3800024281,
+              status: 1,
+              model_id: 2741743,
+              fail_error: "error_unknown",
+              fail_message: "Unkown error key ADD_ON_DEAL_PURCHASE_LIMIT_OVER",
+            },
+          ],
+          add_on_deal_id: 20141,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addAddOnDealSubItem(exampleRequest);
 
@@ -139,10 +141,11 @@ describe("AddOnDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/add_add_on_deal_sub_item", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -151,16 +154,16 @@ describe("AddOnDealManager (Generated Tests)", () => {
       const exampleRequest = {
         add_on_deal_id: 11223123,
       };
-      const exampleResponse = {
-        add_on_deal_id: 11223123,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          add_on_deal_id: 11223123,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteAddOnDeal(exampleRequest);
 
@@ -168,10 +171,11 @@ describe("AddOnDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/delete_add_on_deal", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -181,17 +185,17 @@ describe("AddOnDealManager (Generated Tests)", () => {
         add_on_deal_id: 12068,
         main_item_list: [100197906],
       };
-      const exampleResponse = {
-        main_item_list: [123],
-        add_on_deal_id: 12068,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          main_item_list: [123],
+          add_on_deal_id: 12068,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteAddOnDealMainItem(exampleRequest);
 
@@ -202,11 +206,12 @@ describe("AddOnDealManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -221,24 +226,24 @@ describe("AddOnDealManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        sub_item_list: [
-          {
-            item_id: 3800024281,
-            model_id: 2741736,
-            fail_error: "error_unknown",
-            fail_message: "Unkown error key ADD_ON_DEAL_PURCHASE_LIMIT_OVER",
-          },
-        ],
-        add_on_deal_id: 20141,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          sub_item_list: [
+            {
+              item_id: 3800024281,
+              model_id: 2741736,
+              fail_error: "error_unknown",
+              fail_message: "Unkown error key ADD_ON_DEAL_PURCHASE_LIMIT_OVER",
+            },
+          ],
+          add_on_deal_id: 20141,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteAddOnDealSubItem(exampleRequest);
 
@@ -249,11 +254,12 @@ describe("AddOnDealManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -262,16 +268,16 @@ describe("AddOnDealManager (Generated Tests)", () => {
       const exampleRequest = {
         add_on_deal_id: 12068,
       };
-      const exampleResponse = {
-        add_on_deal_id: 12068,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          add_on_deal_id: 12068,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.endAddOnDeal(exampleRequest);
 
@@ -279,10 +285,11 @@ describe("AddOnDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/end_add_on_deal", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -291,25 +298,25 @@ describe("AddOnDealManager (Generated Tests)", () => {
       const exampleRequest = {
         add_on_deal_id: 12069,
       };
-      const exampleResponse = {
-        start_time: 1656601200,
-        end_time: 1656604800,
-        promotion_type: 0,
-        purchase_min_spend: 0,
-        add_on_deal_id: 12069,
-        per_gift_num: 0,
-        sub_item_priority: [123],
-        promotion_purchase_limit: 100,
-        add_on_deal_name: "add on deal test",
-        source: 1,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          start_time: 1656601200,
+          end_time: 1656604800,
+          promotion_type: 0,
+          purchase_min_spend: 0,
+          add_on_deal_id: 12069,
+          per_gift_num: 0,
+          sub_item_priority: [123],
+          promotion_purchase_limit: 100,
+          add_on_deal_name: "add on deal test",
+          source: 1,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getAddOnDeal(exampleRequest);
 
@@ -317,10 +324,11 @@ describe("AddOnDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/get_add_on_deal", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -331,30 +339,30 @@ describe("AddOnDealManager (Generated Tests)", () => {
         page_no: 1,
         page_size: 100,
       };
-      const exampleResponse = {
-        add_on_deal_list: [
-          {
-            start_time: 1617105600,
-            end_time: 1617195600,
-            promotion_type: 0,
-            purchase_min_spend: 3,
-            add_on_deal_id: 20183,
-            per_gift_num: 1,
-            promotion_purchase_limit: 12,
-            add_on_deal_name: "Bundle deal name test",
-            source: 1,
-            sub_item_prioriry: [100862950, 100863523],
-          },
-        ],
-        more: true,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          add_on_deal_list: [
+            {
+              start_time: 1617105600,
+              end_time: 1617195600,
+              promotion_type: 0,
+              purchase_min_spend: 3,
+              add_on_deal_id: 20183,
+              per_gift_num: 1,
+              promotion_purchase_limit: 12,
+              add_on_deal_name: "Bundle deal name test",
+              source: 1,
+              sub_item_prioriry: [100862950, 100863523],
+            },
+          ],
+          more: true,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getAddOnDealList(exampleRequest);
 
@@ -362,10 +370,11 @@ describe("AddOnDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/get_add_on_deal_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -374,22 +383,22 @@ describe("AddOnDealManager (Generated Tests)", () => {
       const exampleRequest = {
         add_on_deal_id: 12069,
       };
-      const exampleResponse = {
-        main_item_list: [
-          {
-            item_id: 100862623,
-            status: 1,
-          },
-        ],
-        add_on_deal_id: 12069,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          main_item_list: [
+            {
+              item_id: 100862623,
+              status: 1,
+            },
+          ],
+          add_on_deal_id: 12069,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getAddOnDealMainItem(exampleRequest);
 
@@ -397,10 +406,11 @@ describe("AddOnDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/get_add_on_deal_main_item", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -409,28 +419,28 @@ describe("AddOnDealManager (Generated Tests)", () => {
       const exampleRequest = {
         add_on_deal_id: 12069,
       };
-      const exampleResponse = {
-        sub_item_list: [
-          {
-            item_id: 100760424,
-            status: 1,
-            sub_item_limit: 1000000,
-            model_id: 200760424,
-            price: {
-              promo_input_price: 400,
-              promo_price: 400,
-            },
-          },
-        ],
-        add_on_deal_id: 12069,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          sub_item_list: [
+            {
+              item_id: 100760424,
+              status: 1,
+              sub_item_limit: 1000000,
+              model_id: 200760424,
+              price: {
+                promo_input_price: 400,
+                promo_price: 400,
+              },
+            },
+          ],
+          add_on_deal_id: 12069,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getAddOnDealSubItem(exampleRequest);
 
@@ -438,10 +448,11 @@ describe("AddOnDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/get_add_on_deal_sub_item", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -457,23 +468,23 @@ describe("AddOnDealManager (Generated Tests)", () => {
         sub_item_priority: [100760424],
         add_on_deal_name: "bundle deal test qweass",
       };
-      const exampleResponse = {
-        start_time: 1656601200,
-        end_time: 1656604800,
-        promotion_type: 0,
-        purchase_min_spend: 0,
-        add_on_deal_id: 12069,
-        per_gift_num: 0,
-        promotion_purchase_limit: 100,
-        add_on_deal_name: "bundle deal test qweass",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          start_time: 1656601200,
+          end_time: 1656604800,
+          promotion_type: 0,
+          purchase_min_spend: 0,
+          add_on_deal_id: 12069,
+          per_gift_num: 0,
+          promotion_purchase_limit: 100,
+          add_on_deal_name: "bundle deal test qweass",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateAddOnDeal(exampleRequest);
 
@@ -481,10 +492,11 @@ describe("AddOnDealManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/add_on_deal/update_add_on_deal", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -499,21 +511,21 @@ describe("AddOnDealManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        main_item_list: [
-          {
-            item_id: 100862623,
-            status: 2,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          main_item_list: [
+            {
+              item_id: 100862623,
+              status: 2,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateAddOnDealMainItem(exampleRequest);
 
@@ -524,11 +536,12 @@ describe("AddOnDealManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -546,26 +559,26 @@ describe("AddOnDealManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        sub_item_list: [
-          {
-            item_id: 100760424,
-            status: 1,
-            model_id: 20760424,
-            fail_error: "add_on.add_on_deal_error_unknown",
-            fail_message: "The add on deal created by admin can't be edited",
-            sub_item_input_price: 390,
-            sub_item_limit: 12,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          sub_item_list: [
+            {
+              item_id: 100760424,
+              status: 1,
+              model_id: 20760424,
+              fail_error: "add_on.add_on_deal_error_unknown",
+              fail_message: "The add on deal created by admin can't be edited",
+              sub_item_input_price: 390,
+              sub_item_limit: 12,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateAddOnDealSubItem(exampleRequest);
 
@@ -576,11 +589,12 @@ describe("AddOnDealManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });
