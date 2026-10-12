@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.9.1](https://github.com/congminh1254/shopee-sdk/compare/v2.9.0...v2.9.1) (2026-10-12)
+
+
+### Bug Fixes
+
+* normalize Buybox schema names without breaking existing callers ([#278](https://github.com/congminh1254/shopee-sdk/issues/278)) ([af25734](https://github.com/congminh1254/shopee-sdk/commit/af25734f0dbc3b7765c3bd36916b9125f55cfc7c))
+* preserve schema correctness and validate generator output ([#281](https://github.com/congminh1254/shopee-sdk/issues/281)) ([e44ee13](https://github.com/congminh1254/shopee-sdk/commit/e44ee13b6d8bf4aa5597131dcd5c673c4701dba3))
+* remove legacy Buybox API aliases ([#280](https://github.com/congminh1254/shopee-sdk/issues/280)) ([0a45f72](https://github.com/congminh1254/shopee-sdk/commit/0a45f72be10bd01dfc5943fc00e646674ad43454))
+* use dotenv 18 CLI for sandbox scripts ([#284](https://github.com/congminh1254/shopee-sdk/issues/284)) ([0d914a5](https://github.com/congminh1254/shopee-sdk/commit/0d914a5f662efc4041c6fef578b758f6b4213f06))
+
 ## [2.9.0](https://github.com/congminh1254/shopee-sdk/compare/v2.8.0...v2.9.0) (2026-10-01)
 
 
