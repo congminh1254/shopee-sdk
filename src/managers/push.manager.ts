@@ -24,7 +24,7 @@ export class PushManager extends BaseManager {
    * @returns {Promise<ConfirmConsumedLostPushMessageResponse>} Promise resolving to the response
    */
   public async confirmConsumedLostPushMessage(
-    params?: ConfirmConsumedLostPushMessageRequest
+    params: ConfirmConsumedLostPushMessageRequest
   ): Promise<ConfirmConsumedLostPushMessageResponse> {
     return ShopeeFetch.fetch<ConfirmConsumedLostPushMessageResponse>(
       this.config,

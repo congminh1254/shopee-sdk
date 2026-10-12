@@ -45,7 +45,7 @@ export class ReturnsManager extends BaseManager {
    * @param {AcceptOfferRequest} params Request parameters
    * @returns {Promise<AcceptOfferResponse>} Promise resolving to the response
    */
-  public async acceptOffer(params?: AcceptOfferRequest): Promise<AcceptOfferResponse> {
+  public async acceptOffer(params: AcceptOfferRequest): Promise<AcceptOfferResponse> {
     return ShopeeFetch.fetch<AcceptOfferResponse>(this.config, "/returns/accept_offer", {
       method: "POST",
       auth: true,
@@ -58,7 +58,7 @@ export class ReturnsManager extends BaseManager {
    * @param {CancelDisputeRequest} params Request parameters
    * @returns {Promise<CancelDisputeResponse>} Promise resolving to the response
    */
-  public async cancelDispute(params?: CancelDisputeRequest): Promise<CancelDisputeResponse> {
+  public async cancelDispute(params: CancelDisputeRequest): Promise<CancelDisputeResponse> {
     return ShopeeFetch.fetch<CancelDisputeResponse>(this.config, "/returns/cancel_dispute", {
       method: "POST",
       auth: true,
@@ -71,7 +71,7 @@ export class ReturnsManager extends BaseManager {
    * @param {ConfirmRequest} params Request parameters
    * @returns {Promise<ConfirmResponse>} Promise resolving to the response
    */
-  public async confirm(params?: ConfirmRequest): Promise<ConfirmResponse> {
+  public async confirm(params: ConfirmRequest): Promise<ConfirmResponse> {
     return ShopeeFetch.fetch<ConfirmResponse>(this.config, "/returns/confirm", {
       method: "POST",
       auth: true,
@@ -84,7 +84,7 @@ export class ReturnsManager extends BaseManager {
    * @param {ConvertImageRequest} params Request parameters
    * @returns {Promise<ConvertImageResponse>} Promise resolving to the response
    */
-  public async convertImage(params?: ConvertImageRequest): Promise<ConvertImageResponse> {
+  public async convertImage(params: ConvertImageRequest): Promise<ConvertImageResponse> {
     return ShopeeFetch.fetch<ConvertImageResponse>(this.config, "/returns/convert_image", {
       method: "POST",
       auth: true,
@@ -99,7 +99,7 @@ export class ReturnsManager extends BaseManager {
    * @param {DisputeRequest} params Request parameters
    * @returns {Promise<DisputeResponse>} Promise resolving to the response
    */
-  public async dispute(params?: DisputeRequest): Promise<DisputeResponse> {
+  public async dispute(params: DisputeRequest): Promise<DisputeResponse> {
     return ShopeeFetch.fetch<DisputeResponse>(this.config, "/returns/dispute", {
       method: "POST",
       auth: true,
@@ -113,7 +113,7 @@ export class ReturnsManager extends BaseManager {
    * @returns {Promise<GetAvailableSolutionsResponse>} Promise resolving to the response
    */
   public async getAvailableSolutions(
-    params?: GetAvailableSolutionsRequest
+    params: GetAvailableSolutionsRequest
   ): Promise<GetAvailableSolutionsResponse> {
     return ShopeeFetch.fetch<GetAvailableSolutionsResponse>(
       this.config,
@@ -131,7 +131,7 @@ export class ReturnsManager extends BaseManager {
    * @param {GetReturnDetailRequest} params Request parameters
    * @returns {Promise<GetReturnDetailResponse>} Promise resolving to the response
    */
-  public async getReturnDetail(params?: GetReturnDetailRequest): Promise<GetReturnDetailResponse> {
+  public async getReturnDetail(params: GetReturnDetailRequest): Promise<GetReturnDetailResponse> {
     return ShopeeFetch.fetch<GetReturnDetailResponse>(this.config, "/returns/get_return_detail", {
       method: "GET",
       auth: true,
@@ -155,7 +155,7 @@ export class ReturnsManager extends BaseManager {
    * @returns {Promise<GetReturnDisputeReasonResponse>} Promise resolving to the response
    */
   public async getReturnDisputeReason(
-    params?: GetReturnDisputeReasonRequest
+    params: GetReturnDisputeReasonRequest
   ): Promise<GetReturnDisputeReasonResponse> {
     return ShopeeFetch.fetch<GetReturnDisputeReasonResponse>(
       this.config,
@@ -173,16 +173,12 @@ export class ReturnsManager extends BaseManager {
    * @param {GetReturnListRequest} params Request parameters
    * @returns {Promise<GetReturnListResponse>} Promise resolving to the response
    */
-  public async getReturnList(params?: GetReturnListRequest): Promise<GetReturnListResponse> {
+  public async getReturnList(params: GetReturnListRequest): Promise<GetReturnListResponse> {
     return ShopeeFetch.fetch<GetReturnListResponse>(this.config, "/returns/get_return_list", {
       method: "GET",
       auth: true,
       params: params,
       timestampPaths: [
-        "create_time_from",
-        "create_time_to",
-        "update_time_from",
-        "update_time_to",
         "response.return.create_time",
         "response.return.update_time",
         "response.return.due_date",
@@ -198,7 +194,7 @@ export class ReturnsManager extends BaseManager {
    * @returns {Promise<GetReverseTrackingInfoResponse>} Promise resolving to the response
    */
   public async getReverseTrackingInfo(
-    params?: GetReverseTrackingInfoRequest
+    params: GetReverseTrackingInfoRequest
   ): Promise<GetReverseTrackingInfoResponse> {
     return ShopeeFetch.fetch<GetReverseTrackingInfoResponse>(
       this.config,
@@ -225,7 +221,7 @@ export class ReturnsManager extends BaseManager {
    * @returns {Promise<GetShippingCarrierResponse>} Promise resolving to the response
    */
   public async getShippingCarrier(
-    params?: GetShippingCarrierRequest
+    params: GetShippingCarrierRequest
   ): Promise<GetShippingCarrierResponse> {
     return ShopeeFetch.fetch<GetShippingCarrierResponse>(
       this.config,
@@ -243,7 +239,7 @@ export class ReturnsManager extends BaseManager {
    * @param {OfferRequest} params Request parameters
    * @returns {Promise<OfferResponse>} Promise resolving to the response
    */
-  public async offer(params?: OfferRequest): Promise<OfferResponse> {
+  public async offer(params: OfferRequest): Promise<OfferResponse> {
     return ShopeeFetch.fetch<OfferResponse>(this.config, "/returns/offer", {
       method: "POST",
       auth: true,
@@ -256,7 +252,7 @@ export class ReturnsManager extends BaseManager {
    * @param {QueryProofRequest} params Request parameters
    * @returns {Promise<QueryProofResponse>} Promise resolving to the response
    */
-  public async queryProof(params?: QueryProofRequest): Promise<QueryProofResponse> {
+  public async queryProof(params: QueryProofRequest): Promise<QueryProofResponse> {
     return ShopeeFetch.fetch<QueryProofResponse>(this.config, "/returns/query_proof", {
       method: "GET",
       auth: true,
@@ -269,7 +265,7 @@ export class ReturnsManager extends BaseManager {
    * @param {UploadProofRequest} params Request parameters
    * @returns {Promise<UploadProofResponse>} Promise resolving to the response
    */
-  public async uploadProof(params?: UploadProofRequest): Promise<UploadProofResponse> {
+  public async uploadProof(params: UploadProofRequest): Promise<UploadProofResponse> {
     return ShopeeFetch.fetch<UploadProofResponse>(this.config, "/returns/upload_proof", {
       method: "POST",
       auth: true,
@@ -283,7 +279,7 @@ export class ReturnsManager extends BaseManager {
    * @returns {Promise<UploadShippingProofResponse>} Promise resolving to the response
    */
   public async uploadShippingProof(
-    params?: UploadShippingProofRequest
+    params: UploadShippingProofRequest
   ): Promise<UploadShippingProofResponse> {
     return ShopeeFetch.fetch<UploadShippingProofResponse>(
       this.config,

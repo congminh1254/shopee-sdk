@@ -55,7 +55,7 @@ export function generateParamValue(param: NormalizedParam): unknown {
     return isArray ? [childObj] : childObj;
   }
 
-  const sample = param.sample;
+  const sample = param.enum ? param.enum.members[0]?.value : param.sample;
   const rawType = param.type.trim();
 
   if (sample !== undefined && sample !== null && String(sample).trim() !== "") {
@@ -66,7 +66,7 @@ export function generateParamValue(param: NormalizedParam): unknown {
       const items = cleanVal.split(/[,/|]/).map((item) => item.trim());
       return items.map((item) => parsePrimitive(item, baseType));
     }
-    return parsePrimitive(sampleStr, rawType);
+    return param.enum ? sample : parsePrimitive(sampleStr, rawType);
   }
 
   if (rawType.endsWith("[]")) {
@@ -136,7 +136,7 @@ describe("${managerClassName} (Generated Tests)", () => {
 
     fileContent += `
   describe("${methodName}", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = ${JSON.stringify(exampleRequest, null, 2)};
       const exampleResponse = ${JSON.stringify(exampleResponse, null, 2)};
 
@@ -149,14 +149,16 @@ describe("${managerClassName} (Generated Tests)", () => {
 
       const result = await manager.${methodName}(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
-        "${spec.path}",
-        expect.objectContaining({
+        ${JSON.stringify(spec.path)},
+        {
           method: "${spec.method}",
-          auth: ${spec.auth},
-          ${spec.method === "GET" ? "params" : "body"}: expect.objectContaining(exampleRequest),
-        })
+          ${spec.auth ? "auth: true," : ""}
+          ${spec.method === "GET" ? "params" : "body"}: exampleRequest,
+          ${spec.timestampPaths.length ? `timestampPaths: ${JSON.stringify(spec.timestampPaths)},` : ""}
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);

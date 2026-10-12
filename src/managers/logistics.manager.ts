@@ -107,7 +107,7 @@ export class LogisticsManager extends BaseManager {
    * @param {BatchShipOrderRequest} params Request parameters
    * @returns {Promise<BatchShipOrderResponse>} Promise resolving to the response
    */
-  public async batchShipOrder(params?: BatchShipOrderRequest): Promise<BatchShipOrderResponse> {
+  public async batchShipOrder(params: BatchShipOrderRequest): Promise<BatchShipOrderResponse> {
     return ShopeeFetch.fetch<BatchShipOrderResponse>(this.config, "/logistics/batch_ship_order", {
       method: "POST",
       auth: true,
@@ -125,7 +125,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<BatchUpdateTpfWarehouseTrackingStatusResponse>} Promise resolving to the response
    */
   public async batchUpdateTpfWarehouseTrackingStatus(
-    params?: BatchUpdateTpfWarehouseTrackingStatusRequest
+    params: BatchUpdateTpfWarehouseTrackingStatusRequest
   ): Promise<BatchUpdateTpfWarehouseTrackingStatusResponse> {
     return ShopeeFetch.fetch<BatchUpdateTpfWarehouseTrackingStatusResponse>(
       this.config,
@@ -144,7 +144,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<CheckPolygonUpdateStatusResponse>} Promise resolving to the response
    */
   public async checkPolygonUpdateStatus(
-    params?: CheckPolygonUpdateStatusRequest
+    params: CheckPolygonUpdateStatusRequest
   ): Promise<CheckPolygonUpdateStatusResponse> {
     return ShopeeFetch.fetch<CheckPolygonUpdateStatusResponse>(
       this.config,
@@ -163,7 +163,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<CreateBookingShippingDocumentResponse>} Promise resolving to the response
    */
   public async createBookingShippingDocument(
-    params?: CreateBookingShippingDocumentRequest
+    params: CreateBookingShippingDocumentRequest
   ): Promise<CreateBookingShippingDocumentResponse> {
     return ShopeeFetch.fetch<CreateBookingShippingDocumentResponse>(
       this.config,
@@ -182,7 +182,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<CreateShippingDocumentResponse>} Promise resolving to the response
    */
   public async createShippingDocument(
-    params?: CreateShippingDocumentRequest
+    params: CreateShippingDocumentRequest
   ): Promise<CreateShippingDocumentResponse> {
     return ShopeeFetch.fetch<CreateShippingDocumentResponse>(
       this.config,
@@ -201,7 +201,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<CreateShippingDocumentJobResponse>} Promise resolving to the response
    */
   public async createShippingDocumentJob(
-    params?: CreateShippingDocumentJobRequest
+    params: CreateShippingDocumentJobRequest
   ): Promise<CreateShippingDocumentJobResponse> {
     return ShopeeFetch.fetch<CreateShippingDocumentJobResponse>(
       this.config,
@@ -219,7 +219,7 @@ export class LogisticsManager extends BaseManager {
    * @param {DeleteAddressRequest} params Request parameters
    * @returns {Promise<DeleteAddressResponse>} Promise resolving to the response
    */
-  public async deleteAddress(params?: DeleteAddressRequest): Promise<DeleteAddressResponse> {
+  public async deleteAddress(params: DeleteAddressRequest): Promise<DeleteAddressResponse> {
     return ShopeeFetch.fetch<DeleteAddressResponse>(this.config, "/logistics/delete_address", {
       method: "POST",
       auth: true,
@@ -233,7 +233,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<DeleteSpecialOperatingHourResponse>} Promise resolving to the response
    */
   public async deleteSpecialOperatingHour(
-    params?: DeleteSpecialOperatingHourRequest
+    params: DeleteSpecialOperatingHourRequest
   ): Promise<DeleteSpecialOperatingHourResponse> {
     return ShopeeFetch.fetch<DeleteSpecialOperatingHourResponse>(
       this.config,
@@ -252,7 +252,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<DownloadBookingShippingDocumentResponse>} Promise resolving to the response
    */
   public async downloadBookingShippingDocument(
-    params?: DownloadBookingShippingDocumentRequest
+    params: DownloadBookingShippingDocumentRequest
   ): Promise<DownloadBookingShippingDocumentResponse> {
     return ShopeeFetch.fetch<DownloadBookingShippingDocumentResponse>(
       this.config,
@@ -271,7 +271,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<DownloadShippingDocumentResponse>} Promise resolving to the response
    */
   public async downloadShippingDocument(
-    params?: DownloadShippingDocumentRequest
+    params: DownloadShippingDocumentRequest
   ): Promise<DownloadShippingDocumentResponse> {
     return ShopeeFetch.fetch<DownloadShippingDocumentResponse>(
       this.config,
@@ -290,7 +290,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<DownloadShippingDocumentJobResponse>} Promise resolving to the response
    */
   public async downloadShippingDocumentJob(
-    params?: DownloadShippingDocumentJobRequest
+    params: DownloadShippingDocumentJobRequest
   ): Promise<DownloadShippingDocumentJobResponse> {
     return ShopeeFetch.fetch<DownloadShippingDocumentJobResponse>(
       this.config,
@@ -308,7 +308,7 @@ export class LogisticsManager extends BaseManager {
    * @param {DownloadToLabelRequest} params Request parameters
    * @returns {Promise<DownloadToLabelResponse>} Promise resolving to the response
    */
-  public async downloadToLabel(params?: DownloadToLabelRequest): Promise<DownloadToLabelResponse> {
+  public async downloadToLabel(params: DownloadToLabelRequest): Promise<DownloadToLabelResponse> {
     return ShopeeFetch.fetch<DownloadToLabelResponse>(this.config, "/logistics/download_to_label", {
       method: "POST",
       auth: true,
@@ -335,7 +335,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetBookingShippingDocumentDataInfoResponse>} Promise resolving to the response
    */
   public async getBookingShippingDocumentDataInfo(
-    params?: GetBookingShippingDocumentDataInfoRequest
+    params: GetBookingShippingDocumentDataInfoRequest
   ): Promise<GetBookingShippingDocumentDataInfoResponse> {
     return ShopeeFetch.fetch<GetBookingShippingDocumentDataInfoResponse>(
       this.config,
@@ -354,7 +354,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetBookingShippingDocumentParameterResponse>} Promise resolving to the response
    */
   public async getBookingShippingDocumentParameter(
-    params?: GetBookingShippingDocumentParameterRequest
+    params: GetBookingShippingDocumentParameterRequest
   ): Promise<GetBookingShippingDocumentParameterResponse> {
     return ShopeeFetch.fetch<GetBookingShippingDocumentParameterResponse>(
       this.config,
@@ -373,7 +373,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetBookingShippingDocumentResultResponse>} Promise resolving to the response
    */
   public async getBookingShippingDocumentResult(
-    params?: GetBookingShippingDocumentResultRequest
+    params: GetBookingShippingDocumentResultRequest
   ): Promise<GetBookingShippingDocumentResultResponse> {
     return ShopeeFetch.fetch<GetBookingShippingDocumentResultResponse>(
       this.config,
@@ -392,7 +392,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetBookingShippingParameterResponse>} Promise resolving to the response
    */
   public async getBookingShippingParameter(
-    params?: GetBookingShippingParameterRequest
+    params: GetBookingShippingParameterRequest
   ): Promise<GetBookingShippingParameterResponse> {
     return ShopeeFetch.fetch<GetBookingShippingParameterResponse>(
       this.config,
@@ -412,7 +412,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetBookingTrackingInfoResponse>} Promise resolving to the response
    */
   public async getBookingTrackingInfo(
-    params?: GetBookingTrackingInfoRequest
+    params: GetBookingTrackingInfoRequest
   ): Promise<GetBookingTrackingInfoResponse> {
     return ShopeeFetch.fetch<GetBookingTrackingInfoResponse>(
       this.config,
@@ -432,7 +432,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetBookingTrackingNumberResponse>} Promise resolving to the response
    */
   public async getBookingTrackingNumber(
-    params?: GetBookingTrackingNumberRequest
+    params: GetBookingTrackingNumberRequest
   ): Promise<GetBookingTrackingNumberResponse> {
     return ShopeeFetch.fetch<GetBookingTrackingNumberResponse>(
       this.config,
@@ -483,7 +483,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetMassShippingParameterResponse>} Promise resolving to the response
    */
   public async getMassShippingParameter(
-    params?: GetMassShippingParameterRequest
+    params: GetMassShippingParameterRequest
   ): Promise<GetMassShippingParameterResponse> {
     return ShopeeFetch.fetch<GetMassShippingParameterResponse>(
       this.config,
@@ -503,7 +503,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetMassTrackingNumberResponse>} Promise resolving to the response
    */
   public async getMassTrackingNumber(
-    params?: GetMassTrackingNumberRequest
+    params: GetMassTrackingNumberRequest
   ): Promise<GetMassTrackingNumberResponse> {
     return ShopeeFetch.fetch<GetMassTrackingNumberResponse>(
       this.config,
@@ -574,7 +574,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetShippingDocumentDataInfoResponse>} Promise resolving to the response
    */
   public async getShippingDocumentDataInfo(
-    params?: GetShippingDocumentDataInfoRequest
+    params: GetShippingDocumentDataInfoRequest
   ): Promise<GetShippingDocumentDataInfoResponse> {
     return ShopeeFetch.fetch<GetShippingDocumentDataInfoResponse>(
       this.config,
@@ -593,7 +593,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetShippingDocumentJobStatusResponse>} Promise resolving to the response
    */
   public async getShippingDocumentJobStatus(
-    params?: GetShippingDocumentJobStatusRequest
+    params: GetShippingDocumentJobStatusRequest
   ): Promise<GetShippingDocumentJobStatusResponse> {
     return ShopeeFetch.fetch<GetShippingDocumentJobStatusResponse>(
       this.config,
@@ -612,7 +612,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetShippingDocumentParameterResponse>} Promise resolving to the response
    */
   public async getShippingDocumentParameter(
-    params?: GetShippingDocumentParameterRequest
+    params: GetShippingDocumentParameterRequest
   ): Promise<GetShippingDocumentParameterResponse> {
     return ShopeeFetch.fetch<GetShippingDocumentParameterResponse>(
       this.config,
@@ -631,7 +631,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetShippingDocumentResultResponse>} Promise resolving to the response
    */
   public async getShippingDocumentResult(
-    params?: GetShippingDocumentResultRequest
+    params: GetShippingDocumentResultRequest
   ): Promise<GetShippingDocumentResultResponse> {
     return ShopeeFetch.fetch<GetShippingDocumentResultResponse>(
       this.config,
@@ -650,7 +650,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetShippingParameterResponse>} Promise resolving to the response
    */
   public async getShippingParameter(
-    params?: GetShippingParameterRequest
+    params: GetShippingParameterRequest
   ): Promise<GetShippingParameterResponse> {
     return ShopeeFetch.fetch<GetShippingParameterResponse>(
       this.config,
@@ -669,7 +669,7 @@ export class LogisticsManager extends BaseManager {
    * @param {GetTrackingInfoRequest} params Request parameters
    * @returns {Promise<GetTrackingInfoResponse>} Promise resolving to the response
    */
-  public async getTrackingInfo(params?: GetTrackingInfoRequest): Promise<GetTrackingInfoResponse> {
+  public async getTrackingInfo(params: GetTrackingInfoRequest): Promise<GetTrackingInfoResponse> {
     return ShopeeFetch.fetch<GetTrackingInfoResponse>(this.config, "/logistics/get_tracking_info", {
       method: "GET",
       auth: true,
@@ -684,7 +684,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<GetTrackingNumberResponse>} Promise resolving to the response
    */
   public async getTrackingNumber(
-    params?: GetTrackingNumberRequest
+    params: GetTrackingNumberRequest
   ): Promise<GetTrackingNumberResponse> {
     return ShopeeFetch.fetch<GetTrackingNumberResponse>(
       this.config,
@@ -702,7 +702,7 @@ export class LogisticsManager extends BaseManager {
    * @param {MassShipOrderRequest} params Request parameters
    * @returns {Promise<MassShipOrderResponse>} Promise resolving to the response
    */
-  public async massShipOrder(params?: MassShipOrderRequest): Promise<MassShipOrderResponse> {
+  public async massShipOrder(params: MassShipOrderRequest): Promise<MassShipOrderResponse> {
     return ShopeeFetch.fetch<MassShipOrderResponse>(this.config, "/logistics/mass_ship_order", {
       method: "POST",
       auth: true,
@@ -735,7 +735,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<SetMartPackagingInfoResponse>} Promise resolving to the response
    */
   public async setMartPackagingInfo(
-    params?: SetMartPackagingInfoRequest
+    params: SetMartPackagingInfoRequest
   ): Promise<SetMartPackagingInfoResponse> {
     return ShopeeFetch.fetch<SetMartPackagingInfoResponse>(
       this.config,
@@ -753,7 +753,7 @@ export class LogisticsManager extends BaseManager {
    * @param {SetPauseStatusRequest} params Request parameters
    * @returns {Promise<SetPauseStatusResponse>} Promise resolving to the response
    */
-  public async setPauseStatus(params?: SetPauseStatusRequest): Promise<SetPauseStatusResponse> {
+  public async setPauseStatus(params: SetPauseStatusRequest): Promise<SetPauseStatusResponse> {
     return ShopeeFetch.fetch<SetPauseStatusResponse>(this.config, "/logistics/set_pause_status", {
       method: "POST",
       auth: true,
@@ -767,7 +767,7 @@ export class LogisticsManager extends BaseManager {
    * @param {ShipBookingRequest} params Request parameters
    * @returns {Promise<ShipBookingResponse>} Promise resolving to the response
    */
-  public async shipBooking(params?: ShipBookingRequest): Promise<ShipBookingResponse> {
+  public async shipBooking(params: ShipBookingRequest): Promise<ShipBookingResponse> {
     return ShopeeFetch.fetch<ShipBookingResponse>(this.config, "/logistics/ship_booking", {
       method: "POST",
       auth: true,
@@ -780,7 +780,7 @@ export class LogisticsManager extends BaseManager {
    * @param {ShipOrderRequest} params Request parameters
    * @returns {Promise<ShipOrderResponse>} Promise resolving to the response
    */
-  public async shipOrder(params?: ShipOrderRequest): Promise<ShipOrderResponse> {
+  public async shipOrder(params: ShipOrderRequest): Promise<ShipOrderResponse> {
     return ShopeeFetch.fetch<ShipOrderResponse>(this.config, "/logistics/ship_order", {
       method: "POST",
       auth: true,
@@ -793,7 +793,7 @@ export class LogisticsManager extends BaseManager {
    * @param {UpdateAddressRequest} params Request parameters
    * @returns {Promise<UpdateAddressResponse>} Promise resolving to the response
    */
-  public async updateAddress(params?: UpdateAddressRequest): Promise<UpdateAddressResponse> {
+  public async updateAddress(params: UpdateAddressRequest): Promise<UpdateAddressResponse> {
     return ShopeeFetch.fetch<UpdateAddressResponse>(this.config, "/logistics/update_address", {
       method: "POST",
       auth: true,
@@ -806,7 +806,7 @@ export class LogisticsManager extends BaseManager {
    * @param {UpdateChannelRequest} params Request parameters
    * @returns {Promise<UpdateChannelResponse>} Promise resolving to the response
    */
-  public async updateChannel(params?: UpdateChannelRequest): Promise<UpdateChannelResponse> {
+  public async updateChannel(params: UpdateChannelRequest): Promise<UpdateChannelResponse> {
     return ShopeeFetch.fetch<UpdateChannelResponse>(this.config, "/logistics/update_channel", {
       method: "POST",
       auth: true,
@@ -839,7 +839,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<UpdateSelfCollectionOrderLogisticsResponse>} Promise resolving to the response
    */
   public async updateSelfCollectionOrderLogistics(
-    params?: UpdateSelfCollectionOrderLogisticsRequest
+    params: UpdateSelfCollectionOrderLogisticsRequest
   ): Promise<UpdateSelfCollectionOrderLogisticsResponse> {
     return ShopeeFetch.fetch<UpdateSelfCollectionOrderLogisticsResponse>(
       this.config,
@@ -858,7 +858,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<UpdateShippingOrderResponse>} Promise resolving to the response
    */
   public async updateShippingOrder(
-    params?: UpdateShippingOrderRequest
+    params: UpdateShippingOrderRequest
   ): Promise<UpdateShippingOrderResponse> {
     return ShopeeFetch.fetch<UpdateShippingOrderResponse>(
       this.config,
@@ -877,7 +877,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<UpdateTrackingStatusResponse>} Promise resolving to the response
    */
   public async updateTrackingStatus(
-    params?: UpdateTrackingStatusRequest
+    params: UpdateTrackingStatusRequest
   ): Promise<UpdateTrackingStatusResponse> {
     return ShopeeFetch.fetch<UpdateTrackingStatusResponse>(
       this.config,
@@ -896,7 +896,7 @@ export class LogisticsManager extends BaseManager {
    * @returns {Promise<UploadServiceablePolygonResponse>} Promise resolving to the response
    */
   public async uploadServiceablePolygon(
-    params?: UploadServiceablePolygonRequest
+    params: UploadServiceablePolygonRequest
   ): Promise<UploadServiceablePolygonResponse> {
     return ShopeeFetch.fetch<UploadServiceablePolygonResponse>(
       this.config,

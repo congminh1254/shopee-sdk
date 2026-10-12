@@ -96,6 +96,7 @@ describe("LogisticsManager", () => {
           order_sn: "220101000000001",
           package_number: "PKG123456789",
         },
+        timestampPaths: ["response.tracking_info.update_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -137,6 +138,7 @@ describe("LogisticsManager", () => {
         params: {
           order_sn: "220101000000002",
         },
+        timestampPaths: ["response.tracking_info.update_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -169,6 +171,7 @@ describe("LogisticsManager", () => {
           order_sn: "220101000000003",
           package_number: "PKG987654321",
         },
+        timestampPaths: ["response.tracking_info.update_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -260,6 +263,7 @@ describe("LogisticsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_channel_list", {
         method: "GET",
         auth: true,
+        params: undefined,
       });
 
       expect(result).toEqual(mockResponse);
@@ -308,6 +312,8 @@ describe("LogisticsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_pause_status", {
         method: "GET",
         auth: true,
+        params: undefined,
+        timestampPaths: ["response.pause_end_time"],
       });
       expect(result).toEqual(mockResponse);
     });
@@ -332,9 +338,8 @@ describe("LogisticsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/set_pause_status", {
         method: "POST",
         auth: true,
-        body: {
-          is_paused: false,
-        },
+        body: { is_paused: false },
+        timestampPaths: ["response.pause_end_time"],
       });
       expect(result).toEqual(mockResponse);
     });
@@ -402,6 +407,7 @@ describe("LogisticsManager", () => {
           params: {
             order_sn: "ORDER123",
           },
+          timestampPaths: ["response.pickup.address_list.time_slot_list.date"],
         }
       );
 
@@ -454,6 +460,7 @@ describe("LogisticsManager", () => {
             order_sn: "ORDER456",
             package_number: "PKG789",
           },
+          timestampPaths: ["response.pickup.address_list.time_slot_list.date"],
         }
       );
 
@@ -695,6 +702,7 @@ describe("LogisticsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/get_address_list", {
         method: "GET",
         auth: true,
+        params: undefined,
       });
 
       expect(result).toEqual(mockResponse);
@@ -741,7 +749,9 @@ describe("LogisticsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/batch_ship_order", {
         method: "POST",
         auth: true,
-        body: { order_list: [{ order_sn: "ORDER1" }, { order_sn: "ORDER2" }] },
+        body: {
+          order_list: [{ order_sn: "ORDER1" }, { order_sn: "ORDER2" }],
+        },
       });
       expect(result).toEqual(mockResponse);
     });
@@ -781,7 +791,10 @@ describe("LogisticsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/logistics/ship_booking", {
         method: "POST",
         auth: true,
-        body: { booking_sn: "BOOKING123", pickup: { address_id: 1 } },
+        body: {
+          booking_sn: "BOOKING123",
+          pickup: { address_id: 1 },
+        },
       });
     });
   });
@@ -805,6 +818,7 @@ describe("LogisticsManager", () => {
           method: "GET",
           auth: true,
           params: { booking_sn: "BOOKING123" },
+          timestampPaths: ["response.pickup.address_list.time_slot_list.date"],
         }
       );
     });
@@ -833,6 +847,7 @@ describe("LogisticsManager", () => {
           method: "GET",
           auth: true,
           params: { booking_sn: "BOOKING123" },
+          timestampPaths: ["response.tracking_info.update_time"],
         }
       );
     });
@@ -853,11 +868,7 @@ describe("LogisticsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/logistics/get_booking_tracking_number",
-        {
-          method: "GET",
-          auth: true,
-          params: { booking_sn: "BOOKING123" },
-        }
+        { method: "GET", auth: true, params: { booking_sn: "BOOKING123" } }
       );
     });
   });
@@ -882,7 +893,10 @@ describe("LogisticsManager", () => {
         {
           method: "POST",
           auth: true,
-          body: { package_list: [{ package_number: "PKG1" }] },
+          body: {
+            package_list: [{ package_number: "PKG1" }],
+          },
+          timestampPaths: ["response.pickup.address_list.time_slot_list.date"],
         }
       );
     });
@@ -908,7 +922,9 @@ describe("LogisticsManager", () => {
         {
           method: "POST",
           auth: true,
-          body: { package_list: [{ package_number: "PKG1" }] },
+          body: {
+            package_list: [{ package_number: "PKG1" }],
+          },
         }
       );
     });

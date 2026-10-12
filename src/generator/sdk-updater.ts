@@ -50,6 +50,7 @@ export function updateSdkRegistration(sdkFilePath: string, modules: string[]): v
               if (
                 ts.isExpressionStatement(stmt) &&
                 ts.isBinaryExpression(stmt.expression) &&
+                stmt.expression.operatorToken.kind === ts.SyntaxKind.EqualsToken &&
                 ts.isPropertyAccessExpression(stmt.expression.left) &&
                 stmt.expression.left.expression.kind === ts.SyntaxKind.ThisKeyword
               ) {
@@ -66,7 +67,7 @@ export function updateSdkRegistration(sdkFilePath: string, modules: string[]): v
     throw new Error("Could not locate ShopeeSDK class or its constructor in sdk.ts");
   }
 
-  const modulesToRegister = modules.filter((m) => {
+  const modulesToRegister = [...new Set(modules)].filter((m) => {
     const managerName = getManagerClassName(m);
     const propertyName = getSdkPropertyName(m);
     return (
@@ -106,7 +107,7 @@ export function updateSdkRegistration(sdkFilePath: string, modules: string[]): v
       ),
       ts.factory.createStringLiteral(`./managers/${kebabName}.manager.js`)
     );
-    newImportStatements.push(importStmt);
+    if (!importedManagers.has(managerName)) newImportStatements.push(importStmt);
 
     // Create property: public readonly accountHealth: AccountHealthManager;
     const propDecl = ts.factory.createPropertyDeclaration(
@@ -119,7 +120,7 @@ export function updateSdkRegistration(sdkFilePath: string, modules: string[]): v
       ts.factory.createTypeReferenceNode(managerName),
       undefined
     );
-    newProperties.push(propDecl);
+    if (!classProperties.has(propertyName)) newProperties.push(propDecl);
 
     // Create assignment: this.accountHealth = new AccountHealthManager(this.config);
     const assignStmt = ts.factory.createExpressionStatement(
@@ -137,7 +138,7 @@ export function updateSdkRegistration(sdkFilePath: string, modules: string[]): v
         ])
       )
     );
-    newAssignments.push(assignStmt);
+    if (!constructorAssignments.has(propertyName)) newAssignments.push(assignStmt);
   }
 
   // Update statements list by inserting imports

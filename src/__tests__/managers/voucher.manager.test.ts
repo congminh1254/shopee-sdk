@@ -340,6 +340,7 @@ describe("VoucherManager", () => {
         params: {
           voucher_id: 12345678,
         },
+        timestampPaths: ["response.start_time", "response.end_time", "response.display_start_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -384,6 +385,7 @@ describe("VoucherManager", () => {
         params: {
           voucher_id: 87654321,
         },
+        timestampPaths: ["response.start_time", "response.end_time", "response.display_start_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -447,10 +449,15 @@ describe("VoucherManager", () => {
         method: "GET",
         auth: true,
         params: {
-          status: "all",
+          status: VoucherStatus.ALL,
           page_no: 1,
           page_size: 20,
         },
+        timestampPaths: [
+          "response.voucher_list.start_time",
+          "response.voucher_list.end_time",
+          "response.voucher_list.display_start_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -495,8 +502,13 @@ describe("VoucherManager", () => {
         method: "GET",
         auth: true,
         params: {
-          status: "ongoing",
+          status: VoucherStatus.ONGOING,
         },
+        timestampPaths: [
+          "response.voucher_list.start_time",
+          "response.voucher_list.end_time",
+          "response.voucher_list.display_start_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);

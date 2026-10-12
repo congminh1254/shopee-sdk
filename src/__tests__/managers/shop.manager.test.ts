@@ -58,7 +58,7 @@ describe("ShopManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_profile", {
         method: "GET",
         auth: true,
-        params: {},
+        params: undefined,
       });
 
       expect(result.error).toBe("");
@@ -148,7 +148,8 @@ describe("ShopManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_shop_info", {
         method: "GET",
         auth: true,
-        params: {},
+        params: undefined,
+        timestampPaths: ["auth_time", "expire_time"],
       });
 
       expect(result.error).toBe("");
@@ -480,7 +481,7 @@ describe("ShopManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_shop_notification", {
         method: "GET",
         auth: true,
-        params: {},
+        params: undefined,
       });
 
       expect(result.error).toBe("");
@@ -619,11 +620,7 @@ describe("ShopManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/shop/get_br_shop_onboarding_info",
-        {
-          method: "GET",
-          auth: true,
-          params: {},
-        }
+        { method: "GET", auth: true, params: undefined }
       );
 
       expect(result.error).toBe("");
@@ -675,7 +672,12 @@ describe("ShopManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_shop_holiday_mode", {
         method: "GET",
         auth: true,
-        params: {},
+        params: undefined,
+        timestampPaths: [
+          "response.holiday_mode_mtime",
+          "response.holiday_mode_start_time",
+          "response.holiday_mode_end_time",
+        ],
       });
 
       expect(result.error).toBe("error_shop_not_exists");

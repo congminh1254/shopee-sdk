@@ -59,7 +59,7 @@ export class OrderManager extends BaseManager {
    * @param {CancelOrderRequest} params Request parameters
    * @returns {Promise<CancelOrderResponse>} Promise resolving to the response
    */
-  public async cancelOrder(params?: CancelOrderRequest): Promise<CancelOrderResponse> {
+  public async cancelOrder(params: CancelOrderRequest): Promise<CancelOrderResponse> {
     return ShopeeFetch.fetch<CancelOrderResponse>(this.config, "/order/cancel_order", {
       method: "POST",
       auth: true,
@@ -94,7 +94,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<DownloadInvoiceDocResponse>} Promise resolving to the response
    */
   public async downloadInvoiceDoc(
-    params?: DownloadInvoiceDocRequest
+    params: DownloadInvoiceDocRequest
   ): Promise<DownloadInvoiceDocResponse> {
     return ShopeeFetch.fetch<DownloadInvoiceDocResponse>(
       this.config,
@@ -134,7 +134,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<GetBookingDetailResponse>} Promise resolving to the response
    */
   public async getBookingDetail(
-    params?: GetBookingDetailRequest
+    params: GetBookingDetailRequest
   ): Promise<GetBookingDetailResponse> {
     return ShopeeFetch.fetch<GetBookingDetailResponse>(this.config, "/order/get_booking_detail", {
       method: "GET",
@@ -153,7 +153,7 @@ export class OrderManager extends BaseManager {
    * @param {GetBookingListRequest} params Request parameters
    * @returns {Promise<GetBookingListResponse>} Promise resolving to the response
    */
-  public async getBookingList(params?: GetBookingListRequest): Promise<GetBookingListResponse> {
+  public async getBookingList(params: GetBookingListRequest): Promise<GetBookingListResponse> {
     return ShopeeFetch.fetch<GetBookingListResponse>(this.config, "/order/get_booking_list", {
       method: "GET",
       auth: true,
@@ -167,7 +167,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<GetBuyerInvoiceInfoResponse>} Promise resolving to the response
    */
   public async getBuyerInvoiceInfo(
-    params?: GetBuyerInvoiceInfoRequest
+    params: GetBuyerInvoiceInfoRequest
   ): Promise<GetBuyerInvoiceInfoResponse> {
     return ShopeeFetch.fetch<GetBuyerInvoiceInfoResponse>(
       this.config,
@@ -186,7 +186,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<GetEstimateCancelValueResponse>} Promise resolving to the response
    */
   public async getEstimateCancelValue(
-    params?: GetEstimateCancelValueRequest
+    params: GetEstimateCancelValueRequest
   ): Promise<GetEstimateCancelValueResponse> {
     return ShopeeFetch.fetch<GetEstimateCancelValueResponse>(
       this.config,
@@ -205,7 +205,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<GetFbsInvoicesResultResponse>} Promise resolving to the response
    */
   public async getFbsInvoicesResult(
-    params?: GetFbsInvoicesResultRequest
+    params: GetFbsInvoicesResultRequest
   ): Promise<GetFbsInvoicesResultResponse> {
     return ShopeeFetch.fetch<GetFbsInvoicesResultResponse>(
       this.config,
@@ -223,7 +223,7 @@ export class OrderManager extends BaseManager {
    * @param {GetOrderDetailRequest} params Request parameters
    * @returns {Promise<GetOrderDetailResponse>} Promise resolving to the response
    */
-  public async getOrderDetail(params?: GetOrderDetailRequest): Promise<GetOrderDetailResponse> {
+  public async getOrderDetail(params: GetOrderDetailRequest): Promise<GetOrderDetailResponse> {
     return ShopeeFetch.fetch<GetOrderDetailResponse>(this.config, "/order/get_order_detail", {
       method: "GET",
       auth: true,
@@ -250,12 +250,11 @@ export class OrderManager extends BaseManager {
    * @param {GetOrderListRequest} params Request parameters
    * @returns {Promise<GetOrderListResponse>} Promise resolving to the response
    */
-  public async getOrderList(params?: GetOrderListRequest): Promise<GetOrderListResponse> {
+  public async getOrderList(params: GetOrderListRequest): Promise<GetOrderListResponse> {
     return ShopeeFetch.fetch<GetOrderListResponse>(this.config, "/order/get_order_list", {
       method: "GET",
       auth: true,
       params: params,
-      timestampPaths: ["time_from", "time_to"],
     });
   }
   /**
@@ -265,7 +264,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<GetPackageDetailResponse>} Promise resolving to the response
    */
   public async getPackageDetail(
-    params?: GetPackageDetailRequest
+    params: GetPackageDetailRequest
   ): Promise<GetPackageDetailResponse> {
     return ShopeeFetch.fetch<GetPackageDetailResponse>(this.config, "/order/get_package_detail", {
       method: "GET",
@@ -286,7 +285,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<GetPendingBuyerInvoiceOrderListResponse>} Promise resolving to the response
    */
   public async getPendingBuyerInvoiceOrderList(
-    params?: GetPendingBuyerInvoiceOrderListRequest
+    params: GetPendingBuyerInvoiceOrderListRequest
   ): Promise<GetPendingBuyerInvoiceOrderListResponse> {
     return ShopeeFetch.fetch<GetPendingBuyerInvoiceOrderListResponse>(
       this.config,
@@ -304,7 +303,7 @@ export class OrderManager extends BaseManager {
    * @param {GetShipmentListRequest} params Request parameters
    * @returns {Promise<GetShipmentListResponse>} Promise resolving to the response
    */
-  public async getShipmentList(params?: GetShipmentListRequest): Promise<GetShipmentListResponse> {
+  public async getShipmentList(params: GetShipmentListRequest): Promise<GetShipmentListResponse> {
     return ShopeeFetch.fetch<GetShipmentListResponse>(this.config, "/order/get_shipment_list", {
       method: "GET",
       auth: true,
@@ -337,7 +336,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<HandleBuyerCancellationResponse>} Promise resolving to the response
    */
   public async handleBuyerCancellation(
-    params?: HandleBuyerCancellationRequest
+    params: HandleBuyerCancellationRequest
   ): Promise<HandleBuyerCancellationResponse> {
     return ShopeeFetch.fetch<HandleBuyerCancellationResponse>(
       this.config,
@@ -357,7 +356,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<HandlePrescriptionCheckResponse>} Promise resolving to the response
    */
   public async handlePrescriptionCheck(
-    params?: HandlePrescriptionCheckRequest
+    params: HandlePrescriptionCheckRequest
   ): Promise<HandlePrescriptionCheckResponse> {
     return ShopeeFetch.fetch<HandlePrescriptionCheckResponse>(
       this.config,
@@ -376,7 +375,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<SearchPackageListResponse>} Promise resolving to the response
    */
   public async searchPackageList(
-    params?: SearchPackageListRequest
+    params: SearchPackageListRequest
   ): Promise<SearchPackageListResponse> {
     return ShopeeFetch.fetch<SearchPackageListResponse>(this.config, "/order/search_package_list", {
       method: "POST",
@@ -390,7 +389,7 @@ export class OrderManager extends BaseManager {
    * @param {SetNoteRequest} params Request parameters
    * @returns {Promise<SetNoteResponse>} Promise resolving to the response
    */
-  public async setNote(params?: SetNoteRequest): Promise<SetNoteResponse> {
+  public async setNote(params: SetNoteRequest): Promise<SetNoteResponse> {
     return ShopeeFetch.fetch<SetNoteResponse>(this.config, "/order/set_note", {
       method: "POST",
       auth: true,
@@ -403,7 +402,7 @@ export class OrderManager extends BaseManager {
    * @param {SplitOrderRequest} params Request parameters
    * @returns {Promise<SplitOrderResponse>} Promise resolving to the response
    */
-  public async splitOrder(params?: SplitOrderRequest): Promise<SplitOrderResponse> {
+  public async splitOrder(params: SplitOrderRequest): Promise<SplitOrderResponse> {
     return ShopeeFetch.fetch<SplitOrderResponse>(this.config, "/order/split_order", {
       method: "POST",
       auth: true,
@@ -416,7 +415,7 @@ export class OrderManager extends BaseManager {
    * @param {UnsplitOrderRequest} params Request parameters
    * @returns {Promise<UnsplitOrderResponse>} Promise resolving to the response
    */
-  public async unsplitOrder(params?: UnsplitOrderRequest): Promise<UnsplitOrderResponse> {
+  public async unsplitOrder(params: UnsplitOrderRequest): Promise<UnsplitOrderResponse> {
     return ShopeeFetch.fetch<UnsplitOrderResponse>(this.config, "/order/unsplit_order", {
       method: "POST",
       auth: true,
@@ -430,7 +429,7 @@ export class OrderManager extends BaseManager {
    * @returns {Promise<UploadInvoiceDocResponse>} Promise resolving to the response
    */
   public async uploadInvoiceDoc(
-    params?: UploadInvoiceDocRequest
+    params: UploadInvoiceDocRequest
   ): Promise<UploadInvoiceDocResponse> {
     return ShopeeFetch.fetch<UploadInvoiceDocResponse>(this.config, "/order/upload_invoice_doc", {
       method: "POST",

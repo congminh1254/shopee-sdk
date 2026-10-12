@@ -24,7 +24,7 @@ describe("FirstMileManager (Generated Tests)", () => {
   });
 
   describe("bindCourierDeliveryFirstMileTrackingNumber", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         shipment_method: "courier_delivery",
         binding_id: "DCN247547439397PU",
@@ -62,14 +62,15 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.bindCourierDeliveryFirstMileTrackingNumber(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/bind_courier_delivery_first_mile_tracking_number",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -77,7 +78,7 @@ describe("FirstMileManager (Generated Tests)", () => {
   });
 
   describe("bindFirstMileTrackingNumber", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         first_mile_tracking_number: "CNF731738838434210105",
         shipment_method: "pickup",
@@ -118,14 +119,15 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.bindFirstMileTrackingNumber(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/bind_first_mile_tracking_number",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -133,7 +135,7 @@ describe("FirstMileManager (Generated Tests)", () => {
   });
 
   describe("generateAndBindFirstMileTrackingNumber", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         shipment_method: "courier_delivery",
         region: "CN",
@@ -179,14 +181,15 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.generateAndBindFirstMileTrackingNumber(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/generate_and_bind_first_mile_tracking_number",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -194,7 +197,7 @@ describe("FirstMileManager (Generated Tests)", () => {
   });
 
   describe("generateFirstMileTrackingNumber", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         declare_date: "2020-12-20",
         quantity: 1,
@@ -212,14 +215,15 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.generateFirstMileTrackingNumber(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/generate_first_mile_tracking_number",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -227,7 +231,7 @@ describe("FirstMileManager (Generated Tests)", () => {
   });
 
   describe("getChannelList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         region: "CN",
       };
@@ -250,22 +254,19 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.getChannelList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_channel_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_channel_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getCourierDeliveryChannelList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         region: "CN",
       };
@@ -294,14 +295,15 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.getCourierDeliveryChannelList(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/get_courier_delivery_channel_list",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -309,7 +311,7 @@ describe("FirstMileManager (Generated Tests)", () => {
   });
 
   describe("getCourierDeliveryDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         binding_id: "DCN249237197572VU",
         cursor: '""',
@@ -326,7 +328,7 @@ describe("FirstMileManager (Generated Tests)", () => {
           {
             order_sn: "2410106R6X5Q85",
             package_number: "OFG182232162204802",
-            sls_tracking_number: 1,
+            sls_tracking_number: "orders",
             pick_up_done: false,
             arrived_transit_warehouse: false,
           },
@@ -342,14 +344,15 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.getCourierDeliveryDetail(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/get_courier_delivery_detail",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -357,7 +360,7 @@ describe("FirstMileManager (Generated Tests)", () => {
   });
 
   describe("getCourierDeliveryTrackingNumberList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         from_date: "2024-10-01",
         to_date: "2024-10-28",
@@ -371,7 +374,7 @@ describe("FirstMileManager (Generated Tests)", () => {
             first_mile_tracking_number: "ZJS1729224232",
             status: "ORDER_RECEIVED",
             reason: '""',
-            declare_date: "2024-10-18",
+            declare_date: "ID",
           },
         ],
         more: false,
@@ -387,14 +390,15 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.getCourierDeliveryTrackingNumberList(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/get_courier_delivery_tracking_number_list",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -402,7 +406,7 @@ describe("FirstMileManager (Generated Tests)", () => {
   });
 
   describe("getCourierDeliveryWaybill", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         binding_id_list: ["DCN248699144540RU"],
       };
@@ -425,14 +429,15 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.getCourierDeliveryWaybill(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/get_courier_delivery_waybill",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -440,7 +445,7 @@ describe("FirstMileManager (Generated Tests)", () => {
   });
 
   describe("getDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         first_mile_tracking_number: "CNF731738838434210105",
         cursor: '""',
@@ -456,7 +461,7 @@ describe("FirstMileManager (Generated Tests)", () => {
           {
             order_sn: "20012328KKGVR0",
             package_number: "25333320394471234567",
-            sls_tracking_number: 1,
+            sls_tracking_number: "orders",
             pick_up_done: false,
             arrived_transit_warehouse: false,
           },
@@ -473,22 +478,19 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.getDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getTrackingNumberList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         from_date: "2020-01-01",
         to_date: "2020-12-29",
@@ -516,22 +518,19 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.getTrackingNumberList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_tracking_number_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_tracking_number_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getTransitWarehouseList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         region: "CN",
         shipment_method: "pickup",
@@ -556,26 +555,23 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.getTransitWarehouseList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_transit_warehouse_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_transit_warehouse_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getUnbindOrderList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         cursor: '""',
         page_size: 10,
-        response_optional_fields: "logistics_status,package_number",
+        response_optional_fields: "logistics_status",
       };
       const exampleResponse = {
         more: false,
@@ -598,22 +594,19 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.getUnbindOrderList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_unbind_order_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_unbind_order_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getWaybill", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         first_mile_tracking_number_list: ["CNF880344919515201212"],
       };
@@ -630,22 +623,19 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.getWaybill(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/first_mile/get_waybill",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_waybill", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("unbindFirstMileTrackingNumber", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         first_mile_tracking_number: "CNF918114805245200519",
         order_list: [
@@ -676,14 +666,15 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.unbindFirstMileTrackingNumber(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/unbind_first_mile_tracking_number",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -691,7 +682,7 @@ describe("FirstMileManager (Generated Tests)", () => {
   });
 
   describe("unbindFirstMileTrackingNumberAll", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_list: [
           {
@@ -728,14 +719,15 @@ describe("FirstMileManager (Generated Tests)", () => {
 
       const result = await manager.unbindFirstMileTrackingNumberAll(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/first_mile/unbind_first_mile_tracking_number_all",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);

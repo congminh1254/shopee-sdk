@@ -116,6 +116,13 @@ describe("ReturnsManager", () => {
           page_no: 1,
           page_size: 10,
         },
+        timestampPaths: [
+          "response.return.create_time",
+          "response.return.update_time",
+          "response.return.due_date",
+          "response.return.return_ship_due_date",
+          "response.return.return_seller_due_date",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -157,6 +164,13 @@ describe("ReturnsManager", () => {
           status: "REQUESTED",
           negotiation_status: "PENDING_RESPOND",
         },
+        timestampPaths: [
+          "response.return.create_time",
+          "response.return.update_time",
+          "response.return.due_date",
+          "response.return.return_ship_due_date",
+          "response.return.return_seller_due_date",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -239,6 +253,16 @@ describe("ReturnsManager", () => {
         params: {
           return_sn: "2206140TA5PM808",
         },
+        timestampPaths: [
+          "response.create_time",
+          "response.update_time",
+          "response.due_date",
+          "response.return_ship_due_date",
+          "response.return_seller_due_date",
+          "response.seller_proof.seller_evidence_deadline",
+          "response.seller_compensation.seller_compensation_due_date",
+          "response.negotiation.offer_due_date",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -820,6 +844,14 @@ describe("ReturnsManager", () => {
           params: {
             return_sn: "2206150VT13E3MQ",
           },
+          timestampPaths: [
+            "response.reverse_logistics_update_time",
+            "response.estimated_delivery_date_max",
+            "response.estimated_delivery_date_min",
+            "response.tracking_info.update_time",
+            "response.post_return_logistics_update_time",
+            "response.post_return_logistics_tracking_info.update_time",
+          ],
         }
       );
 
@@ -878,6 +910,14 @@ describe("ReturnsManager", () => {
           params: {
             return_sn: "2206150VT13E3MQ",
           },
+          timestampPaths: [
+            "response.reverse_logistics_update_time",
+            "response.estimated_delivery_date_max",
+            "response.estimated_delivery_date_min",
+            "response.tracking_info.update_time",
+            "response.post_return_logistics_update_time",
+            "response.post_return_logistics_tracking_info.update_time",
+          ],
         }
       );
 

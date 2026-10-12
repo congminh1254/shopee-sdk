@@ -41,7 +41,7 @@ export class SbsManager extends BaseManager {
    * @returns {Promise<GetCurrentInventoryResponse>} Promise resolving to the response
    */
   public async getCurrentInventory(
-    params?: GetCurrentInventoryRequest
+    params: GetCurrentInventoryRequest
   ): Promise<GetCurrentInventoryResponse> {
     return ShopeeFetch.fetch<GetCurrentInventoryResponse>(
       this.config,
@@ -59,7 +59,7 @@ export class SbsManager extends BaseManager {
    * @param {GetExpiryReportRequest} params Request parameters
    * @returns {Promise<GetExpiryReportResponse>} Promise resolving to the response
    */
-  public async getExpiryReport(params?: GetExpiryReportRequest): Promise<GetExpiryReportResponse> {
+  public async getExpiryReport(params: GetExpiryReportRequest): Promise<GetExpiryReportResponse> {
     return ShopeeFetch.fetch<GetExpiryReportResponse>(this.config, "/sbs/get_expiry_report", {
       method: "GET",
       auth: true,
@@ -91,7 +91,7 @@ export class SbsManager extends BaseManager {
    * @param {GetStockAgingRequest} params Request parameters
    * @returns {Promise<GetStockAgingResponse>} Promise resolving to the response
    */
-  public async getStockAging(params?: GetStockAgingRequest): Promise<GetStockAgingResponse> {
+  public async getStockAging(params: GetStockAgingRequest): Promise<GetStockAgingResponse> {
     return ShopeeFetch.fetch<GetStockAgingResponse>(this.config, "/sbs/get_stock_aging", {
       method: "GET",
       auth: true,
@@ -105,7 +105,7 @@ export class SbsManager extends BaseManager {
    * @returns {Promise<GetStockMovementResponse>} Promise resolving to the response
    */
   public async getStockMovement(
-    params?: GetStockMovementRequest
+    params: GetStockMovementRequest
   ): Promise<GetStockMovementResponse> {
     return ShopeeFetch.fetch<GetStockMovementResponse>(this.config, "/sbs/get_stock_movement", {
       method: "GET",

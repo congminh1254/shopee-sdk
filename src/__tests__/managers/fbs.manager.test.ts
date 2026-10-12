@@ -53,11 +53,7 @@ describe("FbsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/fbs/query_br_shop_enrollment_status",
-        {
-          method: "GET",
-          auth: true,
-          params: {},
-        }
+        { method: "GET", auth: true, params: {} }
       );
 
       expect(result).toEqual(mockResponse);

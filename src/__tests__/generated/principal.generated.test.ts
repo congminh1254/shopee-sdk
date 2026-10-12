@@ -24,7 +24,7 @@ describe("PrincipalManager (Generated Tests)", () => {
   });
 
   describe("getClipVideoPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-31",
@@ -94,22 +94,19 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getClipVideoPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/principal/get_clip_video_performance",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/principal/get_clip_video_performance", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getContentAffiliatePerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
@@ -171,14 +168,15 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getContentAffiliatePerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_content_affiliate_performance",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -186,7 +184,7 @@ describe("PrincipalManager (Generated Tests)", () => {
   });
 
   describe("getPrincipalAffiliatePerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
@@ -250,14 +248,15 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getPrincipalAffiliatePerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_principal_affiliate_performance",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -265,7 +264,7 @@ describe("PrincipalManager (Generated Tests)", () => {
   });
 
   describe("getPrincipalLivestreamPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-31",
@@ -337,14 +336,15 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getPrincipalLivestreamPerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_principal_livestream_performance",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -352,7 +352,7 @@ describe("PrincipalManager (Generated Tests)", () => {
   });
 
   describe("getPrincipalSalesPerformanceDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
@@ -410,14 +410,15 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getPrincipalSalesPerformanceDetail(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_principal_sales_performance_detail",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -425,7 +426,7 @@ describe("PrincipalManager (Generated Tests)", () => {
   });
 
   describe("getPrincipalVideoPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-31",
@@ -488,14 +489,15 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getPrincipalVideoPerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_principal_video_performance",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -503,7 +505,7 @@ describe("PrincipalManager (Generated Tests)", () => {
   });
 
   describe("getSessionLivestreamPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-31",
@@ -575,14 +577,15 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getSessionLivestreamPerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_session_livestream_performance",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -590,7 +593,7 @@ describe("PrincipalManager (Generated Tests)", () => {
   });
 
   describe("getShopAffiliatePerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
@@ -656,14 +659,15 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getShopAffiliatePerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_shop_affiliate_performance",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -671,7 +675,7 @@ describe("PrincipalManager (Generated Tests)", () => {
   });
 
   describe("getShopLivestreamPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
@@ -745,14 +749,15 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getShopLivestreamPerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_shop_livestream_performance",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -760,7 +765,7 @@ describe("PrincipalManager (Generated Tests)", () => {
   });
 
   describe("getShopSalesPerformanceDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-01",
@@ -840,14 +845,15 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getShopSalesPerformanceDetail(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/principal/get_shop_sales_performance_detail",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -855,7 +861,7 @@ describe("PrincipalManager (Generated Tests)", () => {
   });
 
   describe("getShopVideoPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_date: "2026-01-01",
         end_date: "2026-01-31",
@@ -920,15 +926,12 @@ describe("PrincipalManager (Generated Tests)", () => {
 
       const result = await manager.getShopVideoPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/principal/get_shop_video_performance",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/principal/get_shop_video_performance", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

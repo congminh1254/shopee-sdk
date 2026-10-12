@@ -115,9 +115,8 @@ describe("ShopeeSDK Integration with Mock API", () => {
       "/public/get_shops_by_partner",
       {
         method: "GET",
-        params: {
-          partner_id: 12345,
-        },
+        params: undefined,
+        timestampPaths: ["authed_shop_list.auth_time", "authed_shop_list.expire_time"],
       }
     );
 
@@ -147,9 +146,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
         partner_id: 12345,
       }),
       "/public/get_shopee_ip_ranges",
-      {
-        method: "GET",
-      }
+      { method: "GET", params: undefined }
     );
   });
 
@@ -226,14 +223,20 @@ describe("ShopeeSDK Integration with Mock API", () => {
         page_size: 10,
         item_status: ItemStatus.NORMAL,
       },
+      timestampPaths: ["response.item.update_time"],
     });
 
     expect(mockFetch).toHaveBeenNthCalledWith(2, expect.anything(), "/product/get_item_base_info", {
       method: "GET",
       auth: true,
       params: {
-        item_id_list: "123456",
+        item_id_list: [123456],
       },
+      timestampPaths: [
+        "response.item_list.create_time",
+        "response.item_list.update_time",
+        "response.item_list.scheduled_publish_time",
+      ],
     });
 
     // Verify responses

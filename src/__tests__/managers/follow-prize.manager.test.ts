@@ -243,6 +243,7 @@ describe("FollowPrizeManager", () => {
           params: {
             campaign_id: 1551,
           },
+          timestampPaths: ["response.start_time", "response.end_time"],
         }
       );
 
@@ -325,6 +326,10 @@ describe("FollowPrizeManager", () => {
             page_no: 1,
             page_size: 100,
           },
+          timestampPaths: [
+            "response.follow_prize_list.start_time",
+            "response.follow_prize_list.end_time",
+          ],
         }
       );
 

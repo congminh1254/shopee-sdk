@@ -24,7 +24,7 @@ describe("BuyboxManager (Generated Tests)", () => {
   });
 
   describe("getBuyboxModelPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         model_id_list: [600000, 600001],
       };
@@ -47,22 +47,19 @@ describe("BuyboxManager (Generated Tests)", () => {
 
       const result = await manager.getBuyboxModelPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/buybox/get_buybox_model_performance",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/buybox/get_buybox_model_performance", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBuyboxModelsByModelId", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         model_id_list: [600000, 600001],
       };
@@ -87,22 +84,19 @@ describe("BuyboxManager (Generated Tests)", () => {
 
       const result = await manager.getBuyboxModelsByModelId(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/buybox/get_buybox_models_by_model_id",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/buybox/get_buybox_models_by_model_id", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBuyboxModelsByShopId", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         offset: 0,
         limit: 100,
@@ -134,22 +128,19 @@ describe("BuyboxManager (Generated Tests)", () => {
 
       const result = await manager.getBuyboxModelsByShopId(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/buybox/get_buybox_models_by_shop_id",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/buybox/get_buybox_models_by_shop_id", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBuyboxShopPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         past_7_days_sold_count: 100,
@@ -168,22 +159,19 @@ describe("BuyboxManager (Generated Tests)", () => {
 
       const result = await manager.getBuyboxShopPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/buybox/get_buybox_shop_performance",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/buybox/get_buybox_shop_performance", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateBuyboxModelEnrollment", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         model_id: 600000,
         model_toggle_on_status: true,
@@ -204,15 +192,12 @@ describe("BuyboxManager (Generated Tests)", () => {
 
       const result = await manager.updateBuyboxModelEnrollment(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/buybox/update_buybox_model_enrollment",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/buybox/update_buybox_model_enrollment", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

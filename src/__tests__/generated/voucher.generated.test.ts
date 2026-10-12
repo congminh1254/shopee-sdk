@@ -24,7 +24,7 @@ describe("VoucherManager (Generated Tests)", () => {
   });
 
   describe("addVoucher", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         voucher_name: "testamount",
         voucher_code: "test",
@@ -54,22 +54,19 @@ describe("VoucherManager (Generated Tests)", () => {
 
       const result = await manager.addVoucher(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/voucher/add_voucher",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/voucher/add_voucher", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteVoucher", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         voucher_id: 1104340665,
       };
@@ -86,22 +83,19 @@ describe("VoucherManager (Generated Tests)", () => {
 
       const result = await manager.deleteVoucher(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/voucher/delete_voucher",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/voucher/delete_voucher", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("endVoucher", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         voucher_id: 1104340665,
       };
@@ -118,22 +112,19 @@ describe("VoucherManager (Generated Tests)", () => {
 
       const result = await manager.endVoucher(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/voucher/end_voucher",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/voucher/end_voucher", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getVoucher", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         voucher_id: 123,
       };
@@ -170,26 +161,24 @@ describe("VoucherManager (Generated Tests)", () => {
 
       const result = await manager.getVoucher(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/voucher/get_voucher",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/voucher/get_voucher", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.start_time", "response.end_time", "response.display_start_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getVoucherList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 100,
-        status: "all",
+        status: "upcoming",
       };
       const exampleResponse = {
         more: true,
@@ -223,22 +212,24 @@ describe("VoucherManager (Generated Tests)", () => {
 
       const result = await manager.getVoucherList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/voucher/get_voucher_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/voucher/get_voucher_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.voucher_list.start_time",
+          "response.voucher_list.end_time",
+          "response.voucher_list.display_start_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateVoucher", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         voucher_id: 123,
         voucher_name: "test",
@@ -266,15 +257,12 @@ describe("VoucherManager (Generated Tests)", () => {
 
       const result = await manager.updateVoucher(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/voucher/update_voucher",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/voucher/update_voucher", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

@@ -42,7 +42,7 @@ export class MerchantManager extends BaseManager {
    * @returns {Promise<GetMerchantPrepaidAccountListResponse>} Promise resolving to the response
    */
   public async getMerchantPrepaidAccountList(
-    params?: GetMerchantPrepaidAccountListRequest
+    params: GetMerchantPrepaidAccountListRequest
   ): Promise<GetMerchantPrepaidAccountListResponse> {
     return ShopeeFetch.fetch<GetMerchantPrepaidAccountListResponse>(
       this.config,
@@ -61,7 +61,7 @@ export class MerchantManager extends BaseManager {
    * @returns {Promise<GetMerchantWarehouseListResponse>} Promise resolving to the response
    */
   public async getMerchantWarehouseList(
-    params?: GetMerchantWarehouseListRequest
+    params: GetMerchantWarehouseListRequest
   ): Promise<GetMerchantWarehouseListResponse> {
     return ShopeeFetch.fetch<GetMerchantWarehouseListResponse>(
       this.config,
@@ -99,7 +99,7 @@ export class MerchantManager extends BaseManager {
    * @returns {Promise<GetShopListByMerchantResponse>} Promise resolving to the response
    */
   public async getShopListByMerchant(
-    params?: GetShopListByMerchantRequest
+    params: GetShopListByMerchantRequest
   ): Promise<GetShopListByMerchantResponse> {
     return ShopeeFetch.fetch<GetShopListByMerchantResponse>(
       this.config,
@@ -118,7 +118,7 @@ export class MerchantManager extends BaseManager {
    * @returns {Promise<GetWarehouseEligibleShopListResponse>} Promise resolving to the response
    */
   public async getWarehouseEligibleShopList(
-    params?: GetWarehouseEligibleShopListRequest
+    params: GetWarehouseEligibleShopListRequest
   ): Promise<GetWarehouseEligibleShopListResponse> {
     return ShopeeFetch.fetch<GetWarehouseEligibleShopListResponse>(
       this.config,

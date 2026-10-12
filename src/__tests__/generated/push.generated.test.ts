@@ -24,7 +24,7 @@ describe("PushManager (Generated Tests)", () => {
   });
 
   describe("confirmConsumedLostPushMessage", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         last_message_id: 176610,
       };
@@ -44,14 +44,15 @@ describe("PushManager (Generated Tests)", () => {
 
       const result = await manager.confirmConsumedLostPushMessage(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/push/confirm_consumed_lost_push_message",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -59,7 +60,7 @@ describe("PushManager (Generated Tests)", () => {
   });
 
   describe("getAppPushConfig", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         callback_url: "https://open.shopee.com/",
@@ -79,22 +80,20 @@ describe("PushManager (Generated Tests)", () => {
 
       const result = await manager.getAppPushConfig(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/push/get_app_push_config",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/push/get_app_push_config", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.suspended_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getLostPushMessage", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         push_message_list: [
@@ -118,22 +117,20 @@ describe("PushManager (Generated Tests)", () => {
 
       const result = await manager.getLostPushMessage(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/push/get_lost_push_message",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/push/get_lost_push_message", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.push_message_list.timestamp"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("setAppPushConfig", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         callback_url: "https://open.shopee.com/",
         set_push_config_on: [1, 2, 3, 4, 5, 8, 9, 10],
@@ -153,15 +150,12 @@ describe("PushManager (Generated Tests)", () => {
 
       const result = await manager.setAppPushConfig(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/push/set_app_push_config",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/push/set_app_push_config", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

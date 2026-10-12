@@ -123,6 +123,10 @@ describe("ProductManager", () => {
           cursor: "",
           page_size: 10,
         },
+        timestampPaths: [
+          "response.item_comment_list.create_time",
+          "response.item_comment_list.comment_reply.create_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -154,6 +158,10 @@ describe("ProductManager", () => {
           cursor: "",
           page_size: 10,
         },
+        timestampPaths: [
+          "response.item_comment_list.create_time",
+          "response.item_comment_list.comment_reply.create_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -248,6 +256,7 @@ describe("ProductManager", () => {
           update_time_to: 1234567900,
           item_status: ItemStatus.NORMAL,
         },
+        timestampPaths: ["response.item.update_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -282,6 +291,7 @@ describe("ProductManager", () => {
           page_size: 10,
           item_status: ItemStatus.NORMAL,
         },
+        timestampPaths: ["response.item.update_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -338,10 +348,15 @@ describe("ProductManager", () => {
         method: "GET",
         auth: true,
         params: {
-          item_id_list: "123456,789012",
+          item_id_list: [123456, 789012],
           need_tax_info: false,
           need_complaint_policy: true,
         },
+        timestampPaths: [
+          "response.item_list.create_time",
+          "response.item_list.update_time",
+          "response.item_list.scheduled_publish_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -381,8 +396,13 @@ describe("ProductManager", () => {
         method: "GET",
         auth: true,
         params: {
-          item_id_list: "123456",
+          item_id_list: [123456],
         },
+        timestampPaths: [
+          "response.item_list.create_time",
+          "response.item_list.update_time",
+          "response.item_list.scheduled_publish_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -917,7 +937,7 @@ describe("ProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_category", {
         method: "GET",
         auth: true,
-        params: {},
+        params: undefined,
       });
 
       expect(result).toEqual(mockResponse);
@@ -1022,7 +1042,7 @@ describe("ProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/add_item", {
         method: "POST",
         auth: true,
-        body: expect.objectContaining({
+        body: {
           original_price: 99.99,
           description: "Test product description",
           item_name: "Test Product",
@@ -1031,7 +1051,11 @@ describe("ProductManager", () => {
           logistic_info: [
             { logistic_id: 20001, enabled: true, size_id: 1, shipping_fee: 5.0, is_free: false },
           ],
-        }),
+          image: {
+            image_id_list: ["img123"],
+          },
+          dimension: { package_width: 0, package_height: 0, package_length: 0 },
+        },
       });
 
       expect(result.response.item_id).toBe(123456);
@@ -1124,9 +1148,21 @@ describe("ProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/add_model", {
         method: "POST",
         auth: true,
-        body: expect.objectContaining({
+        body: {
           item_id: 123456,
-        }),
+          model_list: [
+            {
+              tier_index: [0, 0],
+              original_price: 99.99,
+              seller_stock: [{ stock: 100 }],
+            },
+            {
+              tier_index: [0, 1],
+              original_price: 109.99,
+              seller_stock: [{ stock: 50 }],
+            },
+          ],
+        },
       });
 
       expect(result.response.model).toHaveLength(2);
@@ -1159,9 +1195,15 @@ describe("ProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/update_model", {
         method: "POST",
         auth: true,
-        body: expect.objectContaining({
+        body: {
           item_id: 123456,
-        }),
+          model: [
+            {
+              model_id: 1001,
+              model_sku: "updated_sku",
+            },
+          ],
+        },
       });
 
       expect(result.response.warning).toBe("some-warning");
@@ -1245,9 +1287,31 @@ describe("ProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/init_tier_variation", {
         method: "POST",
         auth: true,
-        body: expect.objectContaining({
+        body: {
           item_id: 123456,
-        }),
+          standardise_tier_variation: [
+            {
+              variation_id: 1001,
+              variation_name: "Color",
+              variation_option_list: [
+                { variation_option_id: 2001, variation_option_name: "Red" },
+                { variation_option_id: 2002, variation_option_name: "Blue" },
+              ],
+            },
+          ],
+          model: [
+            {
+              tier_index: 0,
+              original_price: 99.99,
+              seller_stock: [{ stock: 50 }],
+            },
+            {
+              tier_index: 1,
+              original_price: 99.99,
+              seller_stock: [{ stock: 50 }],
+            },
+          ],
+        },
       });
 
       expect(result.response.model).toHaveLength(2);
@@ -1360,7 +1424,7 @@ describe("ProductManager", () => {
         method: "GET",
         auth: true,
         params: {
-          item_id_list: "123456,789012",
+          item_id_list: [123456, 789012],
         },
       });
 
@@ -1590,8 +1654,12 @@ describe("ProductManager", () => {
         method: "GET",
         auth: true,
         params: {
-          item_id_list: "123456",
+          item_id_list: [123456],
         },
+        timestampPaths: [
+          "response.success_list.promotion.start_time",
+          "response.success_list.promotion.end_time",
+        ],
       });
 
       expect(result.response.success_list![0].promotion).toHaveLength(1);
@@ -1650,7 +1718,7 @@ describe("ProductManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_boosted_list", {
         method: "GET",
         auth: true,
-        params: {},
+        params: undefined,
       });
 
       expect(result.response.item_list).toHaveLength(1);
@@ -1770,7 +1838,7 @@ describe("ProductManager", () => {
         method: "GET",
         auth: true,
         params: {
-          direct_item_id: "10002",
+          direct_item_id: [10002],
         },
       });
 
@@ -1809,8 +1877,14 @@ describe("ProductManager", () => {
         method: "GET",
         auth: true,
         params: {
-          item_id_list: "123456",
+          item_id_list: [123456],
         },
+        timestampPaths: [
+          "response.item_list.item_status_details.fix_deadline_time",
+          "response.item_list.item_status_details.update_time",
+          "response.item_list.deboost_details.fix_deadline_time",
+          "response.item_list.deboost_details.update_time",
+        ],
       });
 
       expect(result.response.item_list![0].item_status_details).toHaveLength(1);
@@ -1891,7 +1965,7 @@ describe("ProductManager", () => {
         method: "GET",
         auth: true,
         params: {
-          main_item_id: "10001",
+          main_item_id: [10001],
         },
       });
 
@@ -2247,12 +2321,12 @@ describe("ProductManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await productManager.getAllVehicleList();
+      const result = await productManager.getAllVehicleList({ page_size: 10 });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_all_vehicle_list", {
         method: "GET",
         auth: true,
-        params: {},
+        params: { page_size: 10 },
       });
 
       expect(result.response.vehicle_list).toHaveLength(1);
@@ -2344,7 +2418,7 @@ describe("ProductManager", () => {
           params: {
             category_id: 100001,
             main_item_id: 10001,
-            direct_shop_regions: "SG",
+            direct_shop_regions: ["SG"],
           },
         }
       );
@@ -2764,11 +2838,7 @@ describe("ProductManager", () => {
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/product/batch_publish_item_to_outlet_shop",
-        {
-          method: "POST",
-          auth: true,
-          body: params,
-        }
+        { method: "POST", auth: true, body: params }
       );
 
       expect(result).toEqual(mockResponse);
@@ -2894,7 +2964,7 @@ describe("ProductManager", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/product/get_batch_task_result", {
         method: "GET",
         auth: true,
-        params,
+        params: params,
       });
 
       expect(result).toEqual(mockResponse);
@@ -2903,13 +2973,13 @@ describe("ProductManager", () => {
     });
   });
 
-  describe("Default Params Coverage", () => {
-    it("should cover ProductManager methods with default parameters", async () => {
+  describe("Required request forwarding", () => {
+    it("should forward required request objects to ProductManager methods", async () => {
       mockFetch.mockResolvedValue({ response: {} });
 
-      await productManager.getMainItemList(undefined);
-      await productManager.getDirectItemList(undefined);
-      await productManager.getBatchTaskResult(undefined);
+      await productManager.getMainItemList({ direct_item_id: [801931707] });
+      await productManager.getDirectItemList({ main_item_id: [801931707] });
+      await productManager.getBatchTaskResult({ task_type: 123, task_id: 123 });
 
       expect(mockFetch).toHaveBeenCalledTimes(3);
     });

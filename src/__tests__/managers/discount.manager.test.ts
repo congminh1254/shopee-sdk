@@ -185,6 +185,7 @@ describe("DiscountManager", () => {
         body: {
           discount_id: 665123666665499,
         },
+        timestampPaths: ["response.modify_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -249,6 +250,7 @@ describe("DiscountManager", () => {
         body: {
           discount_id: 66512366666549900,
         },
+        timestampPaths: ["response.modify_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -306,12 +308,13 @@ describe("DiscountManager", () => {
         method: "GET",
         auth: true,
         params: {
-          discount_status: "ongoing",
+          discount_status: DiscountStatus.ONGOING,
           page_no: 1,
           page_size: 100,
           update_time_from: 1609459200,
           update_time_to: 1609545600,
         },
+        timestampPaths: ["response.discount_list.start_time", "response.discount_list.end_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -379,6 +382,7 @@ describe("DiscountManager", () => {
           end_time: 1656494739,
           discount_name: "The discount 111",
         },
+        timestampPaths: ["response.modify_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -497,6 +501,12 @@ describe("DiscountManager", () => {
         method: "GET",
         auth: true,
         params: undefined,
+        timestampPaths: [
+          "response.discount_list.start_time",
+          "response.discount_list.end_time",
+          "response.discount_list.create_time",
+          "response.discount_list.update_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -535,6 +545,12 @@ describe("DiscountManager", () => {
         params: {
           region: "SG",
         },
+        timestampPaths: [
+          "response.discount_list.start_time",
+          "response.discount_list.end_time",
+          "response.discount_list.create_time",
+          "response.discount_list.update_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -574,6 +590,12 @@ describe("DiscountManager", () => {
           region: "TH",
           sip_discount_rate: 15,
         },
+        timestampPaths: [
+          "response.start_time",
+          "response.end_time",
+          "response.create_time",
+          "response.update_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -685,6 +707,7 @@ describe("DiscountManager", () => {
           page_no: 1,
           page_size: 50,
         },
+        timestampPaths: ["response.start_time", "response.end_time"],
       });
 
       expect(result).toEqual(mockResponse);

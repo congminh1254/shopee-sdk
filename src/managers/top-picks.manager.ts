@@ -23,7 +23,7 @@ export class TopPicksManager extends BaseManager {
    * @param {AddTopPicksRequest} params Request parameters
    * @returns {Promise<AddTopPicksResponse>} Promise resolving to the response
    */
-  public async addTopPicks(params?: AddTopPicksRequest): Promise<AddTopPicksResponse> {
+  public async addTopPicks(params: AddTopPicksRequest): Promise<AddTopPicksResponse> {
     return ShopeeFetch.fetch<AddTopPicksResponse>(this.config, "/top_picks/add_top_picks", {
       method: "POST",
       auth: true,
@@ -36,7 +36,7 @@ export class TopPicksManager extends BaseManager {
    * @param {DeleteTopPicksRequest} params Request parameters
    * @returns {Promise<DeleteTopPicksResponse>} Promise resolving to the response
    */
-  public async deleteTopPicks(params?: DeleteTopPicksRequest): Promise<DeleteTopPicksResponse> {
+  public async deleteTopPicks(params: DeleteTopPicksRequest): Promise<DeleteTopPicksResponse> {
     return ShopeeFetch.fetch<DeleteTopPicksResponse>(this.config, "/top_picks/delete_top_picks", {
       method: "POST",
       auth: true,
@@ -66,7 +66,7 @@ export class TopPicksManager extends BaseManager {
    * @param {UpdateTopPicksRequest} params Request parameters
    * @returns {Promise<UpdateTopPicksResponse>} Promise resolving to the response
    */
-  public async updateTopPicks(params?: UpdateTopPicksRequest): Promise<UpdateTopPicksResponse> {
+  public async updateTopPicks(params: UpdateTopPicksRequest): Promise<UpdateTopPicksResponse> {
     return ShopeeFetch.fetch<UpdateTopPicksResponse>(this.config, "/top_picks/update_top_picks", {
       method: "POST",
       auth: true,

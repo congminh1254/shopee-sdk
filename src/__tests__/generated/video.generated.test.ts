@@ -24,7 +24,7 @@ describe("VideoManager (Generated Tests)", () => {
   });
 
   describe("deleteVideo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         video_upload_id_list: ["sg-11110199-6v8gq-mgbni6rb44qz04"],
         post_id_list: ["YwOo_gZqCACXbM0UAAAAAA=="],
@@ -54,22 +54,19 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.deleteVideo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/delete_video",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/delete_video", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("editVideoInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         video_upload_list: [
           {
@@ -114,22 +111,19 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.editVideoInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/edit_video_info",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/edit_video_info", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getCoverList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         video_upload_id: "test_string",
       };
@@ -151,22 +145,19 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getCoverList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/get_cover_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_cover_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getMetricTrend", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         period_type: "Week",
         end_date: "2025-09-21",
@@ -215,22 +206,19 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getMetricTrend(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/get_metric_trend",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_metric_trend", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getOverviewPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         period_type: "Month",
         end_date: "2025-09-30",
@@ -281,22 +269,19 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getOverviewPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/get_overview_performance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_overview_performance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getProdcutPerformanceList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
@@ -337,22 +322,19 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getProdcutPerformanceList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/get_prodcut_performance_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_prodcut_performance_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getUserDemographics", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         age: "test_string",
@@ -373,22 +355,19 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getUserDemographics(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/get_user_demographics",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_user_demographics", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getVideoDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         video_upload_id: "sg-11110199-6v99e-mgezdwct5eyya0",
         post_id: "YwOo_gZqCACXbM0UAAAAAA==",
@@ -440,22 +419,24 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getVideoDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/get_video_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.post_time",
+          "response.scheduled_info.scheduled_post_time",
+          "response.update_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getVideoDetailAudienceDistribution", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         post_id: "YwOo_gZqCACXbM0UAAAAAA==",
       };
@@ -478,14 +459,15 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getVideoDetailAudienceDistribution(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/video/get_video_detail_audience_distribution",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -493,7 +475,7 @@ describe("VideoManager (Generated Tests)", () => {
   });
 
   describe("getVideoDetailMetricTrend", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         post_id: "YwOo_gZqCACXbM0UAAAAAA==",
         metric_name: "Likes",
@@ -511,22 +493,19 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getVideoDetailMetricTrend(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/get_video_detail_metric_trend",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail_metric_trend", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getVideoDetailPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         post_id: "YwOo_gZqCACXbM0UAAAAAA==",
       };
@@ -569,22 +548,20 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getVideoDetailPerformance(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/get_video_detail_performance",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail_performance", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.video_info.post_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getVideoDetailProductPerformance", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 123,
         page_size: 123,
@@ -626,14 +603,15 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getVideoDetailProductPerformance(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/video/get_video_detail_product_performance",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -641,7 +619,7 @@ describe("VideoManager (Generated Tests)", () => {
   });
 
   describe("getVideoList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
@@ -700,22 +678,24 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getVideoList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/get_video_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.list.post_time",
+          "response.list.scheduled_info.scheduled_post_time",
+          "response.list.update_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getVideoPerformanceList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
@@ -766,22 +746,20 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.getVideoPerformanceList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/get_video_performance_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_performance_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.list.post_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("postVideo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         video_upload_id_list: ["sg-11110199-6v8gq-mgbni6rb44qz04"],
       };
@@ -809,15 +787,12 @@ describe("VideoManager (Generated Tests)", () => {
 
       const result = await manager.postVideo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/video/post_video",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/post_video", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

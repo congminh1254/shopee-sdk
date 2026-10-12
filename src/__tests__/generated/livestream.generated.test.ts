@@ -24,7 +24,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
   });
 
   describe("addItemList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         item_list: [
@@ -45,22 +45,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.addItemList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/add_item_list",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/add_item_list", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("applyItemSet", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         item_set_ids: [1, 2, 3],
@@ -76,22 +73,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.applyItemSet(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/apply_item_set",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/apply_item_set", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("banUserComment", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         ban_user_id: 2,
@@ -107,22 +101,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.banUserComment(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/ban_user_comment",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/ban_user_comment", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("createSession", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         title: "test livestream",
         description: "test",
@@ -142,22 +133,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.createSession(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/create_session",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/create_session", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteItemList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         item_list: [
@@ -178,22 +166,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.deleteItemList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/delete_item_list",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/delete_item_list", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteShowItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
       };
@@ -208,22 +193,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.deleteShowItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/delete_show_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/delete_show_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("endSession", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
       };
@@ -238,22 +220,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.endSession(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/end_session",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/end_session", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getItemCount", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
       };
@@ -271,22 +250,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getItemCount(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_item_count",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_count", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getItemList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         offset: 0,
@@ -327,22 +303,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getItemList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_item_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getItemSetItemList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         item_set_id: 1,
         offset: 0,
@@ -382,22 +355,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getItemSetItemList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_item_set_item_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_set_item_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getItemSetList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         offset: 0,
         page_size: 10,
@@ -424,22 +394,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getItemSetList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_item_set_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_set_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getLatestCommentList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         offset: 0,
@@ -466,22 +433,20 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getLatestCommentList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_latest_comment_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_latest_comment_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.list.timestamp"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getLikeItemList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         offset: 0,
         page_size: 10,
@@ -521,22 +486,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getLikeItemList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_like_item_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_like_item_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getRecentItemList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         offset: 0,
         page_size: 10,
@@ -575,22 +537,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getRecentItemList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_recent_item_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_recent_item_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getSessionDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
       };
@@ -627,22 +586,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getSessionDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_session_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getSessionItemMetric", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         offset: 0,
@@ -682,22 +638,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getSessionItemMetric(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_session_item_metric",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_item_metric", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getSessionMetric", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
       };
@@ -726,22 +679,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getSessionMetric(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_session_metric",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_metric", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShowItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
       };
@@ -770,22 +720,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.getShowItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/get_show_item",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_show_item", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("postComment", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         content: "hello",
@@ -803,22 +750,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.postComment(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/post_comment",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/post_comment", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("startSession", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         domain_id: 1,
@@ -835,22 +779,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.startSession(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/start_session",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/start_session", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("unbanUserComment", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         unban_user_id: 2,
@@ -866,22 +807,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.unbanUserComment(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/unban_user_comment",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/unban_user_comment", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateItemList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         item_list: [
@@ -902,22 +840,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.updateItemList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/update_item_list",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_item_list", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateSession", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         title: "test title",
@@ -936,22 +871,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.updateSession(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/update_session",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_session", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateShowItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         session_id: 6236215,
         item_id: 123,
@@ -968,22 +900,19 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.updateShowItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/update_show_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_show_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("uploadImage", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         image: "test_string",
       };
@@ -1000,15 +929,12 @@ describe("LiveStreamManager (Generated Tests)", () => {
 
       const result = await manager.uploadImage(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/livestream/upload_image",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/upload_image", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

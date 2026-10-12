@@ -23,9 +23,18 @@ function singularize(name: string): string {
 function addJsDoc(node: ts.Node, text: string): ts.Node {
   if (!text) return node;
   // Format text as multiline JSDoc
-  const lines = text.split("\n").map((l) => l.trim());
+  const lines = text
+    .replace(/\*\//g, "* /")
+    .split("\n")
+    .map((l) => l.trim());
   const comment = "*\n" + lines.map((l) => ` * ${l}`).join("\n") + "\n ";
   return ts.addSyntheticLeadingComment(node, ts.SyntaxKind.MultiLineCommentTrivia, comment, true);
+}
+
+function propertyName(name: string): ts.PropertyName {
+  return /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(name)
+    ? ts.factory.createIdentifier(name)
+    : ts.factory.createStringLiteral(name);
 }
 
 export class AstBuilder {
@@ -40,10 +49,16 @@ export class AstBuilder {
 
   // Create a structural key for an interface representation
   private getStructureKey(params: NormalizedParam[]): string {
-    return params
-      .map((p) => `${p.name}:${p.type}:${p.optional}`)
-      .sort()
-      .join("|");
+    return JSON.stringify(
+      params
+        .map((p) => ({
+          name: p.name,
+          type: p.type,
+          optional: p.optional,
+          children: p.children ? this.getStructureKey(p.children) : undefined,
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name))
+    );
   }
 
   // Register or resolve an interface name based on structure
@@ -61,7 +76,13 @@ export class AstBuilder {
         return existing.name;
       } else {
         // Collision! Append endpoint name to make it unique
-        const uniqueName = `${toPascalCase(endpointName)}_${preferredName}`;
+        const baseName = `${toPascalCase(endpointName)}_${preferredName}`;
+        let uniqueName = baseName;
+        let suffix = 2;
+        while (this.declaredInterfaces.has(uniqueName)) {
+          if (this.declaredInterfaces.get(uniqueName)!.key === key) return uniqueName;
+          uniqueName = `${baseName}${suffix++}`;
+        }
         this.declaredInterfaces.set(uniqueName, { key, name: uniqueName });
         return uniqueName;
       }
@@ -136,7 +157,7 @@ export class AstBuilder {
 
           let prop = ts.factory.createPropertySignature(
             undefined,
-            child.name,
+            propertyName(child.name),
             questionToken,
             typeNode
           );
@@ -232,7 +253,12 @@ export class AstBuilder {
         ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
         : undefined;
 
-      let prop = ts.factory.createPropertySignature(undefined, p.name, questionToken, typeNode);
+      let prop = ts.factory.createPropertySignature(
+        undefined,
+        propertyName(p.name),
+        questionToken,
+        typeNode
+      );
       if (p.description) {
         prop = addJsDoc(prop, p.description) as ts.PropertySignature;
       }
@@ -294,7 +320,7 @@ export class AstBuilder {
 
           const prop = ts.factory.createPropertySignature(
             undefined,
-            p.name,
+            propertyName(p.name),
             questionToken,
             typeNode
           );
@@ -352,7 +378,8 @@ export class AstBuilder {
     path: string,
     auth: boolean,
     timestampPaths: string[],
-    description: string
+    description: string,
+    requestParams: NormalizedParam[] = []
   ): ts.MethodDeclaration {
     const methodName = toCamelCase(endpointName);
     const pascalName = toPascalCase(endpointName);
@@ -364,7 +391,9 @@ export class AstBuilder {
       undefined,
       undefined,
       "params",
-      ts.factory.createToken(ts.SyntaxKind.QuestionToken),
+      requestParams.some((p) => !p.optional)
+        ? undefined
+        : ts.factory.createToken(ts.SyntaxKind.QuestionToken),
       ts.factory.createTypeReferenceNode(requestType),
       undefined
     );

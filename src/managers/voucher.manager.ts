@@ -27,12 +27,11 @@ export class VoucherManager extends BaseManager {
    * @param {AddVoucherRequest} params Request parameters
    * @returns {Promise<AddVoucherResponse>} Promise resolving to the response
    */
-  public async addVoucher(params?: AddVoucherRequest): Promise<AddVoucherResponse> {
+  public async addVoucher(params: AddVoucherRequest): Promise<AddVoucherResponse> {
     return ShopeeFetch.fetch<AddVoucherResponse>(this.config, "/voucher/add_voucher", {
       method: "POST",
       auth: true,
       body: params,
-      timestampPaths: ["start_time", "end_time"],
     });
   }
   /**
@@ -41,7 +40,7 @@ export class VoucherManager extends BaseManager {
    * @param {DeleteVoucherRequest} params Request parameters
    * @returns {Promise<DeleteVoucherResponse>} Promise resolving to the response
    */
-  public async deleteVoucher(params?: DeleteVoucherRequest): Promise<DeleteVoucherResponse> {
+  public async deleteVoucher(params: DeleteVoucherRequest): Promise<DeleteVoucherResponse> {
     return ShopeeFetch.fetch<DeleteVoucherResponse>(this.config, "/voucher/delete_voucher", {
       method: "POST",
       auth: true,
@@ -54,7 +53,7 @@ export class VoucherManager extends BaseManager {
    * @param {EndVoucherRequest} params Request parameters
    * @returns {Promise<EndVoucherResponse>} Promise resolving to the response
    */
-  public async endVoucher(params?: EndVoucherRequest): Promise<EndVoucherResponse> {
+  public async endVoucher(params: EndVoucherRequest): Promise<EndVoucherResponse> {
     return ShopeeFetch.fetch<EndVoucherResponse>(this.config, "/voucher/end_voucher", {
       method: "POST",
       auth: true,
@@ -67,7 +66,7 @@ export class VoucherManager extends BaseManager {
    * @param {GetVoucherRequest} params Request parameters
    * @returns {Promise<GetVoucherResponse>} Promise resolving to the response
    */
-  public async getVoucher(params?: GetVoucherRequest): Promise<GetVoucherResponse> {
+  public async getVoucher(params: GetVoucherRequest): Promise<GetVoucherResponse> {
     return ShopeeFetch.fetch<GetVoucherResponse>(this.config, "/voucher/get_voucher", {
       method: "GET",
       auth: true,
@@ -81,7 +80,7 @@ export class VoucherManager extends BaseManager {
    * @param {GetVoucherListRequest} params Request parameters
    * @returns {Promise<GetVoucherListResponse>} Promise resolving to the response
    */
-  public async getVoucherList(params?: GetVoucherListRequest): Promise<GetVoucherListResponse> {
+  public async getVoucherList(params: GetVoucherListRequest): Promise<GetVoucherListResponse> {
     return ShopeeFetch.fetch<GetVoucherListResponse>(this.config, "/voucher/get_voucher_list", {
       method: "GET",
       auth: true,
@@ -99,12 +98,11 @@ export class VoucherManager extends BaseManager {
    * @param {UpdateVoucherRequest} params Request parameters
    * @returns {Promise<UpdateVoucherResponse>} Promise resolving to the response
    */
-  public async updateVoucher(params?: UpdateVoucherRequest): Promise<UpdateVoucherResponse> {
+  public async updateVoucher(params: UpdateVoucherRequest): Promise<UpdateVoucherResponse> {
     return ShopeeFetch.fetch<UpdateVoucherResponse>(this.config, "/voucher/update_voucher", {
       method: "POST",
       auth: true,
       body: params,
-      timestampPaths: ["start_time", "end_time"],
     });
   }
 }

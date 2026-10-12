@@ -24,7 +24,7 @@ describe("FollowPrizeManager (Generated Tests)", () => {
   });
 
   describe("addFollowPrize", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         follow_prize_name: "shop_follow_prize_one",
         start_time: 1621844677,
@@ -49,22 +49,19 @@ describe("FollowPrizeManager (Generated Tests)", () => {
 
       const result = await manager.addFollowPrize(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/follow_prize/add_follow_prize",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/add_follow_prize", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteFollowPrize", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 24255,
       };
@@ -81,22 +78,19 @@ describe("FollowPrizeManager (Generated Tests)", () => {
 
       const result = await manager.deleteFollowPrize(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/follow_prize/delete_follow_prize",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/delete_follow_prize", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("endFollowPrize", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 123344,
       };
@@ -113,27 +107,24 @@ describe("FollowPrizeManager (Generated Tests)", () => {
 
       const result = await manager.endFollowPrize(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/follow_prize/end_follow_prize",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/end_follow_prize", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getFollowPrizeDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         campaign_id: 1551,
       };
       const exampleResponse = {
-        campaign_status: "ongoing",
+        campaign_status: "upcoming",
         campaign_id: 1551,
         usage_quantity: 100,
         start_time: 1655891400,
@@ -155,22 +146,20 @@ describe("FollowPrizeManager (Generated Tests)", () => {
 
       const result = await manager.getFollowPrizeDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/follow_prize/get_follow_prize_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/get_follow_prize_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.start_time", "response.end_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getFollowPrizeList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 100,
@@ -200,22 +189,23 @@ describe("FollowPrizeManager (Generated Tests)", () => {
 
       const result = await manager.getFollowPrizeList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/follow_prize/get_follow_prize_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/get_follow_prize_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.follow_prize_list.start_time",
+          "response.follow_prize_list.end_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateFollowPrize", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         follow_prize_name: "shop_follow_prize",
         campaign_id: 123344,
@@ -237,15 +227,12 @@ describe("FollowPrizeManager (Generated Tests)", () => {
 
       const result = await manager.updateFollowPrize(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/follow_prize/update_follow_prize",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/update_follow_prize", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

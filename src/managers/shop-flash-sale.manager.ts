@@ -38,7 +38,7 @@ export class ShopFlashSaleManager extends BaseManager {
    * @returns {Promise<AddShopFlashSaleItemsResponse>} Promise resolving to the response
    */
   public async addShopFlashSaleItems(
-    params?: AddShopFlashSaleItemsRequest
+    params: AddShopFlashSaleItemsRequest
   ): Promise<AddShopFlashSaleItemsResponse> {
     return ShopeeFetch.fetch<AddShopFlashSaleItemsResponse>(
       this.config,
@@ -57,7 +57,7 @@ export class ShopFlashSaleManager extends BaseManager {
    * @returns {Promise<CreateShopFlashSaleResponse>} Promise resolving to the response
    */
   public async createShopFlashSale(
-    params?: CreateShopFlashSaleRequest
+    params: CreateShopFlashSaleRequest
   ): Promise<CreateShopFlashSaleResponse> {
     return ShopeeFetch.fetch<CreateShopFlashSaleResponse>(
       this.config,
@@ -76,7 +76,7 @@ export class ShopFlashSaleManager extends BaseManager {
    * @returns {Promise<DeleteShopFlashSaleResponse>} Promise resolving to the response
    */
   public async deleteShopFlashSale(
-    params?: DeleteShopFlashSaleRequest
+    params: DeleteShopFlashSaleRequest
   ): Promise<DeleteShopFlashSaleResponse> {
     return ShopeeFetch.fetch<DeleteShopFlashSaleResponse>(
       this.config,
@@ -95,7 +95,7 @@ export class ShopFlashSaleManager extends BaseManager {
    * @returns {Promise<DeleteShopFlashSaleItemsResponse>} Promise resolving to the response
    */
   public async deleteShopFlashSaleItems(
-    params?: DeleteShopFlashSaleItemsRequest
+    params: DeleteShopFlashSaleItemsRequest
   ): Promise<DeleteShopFlashSaleItemsResponse> {
     return ShopeeFetch.fetch<DeleteShopFlashSaleItemsResponse>(
       this.config,
@@ -131,7 +131,7 @@ export class ShopFlashSaleManager extends BaseManager {
    * @returns {Promise<GetShopFlashSaleResponse>} Promise resolving to the response
    */
   public async getShopFlashSale(
-    params?: GetShopFlashSaleRequest
+    params: GetShopFlashSaleRequest
   ): Promise<GetShopFlashSaleResponse> {
     return ShopeeFetch.fetch<GetShopFlashSaleResponse>(
       this.config,
@@ -151,7 +151,7 @@ export class ShopFlashSaleManager extends BaseManager {
    * @returns {Promise<GetShopFlashSaleItemsResponse>} Promise resolving to the response
    */
   public async getShopFlashSaleItems(
-    params?: GetShopFlashSaleItemsRequest
+    params: GetShopFlashSaleItemsRequest
   ): Promise<GetShopFlashSaleItemsResponse> {
     return ShopeeFetch.fetch<GetShopFlashSaleItemsResponse>(
       this.config,
@@ -170,7 +170,7 @@ export class ShopFlashSaleManager extends BaseManager {
    * @returns {Promise<GetShopFlashSaleListResponse>} Promise resolving to the response
    */
   public async getShopFlashSaleList(
-    params?: GetShopFlashSaleListRequest
+    params: GetShopFlashSaleListRequest
   ): Promise<GetShopFlashSaleListResponse> {
     return ShopeeFetch.fetch<GetShopFlashSaleListResponse>(
       this.config,
@@ -179,12 +179,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
-        timestampPaths: [
-          "start_time",
-          "end_time",
-          "flash_sale_list.start_time",
-          "flash_sale_list.end_time",
-        ],
+        timestampPaths: ["flash_sale_list.start_time", "flash_sale_list.end_time"],
       }
     );
   }
@@ -194,7 +189,7 @@ export class ShopFlashSaleManager extends BaseManager {
    * @param {GetTimeSlotIdRequest} params Request parameters
    * @returns {Promise<GetTimeSlotIdResponse>} Promise resolving to the response
    */
-  public async getTimeSlotId(params?: GetTimeSlotIdRequest): Promise<GetTimeSlotIdResponse> {
+  public async getTimeSlotId(params: GetTimeSlotIdRequest): Promise<GetTimeSlotIdResponse> {
     return ShopeeFetch.fetch<GetTimeSlotIdResponse>(
       this.config,
       "/shop_flash_sale/get_time_slot_id",
@@ -202,7 +197,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
-        timestampPaths: ["start_time", "end_time", "response.start_time", "response.end_time"],
+        timestampPaths: ["response.start_time", "response.end_time"],
       }
     );
   }
@@ -213,7 +208,7 @@ export class ShopFlashSaleManager extends BaseManager {
    * @returns {Promise<UpdateShopFlashSaleResponse>} Promise resolving to the response
    */
   public async updateShopFlashSale(
-    params?: UpdateShopFlashSaleRequest
+    params: UpdateShopFlashSaleRequest
   ): Promise<UpdateShopFlashSaleResponse> {
     return ShopeeFetch.fetch<UpdateShopFlashSaleResponse>(
       this.config,
@@ -232,7 +227,7 @@ export class ShopFlashSaleManager extends BaseManager {
    * @returns {Promise<UpdateShopFlashSaleItemsResponse>} Promise resolving to the response
    */
   public async updateShopFlashSaleItems(
-    params?: UpdateShopFlashSaleItemsRequest
+    params: UpdateShopFlashSaleItemsRequest
   ): Promise<UpdateShopFlashSaleItemsResponse> {
     return ShopeeFetch.fetch<UpdateShopFlashSaleItemsResponse>(
       this.config,

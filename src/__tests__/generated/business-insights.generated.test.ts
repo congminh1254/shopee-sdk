@@ -23,8 +23,8 @@ describe("BusinessInsightsManager (Generated Tests)", () => {
     manager = new BusinessInsightsManager(mockConfig);
   });
 
-  describe("getMarketingHotListingonlybrnow", () => {
-    it("should correctly validate request and response formats", async () => {
+  describe("getMarketingHotListing", () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         start_time: 123,
         end_time: 123,
@@ -87,16 +87,17 @@ describe("BusinessInsightsManager (Generated Tests)", () => {
         response: exampleResponse,
       });
 
-      const result = await manager.getMarketingHotListingonlybrnow(exampleRequest);
+      const result = await manager.getMarketingHotListing(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/business_insights/get_marketing_hot_listing",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);

@@ -52,7 +52,7 @@ export class PaymentManager extends BaseManager {
    * @returns {Promise<GenerateIncomeReportResponse>} Promise resolving to the response
    */
   public async generateIncomeReport(
-    params?: GenerateIncomeReportRequest
+    params: GenerateIncomeReportRequest
   ): Promise<GenerateIncomeReportResponse> {
     return ShopeeFetch.fetch<GenerateIncomeReportResponse>(
       this.config,
@@ -71,7 +71,7 @@ export class PaymentManager extends BaseManager {
    * @returns {Promise<GenerateIncomeStatementResponse>} Promise resolving to the response
    */
   public async generateIncomeStatement(
-    params?: GenerateIncomeStatementRequest
+    params: GenerateIncomeStatementRequest
   ): Promise<GenerateIncomeStatementResponse> {
     return ShopeeFetch.fetch<GenerateIncomeStatementResponse>(
       this.config,
@@ -90,7 +90,7 @@ export class PaymentManager extends BaseManager {
    * @returns {Promise<GetBillingTransactionInfoResponse>} Promise resolving to the response
    */
   public async getBillingTransactionInfo(
-    params?: GetBillingTransactionInfoRequest
+    params: GetBillingTransactionInfoRequest
   ): Promise<GetBillingTransactionInfoResponse> {
     return ShopeeFetch.fetch<GetBillingTransactionInfoResponse>(
       this.config,
@@ -108,7 +108,7 @@ export class PaymentManager extends BaseManager {
    * @param {GetEscrowDetailRequest} params Request parameters
    * @returns {Promise<GetEscrowDetailResponse>} Promise resolving to the response
    */
-  public async getEscrowDetail(params?: GetEscrowDetailRequest): Promise<GetEscrowDetailResponse> {
+  public async getEscrowDetail(params: GetEscrowDetailRequest): Promise<GetEscrowDetailResponse> {
     return ShopeeFetch.fetch<GetEscrowDetailResponse>(this.config, "/payment/get_escrow_detail", {
       method: "GET",
       auth: true,
@@ -123,7 +123,7 @@ export class PaymentManager extends BaseManager {
    * @returns {Promise<GetEscrowDetailBatchResponse>} Promise resolving to the response
    */
   public async getEscrowDetailBatch(
-    params?: GetEscrowDetailBatchRequest
+    params: GetEscrowDetailBatchRequest
   ): Promise<GetEscrowDetailBatchResponse> {
     return ShopeeFetch.fetch<GetEscrowDetailBatchResponse>(
       this.config,
@@ -141,16 +141,12 @@ export class PaymentManager extends BaseManager {
    * @param {GetEscrowListRequest} params Request parameters
    * @returns {Promise<GetEscrowListResponse>} Promise resolving to the response
    */
-  public async getEscrowList(params?: GetEscrowListRequest): Promise<GetEscrowListResponse> {
+  public async getEscrowList(params: GetEscrowListRequest): Promise<GetEscrowListResponse> {
     return ShopeeFetch.fetch<GetEscrowListResponse>(this.config, "/payment/get_escrow_list", {
       method: "GET",
       auth: true,
       params: params,
-      timestampPaths: [
-        "release_time_from",
-        "release_time_to",
-        "response.escrow_list.escrow_release_time",
-      ],
+      timestampPaths: ["response.escrow_list.escrow_release_time"],
     });
   }
   /**
@@ -161,7 +157,7 @@ export class PaymentManager extends BaseManager {
    * @param {GetIncomeDetailRequest} params Request parameters
    * @returns {Promise<GetIncomeDetailResponse>} Promise resolving to the response
    */
-  public async getIncomeDetail(params?: GetIncomeDetailRequest): Promise<GetIncomeDetailResponse> {
+  public async getIncomeDetail(params: GetIncomeDetailRequest): Promise<GetIncomeDetailResponse> {
     return ShopeeFetch.fetch<GetIncomeDetailResponse>(this.config, "/payment/get_income_detail", {
       method: "GET",
       auth: true,
@@ -195,7 +191,7 @@ export class PaymentManager extends BaseManager {
    * @param {GetIncomeReportRequest} params Request parameters
    * @returns {Promise<GetIncomeReportResponse>} Promise resolving to the response
    */
-  public async getIncomeReport(params?: GetIncomeReportRequest): Promise<GetIncomeReportResponse> {
+  public async getIncomeReport(params: GetIncomeReportRequest): Promise<GetIncomeReportResponse> {
     return ShopeeFetch.fetch<GetIncomeReportResponse>(this.config, "/payment/get_income_report", {
       method: "GET",
       auth: true,
@@ -209,7 +205,7 @@ export class PaymentManager extends BaseManager {
    * @returns {Promise<GetIncomeStatementResponse>} Promise resolving to the response
    */
   public async getIncomeStatement(
-    params?: GetIncomeStatementRequest
+    params: GetIncomeStatementRequest
   ): Promise<GetIncomeStatementResponse> {
     return ShopeeFetch.fetch<GetIncomeStatementResponse>(
       this.config,
@@ -228,7 +224,7 @@ export class PaymentManager extends BaseManager {
    * @returns {Promise<GetItemInstallmentStatusResponse>} Promise resolving to the response
    */
   public async getItemInstallmentStatus(
-    params?: GetItemInstallmentStatusRequest
+    params: GetItemInstallmentStatusRequest
   ): Promise<GetItemInstallmentStatusResponse> {
     return ShopeeFetch.fetch<GetItemInstallmentStatusResponse>(
       this.config,
@@ -265,16 +261,12 @@ export class PaymentManager extends BaseManager {
    * @param {GetPayoutDetailRequest} params Request parameters
    * @returns {Promise<GetPayoutDetailResponse>} Promise resolving to the response
    */
-  public async getPayoutDetail(params?: GetPayoutDetailRequest): Promise<GetPayoutDetailResponse> {
+  public async getPayoutDetail(params: GetPayoutDetailRequest): Promise<GetPayoutDetailResponse> {
     return ShopeeFetch.fetch<GetPayoutDetailResponse>(this.config, "/payment/get_payout_detail", {
       method: "GET",
       auth: true,
       params: params,
-      timestampPaths: [
-        "payout_time_from",
-        "payout_time_to",
-        "response.payout_list.payout_info.payout_time",
-      ],
+      timestampPaths: ["response.payout_list.payout_info.payout_time"],
     });
   }
   /**
@@ -283,12 +275,12 @@ export class PaymentManager extends BaseManager {
    * @param {GetPayoutInfoRequest} params Request parameters
    * @returns {Promise<GetPayoutInfoResponse>} Promise resolving to the response
    */
-  public async getPayoutInfo(params?: GetPayoutInfoRequest): Promise<GetPayoutInfoResponse> {
+  public async getPayoutInfo(params: GetPayoutInfoRequest): Promise<GetPayoutInfoResponse> {
     return ShopeeFetch.fetch<GetPayoutInfoResponse>(this.config, "/payment/get_payout_info", {
       method: "GET",
       auth: true,
       params: params,
-      timestampPaths: ["payout_time_from", "payout_time_to", "response.payout_list.payout_time"],
+      timestampPaths: ["response.payout_list.payout_time"],
     });
   }
   /**
@@ -317,7 +309,7 @@ export class PaymentManager extends BaseManager {
    * @returns {Promise<GetWalletTransactionListResponse>} Promise resolving to the response
    */
   public async getWalletTransactionList(
-    params?: GetWalletTransactionListRequest
+    params: GetWalletTransactionListRequest
   ): Promise<GetWalletTransactionListResponse> {
     return ShopeeFetch.fetch<GetWalletTransactionListResponse>(
       this.config,
@@ -336,7 +328,7 @@ export class PaymentManager extends BaseManager {
    * @returns {Promise<SetItemInstallmentStatusResponse>} Promise resolving to the response
    */
   public async setItemInstallmentStatus(
-    params?: SetItemInstallmentStatusRequest
+    params: SetItemInstallmentStatusRequest
   ): Promise<SetItemInstallmentStatusResponse> {
     return ShopeeFetch.fetch<SetItemInstallmentStatusResponse>(
       this.config,
@@ -355,7 +347,7 @@ export class PaymentManager extends BaseManager {
    * @returns {Promise<SetShopInstallmentStatusResponse>} Promise resolving to the response
    */
   public async setShopInstallmentStatus(
-    params?: SetShopInstallmentStatusRequest
+    params: SetShopInstallmentStatusRequest
   ): Promise<SetShopInstallmentStatusResponse> {
     return ShopeeFetch.fetch<SetShopInstallmentStatusResponse>(
       this.config,

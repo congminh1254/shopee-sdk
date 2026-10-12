@@ -354,6 +354,7 @@ describe("BundleDealManager", () => {
         params: {
           bundle_deal_id: 113891,
         },
+        timestampPaths: ["response.start_time", "response.end_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -444,7 +445,11 @@ describe("BundleDealManager", () => {
         {
           method: "GET",
           auth: true,
-          params: {},
+          params: undefined,
+          timestampPaths: [
+            "response.bundle_deal_list.start_time",
+            "response.bundle_deal_list.end_time",
+          ],
         }
       );
 
@@ -483,6 +488,10 @@ describe("BundleDealManager", () => {
             time_status: BundleDealTimeStatus.UPCOMING,
             page_no: 1,
           },
+          timestampPaths: [
+            "response.bundle_deal_list.start_time",
+            "response.bundle_deal_list.end_time",
+          ],
         }
       );
 
@@ -528,6 +537,7 @@ describe("BundleDealManager", () => {
           name: "bundle name updated",
           end_time: 1658246412,
         },
+        timestampPaths: ["response.start_time", "response.end_time"],
       });
 
       expect(result).toEqual(mockResponse);

@@ -76,6 +76,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/create_session", {
         method: "POST",
+        auth: true,
         body: {
           title: "Test Livestream",
           description: "This is a test livestream",
@@ -107,6 +108,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/create_session", {
         method: "POST",
+        auth: true,
         body: {
           title: "Minimal Session",
           cover_image_url: "https://cf.shopee.sg/file/test.jpg",
@@ -135,6 +137,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/start_session", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
           domain_id: 1,
@@ -162,6 +165,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/end_session", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
         },
@@ -192,6 +196,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_session", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
           title: "Updated Title",
@@ -242,6 +247,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_detail", {
         method: "GET",
+        auth: true,
         params: {
           session_id: 6236215,
         },
@@ -284,6 +290,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_metric", {
         method: "GET",
+        auth: true,
         params: {
           session_id: 6236215,
         },
@@ -334,6 +341,7 @@ describe("LiveStreamManager", () => {
         "/livestream/get_session_item_metric",
         {
           method: "GET",
+          auth: true,
           params: {
             session_id: 6236215,
             offset: 0,
@@ -368,6 +376,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/add_item_list", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
           item_list: [
@@ -402,6 +411,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_item_list", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
           item_list: [
@@ -433,6 +443,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/delete_item_list", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
           item_list: [{ item_id: 123, shop_id: 456 }],
@@ -486,6 +497,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_list", {
         method: "GET",
+        auth: true,
         params: {
           session_id: 6236215,
           offset: 0,
@@ -517,6 +529,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_count", {
         method: "GET",
+        auth: true,
         params: {
           session_id: 6236215,
         },
@@ -568,6 +581,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_recent_item_list", {
         method: "GET",
+        auth: true,
         params: {
           offset: 0,
           page_size: 10,
@@ -620,6 +634,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_like_item_list", {
         method: "GET",
+        auth: true,
         params: {
           offset: 0,
           page_size: 10,
@@ -649,6 +664,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/apply_item_set", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
           item_set_ids: [12345, 67890],
@@ -693,6 +709,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_set_list", {
         method: "GET",
+        auth: true,
         params: {
           offset: 0,
           page_size: 10,
@@ -750,6 +767,7 @@ describe("LiveStreamManager", () => {
         "/livestream/get_item_set_item_list",
         {
           method: "GET",
+          auth: true,
           params: {
             item_set_id: 12345,
             offset: 0,
@@ -791,6 +809,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_show_item", {
         method: "GET",
+        auth: true,
         params: {
           session_id: 6236215,
         },
@@ -839,6 +858,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_show_item", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
           item_id: 123,
@@ -867,6 +887,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/delete_show_item", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
         },
@@ -894,6 +915,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/post_comment", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
           content: "Great product content!",
@@ -943,10 +965,12 @@ describe("LiveStreamManager", () => {
         "/livestream/get_latest_comment_list",
         {
           method: "GET",
+          auth: true,
           params: {
             session_id: 6236215,
             offset: 0,
           },
+          timestampPaths: ["response.list.timestamp"],
         }
       );
 
@@ -973,6 +997,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/ban_user_comment", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
           ban_user_id: 5001,
@@ -1001,6 +1026,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/unban_user_comment", {
         method: "POST",
+        auth: true,
         body: {
           session_id: 6236215,
           unban_user_id: 5001,
@@ -1031,6 +1057,7 @@ describe("LiveStreamManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/livestream/upload_image", {
         method: "POST",
+        auth: true,
         body: {
           image: mockImage,
         },

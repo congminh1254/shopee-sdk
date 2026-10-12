@@ -24,7 +24,7 @@ describe("ShopManager (Generated Tests)", () => {
   });
 
   describe("getAuthorisedResellerBrand", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 1,
         page_size: 10,
@@ -50,25 +50,22 @@ describe("ShopManager (Generated Tests)", () => {
 
       const result = await manager.getAuthorisedResellerBrand(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop/get_authorised_reseller_brand",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_authorised_reseller_brand", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBrShopOnboardingInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
-        tax_id_type: "test_string",
+        tax_id_type: 1,
         tax_id: "test_string",
         cpf_id: "test_string",
         cnpj_id: "test_string",
@@ -102,22 +99,19 @@ describe("ShopManager (Generated Tests)", () => {
 
       const result = await manager.getBrShopOnboardingInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop/get_br_shop_onboarding_info",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_br_shop_onboarding_info", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getProfile", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         shop_logo: "https://cf.shopee.sg/file/4d4f2e34c6d27cd3838a49a575f251bf",
@@ -135,22 +129,19 @@ describe("ShopManager (Generated Tests)", () => {
 
       const result = await manager.getProfile(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop/get_profile",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_profile", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopHolidayMode", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         holiday_mode_on: true,
@@ -171,22 +162,24 @@ describe("ShopManager (Generated Tests)", () => {
 
       const result = await manager.getShopHolidayMode(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop/get_shop_holiday_mode",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_shop_holiday_mode", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.holiday_mode_mtime",
+          "response.holiday_mode_start_time",
+          "response.holiday_mode_end_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         shop_name: "openapi_pshop_1",
@@ -205,7 +198,7 @@ describe("ShopManager (Generated Tests)", () => {
         is_sip: true,
         is_upgraded_cbsc: true,
         merchant_id: 1000000400,
-        shop_fulfillment_flag: "PFF - 3PF Shop",
+        shop_fulfillment_flag: "Local",
         is_main_shop: true,
         is_direct_shop: false,
         linked_main_shop_id: 0,
@@ -236,22 +229,20 @@ describe("ShopManager (Generated Tests)", () => {
 
       const result = await manager.getShopInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop/get_shop_info",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_shop_info", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["auth_time", "expire_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopNotification", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         cursor: 1,
         page_size: 1,
@@ -275,22 +266,19 @@ describe("ShopManager (Generated Tests)", () => {
 
       const result = await manager.getShopNotification(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop/get_shop_notification",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_shop_notification", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getWarehouseDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         warehouse_type: 1,
       };
@@ -322,22 +310,19 @@ describe("ShopManager (Generated Tests)", () => {
 
       const result = await manager.getWarehouseDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop/get_warehouse_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop/get_warehouse_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("setShopHolidayMode", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         holiday_mode_on: true,
         holiday_mode_type: 1,
@@ -358,22 +343,19 @@ describe("ShopManager (Generated Tests)", () => {
 
       const result = await manager.setShopHolidayMode(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop/set_shop_holiday_mode",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop/set_shop_holiday_mode", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateProfile", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         shop_name: "Shopee 24h Offical Shop",
         shop_logo: "https://cf.shopee.sg/file/8424390be4677b0b3c37ce6499ce261a",
@@ -394,15 +376,12 @@ describe("ShopManager (Generated Tests)", () => {
 
       const result = await manager.updateProfile(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/shop/update_profile",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop/update_profile", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

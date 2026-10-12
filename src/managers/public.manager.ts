@@ -27,7 +27,7 @@ export class PublicManager extends BaseManager {
    * @param {GetAccessTokenRequest} params Request parameters
    * @returns {Promise<GetAccessTokenResponse>} Promise resolving to the response
    */
-  public async getAccessToken(params?: GetAccessTokenRequest): Promise<GetAccessTokenResponse> {
+  public async getAccessToken(params: GetAccessTokenRequest): Promise<GetAccessTokenResponse> {
     return ShopeeFetch.fetch<GetAccessTokenResponse>(this.config, "/auth/token/get", {
       method: "POST",
       body: params,
@@ -97,7 +97,7 @@ export class PublicManager extends BaseManager {
    * @returns {Promise<GetTokenByResendCodeResponse>} Promise resolving to the response
    */
   public async getTokenByResendCode(
-    params?: GetTokenByResendCodeRequest
+    params: GetTokenByResendCodeRequest
   ): Promise<GetTokenByResendCodeResponse> {
     return ShopeeFetch.fetch<GetTokenByResendCodeResponse>(
       this.config,
@@ -115,7 +115,7 @@ export class PublicManager extends BaseManager {
    * @returns {Promise<RefreshAccessTokenResponse>} Promise resolving to the response
    */
   public async refreshAccessToken(
-    params?: RefreshAccessTokenRequest
+    params: RefreshAccessTokenRequest
   ): Promise<RefreshAccessTokenResponse> {
     return ShopeeFetch.fetch<RefreshAccessTokenResponse>(this.config, "/auth/access_token/get", {
       method: "POST",

@@ -149,6 +149,7 @@ describe("PaymentManager", () => {
         params: {
           order_sn: "220101000000001",
         },
+        timestampPaths: ["response.order_income.order_adjustment.date"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -258,6 +259,7 @@ describe("PaymentManager", () => {
         params: {
           order_sn: "220101000000002",
         },
+        timestampPaths: ["response.order_income.order_adjustment.date"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -507,6 +509,7 @@ describe("PaymentManager", () => {
           page_size: 40,
           page_no: 1,
         },
+        timestampPaths: ["response.escrow_list.escrow_release_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -796,7 +799,8 @@ describe("PaymentManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payment_method_list", {
         method: "GET",
-        auth: false,
+        auth: true,
+        params: undefined,
       });
 
       expect(result).toEqual(mockResponse);
@@ -824,10 +828,7 @@ describe("PaymentManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/payment/get_shop_installment_status",
-        {
-          method: "GET",
-          auth: true,
-        }
+        { method: "GET", auth: true, params: undefined }
       );
 
       expect(result).toEqual(mockResponse);
@@ -1159,6 +1160,7 @@ describe("PaymentManager", () => {
           page_no: 1,
           page_size: 40,
         },
+        timestampPaths: ["response.payout_list.payout_info.payout_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -1204,6 +1206,7 @@ describe("PaymentManager", () => {
           page_size: 40,
           cursor: "",
         },
+        timestampPaths: ["response.payout_list.payout_time"],
       });
 
       expect(result).toEqual(mockResponse);

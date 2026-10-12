@@ -24,7 +24,7 @@ describe("DiscountManager (Generated Tests)", () => {
   });
 
   describe("addDiscount", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         discount_name: "test-create",
         start_time: 1624864213,
@@ -43,22 +43,19 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.addDiscount(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/add_discount",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/add_discount", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("addDiscountItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         discount_id: 665123666665499,
         item_list: [
@@ -99,22 +96,19 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.addDiscountItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/add_discount_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/add_discount_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteDiscount", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         discount_id: 665123666665499,
       };
@@ -132,22 +126,20 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.deleteDiscount(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/delete_discount",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/delete_discount", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+        timestampPaths: ["response.modify_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteDiscountItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         discount_id: 665123666665499,
         item_id: 1776783,
@@ -174,22 +166,19 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.deleteDiscountItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/delete_discount_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/delete_discount_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteSipDiscount", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         region: "TW",
       };
@@ -206,22 +195,19 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.deleteSipDiscount(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/delete_sip_discount",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/delete_sip_discount", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("endDiscount", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         discount_id: 66512366666549900,
       };
@@ -239,22 +225,20 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.endDiscount(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/end_discount",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/end_discount", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+        timestampPaths: ["response.modify_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getDiscount", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         discount_id: 1000029882,
         page_no: 1,
@@ -311,24 +295,22 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.getDiscount(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/get_discount",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_discount", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.start_time", "response.end_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getDiscountList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
-        discount_status: "ongoing",
+        discount_status: "upcoming",
         page_no: 1,
         page_size: 100,
         update_time_from: 1643860467,
@@ -357,22 +339,20 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.getDiscountList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/get_discount_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_discount_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.discount_list.start_time", "response.discount_list.end_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getSipDiscounts", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         region: "SG",
       };
@@ -380,7 +360,7 @@ describe("DiscountManager (Generated Tests)", () => {
         discount_list: [
           {
             region: "SG",
-            status: "ongoing",
+            status: "upcoming",
             sip_discount_rate: 10,
             start_time: 1741235212,
             end_time: 1756787212,
@@ -399,22 +379,25 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.getSipDiscounts(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/get_sip_discounts",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/get_sip_discounts", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.discount_list.start_time",
+          "response.discount_list.end_time",
+          "response.discount_list.create_time",
+          "response.discount_list.update_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("setSipDiscount", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         region: "TH",
         sip_discount_rate: 15,
@@ -438,22 +421,25 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.setSipDiscount(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/set_sip_discount",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/set_sip_discount", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+        timestampPaths: [
+          "response.start_time",
+          "response.end_time",
+          "response.create_time",
+          "response.update_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateDiscount", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         discount_id: 661460179119131,
         discount_name: "The discount 111",
@@ -474,22 +460,20 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.updateDiscount(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/update_discount",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/update_discount", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+        timestampPaths: ["response.modify_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateDiscountItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         discount_id: 1000029745,
         item_list: [
@@ -528,15 +512,12 @@ describe("DiscountManager (Generated Tests)", () => {
 
       const result = await manager.updateDiscountItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/discount/update_discount_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/discount/update_discount_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

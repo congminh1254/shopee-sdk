@@ -260,10 +260,28 @@ describe("OrderManager", () => {
         method: "GET",
         auth: true,
         params: {
-          order_sn_list: "220101000000001",
-          response_optional_fields:
-            "buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address",
+          order_sn_list: ["220101000000001"],
+          response_optional_fields: [
+            "buyer_user_id",
+            "buyer_username",
+            "estimated_shipping_fee",
+            "recipient_address",
+          ].join(","),
         },
+        timestampPaths: [
+          "response.order_list.create_time",
+          "response.order_list.update_time",
+          "response.order_list.ship_by_date",
+          "response.order_list.note_update_time",
+          "response.order_list.pay_time",
+          "response.order_list.pickup_done_time",
+          "response.order_list.invoice_data.issue_date",
+          "response.order_list.prescription_approval_time",
+          "response.order_list.prescription_rejection_time",
+          "response.order_list.edt_from",
+          "response.order_list.edt_to",
+          "response.order_list.return_request_due_date",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -441,6 +459,7 @@ describe("OrderManager", () => {
             },
           ],
         },
+        timestampPaths: ["response.update_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -663,8 +682,14 @@ describe("OrderManager", () => {
         method: "GET",
         auth: true,
         params: {
-          package_number_list: "PKG001,PKG002",
+          package_number_list: ["PKG001", "PKG002"],
         },
+        timestampPaths: [
+          "response.package_list.status_info_tag.timestamp",
+          "response.package_list.prescription_approval_time",
+          "response.package_list.prescription_rejection_time",
+          "response.package_list.preparation_end_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -696,6 +721,7 @@ describe("OrderManager", () => {
           order_sn: "220101000000001",
           operation: "ACCEPT",
         },
+        timestampPaths: ["response.update_time"],
       });
 
       expect(result).toEqual(mockResponse);
@@ -919,9 +945,14 @@ describe("OrderManager", () => {
         method: "GET",
         auth: true,
         params: {
-          booking_sn_list: "BOOK001",
+          booking_sn_list: ["BOOK001"],
           response_optional_fields: "booking_status",
         },
+        timestampPaths: [
+          "response.booking_list.create_time",
+          "response.booking_list.update_time",
+          "response.booking_list.pickup_done_time",
+        ],
       });
 
       expect(result).toEqual(mockResponse);
@@ -994,10 +1025,7 @@ describe("OrderManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/order/get_warehouse_filter_config",
-        {
-          method: "GET",
-          auth: true,
-        }
+        { method: "GET", auth: true, params: undefined }
       );
 
       expect(result).toEqual(mockResponse);
@@ -1036,6 +1064,7 @@ describe("OrderManager", () => {
             },
           ],
         },
+        timestampPaths: ["timestamp"],
       });
 
       expect(result).toEqual(mockResponse);

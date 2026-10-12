@@ -24,7 +24,7 @@ describe("PaymentManager (Generated Tests)", () => {
   });
 
   describe("generateIncomeReport", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         release_time_from: 1234567890,
         release_time_to: 1234567890,
@@ -42,22 +42,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.generateIncomeReport(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/generate_income_report",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/generate_income_report", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("generateIncomeStatement", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         release_time_from: 1751302800,
         release_time_to: 1753981199,
@@ -76,22 +73,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.generateIncomeStatement(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/generate_income_statement",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/generate_income_statement", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBillingTransactionInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         billing_transaction_info_type: 1,
         encrypted_payout_ids: ["10376329180766", "637926329180767"],
@@ -123,22 +117,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getBillingTransactionInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_billing_transaction_info",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_billing_transaction_info", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getEscrowDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn: "220914R9U7D3C6",
       };
@@ -356,22 +347,20 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getEscrowDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_escrow_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_escrow_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.order_income.order_adjustment.date"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getEscrowDetailBatch", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         order_sn_list: ["test_string"],
       };
@@ -536,7 +525,7 @@ describe("PaymentManager (Generated Tests)", () => {
             },
             buyer_payment_info: {
               buyer_payment_method: "test_string",
-              buyer_service_fee: "test_string",
+              buyer_service_fee: "RR",
               buyer_tax_amount: 123,
               buyer_total_amount: 123,
               shopeevip_subtotal: 0.1,
@@ -575,22 +564,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getEscrowDetailBatch(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_escrow_detail_batch",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_escrow_detail_batch", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getEscrowList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         release_time_from: 1651680000,
         release_time_to: 1651939200,
@@ -617,22 +603,20 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getEscrowList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_escrow_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_escrow_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.escrow_list.escrow_release_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getIncomeDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         date_from: "2025-09-25",
         date_to: "2025-09-30",
@@ -678,22 +662,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getIncomeDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_income_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getIncomeOverview", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         income_status: 1,
       };
@@ -715,22 +696,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getIncomeOverview(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_income_overview",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_overview", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getIncomeReport", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         income_report_id: 123456,
       };
@@ -752,22 +730,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getIncomeReport(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_income_report",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_report", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getIncomeStatement", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         income_statement_id: 123456,
       };
@@ -789,22 +764,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getIncomeStatement(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_income_statement",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_income_statement", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getItemInstallmentStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         item_id_list: [123],
       };
@@ -832,22 +804,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getItemInstallmentStatus(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_item_installment_status",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_item_installment_status", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getPaymentMethodList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = [
         {
@@ -865,22 +834,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getPaymentMethodList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_payment_method_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payment_method_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getPayoutDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_size: 10,
         page_no: 1,
@@ -898,7 +864,7 @@ describe("PaymentManager (Generated Tests)", () => {
               payout_amount: 25678.64,
               exchange_rate: "0.00",
               payout_time: 1651842208,
-              pay_service: "Payoneer",
+              pay_service: "payoneer",
               payee_id: "279016275538",
             },
             escrow_list: [
@@ -931,22 +897,20 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getPayoutDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_payout_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payout_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.payout_list.payout_info.payout_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getPayoutInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         payout_time_from: 1643365068,
         payout_time_to: 1659003469,
@@ -962,7 +926,7 @@ describe("PaymentManager (Generated Tests)", () => {
             payout_amount: 1769.01,
             exchange_rate: '"1"',
             payout_time: 1691050374,
-            pay_service: "Payoneer",
+            pay_service: "payoneer",
             payee_id: '"279016275538"',
             encrypted_payout_id: '"16061973102097436445"',
           },
@@ -980,22 +944,20 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getPayoutInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_payout_info",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payout_info", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.payout_list.payout_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getShopInstallmentStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
       const exampleResponse = {
         installment_status: 0,
@@ -1010,36 +972,33 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getShopInstallmentStatus(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_shop_installment_status",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_shop_installment_status", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getWalletTransactionList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_no: 123,
         page_size: 123,
         create_time_from: 123,
         create_time_to: 123,
         wallet_type: "test_string",
-        transaction_type: "test_string",
+        transaction_type: "canceled",
         money_flow: "test_string",
         transaction_tab_type: "test_string",
       };
       const exampleResponse = {
         transaction_list: [
           {
-            status: "test_string",
+            status: "FAILED",
             transaction_type: "test_string",
             txn_title: "test_string",
             amount: 123,
@@ -1061,8 +1020,8 @@ describe("PaymentManager (Generated Tests)", () => {
             withdrawal_id: 123,
             reason: "test_string",
             root_withdrawal_id: 123,
-            transaction_tab_type: "test_string",
-            money_flow: "test_string",
+            transaction_tab_type: "io",
+            money_flow: "io",
             outlet_shop_name: "test_string",
           },
         ],
@@ -1078,22 +1037,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.getWalletTransactionList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/get_wallet_transaction_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_wallet_transaction_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("setItemInstallmentStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         item_id_list: [123],
         tenure_list: [123],
@@ -1123,22 +1079,19 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.setItemInstallmentStatus(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/set_item_installment_status",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/set_item_installment_status", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("setShopInstallmentStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         installment_status: 0,
       };
@@ -1155,15 +1108,12 @@ describe("PaymentManager (Generated Tests)", () => {
 
       const result = await manager.setShopInstallmentStatus(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/payment/set_shop_installment_status",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/set_shop_installment_status", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

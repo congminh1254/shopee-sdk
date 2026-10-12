@@ -24,7 +24,7 @@ describe("BundleDealManager (Generated Tests)", () => {
   });
 
   describe("addBundleDeal", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         rule_type: 1,
         discount_value: 11,
@@ -57,22 +57,19 @@ describe("BundleDealManager (Generated Tests)", () => {
 
       const result = await manager.addBundleDeal(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/add_bundle_deal",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/add_bundle_deal", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("addBundleDealItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         bundle_deal_id: 1234522,
         item_list: [
@@ -102,22 +99,19 @@ describe("BundleDealManager (Generated Tests)", () => {
 
       const result = await manager.addBundleDealItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/add_bundle_deal_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/add_bundle_deal_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteBundleDeal", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         bundle_deal_id: 11111,
       };
@@ -134,22 +128,19 @@ describe("BundleDealManager (Generated Tests)", () => {
 
       const result = await manager.deleteBundleDeal(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/delete_bundle_deal",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/delete_bundle_deal", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteBundleDealItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         bundle_deal_id: 11111,
         item_list: [
@@ -178,22 +169,19 @@ describe("BundleDealManager (Generated Tests)", () => {
 
       const result = await manager.deleteBundleDealItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/delete_bundle_deal_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/delete_bundle_deal_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("endBundleDeal", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         bundle_deal_id: 11111,
       };
@@ -210,22 +198,19 @@ describe("BundleDealManager (Generated Tests)", () => {
 
       const result = await manager.endBundleDeal(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/end_bundle_deal",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/end_bundle_deal", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBundleDeal", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         bundle_deal_id: 113891,
       };
@@ -259,22 +244,20 @@ describe("BundleDealManager (Generated Tests)", () => {
 
       const result = await manager.getBundleDeal(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/get_bundle_deal",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/get_bundle_deal", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.start_time", "response.end_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBundleDealItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         bundle_deal_id: 113891,
       };
@@ -297,22 +280,19 @@ describe("BundleDealManager (Generated Tests)", () => {
 
       const result = await manager.getBundleDealItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/get_bundle_deal_item",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/get_bundle_deal_item", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBundleDealList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         page_size: 100,
         time_status: 2,
@@ -355,22 +335,23 @@ describe("BundleDealManager (Generated Tests)", () => {
 
       const result = await manager.getBundleDealList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/get_bundle_deal_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/get_bundle_deal_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.bundle_deal_list.start_time",
+          "response.bundle_deal_list.end_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateBundleDeal", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         rule_type: 1,
         discount_value: 11,
@@ -421,22 +402,20 @@ describe("BundleDealManager (Generated Tests)", () => {
 
       const result = await manager.updateBundleDeal(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/update_bundle_deal",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/update_bundle_deal", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+        timestampPaths: ["response.start_time", "response.end_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateBundleDealItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         bundle_deal_id: 11111324,
         item_list: [
@@ -466,15 +445,12 @@ describe("BundleDealManager (Generated Tests)", () => {
 
       const result = await manager.updateBundleDealItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/bundle_deal/update_bundle_deal_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/bundle_deal/update_bundle_deal_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });

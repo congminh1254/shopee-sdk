@@ -83,7 +83,7 @@ export class GlobalProductManager extends BaseManager {
    * @param {AddGlobalItemRequest} params Request parameters
    * @returns {Promise<AddGlobalItemResponse>} Promise resolving to the response
    */
-  public async addGlobalItem(params?: AddGlobalItemRequest): Promise<AddGlobalItemResponse> {
+  public async addGlobalItem(params: AddGlobalItemRequest): Promise<AddGlobalItemResponse> {
     return ShopeeFetch.fetch<AddGlobalItemResponse>(
       this.config,
       "/global_product/add_global_item",
@@ -100,7 +100,7 @@ export class GlobalProductManager extends BaseManager {
    * @param {AddGlobalModelRequest} params Request parameters
    * @returns {Promise<AddGlobalModelResponse>} Promise resolving to the response
    */
-  public async addGlobalModel(params?: AddGlobalModelRequest): Promise<AddGlobalModelResponse> {
+  public async addGlobalModel(params: AddGlobalModelRequest): Promise<AddGlobalModelResponse> {
     return ShopeeFetch.fetch<AddGlobalModelResponse>(
       this.config,
       "/global_product/add_global_model",
@@ -118,7 +118,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<CategoryRecommendResponse>} Promise resolving to the response
    */
   public async categoryRecommend(
-    params?: CategoryRecommendRequest
+    params: CategoryRecommendRequest
   ): Promise<CategoryRecommendResponse> {
     return ShopeeFetch.fetch<CategoryRecommendResponse>(
       this.config,
@@ -137,7 +137,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<CreatePublishTaskResponse>} Promise resolving to the response
    */
   public async createPublishTask(
-    params?: CreatePublishTaskRequest
+    params: CreatePublishTaskRequest
   ): Promise<CreatePublishTaskResponse> {
     return ShopeeFetch.fetch<CreatePublishTaskResponse>(
       this.config,
@@ -156,7 +156,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<DeleteGlobalItemResponse>} Promise resolving to the response
    */
   public async deleteGlobalItem(
-    params?: DeleteGlobalItemRequest
+    params: DeleteGlobalItemRequest
   ): Promise<DeleteGlobalItemResponse> {
     return ShopeeFetch.fetch<DeleteGlobalItemResponse>(
       this.config,
@@ -175,7 +175,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<DeleteGlobalModelResponse>} Promise resolving to the response
    */
   public async deleteGlobalModel(
-    params?: DeleteGlobalModelRequest
+    params: DeleteGlobalModelRequest
   ): Promise<DeleteGlobalModelResponse> {
     return ShopeeFetch.fetch<DeleteGlobalModelResponse>(
       this.config,
@@ -194,7 +194,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetAttributeTreeResponse>} Promise resolving to the response
    */
   public async getAttributeTree(
-    params?: GetAttributeTreeRequest
+    params: GetAttributeTreeRequest
   ): Promise<GetAttributeTreeResponse> {
     return ShopeeFetch.fetch<GetAttributeTreeResponse>(
       this.config,
@@ -212,7 +212,7 @@ export class GlobalProductManager extends BaseManager {
    * @param {GetBrandListRequest} params Request parameters
    * @returns {Promise<GetBrandListResponse>} Promise resolving to the response
    */
-  public async getBrandList(params?: GetBrandListRequest): Promise<GetBrandListResponse> {
+  public async getBrandList(params: GetBrandListRequest): Promise<GetBrandListResponse> {
     return ShopeeFetch.fetch<GetBrandListResponse>(this.config, "/global_product/get_brand_list", {
       method: "GET",
       auth: true,
@@ -238,7 +238,7 @@ export class GlobalProductManager extends BaseManager {
    * @param {GetGlobalItemIdRequest} params Request parameters
    * @returns {Promise<GetGlobalItemIdResponse>} Promise resolving to the response
    */
-  public async getGlobalItemId(params?: GetGlobalItemIdRequest): Promise<GetGlobalItemIdResponse> {
+  public async getGlobalItemId(params: GetGlobalItemIdRequest): Promise<GetGlobalItemIdResponse> {
     return ShopeeFetch.fetch<GetGlobalItemIdResponse>(
       this.config,
       "/global_product/get_global_item_id",
@@ -256,7 +256,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetGlobalItemInfoResponse>} Promise resolving to the response
    */
   public async getGlobalItemInfo(
-    params?: GetGlobalItemInfoRequest
+    params: GetGlobalItemInfoRequest
   ): Promise<GetGlobalItemInfoResponse> {
     return ShopeeFetch.fetch<GetGlobalItemInfoResponse>(
       this.config,
@@ -298,7 +298,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetGlobalItemListResponse>} Promise resolving to the response
    */
   public async getGlobalItemList(
-    params?: GetGlobalItemListRequest
+    params: GetGlobalItemListRequest
   ): Promise<GetGlobalItemListResponse> {
     return ShopeeFetch.fetch<GetGlobalItemListResponse>(
       this.config,
@@ -307,11 +307,7 @@ export class GlobalProductManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
-        timestampPaths: [
-          "update_time_from",
-          "update_time_to",
-          "response.global_item_list.update_time",
-        ],
+        timestampPaths: ["response.global_item_list.update_time"],
       }
     );
   }
@@ -322,7 +318,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetGlobalModelListResponse>} Promise resolving to the response
    */
   public async getGlobalModelList(
-    params?: GetGlobalModelListRequest
+    params: GetGlobalModelListRequest
   ): Promise<GetGlobalModelListResponse> {
     return ShopeeFetch.fetch<GetGlobalModelListResponse>(
       this.config,
@@ -341,7 +337,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetLocalAdjustmentRateResponse>} Promise resolving to the response
    */
   public async getLocalAdjustmentRate(
-    params?: GetLocalAdjustmentRateRequest
+    params: GetLocalAdjustmentRateRequest
   ): Promise<GetLocalAdjustmentRateResponse> {
     return ShopeeFetch.fetch<GetLocalAdjustmentRateResponse>(
       this.config,
@@ -360,7 +356,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetPublishTaskResultResponse>} Promise resolving to the response
    */
   public async getPublishTaskResult(
-    params?: GetPublishTaskResultRequest
+    params: GetPublishTaskResultRequest
   ): Promise<GetPublishTaskResultResponse> {
     return ShopeeFetch.fetch<GetPublishTaskResultResponse>(
       this.config,
@@ -379,7 +375,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetPublishableShopResponse>} Promise resolving to the response
    */
   public async getPublishableShop(
-    params?: GetPublishableShopRequest
+    params: GetPublishableShopRequest
   ): Promise<GetPublishableShopResponse> {
     return ShopeeFetch.fetch<GetPublishableShopResponse>(
       this.config,
@@ -398,7 +394,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetPublishedListResponse>} Promise resolving to the response
    */
   public async getPublishedList(
-    params?: GetPublishedListRequest
+    params: GetPublishedListRequest
   ): Promise<GetPublishedListResponse> {
     return ShopeeFetch.fetch<GetPublishedListResponse>(
       this.config,
@@ -417,7 +413,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetRecommendAttributeResponse>} Promise resolving to the response
    */
   public async getRecommendAttribute(
-    params?: GetRecommendAttributeRequest
+    params: GetRecommendAttributeRequest
   ): Promise<GetRecommendAttributeResponse> {
     return ShopeeFetch.fetch<GetRecommendAttributeResponse>(
       this.config,
@@ -436,7 +432,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetShopPublishableStatusResponse>} Promise resolving to the response
    */
   public async getShopPublishableStatus(
-    params?: GetShopPublishableStatusRequest
+    params: GetShopPublishableStatusRequest
   ): Promise<GetShopPublishableStatusResponse> {
     return ShopeeFetch.fetch<GetShopPublishableStatusResponse>(
       this.config,
@@ -455,7 +451,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetSizeChartDetailResponse>} Promise resolving to the response
    */
   public async getSizeChartDetail(
-    params?: GetSizeChartDetailRequest
+    params: GetSizeChartDetailRequest
   ): Promise<GetSizeChartDetailResponse> {
     return ShopeeFetch.fetch<GetSizeChartDetailResponse>(
       this.config,
@@ -474,7 +470,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<GetSizeChartListResponse>} Promise resolving to the response
    */
   public async getSizeChartList(
-    params?: GetSizeChartListRequest
+    params: GetSizeChartListRequest
   ): Promise<GetSizeChartListResponse> {
     return ShopeeFetch.fetch<GetSizeChartListResponse>(
       this.config,
@@ -492,7 +488,7 @@ export class GlobalProductManager extends BaseManager {
    * @param {GetVariationsRequest} params Request parameters
    * @returns {Promise<GetVariationsResponse>} Promise resolving to the response
    */
-  public async getVariations(params?: GetVariationsRequest): Promise<GetVariationsResponse> {
+  public async getVariations(params: GetVariationsRequest): Promise<GetVariationsResponse> {
     return ShopeeFetch.fetch<GetVariationsResponse>(this.config, "/global_product/get_variations", {
       method: "GET",
       auth: true,
@@ -506,7 +502,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<InitTierVariationResponse>} Promise resolving to the response
    */
   public async initTierVariation(
-    params?: InitTierVariationRequest
+    params: InitTierVariationRequest
   ): Promise<InitTierVariationResponse> {
     return ShopeeFetch.fetch<InitTierVariationResponse>(
       this.config,
@@ -525,7 +521,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<SearchGlobalAttributeValueListResponse>} Promise resolving to the response
    */
   public async searchGlobalAttributeValueList(
-    params?: SearchGlobalAttributeValueListRequest
+    params: SearchGlobalAttributeValueListRequest
   ): Promise<SearchGlobalAttributeValueListResponse> {
     return ShopeeFetch.fetch<SearchGlobalAttributeValueListResponse>(
       this.config,
@@ -543,7 +539,7 @@ export class GlobalProductManager extends BaseManager {
    * @param {SetSyncFieldRequest} params Request parameters
    * @returns {Promise<SetSyncFieldResponse>} Promise resolving to the response
    */
-  public async setSyncField(params?: SetSyncFieldRequest): Promise<SetSyncFieldResponse> {
+  public async setSyncField(params: SetSyncFieldRequest): Promise<SetSyncFieldResponse> {
     return ShopeeFetch.fetch<SetSyncFieldResponse>(this.config, "/global_product/set_sync_field", {
       method: "POST",
       auth: true,
@@ -557,7 +553,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<SupportSizeChartResponse>} Promise resolving to the response
    */
   public async supportSizeChart(
-    params?: SupportSizeChartRequest
+    params: SupportSizeChartRequest
   ): Promise<SupportSizeChartResponse> {
     return ShopeeFetch.fetch<SupportSizeChartResponse>(
       this.config,
@@ -576,7 +572,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<UpdateGlobalItemResponse>} Promise resolving to the response
    */
   public async updateGlobalItem(
-    params?: UpdateGlobalItemRequest
+    params: UpdateGlobalItemRequest
   ): Promise<UpdateGlobalItemResponse> {
     return ShopeeFetch.fetch<UpdateGlobalItemResponse>(
       this.config,
@@ -595,7 +591,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<UpdateGlobalModelResponse>} Promise resolving to the response
    */
   public async updateGlobalModel(
-    params?: UpdateGlobalModelRequest
+    params: UpdateGlobalModelRequest
   ): Promise<UpdateGlobalModelResponse> {
     return ShopeeFetch.fetch<UpdateGlobalModelResponse>(
       this.config,
@@ -614,7 +610,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<UpdateLocalAdjustmentRateResponse>} Promise resolving to the response
    */
   public async updateLocalAdjustmentRate(
-    params?: UpdateLocalAdjustmentRateRequest
+    params: UpdateLocalAdjustmentRateRequest
   ): Promise<UpdateLocalAdjustmentRateResponse> {
     return ShopeeFetch.fetch<UpdateLocalAdjustmentRateResponse>(
       this.config,
@@ -632,7 +628,7 @@ export class GlobalProductManager extends BaseManager {
    * @param {UpdatePriceRequest} params Request parameters
    * @returns {Promise<UpdatePriceResponse>} Promise resolving to the response
    */
-  public async updatePrice(params?: UpdatePriceRequest): Promise<UpdatePriceResponse> {
+  public async updatePrice(params: UpdatePriceRequest): Promise<UpdatePriceResponse> {
     return ShopeeFetch.fetch<UpdatePriceResponse>(this.config, "/global_product/update_price", {
       method: "POST",
       auth: true,
@@ -645,7 +641,7 @@ export class GlobalProductManager extends BaseManager {
    * @param {UpdateSizeChartRequest} params Request parameters
    * @returns {Promise<UpdateSizeChartResponse>} Promise resolving to the response
    */
-  public async updateSizeChart(params?: UpdateSizeChartRequest): Promise<UpdateSizeChartResponse> {
+  public async updateSizeChart(params: UpdateSizeChartRequest): Promise<UpdateSizeChartResponse> {
     return ShopeeFetch.fetch<UpdateSizeChartResponse>(
       this.config,
       "/global_product/update_size_chart",
@@ -662,7 +658,7 @@ export class GlobalProductManager extends BaseManager {
    * @param {UpdateStockRequest} params Request parameters
    * @returns {Promise<UpdateStockResponse>} Promise resolving to the response
    */
-  public async updateStock(params?: UpdateStockRequest): Promise<UpdateStockResponse> {
+  public async updateStock(params: UpdateStockRequest): Promise<UpdateStockResponse> {
     return ShopeeFetch.fetch<UpdateStockResponse>(this.config, "/global_product/update_stock", {
       method: "POST",
       auth: true,
@@ -676,7 +672,7 @@ export class GlobalProductManager extends BaseManager {
    * @returns {Promise<UpdateTierVariationResponse>} Promise resolving to the response
    */
   public async updateTierVariation(
-    params?: UpdateTierVariationRequest
+    params: UpdateTierVariationRequest
   ): Promise<UpdateTierVariationResponse> {
     return ShopeeFetch.fetch<UpdateTierVariationResponse>(
       this.config,

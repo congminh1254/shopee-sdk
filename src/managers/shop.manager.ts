@@ -34,7 +34,7 @@ export class ShopManager extends BaseManager {
    * @returns {Promise<GetAuthorisedResellerBrandResponse>} Promise resolving to the response
    */
   public async getAuthorisedResellerBrand(
-    params?: GetAuthorisedResellerBrandRequest
+    params: GetAuthorisedResellerBrandRequest
   ): Promise<GetAuthorisedResellerBrandResponse> {
     return ShopeeFetch.fetch<GetAuthorisedResellerBrandResponse>(
       this.config,
@@ -161,7 +161,7 @@ export class ShopManager extends BaseManager {
    * @returns {Promise<SetShopHolidayModeResponse>} Promise resolving to the response
    */
   public async setShopHolidayMode(
-    params?: SetShopHolidayModeRequest
+    params: SetShopHolidayModeRequest
   ): Promise<SetShopHolidayModeResponse> {
     return ShopeeFetch.fetch<SetShopHolidayModeResponse>(
       this.config,
@@ -170,7 +170,6 @@ export class ShopManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
-        timestampPaths: ["holiday_mode_start_time", "holiday_mode_end_time"],
       }
     );
   }

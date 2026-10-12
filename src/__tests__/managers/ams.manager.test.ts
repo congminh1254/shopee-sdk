@@ -205,7 +205,9 @@ describe("AmsManager", () => {
         {
           method: "GET",
           auth: true,
-          params: { item_id_list: ["101", "102"] },
+          params: {
+            item_id_list: ["101", "102"],
+          },
         }
       );
 
@@ -237,7 +239,9 @@ describe("AmsManager", () => {
         {
           method: "POST",
           auth: true,
-          body: { campaign_ids: [1001, 1002] },
+          body: {
+            campaign_ids: [1001, 1002],
+          },
         }
       );
 
@@ -319,7 +323,15 @@ describe("AmsManager", () => {
         {
           method: "GET",
           auth: true,
-          params: { page_size: 20 },
+          params: {
+            page_size: 20,
+          },
+          timestampPaths: [
+            "response.item_list.period_start_time",
+            "response.item_list.period_end_time",
+            "response.item_list.pending_terminated_time",
+            "response.item_list.commission_protection_list.protection_period_end_time",
+          ],
         }
       );
 
@@ -352,7 +364,9 @@ describe("AmsManager", () => {
         {
           method: "GET",
           auth: true,
-          params: { task_id: "task_123456" },
+          params: {
+            task_id: "task_123456",
+          },
         }
       );
 
@@ -387,7 +401,9 @@ describe("AmsManager", () => {
         {
           method: "GET",
           auth: true,
-          params: { page_size: 10 },
+          params: {
+            page_size: 10,
+          },
         }
       );
 
@@ -462,11 +478,7 @@ describe("AmsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/remove_all_products_open_campaign_setting",
-        {
-          method: "POST",
-          auth: true,
-          body: {},
-        }
+        { method: "POST", auth: true, body: undefined }
       );
 
       expect(result.error).toBe("");
@@ -623,7 +635,9 @@ describe("AmsManager", () => {
         {
           method: "GET",
           auth: true,
-          params: { page_size: 20 },
+          params: {
+            page_size: 20,
+          },
         }
       );
 
@@ -653,12 +667,17 @@ describe("AmsManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await amsManager.getTargetedCampaignList();
+      const result = await amsManager.getTargetedCampaignList({ page_size: 20, page_no: 1 });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_targeted_campaign_list", {
         method: "GET",
         auth: true,
-        params: {},
+        params: { page_size: 20, page_no: 1 },
+        timestampPaths: [
+          "response.campaign_list.period_start_time",
+          "response.campaign_list.period_end_time",
+          "response.campaign_list.last_edit_time",
+        ],
       });
 
       expect(result.error).toBe("");
@@ -746,7 +765,15 @@ describe("AmsManager", () => {
         {
           method: "GET",
           auth: true,
-          params: { campaign_id: 12345 },
+          params: {
+            campaign_id: 12345,
+          },
+          timestampPaths: [
+            "response.period_start_time",
+            "response.period_end_time",
+            "response.pending_terminated_time",
+            "response.item_list.commission_protection_list.protection_period_end_time",
+          ],
         }
       );
 
@@ -773,7 +800,9 @@ describe("AmsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/terminate_targeted_campaign", {
         method: "POST",
         auth: true,
-        body: { campaign_id: 12345 },
+        body: {
+          campaign_id: 12345,
+        },
       });
 
       expect(result.error).toBe("");
@@ -886,10 +915,7 @@ describe("AmsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/get_auto_add_new_product_toggle_status",
-        {
-          method: "GET",
-          auth: true,
-        }
+        { method: "GET", auth: true, params: undefined }
       );
 
       expect(result.error).toBe("");
@@ -1056,12 +1082,12 @@ describe("AmsManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await amsManager.getManagedAffiliateList();
+      const result = await amsManager.getManagedAffiliateList({ page_no: 1, page_size: 20 });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_managed_affiliate_list", {
         method: "GET",
         auth: true,
-        params: {},
+        params: { page_no: 1, page_size: 20 },
       });
 
       expect(result.error).toBe("");
@@ -1090,7 +1116,11 @@ describe("AmsManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await amsManager.getOptimizationSuggestionProduct();
+      const result = await amsManager.getOptimizationSuggestionProduct({
+        page_no: 1,
+        page_size: 20,
+        rcmd_reason_filter: "product_opportunities",
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
@@ -1098,7 +1128,15 @@ describe("AmsManager", () => {
         {
           method: "GET",
           auth: true,
-          params: {},
+          params: {
+            page_no: 1,
+            page_size: 20,
+            rcmd_reason_filter: "product_opportunities",
+          },
+          timestampPaths: [
+            "response.item_list.period_start_time",
+            "response.item_list.period_end_time",
+          ],
         }
       );
 
@@ -1129,7 +1167,9 @@ describe("AmsManager", () => {
         {
           method: "GET",
           auth: true,
-          params: { marker_type: "AmsMarker" },
+          params: {
+            marker_type: "AmsMarker",
+          },
         }
       );
 
@@ -1208,16 +1248,12 @@ describe("AmsManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
-      const result = await amsManager.getRecommendedAffiliateList();
+      const result = await amsManager.getRecommendedAffiliateList({ page_size: 50 });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/ams/get_recommended_affiliate_list",
-        {
-          method: "GET",
-          auth: true,
-          params: {},
-        }
+        { method: "GET", auth: true, params: { page_size: 50 } }
       );
 
       expect(result.error).toBe("");
@@ -1288,6 +1324,7 @@ describe("AmsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_shop_suggested_rate", {
         method: "GET",
         auth: true,
+        params: undefined,
       });
 
       expect(result.error).toBe("");
@@ -1317,6 +1354,7 @@ describe("AmsManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/ams/get_validation_list", {
         method: "GET",
         auth: true,
+        params: undefined,
       });
 
       expect(result.error).toBe("");
@@ -1511,12 +1549,20 @@ describe("AmsManager", () => {
     });
   });
 
-  describe("Default Params Coverage", () => {
-    it("should cover AmsManager methods with default parameters", async () => {
+  describe("Required request forwarding", () => {
+    it("should forward required request objects to AmsManager methods", async () => {
       mockShopeeFetch.mockResolvedValue({ response: {} });
 
-      await amsManager.getConversionReport(undefined);
-      await amsManager.getValidationReport(undefined);
+      await amsManager.getConversionReport({ page_no: 1, page_size: 20 });
+      await amsManager.getValidationReport({
+        page_no: 1,
+        page_size: 20,
+        validation_id: "602516439202502",
+        validation_month: 202502,
+        campaign_source: "ShopeeManaged",
+        place_order_time_start: 1753459200,
+        place_order_time_end: 1756051199,
+      });
 
       expect(mockShopeeFetch).toHaveBeenCalledTimes(2);
     });

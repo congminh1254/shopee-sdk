@@ -141,12 +141,11 @@ export class ProductManager extends BaseManager {
    * @param {AddItemRequest} params Request parameters
    * @returns {Promise<AddItemResponse>} Promise resolving to the response
    */
-  public async addItem(params?: AddItemRequest): Promise<AddItemResponse> {
+  public async addItem(params: AddItemRequest): Promise<AddItemResponse> {
     return ShopeeFetch.fetch<AddItemResponse>(this.config, "/product/add_item", {
       method: "POST",
       auth: true,
       body: params,
-      timestampPaths: ["scheduled_publish_time"],
     });
   }
   /**
@@ -155,7 +154,7 @@ export class ProductManager extends BaseManager {
    * @param {AddKitItemRequest} params Request parameters
    * @returns {Promise<AddKitItemResponse>} Promise resolving to the response
    */
-  public async addKitItem(params?: AddKitItemRequest): Promise<AddKitItemResponse> {
+  public async addKitItem(params: AddKitItemRequest): Promise<AddKitItemResponse> {
     return ShopeeFetch.fetch<AddKitItemResponse>(this.config, "/product/add_kit_item", {
       method: "POST",
       auth: true,
@@ -168,7 +167,7 @@ export class ProductManager extends BaseManager {
    * @param {AddModelRequest} params Request parameters
    * @returns {Promise<AddModelResponse>} Promise resolving to the response
    */
-  public async addModel(params?: AddModelRequest): Promise<AddModelResponse> {
+  public async addModel(params: AddModelRequest): Promise<AddModelResponse> {
     return ShopeeFetch.fetch<AddModelResponse>(this.config, "/product/add_model", {
       method: "POST",
       auth: true,
@@ -181,12 +180,11 @@ export class ProductManager extends BaseManager {
    * @param {BatchAddItemRequest} params Request parameters
    * @returns {Promise<BatchAddItemResponse>} Promise resolving to the response
    */
-  public async batchAddItem(params?: BatchAddItemRequest): Promise<BatchAddItemResponse> {
+  public async batchAddItem(params: BatchAddItemRequest): Promise<BatchAddItemResponse> {
     return ShopeeFetch.fetch<BatchAddItemResponse>(this.config, "/product/batch_add_item", {
       method: "POST",
       auth: true,
       body: params,
-      timestampPaths: ["item_list.scheduled_publish_time"],
     });
   }
   /**
@@ -196,7 +194,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<BatchPublishItemToOutletShopResponse>} Promise resolving to the response
    */
   public async batchPublishItemToOutletShop(
-    params?: BatchPublishItemToOutletShopRequest
+    params: BatchPublishItemToOutletShopRequest
   ): Promise<BatchPublishItemToOutletShopResponse> {
     return ShopeeFetch.fetch<BatchPublishItemToOutletShopResponse>(
       this.config,
@@ -215,7 +213,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<BatchUpdateOutletPriceResponse>} Promise resolving to the response
    */
   public async batchUpdateOutletPrice(
-    params?: BatchUpdateOutletPriceRequest
+    params: BatchUpdateOutletPriceRequest
   ): Promise<BatchUpdateOutletPriceResponse> {
     return ShopeeFetch.fetch<BatchUpdateOutletPriceResponse>(
       this.config,
@@ -234,7 +232,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<BatchUpdateOutletStockResponse>} Promise resolving to the response
    */
   public async batchUpdateOutletStock(
-    params?: BatchUpdateOutletStockRequest
+    params: BatchUpdateOutletStockRequest
   ): Promise<BatchUpdateOutletStockResponse> {
     return ShopeeFetch.fetch<BatchUpdateOutletStockResponse>(
       this.config,
@@ -252,7 +250,7 @@ export class ProductManager extends BaseManager {
    * @param {BoostItemRequest} params Request parameters
    * @returns {Promise<BoostItemResponse>} Promise resolving to the response
    */
-  public async boostItem(params?: BoostItemRequest): Promise<BoostItemResponse> {
+  public async boostItem(params: BoostItemRequest): Promise<BoostItemResponse> {
     return ShopeeFetch.fetch<BoostItemResponse>(this.config, "/product/boost_item", {
       method: "POST",
       auth: true,
@@ -266,7 +264,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<CategoryRecommendResponse>} Promise resolving to the response
    */
   public async categoryRecommend(
-    params?: CategoryRecommendRequest
+    params: CategoryRecommendRequest
   ): Promise<CategoryRecommendResponse> {
     return ShopeeFetch.fetch<CategoryRecommendResponse>(
       this.config,
@@ -284,7 +282,7 @@ export class ProductManager extends BaseManager {
    * @param {DeleteItemRequest} params Request parameters
    * @returns {Promise<DeleteItemResponse>} Promise resolving to the response
    */
-  public async deleteItem(params?: DeleteItemRequest): Promise<DeleteItemResponse> {
+  public async deleteItem(params: DeleteItemRequest): Promise<DeleteItemResponse> {
     return ShopeeFetch.fetch<DeleteItemResponse>(this.config, "/product/delete_item", {
       method: "POST",
       auth: true,
@@ -297,7 +295,7 @@ export class ProductManager extends BaseManager {
    * @param {DeleteModelRequest} params Request parameters
    * @returns {Promise<DeleteModelResponse>} Promise resolving to the response
    */
-  public async deleteModel(params?: DeleteModelRequest): Promise<DeleteModelResponse> {
+  public async deleteModel(params: DeleteModelRequest): Promise<DeleteModelResponse> {
     return ShopeeFetch.fetch<DeleteModelResponse>(this.config, "/product/delete_model", {
       method: "POST",
       auth: true,
@@ -311,7 +309,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GenerateKitImageResponse>} Promise resolving to the response
    */
   public async generateKitImage(
-    params?: GenerateKitImageRequest
+    params: GenerateKitImageRequest
   ): Promise<GenerateKitImageResponse> {
     return ShopeeFetch.fetch<GenerateKitImageResponse>(this.config, "/product/generate_kit_image", {
       method: "POST",
@@ -326,7 +324,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetAitemByPitemIdResponse>} Promise resolving to the response
    */
   public async getAitemByPitemId(
-    params?: GetAitemByPitemIdRequest
+    params: GetAitemByPitemIdRequest
   ): Promise<GetAitemByPitemIdResponse> {
     return ShopeeFetch.fetch<GetAitemByPitemIdResponse>(
       this.config,
@@ -345,7 +343,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetAllVehicleListResponse>} Promise resolving to the response
    */
   public async getAllVehicleList(
-    params?: GetAllVehicleListRequest
+    params: GetAllVehicleListRequest
   ): Promise<GetAllVehicleListResponse> {
     return ShopeeFetch.fetch<GetAllVehicleListResponse>(
       this.config,
@@ -364,7 +362,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetAttributeTreeResponse>} Promise resolving to the response
    */
   public async getAttributeTree(
-    params?: GetAttributeTreeRequest
+    params: GetAttributeTreeRequest
   ): Promise<GetAttributeTreeResponse> {
     return ShopeeFetch.fetch<GetAttributeTreeResponse>(this.config, "/product/get_attribute_tree", {
       method: "GET",
@@ -379,7 +377,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetBatchTaskResultResponse>} Promise resolving to the response
    */
   public async getBatchTaskResult(
-    params?: GetBatchTaskResultRequest
+    params: GetBatchTaskResultRequest
   ): Promise<GetBatchTaskResultResponse> {
     return ShopeeFetch.fetch<GetBatchTaskResultResponse>(
       this.config,
@@ -410,7 +408,7 @@ export class ProductManager extends BaseManager {
    * @param {GetBrandListRequest} params Request parameters
    * @returns {Promise<GetBrandListResponse>} Promise resolving to the response
    */
-  public async getBrandList(params?: GetBrandListRequest): Promise<GetBrandListResponse> {
+  public async getBrandList(params: GetBrandListRequest): Promise<GetBrandListResponse> {
     return ShopeeFetch.fetch<GetBrandListResponse>(this.config, "/product/get_brand_list", {
       method: "GET",
       auth: true,
@@ -436,7 +434,7 @@ export class ProductManager extends BaseManager {
    * @param {GetCommentRequest} params Request parameters
    * @returns {Promise<GetCommentResponse>} Promise resolving to the response
    */
-  public async getComment(params?: GetCommentRequest): Promise<GetCommentResponse> {
+  public async getComment(params: GetCommentRequest): Promise<GetCommentResponse> {
     return ShopeeFetch.fetch<GetCommentResponse>(this.config, "/product/get_comment", {
       method: "GET",
       auth: true,
@@ -454,7 +452,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetDirectItemListResponse>} Promise resolving to the response
    */
   public async getDirectItemList(
-    params?: GetDirectItemListRequest
+    params: GetDirectItemListRequest
   ): Promise<GetDirectItemListResponse> {
     return ShopeeFetch.fetch<GetDirectItemListResponse>(
       this.config,
@@ -473,7 +471,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetDirectShopRecommendedPriceResponse>} Promise resolving to the response
    */
   public async getDirectShopRecommendedPrice(
-    params?: GetDirectShopRecommendedPriceRequest
+    params: GetDirectShopRecommendedPriceRequest
   ): Promise<GetDirectShopRecommendedPriceResponse> {
     return ShopeeFetch.fetch<GetDirectShopRecommendedPriceResponse>(
       this.config,
@@ -491,7 +489,7 @@ export class ProductManager extends BaseManager {
    * @param {GetItemBaseInfoRequest} params Request parameters
    * @returns {Promise<GetItemBaseInfoResponse>} Promise resolving to the response
    */
-  public async getItemBaseInfo(params?: GetItemBaseInfoRequest): Promise<GetItemBaseInfoResponse> {
+  public async getItemBaseInfo(params: GetItemBaseInfoRequest): Promise<GetItemBaseInfoResponse> {
     return ShopeeFetch.fetch<GetItemBaseInfoResponse>(this.config, "/product/get_item_base_info", {
       method: "GET",
       auth: true,
@@ -510,7 +508,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetItemContentDiagnosisResultResponse>} Promise resolving to the response
    */
   public async getItemContentDiagnosisResult(
-    params?: GetItemContentDiagnosisResultRequest
+    params: GetItemContentDiagnosisResultRequest
   ): Promise<GetItemContentDiagnosisResultResponse> {
     return ShopeeFetch.fetch<GetItemContentDiagnosisResultResponse>(
       this.config,
@@ -529,7 +527,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetItemExtraInfoResponse>} Promise resolving to the response
    */
   public async getItemExtraInfo(
-    params?: GetItemExtraInfoRequest
+    params: GetItemExtraInfoRequest
   ): Promise<GetItemExtraInfoResponse> {
     return ShopeeFetch.fetch<GetItemExtraInfoResponse>(
       this.config,
@@ -560,12 +558,12 @@ export class ProductManager extends BaseManager {
    * @param {GetItemListRequest} params Request parameters
    * @returns {Promise<GetItemListResponse>} Promise resolving to the response
    */
-  public async getItemList(params?: GetItemListRequest): Promise<GetItemListResponse> {
+  public async getItemList(params: GetItemListRequest): Promise<GetItemListResponse> {
     return ShopeeFetch.fetch<GetItemListResponse>(this.config, "/product/get_item_list", {
       method: "GET",
       auth: true,
       params: params,
-      timestampPaths: ["update_time_from", "update_time_to", "response.item.update_time"],
+      timestampPaths: ["response.item.update_time"],
     });
   }
   /**
@@ -575,7 +573,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetItemListByContentDiagnosisResponse>} Promise resolving to the response
    */
   public async getItemListByContentDiagnosis(
-    params?: GetItemListByContentDiagnosisRequest
+    params: GetItemListByContentDiagnosisRequest
   ): Promise<GetItemListByContentDiagnosisResponse> {
     return ShopeeFetch.fetch<GetItemListByContentDiagnosisResponse>(
       this.config,
@@ -594,7 +592,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetItemPromotionResponse>} Promise resolving to the response
    */
   public async getItemPromotion(
-    params?: GetItemPromotionRequest
+    params: GetItemPromotionRequest
   ): Promise<GetItemPromotionResponse> {
     return ShopeeFetch.fetch<GetItemPromotionResponse>(this.config, "/product/get_item_promotion", {
       method: "GET",
@@ -613,7 +611,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetItemViolationInfoResponse>} Promise resolving to the response
    */
   public async getItemViolationInfo(
-    params?: GetItemViolationInfoRequest
+    params: GetItemViolationInfoRequest
   ): Promise<GetItemViolationInfoResponse> {
     return ShopeeFetch.fetch<GetItemViolationInfoResponse>(
       this.config,
@@ -637,7 +635,7 @@ export class ProductManager extends BaseManager {
    * @param {GetKitItemInfoRequest} params Request parameters
    * @returns {Promise<GetKitItemInfoResponse>} Promise resolving to the response
    */
-  public async getKitItemInfo(params?: GetKitItemInfoRequest): Promise<GetKitItemInfoResponse> {
+  public async getKitItemInfo(params: GetKitItemInfoRequest): Promise<GetKitItemInfoResponse> {
     return ShopeeFetch.fetch<GetKitItemInfoResponse>(this.config, "/product/get_kit_item_info", {
       method: "GET",
       auth: true,
@@ -663,7 +661,7 @@ export class ProductManager extends BaseManager {
    * @param {GetMainItemListRequest} params Request parameters
    * @returns {Promise<GetMainItemListResponse>} Promise resolving to the response
    */
-  public async getMainItemList(params?: GetMainItemListRequest): Promise<GetMainItemListResponse> {
+  public async getMainItemList(params: GetMainItemListRequest): Promise<GetMainItemListResponse> {
     return ShopeeFetch.fetch<GetMainItemListResponse>(this.config, "/product/get_main_item_list", {
       method: "GET",
       auth: true,
@@ -677,7 +675,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetMartItemByOutletItemIdResponse>} Promise resolving to the response
    */
   public async getMartItemByOutletItemId(
-    params?: GetMartItemByOutletItemIdRequest
+    params: GetMartItemByOutletItemIdRequest
   ): Promise<GetMartItemByOutletItemIdResponse> {
     return ShopeeFetch.fetch<GetMartItemByOutletItemIdResponse>(
       this.config,
@@ -696,7 +694,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetMartItemMappingByIdResponse>} Promise resolving to the response
    */
   public async getMartItemMappingById(
-    params?: GetMartItemMappingByIdRequest
+    params: GetMartItemMappingByIdRequest
   ): Promise<GetMartItemMappingByIdResponse> {
     return ShopeeFetch.fetch<GetMartItemMappingByIdResponse>(
       this.config,
@@ -714,7 +712,7 @@ export class ProductManager extends BaseManager {
    * @param {GetModelListRequest} params Request parameters
    * @returns {Promise<GetModelListResponse>} Promise resolving to the response
    */
-  public async getModelList(params?: GetModelListRequest): Promise<GetModelListResponse> {
+  public async getModelList(params: GetModelListRequest): Promise<GetModelListResponse> {
     return ShopeeFetch.fetch<GetModelListResponse>(this.config, "/product/get_model_list", {
       method: "GET",
       auth: true,
@@ -747,7 +745,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetRecommendAttributeResponse>} Promise resolving to the response
    */
   public async getRecommendAttribute(
-    params?: GetRecommendAttributeRequest
+    params: GetRecommendAttributeRequest
   ): Promise<GetRecommendAttributeResponse> {
     return ShopeeFetch.fetch<GetRecommendAttributeResponse>(
       this.config,
@@ -766,7 +764,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetSizeChartDetailResponse>} Promise resolving to the response
    */
   public async getSizeChartDetail(
-    params?: GetSizeChartDetailRequest
+    params: GetSizeChartDetailRequest
   ): Promise<GetSizeChartDetailResponse> {
     return ShopeeFetch.fetch<GetSizeChartDetailResponse>(
       this.config,
@@ -785,7 +783,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetSizeChartListResponse>} Promise resolving to the response
    */
   public async getSizeChartList(
-    params?: GetSizeChartListRequest
+    params: GetSizeChartListRequest
   ): Promise<GetSizeChartListResponse> {
     return ShopeeFetch.fetch<GetSizeChartListResponse>(
       this.config,
@@ -836,7 +834,7 @@ export class ProductManager extends BaseManager {
    * @param {GetVariationsRequest} params Request parameters
    * @returns {Promise<GetVariationsResponse>} Promise resolving to the response
    */
-  public async getVariations(params?: GetVariationsRequest): Promise<GetVariationsResponse> {
+  public async getVariations(params: GetVariationsRequest): Promise<GetVariationsResponse> {
     return ShopeeFetch.fetch<GetVariationsResponse>(this.config, "/product/get_variation_tree", {
       method: "GET",
       auth: true,
@@ -850,7 +848,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetVehicleListByCompatibilityDetailResponse>} Promise resolving to the response
    */
   public async getVehicleListByCompatibilityDetail(
-    params?: GetVehicleListByCompatibilityDetailRequest
+    params: GetVehicleListByCompatibilityDetailRequest
   ): Promise<GetVehicleListByCompatibilityDetailResponse> {
     return ShopeeFetch.fetch<GetVehicleListByCompatibilityDetailResponse>(
       this.config,
@@ -869,7 +867,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<GetWeightRecommendationResponse>} Promise resolving to the response
    */
   public async getWeightRecommendation(
-    params?: GetWeightRecommendationRequest
+    params: GetWeightRecommendationRequest
   ): Promise<GetWeightRecommendationResponse> {
     return ShopeeFetch.fetch<GetWeightRecommendationResponse>(
       this.config,
@@ -888,7 +886,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<InitTierVariationResponse>} Promise resolving to the response
    */
   public async initTierVariation(
-    params?: InitTierVariationRequest
+    params: InitTierVariationRequest
   ): Promise<InitTierVariationResponse> {
     return ShopeeFetch.fetch<InitTierVariationResponse>(
       this.config,
@@ -906,7 +904,7 @@ export class ProductManager extends BaseManager {
    * @param {LinkItemToSspRequest} params Request parameters
    * @returns {Promise<LinkItemToSspResponse>} Promise resolving to the response
    */
-  public async linkItemToSsp(params?: LinkItemToSspRequest): Promise<LinkItemToSspResponse> {
+  public async linkItemToSsp(params: LinkItemToSspRequest): Promise<LinkItemToSspResponse> {
     return ShopeeFetch.fetch<LinkItemToSspResponse>(this.config, "/product/link_item_to_ssp", {
       method: "POST",
       auth: true,
@@ -920,7 +918,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<PublishItemToOutletShopResponse>} Promise resolving to the response
    */
   public async publishItemToOutletShop(
-    params?: PublishItemToOutletShopRequest
+    params: PublishItemToOutletShopRequest
   ): Promise<PublishItemToOutletShopResponse> {
     return ShopeeFetch.fetch<PublishItemToOutletShopResponse>(
       this.config,
@@ -938,7 +936,7 @@ export class ProductManager extends BaseManager {
    * @param {RegisterBrandRequest} params Request parameters
    * @returns {Promise<RegisterBrandResponse>} Promise resolving to the response
    */
-  public async registerBrand(params?: RegisterBrandRequest): Promise<RegisterBrandResponse> {
+  public async registerBrand(params: RegisterBrandRequest): Promise<RegisterBrandResponse> {
     return ShopeeFetch.fetch<RegisterBrandResponse>(this.config, "/product/register_brand", {
       method: "POST",
       auth: true,
@@ -951,7 +949,7 @@ export class ProductManager extends BaseManager {
    * @param {ReplyCommentRequest} params Request parameters
    * @returns {Promise<ReplyCommentResponse>} Promise resolving to the response
    */
-  public async replyComment(params?: ReplyCommentRequest): Promise<ReplyCommentResponse> {
+  public async replyComment(params: ReplyCommentRequest): Promise<ReplyCommentResponse> {
     return ShopeeFetch.fetch<ReplyCommentResponse>(this.config, "/product/reply_comment", {
       method: "POST",
       auth: true,
@@ -965,7 +963,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<SearchAttributeValueListResponse>} Promise resolving to the response
    */
   public async searchAttributeValueList(
-    params?: SearchAttributeValueListRequest
+    params: SearchAttributeValueListRequest
   ): Promise<SearchAttributeValueListResponse> {
     return ShopeeFetch.fetch<SearchAttributeValueListResponse>(
       this.config,
@@ -983,7 +981,7 @@ export class ProductManager extends BaseManager {
    * @param {SearchItemRequest} params Request parameters
    * @returns {Promise<SearchItemResponse>} Promise resolving to the response
    */
-  public async searchItem(params?: SearchItemRequest): Promise<SearchItemResponse> {
+  public async searchItem(params: SearchItemRequest): Promise<SearchItemResponse> {
     return ShopeeFetch.fetch<SearchItemResponse>(this.config, "/product/search_item", {
       method: "GET",
       auth: true,
@@ -1010,7 +1008,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<SearchUnpackagedModelListResponse>} Promise resolving to the response
    */
   public async searchUnpackagedModelList(
-    params?: SearchUnpackagedModelListRequest
+    params: SearchUnpackagedModelListRequest
   ): Promise<SearchUnpackagedModelListResponse> {
     return ShopeeFetch.fetch<SearchUnpackagedModelListResponse>(
       this.config,
@@ -1029,7 +1027,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<UnlinkItemFromSspResponse>} Promise resolving to the response
    */
   public async unlinkItemFromSsp(
-    params?: UnlinkItemFromSspRequest
+    params: UnlinkItemFromSspRequest
   ): Promise<UnlinkItemFromSspResponse> {
     return ShopeeFetch.fetch<UnlinkItemFromSspResponse>(
       this.config,
@@ -1047,7 +1045,7 @@ export class ProductManager extends BaseManager {
    * @param {UnlistItemRequest} params Request parameters
    * @returns {Promise<UnlistItemResponse>} Promise resolving to the response
    */
-  public async unlistItem(params?: UnlistItemRequest): Promise<UnlistItemResponse> {
+  public async unlistItem(params: UnlistItemRequest): Promise<UnlistItemResponse> {
     return ShopeeFetch.fetch<UnlistItemResponse>(this.config, "/product/unlist_item", {
       method: "POST",
       auth: true,
@@ -1060,12 +1058,11 @@ export class ProductManager extends BaseManager {
    * @param {UpdateItemRequest} params Request parameters
    * @returns {Promise<UpdateItemResponse>} Promise resolving to the response
    */
-  public async updateItem(params?: UpdateItemRequest): Promise<UpdateItemResponse> {
+  public async updateItem(params: UpdateItemRequest): Promise<UpdateItemResponse> {
     return ShopeeFetch.fetch<UpdateItemResponse>(this.config, "/product/update_item", {
       method: "POST",
       auth: true,
       body: params,
-      timestampPaths: ["scheduled_publish_time"],
     });
   }
   /**
@@ -1074,7 +1071,7 @@ export class ProductManager extends BaseManager {
    * @param {UpdateKitItemRequest} params Request parameters
    * @returns {Promise<UpdateKitItemResponse>} Promise resolving to the response
    */
-  public async updateKitItem(params?: UpdateKitItemRequest): Promise<UpdateKitItemResponse> {
+  public async updateKitItem(params: UpdateKitItemRequest): Promise<UpdateKitItemResponse> {
     return ShopeeFetch.fetch<UpdateKitItemResponse>(this.config, "/product/update_kit_item", {
       method: "POST",
       auth: true,
@@ -1087,7 +1084,7 @@ export class ProductManager extends BaseManager {
    * @param {UpdateModelRequest} params Request parameters
    * @returns {Promise<UpdateModelResponse>} Promise resolving to the response
    */
-  public async updateModel(params?: UpdateModelRequest): Promise<UpdateModelResponse> {
+  public async updateModel(params: UpdateModelRequest): Promise<UpdateModelResponse> {
     return ShopeeFetch.fetch<UpdateModelResponse>(this.config, "/product/update_model", {
       method: "POST",
       auth: true,
@@ -1100,7 +1097,7 @@ export class ProductManager extends BaseManager {
    * @param {UpdatePriceRequest} params Request parameters
    * @returns {Promise<UpdatePriceResponse>} Promise resolving to the response
    */
-  public async updatePrice(params?: UpdatePriceRequest): Promise<UpdatePriceResponse> {
+  public async updatePrice(params: UpdatePriceRequest): Promise<UpdatePriceResponse> {
     return ShopeeFetch.fetch<UpdatePriceResponse>(this.config, "/product/update_price", {
       method: "POST",
       auth: true,
@@ -1114,7 +1111,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<UpdateSipItemPriceResponse>} Promise resolving to the response
    */
   public async updateSipItemPrice(
-    params?: UpdateSipItemPriceRequest
+    params: UpdateSipItemPriceRequest
   ): Promise<UpdateSipItemPriceResponse> {
     return ShopeeFetch.fetch<UpdateSipItemPriceResponse>(
       this.config,
@@ -1132,7 +1129,7 @@ export class ProductManager extends BaseManager {
    * @param {UpdateStockRequest} params Request parameters
    * @returns {Promise<UpdateStockResponse>} Promise resolving to the response
    */
-  public async updateStock(params?: UpdateStockRequest): Promise<UpdateStockResponse> {
+  public async updateStock(params: UpdateStockRequest): Promise<UpdateStockResponse> {
     return ShopeeFetch.fetch<UpdateStockResponse>(this.config, "/product/update_stock", {
       method: "POST",
       auth: true,
@@ -1146,7 +1143,7 @@ export class ProductManager extends BaseManager {
    * @returns {Promise<UpdateTierVariationResponse>} Promise resolving to the response
    */
   public async updateTierVariation(
-    params?: UpdateTierVariationRequest
+    params: UpdateTierVariationRequest
   ): Promise<UpdateTierVariationResponse> {
     return ShopeeFetch.fetch<UpdateTierVariationResponse>(
       this.config,

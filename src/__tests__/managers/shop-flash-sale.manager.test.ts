@@ -82,6 +82,7 @@ describe("ShopFlashSaleManager", () => {
             start_time: 1721978628,
             end_time: 1727335428,
           },
+          timestampPaths: ["response.start_time", "response.end_time"],
         }
       );
 
@@ -159,6 +160,7 @@ describe("ShopFlashSaleManager", () => {
           params: {
             flash_sale_id: 802063533822541,
           },
+          timestampPaths: ["response.start_time", "response.end_time"],
         }
       );
 
@@ -223,6 +225,7 @@ describe("ShopFlashSaleManager", () => {
             offset: 0,
             limit: 10,
           },
+          timestampPaths: ["flash_sale_list.start_time", "flash_sale_list.end_time"],
         }
       );
 
@@ -592,11 +595,7 @@ describe("ShopFlashSaleManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/shop_flash_sale/get_item_criteria",
-        {
-          method: "GET",
-          auth: true,
-          params: {},
-        }
+        { method: "GET", auth: true, params: {} }
       );
 
       expect(result).toEqual(mockResponse);

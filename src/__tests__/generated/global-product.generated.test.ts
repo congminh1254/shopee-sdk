@@ -24,7 +24,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
   });
 
   describe("addGlobalItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         category_id: 14695,
         global_item_name: "item name sample",
@@ -101,22 +101,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.addGlobalItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/add_global_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("addGlobalModel", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 37001402,
         global_model: [
@@ -158,22 +155,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.addGlobalModel(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/add_global_model",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_model", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("categoryRecommend", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_name: "Head",
         global_product_cover_image: "16bdad2c365f1fccea7664e69b696571",
@@ -191,22 +185,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.categoryRecommend(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/category_recommend",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/category_recommend", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("createPublishTask", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 3500140268,
         shop_id: 600620392,
@@ -282,22 +273,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.createPublishTask(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/create_publish_task",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/create_publish_task", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteGlobalItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 2800146127,
       };
@@ -319,22 +307,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.deleteGlobalItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/delete_global_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/delete_global_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("deleteGlobalModel", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 2600141541,
         global_model_id: 10000548194,
@@ -359,22 +344,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.deleteGlobalModel(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/delete_global_model",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/delete_global_model", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getAttributeTree", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         category_id_list: [123],
         language: '"en"',
@@ -434,22 +416,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getAttributeTree(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_attribute_tree",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_attribute_tree", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getBrandList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         offset: 1,
         page_size: 10,
@@ -479,22 +458,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getBrandList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_brand_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_brand_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getCategory", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         language: "zh-hans",
       };
@@ -519,22 +495,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getCategory(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_category",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_category", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getGlobalItemId", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         shop_id: 1889756,
         item_id_list: [1003698],
@@ -557,22 +530,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getGlobalItemId(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_global_item_id",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_id", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getGlobalItemInfo", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id_list: [123],
       };
@@ -686,22 +656,23 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getGlobalItemInfo(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_global_item_info",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_info", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: [
+          "response.global_item_list.create_time",
+          "response.global_item_list.update_time",
+        ],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getGlobalItemLimit", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         category_id: 123,
       };
@@ -770,22 +741,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getGlobalItemLimit(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_global_item_limit",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_limit", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getGlobalItemList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         offset: "AAAAFA==",
         page_size: 10,
@@ -813,22 +781,20 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getGlobalItemList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_global_item_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+        timestampPaths: ["response.global_item_list.update_time"],
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getGlobalModelList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 28001461,
       };
@@ -902,22 +868,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getGlobalModelList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_global_model_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_model_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getLocalAdjustmentRate", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         shop_id: 123,
       };
@@ -934,14 +897,15 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getLocalAdjustmentRate(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/global_product/get_local_adjustment_rate",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -949,7 +913,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
   });
 
   describe("getPublishTaskResult", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         publish_task_id: 202011300000012000,
       };
@@ -974,14 +938,15 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getPublishTaskResult(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/global_product/get_publish_task_result",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -989,7 +954,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
   });
 
   describe("getPublishableShop", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 3000141126,
         shop_id_list: [3000141126, 3000141127],
@@ -1012,22 +977,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getPublishableShop(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_publishable_shop",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_publishable_shop", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getPublishedList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 3000141126,
         shop_id_list: [220750716, 220056389],
@@ -1052,22 +1014,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getPublishedList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_published_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_published_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getRecommendAttribute", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_name: "iphone6s",
         category_id: 1065001,
@@ -1095,14 +1054,15 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getRecommendAttribute(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/global_product/get_recommend_attribute",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1110,7 +1070,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
   });
 
   describe("getShopPublishableStatus", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 3000141126,
         offset: 0,
@@ -1138,14 +1098,15 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getShopPublishableStatus(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/global_product/get_shop_publishable_status",
-        expect.objectContaining({
+        {
           method: "GET",
           auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
+          params: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1153,7 +1114,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
   });
 
   describe("getSizeChartDetail", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         size_chart_id: 700024639,
         language: '"en"',
@@ -1191,22 +1152,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getSizeChartDetail(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_size_chart_detail",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_size_chart_detail", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getSizeChartList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         category_id: 100087,
         page_size: 10,
@@ -1231,22 +1189,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getSizeChartList(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_size_chart_list",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_size_chart_list", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("getVariations", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         category_id: 123,
       };
@@ -1285,22 +1240,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.getVariations(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/get_variations",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_variations", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("initTierVariation", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_model: [
           {
@@ -1312,7 +1264,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
               },
             ],
             global_model_sku: "sku",
-            tier_index: "0,1",
+            tier_index: "tier",
             weight: 1.1,
             dimension: {
               package_height: 11,
@@ -1356,22 +1308,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.initTierVariation(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/init_tier_variation",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/init_tier_variation", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("searchGlobalAttributeValueList", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         attribute_id: 123,
         value_name: "test_string",
@@ -1400,14 +1349,15 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.searchGlobalAttributeValueList(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/global_product/search_global_attribute_value_list",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1415,7 +1365,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
   });
 
   describe("setSyncField", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         shop_sync_list: [
           {
@@ -1445,22 +1395,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.setSyncField(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/set_sync_field",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/set_sync_field", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("supportSizeChart", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         category_id: 11364,
       };
@@ -1477,22 +1424,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.supportSizeChart(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/support_size_chart",
-        expect.objectContaining({
-          method: "GET",
-          auth: true,
-          params: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/support_size_chart", {
+        method: "GET",
+        auth: true,
+        params: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateGlobalItem", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 100369,
         category_id: 7535,
@@ -1560,22 +1504,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.updateGlobalItem(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/update_global_item",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_global_item", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateGlobalModel", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 28001436,
         global_model: [
@@ -1610,22 +1551,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.updateGlobalModel(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/update_global_model",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_global_model", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateLocalAdjustmentRate", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         adjustment_rate: 123,
         shop_id: 123,
@@ -1646,14 +1584,15 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.updateLocalAdjustmentRate(exampleRequest);
 
+      expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(
         mockConfig,
         "/global_product/update_local_adjustment_rate",
-        expect.objectContaining({
+        {
           method: "POST",
           auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
+          body: exampleRequest,
+        }
       );
 
       expect(result.response).toEqual(exampleResponse);
@@ -1661,7 +1600,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
   });
 
   describe("updatePrice", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 2700143060,
         price_list: [
@@ -1687,22 +1626,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.updatePrice(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/update_price",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_price", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateSizeChart", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 3000141126,
         size_chart: "c54265d475b85e00ffb2404585e32b6f",
@@ -1723,22 +1659,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.updateSizeChart(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/update_size_chart",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_size_chart", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateStock", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 2700143060,
         stock_list: [
@@ -1769,22 +1702,19 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.updateStock(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/update_stock",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_stock", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
   });
 
   describe("updateTierVariation", () => {
-    it("should correctly validate request and response formats", async () => {
+    it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
         global_item_id: 2200146923,
         model_list: [
@@ -1824,15 +1754,12 @@ describe("GlobalProductManager (Generated Tests)", () => {
 
       const result = await manager.updateTierVariation(exampleRequest);
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/update_tier_variation",
-        expect.objectContaining({
-          method: "POST",
-          auth: true,
-          body: expect.objectContaining(exampleRequest),
-        })
-      );
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_tier_variation", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
 
       expect(result.response).toEqual(exampleResponse);
     });
