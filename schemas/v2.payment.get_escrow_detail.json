@@ -2020,7 +2020,8 @@
     "Accounting And Finance",
     "Customer Service",
     "Brand Membership",
-    "Swam ERP"
+    "Swam ERP",
+    "Payment Service Provider"
   ],
   "path": "/api/v2/payment/get_escrow_detail",
   "related_documents": {

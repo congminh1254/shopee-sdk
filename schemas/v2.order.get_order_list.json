@@ -570,7 +570,8 @@
     "Ads Service",
     "Swam ERP",
     "Livestream Management",
-    "Affiliate Marketing Solution Management"
+    "Affiliate Marketing Solution Management",
+    "Payment Service Provider"
   ],
   "path": "/api/v2/order/get_order_list",
   "related_documents": {
