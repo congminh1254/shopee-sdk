@@ -591,7 +591,8 @@
     "ERP System",
     "Seller In House System",
     "Accounting And Finance",
-    "Swam ERP"
+    "Swam ERP",
+    "Payment Service Provider"
   ],
   "path": "/api/v2/payment/get_billing_transaction_info",
   "related_documents": {

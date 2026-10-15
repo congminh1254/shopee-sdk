@@ -359,7 +359,8 @@
     "Ads Facil",
     "Affiliate Marketing Solution Management",
     "Shopee Video Management",
-    "Brand Portal Service"
+    "Brand Portal Service",
+    "Payment Service Provider"
   ],
   "path": "/api/v2/public/get_token_by_resend_code",
   "related_documents": {
