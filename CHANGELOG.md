@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.10.0](https://github.com/congminh1254/shopee-sdk/compare/v2.9.1...v2.10.0) (2026-10-16)
+
+
+### Features
+
+* **logistics:** add booking_sn and shipping document types to logistics schemas ([#289](https://github.com/congminh1254/shopee-sdk/issues/289)) ([ab243bf](https://github.com/congminh1254/shopee-sdk/commit/ab243bf2dad86e8a9667a76b3e034b9e2cf195e9))
+
 ## [2.9.1](https://github.com/congminh1254/shopee-sdk/compare/v2.9.0...v2.9.1) (2026-10-12)
 
 
