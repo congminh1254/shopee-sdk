@@ -21,6 +21,16 @@ export enum CreateShippingDocumentRequestOrderListShippingDocumentType {
   THERMAL_UNPACKAGED_LABEL = "THERMAL_UNPACKAGED_LABEL",
 }
 /**
+ * Enum generated for field CreateShippingDocumentJobRequestShippingDocumentType
+ */
+export enum CreateShippingDocumentJobRequestShippingDocumentType {
+  NORMAL_AIR_WAYBILL = "NORMAL_AIR_WAYBILL",
+  THERMAL_AIR_WAYBILL = "THERMAL_AIR_WAYBILL",
+  NORMAL_JOB_AIR_WAYBILL = "NORMAL_JOB_AIR_WAYBILL",
+  THERMAL_JOB_AIR_WAYBILL = "THERMAL_JOB_AIR_WAYBILL",
+  THERMAL_UNPACKAGED_LABEL = "THERMAL_UNPACKAGED_LABEL",
+}
+/**
  * Enum generated for field DownloadBookingShippingDocumentRequestShippingDocumentType
  */
 export enum DownloadBookingShippingDocumentRequestShippingDocumentType {
@@ -520,17 +530,21 @@ export interface CreateShippingDocumentJobUnpackagedSkuRequest {
  */
 export interface CreateShippingDocumentJobRequest {
   /**
-   * The type of shipping document. Available values: THERMAL_UNPACKAGED_LABEL
+   * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
-  shipping_document_type: string;
+  shipping_document_type: CreateShippingDocumentJobRequestShippingDocumentType | string | number;
   /**
-   * List of Unpackaged SKUs to generate labels for.Note: The unpackaged_sku_requests and package_list cannot be populated at the same time, please select one.
+   * List of Unpackaged SKUs to generate labels for.Note: The unpackaged_sku_requests, package_list, and booking_sn cannot be populated at the same time, please select one.
    */
   unpackaged_sku_requests?: CreateShippingDocumentJobUnpackagedSkuRequest[];
   /**
-   * List of Package Numbers to generate labels for. (maximum 600 total)Note: The unpackaged_sku_requests and package_list cannot be populated at the same time, please select one.
+   * List of Package Numbers to generate labels for. (maximum 600 total)Note: The unpackaged_sku_requests, package_list, and booking_sn cannot be populated at the same time, please select one.
    */
   package_list?: string[];
+  /**
+   * List of Booking SN to generate labels for. (maximum 600 total)Note: The unpackaged_sku_requests, package_list, and booking_sn cannot be populated at the same time, please select one.
+   */
+  booking_sn?: string[];
 }
 /**
  * CreateShippingDocumentJobFail sub-interface for CreateShippingDocumentJobResponseData
@@ -558,7 +572,7 @@ export interface CreateShippingDocumentJobResponseData {
    */
   job_id?: string;
   /**
-   * List of Package Number or Unpackaged SKU ID that succeeds in generating Shipping Document
+   * List of Package Number, Unpackaged SKU ID, or Booking SN that succeeds in generating Shipping Document
    */
   success_id_list?: string[];
   /**
