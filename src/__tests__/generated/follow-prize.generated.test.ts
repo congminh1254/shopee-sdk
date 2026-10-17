@@ -36,16 +36,16 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         percentage: 2,
         max_price: 300,
       };
-      const exampleResponse = {
-        campagin_id: 2365452,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          campagin_id: 2365452,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addFollowPrize(exampleRequest);
 
@@ -53,10 +53,11 @@ describe("FollowPrizeManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/add_follow_prize", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -65,16 +66,16 @@ describe("FollowPrizeManager (Generated Tests)", () => {
       const exampleRequest = {
         campaign_id: 24255,
       };
-      const exampleResponse = {
-        campagin_id: 24255,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          campagin_id: 24255,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteFollowPrize(exampleRequest);
 
@@ -82,10 +83,11 @@ describe("FollowPrizeManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/delete_follow_prize", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -94,16 +96,16 @@ describe("FollowPrizeManager (Generated Tests)", () => {
       const exampleRequest = {
         campaign_id: 123344,
       };
-      const exampleResponse = {
-        campaign_id: 123344,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          campaign_id: 123344,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.endFollowPrize(exampleRequest);
 
@@ -111,10 +113,11 @@ describe("FollowPrizeManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/end_follow_prize", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -123,26 +126,26 @@ describe("FollowPrizeManager (Generated Tests)", () => {
       const exampleRequest = {
         campaign_id: 1551,
       };
-      const exampleResponse = {
-        campaign_status: "upcoming",
-        campaign_id: 1551,
-        usage_quantity: 100,
-        start_time: 1655891400,
-        end_time: 1656581220,
-        min_spend: 100,
-        reward_type: 3,
-        follow_prize_name: "follow prize01",
-        discount_amount: 50,
-        percentage: 1,
-        max_price: 20,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          campaign_status: "upcoming",
+          campaign_id: 1551,
+          usage_quantity: 100,
+          start_time: 1655891400,
+          end_time: 1656581220,
+          min_spend: 100,
+          reward_type: 3,
+          follow_prize_name: "follow prize01",
+          discount_amount: 50,
+          percentage: 1,
+          max_price: 20,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getFollowPrizeDetail(exampleRequest);
 
@@ -150,11 +153,12 @@ describe("FollowPrizeManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/get_follow_prize_detail", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
         timestampPaths: ["response.start_time", "response.end_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -165,27 +169,27 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         page_size: 100,
         status: "upcoming",
       };
-      const exampleResponse = {
-        more: false,
-        follow_prize_list: [
-          {
-            campaign_id: 27,
-            campaign_status: "upcoming",
-            follow_prize_name: "shop_follow_prize3",
-            start_time: 1655341211,
-            end_time: 1657760411,
-            usage_quantity: 2000,
-            claimed: 0,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          more: false,
+          follow_prize_list: [
+            {
+              campaign_id: 27,
+              campaign_status: "upcoming",
+              follow_prize_name: "shop_follow_prize3",
+              start_time: 1655341211,
+              end_time: 1657760411,
+              usage_quantity: 2000,
+              claimed: 0,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getFollowPrizeList(exampleRequest);
 
@@ -193,6 +197,7 @@ describe("FollowPrizeManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/get_follow_prize_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
         timestampPaths: [
           "response.follow_prize_list.start_time",
@@ -200,7 +205,7 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         ],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -214,16 +219,16 @@ describe("FollowPrizeManager (Generated Tests)", () => {
         usage_quantity: 2000,
         min_spend: 123,
       };
-      const exampleResponse = {
-        campagin_id: 123344,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          campagin_id: 123344,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateFollowPrize(exampleRequest);
 
@@ -231,10 +236,11 @@ describe("FollowPrizeManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/follow_prize/update_follow_prize", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

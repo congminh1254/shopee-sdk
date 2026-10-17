@@ -250,7 +250,6 @@ export class PaymentManager extends BaseManager {
       "/payment/get_payment_method_list",
       {
         method: "GET",
-        auth: true,
         params: params,
       }
     );

@@ -1,26 +1,27 @@
+import { pollRead, testName, withCleanup } from "../utils/sandbox-fixtures.js";
 import { describe, it, expect, beforeAll } from "@jest/globals";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 import { VoucherStatus } from "../utils/legacy-enums.js";
 
 const { runTests, initSdk } = setupIntegrationTest();
+const { runTests: runMutations } = setupIntegrationTest({ mutates: true });
 
 (runTests ? describe : describe.skip)("ShopeeSDK VoucherManager Sandbox Integration Tests", () => {
   let sdk: ShopeeSDK;
-  let testVoucherId: number | undefined;
 
   beforeAll(async () => {
     sdk = await initSdk();
   });
 
-  it("should successfully run the full voucher lifecycle", async () => {
+  (runMutations ? it : it.skip)("should successfully run the full voucher lifecycle", async () => {
     // 1. Create a Voucher starting tomorrow and ending in 3 days
     const startTime = Math.floor(Date.now() / 1000) + 86400; // Tomorrow
     const endTime = startTime + 86400 * 2; // Next 2 days
 
     const addResponse = await sdk.voucher.addVoucher({
       voucher_name: "Integration Test Voucher",
-      voucher_code: "IV" + Math.floor(100 + Math.random() * 899),
+      voucher_code: testName("IV").slice(0, 5).toUpperCase(),
       start_time: startTime,
       end_time: endTime,
       voucher_type: 1, // Shop Voucher
@@ -30,33 +31,40 @@ const { runTests, initSdk } = setupIntegrationTest();
       min_basket_price: 50000, // 50k VND
     });
 
-    expect(addResponse).toBeDefined();
-    expect(addResponse.error).toBe("");
-    expect(addResponse.response?.voucher_id).toBeDefined();
+    const testVoucherId = addResponse.response?.voucher_id;
 
-    testVoucherId = addResponse.response?.voucher_id;
+    if (!testVoucherId) throw new Error("Create did not return a voucher ID");
+    await withCleanup(
+      testVoucherId!,
+      async () => {
+        expect(addResponse).toBeDefined();
+        expect(addResponse.error).toBe("");
+        expect(addResponse.response?.voucher_id).toBeDefined();
 
-    if (testVoucherId) {
-      // 2. Fetch the voucher detail to verify
-      const getResponse = await sdk.voucher.getVoucher({
-        voucher_id: testVoucherId,
-      });
-      expect(getResponse.error).toBe("");
-      expect(getResponse.response?.voucher_name).toBe("Integration Test Voucher");
-
-      // 3. Update the voucher limits
-      const updateResponse = await sdk.voucher.updateVoucher({
-        voucher_id: testVoucherId,
-        usage_quantity: 15,
-      });
-      expect(updateResponse.error).toBe("");
-
-      // 4. Delete the upcoming voucher (clean up)
-      const deleteResponse = await sdk.voucher.deleteVoucher({
-        voucher_id: testVoucherId,
-      });
-      expect(deleteResponse.error).toBe("");
-    }
+        const getResponse = await pollRead(
+          () => sdk.voucher.getVoucher({ voucher_id: testVoucherId! }),
+          (value) => value.response?.voucher_name === "Integration Test Voucher"
+        );
+        expect(getResponse.error).toBe("");
+        expect(getResponse.response?.voucher_name).toBe("Integration Test Voucher");
+        const updateResponse = await sdk.voucher.updateVoucher({
+          voucher_id: testVoucherId,
+          usage_quantity: 15,
+        });
+        expect(updateResponse.error).toBe("");
+        const verified = await pollRead(
+          () => sdk.voucher.getVoucher({ voucher_id: testVoucherId }),
+          (value) => value.response?.usage_quantity === 15
+        );
+        expect(verified.response.usage_quantity).toBe(15);
+      },
+      async () => {
+        const deleteResponse = await sdk.voucher.deleteVoucher({
+          voucher_id: testVoucherId,
+        });
+        expect(deleteResponse.error).toBe("");
+      }
+    );
   });
 
   it("should successfully list shop vouchers", async () => {
@@ -68,7 +76,7 @@ const { runTests, initSdk } = setupIntegrationTest();
 
     expect(listResponse).toBeDefined();
     expect(listResponse.error).toBe("");
-    if (listResponse.response?.voucher_list) {
+    {
       expect(Array.isArray(listResponse.response.voucher_list)).toBe(true);
     }
   });

@@ -14,6 +14,7 @@ export class FileWriter {
     const localSpecs = structuredClone(specs);
     this.astBuilder.clearRegistry();
     this.astBuilder.enumNames.clear();
+    this.astBuilder.enumTypes.clear();
     const enums = new Map<string, string>();
     const nodes: ts.Statement[] = [];
     for (const spec of localSpecs) {
@@ -32,6 +33,7 @@ export class FileWriter {
         ]);
         if (enums.get(value.name) !== key) throw new Error(`Conflicting enum ${value.name}`);
         this.astBuilder.enumNames.add(value.name);
+        this.astBuilder.enumTypes.set(value.name, value.type);
       }
     }
     for (const spec of localSpecs) {
@@ -105,7 +107,7 @@ export class FileWriter {
     }
     this.write(
       filePath,
-      'import { FetchResponse } from "./fetch.js";\n' +
+      'import { FetchResponse, ResponseMetadata, Integer, BinaryFile, BinaryFiles } from "./fetch.js";\n' +
         [...unique.values()].map(({ node }) => this.print(node)).join("\n")
     );
   }
@@ -129,7 +131,8 @@ export class FileWriter {
           spec.auth,
           spec.timestampPaths,
           spec.description,
-          spec.requestParams
+          spec.requestParams,
+          spec.authMode
         )
       );
     });
@@ -153,6 +156,13 @@ export class ${getManagerClassName(moduleName)} extends BaseManager {
   }
 
   private write(filePath: string, content: string): void {
+    content = content.replace(
+      /import \{ FetchResponse, ResponseMetadata, Integer, BinaryFile, BinaryFiles \}/,
+      () => {
+        const body = content.slice(content.indexOf(";"));
+        return `import { ${["FetchResponse", "ResponseMetadata", "Integer", "BinaryFile", "BinaryFiles"].filter((name) => new RegExp(`\\b${name}\\b`).test(body)).join(", ")} }`;
+      }
+    );
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
     fs.writeFileSync(
       filePath,

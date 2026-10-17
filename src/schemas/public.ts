@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { ResponseMetadata, Integer } from "./fetch.js";
 /**
  * Request parameters for get_access_token
  *
@@ -14,15 +14,15 @@ export interface GetAccessTokenRequest {
   /**
    * Partner ID is assigned upon registration is successful. Required for all requests.
    */
-  partner_id: number;
+  partner_id: Integer;
   /**
    * Shopee's unique identifier for a shop.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * The main_account_id of the seller that authorized the developer.
    */
-  main_account_id?: number;
+  main_account_id?: Integer;
 }
 /**
  * Response data payload for get_access_token
@@ -31,23 +31,23 @@ export interface GetAccessTokenResponseData {
   /**
    * Returned all shop_ids authorized this time.
    */
-  shop_id_list?: number[];
+  shop_id_list?: Integer[];
   /**
    * Returned all merchant_ids authorized this time.
    */
-  merchant_id_list?: number[];
+  merchant_id_list?: Integer[];
   /**
    * Returned all supplier_ids authorized this time.
    */
-  supplier_id_list?: number[];
+  supplier_id_list?: Integer[];
   /**
    * Returned all user_ids authorized this time.
    */
-  user_id_list?: number[];
+  user_id_list?: Integer[];
   /**
    * If the authorized role is principal administrator, return all principal_id under this authorization.
    */
-  principal_id_list?: number[];
+  principal_id_list?: Integer[];
   /**
    * Returned when the API call is successful. A dynamic token that can be used multiple times and expires after 4 hours.
    */
@@ -66,7 +66,7 @@ export interface GetAccessTokenResponseData {
  *
  * Use the code from the authorization step to call this API to obtain the authorized shop_id, merchant_id, supplier_id, or user_id, and its corresponding access_token and refresh_token.
  */
-export type GetAccessTokenResponse = FetchResponse<GetAccessTokenResponseData>;
+export type GetAccessTokenResponse = ResponseMetadata & GetAccessTokenResponseData;
 /**
  * Request parameters for get_merchants_by_partner
  *
@@ -121,7 +121,7 @@ export interface GetMerchantsByPartnerResponseData {
  *
  * Use this API to get basic info of merchants which have authorized to the partner.
  */
-export type GetMerchantsByPartnerResponse = FetchResponse<GetMerchantsByPartnerResponseData>;
+export type GetMerchantsByPartnerResponse = ResponseMetadata & GetMerchantsByPartnerResponseData;
 /**
  * Request parameters for get_shopee_ip_ranges
  *
@@ -142,7 +142,7 @@ export interface GetShopeeIpRangesResponseData {
  *
  * You can get shopee ip address ranges through this open api.
  */
-export type GetShopeeIpRangesResponse = FetchResponse<GetShopeeIpRangesResponseData>;
+export type GetShopeeIpRangesResponse = ResponseMetadata & GetShopeeIpRangesResponseData;
 /**
  * Request parameters for get_shops_by_partner
  *
@@ -214,7 +214,7 @@ export interface GetShopsByPartnerResponseData {
  *
  * get basic info of shops which have authorized to the partner.
  */
-export type GetShopsByPartnerResponse = FetchResponse<GetShopsByPartnerResponseData>;
+export type GetShopsByPartnerResponse = ResponseMetadata & GetShopsByPartnerResponseData;
 /**
  * Request parameters for get_token_by_resend_code
  *
@@ -256,7 +256,7 @@ export interface GetTokenByResendCodeResponseData {
  *
  * Use the resend code to get access token and refresh token. When you lost your access token or refresh token, you can go to authorization management page to resend code by yourselves. You can only use this endpoint in live environment, we don't support in test-stable environment.
  */
-export type GetTokenByResendCodeResponse = FetchResponse<GetTokenByResendCodeResponseData>;
+export type GetTokenByResendCodeResponse = ResponseMetadata & GetTokenByResendCodeResponseData;
 /**
  * Request parameters for refresh_access_token
  *
@@ -270,27 +270,27 @@ export interface RefreshAccessTokenRequest {
   /**
    * The partner_id obtained from the App. This partner_id is inserted into the body.
    */
-  partner_id: number;
+  partner_id: Integer;
   /**
    * The shop_id that granted authorization to your App. Only the shop_id or merchant_id or supplier_id or user_id can be selected as the input parameter, and they must be refreshed separately.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * The merchant_id that granted authorization to your App. Only the shop_id or merchant_id or supplier_id or user_id can be selected as the input parameter, and they must be refreshed separately.
    */
-  merchant_id?: number;
+  merchant_id?: Integer;
   /**
    * The supplier_id that granted authorization to your App. Only the shop_id or merchant_id or supplier_id or user_id can be selected as the input parameter, and they must be refreshed separately.
    */
-  supplier_id?: number;
+  supplier_id?: Integer;
   /**
    * The user_id that granted authorization to your App. Only the shop_id or merchant_id or supplier_id or user_id can be selected as the input parameter, and they must be refreshed separately.
    */
-  user_id?: number;
+  user_id?: Integer;
   /**
    * Shopee's unique identifier for a principal.
    */
-  principal_id?: number;
+  principal_id?: Integer;
 }
 /**
  * Response data payload for refresh_access_token
@@ -299,27 +299,27 @@ export interface RefreshAccessTokenResponseData {
   /**
    * Returned when the API call is successful. The partner_id you used for this refresh.
    */
-  partner_id?: number;
+  partner_id?: Integer;
   /**
    * Returned when the API call is successful.The principal_id for this refresh.
    */
-  principal_id?: number;
+  principal_id?: Integer;
   /**
    * Returned when the API call is successful. The shop_id for this refresh.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Returned when the API call is successful. The merchant_id for this refresh.
    */
-  merchant_id?: number;
+  merchant_id?: Integer;
   /**
    * Returned when the API call is successful. The supplier_id for this refresh.
    */
-  supplier_id?: number;
+  supplier_id?: Integer;
   /**
    * Returned when the API call is successful. The user_id for this refresh.
    */
-  user_id?: number;
+  user_id?: Integer;
   /**
    * Returned when the API call is successful. Each new access_token is a dynamic token that can be used multiple times. It expires after 4 hours.
    */
@@ -338,4 +338,4 @@ export interface RefreshAccessTokenResponseData {
  *
  * Use this API to refresh the access_token after it expires. Refresh_token can be used once only, this API will also return a new refresh_token. Please use the new refresh_token for the next RefreshAccessToken call
  */
-export type RefreshAccessTokenResponse = FetchResponse<RefreshAccessTokenResponseData>;
+export type RefreshAccessTokenResponse = ResponseMetadata & RefreshAccessTokenResponseData;

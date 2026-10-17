@@ -72,6 +72,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/delete_video", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: {
           video_upload_id_list: ["upload123", "upload456"],
         },
@@ -107,6 +108,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/delete_video", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: {
           video_upload_id_list: ["upload123"],
           post_id_list: ["post456"],
@@ -183,6 +185,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/edit_video_info", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: {
           video_upload_list: [
             {
@@ -247,6 +250,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/edit_video_info", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: {
           video_upload_list: [
             {
@@ -337,6 +341,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_cover_list", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: {
           video_upload_id: "upload123",
         },
@@ -365,6 +370,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_cover_list", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: {
           video_upload_id: "upload123",
         },
@@ -408,6 +414,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_metric_trend", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: {
           period_type: "Day",
           end_date: "2026-05-20",
@@ -438,6 +445,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_metric_trend", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: {
           period_type: "Day",
           end_date: "2026-05-20",
@@ -478,6 +486,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_overview_performance", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: {
           period_type: "Day",
           end_date: "2026-05-20",
@@ -507,6 +516,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_overview_performance", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: {
           period_type: "Day",
           end_date: "2026-05-20",
@@ -556,6 +566,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             page_no: 1,
             page_size: 10,
@@ -598,6 +609,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             page_no: 1,
             page_size: 10,
@@ -640,6 +652,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_user_demographics", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: undefined,
       });
 
@@ -673,6 +686,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: {
           video_upload_id: "upload123",
         },
@@ -706,6 +720,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: {
           video_upload_id: "upload123",
           post_id: "post123",
@@ -751,6 +766,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             post_id: "post123",
           },
@@ -781,6 +797,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             post_id: "post123",
           },
@@ -818,6 +835,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             post_id: "post123",
             metric_name: "Views",
@@ -850,6 +868,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             post_id: "post123",
             metric_name: "Views",
@@ -892,6 +911,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             post_id: "post123",
           },
@@ -924,6 +944,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             post_id: "post123",
           },
@@ -966,6 +987,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             post_id: "post123",
             page_no: 1,
@@ -1002,6 +1024,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             post_id: "post123",
             page_no: 1,
@@ -1046,16 +1069,17 @@ describe("VideoManager", () => {
       const result = await videoManager.getVideoList({
         page_no: 1,
         page_size: 10,
-        list_type: [2],
+        list_type: 2,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_list", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: {
           page_no: 1,
           page_size: 10,
-          list_type: [2],
+          list_type: 2,
         },
         timestampPaths: [
           "response.list.post_time",
@@ -1085,16 +1109,17 @@ describe("VideoManager", () => {
       const result = await videoManager.getVideoList({
         page_no: 1,
         page_size: 10,
-        list_type: [2],
+        list_type: 2,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_list", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: {
           page_no: 1,
           page_size: 10,
-          list_type: [2],
+          list_type: 2,
         },
         timestampPaths: [
           "response.list.post_time",
@@ -1148,6 +1173,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             page_no: 1,
             page_size: 10,
@@ -1189,6 +1215,7 @@ describe("VideoManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "user",
           params: {
             page_no: 1,
             page_size: 10,
@@ -1231,6 +1258,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/post_video", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: {
           video_upload_id_list: ["upload123"],
         },
@@ -1258,6 +1286,7 @@ describe("VideoManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/post_video", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: {
           video_upload_id_list: ["upload123"],
         },

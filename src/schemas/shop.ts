@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata, Integer } from "./fetch.js";
 /**
  * Enum generated for field TaxIdType
  */
@@ -43,7 +43,7 @@ export interface GetAuthorisedResellerBrandAuthorisedBrand {
   /**
    * ID of the authorised brand, it may be the same in different regions.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * Name of the authorised brand.
    */
@@ -60,7 +60,7 @@ export interface GetAuthorisedResellerBrandResponseData {
   /**
    * The number of authorised brand linked with the shop.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the authorised brand list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of authorised brand.
    */
@@ -114,7 +114,7 @@ export interface GetBrShopOnboardingInfoResponseData {
    * 1: Personal seller (CPF)
    * 2: Company seller (CNPJ)
    */
-  tax_id_type?: TaxIdType | string | number;
+  tax_id_type?: TaxIdType | number;
   /**
    * The shop’s tax ID.- When tax_id_type = 1 (Personal seller), it is CPF.- When tax_id_type = 2 (Company seller), it is CNPJ.
    */
@@ -138,7 +138,7 @@ export interface GetBrShopOnboardingInfoResponseData {
   /**
    * Birthday of the individual seller (stored as Unix timestamp). Valid only when tax_id_type = 1.
    */
-  birthday?: number;
+  birthday?: Integer;
   /**
    * Birthday of the individual seller (formatted as YYYY-MM-DD). Valid only when tax_id_type = 1.
    */
@@ -277,7 +277,7 @@ export interface GetShopInfoSipAffiShop {
   /**
    * Affiliate shop's id.
    */
-  affi_shop_id?: number;
+  affi_shop_id?: Integer;
   /**
    * Affiliate Shop's area.
    */
@@ -290,7 +290,7 @@ export interface GetShopInfoLinkedDirectShop {
   /**
    * Shop ID of the Cross Border Direct Shop.
    */
-  direct_shop_id?: number;
+  direct_shop_id?: Integer;
   /**
    * Shop Region of the Cross Border Direct Shop.
    */
@@ -303,7 +303,7 @@ export interface GetShopInfoOutletShopInfo {
   /**
    * Shop ID of the Outlet Shop.
    */
-  outlet_shop_id?: number;
+  outlet_shop_id?: Integer;
 }
 /**
  * Response data payload for get_shop_info
@@ -348,11 +348,11 @@ export interface GetShopInfoResponseData {
   /**
    * Shopee’s unique identifier for a merchant. If the shop won't under any merchant, then the value will be null.
    */
-  merchant_id?: number;
+  merchant_id?: Integer;
   /**
    * Use this field to indicate the fulfillment type of current shop, the applicable values: - Pure - FBS Shop: Single mode, refer to Local/CB shops which only have Shopee official warehouse stock, orders are fulfilled by Shopee from Shopee official warehouse; - Pure - 3PF Shop: Single mode, refer to CB shops which only have local seller warehouse stock, orders are fulfilled by seller from local seller warehouse via local logistics channels; - PFF - FBS Shop: 1) Hybird mode, refer to Local shops which have both Shopee official warehouse stock and local seller warehouse stock, orders can be fulfilled by Shopee from Shopee official warehouse and can also fulfilled by seller from local seller warehouse via local logistics channels; 2) Hybrid mode, refer to CB shops which have both Shopee official warehouse stock and CB seller warehouse stock, orders can be fulfilled by Shopee from Shopee official warehouse and can also fulfilled by seller from CB seller warehouse via CB logistics channels; - PFF - 3PF Shop: Hybrid mode, refer to CB shops which have both local seller warehouse stock and CB seller warehouse stock, orders can be fulfilled by seller from local seller warehouse via local logistics channels and can also fulfilled by seller from CB seller warehouse via CB logistics channels; - LFF Hybrid Shop: Hybrid mode, refer to CB shops which have 3 types of stock: FBS stock (Shopee official warehouse stock), 3PF stock (CB seller own stock in the local market) and CB SLS stock (CB seller own stock in CN/HK/KR);- Others- Unknown: Returned when obtaining shop_fulfillment_flag information fails
    */
-  shop_fulfillment_flag?: ShopFulfillmentFlag | string | number;
+  shop_fulfillment_flag?: ShopFulfillmentFlag | string;
   /**
    * Identifies if the current shop is a Local Shop linked to Cross Border Direct Shop.
    */
@@ -364,7 +364,7 @@ export interface GetShopInfoResponseData {
   /**
    * Returns the Shop ID of the Local Shop linked to the Cross Border Direct Shop.
    */
-  linked_main_shop_id?: number;
+  linked_main_shop_id?: Integer;
   /**
    * Returns the list of Cross Border Direct Shops linked to the Local Shop.
    */
@@ -384,7 +384,7 @@ export interface GetShopInfoResponseData {
   /**
    * (Only returned when requesting an Outlet Shop) Refers to the Mart Shop ID this Outlet belongs to.
    */
-  mart_shop_id?: number;
+  mart_shop_id?: Integer;
   /**
    * (Only returned when requesting a Mart Shop) List of Outlet Shop IDs under this Mart Shop.
    */
@@ -399,7 +399,7 @@ export interface GetShopInfoResponseData {
  *
  * Use this call to get information of shop
  */
-export type GetShopInfoResponse = FetchResponse<GetShopInfoResponseData>;
+export type GetShopInfoResponse = ResponseMetadata & GetShopInfoResponseData;
 /**
  * Request parameters for get_shop_notification
  *
@@ -451,7 +451,7 @@ export interface GetShopNotificationResponseData {
  *
  * get Seller Center notification, the permission is controlled by App type
  */
-export type GetShopNotificationResponse = FetchResponse<GetShopNotificationResponseData>;
+export type GetShopNotificationResponse = ResponseMetadata & GetShopNotificationResponseData;
 /**
  * Request parameters for get_warehouse_detail
  *
@@ -470,7 +470,7 @@ export interface GetWarehouseDetailResponseDataItem {
   /**
    * Warehouse address identifier. It should be unique for every warehouse address
    */
-  warehouse_id?: number;
+  warehouse_id?: Integer;
   /**
    * The warehouse name filled in when creating the warehouse address
    */
@@ -486,7 +486,7 @@ export interface GetWarehouseDetailResponseDataItem {
   /**
    * Identity of address
    */
-  address_id?: number;
+  address_id?: Integer;
   /**
    * Region of your warehouse address
    */

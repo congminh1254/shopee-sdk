@@ -31,6 +31,7 @@ describe("BusinessInsightsManager (Generated Tests)", () => {
         period: "real_time/yesterday/past7days/past30days/monthday/week/",
         product_id_list: ["test_string"],
       };
+
       const exampleResponse = {
         code: 0,
         msg: "ok",
@@ -78,14 +79,11 @@ describe("BusinessInsightsManager (Generated Tests)", () => {
         result_performance_product_impression: 2100,
         result_performance_product_clicks: 280,
         result_performance_click_through_rate: 0.133,
-      };
-
-      mockFetch.mockResolvedValueOnce({
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getMarketingHotListing(exampleRequest);
 
@@ -96,11 +94,12 @@ describe("BusinessInsightsManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * Request parameters for get_bound_whs_info
  *
@@ -24,7 +24,7 @@ export interface GetBoundWhsInfoBoundWh {
  * GetBoundWhsInfoList sub-interface for GetBoundWhsInfoResponseData
  */
 export interface GetBoundWhsInfoList {
-  shop_id?: number;
+  shop_id?: Integer;
   bound_whs?: GetBoundWhsInfoBoundWh[];
 }
 /**
@@ -72,7 +72,7 @@ export interface GetCurrentInventoryRequest {
   /**
    * Blank-All；0-No；1-Yes
    */
-  inbound_pending_approval?: number;
+  inbound_pending_approval?: Integer;
   /**
    * Blank-All；0-No；1-Yes
    */
@@ -80,7 +80,7 @@ export interface GetCurrentInventoryRequest {
   /**
    * Category id. Here you need to call the get_category API to retrieve the first-tier category_id.
    */
-  category_id?: number;
+  category_id?: Integer;
   /**
    * 1-Low Stock & No Sellable stock; 2-Low Stock & To replenish; 3-Low Stock & Replenished; 4-Excess
    */
@@ -105,27 +105,27 @@ export interface GetCurrentInventoryWhs {
   /**
    * IR approval but no ASN generated will be included
    */
-  ir_approval_qty?: number;
+  ir_approval_qty?: Integer;
   /**
    * ASN in-transit，ASN pending putaway, Move transfer in transit and Move transfer pending putaway will be included
    */
-  in_transit_pending_putaway_qty?: number;
+  in_transit_pending_putaway_qty?: Integer;
   /**
    * Stocks that are available for sale. This includes warehouse sellable stock, move transfer & rack transfer reserved stock that available for sale, pre-order stock.This quantity may be greater than qty displayed to buyers as it includes stock reserved for upcoming promotions.
    */
-  sellable_qty?: number;
+  sellable_qty?: Integer;
   /**
    * Stocks reserved by buyer order, RTS. And also includes rack transfer reserved stock that are not available for sale
    */
-  reserved_qty?: number;
+  reserved_qty?: Integer;
   /**
    * Stocks in the warehouse that are not available for sale. This includes damaged stocks, isolated stock due to expired/near expiring, in warehouse staging location, missing, etc.
    */
-  unsellable_qty?: number;
+  unsellable_qty?: Integer;
   /**
    * Number of units that are above 6 days of sales coverage Days.
    */
-  excess_stock?: number;
+  excess_stock?: Integer;
   /**
    * Days that the current sellable and pending inbound inventory are expected to last based on current selling speed.
    */
@@ -141,23 +141,23 @@ export interface GetCurrentInventoryWhs {
   /**
    * Sales qty last 7 days
    */
-  last_7_sold?: number;
+  last_7_sold?: Integer;
   /**
    * Sales qty last 15 days
    */
-  last_15_sold?: number;
+  last_15_sold?: Integer;
   /**
    * Sales qty last 30 days
    */
-  last_30_sold?: number;
+  last_30_sold?: Integer;
   /**
    * Sales qty last 60 days
    */
-  last_60_sold?: number;
+  last_60_sold?: Integer;
   /**
    * Sales qty last 90 days
    */
-  last_90_sold?: number;
+  last_90_sold?: Integer;
 }
 /**
  * GetCurrentInventoryShopSku sub-interface for GetCurrentInventorySku
@@ -267,7 +267,7 @@ export interface GetExpiryReportRequest {
   /**
    * Only Level 1 Category can be filtered
    */
-  category_id_l1?: number;
+  category_id_l1?: Integer;
   sku_id?: string;
   item_id?: string;
   variation?: string;
@@ -305,27 +305,27 @@ export interface GetExpiryReportWhs {
   /**
    * Stocks that are expiring soon and should be sold as soon as possible.
    */
-  expiring_qty?: number;
+  expiring_qty?: Integer;
   /**
    * Stock past expiry date.
    */
-  expired_qty?: number;
+  expired_qty?: Integer;
   /**
    * Stocks that are too near to expiry and cannot be sold any more.
    */
-  expiry_blocked_qty?: number;
+  expiry_blocked_qty?: Integer;
   /**
    * Stock in damaged condition and cannot be sold.
    */
-  damaged_qty?: number;
+  damaged_qty?: Integer;
   /**
    * Stocks that are normal.
    */
-  normal_qty?: number;
+  normal_qty?: Integer;
   /**
    * Total stocks on hand.
    */
-  total_qty?: number;
+  total_qty?: Integer;
 }
 /**
  * GetExpiryReportSku sub-interface for GetExpiryReportItem
@@ -384,7 +384,7 @@ export interface GetFulfillmentMappingInventoryListRequest {
   /**
    * The number of records returned by each query. You can fill in value from [1-100].If not filled in, the default value is 100.
    */
-  page_size?: number;
+  page_size?: Integer;
   /**
    * The cursor for the next page query. The next_cursor will be returned from the response. If this field is not provided, the query starts from the first page by default.
    */
@@ -401,7 +401,7 @@ export interface GetFulfillmentMappingInventoryListParentMtsku {
   /**
    * Physical sellable stock of the parent MTSKU in the specified warehouse. It is the original quantity, not multiplied by mapping_formula. Example: mapping_formula = 2*MTSKU_A + 1*MTSKU_B; MTSKU_A stock = 14; returned parent_mtsku_stock = 14. Each Bundle SKU needs two MTSKU_A, so it supports floor(14/2)=7 bundles. The returned stock remains 14, not 28.
    */
-  parent_mtsku_stock?: number;
+  parent_mtsku_stock?: Integer;
 }
 /**
  * GetFulfillmentMappingInventoryListStockContext sub-interface for GetFulfillmentMappingInventoryListList
@@ -410,11 +410,11 @@ export interface GetFulfillmentMappingInventoryListStockContext {
   /**
    * The physical sellable stock for bundle MTSKU without any mapping convert stock.
    */
-  physical_sellable_stock?: number;
+  physical_sellable_stock?: Integer;
   /**
    * The calculated mapping sellable stock that convert from Parent MTSKUs.
    */
-  mapping_sellable_stock?: number;
+  mapping_sellable_stock?: Integer;
   parent_mtsku_list?: GetFulfillmentMappingInventoryListParentMtsku[];
 }
 /**
@@ -428,7 +428,7 @@ export interface GetFulfillmentMappingInventoryListList {
   /**
    * Fulfillment mapping type. (Enum:1-group; 2-lucky bag; 3-mapping list).
    */
-  mapping_type?: number;
+  mapping_type?: Integer;
   /**
    * Shopee warehouse id.
    */
@@ -450,7 +450,7 @@ export interface GetFulfillmentMappingInventoryListResponseData {
   /**
    * The amount of data that meets the query conditions.
    */
-  total?: number;
+  total?: Integer;
   /**
    * If the returned value is a non-empty string, it indicates that there is more data available. Include this returned value in the next query request to continue retrieving data starting from the corresponding position indicated by the cursor.
    */
@@ -500,7 +500,7 @@ export interface GetStockAgingRequest {
   /**
    * L1-level product category ID. You need to call the get_category API to obtain the first-level category_id
    */
-  category_id?: number;
+  category_id?: Integer;
   /**
    * BR、CN、ID、MY、MX、TH、TW、PH、VN、SGIf do not pass, will get error "block by gateway due to invalid cid"
    */
@@ -517,31 +517,31 @@ export interface GetStockAgingWhs {
   /**
    * 0-30Days
    */
-  qty_of_stock_age_one?: number;
+  qty_of_stock_age_one?: Integer;
   /**
    * 31-60Days
    */
-  qty_of_stock_age_two?: number;
+  qty_of_stock_age_two?: Integer;
   /**
    * 61-90Days
    */
-  qty_of_stock_age_three?: number;
+  qty_of_stock_age_three?: Integer;
   /**
    * 91-120Days
    */
-  qty_of_stock_age_four?: number;
+  qty_of_stock_age_four?: Integer;
   /**
    * 121-180Days
    */
-  qty_of_stock_age_five?: number;
+  qty_of_stock_age_five?: Integer;
   /**
    * >180Days
    */
-  qty_of_stock_age_six?: number;
+  qty_of_stock_age_six?: Integer;
   /**
    * expired stock
    */
-  excess_stock?: number;
+  excess_stock?: Integer;
   aging_storage_tag?: number;
 }
 /**
@@ -653,7 +653,7 @@ export interface GetStockMovementRequest {
   /**
    * L1-level category_id. You need to call the get_category API to retrieve the first-level category_id.
    */
-  category_id_l1?: number;
+  category_id_l1?: Integer;
   sku_id?: string;
   item_id?: string;
   /**
@@ -677,23 +677,23 @@ export interface GetStockMovementWhs {
   /**
    * Total warehouse inventory at the start time
    */
-  start_on_hand_total?: number;
+  start_on_hand_total?: Integer;
   /**
    * Inbound quantity to the warehouse during the selected time period.
    */
-  inbound_total?: number;
+  inbound_total?: Integer;
   /**
    * Outbound quantity from the warehouse during the selected time period
    */
-  outbound_total?: number;
+  outbound_total?: Integer;
   /**
    * Inventory adjustment quantity in the warehouse during the selected time period
    */
-  adjust_total?: number;
+  adjust_total?: Integer;
   /**
    * Total warehouse inventory at the end time.
    */
-  end_on_hand_total?: number;
+  end_on_hand_total?: Integer;
 }
 /**
  * GetStockMovementStartQty sub-interface for GetStockMovementSku
@@ -702,16 +702,16 @@ export interface GetStockMovementStartQty {
   /**
    * sku number at the start time
    */
-  start_on_hand_total?: number;
+  start_on_hand_total?: Integer;
   /**
    * Number of sellable SKUs at the start time
    */
-  start_sellable?: number;
+  start_sellable?: Integer;
   /**
    * Number of reserved SKUs at the start time.
    */
-  start_reserved?: number;
-  start_unsellable?: number;
+  start_reserved?: Integer;
+  start_unsellable?: Integer;
 }
 /**
  * GetStockMovementEndQty sub-interface for GetStockMovementSku
@@ -720,10 +720,10 @@ export interface GetStockMovementEndQty {
   /**
    * Total inventory at the end time.
    */
-  end_on_hand_total?: number;
-  end_sellable?: number;
-  end_reserved?: number;
-  end_unsellable?: number;
+  end_on_hand_total?: Integer;
+  end_sellable?: Integer;
+  end_reserved?: Integer;
+  end_unsellable?: Integer;
 }
 /**
  * GetStockMovementInboundQty sub-interface for GetStockMovementSku
@@ -732,15 +732,15 @@ export interface GetStockMovementInboundQty {
   /**
    * Total inbound quantity during the selected time period
    */
-  inbound_total?: number;
+  inbound_total?: Integer;
   /**
    * Total merchant procurement quantity during the selected time period.
    */
-  inbound_my?: number;
+  inbound_my?: Integer;
   /**
    * Total number of SKUs returned by buyers and received into the warehouse during the selected time period.
    */
-  inbound_returned?: number;
+  inbound_returned?: Integer;
 }
 /**
  * GetStockMovementOutboundQty sub-interface for GetStockMovementSku
@@ -749,19 +749,19 @@ export interface GetStockMovementOutboundQty {
   /**
    * Total outbound quantity during the selected time period.
    */
-  outbound_total?: number;
+  outbound_total?: Integer;
   /**
    * "Total sold quantity during the selected time period."
    */
-  outbound_sold?: number;
+  outbound_sold?: Integer;
   /**
    * Total merchant return quantity during the selected time period.
    */
-  outbound_returned?: number;
+  outbound_returned?: Integer;
   /**
    * Total disposal quantity during the selected time period.
    */
-  outbound_disposed?: number;
+  outbound_disposed?: Integer;
 }
 /**
  * GetStockMovementAdjustQty sub-interface for GetStockMovementSku
@@ -770,15 +770,15 @@ export interface GetStockMovementAdjustQty {
   /**
    * "Total number of SKU changes during the selected time period."
    */
-  adjust_total?: number;
+  adjust_total?: Integer;
   /**
    * "Total quantity of lost or recovered items during the selected time period."
    */
-  adjust_lost_found?: number;
+  adjust_lost_found?: Integer;
   /**
    * Total quantity of transfer orders created by the warehouse during the selected time period
    */
-  adjust_trans_whs?: number;
+  adjust_trans_whs?: Integer;
 }
 /**
  * GetStockMovementShopSku sub-interface for GetStockMovementSku

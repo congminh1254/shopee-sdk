@@ -6,6 +6,8 @@ export interface AccessToken {
   error: string;
   message: string;
   shop_id?: number;
+  merchant_id?: number;
+  user_id?: number;
   merchant_id_list?: number[];
   shop_id_list?: number[];
   supplier_id_list?: number[];
@@ -19,6 +21,7 @@ export interface RefreshedAccessToken extends Omit<
   partner_id: number;
   shop_id?: number;
   merchant_id?: number;
+  user_id?: number;
 }
 
 export interface TokenByResendCode {

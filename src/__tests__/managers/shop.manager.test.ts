@@ -138,7 +138,6 @@ describe("ShopManager", () => {
         linked_main_shop_id: 0,
         auth_time: 1741944925,
         expire_time: 1773503999,
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -176,7 +175,6 @@ describe("ShopManager", () => {
         auth_time: 1610533441,
         expire_time: 1642069441,
         merchant_id: 1000000400,
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -198,7 +196,6 @@ describe("ShopManager", () => {
         is_sip: false,
         auth_time: 0,
         expire_time: 0,
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -400,7 +397,6 @@ describe("ShopManager", () => {
           title: "Test Notification",
           url: "https://seller.shopee.sg/notifications",
         },
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -419,10 +415,10 @@ describe("ShopManager", () => {
 
       expect(result.error).toBe("");
       expect(result.cursor).toBe(12345);
-      expect(result.data.title).toBe("Test Notification");
-      expect(result.data.content).toBe("Test notification content");
-      expect(result.data.create_time).toBe(1634567890);
-      expect(result.data.url).toBe("https://seller.shopee.sg/notifications");
+      expect(result.data!.title).toBe("Test Notification");
+      expect(result.data!.content).toBe("Test notification content");
+      expect(result.data!.create_time).toBe(1634567890);
+      expect(result.data!.url).toBe("https://seller.shopee.sg/notifications");
     });
 
     it("should get shop notification with cursor", async () => {
@@ -437,7 +433,6 @@ describe("ShopManager", () => {
           title: "Next Title",
           url: "https://seller.shopee.sg/notifications",
         },
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -471,7 +466,6 @@ describe("ShopManager", () => {
           title: "-",
           url: "-",
         },
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);

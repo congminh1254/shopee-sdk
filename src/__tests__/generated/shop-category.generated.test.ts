@@ -29,24 +29,24 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         shop_category_id: 29333,
         item_list: [100908152, 100908153, 100908154, 100908155],
       };
-      const exampleResponse = {
-        invalid_item_id_list: [
-          {
-            item_id: 100908152,
-            fail_error: "error_param",
-            fail_message: "Syntax error. Please check the format of your Request Parameter.",
-          },
-        ],
-        shop_category_id: 7075387,
-        current_count: 1,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          invalid_item_id_list: [
+            {
+              item_id: 100908152,
+              fail_error: "error_param",
+              fail_message: "Syntax error. Please check the format of your Request Parameter.",
+            },
+          ],
+          shop_category_id: 7075387,
+          current_count: 1,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addItemList(exampleRequest);
 
@@ -54,10 +54,11 @@ describe("ShopCategoryManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/add_item_list", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -67,16 +68,16 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         name: "OA_V2_1",
         sort_weight: 21,
       };
-      const exampleResponse = {
-        shop_category_id: 29333,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          shop_category_id: 29333,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addShopCategory(exampleRequest);
 
@@ -84,10 +85,11 @@ describe("ShopCategoryManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/add_shop_category", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -97,18 +99,18 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         shop_category_id: 29333,
         item_list: [100908152, 100908153],
       };
-      const exampleResponse = {
-        shop_category_id: 29333,
-        invalid_item_id: [123],
-        current_count: 0,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          shop_category_id: 29333,
+          invalid_item_id: [123],
+          current_count: 0,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteItemList(exampleRequest);
 
@@ -116,10 +118,11 @@ describe("ShopCategoryManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/delete_item_list", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -128,17 +131,17 @@ describe("ShopCategoryManager (Generated Tests)", () => {
       const exampleRequest = {
         shop_category_id: 9209570,
       };
-      const exampleResponse = {
-        shop_category_id: 9209570,
-        msg: "Delete shop category success",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          shop_category_id: 9209570,
+          msg: "Delete shop category success",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteShopCategory(exampleRequest);
 
@@ -146,10 +149,11 @@ describe("ShopCategoryManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/delete_shop_category", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -160,18 +164,18 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         page_size: 20,
         page_no: 4,
       };
-      const exampleResponse = {
-        item_list: [100908154, 100908155],
-        total_count: 2,
-        more: false,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          item_list: [100908154, 100908155],
+          total_count: 2,
+          more: false,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getItemList(exampleRequest);
 
@@ -179,10 +183,11 @@ describe("ShopCategoryManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/get_item_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -192,25 +197,25 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         page_size: 100,
         page_no: 1,
       };
-      const exampleResponse = {
-        shop_categorys: [
-          {
-            shop_category_id: 6980782,
-            status: 1,
-            name: "Dream_test",
-            sort_weight: 33,
-          },
-        ],
-        total_count: 45,
-        more: true,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          shop_categorys: [
+            {
+              shop_category_id: 6980782,
+              status: 1,
+              name: "Dream_test",
+              sort_weight: 33,
+            },
+          ],
+          total_count: 45,
+          more: true,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getShopCategoryList(exampleRequest);
 
@@ -218,10 +223,11 @@ describe("ShopCategoryManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/get_shop_category_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -233,19 +239,19 @@ describe("ShopCategoryManager (Generated Tests)", () => {
         sort_weight: 21,
         status: "NORMAL",
       };
-      const exampleResponse = {
-        shop_category_id: 29333,
-        name: "OA_V2_11",
-        sort_weight: 21,
-        status: "NORMAL",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          shop_category_id: 29333,
+          name: "OA_V2_11",
+          sort_weight: 21,
+          status: "NORMAL",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateShopCategory(exampleRequest);
 
@@ -253,10 +259,11 @@ describe("ShopCategoryManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/shop_category/update_shop_category", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

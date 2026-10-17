@@ -55,7 +55,6 @@ describe("PushManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/push/set_app_push_config", {
         method: "POST",
-        auth: true,
         body: {
           callback_url: "https://open.shopee.com/",
           set_push_config_on: [1, 2, 3, 4, 5, 8, 9, 10],
@@ -85,7 +84,6 @@ describe("PushManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/push/set_app_push_config", {
         method: "POST",
-        auth: true,
         body: {
           callback_url: "https://secure.example.com/webhook",
         },
@@ -116,7 +114,6 @@ describe("PushManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/push/get_app_push_config", {
         method: "GET",
-        auth: true,
         params: undefined,
         timestampPaths: ["response.suspended_time"],
       });
@@ -148,7 +145,6 @@ describe("PushManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/push/get_app_push_config", {
         method: "GET",
-        auth: true,
         params: undefined,
         timestampPaths: ["response.suspended_time"],
       });
@@ -197,7 +193,6 @@ describe("PushManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/push/get_lost_push_message", {
         method: "GET",
-        auth: true,
         params: undefined,
         timestampPaths: ["response.push_message_list.timestamp"],
       });
@@ -226,7 +221,6 @@ describe("PushManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/push/get_lost_push_message", {
         method: "GET",
-        auth: true,
         params: undefined,
         timestampPaths: ["response.push_message_list.timestamp"],
       });
@@ -269,7 +263,6 @@ describe("PushManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -283,7 +276,6 @@ describe("PushManager", () => {
         "/push/confirm_consumed_lost_push_message",
         {
           method: "POST",
-          auth: true,
           body: {
             last_message_id: 12345,
           },
@@ -298,7 +290,6 @@ describe("PushManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -312,7 +303,6 @@ describe("PushManager", () => {
         "/push/confirm_consumed_lost_push_message",
         {
           method: "POST",
-          auth: true,
           body: {
             last_message_id: 98765,
           },

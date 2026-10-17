@@ -29,7 +29,7 @@ export function resolveEnumNames(specs: EndpointSpec[]): void {
           }
           resolved.set(name, key);
           value.name = name;
-          param.type = name;
+          param.type = name + (param.type.endsWith("[]") ? "[]" : "");
         }
         if (param.children) visit(param.children, fieldContext);
       }

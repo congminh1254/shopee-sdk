@@ -88,16 +88,16 @@ describe("GlobalProductManager (Generated Tests)", () => {
           size_chart_id: 123,
         },
       };
-      const exampleResponse = {
-        global_item_id: 1007962,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          global_item_id: 1007962,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addGlobalItem(exampleRequest);
 
@@ -105,10 +105,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_item", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -139,19 +140,14 @@ describe("GlobalProductManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "98eae35efff24dd0974c21a847127184",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addGlobalModel(exampleRequest);
 
@@ -159,10 +155,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_model", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -172,16 +169,16 @@ describe("GlobalProductManager (Generated Tests)", () => {
         global_item_name: "Head",
         global_product_cover_image: "16bdad2c365f1fccea7664e69b696571",
       };
-      const exampleResponse = {
-        category_id: [123],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          category_id: [123],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.categoryRecommend(exampleRequest);
 
@@ -189,10 +186,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/category_recommend", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -260,16 +258,16 @@ describe("GlobalProductManager (Generated Tests)", () => {
           ],
         },
       };
-      const exampleResponse = {
-        publish_task_id: 202011300000012000,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          publish_task_id: "202011300000012008",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.createPublishTask(exampleRequest);
 
@@ -277,10 +275,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/create_publish_task", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -289,21 +288,21 @@ describe("GlobalProductManager (Generated Tests)", () => {
       const exampleRequest = {
         global_item_id: 2800146127,
       };
-      const exampleResponse = {
-        failure_delete_item: [
-          {
-            shop_id: 14599,
-            item_id: 20001863,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          failure_delete_item: [
+            {
+              shop_id: 14599,
+              item_id: 20001863,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteGlobalItem(exampleRequest);
 
@@ -311,10 +310,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/delete_global_item", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -324,23 +324,23 @@ describe("GlobalProductManager (Generated Tests)", () => {
         global_item_id: 2600141541,
         global_model_id: 10000548194,
       };
-      const exampleResponse = {
-        global_model_id: 2000278746,
-        failures: [
-          {
-            shop_id: 103122,
-            item_id: 2334252323,
-            model_id: 3234423353,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          global_model_id: 2000278746,
+          failures: [
+            {
+              shop_id: 103122,
+              item_id: 2334252323,
+              model_id: 3234423353,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteGlobalModel(exampleRequest);
 
@@ -348,10 +348,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/delete_global_model", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -361,58 +362,58 @@ describe("GlobalProductManager (Generated Tests)", () => {
         category_id_list: [123],
         language: '"en"',
       };
+
       const exampleResponse = {
-        list: [
-          {
-            attribute_tree: [
-              {
-                attribute_id: 123,
-                mandatory: true,
-                name: "test_string",
-                attribute_value_list: [
-                  {
-                    value_id: 123,
-                    name: "test_string",
-                    value_unit: "test_string",
-                    child_attribute_list: ["test_string"],
-                    multi_lang: {
+        response: {
+          list: [
+            {
+              attribute_tree: [
+                {
+                  attribute_id: 123,
+                  mandatory: true,
+                  name: "test_string",
+                  attribute_value_list: [
+                    {
+                      value_id: 123,
+                      name: "test_string",
+                      value_unit: "test_string",
+                      child_attribute_list: ["test_string"],
+                      multi_lang: {
+                        language: "test_string",
+                        value: "test_string",
+                      },
+                    },
+                  ],
+                  attribute_info: {
+                    input_type: 123,
+                    input_validation_type: 123,
+                    format_type: 123,
+                    date_format_type: 123,
+                    attribute_unit_list: ["test_string"],
+                    mandatory_region: ["test_string"],
+                    max_value_count: 123,
+                    introduction: "test_string",
+                    is_oem: true,
+                    support_search_value: true,
+                  },
+                  multi_lang: [
+                    {
                       language: "test_string",
                       value: "test_string",
                     },
-                  },
-                ],
-                attribute_info: {
-                  input_type: 123,
-                  input_validation_type: 123,
-                  format_type: 123,
-                  date_format_type: 123,
-                  attribute_unit_list: ["test_string"],
-                  mandatory_region: ["test_string"],
-                  max_value_count: 123,
-                  introduction: "test_string",
-                  is_oem: true,
-                  support_search_value: true,
+                  ],
                 },
-                multi_lang: [
-                  {
-                    language: "test_string",
-                    value: "test_string",
-                  },
-                ],
-              },
-            ],
-            category_id: 123,
-            warning: "test_string",
-          },
-        ],
-      };
-
-      mockFetch.mockResolvedValueOnce({
+              ],
+              category_id: 123,
+              warning: "test_string",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getAttributeTree(exampleRequest);
 
@@ -420,10 +421,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_attribute_tree", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -435,26 +437,26 @@ describe("GlobalProductManager (Generated Tests)", () => {
         category_id: 12345,
         status: 1,
       };
-      const exampleResponse = {
-        brand_list: [
-          {
-            brand_id: 0,
-            original_brand_name: "nike",
-            display_brand_name: "nike",
-          },
-        ],
-        has_next_page: true,
-        next_offset: 123,
-        is_mandatory: true,
-        input_type: "test_string",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          brand_list: [
+            {
+              brand_id: 0,
+              original_brand_name: "nike",
+              display_brand_name: "nike",
+            },
+          ],
+          has_next_page: true,
+          next_offset: 123,
+          is_mandatory: true,
+          input_type: "test_string",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getBrandList(exampleRequest);
 
@@ -462,10 +464,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_brand_list", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -474,24 +477,24 @@ describe("GlobalProductManager (Generated Tests)", () => {
       const exampleRequest = {
         language: "zh-hans",
       };
-      const exampleResponse = {
-        category_list: [
-          {
-            category_id: 123,
-            parent_category_id: 123,
-            original_category_name: "test_string",
-            display_category_name: "test_string",
-            has_children: true,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          category_list: [
+            {
+              category_id: 123,
+              parent_category_id: 123,
+              original_category_name: "test_string",
+              display_category_name: "test_string",
+              has_children: true,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getCategory(exampleRequest);
 
@@ -499,10 +502,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_category", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -512,21 +516,21 @@ describe("GlobalProductManager (Generated Tests)", () => {
         shop_id: 1889756,
         item_id_list: [1003698],
       };
-      const exampleResponse = {
-        item_id_map: [
-          {
-            item_id: 1003698,
-            global_item_id: 2059890,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          item_id_map: [
+            {
+              item_id: 1003698,
+              global_item_id: 2059890,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getGlobalItemId(exampleRequest);
 
@@ -534,10 +538,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_id", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -546,113 +551,113 @@ describe("GlobalProductManager (Generated Tests)", () => {
       const exampleRequest = {
         global_item_id_list: [123],
       };
-      const exampleResponse = {
-        global_item_list: [
-          {
-            global_item_id: 27001415,
-            global_item_name: "MY OLD NEW two tier model item 5",
-            description:
-              "MY OLD NEW default no model itemMY OLD NEW default no model itemMY OLD NEW default no model item",
-            global_item_sku: "sku1",
-            global_item_status: "NORMAL",
-            create_time: 1605247451,
-            update_time: 1605247451,
-            stock_info: [
-              {
-                stock_type: 2,
-                stock_location_id: "KRZ",
-                normal_stock: 44,
-                reserved_stock: 0,
-              },
-            ],
-            price_info: [
-              {
-                currency: "CNY",
-                original_price: 100.1,
-                sip_item_price: 11.11,
-                sip_item_price_source: "auto",
-              },
-            ],
-            image: {
-              image_id_list: [
-                "bf5a022e4624ff6c01ef151001762db7",
-                "1a689fb0124a6d8762761f3ae13815ed",
-              ],
-              image_url_list: [
-                "https:",
-                "",
-                "s-cf-tw.shopeesz.com",
-                "file",
-                "bf5a022e4624ff6c01ef151001762db7",
-                "https:",
-                "",
-                "s-cf-tw.shopeesz.com",
-                "file",
-                "1a689fb0124a6d8762761f3ae13815ed",
-              ],
-            },
-            weight: '"1.1"',
-            dimension: {
-              package_length: 11,
-              package_width: 11,
-              package_height: 11,
-            },
-            pre_order: {
-              days_to_ship: 3,
-            },
-            size_chart: "1a689fb0124a6d8762761f3ae13815ed",
-            condition: "NEW",
-            has_model: true,
-            video: {
-              video_url: "1a689fb0124a6d8762761f3ae13815ed",
-              thumbnail_url: "7432bfa3713715bc1f88f4025241eb6d",
-              duration: 100,
-            },
-            category_id: 2347462,
-            brand: {
-              brand_id: 6238,
-              original_brand_name: "Nike",
-            },
-            attribute_list: [
-              {
-                attribute_id: 4811,
-                original_attribute_name: "Brand: L2 Default [14644]",
-                attribute_value_list: [
-                  {
-                    value_id: 1047251,
-                    original_value_name: "10",
-                    value_unit: "kg",
-                  },
-                ],
-              },
-            ],
-            description_info: {
-              extended_description: {
-                field_list: [
-                  {
-                    field_type: "test_string",
-                    text: "test_string",
-                    image_info: {
-                      image_id: "test_string",
-                      image_url: "test_string",
-                    },
-                  },
-                ],
-              },
-            },
-            description_type: "test_string",
-            is_fulfillment_by_shopee: true,
-            size_chart_id: 123,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          global_item_list: [
+            {
+              global_item_id: 27001415,
+              global_item_name: "MY OLD NEW two tier model item 5",
+              description:
+                "MY OLD NEW default no model itemMY OLD NEW default no model itemMY OLD NEW default no model item",
+              global_item_sku: "sku1",
+              global_item_status: "NORMAL",
+              create_time: 1605247451,
+              update_time: 1605247451,
+              stock_info: [
+                {
+                  stock_type: 2,
+                  stock_location_id: "KRZ",
+                  normal_stock: 44,
+                  reserved_stock: 0,
+                },
+              ],
+              price_info: [
+                {
+                  currency: "CNY",
+                  original_price: 100.1,
+                  sip_item_price: 11.11,
+                  sip_item_price_source: "auto",
+                },
+              ],
+              image: {
+                image_id_list: [
+                  "bf5a022e4624ff6c01ef151001762db7",
+                  "1a689fb0124a6d8762761f3ae13815ed",
+                ],
+                image_url_list: [
+                  "https:",
+                  "",
+                  "s-cf-tw.shopeesz.com",
+                  "file",
+                  "bf5a022e4624ff6c01ef151001762db7",
+                  "https:",
+                  "",
+                  "s-cf-tw.shopeesz.com",
+                  "file",
+                  "1a689fb0124a6d8762761f3ae13815ed",
+                ],
+              },
+              weight: '"1.1"',
+              dimension: {
+                package_length: 11,
+                package_width: 11,
+                package_height: 11,
+              },
+              pre_order: {
+                days_to_ship: 3,
+              },
+              size_chart: "1a689fb0124a6d8762761f3ae13815ed",
+              condition: "NEW",
+              has_model: true,
+              video: {
+                video_url: "1a689fb0124a6d8762761f3ae13815ed",
+                thumbnail_url: "7432bfa3713715bc1f88f4025241eb6d",
+                duration: 100,
+              },
+              category_id: 2347462,
+              brand: {
+                brand_id: 6238,
+                original_brand_name: "Nike",
+              },
+              attribute_list: [
+                {
+                  attribute_id: 4811,
+                  original_attribute_name: "Brand: L2 Default [14644]",
+                  attribute_value_list: [
+                    {
+                      value_id: 1047251,
+                      original_value_name: "10",
+                      value_unit: "kg",
+                    },
+                  ],
+                },
+              ],
+              description_info: {
+                extended_description: {
+                  field_list: [
+                    {
+                      field_type: "test_string",
+                      text: "test_string",
+                      image_info: {
+                        image_id: "test_string",
+                        image_url: "test_string",
+                      },
+                    },
+                  ],
+                },
+              },
+              description_type: "test_string",
+              is_fulfillment_by_shopee: true,
+              size_chart_id: 123,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getGlobalItemInfo(exampleRequest);
 
@@ -660,6 +665,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_info", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
         timestampPaths: [
           "response.global_item_list.create_time",
@@ -667,7 +673,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         ],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -676,68 +682,68 @@ describe("GlobalProductManager (Generated Tests)", () => {
       const exampleRequest = {
         category_id: 123,
       };
-      const exampleResponse = {
-        price_limit: {
-          min_limit: 0,
-          max_limit: 99.99,
-        },
-        stock_limit: {
-          min_limit: 0,
-          max_limit: 50,
-        },
-        global_item_name_length_limit: {
-          min_limit: 1,
-          max_limit: 41,
-        },
-        global_item_image_count_limit: {
-          min_limit: 1,
-          max_limit: 5,
-        },
-        global_item_description_length_limit: {
-          min_limit: 1,
-          max_limit: 100,
-        },
-        tier_variation_name_length_limit: {
-          min_limit: 1,
-          max_limit: 20,
-        },
-        tier_variation_option_length_limit: {
-          min_limit: 1,
-          max_limit: 20,
-        },
-        text_length_multiplier: 1.43,
-        extended_description_limit: {
-          description_text_length_min: 123,
-          description_text_length_max: 123,
-          description_image_num_min: 123,
-          description_image_num_max: 123,
-          description_image_width_min: 123,
-          description_image_height_min: 123,
-          description_image_aspect_ratio_min: 123,
-          description_image_aspect_ratio_max: 123,
-        },
-        dts_limit: {
-          days_to_ship_range_list: [
-            {
-              min_limit: 123,
-              max_limit: 123,
-            },
-          ],
-        },
-        weight_limit: {
-          weight_mandatory: true,
-        },
-        dimension_limit: {
-          dimension_mandatory: true,
-        },
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          price_limit: {
+            min_limit: 0,
+            max_limit: 99.99,
+          },
+          stock_limit: {
+            min_limit: 0,
+            max_limit: 50,
+          },
+          global_item_name_length_limit: {
+            min_limit: 1,
+            max_limit: 41,
+          },
+          global_item_image_count_limit: {
+            min_limit: 1,
+            max_limit: 5,
+          },
+          global_item_description_length_limit: {
+            min_limit: 1,
+            max_limit: 100,
+          },
+          tier_variation_name_length_limit: {
+            min_limit: 1,
+            max_limit: 20,
+          },
+          tier_variation_option_length_limit: {
+            min_limit: 1,
+            max_limit: 20,
+          },
+          text_length_multiplier: 1.43,
+          extended_description_limit: {
+            description_text_length_min: 123,
+            description_text_length_max: 123,
+            description_image_num_min: 123,
+            description_image_num_max: 123,
+            description_image_width_min: 123,
+            description_image_height_min: 123,
+            description_image_aspect_ratio_min: 123,
+            description_image_aspect_ratio_max: 123,
+          },
+          dts_limit: {
+            days_to_ship_range_list: [
+              {
+                min_limit: 123,
+                max_limit: 123,
+              },
+            ],
+          },
+          weight_limit: {
+            weight_mandatory: true,
+          },
+          dimension_limit: {
+            dimension_mandatory: true,
+          },
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getGlobalItemLimit(exampleRequest);
 
@@ -745,10 +751,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_limit", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -760,24 +767,24 @@ describe("GlobalProductManager (Generated Tests)", () => {
         update_time_from: 1611311600,
         update_time_to: 1611311631,
       };
-      const exampleResponse = {
-        global_item_list: [
-          {
-            global_item_id: 2300146833,
-            update_time: 1608967817,
-          },
-        ],
-        total_count: 826,
-        has_next_page: true,
-        offset: "AAAAFA==",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          global_item_list: [
+            {
+              global_item_id: 2300146833,
+              update_time: 1608967817,
+            },
+          ],
+          total_count: 826,
+          has_next_page: true,
+          offset: "AAAAFA==",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getGlobalItemList(exampleRequest);
 
@@ -785,11 +792,12 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_list", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
         timestampPaths: ["response.global_item_list.update_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -798,73 +806,73 @@ describe("GlobalProductManager (Generated Tests)", () => {
       const exampleRequest = {
         global_item_id: 28001461,
       };
-      const exampleResponse = {
-        tier_variation: [
-          {
-            name: "tier name 1",
-            option_list: [
-              {
-                option: "tier option 1",
-                image: {
-                  image_url: "https://cf.shopee.sg/file/c54265d475b85e00ffb2404585e32b6f",
-                  image_id: "c54265d475b85e00ffb2404585e32b6f",
-                },
-              },
-            ],
-          },
-        ],
-        global_model: [
-          {
-            global_model_id: 20004490,
-            global_model_sku: "model sku",
-            price_info: {
-              original_price: 100.5,
-            },
-            stock_info: [
-              {
-                stock_type: 1,
-                stock_location_id: "1020",
-                current_stock: 10,
-                normal_stock: 10,
-                reserved_stock: 10,
-              },
-            ],
-            tier_index: [0, 1],
-            weight: '"1.1"',
-            dimension: {
-              package_height: 11,
-              package_length: 11,
-              package_width: 11,
-            },
-            pre_order: {
-              days_to_ship: 2,
-            },
-            is_fulfillment_by_shopee: true,
-          },
-        ],
-        standardise_tier_variation: [
-          {
-            variation_id: 123,
-            variation_name: "test_string",
-            variation_group_id: 123,
-            variation_option_list: [
-              {
-                variation_option_id: 123,
-                variation_option_name: "test_string",
-                image_id: "test_string",
-                image_url: "test_string",
-              },
-            ],
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          tier_variation: [
+            {
+              name: "tier name 1",
+              option_list: [
+                {
+                  option: "tier option 1",
+                  image: {
+                    image_url: "https://cf.shopee.sg/file/c54265d475b85e00ffb2404585e32b6f",
+                    image_id: "c54265d475b85e00ffb2404585e32b6f",
+                  },
+                },
+              ],
+            },
+          ],
+          global_model: [
+            {
+              global_model_id: 20004490,
+              global_model_sku: "model sku",
+              price_info: {
+                original_price: 100.5,
+              },
+              stock_info: [
+                {
+                  stock_type: 1,
+                  stock_location_id: "1020",
+                  current_stock: 10,
+                  normal_stock: 10,
+                  reserved_stock: 10,
+                },
+              ],
+              tier_index: [0, 1],
+              weight: '"1.1"',
+              dimension: {
+                package_height: 11,
+                package_length: 11,
+                package_width: 11,
+              },
+              pre_order: {
+                days_to_ship: 2,
+              },
+              is_fulfillment_by_shopee: true,
+            },
+          ],
+          standardise_tier_variation: [
+            {
+              variation_id: 123,
+              variation_name: "test_string",
+              variation_group_id: 123,
+              variation_option_list: [
+                {
+                  variation_option_id: 123,
+                  variation_option_name: "test_string",
+                  image_id: "test_string",
+                  image_url: "test_string",
+                },
+              ],
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getGlobalModelList(exampleRequest);
 
@@ -872,10 +880,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_model_list", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -884,16 +893,16 @@ describe("GlobalProductManager (Generated Tests)", () => {
       const exampleRequest = {
         shop_id: 123,
       };
-      const exampleResponse = {
-        local_adjustment_rate: 123,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          local_adjustment_rate: 123,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getLocalAdjustmentRate(exampleRequest);
 
@@ -904,11 +913,12 @@ describe("GlobalProductManager (Generated Tests)", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -917,24 +927,24 @@ describe("GlobalProductManager (Generated Tests)", () => {
       const exampleRequest = {
         publish_task_id: 202011300000012000,
       };
-      const exampleResponse = {
-        publish_status: "success",
-        success: {
-          region: "TW",
-          shop_id: "13349",
-          item_id: "1099283",
-        },
-        failed: {
-          failed_reason: "item name length exceed upper limit",
-        },
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          publish_status: "success",
+          success: {
+            region: "TW",
+            shop_id: "13349",
+            item_id: "1099283",
+          },
+          failed: {
+            failed_reason: "item name length exceed upper limit",
+          },
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getPublishTaskResult(exampleRequest);
 
@@ -945,11 +955,12 @@ describe("GlobalProductManager (Generated Tests)", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -959,21 +970,21 @@ describe("GlobalProductManager (Generated Tests)", () => {
         global_item_id: 3000141126,
         shop_id_list: [3000141126, 3000141127],
       };
-      const exampleResponse = {
-        publishable_shop: [
-          {
-            shop_id: 1000567,
-            shop_region: "TW",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          publishable_shop: [
+            {
+              shop_id: 1000567,
+              shop_region: "TW",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getPublishableShop(exampleRequest);
 
@@ -981,10 +992,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_publishable_shop", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -994,23 +1006,23 @@ describe("GlobalProductManager (Generated Tests)", () => {
         global_item_id: 3000141126,
         shop_id_list: [220750716, 220056389],
       };
-      const exampleResponse = {
-        published_item: [
-          {
-            shop_id: 1000369,
-            shop_region: "TW",
-            item_id: 1899023,
-            item_status: 1,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          published_item: [
+            {
+              shop_id: 1000369,
+              shop_region: "TW",
+              item_id: 1899023,
+              item_status: 1,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getPublishedList(exampleRequest);
 
@@ -1018,10 +1030,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_published_list", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1032,25 +1045,25 @@ describe("GlobalProductManager (Generated Tests)", () => {
         category_id: 1065001,
         cover_image_id: "30aa47695d1afb99e296956699f67be6",
       };
-      const exampleResponse = {
-        attribute_list: [
-          {
-            attribute_id: 123,
-            attribute_value_list: [
-              {
-                value_id: 123,
-              },
-            ],
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          attribute_list: [
+            {
+              attribute_id: 123,
+              attribute_value_list: [
+                {
+                  value_id: 123,
+                },
+              ],
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getRecommendAttribute(exampleRequest);
 
@@ -1061,11 +1074,12 @@ describe("GlobalProductManager (Generated Tests)", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1076,25 +1090,25 @@ describe("GlobalProductManager (Generated Tests)", () => {
         offset: 0,
         page_size: 10,
       };
-      const exampleResponse = {
-        shop_publishable_status_list: [
-          {
-            shop_id: 1000567,
-            region: "TW",
-            shop_publishable_status: true,
-            unpublishable_reason: "The shop is under penalty",
-          },
-        ],
-        has_next_page: true,
-        next_offset: 1,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          shop_publishable_status_list: [
+            {
+              shop_id: 1000567,
+              region: "TW",
+              shop_publishable_status: true,
+              unpublishable_reason: "The shop is under penalty",
+            },
+          ],
+          has_next_page: true,
+          next_offset: 1,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getShopPublishableStatus(exampleRequest);
 
@@ -1105,11 +1119,12 @@ describe("GlobalProductManager (Generated Tests)", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1119,36 +1134,36 @@ describe("GlobalProductManager (Generated Tests)", () => {
         size_chart_id: 700024639,
         language: '"en"',
       };
-      const exampleResponse = {
-        size_chart_id: 123,
-        size_chart_name: "test_string",
-        size_chart_table: {
-          column_list: [
-            {
-              measurement: {
-                input_type: "test_string",
-                unit: "test_string",
-                display_name: "test_string",
-              },
-              measurement_value_list: [
-                {
-                  value: 123,
-                  min_value: 123,
-                  max_value: 123,
-                  option: "test_string",
-                },
-              ],
-            },
-          ],
-        },
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          size_chart_id: 123,
+          size_chart_name: "test_string",
+          size_chart_table: {
+            column_list: [
+              {
+                measurement: {
+                  input_type: "test_string",
+                  unit: "test_string",
+                  display_name: "test_string",
+                },
+                measurement_value_list: [
+                  {
+                    value: 123,
+                    min_value: 123,
+                    max_value: 123,
+                    option: "test_string",
+                  },
+                ],
+              },
+            ],
+          },
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getSizeChartDetail(exampleRequest);
 
@@ -1156,10 +1171,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_size_chart_detail", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1170,22 +1186,22 @@ describe("GlobalProductManager (Generated Tests)", () => {
         page_size: 10,
         cursor: '""',
       };
-      const exampleResponse = {
-        size_chart_list: [
-          {
-            size_chart_id: 123,
-          },
-        ],
-        total_count: 123,
-        next_cursor: "test_string",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          size_chart_list: [
+            {
+              size_chart_id: 123,
+            },
+          ],
+          total_count: 123,
+          next_cursor: "test_string",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getSizeChartList(exampleRequest);
 
@@ -1193,10 +1209,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_size_chart_list", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1205,11 +1222,12 @@ describe("GlobalProductManager (Generated Tests)", () => {
       const exampleRequest = {
         category_id: 123,
       };
+
       const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
+        error: "",
+        message: "",
         warning: "test_string",
-        request_id: "test_string",
+        request_id: "test-request-id",
         data: "test_string",
         standardise_variation_list: [
           {
@@ -1230,13 +1248,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
           },
         ],
       };
-
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: exampleResponse,
-      });
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getVariations(exampleRequest);
 
@@ -1244,10 +1256,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_variations", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1264,7 +1277,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
               },
             ],
             global_model_sku: "sku",
-            tier_index: "tier",
+            tier_index: [0, 1],
             weight: 1.1,
             dimension: {
               package_height: 11,
@@ -1292,19 +1305,14 @@ describe("GlobalProductManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "98eae35efff24dd0974c21a847127184",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.initTierVariation(exampleRequest);
 
@@ -1312,10 +1320,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/init_tier_variation", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1327,25 +1336,25 @@ describe("GlobalProductManager (Generated Tests)", () => {
         cursor: 123,
         limit: 100,
       };
-      const exampleResponse = {
-        value_list: [
-          {
-            value_id: 123,
-            value_name: "test_string",
-          },
-        ],
-        page_info: {
-          cursor: 123,
-          has_next: true,
-        },
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          value_list: [
+            {
+              value_id: 123,
+              value_name: "test_string",
+            },
+          ],
+          page_info: {
+            cursor: 123,
+            has_next: true,
+          },
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.searchGlobalAttributeValueList(exampleRequest);
 
@@ -1356,11 +1365,12 @@ describe("GlobalProductManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1379,19 +1389,14 @@ describe("GlobalProductManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "da6b348a4a5e4162b885ecc73c85297f",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.setSyncField(exampleRequest);
 
@@ -1399,10 +1404,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/set_sync_field", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1411,16 +1417,16 @@ describe("GlobalProductManager (Generated Tests)", () => {
       const exampleRequest = {
         category_id: 11364,
       };
-      const exampleResponse = {
-        support_size_chart: true,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          support_size_chart: true,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.supportSizeChart(exampleRequest);
 
@@ -1428,10 +1434,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/support_size_chart", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1491,16 +1498,16 @@ describe("GlobalProductManager (Generated Tests)", () => {
           size_chart_id: 123,
         },
       };
-      const exampleResponse = {
-        global_item_id: 100369,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          global_item_id: 100369,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateGlobalItem(exampleRequest);
 
@@ -1508,10 +1515,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_global_item", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1535,19 +1543,14 @@ describe("GlobalProductManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "98eae35efff24dd0974c21a847127184",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateGlobalModel(exampleRequest);
 
@@ -1555,10 +1558,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_global_model", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1568,19 +1572,14 @@ describe("GlobalProductManager (Generated Tests)", () => {
         adjustment_rate: 123,
         shop_id: 123,
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "test_string",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateLocalAdjustmentRate(exampleRequest);
 
@@ -1591,11 +1590,12 @@ describe("GlobalProductManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1610,19 +1610,14 @@ describe("GlobalProductManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "98eae35efff24dd0974c21a847127184",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updatePrice(exampleRequest);
 
@@ -1630,10 +1625,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_price", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1643,19 +1639,14 @@ describe("GlobalProductManager (Generated Tests)", () => {
         global_item_id: 3000141126,
         size_chart: "c54265d475b85e00ffb2404585e32b6f",
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "98eae35efff24dd0974c21a847127184",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateSizeChart(exampleRequest);
 
@@ -1663,10 +1654,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_size_chart", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1686,19 +1678,14 @@ describe("GlobalProductManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "98eae35efff24dd0974c21a847127184",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateStock(exampleRequest);
 
@@ -1706,10 +1693,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_stock", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -1738,19 +1726,14 @@ describe("GlobalProductManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "98eae35efff24dd0974c21a847127184",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateTierVariation(exampleRequest);
 
@@ -1758,10 +1741,11 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_tier_variation", {
         method: "POST",
         auth: true,
+        authMode: "merchant",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

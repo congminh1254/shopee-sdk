@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata, Integer } from "./fetch.js";
 /**
  * Enum generated for field CampaignPartner
  */
@@ -63,7 +63,7 @@ export interface BatchAddProductsToOpenCampaignRequest {
   /**
    * The list of item_id, max limit: 50
    */
-  item_id_list: number[];
+  item_id_list: Integer[];
   /**
    * Commission Rate, 1.1 means 1.1%, support two decimal places
    */
@@ -84,7 +84,7 @@ export interface BatchAddProductsToOpenCampaignFailed {
   /**
    * Item ID
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Fail Error
    */
@@ -102,7 +102,7 @@ export interface BatchAddProductsToOpenCampaignResponseData {
   /**
    * Success Item ID List
    */
-  success_list?: number[];
+  success_list?: Integer[];
 }
 /**
  * Response payload for batch_add_products_to_open_campaign
@@ -120,7 +120,7 @@ export interface BatchEditProductsOpenCampaignSettingRequest {
   /**
    * The list of campaign_id, max limit: 50
    */
-  campaign_ids: number[];
+  campaign_ids: Integer[];
   /**
    * Commission Rate, 1.1 means 1.1%, support two decimal places
    */
@@ -141,7 +141,7 @@ export interface BatchEditProductsOpenCampaignSettingFailed {
   /**
    * Campaign ID
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * Fail error
    */
@@ -159,7 +159,7 @@ export interface BatchEditProductsOpenCampaignSettingResponseData {
   /**
    * Success Campaign ID List
    */
-  success_list?: number[];
+  success_list?: Integer[];
 }
 /**
  * Response payload for batch_edit_products_open_campaign_setting
@@ -186,7 +186,7 @@ export interface BatchGetProductsSuggestedRateRate {
   /**
    * Item ID
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Minimum suggested commission rate, 1.1 means 1.1%, support two decimal places
    */
@@ -218,7 +218,7 @@ export interface BatchRemoveProductsOpenCampaignSettingRequest {
   /**
    * The list of campaign_id, max limit: 50
    */
-  campaign_ids: number[];
+  campaign_ids: Integer[];
 }
 /**
  * BatchRemoveProductsOpenCampaignSettingFailed sub-interface for BatchRemoveProductsOpenCampaignSettingResponseData
@@ -227,7 +227,7 @@ export interface BatchRemoveProductsOpenCampaignSettingFailed {
   /**
    * Campaign ID
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * Fail error
    */
@@ -245,7 +245,7 @@ export interface BatchRemoveProductsOpenCampaignSettingResponseData {
   /**
    * Success Campaign ID List
    */
-  success_list?: number[];
+  success_list?: Integer[];
 }
 /**
  * Response payload for batch_remove_products_open_campaign_setting
@@ -261,7 +261,7 @@ export interface CreateNewTargetedCampaignItem {
   /**
    * Item ID.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Commission rate of current item, 1.1 means 1.1%, support two decimal places.
    */
@@ -274,7 +274,7 @@ export interface CreateNewTargetedCampaignAffiliate {
   /**
    * The unique key for affiliate.
    */
-  affiliate_id: number;
+  affiliate_id: Integer;
 }
 /**
  * Request parameters for create_new_targeted_campaign
@@ -322,7 +322,7 @@ export interface CreateNewTargetedCampaignFailItem {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Fail error.
    */
@@ -339,7 +339,7 @@ export interface CreateNewTargetedCampaignFailAffiliate {
   /**
    * Affiliate ID.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
   /**
    * Fail error.
    */
@@ -356,7 +356,7 @@ export interface CreateNewTargetedCampaignResponseData {
   /**
    * The unique key for campaign.
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * Failed Item List.
    */
@@ -380,7 +380,7 @@ export interface EditAffiliateListOfTargetedCampaignAffiliate {
   /**
    * The unique key for affiliate.
    */
-  affiliate_id: number;
+  affiliate_id: Integer;
 }
 /**
  * Request parameters for edit_affiliate_list_of_targeted_campaign
@@ -391,7 +391,7 @@ export interface EditAffiliateListOfTargetedCampaignRequest {
   /**
    * Campaign id for update.
    */
-  campaign_id: number;
+  campaign_id: Integer;
   /**
    * Edit type. Applicable values:adddelete
    */
@@ -408,7 +408,7 @@ export interface EditAffiliateListOfTargetedCampaignFailAffiliate {
   /**
    * The unique key for affiliate.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
   /**
    * Indicate error type if hit error. Empty if no error happened.
    */
@@ -480,7 +480,7 @@ export interface EditProductListOfTargetedCampaignItem {
   /**
    * Item ID.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Commission rate of current item, 1.1 means 1.1%, support two decimal places.
    */
@@ -495,7 +495,7 @@ export interface EditProductListOfTargetedCampaignRequest {
   /**
    * Campaign id for update.
    */
-  campaign_id: number;
+  campaign_id: Integer;
   /**
    * Edit type. Applicable values: adddeleteupdate
    */
@@ -512,7 +512,7 @@ export interface EditProductListOfTargetedCampaignFailItem {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Indicate error type if hit error. Empty if no error happened.
    */
@@ -575,7 +575,7 @@ export interface GetAffiliatePerformanceRequest {
   /**
    * Affiliate ID for query.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
 }
 /**
  * GetAffiliatePerformanceList sub-interface for GetAffiliatePerformanceResponseData
@@ -584,7 +584,7 @@ export interface GetAffiliatePerformanceList {
   /**
    * Unique identifier assigned to the affiliate. Used as a reference key in the system.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
   /**
    * Display name of the affiliate, typically the Shopee display name.
    */
@@ -600,15 +600,15 @@ export interface GetAffiliatePerformanceList {
   /**
    * Total number of the product sold through the affiliate's promotion.
    */
-  items_sold?: number;
+  items_sold?: Integer;
   /**
    * Total number of orders generated through the affiliate's promotion.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Total number of clicks on your product links through affiliate marketing during the selected period.
    */
-  clicks?: number;
+  clicks?: Integer;
   /**
    * Estimated payout through the affiliate's promotion.
    */
@@ -620,11 +620,11 @@ export interface GetAffiliatePerformanceList {
   /**
    * Total number of buyers who have purchased the product through the affiliate's promotion.
    */
-  total_buyers?: number;
+  total_buyers?: Integer;
   /**
    * Total number of new buyers who have purchased the product through the affiliate's promotion.
    */
-  new_buyers?: number;
+  new_buyers?: Integer;
 }
 /**
  * GetAffiliatePerformanceResponseData sub-interface for GetAffiliatePerformanceResponse
@@ -634,7 +634,7 @@ export interface GetAffiliatePerformanceResponseData {
   /**
    * Total number of affiliates that match the condition.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
@@ -702,11 +702,11 @@ export interface GetCampaignKeyMetricsPerformanceOpenCampaignKeyMetirc {
   /**
    * Total number of affiliates who drove orders from Open Campaigns.
    */
-  affiliates?: number;
+  affiliates?: Integer;
   /**
    * Total number of items sold from Open Campaigns.
    */
-  items_sold?: number;
+  items_sold?: Integer;
   /**
    * Total value of orders from Open Campaigns.
    */
@@ -723,11 +723,11 @@ export interface GetCampaignKeyMetricsPerformanceTargetedCampaignKeyMetirc {
   /**
    * Total number of affiliates who drove orders from Targeted Campaigns.
    */
-  affiliates?: number;
+  affiliates?: Integer;
   /**
    * Total number of items sold from Targeted Campaigns.
    */
-  items_sold?: number;
+  items_sold?: Integer;
   /**
    * Total value of orders from Targeted Campaigns.
    */
@@ -798,11 +798,11 @@ export interface GetContentPerformanceRequest {
   /**
    * Search for the contents published by affiliates with the affiliate id entered.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
   /**
    * Search for the contents with the searched product included (precise search).
    */
-  item_id?: number;
+  item_id?: Integer;
 }
 /**
  * GetContentPerformanceList sub-interface for GetContentPerformanceResponseData
@@ -819,7 +819,7 @@ export interface GetContentPerformanceList {
   /**
    * Livestream:  The livestream start time.Video: The video post time.
    */
-  post_time?: number;
+  post_time?: Integer;
   /**
    * Display name of the affiliate who posted the content, typically the Shopee name.
    */
@@ -831,7 +831,7 @@ export interface GetContentPerformanceList {
   /**
    * Number of products associated with the content.
    */
-  products?: number;
+  products?: Integer;
   /**
    * The total viewed pv of the content of this shop within the selected time range
    */
@@ -851,11 +851,11 @@ export interface GetContentPerformanceList {
   /**
    * The total number of orders associated with the shop for the content in the selected time range
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * The total number of items sold associated with the shop for the content in the selected time range
    */
-  items_sold?: number;
+  items_sold?: Integer;
   /**
    * Channel. Applicable values: - ShopeeVideo- LiveStreaming
    */
@@ -869,7 +869,7 @@ export interface GetContentPerformanceResponseData {
   /**
    * This is to indicate the whole number of items.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
@@ -906,11 +906,11 @@ export interface GetConversionReportRequest {
   /**
    * ID of the affiliate who promoted the item.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
   /**
    * ID of the product purchased.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Product's name.
    */
@@ -918,15 +918,15 @@ export interface GetConversionReportRequest {
   /**
    * Hierarchical product category classification. (L1 Category)
    */
-  l1_category_id?: number;
+  l1_category_id?: Integer;
   /**
    * Hierarchical product category classification. (L2 category)
    */
-  l2_category_id?: number;
+  l2_category_id?: Integer;
   /**
    * Hierarchical product category classification. (L3 Category)
    */
-  l3_category_id?: number;
+  l3_category_id?: Integer;
   /**
    * Order Status. Applicable values:UnpaidPendingCompletedCancelled
    */
@@ -942,11 +942,11 @@ export interface GetConversionReportRequest {
   /**
    * ID referencing the campaign rule applied.
    */
-  attr_campaign_id?: number;
+  attr_campaign_id?: Integer;
   /**
    * Name/ID of campaign partner.
    */
-  campaign_partner?: CampaignPartner | string | number;
+  campaign_partner?: CampaignPartner | string;
   /**
    * Seller Campaign Type. Applicable values:TargetCampaignOpenCampaignMCNCampaign
    */
@@ -999,7 +999,7 @@ export interface GetConversionReportItem {
   /**
    * Unique identifier of the item in the order.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of the item in the order.
    */
@@ -1007,19 +1007,19 @@ export interface GetConversionReportItem {
   /**
    * SKU/model identifier for the item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Level-1 global category id classification of the item.
    */
-  l1_category_id?: number;
+  l1_category_id?: Integer;
   /**
    * Level-2 global category id classification of the item.
    */
-  l2_category_id?: number;
+  l2_category_id?: Integer;
   /**
    * Level-3 global category id classification of the item.
    */
-  l3_category_id?: number;
+  l3_category_id?: Integer;
   /**
    * Identifier of the promotion campaign linked to the order.
    */
@@ -1027,11 +1027,11 @@ export interface GetConversionReportItem {
   /**
    * Item price in cents (or smallest currency unit).
    */
-  price?: number;
+  price?: Integer;
   /**
    * Quantity of the item purchased.
    */
-  qty?: number;
+  qty?: Integer;
   /**
    * Type of seller campaign:1. Seller Open Campaign – Open to all affiliates.2. Seller Target Campaign – Restricted to designated affiliates.
    */
@@ -1039,11 +1039,11 @@ export interface GetConversionReportItem {
   /**
    * Campaign attribute ID associated with the order.
    */
-  attr_campaign_id?: number;
+  attr_campaign_id?: Integer;
   /**
    * Total purchase value of the order in cents (or smallest currency unit).
    */
-  purchase_value?: number;
+  purchase_value?: Integer;
   /**
    * Amount refunded for the order.
    */
@@ -1108,7 +1108,7 @@ export interface GetConversionReportList {
   /**
    * Unique identifier of the affiliate.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
   /**
    * Shopee display name of the affiliate who promoted the item.
    */
@@ -1154,7 +1154,7 @@ export interface GetConversionReportResponseData {
   /**
    * Total number of entities that match the condition.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
@@ -1192,7 +1192,7 @@ export interface GetManagedAffiliateListPopularSocialMedia {
   /**
    * The follower count of this account.
    */
-  follower_count?: number;
+  follower_count?: Integer;
 }
 /**
  * GetManagedAffiliateListSocialMedia sub-interface for GetManagedAffiliateListAffiliate
@@ -1205,7 +1205,7 @@ export interface GetManagedAffiliateListSocialMedia {
   /**
    * The follower count of this account.
    */
-  follower_count?: number;
+  follower_count?: Integer;
   /**
    * Social media name of this account.
    */
@@ -1218,19 +1218,19 @@ export interface GetManagedAffiliateListTopPopularContent {
   /**
    * The platform of this affiliate's content. eg. shopee video/shopee live
    */
-  platform?: Platform | string | number;
+  platform?: Platform | string;
   /**
    * The comment count of this affiliate's content.
    */
-  comment_count?: number;
+  comment_count?: Integer;
   /**
    * The like count of this affiliate's content.
    */
-  like_count?: number;
+  like_count?: Integer;
   /**
    * The view count of this affiliate's content.
    */
-  view_count?: number;
+  view_count?: Integer;
   /**
    * The cover link of this affiliate's content.
    */
@@ -1247,7 +1247,7 @@ export interface GetManagedAffiliateListTopSellingProduct {
   /**
    * The item id of this item.
    */
-  item_id?: number;
+  item_id?: Integer;
 }
 /**
  * GetManagedAffiliateListAffiliate sub-interface for GetManagedAffiliateListResponseData
@@ -1256,7 +1256,7 @@ export interface GetManagedAffiliateListAffiliate {
   /**
    * The unique key for the current affiliate.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
   /**
    * The name of the current commission.
    */
@@ -1280,15 +1280,15 @@ export interface GetManagedAffiliateListAffiliate {
   /**
    * Number of clicks in the last 30 days.
    */
-  total_click?: number;
+  total_click?: Integer;
   /**
    * Range number of the orders in the last 30 days.
    */
-  order_range?: number[];
+  order_range?: Integer[];
   /**
    * Range number of the gmv in the last 30 days.
    */
-  gmv_range?: number[];
+  gmv_range?: Integer[];
   /**
    * Golden tick means affiliates create high quality contents with good sales conversion in Shopee Live or Shopee Video.
    */
@@ -1300,7 +1300,7 @@ export interface GetManagedAffiliateListAffiliate {
   /**
    * Top three promote category ids for this affiliate
    */
-  promote_category_ids?: number[];
+  promote_category_ids?: Integer[];
   /**
    * Top popular contents of this affiliate.
    */
@@ -1376,7 +1376,7 @@ export interface GetOpenCampaignAddedProductItem {
   /**
    * Item ID
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Item Name
    */
@@ -1384,7 +1384,7 @@ export interface GetOpenCampaignAddedProductItem {
   /**
    * Campaign ID
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * Campaign Status: UpcomingOngoingTerminating
    */
@@ -1508,7 +1508,7 @@ export interface GetOpenCampaignNotAddedProductItem {
   /**
    * Item ID
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Item name
    */
@@ -1516,7 +1516,7 @@ export interface GetOpenCampaignNotAddedProductItem {
   /**
    * Item sales
    */
-  sales?: number;
+  sales?: Integer;
   /**
    * Item display price
    */
@@ -1524,7 +1524,7 @@ export interface GetOpenCampaignNotAddedProductItem {
   /**
    * Item stock
    */
-  stock?: number;
+  stock?: Integer;
   /**
    * If item is in blacklist, it cannot set up open campaign
    */
@@ -1588,7 +1588,7 @@ export interface GetOpenCampaignPerformanceRequest {
   /**
    * Item ID for query.
    */
-  item_id?: number;
+  item_id?: Integer;
 }
 /**
  * GetOpenCampaignPerformanceList sub-interface for GetOpenCampaignPerformanceResponseData
@@ -1597,7 +1597,7 @@ export interface GetOpenCampaignPerformanceList {
   /**
    * Unique identifier of the promoted item within open campaign.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name or title of the promoted item within open campaign.
    */
@@ -1605,7 +1605,7 @@ export interface GetOpenCampaignPerformanceList {
   /**
    * Number of affiliates currently participating in the campaign for this item.
    */
-  affiliates?: number;
+  affiliates?: Integer;
   /**
    * Total sales amount generated from the campaign, in the market's currency.
    */
@@ -1613,7 +1613,7 @@ export interface GetOpenCampaignPerformanceList {
   /**
    * Total quantity of the item sold through the campaign.
    */
-  item_sold?: number;
+  item_sold?: Integer;
   /**
    * Estimated commission amount payable to affiliates for this item, based on current campaign data.
    */
@@ -1627,7 +1627,7 @@ export interface GetOpenCampaignPerformanceResponseData {
   /**
    * This is to indicate the whole number of items.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
@@ -1670,7 +1670,7 @@ export interface GetOptimizationSuggestionProductItem {
   /**
    * Item ID
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Item Name
    */
@@ -1682,7 +1682,7 @@ export interface GetOptimizationSuggestionProductItem {
   /**
    * Campaign ID
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * Commission Rate, 1.11 means 1.11%, support two decimal places
    */
@@ -1698,11 +1698,11 @@ export interface GetOptimizationSuggestionProductItem {
   /**
    * The total number of affiliates who have ever shared the product in the last 90 days
    */
-  affiliate_count?: number;
+  affiliate_count?: Integer;
   /**
    * If the requested rcmd_reason_filter is product_opportunition, it is represented as item sales. Other scenarios are the total number of item sold for each product of the shop through AMS in the last 90 days
    */
-  item_sold?: number;
+  item_sold?: Integer;
   /**
    * Campaign Status:UpcomingOngoingTerminating
    */
@@ -1710,7 +1710,7 @@ export interface GetOptimizationSuggestionProductItem {
   /**
    * The total number of AMS orders for the product's L2 category in the last 30 days, only available when requested rcmd_reason_filter is product_opportunition
    */
-  l2_category_order_count?: number;
+  l2_category_order_count?: Integer;
   /**
    * Minimum suggested commission rate, 1.1 means 1.1%, support two decimal places
    */
@@ -1821,7 +1821,7 @@ export interface GetProductPerformanceRequest {
   /**
    * Item ID for query.
    */
-  item_id?: number;
+  item_id?: Integer;
 }
 /**
  * GetProductPerformanceList sub-interface for GetProductPerformanceResponseData
@@ -1830,7 +1830,7 @@ export interface GetProductPerformanceList {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Item Name.
    */
@@ -1842,15 +1842,15 @@ export interface GetProductPerformanceList {
   /**
    * Total number of the product sold through affiliate marketing.
    */
-  items_sold?: number;
+  items_sold?: Integer;
   /**
    * Total number of orders including the product generated through affiliate marketing.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Total number of clicks on your product links through affiliate marketing during the selected period.
    */
-  clicks?: number;
+  clicks?: Integer;
   /**
    * Estimated payout of the product sold through affiliate marketing.
    */
@@ -1862,11 +1862,11 @@ export interface GetProductPerformanceList {
   /**
    * Total number of buyers who have purchased the product through affiliate marketing.
    */
-  total_buyers?: number;
+  total_buyers?: Integer;
   /**
    * Total number of new buyers who have purchased the product through affiliate marketing.
    */
-  new_buyers?: number;
+  new_buyers?: Integer;
 }
 /**
  * GetProductPerformanceResponseData sub-interface for GetProductPerformanceResponse
@@ -1876,7 +1876,7 @@ export interface GetProductPerformanceResponseData {
   /**
    * Total number of items that match the condition.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
@@ -1914,7 +1914,7 @@ export interface GetRecommendedAffiliateListPopularSocialMedia {
   /**
    * The follower count of this account.
    */
-  follower_count?: number;
+  follower_count?: Integer;
 }
 /**
  * GetRecommendedAffiliateListSocialMedia sub-interface for GetRecommendedAffiliateListAffiliate
@@ -1927,7 +1927,7 @@ export interface GetRecommendedAffiliateListSocialMedia {
   /**
    * The follower count of this account.
    */
-  follower_count?: number;
+  follower_count?: Integer;
   /**
    * Social media name of this account.
    */
@@ -1940,19 +1940,19 @@ export interface GetRecommendedAffiliateListTopPopularContent {
   /**
    * The platform of this affiliate's content. eg. shopee video/shopee live
    */
-  platform?: Platform | string | number;
+  platform?: Platform | string;
   /**
    * The comment count of this affiliate's content.
    */
-  comment_count?: number;
+  comment_count?: Integer;
   /**
    * The like count of this affiliate's content.
    */
-  like_count?: number;
+  like_count?: Integer;
   /**
    * The view count of this affiliate's content.
    */
-  view_count?: number;
+  view_count?: Integer;
   /**
    * The cover link of this affiliate's content.
    */
@@ -1969,7 +1969,7 @@ export interface GetRecommendedAffiliateListTopSellingProduct {
   /**
    * The item id of this item.
    */
-  item_id?: number;
+  item_id?: Integer;
 }
 /**
  * GetRecommendedAffiliateListAffiliate sub-interface for GetRecommendedAffiliateListResponseData
@@ -1978,7 +1978,7 @@ export interface GetRecommendedAffiliateListAffiliate {
   /**
    * The unique key for the current affiliate.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
   /**
    * The name of the affiliate.
    */
@@ -2002,15 +2002,15 @@ export interface GetRecommendedAffiliateListAffiliate {
   /**
    * Number of clicks in the last 30 days.
    */
-  total_click?: number;
+  total_click?: Integer;
   /**
    * Range number of the orders in the last 30 days.
    */
-  order_range?: number[];
+  order_range?: Integer[];
   /**
    * Range number of the GMV in the last 30 days.
    */
-  gmv_range?: number[];
+  gmv_range?: Integer[];
   /**
    * Golden tick means affiliates create high quality contents with good sales conversion in Shopee Live or Shopee Video.
    */
@@ -2022,7 +2022,7 @@ export interface GetRecommendedAffiliateListAffiliate {
   /**
    * Three promote category ids for this affiliate.
    */
-  promote_category_ids?: number[];
+  promote_category_ids?: Integer[];
   /**
    * Top popular contents of this affiliate.
    */
@@ -2090,15 +2090,15 @@ export interface GetShopPerformanceResponseData {
   /**
    * Total number of items sold through affiliate marketing during the selected period.
    */
-  gross_item_sold?: number;
+  gross_item_sold?: Integer;
   /**
    * Total number of orders generated through affiliate marketing during the selected period.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Total clicks on your product links through affiliate marketing during the selected period.
    */
-  clicks?: number;
+  clicks?: Integer;
   /**
    * Estimated total payout from your affiliate marketing orders.
    */
@@ -2110,11 +2110,11 @@ export interface GetShopPerformanceResponseData {
   /**
    * Total number of buyers who order from your shop through affiliate marketing.
    */
-  total_buyers?: number;
+  total_buyers?: Integer;
   /**
    * Total number of new buyers who order from your shop through affiliate marketing.
    */
-  new_buyers?: number;
+  new_buyers?: Integer;
   /**
    * Effective query date range. Invalid input ranges will be automatically shifted.
    */
@@ -2185,7 +2185,7 @@ export interface GetTargetedCampaignAddableProductListItem {
   /**
    * The unique key for item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The name of the current item.
    */
@@ -2193,7 +2193,7 @@ export interface GetTargetedCampaignAddableProductListItem {
   /**
    * The sold of the current item.
    */
-  sales?: number;
+  sales?: Integer;
   /**
    * The display_price of the current item.
    */
@@ -2201,7 +2201,7 @@ export interface GetTargetedCampaignAddableProductListItem {
   /**
    * The stock of the current item.
    */
-  stock?: number;
+  stock?: Integer;
   /**
    * Is the current item in the blacklist.
    */
@@ -2268,7 +2268,7 @@ export interface GetTargetedCampaignListRequest {
   /**
    * Item id for query.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Item name for query.
    */
@@ -2281,7 +2281,7 @@ export interface GetTargetedCampaignListCampaign {
   /**
    * The unique key for the current campaign.
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * The name of the current campaign.
    */
@@ -2375,7 +2375,7 @@ export interface GetTargetedCampaignPerformanceRequest {
   /**
    * Campaign ID for query.
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
 }
 /**
  * GetTargetedCampaignPerformanceList sub-interface for GetTargetedCampaignPerformanceResponseData
@@ -2384,11 +2384,11 @@ export interface GetTargetedCampaignPerformanceList {
   /**
    * Unique identifier of the targeted campaign.
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * The number of affiliates ever brought sales for the targeted campaign.
    */
-  affiliates?: number;
+  affiliates?: Integer;
   /**
    * Total sales amount generated from this targeted campaign, in the market's default currency.
    */
@@ -2396,7 +2396,7 @@ export interface GetTargetedCampaignPerformanceList {
   /**
    * Total quantity of the item sold through the targeted campaign.
    */
-  item_sold?: number;
+  item_sold?: Integer;
   /**
    * The estimated commission amount payable to affiliates from this targeted campaign.
    */
@@ -2414,7 +2414,7 @@ export interface GetTargetedCampaignPerformanceResponseData {
   /**
    * This is to indicate the whole number of target campaigns.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
@@ -2440,7 +2440,7 @@ export interface GetTargetedCampaignSettingsRequest {
   /**
    * Campaign id for query.Note: For campaigns with campaign_source = ShopeeManaged, cannot be queried for details through this API.
    */
-  campaign_id: number;
+  campaign_id: Integer;
 }
 /**
  * GetTargetedCampaignSettingsAffiliate sub-interface for GetTargetedCampaignSettingsResponseData
@@ -2449,7 +2449,7 @@ export interface GetTargetedCampaignSettingsAffiliate {
   /**
    * The unique key for affiliate, can call v2.ams.query_affiliate_list to get affiliate details.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
 }
 /**
  * GetTargetedCampaignSettingsCommissionProtection sub-interface for GetTargetedCampaignSettingsItem
@@ -2471,7 +2471,7 @@ export interface GetTargetedCampaignSettingsItem {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Item Name.
    */
@@ -2574,7 +2574,7 @@ export interface GetValidationListOnlineBill {
   /**
    * Commission amount pending deduction.
    */
-  pending_amount?: number;
+  pending_amount?: Integer;
 }
 /**
  * GetValidationListOfflineBill sub-interface for GetValidationListValidation
@@ -2675,19 +2675,19 @@ export interface GetValidationReportRequest {
   /**
    * Hierarchical product category classification. (L1 Category)
    */
-  l1_category_id?: number;
+  l1_category_id?: Integer;
   /**
    * Hierarchical product category classification. (L2 Category)
    */
-  l2_category_id?: number;
+  l2_category_id?: Integer;
   /**
    * Hierarchical product category classification. (L3 Category)
    */
-  l3_category_id?: number;
+  l3_category_id?: Integer;
   /**
    * Unique identifier of the product.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The product's name.
    */
@@ -2699,7 +2699,7 @@ export interface GetValidationReportRequest {
   /**
    * ID referencing the campaign rule applied. (Ties to the campaign seller created).
    */
-  attr_campaign_id?: number;
+  attr_campaign_id?: Integer;
   /**
    * Start time (inclusive) of order placement, in timestamp format.
    */
@@ -2716,7 +2716,7 @@ export interface GetValidationReportItem {
   /**
    * Unique identifier of the item in the order.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of the item in the order.
    */
@@ -2724,19 +2724,19 @@ export interface GetValidationReportItem {
   /**
    * SKU/model identifier for the item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Level-1 global category id classification of the item.
    */
-  l1_category_id?: number;
+  l1_category_id?: Integer;
   /**
    * Level-2 global category id classification of the item.
    */
-  l2_category_id?: number;
+  l2_category_id?: Integer;
   /**
    * Level-3 global category id classification of the item.
    */
-  l3_category_id?: number;
+  l3_category_id?: Integer;
   /**
    * Identifier of the promotion campaign linked to the order.
    */
@@ -2744,11 +2744,11 @@ export interface GetValidationReportItem {
   /**
    * Item price in cents (or smallest currency unit).
    */
-  price?: number;
+  price?: Integer;
   /**
    * Quantity of the item purchased.
    */
-  qty?: number;
+  qty?: Integer;
   /**
    * Type of seller campaign:1. Seller Open Campaign – Open to all affiliates.2. Seller Target Campaign – Restricted to designated affiliates.
    */
@@ -2756,11 +2756,11 @@ export interface GetValidationReportItem {
   /**
    * ID referencing the campaign rule applied.
    */
-  attr_campaign_id?: number;
+  attr_campaign_id?: Integer;
   /**
    * Total purchase value of the order in cents (or smallest currency unit).
    */
-  purchase_value?: number;
+  purchase_value?: Integer;
   /**
    * Amount refunded for the item.
    */
@@ -2853,7 +2853,7 @@ export interface GetValidationReportList {
   /**
    * Unique identifier of the affiliate.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
   /**
    * Buyer Status. Applicable values:NewExisting
    */
@@ -2871,7 +2871,7 @@ export interface GetValidationReportResponseData {
   /**
    * Total number of entities that match the condition.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of datas.
    */
@@ -2913,7 +2913,7 @@ export interface QueryAffiliateListPopularSocialMedia {
   /**
    * The follower count of this account.
    */
-  follower_count?: number;
+  follower_count?: Integer;
 }
 /**
  * QueryAffiliateListSocialMedia sub-interface for QueryAffiliateListAffiliate
@@ -2926,7 +2926,7 @@ export interface QueryAffiliateListSocialMedia {
   /**
    * The follower count of this account.
    */
-  follower_count?: number;
+  follower_count?: Integer;
   /**
    * Social media name of this account.
    */
@@ -2943,15 +2943,15 @@ export interface QueryAffiliateListTopPopularContent {
   /**
    * The comment count of this affiliate's content.
    */
-  comment_count?: number;
+  comment_count?: Integer;
   /**
    * The like count of this affiliate's content.
    */
-  like_count?: number;
+  like_count?: Integer;
   /**
    * The view count of this affiliate's content.
    */
-  view_count?: number;
+  view_count?: Integer;
   /**
    * The cover link of this affiliate's content.
    */
@@ -2968,7 +2968,7 @@ export interface QueryAffiliateListTopSellingProduct {
   /**
    * The item id of this item.
    */
-  item_id?: number;
+  item_id?: Integer;
 }
 /**
  * QueryAffiliateListAffiliate sub-interface for QueryAffiliateListResponseData
@@ -2977,7 +2977,7 @@ export interface QueryAffiliateListAffiliate {
   /**
    * The unique key for the current affiliate.
    */
-  affiliate_id?: number;
+  affiliate_id?: Integer;
   /**
    * The name of the affiliate.
    */
@@ -3001,15 +3001,15 @@ export interface QueryAffiliateListAffiliate {
   /**
    * Number of clicks in the last 30 days.
    */
-  total_click?: number;
+  total_click?: Integer;
   /**
    * Range number of the orders in the last 30 days.
    */
-  order_range?: number[];
+  order_range?: Integer[];
   /**
    * Range number of the gmv in the last 30 days.
    */
-  gmv_range?: number[];
+  gmv_range?: Integer[];
   /**
    * Golden tick means affiliates create high quality contents with good sales conversion in Shopee Live or Shopee Video.
    */
@@ -3021,7 +3021,7 @@ export interface QueryAffiliateListAffiliate {
   /**
    * Three promote category ids for this affiliate
    */
-  promote_category_ids?: number[];
+  promote_category_ids?: Integer[];
   /**
    * Top popular contents of this affiliate.
    */
@@ -3085,19 +3085,19 @@ export interface TerminateTargetedCampaignRequest {
   /**
    * The unique key for the current campaign.
    */
-  campaign_id: number;
+  campaign_id: Integer;
 }
 /**
  * Response data payload for terminate_targeted_campaign
  */
-export type TerminateTargetedCampaignResponseData = Record<string, never>;
+export type TerminateTargetedCampaignResponseData = Record<never, never>;
 /**
  * Response payload for terminate_targeted_campaign
  *
  * Change target campaign status to "terminated" to stop all affiliate promotion activity
  */
-export type TerminateTargetedCampaignResponse =
-  FetchResponse<TerminateTargetedCampaignResponseData>;
+export type TerminateTargetedCampaignResponse = ResponseMetadata &
+  TerminateTargetedCampaignResponseData;
 /**
  * Request parameters for update_auto_add_new_product_setting
  *
@@ -3116,14 +3116,14 @@ export interface UpdateAutoAddNewProductSettingRequest {
 /**
  * Response data payload for update_auto_add_new_product_setting
  */
-export type UpdateAutoAddNewProductSettingResponseData = Record<string, never>;
+export type UpdateAutoAddNewProductSettingResponseData = Record<never, never>;
 /**
  * Response payload for update_auto_add_new_product_setting
  *
  * Change auto-add toggle and default commission rate setting
  */
-export type UpdateAutoAddNewProductSettingResponse =
-  FetchResponse<UpdateAutoAddNewProductSettingResponseData>;
+export type UpdateAutoAddNewProductSettingResponse = ResponseMetadata &
+  UpdateAutoAddNewProductSettingResponseData;
 /**
  * Request parameters for update_basic_info_of_targeted_campaign
  *
@@ -3133,7 +3133,7 @@ export interface UpdateBasicInfoOfTargetedCampaignRequest {
   /**
    * The unique key for the current campaign.
    */
-  campaign_id: number;
+  campaign_id: Integer;
   /**
    * The name of the current campaign.
    */
@@ -3158,11 +3158,11 @@ export interface UpdateBasicInfoOfTargetedCampaignRequest {
 /**
  * Response data payload for update_basic_info_of_targeted_campaign
  */
-export type UpdateBasicInfoOfTargetedCampaignResponseData = Record<string, never>;
+export type UpdateBasicInfoOfTargetedCampaignResponseData = Record<never, never>;
 /**
  * Response payload for update_basic_info_of_targeted_campaign
  *
  * Edit campaign name, promotion period, message, and budget (if the shop is whitelisted) of target campaign
  */
-export type UpdateBasicInfoOfTargetedCampaignResponse =
-  FetchResponse<UpdateBasicInfoOfTargetedCampaignResponseData>;
+export type UpdateBasicInfoOfTargetedCampaignResponse = ResponseMetadata &
+  UpdateBasicInfoOfTargetedCampaignResponseData;

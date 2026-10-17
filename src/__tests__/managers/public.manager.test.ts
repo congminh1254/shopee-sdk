@@ -38,25 +38,23 @@ describe("PublicManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          authed_shop_list: [
-            {
-              shop_id: 123456,
-              region: "SG",
-              sip_affi_shop_list: [],
-              auth_time: 1640995200,
-              expire_time: 1672531200,
-            },
-            {
-              shop_id: 789012,
-              region: "SG",
-              sip_affi_shop_list: [],
-              auth_time: 1640995200,
-              expire_time: 1672531200,
-            },
-          ],
-          more: false,
-        },
+        authed_shop_list: [
+          {
+            shop_id: 123456,
+            region: "SG",
+            sip_affi_shop_list: [],
+            auth_time: 1640995200,
+            expire_time: 1672531200,
+          },
+          {
+            shop_id: 789012,
+            region: "SG",
+            sip_affi_shop_list: [],
+            auth_time: 1640995200,
+            expire_time: 1672531200,
+          },
+        ],
+        more: false,
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -77,18 +75,16 @@ describe("PublicManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          authed_shop_list: [
-            {
-              shop_id: 123456,
-              region: "SG",
-              sip_affi_shop_list: [],
-              auth_time: 1640995200,
-              expire_time: 1672531200,
-            },
-          ],
-          more: true,
-        },
+        authed_shop_list: [
+          {
+            shop_id: 123456,
+            region: "SG",
+            sip_affi_shop_list: [],
+            auth_time: 1640995200,
+            expire_time: 1672531200,
+          },
+        ],
+        more: true,
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -109,10 +105,8 @@ describe("PublicManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          authed_shop_list: [],
-          more: false,
-        },
+        authed_shop_list: [],
+        more: false,
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -135,23 +129,21 @@ describe("PublicManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          authed_merchant_list: [
-            {
-              merchant_id: 111111,
-              region: "CN",
-              auth_time: 1640995200,
-              expire_time: 1672531200,
-            },
-            {
-              merchant_id: 222222,
-              region: "CN",
-              auth_time: 1640995200,
-              expire_time: 1672531200,
-            },
-          ],
-          more: false,
-        },
+        authed_merchant_list: [
+          {
+            merchant_id: 111111,
+            region: "CN",
+            auth_time: 1640995200,
+            expire_time: 1672531200,
+          },
+          {
+            merchant_id: 222222,
+            region: "CN",
+            auth_time: 1640995200,
+            expire_time: 1672531200,
+          },
+        ],
+        more: false,
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -172,17 +164,15 @@ describe("PublicManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          authed_merchant_list: [
-            {
-              merchant_id: 111111,
-              region: "CN",
-              auth_time: 1640995200,
-              expire_time: 1672531200,
-            },
-          ],
-          more: true,
-        },
+        authed_merchant_list: [
+          {
+            merchant_id: 111111,
+            region: "CN",
+            auth_time: 1640995200,
+            expire_time: 1672531200,
+          },
+        ],
+        more: true,
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -205,9 +195,7 @@ describe("PublicManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          ip_list: ["203.0.113.0/24", "198.51.100.0/24", "192.0.2.0/24"],
-        },
+        ip_list: ["203.0.113.0/24", "198.51.100.0/24", "192.0.2.0/24"],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -227,9 +215,7 @@ describe("PublicManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          ip_list: [],
-        },
+        ip_list: [],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -242,7 +228,7 @@ describe("PublicManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.ip_list).toHaveLength(0);
+      expect(result.ip_list).toHaveLength(0);
     });
   });
 });

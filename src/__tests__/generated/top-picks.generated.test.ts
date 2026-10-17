@@ -30,31 +30,31 @@ describe("TopPicksManager (Generated Tests)", () => {
         item_id_list: [2200040632, 3000043257, 2800026288, 3600031776],
         is_activated: false,
       };
-      const exampleResponse = {
-        collection_list: [
-          {
-            is_activated: false,
-            item_list: [
-              {
-                item_name: "the test product one",
-                item_id: 123224,
-                current_price: 12.1,
-                inflated_price_of_current_price: 13.1,
-                sales: 21,
-              },
-            ],
-            top_picks_id: 62,
-            name: "test create4",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          collection_list: [
+            {
+              is_activated: false,
+              item_list: [
+                {
+                  item_name: "the test product one",
+                  item_id: 123224,
+                  current_price: 12.1,
+                  inflated_price_of_current_price: 13.1,
+                  sales: 21,
+                },
+              ],
+              top_picks_id: 62,
+              name: "test create4",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addTopPicks(exampleRequest);
 
@@ -62,10 +62,11 @@ describe("TopPicksManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/top_picks/add_top_picks", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -74,16 +75,16 @@ describe("TopPicksManager (Generated Tests)", () => {
       const exampleRequest = {
         top_picks_id: 480,
       };
-      const exampleResponse = {
-        top_picks_id: 480,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          top_picks_id: 480,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteTopPicks(exampleRequest);
 
@@ -91,41 +92,42 @@ describe("TopPicksManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/top_picks/delete_top_picks", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
   describe("getTopPicksList", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
-      const exampleResponse = {
-        collection_list: [
-          {
-            is_activated: false,
-            item_list: [
-              {
-                item_name: "test product one",
-                item_id: 1676502,
-                current_price: 11,
-                inflated_price_of_current_price: 10,
-                sales: 11,
-              },
-            ],
-            top_picks_id: 365,
-            name: "TEST",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          collection_list: [
+            {
+              is_activated: false,
+              item_list: [
+                {
+                  item_name: "test product one",
+                  item_id: 1676502,
+                  current_price: 11,
+                  inflated_price_of_current_price: 10,
+                  sales: 11,
+                },
+              ],
+              top_picks_id: 365,
+              name: "TEST",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getTopPicksList(exampleRequest);
 
@@ -133,10 +135,11 @@ describe("TopPicksManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/top_picks/get_top_picks_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -148,31 +151,31 @@ describe("TopPicksManager (Generated Tests)", () => {
         item_id_list: [13232, 1321, 11213],
         is_activated: false,
       };
-      const exampleResponse = {
-        collection_list: [
-          {
-            is_activated: false,
-            item_list: [
-              {
-                item_name: "the test product one",
-                item_id: 13232,
-                current_price: 12.1,
-                inflated_price_of_current_price: 11.1,
-                sales: 21,
-              },
-            ],
-            top_picks_id: 480,
-            name: "hotsale3",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          collection_list: [
+            {
+              is_activated: false,
+              item_list: [
+                {
+                  item_name: "the test product one",
+                  item_id: 13232,
+                  current_price: 12.1,
+                  inflated_price_of_current_price: 11.1,
+                  sales: 21,
+                },
+              ],
+              top_picks_id: 480,
+              name: "hotsale3",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateTopPicks(exampleRequest);
 
@@ -180,10 +183,11 @@ describe("TopPicksManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/top_picks/update_top_picks", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

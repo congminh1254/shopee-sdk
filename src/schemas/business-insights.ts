@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { ResponseMetadata, Integer } from "./fetch.js";
 /**
  * Request parameters for get_marketing_hot_listing
  *
@@ -12,11 +12,11 @@ export interface GetMarketingHotListingRequest {
   /**
    * Start of the requested time range as a Unix timestamp in seconds.
    */
-  start_time: number;
+  start_time: Integer;
   /**
    * End of the requested time range as a Unix timestamp in seconds. It must be greater than or equal to start_time.
    */
-  end_time: number;
+  end_time: Integer;
   /**
    * Time period of the requested data. Supported values are listed below.
    */
@@ -41,7 +41,7 @@ export interface GetMarketingHotListingResponseData {
   /**
    * Metrics for every order type supported by the shop country. Non-COD shops return placed and paid; COD shops additionally return confirmed.
    */
-  result?: any[];
+  result?: unknown[];
   /**
    * Order type represented by this entry. Possible values are placed, confirmed, and paid.
    */
@@ -49,19 +49,19 @@ export interface GetMarketingHotListingResponseData {
   /**
    * Shop-level summary metrics and time-series data for the order type.
    */
-  result_key_metrics?: any;
+  result_key_metrics?: unknown;
   /**
    * Shop-level summary metrics for the requested period.
    */
-  result_key_metrics_key_metrics?: any;
+  result_key_metrics_key_metrics?: unknown;
   /**
    * Shop-level metrics grouped by time bucket.
    */
-  result_key_metrics_time_series?: any[];
+  result_key_metrics_time_series?: unknown[];
   /**
    * Product-level performance sorted by sales in descending order.
    */
-  result_performance?: any[];
+  result_performance?: unknown[];
   /**
    * Sales amount for the order type.
    */
@@ -129,7 +129,7 @@ export interface GetMarketingHotListingResponseData {
   /**
    * Unix timestamp in seconds representing the time bucket.
    */
-  result_key_metrics_time_series_t?: number;
+  result_key_metrics_time_series_t?: Integer;
   /**
    * Sales amount in the time bucket.
    */
@@ -165,7 +165,7 @@ export interface GetMarketingHotListingResponseData {
   /**
    * Product ID.
    */
-  result_performance_item_id?: number;
+  result_performance_item_id?: Integer;
   /**
    * Product name.
    */
@@ -222,4 +222,4 @@ export interface GetMarketingHotListingResponseData {
  *
  * Only available in Brazil (BR).
  */
-export type GetMarketingHotListingResponse = FetchResponse<GetMarketingHotListingResponseData>;
+export type GetMarketingHotListingResponse = ResponseMetadata & GetMarketingHotListingResponseData;

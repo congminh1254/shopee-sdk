@@ -34,14 +34,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.addItemList(exampleRequest);
 
@@ -49,10 +49,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/add_item_list", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -62,14 +63,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
         session_id: 6236215,
         item_set_ids: [1, 2, 3],
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.applyItemSet(exampleRequest);
 
@@ -77,10 +78,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/apply_item_set", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -90,14 +92,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
         session_id: 6236215,
         ban_user_id: 2,
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.banUserComment(exampleRequest);
 
@@ -105,10 +107,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/ban_user_comment", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -120,16 +123,16 @@ describe("LiveStreamManager (Generated Tests)", () => {
         cover_image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9pq7jw2cdhx5e",
         is_test: false,
       };
-      const exampleResponse = {
-        session_id: 636732,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          session_id: 636732,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.createSession(exampleRequest);
 
@@ -137,10 +140,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/create_session", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -155,14 +159,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteItemList(exampleRequest);
 
@@ -170,10 +174,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/delete_item_list", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -182,14 +187,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
       const exampleRequest = {
         session_id: 6236215,
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.deleteShowItem(exampleRequest);
 
@@ -197,10 +202,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/delete_show_item", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -209,14 +215,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
       const exampleRequest = {
         session_id: 6236215,
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.endSession(exampleRequest);
 
@@ -224,10 +230,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/end_session", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -236,17 +243,17 @@ describe("LiveStreamManager (Generated Tests)", () => {
       const exampleRequest = {
         session_id: 6236215,
       };
-      const exampleResponse = {
-        item_count: 10,
-        max_item_count: 100,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          item_count: 10,
+          max_item_count: 100,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getItemCount(exampleRequest);
 
@@ -254,10 +261,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_count", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -268,38 +276,38 @@ describe("LiveStreamManager (Generated Tests)", () => {
         offset: 0,
         page_size: 10,
       };
-      const exampleResponse = {
-        more: true,
-        next_offset: 123,
-        list: [
-          {
-            item_no: 1,
-            item_id: 123,
-            shop_id: 123,
-            name: "test",
-            image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9pjrv63z8lxe7",
-            price_info: {
-              currency: "SGD",
-              current_price: 100,
-              original_price: 120,
-            },
-            affiliate_info: {
-              commission_rate: 0.1,
-              is_campaign: true,
-              campaign_mcn_name: "test",
-              campaign_start_time: 1735870969,
-              campaign_end_time: 1735870969,
-            },
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          more: true,
+          next_offset: 123,
+          list: [
+            {
+              item_no: 1,
+              item_id: 123,
+              shop_id: 123,
+              name: "test",
+              image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9pjrv63z8lxe7",
+              price_info: {
+                currency: "SGD",
+                current_price: 100,
+                original_price: 120,
+              },
+              affiliate_info: {
+                commission_rate: 0.1,
+                is_campaign: true,
+                campaign_mcn_name: "test",
+                campaign_start_time: 1735870969,
+                campaign_end_time: 1735870969,
+              },
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getItemList(exampleRequest);
 
@@ -307,10 +315,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_list", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -321,37 +330,37 @@ describe("LiveStreamManager (Generated Tests)", () => {
         offset: 0,
         page_size: 10,
       };
-      const exampleResponse = {
-        more: true,
-        next_offset: 10,
-        list: [
-          {
-            item_id: 1,
-            shop_id: 1,
-            name: "test",
-            image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9pjrv63z8lxe7",
-            price_info: {
-              currency: "SGD",
-              current_price: 100,
-              original_price: 120,
-            },
-            affiliate_info: {
-              commission_rate: 0.1,
-              is_campaign: true,
-              campaign_mcn_name: "test",
-              campaign_start_time: 1735870969,
-              campaign_end_time: 1735870969,
-            },
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          more: true,
+          next_offset: 10,
+          list: [
+            {
+              item_id: 1,
+              shop_id: 1,
+              name: "test",
+              image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9pjrv63z8lxe7",
+              price_info: {
+                currency: "SGD",
+                current_price: 100,
+                original_price: 120,
+              },
+              affiliate_info: {
+                commission_rate: 0.1,
+                is_campaign: true,
+                campaign_mcn_name: "test",
+                campaign_start_time: 1735870969,
+                campaign_end_time: 1735870969,
+              },
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getItemSetItemList(exampleRequest);
 
@@ -359,10 +368,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_set_item_list", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -373,24 +383,24 @@ describe("LiveStreamManager (Generated Tests)", () => {
         page_size: 10,
         keyword: "set",
       };
-      const exampleResponse = {
-        more: true,
-        next_offset: 10,
-        list: [
-          {
-            item_set_id: 1,
-            item_set_name: "set",
-            item_count: 10,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          more: true,
+          next_offset: 10,
+          list: [
+            {
+              item_set_id: 1,
+              item_set_name: "set",
+              item_count: 10,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getItemSetList(exampleRequest);
 
@@ -398,10 +408,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_set_list", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -411,25 +422,25 @@ describe("LiveStreamManager (Generated Tests)", () => {
         session_id: 6236215,
         offset: 0,
       };
-      const exampleResponse = {
-        next_offset: 321231,
-        list: [
-          {
-            comment_id: 273887178,
-            content: "hello",
-            timestamp: 1747744785,
-            user_id: 123,
-            username: "user1",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          next_offset: 321231,
+          list: [
+            {
+              comment_id: 273887178,
+              content: "hello",
+              timestamp: 1747744785,
+              user_id: 123,
+              username: "user1",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getLatestCommentList(exampleRequest);
 
@@ -437,11 +448,12 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_latest_comment_list", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
         timestampPaths: ["response.list.timestamp"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -452,37 +464,37 @@ describe("LiveStreamManager (Generated Tests)", () => {
         page_size: 10,
         keyword: "test_string",
       };
-      const exampleResponse = {
-        more: true,
-        next_offset: 123,
-        list: [
-          {
-            item_id: 123,
-            shop_id: 123,
-            name: "test_string",
-            image_url: "test_string",
-            price_info: {
-              currency: "SGD",
-              current_price: 90,
-              original_price: 100,
-            },
-            affiliate_info: {
-              commission_rate: 123,
-              is_campaign: true,
-              campaign_mcn_name: "test_string",
-              campaign_start_time: 123,
-              campaign_end_time: 123,
-            },
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          more: true,
+          next_offset: 123,
+          list: [
+            {
+              item_id: 123,
+              shop_id: 123,
+              name: "test_string",
+              image_url: "test_string",
+              price_info: {
+                currency: "SGD",
+                current_price: 90,
+                original_price: 100,
+              },
+              affiliate_info: {
+                commission_rate: 123,
+                is_campaign: true,
+                campaign_mcn_name: "test_string",
+                campaign_start_time: 123,
+                campaign_end_time: 123,
+              },
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getLikeItemList(exampleRequest);
 
@@ -490,10 +502,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_like_item_list", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -503,37 +516,37 @@ describe("LiveStreamManager (Generated Tests)", () => {
         offset: 0,
         page_size: 10,
       };
-      const exampleResponse = {
-        more: true,
-        next_offset: 10,
-        list: [
-          {
-            item_id: 1,
-            shop_id: 1,
-            name: "test",
-            image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9pjrv63z8lxe7",
-            price_info: {
-              currency: "SGD",
-              current_price: 100,
-              original_price: 110,
-            },
-            affiliate_info: {
-              commission_rate: 0.1,
-              is_campaign: true,
-              campaign_mcn_name: "mcn",
-              campaign_start_time: 1735870969,
-              campaign_end_time: 1735870969,
-            },
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          more: true,
+          next_offset: 10,
+          list: [
+            {
+              item_id: 1,
+              shop_id: 1,
+              name: "test",
+              image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9pjrv63z8lxe7",
+              price_info: {
+                currency: "SGD",
+                current_price: 100,
+                original_price: 110,
+              },
+              affiliate_info: {
+                commission_rate: 0.1,
+                is_campaign: true,
+                campaign_mcn_name: "mcn",
+                campaign_start_time: 1735870969,
+                campaign_end_time: 1735870969,
+              },
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getRecentItemList(exampleRequest);
 
@@ -541,10 +554,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_recent_item_list", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -553,36 +567,36 @@ describe("LiveStreamManager (Generated Tests)", () => {
       const exampleRequest = {
         session_id: 6236215,
       };
-      const exampleResponse = {
-        session_id: 6236215,
-        title: "test title",
-        description: "test description",
-        cover_image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9y7ly25ngg927",
-        status: 1,
-        share_url: "https://live.test.shopee.co.id/share?from=live&session=6905656",
-        is_test: false,
-        create_time: 1747651742003,
-        update_time: 1747651742003,
-        start_time: 1747651742003,
-        end_time: 1747651742003,
-        stream_url_list: [
-          {
-            push_url: "rtmp://push-zl.lvb.test.shopee.co.id/live",
-            push_key:
-              "id-test-1987885338002432-6905656?zlSecret=61ef843a6d8e48357ac3d94db52447bf&zlTime=682FF4B1&pushDomain=push-zl.lvb.test.shopee.co.id&cdnID=ZENLAYER&session_id=6905656",
-            play_url:
-              "http://play-zl.livestream.test.shopee.co.id/live/id-test-1987885338002432-6905656.flv?auditkey=1.0~9EzaSlc1o3iNfkh_yixD-7yKuXaLPvJNR3CXbUw_8mN08xmA2QEcpACaVOBSP61kDO4cbhwVwM5B10kAms4mgKsTQJS-ji50MBDkH-m81cE~e298bae2599bf1447f21131e2d73a6baf97bd9edcbe460a17e09cdce2c80c40d&cdnID=ZENLAYER&expire_ts=1747714157",
-            domain_id: 57,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          session_id: 6236215,
+          title: "test title",
+          description: "test description",
+          cover_image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9y7ly25ngg927",
+          status: 1,
+          share_url: "https://live.test.shopee.co.id/share?from=live&session=6905656",
+          is_test: false,
+          create_time: 1747651742003,
+          update_time: 1747651742003,
+          start_time: 1747651742003,
+          end_time: 1747651742003,
+          stream_url_list: [
+            {
+              push_url: "rtmp://push-zl.lvb.test.shopee.co.id/live",
+              push_key:
+                "id-test-1987885338002432-6905656?zlSecret=61ef843a6d8e48357ac3d94db52447bf&zlTime=682FF4B1&pushDomain=push-zl.lvb.test.shopee.co.id&cdnID=ZENLAYER&session_id=6905656",
+              play_url:
+                "http://play-zl.livestream.test.shopee.co.id/live/id-test-1987885338002432-6905656.flv?auditkey=1.0~9EzaSlc1o3iNfkh_yixD-7yKuXaLPvJNR3CXbUw_8mN08xmA2QEcpACaVOBSP61kDO4cbhwVwM5B10kAms4mgKsTQJS-ji50MBDkH-m81cE~e298bae2599bf1447f21131e2d73a6baf97bd9edcbe460a17e09cdce2c80c40d&cdnID=ZENLAYER&expire_ts=1747714157",
+              domain_id: 57,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getSessionDetail(exampleRequest);
 
@@ -590,10 +604,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_detail", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -604,37 +619,37 @@ describe("LiveStreamManager (Generated Tests)", () => {
         offset: 0,
         page_size: 10,
       };
+
       const exampleResponse = {
-        more: true,
-        next_offset: 10,
-        list: [
-          {
-            item: {
-              item_id: 1,
-              shop_id: 1,
-              name: "test item",
-              image_url: "test_string",
-              price_info: {
-                currency: "SGD",
-                current_price: 100,
-                original_price: 120,
+        response: {
+          more: true,
+          next_offset: 10,
+          list: [
+            {
+              item: {
+                item_id: 1,
+                shop_id: 1,
+                name: "test item",
+                image_url: "test_string",
+                price_info: {
+                  currency: "SGD",
+                  current_price: 100,
+                  original_price: 120,
+                },
+              },
+              metric: {
+                item_clicks: 1,
+                atc: 1,
+                sold_items: 1,
               },
             },
-            metric: {
-              item_clicks: 1,
-              atc: 1,
-              sold_items: 1,
-            },
-          },
-        ],
-      };
-
-      mockFetch.mockResolvedValueOnce({
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getSessionItemMetric(exampleRequest);
 
@@ -642,10 +657,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_item_metric", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -654,28 +670,28 @@ describe("LiveStreamManager (Generated Tests)", () => {
       const exampleRequest = {
         session_id: 6236215,
       };
-      const exampleResponse = {
-        gmv: 1,
-        atc: 1,
-        ctr: 0.1,
-        co: 0.1,
-        orders: 1,
-        ccu: 1,
-        engage_ccu_1m: 1,
-        peak_ccu: 1,
-        likes: 1,
-        comments: 1,
-        shares: 1,
-        views: 1,
-        avg_viewing_duration: 1,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          gmv: 1,
+          atc: 1,
+          ctr: 0.1,
+          co: 0.1,
+          orders: 1,
+          ccu: 1,
+          engage_ccu_1m: 1,
+          peak_ccu: 1,
+          likes: 1,
+          comments: 1,
+          shares: 1,
+          views: 1,
+          avg_viewing_duration: 1,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getSessionMetric(exampleRequest);
 
@@ -683,10 +699,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_metric", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -695,28 +712,28 @@ describe("LiveStreamManager (Generated Tests)", () => {
       const exampleRequest = {
         session_id: 6236215,
       };
+
       const exampleResponse = {
-        has_show_item: true,
-        item: {
-          item_no: 1,
-          item_id: 123,
-          shop_id: 123,
-          name: "test",
-          image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9pjrv63z8lxe7",
-          price_info: {
-            currency: "SGD",
-            current_price: 100,
-            original_price: 120,
+        response: {
+          has_show_item: true,
+          item: {
+            item_no: 1,
+            item_id: 123,
+            shop_id: 123,
+            name: "test",
+            image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9pjrv63z8lxe7",
+            price_info: {
+              currency: "SGD",
+              current_price: 100,
+              original_price: 120,
+            },
           },
         },
-      };
-
-      mockFetch.mockResolvedValueOnce({
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getShowItem(exampleRequest);
 
@@ -724,10 +741,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_show_item", {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -737,16 +755,16 @@ describe("LiveStreamManager (Generated Tests)", () => {
         session_id: 6236215,
         content: "hello",
       };
-      const exampleResponse = {
-        comment_id: 43432342324,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          comment_id: 43432342324,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.postComment(exampleRequest);
 
@@ -754,10 +772,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/post_comment", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -768,14 +787,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
         domain_id: 1,
         ai_stream: true,
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.startSession(exampleRequest);
 
@@ -783,10 +802,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/start_session", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -796,14 +816,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
         session_id: 6236215,
         unban_user_id: 2,
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.unbanUserComment(exampleRequest);
 
@@ -811,10 +831,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/unban_user_comment", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -829,14 +850,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateItemList(exampleRequest);
 
@@ -844,10 +865,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_item_list", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -860,14 +882,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
         cover_image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9pqmldbyce282",
         is_test: false,
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateSession(exampleRequest);
 
@@ -875,10 +897,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_session", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -889,14 +912,14 @@ describe("LiveStreamManager (Generated Tests)", () => {
         item_id: 123,
         shop_id: 123,
       };
-      const exampleResponse = "test_string";
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: "test_string",
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.updateShowItem(exampleRequest);
 
@@ -904,28 +927,29 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_show_item", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
   describe("uploadImage", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
-        image: "test_string",
-      };
-      const exampleResponse = {
-        image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9y7ly25ngg927",
+        image: Buffer.from("test_binary"),
       };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          image_url: "https://cf.shopee.sg/file/id-11134104-7r98o-m9y7ly25ngg927",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.uploadImage(exampleRequest);
 
@@ -933,10 +957,11 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/upload_image", {
         method: "POST",
         auth: true,
+        authMode: "user",
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

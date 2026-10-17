@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata, Integer, BinaryFile, BinaryFiles } from "./fetch.js";
 /**
  * Enum generated for field Status
  */
@@ -33,7 +33,7 @@ export interface CancelVideoUploadResponseData {
  *
  * Use this API to cancel an ongoing video upload task. If the upload has already succeeded, failed, or been cancelled, this operation will fail and return error.
  */
-export type CancelVideoUploadResponse = FetchResponse<CancelVideoUploadResponseData>;
+export type CancelVideoUploadResponse = ResponseMetadata & CancelVideoUploadResponseData;
 /**
  * Request parameters for complete_video_upload
  *
@@ -59,7 +59,7 @@ export interface CompleteVideoUploadResponseData {
  *
  * Use this API to finalize a video upload task. Once called, the system will transcode all uploaded video parts and prepare the video for use. All parts must be fully uploaded before calling this API.
  */
-export type CompleteVideoUploadResponse = FetchResponse<CompleteVideoUploadResponseData>;
+export type CompleteVideoUploadResponse = ResponseMetadata & CompleteVideoUploadResponseData;
 /**
  * Request parameters for get_video_upload_result
  *
@@ -107,7 +107,7 @@ export interface GetVideoUploadResultResponseData {
   /**
    * Current status of the upload task. Possible values:- INITIATED: Upload task has been created (via init_video_upload) but no parts have been uploaded yet.- UPLOADING: Video file parts are being uploaded. The upload has started but is not yet completed.- UPLOADED: All video parts have been uploaded successfully, waiting for complete_video_upload to trigger processing.- PROCESSING: Video is being transcoded/validated by the system (duration, format, resolution checks).- SUCCEEDED: Video upload and transcoding completed successfully. Video URL and cover URL are available for use.- FAILED: Upload or processing failed (e.g., invalid format, duration not within allowed range, transcoding error).- CANCELLED: Upload task was explicitly canceled by the client (cancel_video_upload), and the video is discarded.
    */
-  status?: Status | string | number;
+  status?: Status | string;
   /**
    * Detailed fail or cancel reason, will be returned if status is FAILED or CANCELLED.
    */
@@ -148,7 +148,7 @@ export interface InitVideoUploadRequest {
   /**
    * Total video file size in bytes. Rules and restrictions by business and scene: - If business = 3 (Video) and scene = 1 (Shopee Video): Maximum 1GB.
    */
-  file_size: number;
+  file_size: Integer;
   /**
    * Video duration in seconds. Rules and restrictions by business and scene:- If business = 3 (Video) and scene = 1 (Shopee Video): 1s~180s.
    */
@@ -165,7 +165,7 @@ export interface InitVideoUploadResponseData {
   /**
    * The size of each part. When uploading video chunks, the video must be split according to this part size for each upload request.
    */
-  part_size?: number;
+  part_size?: Integer;
 }
 /**
  * Response payload for init_video_upload
@@ -190,7 +190,7 @@ export interface UploadImageRequest {
   /**
    * The image files to be uploaded. Rules and restrictions by business and scene:- If business = 2 (Returns) and scene = 1 (Return Seller Self Arrange Pickup Proof Image): Up to 3 images can be uploaded. Each image must not exceed 10MB. Supported formats: JPG, JPEG, PNG.
    */
-  images: any;
+  images: BinaryFiles;
 }
 /**
  * UploadImageImage sub-interface for UploadImageResponseData
@@ -237,7 +237,7 @@ export interface UploadVideoPartRequest {
   /**
    * The content of this part of file. Part size should be exactly equal to part_size returned in v2.media.init_video_upload, except last part of file.
    */
-  part_content: any;
+  part_content: BinaryFile;
   /**
    * MD5 checksum of this part for data integrity validation.
    */
@@ -257,4 +257,4 @@ export interface UploadVideoPartResponseData {
  *
  * Use this API to upload a video file in parts.
  */
-export type UploadVideoPartResponse = FetchResponse<UploadVideoPartResponseData>;
+export type UploadVideoPartResponse = ResponseMetadata & UploadVideoPartResponseData;

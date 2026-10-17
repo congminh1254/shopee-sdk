@@ -32,7 +32,6 @@ export class MediaManager extends BaseManager {
   ): Promise<CancelVideoUploadResponse> {
     return ShopeeFetch.fetch<CancelVideoUploadResponse>(this.config, "/media/cancel_video_upload", {
       method: "POST",
-      auth: true,
       body: params,
     });
   }
@@ -50,7 +49,6 @@ export class MediaManager extends BaseManager {
       "/media/complete_video_upload",
       {
         method: "POST",
-        auth: true,
         body: params,
       }
     );
@@ -69,7 +67,6 @@ export class MediaManager extends BaseManager {
       "/media/get_video_upload_result",
       {
         method: "GET",
-        auth: true,
         params: params,
         timestampPaths: ["response.update_time"],
       }
@@ -84,7 +81,6 @@ export class MediaManager extends BaseManager {
   public async initVideoUpload(params: InitVideoUploadRequest): Promise<InitVideoUploadResponse> {
     return ShopeeFetch.fetch<InitVideoUploadResponse>(this.config, "/media/init_video_upload", {
       method: "POST",
-      auth: true,
       body: params,
     });
   }
@@ -97,7 +93,6 @@ export class MediaManager extends BaseManager {
   public async uploadImage(params: UploadImageRequest): Promise<UploadImageResponse> {
     return ShopeeFetch.fetch<UploadImageResponse>(this.config, "/media/upload_image", {
       method: "POST",
-      auth: true,
       body: params,
     });
   }
@@ -110,7 +105,6 @@ export class MediaManager extends BaseManager {
   public async uploadVideoPart(params: UploadVideoPartRequest): Promise<UploadVideoPartResponse> {
     return ShopeeFetch.fetch<UploadVideoPartResponse>(this.config, "/media/upload_video_part", {
       method: "POST",
-      auth: true,
       body: params,
     });
   }

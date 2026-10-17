@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * Enum generated for field DiscountStatus
  */
@@ -58,7 +58,7 @@ export interface AddDiscountItemModel {
   /**
    * Shopee's unique identifier for a variation of an item. If there is no variation of this item, you don't need to input this param. Dafault is 0.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * The discount price of the item.
    */
@@ -75,7 +75,7 @@ export interface AddDiscountItemItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The discount price of the item. If the item has no variation, this param is necessary.
    */
@@ -102,7 +102,7 @@ export interface AddDiscountItemRequest {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id: number;
+  discount_id: Integer;
   /**
    * The items added in this discount promotion.
    */
@@ -115,11 +115,11 @@ export interface AddDiscountItemError {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Shopee's unique identifier for a variation of an item. If there is no variation of this item, you don't need to input this param. Dafault is 0.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Indicate error details if one element hit error.
    */
@@ -136,7 +136,7 @@ export interface AddDiscountItemResponseData {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id?: number;
+  discount_id?: Integer;
   /**
    * The number of items that add successfully.
    */
@@ -306,7 +306,7 @@ export interface GetDiscountRequest {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id: number;
+  discount_id: Integer;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
@@ -323,7 +323,7 @@ export interface GetDiscountModel {
   /**
    * Shopee's unique identifier for a variation of an item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Name of the variation that belongs to the same item.
    */
@@ -376,7 +376,7 @@ export interface GetDiscountItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of the item in local language.
    */
@@ -453,7 +453,7 @@ export interface GetDiscountResponseData {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id?: number;
+  discount_id?: Integer;
   /**
    * The time when discount activity end.
    */
@@ -478,7 +478,7 @@ export interface GetDiscountListRequest {
   /**
    * The status filter for retriveing discount list. Available value: upcoming/ongoing/expired/all.
    */
-  discount_status: DiscountStatus | string | number;
+  discount_status: DiscountStatus | string;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
@@ -566,7 +566,7 @@ export interface GetSipDiscountsDiscount {
   /**
    * The status of discount for SIP affiliate shop in current region, can be upcoming/ongoing, excluding expired discounts.
    */
-  status?: Status | string | number;
+  status?: Status | string;
   /**
    * The discount rate set for SIP affiliate shop in current region.
    */
@@ -629,7 +629,7 @@ export interface SetSipDiscountResponseData {
   /**
    * The status of discount for SIP affiliate shop in current region, can be upcoming/ongoing, excluding expired discounts.
    */
-  status?: Status | string | number;
+  status?: Status | string;
   /**
    * The discount rate set for SIP affiliate shop in current region.
    */
@@ -706,7 +706,7 @@ export interface UpdateDiscountItemModel {
   /**
    * Shopee's unique identifier for a variation of an item. If there is no variation of this item, you don't need to input this param. Dafault is 0.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * The discount price of the item.
    */
@@ -719,7 +719,7 @@ export interface UpdateDiscountItemItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The discount price of the item.
    */
@@ -742,7 +742,7 @@ export interface UpdateDiscountItemRequest {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id: number;
+  discount_id: Integer;
   /**
    * The items selected to this discount. You can update at most 50 items per call.
    */
@@ -755,11 +755,11 @@ export interface UpdateDiscountItemError {
   /**
    * The items which have something error.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The models which have something error.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Indicate error details if one element hit error.
    */
@@ -776,7 +776,7 @@ export interface UpdateDiscountItemResponseData {
   /**
    * Shopee's unique identifier for a discount activity.
    */
-  discount_id?: number;
+  discount_id?: Integer;
   /**
    * The number of items that modify successfully.
    */

@@ -401,7 +401,6 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -472,9 +471,7 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          cancel_value_price: "10.00",
-        },
+        cancel_value_price: "10.00",
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -515,21 +512,19 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          invoice_info_list: [
-            {
-              order_sn: "220101000000001",
-              invoice_type: "personal",
-              invoice_detail: {
-                name: "John Doe",
-                email: "john@example.com",
-                tax_id: "TAX123",
-              },
-              error: "",
-              is_requested: true,
+        invoice_info_list: [
+          {
+            order_sn: "220101000000001",
+            invoice_type: "personal",
+            invoice_detail: {
+              name: "John Doe",
+              email: "john@example.com",
+              tax_id: "TAX123",
             },
-          ],
-        },
+            error: "",
+            is_requested: true,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -562,32 +557,30 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          invoice_info_list: [
-            {
-              order_sn: "220101VN0000001",
-              invoice_type: "household",
-              invoice_detail: {
-                household_address_breakdown: {
-                  household_region: "Southeast",
-                  household_state: "Ho Chi Minh",
-                  household_city: "District 1",
-                  household_province: "Ho Chi Minh City",
-                  household_district: "Ben Nghe",
-                  household_town: "Ben Nghe Ward",
-                  household_barangay: "",
-                  household_postcode: "700000",
-                  household_detailed_address: "123 Nguyen Hue",
-                  household_additional_info: "",
-                  household_full_address:
-                    "123 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City, 700000",
-                },
+        invoice_info_list: [
+          {
+            order_sn: "220101VN0000001",
+            invoice_type: "household",
+            invoice_detail: {
+              household_address_breakdown: {
+                household_region: "Southeast",
+                household_state: "Ho Chi Minh",
+                household_city: "District 1",
+                household_province: "Ho Chi Minh City",
+                household_district: "Ben Nghe",
+                household_town: "Ben Nghe Ward",
+                household_barangay: "",
+                household_postcode: "700000",
+                household_detailed_address: "123 Nguyen Hue",
+                household_additional_info: "",
+                household_full_address:
+                  "123 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City, 700000",
               },
-              error: "",
-              is_requested: true,
             },
-          ],
-        },
+            error: "",
+            is_requested: true,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -597,13 +590,13 @@ describe("OrderManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response?.invoice_info_list?.[0].invoice_type).toBe("household");
+      expect(result?.invoice_info_list?.[0].invoice_type).toBe("household");
       expect(
-        result.response?.invoice_info_list?.[0].invoice_detail?.household_address_breakdown
+        result?.invoice_info_list?.[0].invoice_detail?.household_address_breakdown
           ?.household_province
       ).toBe("Ho Chi Minh City");
       expect(
-        result.response?.invoice_info_list?.[0].invoice_detail?.household_address_breakdown
+        result?.invoice_info_list?.[0].invoice_detail?.household_address_breakdown
           ?.household_full_address
       ).toBe("123 Nguyen Hue, Ben Nghe Ward, District 1, Ho Chi Minh City, 700000");
     });
@@ -615,7 +608,6 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -857,14 +849,7 @@ describe("OrderManager", () => {
 
   describe("downloadInvoiceDoc", () => {
     it("should download invoice document", async () => {
-      const mockResponse: DownloadInvoiceDocResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          invoice_doc: "pdf_content_or_url",
-        },
-      };
+      const mockResponse: DownloadInvoiceDocResponse = Buffer.from("test binary");
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
@@ -890,7 +875,6 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -898,7 +882,7 @@ describe("OrderManager", () => {
       const result = await orderManager.uploadInvoiceDoc({
         order_sn: "220101000000001",
         file_type: 1,
-        file: "invoice.pdf",
+        file: Buffer.from("invoice.pdf"),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/upload_invoice_doc", {
@@ -907,7 +891,7 @@ describe("OrderManager", () => {
         body: {
           order_sn: "220101000000001",
           file_type: 1,
-          file: "invoice.pdf",
+          file: Buffer.from("invoice.pdf"),
         },
       });
 
@@ -1077,13 +1061,11 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          result_list: [
-            {
-              request_id: 123,
-            },
-          ],
-        },
+        result_list: [
+          {
+            request_id: 123,
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1120,14 +1102,12 @@ describe("OrderManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          result_list: [
-            {
-              request_id: 123,
-              status: "READY",
-            },
-          ],
-        },
+        result_list: [
+          {
+            request_id: 123,
+            status: "READY",
+          },
+        ],
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);

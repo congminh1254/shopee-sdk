@@ -297,7 +297,7 @@ describe("ReturnsManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.return_sn).toBe("200203171852695");
+      expect(result.response).toEqual(mockResponse.response);
     });
   });
 
@@ -428,7 +428,7 @@ describe("ReturnsManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.return_sn).toBe("200203171852695");
+      expect(result.response).toEqual(mockResponse.response);
     });
   });
 
@@ -501,7 +501,7 @@ describe("ReturnsManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.return_sn).toBe("200203171852695");
+      expect(result.response).toEqual(mockResponse.response);
     });
   });
 
@@ -567,7 +567,7 @@ describe("ReturnsManager", () => {
 
       const result = await returnsManager.convertImage({
         return_sn: "200203171852695",
-        upload_image: "image_data",
+        upload_image: Buffer.from("image_data"),
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/returns/convert_image", {
@@ -575,7 +575,7 @@ describe("ReturnsManager", () => {
         auth: true,
         body: {
           return_sn: "200203171852695",
-          upload_image: "image_data",
+          upload_image: Buffer.from("image_data"),
         },
       });
 
@@ -624,7 +624,7 @@ describe("ReturnsManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.return_sn).toBe("200203171852695");
+      expect(result.response).toEqual(mockResponse.response);
     });
 
     it("should upload proof with only text", async () => {
@@ -767,7 +767,7 @@ describe("ReturnsManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response.return_sn).toBe("200203171852695");
+      expect(result.response).toEqual(mockResponse.response);
     });
 
     it("should upload shipping proof with additional fields", async () => {

@@ -35,30 +35,30 @@ describe("FirstMileManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        binding_id: "DCN249601021852HU",
-        success_list: [
-          {
-            order_sn: "2410106R7DE3BX",
-            package_number: "test_string",
-          },
-        ],
-        fail_list: [
-          {
-            order_sn: "2004239MRBBFPJ",
-            package_number: "test_string",
-            fail_error: "firstmile.invalid_order_status",
-            fail_message: "The status of order(order_sn: 2004239MRBBFPJ) is invalid.",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          binding_id: "DCN249601021852HU",
+          success_list: [
+            {
+              order_sn: "2410106R7DE3BX",
+              package_number: "test_string",
+            },
+          ],
+          fail_list: [
+            {
+              order_sn: "2004239MRBBFPJ",
+              package_number: "test_string",
+              fail_error: "firstmile.invalid_order_status",
+              fail_message: "The status of order(order_sn: 2004239MRBBFPJ) is invalid.",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.bindCourierDeliveryFirstMileTrackingNumber(exampleRequest);
 
@@ -69,11 +69,12 @@ describe("FirstMileManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -98,24 +99,24 @@ describe("FirstMileManager (Generated Tests)", () => {
         warehouse_id: "ECP03",
         warehouse_type: 0,
       };
-      const exampleResponse = {
-        first_mile_tracking_number: "CNF731738838434210105",
-        order_list: [
-          {
-            order_sn: "201229TVRKVB80",
-            package_number: "test_string",
-            fail_error: "firstmile.order_not_exist",
-            fail_message: "Order is not exist.",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          first_mile_tracking_number: "CNF731738838434210105",
+          order_list: [
+            {
+              order_sn: "201229TVRKVB80",
+              package_number: "test_string",
+              fail_error: "firstmile.order_not_exist",
+              fail_message: "Order is not exist.",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.bindFirstMileTrackingNumber(exampleRequest);
 
@@ -126,11 +127,12 @@ describe("FirstMileManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -153,31 +155,31 @@ describe("FirstMileManager (Generated Tests)", () => {
           courier_service_id: "LCN70002",
         },
       };
-      const exampleResponse = {
-        binding_id: "DCN249601021852HU",
-        success_list: [
-          {
-            order_sn: "2410106R7TSAJR",
-            package_number: "test_string",
-          },
-        ],
-        fail_list: [
-          {
-            order_sn: "2004239MRBBFPJ",
-            package_number: "test_string",
-            fail_error: "firstmile.package_has_bind",
-            fail_message:
-              "Package (order_sn: 2004239MRBBFPJ, package_number: ) has been bind to first mile code.",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          binding_id: "DCN249601021852HU",
+          success_list: [
+            {
+              order_sn: "2410106R7TSAJR",
+              package_number: "test_string",
+            },
+          ],
+          fail_list: [
+            {
+              order_sn: "2004239MRBBFPJ",
+              package_number: "test_string",
+              fail_error: "firstmile.package_has_bind",
+              fail_message:
+                "Package (order_sn: 2004239MRBBFPJ, package_number: ) has been bind to first mile code.",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.generateAndBindFirstMileTrackingNumber(exampleRequest);
 
@@ -188,11 +190,12 @@ describe("FirstMileManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -202,16 +205,16 @@ describe("FirstMileManager (Generated Tests)", () => {
         declare_date: "2020-12-20",
         quantity: 1,
       };
-      const exampleResponse = {
-        first_mile_tracking_number_list: ["CNF487059659800210120"],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          first_mile_tracking_number_list: ["CNF487059659800210120"],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.generateFirstMileTrackingNumber(exampleRequest);
 
@@ -222,11 +225,12 @@ describe("FirstMileManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -235,22 +239,22 @@ describe("FirstMileManager (Generated Tests)", () => {
       const exampleRequest = {
         region: "CN",
       };
-      const exampleResponse = {
-        logistics_channel_list: [
-          {
-            logistics_channel_id: 1,
-            logistics_channel_name: "金岸物流",
-            shipment_method: "pickup",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          logistics_channel_list: [
+            {
+              logistics_channel_id: 1,
+              logistics_channel_name: "金岸物流",
+              shipment_method: "pickup",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getChannelList(exampleRequest);
 
@@ -258,10 +262,11 @@ describe("FirstMileManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_channel_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -270,28 +275,28 @@ describe("FirstMileManager (Generated Tests)", () => {
       const exampleRequest = {
         region: "CN",
       };
-      const exampleResponse = {
-        logistics_channel_list: [
-          {
-            logistics_product_id: 1010003,
-            logistics_product_name: "kuaidi100 to C",
-            courier_list: [
-              {
-                courier_name: "德邦快递",
-                courier_service_id: "LCN80001",
-                courier_service_name: "德邦快递",
-              },
-            ],
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          logistics_channel_list: [
+            {
+              logistics_product_id: 1010003,
+              logistics_product_name: "kuaidi100 to C",
+              courier_list: [
+                {
+                  courier_name: "德邦快递",
+                  courier_service_id: "LCN80001",
+                  courier_service_name: "德邦快递",
+                },
+              ],
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getCourierDeliveryChannelList(exampleRequest);
 
@@ -302,11 +307,12 @@ describe("FirstMileManager (Generated Tests)", () => {
         {
           method: "GET",
           auth: true,
+
           params: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -317,30 +323,30 @@ describe("FirstMileManager (Generated Tests)", () => {
         cursor: '""',
         page_size: 10,
       };
-      const exampleResponse = {
-        binding_id: "DCN249237197572VU",
-        first_mile_tracking_number: "ZJS1729224232",
-        status: "ORDER_RECEIVED",
-        declare_date: "2024-10-18",
-        more: false,
-        next_cursor: '""',
-        order_list: [
-          {
-            order_sn: "2410106R6X5Q85",
-            package_number: "OFG182232162204802",
-            sls_tracking_number: "orders",
-            pick_up_done: false,
-            arrived_transit_warehouse: false,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          binding_id: "DCN249237197572VU",
+          first_mile_tracking_number: "ZJS1729224232",
+          status: "ORDER_RECEIVED",
+          declare_date: "2024-10-18",
+          more: false,
+          next_cursor: '""',
+          order_list: [
+            {
+              order_sn: "2410106R6X5Q85",
+              package_number: "OFG182232162204802",
+              sls_tracking_number: "orders",
+              pick_up_done: false,
+              arrived_transit_warehouse: false,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getCourierDeliveryDetail(exampleRequest);
 
@@ -351,11 +357,12 @@ describe("FirstMileManager (Generated Tests)", () => {
         {
           method: "GET",
           auth: true,
+
           params: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -367,26 +374,26 @@ describe("FirstMileManager (Generated Tests)", () => {
         page_size: 10,
         cursor: '""',
       };
-      const exampleResponse = {
-        tracking_number_list: [
-          {
-            binding_id: "DCN248699144540RU",
-            first_mile_tracking_number: "ZJS1729224232",
-            status: "ORDER_RECEIVED",
-            reason: '""',
-            declare_date: "ID",
-          },
-        ],
-        more: false,
-        next_cursor: '""',
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          tracking_number_list: [
+            {
+              binding_id: "DCN248699144540RU",
+              first_mile_tracking_number: "ZJS1729224232",
+              status: "ORDER_RECEIVED",
+              reason: '""',
+              declare_date: "ID",
+            },
+          ],
+          more: false,
+          next_cursor: '""',
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getCourierDeliveryTrackingNumberList(exampleRequest);
 
@@ -397,11 +404,12 @@ describe("FirstMileManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -410,22 +418,22 @@ describe("FirstMileManager (Generated Tests)", () => {
       const exampleRequest = {
         binding_id_list: ["DCN248699144540RU"],
       };
-      const exampleResponse = {
-        waybill_list: [
-          {
-            binding_id: "DCN248699144540RU",
-            shipping_label_url:
-              "http://api.kuaidi100.com/label/getImage/20240620/AE6449DBB3FF4E7F80A36EA1A0DF17E2",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          waybill_list: [
+            {
+              binding_id: "DCN248699144540RU",
+              shipping_label_url:
+                "http://api.kuaidi100.com/label/getImage/20240620/AE6449DBB3FF4E7F80A36EA1A0DF17E2",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getCourierDeliveryWaybill(exampleRequest);
 
@@ -436,11 +444,12 @@ describe("FirstMileManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -450,31 +459,31 @@ describe("FirstMileManager (Generated Tests)", () => {
         first_mile_tracking_number: "CNF731738838434210105",
         cursor: '""',
       };
-      const exampleResponse = {
-        logistics_channel_id: 813,
-        first_mile_tracking_number: "CNF731738838434210105",
-        shipment_method: "pickup",
-        status: "PICKED_UP",
-        declare_date: "2020-05-19",
-        more: false,
-        order_list: [
-          {
-            order_sn: "20012328KKGVR0",
-            package_number: "25333320394471234567",
-            sls_tracking_number: "orders",
-            pick_up_done: false,
-            arrived_transit_warehouse: false,
-          },
-        ],
-        next_cursor: '"100"',
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          logistics_channel_id: 813,
+          first_mile_tracking_number: "CNF731738838434210105",
+          shipment_method: "pickup",
+          status: "PICKED_UP",
+          declare_date: "2020-05-19",
+          more: false,
+          order_list: [
+            {
+              order_sn: "20012328KKGVR0",
+              package_number: "25333320394471234567",
+              sls_tracking_number: "orders",
+              pick_up_done: false,
+              arrived_transit_warehouse: false,
+            },
+          ],
+          next_cursor: '"100"',
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getDetail(exampleRequest);
 
@@ -482,10 +491,11 @@ describe("FirstMileManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_detail", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -497,24 +507,24 @@ describe("FirstMileManager (Generated Tests)", () => {
         page_size: 10,
         cursor: '""',
       };
-      const exampleResponse = {
-        more: true,
-        first_mile_tracking_number_list: [
-          {
-            first_mile_tracking_number: "CNF373799546176200109",
-            status: "NOT_AVAILABLE",
-            declare_date: "2020-01-09",
-          },
-        ],
-        next_cursor: '"10"',
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          more: true,
+          first_mile_tracking_number_list: [
+            {
+              first_mile_tracking_number: "CNF373799546176200109",
+              status: "NOT_AVAILABLE",
+              declare_date: "2020-01-09",
+            },
+          ],
+          next_cursor: '"10"',
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getTrackingNumberList(exampleRequest);
 
@@ -522,10 +532,11 @@ describe("FirstMileManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_tracking_number_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -535,23 +546,23 @@ describe("FirstMileManager (Generated Tests)", () => {
         region: "CN",
         shipment_method: "pickup",
       };
-      const exampleResponse = {
-        transit_warehouse_list: [
-          {
-            warehouse_id: "ECP03",
-            warehouse_name_en: "Shopee Quanzhou Transit Warehouse",
-            warehouse_name_cn: "Shopee泉州仓",
-            warehouse_type: 0,
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          transit_warehouse_list: [
+            {
+              warehouse_id: "ECP03",
+              warehouse_name_en: "Shopee Quanzhou Transit Warehouse",
+              warehouse_name_cn: "Shopee泉州仓",
+              warehouse_type: 0,
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getTransitWarehouseList(exampleRequest);
 
@@ -559,10 +570,11 @@ describe("FirstMileManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_transit_warehouse_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -573,24 +585,24 @@ describe("FirstMileManager (Generated Tests)", () => {
         page_size: 10,
         response_optional_fields: "logistics_status",
       };
-      const exampleResponse = {
-        more: false,
-        order_list: [
-          {
-            order_sn: "201224EM1FMFG1",
-            package_number: "91238191238123",
-            logistics_status: "LOGISTICS_PICKUP_DONE",
-          },
-        ],
-        next_cursor: '"10"',
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          more: false,
+          order_list: [
+            {
+              order_sn: "201224EM1FMFG1",
+              package_number: "91238191238123",
+              logistics_status: "LOGISTICS_PICKUP_DONE",
+            },
+          ],
+          next_cursor: '"10"',
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getUnbindOrderList(exampleRequest);
 
@@ -598,10 +610,11 @@ describe("FirstMileManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_unbind_order_list", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -610,16 +623,9 @@ describe("FirstMileManager (Generated Tests)", () => {
       const exampleRequest = {
         first_mile_tracking_number_list: ["CNF880344919515201212"],
       };
-      const exampleResponse = {
-        waybill: "test_string",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: exampleResponse,
-      });
+      const exampleResponse = Buffer.from("test_binary");
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getWaybill(exampleRequest);
 
@@ -627,10 +633,11 @@ describe("FirstMileManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/first_mile/get_waybill", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -645,24 +652,24 @@ describe("FirstMileManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        first_mile_tracking_number: "CNF918114805245200519",
-        order_list: [
-          {
-            order_sn: "2004239MRBBFPJ",
-            package_number: "2332058284081153446",
-            fail_error: "firstmile.invalid_order_status",
-            fail_message: "The status of order(order_sn: 2004239MRBBFPJ) is invalid.",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          first_mile_tracking_number: "CNF918114805245200519",
+          order_list: [
+            {
+              order_sn: "2004239MRBBFPJ",
+              package_number: "2332058284081153446",
+              fail_error: "firstmile.invalid_order_status",
+              fail_message: "The status of order(order_sn: 2004239MRBBFPJ) is invalid.",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.unbindFirstMileTrackingNumber(exampleRequest);
 
@@ -673,11 +680,12 @@ describe("FirstMileManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -691,31 +699,31 @@ describe("FirstMileManager (Generated Tests)", () => {
           },
         ],
       };
-      const exampleResponse = {
-        success_list: [
-          {
-            order_sn: "2410215AMTPJ2N",
-            package_number: "OFG183183235200317",
-            binding_id: "DCN240065737910MU",
-            first_mile_tracking_number: "test_string",
-          },
-        ],
-        fail_list: [
-          {
-            order_sn: "241023AX7W8DMY",
-            package_number: "OFG173184901200180",
-            fail_error: "firstmile.order_not_exist",
-            fail_message: "Order is not exist.",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          success_list: [
+            {
+              order_sn: "2410215AMTPJ2N",
+              package_number: "OFG183183235200317",
+              binding_id: "DCN240065737910MU",
+              first_mile_tracking_number: "test_string",
+            },
+          ],
+          fail_list: [
+            {
+              order_sn: "241023AX7W8DMY",
+              package_number: "OFG173184901200180",
+              fail_error: "firstmile.order_not_exist",
+              fail_message: "Order is not exist.",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.unbindFirstMileTrackingNumberAll(exampleRequest);
 
@@ -726,11 +734,12 @@ describe("FirstMileManager (Generated Tests)", () => {
         {
           method: "POST",
           auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

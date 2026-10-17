@@ -46,6 +46,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
@@ -65,6 +66,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
@@ -84,6 +86,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
@@ -103,6 +106,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
@@ -122,6 +126,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
@@ -141,6 +146,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
@@ -160,6 +166,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
@@ -179,6 +186,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
@@ -198,6 +206,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
@@ -217,6 +226,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
@@ -236,6 +246,7 @@ export class PrincipalManager extends BaseManager {
       {
         method: "POST",
         auth: true,
+        authMode: "token",
         body: params,
       }
     );
