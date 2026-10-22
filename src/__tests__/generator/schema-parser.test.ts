@@ -61,6 +61,20 @@ describe("schema-parser", () => {
   });
 
   describe("parseSchemaFile", () => {
+    it.each(["video.get_video_list", "livestream.get_session_detail"])(
+      "uses the documented User auth type for %s",
+      (endpoint) => {
+        const parsed = parseSchemaFile(path.resolve(process.cwd(), `schemas/v2.${endpoint}.json`));
+        expect(parsed.auth).toBe("user");
+      }
+    );
+
+    it("preserves shop authentication", () => {
+      expect(
+        parseSchemaFile(path.resolve(process.cwd(), "schemas/v2.product.get_item_list.json")).auth
+      ).toBe(true);
+    });
+
     it("should reject invalid filenames", () => {
       expect(() => parseSchemaFile("invalid_name.json")).toThrow("Unsupported schema filename");
     });

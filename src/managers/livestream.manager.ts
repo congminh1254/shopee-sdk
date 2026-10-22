@@ -68,7 +68,7 @@ export class LiveStreamManager extends BaseManager {
   public async addItemList(params: AddItemListRequest): Promise<AddItemListResponse> {
     return ShopeeFetch.fetch<AddItemListResponse>(this.config, "/livestream/add_item_list", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -81,7 +81,7 @@ export class LiveStreamManager extends BaseManager {
   public async applyItemSet(params: ApplyItemSetRequest): Promise<ApplyItemSetResponse> {
     return ShopeeFetch.fetch<ApplyItemSetResponse>(this.config, "/livestream/apply_item_set", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -94,7 +94,7 @@ export class LiveStreamManager extends BaseManager {
   public async banUserComment(params: BanUserCommentRequest): Promise<BanUserCommentResponse> {
     return ShopeeFetch.fetch<BanUserCommentResponse>(this.config, "/livestream/ban_user_comment", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -107,7 +107,7 @@ export class LiveStreamManager extends BaseManager {
   public async createSession(params: CreateSessionRequest): Promise<CreateSessionResponse> {
     return ShopeeFetch.fetch<CreateSessionResponse>(this.config, "/livestream/create_session", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -120,7 +120,7 @@ export class LiveStreamManager extends BaseManager {
   public async deleteItemList(params: DeleteItemListRequest): Promise<DeleteItemListResponse> {
     return ShopeeFetch.fetch<DeleteItemListResponse>(this.config, "/livestream/delete_item_list", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -133,7 +133,7 @@ export class LiveStreamManager extends BaseManager {
   public async deleteShowItem(params: DeleteShowItemRequest): Promise<DeleteShowItemResponse> {
     return ShopeeFetch.fetch<DeleteShowItemResponse>(this.config, "/livestream/delete_show_item", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -146,7 +146,7 @@ export class LiveStreamManager extends BaseManager {
   public async endSession(params: EndSessionRequest): Promise<EndSessionResponse> {
     return ShopeeFetch.fetch<EndSessionResponse>(this.config, "/livestream/end_session", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -159,7 +159,7 @@ export class LiveStreamManager extends BaseManager {
   public async getItemCount(params: GetItemCountRequest): Promise<GetItemCountResponse> {
     return ShopeeFetch.fetch<GetItemCountResponse>(this.config, "/livestream/get_item_count", {
       method: "GET",
-      auth: true,
+      auth: "user",
       params: params,
     });
   }
@@ -172,7 +172,7 @@ export class LiveStreamManager extends BaseManager {
   public async getItemList(params: GetItemListRequest): Promise<GetItemListResponse> {
     return ShopeeFetch.fetch<GetItemListResponse>(this.config, "/livestream/get_item_list", {
       method: "GET",
-      auth: true,
+      auth: "user",
       params: params,
     });
   }
@@ -190,7 +190,7 @@ export class LiveStreamManager extends BaseManager {
       "/livestream/get_item_set_item_list",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -204,7 +204,7 @@ export class LiveStreamManager extends BaseManager {
   public async getItemSetList(params: GetItemSetListRequest): Promise<GetItemSetListResponse> {
     return ShopeeFetch.fetch<GetItemSetListResponse>(this.config, "/livestream/get_item_set_list", {
       method: "GET",
-      auth: true,
+      auth: "user",
       params: params,
     });
   }
@@ -222,7 +222,7 @@ export class LiveStreamManager extends BaseManager {
       "/livestream/get_latest_comment_list",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
         timestampPaths: ["response.list.timestamp"],
       }
@@ -240,7 +240,7 @@ export class LiveStreamManager extends BaseManager {
       "/livestream/get_like_item_list",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -259,7 +259,7 @@ export class LiveStreamManager extends BaseManager {
       "/livestream/get_recent_item_list",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -278,7 +278,7 @@ export class LiveStreamManager extends BaseManager {
       "/livestream/get_session_detail",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -297,7 +297,7 @@ export class LiveStreamManager extends BaseManager {
       "/livestream/get_session_item_metric",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -316,7 +316,7 @@ export class LiveStreamManager extends BaseManager {
       "/livestream/get_session_metric",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -330,7 +330,7 @@ export class LiveStreamManager extends BaseManager {
   public async getShowItem(params: GetShowItemRequest): Promise<GetShowItemResponse> {
     return ShopeeFetch.fetch<GetShowItemResponse>(this.config, "/livestream/get_show_item", {
       method: "GET",
-      auth: true,
+      auth: "user",
       params: params,
     });
   }
@@ -343,7 +343,7 @@ export class LiveStreamManager extends BaseManager {
   public async postComment(params: PostCommentRequest): Promise<PostCommentResponse> {
     return ShopeeFetch.fetch<PostCommentResponse>(this.config, "/livestream/post_comment", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -356,7 +356,7 @@ export class LiveStreamManager extends BaseManager {
   public async startSession(params: StartSessionRequest): Promise<StartSessionResponse> {
     return ShopeeFetch.fetch<StartSessionResponse>(this.config, "/livestream/start_session", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -374,7 +374,7 @@ export class LiveStreamManager extends BaseManager {
       "/livestream/unban_user_comment",
       {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: params,
       }
     );
@@ -388,7 +388,7 @@ export class LiveStreamManager extends BaseManager {
   public async updateItemList(params: UpdateItemListRequest): Promise<UpdateItemListResponse> {
     return ShopeeFetch.fetch<UpdateItemListResponse>(this.config, "/livestream/update_item_list", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -401,7 +401,7 @@ export class LiveStreamManager extends BaseManager {
   public async updateSession(params: UpdateSessionRequest): Promise<UpdateSessionResponse> {
     return ShopeeFetch.fetch<UpdateSessionResponse>(this.config, "/livestream/update_session", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -414,7 +414,7 @@ export class LiveStreamManager extends BaseManager {
   public async updateShowItem(params: UpdateShowItemRequest): Promise<UpdateShowItemResponse> {
     return ShopeeFetch.fetch<UpdateShowItemResponse>(this.config, "/livestream/update_show_item", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -427,7 +427,7 @@ export class LiveStreamManager extends BaseManager {
   public async uploadImage(params: UploadImageRequest): Promise<UploadImageResponse> {
     return ShopeeFetch.fetch<UploadImageResponse>(this.config, "/livestream/upload_image", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }

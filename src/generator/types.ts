@@ -35,7 +35,7 @@ export interface EndpointSpec {
   endpointName: string;
   method: "GET" | "POST";
   path: string;
-  auth: boolean;
+  auth: boolean | "user";
   description: string;
   requestParams: NormalizedParam[];
   responseParams: NormalizedParam[];

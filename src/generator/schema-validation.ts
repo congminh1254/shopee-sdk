@@ -2,6 +2,7 @@ import { SpecFieldNode } from "./types.js";
 
 export interface InputSchema {
   method: 1 | 2;
+  api_type?: string;
   path?: string;
   api_name?: string;
   define?: string | { content?: string };
@@ -22,6 +23,9 @@ export function validateSchema(value: unknown): asserts value is InputSchema {
       !/^\/api\/v2\/[a-z0-9_-]+\/(?:[^/?#\s]+\/)*[^/?#\s]+$/.test(value.path))
   ) {
     throw new Error("path must be an /api/v2/module/endpoint path");
+  }
+  if (value.api_type !== undefined && typeof value.api_type !== "string") {
+    throw new Error("api_type must be a string");
   }
   if (value.api_name !== undefined && typeof value.api_name !== "string") {
     throw new Error("api_name must be a string");

@@ -155,7 +155,7 @@ describe("${managerClassName} (Generated Tests)", () => {
         ${JSON.stringify(spec.path)},
         {
           method: "${spec.method}",
-          ${spec.auth ? "auth: true," : ""}
+          ${spec.auth ? `auth: ${JSON.stringify(spec.auth)},` : ""}
           ${spec.method === "GET" ? "params" : "body"}: exampleRequest,
           ${spec.timestampPaths.length ? `timestampPaths: ${JSON.stringify(spec.timestampPaths)},` : ""}
         }

@@ -57,7 +57,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/delete_video", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -114,7 +114,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/edit_video_info", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -148,7 +148,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_cover_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -209,7 +209,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_metric_trend", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -272,7 +272,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_overview_performance", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -325,7 +325,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_prodcut_performance_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -358,7 +358,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_user_demographics", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -422,7 +422,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
         timestampPaths: [
           "response.post_time",
@@ -465,7 +465,7 @@ describe("VideoManager (Generated Tests)", () => {
         "/video/get_video_detail_audience_distribution",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: exampleRequest,
         }
       );
@@ -496,7 +496,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail_metric_trend", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -551,7 +551,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail_performance", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
         timestampPaths: ["response.video_info.post_time"],
       });
@@ -609,7 +609,7 @@ describe("VideoManager (Generated Tests)", () => {
         "/video/get_video_detail_product_performance",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: exampleRequest,
         }
       );
@@ -681,7 +681,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
         timestampPaths: [
           "response.list.post_time",
@@ -749,7 +749,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_performance_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
         timestampPaths: ["response.list.post_time"],
       });
@@ -790,7 +790,7 @@ describe("VideoManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/video/post_video", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 

@@ -71,7 +71,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/delete_video", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: {
           video_upload_id_list: ["upload123", "upload456"],
         },
@@ -106,7 +106,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/delete_video", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: {
           video_upload_id_list: ["upload123"],
           post_id_list: ["post456"],
@@ -182,7 +182,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/edit_video_info", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: {
           video_upload_list: [
             {
@@ -246,7 +246,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/edit_video_info", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: {
           video_upload_list: [
             {
@@ -336,7 +336,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_cover_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: {
           video_upload_id: "upload123",
         },
@@ -364,7 +364,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_cover_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: {
           video_upload_id: "upload123",
         },
@@ -407,7 +407,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_metric_trend", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: {
           period_type: "Day",
           end_date: "2026-05-20",
@@ -437,7 +437,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_metric_trend", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: {
           period_type: "Day",
           end_date: "2026-05-20",
@@ -477,7 +477,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_overview_performance", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: {
           period_type: "Day",
           end_date: "2026-05-20",
@@ -506,7 +506,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_overview_performance", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: {
           period_type: "Day",
           end_date: "2026-05-20",
@@ -555,7 +555,7 @@ describe("VideoManager", () => {
         "/video/get_prodcut_performance_list",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             page_no: 1,
             page_size: 10,
@@ -597,7 +597,7 @@ describe("VideoManager", () => {
         "/video/get_prodcut_performance_list",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             page_no: 1,
             page_size: 10,
@@ -639,7 +639,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_user_demographics", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: undefined,
       });
 
@@ -672,7 +672,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: {
           video_upload_id: "upload123",
         },
@@ -705,7 +705,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_detail", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: {
           video_upload_id: "upload123",
           post_id: "post123",
@@ -750,7 +750,7 @@ describe("VideoManager", () => {
         "/video/get_video_detail_audience_distribution",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             post_id: "post123",
           },
@@ -780,7 +780,7 @@ describe("VideoManager", () => {
         "/video/get_video_detail_audience_distribution",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             post_id: "post123",
           },
@@ -817,7 +817,7 @@ describe("VideoManager", () => {
         "/video/get_video_detail_metric_trend",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             post_id: "post123",
             metric_name: "Views",
@@ -849,7 +849,7 @@ describe("VideoManager", () => {
         "/video/get_video_detail_metric_trend",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             post_id: "post123",
             metric_name: "Views",
@@ -891,7 +891,7 @@ describe("VideoManager", () => {
         "/video/get_video_detail_performance",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             post_id: "post123",
           },
@@ -923,7 +923,7 @@ describe("VideoManager", () => {
         "/video/get_video_detail_performance",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             post_id: "post123",
           },
@@ -965,7 +965,7 @@ describe("VideoManager", () => {
         "/video/get_video_detail_product_performance",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             post_id: "post123",
             page_no: 1,
@@ -1001,7 +1001,7 @@ describe("VideoManager", () => {
         "/video/get_video_detail_product_performance",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             post_id: "post123",
             page_no: 1,
@@ -1051,7 +1051,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: {
           page_no: 1,
           page_size: 10,
@@ -1090,7 +1090,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/get_video_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: {
           page_no: 1,
           page_size: 10,
@@ -1147,7 +1147,7 @@ describe("VideoManager", () => {
         "/video/get_video_performance_list",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             page_no: 1,
             page_size: 10,
@@ -1188,7 +1188,7 @@ describe("VideoManager", () => {
         "/video/get_video_performance_list",
         {
           method: "GET",
-          auth: true,
+          auth: "user",
           params: {
             page_no: 1,
             page_size: 10,
@@ -1230,7 +1230,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/post_video", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: {
           video_upload_id_list: ["upload123"],
         },
@@ -1257,7 +1257,7 @@ describe("VideoManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/video/post_video", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: {
           video_upload_id_list: ["upload123"],
         },

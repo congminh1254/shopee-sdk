@@ -242,7 +242,7 @@ describe("ShopeeSDK", () => {
 
       const token = await sdk.authenticateWithCode("test_code");
 
-      expect(mockGetAccessToken).toHaveBeenCalledWith("test_code", undefined, undefined);
+      expect(mockGetAccessToken).toHaveBeenCalledWith("test_code", undefined, undefined, undefined);
       expect(mockStore).toHaveBeenCalledWith(mockToken);
       expect(token).toEqual(mockToken);
     });
@@ -312,7 +312,12 @@ describe("ShopeeSDK", () => {
 
       const token = await sdk.refreshToken();
 
-      expect(mockGetRefreshToken).toHaveBeenCalledWith("test_refresh_token", undefined, undefined);
+      expect(mockGetRefreshToken).toHaveBeenCalledWith(
+        "test_refresh_token",
+        undefined,
+        undefined,
+        undefined
+      );
       expect(mockStore).toHaveBeenCalledWith(newToken);
       expect(token).toEqual(newToken);
     });

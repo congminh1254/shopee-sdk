@@ -6,15 +6,17 @@ export interface AccessToken {
   error: string;
   message: string;
   shop_id?: number;
+  user_id?: number;
   merchant_id_list?: number[];
   shop_id_list?: number[];
+  user_id_list?: number[];
   supplier_id_list?: number[];
   expired_at?: number;
 }
 
 export interface RefreshedAccessToken extends Omit<
   AccessToken,
-  "merchant_id_list" | "shop_id_list" | "supplier_id_list"
+  "merchant_id_list" | "shop_id_list" | "supplier_id_list" | "user_id_list"
 > {
   partner_id: number;
   shop_id?: number;
@@ -26,6 +28,7 @@ export interface TokenByResendCode {
   error: string;
   message: string;
   shop_id_list?: number[];
+  user_id_list?: number[];
   merchant_id_list?: number[];
   refresh_token: string;
   access_token: string;
