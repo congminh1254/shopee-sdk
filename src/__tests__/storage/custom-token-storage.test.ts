@@ -38,6 +38,21 @@ describe("CustomTokenStorage", () => {
     }
   });
 
+  it("isolates users from shops and from the default token", async () => {
+    const first = new CustomTokenStorage({ user_id: 123 });
+    const second = new CustomTokenStorage({ user_id: 456 });
+    const shop = new CustomTokenStorage(123);
+    const token = { access_token: "user-token", user_id: 123, user_id_list: [123] } as AccessToken;
+    await first.store(token);
+    expect(await first.get()).toEqual(token);
+    expect(await second.get()).toBeNull();
+    expect(await shop.get()).toBeNull();
+    expect(await new CustomTokenStorage().get()).toBeNull();
+    await shop.store({ access_token: "shop-token", shop_id: 123 } as AccessToken);
+    expect((await first.get())?.user_id).toBe(123);
+    expect((await shop.get())?.shop_id).toBe(123);
+  });
+
   describe("constructor", () => {
     it("should create token directory if it does not exist", () => {
       new CustomTokenStorage(123456);

@@ -381,7 +381,7 @@ export function parseSchemaFile(filePath: string): EndpointSpec {
   const pathVal = rawPath.replace("/api/v2/", "/"); // shopee fetch uses "/module/endpoint" format
 
   // Only public manager does not need auth
-  const auth = moduleName !== "public";
+  const auth = schema.api_type === "User" ? "user" : moduleName !== "public";
 
   const rawDefine = schema.define;
   const defineStr = typeof rawDefine === "string" ? rawDefine : rawDefine?.content || "";

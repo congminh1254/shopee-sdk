@@ -376,7 +376,7 @@ export class AstBuilder {
     endpointName: string,
     method: "GET" | "POST",
     path: string,
-    auth: boolean,
+    auth: boolean | "user",
     timestampPaths: string[],
     description: string,
     requestParams: NormalizedParam[] = []
@@ -404,7 +404,12 @@ export class AstBuilder {
     ];
 
     if (auth) {
-      optionsProperties.push(ts.factory.createPropertyAssignment("auth", ts.factory.createTrue()));
+      optionsProperties.push(
+        ts.factory.createPropertyAssignment(
+          "auth",
+          auth === "user" ? ts.factory.createStringLiteral("user") : ts.factory.createTrue()
+        )
+      );
     }
 
     // Pass body (for POST) or params (for GET)

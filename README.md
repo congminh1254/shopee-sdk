@@ -24,6 +24,7 @@ Build powerful Shopee integrations with confidence using our fully-featured SDK 
 
 - [Setup Guide](./docs/guides/setup.md) - Installation and configuration
 - [Authentication](./docs/guides/authentication.md) - OAuth flow and token management
+- [User Authentication](./docs/guides/user-authentication.md) - Video and Livestream authorization, signing, and integration tests
 - [Token Storage](./docs/guides/token-storage.md) - Managing access tokens
 - [Proxy Configuration](./docs/guides/proxy.md) - Using HTTP/HTTPS proxies
 

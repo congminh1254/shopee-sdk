@@ -169,27 +169,37 @@ export class ShopeeSDK {
     }
     return url.toString();
   }
+  /** Store a token for a shop or selected user; a single returned user is selected automatically. */
   public async authenticateWithCode(
     code: string,
     shopId?: number,
-    mainAccountId?: number
+    mainAccountId?: number,
+    userId?: number
   ): Promise<AccessToken | null> {
-    const token = await this.auth.getAccessToken(code, shopId, mainAccountId);
+    const token = await this.auth.getAccessToken(code, shopId, mainAccountId, userId);
     await this.tokenStorage.store(token);
     return token;
   }
   public async getAuthToken(): Promise<AccessToken | null> {
     return this.tokenStorage.get();
   }
-  public async refreshToken(shop_id?: number, merchant_id?: number): Promise<AccessToken | null> {
+  public async refreshToken(
+    shop_id?: number,
+    merchant_id?: number,
+    user_id?: number
+  ): Promise<AccessToken | null> {
     const old_token = await this.tokenStorage.get();
     if (!old_token) {
       throw new ShopeeSdkError("No token found to refresh");
     }
+    const selectedUserId =
+      user_id ??
+      (shop_id === undefined && merchant_id === undefined ? old_token.user_id : undefined);
     const token = await this.auth.getRefreshToken(
       old_token.refresh_token,
-      shop_id ?? old_token.shop_id,
-      merchant_id
+      selectedUserId !== undefined ? shop_id : (shop_id ?? old_token.shop_id),
+      merchant_id,
+      selectedUserId
     );
     if (!token) {
       return null;

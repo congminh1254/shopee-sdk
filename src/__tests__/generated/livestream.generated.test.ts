@@ -48,7 +48,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/add_item_list", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -76,7 +76,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/apply_item_set", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -104,7 +104,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/ban_user_comment", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -136,7 +136,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/create_session", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -169,7 +169,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/delete_item_list", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -196,7 +196,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/delete_show_item", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -223,7 +223,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/end_session", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -253,7 +253,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_count", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -306,7 +306,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -358,7 +358,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_set_item_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -397,7 +397,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_item_set_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -436,7 +436,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_latest_comment_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
         timestampPaths: ["response.list.timestamp"],
       });
@@ -489,7 +489,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_like_item_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -540,7 +540,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_recent_item_list", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -589,7 +589,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_detail", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -641,7 +641,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_item_metric", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -682,7 +682,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_session_metric", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -723,7 +723,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/get_show_item", {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: exampleRequest,
       });
 
@@ -753,7 +753,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/post_comment", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -782,7 +782,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/start_session", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -810,7 +810,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/unban_user_comment", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -843,7 +843,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_item_list", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -874,7 +874,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_session", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -903,7 +903,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/update_show_item", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 
@@ -932,7 +932,7 @@ describe("LiveStreamManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/livestream/upload_image", {
         method: "POST",
-        auth: true,
+        auth: "user",
         body: exampleRequest,
       });
 

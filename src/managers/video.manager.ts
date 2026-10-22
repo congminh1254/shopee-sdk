@@ -48,7 +48,7 @@ export class VideoManager extends BaseManager {
   public async deleteVideo(params?: DeleteVideoRequest): Promise<DeleteVideoResponse> {
     return ShopeeFetch.fetch<DeleteVideoResponse>(this.config, "/video/delete_video", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -61,7 +61,7 @@ export class VideoManager extends BaseManager {
   public async editVideoInfo(params: EditVideoInfoRequest): Promise<EditVideoInfoResponse> {
     return ShopeeFetch.fetch<EditVideoInfoResponse>(this.config, "/video/edit_video_info", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }
@@ -74,7 +74,7 @@ export class VideoManager extends BaseManager {
   public async getCoverList(params: GetCoverListRequest): Promise<GetCoverListResponse> {
     return ShopeeFetch.fetch<GetCoverListResponse>(this.config, "/video/get_cover_list", {
       method: "GET",
-      auth: true,
+      auth: "user",
       params: params,
     });
   }
@@ -87,7 +87,7 @@ export class VideoManager extends BaseManager {
   public async getMetricTrend(params: GetMetricTrendRequest): Promise<GetMetricTrendResponse> {
     return ShopeeFetch.fetch<GetMetricTrendResponse>(this.config, "/video/get_metric_trend", {
       method: "GET",
-      auth: true,
+      auth: "user",
       params: params,
     });
   }
@@ -105,7 +105,7 @@ export class VideoManager extends BaseManager {
       "/video/get_overview_performance",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -124,7 +124,7 @@ export class VideoManager extends BaseManager {
       "/video/get_prodcut_performance_list",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -143,7 +143,7 @@ export class VideoManager extends BaseManager {
       "/video/get_user_demographics",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -157,7 +157,7 @@ export class VideoManager extends BaseManager {
   public async getVideoDetail(params?: GetVideoDetailRequest): Promise<GetVideoDetailResponse> {
     return ShopeeFetch.fetch<GetVideoDetailResponse>(this.config, "/video/get_video_detail", {
       method: "GET",
-      auth: true,
+      auth: "user",
       params: params,
       timestampPaths: [
         "response.post_time",
@@ -180,7 +180,7 @@ export class VideoManager extends BaseManager {
       "/video/get_video_detail_audience_distribution",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -199,7 +199,7 @@ export class VideoManager extends BaseManager {
       "/video/get_video_detail_metric_trend",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -218,7 +218,7 @@ export class VideoManager extends BaseManager {
       "/video/get_video_detail_performance",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
         timestampPaths: ["response.video_info.post_time"],
       }
@@ -238,7 +238,7 @@ export class VideoManager extends BaseManager {
       "/video/get_video_detail_product_performance",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
       }
     );
@@ -252,7 +252,7 @@ export class VideoManager extends BaseManager {
   public async getVideoList(params: GetVideoListRequest): Promise<GetVideoListResponse> {
     return ShopeeFetch.fetch<GetVideoListResponse>(this.config, "/video/get_video_list", {
       method: "GET",
-      auth: true,
+      auth: "user",
       params: params,
       timestampPaths: [
         "response.list.post_time",
@@ -275,7 +275,7 @@ export class VideoManager extends BaseManager {
       "/video/get_video_performance_list",
       {
         method: "GET",
-        auth: true,
+        auth: "user",
         params: params,
         timestampPaths: ["response.list.post_time"],
       }
@@ -290,7 +290,7 @@ export class VideoManager extends BaseManager {
   public async postVideo(params: PostVideoRequest): Promise<PostVideoResponse> {
     return ShopeeFetch.fetch<PostVideoResponse>(this.config, "/video/post_video", {
       method: "POST",
-      auth: true,
+      auth: "user",
       body: params,
     });
   }

@@ -5,21 +5,24 @@ import path from "path";
 
 export class CustomTokenStorage implements TokenStorage {
   private readonly tokenPath: string;
+  private readonly isShop: boolean;
   private readonly defaultTokenPath: string;
-  constructor(shopId?: number) {
+  constructor(identity?: number | { user_id: number }) {
     // create a folder in the root of the project called .token
     const tokenDir = path.join(process.cwd(), ".token");
     if (!fs.existsSync(tokenDir)) {
       fs.mkdirSync(tokenDir, { recursive: true });
     }
     this.defaultTokenPath = path.join(tokenDir, "default.json");
-    this.tokenPath = path.join(tokenDir, `${shopId ?? "default"}.json`);
+    this.isShop = typeof identity === "number";
+    const key = typeof identity === "object" ? `user-${identity.user_id}` : (identity ?? "default");
+    this.tokenPath = path.join(tokenDir, `${key}.json`);
   }
 
   public async store(token: AccessToken): Promise<void> {
     try {
       fs.writeFileSync(this.tokenPath, JSON.stringify(token, null, 2));
-      if (this.defaultTokenPath !== this.tokenPath && !fs.existsSync(this.defaultTokenPath)) {
+      if (this.isShop && !fs.existsSync(this.defaultTokenPath)) {
         fs.writeFileSync(this.defaultTokenPath, JSON.stringify(token, null, 2));
       }
     } catch (error) {

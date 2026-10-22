@@ -213,7 +213,7 @@ export class ShopeeFetch {
     Object.keys(serializedParams).forEach((key) =>
       serializedParams[key] === undefined ? delete serializedParams[key] : {}
     );
-    const allParams = {
+    const allParams: Record<string, unknown> = {
       ...serializedParams,
       partner_id: config.partner_id,
       timestamp,
@@ -229,16 +229,23 @@ export class ShopeeFetch {
       if (!token) {
         throw new ShopeeSdkError("No access token found");
       }
+      const identityKey = options.auth === "user" ? "user_id" : "shop_id";
+      const identity = token[identityKey];
+      if (typeof identity !== "number" || !Number.isSafeInteger(identity) || identity < 0) {
+        throw new ShopeeSdkError(`No valid ${identityKey} found on access token`);
+      }
+      // User endpoints must not inherit a shop identity from caller parameters.
+      if (options.auth === "user") delete allParams.shop_id;
       authParams = {
-        access_token: token?.access_token,
-        shop_id: token?.shop_id,
+        access_token: token.access_token,
+        [identityKey]: identity,
       };
       signature = generateSignature(config.partner_key, [
         config.partner_id.toString(),
         url.pathname,
         timestamp.toString(),
-        token?.access_token,
-        token?.shop_id!.toString(),
+        token.access_token,
+        identity.toString(),
       ]);
     }
     Object.entries({ ...allParams, ...authParams, sign: signature }).forEach(([key, value]) => {

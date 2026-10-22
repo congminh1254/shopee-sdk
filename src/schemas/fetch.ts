@@ -1,7 +1,8 @@
 export type FetchOptions = Omit<RequestInit, "body"> & {
   params?: any;
   body?: unknown;
-  auth?: boolean;
+  /** true preserves shop authentication; "user" signs with the selected user_id. */
+  auth?: boolean | "user";
   timestampPaths?: string[];
 };
 
