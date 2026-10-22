@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * Request parameters for get_buybox_model_performance
  *
@@ -9,14 +9,14 @@ import { FetchResponse } from "./fetch.js";
  * Only available in Brazil (BR).
  */
 export interface GetBuyboxModelPerformanceRequest {
-  model_id_list: number[];
+  model_id_list: Integer[];
 }
 /**
  * GetBuyboxModelPerformancePerformance sub-interface for GetBuyboxModelPerformanceResponseData
  */
 export interface GetBuyboxModelPerformancePerformance {
-  model_id?: number;
-  past_7_days_sold_count?: number;
+  model_id?: Integer;
+  past_7_days_sold_count?: Integer;
 }
 /**
  * GetBuyboxModelPerformanceResponseData sub-interface for GetBuyboxModelPerformanceResponse
@@ -42,13 +42,13 @@ export type GetBuyboxModelPerformanceResponse =
  * Only available in Brazil (BR).
  */
 export interface GetBuyboxModelsByModelIdRequest {
-  model_id_list: number[];
+  model_id_list: Integer[];
 }
 /**
  * GetBuyboxModelsByModelIdModel sub-interface for GetBuyboxModelsByModelIdResponseData
  */
 export interface GetBuyboxModelsByModelIdModel {
-  model_id?: number;
+  model_id?: Integer;
   is_model_mapped?: boolean;
   is_eligible?: boolean;
   model_toggle_on_status?: boolean;
@@ -89,7 +89,7 @@ export interface GetBuyboxModelsByShopIdRequest {
  * GetBuyboxModelsByShopIdModel sub-interface for GetBuyboxModelsByShopIdResponseData
  */
 export interface GetBuyboxModelsByShopIdModel {
-  model_id?: number;
+  model_id?: Integer;
   is_model_mapped?: boolean;
   is_eligible?: boolean;
   model_toggle_on_status?: boolean;
@@ -109,7 +109,7 @@ export interface GetBuyboxModelsByShopIdPageInfo {
 export interface GetBuyboxModelsByShopIdResponseData {
   model_list?: GetBuyboxModelsByShopIdModel[];
   page_info?: GetBuyboxModelsByShopIdPageInfo;
-  shop_id?: number;
+  shop_id?: Integer;
 }
 /**
  * Response payload for get_buybox_models_by_shop_id
@@ -131,11 +131,11 @@ export type GetBuyboxShopPerformanceRequest = Record<string, never>;
  * GetBuyboxShopPerformanceResponseData sub-interface for GetBuyboxShopPerformanceResponse
  */
 export interface GetBuyboxShopPerformanceResponseData {
-  past_7_days_sold_count?: number;
-  total_sold_count?: number;
+  past_7_days_sold_count?: Integer;
+  total_sold_count?: Integer;
   sales?: number;
   data_updated_time?: string;
-  shop_id?: number;
+  shop_id?: Integer;
 }
 /**
  * Response payload for get_buybox_shop_performance
@@ -153,17 +153,17 @@ export type GetBuyboxShopPerformanceResponse = FetchResponse<GetBuyboxShopPerfor
  * Only available in Brazil (BR).
  */
 export interface UpdateBuyboxModelEnrollmentRequest {
-  model_id: number;
+  model_id: Integer;
   model_toggle_on_status: boolean;
 }
 /**
  * UpdateBuyboxModelEnrollmentResponseData sub-interface for UpdateBuyboxModelEnrollmentResponse
  */
 export interface UpdateBuyboxModelEnrollmentResponseData {
-  model_id?: number;
+  model_id?: Integer;
   model_toggle_on_status?: boolean;
   last_updated_time?: string;
-  shop_id?: number;
+  shop_id?: Integer;
 }
 /**
  * Response payload for update_buybox_model_enrollment

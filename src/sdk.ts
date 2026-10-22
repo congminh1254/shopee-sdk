@@ -44,6 +44,8 @@ export interface ShopeeConfig {
   base_auth_url?: string;
   sdk?: ShopeeSDK;
   shop_id?: number;
+  merchant_id?: number;
+  user_id?: number;
   agent?: Agent;
 }
 export class ShopeeSDK {
@@ -186,14 +188,20 @@ export class ShopeeSDK {
     if (!old_token) {
       throw new ShopeeSdkError("No token found to refresh");
     }
+    const shopIdentity =
+      shop_id ?? (merchant_id ? undefined : (old_token.shop_id ?? this.config.shop_id));
+    const merchantIdentity =
+      merchant_id ??
+      (shopIdentity ? undefined : (old_token.merchant_id ?? this.config.merchant_id));
     const token = await this.auth.getRefreshToken(
       old_token.refresh_token,
-      shop_id ?? old_token.shop_id,
-      merchant_id
+      shopIdentity,
+      merchantIdentity
     );
     if (!token) {
       return null;
     }
+    token.user_id ??= old_token.user_id ?? this.config.user_id;
     await this.tokenStorage.store(token);
     return token;
   }

@@ -1,4 +1,5 @@
 import ts from "typescript";
+import type { AuthMode } from "../schemas/fetch.js";
 import { NormalizedParam, ParsedEnum, toPascalCase, toCamelCase } from "./types.js";
 
 // Singularize name for interface type names
@@ -39,6 +40,7 @@ function propertyName(name: string): ts.PropertyName {
 
 export class AstBuilder {
   public enumNames = new Set<string>();
+  public enumTypes = new Map<string, "string" | "number">();
   // Registry to prevent duplicates and resolve collisions structurally
   private declaredInterfaces = new Map<string, { key: string; name: string }>();
 
@@ -199,6 +201,13 @@ export class AstBuilder {
       baseNode = ts.factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword);
     } else if (baseType === "boolean") {
       baseNode = ts.factory.createKeywordTypeNode(ts.SyntaxKind.BooleanKeyword);
+    } else if (baseType === "unknown") {
+      baseNode = ts.factory.createKeywordTypeNode(ts.SyntaxKind.UnknownKeyword);
+    } else if (baseType === "Record<string, unknown>") {
+      baseNode = ts.factory.createTypeReferenceNode("Record", [
+        ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+        ts.factory.createKeywordTypeNode(ts.SyntaxKind.UnknownKeyword),
+      ]);
     } else if (baseType === "any") {
       baseNode = ts.factory.createKeywordTypeNode(ts.SyntaxKind.AnyKeyword);
     } else if (baseType === "Date") {
@@ -210,8 +219,14 @@ export class AstBuilder {
       if (this.enumNames.has(baseType)) {
         baseNode = ts.factory.createUnionTypeNode([
           ts.factory.createTypeReferenceNode(baseType),
-          ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
-          ts.factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword),
+          ...(this.enumTypes.get(baseType) === "string"
+            ? [ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword)]
+            : this.enumTypes.get(baseType) === "number"
+              ? [ts.factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword)]
+              : [
+                  ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+                  ts.factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword),
+                ]),
         ]);
       } else {
         baseNode = ts.factory.createTypeReferenceNode(baseType);
@@ -289,6 +304,21 @@ export class AstBuilder {
     const dataName = `${pascalName}ResponseData`;
     const responseName = `${pascalName}Response`;
 
+    if (
+      params.some((p) => p.type === "BinaryFile") &&
+      params.every(
+        (p) => p.type === "BinaryFile" || ["request_id", "error", "message"].includes(p.name)
+      )
+    ) {
+      return [
+        ts.factory.createTypeAliasDeclaration(
+          [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
+          responseName,
+          undefined,
+          ts.factory.createTypeReferenceNode("Buffer")
+        ),
+      ];
+    }
     const responseParam = params.find((p) => p.name === "response");
 
     let dataDecl: ts.InterfaceDeclaration | ts.TypeAliasDeclaration | undefined;
@@ -340,7 +370,7 @@ export class AstBuilder {
           dataName,
           undefined,
           ts.factory.createTypeReferenceNode("Record", [
-            ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+            ts.factory.createKeywordTypeNode(ts.SyntaxKind.NeverKeyword),
             ts.factory.createKeywordTypeNode(ts.SyntaxKind.NeverKeyword),
           ])
         );
@@ -358,9 +388,14 @@ export class AstBuilder {
       [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
       responseName,
       undefined,
-      ts.factory.createTypeReferenceNode("FetchResponse", [
-        ts.factory.createTypeReferenceNode(dataName),
-      ])
+      responseParam
+        ? ts.factory.createTypeReferenceNode("FetchResponse", [
+            ts.factory.createTypeReferenceNode(dataName),
+          ])
+        : ts.factory.createIntersectionTypeNode([
+            ts.factory.createTypeReferenceNode("ResponseMetadata"),
+            ts.factory.createTypeReferenceNode(dataName),
+          ])
     );
     const responseAliasWithDoc = addJsDoc(
       responseAlias,
@@ -379,7 +414,8 @@ export class AstBuilder {
     auth: boolean,
     timestampPaths: string[],
     description: string,
-    requestParams: NormalizedParam[] = []
+    requestParams: NormalizedParam[] = [],
+    authMode?: AuthMode
   ): ts.MethodDeclaration {
     const methodName = toCamelCase(endpointName);
     const pascalName = toPascalCase(endpointName);
@@ -407,6 +443,11 @@ export class AstBuilder {
       optionsProperties.push(ts.factory.createPropertyAssignment("auth", ts.factory.createTrue()));
     }
 
+    if (authMode && !["partner", "shop"].includes(authMode)) {
+      optionsProperties.push(
+        ts.factory.createPropertyAssignment("authMode", ts.factory.createStringLiteral(authMode))
+      );
+    }
     // Pass body (for POST) or params (for GET)
     const payloadProp = method === "POST" ? "body" : "params";
     optionsProperties.push(

@@ -24,7 +24,7 @@ const { runTests, initSdk } = setupIntegrationTest();
 
     expect(ordersResponse).toBeDefined();
     expect(ordersResponse.request_id).toBeDefined();
-    if (ordersResponse.response) {
+    {
       expect(Array.isArray(ordersResponse.response.order_list)).toBe(true);
     }
   });

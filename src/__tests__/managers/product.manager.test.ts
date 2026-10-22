@@ -243,7 +243,7 @@ describe("ProductManager", () => {
         page_size: 50,
         update_time_from: 1234567800,
         update_time_to: 1234567900,
-        item_status: ItemStatus.NORMAL,
+        item_status: [ItemStatus.NORMAL],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_list", {
@@ -254,7 +254,7 @@ describe("ProductManager", () => {
           page_size: 50,
           update_time_from: 1234567800,
           update_time_to: 1234567900,
-          item_status: ItemStatus.NORMAL,
+          item_status: [ItemStatus.NORMAL],
         },
         timestampPaths: ["response.item.update_time"],
       });
@@ -280,7 +280,7 @@ describe("ProductManager", () => {
       const result = await productManager.getItemList({
         offset: 0,
         page_size: 10,
-        item_status: ItemStatus.NORMAL,
+        item_status: [ItemStatus.NORMAL],
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_list", {
@@ -289,7 +289,7 @@ describe("ProductManager", () => {
         params: {
           offset: 0,
           page_size: 10,
-          item_status: ItemStatus.NORMAL,
+          item_status: [ItemStatus.NORMAL],
         },
         timestampPaths: ["response.item.update_time"],
       });
@@ -747,7 +747,6 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         warning: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -774,7 +773,6 @@ describe("ProductManager", () => {
         error: "error_item_not_found",
         message: "Item_id is not found.",
         warning: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1175,9 +1173,7 @@ describe("ProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          warning: "some-warning",
-        },
+        warning: "some-warning",
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1206,7 +1202,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.warning).toBe("some-warning");
+      expect(result.warning).toBe("some-warning");
     });
   });
 
@@ -1216,9 +1212,7 @@ describe("ProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          warning: "some-warning",
-        },
+        warning: "some-warning",
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1237,7 +1231,7 @@ describe("ProductManager", () => {
         },
       });
 
-      expect(result.response.warning).toBe("some-warning");
+      expect(result.warning).toBe("some-warning");
     });
   });
 
@@ -1272,12 +1266,12 @@ describe("ProductManager", () => {
         ],
         model: [
           {
-            tier_index: 0,
+            tier_index: [0],
             original_price: 99.99,
             seller_stock: [{ stock: 50 }],
           },
           {
-            tier_index: 1,
+            tier_index: [1],
             original_price: 99.99,
             seller_stock: [{ stock: 50 }],
           },
@@ -1301,12 +1295,12 @@ describe("ProductManager", () => {
           ],
           model: [
             {
-              tier_index: 0,
+              tier_index: [0],
               original_price: 99.99,
               seller_stock: [{ stock: 50 }],
             },
             {
-              tier_index: 1,
+              tier_index: [1],
               original_price: 99.99,
               seller_stock: [{ stock: 50 }],
             },
@@ -1325,7 +1319,6 @@ describe("ProductManager", () => {
         error: "",
         message: "",
         warning: "",
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -2716,27 +2709,25 @@ describe("ProductManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          data: {
-            standardise_variation_list: [
-              {
-                variation_id: 101054,
-                variation_name: "Color",
-                variation_group_list: [
-                  {
-                    variation_group_id: 849982774362112,
-                    variation_group_name: "Group 1",
-                    variation_option_list: [
-                      {
-                        variation_option_id: 6245,
-                        variation_option_name: "Green",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
+        data: {
+          standardise_variation_list: [
+            {
+              variation_id: 101054,
+              variation_name: "Color",
+              variation_group_list: [
+                {
+                  variation_group_id: 849982774362112,
+                  variation_group_name: "Group 1",
+                  variation_option_list: [
+                    {
+                      variation_option_id: 6245,
+                      variation_option_name: "Green",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
         },
       };
 
@@ -2755,7 +2746,7 @@ describe("ProductManager", () => {
       });
 
       expect(result).toEqual(mockResponse);
-      expect(result.response?.data?.standardise_variation_list).toHaveLength(1);
+      expect(result?.data?.standardise_variation_list).toHaveLength(1);
     });
   });
 

@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata, Integer } from "./fetch.js";
 /**
  * Enum generated for field PisCofinsCst
  */
@@ -54,13 +54,6 @@ export enum ItemStatus {
 export enum PromotionStaging {
   ONGOING = "ongoing",
   UPCOMING = "upcoming",
-}
-/**
- * Enum generated for field TierIndex
- */
-export enum TierIndex {
-  TIER = "tier",
-  TWO = "two",
 }
 /**
  * Enum generated for field CertificationNo
@@ -284,7 +277,7 @@ export interface AddItemTaxInfo {
   /**
    * Only for BR shop.The CST PIS/Cofins is a code on the Electronic Invoice (NF-e) that identifies the tax situation of PIS (Programa de Integração Social) and Cofins (Contribuição para o Financiamento da Seguridade Social) in sales of goods.
    */
-  pis_cofins_cst?: PisCofinsCst | string | number;
+  pis_cofins_cst?: PisCofinsCst | string;
   /**
    * Only for BR shop.Enter the total percentage of the combination of federal, state, and municipal taxes, using up to two decimals.
    */
@@ -333,7 +326,7 @@ export interface AddItemComplaintPolicy {
   /**
    * Address for complaint. Fetch available addresses using v2.logistics.get_address_list, and use address_id  returned from it.
    */
-  complaint_address_id?: number;
+  complaint_address_id?: Integer;
   /**
    * Additional information for warranty claim. Should be less than 1000 characters.
    */
@@ -412,19 +405,19 @@ export interface AddItemVehicleInfo {
   /**
    * ID of the brand.
    */
-  brand_id: number;
+  brand_id: Integer;
   /**
    * ID of the model.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * ID of the year.
    */
-  year_id?: number;
+  year_id?: Integer;
   /**
    * ID of the version.
    */
-  version_id?: number;
+  version_id?: Integer;
 }
 /**
  * AddItemCompatibilityInfo sub-interface for AddItemRequest
@@ -443,7 +436,7 @@ export interface AddItemSizeChartInfo {
   /**
    * ID of template size chart. If you want to remove the template size chart of the item, please pass the "size_chart_id" as 0. You only need to fill out either the image or template. If both are filled, only the template will be kept.Notes: Only local shops are supported to set "size_chart_id", for CB shops please use "size_chart".
    */
-  size_chart_id?: number;
+  size_chart_id?: Integer;
 }
 /**
  * AddItemCertificationProof sub-interface for AddItemCertification
@@ -473,7 +466,7 @@ export interface AddItemCertification {
   /**
    * Permit ID, get from v2.product.get_product_certification_rule
    */
-  permit_id: number;
+  permit_id: Integer;
   /**
    * Expiry timestamp. Required for PH, but not needed for TW.
    */
@@ -605,7 +598,7 @@ export interface AddItemRequest {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | string;
   /**
    * category recommendation service id
    */
@@ -622,7 +615,7 @@ export interface AddItemRequest {
   /**
    * ID of authorised reseller brand.
    */
-  authorised_brand_id?: number;
+  authorised_brand_id?: Integer;
   size_chart_info?: AddItemSizeChartInfo;
   /**
    * For PH product certification inputRequired for some category and attribute option
@@ -635,15 +628,15 @@ export interface AddItemRequest {
   /**
    * [Only for ID local sellers] as a unique identifier for each standardized medicine, the medicine id can only be obtained offline
    */
-  medicine_id?: number;
+  medicine_id?: Integer;
   /**
    * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
    */
-  cssp_id?: number;
+  cssp_id?: Integer;
 }
 /**
  * AddItem_AddItemPreOrder sub-interface for AddItemResponseData
@@ -835,7 +828,7 @@ export interface AddItemResponseData {
   /**
    * Item ID
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Item attributes
    */
@@ -957,7 +950,7 @@ export interface AddKitItemLogisticInfo {
   /**
    * ID of the channel.
    */
-  logistic_id: number;
+  logistic_id: Integer;
   /**
    * Whether channel is enabled for this kit item.
    */
@@ -969,7 +962,7 @@ export interface AddKitItemLogisticInfo {
   /**
    * Size ID. Only needed when logistic fee_type = SIZE_SELECTION.
    */
-  size_id?: number;
+  size_id?: Integer;
   /**
    * Whether cover shipping fee for buyer.
    */
@@ -1012,11 +1005,11 @@ export interface AddKitItemComponent {
   /**
    * ID of the item that composes this kit model.
    */
-  component_item_id: number;
+  component_item_id: Integer;
   /**
    * ID of the model that composes this kit model.
    */
-  component_model_id?: number;
+  component_model_id?: Integer;
   /**
    * The amount of the item/model that composes this kit model.
    */
@@ -1169,7 +1162,7 @@ export interface AddKitItemRequest {
  * AddKitItemResponseData sub-interface for AddKitItemResponse
  */
 export interface AddKitItemResponseData {
-  item_id?: number;
+  item_id?: Integer;
 }
 /**
  * Response payload for add_kit_item
@@ -1243,7 +1236,7 @@ export interface AddModelModel {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | string;
   /**
    * The weight of this model, the unit is KG.If don't set the weight of this model, will use the weight of item by default.If set the dimension of this model, them must set the weight of this model.
    */
@@ -1259,11 +1252,11 @@ export interface AddModelModel {
   /**
    * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
    */
-  cssp_id?: number;
+  cssp_id?: Integer;
 }
 /**
  * Request parameters for add_model
@@ -1274,7 +1267,7 @@ export interface AddModelRequest {
   /**
    * ID of item
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Model list
    */
@@ -1330,7 +1323,7 @@ export interface AddModel_AddModelModel {
   /**
    * ID of model
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Seller SKU of this model, model_sku length information needs to be no more than 100 characters.
    */
@@ -1574,7 +1567,7 @@ export interface BatchAddItemTaxInfo {
   /**
    * Only for BR shop.The CST PIS/Cofins is a code on the Electronic Invoice (NF-e) that identifies the tax situation of PIS (Programa de Integração Social) and Cofins (Contribuição para o Financiamento da Seguridade Social) in sales of goods.
    */
-  pis_cofins_cst?: PisCofinsCst | string | number;
+  pis_cofins_cst?: PisCofinsCst | string;
   /**
    * Only for BR shop.Enter the total percentage of the combination of federal, state, and municipal taxes, using up to two decimals.
    */
@@ -1623,7 +1616,7 @@ export interface BatchAddItemComplaintPolicy {
   /**
    * Address for complaint. Fetch available addresses using v2.logistics.get_address_list, and use address_id  returned from it.
    */
-  complaint_address_id?: number;
+  complaint_address_id?: Integer;
   /**
    * Additional information for warranty claim. Should be less than 1000 characters.
    */
@@ -1702,19 +1695,19 @@ export interface BatchAddItemVehicleInfo {
   /**
    * ID of the brand.
    */
-  brand_id: number;
+  brand_id: Integer;
   /**
    * ID of the model.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * ID of the year.
    */
-  year_id?: number;
+  year_id?: Integer;
   /**
    * ID of the version.
    */
-  version_id?: number;
+  version_id?: Integer;
 }
 /**
  * BatchAddItemCompatibilityInfo sub-interface for BatchAddItemItem
@@ -1733,7 +1726,7 @@ export interface BatchAddItemSizeChartInfo {
   /**
    * ID of template size chart. If you want to remove the template size chart of the item, please pass the "size_chart_id" as 0. You only need to fill out either the image or template. If both are filled, only the template will be kept.Notes: Only local shops are supported to set "size_chart_id", for CB shops please use "size_chart".
    */
-  size_chart_id?: number;
+  size_chart_id?: Integer;
 }
 /**
  * BatchAddItemCertificationProof sub-interface for BatchAddItemCertification
@@ -1763,7 +1756,7 @@ export interface BatchAddItemCertification {
   /**
    * Permit ID, get from v2.product.get_product_certification_rule
    */
-  permit_id: number;
+  permit_id: Integer;
   /**
    * Expiry timestamp. Required for PH, but not needed for TW.
    */
@@ -1893,7 +1886,7 @@ export interface BatchAddItemItem {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | string;
   /**
    * category recommendation service id
    */
@@ -1910,7 +1903,7 @@ export interface BatchAddItemItem {
   /**
    * ID of authorised reseller brand.
    */
-  authorised_brand_id?: number;
+  authorised_brand_id?: Integer;
   size_chart_info?: BatchAddItemSizeChartInfo;
   /**
    * For PH product certification inputRequired for some category and attribute option
@@ -1923,15 +1916,15 @@ export interface BatchAddItemItem {
   /**
    * [Only for ID local sellers] as a unique identifier for each standardized medicine, the medicine id can only be obtained offline
    */
-  medicine_id?: number;
+  medicine_id?: Integer;
   /**
    * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
    */
-  cssp_id?: number;
+  cssp_id?: Integer;
 }
 /**
  * Request parameters for batch_add_item
@@ -1951,7 +1944,7 @@ export interface BatchAddItemResponseData {
   /**
    * The task ID of the batch add item task.
    */
-  task_id?: number;
+  task_id?: Integer;
 }
 /**
  * Response payload for batch_add_item
@@ -1992,7 +1985,7 @@ export interface BatchPublishItemToOutletShopModel {
   /**
    * The related model ID of the product in the Mart shop.
    */
-  relate_mart_model_id?: number;
+  relate_mart_model_id?: Integer;
   /**
    * The model status.
    */
@@ -2017,7 +2010,7 @@ export interface BatchPublishItemToOutletShopLogisticInfo {
   /**
    * The logistics channel ID used for shipping the item.
    */
-  logistic_id?: number;
+  logistic_id?: Integer;
   /**
    * Indicates whether the logistics channel is enabled for the item.
    */
@@ -2029,7 +2022,7 @@ export interface BatchPublishItemToOutletShopLogisticInfo {
   /**
    * The parcel size ID used to calculate shipping fees.
    */
-  size_id?: number;
+  size_id?: Integer;
   /**
    * Indicates whether free shipping is applied for this logistics channel.
    */
@@ -2064,7 +2057,7 @@ export interface BatchPublishItemToOutletShopPublishItem {
   /**
    * The item ID of the item in the Outlet shop.
    */
-  outlet_item_id?: number;
+  outlet_item_id?: Integer;
   /**
    * The outlet model list.
    */
@@ -2085,11 +2078,11 @@ export interface BatchPublishItemToOutletShopItem {
   /**
    * The item ID of the item in the Mart shop.
    */
-  mart_item_id: number;
+  mart_item_id: Integer;
   /**
    * The shop ID of the Outlet shop.
    */
-  outlet_shop_id: number;
+  outlet_shop_id: Integer;
   /**
    * The outlet item data to publish.
    */
@@ -2113,7 +2106,7 @@ export interface BatchPublishItemToOutletShopResponseData {
   /**
    * The task ID of the batch publish outlet item task.
    */
-  task_id?: number;
+  task_id?: Integer;
 }
 /**
  * Response payload for batch_publish_item_to_outlet_shop
@@ -2129,7 +2122,7 @@ export interface BatchUpdateOutletPricePrice {
   /**
    * The model ID of the product. Empty for item without model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * The original price to update. The value must be greater than 0.
    */
@@ -2142,11 +2135,11 @@ export interface BatchUpdateOutletPriceItem {
   /**
    * The shop ID of the Outlet shop.
    */
-  outlet_shop_id: number;
+  outlet_shop_id: Integer;
   /**
    * The item ID of the item in the Outlet shop.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The price list of item models. The list size must be at least 1.
    */
@@ -2170,7 +2163,7 @@ export interface BatchUpdateOutletPriceResponseData {
   /**
    * The task ID of the batch update price task.
    */
-  task_id?: number;
+  task_id?: Integer;
 }
 /**
  * Response payload for batch_update_outlet_price
@@ -2198,7 +2191,7 @@ export interface BatchUpdateOutletStockStock {
   /**
    * The model ID of the product. Empty for item without model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * The seller stock by location.
    */
@@ -2211,11 +2204,11 @@ export interface BatchUpdateOutletStockItem {
   /**
    * The shop ID of the Outlet shop.
    */
-  outlet_shop_id: number;
+  outlet_shop_id: Integer;
   /**
    * The item ID of the item in the Outlet shop.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The stock list of item models. The list size must be at least 1.
    */
@@ -2239,7 +2232,7 @@ export interface BatchUpdateOutletStockResponseData {
   /**
    * The task ID of the batch update stock task.
    */
-  task_id?: number;
+  task_id?: Integer;
 }
 /**
  * Response payload for batch_update_outlet_stock
@@ -2256,7 +2249,7 @@ export interface BoostItemRequest {
   /**
    * Shopee's unique identifier for an item, limit:[1,5]
    */
-  item_id_list: number[];
+  item_id_list: Integer[];
 }
 /**
  * BoostItemFailure sub-interface for BoostItemResponseData
@@ -2265,7 +2258,7 @@ export interface BoostItemFailure {
   /**
    * Failed item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Reason for failure.
    */
@@ -2278,7 +2271,7 @@ export interface BoostItemSuccess {
   /**
    * Success item ID.
    */
-  item_id_list?: number[];
+  item_id_list?: Integer[];
 }
 /**
  * BoostItemResponseData sub-interface for BoostItemResponse
@@ -2332,7 +2325,7 @@ export interface DeleteItemRequest {
   /**
    * The identity of product item.
    */
-  item_id: number;
+  item_id: Integer;
 }
 /**
  * Response data payload for delete_item
@@ -2348,7 +2341,7 @@ export interface DeleteItemResponseData {
  *
  * Use this call to delete a product item.
  */
-export type DeleteItemResponse = FetchResponse<DeleteItemResponseData>;
+export type DeleteItemResponse = ResponseMetadata & DeleteItemResponseData;
 /**
  * Request parameters for delete_model
  *
@@ -2358,11 +2351,11 @@ export interface DeleteModelRequest {
   /**
    * ID of item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * ID of model.
    */
-  model_id: number;
+  model_id: Integer;
 }
 /**
  * Response data payload for delete_model
@@ -2378,7 +2371,7 @@ export interface DeleteModelResponseData {
  *
  * Delete item model.
  */
-export type DeleteModelResponse = FetchResponse<DeleteModelResponseData>;
+export type DeleteModelResponse = ResponseMetadata & DeleteModelResponseData;
 /**
  * GenerateKitImageComponent sub-interface for GenerateKitImageRequest
  */
@@ -2386,11 +2379,11 @@ export interface GenerateKitImageComponent {
   /**
    * ID of the item that composes this kit model.
    */
-  component_item_id: number;
+  component_item_id: Integer;
   /**
    * ID of the model that composes this kit model.
    */
-  component_model_id?: number;
+  component_model_id?: Integer;
 }
 /**
  * Request parameters for generate_kit_image
@@ -2427,7 +2420,7 @@ export interface GetAitemByPitemIdRequest {
   /**
    * ID of item under SIP Primary Shop.
    */
-  pitem_id: number;
+  pitem_id: Integer;
 }
 /**
  * GetAitemByPitemIdModelMapping sub-interface for GetAitemByPitemIdAitem
@@ -2436,11 +2429,11 @@ export interface GetAitemByPitemIdModelMapping {
   /**
    * ID of model for the P Item.
    */
-  pmodel_id?: number;
+  pmodel_id?: Integer;
   /**
    * ID of model for the A Item.
    */
-  amodel_id?: number;
+  amodel_id?: Integer;
 }
 /**
  * GetAitemByPitemIdAitem sub-interface for GetAitemByPitemIdResponseData
@@ -2449,7 +2442,7 @@ export interface GetAitemByPitemIdAitem {
   /**
    * ID of SIP Affiliate Shop.
    */
-  ashop_id?: number;
+  ashop_id?: Integer;
   /**
    * Region of SIP Affiliate Shop.
    */
@@ -2457,7 +2450,7 @@ export interface GetAitemByPitemIdAitem {
   /**
    * ID of item under SIP Affiliate Shop corresponding to the P Item.
    */
-  aitem_id?: number;
+  aitem_id?: Integer;
   /**
    * If the P Item does not have model, then the model_mapping_list will not be returned.
    */
@@ -2484,15 +2477,15 @@ export interface GetAllVehicleListRequest {
   /**
    * The size of one page. Max=100
    */
-  page_size: number;
+  page_size: Integer;
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0, if data is more than one page, the offset can be some entry to start next call.
    */
-  offset?: number;
+  offset?: Integer;
   /**
    * If language is not uploaded, the default language=en, the following are the languages supported by different markets SG: en ; MY: en / ms-my / zh-hans ; TH: en / th ; VN: en / vi ; PH: en ; TW: en / zh-hant ; ID: en / id ; BR: en / pt-br ; MX: en / es-mx ; CO: en/es-CO ; CL: en/es-CL. Note: For markets that have already launched global tree, Crossboard shop only support returning en and zh-hans language data
    */
-  language?: Language | string | number;
+  language?: Language | string;
 }
 /**
  * GetAllVehicleListVehicle sub-interface for GetAllVehicleListResponseData
@@ -2501,7 +2494,7 @@ export interface GetAllVehicleListVehicle {
   /**
    * ID of the brand.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * Name of the brand.
    */
@@ -2509,7 +2502,7 @@ export interface GetAllVehicleListVehicle {
   /**
    * ID of the model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Name of the model.
    */
@@ -2517,7 +2510,7 @@ export interface GetAllVehicleListVehicle {
   /**
    * ID of the year.
    */
-  year_id?: number;
+  year_id?: Integer;
   /**
    * Name of the year.
    */
@@ -2525,7 +2518,7 @@ export interface GetAllVehicleListVehicle {
   /**
    * ID of the version.
    */
-  version_id?: number;
+  version_id?: Integer;
   /**
    * Name of the version.
    */
@@ -2543,7 +2536,7 @@ export interface GetAllVehicleListResponseData {
   /**
    * If has_next_page is true, this value need set to next request offset
    */
-  next_offset?: number;
+  next_offset?: Integer;
 }
 /**
  * Response payload for get_all_vehicle_list
@@ -2598,7 +2591,7 @@ export interface GetAttributeTreeAttributeValue {
   /**
    * Child attributes for the value of parent attributeThe structure content is the same as attribute_tree
    */
-  child_attribute_list?: any[];
+  child_attribute_list?: unknown[];
   /**
    * Translate results for display
    */
@@ -2716,7 +2709,7 @@ export interface GetBatchTaskResultRequest {
   /**
    * The task ID to query.
    */
-  task_id: number;
+  task_id: Integer;
 }
 /**
  * GetBatchTaskResultSuccess sub-interface for GetBatchTaskResultResponseData
@@ -2725,15 +2718,15 @@ export interface GetBatchTaskResultSuccess {
   /**
    * The shop ID
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * The item ID of the item in the shop.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The model ID of the model in the shop.
    */
-  model_id?: number;
+  model_id?: Integer;
 }
 /**
  * GetBatchTaskResultFailed sub-interface for GetBatchTaskResultResponseData
@@ -2742,15 +2735,15 @@ export interface GetBatchTaskResultFailed {
   /**
    * The shop ID
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * The item ID of the item in the shop.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The model ID of the model in the shop.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * The failed reason.
    */
@@ -2819,23 +2812,23 @@ export interface GetBrandListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0. If data is more than one page,this field needs to be replaced with "next_offset" to request,and the offset can be some entry to start next call.
    */
-  offset: number;
+  offset: Integer;
   /**
    * the size of one page.Max=100
    */
-  page_size: number;
+  page_size: Integer;
   /**
    * ID of category.
    */
-  category_id: number;
+  category_id: Integer;
   /**
    * Brand status , 1: normal brand, 2: pending brand
    */
-  status: number;
+  status: Integer;
   /**
    * If language is not uploaded, the default language=en, the following are the languages supported by different markets SG: en ; MY: en / ms-my / zh-hans ; TH: en / th ; VN: en / vi ; PH: en ; TW: en / zh-hant ; ID: en / id ;  BR: en / pt-br ;  MX: en / es-mx ; CO: en/es-CO ; CL: en/es-CL. Note: For markets that have already launched global tree, Crossboard shop only support returning en and zh-hans language data
    */
-  language?: Language | string | number;
+  language?: Language | string;
 }
 /**
  * GetBrandListBrand sub-interface for GetBrandListResponseData
@@ -2845,7 +2838,7 @@ export interface GetBrandListBrand {
    * Original name of brand
    */
   original_brand_name?: string;
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * Display name of brand
    */
@@ -2863,7 +2856,7 @@ export interface GetBrandListResponseData {
   /**
    * If has_next_page is true, this value need set to next request.offset
    */
-  next_offset?: number;
+  next_offset?: Integer;
   /**
    * Whether is mandatory.
    */
@@ -2888,7 +2881,7 @@ export interface GetCategoryRequest {
   /**
    * If language is not uploaded, the default language=en, the following are the languages supported by different markets SG: en ; MY: en / ms-my / zh-hans ; TH: en / th ; VN: en / vi ; PH: en ; TW: en / zh-hant ; ID: en / id ;  BR: en / pt-br ;  MX: en / es-mx ; CO: en/es-CO ; CL: en/es-CL .Note: For markets that have already launched global tree, Crossboard shop only support returning en and zh-hans language data
    */
-  language?: Language | string | number;
+  language?: Language | string;
 }
 /**
  * GetCategoryCategory sub-interface for GetCategoryResponseData
@@ -2897,11 +2890,11 @@ export interface GetCategoryCategory {
   /**
    * ID for category.
    */
-  category_id?: number;
+  category_id?: Integer;
   /**
    * ID for parent category.
    */
-  parent_category_id?: number;
+  parent_category_id?: Integer;
   /**
    * Default name for category.
    */
@@ -2936,11 +2929,11 @@ export interface GetCommentRequest {
   /**
    * The identity of product item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The identity of comment.
    */
-  comment_id?: number;
+  comment_id?: Integer;
   /**
    * Specifies the starting entry of data to return in the current call. Default is "". If data is more than one page, the offset can be some entry to start next call.
    */
@@ -3003,11 +2996,11 @@ export interface GetCommentItemComment {
   /**
    * The commented item's id
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Shopee's unique identifier for a model of an item. It will only return 0 now. Will be offline on 2024-12-27, please switch to use model_id_list.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Buyer's rating for the item.
    */
@@ -3015,7 +3008,7 @@ export interface GetCommentItemComment {
   /**
    * The editable status of the comment. The value may be one of  EXPIRED/EDITABLE/HAVE_EDIT_ONCE.
    */
-  editable?: Editable | string | number;
+  editable?: Editable | string;
   /**
    * The comment is hidden or not.
    */
@@ -3031,7 +3024,7 @@ export interface GetCommentItemComment {
   /**
    * List of model id of the buyer's purchase corresponding to the comment.
    */
-  model_id_list?: number[];
+  model_id_list?: Integer[];
   media?: GetCommentMedia;
 }
 /**
@@ -3066,7 +3059,7 @@ export interface GetDirectItemListRequest {
   /**
    * Item id of main shop.
    */
-  main_item_id: number[];
+  main_item_id: Integer[];
 }
 /**
  * GetDirectItemListDirectItem sub-interface for GetDirectItemListList
@@ -3075,11 +3068,11 @@ export interface GetDirectItemListDirectItem {
   /**
    * Id of direct shop.
    */
-  direct_shop_id?: number;
+  direct_shop_id?: Integer;
   /**
    * Item id of direct shop.
    */
-  direct_item_id?: number;
+  direct_item_id?: Integer;
 }
 /**
  * GetDirectItemListList sub-interface for GetDirectItemListResponseData
@@ -3088,7 +3081,7 @@ export interface GetDirectItemListList {
   /**
    * Item id of main shop.
    */
-  main_item_id?: number;
+  main_item_id?: Integer;
   direct_item_list?: GetDirectItemListDirectItem[];
 }
 /**
@@ -3110,12 +3103,12 @@ export interface GetDirectShopRecommendedPriceModel {
   /**
    * Id of main model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Tier index of main model. Index starts from 0.
    */
-  tier_index?: number[];
-  input_price?: number;
+  tier_index?: Integer[];
+  input_price?: Integer;
   weight?: number;
 }
 /**
@@ -3124,7 +3117,7 @@ export interface GetDirectShopRecommendedPriceModel {
  * get recommend price for direct shop.
  */
 export interface GetDirectShopRecommendedPriceRequest {
-  main_item_id: number;
+  main_item_id: Integer;
   /**
    * Direct shop regions.
    */
@@ -3132,7 +3125,7 @@ export interface GetDirectShopRecommendedPriceRequest {
   /**
    * Main_item's category.
    */
-  category_id?: number;
+  category_id?: Integer;
   /**
    * Main model model info.
    */
@@ -3140,7 +3133,7 @@ export interface GetDirectShopRecommendedPriceRequest {
   /**
    * direct shop enabled channel
    */
-  enabled_channel_id_list?: number[];
+  enabled_channel_id_list?: Integer[];
 }
 /**
  * GetDirectShopRecommendedPriceItemModelPrice sub-interface for GetDirectShopRecommendedPriceDirectItemPrice
@@ -3149,11 +3142,11 @@ export interface GetDirectShopRecommendedPriceItemModelPrice {
   /**
    * Id of main model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Tier index of main model. Index starts from 0.
    */
-  tier_index?: number[];
+  tier_index?: Integer[];
   price?: number;
 }
 /**
@@ -3163,7 +3156,7 @@ export interface GetDirectShopRecommendedPriceDirectItemPrice {
   /**
    * Id of direct shop.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Region of direct shop.
    */
@@ -3193,7 +3186,7 @@ export interface GetItemBaseInfoRequest {
   /**
    * item_id list; limit [0,50]
    */
-  item_id_list: number[];
+  item_id_list: Integer[];
   /**
    * if true will response tax_info
    */
@@ -3434,19 +3427,19 @@ export interface GetItemBaseInfoVehicleInfo {
   /**
    * ID of the brand.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * ID of the model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * ID of the year.
    */
-  year_id?: number;
+  year_id?: Integer;
   /**
    * ID of the version.
    */
-  version_id?: number;
+  version_id?: Integer;
 }
 /**
  * GetItemBaseInfoCompatibilityInfo sub-interface for GetItemBaseInfoItem
@@ -3540,7 +3533,7 @@ export interface GetItemBaseInfoItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Shopee's unique identifier for a category.
    */
@@ -3628,7 +3621,7 @@ export interface GetItemBaseInfoItem {
   /**
    * id of new size chart.
    */
-  size_chart_id?: number;
+  size_chart_id?: Integer;
   promotion_image?: GetItemBaseInfoPromotionImage;
   compatibility_info?: GetItemBaseInfoCompatibilityInfo;
   /**
@@ -3638,11 +3631,11 @@ export interface GetItemBaseInfoItem {
   /**
    * ID of authorised reseller brand.
    */
-  authorised_brand_id?: number;
+  authorised_brand_id?: Integer;
   /**
    * Shopee's unique identifier for Shopee Standard Product.
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * return true if the item only has a default model and it is FBS model
    */
@@ -3655,7 +3648,7 @@ export interface GetItemBaseInfoItem {
   /**
    * [Only for ID local sellers] as a unique identifier for each standardized medicine.
    */
-  medicine_id?: number;
+  medicine_id?: Integer;
   /**
    * For PH product certification inputRequired for some category and attribute option
    */
@@ -3676,7 +3669,7 @@ export interface GetItemBaseInfoComplaintPolicy {
   /**
    * The identity of complaint address.
    */
-  complaint_address_id?: number;
+  complaint_address_id?: Integer;
   /**
    * Additional information for complaint policy
    */
@@ -3774,7 +3767,7 @@ export interface GetItemBaseInfoTaxInfo {
   /**
    * Only for BR shop.The CST PIS/Cofins is a code on the Electronic Invoice (NF-e) that identifies the tax situation of PIS (Programa de Integração Social) and Cofins (Contribuição para o Financiamento da Seguridade Social) in sales of goods.
    */
-  pis_cofins_cst?: PisCofinsCst | string | number;
+  pis_cofins_cst?: PisCofinsCst | string;
   /**
    * Only for BR shop.Enter the total percentage of the combination of federal, state, and municipal taxes, using up to two decimals.
    */
@@ -3974,7 +3967,7 @@ export interface GetItemContentDiagnosisResultRequest {
   /**
    * item_id list; limit [1,48]
    */
-  item_id_list: number[];
+  item_id_list: Integer[];
 }
 /**
  * GetItemContentDiagnosisResultUnfinishedTask sub-interface for GetItemContentDiagnosisResultSuccessItem
@@ -3996,7 +3989,7 @@ export interface GetItemContentDiagnosisResultSuccessItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Item's latest content quality level. Applicable values:0: NONE (No quality level for item in SELLER_DELETE / SHOPEE_DELETE / BANNED status)1: TO_BE_IMPROVED2: QUALIFIED3: EXCELLENT
    */
@@ -4010,7 +4003,7 @@ export interface GetItemContentDiagnosisResultFailureItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Item's failure reason.
    */
@@ -4039,7 +4032,7 @@ export interface GetItemExtraInfoRequest {
   /**
    * item_id list, limit [0,50]
    */
-  item_id_list: number[];
+  item_id_list: Integer[];
 }
 /**
  * GetItemExtraInfoItem sub-interface for GetItemExtraInfoResponseData
@@ -4048,7 +4041,7 @@ export interface GetItemExtraInfoItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The sales volume of item.
    */
@@ -4094,7 +4087,7 @@ export interface GetItemLimitRequest {
   /**
    * Shopee's unique identifier for a category.
    */
-  category_id?: number;
+  category_id?: Integer;
 }
 /**
  * GetItemLimitPriceLimit sub-interface for GetItemLimitResponseData
@@ -4116,11 +4109,11 @@ export interface GetItemLimitWholesalePriceThresholdPercentage {
   /**
    * Item wholesale price percentage of original price min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Item wholesale price percentage of original price min limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetItemLimitStockLimit sub-interface for GetItemLimitResponseData
@@ -4129,11 +4122,11 @@ export interface GetItemLimitStockLimit {
   /**
    * Item stock min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Item stock max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetItemLimitItemNameLengthLimit sub-interface for GetItemLimitResponseData
@@ -4142,11 +4135,11 @@ export interface GetItemLimitItemNameLengthLimit {
   /**
    * Item name length min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Item name length max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetItemLimitItemImageCountLimit sub-interface for GetItemLimitResponseData
@@ -4155,11 +4148,11 @@ export interface GetItemLimitItemImageCountLimit {
   /**
    * Item image count min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Item image count max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetItemLimitItemDescriptionLengthLimit sub-interface for GetItemLimitResponseData
@@ -4168,11 +4161,11 @@ export interface GetItemLimitItemDescriptionLengthLimit {
   /**
    * Item description length min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Item description length max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetItemLimitTierVariationNameLengthLimit sub-interface for GetItemLimitResponseData
@@ -4181,11 +4174,11 @@ export interface GetItemLimitTierVariationNameLengthLimit {
   /**
    * Item tier variation name length min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Item tier variation name length max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetItemLimitTierVariationOptionLengthLimit sub-interface for GetItemLimitResponseData
@@ -4194,11 +4187,11 @@ export interface GetItemLimitTierVariationOptionLengthLimit {
   /**
    * Item tier variation option length min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Item tier variation option length max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetItemLimitItemCountLimit sub-interface for GetItemLimitResponseData
@@ -4207,7 +4200,7 @@ export interface GetItemLimitItemCountLimit {
   /**
    * Item count max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetItemLimitExtendedDescriptionLimit sub-interface for GetItemLimitResponseData
@@ -4315,7 +4308,7 @@ export interface GetItemLimitGtinLimit {
   /**
    * Indicate gtin_code validation logic in v2.product.add_itemv2.product.update_itemv2.product.init_tier_variationv2.product.add_modelv2.product.update_model- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" todeclare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omittedentirely.
    */
-  gtin_validation_rule?: GtinValidationRule | string | number;
+  gtin_validation_rule?: GtinValidationRule | string;
 }
 /**
  * Response payload for get_item_limit
@@ -4332,11 +4325,11 @@ export interface GetItemListRequest {
   /**
    * Specifies the starting entry of data to return in the current call. Default is 0. if data is more than one page, the offset can be some entry to start next call.
    */
-  offset: number;
+  offset: Integer;
   /**
    * the size of one page.Max=100
    */
-  page_size: number;
+  page_size: Integer;
   /**
    * The update_time_from and update_time_to fields specify a date range for retrieving orders (based on the item update time). The update_time_from field is the starting date range.
    */
@@ -4348,7 +4341,7 @@ export interface GetItemListRequest {
   /**
    * NORMAL/BANNED/UNLIST/REVIEWING/SELLER_DELETE/SHOPEE_DELETEIf you want to search multiple status, please upload the url like this: item_status=NORMAL&item_status=BANNED
    */
-  item_status: ItemStatus | string | number;
+  item_status: (ItemStatus | string)[];
 }
 /**
  * GetItemListTag sub-interface for GetItemListItem
@@ -4366,7 +4359,7 @@ export interface GetItemListItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Enumerated type that defines the current status of the item. Applicable values: NORMAL, BANNED, UNLIST, REVIEWING, SELLER_DELETE, SHOPEE_DELETE.
    */
@@ -4388,7 +4381,7 @@ export interface GetItemListResponseData {
   /**
    * total count of all items
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the item list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of items.
    */
@@ -4396,7 +4389,7 @@ export interface GetItemListResponseData {
   /**
    * if has_next_page is true, this value need set to next request.offset
    */
-  next_offset?: number;
+  next_offset?: Integer;
 }
 /**
  * Response payload for get_item_list
@@ -4447,7 +4440,7 @@ export interface GetItemListByContentDiagnosisItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Item's latest content quality level. Applicable values:0: NONE (No quality level for item in SELLER_DELETE / SHOPEE_DELETE / BANNED status)1: TO_BE_IMPROVED2: QUALIFIED3: EXCELLENT
    */
@@ -4462,7 +4455,7 @@ export interface GetItemListByContentDiagnosisResponseData {
   /**
    * Total num of items match condition.
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * This is to indicate whether the item list is more than one page. If this value is true, you may want to continue to check next page to retrieve the rest of items.
    */
@@ -4488,7 +4481,7 @@ export interface GetItemPromotionRequest {
   /**
    * Item ID list, can send 1 to 50 items.
    */
-  item_id_list: number[];
+  item_id_list: Integer[];
 }
 /**
  * GetItemPromotionPromotionPriceInfo sub-interface for GetItemPromotionPromotion
@@ -4506,7 +4499,7 @@ export interface GetItemPromotionPromotionStockInfoV2 {
   /**
    * stock summary info
    */
-  summary_info?: any;
+  summary_info?: unknown;
   /**
    * Total Stock reserved for promotion
    */
@@ -4523,11 +4516,11 @@ export interface GetItemPromotionPromotion {
   /**
    * The identity of item promotion.
    */
-  promotion_id?: any;
+  promotion_id?: Integer;
   /**
    * The identity of product model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Promotion start tiem.
    */
@@ -4543,7 +4536,7 @@ export interface GetItemPromotionPromotion {
   /**
    * Could be ongoing/upcoming
    */
-  promotion_staging?: PromotionStaging | string | number;
+  promotion_staging?: PromotionStaging | string;
   /**
    * new promotion stock
    */
@@ -4569,7 +4562,7 @@ export interface GetItemPromotionFailure {
   /**
    * The identity of item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Fail reason.
    */
@@ -4721,7 +4714,7 @@ export interface GetKitItemInfoRequest {
   /**
    * ID of kit item.
    */
-  item_id: number;
+  item_id: Integer;
 }
 /**
  * GetKitItemInfoImage sub-interface for GetKitItemInfoProductInfo
@@ -4829,7 +4822,7 @@ export interface GetKitItemInfoAttributeValue {
   /**
    * Unique identifier for value of this item attribute.
    */
-  value_id?: number;
+  value_id?: Integer;
   /**
    * Value name of this item attribute.
    */
@@ -4846,7 +4839,7 @@ export interface GetKitItemInfoAttribute {
   /**
    * The Identify of each attribute.
    */
-  attribute_id?: number;
+  attribute_id?: Integer;
   /**
    * The name of each attribute.
    */
@@ -4877,7 +4870,7 @@ export interface GetKitItemInfoBrandInfo {
   /**
    * Id of brand.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * Original name of brand.
    */
@@ -4890,7 +4883,7 @@ export interface GetKitItemInfoComponent {
   /**
    * ID of the item that composes this kit model.
    */
-  component_item_id?: number;
+  component_item_id?: Integer;
   /**
    * Name of the item that composes this kit model.
    */
@@ -4898,7 +4891,7 @@ export interface GetKitItemInfoComponent {
   /**
    * ID of the model that composes this kit model.
    */
-  component_model_id?: number;
+  component_model_id?: Integer;
   /**
    * Name of the model that composes this kit model.
    */
@@ -4921,11 +4914,11 @@ export interface GetKitItemInfoModel {
   /**
    * ID of this kit model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Seller SKU of this kit model.
    */
-  model_sku?: number;
+  model_sku?: Integer;
   /**
    * Original price of this kit model.
    */
@@ -4986,7 +4979,7 @@ export interface GetKitItemInfoProductInfo {
   /**
    * ID of this kit item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The name of this kit item.
    */
@@ -4994,7 +4987,7 @@ export interface GetKitItemInfoProductInfo {
   /**
    * The category of this kit item, sync from the category of the main component of this kit item.
    */
-  category_id?: number[];
+  category_id?: Integer[];
   /**
    * Enumerated type that defines the current status of the item. Applicable values: NORMAL, BANNED, UNLIST, SELLER_DELETE, SHOPEE_DELETE, REVIEWING.
    */
@@ -5074,7 +5067,7 @@ export interface GetKitItemLimitRequest {
   /**
    * Shopee's unique identifier for a category.
    */
-  category_id?: number;
+  category_id?: Integer;
 }
 /**
  * GetKitItemLimitPriceLimit sub-interface for GetKitItemLimitResponseData
@@ -5096,11 +5089,11 @@ export interface GetKitItemLimitItemNameLengthLimit {
   /**
    * Item name length min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Item name length max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetKitItemLimitItemImageCountLimit sub-interface for GetKitItemLimitResponseData
@@ -5109,11 +5102,11 @@ export interface GetKitItemLimitItemImageCountLimit {
   /**
    * Item image count min limit.
    */
-  min_limit?: number;
+  min_limit?: Integer;
   /**
    * Item image count max limit.
    */
-  max_limit?: number;
+  max_limit?: Integer;
 }
 /**
  * GetKitItemLimitDescriptionLimit sub-interface for GetKitItemLimitResponseData
@@ -5122,35 +5115,35 @@ export interface GetKitItemLimitDescriptionLimit {
   /**
    * Item description length min limit.
    */
-  description_length_min?: number;
+  description_length_min?: Integer;
   /**
    * length max limit for item extended description text part.
    */
-  description_length_max?: number;
+  description_length_max?: Integer;
   /**
    * length min limit for item extended description text part, when one of the minimum limits for image and text is reached, the item can be added or updated successfully.
    */
-  description_text_length_min?: number;
+  description_text_length_min?: Integer;
   /**
    * length max limit for item extended description text part
    */
-  description_text_length_max?: number;
+  description_text_length_max?: Integer;
   /**
    * length min limit for item extended description image num, when one of the minimum limits for image and text is reached, the item can be added or updated successfully.
    */
-  description_image_num_min?: number;
+  description_image_num_min?: Integer;
   /**
    * length max limit for item extended description image num.
    */
-  description_image_num_max?: number;
+  description_image_num_max?: Integer;
   /**
    * length min limit for item extended description image width.
    */
-  description_image_width_min?: number;
+  description_image_width_min?: Integer;
   /**
    * length min limit for item extended description image hight.
    */
-  description_image_height_min?: number;
+  description_image_height_min?: Integer;
   /**
    * length min limit for item extended description image aspect ( aspect_ratio= image width / image hight ).
    */
@@ -5277,7 +5270,7 @@ export interface GetMainItemListRequest {
   /**
    * Item id of direct shop.
    */
-  direct_item_id: number[];
+  direct_item_id: Integer[];
 }
 /**
  * GetMainItemListList sub-interface for GetMainItemListResponseData
@@ -5286,15 +5279,15 @@ export interface GetMainItemListList {
   /**
    * Item id of direct shop.
    */
-  direct_item_id?: number;
+  direct_item_id?: Integer;
   /**
    * Id of main shop.
    */
-  main_shop_id?: number;
+  main_shop_id?: Integer;
   /**
    * Item id of main shop.
    */
-  main_item_id?: number;
+  main_item_id?: Integer;
 }
 /**
  * GetMainItemListResponseData sub-interface for GetMainItemListResponse
@@ -5317,7 +5310,7 @@ export interface GetMartItemByOutletItemIdRequest {
   /**
    * The item ID of the item in the outlet shop.
    */
-  outlet_item_id: number;
+  outlet_item_id: Integer;
 }
 /**
  * GetMartItemByOutletItemIdModelMapping sub-interface for GetMartItemByOutletItemIdItemMapping
@@ -5326,11 +5319,11 @@ export interface GetMartItemByOutletItemIdModelMapping {
   /**
    * The model ID of the product in the Mart shop.
    */
-  mart_model_id?: number;
+  mart_model_id?: Integer;
   /**
    * The model ID of the corresponding product in the outlet shop.
    */
-  outlet_model_id?: number;
+  outlet_model_id?: Integer;
 }
 /**
  * GetMartItemByOutletItemIdItemMapping sub-interface for GetMartItemByOutletItemIdResponseData
@@ -5339,11 +5332,11 @@ export interface GetMartItemByOutletItemIdItemMapping {
   /**
    * The item ID of the item in the Mart shop.
    */
-  mart_item_id?: number;
+  mart_item_id?: Integer;
   /**
    * The item ID of the corresponding item in the outlet shop.
    */
-  outlet_item_id?: number;
+  outlet_item_id?: Integer;
   /**
    * The mapping relationship between Mart models and outlet models under the mapped items.
    */
@@ -5374,11 +5367,11 @@ export interface GetMartItemMappingByIdRequest {
   /**
    * The item ID of the item in the Mart shop.
    */
-  mart_item_id: number;
+  mart_item_id: Integer;
   /**
    * A list of outlet shop IDs used to filter the mapping results.
    */
-  outlet_shop_id_list: number[];
+  outlet_shop_id_list: Integer[];
 }
 /**
  * GetMartItemMappingByIdModelMapping sub-interface for GetMartItemMappingByIdItemMapping
@@ -5387,11 +5380,11 @@ export interface GetMartItemMappingByIdModelMapping {
   /**
    * The model ID of the product in the Mart shop.
    */
-  mart_model_id?: number;
+  mart_model_id?: Integer;
   /**
    * The model ID of the corresponding product in the outlet shop.
    */
-  outlet_model_id?: number;
+  outlet_model_id?: Integer;
 }
 /**
  * GetMartItemMappingByIdItemMapping sub-interface for GetMartItemMappingByIdResponseData
@@ -5400,11 +5393,11 @@ export interface GetMartItemMappingByIdItemMapping {
   /**
    * The item ID of the item in the Mart shop.
    */
-  mart_item_id?: number;
+  mart_item_id?: Integer;
   /**
    * The item ID of the corresponding item in the outlet shop.
    */
-  outlet_item_id?: number;
+  outlet_item_id?: Integer;
   /**
    * The mapping relationship between Mart models and outlet models under the mapped items.
    */
@@ -5434,7 +5427,7 @@ export interface GetModelListRequest {
   /**
    * The ID of the item
    */
-  item_id: number;
+  item_id: Integer;
 }
 /**
  * GetModelListImage sub-interface for GetModelListOption
@@ -5635,7 +5628,7 @@ export interface GetModelListModel {
   /**
    * Model ID.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * Tier index of this model.
    */
@@ -5643,7 +5636,7 @@ export interface GetModelListModel {
   /**
    * Current promotion ID of this model.
    */
-  promotion_id: any;
+  promotion_id: Integer;
   /**
    * Indicates whether the model is currently under any ongoing promotion.
    */
@@ -5683,11 +5676,11 @@ export interface GetModelListModel {
   /**
    * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
    */
-  cssp_id?: number;
+  cssp_id?: Integer;
 }
 /**
  * GetModelListVariationOption sub-interface for GetModelListStandardiseTierVariation
@@ -5696,7 +5689,7 @@ export interface GetModelListVariationOption {
   /**
    * Standardise Option ID
    */
-  variation_option_id?: number;
+  variation_option_id?: Integer;
   /**
    * Standardise Option Name
    */
@@ -5717,7 +5710,7 @@ export interface GetModelListStandardiseTierVariation {
   /**
    * Standardise Variation ID
    */
-  variation_id?: number;
+  variation_id?: Integer;
   /**
    * Standardise Variation Name
    */
@@ -5725,7 +5718,7 @@ export interface GetModelListStandardiseTierVariation {
   /**
    * Standardise Variation Group ID
    */
-  variation_group_id?: number;
+  variation_group_id?: Integer;
   /**
    * Standardise Variation Option List
    */
@@ -5761,7 +5754,7 @@ export interface GetProductCertificationRuleAttributeValue {
   /**
    * ID of attribute value. In the following cases, the value id needs to be uploaded as 0, and original_value_name is mandatory, needs to be filled in customized value. (1) AttributeInputType is TEXT_FILED; (2) AttributeInputType is COMBO_BOX or MULTIPLE_SELECT_COMBO_BOX, and the seller want to fill in a customized value.
    */
-  value_id: number;
+  value_id: Integer;
   /**
    * Value name. original_value_name from produc.get_attributes api. If value id=0, this field is required. If AttributeType is DATE_TYPE or TIMESTAMP_TYPE, you can upload timestamp(string type) as the original_value_name.
    */
@@ -5778,7 +5771,7 @@ export interface GetProductCertificationRuleAttribute {
   /**
    * ID of attribute.
    */
-  attribute_id: number;
+  attribute_id: Integer;
   attribute_value_list?: GetProductCertificationRuleAttributeValue[];
 }
 /**
@@ -5794,7 +5787,7 @@ export interface GetProductCertificationRuleRequest {
   /**
    * ID of category.
    */
-  category_id?: number;
+  category_id?: Integer;
 }
 /**
  * GetProductCertificationRuleCertificationRule sub-interface for GetProductCertificationRuleResponseData
@@ -5803,7 +5796,7 @@ export interface GetProductCertificationRuleCertificationRule {
   /**
    * type of certification; always=1
    */
-  certification_type?: number;
+  certification_type?: Integer;
   /**
    * if this type of certification is mandatory for product
    */
@@ -6037,11 +6030,11 @@ export interface GetSspDetailRequest {
   /**
    * The ID of the Standardized Shop Product (SSP).
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP).
    */
-  cssp_id?: number;
+  cssp_id?: Integer;
 }
 /**
  * GetSspDetailCategoryPath sub-interface for GetSspDetailSspInfo
@@ -6050,7 +6043,7 @@ export interface GetSspDetailCategoryPath {
   /**
    * The category ID.
    */
-  category_id?: number;
+  category_id?: Integer;
   /**
    * The category name.
    */
@@ -6067,7 +6060,7 @@ export interface GetSspDetailAttrValInfo {
   /**
    * The attribute value ID.
    */
-  attr_val_id?: number;
+  attr_val_id?: Integer;
   /**
    * The attribute value.
    */
@@ -6125,7 +6118,7 @@ export interface GetSspDetailBrand {
   /**
    * The brand ID.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * The localized display name.
    */
@@ -6155,11 +6148,11 @@ export interface GetSspDetailCssp {
   /**
    * The ID of the Standardized Shop Product (SSP).
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP).
    */
-  cssp_id?: number;
+  cssp_id?: Integer;
   /**
    * The display title of the CSSP.
    */
@@ -6179,7 +6172,7 @@ export interface GetSspDetailCssp {
   /**
    * The brand ID.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * The attributes associated with the SSP or CSSP.
    */
@@ -6200,7 +6193,7 @@ export interface GetSspDetailSspInfo {
   /**
    * The ID of the Standardized Shop Product (SSP).
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The display title of the SSP.
    */
@@ -6266,15 +6259,15 @@ export interface GetSspRecommendationModelCssp {
   /**
    * The ID of the item model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP).
    */
-  cssp_id?: number;
+  cssp_id?: Integer;
   /**
    * The ID of the Standardized Shop Product (SSP).
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
 }
 /**
  * GetSspRecommendationAutoEnrollItem sub-interface for GetSspRecommendationResponseData
@@ -6283,11 +6276,11 @@ export interface GetSspRecommendationAutoEnrollItem {
   /**
    * The ID of the item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The ID of the Standardized Shop Product (SSP).
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The model and CSSP mapping recommended for the item.
    */
@@ -6300,11 +6293,11 @@ export interface GetSspRecommendationPossibleToBeEnrollItem {
   /**
    * The ID of the item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The ID of the Standardized Shop Product (SSP).
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The model and CSSP mapping recommended for the item.
    */
@@ -6396,7 +6389,7 @@ export interface GetVariationsResponseData {
  * Get the standardized tier variation defined by Shopee, which is currently a three-layer tree structure.
  * The top layer is variations, the second layer is groups, groups are used to divide options, and the third layer is options.
  */
-export type GetVariationsResponse = FetchResponse<GetVariationsResponseData>;
+export type GetVariationsResponse = ResponseMetadata & GetVariationsResponseData;
 /**
  * Request parameters for get_vehicle_list_by_compatibility_detail
  *
@@ -6410,19 +6403,19 @@ export interface GetVehicleListByCompatibilityDetailRequest {
   /**
    * ID of the brand.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * ID of the model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * ID of the year.
    */
-  year_id?: number;
+  year_id?: Integer;
   /**
    * If language is not uploaded, the default language=en, the following are the languages supported by different markets SG: en ; MY: en / ms-my / zh-hans ; TH: en / th ; VN: en / vi ; PH: en ; TW: en / zh-hant ; ID: en / id ; BR: en / pt-br ; MX: en / es-mx ; CO: en/es-CO ; CL: en/es-CL. Note: For markets that have already launched global tree, Crossboard shop only support returning en and zh-hans language data.
    */
-  language?: Language | string | number;
+  language?: Language | string;
 }
 /**
  * GetVehicleListByCompatibilityDetailVehicle sub-interface for GetVehicleListByCompatibilityDetailResponseData
@@ -6431,7 +6424,7 @@ export interface GetVehicleListByCompatibilityDetailVehicle {
   /**
    * ID of the brand.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * Name of the brand.
    */
@@ -6439,7 +6432,7 @@ export interface GetVehicleListByCompatibilityDetailVehicle {
   /**
    * ID of the model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Name of the model.
    */
@@ -6447,7 +6440,7 @@ export interface GetVehicleListByCompatibilityDetailVehicle {
   /**
    * ID of the year.
    */
-  year_id?: number;
+  year_id?: Integer;
   /**
    * Name of the year.
    */
@@ -6455,7 +6448,7 @@ export interface GetVehicleListByCompatibilityDetailVehicle {
   /**
    * ID of the version.
    */
-  version_id?: number;
+  version_id?: Integer;
   /**
    * Name of the version.
    */
@@ -6646,7 +6639,7 @@ export interface InitTierVariationModel {
   /**
    * Tier index of this model.If you want to update one tier/two tier to no tier, can just pass the tier_variation and standardise_tier_variation as [], and pass the model >> tier_index as [], meanwhile pass the original_price, seller_stock, etc., to set the price and stock for the modified product with no tier structure.
    */
-  tier_index: TierIndex | string | number;
+  tier_index: number[];
   /**
    * Original price of this model.For CO local VAT responsible seller：Please remember the price you set in here must be VAT inclusive. If you have any doubts on how to calculate VAT for your product please refer to the Seller Education Hub（https://seller.shopee.com.co/edu/article/13565）
    */
@@ -6662,7 +6655,7 @@ export interface InitTierVariationModel {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | string;
   /**
    * The weight of this model, the unit is KG.If don't set the weight of this model, will use the weight of item by default.If set the dimension of this model, them must set the weight of this model.
    */
@@ -6678,11 +6671,11 @@ export interface InitTierVariationModel {
   /**
    * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
    */
-  cssp_id?: number;
+  cssp_id?: Integer;
 }
 /**
  * InitTierVariationVariationOption sub-interface for InitTierVariationStandardiseTierVariation
@@ -6731,7 +6724,7 @@ export interface InitTierVariationRequest {
   /**
    * ID of item
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Model info list, model number at most 50
    */
@@ -6822,11 +6815,11 @@ export interface InitTierVariation_InitTierVariationModel {
   /**
    * Tier index of model. Index starts from 0.
    */
-  tier_index?: any[];
+  tier_index?: unknown[];
   /**
    * ID of model
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Seller SKU of this model
    */
@@ -6847,11 +6840,11 @@ export interface InitTierVariation_InitTierVariationModel {
   /**
    * The ID of the Standardized Shop Product (SSP) to associate with the default model of the new item. The value must be greater than 0 when provided. If ssp_id is provided, cssp_id must also be provided.
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
    */
-  cssp_id?: number;
+  cssp_id?: Integer;
 }
 /**
  * InitTierVariationResponseData sub-interface for InitTierVariationResponse
@@ -6860,7 +6853,7 @@ export interface InitTierVariationResponseData {
   /**
    * ID of item
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Variations of item
    */
@@ -6880,15 +6873,15 @@ export interface LinkItemToSspModelCsspPair {
   /**
    * The ID of the item model.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP).
    */
-  cssp_id: number;
+  cssp_id: Integer;
   /**
    * The optional ID of the parent Standardized Shop Product (SSP).
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
 }
 /**
  * Request parameters for link_item_to_ssp
@@ -6899,7 +6892,7 @@ export interface LinkItemToSspRequest {
   /**
    * The ID of the item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Non-empty mappings between item models and CSSPs. Each mapping requires model_id and cssp_id; ssp_id is optional.
    */
@@ -6919,7 +6912,7 @@ export interface LinkItemToSspResponseData {
  *
  * Link one or more models of an item to their country-specific SSPs. item_id and model_cssp_pairs are required, and each pair must contain model_id and cssp_id; ssp_id is optional.
  */
-export type LinkItemToSspResponse = FetchResponse<LinkItemToSspResponseData>;
+export type LinkItemToSspResponse = ResponseMetadata & LinkItemToSspResponseData;
 /**
  * PublishItemToOutletShopSellerStock sub-interface for PublishItemToOutletShopModel
  */
@@ -6953,7 +6946,7 @@ export interface PublishItemToOutletShopModel {
   /**
    * The model ID in the Mart shop that this outlet model is associated with.model_id=0 for items with only the default model(no variations)
    */
-  relate_mart_model_id: number;
+  relate_mart_model_id: Integer;
   /**
    * The status of model.
    */
@@ -6978,7 +6971,7 @@ export interface PublishItemToOutletShopLogisticInfo {
   /**
    * The logistics channel ID used for shipping the item.
    */
-  logistic_id: number;
+  logistic_id: Integer;
   /**
    * Indicates whether the logistics channel is enabled for the item.
    */
@@ -6990,7 +6983,7 @@ export interface PublishItemToOutletShopLogisticInfo {
   /**
    * The parcel size ID used to calculate shipping fees.
    */
-  size_id?: number;
+  size_id?: Integer;
   /**
    * Indicates whether free shipping is applied for this logistics channel.
    */
@@ -7022,7 +7015,7 @@ export interface PublishItemToOutletShopPurchaseLimitInfo {
  * PublishItemToOutletShopPublishItem sub-interface for PublishItemToOutletShopRequest
  */
 export interface PublishItemToOutletShopPublishItem {
-  outlet_item_id?: number;
+  outlet_item_id?: Integer;
   /**
    * A list of models to be published to the outlet shop, mapped from the corresponding Mart shop models.
    */
@@ -7045,11 +7038,11 @@ export interface PublishItemToOutletShopRequest {
   /**
    * The item ID of the product in the Mart shop to be published to the outlet shop.
    */
-  mart_item_id: number;
+  mart_item_id: Integer;
   /**
    * The shop ID of the outlet shop where the product will be published.
    */
-  outlet_shop_id: number;
+  outlet_shop_id: Integer;
   /**
    * Configuration details for publishing the product to the outlet shop, including model mapping, pricing, stock, logistics, and purchase limits.
    */
@@ -7062,7 +7055,7 @@ export interface PublishItemToOutletShopResponseData {
   /**
    * The outlet item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
 }
 /**
  * Response payload for publish_item_to_outlet_shop
@@ -7226,11 +7219,11 @@ export interface SearchAttributeValueListRequest {
    * search the keywords of the attributes value
    */
   value_name?: string;
-  cursor: number;
+  cursor: Integer;
   /**
    * The range is 1 to 100
    */
-  limit: number;
+  limit: Integer;
 }
 /**
  * SearchAttributeValueListValue sub-interface for SearchAttributeValueListResponseData
@@ -7239,7 +7232,7 @@ export interface SearchAttributeValueListValue {
   /**
    * The ID of the predefined attributes value.
    */
-  value_id?: number;
+  value_id?: Integer;
   /**
    * The name of the predefined attributes value.
    */
@@ -7249,7 +7242,7 @@ export interface SearchAttributeValueListValue {
  * SearchAttributeValueListPageInfo sub-interface for SearchAttributeValueListResponseData
  */
 export interface SearchAttributeValueListPageInfo {
-  cursor?: number;
+  cursor?: Integer;
   has_next?: boolean;
 }
 /**
@@ -7294,7 +7287,7 @@ export interface SearchItemRequest {
   /**
    * NORMAL/BANNED/UNLIST/REVIEWING/SELLER_DELETE/SHOPEE_DELETEIf you want to search multiple status, please upload the url like this: item_status=NORMAL&item_status=BANNED
    */
-  item_status?: ItemStatus | string | number;
+  item_status?: (ItemStatus | string)[];
   /**
    * If deboost_only is true, then API will return items whose deboost is true, if deboost_only is empty or false, then API will return items whose deboost is true and false simultaneously
    */
@@ -7345,7 +7338,7 @@ export interface SearchSspListCategoryPath {
   /**
    * The category ID.
    */
-  category_id?: number;
+  category_id?: Integer;
   /**
    * The category name.
    */
@@ -7362,7 +7355,7 @@ export interface SearchSspListAttrValInfo {
   /**
    * The attribute value ID.
    */
-  attr_val_id?: number;
+  attr_val_id?: Integer;
   /**
    * Attribute metadata that may be omitted by the current search converter.
    */
@@ -7420,7 +7413,7 @@ export interface SearchSspListBrand {
   /**
    * The brand ID.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * The localized display name.
    */
@@ -7450,11 +7443,11 @@ export interface SearchSspListCssp {
   /**
    * The ID of the Standardized Shop Product (SSP).
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP).
    */
-  cssp_id?: number;
+  cssp_id?: Integer;
   /**
    * The display title of the CSSP returned by the search.
    */
@@ -7474,7 +7467,7 @@ export interface SearchSspListCssp {
   /**
    * The brand ID.
    */
-  brand_id?: number;
+  brand_id?: Integer;
   /**
    * The attributes associated with the SSP or CSSP.
    */
@@ -7495,7 +7488,7 @@ export interface SearchSspListSsp {
   /**
    * The ID of the Standardized Shop Product (SSP).
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
   /**
    * The display title of the SSP returned by the search.
    */
@@ -7565,7 +7558,7 @@ export interface SearchUnpackagedModelListRequest {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of the item.
    */
@@ -7573,7 +7566,7 @@ export interface SearchUnpackagedModelListRequest {
   /**
    * Shopee's unique identifier for a model under item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Unpackaged SKU ID of the model.
    */
@@ -7586,7 +7579,7 @@ export interface SearchUnpackagedModelListModel {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Name of the item.
    */
@@ -7594,7 +7587,7 @@ export interface SearchUnpackagedModelListModel {
   /**
    * Shopee's unique identifier for a model under item. 0 for no model item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Unpackaged SKU ID of the model.
    */
@@ -7631,15 +7624,15 @@ export interface UnlinkItemFromSspModelCsspPair {
   /**
    * The ID of the item model.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * The ID of the country-specific Standardized Shop Product (CSSP).
    */
-  cssp_id: number;
+  cssp_id: Integer;
   /**
    * The optional ID of the parent Standardized Shop Product (SSP).
    */
-  ssp_id?: number;
+  ssp_id?: Integer;
 }
 /**
  * Request parameters for unlink_item_from_ssp
@@ -7650,7 +7643,7 @@ export interface UnlinkItemFromSspRequest {
   /**
    * The ID of the item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Non-empty mappings between item models and CSSPs. Each mapping requires model_id and cssp_id; ssp_id is optional.
    */
@@ -7670,7 +7663,7 @@ export interface UnlinkItemFromSspResponseData {
  *
  * Remove the SSP links of one or more models of an item. item_id and model_cssp_pairs are required, and each pair must contain model_id and cssp_id; ssp_id is optional.
  */
-export type UnlinkItemFromSspResponse = FetchResponse<UnlinkItemFromSspResponseData>;
+export type UnlinkItemFromSspResponse = ResponseMetadata & UnlinkItemFromSspResponseData;
 /**
  * UnlistItemItem sub-interface for UnlistItemRequest
  */
@@ -7678,7 +7671,7 @@ export interface UnlistItemItem {
   /**
    * Shopee's unique identifier for an item
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Unlist or not
    */
@@ -7702,7 +7695,7 @@ export interface UnlistItemFailure {
   /**
    * Failed item id
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Failed reason
    */
@@ -7715,7 +7708,7 @@ export interface UnlistItemSuccess {
   /**
    * Success item id
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Whether the item is unlisted
    */
@@ -7930,7 +7923,7 @@ export interface UpdateItemTaxInfo {
   /**
    * Only for BR shop.The CST PIS/Cofins is a code on the Electronic Invoice (NF-e) that identifies the tax situation of PIS (Programa de Integração Social) and Cofins (Contribuição para o Financiamento da Seguridade Social) in sales of goods.
    */
-  pis_cofins_cst?: PisCofinsCst | string | number;
+  pis_cofins_cst?: PisCofinsCst | string;
   /**
    * Only for BR shop.Enter the total percentage of the combination of federal, state, and municipal taxes, using up to two decimals.
    */
@@ -8045,19 +8038,19 @@ export interface UpdateItemVehicleInfo {
   /**
    * ID of the brand.
    */
-  brand_id: number;
+  brand_id: Integer;
   /**
    * ID of the model.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * ID of the year.
    */
-  year_id?: number;
+  year_id?: Integer;
   /**
    * ID of the version.
    */
-  version_id?: number;
+  version_id?: Integer;
 }
 /**
  * UpdateItemCompatibilityInfo sub-interface for UpdateItemRequest
@@ -8076,7 +8069,7 @@ export interface UpdateItemSizeChartInfo {
   /**
    * ID of template size chart. If you want to remove the template size chart of the item, please pass the "size_chart_id" as 0.You only need to fill out either the image or template. If both are filled, only the template will be kept.Notes: Only local shops are supported to set "size_chart_id", for CB shops please use "size_chart".
    */
-  size_chart_id?: number;
+  size_chart_id?: Integer;
 }
 /**
  * UpdateItemCertificationProof sub-interface for UpdateItemCertification
@@ -8102,11 +8095,11 @@ export interface UpdateItemCertification {
   /**
    * Certification number issued by the regulatory or certifying authority; uniquely identifies the certification.refer tohttps://seller.shopee.ph/edu/article/24236
    */
-  certification_no: CertificationNo | string | number;
+  certification_no: CertificationNo | string;
   /**
    * Platform-defined permit ID used to link to a specific certification template or rule.get from v2.product.get_product_certification_rule
    */
-  permit_id: number;
+  permit_id: Integer;
   /**
    * Expiry timestamp. Required for PH, but not needed for TW.
    */
@@ -8189,7 +8182,7 @@ export interface UpdateItemRequest {
   /**
    * ID of item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * ID of category.
    */
@@ -8230,7 +8223,7 @@ export interface UpdateItemRequest {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | string;
   /**
    * category recommendation service id
    */
@@ -8247,7 +8240,7 @@ export interface UpdateItemRequest {
   /**
    * ID of authorised reseller brand.
    */
-  authorised_brand_id?: number;
+  authorised_brand_id?: Integer;
   size_chart_info?: UpdateItemSizeChartInfo;
   /**
    * For PH product certification inputRequired for some category and attribute option
@@ -8260,7 +8253,7 @@ export interface UpdateItemRequest {
   /**
    * [Only for ID local sellers] as a unique identifier for each standardized medicine, the medicine id can only be obtained offline
    */
-  medicine_id?: number;
+  medicine_id?: Integer;
 }
 /**
  * UpdateItem_UpdateItemImage sub-interface for UpdateItemResponseData
@@ -8346,7 +8339,7 @@ export interface UpdateItemResponseData {
   /**
    * ID of item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * ID of item category.
    */
@@ -8452,7 +8445,7 @@ export interface UpdateKitItemLogisticInfo {
   /**
    * ID of the channel.
    */
-  logistic_id: number;
+  logistic_id: Integer;
   /**
    * Whether channel is enabled for this kit item.
    */
@@ -8464,7 +8457,7 @@ export interface UpdateKitItemLogisticInfo {
   /**
    * Size ID. Only needed when logistic fee_type = SIZE_SELECTION.
    */
-  size_id?: number;
+  size_id?: Integer;
   /**
    * Whether cover shipping fee for buyer.
    */
@@ -8498,7 +8491,7 @@ export interface UpdateKitItemPreOrder {
   /**
    * The guaranteed days to ship orders. Please get the days_to_ship range from get_kit_item_limit api.
    */
-  days_to_ship?: number;
+  days_to_ship?: Integer;
 }
 /**
  * UpdateKitItemComponent sub-interface for UpdateKitItemModel
@@ -8507,15 +8500,15 @@ export interface UpdateKitItemComponent {
   /**
    * ID of the item that composes this kit model.
    */
-  component_item_id: number;
+  component_item_id: Integer;
   /**
    * ID of the model that composes this kit model.
    */
-  component_model_id?: number;
+  component_model_id?: Integer;
   /**
    * The amount of the item/model that composes this kit model.
    */
-  quantity: number;
+  quantity: Integer;
   /**
    * Whether this item/model is the main component for this kit.One kit item can only have one item/model as main component.
    */
@@ -8528,11 +8521,11 @@ export interface UpdateKitItemModel {
   /**
    * ID of this kit model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Tier index of this kit model.
    */
-  tier_index: number[];
+  tier_index: Integer[];
   /**
    * Seller SKU of this kit model, model_sku length information needs to be no more than 100 characters.
    */
@@ -8664,7 +8657,7 @@ export interface UpdateKitItemRequest {
   /**
    * ID of kit item.
    */
-  item_id: number;
+  item_id: Integer;
   item_setting?: UpdateKitItemItemSetting;
   sync_setting?: UpdateKitItemSyncSetting;
 }
@@ -8679,7 +8672,7 @@ export interface UpdateKitItemResponseData {
  *
  * Update the kit basic information and kit components, only support adding kit variations and updating existing kit variation’s image, price, and model_sku, don’t support deleting existing kit variations and updating the items, main component and quantity per kit of existing kit variations.
  */
-export type UpdateKitItemResponse = FetchResponse<UpdateKitItemResponseData>;
+export type UpdateKitItemResponse = ResponseMetadata & UpdateKitItemResponseData;
 /**
  * UpdateModelPreOrder sub-interface for UpdateModelModel
  */
@@ -8717,7 +8710,7 @@ export interface UpdateModelModel {
   /**
    * ID of model
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * Seller SKU for model, model_sku length information needs to be no more than 100 characters. CNSC and KRSC sellers are not allowed to update the MPSKU model sku.
    */
@@ -8726,7 +8719,7 @@ export interface UpdateModelModel {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | string;
   /**
    * can be "NORMAL" or "UNAVAILABLE". Only CNSC and KRSC sellers can set the model_status. Normal models can be sold on the buyer's side, and UNAVAILABLE models cannot be sold on the buyer's side.
    */
@@ -8749,7 +8742,7 @@ export interface UpdateModelRequest {
   /**
    * ID of item
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Length should be between 1 to 50
    */
@@ -8769,7 +8762,7 @@ export interface UpdateModelResponseData {
  *
  * Update seller sku/ pre order/ model status for model.
  */
-export type UpdateModelResponse = FetchResponse<UpdateModelResponseData>;
+export type UpdateModelResponse = ResponseMetadata & UpdateModelResponseData;
 /**
  * UpdatePricePrice sub-interface for UpdatePriceRequest
  */
@@ -8777,7 +8770,7 @@ export interface UpdatePricePrice {
   /**
    * 0 for no model item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Original price for this model.For CO local VAT responsible seller：Please remember the price you set in here must be VAT inclusive. If you have any doubts on how to calculate VAT for your product please refer to the Seller Education Hub（https://seller.shopee.com.co/edu/article/13565）For SG/MY/BR/MX/PL/ES/AR seller: Sellers can set the price with two decimal place, other regions can only set the price as an integer.
    */
@@ -8792,7 +8785,7 @@ export interface UpdatePriceRequest {
   /**
    * ID of item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Length should be between 1 to 50.
    */
@@ -8805,7 +8798,7 @@ export interface UpdatePriceFailure {
   /**
    * ID of model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Reason for failure.
    */
@@ -8818,7 +8811,7 @@ export interface UpdatePriceSuccess {
   /**
    * ID of model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Original price for model.
    */
@@ -8882,7 +8875,7 @@ export interface UpdateSipItemPriceResponseData {
  *
  * Update sip item price.
  */
-export type UpdateSipItemPriceResponse = FetchResponse<UpdateSipItemPriceResponseData>;
+export type UpdateSipItemPriceResponse = ResponseMetadata & UpdateSipItemPriceResponseData;
 /**
  * UpdateStockSellerStock sub-interface for UpdateStockStock
  */
@@ -8894,7 +8887,7 @@ export interface UpdateStockSellerStock {
   /**
    * stock
    */
-  stock: number;
+  stock: Integer;
 }
 /**
  * UpdateStockStock sub-interface for UpdateStockRequest
@@ -8903,7 +8896,7 @@ export interface UpdateStockStock {
   /**
    * 0 for no model item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * new stock info（Please notice that stock(including Seller Stock and Shopee Stock) should be larger than or equal to real-time reserved stock）
    */
@@ -8918,7 +8911,7 @@ export interface UpdateStockRequest {
   /**
    * ID of item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Length should be between 1 to 50.
    */
@@ -8931,7 +8924,7 @@ export interface UpdateStockFailure {
   /**
    * ID of model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Reason for failure.
    */
@@ -8944,7 +8937,7 @@ export interface UpdateStockSuccess {
   /**
    * ID of model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * location id; This field and the stock field are returned in pairs
    */
@@ -8952,7 +8945,7 @@ export interface UpdateStockSuccess {
   /**
    * stock;This field is returned if seller stock is used in the request, and normal stock fields are not returned.
    */
-  stock?: number;
+  stock?: Integer;
 }
 /**
  * UpdateStockResponseData sub-interface for UpdateStockResponse
@@ -8980,11 +8973,11 @@ export interface UpdateTierVariationModel {
   /**
    * ID of model
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * Model's tier_variation
    */
-  tier_index: number[];
+  tier_index: Integer[];
 }
 /**
  * UpdateTierVariationVariationOption sub-interface for UpdateTierVariationStandardiseTierVariation
@@ -8993,7 +8986,7 @@ export interface UpdateTierVariationVariationOption {
   /**
    * standardise tier variation option ID
    */
-  variation_option_id: number;
+  variation_option_id: Integer;
   /**
    * standardise tier variation option value
    */
@@ -9010,7 +9003,7 @@ export interface UpdateTierVariationStandardiseTierVariation {
   /**
    * standardise tier variation ID
    */
-  variation_id: number;
+  variation_id: Integer;
   /**
    * standardise tier variation name
    */
@@ -9018,7 +9011,7 @@ export interface UpdateTierVariationStandardiseTierVariation {
   /**
    * standardise tier variation group id
    */
-  variation_group_id?: number;
+  variation_group_id?: Integer;
   /**
    * standardise tier variation option list
    */
@@ -9033,7 +9026,7 @@ export interface UpdateTierVariationRequest {
   /**
    * ID of item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Item's model list
    */
@@ -9057,4 +9050,4 @@ export interface UpdateTierVariationResponseData {
  *
  * This api can only be used without changing the tier structure, you can add options, delete options, and update the option image by this api. More detail please check: https://open.shopee.com/developer-guide/219
  */
-export type UpdateTierVariationResponse = FetchResponse<UpdateTierVariationResponseData>;
+export type UpdateTierVariationResponse = ResponseMetadata & UpdateTierVariationResponseData;

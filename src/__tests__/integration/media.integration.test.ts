@@ -1,10 +1,10 @@
+import { withCleanup, pollRead } from "../utils/sandbox-fixtures.js";
 import { describe, it, expect, beforeAll } from "@jest/globals";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 import crypto from "crypto";
-import { ShopeeApiError } from "../../errors.js";
 
-const { runTests, initSdk } = setupIntegrationTest();
+const { runTests, initSdk } = setupIntegrationTest({ mutates: true });
 
 // A highly optimized 10-second blank H.264 MP4 video represented as a base64 string (~1.9 KB)
 const TINY_VIDEO_BASE64 =
@@ -42,31 +42,21 @@ const TINY_VIDEO_BASE64 =
   });
 
   it("should successfully upload a 200x200 PNG using media.uploadImage", async () => {
-    try {
-      const imageBuffer = Buffer.from(
-        "iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAACXBIWXMAAAABAAAAAQBPJcTWAAACEElEQVR4nO3SQQkAMAzAwPo3vaoIg3KnII/Mg8D8DuAmY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBaJBcLKBp7i8n+mAAAAAElFTkSuQmCC",
-        "base64"
-      );
-
-      const uploadResponse = await sdk.media.uploadImage({
-        business: 2,
-        scene: 1,
-        images: imageBuffer,
-      });
-
-      expect(uploadResponse).toBeDefined();
-      expect(uploadResponse.error).toBe("");
-
-      const infoList = uploadResponse.response?.image_list;
-      expect(infoList).toBeDefined();
-      expect(Array.isArray(infoList)).toBe(true);
-      expect(infoList!.length).toBeGreaterThan(0);
-    } catch (err) {
-      expect(err).toBeInstanceOf(ShopeeApiError);
-      const apiErr = err as ShopeeApiError;
-      const errorData = apiErr.data as { error?: string } | undefined;
-      expect(["product.error_param", "error_param"]).toContain(errorData?.error);
-    }
+    const imageBuffer = Buffer.from(
+      "iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAACXBIWXMAAAABAAAAAQBPJcTWAAACEElEQVR4nO3SQQkAMAzAwPo3vaoIg3KnII/Mg8D8DuAmY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBYJY5EwFgljkTAWCWORMBaJBcLKBp7i8n+mAAAAAElFTkSuQmCC",
+      "base64"
+    );
+    const uploadResponse = await sdk.media.uploadImage({
+      business: 2,
+      scene: 1,
+      images: imageBuffer,
+    });
+    expect(uploadResponse).toBeDefined();
+    expect(uploadResponse.error).toBe("");
+    const infoList = uploadResponse.response?.image_list;
+    expect(infoList).toBeDefined();
+    expect(Array.isArray(infoList)).toBe(true);
+    expect(infoList!.length).toBeGreaterThan(0);
   });
 
   it("should initialize and cancel a mediaSpace video upload session safely", async () => {
@@ -76,19 +66,20 @@ const TINY_VIDEO_BASE64 =
       file_md5: "3abf0b6e5ff90ff24437a0808f171a93",
     });
 
-    expect(initResponse).toBeDefined();
-    expect(initResponse.error).toBe("");
-    expect(initResponse.response?.video_upload_id).toBeDefined();
-
-    const uploadId = String(initResponse.response?.video_upload_id);
-
-    // Immediately cancel the upload session to clean up state
-    const cancelResponse = await sdk.mediaSpace.cancelVideoUpload({
-      video_upload_id: uploadId,
-    });
-
-    expect(cancelResponse).toBeDefined();
-    expect(cancelResponse.error).toBe("");
+    const uploadId = initResponse.response?.video_upload_id;
+    if (!uploadId) throw new Error("Initialization did not return an upload ID");
+    await withCleanup(
+      String(uploadId),
+      async () => {
+        expect(initResponse.error).toBe("");
+      },
+      async () => {
+        const cancelled = await sdk.mediaSpace.cancelVideoUpload({
+          video_upload_id: String(uploadId),
+        });
+        expect(cancelled.error).toBe("");
+      }
+    );
   });
 
   it("should successfully upload a tiny MP4 video using mediaSpace chunked upload", async () => {
@@ -102,51 +93,57 @@ const TINY_VIDEO_BASE64 =
       file_md5: fileMd5,
     });
 
-    expect(initResponse).toBeDefined();
-    expect(initResponse.error).toBe("");
-    expect(initResponse.response?.video_upload_id).toBeDefined();
+    const id = initResponse.response?.video_upload_id;
+    if (!id) throw new Error("Initialization did not return an upload ID");
+    const uploadId = String(id);
+    let completed = false;
+    await withCleanup(
+      uploadId,
+      async () => {
+        expect(initResponse.error).toBe("");
 
-    const uploadId = String(initResponse.response?.video_upload_id);
+        // 2. Upload video part (seq 0)
+        const partResponse = await sdk.mediaSpace.uploadVideoPart({
+          video_upload_id: uploadId,
+          part_seq: 0,
+          content_md5: fileMd5,
+          part_content: videoBuffer,
+        });
 
-    try {
-      // 2. Upload video part (seq 0)
-      const partResponse = await sdk.mediaSpace.uploadVideoPart({
-        video_upload_id: uploadId,
-        part_seq: 0,
-        content_md5: fileMd5,
-        part_content: videoBuffer,
-      });
+        expect(partResponse).toBeDefined();
+        expect(partResponse.error).toBe("");
 
-      expect(partResponse).toBeDefined();
-      expect(partResponse.error).toBe("");
+        // 3. Complete video upload
+        const completeResponse = await sdk.mediaSpace.completeVideoUpload({
+          video_upload_id: uploadId,
+          part_seq_list: [0],
+          report_data: {
+            upload_cost: 100,
+          },
+        });
 
-      // 3. Complete video upload
-      const completeResponse = await sdk.mediaSpace.completeVideoUpload({
-        video_upload_id: uploadId,
-        part_seq_list: [0],
-        report_data: {
-          upload_cost: 100,
-        },
-      });
+        expect(completeResponse).toBeDefined();
+        expect(completeResponse.error).toBe("");
+        completed = true;
 
-      expect(completeResponse).toBeDefined();
-      expect(completeResponse.error).toBe("");
+        // 4. Query video upload result / status
+        const resultResponse = await pollRead(
+          () => sdk.mediaSpace.getVideoUploadResult({ video_upload_id: uploadId }),
+          (value) => ["SUCCEEDED", "FAILED"].includes(String(value.response?.status)),
+          { attempts: 30 }
+        );
 
-      // 4. Query video upload result / status
-      const resultResponse = await sdk.mediaSpace.getVideoUploadResult({
-        video_upload_id: uploadId,
-      });
-
-      expect(resultResponse).toBeDefined();
-      expect(resultResponse.error).toBe("");
-      expect(resultResponse.response?.status).toBeDefined();
-      expect(["TRANSCODING", "SUCCEEDED", "INITIATED"]).toContain(resultResponse.response?.status);
-    } catch (err) {
-      // Clean up state by canceling session if an error is encountered
-      await sdk.mediaSpace.cancelVideoUpload({
-        video_upload_id: uploadId,
-      });
-      throw err;
-    }
+        expect(resultResponse).toBeDefined();
+        expect(resultResponse.error).toBe("");
+        expect(resultResponse.response?.status).toBeDefined();
+        expect(resultResponse.response?.status).toBe("SUCCEEDED");
+      },
+      async () => {
+        if (!completed) {
+          const cancelled = await sdk.mediaSpace.cancelVideoUpload({ video_upload_id: uploadId });
+          expect(cancelled.error).toBe("");
+        }
+      }
+    );
   });
 });

@@ -1,71 +1,69 @@
+import { withCleanup } from "../utils/sandbox-fixtures.js";
 import { describe, it, expect, beforeAll } from "@jest/globals";
 import fs from "fs";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
 import { ItemStatus } from "../../schemas/product.js";
-import { ShopeeApiError } from "../../errors.js";
+
+function safeNumber(value: number | string): number {
+  const number = Number(value);
+  if (!Number.isSafeInteger(number)) throw new Error("Unsafe numeric fixture ID");
+  return number;
+}
 
 const { runTests, initSdk } = setupIntegrationTest();
+const { runTests: runMutations } = setupIntegrationTest({ mutates: true });
 
 (runTests ? describe : describe.skip)("ShopeeSDK ProductManager Sandbox Integration Tests", () => {
   let sdk: ShopeeSDK;
-  let testCategoryId = 100001; // default fallback category ID
+  let testCategoryId: number;
 
   beforeAll(async () => {
     sdk = await initSdk();
-  });
-
-  it("should retrieve category tree list and discover a valid category ID with no mandatory attributes", async () => {
     const categoryResponse = await sdk.product.getCategory();
     expect(categoryResponse).toBeDefined();
     expect(categoryResponse.request_id).toBeDefined();
     expect(categoryResponse.response).toBeDefined();
     expect(Array.isArray(categoryResponse.response.category_list)).toBe(true);
 
-    if (
-      categoryResponse.response.category_list &&
-      categoryResponse.response.category_list.length > 0
-    ) {
-      const leafCategories = categoryResponse.response.category_list.filter(
-        (cat) => !cat.has_children
-      );
-
-      if (leafCategories.length > 0) {
-        testCategoryId = leafCategories[0].category_id!;
-      }
-
-      // Dynamically traverse leaf categories to find one with no mandatory attributes (limit to 10 for speed)
-      for (const cat of leafCategories.slice(0, 10)) {
-        try {
-          const attrResponse = await sdk.product.getAttributeTree({
-            category_id_list: [cat.category_id!],
-          });
-          if (attrResponse.response?.list) {
-            const hasMandatory = attrResponse.response.list.some((item) =>
-              item.attribute_tree?.some((attr) => attr.mandatory)
-            );
-            if (!hasMandatory) {
-              testCategoryId = cat.category_id!;
-              break;
-            }
-          }
-        } catch {
-          // Skip failures
+    const leafCategories =
+      categoryResponse.response.category_list?.filter((category) => !category.has_children) ?? [];
+    expect(leafCategories.length).toBeGreaterThan(0);
+    testCategoryId = safeNumber(leafCategories[0].category_id!);
+    if (runMutations) {
+      let suitable = false;
+      for (const category of leafCategories.slice(0, 10)) {
+        const attributes = await sdk.product.getAttributeTree({
+          category_id_list: [safeNumber(category.category_id!)],
+        });
+        expect(Array.isArray(attributes.response?.list)).toBe(true);
+        if (
+          !attributes.response.list!.some((item) =>
+            item.attribute_tree?.some((attribute) => attribute.mandatory)
+          )
+        ) {
+          testCategoryId = safeNumber(category.category_id!);
+          suitable = true;
+          break;
         }
       }
+      if (!suitable)
+        throw new Error(
+          "No validated category fixture without mandatory attributes was found for product creation"
+        );
     }
-  }, 30000);
+  }, 60000);
 
   it("should retrieve items from local sandbox shop", async () => {
     const itemsResponse = await sdk.product.getItemList({
       offset: 0,
       page_size: 10,
-      item_status: ItemStatus.NORMAL,
+      item_status: [ItemStatus.NORMAL],
     });
 
     expect(itemsResponse).toBeDefined();
     expect(itemsResponse.request_id).toBeDefined();
-    if (itemsResponse.response?.item) {
+    {
       expect(Array.isArray(itemsResponse.response.item)).toBe(true);
     }
   });
@@ -105,163 +103,147 @@ const { runTests, initSdk } = setupIntegrationTest();
     }
   });
 
-  it("should query category recommendations based on an item name", async () => {
-    try {
+  (process.env.SHOPEE_SANDBOX_EXTENDED_READS === "1" ? it : it.skip)(
+    "should query category recommendations based on an item name",
+    async () => {
       const recommendResponse = await sdk.product.categoryRecommend({
         item_name: "Red Cotton T-Shirt",
       });
-
       expect(recommendResponse).toBeDefined();
       expect(recommendResponse.request_id).toBeDefined();
       expect(recommendResponse.response).toBeDefined();
       if (recommendResponse.response.category_id) {
         expect(Array.isArray(recommendResponse.response.category_id)).toBe(true);
       }
-    } catch (err) {
-      if (err instanceof ShopeeApiError) {
-        if (typeof err.data === "object" && err.data !== null && "error" in err.data) {
-          expect(err.data.error).toBe("product.error_unknown");
-        }
-      } else {
-        throw err;
-      }
     }
-  });
+  );
 
-  it("should query recommended attributes for the test category ID", async () => {
-    try {
+  (process.env.SHOPEE_SANDBOX_EXTENDED_READS === "1" ? it : it.skip)(
+    "should query recommended attributes for the test category ID",
+    async () => {
       const attributeResponse = await sdk.product.getRecommendAttribute({
         category_id: testCategoryId,
         item_name: "T-Shirt",
       });
-
       expect(attributeResponse).toBeDefined();
       expect(attributeResponse.request_id).toBeDefined();
       expect(attributeResponse.response).toBeDefined();
       if (attributeResponse.response.attribute_list) {
         expect(Array.isArray(attributeResponse.response.attribute_list)).toBe(true);
       }
-    } catch (err) {
-      if (err instanceof ShopeeApiError) {
-        if (typeof err.data === "object" && err.data !== null && "error" in err.data) {
-          expect(err.data.error).toBe("product.error_unknown");
-        }
-      } else {
-        throw err;
-      }
     }
-  });
+  );
 
-  it("should successfully run the full product creation and deletion lifecycle", async () => {
-    // 1. Fetch enabled logistics channel
-    const logisticsResponse = await sdk.logistics.getChannelList();
-    expect(logisticsResponse).toBeDefined();
-    expect(logisticsResponse.response?.logistics_channel_list).toBeDefined();
-    const enabledChannel = logisticsResponse.response.logistics_channel_list!.find(
-      (ch) => ch.enabled
-    );
+  (runMutations ? it : it.skip)(
+    "should successfully run the full product creation and deletion lifecycle",
+    async () => {
+      // 1. Fetch enabled logistics channel
+      const logisticsResponse = await sdk.logistics.getChannelList();
+      expect(logisticsResponse).toBeDefined();
+      expect(logisticsResponse.response?.logistics_channel_list).toBeDefined();
+      const enabledChannel = logisticsResponse.response.logistics_channel_list!.find(
+        (ch) => ch.enabled
+      );
 
-    const channelId = enabledChannel ? enabledChannel.logistics_channel_id : 20001;
+      const channelId = enabledChannel ? enabledChannel.logistics_channel_id : 20001;
 
-    // 2. Upload a temporary image to satisfy image requirements and avoid Sandbox rejection
-    const imageBuffer = fs.readFileSync("./node_modules/@jest/reporters/assets/jest_logo.png");
-    const uploadResponse = await sdk.mediaSpace.uploadImage({
-      scene: "normal",
-      ratio: "1:1",
-      image: imageBuffer,
-    });
-    expect(uploadResponse.response?.image_info_list).toBeDefined();
-    const imageId = uploadResponse.response!.image_info_list![0].image_info!.image_id;
-
-    // 3. Create the product
-    const itemName = "Sandbox Test Product " + Date.now();
-    const addResponse = await sdk.product.addItem({
-      item_name: itemName,
-      description:
-        "This is a detailed sandbox integration test product description that satisfies minimum length requirement.",
-      original_price: 50000,
-      category_id: testCategoryId,
-      weight: 0.5,
-      dimension: {
-        package_length: 10,
-        package_width: 10,
-        package_height: 10,
-      },
-      image: {
-        image_id_list: [imageId!],
-      },
-      logistic_info: [
-        {
-          logistic_id: channelId!,
-          enabled: true,
-          is_free: false,
-        },
-      ],
-      brand: {
-        brand_id: 0,
-        original_brand_name: "NoBrand",
-      },
-      seller_stock: [
-        {
-          stock: 100,
-        },
-      ],
-    });
-
-    expect(addResponse).toBeDefined();
-    expect(addResponse.error).toBe("");
-    expect(addResponse.response?.item_id).toBeDefined();
-
-    const createdItemId = addResponse.response!.item_id!;
-
-    try {
-      // 4. Retrieve item base info to verify creation
-      const infoResponse = await sdk.product.getItemBaseInfo({
-        item_id_list: [createdItemId],
+      // 2. Upload a temporary image to satisfy image requirements and avoid Sandbox rejection
+      const imageBuffer = fs.readFileSync("./node_modules/@jest/reporters/assets/jest_logo.png");
+      const uploadResponse = await sdk.mediaSpace.uploadImage({
+        scene: "normal",
+        ratio: "1:1",
+        image: imageBuffer,
       });
-      expect(infoResponse).toBeDefined();
-      expect(infoResponse.error).toBe("");
-      expect(infoResponse.response?.item_list).toBeDefined();
-      expect(infoResponse.response.item_list!.length).toBeGreaterThan(0);
-      expect(infoResponse.response.item_list![0].item_id).toBe(createdItemId);
+      expect(uploadResponse.response?.image_info_list).toBeDefined();
+      const imageId = uploadResponse.response!.image_info_list![0].image_info!.image_id;
 
-      // 5. Update product price
-      const updatePriceResponse = await sdk.product.updatePrice({
-        item_id: createdItemId,
-        price_list: [
+      // 3. Create the product
+      const itemName = "Sandbox Test Product " + Date.now();
+      const addResponse = await sdk.product.addItem({
+        item_name: itemName,
+        description:
+          "This is a detailed sandbox integration test product description that satisfies minimum length requirement.",
+        original_price: 50000,
+        category_id: testCategoryId,
+        weight: 0.5,
+        dimension: {
+          package_length: 10,
+          package_width: 10,
+          package_height: 10,
+        },
+        image: {
+          image_id_list: [imageId!],
+        },
+        logistic_info: [
           {
-            model_id: 0,
-            original_price: 60000,
+            logistic_id: safeNumber(channelId!),
+            enabled: true,
+            is_free: false,
+          },
+        ],
+        brand: {
+          brand_id: 0,
+          original_brand_name: "NoBrand",
+        },
+        seller_stock: [
+          {
+            stock: 100,
           },
         ],
       });
-      expect(updatePriceResponse).toBeDefined();
-      expect(updatePriceResponse.error).toBe("");
 
-      // 6. Update product stock
-      const updateStockResponse = await sdk.product.updateStock({
-        item_id: createdItemId,
-        stock_list: [
-          {
-            model_id: 0,
-            seller_stock: [
+      const createdItemId = addResponse.response!.item_id!;
+
+      await withCleanup(
+        createdItemId,
+        async () => {
+          expect(addResponse).toBeDefined();
+          expect(addResponse.error).toBe("");
+          expect(addResponse.response?.item_id).toBeDefined();
+
+          const infoResponse = await sdk.product.getItemBaseInfo({
+            item_id_list: [createdItemId],
+          });
+          expect(infoResponse).toBeDefined();
+          expect(infoResponse.error).toBe("");
+          expect(infoResponse.response?.item_list).toBeDefined();
+          expect(infoResponse.response.item_list!.length).toBeGreaterThan(0);
+          expect(infoResponse.response.item_list![0].item_id).toBe(createdItemId);
+          const updatePriceResponse = await sdk.product.updatePrice({
+            item_id: createdItemId,
+            price_list: [
               {
-                stock: 150,
+                model_id: 0,
+                original_price: 60000,
               },
             ],
-          },
-        ],
-      });
-      expect(updateStockResponse).toBeDefined();
-      expect(updateStockResponse.error).toBe("");
-    } finally {
-      // 7. Tear down: delete the newly created product immediately to keep Sandbox clean
-      const deleteResponse = await sdk.product.deleteItem({
-        item_id: createdItemId,
-      });
-
-      expect(deleteResponse).toBeDefined();
-      expect(deleteResponse.error).toBe("");
+          });
+          expect(updatePriceResponse).toBeDefined();
+          expect(updatePriceResponse.error).toBe("");
+          const updateStockResponse = await sdk.product.updateStock({
+            item_id: createdItemId,
+            stock_list: [
+              {
+                model_id: 0,
+                seller_stock: [
+                  {
+                    stock: 150,
+                  },
+                ],
+              },
+            ],
+          });
+          expect(updateStockResponse).toBeDefined();
+          expect(updateStockResponse.error).toBe("");
+        },
+        async () => {
+          const deleteResponse = await sdk.product.deleteItem({
+            item_id: createdItemId,
+          });
+          expect(deleteResponse).toBeDefined();
+          expect(deleteResponse.error).toBe("");
+        }
+      );
     }
-  });
+  );
 });

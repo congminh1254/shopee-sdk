@@ -80,14 +80,14 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
       .mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() =>
-          Promise.resolve({ error: "invalid_access_token", message: "token error" })
+        text: jest.fn(() =>
+          Promise.resolve(JSON.stringify({ error: "invalid_access_token", message: "token error" }))
         ),
       })
       .mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve({ success: true })),
+        text: jest.fn(() => Promise.resolve(JSON.stringify({ success: true }))),
       });
 
     const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true });
@@ -114,14 +114,16 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
       .mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() =>
-          Promise.resolve({ error: "invalid_acceess_token", message: "token typo error" })
+        text: jest.fn(() =>
+          Promise.resolve(
+            JSON.stringify({ error: "invalid_acceess_token", message: "token typo error" })
+          )
         ),
       })
       .mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve({ success: true })),
+        text: jest.fn(() => Promise.resolve(JSON.stringify({ success: true }))),
       });
 
     const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true });
@@ -149,15 +151,17 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
       .mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() =>
-          Promise.resolve({ error: "invalid_access_token", message: "token error" })
+        text: jest.fn(() =>
+          Promise.resolve(JSON.stringify({ error: "invalid_access_token", message: "token error" }))
         ),
       })
       .mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() =>
-          Promise.resolve({ error: "invalid_access_token", message: "still invalid token" })
+        text: jest.fn(() =>
+          Promise.resolve(
+            JSON.stringify({ error: "invalid_access_token", message: "still invalid token" })
+          )
         ),
       });
 
@@ -173,7 +177,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     mockFetch.mockResolvedValueOnce({
       status: 200,
       headers: new Map([["content-type", "application/json"]]),
-      json: jest.fn(() => Promise.resolve({ success: true })),
+      text: jest.fn(() => Promise.resolve(JSON.stringify({ success: true }))),
     });
 
     await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -199,7 +203,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     mockFetch.mockResolvedValueOnce({
       status: 200,
       headers: new Map([["content-type", "application/json"]]),
-      json: jest.fn(() => Promise.resolve({ success: true })),
+      text: jest.fn(() => Promise.resolve(JSON.stringify({ success: true }))),
     });
 
     await ShopeeFetch.fetch(configWithAgent, "/test/endpoint");
@@ -214,7 +218,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     mockFetch.mockResolvedValueOnce({
       status: 200,
       headers: new Map([["content-type", "application/json"]]),
-      json: jest.fn(() => Promise.resolve({ success: true })),
+      text: jest.fn(() => Promise.resolve(JSON.stringify({ success: true }))),
     });
 
     const customProtoObj = Object.create({ custom: true }) as { field: string };
@@ -263,7 +267,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     mockFetch.mockResolvedValueOnce({
       status: 200,
       headers: new Map([["content-type", "application/json"]]),
-      json: jest.fn(() => Promise.resolve(rawResponse)),
+      text: jest.fn(() => Promise.resolve(JSON.stringify(rawResponse))),
     });
 
     const result = await ShopeeFetch.fetch<TestTimestampResponse>(mockConfig, "/test/endpoint", {
@@ -289,7 +293,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     mockFetch.mockResolvedValueOnce({
       status: 200,
       headers: new Map([["content-type", "application/json"]]),
-      json: jest.fn(() => Promise.resolve(null)),
+      text: jest.fn(() => Promise.resolve(JSON.stringify(null))),
     });
     const nullResult = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
       timestampPaths: ["create_time"],
@@ -301,7 +305,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     mockFetch.mockResolvedValueOnce({
       status: 200,
       headers: new Map([["content-type", "application/json"]]),
-      json: jest.fn(() => Promise.resolve(arrayResponse)),
+      text: jest.fn(() => Promise.resolve(JSON.stringify(arrayResponse))),
     });
     const arrayResult = await ShopeeFetch.fetch<{ create_time: Date }[]>(
       mockConfig,
@@ -318,7 +322,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     mockFetch.mockResolvedValueOnce({
       status: 200,
       headers: new Map([["content-type", "application/json"]]),
-      json: jest.fn(() => Promise.resolve({ success: true })),
+      text: jest.fn(() => Promise.resolve(JSON.stringify({ success: true }))),
     });
 
     // PNG header: 89 50 4E 47
@@ -352,7 +356,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     mockFetch.mockResolvedValueOnce({
       status: 200,
       headers: new Map([["Content-Type", "application/json"]]),
-      json: jest.fn(() => Promise.resolve({ success: true })),
+      text: jest.fn(() => Promise.resolve(JSON.stringify({ success: true }))),
     });
     const res1 = await ShopeeFetch.fetch(mockConfig, "/test/endpoint");
     expect(res1).toEqual({ success: true });
@@ -361,7 +365,7 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     mockFetch.mockResolvedValueOnce({
       status: 200,
       headers: new Map([]),
-      json: jest.fn(() => Promise.resolve({ success: true })),
+      text: jest.fn(() => Promise.resolve(JSON.stringify({ success: true }))),
     });
     const res2 = await ShopeeFetch.fetch(mockConfig, "/test/endpoint");
     expect(res2).toEqual({ success: true });

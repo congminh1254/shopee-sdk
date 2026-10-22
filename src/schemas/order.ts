@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata, Integer, BinaryFile } from "./fetch.js";
 /**
  * Enum generated for field GetBookingDetailRequestResponseOptionalFields
  */
@@ -160,7 +160,7 @@ export interface CancelOrderItem {
   /**
    * Id of the model that belongs to the same item.
    */
-  model_id: number;
+  model_id: Integer;
 }
 /**
  * CancelOrderPartialCancelItem sub-interface for CancelOrderRequest
@@ -169,23 +169,23 @@ export interface CancelOrderPartialCancelItem {
   /**
    * The unique identifier of the item to be partially cancelled.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The unique identifier of the model to be partially cancelled.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.
    */
-  order_item_id?: number;
+  order_item_id?: Integer;
   /**
    * The identify of product promotion.It's required for add on deal and bundle deal items.For items in one same add on deal or bundle deal promotion, the promotion_group_id should share the same id. For items not in add on deal or bundle deal promotion, the promotion_group_id should be 0. And the data is from promotion_group_id of v2,order.get_order_detail.
    */
-  promotion_group_id?: number;
+  promotion_group_id?: Integer;
   /**
    * The quantity of the specified item model to be cancelled.
    */
-  model_quantity: number;
+  model_quantity: Integer;
 }
 /**
  * Request parameters for cancel_order
@@ -229,7 +229,7 @@ export type CancelOrderResponse = FetchResponse<CancelOrderResponseData>;
  * DownloadFbsInvoicesRequestId sub-interface for DownloadFbsInvoicesRequest
  */
 export interface DownloadFbsInvoicesRequestId {
-  request_id: number[];
+  request_id: Integer[];
 }
 /**
  * Request parameters for download_fbs_invoices
@@ -246,7 +246,7 @@ export interface DownloadFbsInvoicesRequest {
  * DownloadFbsInvoicesResponseData sub-interface for DownloadFbsInvoicesResponse
  */
 export interface DownloadFbsInvoicesResponseData {
-  request_id?: number;
+  request_id?: Integer;
   file_link?: string;
 }
 /**
@@ -266,18 +266,7 @@ export interface DownloadInvoiceDocRequest {
    */
   order_sn: string;
 }
-/**
- * Response data payload for download_invoice_doc
- */
-export interface DownloadInvoiceDocResponseData {
-  invoice_doc?: any;
-}
-/**
- * Response payload for download_invoice_doc
- *
- * This endpoint only for PH and BR local seller. Seller can download the invoice uploaded before through this endpoint.
- */
-export type DownloadInvoiceDocResponse = FetchResponse<DownloadInvoiceDocResponseData>;
+export type DownloadInvoiceDocResponse = Buffer;
 /**
  * GenerateFbsInvoicesBatchDownload sub-interface for GenerateFbsInvoicesRequest
  */
@@ -285,11 +274,11 @@ export interface GenerateFbsInvoicesBatchDownload {
   /**
    * Format YYYYMMDDe.g. 20240101
    */
-  start: number;
+  start: Integer;
   /**
    * Format YYYYMMDDe.g. 20240101
    */
-  end: number;
+  end: Integer;
   /**
    * 1 = Remessa2 = Return3 = Symbolic Return4 = Sale5 = Entrada6 = Symbolic Remessa7 = all
    */
@@ -320,7 +309,7 @@ export interface GenerateFbsInvoicesResult {
   /**
    * Unique task identifier that includes one or more tax documents to be downloaded according to the filters sent in the request.
    */
-  request_id?: number;
+  request_id?: Integer;
   /**
    * Indicate error type if one element hit error. Empty if no error happened.
    */
@@ -347,7 +336,7 @@ export interface GenerateFbsInvoicesResponseData {
  * The workflow is as follows: (1) v2.order.generate_fbs_invoices; (2) v2.order.get_fbs_invoices_result; (3) v2.order.download_fbs_invoices.
  * Please note: The download link for the document will expire 30 minutes after being generated.
  */
-export type GenerateFbsInvoicesResponse = FetchResponse<GenerateFbsInvoicesResponseData>;
+export type GenerateFbsInvoicesResponse = ResponseMetadata & GenerateFbsInvoicesResponseData;
 /**
  * Request parameters for get_booking_detail
  *
@@ -361,7 +350,7 @@ export interface GetBookingDetailRequest {
   /**
    * The response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them. Available values: item_list,cancel_by,cancel_reason,fulfillment_flag,pickup_done_time,shipping_carrier, recipient_address, dropshipper, dropshipper_phone
    */
-  response_optional_fields?: GetBookingDetailRequestResponseOptionalFields | string | number;
+  response_optional_fields?: GetBookingDetailRequestResponseOptionalFields | string;
 }
 /**
  * GetBookingDetailRecipientAddress sub-interface for GetBookingDetailBooking
@@ -378,19 +367,19 @@ export interface GetBookingDetailRecipientAddress {
   /**
    * The town of the recipient's address. Whether there is a town will depend on the region and/or country.
    */
-  town?: Town | string | number;
+  town?: Town | string;
   /**
    * The district of the recipient's address. Whether there is a district will depend on the region and/or country.
    */
-  district?: District | string | number;
+  district?: District | string;
   /**
    * The city of the recipient's address. Whether there is a city will depend on the region and/or country.
    */
-  city?: City | string | number;
+  city?: City | string;
   /**
    * The state/province of the recipient's address. Whether there is a state/province will depend on the region and/or country.
    */
-  state?: State | string | number;
+  state?: State | string;
   /**
    * The two-digit code representing the region of the Recipient.
    */
@@ -420,7 +409,7 @@ export interface GetBookingDetailItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The name of the item.
    */
@@ -432,7 +421,7 @@ export interface GetBookingDetailItem {
   /**
    * ID of the model that belongs to the same item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Name of the model that belongs to the same item. A seller can offer models of the same item. For example, the seller could create a fixed-priced listing for a t-shirt design and offer the shirt in different colors and sizes. In this case, each color and size combination is a separate model. Each model can have a different quantity and price.
    */
@@ -444,7 +433,7 @@ export interface GetBookingDetailItem {
   /**
    * The number of identical items from one listing/item in the same booking.
    */
-  model_quantity_purchased?: number;
+  model_quantity_purchased?: Integer;
   /**
    * The weight of the item
    */
@@ -477,11 +466,11 @@ export interface GetBookingDetailBooking {
   /**
    * Return by default. Enumerated type that defines the current status of the booking. Available value: READY_TO_SHIP/PROCESSED/SHIPPED/CANCELLED/MATCHED
    */
-  booking_status?: BookingStatus | string | number;
+  booking_status?: BookingStatus | string;
   /**
    * MATCH_PENDING/MATCH_SUCCESSFUL/MATCH_FAILED
    */
-  match_status?: MatchStatus | string | number;
+  match_status?: MatchStatus | string;
   /**
    * The logistics service provider that will deliver the booking.
    */
@@ -497,7 +486,7 @@ export interface GetBookingDetailBooking {
   /**
    * Return by default. The deadline to ship out the parcel.
    */
-  ship_by_date?: number;
+  ship_by_date?: Integer;
   /**
    * This object contains detailed breakdown for the recipient address.
    */
@@ -555,15 +544,15 @@ export interface GetBookingListRequest {
   /**
    * The kind of time_from and time_to. Available value: create_time, update_time.
    */
-  time_range_field: TimeRangeField | string | number;
+  time_range_field: TimeRangeField | string;
   /**
    * The time_from and time_to fields specify a date range for retrieving bookings (based on the time_range_field). The time_from field is the starting date range. The maximum date range that may be specified with the time_from and time_to fields is 15 days.
    */
-  time_from: number;
+  time_from: Integer;
   /**
    * The time_from and time_to fields specify a date range for retrieving bookings (based on the time_range_field). The time_from field is the starting date range. The maximum date range that may be specified with the time_from and time_to fields is 15 days.
    */
-  time_to: number;
+  time_to: Integer;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data.The limit of page_size if between 1 and 100.
    */
@@ -575,7 +564,7 @@ export interface GetBookingListRequest {
   /**
    * The booking_status filter for retrieving bookings and each one only every request. Available value: READY_TO_SHIP/PROCESSED/SHIPPED/CANCELLED/MATCHED
    */
-  booking_status?: BookingStatus | string | number;
+  booking_status?: BookingStatus | string;
 }
 /**
  * GetBookingListBooking sub-interface for GetBookingListResponseData
@@ -592,7 +581,7 @@ export interface GetBookingListBooking {
   /**
    * The booking_status filter for retrieving booking and each one only every request. Available value: READY_TO_SHIP/PROCESSED/SHIPPED/CANCELLED/MATCHED
    */
-  booking_status?: BookingStatus | string | number;
+  booking_status?: BookingStatus | string;
   /**
    * If more is true, you should pass the next_cursor in the next request as cursor. The value of next_cursor will be empty string when more is false.
    */
@@ -871,7 +860,7 @@ export interface GetBuyerInvoiceInfoResponseData {
  *
  * API to obtain buyer submitted invoice info for VN, TH and PH local sellers only.
  */
-export type GetBuyerInvoiceInfoResponse = FetchResponse<GetBuyerInvoiceInfoResponseData>;
+export type GetBuyerInvoiceInfoResponse = ResponseMetadata & GetBuyerInvoiceInfoResponseData;
 /**
  * GetEstimateCancelValuePartialCancelItem sub-interface for GetEstimateCancelValueRequest
  */
@@ -879,23 +868,23 @@ export interface GetEstimateCancelValuePartialCancelItem {
   /**
    * The unique identifier of the item to be included in the estimated cancellation value calculation.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * The unique identifier of the model to be included in the estimated cancellation value calculation.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.
    */
-  order_item_id?: number;
+  order_item_id?: Integer;
   /**
    * The identify of product promotion.It's required for add on deal and bundle deal items.For items in one same add on deal or bundle deal promotion, the promotion_group_id should share the same id. For items not in add on deal or bundle deal promotion, the promotion_group_id should be 0. And the data is from promotion_group_id of v2,order.get_order_detail.
    */
-  promotion_group_id?: number;
+  promotion_group_id?: Integer;
   /**
    * The quantity of the specified item model to be included in the estimated cancellation value calculation.
    */
-  model_quantity: number;
+  model_quantity: Integer;
 }
 /**
  * Request parameters for get_estimate_cancel_value
@@ -926,7 +915,7 @@ export interface GetEstimateCancelValueResponseData {
  *
  * Returns the estimated refund value for a partial order cancellation given the specified items to cancel.
  */
-export type GetEstimateCancelValueResponse = FetchResponse<GetEstimateCancelValueResponseData>;
+export type GetEstimateCancelValueResponse = ResponseMetadata & GetEstimateCancelValueResponseData;
 /**
  * GetFbsInvoicesResultRequestId sub-interface for GetFbsInvoicesResultRequest
  */
@@ -934,7 +923,7 @@ export interface GetFbsInvoicesResultRequestId {
   /**
    * A list of integers representing the request IDs to be queried.
    */
-  request_id: number[];
+  request_id: Integer[];
 }
 /**
  * Request parameters for get_fbs_invoices_result
@@ -954,7 +943,7 @@ export interface GetFbsInvoicesResultResult {
   /**
    * Represents the current status of the request
    */
-  request_id?: number;
+  request_id?: Integer;
   /**
    * Name of the file to be downloaded
    */
@@ -979,7 +968,7 @@ export interface GetFbsInvoicesResultResponseData {
  *
  * This API allows you to consult the status of a previously requested batch download for FBS tax documents.
  */
-export type GetFbsInvoicesResultResponse = FetchResponse<GetFbsInvoicesResultResponseData>;
+export type GetFbsInvoicesResultResponse = ResponseMetadata & GetFbsInvoicesResultResponseData;
 /**
  * Request parameters for get_order_detail
  *
@@ -997,7 +986,7 @@ export interface GetOrderDetailRequest {
   /**
    * a response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them.  Available values: buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address,actual_shipping_fee ,goods_to_declare,note,note_update_time,item_list,pay_time,dropshipper, dropshipper_phone,split_up,buyer_cancel_reason,cancel_by,cancel_reason,actual_shipping_fee_confirmed,buyer_cpf_id,fulfillment_flag,pickup_done_time,package_list,shipping_carrier,payment_method,total_amount,buyer_username,invoice_data,order_chargeable_weight_gram,return_request_due_date,edt,payment_info,international_label
    */
-  response_optional_fields?: GetOrderDetailRequestResponseOptionalFields | string | number;
+  response_optional_fields?: GetOrderDetailRequestResponseOptionalFields | string;
 }
 /**
  * GetOrderDetailGeolocation sub-interface for GetOrderDetailRecipientAddress
@@ -1027,19 +1016,19 @@ export interface GetOrderDetailRecipientAddress {
   /**
    * The town of the recipient's address. Whether there is a town will depend on the region and/or country.
    */
-  town?: Town | string | number;
+  town?: Town | string;
   /**
    * The district of the recipient's address. Whether there is a district will depend on the region and/or country.
    */
-  district?: District | string | number;
+  district?: District | string;
   /**
    * The city of the recipient's address. Whether there is a city will depend on the region and/or country.
    */
-  city?: City | string | number;
+  city?: City | string;
   /**
    * The state/province of the recipient's address. Whether there is a state/province will depend on the region and/or country.
    */
-  state?: State | string | number;
+  state?: State | string;
   /**
    * The two-digit code representing the region of the Recipient.
    */
@@ -1072,15 +1061,15 @@ export interface GetOrderDetailComponent {
   /**
    * The mapping ratio/quantity of this specific Parent SKU required for ONE unit of the Bundle SKU (e.g., if Bundle A contains 2 units of Parent SKU B, quantity = 2)
    */
-  quantity?: number;
+  quantity?: Integer;
   /**
    * The ID of the warehouse where the Parent SKU component is located/stored.
    */
-  warehouse_id?: WarehouseId | string | number;
+  warehouse_id?: WarehouseId | string;
   /**
    * The structure/type of mapping defined for the bundle. Available values:1: Group2: Lucky bag3: Mapping List
    */
-  mapping_type?: MappingType | string | number;
+  mapping_type?: MappingType | string;
 }
 /**
  * GetOrderDetailImageInfo sub-interface for GetOrderDetailItem
@@ -1102,7 +1091,7 @@ export interface GetOrderDetailPromotion {
   /**
    * Represents the unique identifier of a specific promotion applied to an item. Each promotion_id corresponds to a distinct promotion rule or campaign, defined under a particular promotion_type. The value is expressed in a numeric string format.
    */
-  promotion_id?: number;
+  promotion_id?: Integer;
 }
 /**
  * GetOrderDetailItem sub-interface for GetOrderDetailOrder
@@ -1111,7 +1100,7 @@ export interface GetOrderDetailItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * The name of the item.
    */
@@ -1123,7 +1112,7 @@ export interface GetOrderDetailItem {
   /**
    * ID of the model that belongs to the same item.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * Name of the model that belongs to the same item. A seller can offer models of the same item. For example, the seller could create a fixed-priced listing for a t-shirt design and offer the shirt in different colors and sizes. In this case, each color and size combination is a separate model. Each model can have a different quantity and price.
    */
@@ -1175,7 +1164,7 @@ export interface GetOrderDetailItem {
   /**
    * A unique ID to distinguish groups of items in Cart, and Order. (e.g. AddOnDeal)
    */
-  add_on_deal_id?: number;
+  add_on_deal_id?: Integer;
   /**
    * Available type：product_promotion, flash_sale, bundle_deal, add_on_deal_main, add_on_deal_sub.For items which attend multiple promotions will only show one promotion, the order of priority is: bundle_deal > add_on_deal_main > add_on_deal_sub > product_promotion >flash_sale
    */
@@ -1183,15 +1172,15 @@ export interface GetOrderDetailItem {
   /**
    * The ID of the promotion.
    */
-  promotion_id?: number;
+  promotion_id?: Integer;
   /**
    * The identify of order item.
    */
-  order_item_id?: number;
+  order_item_id?: Integer;
   /**
    * The identity of order item. In case the order item is a bundle deal, this value will be unique to distinguish the order item
    */
-  line_item_id?: number;
+  line_item_id?: Integer;
   /**
    * The identify of product promotion.
    */
@@ -1253,11 +1242,11 @@ export interface GetOrderDetail_GetOrderDetailItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Shopee's unique identifier for a model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * The number of identical items/variations purchased at the same time by the same buyer from one listing/item.
    */
@@ -1265,7 +1254,7 @@ export interface GetOrderDetail_GetOrderDetailItem {
   /**
    * The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.
    */
-  order_item_id?: number;
+  order_item_id?: Integer;
   /**
    * The identify of product promotion.
    */
@@ -1290,7 +1279,7 @@ export interface GetOrderDetailPackage {
   /**
    * The identity of logistic channel.
    */
-  logistics_channel_id?: number;
+  logistics_channel_id?: Integer;
   /**
    * The logistics service provider that the buyer selected for the order to deliver items. Note: If logistics_channel_id is 90021, 90025 or 90026, service_code will be appended, e.g., Entrega Turbo - M1020.
    */
@@ -1310,7 +1299,7 @@ export interface GetOrderDetailPackage {
   /**
    * The common identifier for multiple orders combined in the same parcel.
    */
-  group_shipment_id?: number;
+  group_shipment_id?: Integer;
   /**
    * [Only for TW non-integrated channel] The virtual phone number to contact the recipient.
    */
@@ -1461,7 +1450,7 @@ export interface GetOrderDetailOrder {
   /**
    * The user id of buyer of this order, will be empty if it is a non-integrated order in TW region.
    */
-  buyer_user_id?: number;
+  buyer_user_id?: Integer;
   /**
    * The name of buyer, will be masked as "****" if it is a non-integrated order in TW region.
    */
@@ -1565,7 +1554,7 @@ export interface GetOrderDetailOrder {
   /**
    * Return prescription images of this order, only for ID and PH whitelist sellers.Please add the prefix to review:for ID: https://cf.shopee.co.id/file/+prescription_imagefor PH:https://cf.shopee.ph/file/+prescription_image
    */
-  prescription_images?: PrescriptionImages | string | number;
+  prescription_images?: (PrescriptionImages | string)[];
   /**
    * Time of when the prescription is approved.
    */
@@ -1629,7 +1618,7 @@ export interface GetOrderDetailOrder {
   /**
    * Indicates the buyer’s preference for handling out-of-stock items in the order. Applicable values:0 = Ship Available Items Only (The buyer allows the seller to cancel unavailable items and continue shipping the remaining available items)1 = Cancel The Entire Order (The buyer does not allow partial cancellation. If any item is unavailable, the seller should cancel the entire order instead)
    */
-  buyer_preference_for_partial_cancellation?: number;
+  buyer_preference_for_partial_cancellation?: Integer;
   /**
    * Indicates that this order is a refundable sample  order. Applicable values:0 = Order is not a refundable sample order1 = Order is a refundable sample order
    */
@@ -1659,7 +1648,7 @@ export interface GetOrderListRequest {
   /**
    * The kind of time_from and time_to. Available value: create_time, update_time.
    */
-  time_range_field: TimeRangeField | string | number;
+  time_range_field: TimeRangeField | string;
   /**
    * The time_from and time_to fields specify a date range for retrieving orders (based on the time_range_field). The time_from field is the starting date range. The maximum date range that may be specified with the time_from and time_to fields is 15 days.
    */
@@ -1679,7 +1668,7 @@ export interface GetOrderListRequest {
   /**
    * The order_status filter for retriveing orders and each one only every request. Available value: UNPAID/READY_TO_SHIP/PROCESSED/SHIPPED/COMPLETED/IN_CANCEL/CANCELLED/INVOICE_PENDING
    */
-  order_status?: GetOrderListRequestOrderStatus | string | number;
+  order_status?: GetOrderListRequestOrderStatus | string;
   /**
    * Optional fields in response. Available value: order_status.
    */
@@ -1704,7 +1693,7 @@ export interface GetOrderListOrder {
   /**
    * The order_status filter for retriveing orders and each one only every request. Available value: UNPAID/READY_TO_SHIP/PROCESSED/SHIPPED/COMPLETED/IN_CANCEL/CANCELLED
    */
-  order_status?: GetOrderListResponseResponseOrderListOrderStatus | string | number;
+  order_status?: GetOrderListResponseResponseOrderListOrderStatus | string;
   /**
    * Return by default. Shopee's unique identifier for a booking.Only returned for advance fulfilment matched order only.
    */
@@ -1756,15 +1745,15 @@ export interface GetPackageDetailComponent {
   /**
    * The mapping ratio/quantity of this specific Parent SKU required for ONE unit of the Bundle SKU (e.g., if Bundle A contains 2 units of Parent SKU B, quantity = 2)
    */
-  quantity?: number;
+  quantity?: Integer;
   /**
    * The ID of the warehouse where the Parent SKU component is located/stored.
    */
-  warehouse_id?: WarehouseId | string | number;
+  warehouse_id?: WarehouseId | string;
   /**
    * The structure/type of mapping defined for the bundle. Available values:1: Group2: Lucky bag3: Mapping List
    */
-  mapping_type?: MappingType | string | number;
+  mapping_type?: MappingType | string;
 }
 /**
  * GetPackageDetailItem sub-interface for GetPackageDetailPackage
@@ -1773,11 +1762,11 @@ export interface GetPackageDetailItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Shopee's unique identifier for a model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * A item SKU (stock keeping unit) is an identifier defined by a seller, sometimes called parent SKU. Item SKU can be assigned to an item in Shopee Listings.
    */
@@ -1789,7 +1778,7 @@ export interface GetPackageDetailItem {
   /**
    * The number of identical items/variations purchased at the same time by the same buyer from one listing/item.
    */
-  model_quantity?: number;
+  model_quantity?: Integer;
   /**
    * Flag indicating whether the item contains any bundle items configured with Fulfillment Mapping (FFM). Returns 'true' if the item uses FFM logic, 'false' otherwise. Field will only be returned if shop is whitelisted.
    */
@@ -1805,11 +1794,11 @@ export interface GetPackageDetailItem {
   /**
    * The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.
    */
-  order_item_id?: number;
+  order_item_id?: Integer;
   /**
    * The identify of product promotion.
    */
-  promotion_group_id?: number;
+  promotion_group_id?: Integer;
   /**
    * The warehouse ID of the item.
    */
@@ -1863,19 +1852,19 @@ export interface GetPackageDetailRecipientAddress {
   /**
    * The town of the recipient's address. Whether there is a town will depend on the region and/or country.
    */
-  town?: Town | string | number;
+  town?: Town | string;
   /**
    * The district of the recipient's address. Whether there is a district will depend on the region and/or country.
    */
-  district?: District | string | number;
+  district?: District | string;
   /**
    * The city of the recipient's address. Whether there is a city will depend on the region and/or country.
    */
-  city?: City | string | number;
+  city?: City | string;
   /**
    * The state/province of the recipient's address. Whether there is a state/province will depend on the region and/or country.
    */
-  state?: State | string | number;
+  state?: State | string;
   /**
    * The two-digit code representing the region of the Recipient.
    */
@@ -1933,11 +1922,11 @@ export interface GetPackageDetailDriverInfo {
   /**
    * Earliest estimated arrival time at pickup address
    */
-  eta_start_time?: number;
+  eta_start_time?: Integer;
   /**
    * Latest estimated arrival time at pickup address
    */
-  eta_end_time?: number;
+  eta_end_time?: Integer;
   /**
    * Driver status. Applicable values:- Allocating Driver- Driver assigned- Driver is on the way- Driver is arrived- Driver should arrive by {starting_time} - {end_time}
    */
@@ -1975,11 +1964,11 @@ export interface GetPackageDetailPackage {
   /**
    * Timestamp that indicates the last time that there was a change in value of package.
    */
-  update_time?: number;
+  update_time?: Integer;
   /**
    * The identity of logistic channel.
    */
-  logistics_channel_id?: number;
+  logistics_channel_id?: Integer;
   /**
    * The logistics service provider that the buyer selected for the package to deliver items. Note: If logistics_channel_id is 90021, 90025 or 90026, service_code will be appended, e.g., Entrega Turbo - M1020.
    */
@@ -1991,11 +1980,11 @@ export interface GetPackageDetailPackage {
   /**
    * Shipping preparation time set by the seller when listing item on Shopee.
    */
-  days_to_ship?: number;
+  days_to_ship?: Integer;
   /**
    * The deadline to ship out the package.
    */
-  ship_by_date?: number;
+  ship_by_date?: Integer;
   /**
    * The list of pending terms. Applicable values:- SYSTEM_PENDING: Under Shopee internal processing.- KYC_PENDING: Under KYC checking (TW CB order only).- ARRANGE_SHIPMENT_PENDING: Temporarily held due to 3PL capacity constraints.
    */
@@ -2011,11 +2000,11 @@ export interface GetPackageDetailPackage {
   /**
    * [TW only] Tracking number expiration date
    */
-  tracking_number_expiration_date?: number;
+  tracking_number_expiration_date?: Integer;
   /**
    * The timestamp when pickup is done.
    */
-  pickup_done_time?: number;
+  pickup_done_time?: Integer;
   /**
    * To indicate whether this parcel is split.
    */
@@ -2031,11 +2020,11 @@ export interface GetPackageDetailPackage {
   /**
    * display weight used to calculate ASF for this parcel
    */
-  parcel_chargeable_weight_gram?: number;
+  parcel_chargeable_weight_gram?: Integer;
   /**
    * The common identifier for multiple orders combined in the same parcel.
    */
-  group_shipment_id?: number;
+  group_shipment_id?: Integer;
   /**
    * [Only for TW non-integrated channel] The virtual phone number to contact the recipient.
    */
@@ -2075,7 +2064,7 @@ export interface GetPackageDetailPackage {
   /**
    * Return prescription images of this order, only for ID and PH whitelist sellers.Please add the prefix to review:for ID: https://cf.shopee.co.id/file/+prescription_imagefor PH: https://cf.shopee.ph/file/+prescription_image
    */
-  prescription_images?: PrescriptionImages | string | number;
+  prescription_images?: (PrescriptionImages | string)[];
   /**
    * Time of when the prescription is approved.
    */
@@ -2111,7 +2100,7 @@ export interface GetPackageDetailPackage {
   /**
    * Indicates the buyer’s preference for handling out-of-stock items in the order. Applicable values:0 = Ship Available Items Only (The buyer allows the seller to cancel unavailable items and continue shipping the remaining available items)1 = Cancel The Entire Order (The buyer does not allow partial cancellation. If any item is unavailable, the seller should cancel the entire order instead)
    */
-  buyer_preference_for_partial_cancellation?: number;
+  buyer_preference_for_partial_cancellation?: Integer;
   invoice_pending?: GetPackageDetailInvoicePending;
 }
 /**
@@ -2250,7 +2239,7 @@ export interface GetWarehouseFilterConfigWarehouseFilter {
   /**
    * Identity of address.
    */
-  address_id?: number;
+  address_id?: Integer;
   /**
    * Detail address of your warehouse.
    */
@@ -2480,7 +2469,7 @@ export interface SearchPackageList_SearchPackageListPagination {
   /**
    * Total orders can be returned with your query
    */
-  total_count?: number;
+  total_count?: Integer;
   /**
    * if packages is not empty or length of packages <= page_size. You should pass the next_cursor in the next request as page_sentinel.
    */
@@ -2538,13 +2527,13 @@ export interface SetNoteRequest {
 /**
  * Response data payload for set_note
  */
-export type SetNoteResponseData = Record<string, never>;
+export type SetNoteResponseData = Record<never, never>;
 /**
  * Response payload for set_note
  *
  * Use this api to set note for an order.
  */
-export type SetNoteResponse = FetchResponse<SetNoteResponseData>;
+export type SetNoteResponse = ResponseMetadata & SetNoteResponseData;
 /**
  * SplitOrderItem sub-interface for SplitOrderPackage
  */
@@ -2552,11 +2541,11 @@ export interface SplitOrderItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * Shopee's unique identifier for a model of an item. For single item without variation, you can set model_id as 0.
    */
-  model_id: number;
+  model_id: Integer;
   /**
    * The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.
    */
@@ -2601,11 +2590,11 @@ export interface SplitOrder_SplitOrderItem {
   /**
    * Shopee's unique identifier for an item.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Shopee's unique identifier for a model.
    */
-  model_id?: number;
+  model_id?: Integer;
   /**
    * The identify of order item. For items in one same bundle deal promotion, the order_item_id should share the same id, such as 1,2. For items not in bundle deal promotion, the order_item_id should be the same as item_id.
    */
@@ -2665,13 +2654,13 @@ export interface UnsplitOrderRequest {
 /**
  * Response data payload for unsplit_order
  */
-export type UnsplitOrderResponseData = Record<string, never>;
+export type UnsplitOrderResponseData = Record<never, never>;
 /**
  * Response payload for unsplit_order
  *
  * Use this ai to undo split of order. After undo split, the order will have only one package. It can only be used when order status still at READY_TO_SHIP.
  */
-export type UnsplitOrderResponse = FetchResponse<UnsplitOrderResponseData>;
+export type UnsplitOrderResponse = ResponseMetadata & UnsplitOrderResponseData;
 /**
  * Request parameters for upload_invoice_doc
  *
@@ -2689,15 +2678,15 @@ export interface UploadInvoiceDocRequest {
   /**
    * invoice file. File size limit to 1MB.
    */
-  file: any;
+  file: BinaryFile;
 }
 /**
  * Response data payload for upload_invoice_doc
  */
-export type UploadInvoiceDocResponseData = Record<string, never>;
+export type UploadInvoiceDocResponseData = Record<never, never>;
 /**
  * Response payload for upload_invoice_doc
  *
  * This endpoint is for PH and BR local seller. Upload the invoice document
  */
-export type UploadInvoiceDocResponse = FetchResponse<UploadInvoiceDocResponseData>;
+export type UploadInvoiceDocResponse = ResponseMetadata & UploadInvoiceDocResponseData;

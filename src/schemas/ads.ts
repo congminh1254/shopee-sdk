@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, ResponseMetadata, Integer } from "./fetch.js";
 /**
  * Enum generated for field SmartCreativeSetting
  */
@@ -78,7 +78,7 @@ export interface CreateAutoProductAdsResponseDataItem {
   /**
    * The unique identifier for a campaign
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
 }
 /**
  * Response data payload for create_auto_product_ads
@@ -124,7 +124,7 @@ export interface CreateGmsProductCampaignResponseData {
   /**
    * GMS Campaign ID.
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
 }
 /**
  * Response payload for create_gms_product_campaign
@@ -191,7 +191,7 @@ export interface CreateManualProductAdsRequest {
   /**
    * Product ID
    */
-  item_id: number;
+  item_id: Integer;
   /**
    * the ROAS target for each campaign with auto bidding. If 0, GMV Max / ROI feature is not enabled
    */
@@ -211,7 +211,7 @@ export interface CreateManualProductAdsRequest {
   /**
    * Whether to use default or set on/off Smart Creative for this ad. Supported Values: "", "default", "on", "off". Empty string treated as default.
    */
-  smart_creative_setting?: SmartCreativeSetting | string | number;
+  smart_creative_setting?: SmartCreativeSetting | string;
 }
 /**
  * CreateManualProductAdsResponseDataItem sub-interface for CreateManualProductAdsResponse
@@ -220,7 +220,7 @@ export interface CreateManualProductAdsResponseDataItem {
   /**
    * The unique identifier for a campaign
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
 }
 /**
  * Response data payload for create_manual_product_ads
@@ -245,7 +245,7 @@ export interface EditAutoProductAdsRequest {
   /**
    * The unique identifier for a campaign
    */
-  campaign_id: number;
+  campaign_id: Integer;
   /**
    * Actions supported: "start", "pause", "resume", "stop", "change_budget", "change_duration"
    */
@@ -270,7 +270,7 @@ export interface EditAutoProductAdsResponseDataItem {
   /**
    * The unique identifier for a campaign
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
 }
 /**
  * Response data payload for edit_auto_product_ads
@@ -291,7 +291,7 @@ export interface EditGmsItemProductCampaignRequest {
   /**
    * The GMS Campaign ID. Provide if available.
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * The following is the list of possible actions:    add    remove
    */
@@ -299,7 +299,7 @@ export interface EditGmsItemProductCampaignRequest {
   /**
    * Item IDs to add / remove. Minimum 1 Item ID. Maximum 30 Item IDs.
    */
-  item_id_list: number[];
+  item_id_list: Integer[];
 }
 /**
  * EditGmsItemProductCampaignResponseData sub-interface for EditGmsItemProductCampaignResponse
@@ -308,7 +308,7 @@ export interface EditGmsItemProductCampaignResponseData {
   /**
    * GMS Campaign ID
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
 }
 /**
  * Response payload for edit_gms_item_product_campaign
@@ -326,7 +326,7 @@ export interface EditGmsProductCampaignRequest {
   /**
    * The GMS Campaign ID. Provide if available.
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * The following is the list of possible actions and their required fields:1.change_budgetdaily_budget2.change_durationstart_date3.end_date4.pause5.resume6.start7.change_roas_targetroas_target: when edit_action = change_roas_target, you must provide:roas_target (float) Value rules follow the same logic as in the create endpoint
    */
@@ -359,7 +359,7 @@ export interface EditGmsProductCampaignResponseData {
   /**
    * GMS Campaign ID
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
 }
 /**
  * Response payload for edit_gms_product_campaign
@@ -401,7 +401,7 @@ export interface EditManualProductAdKeywordsRequest {
   /**
    * The unique identifier for a campaign
    */
-  campaign_id: number;
+  campaign_id: Integer;
   /**
    * selected keywords, required for manual bidding mode.
    */
@@ -431,7 +431,7 @@ export interface EditManualProductAdKeywordsResponseDataItem {
   /**
    * The unique identifier for a campaign
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * failed edits are mentioned here
    */
@@ -478,7 +478,7 @@ export interface EditManualProductAdsRequest {
   /**
    * The unique identifier for a campaign
    */
-  campaign_id: number;
+  campaign_id: Integer;
   /**
    * Actions supported: "start", "pause", "resume", "stop", "delete", "change_budget", "change_duration", "change_smart_creative", "change_location", "change_enhanced_cpc", "change_roas_target"
    */
@@ -510,7 +510,7 @@ export interface EditManualProductAdsRequest {
   /**
    * Whether to use default or set on/off Smart Creative for this ad. Supported Values: "", "default", "on", "off". Empty string treated as default.
    */
-  smart_creative_setting?: SmartCreativeSetting | string | number;
+  smart_creative_setting?: SmartCreativeSetting | string;
 }
 /**
  * EditManualProductAdsResponseDataItem sub-interface for EditManualProductAdsResponse
@@ -519,7 +519,7 @@ export interface EditManualProductAdsResponseDataItem {
   /**
    * The unique identifier for a campaign
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
 }
 /**
  * Response data payload for edit_manual_product_ads
@@ -548,14 +548,14 @@ export interface GetAdsFacilShopRateResponseData {
   /**
    * The update time in timestamp format
    */
-  update_at?: number;
+  update_at?: Integer;
 }
 /**
  * Response payload for get_ads_facil_shop_rate
  *
  * Get shop rate for Ads Facil Program
  */
-export type GetAdsFacilShopRateResponse = FetchResponse<GetAdsFacilShopRateResponseData>;
+export type GetAdsFacilShopRateResponse = ResponseMetadata & GetAdsFacilShopRateResponseData;
 /**
  * Request parameters for get_all_cpc_ads_daily_performance
  *
@@ -785,7 +785,7 @@ export interface GetCreateProductAdBudgetSuggestionRequest {
   /**
    * Product ID. Mandatory for product_selection=manual
    */
-  item_id?: number;
+  item_id?: Integer;
 }
 /**
  * GetCreateProductAdBudgetSuggestionBudget sub-interface for GetCreateProductAdBudgetSuggestionResponseData
@@ -829,7 +829,7 @@ export interface GetGmsCampaignPerformanceRequest {
   /**
    * The GMS Campaign ID. Provide if available.
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * Start date of Campaign e.g. "11-11-2025". Maximum duration of 3 months between start_date & end_date. Earliest start_date is 6 months before today.
    */
@@ -854,11 +854,11 @@ export interface GetGmsCampaignPerformanceReport {
   /**
    * The number of times shoppers purchased any product from your shop within 7 days of them clicking on your ad.
    */
-  broad_order?: number;
+  broad_order?: Integer;
   /**
    * The total quantity of products purchased by shoppers within 7 days of them clicking on your ad.
    */
-  broad_order_amount?: number;
+  broad_order_amount?: Integer;
   /**
    * Return on ad spend (ROAS) measures how much revenue is generated by your ad relative to the cost of the ad. It is the amount of sales revenue attributed to your ad divided by the amount spent on the ad. ROAS = GMV ÷ expense. (Note: We recommend monitoring ROAS trends on a weekly basis.)
    */
@@ -866,7 +866,7 @@ export interface GetGmsCampaignPerformanceReport {
   /**
    * The number of times shoppers click on your ad. (Note: Shopee filters out repeated clicks from the same shopper that occur within a short time frame.)
    */
-  clicks?: number;
+  clicks?: Integer;
   /**
    * The amount spent on your ad.
    */
@@ -894,11 +894,11 @@ export interface GetGmsCampaignPerformanceReport {
   /**
    * The number of times shoppers purchased the advertised product within 7 days of them clicking on the ad.
    */
-  direct_order?: number;
+  direct_order?: Integer;
   /**
    * The total quantity of the advertised product purchased by shoppers within 7 days of them clicking on the ad.
    */
-  direct_order_amount?: number;
+  direct_order_amount?: Integer;
   /**
    * The direct return on ad spend, or direct ROAS, measures how much revenue is generated from sales of the advertised product, relative to the cost of the ad. It is the amount of sales revenue for the advertised product attributed to the ad, divided by the amount spent on the ad. Direct ROAS = direct GMV ÷ expense.
    */
@@ -915,7 +915,7 @@ export interface GetGmsCampaignPerformanceResponseData {
   /**
    * GMS Campaign ID
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   report?: GetGmsCampaignPerformanceReport;
 }
 /**
@@ -936,7 +936,7 @@ export interface GetGmsItemPerformanceRequest {
   /**
    * The GMS Campaign ID. Provide if available.
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * Start date of Campaign e.g. "11-11-2025". Maximum duration of 3 months between start_date & end_date. Earliest start_date is 6 months before today.
    */
@@ -969,11 +969,11 @@ export interface GetGmsItemPerformanceReport {
   /**
    * The number of times shoppers purchased any product from your shop within 7 days of them clicking on your ad.
    */
-  broad_order?: number;
+  broad_order?: Integer;
   /**
    * The total quantity of products purchased by shoppers within 7 days of them clicking on your ad.
    */
-  broad_order_amount?: number;
+  broad_order_amount?: Integer;
   /**
    * Return on ad spend (ROAS) measures how much revenue is generated by your ad relative to the cost of the ad. It is the amount of sales revenue attributed to your ad divided by the amount spent on the ad. ROAS = GMV ÷ expense. (Note: We recommend monitoring ROAS trends on a weekly basis.)
    */
@@ -981,7 +981,7 @@ export interface GetGmsItemPerformanceReport {
   /**
    * The number of times shoppers click on your ad. (Note: Shopee filters out repeated clicks from the same shopper that occur within a short time frame.)
    */
-  clicks?: number;
+  clicks?: Integer;
   /**
    * The amount spent on your ad.
    */
@@ -1009,11 +1009,11 @@ export interface GetGmsItemPerformanceReport {
   /**
    * The number of times shoppers purchased the advertised product within 7 days of them clicking on the ad.
    */
-  direct_order?: number;
+  direct_order?: Integer;
   /**
    * The total quantity of the advertised product purchased by shoppers within 7 days of them clicking on the ad.
    */
-  direct_order_amount?: number;
+  direct_order_amount?: Integer;
   /**
    * The direct return on ad spend, or direct ROAS, measures how much revenue is generated from sales of the advertised product, relative to the cost of the ad. It is the amount of sales revenue for the advertised product attributed to the ad, divided by the amount spent on the ad. Direct ROAS = direct GMV ÷ expense.
    */
@@ -1021,7 +1021,7 @@ export interface GetGmsItemPerformanceReport {
   /**
    * The number of times shoppers see your ad.
    */
-  impression?: number;
+  impression?: Integer;
 }
 /**
  * GetGmsItemPerformanceResult sub-interface for GetGmsItemPerformanceResponseData
@@ -1030,7 +1030,7 @@ export interface GetGmsItemPerformanceResult {
   /**
    * Item ID. Results are sorted by this.
    */
-  item_id?: number;
+  item_id?: Integer;
   report?: GetGmsItemPerformanceReport;
 }
 /**
@@ -1040,12 +1040,12 @@ export interface GetGmsItemPerformanceResponseData {
   /**
    * GMS Campaign ID
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   result_list?: GetGmsItemPerformanceResult[];
   /**
    * Total number of Item ID reports.
    */
-  total?: number;
+  total?: Integer;
   /**
    * Indicate that there are more item ID reports.
    */
@@ -1089,11 +1089,11 @@ export interface GetProductCampaignDailyPerformanceMetrics {
   /**
    * The number of times shoppers see your ad.
    */
-  impression?: number;
+  impression?: Integer;
   /**
    * The number of times shoppers click on your ad. (Note: Shopee filters out repeated clicks from the same shopper that occur within a short time frame.)
    */
-  clicks?: number;
+  clicks?: Integer;
   /**
    * The click-through rate (CTR) measures how often shoppers end up clicking on your ad after seeing it. It is the number of clicks on your ad divided by the number of times your ad is seen. CTR = clicks ÷ impressions × 100%.
    */
@@ -1109,11 +1109,11 @@ export interface GetProductCampaignDailyPerformanceMetrics {
   /**
    * The number of times shoppers purchased any product from your shop within 7 days of them clicking on your ad.
    */
-  broad_order?: number;
+  broad_order?: Integer;
   /**
    * The total quantity of products purchased by shoppers within 7 days of them clicking on your ad.
    */
-  broad_order_amount?: number;
+  broad_order_amount?: Integer;
   /**
    * Return on ad spend (ROAS) measures how much revenue is generated by your ad relative to the cost of the ad. It is the amount of sales revenue attributed to your ad divided by the amount spent on the ad. ROAS = GMV ÷ expense. (Note: We recommend monitoring ROAS trends on a weekly basis.)
    */
@@ -1133,11 +1133,11 @@ export interface GetProductCampaignDailyPerformanceMetrics {
   /**
    * The number of times shoppers purchased the advertised product within 7 days of them clicking on the ad.
    */
-  direct_order?: number;
+  direct_order?: Integer;
   /**
    * The total quantity of the advertised product purchased by shoppers within 7 days of them clicking on the ad.
    */
-  direct_order_amount?: number;
+  direct_order_amount?: Integer;
   /**
    * The amount of sales revenue generated from shoppers purchasing the advertised product within 7 days of them clicking on the ad.
    */
@@ -1166,7 +1166,7 @@ export interface GetProductCampaignDailyPerformanceCampaign {
   /**
    * the unique id per campaign
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * auto, manual
    */
@@ -1191,7 +1191,7 @@ export interface GetProductCampaignDailyPerformanceResponseDataItem {
   /**
    * the unique id per shop
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * the region where each shop is under
    */
@@ -1243,11 +1243,11 @@ export interface GetProductCampaignHourlyPerformanceMetrics {
   /**
    * The number of times shoppers see your ad.
    */
-  impression?: number;
+  impression?: Integer;
   /**
    * The number of times shoppers click on your ad. (Note: Shopee filters out repeated clicks from the same shopper that occur within a short time frame.)
    */
-  clicks?: number;
+  clicks?: Integer;
   /**
    * The click-through rate (CTR) measures how often shoppers end up clicking on your ad after seeing it. It is the number of clicks on your ad divided by the number of times your ad is seen. CTR = clicks ÷ impressions × 100%.
    */
@@ -1263,11 +1263,11 @@ export interface GetProductCampaignHourlyPerformanceMetrics {
   /**
    * The number of times shoppers purchased any product from your shop within 7 days of them clicking on your ad.
    */
-  broad_order?: number;
+  broad_order?: Integer;
   /**
    * The total quantity of products purchased by shoppers within 7 days of them clicking on your ad.
    */
-  broad_order_amount?: number;
+  broad_order_amount?: Integer;
   /**
    * Return on ad spend (ROAS) measures how much revenue is generated by your ad relative to the cost of the ad. It is the amount of sales revenue attributed to your ad divided by the amount spent on the ad. ROAS = GMV ÷ expense. (Note: We recommend monitoring ROAS trends on a weekly basis.)
    */
@@ -1287,11 +1287,11 @@ export interface GetProductCampaignHourlyPerformanceMetrics {
   /**
    * The number of times shoppers purchased the advertised product within 7 days of them clicking on the ad.
    */
-  direct_order?: number;
+  direct_order?: Integer;
   /**
    * The total quantity of the advertised product purchased by shoppers within 7 days of them clicking on the ad.
    */
-  direct_order_amount?: number;
+  direct_order_amount?: Integer;
   /**
    * The amount of sales revenue generated from shoppers purchasing the advertised product within 7 days of them clicking on the ad.
    */
@@ -1320,7 +1320,7 @@ export interface GetProductCampaignHourlyPerformanceCampaign {
   /**
    * The unique identifier for a campaign
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * auto, manual
    */
@@ -1345,7 +1345,7 @@ export interface GetProductCampaignHourlyPerformanceResponseDataItem {
   /**
    * Shopee's unique identifier for a shop
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * The region where this Shop is under
    */
@@ -1380,11 +1380,11 @@ export interface GetProductLevelCampaignIdListRequest {
   /**
    * offset
    */
-  offset?: number;
+  offset?: Integer;
   /**
    * limit
    */
-  limit?: number;
+  limit?: Integer;
 }
 /**
  * GetProductLevelCampaignIdListCampaign sub-interface for GetProductLevelCampaignIdListResponseData
@@ -1393,11 +1393,11 @@ export interface GetProductLevelCampaignIdListCampaign {
   /**
    * auto/manual
    */
-  ad_type?: AdType | string | number;
+  ad_type?: AdType | string;
   /**
    * the unique id per campaign
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
 }
 /**
  * GetProductLevelCampaignIdListResponseData sub-interface for GetProductLevelCampaignIdListResponse
@@ -1406,7 +1406,7 @@ export interface GetProductLevelCampaignIdListResponseData {
   /**
    * Shopee's unique identifier for a shop.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Region the shop belongs to
    */
@@ -1449,11 +1449,11 @@ export interface GetProductLevelCampaignSettingInfoCampaignDuration {
   /**
    * The start date for each campaign. please kindly note that if this campaign is no end date, please pass today's date as the start date
    */
-  start_time?: number;
+  start_time?: Integer;
   /**
    * the end date per campaign. please kindly note that if it's no limit, so you don't need pass anything and if it's unlimited, the end time would return 0
    */
-  end_time?: number;
+  end_time?: Integer;
 }
 /**
  * GetProductLevelCampaignSettingInfoCommonInfo sub-interface for GetProductLevelCampaignSettingInfoCampaign
@@ -1490,7 +1490,7 @@ export interface GetProductLevelCampaignSettingInfoCommonInfo {
   /**
    * List of unique identifiers for all products under this campaign. If the campaign is using auto product selection it can have between zero and many products. If the campaign is using manual product selection, it has exactly one.
    */
-  item_id_list?: number[];
+  item_id_list?: Integer[];
 }
 /**
  * GetProductLevelCampaignSettingInfoSelectedKeyword sub-interface for GetProductLevelCampaignSettingInfoManualBiddingInfo
@@ -1571,7 +1571,7 @@ export interface GetProductLevelCampaignSettingInfoAutoProductAdsInfo {
   /**
    * Unique identifier for the product.
    */
-  item_id?: number;
+  item_id?: Integer;
 }
 /**
  * GetProductLevelCampaignSettingInfoCampaign sub-interface for GetProductLevelCampaignSettingInfoResponseData
@@ -1580,7 +1580,7 @@ export interface GetProductLevelCampaignSettingInfoCampaign {
   /**
    * The unique ID per campaign
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * common_info body
    */
@@ -1605,7 +1605,7 @@ export interface GetProductLevelCampaignSettingInfoResponseData {
   /**
    * Shopee's unique identifier for a shop.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Region the shop belongs to
    */
@@ -1631,7 +1631,7 @@ export interface GetProductRecommendedRoiTargetRequest {
   /**
    * A random string used to prevent duplicate ads. If an ads is created successfully, subsequent requests using the same reference id will fail - in this case, a new one must be generated.Use the same string for calling suggestion/recommendation API before the actual request to create an ads.
    */
-  reference_id: ReferenceId | string | number;
+  reference_id: ReferenceId | string;
   /**
    * Unique identifier for a product.
    */
@@ -1874,15 +1874,15 @@ export interface ListGmsUserDeletedItemResponseData {
   /**
    * GMS Campaign ID
    */
-  campaign_id?: number;
+  campaign_id?: Integer;
   /**
    * List of Item IDs
    */
-  item_id_list?: number[];
+  item_id_list?: Integer[];
   /**
    * Total number of Item IDs
    */
-  total?: number;
+  total?: Integer;
   /**
    * Indicate that there are more item IDs.
    */

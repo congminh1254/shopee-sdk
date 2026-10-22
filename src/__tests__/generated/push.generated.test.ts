@@ -28,19 +28,14 @@ describe("PushManager (Generated Tests)", () => {
       const exampleRequest = {
         last_message_id: 176610,
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "668ea92da2a19f7d2e72bf98bd530c41",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.confirmConsumedLostPushMessage(exampleRequest);
 
@@ -50,82 +45,82 @@ describe("PushManager (Generated Tests)", () => {
         "/push/confirm_consumed_lost_push_message",
         {
           method: "POST",
-          auth: true,
+
           body: exampleRequest,
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
   describe("getAppPushConfig", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
-      const exampleResponse = {
-        callback_url: "https://open.shopee.com/",
-        live_push_status: "suspended",
-        suspended_time: 1577416181,
-        blocked_shop_id: [10010, 20020, 30030],
-        push_config_on_list: [1, 2, 3],
-        push_config_off_list: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          callback_url: "https://open.shopee.com/",
+          live_push_status: "suspended",
+          suspended_time: 1577416181,
+          blocked_shop_id: [10010, 20020, 30030],
+          push_config_on_list: [1, 2, 3],
+          push_config_off_list: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getAppPushConfig(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/push/get_app_push_config", {
         method: "GET",
-        auth: true,
+
         params: exampleRequest,
         timestampPaths: ["response.suspended_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
   describe("getLostPushMessage", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
-      const exampleResponse = {
-        push_message_list: [
-          {
-            shop_id: 727720655,
-            code: 3,
-            timestamp: 1660123127,
-            data: "[object Object]",
-          },
-        ],
-        has_next_page: false,
-        last_message_id: 176610,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          push_message_list: [
+            {
+              shop_id: 727720655,
+              code: 3,
+              timestamp: 1660123127,
+              data: "[object Object]",
+            },
+          ],
+          has_next_page: false,
+          last_message_id: 176610,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getLostPushMessage(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/push/get_lost_push_message", {
         method: "GET",
-        auth: true,
+
         params: exampleRequest,
         timestampPaths: ["response.push_message_list.timestamp"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -137,27 +132,27 @@ describe("PushManager (Generated Tests)", () => {
         set_push_config_off: [6, 7, 11, 12, 13],
         blocked_shop_id_list: [10010, 20020, 30030],
       };
-      const exampleResponse = {
-        result: "success",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          result: "success",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.setAppPushConfig(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/push/set_app_push_config", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

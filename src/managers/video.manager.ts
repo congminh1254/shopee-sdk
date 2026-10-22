@@ -49,6 +49,7 @@ export class VideoManager extends BaseManager {
     return ShopeeFetch.fetch<DeleteVideoResponse>(this.config, "/video/delete_video", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -62,6 +63,7 @@ export class VideoManager extends BaseManager {
     return ShopeeFetch.fetch<EditVideoInfoResponse>(this.config, "/video/edit_video_info", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }
@@ -75,6 +77,7 @@ export class VideoManager extends BaseManager {
     return ShopeeFetch.fetch<GetCoverListResponse>(this.config, "/video/get_cover_list", {
       method: "GET",
       auth: true,
+      authMode: "user",
       params: params,
     });
   }
@@ -88,6 +91,7 @@ export class VideoManager extends BaseManager {
     return ShopeeFetch.fetch<GetMetricTrendResponse>(this.config, "/video/get_metric_trend", {
       method: "GET",
       auth: true,
+      authMode: "user",
       params: params,
     });
   }
@@ -106,6 +110,7 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -125,6 +130,7 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -144,6 +150,7 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -158,6 +165,7 @@ export class VideoManager extends BaseManager {
     return ShopeeFetch.fetch<GetVideoDetailResponse>(this.config, "/video/get_video_detail", {
       method: "GET",
       auth: true,
+      authMode: "user",
       params: params,
       timestampPaths: [
         "response.post_time",
@@ -181,6 +189,7 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -200,6 +209,7 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -219,6 +229,7 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
         timestampPaths: ["response.video_info.post_time"],
       }
@@ -239,6 +250,7 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
       }
     );
@@ -253,6 +265,7 @@ export class VideoManager extends BaseManager {
     return ShopeeFetch.fetch<GetVideoListResponse>(this.config, "/video/get_video_list", {
       method: "GET",
       auth: true,
+      authMode: "user",
       params: params,
       timestampPaths: [
         "response.list.post_time",
@@ -276,6 +289,7 @@ export class VideoManager extends BaseManager {
       {
         method: "GET",
         auth: true,
+        authMode: "user",
         params: params,
         timestampPaths: ["response.list.post_time"],
       }
@@ -291,6 +305,7 @@ export class VideoManager extends BaseManager {
     return ShopeeFetch.fetch<PostVideoResponse>(this.config, "/video/post_video", {
       method: "POST",
       auth: true,
+      authMode: "user",
       body: params,
     });
   }

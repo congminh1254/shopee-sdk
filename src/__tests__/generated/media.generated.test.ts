@@ -28,30 +28,25 @@ describe("MediaManager (Generated Tests)", () => {
       const exampleRequest = {
         video_upload_id: "sg-11110201-6kh48-mepm7a0ttcw3c3",
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "e3e3e7f33ee88a7454c64e7a0b546e01",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.cancelVideoUpload(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/cancel_video_upload", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -60,30 +55,25 @@ describe("MediaManager (Generated Tests)", () => {
       const exampleRequest = {
         video_upload_id: "sg-11110201-6kh48-mepm7a0ttcw3c3",
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "e3e3e7f33ee8a35723ec3e694708a301",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.completeVideoUpload(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/complete_video_upload", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -92,39 +82,40 @@ describe("MediaManager (Generated Tests)", () => {
       const exampleRequest = {
         video_upload_id: "sg-11110201-6kh48-mepm7a0ttcw3c3",
       };
-      const exampleResponse = {
-        status: "transcoded",
-        reason: "test_string",
-        update_time: 1758018336,
-        video_info: {
-          video_url:
-            "http://play-src.vod.shopee.com/api/v4/11110201/mms/sg-11110201-6kh48-mepm7a0ttcw3c3.",
-          video_thumbnail_url: "http://img.sp.mms.shopee.sg/sg-11110201-6kh48-mepm7a0ttcw3c3_cover",
-          thumbnail_width: 1920,
-          thumbnail_height: 1080,
-          duration: 105,
-          resolution: "960x540",
-        },
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          status: "transcoded",
+          reason: "test_string",
+          update_time: 1758018336,
+          video_info: {
+            video_url:
+              "http://play-src.vod.shopee.com/api/v4/11110201/mms/sg-11110201-6kh48-mepm7a0ttcw3c3.",
+            video_thumbnail_url:
+              "http://img.sp.mms.shopee.sg/sg-11110201-6kh48-mepm7a0ttcw3c3_cover",
+            thumbnail_width: 1920,
+            thumbnail_height: 1080,
+            duration: 105,
+            resolution: "960x540",
+          },
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getVideoUploadResult(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/get_video_upload_result", {
         method: "GET",
-        auth: true,
+
         params: exampleRequest,
         timestampPaths: ["response.update_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -137,28 +128,28 @@ describe("MediaManager (Generated Tests)", () => {
         file_size: 26214400,
         duration: 105,
       };
-      const exampleResponse = {
-        video_upload_id: "sg-11110201-6kh48-mepm7a0ttcw3c3",
-        part_size: 10485760,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          video_upload_id: "sg-11110201-6kh48-mepm7a0ttcw3c3",
+          part_size: 10485760,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.initVideoUpload(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/init_video_upload", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -167,34 +158,34 @@ describe("MediaManager (Generated Tests)", () => {
       const exampleRequest = {
         business: 2,
         scene: 1,
-        images: "test_string",
-      };
-      const exampleResponse = {
-        image_list: [
-          {
-            image_id: "test_string",
-            image_url: "test_string",
-          },
-        ],
+        images: Buffer.from("test_binary"),
       };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          image_list: [
+            {
+              image_id: "test_string",
+              image_url: "test_string",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.uploadImage(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_image", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -203,33 +194,28 @@ describe("MediaManager (Generated Tests)", () => {
       const exampleRequest = {
         video_upload_id: "sg-11110201-6kh48-mepm7a0ttcw3c3",
         part_seq: 0,
-        part_content: "test_string",
+        part_content: Buffer.from("test_binary"),
         part_md5: "995bbc002c3ef797addcb010f64626ea",
       };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "e3e3e7f33ee8a35723ec3e694708a301",
-      };
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
+      const exampleResponse = {
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+        request_id: "test-request-id",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.uploadVideoPart(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_video_part", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

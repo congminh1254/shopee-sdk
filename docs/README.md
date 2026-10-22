@@ -5,6 +5,7 @@ Welcome to the comprehensive documentation for the Shopee SDK! This guide will h
 ## Table of Contents
 
 ### Getting Started
+- [Integration and Contract Tests](./guides/integration-testing.md) - Local HTTP contracts and explicit sandbox lifecycle checks
 - [Setup Guide](./guides/setup.md) - Installation, configuration, and initialization
 - [Authentication](./guides/authentication.md) - OAuth flow and token management
 - [Token Storage](./guides/token-storage.md) - Managing access tokens

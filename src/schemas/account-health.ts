@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * Request parameters for get_late_orders
  *
@@ -74,7 +74,7 @@ export interface GetListingsWithIssuesListing {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Reason of this item. Applicable values: 1: Prohibited2: Counterfeit3: Spam4: Inappropriate Image5: Insufficient Info6: Mall Listing Improvement7: Other Listing Improvement
    */
@@ -108,7 +108,7 @@ export interface GetMetricSourceDetailRequest {
   /**
    * ID of metric. Supported values: 1: Late Shipment Rate (All Channels)3: Non-Fulfilment Rate (All Channels)4: Preparation Time12: Pre-order Listing %15: Days of Pre-order Listing Violation25: Fast Handover Rate28: On-time Pickup Failure Rate Violation Value42: Cancellation Rate (All Channels)43: Return-refund Rate (All Channels)52: Severe Listing Violations53: Other Listing Violations85: Late Shipment Rate (NDD)88: Non-fulfilment Rate (NDD91: Cancellation Rate (NDD)92: Return-refund Rate (NDD)96: % SDD Listings97: % NDD Listings2001: Fast Handover Rate - SLS2002: Fast Handover Rate - FBS2003: Fast Handover Rate - 3PF2030: % HD Listings2031: % HD Free Shipping Enabled2032: Saturday Shipment2033: Preparation Time PS2033: Preparation Time PS2036: OTDR Logistic Rate2037: OTDR DD Rate
    */
-  metric_id: number;
+  metric_id: Integer;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call. Default is 1.
    */
@@ -184,7 +184,7 @@ export interface GetMetricSourceDetailLsrOrder {
   /**
    * Late-by Days.
    */
-  late_by_days?: number;
+  late_by_days?: Integer;
   /**
    * Courier actual pick up time.
    */
@@ -213,7 +213,7 @@ export interface GetMetricSourceDetailFhrOrder {
   /**
    * Parcel ID.
    */
-  parcel_id?: number;
+  parcel_id?: Integer;
   /**
    * Display Parcel ID.
    */
@@ -287,7 +287,7 @@ export interface GetMetricSourceDetailViolationListing {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Reason. Applicable values: 1: Prohibited2: Counterfeit3: Spam4: Inappropriate Image5: Insufficient Info6: Mall Listing Improvement7: Other Listing Improvement8: PQR Products
    */
@@ -308,15 +308,15 @@ export interface GetMetricSourceDetailPreOrderListingViolationData {
   /**
    * Number of Live Listings.
    */
-  live_listing_count?: number[];
+  live_listing_count?: Integer;
   /**
    * Number of pre-order Listings.
    */
-  pre_order_listing_count?: number[];
+  pre_order_listing_count?: number;
   /**
    * Pre-order Listing %.
    */
-  pre_order_listing_rate?: number[];
+  pre_order_listing_rate?: number;
   /**
    * Target.
    */
@@ -329,7 +329,7 @@ export interface GetMetricSourceDetailPreOrderListing {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Current Pre-order Status. Applicable values: 1: Yes2: No
    */
@@ -342,7 +342,7 @@ export interface GetMetricSourceDetailSddListing {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Current SDD Status. Applicable values: 1: Yes0: No
    */
@@ -355,7 +355,7 @@ export interface GetMetricSourceDetailNddListing {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * Current NDD Status. Applicable values: 1: Yes0: No
    */
@@ -405,7 +405,7 @@ export interface GetMetricSourceDetailHdListing {
   /**
    * Item ID.
    */
-  item_id?: number;
+  item_id?: Integer;
   /**
    * For 2030: % HD Listings, it refer to Current HD Status.For 2031: % HD Free Shipping Enabled, it refer to Free Shipping Enabled Status.Applicable values: 1: Yes2: No
    */
@@ -488,7 +488,7 @@ export interface GetMetricSourceDetailResponseData {
   /**
    * ID of metric.
    */
-  metric_id?: number;
+  metric_id?: Integer;
   /**
    * Affected Orders for Non-fulfilment Rate.Supported metric_id: 3: Non-Fulfilment Rate (All Channels)88: Non-fulfilment Rate (NDD)
    */
@@ -574,7 +574,7 @@ export interface GetPenaltyPointHistoryRequest {
   /**
    * Applicable values: 5: High Late Shipment Rate6: High Non-fulfilment Rate7: High number of non-fulfilled orders8: High number of late shipped orders9: Prohibited Listings10: Counterfeit / IP infringement11: Spam12: Copy/Steal images13: Re-uploading deleted listings with no change14: Bought counterfeit from mall15: Counterfeit caught by Shopee16: High percentage of pre-order listings17: Confirmed Fraud attempts (total)18: Confirmed Fraud attempts per week (All with vouchers only)19: Fake return address20: Shipping fraud/abuse21: High No. of Non-responded Chat22: Rude chat replies23: Request buyer to cancel order24: Rude reply to buyer's review25: Violate Return/Refund policy101: Tier Reason3026: Misuse of Shopee’s IP3028: Violate Shop Name Regulations3030: Direct transactions outside of the Shopee platform3032: Shipping empty / incomplete parcels3034: Severe Violations on Shopee Feed3036: Severe Violations on Shopee LIVE3038: Misuse of Local Vendor Tag3040: Use of misleading shop tag in listing image3042: Counterfeit / IP Infringement test3044: Repeat Offender - IP infringement and Counterfeit listings3046: Violation of Live Animals Selling Policy3048: Chat Spam3050: High Overseas Return Refunds Rate3052: Privacy breach in buyer's review reply3054: Order Brushing3056: porn image3058: Incorrect Product Categories3060: Extremely High Non-Fulfilment Rate3062: Penalty of Affiliate Marketing Solution (AMS) Overdue Invoice Payment3064: Government-related listing3066: Listing invalid gifted items3068: High non-fulfilment rate (Next Day Delivery Orders)3070: High Late Shipment Rate (Next Day Delivery Orders)3072: OPFR Violation Value3074: Direct transactions outside Shopee platform via chat3090: Prohibited Listings-Extreme Violations3091: Prohibited Listings-High Violations3092: Prohibited Listings-Mid Violations3093: Prohibited Listings-Low Violations3094: Counterfeit Listings-Extreme Violations3095: Counterfeit Listings-High Violations3096: Counterfeit Listings-Mid Violations3097: Counterfeit Listings-Low Violations3098: Spam Listings-Extreme Violations3099: Spam Listings-High Violations3100: Spam Listings-Mid Violations3101: Spam Listings-Low Violations3145: Return/Refund Rate (Non-integrated Channel)4130: Poor Product Quality
    */
-  violation_type?: number;
+  violation_type?: Integer;
 }
 /**
  * GetPenaltyPointHistoryPenaltyPoint sub-interface for GetPenaltyPointHistoryResponseData
@@ -595,7 +595,7 @@ export interface GetPenaltyPointHistoryPenaltyPoint {
   /**
    * Reference ID for this penalty point record.
    */
-  reference_id?: number;
+  reference_id?: Integer;
   /**
    * Applicable values: 5: High Late Shipment Rate6: High Non-fulfilment Rate7: High number of non-fulfilled orders8: High number of late shipped orders9: Prohibited Listings10: Counterfeit / IP infringement11: Spam12: Copy/Steal images13: Re-uploading deleted listings with no change14: Bought counterfeit from mall15: Counterfeit caught by Shopee16: High percentage of pre-order listings17: Confirmed Fraud attempts (total)18: Confirmed Fraud attempts per week (All with vouchers only)19: Fake return address20: Shipping fraud/abuse21: High No. of Non-responded Chat22: Rude chat replies23: Request buyer to cancel order24: Rude reply to buyer's review25: Violate Return/Refund policy101: Tier Reason3026: Misuse of Shopee’s IP3028: Violate Shop Name Regulations3030: Direct transactions outside of the Shopee platform3032: Shipping empty / incomplete parcels3034: Severe Violations on Shopee Feed3036: Severe Violations on Shopee LIVE3038: Misuse of Local Vendor Tag3040: Use of misleading shop tag in listing image3042: Counterfeit / IP Infringement test3044: Repeat Offender - IP infringement and Counterfeit listings3046: Violation of Live Animals Selling Policy3048: Chat Spam3050: High Overseas Return Refunds Rate3052: Privacy breach in buyer's review reply3054: Order Brushing3056: porn image3058: Incorrect Product Categories3060: Extremely High Non-Fulfilment Rate3062: Penalty of Affiliate Marketing Solution (AMS) Overdue Invoice Payment3064: Government-related listing3066: Listing invalid gifted items3068: High non-fulfilment rate (Next Day Delivery Orders)3070: High Late Shipment Rate (Next Day Delivery Orders)3072: OPFR Violation Value3074: Direct transactions outside Shopee platform via chat3090: Prohibited Listings-Extreme Violations3091: Prohibited Listings-High Violations3092: Prohibited Listings-Mid Violations3093: Prohibited Listings-Low Violations3094: Counterfeit Listings-Extreme Violations3095: Counterfeit Listings-High Violations3096: Counterfeit Listings-Mid Violations3097: Counterfeit Listings-Low Violations3098: Spam Listings-Extreme Violations3099: Spam Listings-High Violations3100: Spam Listings-Mid Violations3101: Spam Listings-Low Violations3145: Return/Refund Rate (Non-integrated Channel)4130: Poor Product Quality
    */
@@ -666,11 +666,11 @@ export interface GetPunishmentHistoryPunishment {
   /**
    * Reference ID for this punishment record.
    */
-  reference_id?: number;
+  reference_id?: Integer;
   /**
    * Return the specific value of listing limit when punishment_type is: 1109: Listing Limit is reduced1110: Listing Limit is reduced1111: Listing Limit is reduced1112: Listing Limit is reduced
    */
-  listing_limit?: number[];
+  listing_limit?: number;
   /**
    * Return the specific percentage of order limit when punishment_type is: 2008: Order LimitDaily Order Limit = X % * L28D ADO (Average Daily Order of this Shop in Past 28 Days)
    */
@@ -716,7 +716,7 @@ export interface GetShopPerformanceOverallPerformance {
   /**
    * The number of metrics that did not meet target under Listing Performance type.
    */
-  listing_failed?: number[];
+  listing_failed?: number;
   /**
    * The number of metrics that did not meet target under Customer Service Performance type.
    */
@@ -746,11 +746,11 @@ export interface GetShopPerformanceMetric {
   /**
    * ID of metric.If metric_id < 0, it means that this is not a real metric, but a group of metrics.Non-Responded Chats = -1Late Shipment Rate (All Channels) = 1Non-Fulfilment Rate (All Channels) = 3Preparation Time = 4Chat Response Rate = 11Pre-order Listing % = 12Days of Pre-order Listing Violation = 15Response Time = 21Shop Rating = 22No. of Non-Responded Chats = 23Fast Handover Rate = 25On-time Pickup Failure Rate = 27On-time Pickup Failure Rate Violation Value = 28Average Response Time = 29Cancellation Rate (All Channels) = 42Return-refund Rate (All Channels) = 43Severe Listing Violations = 52Other Listing Violations = 53Prohibited Listings = 54Counterfeit/IP infringement = 55Spam Listings = 56Late Shipment Rate (NDD) = 85Non-fulfilment Rate (NDD) = 88Cancellation Rate (NDD) = 91Return-refund Rate (NDD) = 92Customer Satisfaction = 95% SDD Listings = 96% NDD Listings = 97Fast Handover Rate - SLS = 2001Fast Handover Rate - FBS = 2002Fast Handover Rate - 3PF = 2003Poor Quality Products = 2011% HD Listings = 2030% HD Free Shipping Enabled = 2031Saturday Shipment = 2032Preparation Time PS = 2033OTDR Logistic Rate = 2036OTDR DD Rate = 2037
    */
-  metric_id?: number;
+  metric_id?: Integer;
   /**
    * ID of parent metric.
    */
-  parent_metric_id?: number;
+  parent_metric_id?: Integer;
   /**
    * Default name of metric.
    */

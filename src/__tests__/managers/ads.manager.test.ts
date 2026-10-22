@@ -986,9 +986,7 @@ describe("AdsManager", () => {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: {
-          rate: 0.05,
-        },
+        rate: 0.05,
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -1002,7 +1000,7 @@ describe("AdsManager", () => {
       });
 
       expect(result.error).toBe("");
-      expect(result.response.rate).toBe(0.05);
+      expect(result.rate).toBe(0.05);
     });
   });
 

@@ -8,12 +8,28 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      run_mutations:
+        description: Run test-owned sandbox mutation lifecycles
+        type: boolean
+        default: false
+      extended_reads:
+        description: Run recommendation APIs supported by the selected sandbox
+        type: boolean
+        default: false
 
 jobs:
   integration-test:
     name: Sandbox Integration Tests
     runs-on: ubuntu-latest
     env:
+      SHOPEE_SANDBOX_ALLOW_MUTATIONS: ${{ github.event_name == 'workflow_dispatch' && inputs.run_mutations && '1' || '0' }}
+      SHOPEE_SANDBOX_EXTENDED_READS: ${{ github.event_name == 'workflow_dispatch' && inputs.extended_reads && '1' || '0' }}
+      SHOPEE_SANDBOX_MERCHANT_ID: ${{ secrets.SHOPEE_SANDBOX_MERCHANT_ID }}
+      SHOPEE_SANDBOX_MERCHANT_ACCESS_TOKEN: ${{ secrets.SHOPEE_SANDBOX_MERCHANT_ACCESS_TOKEN }}
+      SHOPEE_SANDBOX_MERCHANT_REFRESH_TOKEN: ${{ secrets.SHOPEE_SANDBOX_MERCHANT_REFRESH_TOKEN }}
+      SHOPEE_SANDBOX_ITEM_IDS: ${{ vars.SHOPEE_SANDBOX_ITEM_IDS }}
+      SHOPEE_SANDBOX_INSTALLMENT_ENABLED: ${{ vars.SHOPEE_SANDBOX_INSTALLMENT_ENABLED }}
       SHOPEE_SANDBOX_PARTNER_ID: ${{ secrets.SHOPEE_SANDBOX_PARTNER_ID }}
       SHOPEE_SANDBOX_PARTNER_KEY: ${{ secrets.SHOPEE_SANDBOX_PARTNER_KEY }}
       SHOPEE_SANDBOX_ACCOUNT: ${{ secrets.SHOPEE_SANDBOX_ACCOUNT }}
@@ -42,3 +58,7 @@ jobs:
       - name: Run sandbox integration tests
         if: ${{ env.SHOPEE_SANDBOX_PARTNER_ID != '' }}
         run: npm run test:sandbox
+
+      - name: Record missing sandbox prerequisites
+        if: ${{ env.SHOPEE_SANDBOX_PARTNER_ID == '' }}
+        run: echo "Sandbox tests were skipped because credentials are absent; this job validates the build only." >> "$GITHUB_STEP_SUMMARY"

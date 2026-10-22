@@ -54,7 +54,6 @@ export class MediaSpaceManager extends BaseManager {
       "/media_space/complete_video_upload",
       {
         method: "POST",
-        auth: true,
         body: params,
       }
     );
@@ -104,7 +103,6 @@ export class MediaSpaceManager extends BaseManager {
   public async uploadImage(params: UploadImageRequest): Promise<UploadImageResponse> {
     return ShopeeFetch.fetch<UploadImageResponse>(this.config, "/media_space/upload_image", {
       method: "POST",
-      auth: true,
       body: params,
     });
   }
@@ -120,7 +118,6 @@ export class MediaSpaceManager extends BaseManager {
       "/media_space/upload_video_part",
       {
         method: "POST",
-        auth: true,
         body: params,
       }
     );

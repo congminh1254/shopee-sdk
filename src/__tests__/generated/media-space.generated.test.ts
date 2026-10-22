@@ -28,19 +28,14 @@ describe("MediaSpaceManager (Generated Tests)", () => {
       const exampleRequest = {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
       };
-      const exampleResponse = {
-        message: "test_string",
-        request_id: "a30d633fd6b94fe4aa7d3cae15cea586",
-        error: "test_string",
-        warning: "test_string",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        message: "",
         request_id: "test-request-id",
         error: "",
-        message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.cancelVideoUpload(exampleRequest);
 
@@ -48,10 +43,11 @@ describe("MediaSpaceManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media_space/cancel_video_upload", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -61,33 +57,28 @@ describe("MediaSpaceManager (Generated Tests)", () => {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
         part_seq_list: [0, 1, 2],
         report_data: {
-          upload_cost: "11832",
+          upload_cost: 11832,
         },
       };
-      const exampleResponse = {
-        message: "test_string",
-        request_id: "and",
-        error: "test_string",
-        warning: "test_string",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        message: "",
         request_id: "test-request-id",
         error: "",
-        message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.completeVideoUpload(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media_space/complete_video_upload", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -96,32 +87,32 @@ describe("MediaSpaceManager (Generated Tests)", () => {
       const exampleRequest = {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
       };
-      const exampleResponse = {
-        status: "and",
-        video_info: {
-          video_url_list: [
-            {
-              video_url_region: "SG",
-              video_url: "https://cvf.shopee.sg/file/ddb50833eee1c9fda5c522a2e6fc0ea6",
-            },
-          ],
-          thumbnail_url_list: [
-            {
-              image_url_region: "SG",
-              image_url: "https://cf.shopee.sg/file/75eba55932c987851abc39895047dd54",
-            },
-          ],
-          duration: "15",
-        },
-        message: "uploading",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          status: "and",
+          video_info: {
+            video_url_list: [
+              {
+                video_url_region: "SG",
+                video_url: "https://cvf.shopee.sg/file/ddb50833eee1c9fda5c522a2e6fc0ea6",
+              },
+            ],
+            thumbnail_url_list: [
+              {
+                image_url_region: "SG",
+                image_url: "https://cf.shopee.sg/file/75eba55932c987851abc39895047dd54",
+              },
+            ],
+            duration: 15,
+          },
+          message: "uploading",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getVideoUploadResult(exampleRequest);
 
@@ -129,10 +120,11 @@ describe("MediaSpaceManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media_space/get_video_upload_result", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -142,16 +134,16 @@ describe("MediaSpaceManager (Generated Tests)", () => {
         file_md5: "2abf0b6e5ff90ff24437a0808f171a93",
         file_size: 1261876,
       };
-      const exampleResponse = {
-        video_upload_id: "and",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          video_upload_id: "and",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.initVideoUpload(exampleRequest);
 
@@ -159,65 +151,66 @@ describe("MediaSpaceManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media_space/init_video_upload", {
         method: "POST",
         auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
   describe("uploadImage", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
-        image: "test_string",
+        image: Buffer.from("test_binary"),
         scene: "test_string",
         ratio: "3:4",
       };
+
       const exampleResponse = {
-        image_info: {
-          image_id: "test_string",
-          image_url_list: [
+        response: {
+          image_info: {
+            image_id: "test_string",
+            image_url_list: [
+              {
+                image_url_region: "test_string",
+                image_url: "test_string",
+              },
+            ],
+          },
+          image_info_list: [
             {
-              image_url_region: "test_string",
-              image_url: "test_string",
+              id: 123,
+              error: "test_string",
+              message: "test_string",
+              image_info: {
+                image_id: "test_string",
+                image_url_list: [
+                  {
+                    image_url_region: "test_string",
+                    image_url: "test_string",
+                  },
+                ],
+              },
             },
           ],
         },
-        image_info_list: [
-          {
-            id: 123,
-            error: "test_string",
-            message: "test_string",
-            image_info: {
-              image_id: "test_string",
-              image_url_list: [
-                {
-                  image_url_region: "test_string",
-                  image_url: "test_string",
-                },
-              ],
-            },
-          },
-        ],
-      };
-
-      mockFetch.mockResolvedValueOnce({
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.uploadImage(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_image", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -227,32 +220,27 @@ describe("MediaSpaceManager (Generated Tests)", () => {
         video_upload_id: "sg_90ce045e-fd92-4f0b-97a4-eda40546cd9f_000000",
         part_seq: 0,
         content_md5: "3bb08579fffbfc13ed9d23cda8bbb46d",
-        part_content: "test_string",
-      };
-      const exampleResponse = {
-        message: "test_string",
-        request_id: "0d6aac56a64f46d8b6e8b4cbbf23f2ab",
-        error: "test_string",
-        warning: "test_string",
+        part_content: Buffer.from("test_binary"),
       };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        message: "",
         request_id: "test-request-id",
         error: "",
-        message: "",
-        response: exampleResponse,
-      });
+        warning: "test_string",
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.uploadVideoPart(exampleRequest);
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_video_part", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

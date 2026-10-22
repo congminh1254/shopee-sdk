@@ -26,17 +26,17 @@ describe("FbsManager (Generated Tests)", () => {
   describe("queryBrShopBlockStatus", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
-      const exampleResponse = {
-        shop_id: 123,
-        is_block: true,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          shop_id: 123,
+          is_block: true,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.queryBrShopBlockStatus(exampleRequest);
 
@@ -44,28 +44,29 @@ describe("FbsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_shop_block_status", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
   describe("queryBrShopEnrollmentStatus", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
-      const exampleResponse = {
-        shop_id: 123,
-        enrollment_status: 1,
-        enable_enrollment_time: 123,
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          shop_id: 123,
+          enrollment_status: 1,
+          enable_enrollment_time: 123,
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.queryBrShopEnrollmentStatus(exampleRequest);
 
@@ -73,10 +74,11 @@ describe("FbsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_shop_enrollment_status", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -86,37 +88,37 @@ describe("FbsManager (Generated Tests)", () => {
         page_no: 1,
         page_size: 10,
       };
-      const exampleResponse = {
-        total: 123,
-        list: [
-          {
-            shop_id: 123,
-            biz_request_type: 123,
-            biz_request_id: "test_string",
-            fail_reason: "test_string",
-            fail_type: 123,
-            invoice_deadline_time: 123,
-            shop_sku_list: [
-              {
-                shop_item_id: 123,
-                shop_model_id: 123,
-                shop_item_name: "test_string",
-                shop_model_name: "test_string",
-                fail_reason: "test_string",
-              },
-            ],
-            invoice_id: "test_string",
-            reminder_desc: "test_string",
-          },
-        ],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          total: 123,
+          list: [
+            {
+              shop_id: 123,
+              biz_request_type: 123,
+              biz_request_id: "test_string",
+              fail_reason: "test_string",
+              fail_type: 123,
+              invoice_deadline_time: 123,
+              shop_sku_list: [
+                {
+                  shop_item_id: 123,
+                  shop_model_id: 123,
+                  shop_item_name: "test_string",
+                  shop_model_name: "test_string",
+                  fail_reason: "test_string",
+                },
+              ],
+              invoice_id: "test_string",
+              reminder_desc: "test_string",
+            },
+          ],
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.queryBrShopInvoiceError(exampleRequest);
 
@@ -124,10 +126,11 @@ describe("FbsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_shop_invoice_error", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -136,21 +139,21 @@ describe("FbsManager (Generated Tests)", () => {
       const exampleRequest = {
         shop_sku_id: "123_234",
       };
-      const exampleResponse = {
-        shop_sku_id: "test_string",
-        is_block: true,
-        shop_item_id: 123,
-        shop_model_id: 123,
-        shop_item_name: "test_string",
-        shop_model_name: "test_string",
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
+        response: {
+          shop_sku_id: "test_string",
+          is_block: true,
+          shop_item_id: 123,
+          shop_model_id: 123,
+          shop_item_name: "test_string",
+          shop_model_name: "test_string",
+        },
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.queryBrSkuBlockStatus(exampleRequest);
 
@@ -158,10 +161,11 @@ describe("FbsManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/fbs/query_br_sku_block_status", {
         method: "GET",
         auth: true,
+
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

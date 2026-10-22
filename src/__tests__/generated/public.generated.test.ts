@@ -31,10 +31,11 @@ describe("PublicManager (Generated Tests)", () => {
         shop_id: 123,
         main_account_id: 123,
       };
+
       const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        request_id: "test_string",
+        error: "",
+        message: "",
+        request_id: "test-request-id",
         shop_id_list: [123],
         merchant_id_list: [123],
         supplier_id_list: [123],
@@ -44,13 +45,7 @@ describe("PublicManager (Generated Tests)", () => {
         refresh_token: "test_string",
         expire_in: "test_string",
       };
-
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: exampleResponse,
-      });
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getAccessToken(exampleRequest);
 
@@ -62,7 +57,7 @@ describe("PublicManager (Generated Tests)", () => {
         timestampPaths: ["expire_in"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -72,6 +67,7 @@ describe("PublicManager (Generated Tests)", () => {
         page_size: 1,
         page_no: 1,
       };
+
       const exampleResponse = {
         authed_merchant_list: [
           {
@@ -81,18 +77,12 @@ describe("PublicManager (Generated Tests)", () => {
             expire_time: 12312,
           },
         ],
-        request_id: "asdasq",
-        more: false,
-        error: "test_string",
-        message: "test_string",
-      };
-
-      mockFetch.mockResolvedValueOnce({
         request_id: "test-request-id",
+        more: false,
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getMerchantsByPartner(exampleRequest);
 
@@ -104,26 +94,21 @@ describe("PublicManager (Generated Tests)", () => {
         timestampPaths: ["authed_merchant_list.auth_time", "authed_merchant_list.expire_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
   describe("getShopeeIpRanges", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {};
-      const exampleResponse = {
-        request_id: "a3a4277823b1019960cc92cfd972c506",
-        error: "test_string",
-        message: "test_string",
-        ip_list: ["1.1.1.1", "24", "2.2.2.212", "24"],
-      };
 
-      mockFetch.mockResolvedValueOnce({
+      const exampleResponse = {
         request_id: "test-request-id",
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+        ip_list: ["1.1.1.1", "24", "2.2.2.212", "24"],
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getShopeeIpRanges(exampleRequest);
 
@@ -134,7 +119,7 @@ describe("PublicManager (Generated Tests)", () => {
         params: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -144,6 +129,7 @@ describe("PublicManager (Generated Tests)", () => {
         page_size: 1,
         page_no: 1,
       };
+
       const exampleResponse = {
         authed_shop_list: [
           {
@@ -159,16 +145,12 @@ describe("PublicManager (Generated Tests)", () => {
             ],
           },
         ],
-        request_id: "0b8f39a76e6ada92247b416c768363ee",
-        more: true,
-      };
-
-      mockFetch.mockResolvedValueOnce({
         request_id: "test-request-id",
+        more: true,
         error: "",
         message: "",
-        response: exampleResponse,
-      });
+      };
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getShopsByPartner(exampleRequest);
 
@@ -180,7 +162,7 @@ describe("PublicManager (Generated Tests)", () => {
         timestampPaths: ["authed_shop_list.auth_time", "authed_shop_list.expire_time"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -189,23 +171,18 @@ describe("PublicManager (Generated Tests)", () => {
       const exampleRequest = {
         resend_code: "resend5a4d6e6a7a745a767276586f53476849",
       };
+
       const exampleResponse = {
-        request_id: "a3a4277823b1019960cc92cfd972c506",
-        error: "common.error_auth",
-        message: "Invalid access_token.",
+        request_id: "test-request-id",
+        error: "",
+        message: "",
         shop_id_list: [1],
         merchant_id_list: [1],
         refresh_token: "abcd",
         access_token: "abcd",
         expire_in: 123,
       };
-
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: exampleResponse,
-      });
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.getTokenByResendCode(exampleRequest);
 
@@ -216,7 +193,7 @@ describe("PublicManager (Generated Tests)", () => {
         body: exampleRequest,
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 
@@ -231,10 +208,11 @@ describe("PublicManager (Generated Tests)", () => {
         user_id: 123,
         principal_id: 123,
       };
+
       const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        request_id: "test_string",
+        error: "",
+        message: "",
+        request_id: "test-request-id",
         partner_id: 123,
         principal_id: 123,
         shop_id: 123,
@@ -245,13 +223,7 @@ describe("PublicManager (Generated Tests)", () => {
         refresh_token: "test_string",
         expire_in: "test_string",
       };
-
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: exampleResponse,
-      });
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.refreshAccessToken(exampleRequest);
 
@@ -263,7 +235,7 @@ describe("PublicManager (Generated Tests)", () => {
         timestampPaths: ["expire_in"],
       });
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 });

@@ -2,6 +2,8 @@ import { SpecFieldNode } from "./types.js";
 
 export interface InputSchema {
   method: 1 | 2;
+  api_type?: string;
+  common_params?: { name: string; description?: string }[];
   path?: string;
   api_name?: string;
   define?: string | { content?: string };
@@ -69,6 +71,19 @@ export function validateSchema(value: unknown): asserts value is InputSchema {
       if (field.children !== undefined) validateFields(field.children, `${at}.children`);
     }
   };
+  if (value.api_type !== undefined && typeof value.api_type !== "string")
+    throw new Error("api_type must be a string");
+  if (value.common_params !== undefined) {
+    if (!Array.isArray(value.common_params)) throw new Error("common_params must be an array");
+    for (const param of value.common_params) {
+      if (
+        !isObject(param) ||
+        typeof param.name !== "string" ||
+        (param.description !== undefined && typeof param.description !== "string")
+      )
+        throw new Error("invalid common parameter");
+    }
+  }
   const params = value.params as Record<string, unknown> | undefined;
   for (const side of ["request_params", "response_params"]) {
     if (params?.[side] !== undefined) validateFields(params[side], `params.${side}`);

@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * GetClipVideoPerformanceVideo sub-interface for GetClipVideoPerformanceRequest
  */
@@ -8,11 +8,11 @@ export interface GetClipVideoPerformanceVideo {
   /**
    * Shop identifier that owns the specified videos.Limitations:- Required for every object in video_list.- Must belong to the specified principal_id.
    */
-  shop_id: number;
+  shop_id: Integer;
   /**
    * List of video identifiers to be queried under the specified shop.Limitations:- Required for every object in video_list.- Must contain at least one video_id.- Must contain at most 100 video_ids per object.- Null video_id values are rejected.- Duplicate video_id values across the whole request are rejected.- Across the whole request, the total number of unique video_ids must not exceed 100.
    */
-  video_ids: number[];
+  video_ids: Integer[];
   /**
    * Currency used for amount-based metrics for the specified videos.Limitations:- Optional for every object in video_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
@@ -47,11 +47,11 @@ export interface GetClipVideoPerformanceRequest {
   /**
    * Number of detail records to return in the current response page.Limitations:- Only supported when video_list is omitted or an empty array.- Default value is 100.- Must be between 1 and 200, inclusive.
    */
-  page_size?: number;
+  page_size?: Integer;
   /**
    * Zero-based offset of the first detail record to return.Limitations:- Only supported when video_list is omitted or an empty array.- Default value is 0.- Must be greater than or equal to 0.
    */
-  cursor?: number;
+  cursor?: Integer;
 }
 /**
  * GetClipVideoPerformanceSummary sub-interface for GetClipVideoPerformanceResponseData
@@ -64,11 +64,11 @@ export interface GetClipVideoPerformanceSummary {
   /**
    * Total views from the selected videos.
    */
-  total_views?: number;
+  total_views?: Integer;
   /**
    * Number of video viewers in the selected period. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Video duration in minutes.
    */
@@ -80,31 +80,31 @@ export interface GetClipVideoPerformanceSummary {
   /**
    * Number of Like clicks from the selected videos.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Number of comments generated from the selected videos.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Number of shares created from the selected videos.
    */
-  share?: number;
+  share?: Integer;
   /**
    * Number of unique buyers who placed order from the selected videos. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  total_unique_buyers?: number;
+  total_unique_buyers?: Integer;
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during the selected videos.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Number of items sold from placed orders during the selected videos.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Number of placed orders (paid and unpaid) during the selected videos, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Value of placed orders (paid and unpaid) from the selected videos in the period, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value includes sales from cancelled and return/refund orders.
    */
@@ -129,7 +129,7 @@ export interface GetClipVideoPerformanceDetail {
   /**
    * Shop identifier that owns this video.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shop name that owns this video.
    */
@@ -137,7 +137,7 @@ export interface GetClipVideoPerformanceDetail {
   /**
    * Video identifier.
    */
-  video_id?: number;
+  video_id?: Integer;
   /**
    * Video name.
    */
@@ -145,11 +145,11 @@ export interface GetClipVideoPerformanceDetail {
   /**
    * Total views from this video.
    */
-  total_views?: number;
+  total_views?: Integer;
   /**
    * Number of video viewers in the selected period. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Video duration in minutes.
    */
@@ -161,31 +161,31 @@ export interface GetClipVideoPerformanceDetail {
   /**
    * Number of Like clicks from this video.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Number of comments generated from this video.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Number of shares created from this video.
    */
-  share?: number;
+  share?: Integer;
   /**
    * Number of unique buyers who placed order from this video. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  total_unique_buyers?: number;
+  total_unique_buyers?: Integer;
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during this video.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Number of items sold from placed orders during this video.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Number of placed orders (paid and unpaid) during this video, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Value of placed orders (paid and unpaid) from this video in the period, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value includes sales from cancelled and return/refund orders.
    */
@@ -210,7 +210,7 @@ export interface GetClipVideoPerformanceResponseData {
   /**
    * Offset to be used in the next request for fetching the next page of detail records.Notes:- Returned only when video_list is omitted or an empty array.- Calculated as cursor + returned_detail_count.- If returned_detail_count is less than page_size, it indicates there may be no more records.- If the request is already beyond the end of the result set, the API returns 0 detail records and next_cursor remains equal to the input cursor.
    */
-  next_cursor?: number;
+  next_cursor?: Integer;
 }
 /**
  * Response payload for get_clip_video_performance
@@ -225,11 +225,11 @@ export interface GetContentAffiliatePerformanceContent {
   /**
    * Shop identifier of the target shop to be queried.Limitations:- Required for every shop object in content_list.- Must belong to the specified principal_id.
    */
-  shop_id: number;
+  shop_id: Integer;
   /**
    * List of content IDs under the specified shop_id to be queried.Limitations:- Required for every shop object in content_list.- Must contain 1 to 100 values.- Duplicate content_id values are not allowed within the request.
    */
-  content_ids: number[];
+  content_ids: Integer[];
   /**
    * Currency used for amount-based metrics for the specified content items.Limitations:- Optional for every object in content_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
@@ -264,11 +264,11 @@ export interface GetContentAffiliatePerformanceRequest {
   /**
    * Number of detail records to return in the current response page.Limitations:- Only supported when content_list is omitted or an empty array.- Default value is 100.- Must be between 1 and 200, inclusive.
    */
-  page_size?: number;
+  page_size?: Integer;
   /**
    * Zero-based offset of the first detail record to return.Limitations:- Only supported when content_list is omitted or an empty array.- Default value is 0.- Must be greater than or equal to 0.
    */
-  cursor?: number;
+  cursor?: Integer;
 }
 /**
  * GetContentAffiliatePerformanceSummary sub-interface for GetContentAffiliatePerformanceResponseData
@@ -281,15 +281,15 @@ export interface GetContentAffiliatePerformanceSummary {
   /**
    * Total content views generated during the selected period.
    */
-  views?: number;
+  views?: Integer;
   /**
    * Total content likes generated during the selected period.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Total content comments generated during the selected period.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Total value of placed orders generated through affiliate marketing during the selected period. Placed orders are orders (COD and non-COD) that buyers have successfully placed, including paid and unpaid orders.
    */
@@ -301,19 +301,19 @@ export interface GetContentAffiliatePerformanceSummary {
   /**
    * Total number of items sold in placed orders generated through affiliate marketing during the selected period.
    */
-  units_sold_placed?: number;
+  units_sold_placed?: Integer;
   /**
    * Total number of items sold in confirmed orders generated through affiliate marketing during the selected period.
    */
-  units_sold_confirmed?: number;
+  units_sold_confirmed?: Integer;
   /**
    * Total number of placed orders generated through affiliate marketing during the selected period. Placed orders are orders (COD and non-COD) that buyers have successfully placed, including paid and unpaid orders.
    */
-  orders_placed?: number;
+  orders_placed?: Integer;
   /**
    * Total number of confirmed orders generated through affiliate marketing during the selected period. Confirmed orders are either non-Cash On Delivery (non-COD) orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
-  orders_confirmed?: number;
+  orders_confirmed?: Integer;
 }
 /**
  * GetContentAffiliatePerformanceDetail sub-interface for GetContentAffiliatePerformanceResponseData
@@ -330,7 +330,7 @@ export interface GetContentAffiliatePerformanceDetail {
   /**
    * Shop identifier that owns this content item.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shop name that owns this content item.
    */
@@ -338,7 +338,7 @@ export interface GetContentAffiliatePerformanceDetail {
   /**
    * Affiliate content identifier.
    */
-  content_id?: number;
+  content_id?: Integer;
   /**
    * Affiliate content name.
    */
@@ -346,15 +346,15 @@ export interface GetContentAffiliatePerformanceDetail {
   /**
    * Total content views generated during the selected period for this content item.
    */
-  views?: number;
+  views?: Integer;
   /**
    * Total content likes generated during the selected period for this content item.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Total content comments generated during the selected period for this content item.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Total value of placed orders generated through affiliate marketing during the selected period for this content item. Placed orders are orders (COD and non-COD) that buyers have successfully placed, including paid and unpaid orders.
    */
@@ -366,19 +366,19 @@ export interface GetContentAffiliatePerformanceDetail {
   /**
    * Total number of items sold in placed orders generated through affiliate marketing during the selected period for this content item.
    */
-  units_sold_placed?: number;
+  units_sold_placed?: Integer;
   /**
    * Total number of items sold in confirmed orders generated through affiliate marketing during the selected period for this content item.
    */
-  units_sold_confirmed?: number;
+  units_sold_confirmed?: Integer;
   /**
    * Total number of placed orders generated through affiliate marketing during the selected period for this content item. Placed orders are orders (COD and non-COD) that buyers have successfully placed, including paid and unpaid orders.
    */
-  orders_placed?: number;
+  orders_placed?: Integer;
   /**
    * Total number of confirmed orders generated through affiliate marketing during the selected period for this content item. Confirmed orders are either non-Cash On Delivery (non-COD) orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
-  orders_confirmed?: number;
+  orders_confirmed?: Integer;
 }
 /**
  * GetContentAffiliatePerformanceResponseData sub-interface for GetContentAffiliatePerformanceResponse
@@ -395,7 +395,7 @@ export interface GetContentAffiliatePerformanceResponseData {
   /**
    * Offset to be used in the next request for fetching the next page of detail records.Notes:- Returned only when content_list is omitted or an empty array.- Calculated as cursor + returned_detail_count.- If returned_detail_count is less than page_size, it indicates there may be no more records.- If the request is already beyond the end of the result set, the API returns 0 detail records and next_cursor remains equal to the input cursor.
    */
-  next_cursor?: number;
+  next_cursor?: Integer;
 }
 /**
  * Response payload for get_content_affiliate_performance
@@ -463,19 +463,19 @@ export interface GetPrincipalAffiliatePerformanceSummary {
   /**
    * Total number of items sold in placed orders generated through affiliate marketing during the selected period.
    */
-  units_sold_placed?: number;
+  units_sold_placed?: Integer;
   /**
    * Total number of items sold in confirmed orders generated through affiliate marketing during the selected period.
    */
-  units_sold_confirmed?: number;
+  units_sold_confirmed?: Integer;
   /**
    * Total number of placed orders generated through affiliate marketing during the selected period. Placed orders are orders (COD and non-COD) that buyers have successfully placed, including paid and unpaid orders.
    */
-  orders_placed?: number;
+  orders_placed?: Integer;
   /**
    * Total number of confirmed orders generated through affiliate marketing during the selected period. Confirmed orders are either non-Cash On Delivery (non-COD) orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
-  orders_confirmed?: number;
+  orders_confirmed?: Integer;
   /**
    * Estimated total payout from placed affiliate marketing orders during the selected period.
    */
@@ -495,19 +495,19 @@ export interface GetPrincipalAffiliatePerformanceSummary {
   /**
    * Total number of unique buyers who placed affiliate marketing orders from the selected principal during the selected period.
    */
-  buyers_placed?: number;
+  buyers_placed?: Integer;
   /**
    * Total number of unique buyers with confirmed affiliate marketing orders from the selected principal during the selected period.
    */
-  buyers_confirmed?: number;
+  buyers_confirmed?: Integer;
   /**
    * Total number of unique new buyers who placed affiliate marketing orders from the selected principal during the selected period.
    */
-  new_buyers_placed?: number;
+  new_buyers_placed?: Integer;
   /**
    * Total number of unique new buyers with confirmed affiliate marketing orders from the selected principal during the selected period.
    */
-  new_buyers_confirmed?: number;
+  new_buyers_confirmed?: Integer;
 }
 /**
  * GetPrincipalAffiliatePerformanceDetail sub-interface for GetPrincipalAffiliatePerformanceResponseData
@@ -532,19 +532,19 @@ export interface GetPrincipalAffiliatePerformanceDetail {
   /**
    * Total number of items sold in placed orders generated through affiliate marketing during the selected period for this region.
    */
-  units_sold_placed?: number;
+  units_sold_placed?: Integer;
   /**
    * Total number of items sold in confirmed orders generated through affiliate marketing during the selected period for this region.
    */
-  units_sold_confirmed?: number;
+  units_sold_confirmed?: Integer;
   /**
    * Total number of placed orders generated through affiliate marketing during the selected period for this region. Placed orders are orders (COD and non-COD) that buyers have successfully placed, including paid and unpaid orders.
    */
-  orders_placed?: number;
+  orders_placed?: Integer;
   /**
    * Total number of confirmed orders generated through affiliate marketing during the selected period for this region. Confirmed orders are either non-Cash On Delivery (non-COD) orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
-  orders_confirmed?: number;
+  orders_confirmed?: Integer;
   /**
    * Estimated total payout from placed affiliate marketing orders during the selected period for this region.
    */
@@ -564,19 +564,19 @@ export interface GetPrincipalAffiliatePerformanceDetail {
   /**
    * Total number of unique buyers who placed affiliate marketing orders from this region during the selected period.
    */
-  buyers_placed?: number;
+  buyers_placed?: Integer;
   /**
    * Total number of unique buyers with confirmed affiliate marketing orders from this region during the selected period.
    */
-  buyers_confirmed?: number;
+  buyers_confirmed?: Integer;
   /**
    * Total number of unique new buyers who placed affiliate marketing orders from this region during the selected period.
    */
-  new_buyers_placed?: number;
+  new_buyers_placed?: Integer;
   /**
    * Total number of unique new buyers with confirmed affiliate marketing orders from this region during the selected period.
    */
-  new_buyers_confirmed?: number;
+  new_buyers_confirmed?: Integer;
 }
 /**
  * GetPrincipalAffiliatePerformanceResponseData sub-interface for GetPrincipalAffiliatePerformanceResponse
@@ -649,19 +649,19 @@ export interface GetPrincipalLivestreamPerformanceSummary {
   /**
    * Number of placed orders (paid and unpaid) during your Livestream, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Number of unique buyers who placed order from your Livestream.
    */
-  buyers?: number;
+  buyers?: Integer;
   /**
    * Total number of likes in your Livestream.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Total number of comments acquired during your Livestream.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Value of placed orders (paid and unpaid) during your Livestream, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value includes sales from cancelled orders.
    */
@@ -669,27 +669,27 @@ export interface GetPrincipalLivestreamPerformanceSummary {
   /**
    * Number of items sold from placed orders during your Livestream.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Total views from your Livestream.
    */
-  total_views?: number;
+  total_views?: Integer;
   /**
    * Total duration of your Livestream.
    */
-  total_live_duration?: number;
+  total_live_duration?: Integer;
   /**
    * Total unique viewers from your Livestream.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during your Livestream.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Total count of Livestream sessions in the selected period.
    */
-  total_livestreams?: number;
+  total_livestreams?: Integer;
   /**
    * Average duration of your Livestream.
    */
@@ -701,15 +701,15 @@ export interface GetPrincipalLivestreamPerformanceSummary {
   /**
    * Total followers gained from your Livestream.
    */
-  new_followers?: number;
+  new_followers?: Integer;
   /**
    * Number of buyers who have not had placed orders (including paid and unpaid) via your Livestream in the past 365 days.
    */
-  new_buyers?: number;
+  new_buyers?: Integer;
   /**
    * Number of buyers who have already had placed orders (including paid and unpaid) via your Livestream in the past 365 days.
    */
-  existing_buyers?: number;
+  existing_buyers?: Integer;
   /**
    * Value of placed orders (paid and unpaid) during your Livestream, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value excludes the refund amount for all non-cancelled and invalid items.
    */
@@ -734,19 +734,19 @@ export interface GetPrincipalLivestreamPerformanceDetail {
   /**
    * Number of placed orders (paid and unpaid) during your Livestream, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Number of unique buyers who placed order from your Livestream.
    */
-  buyers?: number;
+  buyers?: Integer;
   /**
    * Total number of likes in your Livestream.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Total number of comments acquired during your Livestream.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Value of placed orders (paid and unpaid) during your Livestream, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value includes sales from cancelled orders.
    */
@@ -754,27 +754,27 @@ export interface GetPrincipalLivestreamPerformanceDetail {
   /**
    * Number of items sold from placed orders during your Livestream.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Total views from your Livestream.
    */
-  total_views?: number;
+  total_views?: Integer;
   /**
    * Total duration of your Livestream.
    */
-  total_live_duration?: number;
+  total_live_duration?: Integer;
   /**
    * Total unique viewers from your Livestream.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during your Livestream.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Total count of Livestream sessions in the selected period.
    */
-  total_livestreams?: number;
+  total_livestreams?: Integer;
   /**
    * Average duration of your Livestream.
    */
@@ -786,15 +786,15 @@ export interface GetPrincipalLivestreamPerformanceDetail {
   /**
    * Total followers gained from your Livestream.
    */
-  new_followers?: number;
+  new_followers?: Integer;
   /**
    * Number of buyers who have not had placed orders (including paid and unpaid) via your Livestream in the past 365 days.
    */
-  new_buyers?: number;
+  new_buyers?: Integer;
   /**
    * Number of buyers who have already had placed orders (including paid and unpaid) via your Livestream in the past 365 days.
    */
-  existing_buyers?: number;
+  existing_buyers?: Integer;
   /**
    * Value of placed orders (paid and unpaid) during your Livestream, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value excludes the refund amount for all non-cancelled and invalid items.
    */
@@ -879,11 +879,11 @@ export interface GetPrincipalSalesPerformanceDetailSummary {
   /**
    * The number of placed orders, including unpaid orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * The number of units associated with the orders placed, including unpaid orders.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Average Basket Size = Sales ÷ Orders. It measures average sales per order.
    */
@@ -899,15 +899,15 @@ export interface GetPrincipalSalesPerformanceDetailSummary {
   /**
    * Total number of times your item cards were clicked over the selected time period, on both App and PC. This metric is only available after 31/12/2023.
    */
-  product_clicks?: number;
+  product_clicks?: Integer;
   /**
    * The number of visits to the product page.
    */
-  product_views?: number;
+  product_views?: Integer;
   /**
    * Total number of unique visitors who viewed your shop or product pages over the selected time period. Multiple views by the same visitor are counted as 1 unique visitor. This metric is only available after 31/12/2023.
    */
-  unique_visitors?: number;
+  unique_visitors?: Integer;
   /**
    * Item conversion rate = Units Sold ÷ Product Views.
    */
@@ -936,11 +936,11 @@ export interface GetPrincipalSalesPerformanceDetailDetail {
   /**
    * The number of placed orders, including unpaid orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * The number of units associated with the orders placed, including unpaid orders.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Average Basket Size = Sales ÷ Orders. It measures average sales per order.
    */
@@ -956,15 +956,15 @@ export interface GetPrincipalSalesPerformanceDetailDetail {
   /**
    * Total number of times your item cards were clicked over the selected time period, on both App and PC. This metric is only available after 31/12/2023.
    */
-  product_clicks?: number;
+  product_clicks?: Integer;
   /**
    * The number of visits to the product page.
    */
-  product_views?: number;
+  product_views?: Integer;
   /**
    * Total number of unique visitors who viewed your shop or product pages over the selected time period. Multiple views by the same visitor are counted as 1 unique visitor. This metric is only available after 31/12/2023.
    */
-  unique_visitors?: number;
+  unique_visitors?: Integer;
   /**
    * Item conversion rate = Units Sold ÷ Product Views.
    */
@@ -1045,19 +1045,19 @@ export interface GetPrincipalVideoPerformanceSummary {
   /**
    * Number of placed orders (paid and unpaid) during your Video, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Number of Like clicks from all videos.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Number of comments generated from all videos.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Number of shares created from all videos.
    */
-  share?: number;
+  share?: Integer;
   /**
    * Value of placed orders (paid and unpaid) from all videos in the period, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value includes sales from cancelled and return/refund orders.
    */
@@ -1065,15 +1065,15 @@ export interface GetPrincipalVideoPerformanceSummary {
   /**
    * Number of items sold from placed orders during your Video.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Number of views from the video that lasted for more than 3 seconds.
    */
-  effective_views?: number;
+  effective_views?: Integer;
   /**
    * Number of video viewers in the selected period. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Total duration of your videos in minutes. This field is returned only in summary.
    */
@@ -1081,7 +1081,7 @@ export interface GetPrincipalVideoPerformanceSummary {
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during your Video.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Average duration of your videos in minutes.
    */
@@ -1093,7 +1093,7 @@ export interface GetPrincipalVideoPerformanceSummary {
   /**
    * Number of unique buyers who placed order from your Video. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  total_unique_buyers?: number;
+  total_unique_buyers?: Integer;
   /**
    * Video orders / effective video views.
    */
@@ -1114,19 +1114,19 @@ export interface GetPrincipalVideoPerformanceDetail {
   /**
    * Number of placed orders (paid and unpaid) during your Video, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Number of Like clicks from all videos.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Number of comments generated from all videos.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Number of shares created from all videos.
    */
-  share?: number;
+  share?: Integer;
   /**
    * Value of placed orders (paid and unpaid) from all videos in the period, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value includes sales from cancelled and return/refund orders.
    */
@@ -1134,19 +1134,19 @@ export interface GetPrincipalVideoPerformanceDetail {
   /**
    * Number of items sold from placed orders during your Video.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Number of views from the video that lasted for more than 3 seconds.
    */
-  effective_views?: number;
+  effective_views?: Integer;
   /**
    * Number of video viewers in the selected period. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during your Video.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Average duration of your videos in minutes.
    */
@@ -1158,7 +1158,7 @@ export interface GetPrincipalVideoPerformanceDetail {
   /**
    * Number of unique buyers who placed order from your Video. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  total_unique_buyers?: number;
+  total_unique_buyers?: Integer;
   /**
    * Video orders / effective video views.
    */
@@ -1191,11 +1191,11 @@ export interface GetSessionLivestreamPerformanceSession {
   /**
    * Shop identifier that owns the specified livestream sessions.Limitations:- Required for every object in session_list.- Must belong to the specified principal_id.
    */
-  shop_id: number;
+  shop_id: Integer;
   /**
    * List of livestream session identifiers to be queried under the specified shop.Limitations:- Required for every object in session_list.- Must contain at least one session_id.- Must contain at most 100 session_ids per object.- Null session_id values are rejected.- Duplicate session_id values across the whole request are rejected.- Across the whole request, the total number of unique session_ids must not exceed 100.
    */
-  session_ids: number[];
+  session_ids: Integer[];
   /**
    * Currency used for amount-based metrics for the specified livestream sessions.Limitations:- Optional for every object in session_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
@@ -1230,11 +1230,11 @@ export interface GetSessionLivestreamPerformanceRequest {
   /**
    * Number of detail records to return in the current response page.Limitations:- Only supported when session_list is omitted or an empty array.- Default value is 100.- Must be between 1 and 200, inclusive.
    */
-  page_size?: number;
+  page_size?: Integer;
   /**
    * Zero-based offset of the first detail record to return.Limitations:- Only supported when session_list is omitted or an empty array.- Default value is 0.- Must be greater than or equal to 0.
    */
-  cursor?: number;
+  cursor?: Integer;
 }
 /**
  * GetSessionLivestreamPerformanceSummary sub-interface for GetSessionLivestreamPerformanceResponseData
@@ -1247,31 +1247,31 @@ export interface GetSessionLivestreamPerformanceSummary {
   /**
    * Total number of likes in the selected livestream sessions.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Total number of comments acquired during the selected livestream sessions.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Number of unique buyers who placed orders from the selected livestream sessions.
    */
-  buyers?: number;
+  buyers?: Integer;
   /**
    * Number of placed orders (paid and unpaid) during the selected livestream sessions, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Total views from the selected livestream sessions.
    */
-  total_views?: number;
+  total_views?: Integer;
   /**
    * Total unique viewers from the selected livestream sessions.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Total duration of the selected livestream sessions.
    */
-  total_live_duration?: number;
+  total_live_duration?: Integer;
   /**
    * Average time viewers watch the selected livestream sessions.
    */
@@ -1279,15 +1279,15 @@ export interface GetSessionLivestreamPerformanceSummary {
   /**
    * Total followers gained from the selected livestream sessions.
    */
-  new_followers?: number;
+  new_followers?: Integer;
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during the selected livestream sessions.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Number of items sold from placed orders during the selected livestream sessions.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Value of placed orders (paid and unpaid) during the selected livestream sessions, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value includes sales from cancelled orders.
    */
@@ -1316,23 +1316,23 @@ export interface GetSessionLivestreamPerformanceDetail {
   /**
    * Total number of likes in this livestream session.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Total number of comments acquired during this livestream session.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Number of unique buyers who placed orders from this livestream session.
    */
-  buyers?: number;
+  buyers?: Integer;
   /**
    * Number of placed orders (paid and unpaid) during this livestream session, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Shop identifier that owns this livestream session.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shop name that owns this livestream session.
    */
@@ -1340,7 +1340,7 @@ export interface GetSessionLivestreamPerformanceDetail {
   /**
    * Livestream session identifier.
    */
-  session_id?: number;
+  session_id?: Integer;
   /**
    * Livestream session name.
    */
@@ -1348,15 +1348,15 @@ export interface GetSessionLivestreamPerformanceDetail {
   /**
    * Total views from this livestream session.
    */
-  total_views?: number;
+  total_views?: Integer;
   /**
    * Total unique viewers from this livestream session.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Total duration of this livestream session.
    */
-  total_live_duration?: number;
+  total_live_duration?: Integer;
   /**
    * Average time viewers watch this livestream session.
    */
@@ -1364,15 +1364,15 @@ export interface GetSessionLivestreamPerformanceDetail {
   /**
    * Total followers gained from this livestream session.
    */
-  new_followers?: number;
+  new_followers?: Integer;
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during this livestream session.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Number of items sold from placed orders during this livestream session.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Value of placed orders (paid and unpaid) during this livestream session, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value includes sales from cancelled orders.
    */
@@ -1401,7 +1401,7 @@ export interface GetSessionLivestreamPerformanceResponseData {
   /**
    * Offset to be used in the next request for fetching the next page of detail records.Notes:- Returned only when session_list is omitted or an empty array.- Calculated as cursor + returned_detail_count.- If returned_detail_count is less than page_size, it indicates there may be no more records.- If the request is already beyond the end of the result set, the API returns 0 detail records and next_cursor remains equal to the input cursor.
    */
-  next_cursor?: number;
+  next_cursor?: Integer;
 }
 /**
  * Response payload for get_session_livestream_performance
@@ -1417,7 +1417,7 @@ export interface GetShopAffiliatePerformanceShop {
   /**
    * Shop identifier of the target shop to be queried.Limitations:- Required for every shop object when shop_list is provided as a non-empty array.- Must belong to the specified principal_id.
    */
-  shop_id: number;
+  shop_id: Integer;
   /**
    * Currency used for amount-based metrics for the shop.Limitations:- Optional for every shop object in shop_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
@@ -1469,19 +1469,19 @@ export interface GetShopAffiliatePerformanceSummary {
   /**
    * Total number of items sold in placed orders generated through affiliate marketing during the selected period.
    */
-  units_sold_placed?: number;
+  units_sold_placed?: Integer;
   /**
    * Total number of items sold in confirmed orders generated through affiliate marketing during the selected period.
    */
-  units_sold_confirmed?: number;
+  units_sold_confirmed?: Integer;
   /**
    * Total number of placed orders generated through affiliate marketing during the selected period.
    */
-  orders_placed?: number;
+  orders_placed?: Integer;
   /**
    * Total number of confirmed orders generated through affiliate marketing during the selected period. Confirmed orders are either non-Cash On Delivery (non-COD) orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
-  orders_confirmed?: number;
+  orders_confirmed?: Integer;
   /**
    * Estimated total payout from placed affiliate marketing orders during the selected period.
    */
@@ -1501,19 +1501,19 @@ export interface GetShopAffiliatePerformanceSummary {
   /**
    * Total number of unique buyers who placed affiliate marketing orders from your shop set during the selected period.
    */
-  buyers_placed?: number;
+  buyers_placed?: Integer;
   /**
    * Total number of unique buyers with confirmed affiliate marketing orders from your shop set during the selected period.
    */
-  buyers_confirmed?: number;
+  buyers_confirmed?: Integer;
   /**
    * Total number of unique new buyers who placed affiliate marketing orders from your shop set during the selected period.
    */
-  new_buyers_placed?: number;
+  new_buyers_placed?: Integer;
   /**
    * Total number of unique new buyers with confirmed affiliate marketing orders from your shop set during the selected period.
    */
-  new_buyers_confirmed?: number;
+  new_buyers_confirmed?: Integer;
 }
 /**
  * GetShopAffiliatePerformanceDetail sub-interface for GetShopAffiliatePerformanceResponseData
@@ -1530,7 +1530,7 @@ export interface GetShopAffiliatePerformanceDetail {
   /**
    * Shop identifier.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shop name.
    */
@@ -1546,19 +1546,19 @@ export interface GetShopAffiliatePerformanceDetail {
   /**
    * Total number of items sold in placed orders generated through affiliate marketing during the selected period.
    */
-  units_sold_placed?: number;
+  units_sold_placed?: Integer;
   /**
    * Total number of items sold in confirmed orders generated through affiliate marketing during the selected period.
    */
-  units_sold_confirmed?: number;
+  units_sold_confirmed?: Integer;
   /**
    * Total number of placed orders generated through affiliate marketing during the selected period.
    */
-  orders_placed?: number;
+  orders_placed?: Integer;
   /**
    * Total number of confirmed orders generated through affiliate marketing during the selected period. Confirmed orders are either non-Cash On Delivery (non-COD) orders that have been paid for or COD orders that have been confirmed for shipping (usually 30 mins after placing the order).
    */
-  orders_confirmed?: number;
+  orders_confirmed?: Integer;
   /**
    * Estimated total payout from placed affiliate marketing orders during the selected period.
    */
@@ -1578,19 +1578,19 @@ export interface GetShopAffiliatePerformanceDetail {
   /**
    * Total number of unique buyers who placed affiliate marketing orders from this shop during the selected period.
    */
-  buyers_placed?: number;
+  buyers_placed?: Integer;
   /**
    * Total number of unique buyers with confirmed affiliate marketing orders from this shop during the selected period.
    */
-  buyers_confirmed?: number;
+  buyers_confirmed?: Integer;
   /**
    * Total number of unique new buyers who placed affiliate marketing orders from this shop during the selected period.
    */
-  new_buyers_placed?: number;
+  new_buyers_placed?: Integer;
   /**
    * Total number of unique new buyers with confirmed affiliate marketing orders from this shop during the selected period.
    */
-  new_buyers_confirmed?: number;
+  new_buyers_confirmed?: Integer;
 }
 /**
  * GetShopAffiliatePerformanceResponseData sub-interface for GetShopAffiliatePerformanceResponse
@@ -1619,7 +1619,7 @@ export interface GetShopLivestreamPerformanceShop {
   /**
    * Shop identifier of the target shop to be queried.Limitations:- Required for every shop object when shop_list is provided as a non-empty array.- Must belong to the specified principal_id.
    */
-  shop_id: number;
+  shop_id: Integer;
   /**
    * Currency used for amount-based metrics for the shop.Limitations:- Optional for every shop object in shop_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
@@ -1663,19 +1663,19 @@ export interface GetShopLivestreamPerformanceSummary {
   /**
    * Number of placed orders (paid and unpaid) during your Livestream, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Number of unique buyers who placed order from your Livestream.
    */
-  buyers?: number;
+  buyers?: Integer;
   /**
    * Total number of likes in your Livestream.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Total number of comments acquired during your Livestream.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Value of placed orders (paid and unpaid) during your Livestream, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value includes sales from cancelled orders.
    */
@@ -1683,27 +1683,27 @@ export interface GetShopLivestreamPerformanceSummary {
   /**
    * Number of items sold from placed orders during your Livestream.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Total views from your Livestream.
    */
-  total_views?: number;
+  total_views?: Integer;
   /**
    * Total duration of your Livestream.
    */
-  total_live_duration?: number;
+  total_live_duration?: Integer;
   /**
    * Total unique viewers from your Livestream.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during your Livestream.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Total count of Livestream sessions in the selected period.
    */
-  total_livestreams?: number;
+  total_livestreams?: Integer;
   /**
    * Average duration of your Livestream.
    */
@@ -1715,15 +1715,15 @@ export interface GetShopLivestreamPerformanceSummary {
   /**
    * Total followers gained from your Livestream.
    */
-  new_followers?: number;
+  new_followers?: Integer;
   /**
    * Number of buyers who have not had placed orders (including paid and unpaid) via your Livestream in the past 365 days.
    */
-  new_buyers?: number;
+  new_buyers?: Integer;
   /**
    * Number of buyers who have already had placed orders (including paid and unpaid) via your Livestream in the past 365 days.
    */
-  existing_buyers?: number;
+  existing_buyers?: Integer;
   /**
    * Value of placed orders (paid and unpaid) during your Livestream, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value excludes the refund amount for all non-cancelled and invalid items.
    */
@@ -1748,23 +1748,23 @@ export interface GetShopLivestreamPerformanceDetail {
   /**
    * Number of placed orders (paid and unpaid) during your Livestream, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Number of unique buyers who placed order from your Livestream.
    */
-  buyers?: number;
+  buyers?: Integer;
   /**
    * Total number of likes in your Livestream.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Total number of comments acquired during your Livestream.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Shop identifier.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shop name.
    */
@@ -1776,27 +1776,27 @@ export interface GetShopLivestreamPerformanceDetail {
   /**
    * Number of items sold from placed orders during your Livestream.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Total views from your Livestream.
    */
-  total_views?: number;
+  total_views?: Integer;
   /**
    * Total duration of your Livestream.
    */
-  total_live_duration?: number;
+  total_live_duration?: Integer;
   /**
    * Total unique viewers from your Livestream.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during your Livestream.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Total count of Livestream sessions in the selected period.
    */
-  total_livestreams?: number;
+  total_livestreams?: Integer;
   /**
    * Average duration of your Livestream.
    */
@@ -1808,15 +1808,15 @@ export interface GetShopLivestreamPerformanceDetail {
   /**
    * Total followers gained from your Livestream.
    */
-  new_followers?: number;
+  new_followers?: Integer;
   /**
    * Number of buyers who have not had placed orders (including paid and unpaid) via your Livestream in the past 365 days.
    */
-  new_buyers?: number;
+  new_buyers?: Integer;
   /**
    * Number of buyers who have already had placed orders (including paid and unpaid) via your Livestream in the past 365 days.
    */
-  existing_buyers?: number;
+  existing_buyers?: Integer;
   /**
    * Value of placed orders (paid and unpaid) during your Livestream, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value excludes the refund amount for all non-cancelled and invalid items.
    */
@@ -1853,7 +1853,7 @@ export interface GetShopSalesPerformanceDetailShop {
   /**
    * Shop identifier of the target shop to be queried.Limitations:- Required for every shop object when shop_list is provided as a non-empty array.- Must belong to the specified principal_id.
    */
-  shop_id: number;
+  shop_id: Integer;
   /**
    * Currency used for amount-based metrics for the shop.Limitations:- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- default USD
    */
@@ -1901,11 +1901,11 @@ export interface GetShopSalesPerformanceDetailSummary {
   /**
    * The number of placed orders, including unpaid orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * The number of units associated with the orders placed, including unpaid orders.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Average Basket Size = Sales ÷ Orders. It measures average sales per order
    */
@@ -1921,15 +1921,15 @@ export interface GetShopSalesPerformanceDetailSummary {
   /**
    * Total number of times your item cards were clicked over the selected time period, on both App and PC. This metric is only available after 31/12/2023.
    */
-  product_clicks?: number;
+  product_clicks?: Integer;
   /**
    * The number of visits to the product page.
    */
-  product_views?: number;
+  product_views?: Integer;
   /**
    * Total number of unique visitors who viewed your shop, product detail pages, or item cards in Live or Video over the selected time period. Multiple views of one page by the same visitor is counted as 1 unique visitor. This metric is only available after 31/12/2023
    */
-  unique_visitors?: number;
+  unique_visitors?: Integer;
   /**
    * Item conversion rate = Units Sold ÷ Product Views.
    */
@@ -1945,11 +1945,11 @@ export interface GetShopSalesPerformanceDetailSummary {
   /**
    * The number of placed orders, including unpaid orders.This includes flash sales done by seller and platform.
    */
-  flash_sale_orders?: number;
+  flash_sale_orders?: Integer;
   /**
    * The number of units associated with the orders placed, including unpaid orders.This includes flash sales done by seller and platform.
    */
-  flash_sale_units_sold?: number;
+  flash_sale_units_sold?: Integer;
   /**
    * Total value of all placed orders using your vouchers, including shipping fees and excluding other promotions, over the selected time period.
    */
@@ -1957,7 +1957,7 @@ export interface GetShopSalesPerformanceDetailSummary {
   /**
    * Total number of unique buyers who applied your vouchers at least once, in all placed orders over the selected time period.
    */
-  voucher_buyers?: number;
+  voucher_buyers?: Integer;
   /**
    * Usage Rate = Vouchers Redeemed / Vouchers Claimed * 100%
    */
@@ -1978,7 +1978,7 @@ export interface GetShopSalesPerformanceDetailDetail {
   /**
    * Shop identifier.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shop name.
    */
@@ -1998,11 +1998,11 @@ export interface GetShopSalesPerformanceDetailDetail {
   /**
    * The number of placed orders, including unpaid orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * The number of units associated with the orders placed, including unpaid orders.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Average Basket Size = Sales ÷ Orders. It measures average sales per order
    */
@@ -2018,15 +2018,15 @@ export interface GetShopSalesPerformanceDetailDetail {
   /**
    * Total number of times your item cards were clicked over the selected time period, on both App and PC. This metric is only available after 31/12/2023.
    */
-  product_clicks?: number;
+  product_clicks?: Integer;
   /**
    * The number of visits to the product page.
    */
-  product_views?: number;
+  product_views?: Integer;
   /**
    * Total number of unique visitors who viewed your shop, product detail pages, or item cards in Live or Video over the selected time period. Multiple views of one page by the same visitor is counted as 1 unique visitor. This metric is only available after 31/12/2023
    */
-  unique_visitors?: number;
+  unique_visitors?: Integer;
   /**
    * Item conversion rate = Units Sold ÷ Product Views.
    */
@@ -2058,11 +2058,11 @@ export interface GetShopSalesPerformanceDetailDetail {
   /**
    * The number of placed orders, including unpaid orders.This includes flash sales done by seller and platform.
    */
-  flash_sale_orders?: number;
+  flash_sale_orders?: Integer;
   /**
    * The number of units associated with the orders placed, including unpaid orders.This includes flash sales done by seller and platform.
    */
-  flash_sale_units_sold?: number;
+  flash_sale_units_sold?: Integer;
   /**
    * Total value of all placed orders using your vouchers, including shipping fees and excluding other promotions, over the selected time period.
    */
@@ -2070,7 +2070,7 @@ export interface GetShopSalesPerformanceDetailDetail {
   /**
    * Total number of unique buyers who applied your vouchers at least once, in all placed orders over the selected time period.
    */
-  voucher_buyers?: number;
+  voucher_buyers?: Integer;
   /**
    * Usage Rate = Vouchers Redeemed / Vouchers Claimed * 100%
    */
@@ -2111,7 +2111,7 @@ export interface GetShopVideoPerformanceShop {
   /**
    * Shop identifier of the target shop to be queried.Limitations:- Required for every shop object when shop_list is provided as a non-empty array.- Must belong to the specified principal_id.
    */
-  shop_id: number;
+  shop_id: Integer;
   /**
    * Currency used for amount-based metrics for the shop.Limitations:- Optional for every shop object in shop_list.- Supported values are LOCAL and USD.- Invalid currency values are rejected as invalid_parameter.- Defaults to USD when omitted.
    */
@@ -2155,19 +2155,19 @@ export interface GetShopVideoPerformanceSummary {
   /**
    * Number of placed orders (paid and unpaid) during your Video, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Number of Like clicks from all videos.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Number of comments generated from all videos.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Number of shares created from all videos.
    */
-  share?: number;
+  share?: Integer;
   /**
    * Value of placed orders (paid and unpaid) from all videos in the period, reflecting the sales amount received by sellers after deducting seller rebates. Note: This value includes sales from cancelled and return/refund orders.
    */
@@ -2175,15 +2175,15 @@ export interface GetShopVideoPerformanceSummary {
   /**
    * Number of items sold from placed orders during your Video.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Number of views from the video that lasted for more than 3 seconds.
    */
-  effective_views?: number;
+  effective_views?: Integer;
   /**
    * Number of video viewers in the selected period. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Total duration of your videos in minutes. This field is returned only in summary.
    */
@@ -2191,7 +2191,7 @@ export interface GetShopVideoPerformanceSummary {
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during your Video.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Average duration of your videos in minutes.
    */
@@ -2203,7 +2203,7 @@ export interface GetShopVideoPerformanceSummary {
   /**
    * Number of unique buyers who placed order from your Video. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  total_unique_buyers?: number;
+  total_unique_buyers?: Integer;
   /**
    * Video orders / effective video views.
    */
@@ -2224,23 +2224,23 @@ export interface GetShopVideoPerformanceDetail {
   /**
    * Number of placed orders (paid and unpaid) during your Video, including cancelled orders.
    */
-  orders?: number;
+  orders?: Integer;
   /**
    * Number of Like clicks from all videos.
    */
-  likes?: number;
+  likes?: Integer;
   /**
    * Number of comments generated from all videos.
    */
-  comments?: number;
+  comments?: Integer;
   /**
    * Number of shares created from all videos.
    */
-  share?: number;
+  share?: Integer;
   /**
    * Shop identifier.
    */
-  shop_id?: number;
+  shop_id?: Integer;
   /**
    * Shop name.
    */
@@ -2252,19 +2252,19 @@ export interface GetShopVideoPerformanceDetail {
   /**
    * Number of items sold from placed orders during your Video.
    */
-  units_sold?: number;
+  units_sold?: Integer;
   /**
    * Number of views from the video that lasted for more than 3 seconds.
    */
-  effective_views?: number;
+  effective_views?: Integer;
   /**
    * Number of video viewers in the selected period. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  unique_viewers?: number;
+  unique_viewers?: Integer;
   /**
    * Number of Add To Cart button clicks for all products in the orange bag during your Video.
    */
-  atc_units?: number;
+  atc_units?: Integer;
   /**
    * Average duration of your videos in minutes.
    */
@@ -2276,7 +2276,7 @@ export interface GetShopVideoPerformanceDetail {
   /**
    * Number of unique buyers who placed order from your Video. Note: This data is unavailable when you select by month, by quarter, by year, customize date, or a non-full weekly range.
    */
-  total_unique_buyers?: number;
+  total_unique_buyers?: Integer;
   /**
    * Video orders / effective video views.
    */

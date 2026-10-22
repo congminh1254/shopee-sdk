@@ -1,6 +1,6 @@
 // NOTE: This file is auto-generated. Do not edit directly.
 
-import { FetchResponse } from "./fetch.js";
+import { FetchResponse, Integer } from "./fetch.js";
 /**
  * Enum generated for field Status
  */
@@ -67,7 +67,7 @@ export interface AddVoucherRequest {
   /**
    * The list of items which is applicable for the voucher. Only fill in when you are creating a product type of voucher.
    */
-  item_id_list?: number[];
+  item_id_list?: Integer[];
   /**
    * The timing of when voucher is displayed on shop pages; so buyer is allowed to claim.display_start_time must be left empty if the display_channel_list is empty (when voucher is hidden), otherwise it will show error.
    */
@@ -80,7 +80,7 @@ export interface AddVoucherResponseData {
   /**
    * The unique identifier for the created voucher.
    */
-  voucher_id?: number;
+  voucher_id?: Integer;
 }
 /**
  * Response payload for add_voucher
@@ -97,7 +97,7 @@ export interface DeleteVoucherRequest {
   /**
    * The unique identifier for the voucher you want to delete.
    */
-  voucher_id: number;
+  voucher_id: Integer;
 }
 /**
  * DeleteVoucherResponseData sub-interface for DeleteVoucherResponse
@@ -106,7 +106,7 @@ export interface DeleteVoucherResponseData {
   /**
    * The unique identifier for the voucher it is being deleted.
    */
-  voucher_id?: number;
+  voucher_id?: Integer;
 }
 /**
  * Response payload for delete_voucher
@@ -123,7 +123,7 @@ export interface EndVoucherRequest {
   /**
    * The unique identifier for the voucher you want to end now.
    */
-  voucher_id: number;
+  voucher_id: Integer;
 }
 /**
  * EndVoucherResponseData sub-interface for EndVoucherResponse
@@ -132,7 +132,7 @@ export interface EndVoucherResponseData {
   /**
    * The unique identifier for the voucher it is being ended.
    */
-  voucher_id?: number;
+  voucher_id?: Integer;
 }
 /**
  * Response payload for end_voucher
@@ -149,7 +149,7 @@ export interface GetVoucherRequest {
   /**
    * The unique identifier of a voucher used to query the voucher details.
    */
-  voucher_id: number;
+  voucher_id: Integer;
 }
 /**
  * GetVoucherResponseData sub-interface for GetVoucherResponse
@@ -158,7 +158,7 @@ export interface GetVoucherResponseData {
   /**
    * The unique identifier of the voucher whose details are returned.
    */
-  voucher_id?: number;
+  voucher_id?: Integer;
   /**
    * Voucher Code
    */
@@ -226,7 +226,7 @@ export interface GetVoucherResponseData {
   /**
    * The list of items which is applicable for the voucher. Only return a value when it is a product type of voucher.
    */
-  item_id_list?: number[];
+  item_id_list?: Integer[];
   /**
    * The timing of when voucher is displayed on shop pages; so buyer is allowed to claim.
    */
@@ -263,7 +263,7 @@ export interface GetVoucherListRequest {
   /**
    * The status filter for retrieving voucher list. Available value: upcoming/ongoing/expired/all.
    */
-  status: Status | string | number;
+  status: Status | string;
 }
 /**
  * GetVoucherListVoucher sub-interface for GetVoucherListResponseData
@@ -272,7 +272,7 @@ export interface GetVoucherListVoucher {
   /**
    * The unique identifier for a voucher.
    */
-  voucher_id?: number;
+  voucher_id?: Integer;
   /**
    * Voucher Code
    */
@@ -358,7 +358,7 @@ export interface UpdateVoucherRequest {
   /**
    * The unique identifier of the voucher which is going to be updated.
    */
-  voucher_id: number;
+  voucher_id: Integer;
   /**
    * The name of the voucher
    */
@@ -398,11 +398,11 @@ export interface UpdateVoucherRequest {
   /**
    * The list of items which is applicable for the voucher. Only fill in when you are updating a product type of voucher.
    */
-  item_id_list?: number[];
+  item_id_list?: Integer[];
   /**
    * The timing of when voucher is displayed on shop pages; so buyer is allowed to claim.
    */
-  display_start_time?: number;
+  display_start_time?: Integer;
 }
 /**
  * UpdateVoucherResponseData sub-interface for UpdateVoucherResponse
@@ -411,7 +411,7 @@ export interface UpdateVoucherResponseData {
   /**
    * The unique identifier of the voucher which is being updated.
    */
-  voucher_id?: number;
+  voucher_id?: Integer;
 }
 /**
  * Response payload for update_voucher

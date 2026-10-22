@@ -67,7 +67,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint");
@@ -83,7 +83,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -105,7 +105,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValue({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       const image = Buffer.from("image-data");
@@ -137,7 +137,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValue({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       const image1 = Buffer.from("image-1");
@@ -174,7 +174,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValue({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       const formData = new FormData();
@@ -205,7 +205,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValue({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       const fileWithFilename = new Blob([Buffer.from("file-1")]);
@@ -264,7 +264,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -315,7 +315,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -372,12 +372,12 @@ describe("ShopeeFetch", () => {
         .mockResolvedValueOnce({
           status: 401,
           headers: new Map([["content-type", "application/json"]]),
-          json: jest.fn(() => Promise.resolve(invalidTokenResponse)),
+          text: jest.fn(() => Promise.resolve(JSON.stringify(invalidTokenResponse))),
         })
         .mockResolvedValueOnce({
           status: 200,
           headers: new Map([["content-type", "application/json"]]),
-          json: jest.fn(() => Promise.resolve(successResponse)),
+          text: jest.fn(() => Promise.resolve(JSON.stringify(successResponse))),
         });
 
       const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -398,7 +398,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -417,7 +417,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       await ShopeeFetch.fetch(mockConfig, "/test/endpoint");
@@ -440,7 +440,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -465,7 +465,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -506,7 +506,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 401,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(invalidTokenResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(invalidTokenResponse))),
       });
 
       await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true })).rejects.toThrow(
@@ -524,7 +524,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 400,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(errorResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(errorResponse))),
       });
 
       await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
@@ -540,7 +540,6 @@ describe("ShopeeFetch", () => {
           get: (name: string) => headers.get(name.toLowerCase()),
         },
         text: jest.fn(() => Promise.resolve("<html>Not JSON</html>")),
-        json: jest.fn(),
       });
 
       await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
@@ -618,7 +617,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       await ShopeeFetch.fetch(mockConfig, "/test/endpoint", {
@@ -636,7 +635,7 @@ describe("ShopeeFetch", () => {
       mockFetch.mockResolvedValueOnce({
         status: 200,
         headers: new Map([["content-type", "application/json"]]),
-        json: jest.fn(() => Promise.resolve(mockResponse)),
+        text: jest.fn(() => Promise.resolve(JSON.stringify(mockResponse))),
       });
 
       await ShopeeFetch.fetch(mockConfig, "/media_space/upload_image", {

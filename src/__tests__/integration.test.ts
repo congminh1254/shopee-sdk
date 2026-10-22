@@ -205,7 +205,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
     const itemList = await sdk.product.getItemList({
       offset: 0,
       page_size: 10,
-      item_status: ItemStatus.NORMAL,
+      item_status: [ItemStatus.NORMAL],
     });
 
     const itemDetails = await sdk.product.getItemBaseInfo({
@@ -221,7 +221,7 @@ describe("ShopeeSDK Integration with Mock API", () => {
       params: {
         offset: 0,
         page_size: 10,
-        item_status: ItemStatus.NORMAL,
+        item_status: [ItemStatus.NORMAL],
       },
       timestampPaths: ["response.item.update_time"],
     });

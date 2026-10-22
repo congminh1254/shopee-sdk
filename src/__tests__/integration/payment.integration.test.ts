@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
 import { ShopeeSDK } from "../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
-import { ShopeeApiError } from "../../errors.js";
+import { expectApiError } from "../utils/sandbox-fixtures.js";
 
 const { runTests, initSdk } = setupIntegrationTest();
 
@@ -25,36 +25,22 @@ const { runTests, initSdk } = setupIntegrationTest();
     expect(Array.isArray(first.payment_method)).toBe(true);
   }, 60000);
 
-  it("should retrieve shop installment status (auth: true)", async () => {
-    try {
+  const installmentTest = process.env.SHOPEE_SANDBOX_INSTALLMENT_ENABLED === "1" ? it : it.skip;
+  installmentTest(
+    "should retrieve shop installment status for a whitelisted shop",
+    async () => {
       const result = await sdk.payment.getShopInstallmentStatus();
-      expect(result).toBeDefined();
       expect(result.request_id).toBeDefined();
-      if (result.response) {
-        expect(result.response.installment_status).toBeDefined();
-      }
-    } catch (err) {
-      if (err instanceof ShopeeApiError) {
-        expect(err.status).toBeDefined();
-        expect(err.data).toBeDefined();
-      } else {
-        throw err;
-      }
-    }
-  }, 60000);
+      expect(result.response).toBeDefined();
+      expect(result.response.installment_status).toBeDefined();
+    },
+    60000
+  );
 
   it("should gracefully propagate error when querying escrow detail with dummy order ID", async () => {
-    try {
-      await sdk.payment.getEscrowDetail({
-        order_sn: "NONEXISTENT_ORDER_SN_12345",
-      });
-      throw new Error("Should have thrown a ShopeeApiError");
-    } catch (err) {
-      expect(err).toBeInstanceOf(ShopeeApiError);
-      const apiErr = err as ShopeeApiError;
-      expect(apiErr.status).toBeDefined();
-      expect(apiErr.data).toBeDefined();
-      expect(apiErr.message).toBeDefined();
-    }
+    await expectApiError(sdk.payment.getEscrowDetail({ order_sn: "NONEXISTENT_ORDER_SN_12345" }), {
+      order_not_found: /order.*(?:invalid|not|belong)/i,
+      error_param: /order_sn|information.*not found/i,
+    });
   }, 60000);
 });

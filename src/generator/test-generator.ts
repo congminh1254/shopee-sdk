@@ -4,6 +4,8 @@ import { EndpointSpec, NormalizedParam, getManagerClassName, toCamelCase } from 
 
 export function parsePrimitive(val: string, type: string): unknown {
   const lowerType = type.toLowerCase();
+  if (lowerType === "integer" && /^-?\d+$/.test(val) && !Number.isSafeInteger(Number(val)))
+    return val;
   if (lowerType === "boolean" || lowerType === "bool") {
     return val.toLowerCase() === "true" || val === "1" || val === "yes";
   }
@@ -14,6 +16,7 @@ export function parsePrimitive(val: string, type: string): unknown {
       "integer",
       "int32",
       "int64",
+      "integer",
       "float",
       "double",
       "numeric",
@@ -55,7 +58,14 @@ export function generateParamValue(param: NormalizedParam): unknown {
     return isArray ? [childObj] : childObj;
   }
 
-  const sample = param.enum ? param.enum.members[0]?.value : param.sample;
+  if (param.enum)
+    return param.type.endsWith("[]")
+      ? [param.enum.members[0]?.value]
+      : param.enum.members[0]?.value;
+  if (["BinaryFile", "BinaryFiles"].includes(param.type)) return "__binary_fixture__";
+  if (param.type.startsWith("Record<"))
+    return typeof param.sample === "object" && param.sample !== null ? param.sample : {};
+  const sample = param.sample;
   const rawType = param.type.trim();
 
   if (sample !== undefined && sample !== null && String(sample).trim() !== "") {
@@ -66,7 +76,7 @@ export function generateParamValue(param: NormalizedParam): unknown {
       const items = cleanVal.split(/[,/|]/).map((item) => item.trim());
       return items.map((item) => parsePrimitive(item, baseType));
     }
-    return param.enum ? sample : parsePrimitive(sampleStr, rawType);
+    return parsePrimitive(sampleStr, rawType);
   }
 
   if (rawType.endsWith("[]")) {
@@ -134,18 +144,28 @@ describe("${managerClassName} (Generated Tests)", () => {
       exampleResponse = generateMockData(spec.responseParams);
     }
 
+    const binary =
+      spec.responseParams.some((p) => p.type === "BinaryFile") &&
+      spec.responseParams.every(
+        (p) => p.type === "BinaryFile" || ["request_id", "error", "message"].includes(p.name)
+      );
+    const mockResponse = binary
+      ? "__binary_response__"
+      : {
+          ...(hasResponseWrapper
+            ? { response: exampleResponse }
+            : (exampleResponse as Record<string, unknown>)),
+          request_id: "test-request-id",
+          error: "",
+          message: "",
+        };
     fileContent += `
   describe("${methodName}", () => {
     it("should forward the exact request options and return the response", async () => {
-      const exampleRequest = ${JSON.stringify(exampleRequest, null, 2)};
-      const exampleResponse = ${JSON.stringify(exampleResponse, null, 2)};
+      const exampleRequest = ${JSON.stringify(exampleRequest, null, 2).replace(/"__binary_fixture__"/g, 'Buffer.from("test_binary")')};
 
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: exampleResponse,
-      });
+      const exampleResponse = ${JSON.stringify(mockResponse, null, 2).replace(/"__binary_response__"/g, 'Buffer.from("test_binary")')};
+      mockFetch.mockResolvedValueOnce(exampleResponse);
 
       const result = await manager.${methodName}(exampleRequest);
 
@@ -156,12 +176,13 @@ describe("${managerClassName} (Generated Tests)", () => {
         {
           method: "${spec.method}",
           ${spec.auth ? "auth: true," : ""}
+          ${spec.authMode && !["shop", "partner"].includes(spec.authMode) ? `authMode: "${spec.authMode}",` : ""}
           ${spec.method === "GET" ? "params" : "body"}: exampleRequest,
           ${spec.timestampPaths.length ? `timestampPaths: ${JSON.stringify(spec.timestampPaths)},` : ""}
         }
       );
 
-      expect(result.response).toEqual(exampleResponse);
+      expect(result).toEqual(exampleResponse);
     });
   });
 `;

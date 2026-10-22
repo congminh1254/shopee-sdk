@@ -99,6 +99,7 @@ export class AuthManager extends BaseManager {
     return {
       ...response,
       shop_id: shopId,
+      merchant_id: merchantId,
     };
   }
 }

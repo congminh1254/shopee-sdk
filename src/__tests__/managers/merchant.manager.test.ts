@@ -42,13 +42,11 @@ describe("MerchantManager", () => {
         error: "",
         message: "",
         merchant_name: "CNSC Company 7",
-        is_cnsc: true,
         auth_time: 1650624369,
         expire_time: 1682179199,
         merchant_currency: "CNY",
         merchant_region: "CN",
         is_upgraded_cbsc: true,
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -58,6 +56,7 @@ describe("MerchantManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_merchant_info", {
         method: "GET",
         auth: true,
+        authMode: "merchant",
         params: undefined,
         timestampPaths: ["auth_time", "expire_time"],
       });
@@ -120,6 +119,7 @@ describe("MerchantManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             page_no: 1,
             page_size: 100,
@@ -209,6 +209,7 @@ describe("MerchantManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             cursor: {
               next_id: 0,
@@ -252,7 +253,7 @@ describe("MerchantManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/merchant/get_merchant_warehouse_location_list",
-        { method: "GET", auth: true, params: undefined }
+        { method: "GET", auth: true, authMode: "merchant", params: undefined }
       );
 
       expect(result).toEqual(mockResponse);
@@ -268,7 +269,6 @@ describe("MerchantManager", () => {
         request_id: "nGwxMqhTRqgbpfmNlbvgcTZEenLPmyyo",
         error: "",
         message: "",
-        is_cnsc: true,
         shop_list: [
           {
             shop_id: 601306294,
@@ -278,17 +278,14 @@ describe("MerchantManager", () => {
             sip_affi_shops: [
               {
                 affi_shop_id: 123456,
-                region: "SG",
               },
               {
                 affi_shop_id: 789012,
-                region: "SG",
               },
             ],
           },
         ],
         more: false,
-        response: {},
       };
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
@@ -304,6 +301,7 @@ describe("MerchantManager", () => {
         {
           method: "GET",
           auth: true,
+          authMode: "merchant",
           params: {
             page_no: 1,
             page_size: 100,
@@ -312,10 +310,9 @@ describe("MerchantManager", () => {
       );
 
       expect(result).toEqual(mockResponse);
-      expect(result.shop_list).toHaveLength(2);
-      expect(result.shop_list[0].shop_id).toBe(601306294);
-      expect(result.shop_list[1].sip_affi_shops).toHaveLength(2);
-      expect(result.is_cnsc).toBe(true);
+      expect(result.shop_list!).toHaveLength(2);
+      expect(result.shop_list![0].shop_id).toBe(601306294);
+      expect(result.shop_list![1].sip_affi_shops).toHaveLength(2);
       expect(result.more).toBe(false);
     });
   });
@@ -370,6 +367,7 @@ describe("MerchantManager", () => {
         {
           method: "POST",
           auth: true,
+          authMode: "merchant",
           body: {
             warehouse_id: 10001027,
             warehouse_type: 1,

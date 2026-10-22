@@ -7,6 +7,7 @@ import { ShopeeConfig } from "./sdk.js";
 import { FetchOptions } from "./schemas/fetch.js";
 import { ShopeeApiError, ShopeeSdkError } from "./errors.js";
 import { generateSignature } from "./utils/signature.js";
+import { parseResponseJson } from "./utils/response-json.js";
 import { SDK_VERSION } from "./version.js";
 
 const isMock = typeof (nodeFetch as any).mock === "object";
@@ -119,7 +120,16 @@ function serializeRequestBody(body: unknown): {
 }
 
 function serializeDates(value: unknown): unknown {
+  if (
+    typeof value === "number" &&
+    (!Number.isFinite(value) || (Number.isInteger(value) && !Number.isSafeInteger(value)))
+  ) {
+    throw new ShopeeSdkError(
+      "Unsafe numeric request value; supply large integers as decimal strings"
+    );
+  }
   if (value instanceof Date) {
+    if (!Number.isFinite(value.getTime())) throw new ShopeeSdkError("Invalid request Date");
     return Math.floor(value.getTime() / 1000);
   }
   if (isBinaryLike(value)) {
@@ -219,27 +229,42 @@ export class ShopeeFetch {
       timestamp,
     };
 
-    let authParams = {};
-
-    if (options.auth) {
+    const authParams: Record<string, string | number> = {};
+    const authMode = options.authMode ?? (options.auth ? "shop" : "partner");
+    if (authMode !== "partner") {
       let token = await config.sdk?.getAuthToken();
-      if (token?.expired_at && token.expired_at < Date.now()) {
-        token = await config.sdk?.refreshToken();
-      }
-      if (!token) {
-        throw new ShopeeSdkError("No access token found");
-      }
-      authParams = {
-        access_token: token?.access_token,
-        shop_id: token?.shop_id,
-      };
-      signature = generateSignature(config.partner_key, [
+      const refresh = () =>
+        config.sdk?.refreshToken(
+          authMode === "shop" ? (token?.shop_id ?? config.shop_id) : undefined,
+          authMode === "merchant" ? (token?.merchant_id ?? config.merchant_id) : undefined
+        );
+      if (token?.expired_at && token.expired_at < Date.now()) token = await refresh();
+      if (!token?.access_token) throw new ShopeeSdkError("No access token found");
+      authParams.access_token = token.access_token;
+      const identityName =
+        authMode === "shop"
+          ? "shop_id"
+          : authMode === "merchant"
+            ? "merchant_id"
+            : authMode === "user"
+              ? "user_id"
+              : undefined;
+      const signParts: (string | number | undefined)[] = [
         config.partner_id.toString(),
         url.pathname,
         timestamp.toString(),
-        token?.access_token,
-        token?.shop_id!.toString(),
-      ]);
+        token.access_token,
+      ];
+      if (identityName) {
+        const identity = token[identityName] ?? config[identityName];
+        if (!Number.isSafeInteger(identity) || !identity || identity < 0)
+          throw new ShopeeSdkError(
+            `Missing or invalid ${identityName} for ${authMode} authentication`
+          );
+        authParams[identityName] = identity;
+        signParts.push(identity.toString());
+      }
+      signature = generateSignature(config.partner_key, signParts.map(String));
     }
     Object.entries({ ...allParams, ...authParams, sign: signature }).forEach(([key, value]) => {
       if (Array.isArray(value)) {
@@ -277,39 +302,49 @@ export class ShopeeFetch {
 
     try {
       const response: any = await fetchFn(url.toString(), requestOptions);
-      const responseType =
-        response.headers.get("Content-Type") || response.headers.get("content-type") || "";
+      const responseType = (
+        response.headers.get("Content-Type") ||
+        response.headers.get("content-type") ||
+        ""
+      ).toLowerCase();
 
       if (
         responseType.includes("application/pdf") ||
         responseType.includes("application/octet-stream")
       ) {
+        if (response.status >= 400)
+          throw new ShopeeApiError(response.status, { error: "http_error" });
         const arrayBuffer = await response.arrayBuffer();
         return Buffer.from(arrayBuffer) as unknown as T;
       }
 
       const isJson = !responseType || !!responseType.toLowerCase().includes("json");
 
-      const responseData: unknown = isJson ? await response.json() : await response.text();
+      const responseData: unknown = isJson
+        ? parseResponseJson(await response.text())
+        : await response.text();
 
       if (isJson) {
         // Type guard for JSON response with error field
         const jsonData = responseData as Record<string, unknown>;
-        if (jsonData && jsonData.error) {
+        if ((jsonData && jsonData.error) || response.status >= 400) {
           // Handle invalid access token error
           const isAuthError =
-            jsonData.error === "invalid_access_token" ||
-            jsonData.error === "invalid_acceess_token" ||
-            jsonData.error === "error_auth";
+            jsonData?.error === "invalid_access_token" ||
+            jsonData?.error === "invalid_acceess_token" ||
+            jsonData?.error === "error_auth";
 
-          if (isAuthError && options.auth) {
+          if (isAuthError && authMode !== "partner") {
             try {
               if ((options as any)._retryCount) {
                 throw new ShopeeApiError(response.status, jsonData);
               }
               const newOptions = { ...options, _retryCount: 1 };
               // Attempt to refresh the access token
-              await config.sdk?.refreshToken();
+              await config.sdk?.refreshToken(
+                authMode === "shop" ? config.shop_id : undefined,
+                authMode === "merchant" ? config.merchant_id : undefined
+              );
               // Retry the request with the new token
               return this.fetch(config, path, newOptions);
             } catch (err) {
