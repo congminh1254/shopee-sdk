@@ -45,13 +45,13 @@ Shopee documents refresh tokens as single-use per identity. Persist the returned
 
 ## Tests
 
-The HTTP integration test exercises a local gateway using real transport and an independent HMAC implementation. It covers authorization exchange, user selection, video/livestream signing, expiry refresh, token rotation, and bounded retry:
+The transport test exercises a simulated local gateway using real transport and an independent HMAC implementation. It covers authorization exchange, user selection, video/livestream signing, expiry refresh, token rotation, and bounded retry:
 
 ```sh
-npm test -- --runInBand --coverage=false src/__tests__/integration/user-auth.integration.test.ts
+npm test -- --runInBand --coverage=false src/__tests__/transport/user-auth.transport.test.ts
 ```
 
-The optional live test reads one page of posted videos. Use a fresh **user** access token from an app with Video permission. It does not consume refresh tokens or publish/change videos. Enable it explicitly; missing configuration or API errors fail the test:
+The user integration suite calls the real Shopee API and reads one page each of draft and posted videos. Use a fresh **user** access token from an app with Video permission. It does not consume refresh tokens or publish/change videos. Enable it explicitly; missing configuration or API errors fail the test:
 
 ```sh
 # Supply these via your environment or secret manager; do not commit tokens.
@@ -61,8 +61,10 @@ export SHOPEE_USER_PARTNER_KEY=...
 export SHOPEE_USER_ID=...
 export SHOPEE_USER_ACCESS_TOKEN=...
 # Optional: SHOPEE_USER_BASE_URL, defaults to the global production API.
-npm test -- --runInBand --coverage=false src/__tests__/integration/user-video.live.integration.test.ts
+npm run test:user:integration
 ```
+
+The dedicated command always enables the real API suite and fails if credentials are missing; it never falls back to a simulated server. The default unit/transport test run skips the credential-dependent suite. `SHOPEE_USER_BASE_URL`, if provided, must identify an official Shopee HTTPS API host. The GitHub Actions **User API Integration Tests** workflow runs this same command manually using repository secrets named after the four credential variables above, and the optional repository variable `SHOPEE_USER_BASE_URL`.
 
 ## Documentation investigation (issue #288)
 

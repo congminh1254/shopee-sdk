@@ -50,7 +50,8 @@
     "audit:specs": "tsx scripts/audit-specs.ts",
     "generate": "tsx src/generator/index.ts",
     "docs:build": "typedoc && cp llms.txt docs/api/llms.txt && touch docs/api/.nojekyll",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:user:integration": "SHOPEE_RUN_USER_INTEGRATION=1 NODE_OPTIONS=--experimental-vm-modules jest --runInBand --coverage=false --runTestsByPath src/__tests__/integration/user-auth.integration.test.ts"
   },
   "publishConfig": {
     "access": "public"

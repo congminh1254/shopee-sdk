@@ -1,0 +1,27 @@
+name: User API Integration Tests
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  user-integration:
+    name: Real Shopee user API
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SHOPEE_USER_PARTNER_ID: ${{ secrets.SHOPEE_USER_PARTNER_ID }}
+      SHOPEE_USER_PARTNER_KEY: ${{ secrets.SHOPEE_USER_PARTNER_KEY }}
+      SHOPEE_USER_ID: ${{ secrets.SHOPEE_USER_ID }}
+      SHOPEE_USER_ACCESS_TOKEN: ${{ secrets.SHOPEE_USER_ACCESS_TOKEN }}
+      SHOPEE_USER_BASE_URL: ${{ vars.SHOPEE_USER_BASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+      - run: npm ci
+      - run: npm run test:user:integration
