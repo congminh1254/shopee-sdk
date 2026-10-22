@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.10.1](https://github.com/congminh1254/shopee-sdk/compare/v2.10.0...v2.10.1) (2026-10-22)
+
+
+### Bug Fixes
+
+* **auth:** support user authentication for video and livestream ([#295](https://github.com/congminh1254/shopee-sdk/issues/295)) ([e40fac0](https://github.com/congminh1254/shopee-sdk/commit/e40fac0addce391311958dbe714f73cbbde64b44))
+
 ## [2.10.0](https://github.com/congminh1254/shopee-sdk/compare/v2.9.1...v2.10.0) (2026-10-16)
 
 
