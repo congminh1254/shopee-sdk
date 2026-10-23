@@ -1245,6 +1245,10 @@ export interface GetOrderDetailItem {
    * The quantity of the item model that has already been successfully returned through the return/refund process.
    */
   returned_qty?: number;
+  /**
+   * IMEI (International Mobile Equipment Identity) assigned to the item. Only for certain FBS shops.  If item does not have IMEl or IMEl parcel is not yet outbound from warehouse, return empty.
+   */
+  imei_list?: string[];
 }
 /**
  * GetOrderDetail_GetOrderDetailItem sub-interface for GetOrderDetailPackage
@@ -1834,6 +1838,10 @@ export interface GetPackageDetailItem {
    * Return the reason why a prescription is rejected. If no rejection reason, return empty. Only for ID and PH whitelist sellers.
    */
   prescription_reject_reason?: string;
+  /**
+   * IMEI (International Mobile Equipment Identity) assigned to the item. Only for certain FBS shops.  If item does not have IMEl or IMEl parcel is not yet outbound from warehouse, return empty.
+   */
+  imei_list?: string[];
 }
 /**
  * GetPackageDetailGeolocation sub-interface for GetPackageDetailRecipientAddress

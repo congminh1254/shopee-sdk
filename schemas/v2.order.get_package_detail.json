@@ -650,6 +650,14 @@
                     "type": "string",
                     "required": null,
                     "key": "fMbpCbx"
+                  },
+                  {
+                    "description": "<p>IMEI (International Mobile Equipment Identity) assigned to the item. Only for certain FBS shops.&nbsp; If item does not have IMEl or IMEl parcel is not yet outbound from warehouse, return empty.</p>",
+                    "name": "imei_list",
+                    "sample": "",
+                    "type": "string[]",
+                    "required": null,
+                    "key": "PBZeiWX"
                   }
                 ]
               },
@@ -1180,6 +1188,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_package_detail",
   "update_log_list": [
     {
+      "date": "2026-10-22",
+      "content": "Add \"imei_list\" into \"item_list\" as response param"
+    },
+    {
       "date": "2026-08-27",
       "content": "Add \"is_fulfillment_mapping\"\"bundle_sku_id\"\"components\" as Response Parameter"
     },
@@ -1194,10 +1206,6 @@
     {
       "date": "2026-05-22",
       "content": "Add can_full_cancel_order, can_partial_cancel_order, buyer_preference_for_partial_cancellation response parameters"
-    },
-    {
-      "date": "2026-04-09",
-      "content": "Add new option for driver_status"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/order/get_package_detail",

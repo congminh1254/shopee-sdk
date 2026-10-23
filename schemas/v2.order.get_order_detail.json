@@ -953,6 +953,14 @@
                     "type": "int32",
                     "required": null,
                     "key": "mSbftzM"
+                  },
+                  {
+                    "description": "<p>IMEI (International Mobile Equipment Identity) assigned to the item. Only for certain FBS shops.&nbsp; If item does not have IMEl or IMEl parcel is not yet outbound from warehouse, return empty.</p>",
+                    "name": "imei_list",
+                    "sample": "",
+                    "type": "string[]",
+                    "required": null,
+                    "key": "NmfnCZi"
                   }
                 ],
                 "name": "item_list"
@@ -1525,6 +1533,10 @@
   "test_url": "https://partner.test-stable.shopeemobile.com/api/v2/order/get_order_detail",
   "update_log_list": [
     {
+      "date": "2026-10-22",
+      "content": "Add \"imei_list\" into \"item_list\" as response param"
+    },
+    {
       "date": "2026-08-27",
       "content": "Add \"is_fulfillment_mapping\"\"bundle_sku_id\"\"components\" as Response Parameter"
     },
@@ -1539,10 +1551,6 @@
     {
       "date": "2026-07-01",
       "content": "add affiliate_sample_type"
-    },
-    {
-      "date": "2026-06-17",
-      "content": "add a new field error_in_fetching_is_prescription_item"
     }
   ],
   "url": "https://partner.shopeemobile.com/api/v2/order/get_order_detail",
