@@ -285,12 +285,12 @@
     },
     {
       "name": "error_data",
-      "description": "Inner error, please try later. [5].",
+      "description": "parse data failed",
       "solution": null
     },
     {
       "name": "error_data",
-      "description": "parse data failed",
+      "description": "Inner error, please try later. [5].",
       "solution": null
     },
     {
@@ -305,12 +305,12 @@
     },
     {
       "name": "error_param",
-      "description": "parameter invalid",
+      "description": "Inner error, please try later. [1].",
       "solution": null
     },
     {
       "name": "error_param",
-      "description": "Inner error, please try later. [1].",
+      "description": "parameter invalid",
       "solution": null
     },
     {
