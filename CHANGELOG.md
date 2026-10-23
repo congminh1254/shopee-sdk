@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.11.0](https://github.com/congminh1254/shopee-sdk/compare/v2.10.1...v2.11.0) (2026-10-23)
+
+
+### Features
+
+* **order:** add imei_list to order and package detail schemas ([#297](https://github.com/congminh1254/shopee-sdk/issues/297)) ([80fac38](https://github.com/congminh1254/shopee-sdk/commit/80fac38b71b372a50e4760e0fc7c7c4e0a0029c1))
+
 ## [2.10.1](https://github.com/congminh1254/shopee-sdk/compare/v2.10.0...v2.10.1) (2026-10-22)
 
 
