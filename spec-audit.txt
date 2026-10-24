@@ -1,5 +1,5 @@
 
-> @congminh1254/shopee-sdk@2.10.1 audit:specs
+> @congminh1254/shopee-sdk@2.11.0 audit:specs
 > tsx scripts/audit-specs.ts
 
 Shopee SDK Spec Audit
