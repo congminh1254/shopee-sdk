@@ -890,7 +890,7 @@ export class LogisticsManager extends BaseManager {
     );
   }
   /**
-   * Only available for Brazil sellers. Use this API to upload KML file for shop level serviceability setting for BR Entrega Turbo channel (Channel ID: 90026). Please note that multiple Outlet Shops under the same Mart Shop cannot have overlapping service areas.
+   * Only available for Brazil sellers. Use this API to upload KML file for shop level serviceability setting for BR Entrega Turbo channel (Channel ID: 90026). Please note that multiple Outlet Shops under the same Mart Shop can have overlapping service areas.
    *
    * @param {UploadServiceablePolygonRequest} params Request parameters
    * @returns {Promise<UploadServiceablePolygonResponse>} Promise resolving to the response

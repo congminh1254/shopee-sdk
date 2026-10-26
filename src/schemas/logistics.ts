@@ -5038,7 +5038,7 @@ export type UpdateTrackingStatusResponse = FetchResponse<UpdateTrackingStatusRes
 /**
  * Request parameters for upload_serviceable_polygon
  *
- * Only available for Brazil sellers. Use this API to upload KML file for shop level serviceability setting for BR Entrega Turbo channel (Channel ID: 90026). Please note that multiple Outlet Shops under the same Mart Shop cannot have overlapping service areas.
+ * Only available for Brazil sellers. Use this API to upload KML file for shop level serviceability setting for BR Entrega Turbo channel (Channel ID: 90026). Please note that multiple Outlet Shops under the same Mart Shop can have overlapping service areas.
  */
 export interface UploadServiceablePolygonRequest {
   /**
@@ -5058,6 +5058,6 @@ export interface UploadServiceablePolygonResponseData {
 /**
  * Response payload for upload_serviceable_polygon
  *
- * Only available for Brazil sellers. Use this API to upload KML file for shop level serviceability setting for BR Entrega Turbo channel (Channel ID: 90026). Please note that multiple Outlet Shops under the same Mart Shop cannot have overlapping service areas.
+ * Only available for Brazil sellers. Use this API to upload KML file for shop level serviceability setting for BR Entrega Turbo channel (Channel ID: 90026). Please note that multiple Outlet Shops under the same Mart Shop can have overlapping service areas.
  */
 export type UploadServiceablePolygonResponse = FetchResponse<UploadServiceablePolygonResponseData>;
