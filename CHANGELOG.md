@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.12.0](https://github.com/congminh1254/shopee-sdk/compare/v2.11.0...v2.12.0) (2026-10-27)
+
+
+### Features
+
+* **installation:** add receive_installation_order and validate_installation_otp_code endpoints ([#301](https://github.com/congminh1254/shopee-sdk/issues/301)) ([29aa35c](https://github.com/congminh1254/shopee-sdk/commit/29aa35cc160dda3ba01dd4942622aa4ba7c5f53a))
+
 ## [2.11.0](https://github.com/congminh1254/shopee-sdk/compare/v2.10.1...v2.11.0) (2026-10-23)
 
 
