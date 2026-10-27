@@ -36,6 +36,7 @@ import { PrincipalManager } from "./managers/principal.manager.js";
 import { Agent } from "node:http";
 import { BusinessInsightsManager } from "./managers/business-insights.manager.js";
 import { BuyboxManager } from "./managers/buybox.manager.js";
+import { InstallationManager } from "./managers/installation.manager.js";
 export interface ShopeeConfig {
   partner_id: number;
   partner_key: string;
@@ -81,6 +82,7 @@ export class ShopeeSDK {
   public readonly principal: PrincipalManager;
   public readonly businessInsights: BusinessInsightsManager;
   public readonly buybox: BuyboxManager;
+  public readonly installation: InstallationManager;
   constructor(config: ShopeeConfig, tokenStorage?: TokenStorage) {
     this.config = {
       ...config,
@@ -128,6 +130,7 @@ export class ShopeeSDK {
     this.principal = new PrincipalManager(this.config);
     this.businessInsights = new BusinessInsightsManager(this.config);
     this.buybox = new BuyboxManager(this.config);
+    this.installation = new InstallationManager(this.config);
   }
   public getConfig(): ShopeeConfig {
     return this.config;
