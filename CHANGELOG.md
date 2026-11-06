@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.13.0](https://github.com/congminh1254/shopee-sdk/compare/v2.12.1...v2.13.0) (2026-11-06)
+
+
+### Features
+
+* **logistics,first-mile:** add 6 endpoints and require cnpj in generateFbsInvoices ([#307](https://github.com/congminh1254/shopee-sdk/issues/307)) ([7697551](https://github.com/congminh1254/shopee-sdk/commit/7697551679beaccd3545f6bf22250c5d9428074e))
+
+
+### Bug Fixes
+
+* **test:** make generateFbsInvoices test compatible with required cnpj ([#305](https://github.com/congminh1254/shopee-sdk/issues/305)) ([b37fed1](https://github.com/congminh1254/shopee-sdk/commit/b37fed15710cd6b16ae72d1408a5bfee5013d86c))
+
 ## [2.12.1](https://github.com/congminh1254/shopee-sdk/compare/v2.12.0...v2.12.1) (2026-11-06)
 
 
