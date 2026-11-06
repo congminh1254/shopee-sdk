@@ -263,7 +263,7 @@ export interface GetVoucherListRequest {
   /**
    * The status filter for retrieving voucher list. Available value: upcoming/ongoing/expired/all.
    */
-  status: Status | string | number;
+  status: Status | (string & {}) | number;
 }
 /**
  * GetVoucherListVoucher sub-interface for GetVoucherListResponseData

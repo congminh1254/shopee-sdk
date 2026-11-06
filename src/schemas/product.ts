@@ -284,7 +284,7 @@ export interface AddItemTaxInfo {
   /**
    * Only for BR shop.The CST PIS/Cofins is a code on the Electronic Invoice (NF-e) that identifies the tax situation of PIS (Programa de Integração Social) and Cofins (Contribuição para o Financiamento da Seguridade Social) in sales of goods.
    */
-  pis_cofins_cst?: PisCofinsCst | string | number;
+  pis_cofins_cst?: PisCofinsCst | (string & {}) | number;
   /**
    * Only for BR shop.Enter the total percentage of the combination of federal, state, and municipal taxes, using up to two decimals.
    */
@@ -605,7 +605,7 @@ export interface AddItemRequest {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | (string & {}) | number;
   /**
    * category recommendation service id
    */
@@ -1243,7 +1243,7 @@ export interface AddModelModel {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | (string & {}) | number;
   /**
    * The weight of this model, the unit is KG.If don't set the weight of this model, will use the weight of item by default.If set the dimension of this model, them must set the weight of this model.
    */
@@ -1574,7 +1574,7 @@ export interface BatchAddItemTaxInfo {
   /**
    * Only for BR shop.The CST PIS/Cofins is a code on the Electronic Invoice (NF-e) that identifies the tax situation of PIS (Programa de Integração Social) and Cofins (Contribuição para o Financiamento da Seguridade Social) in sales of goods.
    */
-  pis_cofins_cst?: PisCofinsCst | string | number;
+  pis_cofins_cst?: PisCofinsCst | (string & {}) | number;
   /**
    * Only for BR shop.Enter the total percentage of the combination of federal, state, and municipal taxes, using up to two decimals.
    */
@@ -1893,7 +1893,7 @@ export interface BatchAddItemItem {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | (string & {}) | number;
   /**
    * category recommendation service id
    */
@@ -2492,7 +2492,7 @@ export interface GetAllVehicleListRequest {
   /**
    * If language is not uploaded, the default language=en, the following are the languages supported by different markets SG: en ; MY: en / ms-my / zh-hans ; TH: en / th ; VN: en / vi ; PH: en ; TW: en / zh-hant ; ID: en / id ; BR: en / pt-br ; MX: en / es-mx ; CO: en/es-CO ; CL: en/es-CL. Note: For markets that have already launched global tree, Crossboard shop only support returning en and zh-hans language data
    */
-  language?: Language | string | number;
+  language?: Language | (string & {}) | number;
 }
 /**
  * GetAllVehicleListVehicle sub-interface for GetAllVehicleListResponseData
@@ -2835,7 +2835,7 @@ export interface GetBrandListRequest {
   /**
    * If language is not uploaded, the default language=en, the following are the languages supported by different markets SG: en ; MY: en / ms-my / zh-hans ; TH: en / th ; VN: en / vi ; PH: en ; TW: en / zh-hant ; ID: en / id ;  BR: en / pt-br ;  MX: en / es-mx ; CO: en/es-CO ; CL: en/es-CL. Note: For markets that have already launched global tree, Crossboard shop only support returning en and zh-hans language data
    */
-  language?: Language | string | number;
+  language?: Language | (string & {}) | number;
 }
 /**
  * GetBrandListBrand sub-interface for GetBrandListResponseData
@@ -2888,7 +2888,7 @@ export interface GetCategoryRequest {
   /**
    * If language is not uploaded, the default language=en, the following are the languages supported by different markets SG: en ; MY: en / ms-my / zh-hans ; TH: en / th ; VN: en / vi ; PH: en ; TW: en / zh-hant ; ID: en / id ;  BR: en / pt-br ;  MX: en / es-mx ; CO: en/es-CO ; CL: en/es-CL .Note: For markets that have already launched global tree, Crossboard shop only support returning en and zh-hans language data
    */
-  language?: Language | string | number;
+  language?: Language | (string & {}) | number;
 }
 /**
  * GetCategoryCategory sub-interface for GetCategoryResponseData
@@ -3015,7 +3015,7 @@ export interface GetCommentItemComment {
   /**
    * The editable status of the comment. The value may be one of  EXPIRED/EDITABLE/HAVE_EDIT_ONCE.
    */
-  editable?: Editable | string | number;
+  editable?: Editable | (string & {}) | number;
   /**
    * The comment is hidden or not.
    */
@@ -3778,7 +3778,7 @@ export interface GetItemBaseInfoTaxInfo {
   /**
    * Only for BR shop.The CST PIS/Cofins is a code on the Electronic Invoice (NF-e) that identifies the tax situation of PIS (Programa de Integração Social) and Cofins (Contribuição para o Financiamento da Seguridade Social) in sales of goods.
    */
-  pis_cofins_cst?: PisCofinsCst | string | number;
+  pis_cofins_cst?: PisCofinsCst | (string & {}) | number;
   /**
    * Only for BR shop.Enter the total percentage of the combination of federal, state, and municipal taxes, using up to two decimals.
    */
@@ -4319,7 +4319,7 @@ export interface GetItemLimitGtinLimit {
   /**
    * Indicate gtin_code validation logic in v2.product.add_itemv2.product.update_itemv2.product.init_tier_variationv2.product.add_modelv2.product.update_model- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" todeclare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omittedentirely.
    */
-  gtin_validation_rule?: GtinValidationRule | string | number;
+  gtin_validation_rule?: GtinValidationRule | (string & {}) | number;
 }
 /**
  * Response payload for get_item_limit
@@ -4352,7 +4352,7 @@ export interface GetItemListRequest {
   /**
    * NORMAL/BANNED/UNLIST/REVIEWING/SELLER_DELETE/SHOPEE_DELETEIf you want to search multiple status, please upload the url like this: item_status=NORMAL&item_status=BANNED
    */
-  item_status: ItemStatus | string | number;
+  item_status: ItemStatus | (string & {}) | number;
 }
 /**
  * GetItemListTag sub-interface for GetItemListItem
@@ -4547,7 +4547,7 @@ export interface GetItemPromotionPromotion {
   /**
    * Could be ongoing/upcoming
    */
-  promotion_staging?: PromotionStaging | string | number;
+  promotion_staging?: PromotionStaging | (string & {}) | number;
   /**
    * new promotion stock
    */
@@ -6426,7 +6426,7 @@ export interface GetVehicleListByCompatibilityDetailRequest {
   /**
    * If language is not uploaded, the default language=en, the following are the languages supported by different markets SG: en ; MY: en / ms-my / zh-hans ; TH: en / th ; VN: en / vi ; PH: en ; TW: en / zh-hant ; ID: en / id ; BR: en / pt-br ; MX: en / es-mx ; CO: en/es-CO ; CL: en/es-CL. Note: For markets that have already launched global tree, Crossboard shop only support returning en and zh-hans language data.
    */
-  language?: Language | string | number;
+  language?: Language | (string & {}) | number;
 }
 /**
  * GetVehicleListByCompatibilityDetailVehicle sub-interface for GetVehicleListByCompatibilityDetailResponseData
@@ -6650,7 +6650,7 @@ export interface InitTierVariationModel {
   /**
    * Tier index of this model.If you want to update one tier/two tier to no tier, can just pass the tier_variation and standardise_tier_variation as [], and pass the model >> tier_index as [], meanwhile pass the original_price, seller_stock, etc., to set the price and stock for the modified product with no tier structure.
    */
-  tier_index: TierIndex | string | number;
+  tier_index: TierIndex | (string & {}) | number;
   /**
    * Original price of this model.For CO local VAT responsible seller：Please remember the price you set in here must be VAT inclusive. If you have any doubts on how to calculate VAT for your product please refer to the Seller Education Hub（https://seller.shopee.com.co/edu/article/13565）
    */
@@ -6666,7 +6666,7 @@ export interface InitTierVariationModel {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | (string & {}) | number;
   /**
    * The weight of this model, the unit is KG.If don't set the weight of this model, will use the weight of item by default.If set the dimension of this model, them must set the weight of this model.
    */
@@ -7298,7 +7298,7 @@ export interface SearchItemRequest {
   /**
    * NORMAL/BANNED/UNLIST/REVIEWING/SELLER_DELETE/SHOPEE_DELETEIf you want to search multiple status, please upload the url like this: item_status=NORMAL&item_status=BANNED
    */
-  item_status?: ItemStatus | string | number;
+  item_status?: ItemStatus | (string & {}) | number;
   /**
    * If deboost_only is true, then API will return items whose deboost is true, if deboost_only is empty or false, then API will return items whose deboost is true and false simultaneously
    */
@@ -7934,7 +7934,7 @@ export interface UpdateItemTaxInfo {
   /**
    * Only for BR shop.The CST PIS/Cofins is a code on the Electronic Invoice (NF-e) that identifies the tax situation of PIS (Programa de Integração Social) and Cofins (Contribuição para o Financiamento da Seguridade Social) in sales of goods.
    */
-  pis_cofins_cst?: PisCofinsCst | string | number;
+  pis_cofins_cst?: PisCofinsCst | (string & {}) | number;
   /**
    * Only for BR shop.Enter the total percentage of the combination of federal, state, and municipal taxes, using up to two decimals.
    */
@@ -8106,7 +8106,7 @@ export interface UpdateItemCertification {
   /**
    * Certification number issued by the regulatory or certifying authority; uniquely identifies the certification.refer tohttps://seller.shopee.ph/edu/article/24236
    */
-  certification_no: CertificationNo | string | number;
+  certification_no: CertificationNo | (string & {}) | number;
   /**
    * Platform-defined permit ID used to link to a specific certification template or rule.get from v2.product.get_product_certification_rule
    */
@@ -8234,7 +8234,7 @@ export interface UpdateItemRequest {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | (string & {}) | number;
   /**
    * category recommendation service id
    */
@@ -8730,7 +8730,7 @@ export interface UpdateModelModel {
   /**
    * - GTIN is an identifier for trade items, developed by the international organization GS1.- They have 8 to 14 digits. The most common are UPC, EAN, JAN and ISBN.- GTIN will help boost positioning in online marketing channels like Google and Facebook.- That incorporation with GTIN will also aid in Search and Recommendation in Shopee itself allowing buyers to have higher likelihood of finding one's listing.Note: If you want to set “Item without GTIN”, please pass the gtin_code as "00".The validation rule is based on the value return in gtin_validation_rule" field in v2.product.get_item_limit API- Mandatory: This field is required and must contain a correctly formatted GTiN number.- Flexible: This field is required and must contain either a correctly formatted GTlN number or "00" to declare that the item/model has no valid GTlN.- Optional: This field is optional and can contain a correctly formatted GTiN number, "00" or be omitted entirely.
    */
-  gtin_code?: GtinCode | string | number;
+  gtin_code?: GtinCode | (string & {}) | number;
   /**
    * can be "NORMAL" or "UNAVAILABLE". Only CNSC and KRSC sellers can set the model_status. Normal models can be sold on the buyer's side, and UNAVAILABLE models cannot be sold on the buyer's side.
    */

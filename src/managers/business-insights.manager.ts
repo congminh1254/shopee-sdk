@@ -7,6 +7,7 @@ import {
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
+import { RequestOptions } from "../schemas/fetch.js";
 export class BusinessInsightsManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
@@ -17,10 +18,12 @@ export class BusinessInsightsManager extends BaseManager {
    * Only available in Brazil (BR).
    *
    * @param {GetMarketingHotListingRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetMarketingHotListingResponse>} Promise resolving to the response
    */
   public async getMarketingHotListing(
-    params: GetMarketingHotListingRequest
+    params: GetMarketingHotListingRequest,
+    options?: RequestOptions
   ): Promise<GetMarketingHotListingResponse> {
     return ShopeeFetch.fetch<GetMarketingHotListingResponse>(
       this.config,
@@ -29,6 +32,7 @@ export class BusinessInsightsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }

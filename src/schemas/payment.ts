@@ -1684,7 +1684,7 @@ export interface GetEscrowDetailBatchBuyerPaymentInfo {
   /**
    * An additional service fee charged by shopee to Buyer at checkout. currently only applicable to ID region.it is an initial value (will not be updated after RR/cancellation)
    */
-  buyer_service_fee?: BuyerServiceFee | string | number;
+  buyer_service_fee?: BuyerServiceFee | (string & {}) | number;
   /**
    * The tax amount paid by buyer.currently this is a custom tax charged to CB orders in TW,CL,MX
    */
@@ -2272,7 +2272,7 @@ export interface GetPayoutDetailPayoutInfo {
   /**
    * The service provider of seller. Available value: payoneer, pingpong, lianlian.
    */
-  pay_service?: PayService | string | number;
+  pay_service?: PayService | (string & {}) | number;
   /**
    * Seller's account to receive the payout.
    */
@@ -2318,7 +2318,7 @@ export interface GetPayoutDetailOfflineAdjustment {
   /**
    * Dimension of offline adjustment. Available value: shop, order.
    */
-  adjustment_level?: AdjustmentLevel | string | number;
+  adjustment_level?: AdjustmentLevel | (string & {}) | number;
   /**
    * Shopee's unique identifier for an order.
    */
@@ -2405,7 +2405,7 @@ export interface GetPayoutInfoPayout {
   /**
    * The service provider of seller. Available value: payoneer, pingpong, lianlian.
    */
-  pay_service?: PayService | string | number;
+  pay_service?: PayService | (string & {}) | number;
   /**
    * Seller's account to receive the payout.
    */
@@ -2485,7 +2485,7 @@ export interface GetWalletTransactionListRequest {
   /**
    * Transaction type APIs: ESCROW_VERIFIED_ADD = 101;  // Escrow has been verified and paid to seller     ESCROW_VERIFIED_MINUS = 102; // Escrow has been verified and charged from seller as escrow amount is negative    WITHDRAWAL_CREATED = 201; // The seller has created a withdrawal, so it’s deducted from balance      WITHDRAWAL_COMPLETED = 202; // The withdrawal has been completed, so the ongoing amount decreases.        WITHDRAWAL_CANCELLED = 203; // The withdrawal has been canceled, so the amount is added back to the seller balance. Ongoing amount decreases as well.      ADJUSTMENT_ADD = 401; // One adjustment item has been paid to seller     ADJUSTMENT_MINUS = 402; // One adjustment item has been charged from seller      FBS_ADJUSTMENT_ADD = 404; //One adjustment item related to Shopee fulfillment order is added to seller      FBS_ADJUSTMENT_MINUS = 405; // One adjustment item related to Shopee fulfillment order is deducted from seller      ADJUSTMENT_CENTER_ADD = 406; // One adjustment item has been added to seller wallet     ADJUSTMENT_CENTER_DEDUCT = 407; // One adjustment item has been deducted from seller wallet     FSF_COST_PASSING_DEDUCT = 408; FSF cost passing for canceled/invalid orders     PERCEPTION_VAT_TAX_DEDUCT = 409; Extra charge for perception regime VAT tax (Argentina)     PERCEPTION_TURNOVER_TAX_DEDUCT = 410; Extra charge for perception regime turnover tax (Argentina)     PAID_ADS_CHARGE = 450; // Paid ads are charged from seller     PAID_ADS_REFUND = 451; // Paid ads are refunded to seller     FAST_ESCROW_DISBURSE = 452; // ADD. // The first disbursement of fast escrow has been paid to seller     AFFILIATE_ADS_SELLER_FEE = 455; // DEDUCT // Affiliate ads seller fee is charged from seller     AFFILIATE_ADS_SELLER_FEE_REFUND = 456; // ADD // Affiliate ads seller fee is refunded to sellerFAST_ESCROW_DEDUCT = 458; // Fast escrow is deducted from seller balance in the event of return and refund FAST_ESCROW_DISBURSE_REMAIN = 459; // The second disbursement of fast escrow has been paid to seller     AFFILIATE_FEE_DEDUCT = 460; // Affiliate MKT fee is charged from seller for using affiliate MKT services
    */
-  transaction_type?: TransactionType | string | number;
+  transaction_type?: TransactionType | (string & {}) | number;
   /**
    * It's to indicate whether user wants to only return : MONEY_IN = addition MONEY_OUT = Deductionif not specified, we will return allNote special case for TW JKO Pay, we will ignore Money_flow
    */
@@ -2515,7 +2515,7 @@ export interface GetWalletTransactionListTransaction {
   /**
    * The status of the transaction，available values: FAILED,COMPLETED,PENDING,INITIAL.
    */
-  status?: Status | string | number;
+  status?: Status | (string & {}) | number;
   /**
    * The type of transaction.
    */
@@ -2580,11 +2580,11 @@ export interface GetWalletTransactionListTransaction {
   /**
    * Description:A new response parameter added after: https://confluence.shopee.io/display/SPCT/%5BPRD%5D+%5BOpen+API%5D+Update+on+New+Open+API+to+fetch+Seller+wallet+Transaction This returns the updated transaction tab types that client can use to specify which transaction types they want to return. It will have the following tab typesDefaultwallet_order_incomewallet_adjustment_filterwallet_wallet_paymentwallet_refund_from_orderwallet_withdrawalsfast_escrow_repaymentfast_payseller_loancorporate_loanpix_transactions_filteropen_finance_transactions_filter Note for BR, currently in SOP live configuration, wallet txn type that linked to pix_transactions_filter  and open_finance_transactions_filter  are classified as default  type tab instead. therefore for Open API client who wants to query these 2 txn can put default as the filter in this type
    */
-  transaction_tab_type?: TransactionTabType | string | number;
+  transaction_tab_type?: TransactionTabType | (string & {}) | number;
   /**
    * New response parameter provided after: https://confluence.shopee.io/display/SPCT/%5BPRD%5D+%5BOpen+API%5D+Update+on+New+Open+API+to+fetch+Seller+wallet+Transaction It's to indicate the money flowMONEY_IN = addition MONEY_OUT = deductionif not specified in request, will return bothNote special case for TW JKO Pay, we will ignore Money_flow
    */
-  money_flow?: MoneyFlow | string | number;
+  money_flow?: MoneyFlow | (string & {}) | number;
   /**
    * The outlet shop name where this outlet transaction came from. (In the Original Instant Mart concept, outlet transactions are redirected to Mart.)
    */

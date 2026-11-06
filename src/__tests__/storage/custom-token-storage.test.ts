@@ -225,9 +225,8 @@ describe("CustomTokenStorage", () => {
         message: "",
       };
 
-      // Mock writeFileSync to throw an error
-      const originalWriteFileSync = fs.writeFileSync;
-      jest.spyOn(fs, "writeFileSync").mockImplementation(() => {
+      // Mock writeFile to throw an error
+      const writeFileSpy = jest.spyOn(fs.promises, "writeFile").mockImplementation(() => {
         throw new Error("Write failed");
       });
 
@@ -235,7 +234,7 @@ describe("CustomTokenStorage", () => {
       await expect(storage.store(token)).rejects.toThrow("Write failed");
 
       // Restore original function
-      fs.writeFileSync = originalWriteFileSync;
+      writeFileSpy.mockRestore();
     });
   });
 
@@ -281,9 +280,8 @@ describe("CustomTokenStorage", () => {
 
       await storage.store(token);
 
-      // Mock readFileSync to throw a non-ENOENT error
-      const originalReadFileSync = fs.readFileSync;
-      jest.spyOn(fs, "readFileSync").mockImplementation(() => {
+      // Mock readFile to throw a non-ENOENT error
+      const readFileSpy = jest.spyOn(fs.promises, "readFile").mockImplementation(() => {
         const error = new Error("Permission denied") as NodeJS.ErrnoException;
         error.code = "EACCES";
         throw error;
@@ -293,7 +291,7 @@ describe("CustomTokenStorage", () => {
       await expect(storage.get()).rejects.toThrow("Permission denied");
 
       // Restore original function
-      fs.readFileSync = originalReadFileSync;
+      readFileSpy.mockRestore();
     });
   });
 
@@ -345,9 +343,8 @@ describe("CustomTokenStorage", () => {
 
       await storage.store(token);
 
-      // Mock unlinkSync to throw a non-ENOENT error
-      const originalUnlinkSync = fs.unlinkSync;
-      jest.spyOn(fs, "unlinkSync").mockImplementation(() => {
+      // Mock unlink to throw a non-ENOENT error
+      const unlinkSpy = jest.spyOn(fs.promises, "unlink").mockImplementation(() => {
         const error = new Error("Permission denied") as NodeJS.ErrnoException;
         error.code = "EACCES";
         throw error;
@@ -357,7 +354,7 @@ describe("CustomTokenStorage", () => {
       await expect(storage.clear()).rejects.toThrow("Permission denied");
 
       // Restore original function
-      fs.unlinkSync = originalUnlinkSync;
+      unlinkSpy.mockRestore();
     });
   });
 
@@ -453,22 +450,22 @@ describe("CustomTokenStorage", () => {
     it("should catch non-Error exceptions correctly", async () => {
       const storage = new CustomTokenStorage(888899);
 
-      // 1. fs.writeFileSync throws string
-      jest.spyOn(fs, "writeFileSync").mockImplementation(() => {
+      // 1. fs.promises.writeFile throws string
+      jest.spyOn(fs.promises, "writeFile").mockImplementation(() => {
         throw "String write error";
       });
       await expect(storage.store({} as any)).rejects.toThrow(
         "Failed to store token: Unknown error"
       );
 
-      // 2. fs.readFileSync throws string
-      jest.spyOn(fs, "readFileSync").mockImplementation(() => {
+      // 2. fs.promises.readFile throws string
+      jest.spyOn(fs.promises, "readFile").mockImplementation(() => {
         throw "String read error";
       });
       await expect(storage.get()).rejects.toThrow("Failed to get token: Unknown error");
 
-      // 3. fs.unlinkSync throws string
-      jest.spyOn(fs, "unlinkSync").mockImplementation(() => {
+      // 3. fs.promises.unlink throws string
+      jest.spyOn(fs.promises, "unlink").mockImplementation(() => {
         throw "String unlink error";
       });
       await expect(storage.clear()).rejects.toThrow("Failed to clear token: Unknown error");

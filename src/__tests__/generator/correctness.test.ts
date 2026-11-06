@@ -68,7 +68,7 @@ function fixture(dir: string): void {
   );
   fs.writeFileSync(
     path.join(dir, "src/schemas/fetch.ts"),
-    "export interface FetchResponse<T> { response: T; request_id: string; error: string; message: string }"
+    "export interface FetchResponse<T> { response: T; request_id: string; error: string; message: string }\nexport interface RequestOptions { signal?: AbortSignal }"
   );
   fs.writeFileSync(
     path.join(dir, "src/fetch.ts"),

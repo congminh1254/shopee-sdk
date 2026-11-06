@@ -107,7 +107,7 @@ export interface GetVideoUploadResultResponseData {
   /**
    * Current status of the upload task. Possible values:- INITIATED: Upload task has been created (via init_video_upload) but no parts have been uploaded yet.- UPLOADING: Video file parts are being uploaded. The upload has started but is not yet completed.- UPLOADED: All video parts have been uploaded successfully, waiting for complete_video_upload to trigger processing.- PROCESSING: Video is being transcoded/validated by the system (duration, format, resolution checks).- SUCCEEDED: Video upload and transcoding completed successfully. Video URL and cover URL are available for use.- FAILED: Upload or processing failed (e.g., invalid format, duration not within allowed range, transcoding error).- CANCELLED: Upload task was explicitly canceled by the client (cancel_video_upload), and the video is discarded.
    */
-  status?: Status | string | number;
+  status?: Status | (string & {}) | number;
   /**
    * Detailed fail or cancel reason, will be returned if status is FAILED or CANCELLED.
    */
