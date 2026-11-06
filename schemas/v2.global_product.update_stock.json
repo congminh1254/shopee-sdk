@@ -520,8 +520,7 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Product Management",
-    "Swam ERP"
+    "Product Management"
   ],
   "path": "/api/v2/global_product/update_stock",
   "related_documents": {

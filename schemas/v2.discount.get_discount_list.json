@@ -511,8 +511,7 @@
     "ERP System",
     "Seller In House System",
     "Marketing",
-    "Customized APP",
-    "Swam ERP"
+    "Customized APP"
   ],
   "path": "/api/v2/discount/get_discount_list",
   "related_documents": {

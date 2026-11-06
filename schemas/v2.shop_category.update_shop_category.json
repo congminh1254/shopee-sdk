@@ -505,8 +505,7 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Product Management",
-    "Swam ERP"
+    "Product Management"
   ],
   "path": "/api/v2/shop_category/update_shop_category",
   "related_documents": {

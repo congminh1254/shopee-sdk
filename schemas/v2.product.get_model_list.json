@@ -1043,7 +1043,13 @@
   ],
   "path": "/api/v2/product/get_model_list",
   "related_documents": {
-    "developer_guides": [],
+    "developer_guides": [
+      {
+        "document_id": 758,
+        "title": "Standardized Shop Product (SSP) Integration Guide",
+        "status": 1
+      }
+    ],
     "faqs": []
   }
 }

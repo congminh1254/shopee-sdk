@@ -3609,6 +3609,10 @@ export interface GetItemBaseInfoItem {
    */
   has_model?: boolean;
   /**
+   * default model id
+   */
+  default_model_id?: number;
+  /**
    * Indicates whether the item is currently under any ongoing promotion.
    */
   has_promotion?: boolean;
@@ -3629,6 +3633,10 @@ export interface GetItemBaseInfoItem {
    * id of new size chart.
    */
   size_chart_id?: number;
+  /**
+   * [Only for ID local sellers] as a unique identifier for each standardized medicine.
+   */
+  medicine_id?: number;
   promotion_image?: GetItemBaseInfoPromotionImage;
   compatibility_info?: GetItemBaseInfoCompatibilityInfo;
   /**
@@ -3652,10 +3660,6 @@ export interface GetItemBaseInfoItem {
    * purchase limit info
    */
   purchase_limit_info?: GetItemBaseInfoPurchaseLimitInfo;
-  /**
-   * [Only for ID local sellers] as a unique identifier for each standardized medicine.
-   */
-  medicine_id?: number;
   /**
    * For PH product certification inputRequired for some category and attribute option
    */

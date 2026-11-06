@@ -291,7 +291,7 @@ export interface GenerateFbsInvoicesBatchDownload {
    */
   end: number;
   /**
-   * 1 = Remessa2 = Return3 = Symbolic Return4 = Sale5 = Entrada6 = Symbolic Remessa7 = all
+   * REMESSA = 1;RETURN = 2;SYMBOLIC_RETURN = 3;SALE = 4;ENTRADA = 5;SYMBOLIC_REMESSA = 6;ALL = 7;EXPORT = 8;CANCELLATION = 9;EXPORT_DEVOLUCAO = 10;TRANSFER = 11;TRANSFER_REMESSA = 12;REVERSE_TRANSFER = 13;
    */
   document_type: number;
   /**
@@ -299,16 +299,18 @@ export interface GenerateFbsInvoicesBatchDownload {
    */
   file_type: number;
   /**
-   * 1= authorized only2= cancelledDefault: If document_status not passed or passed empty, means documents under ALL status (both authorized and cancelled) must be included
+   * 1= authorized only2= cancelled3= disable invoiceDefault: If document_status not passed or passed empty, means documents under ALL status (both authorized and cancelled) must be included
    */
   document_status?: number;
+  /**
+   * The CNPJ of the seller's branch used to filter the tax documents. Must match one of the CNPJ branches registered for the seller. Multiple selection is not allowed.
+   */
+  cnpj: string;
 }
 /**
  * Request parameters for generate_fbs_invoices
  *
- * This API creates a task to download a specific tax document (e.g., sales invoice, remessa invoice) for the seller's account, available only after the document is issued by the system as part of the Fulfilled by Shopee (FBS) process.
- * The workflow is as follows: (1) v2.order.generate_fbs_invoices; (2) v2.order.get_fbs_invoices_result; (3) v2.order.download_fbs_invoices.
- * Please note: The download link for the document will expire 30 minutes after being generated.
+ * This API creates a task to download a specific tax document (e.g., sales invoice, remessa invoice) for the seller's account, available only after the document is issued by the system as part of the Fulfilled by Shopee (FBS) process.The workflow is as follows: (1) v2.order.generate_fbs_invoices; (2) v2.order.get_fbs_invoices_result; (3) v2.order.download_fbs_invoices.Please note: The download link for the document will expire 30 minutes after being generated.
  */
 export interface GenerateFbsInvoicesRequest {
   batch_download?: GenerateFbsInvoicesBatchDownload;
@@ -343,9 +345,7 @@ export interface GenerateFbsInvoicesResponseData {
 /**
  * Response payload for generate_fbs_invoices
  *
- * This API creates a task to download a specific tax document (e.g., sales invoice, remessa invoice) for the seller's account, available only after the document is issued by the system as part of the Fulfilled by Shopee (FBS) process.
- * The workflow is as follows: (1) v2.order.generate_fbs_invoices; (2) v2.order.get_fbs_invoices_result; (3) v2.order.download_fbs_invoices.
- * Please note: The download link for the document will expire 30 minutes after being generated.
+ * This API creates a task to download a specific tax document (e.g., sales invoice, remessa invoice) for the seller's account, available only after the document is issued by the system as part of the Fulfilled by Shopee (FBS) process.The workflow is as follows: (1) v2.order.generate_fbs_invoices; (2) v2.order.get_fbs_invoices_result; (3) v2.order.download_fbs_invoices.Please note: The download link for the document will expire 30 minutes after being generated.
  */
 export type GenerateFbsInvoicesResponse = FetchResponse<GenerateFbsInvoicesResponseData>;
 /**
@@ -2121,6 +2121,14 @@ export interface GetPackageDetailPackage {
    */
   buyer_preference_for_partial_cancellation?: number;
   invoice_pending?: GetPackageDetailInvoicePending;
+  /**
+   * If the pickup time was last updated by seller or system. Not returned if not applicable.
+   */
+  latest_pickup_time_change_source?: string;
+  /**
+   * The pickup start time for this package. Not returned if not applicable.
+   */
+  pickup_time?: number;
 }
 /**
  * GetPackageDetailResponseData sub-interface for GetPackageDetailResponse

@@ -297,6 +297,7 @@ describe("PaymentManager (Generated Tests)", () => {
               category: "test_string",
             },
           ],
+          sspl_fee: 123,
           seller_product_rebate: {
             amount: 123,
             commission_fee_offset: 123,
@@ -551,6 +552,7 @@ describe("PaymentManager (Generated Tests)", () => {
               ads_voucher_discount: 123,
               buyer_instant_fee: 123,
             },
+            sspl_fee: 123,
           },
         },
       ];

@@ -705,8 +705,7 @@
     "Order Management",
     "Accounting And Finance",
     "Marketing",
-    "Customized APP",
-    "Swam ERP"
+    "Customized APP"
   ],
   "path": "/api/v2/discount/get_discount",
   "related_documents": {

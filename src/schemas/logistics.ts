@@ -739,6 +739,33 @@ export interface DownloadShippingDocumentJobResponseData {
 export type DownloadShippingDocumentJobResponse =
   FetchResponse<DownloadShippingDocumentJobResponseData>;
 /**
+ * Request parameters for download_shipping_document_job_filelink
+ *
+ * This API allows users to download the shipping document associated with a specific job ID. It checks the job status before proceeding with the download. The response will contain a link that can be used to download the shipping document.
+ */
+export interface DownloadShippingDocumentJobFilelinkRequest {
+  /**
+   * Generated Job ID for status tracking and download the Shipping Document
+   */
+  job_id: string;
+}
+/**
+ * Response data payload for download_shipping_document_job_filelink
+ */
+export interface DownloadShippingDocumentJobFilelinkResponseData {
+  /**
+   * The link to download the shipping document. The link will be valid for 30 minutes.
+   */
+  file_link?: string;
+}
+/**
+ * Response payload for download_shipping_document_job_filelink
+ *
+ * This API allows users to download the shipping document associated with a specific job ID. It checks the job status before proceeding with the download. The response will contain a link that can be used to download the shipping document.
+ */
+export type DownloadShippingDocumentJobFilelinkResponse =
+  FetchResponse<DownloadShippingDocumentJobFilelinkResponseData>;
+/**
  * Request parameters for download_to_label
  *
  * Use the API to download the TO label that should be attached to the carton before drop-off at the warehouse (Only for TW channel_id:30029).
@@ -749,7 +776,7 @@ export interface DownloadToLabelRequest {
    */
   sorting_group: number;
   /**
-   * Specifies the TO quantity, up to a maximum of 20 per request. If not specified, the default value is 1
+   * Specifies the TO quantity, up to a maximum of 100 per request. If not specified, the default value is 1
    */
   quantity?: number;
 }
@@ -768,6 +795,36 @@ export interface DownloadToLabelResponseData {
  * Use the API to download the TO label that should be attached to the carton before drop-off at the warehouse (Only for TW channel_id:30029).
  */
 export type DownloadToLabelResponse = FetchResponse<DownloadToLabelResponseData>;
+/**
+ * Request parameters for download_to_label_filelink
+ *
+ * Use the API to download the TO label that should be attached to the carton before drop-off at the warehouse (Only for TW channel_id:30029). This API will return file link instead of blob.
+ */
+export interface DownloadToLabelFilelinkRequest {
+  /**
+   * Sorting Group of the TO. Available value:1:North2:South
+   */
+  sorting_group: number;
+  /**
+   * Specifies the TO quantity, up to a maximum of 100 per request. If not specified, the default value is 1
+   */
+  quantity?: number;
+}
+/**
+ * Response data payload for download_to_label_filelink
+ */
+export interface DownloadToLabelFilelinkResponseData {
+  /**
+   * The download link to the waybill file. The link will be valid for 30 minutes.
+   */
+  file_link?: string;
+}
+/**
+ * Response payload for download_to_label_filelink
+ *
+ * Use the API to download the TO label that should be attached to the carton before drop-off at the warehouse (Only for TW channel_id:30029). This API will return file link instead of blob.
+ */
+export type DownloadToLabelFilelinkResponse = FetchResponse<DownloadToLabelFilelinkResponseData>;
 /**
  * Request parameters for get_address_list
  *
@@ -2484,7 +2541,7 @@ export type GetOperatingHourRestrictionsResponse =
 /**
  * Request parameters for get_operating_hours
  *
- * This API is utilized to retrieve the existing operating hours of sellers including Pickup Operating Hours,  Special Hours, Instant Operating Hours, and Shop Collection Operating Hours.
+ * This API is utilized to retrieve the existing operating hours of sellers including Pickup Operating Hours, Special Hours, Instant Operating Hours, and Shop Collection Operating Hours.
  */
 export type GetOperatingHoursRequest = Record<string, never>;
 /**
@@ -2742,6 +2799,23 @@ export interface GetOperatingHoursShopCollectionOperatingHour {
   public_holiday?: GetOperatingHoursPublicHoliday;
 }
 /**
+ * GetOperatingHoursInstantOrderCutoffTimeBuffer sub-interface for GetOperatingHoursRepsonse
+ */
+export interface GetOperatingHoursInstantOrderCutoffTimeBuffer {
+  /**
+   * Unique identifier for a buffer group.
+   */
+  id?: string;
+  /**
+   * Display name for a buffer group.
+   */
+  display_name?: string;
+  /**
+   * Cutoff time, in minutes before the end of the shop's instant operating hour, after which new orders are no longer fulfilled on the same day for the given buffer group.
+   */
+  buffer?: number;
+}
+/**
  * GetOperatingHoursRepsonse sub-interface for GetOperatingHoursResponse
  */
 export interface GetOperatingHoursRepsonse {
@@ -2761,6 +2835,7 @@ export interface GetOperatingHoursRepsonse {
    * The details of Shop Collection Operating Hours
    */
   shop_collection_operating_hour?: GetOperatingHoursShopCollectionOperatingHour;
+  instant_order_cutoff_time_buffer_list?: GetOperatingHoursInstantOrderCutoffTimeBuffer[];
 }
 /**
  * Response data payload for get_operating_hours
@@ -2771,9 +2846,35 @@ export interface GetOperatingHoursResponseData {
 /**
  * Response payload for get_operating_hours
  *
- * This API is utilized to retrieve the existing operating hours of sellers including Pickup Operating Hours,  Special Hours, Instant Operating Hours, and Shop Collection Operating Hours.
+ * This API is utilized to retrieve the existing operating hours of sellers including Pickup Operating Hours, Special Hours, Instant Operating Hours, and Shop Collection Operating Hours.
  */
 export type GetOperatingHoursResponse = FetchResponse<GetOperatingHoursResponseData>;
+/**
+ * Request parameters for get_order_count_limit_outside_instant_operating_time
+ *
+ * Use this API to retrieve the current order count limit configuration for orders outside the Instant operating time window if the daily order count limit has been enabled.
+ */
+export type GetOrderCountLimitOutsideInstantOperatingTimeRequest = Record<string, never>;
+/**
+ * GetOrderCountLimitOutsideInstantOperatingTimeResponseData sub-interface for GetOrderCountLimitOutsideInstantOperatingTimeResponse
+ */
+export interface GetOrderCountLimitOutsideInstantOperatingTimeResponseData {
+  /**
+   * Whether a daily order count limit is currently applied to orders outside Instant OPT.
+   */
+  is_order_limit_enabled?: boolean;
+  /**
+   * The configured daily order count limit. Present only if is_order_limit_enabled = true
+   */
+  order_count_limit?: number;
+}
+/**
+ * Response payload for get_order_count_limit_outside_instant_operating_time
+ *
+ * Use this API to retrieve the current order count limit configuration for orders outside the Instant operating time window if the daily order count limit has been enabled.
+ */
+export type GetOrderCountLimitOutsideInstantOperatingTimeResponse =
+  FetchResponse<GetOrderCountLimitOutsideInstantOperatingTimeResponseData>;
 /**
  * Request parameters for get_pause_status
  *
@@ -4222,6 +4323,45 @@ export interface SetMartPackagingInfoResponseData {
  * [Only for ID mart seller] This API allows sellers to set up their packaging fee info. Through this API, sellers can enable or disable packaging fees, and if enabled, specify the dimensions of the packaging and the associated fee. This ensures that sellers can configure their shipping costs accurately based on their packaging requirements.
  */
 export type SetMartPackagingInfoResponse = FetchResponse<SetMartPackagingInfoResponseData>;
+/**
+ * Request parameters for set_order_count_limit_outside_instant_operating_time
+ *
+ * Use this API to configure how orders outside the Instant operating time window are accepted. This allows the shop to either accept all such orders without restriction, or limit them by setting a maximum daily order count. Note: The setting may take a few moments to take effect. Please check for any additional orders that may still be accepted under the previous configuration during this window.
+ */
+export interface SetOrderCountLimitOutsideInstantOperatingTimeRequest {
+  /**
+   * Whether a daily order count limit is applied to orders outside Instant OPT. Set to false to accept all such orders without restriction.
+   */
+  is_order_limit_enabled: boolean;
+  /**
+   * Maximum number of orders accepted outside Instant OPT per day. If the order_count_limit is set to 0, no orders will be accepted outside Instant OPT per day.
+   */
+  order_count_limit?: number;
+}
+/**
+ * SetOrderCountLimitOutsideInstantOperatingTimeResponseData sub-interface for SetOrderCountLimitOutsideInstantOperatingTimeResponse
+ */
+export interface SetOrderCountLimitOutsideInstantOperatingTimeResponseData {
+  /**
+   * Update results: "succeed" OR "failed"
+   */
+  update_result?: string;
+  /**
+   * Whether a daily order count limit is currently applied to orders outside Instant OPT.
+   */
+  is_order_limit_enabled?: boolean;
+  /**
+   * The configured daily order count limit. Present only if is_order_limit_enabled = true
+   */
+  order_count_limit?: number;
+}
+/**
+ * Response payload for set_order_count_limit_outside_instant_operating_time
+ *
+ * Use this API to configure how orders outside the Instant operating time window are accepted. This allows the shop to either accept all such orders without restriction, or limit them by setting a maximum daily order count. Note: The setting may take a few moments to take effect. Please check for any additional orders that may still be accepted under the previous configuration during this window.
+ */
+export type SetOrderCountLimitOutsideInstantOperatingTimeResponse =
+  FetchResponse<SetOrderCountLimitOutsideInstantOperatingTimeResponseData>;
 /**
  * Request parameters for set_pause_status
  *

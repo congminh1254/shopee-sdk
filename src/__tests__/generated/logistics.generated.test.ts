@@ -471,6 +471,40 @@ describe("LogisticsManager (Generated Tests)", () => {
     });
   });
 
+  describe("downloadShippingDocumentJobFilelink", () => {
+    it("should forward the exact request options and return the response", async () => {
+      const exampleRequest = {
+        job_id: "SDK0001_a86148a97a6e04ce2ed468968de344b7",
+      };
+      const exampleResponse = {
+        file_link:
+          "https://sfile-origin.sp-cdn.susercontent.com/sd-sg-1/global-0001_4325667--normal_pdf_shipping_label.pdf",
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.downloadShippingDocumentJobFilelink(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/download_shipping_document_job_filelink",
+        {
+          method: "POST",
+          auth: true,
+          body: exampleRequest,
+        }
+      );
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
   describe("downloadToLabel", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
@@ -492,6 +526,37 @@ describe("LogisticsManager (Generated Tests)", () => {
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/download_to_label", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
+  describe("downloadToLabelFilelink", () => {
+    it("should forward the exact request options and return the response", async () => {
+      const exampleRequest = {
+        sorting_group: 1,
+        quantity: 1,
+      };
+      const exampleResponse = {
+        file_link:
+          "https://sfile-origin.sp-cdn.susercontent.com/sd-sg-1/global-0001_4325667--normal_pdf_shipping_label.pdf",
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.downloadToLabelFilelink(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/logistics/download_to_label_filelink", {
         method: "POST",
         auth: true,
         body: exampleRequest,
@@ -1499,6 +1564,13 @@ describe("LogisticsManager (Generated Tests)", () => {
               end_time: "18:30",
             },
           },
+          instant_order_cutoff_time_buffer_list: [
+            {
+              id: "instant_prio",
+              display_name: "Instant  Prio",
+              buffer: 60,
+            },
+          ],
         },
       };
 
@@ -1517,6 +1589,38 @@ describe("LogisticsManager (Generated Tests)", () => {
         auth: true,
         params: exampleRequest,
       });
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
+  describe("getOrderCountLimitOutsideInstantOperatingTime", () => {
+    it("should forward the exact request options and return the response", async () => {
+      const exampleRequest = {};
+      const exampleResponse = {
+        is_order_limit_enabled: true,
+        order_count_limit: 100,
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.getOrderCountLimitOutsideInstantOperatingTime(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/get_order_count_limit_outside_instant_operating_time",
+        {
+          method: "GET",
+          auth: true,
+          params: exampleRequest,
+        }
+      );
 
       expect(result.response).toEqual(exampleResponse);
     });
@@ -2167,6 +2271,42 @@ describe("LogisticsManager (Generated Tests)", () => {
         auth: true,
         body: exampleRequest,
       });
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
+  describe("setOrderCountLimitOutsideInstantOperatingTime", () => {
+    it("should forward the exact request options and return the response", async () => {
+      const exampleRequest = {
+        is_order_limit_enabled: true,
+        order_count_limit: 100,
+      };
+      const exampleResponse = {
+        update_result: "succeed",
+        is_order_limit_enabled: true,
+        order_count_limit: 100,
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.setOrderCountLimitOutsideInstantOperatingTime(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(
+        mockConfig,
+        "/logistics/set_order_count_limit_outside_instant_operating_time",
+        {
+          method: "POST",
+          auth: true,
+          body: exampleRequest,
+        }
+      );
 
       expect(result.response).toEqual(exampleResponse);
     });

@@ -623,8 +623,7 @@
   "error_example": [],
   "api_permission": [
     "ERP System",
-    "Seller In House System",
-    "Swam ERP"
+    "Seller In House System"
   ],
   "path": "/api/v2/sbs/get_stock_aging",
   "related_documents": {

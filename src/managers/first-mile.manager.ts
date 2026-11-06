@@ -5,6 +5,8 @@ import {
   BindCourierDeliveryFirstMileTrackingNumberResponse,
   BindFirstMileTrackingNumberRequest,
   BindFirstMileTrackingNumberResponse,
+  CancelCourierDeliveryFirstMileTrackingNumberRequest,
+  CancelCourierDeliveryFirstMileTrackingNumberResponse,
   GenerateAndBindFirstMileTrackingNumberRequest,
   GenerateAndBindFirstMileTrackingNumberResponse,
   GenerateFirstMileTrackingNumberRequest,
@@ -29,6 +31,8 @@ import {
   GetUnbindOrderListResponse,
   GetWaybillRequest,
   GetWaybillResponse,
+  GetWaybillFilelinkRequest,
+  GetWaybillFilelinkResponse,
   UnbindFirstMileTrackingNumberRequest,
   UnbindFirstMileTrackingNumberResponse,
   UnbindFirstMileTrackingNumberAllRequest,
@@ -72,6 +76,25 @@ export class FirstMileManager extends BaseManager {
     return ShopeeFetch.fetch<BindFirstMileTrackingNumberResponse>(
       this.config,
       "/first_mile/bind_first_mile_tracking_number",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
+  }
+  /**
+   * Use this api to cancel first mile tracking number for courier delivery method.
+   *
+   * @param {CancelCourierDeliveryFirstMileTrackingNumberRequest} params Request parameters
+   * @returns {Promise<CancelCourierDeliveryFirstMileTrackingNumberResponse>} Promise resolving to the response
+   */
+  public async cancelCourierDeliveryFirstMileTrackingNumber(
+    params: CancelCourierDeliveryFirstMileTrackingNumberRequest
+  ): Promise<CancelCourierDeliveryFirstMileTrackingNumberResponse> {
+    return ShopeeFetch.fetch<CancelCourierDeliveryFirstMileTrackingNumberResponse>(
+      this.config,
+      "/first_mile/cancel_courier_delivery_first_mile_tracking_number",
       {
         method: "POST",
         auth: true,
@@ -175,7 +198,7 @@ export class FirstMileManager extends BaseManager {
    * @returns {Promise<GetCourierDeliveryTrackingNumberListResponse>} Promise resolving to the response
    */
   public async getCourierDeliveryTrackingNumberList(
-    params: GetCourierDeliveryTrackingNumberListRequest
+    params?: GetCourierDeliveryTrackingNumberListRequest
   ): Promise<GetCourierDeliveryTrackingNumberListResponse> {
     return ShopeeFetch.fetch<GetCourierDeliveryTrackingNumberListResponse>(
       this.config,
@@ -288,6 +311,25 @@ export class FirstMileManager extends BaseManager {
       auth: true,
       body: params,
     });
+  }
+  /**
+   * Use this api to get first mile waybill file link.
+   *
+   * @param {GetWaybillFilelinkRequest} params Request parameters
+   * @returns {Promise<GetWaybillFilelinkResponse>} Promise resolving to the response
+   */
+  public async getWaybillFilelink(
+    params: GetWaybillFilelinkRequest
+  ): Promise<GetWaybillFilelinkResponse> {
+    return ShopeeFetch.fetch<GetWaybillFilelinkResponse>(
+      this.config,
+      "/first_mile/get_waybill_filelink",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+      }
+    );
   }
   /**
    * Use this api to unbind first mile.

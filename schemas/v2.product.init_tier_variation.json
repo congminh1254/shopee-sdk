@@ -1529,7 +1529,13 @@
   ],
   "path": "/api/v2/product/init_tier_variation",
   "related_documents": {
-    "developer_guides": [],
+    "developer_guides": [
+      {
+        "document_id": 758,
+        "title": "Standardized Shop Product (SSP) Integration Guide",
+        "status": 1
+      }
+    ],
     "faqs": []
   }
 }

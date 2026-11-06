@@ -398,8 +398,7 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Product Management",
-    "Swam ERP"
+    "Product Management"
   ],
   "path": "/api/v2/product/get_mart_item_mapping_by_id",
   "related_documents": {

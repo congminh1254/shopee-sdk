@@ -519,7 +519,7 @@ export interface GetEscrowDetailSellerProductRebate {
  */
 export interface GetEscrowDetailOrderIncome {
   /**
-   * The total amount that the seller is expected to receive for the order and will change before order is completed. For non cb sip affiliate shop (new formula): escrow_amount= original_cost_of_goods_sold-original_shopee_discount+seller_return_refund+ shopee_discount- voucher_from_seller- seller_coin_cash_back+ buyer_paid_shipping_fee- actual_shipping_fee+ shopee_shipping_rebate+ shipping_fee_discount_from_3pl- reverse_shipping_fee+ rsf_seller_protection_fee_claim_amount- final_return_to_seller_shipping_fee- seller_transaction_fee- service_fee- commission_fee- campaign_fee- shipping_seller_protection_fee_amount- delivery_seller_protection_fee_premium_amount-final_escrow_product_gst- order_ams_commission_fee- escrow_tax-sales_tax_on_lvg-reverse_shipping_fee_sst-shipping_fee_sst-withholding_tax-overseas_return_service_fee-vat_on_imported_goods - withholding_vat_tax - withholding_pit_tax - withholding_cit_tax - seller_order_processing_fee + buyer_paid_packaging_fee - trade_in_bonus_by_seller - fbs_fee - ads_escrow_top_up_fee_or_technical_support_fee - th_import_duty - pay_per_saleFor cb sip affiliate shop: escrow_amount=escrow_amount_pri * exchange_ratenote: Return refund amount = if adjustable RR, will equal to drc_adjustable_refund
+   * The total amount that the seller is expected to receive for the order and will change before order is completed. For non cb sip affiliate shop (new formula): escrow_amount= original_cost_of_goods_sold-original_shopee_discount+seller_return_refund+ shopee_discount- voucher_from_seller- seller_coin_cash_back+ buyer_paid_shipping_fee- actual_shipping_fee+ shopee_shipping_rebate+ shipping_fee_discount_from_3pl- reverse_shipping_fee+ rsf_seller_protection_fee_claim_amount- final_return_to_seller_shipping_fee- seller_transaction_fee- service_fee- commission_fee- campaign_fee- shipping_seller_protection_fee_amount- delivery_seller_protection_fee_premium_amount-final_escrow_product_gst- order_ams_commission_fee- escrow_tax-sales_tax_on_lvg-reverse_shipping_fee_sst-shipping_fee_sst-withholding_tax-overseas_return_service_fee-vat_on_imported_goods - withholding_vat_tax - withholding_pit_tax - withholding_cit_tax - seller_order_processing_fee + buyer_paid_packaging_fee - trade_in_bonus_by_seller - fbs_fee - ads_escrow_top_up_fee_or_technical_support_fee - th_import_duty - pay_per_sale - sspl_feeFor cb sip affiliate shop: escrow_amount=escrow_amount_pri * exchange_ratenote: Return refund amount = if adjustable RR, will equal to drc_adjustable_refund
    */
   escrow_amount?: number;
   /**
@@ -891,6 +891,10 @@ export interface GetEscrowDetailOrderIncome {
    * Returns a breakdown of the net service fees.-only for BR local sellers.
    */
   net_service_fee_info_list?: GetEscrowDetailNetServiceFeeInfo[];
+  /**
+   * Fee charged to sellers participating in the Special SPayLater (SSPL) programme. If there is a RR/Cancellation, this fee might be updated.
+   */
+  sspl_fee?: number;
   /**
    * The shopee rebate borne by seller.-only for BR local sellers.
    */
@@ -1293,7 +1297,7 @@ export interface GetEscrowDetailBatchSellerProductRebate {
  */
 export interface GetEscrowDetailBatchOrderIncome {
   /**
-   * The total amount that the seller is expected to receive for the order and will change before order is completed. For non cb sip affiliate shop (new formula): escrow_amount= original_cost_of_goods_sold-original_shopee_discount+seller_return_refund+ shopee_discounts- voucher_from_seller- seller_coin_cash_back+ buyer_paid_shipping_fee- actual_shipping_fee+ shopee_shipping_rebate+ shipping_fee_discount_from_3pl- reverse_shipping_fee+ rsf_seller_protection_fee_claim_amount+ fsf_seller_protection_fee_claim_amount- final_return_to_seller_shipping_fee- seller_transaction_fee- service_fee- commission_fee- campaign_fee- shipping_seller_protection_fee_premium_amount- delivery_seller_protection_fee_premium_amount-final_escrow_product_gst- order_ams_commission fee- escrow_tax-sales_tax_on_lvg-reverse_shipping_fee_sst-shipping_fee_sst-withholding_tax-overseas_return_service_fee-vat_on_imported_goods - withholding_vat_tax - withholding_pit_tax - withholding_cit_tax - seller_order_processing_fee + buyer_paid_packaging_fee - trade_in_bonus_seller - fbs_fee - ads_escrow_top_up_fee_or_technical_support_fee - th_import_duty - pay_per_saleFor cb sip affiliate shop: escrow_amount=escrow_amount_pri * exchange_ratenote: Return refund amount = if adjustable RR, will equal to drc_adjustable_refund
+   * The total amount that the seller is expected to receive for the order and will change before order is completed. For non cb sip affiliate shop (new formula): escrow_amount= original_cost_of_goods_sold-original_shopee_discount+seller_return_refund+ shopee_discounts- voucher_from_seller- seller_coin_cash_back+ buyer_paid_shipping_fee- actual_shipping_fee+ shopee_shipping_rebate+ shipping_fee_discount_from_3pl- reverse_shipping_fee+ rsf_seller_protection_fee_claim_amount+ fsf_seller_protection_fee_claim_amount- final_return_to_seller_shipping_fee- seller_transaction_fee- service_fee- commission_fee- campaign_fee- shipping_seller_protection_fee_premium_amount- delivery_seller_protection_fee_premium_amount-final_escrow_product_gst- order_ams_commission fee- escrow_tax-sales_tax_on_lvg-reverse_shipping_fee_sst-shipping_fee_sst-withholding_tax-overseas_return_service_fee-vat_on_imported_goods - withholding_vat_tax - withholding_pit_tax - withholding_cit_tax - seller_order_processing_fee + buyer_paid_packaging_fee - trade_in_bonus_seller - fbs_fee - ads_escrow_top_up_fee_or_technical_support_fee - th_import_duty - pay_per_sale - sspl_feeFor cb sip affiliate shop: escrow_amount=escrow_amount_pri * exchange_ratenote: Return refund amount = if adjustable RR, will equal to drc_adjustable_refund
    */
   escrow_amount?: number;
   /**
@@ -1799,6 +1803,10 @@ export interface GetEscrowDetailBatchEscrowDetail {
    * The buyer payment info at order checkout moment. (snapshot value)
    */
   buyer_payment_info?: GetEscrowDetailBatchBuyerPaymentInfo;
+  /**
+   * Fee charged to sellers participating in the Special SPayLater (SSPL) programme. If there is a RR/Cancellation, this fee might be updated.
+   */
+  sspl_fee?: number;
 }
 /**
  * GetEscrowDetailBatchResponseDataItem sub-interface for GetEscrowDetailBatchResponse

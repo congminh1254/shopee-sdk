@@ -142,6 +142,7 @@ describe("OrderManager (Generated Tests)", () => {
           document_type: 1,
           file_type: 123,
           document_status: 123,
+          cnpj: '"00.000.000/0000-00"',
         },
       };
       const exampleResponse = {
@@ -837,6 +838,8 @@ describe("OrderManager (Generated Tests)", () => {
               status: "test_string",
               pending_reason: "test_string",
             },
+            latest_pickup_time_change_source: "seller",
+            pickup_time: 1772276400,
           },
         ],
       };

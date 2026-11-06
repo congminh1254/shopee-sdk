@@ -107,9 +107,7 @@ export class OrderManager extends BaseManager {
     );
   }
   /**
-   * This API creates a task to download a specific tax document (e.g., sales invoice, remessa invoice) for the seller's account, available only after the document is issued by the system as part of the Fulfilled by Shopee (FBS) process.
-   * The workflow is as follows: (1) v2.order.generate_fbs_invoices; (2) v2.order.get_fbs_invoices_result; (3) v2.order.download_fbs_invoices.
-   * Please note: The download link for the document will expire 30 minutes after being generated.
+   * This API creates a task to download a specific tax document (e.g., sales invoice, remessa invoice) for the seller's account, available only after the document is issued by the system as part of the Fulfilled by Shopee (FBS) process.The workflow is as follows: (1) v2.order.generate_fbs_invoices; (2) v2.order.get_fbs_invoices_result; (3) v2.order.download_fbs_invoices.Please note: The download link for the document will expire 30 minutes after being generated.
    *
    * @param {GenerateFbsInvoicesRequest} params Request parameters
    * @returns {Promise<GenerateFbsInvoicesResponse>} Promise resolving to the response

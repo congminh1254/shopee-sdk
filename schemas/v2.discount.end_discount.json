@@ -415,8 +415,7 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Marketing",
-    "Swam ERP"
+    "Marketing"
   ],
   "path": "/api/v2/discount/end_discount",
   "related_documents": {

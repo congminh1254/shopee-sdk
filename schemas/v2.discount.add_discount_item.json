@@ -726,8 +726,7 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Marketing",
-    "Swam ERP"
+    "Marketing"
   ],
   "path": "/api/v2/discount/add_discount_item",
   "related_documents": {

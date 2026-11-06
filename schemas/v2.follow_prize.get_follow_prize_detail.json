@@ -501,8 +501,7 @@
     "ERP System",
     "Seller In House System",
     "Marketing",
-    "Customized APP",
-    "Swam ERP"
+    "Customized APP"
   ],
   "path": "/api/v2/follow_prize/get_follow_prize_detail",
   "related_documents": {

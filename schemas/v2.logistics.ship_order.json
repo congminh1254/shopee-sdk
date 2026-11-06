@@ -788,6 +788,14 @@
       "solution": null
     },
     {
+      "name": "error_modification_in_progress",
+      "description": "Modification is currently in progress for this order.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
       "name": "logistics.no buyer_store",
       "description": "Buyer store is missing.",
       "solution": null
