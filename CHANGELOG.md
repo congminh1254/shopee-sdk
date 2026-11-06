@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.14.0](https://github.com/congminh1254/shopee-sdk/compare/v2.13.0...v2.14.0) (2026-11-06)
+
+
+### Features
+
+* opt-in timeouts, retries, hooks, pagination and richer errors ([#312](https://github.com/congminh1254/shopee-sdk/issues/312)) ([f2e7396](https://github.com/congminh1254/shopee-sdk/commit/f2e7396d9c2dae504dbe51af24b9947b673abb71))
+
+
+### Bug Fixes
+
+* export errors from main entry, honour fetch agent, coalesce token refreshes ([#309](https://github.com/congminh1254/shopee-sdk/issues/309)) ([52eada0](https://github.com/congminh1254/shopee-sdk/commit/52eada05e9967e6ebb1defc58492f079755715f7))
+
 ## [2.13.0](https://github.com/congminh1254/shopee-sdk/compare/v2.12.1...v2.13.0) (2026-11-06)
 
 
