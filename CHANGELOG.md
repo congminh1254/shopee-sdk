@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.12.1](https://github.com/congminh1254/shopee-sdk/compare/v2.12.0...v2.12.1) (2026-11-06)
+
+
+### Bug Fixes
+
+* **storage:** restrict CustomTokenStorage file permissions ([#303](https://github.com/congminh1254/shopee-sdk/issues/303)) ([92027a1](https://github.com/congminh1254/shopee-sdk/commit/92027a1f1f140bd2dc3963d16aee2d5dec8379a1))
+
 ## [2.12.0](https://github.com/congminh1254/shopee-sdk/compare/v2.11.0...v2.12.0) (2026-10-27)
 
 
