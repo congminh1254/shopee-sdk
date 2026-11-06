@@ -37,6 +37,7 @@ import { Agent } from "node:http";
 import { BusinessInsightsManager } from "./managers/business-insights.manager.js";
 import { BuyboxManager } from "./managers/buybox.manager.js";
 import { InstallationManager } from "./managers/installation.manager.js";
+import { RetryOptions, ShopeeHooks } from "./schemas/fetch.js";
 export interface ShopeeConfig {
   partner_id: number;
   partner_key: string;
@@ -46,6 +47,12 @@ export interface ShopeeConfig {
   sdk?: ShopeeSDK;
   shop_id?: number;
   agent?: Agent;
+  /** Abort requests that take longer than this many milliseconds. Disabled by default. */
+  timeout_ms?: number;
+  /** Automatic retry policy. Disabled by default; see {@link RetryOptions}. */
+  retry?: RetryOptions;
+  /** Observability hooks called for every request attempt. */
+  hooks?: ShopeeHooks;
 }
 export class ShopeeSDK {
   private config: ShopeeConfig;
@@ -249,9 +256,32 @@ export class ShopeeSDK {
 }
 export default ShopeeSDK;
 
-export { ShopeeApiError, ShopeeSdkError } from "./errors.js";
+export {
+  ShopeeApiError,
+  ShopeeSdkError,
+  ShopeeNetworkError,
+  ShopeeTimeoutError,
+  ShopeeHttpError,
+} from "./errors.js";
+export type {
+  RequestOptions,
+  RetryOptions,
+  ShopeeHooks,
+  RequestHookContext,
+  ResponseHookContext,
+  ErrorHookContext,
+  UploadFile,
+} from "./schemas/fetch.js";
 export { ShopeeRegion, SHOPEE_BASE_URLS, SHOPEE_AUTH_URLS } from "./schemas/region.js";
 export type { AccessToken } from "./schemas/access-token.js";
 export type { TokenStorage } from "./storage/token-storage.interface.js";
 export { InMemoryTokenStorage } from "./storage/in-memory-token-storage.js";
 export { CustomTokenStorage } from "./storage/custom-token-storage.js";
+export {
+  paginate,
+  paginatePages,
+  nextByCursor,
+  nextByOffset,
+  nextByPageNo,
+} from "./utils/pagination.js";
+export type { NextPage, PaginateOptions } from "./utils/pagination.js";

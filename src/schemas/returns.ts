@@ -678,7 +678,7 @@ export interface GetReturnDetailResponseData {
   /**
    * To indicate whether the return is RRBOC (Return/Refund request raised before Order Complete) or RRAOC (Return/Refund request raised after Order Complete).
    */
-  return_refund_type?: ReturnRefundType | string | number;
+  return_refund_type?: ReturnRefundType | (string & {}) | number;
   /**
    * To indicate the most updated solution of the Return/Refund request (NOTE: this is not the solution during negotiation). Applicable value: - 0: Return and Refund- 1: Refund Only
    */
@@ -1062,7 +1062,7 @@ export interface GetReturnListReturn {
   /**
    * To indicate whether the return is RRBOC (Return/Refund request raised before Order Complete) or RRAOC (Return/Refund request raised after Order Complete).
    */
-  return_refund_type?: ReturnRefundType | string | number;
+  return_refund_type?: ReturnRefundType | (string & {}) | number;
   /**
    * To indicate the most updated solution of the Return/Refund request (NOTE: this is not the solution during negotiation). Applicable value: - 0: Return and Refund- 1: Refund Only
    */
@@ -1129,7 +1129,7 @@ export interface GetReverseTrackingInfoRequest {
   /**
    * Shopee's unique identifier for a return/refund request (serial number of return).
    */
-  return_sn: ReturnSn | string | number;
+  return_sn: ReturnSn | (string & {}) | number;
 }
 /**
  * GetReverseTrackingInfoTrackingInfo sub-interface for GetReverseTrackingInfoResponseData
@@ -1163,7 +1163,7 @@ export interface GetReverseTrackingInfoPostReturnLogisticsTrackingInfo {
   /**
    * The description of reverse logistics tracking info for Normal RR from warehouse to seller, pushed by third party logistics provider to Shopee.These would match the tracking description displayed to sellers on Seller Center return/refund detail page.
    */
-  tracking_description?: TrackingDescription | string | number;
+  tracking_description?: TrackingDescription | (string & {}) | number;
   /**
    * Image URLs of electronic proof of pickup (ePOP) after return parcel has been picked up from the warehouse for Normal RR with warehouse validation.
    */
@@ -1180,7 +1180,7 @@ export interface GetReverseTrackingInfoResponseData {
   /**
    * Shopee's unique identifier for a return/refund request (serial number of return).
    */
-  return_sn?: ReturnSn | string | number;
+  return_sn?: ReturnSn | (string & {}) | number;
   /**
    * To indicate the type of return refund request, whether it is a Normal RR request, an In-transit RR request, and a Return on the Spot: 0: Normal RR (RR is raised by the buyer after delivery done / estimated delivery date)1: In-transit RR (RR is raised by the buyer while item is still in-transit to buyer)2: Return-on-the-Spot (RR is raised by the driver after buyer rejected parcel at delivery)For more details, see Data Definition- Return Refund Request Type.
    */

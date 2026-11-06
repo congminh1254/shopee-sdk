@@ -2300,7 +2300,7 @@ export interface InitTierVariationGlobalModel {
   /**
    * Tier index of global model. Index starts from 0.If you want to update one tier/two tier to no tier, can just pass the tier_variation and standardise_tier_variation as [], and pass the global_model >> tier_index as [], meanwhile pass the original_price, seller_stock, etc., to set the price and stock for the modified product with no tier structure.
    */
-  tier_index: TierIndex | string | number;
+  tier_index: TierIndex | (string & {}) | number;
   /**
    * The weight of this global model, the unit is KG.If don't set the weight of this global model, will use the weight of global item by default.If set the dimension of this global model, them must set the weight of this global model.
    */

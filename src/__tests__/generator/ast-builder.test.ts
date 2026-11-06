@@ -61,7 +61,7 @@ describe("AstBuilder", () => {
       );
       const code = printAstNode(node);
       expect(code).toContain(
-        "getItemList(params?: GetItemListRequest): Promise<GetItemListResponse>"
+        "getItemList(params?: GetItemListRequest, options?: RequestOptions): Promise<GetItemListResponse>"
       );
       expect(code).toContain(
         'ShopeeFetch.fetch<GetItemListResponse>(this.config, "/product/get_item_list"'
@@ -69,6 +69,7 @@ describe("AstBuilder", () => {
       expect(code).toContain('method: "GET",');
       expect(code).toContain("auth: true,");
       expect(code).toContain("params: params");
+      expect(code).toContain("request: options");
     });
 
     it("should build a POST manager method with auth: false", () => {
@@ -83,7 +84,7 @@ describe("AstBuilder", () => {
       );
       const code = printAstNode(node);
       expect(code).toContain(
-        "getAccessToken(params?: GetAccessTokenRequest): Promise<GetAccessTokenResponse>"
+        "getAccessToken(params?: GetAccessTokenRequest, options?: RequestOptions): Promise<GetAccessTokenResponse>"
       );
       expect(code).toContain(
         'ShopeeFetch.fetch<GetAccessTokenResponse>(this.config, "/public/get_access_token"'

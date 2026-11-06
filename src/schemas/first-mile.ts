@@ -174,7 +174,7 @@ export interface BindFirstMileTrackingNumberRequest {
   /**
    * Use this field to specify the region you want to ship parcel.Available value: cn,kr. Please fill in the field according to the region of the Merchant to which the shop belongs.
    */
-  region: BindFirstMileTrackingNumberRequestRegion | string | number;
+  region: BindFirstMileTrackingNumberRequestRegion | (string & {}) | number;
   /**
    * The identity of first-mile logistic channel.If you using "dropoff" or "pickup" as shipment method, please call v2.first_mile.get_channel_list to get the logsitc_channel_id then fill it.If you using "self_deliver"as shipment method then the logistics_channel_id should be "null".
    */
@@ -453,7 +453,7 @@ export interface GetChannelListRequest {
   /**
    * Use this field to specify the region you want to ship parcel. Available value: CN, KR
    */
-  region?: GetChannelListRequestRegion | string | number;
+  region?: GetChannelListRequestRegion | (string & {}) | number;
 }
 /**
  * GetChannelListLogisticsChannel sub-interface for GetChannelListResponseData
@@ -471,7 +471,7 @@ export interface GetChannelListLogisticsChannel {
    * The shipment method for bound orders.Available values: pickup, dropoff, self_deliver.
    */
   shipment_method?:
-    GetChannelListResponseResponseLogisticsChannelListShipmentMethod | string | number;
+    GetChannelListResponseResponseLogisticsChannelListShipmentMethod | (string & {}) | number;
 }
 /**
  * GetChannelListResponseData sub-interface for GetChannelListResponse
@@ -578,7 +578,7 @@ export interface GetCourierDeliveryDetailOrder {
   /**
    * The tracking number of SLS for orders/forders.
    */
-  sls_tracking_number?: SlsTrackingNumber | string | number;
+  sls_tracking_number?: SlsTrackingNumber | (string & {}) | number;
   /**
    * Use this filed to indicate whether the order has been picked up by carrier.
    */
@@ -641,7 +641,7 @@ export interface GetCourierDeliveryTrackingNumberListRequest {
   /**
    * The time field that the query range applies to and that results are sorted by. Available values: create_time, update_time. Defaults to create_time when not passed.
    */
-  time_range_type?: TimeRangeType | string | number;
+  time_range_type?: TimeRangeType | (string & {}) | number;
   /**
    * Start of the query range, Unix timestamp in seconds. Must be passed together with to_timestamp. When passed, from_date and to_date are ignored.
    */
@@ -682,7 +682,7 @@ export interface GetCourierDeliveryTrackingNumberListTrackingNumber {
   /**
    * The declare date of binding ID/first-mile tracking number.
    */
-  declare_date?: DeclareDate | string | number;
+  declare_date?: DeclareDate | (string & {}) | number;
 }
 /**
  * GetCourierDeliveryTrackingNumberListResponseData sub-interface for GetCourierDeliveryTrackingNumberListResponse
@@ -772,7 +772,7 @@ export interface GetDetailOrder {
   /**
    * The tracking number of SLS for orders/forders.
    */
-  sls_tracking_number?: SlsTrackingNumber | string | number;
+  sls_tracking_number?: SlsTrackingNumber | (string & {}) | number;
   /**
    * Use this filed to indicate whether the order has been picked up by carrier.
    */
@@ -901,7 +901,7 @@ export interface GetTransitWarehouseListRequest {
   /**
    * Use this field to specify the shipment method you want to ship parcel. Available value: pickup, dropoff, self_deliver, courier_delivery.Note: Only when shipment_method = dropoff, the API response will include warehouses where warehouse_type = 1 (vendor warehouse).
    */
-  shipment_method?: GetTransitWarehouseListRequestShipmentMethod | string | number;
+  shipment_method?: GetTransitWarehouseListRequestShipmentMethod | (string & {}) | number;
 }
 /**
  * GetTransitWarehouseListTransitWarehouse sub-interface for GetTransitWarehouseListResponseData
@@ -953,7 +953,7 @@ export interface GetUnbindOrderListRequest {
   /**
    * Indicate response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them.  Available values: logistics_status,package_number.
    */
-  response_optional_fields?: ResponseOptionalFields | string | number;
+  response_optional_fields?: ResponseOptionalFields | (string & {}) | number;
 }
 /**
  * GetUnbindOrderListOrder sub-interface for GetUnbindOrderListResponseData

@@ -211,7 +211,7 @@ export interface CreateManualProductAdsRequest {
   /**
    * Whether to use default or set on/off Smart Creative for this ad. Supported Values: "", "default", "on", "off". Empty string treated as default.
    */
-  smart_creative_setting?: SmartCreativeSetting | string | number;
+  smart_creative_setting?: SmartCreativeSetting | (string & {}) | number;
 }
 /**
  * CreateManualProductAdsResponseDataItem sub-interface for CreateManualProductAdsResponse
@@ -510,7 +510,7 @@ export interface EditManualProductAdsRequest {
   /**
    * Whether to use default or set on/off Smart Creative for this ad. Supported Values: "", "default", "on", "off". Empty string treated as default.
    */
-  smart_creative_setting?: SmartCreativeSetting | string | number;
+  smart_creative_setting?: SmartCreativeSetting | (string & {}) | number;
 }
 /**
  * EditManualProductAdsResponseDataItem sub-interface for EditManualProductAdsResponse
@@ -1393,7 +1393,7 @@ export interface GetProductLevelCampaignIdListCampaign {
   /**
    * auto/manual
    */
-  ad_type?: AdType | string | number;
+  ad_type?: AdType | (string & {}) | number;
   /**
    * the unique id per campaign
    */
@@ -1631,7 +1631,7 @@ export interface GetProductRecommendedRoiTargetRequest {
   /**
    * A random string used to prevent duplicate ads. If an ads is created successfully, subsequent requests using the same reference id will fail - in this case, a new one must be generated.Use the same string for calling suggestion/recommendation API before the actual request to create an ads.
    */
-  reference_id: ReferenceId | string | number;
+  reference_id: ReferenceId | (string & {}) | number;
   /**
    * Unique identifier for a product.
    */

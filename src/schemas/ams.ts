@@ -946,7 +946,7 @@ export interface GetConversionReportRequest {
   /**
    * Name/ID of campaign partner.
    */
-  campaign_partner?: CampaignPartner | string | number;
+  campaign_partner?: CampaignPartner | (string & {}) | number;
   /**
    * Seller Campaign Type. Applicable values:TargetCampaignOpenCampaignMCNCampaign
    */
@@ -1218,7 +1218,7 @@ export interface GetManagedAffiliateListTopPopularContent {
   /**
    * The platform of this affiliate's content. eg. shopee video/shopee live
    */
-  platform?: Platform | string | number;
+  platform?: Platform | (string & {}) | number;
   /**
    * The comment count of this affiliate's content.
    */
@@ -1940,7 +1940,7 @@ export interface GetRecommendedAffiliateListTopPopularContent {
   /**
    * The platform of this affiliate's content. eg. shopee video/shopee live
    */
-  platform?: Platform | string | number;
+  platform?: Platform | (string & {}) | number;
   /**
    * The comment count of this affiliate's content.
    */

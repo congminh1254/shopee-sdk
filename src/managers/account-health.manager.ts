@@ -17,6 +17,7 @@ import {
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
+import { RequestOptions } from "../schemas/fetch.js";
 export class AccountHealthManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
@@ -25,9 +26,13 @@ export class AccountHealthManager extends BaseManager {
    * Get the Late Orders to take action to avoid order cancellation and penalty points.
    *
    * @param {GetLateOrdersRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetLateOrdersResponse>} Promise resolving to the response
    */
-  public async getLateOrders(params?: GetLateOrdersRequest): Promise<GetLateOrdersResponse> {
+  public async getLateOrders(
+    params?: GetLateOrdersRequest,
+    options?: RequestOptions
+  ): Promise<GetLateOrdersResponse> {
     return ShopeeFetch.fetch<GetLateOrdersResponse>(
       this.config,
       "/account_health/get_late_orders",
@@ -35,6 +40,7 @@ export class AccountHealthManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: ["response.late_order_list.shipping_deadline"],
       }
     );
@@ -43,10 +49,12 @@ export class AccountHealthManager extends BaseManager {
    * Get the Problematic Listings to improve the listings to avoid incurring penalty points.
    *
    * @param {GetListingsWithIssuesRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetListingsWithIssuesResponse>} Promise resolving to the response
    */
   public async getListingsWithIssues(
-    params?: GetListingsWithIssuesRequest
+    params?: GetListingsWithIssuesRequest,
+    options?: RequestOptions
   ): Promise<GetListingsWithIssuesResponse> {
     return ShopeeFetch.fetch<GetListingsWithIssuesResponse>(
       this.config,
@@ -55,6 +63,7 @@ export class AccountHealthManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -62,10 +71,12 @@ export class AccountHealthManager extends BaseManager {
    * Get the Affected Orders / Relevant Listings / Relevant Violations details of metrics.
    *
    * @param {GetMetricSourceDetailRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetMetricSourceDetailResponse>} Promise resolving to the response
    */
   public async getMetricSourceDetail(
-    params: GetMetricSourceDetailRequest
+    params: GetMetricSourceDetailRequest,
+    options?: RequestOptions
   ): Promise<GetMetricSourceDetailResponse> {
     return ShopeeFetch.fetch<GetMetricSourceDetailResponse>(
       this.config,
@@ -74,6 +85,7 @@ export class AccountHealthManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: [
           "response.lsr_order_list.shipping_deadline",
           "response.lsr_order_list.actual_shipping_time",
@@ -102,10 +114,12 @@ export class AccountHealthManager extends BaseManager {
    * Get the penalty point records generated in the current quarter.
    *
    * @param {GetPenaltyPointHistoryRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetPenaltyPointHistoryResponse>} Promise resolving to the response
    */
   public async getPenaltyPointHistory(
-    params?: GetPenaltyPointHistoryRequest
+    params?: GetPenaltyPointHistoryRequest,
+    options?: RequestOptions
   ): Promise<GetPenaltyPointHistoryResponse> {
     return ShopeeFetch.fetch<GetPenaltyPointHistoryResponse>(
       this.config,
@@ -114,6 +128,7 @@ export class AccountHealthManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: ["response.penalty_point_list.issue_time"],
       }
     );
@@ -122,10 +137,12 @@ export class AccountHealthManager extends BaseManager {
    * Get the punishment records generated in the current quarter.
    *
    * @param {GetPunishmentHistoryRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetPunishmentHistoryResponse>} Promise resolving to the response
    */
   public async getPunishmentHistory(
-    params: GetPunishmentHistoryRequest
+    params: GetPunishmentHistoryRequest,
+    options?: RequestOptions
   ): Promise<GetPunishmentHistoryResponse> {
     return ShopeeFetch.fetch<GetPunishmentHistoryResponse>(
       this.config,
@@ -134,6 +151,7 @@ export class AccountHealthManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: [
           "response.punishment_list.issue_time",
           "response.punishment_list.start_time",
@@ -146,10 +164,12 @@ export class AccountHealthManager extends BaseManager {
    * The data metrics of shop performance.
    *
    * @param {GetShopPerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShopPerformanceResponse>} Promise resolving to the response
    */
   public async getShopPerformance(
-    params?: GetShopPerformanceRequest
+    params?: GetShopPerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetShopPerformanceResponse> {
     return ShopeeFetch.fetch<GetShopPerformanceResponse>(
       this.config,
@@ -158,6 +178,7 @@ export class AccountHealthManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }

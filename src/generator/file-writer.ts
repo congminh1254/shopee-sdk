@@ -139,6 +139,7 @@ export class FileWriter {
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
+import { RequestOptions } from "../schemas/fetch.js";
 export class ${getManagerClassName(moduleName)} extends BaseManager {
   constructor(config: ShopeeConfig) { super(config); }
   ${methods.join("\n")}

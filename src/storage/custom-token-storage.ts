@@ -2,6 +2,7 @@ import { AccessToken } from "../schemas/access-token.js";
 import { TokenStorage } from "./token-storage.interface.js";
 import fs from "fs";
 import path from "path";
+import { randomUUID } from "crypto";
 
 /** Token directory is accessible by the owner only. */
 const TOKEN_DIR_MODE = 0o700;
@@ -14,7 +15,8 @@ const GITIGNORE_CONTENT = "# Created by @congminh1254/shopee-sdk - contains cred
  * File-based token storage.
  *
  * Tokens (including the long-lived refresh_token) are written in plaintext to
- * `<cwd>/.token/`. The directory is restricted to mode 0700 and files to 0600,
+ * `<cwd>/.token/` (or `options.directory`). Writes are atomic: the token is written to a
+ * temporary file and renamed into place, so a crash never leaves a half-written token. The directory is restricted to mode 0700 and files to 0600,
  * and a `.gitignore` is written inside the directory so its contents are not
  * committed. For production deployments prefer a secrets manager or an
  * encrypted database via a custom `TokenStorage` implementation.
@@ -23,9 +25,11 @@ export class CustomTokenStorage implements TokenStorage {
   private readonly tokenPath: string;
   private readonly isShop: boolean;
   private readonly defaultTokenPath: string;
-  constructor(identity?: number | { user_id: number }) {
-    // create a folder in the root of the project called .token
-    const tokenDir = path.join(process.cwd(), ".token");
+  constructor(identity?: number | { user_id: number }, options: { directory?: string } = {}) {
+    // Defaults to a folder called .token in the current working directory.
+    const tokenDir = options.directory
+      ? path.resolve(options.directory)
+      : path.join(process.cwd(), ".token");
     if (!fs.existsSync(tokenDir)) {
       fs.mkdirSync(tokenDir, { recursive: true, mode: TOKEN_DIR_MODE });
     }
@@ -49,9 +53,10 @@ export class CustomTokenStorage implements TokenStorage {
 
   public async store(token: AccessToken): Promise<void> {
     try {
-      writeSecureFile(this.tokenPath, JSON.stringify(token, null, 2));
-      if (this.isShop && !fs.existsSync(this.defaultTokenPath)) {
-        writeSecureFile(this.defaultTokenPath, JSON.stringify(token, null, 2));
+      const data = JSON.stringify(token, null, 2);
+      await writeSecureFile(this.tokenPath, data);
+      if (this.isShop && !(await fileExists(this.defaultTokenPath))) {
+        await writeSecureFile(this.defaultTokenPath, data);
       }
     } catch (error) {
       throw new Error(
@@ -63,7 +68,7 @@ export class CustomTokenStorage implements TokenStorage {
 
   public async get(): Promise<AccessToken | null> {
     try {
-      const data = fs.readFileSync(this.tokenPath, "utf-8");
+      const data = await fs.promises.readFile(this.tokenPath, "utf-8");
       return JSON.parse(data) as AccessToken;
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code === "ENOENT") {
@@ -78,7 +83,7 @@ export class CustomTokenStorage implements TokenStorage {
 
   public async clear(): Promise<void> {
     try {
-      fs.unlinkSync(this.tokenPath);
+      await fs.promises.unlink(this.tokenPath);
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
         throw new Error(
@@ -90,16 +95,32 @@ export class CustomTokenStorage implements TokenStorage {
   }
 }
 
-/**
- * Write a file that only the owner can read. `mode` only applies when the file
- * is created, so an existing file is chmod-ed before it receives new content.
- */
-function writeSecureFile(filePath: string, data: string): void {
-  if (fs.existsSync(filePath)) {
-    secureChmod(filePath, TOKEN_FILE_MODE);
+async function fileExists(filePath: string): Promise<boolean> {
+  try {
+    await fs.promises.access(filePath);
+    return true;
+  } catch {
+    return false;
   }
-  fs.writeFileSync(filePath, data, { mode: TOKEN_FILE_MODE });
-  secureChmod(filePath, TOKEN_FILE_MODE);
+}
+
+/**
+ * Atomically write a file that only the owner can read: the data goes to a temporary file
+ * in the same directory (created with mode 0600) which is then renamed over the target.
+ */
+async function writeSecureFile(filePath: string, data: string): Promise<void> {
+  const temporary = `${filePath}.${process.pid}.${randomUUID()}.tmp`;
+  try {
+    await fs.promises.writeFile(temporary, data, { mode: TOKEN_FILE_MODE, flag: "wx" });
+    // `mode` is subject to umask, so tighten it explicitly before the file becomes visible.
+    if (process.platform !== "win32") {
+      await fs.promises.chmod(temporary, TOKEN_FILE_MODE);
+    }
+    await fs.promises.rename(temporary, filePath);
+  } catch (error) {
+    await fs.promises.rm(temporary, { force: true }).catch(() => undefined);
+    throw error;
+  }
 }
 
 /** chmod is a no-op for POSIX permission bits on Windows, so skip it there. */

@@ -34,6 +34,14 @@ const sdk = new ShopeeSDK(
 );
 ```
 
+Pass `directory` to store the files elsewhere, for example a mounted volume:
+
+```typescript
+new CustomTokenStorage(789012, { directory: '/var/lib/my-app/shopee-tokens' });
+```
+
+Writes are atomic (the token is written to a temporary file and renamed into place), so a crash or a concurrent write never leaves a half-written token file.
+
 > **Security note:** tokens, including the long-lived `refresh_token`, are stored **in plaintext**. Anyone who can read these files can act as the shop on the Shopee Open Platform.
 >
 > - The `.token` directory is created with mode `0700` and token files with mode `0600` (owner only). In versions after 2.12.0, files and directories created by older versions are tightened automatically when `CustomTokenStorage` is constructed.

@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import * as sdkEntry from "../sdk.js";
 import * as managers from "../managers/index.js";
+import * as schemas from "../schemas/index.js";
 
 describe("public entry points", () => {
   it("exports errors, regions and storages from the main entry", () => {
@@ -14,6 +15,13 @@ describe("public entry points", () => {
     expect(sdkEntry.SHOPEE_BASE_URLS[sdkEntry.ShopeeRegion.GLOBAL]).toContain("https://");
     expect(sdkEntry.InMemoryTokenStorage).toBeDefined();
     expect(sdkEntry.CustomTokenStorage).toBeDefined();
+    expect(new sdkEntry.ShopeeNetworkError("x")).toBeInstanceOf(sdkEntry.ShopeeSdkError);
+    expect(new sdkEntry.ShopeeTimeoutError(1)).toBeInstanceOf(sdkEntry.ShopeeNetworkError);
+    expect(
+      new sdkEntry.ShopeeHttpError("x", { status: 502, contentType: "", body: "" })
+    ).toBeInstanceOf(sdkEntry.ShopeeSdkError);
+    expect(typeof sdkEntry.paginate).toBe("function");
+    expect(typeof sdkEntry.nextByCursor).toBe("function");
   });
 
   it("re-exports every manager from managers/index", async () => {
@@ -29,5 +37,11 @@ describe("public entry points", () => {
     }
     expect(files.length).toBeGreaterThan(30);
     expect(missing).toEqual([]);
+  });
+
+  it("exposes overlapping schema modules as namespaces", () => {
+    expect(schemas.Discount).toBeDefined();
+    expect(schemas.Logistics).toBeDefined();
+    expect(schemas.Payment).toBeDefined();
   });
 });

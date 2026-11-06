@@ -478,7 +478,7 @@ export interface GetDiscountListRequest {
   /**
    * The status filter for retriveing discount list. Available value: upcoming/ongoing/expired/all.
    */
-  discount_status: DiscountStatus | string | number;
+  discount_status: DiscountStatus | (string & {}) | number;
   /**
    * Specifies the page number of data to return in the current call. Starting from 1. if data is more than one page, the page_no can be some entry to start next call.
    */
@@ -566,7 +566,7 @@ export interface GetSipDiscountsDiscount {
   /**
    * The status of discount for SIP affiliate shop in current region, can be upcoming/ongoing, excluding expired discounts.
    */
-  status?: Status | string | number;
+  status?: Status | (string & {}) | number;
   /**
    * The discount rate set for SIP affiliate shop in current region.
    */
@@ -629,7 +629,7 @@ export interface SetSipDiscountResponseData {
   /**
    * The status of discount for SIP affiliate shop in current region, can be upcoming/ongoing, excluding expired discounts.
    */
-  status?: Status | string | number;
+  status?: Status | (string & {}) | number;
   /**
    * The discount rate set for SIP affiliate shop in current region.
    */

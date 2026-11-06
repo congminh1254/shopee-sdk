@@ -361,7 +361,7 @@ export interface GetBookingDetailRequest {
   /**
    * The response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them. Available values: item_list,cancel_by,cancel_reason,fulfillment_flag,pickup_done_time,shipping_carrier, recipient_address, dropshipper, dropshipper_phone
    */
-  response_optional_fields?: GetBookingDetailRequestResponseOptionalFields | string | number;
+  response_optional_fields?: GetBookingDetailRequestResponseOptionalFields | (string & {}) | number;
 }
 /**
  * GetBookingDetailRecipientAddress sub-interface for GetBookingDetailBooking
@@ -378,19 +378,19 @@ export interface GetBookingDetailRecipientAddress {
   /**
    * The town of the recipient's address. Whether there is a town will depend on the region and/or country.
    */
-  town?: Town | string | number;
+  town?: Town | (string & {}) | number;
   /**
    * The district of the recipient's address. Whether there is a district will depend on the region and/or country.
    */
-  district?: District | string | number;
+  district?: District | (string & {}) | number;
   /**
    * The city of the recipient's address. Whether there is a city will depend on the region and/or country.
    */
-  city?: City | string | number;
+  city?: City | (string & {}) | number;
   /**
    * The state/province of the recipient's address. Whether there is a state/province will depend on the region and/or country.
    */
-  state?: State | string | number;
+  state?: State | (string & {}) | number;
   /**
    * The two-digit code representing the region of the Recipient.
    */
@@ -477,11 +477,11 @@ export interface GetBookingDetailBooking {
   /**
    * Return by default. Enumerated type that defines the current status of the booking. Available value: READY_TO_SHIP/PROCESSED/SHIPPED/CANCELLED/MATCHED
    */
-  booking_status?: BookingStatus | string | number;
+  booking_status?: BookingStatus | (string & {}) | number;
   /**
    * MATCH_PENDING/MATCH_SUCCESSFUL/MATCH_FAILED
    */
-  match_status?: MatchStatus | string | number;
+  match_status?: MatchStatus | (string & {}) | number;
   /**
    * The logistics service provider that will deliver the booking.
    */
@@ -555,7 +555,7 @@ export interface GetBookingListRequest {
   /**
    * The kind of time_from and time_to. Available value: create_time, update_time.
    */
-  time_range_field: TimeRangeField | string | number;
+  time_range_field: TimeRangeField | (string & {}) | number;
   /**
    * The time_from and time_to fields specify a date range for retrieving bookings (based on the time_range_field). The time_from field is the starting date range. The maximum date range that may be specified with the time_from and time_to fields is 15 days.
    */
@@ -575,7 +575,7 @@ export interface GetBookingListRequest {
   /**
    * The booking_status filter for retrieving bookings and each one only every request. Available value: READY_TO_SHIP/PROCESSED/SHIPPED/CANCELLED/MATCHED
    */
-  booking_status?: BookingStatus | string | number;
+  booking_status?: BookingStatus | (string & {}) | number;
 }
 /**
  * GetBookingListBooking sub-interface for GetBookingListResponseData
@@ -592,7 +592,7 @@ export interface GetBookingListBooking {
   /**
    * The booking_status filter for retrieving booking and each one only every request. Available value: READY_TO_SHIP/PROCESSED/SHIPPED/CANCELLED/MATCHED
    */
-  booking_status?: BookingStatus | string | number;
+  booking_status?: BookingStatus | (string & {}) | number;
   /**
    * If more is true, you should pass the next_cursor in the next request as cursor. The value of next_cursor will be empty string when more is false.
    */
@@ -997,7 +997,7 @@ export interface GetOrderDetailRequest {
   /**
    * a response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them.  Available values: buyer_user_id,buyer_username,estimated_shipping_fee,recipient_address,actual_shipping_fee ,goods_to_declare,note,note_update_time,item_list,pay_time,dropshipper, dropshipper_phone,split_up,buyer_cancel_reason,cancel_by,cancel_reason,actual_shipping_fee_confirmed,buyer_cpf_id,fulfillment_flag,pickup_done_time,package_list,shipping_carrier,payment_method,total_amount,buyer_username,invoice_data,order_chargeable_weight_gram,return_request_due_date,edt,payment_info,international_label
    */
-  response_optional_fields?: GetOrderDetailRequestResponseOptionalFields | string | number;
+  response_optional_fields?: GetOrderDetailRequestResponseOptionalFields | (string & {}) | number;
 }
 /**
  * GetOrderDetailGeolocation sub-interface for GetOrderDetailRecipientAddress
@@ -1027,19 +1027,19 @@ export interface GetOrderDetailRecipientAddress {
   /**
    * The town of the recipient's address. Whether there is a town will depend on the region and/or country.
    */
-  town?: Town | string | number;
+  town?: Town | (string & {}) | number;
   /**
    * The district of the recipient's address. Whether there is a district will depend on the region and/or country.
    */
-  district?: District | string | number;
+  district?: District | (string & {}) | number;
   /**
    * The city of the recipient's address. Whether there is a city will depend on the region and/or country.
    */
-  city?: City | string | number;
+  city?: City | (string & {}) | number;
   /**
    * The state/province of the recipient's address. Whether there is a state/province will depend on the region and/or country.
    */
-  state?: State | string | number;
+  state?: State | (string & {}) | number;
   /**
    * The two-digit code representing the region of the Recipient.
    */
@@ -1076,11 +1076,11 @@ export interface GetOrderDetailComponent {
   /**
    * The ID of the warehouse where the Parent SKU component is located/stored.
    */
-  warehouse_id?: WarehouseId | string | number;
+  warehouse_id?: WarehouseId | (string & {}) | number;
   /**
    * The structure/type of mapping defined for the bundle. Available values:1: Group2: Lucky bag3: Mapping List
    */
-  mapping_type?: MappingType | string | number;
+  mapping_type?: MappingType | (string & {}) | number;
 }
 /**
  * GetOrderDetailImageInfo sub-interface for GetOrderDetailItem
@@ -1569,7 +1569,7 @@ export interface GetOrderDetailOrder {
   /**
    * Return prescription images of this order, only for ID and PH whitelist sellers.Please add the prefix to review:for ID: https://cf.shopee.co.id/file/+prescription_imagefor PH:https://cf.shopee.ph/file/+prescription_image
    */
-  prescription_images?: PrescriptionImages | string | number;
+  prescription_images?: PrescriptionImages | (string & {}) | number;
   /**
    * Time of when the prescription is approved.
    */
@@ -1663,7 +1663,7 @@ export interface GetOrderListRequest {
   /**
    * The kind of time_from and time_to. Available value: create_time, update_time.
    */
-  time_range_field: TimeRangeField | string | number;
+  time_range_field: TimeRangeField | (string & {}) | number;
   /**
    * The time_from and time_to fields specify a date range for retrieving orders (based on the time_range_field). The time_from field is the starting date range. The maximum date range that may be specified with the time_from and time_to fields is 15 days.
    */
@@ -1683,7 +1683,7 @@ export interface GetOrderListRequest {
   /**
    * The order_status filter for retriveing orders and each one only every request. Available value: UNPAID/READY_TO_SHIP/PROCESSED/SHIPPED/COMPLETED/IN_CANCEL/CANCELLED/INVOICE_PENDING
    */
-  order_status?: GetOrderListRequestOrderStatus | string | number;
+  order_status?: GetOrderListRequestOrderStatus | (string & {}) | number;
   /**
    * Optional fields in response. Available value: order_status.
    */
@@ -1708,7 +1708,7 @@ export interface GetOrderListOrder {
   /**
    * The order_status filter for retriveing orders and each one only every request. Available value: UNPAID/READY_TO_SHIP/PROCESSED/SHIPPED/COMPLETED/IN_CANCEL/CANCELLED
    */
-  order_status?: GetOrderListResponseResponseOrderListOrderStatus | string | number;
+  order_status?: GetOrderListResponseResponseOrderListOrderStatus | (string & {}) | number;
   /**
    * Return by default. Shopee's unique identifier for a booking.Only returned for advance fulfilment matched order only.
    */
@@ -1764,11 +1764,11 @@ export interface GetPackageDetailComponent {
   /**
    * The ID of the warehouse where the Parent SKU component is located/stored.
    */
-  warehouse_id?: WarehouseId | string | number;
+  warehouse_id?: WarehouseId | (string & {}) | number;
   /**
    * The structure/type of mapping defined for the bundle. Available values:1: Group2: Lucky bag3: Mapping List
    */
-  mapping_type?: MappingType | string | number;
+  mapping_type?: MappingType | (string & {}) | number;
 }
 /**
  * GetPackageDetailItem sub-interface for GetPackageDetailPackage
@@ -1871,19 +1871,19 @@ export interface GetPackageDetailRecipientAddress {
   /**
    * The town of the recipient's address. Whether there is a town will depend on the region and/or country.
    */
-  town?: Town | string | number;
+  town?: Town | (string & {}) | number;
   /**
    * The district of the recipient's address. Whether there is a district will depend on the region and/or country.
    */
-  district?: District | string | number;
+  district?: District | (string & {}) | number;
   /**
    * The city of the recipient's address. Whether there is a city will depend on the region and/or country.
    */
-  city?: City | string | number;
+  city?: City | (string & {}) | number;
   /**
    * The state/province of the recipient's address. Whether there is a state/province will depend on the region and/or country.
    */
-  state?: State | string | number;
+  state?: State | (string & {}) | number;
   /**
    * The two-digit code representing the region of the Recipient.
    */
@@ -2083,7 +2083,7 @@ export interface GetPackageDetailPackage {
   /**
    * Return prescription images of this order, only for ID and PH whitelist sellers.Please add the prefix to review:for ID: https://cf.shopee.co.id/file/+prescription_imagefor PH: https://cf.shopee.ph/file/+prescription_image
    */
-  prescription_images?: PrescriptionImages | string | number;
+  prescription_images?: PrescriptionImages | (string & {}) | number;
   /**
    * Time of when the prescription is approved.
    */

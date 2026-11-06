@@ -15,6 +15,7 @@ import {
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
+import { RequestOptions } from "../schemas/fetch.js";
 export class BuyboxManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
@@ -25,10 +26,12 @@ export class BuyboxManager extends BaseManager {
    * Only available in Brazil (BR).
    *
    * @param {GetBuyboxModelPerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBuyboxModelPerformanceResponse>} Promise resolving to the response
    */
   public async getBuyboxModelPerformance(
-    params: GetBuyboxModelPerformanceRequest
+    params: GetBuyboxModelPerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetBuyboxModelPerformanceResponse> {
     return ShopeeFetch.fetch<GetBuyboxModelPerformanceResponse>(
       this.config,
@@ -37,6 +40,7 @@ export class BuyboxManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -46,10 +50,12 @@ export class BuyboxManager extends BaseManager {
    * Only available in Brazil (BR).
    *
    * @param {GetBuyboxModelsByModelIdRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBuyboxModelsByModelIdResponse>} Promise resolving to the response
    */
   public async getBuyboxModelsByModelId(
-    params: GetBuyboxModelsByModelIdRequest
+    params: GetBuyboxModelsByModelIdRequest,
+    options?: RequestOptions
   ): Promise<GetBuyboxModelsByModelIdResponse> {
     return ShopeeFetch.fetch<GetBuyboxModelsByModelIdResponse>(
       this.config,
@@ -58,6 +64,7 @@ export class BuyboxManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -67,10 +74,12 @@ export class BuyboxManager extends BaseManager {
    * Only available in Brazil (BR).
    *
    * @param {GetBuyboxModelsByShopIdRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBuyboxModelsByShopIdResponse>} Promise resolving to the response
    */
   public async getBuyboxModelsByShopId(
-    params?: GetBuyboxModelsByShopIdRequest
+    params?: GetBuyboxModelsByShopIdRequest,
+    options?: RequestOptions
   ): Promise<GetBuyboxModelsByShopIdResponse> {
     return ShopeeFetch.fetch<GetBuyboxModelsByShopIdResponse>(
       this.config,
@@ -79,6 +88,7 @@ export class BuyboxManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -88,10 +98,12 @@ export class BuyboxManager extends BaseManager {
    * Only available in Brazil (BR).
    *
    * @param {GetBuyboxShopPerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBuyboxShopPerformanceResponse>} Promise resolving to the response
    */
   public async getBuyboxShopPerformance(
-    params?: GetBuyboxShopPerformanceRequest
+    params?: GetBuyboxShopPerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetBuyboxShopPerformanceResponse> {
     return ShopeeFetch.fetch<GetBuyboxShopPerformanceResponse>(
       this.config,
@@ -100,6 +112,7 @@ export class BuyboxManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -109,10 +122,12 @@ export class BuyboxManager extends BaseManager {
    * Only available in Brazil (BR).
    *
    * @param {UpdateBuyboxModelEnrollmentRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateBuyboxModelEnrollmentResponse>} Promise resolving to the response
    */
   public async updateBuyboxModelEnrollment(
-    params: UpdateBuyboxModelEnrollmentRequest
+    params: UpdateBuyboxModelEnrollmentRequest,
+    options?: RequestOptions
   ): Promise<UpdateBuyboxModelEnrollmentResponse> {
     return ShopeeFetch.fetch<UpdateBuyboxModelEnrollmentResponse>(
       this.config,
@@ -121,6 +136,7 @@ export class BuyboxManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
