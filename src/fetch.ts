@@ -11,7 +11,15 @@ import { SDK_VERSION } from "./version.js";
 
 const isMock = typeof (nodeFetch as any).mock === "object";
 
-const fetchFn = isMock ? nodeFetch : globalThis.fetch || nodeFetch;
+const nativeFetchFn = isMock ? nodeFetch : globalThis.fetch || nodeFetch;
+
+/**
+ * Node's built-in fetch (undici) silently ignores an `http.Agent`, so requests
+ * that need a custom agent are routed through node-fetch, which honours it.
+ */
+function selectFetch(config: ShopeeConfig): (url: string, init?: any) => Promise<any> {
+  return (config.agent ? nodeFetch : nativeFetchFn) as (url: string, init?: any) => Promise<any>;
+}
 const FormDataClass = isMock ? NodeFetchFormData : globalThis.FormData || NodeFetchFormData;
 const FileClass = isMock ? NodeFetchFile : globalThis.File || NodeFetchFile;
 const HeadersClass = isMock ? NodeFetchHeaders : globalThis.Headers || NodeFetchHeaders;
@@ -220,6 +228,7 @@ export class ShopeeFetch {
     };
 
     let authParams = {};
+    let usedAccessToken: string | undefined;
 
     if (options.auth) {
       let token = await config.sdk?.getAuthToken();
@@ -236,6 +245,7 @@ export class ShopeeFetch {
       }
       // User endpoints must not inherit a shop identity from caller parameters.
       if (options.auth === "user") delete allParams.shop_id;
+      usedAccessToken = token.access_token;
       authParams = {
         access_token: token.access_token,
         [identityKey]: identity,
@@ -283,7 +293,7 @@ export class ShopeeFetch {
     }
 
     try {
-      const response: any = await fetchFn(url.toString(), requestOptions);
+      const response: any = await selectFetch(config)(url.toString(), requestOptions);
       const responseType =
         response.headers.get("Content-Type") || response.headers.get("content-type") || "";
 
@@ -315,8 +325,12 @@ export class ShopeeFetch {
                 throw new ShopeeApiError(response.status, jsonData);
               }
               const newOptions = { ...options, _retryCount: 1 };
-              // Attempt to refresh the access token
-              await config.sdk?.refreshToken();
+              // Another request may already have refreshed the token; refresh tokens
+              // are single-use, so only refresh when the stored token is the one we sent.
+              const latest = await config.sdk?.getAuthToken();
+              if (!latest || latest.access_token === usedAccessToken) {
+                await config.sdk?.refreshToken();
+              }
               // Retry the request with the new token
               return this.fetch(config, path, newOptions);
             } catch (err) {

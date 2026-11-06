@@ -389,6 +389,51 @@ describe("ShopeeFetch", () => {
       expect(result).toEqual(successResponse);
     });
 
+    it("should retry without refreshing when another request already rotated the token", async () => {
+      const baseToken: AccessToken = {
+        access_token: "old_token",
+        refresh_token: "refresh_token",
+        expire_in: 3600,
+        expired_at: Date.now() + 3600000,
+        shop_id: 67890,
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+      };
+      const rotatedToken: AccessToken = {
+        ...baseToken,
+        access_token: "rotated_token",
+        refresh_token: "rotated_refresh",
+      };
+
+      (mockSdk.getAuthToken as jest.MockedFunction<typeof mockSdk.getAuthToken>)
+        .mockResolvedValueOnce(baseToken) // token sent with the first request
+        .mockResolvedValue(rotatedToken); // storage already holds a newer token
+
+      mockFetch
+        .mockResolvedValueOnce({
+          status: 401,
+          headers: new Map([["content-type", "application/json"]]),
+          json: jest.fn(() =>
+            Promise.resolve({ error: "invalid_access_token", message: "", request_id: "r" })
+          ),
+        })
+        .mockResolvedValueOnce({
+          status: 200,
+          headers: new Map([["content-type", "application/json"]]),
+          json: jest.fn(() => Promise.resolve({ data: "ok" })),
+        });
+
+      const result = await ShopeeFetch.fetch(mockConfig, "/test/endpoint", { auth: true });
+
+      expect(mockSdk.refreshToken).not.toHaveBeenCalled();
+      expect(mockFetch).toHaveBeenCalledTimes(2);
+      expect(new URL(mockFetch.mock.calls[1][0]).searchParams.get("access_token")).toBe(
+        "rotated_token"
+      );
+      expect(result).toEqual({ data: "ok" });
+    });
+
     it("should include custom headers in request", async () => {
       const mockResponse = { data: "test" };
       const customHeaders = {

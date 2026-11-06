@@ -588,6 +588,12 @@ describe('CustomTokenStorage', () => {
 });
 ```
 
+## Concurrent Refreshes
+
+Shopee refresh tokens are single-use: every refresh returns a new `refresh_token` and invalidates the old one. Within one `ShopeeSDK` instance, concurrent `refreshToken()` calls with the same arguments share a single request, and calls with different arguments run one after another so each uses the latest stored `refresh_token`. Requests that fail with an invalid-token error only trigger a refresh when the stored token is still the one they sent.
+
+This coordination is in-process only. If several processes or servers share one storage backend, add your own lock (for example a database row lock or a Redis lock) around refreshes.
+
 ## Next Steps
 
 - [Authentication Guide](./authentication.md) - Learn how tokens are used
