@@ -33,7 +33,7 @@ export interface GetMerchantInfoResponseData {
   /**
    * The three-digit code representing the currency unit used for the item in this merchant. If currency haven't been setting in CNSC/KRSC, it will be empty.China merchant support CNY and USD currently.Korea merchant support KRW and USD currently. Hong kong merchant support USD currently, will support HKD later.
    */
-  merchant_currency?: MerchantCurrency | string | number;
+  merchant_currency?: MerchantCurrency | (string & {}) | number;
   /**
    * Region of the merchant. Including KR, HK and CN.
    */

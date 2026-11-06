@@ -27,6 +27,7 @@ import {
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
+import { RequestOptions } from "../schemas/fetch.js";
 export class PrincipalManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
@@ -35,10 +36,12 @@ export class PrincipalManager extends BaseManager {
    * Queries video clip performance data for the specified videos within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and video-level detailed metrics.
    *
    * @param {GetClipVideoPerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetClipVideoPerformanceResponse>} Promise resolving to the response
    */
   public async getClipVideoPerformance(
-    params: GetClipVideoPerformanceRequest
+    params: GetClipVideoPerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetClipVideoPerformanceResponse> {
     return ShopeeFetch.fetch<GetClipVideoPerformanceResponse>(
       this.config,
@@ -47,6 +50,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -54,10 +58,12 @@ export class PrincipalManager extends BaseManager {
    * Queries affiliate performance data for the specified content items within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and content-level detailed metrics with placed-order and confirmed-order views.
    *
    * @param {GetContentAffiliatePerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetContentAffiliatePerformanceResponse>} Promise resolving to the response
    */
   public async getContentAffiliatePerformance(
-    params: GetContentAffiliatePerformanceRequest
+    params: GetContentAffiliatePerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetContentAffiliatePerformanceResponse> {
     return ShopeeFetch.fetch<GetContentAffiliatePerformanceResponse>(
       this.config,
@@ -66,6 +72,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -73,10 +80,12 @@ export class PrincipalManager extends BaseManager {
    * Queries affiliate performance data for the specified principal within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and region-level detailed metrics with placed-order and confirmed-order views.
    *
    * @param {GetPrincipalAffiliatePerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetPrincipalAffiliatePerformanceResponse>} Promise resolving to the response
    */
   public async getPrincipalAffiliatePerformance(
-    params: GetPrincipalAffiliatePerformanceRequest
+    params: GetPrincipalAffiliatePerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetPrincipalAffiliatePerformanceResponse> {
     return ShopeeFetch.fetch<GetPrincipalAffiliatePerformanceResponse>(
       this.config,
@@ -85,6 +94,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -92,10 +102,12 @@ export class PrincipalManager extends BaseManager {
    * Queries livestream performance data for the specified principal within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and region-level detailed metrics.
    *
    * @param {GetPrincipalLivestreamPerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetPrincipalLivestreamPerformanceResponse>} Promise resolving to the response
    */
   public async getPrincipalLivestreamPerformance(
-    params: GetPrincipalLivestreamPerformanceRequest
+    params: GetPrincipalLivestreamPerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetPrincipalLivestreamPerformanceResponse> {
     return ShopeeFetch.fetch<GetPrincipalLivestreamPerformanceResponse>(
       this.config,
@@ -104,6 +116,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -111,10 +124,12 @@ export class PrincipalManager extends BaseManager {
    * Queries the business performance data aggregated at principal level for the specified regions within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and region-level detailed metrics.
    *
    * @param {GetPrincipalSalesPerformanceDetailRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetPrincipalSalesPerformanceDetailResponse>} Promise resolving to the response
    */
   public async getPrincipalSalesPerformanceDetail(
-    params: GetPrincipalSalesPerformanceDetailRequest
+    params: GetPrincipalSalesPerformanceDetailRequest,
+    options?: RequestOptions
   ): Promise<GetPrincipalSalesPerformanceDetailResponse> {
     return ShopeeFetch.fetch<GetPrincipalSalesPerformanceDetailResponse>(
       this.config,
@@ -123,6 +138,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -130,10 +146,12 @@ export class PrincipalManager extends BaseManager {
    * Queries video performance data for the specified principal within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and region-level detailed metrics.
    *
    * @param {GetPrincipalVideoPerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetPrincipalVideoPerformanceResponse>} Promise resolving to the response
    */
   public async getPrincipalVideoPerformance(
-    params: GetPrincipalVideoPerformanceRequest
+    params: GetPrincipalVideoPerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetPrincipalVideoPerformanceResponse> {
     return ShopeeFetch.fetch<GetPrincipalVideoPerformanceResponse>(
       this.config,
@@ -142,6 +160,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -149,10 +168,12 @@ export class PrincipalManager extends BaseManager {
    * Queries livestream session performance data for the specified sessions within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and session-level detailed metrics.
    *
    * @param {GetSessionLivestreamPerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetSessionLivestreamPerformanceResponse>} Promise resolving to the response
    */
   public async getSessionLivestreamPerformance(
-    params: GetSessionLivestreamPerformanceRequest
+    params: GetSessionLivestreamPerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetSessionLivestreamPerformanceResponse> {
     return ShopeeFetch.fetch<GetSessionLivestreamPerformanceResponse>(
       this.config,
@@ -161,6 +182,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -168,10 +190,12 @@ export class PrincipalManager extends BaseManager {
    * Queries affiliate performance data for the specified shops within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and shop-level detailed metrics with placed-order and confirmed-order views.
    *
    * @param {GetShopAffiliatePerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShopAffiliatePerformanceResponse>} Promise resolving to the response
    */
   public async getShopAffiliatePerformance(
-    params: GetShopAffiliatePerformanceRequest
+    params: GetShopAffiliatePerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetShopAffiliatePerformanceResponse> {
     return ShopeeFetch.fetch<GetShopAffiliatePerformanceResponse>(
       this.config,
@@ -180,6 +204,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -187,10 +212,12 @@ export class PrincipalManager extends BaseManager {
    * Queries livestream performance data for the specified shops within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and shop-level detailed metrics.
    *
    * @param {GetShopLivestreamPerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShopLivestreamPerformanceResponse>} Promise resolving to the response
    */
   public async getShopLivestreamPerformance(
-    params: GetShopLivestreamPerformanceRequest
+    params: GetShopLivestreamPerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetShopLivestreamPerformanceResponse> {
     return ShopeeFetch.fetch<GetShopLivestreamPerformanceResponse>(
       this.config,
@@ -199,6 +226,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -206,10 +234,12 @@ export class PrincipalManager extends BaseManager {
    * Queries the business performance data of stores under the specified entity within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and store-level detailed metrics.
    *
    * @param {GetShopSalesPerformanceDetailRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShopSalesPerformanceDetailResponse>} Promise resolving to the response
    */
   public async getShopSalesPerformanceDetail(
-    params: GetShopSalesPerformanceDetailRequest
+    params: GetShopSalesPerformanceDetailRequest,
+    options?: RequestOptions
   ): Promise<GetShopSalesPerformanceDetailResponse> {
     return ShopeeFetch.fetch<GetShopSalesPerformanceDetailResponse>(
       this.config,
@@ -218,6 +248,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -225,10 +256,12 @@ export class PrincipalManager extends BaseManager {
    * Queries video performance data for the specified shops within the selected time range. Supports request granularity by day, week, month, quarter, year, or customize, and returns both overall summary metrics and shop-level detailed metrics.
    *
    * @param {GetShopVideoPerformanceRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShopVideoPerformanceResponse>} Promise resolving to the response
    */
   public async getShopVideoPerformance(
-    params: GetShopVideoPerformanceRequest
+    params: GetShopVideoPerformanceRequest,
+    options?: RequestOptions
   ): Promise<GetShopVideoPerformanceResponse> {
     return ShopeeFetch.fetch<GetShopVideoPerformanceResponse>(
       this.config,
@@ -237,6 +270,7 @@ export class PrincipalManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }

@@ -378,17 +378,22 @@ describe("ShopeeFetch Security and Retry Constraints", () => {
     // 4. Fallbacks for error.message and error.name (throwing objects/strings)
     mockFetch.mockRejectedValueOnce({ name: "TypeError" });
     await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
-      new ShopeeSdkError("Network error: [object Object]")
+      "Network error: [object Object]"
     );
 
     mockFetch.mockRejectedValueOnce({ message: "Network crash" });
     await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
-      new ShopeeSdkError("Unexpected error: Network crash")
+      "Unexpected error: Network crash"
+    );
+
+    mockFetch.mockRejectedValueOnce({ name: "TypeError" });
+    await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toBeInstanceOf(
+      ShopeeSdkError
     );
 
     mockFetch.mockRejectedValueOnce("raw-string-error");
     await expect(ShopeeFetch.fetch(mockConfig, "/test/endpoint")).rejects.toThrow(
-      new ShopeeSdkError("Unknown error occurred: raw-string-error")
+      "Unknown error occurred: raw-string-error"
     );
   });
 });

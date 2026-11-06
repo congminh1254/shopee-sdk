@@ -208,9 +208,14 @@ export class AstBuilder {
       ]);
     } else {
       if (this.enumNames.has(baseType)) {
+        // `string & {}` accepts every string like `string` does, but stops TypeScript from
+        // collapsing the union so editors still suggest the enum members.
         baseNode = ts.factory.createUnionTypeNode([
           ts.factory.createTypeReferenceNode(baseType),
-          ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+          ts.factory.createIntersectionTypeNode([
+            ts.factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+            ts.factory.createTypeLiteralNode([]),
+          ]),
           ts.factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword),
         ]);
       } else {
@@ -398,6 +403,15 @@ export class AstBuilder {
       undefined
     );
 
+    const optionsParameter = ts.factory.createParameterDeclaration(
+      undefined,
+      undefined,
+      "options",
+      ts.factory.createToken(ts.SyntaxKind.QuestionToken),
+      ts.factory.createTypeReferenceNode("RequestOptions"),
+      undefined
+    );
+
     // Build Fetch Options object literal
     const optionsProperties: ts.ObjectLiteralElementLike[] = [
       ts.factory.createPropertyAssignment("method", ts.factory.createStringLiteral(method)),
@@ -416,6 +430,10 @@ export class AstBuilder {
     const payloadProp = method === "POST" ? "body" : "params";
     optionsProperties.push(
       ts.factory.createPropertyAssignment(payloadProp, ts.factory.createIdentifier("params"))
+    );
+
+    optionsProperties.push(
+      ts.factory.createPropertyAssignment("request", ts.factory.createIdentifier("options"))
     );
 
     // Pass timestampPaths if response contains Dates
@@ -459,7 +477,7 @@ export class AstBuilder {
       methodName,
       undefined,
       undefined,
-      [parameter],
+      [parameter, optionsParameter],
       ts.factory.createTypeReferenceNode("Promise", [
         ts.factory.createTypeReferenceNode(responseType),
       ]),
@@ -468,7 +486,7 @@ export class AstBuilder {
 
     return addJsDoc(
       methodDecl,
-      `${description || `Executes API endpoint ${path}`}\n\n@param {${requestType}} params Request parameters\n@returns {Promise<${responseType}>} Promise resolving to the response`
+      `${description || `Executes API endpoint ${path}`}\n\n@param {${requestType}} params Request parameters\n@param {RequestOptions} options Per-call options such as signal, timeout_ms and retry\n@returns {Promise<${responseType}>} Promise resolving to the response`
     ) as ts.MethodDeclaration;
   }
 }

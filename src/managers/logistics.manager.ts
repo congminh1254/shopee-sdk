@@ -105,6 +105,7 @@ import {
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
+import { RequestOptions } from "../schemas/fetch.js";
 export class LogisticsManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
@@ -113,13 +114,18 @@ export class LogisticsManager extends BaseManager {
    * Use this api to batch initiate logistics including arrange pickup, dropoff or shipment for non-integrated logistic channels. Should call v2.logistics.get_shipping_parameter to fetch all required param first. It's recommended to initiate logistics one hour after the orders were placed since there is one-hour window buyer can cancel any order without request to seller.Only channel 90003 - Padrão in Brazil has the permission of this API.
    *
    * @param {BatchShipOrderRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<BatchShipOrderResponse>} Promise resolving to the response
    */
-  public async batchShipOrder(params: BatchShipOrderRequest): Promise<BatchShipOrderResponse> {
+  public async batchShipOrder(
+    params: BatchShipOrderRequest,
+    options?: RequestOptions
+  ): Promise<BatchShipOrderResponse> {
     return ShopeeFetch.fetch<BatchShipOrderResponse>(this.config, "/logistics/batch_ship_order", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
     });
   }
   /**
@@ -130,10 +136,12 @@ export class LogisticsManager extends BaseManager {
    * v2.order.get_order_detail -  fulfillment_flag = fulfilled_by_local_seller
    *
    * @param {BatchUpdateTpfWarehouseTrackingStatusRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<BatchUpdateTpfWarehouseTrackingStatusResponse>} Promise resolving to the response
    */
   public async batchUpdateTpfWarehouseTrackingStatus(
-    params: BatchUpdateTpfWarehouseTrackingStatusRequest
+    params: BatchUpdateTpfWarehouseTrackingStatusRequest,
+    options?: RequestOptions
   ): Promise<BatchUpdateTpfWarehouseTrackingStatusResponse> {
     return ShopeeFetch.fetch<BatchUpdateTpfWarehouseTrackingStatusResponse>(
       this.config,
@@ -142,6 +150,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -149,10 +158,12 @@ export class LogisticsManager extends BaseManager {
    * Only available for Brazil sellers. Use this API to check the status of polygon file uploaded for BR Entrega Turbo channel (Channel ID: 90026) by querying the task_id returned via the v2.logistics.upload_serviceable_polygon.
    *
    * @param {CheckPolygonUpdateStatusRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<CheckPolygonUpdateStatusResponse>} Promise resolving to the response
    */
   public async checkPolygonUpdateStatus(
-    params: CheckPolygonUpdateStatusRequest
+    params: CheckPolygonUpdateStatusRequest,
+    options?: RequestOptions
   ): Promise<CheckPolygonUpdateStatusResponse> {
     return ShopeeFetch.fetch<CheckPolygonUpdateStatusResponse>(
       this.config,
@@ -161,6 +172,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -168,10 +180,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to create shipping document task for each booking and this API is only available after retrieving the tracking number.
    *
    * @param {CreateBookingShippingDocumentRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<CreateBookingShippingDocumentResponse>} Promise resolving to the response
    */
   public async createBookingShippingDocument(
-    params: CreateBookingShippingDocumentRequest
+    params: CreateBookingShippingDocumentRequest,
+    options?: RequestOptions
   ): Promise<CreateBookingShippingDocumentResponse> {
     return ShopeeFetch.fetch<CreateBookingShippingDocumentResponse>(
       this.config,
@@ -180,6 +194,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -187,10 +202,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to create shipping document task for each order or package and this API is only available after retrieving the tracking number.
    *
    * @param {CreateShippingDocumentRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<CreateShippingDocumentResponse>} Promise resolving to the response
    */
   public async createShippingDocument(
-    params: CreateShippingDocumentRequest
+    params: CreateShippingDocumentRequest,
+    options?: RequestOptions
   ): Promise<CreateShippingDocumentResponse> {
     return ShopeeFetch.fetch<CreateShippingDocumentResponse>(
       this.config,
@@ -199,6 +216,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -206,10 +224,12 @@ export class LogisticsManager extends BaseManager {
    * This API creates a shipping document job for selected documents. The system receives requests and returns a job ID along with success and failure details.
    *
    * @param {CreateShippingDocumentJobRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<CreateShippingDocumentJobResponse>} Promise resolving to the response
    */
   public async createShippingDocumentJob(
-    params: CreateShippingDocumentJobRequest
+    params: CreateShippingDocumentJobRequest,
+    options?: RequestOptions
   ): Promise<CreateShippingDocumentJobResponse> {
     return ShopeeFetch.fetch<CreateShippingDocumentJobResponse>(
       this.config,
@@ -218,6 +238,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -225,23 +246,30 @@ export class LogisticsManager extends BaseManager {
    * Use this api to delete address.
    *
    * @param {DeleteAddressRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DeleteAddressResponse>} Promise resolving to the response
    */
-  public async deleteAddress(params: DeleteAddressRequest): Promise<DeleteAddressResponse> {
+  public async deleteAddress(
+    params: DeleteAddressRequest,
+    options?: RequestOptions
+  ): Promise<DeleteAddressResponse> {
     return ShopeeFetch.fetch<DeleteAddressResponse>(this.config, "/logistics/delete_address", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
     });
   }
   /**
    * This API is used to delete a specific special operating hour for a seller. This API allows sellers to manage their operating hours by removing any special operating hours that are no longer needed. To use this API, the name of the special operating hour to be deleted should be obtained from the v2.logistics.get_operating_hours API.
    *
    * @param {DeleteSpecialOperatingHourRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DeleteSpecialOperatingHourResponse>} Promise resolving to the response
    */
   public async deleteSpecialOperatingHour(
-    params: DeleteSpecialOperatingHourRequest
+    params: DeleteSpecialOperatingHourRequest,
+    options?: RequestOptions
   ): Promise<DeleteSpecialOperatingHourResponse> {
     return ShopeeFetch.fetch<DeleteSpecialOperatingHourResponse>(
       this.config,
@@ -250,6 +278,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -257,10 +286,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to download shipping_document. You have to call v2.logistics.create_booking_shipping_document to create a new shipping document task first and call v2.logistics.get_booking_shipping_document_result to get the task status second. If the task is READY, you can download this shipping document.
    *
    * @param {DownloadBookingShippingDocumentRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DownloadBookingShippingDocumentResponse>} Promise resolving to the response
    */
   public async downloadBookingShippingDocument(
-    params: DownloadBookingShippingDocumentRequest
+    params: DownloadBookingShippingDocumentRequest,
+    options?: RequestOptions
   ): Promise<DownloadBookingShippingDocumentResponse> {
     return ShopeeFetch.fetch<DownloadBookingShippingDocumentResponse>(
       this.config,
@@ -269,6 +300,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -276,10 +308,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to download shipping_document. You have to call v2.logistics.create_shipping_document to create a new shipping document task first and call v2.logistics.get_shipping_document_resut to get the task status second. If the task is READY, you can download this shipping document.
    *
    * @param {DownloadShippingDocumentRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DownloadShippingDocumentResponse>} Promise resolving to the response
    */
   public async downloadShippingDocument(
-    params: DownloadShippingDocumentRequest
+    params: DownloadShippingDocumentRequest,
+    options?: RequestOptions
   ): Promise<DownloadShippingDocumentResponse> {
     return ShopeeFetch.fetch<DownloadShippingDocumentResponse>(
       this.config,
@@ -288,6 +322,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -295,10 +330,12 @@ export class LogisticsManager extends BaseManager {
    * This API allows users to download the shipping document associated with a specific job ID. It checks the job status before proceeding with the download.
    *
    * @param {DownloadShippingDocumentJobRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DownloadShippingDocumentJobResponse>} Promise resolving to the response
    */
   public async downloadShippingDocumentJob(
-    params: DownloadShippingDocumentJobRequest
+    params: DownloadShippingDocumentJobRequest,
+    options?: RequestOptions
   ): Promise<DownloadShippingDocumentJobResponse> {
     return ShopeeFetch.fetch<DownloadShippingDocumentJobResponse>(
       this.config,
@@ -307,6 +344,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -314,10 +352,12 @@ export class LogisticsManager extends BaseManager {
    * This API allows users to download the shipping document associated with a specific job ID. It checks the job status before proceeding with the download. The response will contain a link that can be used to download the shipping document.
    *
    * @param {DownloadShippingDocumentJobFilelinkRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DownloadShippingDocumentJobFilelinkResponse>} Promise resolving to the response
    */
   public async downloadShippingDocumentJobFilelink(
-    params: DownloadShippingDocumentJobFilelinkRequest
+    params: DownloadShippingDocumentJobFilelinkRequest,
+    options?: RequestOptions
   ): Promise<DownloadShippingDocumentJobFilelinkResponse> {
     return ShopeeFetch.fetch<DownloadShippingDocumentJobFilelinkResponse>(
       this.config,
@@ -326,6 +366,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -333,23 +374,30 @@ export class LogisticsManager extends BaseManager {
    * Use the API to download the TO label that should be attached to the carton before drop-off at the warehouse (Only for TW channel_id:30029).
    *
    * @param {DownloadToLabelRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DownloadToLabelResponse>} Promise resolving to the response
    */
-  public async downloadToLabel(params: DownloadToLabelRequest): Promise<DownloadToLabelResponse> {
+  public async downloadToLabel(
+    params: DownloadToLabelRequest,
+    options?: RequestOptions
+  ): Promise<DownloadToLabelResponse> {
     return ShopeeFetch.fetch<DownloadToLabelResponse>(this.config, "/logistics/download_to_label", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
     });
   }
   /**
    * Use the API to download the TO label that should be attached to the carton before drop-off at the warehouse (Only for TW channel_id:30029). This API will return file link instead of blob.
    *
    * @param {DownloadToLabelFilelinkRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DownloadToLabelFilelinkResponse>} Promise resolving to the response
    */
   public async downloadToLabelFilelink(
-    params: DownloadToLabelFilelinkRequest
+    params: DownloadToLabelFilelinkRequest,
+    options?: RequestOptions
   ): Promise<DownloadToLabelFilelinkResponse> {
     return ShopeeFetch.fetch<DownloadToLabelFilelinkResponse>(
       this.config,
@@ -358,6 +406,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -365,23 +414,30 @@ export class LogisticsManager extends BaseManager {
    * For integrated logistics channel, use this call to get pickup address for pickup mode order.
    *
    * @param {GetAddressListRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetAddressListResponse>} Promise resolving to the response
    */
-  public async getAddressList(params?: GetAddressListRequest): Promise<GetAddressListResponse> {
+  public async getAddressList(
+    params?: GetAddressListRequest,
+    options?: RequestOptions
+  ): Promise<GetAddressListResponse> {
     return ShopeeFetch.fetch<GetAddressListResponse>(this.config, "/logistics/get_address_list", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
     });
   }
   /**
    * Use this api to fetch the logistics information of a booking these info can be used for airwaybill printing. Dedicated for crossborder SLS order airwaybill. May not be applicable for local channel airwaybill. Besides, this api supports returning personal info as images.
    *
    * @param {GetBookingShippingDocumentDataInfoRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBookingShippingDocumentDataInfoResponse>} Promise resolving to the response
    */
   public async getBookingShippingDocumentDataInfo(
-    params: GetBookingShippingDocumentDataInfoRequest
+    params: GetBookingShippingDocumentDataInfoRequest,
+    options?: RequestOptions
   ): Promise<GetBookingShippingDocumentDataInfoResponse> {
     return ShopeeFetch.fetch<GetBookingShippingDocumentDataInfoResponse>(
       this.config,
@@ -390,6 +446,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -397,10 +454,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to get the selectable shipping_document_type and suggested shipping_document_type.
    *
    * @param {GetBookingShippingDocumentParameterRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBookingShippingDocumentParameterResponse>} Promise resolving to the response
    */
   public async getBookingShippingDocumentParameter(
-    params: GetBookingShippingDocumentParameterRequest
+    params: GetBookingShippingDocumentParameterRequest,
+    options?: RequestOptions
   ): Promise<GetBookingShippingDocumentParameterResponse> {
     return ShopeeFetch.fetch<GetBookingShippingDocumentParameterResponse>(
       this.config,
@@ -409,6 +468,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -416,10 +476,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to retrieve the status of the shipping document task. Document will be available for download only after the status change to 'READY'.
    *
    * @param {GetBookingShippingDocumentResultRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBookingShippingDocumentResultResponse>} Promise resolving to the response
    */
   public async getBookingShippingDocumentResult(
-    params: GetBookingShippingDocumentResultRequest
+    params: GetBookingShippingDocumentResultRequest,
+    options?: RequestOptions
   ): Promise<GetBookingShippingDocumentResultResponse> {
     return ShopeeFetch.fetch<GetBookingShippingDocumentResultResponse>(
       this.config,
@@ -428,6 +490,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -435,10 +498,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to get the parameter "info_needed" from the response to check if the booking has pickup or dropoff. This api will also return the addresses and pickup time id options for the pickup method. For dropoff, it can return branch id, sender real name etc, depending on the 3PL requirements.
    *
    * @param {GetBookingShippingParameterRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBookingShippingParameterResponse>} Promise resolving to the response
    */
   public async getBookingShippingParameter(
-    params: GetBookingShippingParameterRequest
+    params: GetBookingShippingParameterRequest,
+    options?: RequestOptions
   ): Promise<GetBookingShippingParameterResponse> {
     return ShopeeFetch.fetch<GetBookingShippingParameterResponse>(
       this.config,
@@ -447,6 +512,7 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: ["response.pickup.address_list.time_slot_list.date"],
       }
     );
@@ -455,10 +521,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to get the logistics tracking information of a booking.
    *
    * @param {GetBookingTrackingInfoRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBookingTrackingInfoResponse>} Promise resolving to the response
    */
   public async getBookingTrackingInfo(
-    params: GetBookingTrackingInfoRequest
+    params: GetBookingTrackingInfoRequest,
+    options?: RequestOptions
   ): Promise<GetBookingTrackingInfoResponse> {
     return ShopeeFetch.fetch<GetBookingTrackingInfoResponse>(
       this.config,
@@ -467,6 +535,7 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: ["response.tracking_info.update_time"],
       }
     );
@@ -475,10 +544,12 @@ export class LogisticsManager extends BaseManager {
    * After arranging shipment (v2.logistics.ship_booking) for the integrated channel, use this api to get the tracking_number, which is a required parameter for creating shipping labels. The api response can return tracking_number empty, since this info is dependent from the 3PL, due to this it is allowed to keep calling the api within 5 minutes interval, until the tracking_number is returned.
    *
    * @param {GetBookingTrackingNumberRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBookingTrackingNumberResponse>} Promise resolving to the response
    */
   public async getBookingTrackingNumber(
-    params: GetBookingTrackingNumberRequest
+    params: GetBookingTrackingNumberRequest,
+    options?: RequestOptions
   ): Promise<GetBookingTrackingNumberResponse> {
     return ShopeeFetch.fetch<GetBookingTrackingNumberResponse>(
       this.config,
@@ -487,6 +558,7 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -494,23 +566,30 @@ export class LogisticsManager extends BaseManager {
    * Use this api to get all supported logistic channels.
    *
    * @param {GetChannelListRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetChannelListResponse>} Promise resolving to the response
    */
-  public async getChannelList(params?: GetChannelListRequest): Promise<GetChannelListResponse> {
+  public async getChannelList(
+    params?: GetChannelListRequest,
+    options?: RequestOptions
+  ): Promise<GetChannelListResponse> {
     return ShopeeFetch.fetch<GetChannelListResponse>(this.config, "/logistics/get_channel_list", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
     });
   }
   /**
    * [Only for ID mart seller] The API allows sellers to retrieve their current packaging fee settings.
    *
    * @param {GetMartPackagingInfoRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetMartPackagingInfoResponse>} Promise resolving to the response
    */
   public async getMartPackagingInfo(
-    params?: GetMartPackagingInfoRequest
+    params?: GetMartPackagingInfoRequest,
+    options?: RequestOptions
   ): Promise<GetMartPackagingInfoResponse> {
     return ShopeeFetch.fetch<GetMartPackagingInfoResponse>(
       this.config,
@@ -519,6 +598,7 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -526,10 +606,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to check if package support pickup, dropoff, non-integrated. For pickup, return address and pickup time id options. For dropoff, return branch id, sender real name, etc. Can batch request for packages under same product_location_id and logistics_channel_id. [Please call it when packages meet: 1) fulfillment status is LOGISTICS_READY; or 2) fulfillment status is LOGISTICS_PICKUP_RETRY; or 3) fulfillment status is LOGISTICS_REQUEST_CREATED and meet Instant Order Reschedule conditions]
    *
    * @param {GetMassShippingParameterRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetMassShippingParameterResponse>} Promise resolving to the response
    */
   public async getMassShippingParameter(
-    params: GetMassShippingParameterRequest
+    params: GetMassShippingParameterRequest,
+    options?: RequestOptions
   ): Promise<GetMassShippingParameterResponse> {
     return ShopeeFetch.fetch<GetMassShippingParameterResponse>(
       this.config,
@@ -538,6 +620,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
         timestampPaths: ["response.pickup.address_list.time_slot_list.date"],
       }
     );
@@ -546,10 +629,12 @@ export class LogisticsManager extends BaseManager {
    * After arranging shipment (v2.logistics.mass_ship_order) for the integrated channel, use this api to get the tracking_number, which is a required parameter for creating shipping labels. The api response can return tracking_number empty, since this info is dependent from the 3PL, due to this it is allowed to keep calling the api within 5 minutes interval, until the tracking_number is returned.
    *
    * @param {GetMassTrackingNumberRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetMassTrackingNumberResponse>} Promise resolving to the response
    */
   public async getMassTrackingNumber(
-    params: GetMassTrackingNumberRequest
+    params: GetMassTrackingNumberRequest,
+    options?: RequestOptions
   ): Promise<GetMassTrackingNumberResponse> {
     return ShopeeFetch.fetch<GetMassTrackingNumberResponse>(
       this.config,
@@ -558,6 +643,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -565,10 +651,12 @@ export class LogisticsManager extends BaseManager {
    * This API is designed to retrieve all restrictions related to inputting operating hours for the v2.logistics.update_operating_hours function. This API ensures that user are aware of any limitations or conditions that may affect their operating hours.
    *
    * @param {GetOperatingHourRestrictionsRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetOperatingHourRestrictionsResponse>} Promise resolving to the response
    */
   public async getOperatingHourRestrictions(
-    params?: GetOperatingHourRestrictionsRequest
+    params?: GetOperatingHourRestrictionsRequest,
+    options?: RequestOptions
   ): Promise<GetOperatingHourRestrictionsResponse> {
     return ShopeeFetch.fetch<GetOperatingHourRestrictionsResponse>(
       this.config,
@@ -577,6 +665,7 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -584,10 +673,12 @@ export class LogisticsManager extends BaseManager {
    * This API is utilized to retrieve the existing operating hours of sellers including Pickup Operating Hours, Special Hours, Instant Operating Hours, and Shop Collection Operating Hours.
    *
    * @param {GetOperatingHoursRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetOperatingHoursResponse>} Promise resolving to the response
    */
   public async getOperatingHours(
-    params?: GetOperatingHoursRequest
+    params?: GetOperatingHoursRequest,
+    options?: RequestOptions
   ): Promise<GetOperatingHoursResponse> {
     return ShopeeFetch.fetch<GetOperatingHoursResponse>(
       this.config,
@@ -596,6 +687,7 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -603,10 +695,12 @@ export class LogisticsManager extends BaseManager {
    * Use this API to retrieve the current order count limit configuration for orders outside the Instant operating time window if the daily order count limit has been enabled.
    *
    * @param {GetOrderCountLimitOutsideInstantOperatingTimeRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetOrderCountLimitOutsideInstantOperatingTimeResponse>} Promise resolving to the response
    */
   public async getOrderCountLimitOutsideInstantOperatingTime(
-    params?: GetOrderCountLimitOutsideInstantOperatingTimeRequest
+    params?: GetOrderCountLimitOutsideInstantOperatingTimeRequest,
+    options?: RequestOptions
   ): Promise<GetOrderCountLimitOutsideInstantOperatingTimeResponse> {
     return ShopeeFetch.fetch<GetOrderCountLimitOutsideInstantOperatingTimeResponse>(
       this.config,
@@ -615,6 +709,7 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -622,13 +717,18 @@ export class LogisticsManager extends BaseManager {
    * This API returns the pause status of logistics channels under the shop. Pausing allows the shop to temporarily prevent buyers from placing orders through specific logistics channels. The response includes whether a pause is currently active, the pause end time (if active), and the remaining daily pause quota in seconds (if inactive). Sellers need to refer to the support_pause field in v2.logistics.get_channel_list response to determine which channels are actually paused.
    *
    * @param {GetPauseStatusRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetPauseStatusResponse>} Promise resolving to the response
    */
-  public async getPauseStatus(params?: GetPauseStatusRequest): Promise<GetPauseStatusResponse> {
+  public async getPauseStatus(
+    params?: GetPauseStatusRequest,
+    options?: RequestOptions
+  ): Promise<GetPauseStatusResponse> {
     return ShopeeFetch.fetch<GetPauseStatusResponse>(this.config, "/logistics/get_pause_status", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
       timestampPaths: ["response.pause_end_time"],
     });
   }
@@ -636,10 +736,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to fetch the logistics information of an order, these info can be used for self-design AWB printing. Besides, this api supports returning personal info as images.
    *
    * @param {GetShippingDocumentDataInfoRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShippingDocumentDataInfoResponse>} Promise resolving to the response
    */
   public async getShippingDocumentDataInfo(
-    params: GetShippingDocumentDataInfoRequest
+    params: GetShippingDocumentDataInfoRequest,
+    options?: RequestOptions
   ): Promise<GetShippingDocumentDataInfoResponse> {
     return ShopeeFetch.fetch<GetShippingDocumentDataInfoResponse>(
       this.config,
@@ -648,6 +750,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -655,10 +758,12 @@ export class LogisticsManager extends BaseManager {
    * This API retrieves the status of a shipping document job using the job ID provided.
    *
    * @param {GetShippingDocumentJobStatusRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShippingDocumentJobStatusResponse>} Promise resolving to the response
    */
   public async getShippingDocumentJobStatus(
-    params: GetShippingDocumentJobStatusRequest
+    params: GetShippingDocumentJobStatusRequest,
+    options?: RequestOptions
   ): Promise<GetShippingDocumentJobStatusResponse> {
     return ShopeeFetch.fetch<GetShippingDocumentJobStatusResponse>(
       this.config,
@@ -667,6 +772,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -674,10 +780,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to get the selectable shipping_document_type and suggested shipping_document_type.
    *
    * @param {GetShippingDocumentParameterRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShippingDocumentParameterResponse>} Promise resolving to the response
    */
   public async getShippingDocumentParameter(
-    params: GetShippingDocumentParameterRequest
+    params: GetShippingDocumentParameterRequest,
+    options?: RequestOptions
   ): Promise<GetShippingDocumentParameterResponse> {
     return ShopeeFetch.fetch<GetShippingDocumentParameterResponse>(
       this.config,
@@ -686,6 +794,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -693,10 +802,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to retrieve the status of the shipping document task. Document will be available for download only after the status change to 'READY'.
    *
    * @param {GetShippingDocumentResultRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShippingDocumentResultResponse>} Promise resolving to the response
    */
   public async getShippingDocumentResult(
-    params: GetShippingDocumentResultRequest
+    params: GetShippingDocumentResultRequest,
+    options?: RequestOptions
   ): Promise<GetShippingDocumentResultResponse> {
     return ShopeeFetch.fetch<GetShippingDocumentResultResponse>(
       this.config,
@@ -705,6 +816,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -712,10 +824,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to check if the package support pickup, dropoff, or non-integrated method. For pickup, will return addresses and pickup time id options. For dropoff, will return branch id, sender real name etc, depending on 3PL requirements. [Please call this API when packages meet: 1) fulfillment status is LOGISTICS_READY; or 2) fulfillment status is LOGISTICS_PICKUP_RETRY; or 3) fulfillment status is LOGISTICS_REQUEST_CREATED and meet Instant Order Reschedule Pickup conditions]
    *
    * @param {GetShippingParameterRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShippingParameterResponse>} Promise resolving to the response
    */
   public async getShippingParameter(
-    params: GetShippingParameterRequest
+    params: GetShippingParameterRequest,
+    options?: RequestOptions
   ): Promise<GetShippingParameterResponse> {
     return ShopeeFetch.fetch<GetShippingParameterResponse>(
       this.config,
@@ -724,6 +838,7 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: ["response.pickup.address_list.time_slot_list.date"],
       }
     );
@@ -732,13 +847,18 @@ export class LogisticsManager extends BaseManager {
    * Use this api to get the logistics tracking information of an order.
    *
    * @param {GetTrackingInfoRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetTrackingInfoResponse>} Promise resolving to the response
    */
-  public async getTrackingInfo(params: GetTrackingInfoRequest): Promise<GetTrackingInfoResponse> {
+  public async getTrackingInfo(
+    params: GetTrackingInfoRequest,
+    options?: RequestOptions
+  ): Promise<GetTrackingInfoResponse> {
     return ShopeeFetch.fetch<GetTrackingInfoResponse>(this.config, "/logistics/get_tracking_info", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
       timestampPaths: ["response.tracking_info.update_time"],
     });
   }
@@ -746,10 +866,12 @@ export class LogisticsManager extends BaseManager {
    * After arranging shipment (v2.logistics.ship_order) for the integrated channel, use this api to get the tracking_number, which is a required parameter for creating shipping labels. The api response can return tracking_number empty, since this info is dependent from the 3PL, due to this it is allowed to keep calling the api within 5 minutes interval, until the tracking_number is returned.
    *
    * @param {GetTrackingNumberRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetTrackingNumberResponse>} Promise resolving to the response
    */
   public async getTrackingNumber(
-    params: GetTrackingNumberRequest
+    params: GetTrackingNumberRequest,
+    options?: RequestOptions
   ): Promise<GetTrackingNumberResponse> {
     return ShopeeFetch.fetch<GetTrackingNumberResponse>(
       this.config,
@@ -758,6 +880,7 @@ export class LogisticsManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -765,23 +888,30 @@ export class LogisticsManager extends BaseManager {
    * Use this api to initiate logistics including arrange pickup, dropoff or shipment for non-integrated logistic channels. Should call v2.logistics.get_mass_shipping_parameter to fetch all required params first. It's recommended to initiate logistics one hour after the orders were placed since there is one-hour window buyer can cancel any order without request to seller. The API can only batch arrange shipment for multiple packages under the same product_location_id and same logistics_channel_id.
    *
    * @param {MassShipOrderRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<MassShipOrderResponse>} Promise resolving to the response
    */
-  public async massShipOrder(params: MassShipOrderRequest): Promise<MassShipOrderResponse> {
+  public async massShipOrder(
+    params: MassShipOrderRequest,
+    options?: RequestOptions
+  ): Promise<MassShipOrderResponse> {
     return ShopeeFetch.fetch<MassShipOrderResponse>(this.config, "/logistics/mass_ship_order", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
     });
   }
   /**
    * Use this API to set address config of your shop.
    *
    * @param {SetAddressConfigRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<SetAddressConfigResponse>} Promise resolving to the response
    */
   public async setAddressConfig(
-    params?: SetAddressConfigRequest
+    params?: SetAddressConfigRequest,
+    options?: RequestOptions
   ): Promise<SetAddressConfigResponse> {
     return ShopeeFetch.fetch<SetAddressConfigResponse>(
       this.config,
@@ -790,6 +920,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -797,10 +928,12 @@ export class LogisticsManager extends BaseManager {
    * [Only for ID mart seller] This API allows sellers to set up their packaging fee info. Through this API, sellers can enable or disable packaging fees, and if enabled, specify the dimensions of the packaging and the associated fee. This ensures that sellers can configure their shipping costs accurately based on their packaging requirements.
    *
    * @param {SetMartPackagingInfoRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<SetMartPackagingInfoResponse>} Promise resolving to the response
    */
   public async setMartPackagingInfo(
-    params: SetMartPackagingInfoRequest
+    params: SetMartPackagingInfoRequest,
+    options?: RequestOptions
   ): Promise<SetMartPackagingInfoResponse> {
     return ShopeeFetch.fetch<SetMartPackagingInfoResponse>(
       this.config,
@@ -809,6 +942,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -816,10 +950,12 @@ export class LogisticsManager extends BaseManager {
    * Use this API to configure how orders outside the Instant operating time window are accepted. This allows the shop to either accept all such orders without restriction, or limit them by setting a maximum daily order count. Note: The setting may take a few moments to take effect. Please check for any additional orders that may still be accepted under the previous configuration during this window.
    *
    * @param {SetOrderCountLimitOutsideInstantOperatingTimeRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<SetOrderCountLimitOutsideInstantOperatingTimeResponse>} Promise resolving to the response
    */
   public async setOrderCountLimitOutsideInstantOperatingTime(
-    params: SetOrderCountLimitOutsideInstantOperatingTimeRequest
+    params: SetOrderCountLimitOutsideInstantOperatingTimeRequest,
+    options?: RequestOptions
   ): Promise<SetOrderCountLimitOutsideInstantOperatingTimeResponse> {
     return ShopeeFetch.fetch<SetOrderCountLimitOutsideInstantOperatingTimeResponse>(
       this.config,
@@ -828,6 +964,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -835,13 +972,18 @@ export class LogisticsManager extends BaseManager {
    * Use this API to set the pause status of logistics channels under the shop. Pausing allows the shop to temporarily prevent buyers from placing orders through specific logistics channels. The response includes whether a pause is currently active, the pause end time (if active), and the remaining daily pause quota in seconds (if inactive). Note: The pause may take a few moments to take effect. Please check for any additional orders that may still be placed during this window.
    *
    * @param {SetPauseStatusRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<SetPauseStatusResponse>} Promise resolving to the response
    */
-  public async setPauseStatus(params: SetPauseStatusRequest): Promise<SetPauseStatusResponse> {
+  public async setPauseStatus(
+    params: SetPauseStatusRequest,
+    options?: RequestOptions
+  ): Promise<SetPauseStatusResponse> {
     return ShopeeFetch.fetch<SetPauseStatusResponse>(this.config, "/logistics/set_pause_status", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
       timestampPaths: ["response.pause_end_time"],
     });
   }
@@ -849,62 +991,84 @@ export class LogisticsManager extends BaseManager {
    * Use this api to initiate logistics including arrange pickup, dropoff. Should call v2.logistics.get_booking_shipping_parameter to fetch all required param first.
    *
    * @param {ShipBookingRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<ShipBookingResponse>} Promise resolving to the response
    */
-  public async shipBooking(params: ShipBookingRequest): Promise<ShipBookingResponse> {
+  public async shipBooking(
+    params: ShipBookingRequest,
+    options?: RequestOptions
+  ): Promise<ShipBookingResponse> {
     return ShopeeFetch.fetch<ShipBookingResponse>(this.config, "/logistics/ship_booking", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
     });
   }
   /**
    * Use this api to initiate logistics including arrange pickup, dropoff or shipment for non-integrated logistic channels. Should call v2.logistics.get_shipping_parameter to fetch all required param first. It's recommended to initiate logistics one hour after the orders were placed.
    *
    * @param {ShipOrderRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<ShipOrderResponse>} Promise resolving to the response
    */
-  public async shipOrder(params: ShipOrderRequest): Promise<ShipOrderResponse> {
+  public async shipOrder(
+    params: ShipOrderRequest,
+    options?: RequestOptions
+  ): Promise<ShipOrderResponse> {
     return ShopeeFetch.fetch<ShipOrderResponse>(this.config, "/logistics/ship_order", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
     });
   }
   /**
    * Use this API to update the address of a shop.
    *
    * @param {UpdateAddressRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateAddressResponse>} Promise resolving to the response
    */
-  public async updateAddress(params: UpdateAddressRequest): Promise<UpdateAddressResponse> {
+  public async updateAddress(
+    params: UpdateAddressRequest,
+    options?: RequestOptions
+  ): Promise<UpdateAddressResponse> {
     return ShopeeFetch.fetch<UpdateAddressResponse>(this.config, "/logistics/update_address", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
     });
   }
   /**
    * Use this api to update shop level logistics channel's configuration.
    *
    * @param {UpdateChannelRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateChannelResponse>} Promise resolving to the response
    */
-  public async updateChannel(params: UpdateChannelRequest): Promise<UpdateChannelResponse> {
+  public async updateChannel(
+    params: UpdateChannelRequest,
+    options?: RequestOptions
+  ): Promise<UpdateChannelResponse> {
     return ShopeeFetch.fetch<UpdateChannelResponse>(this.config, "/logistics/update_channel", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
     });
   }
   /**
    * This API is designed to allow sellers to update their operating hours. It is essential that the values provided in this API align with the restrictions retrieved from the v2.logistics.get_operating_hour_restrictions API to ensure compliance with platform requirements. This API uses overwriting updates, when updating pickup operating hours, still need to include all parts even those not needing changes.
    *
    * @param {UpdateOperatingHoursRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateOperatingHoursResponse>} Promise resolving to the response
    */
   public async updateOperatingHours(
-    params?: UpdateOperatingHoursRequest
+    params?: UpdateOperatingHoursRequest,
+    options?: RequestOptions
   ): Promise<UpdateOperatingHoursResponse> {
     return ShopeeFetch.fetch<UpdateOperatingHoursResponse>(
       this.config,
@@ -913,6 +1077,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -920,10 +1085,12 @@ export class LogisticsManager extends BaseManager {
    * Use this api to update the order status for buyer to collect the orders directly from your pharmacy. This includes indicating that order is ready for collection, and that the order has been picked up by the buyer. You should call v2.logistics.get_order_detail or v2.logistics.get_package_detail first to get the package_number of such orders.
    *
    * @param {UpdateSelfCollectionOrderLogisticsRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateSelfCollectionOrderLogisticsResponse>} Promise resolving to the response
    */
   public async updateSelfCollectionOrderLogistics(
-    params: UpdateSelfCollectionOrderLogisticsRequest
+    params: UpdateSelfCollectionOrderLogisticsRequest,
+    options?: RequestOptions
   ): Promise<UpdateSelfCollectionOrderLogisticsResponse> {
     return ShopeeFetch.fetch<UpdateSelfCollectionOrderLogisticsResponse>(
       this.config,
@@ -932,6 +1099,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -939,10 +1107,12 @@ export class LogisticsManager extends BaseManager {
    * For pickup method only, use this api to update pickup address and pickup time for packages meet: 1) package's fulfillment status is LOGISTICS_PICKUP_RETRY; or 2) package's fulfillment status is 'LOGISTICS_REQUEST_CREATED' and meets the Instant Order Reschedule Pickup conditions.
    *
    * @param {UpdateShippingOrderRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateShippingOrderResponse>} Promise resolving to the response
    */
   public async updateShippingOrder(
-    params: UpdateShippingOrderRequest
+    params: UpdateShippingOrderRequest,
+    options?: RequestOptions
   ): Promise<UpdateShippingOrderResponse> {
     return ShopeeFetch.fetch<UpdateShippingOrderResponse>(
       this.config,
@@ -951,6 +1121,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -958,10 +1129,12 @@ export class LogisticsManager extends BaseManager {
    * Only available for Brazil sellers. This API is only available for orders/parcels which are fulfilled by BR Seller Logistics channel (logistics_channel_id: 90021), Samsung (logistics_channel_id: 90025) and BR Instant Delivery channel (logistics_channel_id: 90026). The logistics_status will become LOGISTICS_REQUEST_CREATED after arrange shipment, and can call this API to update to: LOGISTICS_PICKUP_DONE, LOGISTICS_DELIVERY_DONE, LOGISTICS_DELIVERY_FAILED.
    *
    * @param {UpdateTrackingStatusRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateTrackingStatusResponse>} Promise resolving to the response
    */
   public async updateTrackingStatus(
-    params: UpdateTrackingStatusRequest
+    params: UpdateTrackingStatusRequest,
+    options?: RequestOptions
   ): Promise<UpdateTrackingStatusResponse> {
     return ShopeeFetch.fetch<UpdateTrackingStatusResponse>(
       this.config,
@@ -970,6 +1143,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -977,10 +1151,12 @@ export class LogisticsManager extends BaseManager {
    * Only available for Brazil sellers. Use this API to upload KML file for shop level serviceability setting for BR Entrega Turbo channel (Channel ID: 90026). Please note that multiple Outlet Shops under the same Mart Shop can have overlapping service areas.
    *
    * @param {UploadServiceablePolygonRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UploadServiceablePolygonResponse>} Promise resolving to the response
    */
   public async uploadServiceablePolygon(
-    params: UploadServiceablePolygonRequest
+    params: UploadServiceablePolygonRequest,
+    options?: RequestOptions
   ): Promise<UploadServiceablePolygonResponse> {
     return ShopeeFetch.fetch<UploadServiceablePolygonResponse>(
       this.config,
@@ -989,6 +1165,7 @@ export class LogisticsManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }

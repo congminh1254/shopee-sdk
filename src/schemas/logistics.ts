@@ -373,7 +373,7 @@ export interface CreateBookingShippingDocumentBooking {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL,NORMAL_JOB_AIR_WAYBILL,THERMAL_JOB_AIR_WAYBILL
    */
   shipping_document_type?:
-    CreateBookingShippingDocumentRequestBookingListShippingDocumentType | string | number;
+    CreateBookingShippingDocumentRequestBookingListShippingDocumentType | (string & {}) | number;
 }
 /**
  * Request parameters for create_booking_shipping_document
@@ -448,7 +448,7 @@ export interface CreateShippingDocumentOrder {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
   shipping_document_type?:
-    CreateShippingDocumentRequestOrderListShippingDocumentType | string | number;
+    CreateShippingDocumentRequestOrderListShippingDocumentType | (string & {}) | number;
 }
 /**
  * Request parameters for create_shipping_document
@@ -532,7 +532,8 @@ export interface CreateShippingDocumentJobRequest {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
-  shipping_document_type: CreateShippingDocumentJobRequestShippingDocumentType | string | number;
+  shipping_document_type:
+    CreateShippingDocumentJobRequestShippingDocumentType | (string & {}) | number;
   /**
    * List of Unpackaged SKUs to generate labels for.Note: The unpackaged_sku_requests, package_list, and booking_sn cannot be populated at the same time, please select one.
    */
@@ -649,7 +650,7 @@ export interface DownloadBookingShippingDocumentRequest {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL
    */
   shipping_document_type?:
-    DownloadBookingShippingDocumentRequestShippingDocumentType | string | number;
+    DownloadBookingShippingDocumentRequestShippingDocumentType | (string & {}) | number;
   /**
    * The list of bookings you want to get. limit [1,50]
    */
@@ -693,7 +694,8 @@ export interface DownloadShippingDocumentRequest {
   /**
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
-  shipping_document_type?: DownloadShippingDocumentRequestShippingDocumentType | string | number;
+  shipping_document_type?:
+    DownloadShippingDocumentRequestShippingDocumentType | (string & {}) | number;
   /**
    * The list of orders you need to download it's shipping document. Limit [1, 50]. Orders must be from the same courier
    */
@@ -870,7 +872,7 @@ export interface GetAddressListAddress {
   /**
    * The flag of shop address.Available values: DEFAULT_ADDRESS, PICK_UP_ADDRESS, RETURN_ADDRESS, INBOUND_PICKUP_ADDRESS.
    */
-  address_type?: GetAddressListResponseResponseAddressListAddressType | string | number;
+  address_type?: GetAddressListResponseResponseAddressListAddressType | (string & {}) | number;
 }
 /**
  * GetAddressListResponseData sub-interface for GetAddressListResponse
@@ -1194,7 +1196,7 @@ export interface GetBookingShippingDocumentResultBooking {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL,THERMAL_AIR_WAYBILL
    */
   shipping_document_type?:
-    GetBookingShippingDocumentResultRequestBookingListShippingDocumentType | string | number;
+    GetBookingShippingDocumentResultRequestBookingListShippingDocumentType | (string & {}) | number;
 }
 /**
  * Request parameters for get_booking_shipping_document_result
@@ -1227,7 +1229,7 @@ export interface GetBookingShippingDocumentResultResult {
   /**
    * The status of the shipping document task you querying with booking_sn. Available values: READY/FAILED/PROCESSING
    */
-  status?: Status | string | number;
+  status?: Status | (string & {}) | number;
   /**
    * Indicate error type if one element hit error.
    */
@@ -1988,7 +1990,7 @@ export interface GetMassTrackingNumberRequest {
   /**
    * Indicate response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them. Available values: plp_number, first_mile_tracking_number,last_mile_tracking_number.
    */
-  response_optional_fields?: ResponseOptionalFields | string | number;
+  response_optional_fields?: ResponseOptionalFields | (string & {}) | number;
 }
 /**
  * GetMassTrackingNumberSuccess sub-interface for GetMassTrackingNumberResponseData
@@ -3545,7 +3547,7 @@ export interface GetShippingDocumentJobStatusResponseData {
   /**
    * Requested Shipping Document current status. Available values: PROCESSING, READY, EXPIRED, FAILED
    */
-  job_status?: JobStatus | string | number;
+  job_status?: JobStatus | (string & {}) | number;
 }
 /**
  * Response payload for get_shipping_document_job_status
@@ -3652,7 +3654,7 @@ export interface GetShippingDocumentResultOrder {
    * The type of shipping document. Available values: NORMAL_AIR_WAYBILL, THERMAL_AIR_WAYBILL, NORMAL_JOB_AIR_WAYBILL, THERMAL_JOB_AIR_WAYBILL, THERMAL_UNPACKAGED_LABEL
    */
   shipping_document_type?:
-    GetShippingDocumentResultRequestOrderListShippingDocumentType | string | number;
+    GetShippingDocumentResultRequestOrderListShippingDocumentType | (string & {}) | number;
 }
 /**
  * Request parameters for get_shipping_document_result
@@ -4021,7 +4023,7 @@ export interface GetTrackingNumberRequest {
   /**
    * Indicate response fields you want to get. Please select from the below response parameters. If you input an object field, all the params under it will be included automatically in the response. If there are multiple response fields you want to get, you need to use English comma to connect them. Available values: plp_number, first_mile_tracking_number,last_mile_tracking_number
    */
-  response_optional_fields?: ResponseOptionalFields | string | number;
+  response_optional_fields?: ResponseOptionalFields | (string & {}) | number;
 }
 /**
  * GetTrackingNumberResponseData sub-interface for GetTrackingNumberResponse
@@ -4202,7 +4204,7 @@ export interface SetAddressConfigAddressTypeConfig {
   /**
    * The type of address. Available values: DEFAULT_ADDRESS, PICKUP_ADDRESS, RETURN_ADDRESS, INBOUND_PICKUP_ADDRESS.
    */
-  address_type?: SetAddressConfigRequestAddressTypeConfigAddressType | string | number;
+  address_type?: SetAddressConfigRequestAddressTypeConfigAddressType | (string & {}) | number;
 }
 /**
  * Request parameters for set_address_config

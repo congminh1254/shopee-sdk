@@ -153,7 +153,7 @@ export interface GetVideoUploadResultResponseData {
   /**
    * Current status of this video upload session. could be: INITIATED(waiting for part uploading and/or the complete_video_upload API call), TRANSCODING(has received all video parts, and is transcoding the video file), SUCCEEDED(transcoding completed, and this upload_id can now be used for item adding/updating), FAILED(this upload failed, see the message filed for some info), CANCELLED(this upload is cancelled)
    */
-  status?: Status | string | number;
+  status?: Status | (string & {}) | number;
   /**
    * Transcoded video info, will be present if status is SUCCEEDED.
    */
@@ -161,7 +161,7 @@ export interface GetVideoUploadResultResponseData {
   /**
    * Detail error message if video uploading/transcoding failed.
    */
-  message?: Message | string | number;
+  message?: Message | (string & {}) | number;
 }
 /**
  * Response payload for get_video_upload_result
@@ -191,7 +191,7 @@ export interface InitVideoUploadResponseData {
   /**
    * The identifier of this upload session, used in following video upload request and item creating and/or updating
    */
-  video_upload_id?: VideoUploadId | string | number;
+  video_upload_id?: VideoUploadId | (string & {}) | number;
 }
 /**
  * Response payload for init_video_upload
