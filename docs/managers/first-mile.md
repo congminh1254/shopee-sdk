@@ -294,6 +294,29 @@ response.response?.waybill_list?.forEach((item) => {
 
 ---
 
+### getWaybillFilelink()
+
+**API Documentation:** [v2.first_mile.get_waybill_filelink](https://open.shopee.com/documents/v2/v2.first_mile.get_waybill_filelink?module=96&type=1)
+
+Get a download link to the first mile waybill file instead of the file content.
+
+```typescript
+const response = await sdk.firstMile.getWaybillFilelink({
+  first_mile_tracking_number_list: [
+    'CNF731738838434210105',
+    'CNF731738838434210106',
+  ],
+});
+
+console.log('Waybill download link:', response.response?.file_link);
+```
+
+**Important Notes:**
+- 1 to 50 tracking numbers per request
+- The link is valid for 30 minutes; download the file promptly
+
+---
+
 ## Courier Delivery Methods
 
 For regions that support courier delivery (e.g., China), additional methods are available:
@@ -426,6 +449,23 @@ response.response?.binding_info_list?.forEach((item) => {
 });
 ```
 
+You can also query by Unix timestamps and choose which time field the range applies to:
+
+```typescript
+import { TimeRangeType } from '@congminh1254/shopee-sdk/schemas/first-mile';
+
+const response = await sdk.firstMile.getCourierDeliveryTrackingNumberList({
+  time_range_type: TimeRangeType.UPDATE_TIME, // Defaults to create_time
+  from_timestamp: 1704067200,
+  to_timestamp: 1706745599,
+  page_size: 20,
+});
+```
+
+**Query Range:**
+- `from_date` / `to_date` (YYYY-MM-DD, shop region's local time) are required only when timestamps are not passed
+- `from_timestamp` and `to_timestamp` must be passed together; when passed, `from_date` and `to_date` are ignored
+
 ---
 
 ### getCourierDeliveryWaybill()
@@ -461,6 +501,25 @@ await sdk.firstMile.unbindFirstMileTrackingNumberAll({
       package_number: '25333320394471234567',
     },
   ],
+});
+```
+
+---
+
+### cancelCourierDeliveryFirstMileTrackingNumber()
+
+**API Documentation:** [v2.first_mile.cancel_courier_delivery_first_mile_tracking_number](https://open.shopee.com/documents/v2/v2.first_mile.cancel_courier_delivery_first_mile_tracking_number?module=96&type=1)
+
+Cancel a courier delivery first mile tracking number by its binding ID.
+
+```typescript
+const response = await sdk.firstMile.cancelCourierDeliveryFirstMileTrackingNumber({
+  binding_id: 'BINDING123456',
+});
+
+console.log('Cancelled binding:', response.response?.binding_id);
+response.response?.unbinded_order_list?.forEach((order) => {
+  console.log(`Unbound: ${order.order_sn} / ${order.package_number}`);
 });
 ```
 
