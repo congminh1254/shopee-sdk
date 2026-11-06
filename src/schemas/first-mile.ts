@@ -31,6 +31,13 @@ export enum SlsTrackingNumber {
   FORDERS = "forders",
 }
 /**
+ * Enum generated for field TimeRangeType
+ */
+export enum TimeRangeType {
+  CREATE_TIME = "create_time",
+  UPDATE_TIME = "update_time",
+}
+/**
  * Enum generated for field DeclareDate
  */
 export enum DeclareDate {
@@ -256,6 +263,44 @@ export interface BindFirstMileTrackingNumberResponseData {
 export type BindFirstMileTrackingNumberResponse =
   FetchResponse<BindFirstMileTrackingNumberResponseData>;
 /**
+ * Request parameters for cancel_courier_delivery_first_mile_tracking_number
+ *
+ * Use this api to cancel first mile tracking number for courier delivery method.
+ */
+export interface CancelCourierDeliveryFirstMileTrackingNumberRequest {
+  binding_id: string;
+}
+/**
+ * CancelCourierDeliveryFirstMileTrackingNumberUnbindedOrder sub-interface for CancelCourierDeliveryFirstMileTrackingNumberResponseData
+ */
+export interface CancelCourierDeliveryFirstMileTrackingNumberUnbindedOrder {
+  /**
+   * Shopee's unique identifier for an order.
+   */
+  order_sn?: string;
+  /**
+   * Shopee's unique identifier for the package under an order.
+   */
+  package_number?: string;
+}
+/**
+ * CancelCourierDeliveryFirstMileTrackingNumberResponseData sub-interface for CancelCourierDeliveryFirstMileTrackingNumberResponse
+ */
+export interface CancelCourierDeliveryFirstMileTrackingNumberResponseData {
+  /**
+   * Binding ID
+   */
+  binding_id?: string;
+  unbinded_order_list?: CancelCourierDeliveryFirstMileTrackingNumberUnbindedOrder[];
+}
+/**
+ * Response payload for cancel_courier_delivery_first_mile_tracking_number
+ *
+ * Use this api to cancel first mile tracking number for courier delivery method.
+ */
+export type CancelCourierDeliveryFirstMileTrackingNumberResponse =
+  FetchResponse<CancelCourierDeliveryFirstMileTrackingNumberResponseData>;
+/**
  * GenerateAndBindFirstMileTrackingNumberOrder sub-interface for GenerateAndBindFirstMileTrackingNumberRequest
  */
 export interface GenerateAndBindFirstMileTrackingNumberOrder {
@@ -467,6 +512,10 @@ export interface GetCourierDeliveryChannelListCourier {
    * The name of the service provided by courier.
    */
   courier_service_name?: string;
+  /**
+   * The code of the courier.
+   */
+  courier_code?: string;
 }
 /**
  * GetCourierDeliveryChannelListLogisticsChannel sub-interface for GetCourierDeliveryChannelListResponseData
@@ -582,13 +631,25 @@ export type GetCourierDeliveryDetailResponse = FetchResponse<GetCourierDeliveryD
  */
 export interface GetCourierDeliveryTrackingNumberListRequest {
   /**
-   * The start time of creation time
+   * The start time of creation time. Format YYYY-MM-DD, in the shop region's local time. Required when from_timestamp and to_timestamp are not passed. Ignored when they are passed.
    */
-  from_date: string;
+  from_date?: string;
   /**
-   * The end time of creation time
+   * The end time of creation time. Format YYYY-MM-DD, in the shop region's local time. The whole day is included (until 23:59:59). Required when from_timestamp and to_timestamp are not passed. Ignored when they are passed.
    */
-  to_date: string;
+  to_date?: string;
+  /**
+   * The time field that the query range applies to and that results are sorted by. Available values: create_time, update_time. Defaults to create_time when not passed.
+   */
+  time_range_type?: TimeRangeType | string | number;
+  /**
+   * Start of the query range, Unix timestamp in seconds. Must be passed together with to_timestamp. When passed, from_date and to_date are ignored.
+   */
+  from_timestamp?: number;
+  /**
+   * End of the query range, Unix timestamp in seconds. Must be passed together with from_timestamp and must not be earlier than from_timestamp.
+   */
+  to_timestamp?: number;
   /**
    * Each result set is returned as a page of entries. Use the "page_size" filters to control the maximum number of entries to retrieve per page (i.e., per call). This integer value is used to specify the maximum number of entries to return in a single "page" of data. limit [1, 50]
    */
@@ -960,6 +1021,32 @@ export interface GetWaybillResponseData {
  * Use this api to get first mile waybill file.
  */
 export type GetWaybillResponse = FetchResponse<GetWaybillResponseData>;
+/**
+ * Request parameters for get_waybill_filelink
+ *
+ * Use this api to get first mile waybill file link.
+ */
+export interface GetWaybillFilelinkRequest {
+  /**
+   * The first mile tracking number that you want to print waybill.limit [1, 50]
+   */
+  first_mile_tracking_number_list: string[];
+}
+/**
+ * Response data payload for get_waybill_filelink
+ */
+export interface GetWaybillFilelinkResponseData {
+  /**
+   * The download link to the waybill file. The link will be valid for 30 minutes.
+   */
+  file_link?: string;
+}
+/**
+ * Response payload for get_waybill_filelink
+ *
+ * Use this api to get first mile waybill file link.
+ */
+export type GetWaybillFilelinkResponse = FetchResponse<GetWaybillFilelinkResponseData>;
 /**
  * UnbindFirstMileTrackingNumberOrder sub-interface for UnbindFirstMileTrackingNumberRequest
  */

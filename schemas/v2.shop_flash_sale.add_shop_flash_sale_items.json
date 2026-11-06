@@ -558,8 +558,7 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Marketing",
-    "Swam ERP"
+    "Marketing"
   ],
   "path": "/api/v2/shop_flash_sale/add_shop_flash_sale_items",
   "related_documents": {

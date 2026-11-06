@@ -450,8 +450,7 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Accounting And Finance",
-    "Swam ERP"
+    "Accounting And Finance"
   ],
   "path": "/api/v2/payment/get_item_installment_status",
   "related_documents": {

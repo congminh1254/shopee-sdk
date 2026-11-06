@@ -54,6 +54,30 @@
       "solution": null
     },
     {
+      "name": "classification.category.inmetro_mismatch",
+      "description": "The category does not match the INMETRO certification. Please verify.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
+      "name": "classification.attribute.inmetro.cert_not_active",
+      "description": "This INMETRO certification is not active. Please provide a valid certification.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
+      "name": "classification.attribute.inmetro.cert_not_found",
+      "description": "Invalid INMETRO certification number. Please provide a valid certification.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
       "name": "product.error_busi",
       "description": "Please input the correct TS Mark (TD Mark) to upload your product, and refer to the SEH article - https://seller.shopee.tw/edu/article/19732 if you have any questions.",
       "solution": null

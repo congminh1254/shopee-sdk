@@ -952,7 +952,13 @@
   ],
   "path": "/api/v2/product/add_model",
   "related_documents": {
-    "developer_guides": [],
+    "developer_guides": [
+      {
+        "document_id": 758,
+        "title": "Standardized Shop Product (SSP) Integration Guide",
+        "status": 1
+      }
+    ],
     "faqs": []
   }
 }

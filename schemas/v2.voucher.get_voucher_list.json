@@ -568,8 +568,7 @@
     "Seller In House System",
     "Marketing",
     "Customer Service",
-    "Customized APP",
-    "Swam ERP"
+    "Customized APP"
   ],
   "path": "/api/v2/voucher/get_voucher_list",
   "related_documents": {

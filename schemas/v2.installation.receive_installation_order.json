@@ -284,7 +284,8 @@
   "version": "",
   "error_example": [],
   "api_permission": [
-    "Auto Parts Installation (ISP)"
+    "Auto Parts Installation (ISP)",
+    "Auto Parts Installation (Seller-Owned)"
   ],
   "path": "/api/v2/installation/receive_installation_order",
   "related_documents": {

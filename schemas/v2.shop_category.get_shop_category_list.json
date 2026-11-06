@@ -548,8 +548,7 @@
     "Seller In House System",
     "Product Management",
     "Customized APP",
-    "Custom APP",
-    "Swam ERP"
+    "Custom APP"
   ],
   "path": "/api/v2/shop_category/get_shop_category_list",
   "related_documents": {

@@ -446,8 +446,7 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Marketing",
-    "Swam ERP"
+    "Marketing"
   ],
   "path": "/api/v2/add_on_deal/delete_add_on_deal_main_item",
   "related_documents": {

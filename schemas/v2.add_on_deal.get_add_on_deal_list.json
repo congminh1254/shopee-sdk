@@ -513,8 +513,7 @@
     "ERP System",
     "Seller In House System",
     "Marketing",
-    "Customized APP",
-    "Swam ERP"
+    "Customized APP"
   ],
   "path": "/api/v2/add_on_deal/get_add_on_deal_list",
   "related_documents": {
