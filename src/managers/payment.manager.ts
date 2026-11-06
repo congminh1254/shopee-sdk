@@ -41,6 +41,7 @@ import {
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
+import { RequestOptions } from "../schemas/fetch.js";
 export class PaymentManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
@@ -49,10 +50,12 @@ export class PaymentManager extends BaseManager {
    * Trigger income report generation.
    *
    * @param {GenerateIncomeReportRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GenerateIncomeReportResponse>} Promise resolving to the response
    */
   public async generateIncomeReport(
-    params: GenerateIncomeReportRequest
+    params: GenerateIncomeReportRequest,
+    options?: RequestOptions
   ): Promise<GenerateIncomeReportResponse> {
     return ShopeeFetch.fetch<GenerateIncomeReportResponse>(
       this.config,
@@ -61,6 +64,7 @@ export class PaymentManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -68,10 +72,12 @@ export class PaymentManager extends BaseManager {
    * Trigger income statement generation.
    *
    * @param {GenerateIncomeStatementRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GenerateIncomeStatementResponse>} Promise resolving to the response
    */
   public async generateIncomeStatement(
-    params: GenerateIncomeStatementRequest
+    params: GenerateIncomeStatementRequest,
+    options?: RequestOptions
   ): Promise<GenerateIncomeStatementResponse> {
     return ShopeeFetch.fetch<GenerateIncomeStatementResponse>(
       this.config,
@@ -80,6 +86,7 @@ export class PaymentManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -87,10 +94,12 @@ export class PaymentManager extends BaseManager {
    * This API is applicable for Cross Border (CB) sellers only to get the detailed payout transaction data, both released and to-be released transaction can be found in here
    *
    * @param {GetBillingTransactionInfoRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetBillingTransactionInfoResponse>} Promise resolving to the response
    */
   public async getBillingTransactionInfo(
-    params: GetBillingTransactionInfoRequest
+    params: GetBillingTransactionInfoRequest,
+    options?: RequestOptions
   ): Promise<GetBillingTransactionInfoResponse> {
     return ShopeeFetch.fetch<GetBillingTransactionInfoResponse>(
       this.config,
@@ -99,6 +108,7 @@ export class PaymentManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -106,13 +116,18 @@ export class PaymentManager extends BaseManager {
    * Use this API to fetch the accounting detail of order.
    *
    * @param {GetEscrowDetailRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetEscrowDetailResponse>} Promise resolving to the response
    */
-  public async getEscrowDetail(params: GetEscrowDetailRequest): Promise<GetEscrowDetailResponse> {
+  public async getEscrowDetail(
+    params: GetEscrowDetailRequest,
+    options?: RequestOptions
+  ): Promise<GetEscrowDetailResponse> {
     return ShopeeFetch.fetch<GetEscrowDetailResponse>(this.config, "/payment/get_escrow_detail", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
       timestampPaths: ["response.order_income.order_adjustment.date"],
     });
   }
@@ -120,10 +135,12 @@ export class PaymentManager extends BaseManager {
    * Use this API to fetch the details of order income by batch.
    *
    * @param {GetEscrowDetailBatchRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetEscrowDetailBatchResponse>} Promise resolving to the response
    */
   public async getEscrowDetailBatch(
-    params: GetEscrowDetailBatchRequest
+    params: GetEscrowDetailBatchRequest,
+    options?: RequestOptions
   ): Promise<GetEscrowDetailBatchResponse> {
     return ShopeeFetch.fetch<GetEscrowDetailBatchResponse>(
       this.config,
@@ -132,6 +149,7 @@ export class PaymentManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -139,13 +157,18 @@ export class PaymentManager extends BaseManager {
    * Use this API to fetch the accounting list of order.
    *
    * @param {GetEscrowListRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetEscrowListResponse>} Promise resolving to the response
    */
-  public async getEscrowList(params: GetEscrowListRequest): Promise<GetEscrowListResponse> {
+  public async getEscrowList(
+    params: GetEscrowListRequest,
+    options?: RequestOptions
+  ): Promise<GetEscrowListResponse> {
     return ShopeeFetch.fetch<GetEscrowListResponse>(this.config, "/payment/get_escrow_list", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
       timestampPaths: ["response.escrow_list.escrow_release_time"],
     });
   }
@@ -155,13 +178,18 @@ export class PaymentManager extends BaseManager {
    * The API dynamically adapts data fields based on the seller’s shop type (Local or Cross Border) and the selected income status (e.g., Pending, To Release, Released).
    *
    * @param {GetIncomeDetailRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetIncomeDetailResponse>} Promise resolving to the response
    */
-  public async getIncomeDetail(params: GetIncomeDetailRequest): Promise<GetIncomeDetailResponse> {
+  public async getIncomeDetail(
+    params: GetIncomeDetailRequest,
+    options?: RequestOptions
+  ): Promise<GetIncomeDetailResponse> {
     return ShopeeFetch.fetch<GetIncomeDetailResponse>(this.config, "/payment/get_income_detail", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
     });
   }
   /**
@@ -170,10 +198,12 @@ export class PaymentManager extends BaseManager {
    * Data is dynamically determined based on the shop type (Local or Cross Border) and the income status requested. Historical income results are not retrievable, providing consistent information as Seller Centre.
    *
    * @param {GetIncomeOverviewRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetIncomeOverviewResponse>} Promise resolving to the response
    */
   public async getIncomeOverview(
-    params?: GetIncomeOverviewRequest
+    params?: GetIncomeOverviewRequest,
+    options?: RequestOptions
   ): Promise<GetIncomeOverviewResponse> {
     return ShopeeFetch.fetch<GetIncomeOverviewResponse>(
       this.config,
@@ -182,6 +212,7 @@ export class PaymentManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -189,23 +220,30 @@ export class PaymentManager extends BaseManager {
    * To query income report status and provide file link if the income report is ready to be downloaded.
    *
    * @param {GetIncomeReportRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetIncomeReportResponse>} Promise resolving to the response
    */
-  public async getIncomeReport(params: GetIncomeReportRequest): Promise<GetIncomeReportResponse> {
+  public async getIncomeReport(
+    params: GetIncomeReportRequest,
+    options?: RequestOptions
+  ): Promise<GetIncomeReportResponse> {
     return ShopeeFetch.fetch<GetIncomeReportResponse>(this.config, "/payment/get_income_report", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
     });
   }
   /**
    * To query income statement status and provide file link if the income statement is ready to be downloaded.
    *
    * @param {GetIncomeStatementRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetIncomeStatementResponse>} Promise resolving to the response
    */
   public async getIncomeStatement(
-    params: GetIncomeStatementRequest
+    params: GetIncomeStatementRequest,
+    options?: RequestOptions
   ): Promise<GetIncomeStatementResponse> {
     return ShopeeFetch.fetch<GetIncomeStatementResponse>(
       this.config,
@@ -214,6 +252,7 @@ export class PaymentManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -221,10 +260,12 @@ export class PaymentManager extends BaseManager {
    * Get item installment tenures.Only for TH、TW.
    *
    * @param {GetItemInstallmentStatusRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetItemInstallmentStatusResponse>} Promise resolving to the response
    */
   public async getItemInstallmentStatus(
-    params: GetItemInstallmentStatusRequest
+    params: GetItemInstallmentStatusRequest,
+    options?: RequestOptions
   ): Promise<GetItemInstallmentStatusResponse> {
     return ShopeeFetch.fetch<GetItemInstallmentStatusResponse>(
       this.config,
@@ -233,6 +274,7 @@ export class PaymentManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -240,10 +282,12 @@ export class PaymentManager extends BaseManager {
    * Obtain payment method (no authentication required)
    *
    * @param {GetPaymentMethodListRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetPaymentMethodListResponse>} Promise resolving to the response
    */
   public async getPaymentMethodList(
-    params?: GetPaymentMethodListRequest
+    params?: GetPaymentMethodListRequest,
+    options?: RequestOptions
   ): Promise<GetPaymentMethodListResponse> {
     return ShopeeFetch.fetch<GetPaymentMethodListResponse>(
       this.config,
@@ -252,6 +296,7 @@ export class PaymentManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -259,13 +304,18 @@ export class PaymentManager extends BaseManager {
    * This API is applicable for Cross Border (CB) sellers only to get the shop's payout data, such as the payout amount, currency, FX rate, the payout's associated order income and adjustment records etc.
    *
    * @param {GetPayoutDetailRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetPayoutDetailResponse>} Promise resolving to the response
    */
-  public async getPayoutDetail(params: GetPayoutDetailRequest): Promise<GetPayoutDetailResponse> {
+  public async getPayoutDetail(
+    params: GetPayoutDetailRequest,
+    options?: RequestOptions
+  ): Promise<GetPayoutDetailResponse> {
     return ShopeeFetch.fetch<GetPayoutDetailResponse>(this.config, "/payment/get_payout_detail", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
       timestampPaths: ["response.payout_list.payout_info.payout_time"],
     });
   }
@@ -273,13 +323,18 @@ export class PaymentManager extends BaseManager {
    * This is a new API which applicable for Cross Border (CB) sellers only to get the shop's payout data, will be used for the original API v2.get_payout_details replacement, we provide data such as the payout amount, currency, FX rate, the payout's associated order income and adjustment records etc.
    *
    * @param {GetPayoutInfoRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetPayoutInfoResponse>} Promise resolving to the response
    */
-  public async getPayoutInfo(params: GetPayoutInfoRequest): Promise<GetPayoutInfoResponse> {
+  public async getPayoutInfo(
+    params: GetPayoutInfoRequest,
+    options?: RequestOptions
+  ): Promise<GetPayoutInfoResponse> {
     return ShopeeFetch.fetch<GetPayoutInfoResponse>(this.config, "/payment/get_payout_info", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
       timestampPaths: ["response.payout_list.payout_time"],
     });
   }
@@ -287,10 +342,12 @@ export class PaymentManager extends BaseManager {
    * Get the installment state of shop.
    *
    * @param {GetShopInstallmentStatusRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShopInstallmentStatusResponse>} Promise resolving to the response
    */
   public async getShopInstallmentStatus(
-    params?: GetShopInstallmentStatusRequest
+    params?: GetShopInstallmentStatusRequest,
+    options?: RequestOptions
   ): Promise<GetShopInstallmentStatusResponse> {
     return ShopeeFetch.fetch<GetShopInstallmentStatusResponse>(
       this.config,
@@ -299,6 +356,7 @@ export class PaymentManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -306,10 +364,12 @@ export class PaymentManager extends BaseManager {
    * Use this API to get the transaction records of wallet. Only applicable for local shops
    *
    * @param {GetWalletTransactionListRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetWalletTransactionListResponse>} Promise resolving to the response
    */
   public async getWalletTransactionList(
-    params: GetWalletTransactionListRequest
+    params: GetWalletTransactionListRequest,
+    options?: RequestOptions
   ): Promise<GetWalletTransactionListResponse> {
     return ShopeeFetch.fetch<GetWalletTransactionListResponse>(
       this.config,
@@ -318,6 +378,7 @@ export class PaymentManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -325,10 +386,12 @@ export class PaymentManager extends BaseManager {
    * Set item installment.Only for TH、TW.
    *
    * @param {SetItemInstallmentStatusRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<SetItemInstallmentStatusResponse>} Promise resolving to the response
    */
   public async setItemInstallmentStatus(
-    params: SetItemInstallmentStatusRequest
+    params: SetItemInstallmentStatusRequest,
+    options?: RequestOptions
   ): Promise<SetItemInstallmentStatusResponse> {
     return ShopeeFetch.fetch<SetItemInstallmentStatusResponse>(
       this.config,
@@ -337,6 +400,7 @@ export class PaymentManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -344,10 +408,12 @@ export class PaymentManager extends BaseManager {
    * Sets the staging capability of shop level.
    *
    * @param {SetShopInstallmentStatusRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<SetShopInstallmentStatusResponse>} Promise resolving to the response
    */
   public async setShopInstallmentStatus(
-    params: SetShopInstallmentStatusRequest
+    params: SetShopInstallmentStatusRequest,
+    options?: RequestOptions
   ): Promise<SetShopInstallmentStatusResponse> {
     return ShopeeFetch.fetch<SetShopInstallmentStatusResponse>(
       this.config,
@@ -356,6 +422,7 @@ export class PaymentManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }

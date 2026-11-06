@@ -17,6 +17,7 @@ import {
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
+import { RequestOptions } from "../schemas/fetch.js";
 export class FollowPrizeManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
@@ -25,9 +26,13 @@ export class FollowPrizeManager extends BaseManager {
    * OpenAPI add Follow Prize
    *
    * @param {AddFollowPrizeRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<AddFollowPrizeResponse>} Promise resolving to the response
    */
-  public async addFollowPrize(params: AddFollowPrizeRequest): Promise<AddFollowPrizeResponse> {
+  public async addFollowPrize(
+    params: AddFollowPrizeRequest,
+    options?: RequestOptions
+  ): Promise<AddFollowPrizeResponse> {
     return ShopeeFetch.fetch<AddFollowPrizeResponse>(
       this.config,
       "/follow_prize/add_follow_prize",
@@ -35,6 +40,7 @@ export class FollowPrizeManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -42,10 +48,12 @@ export class FollowPrizeManager extends BaseManager {
    * delete_follow_prize
    *
    * @param {DeleteFollowPrizeRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DeleteFollowPrizeResponse>} Promise resolving to the response
    */
   public async deleteFollowPrize(
-    params: DeleteFollowPrizeRequest
+    params: DeleteFollowPrizeRequest,
+    options?: RequestOptions
   ): Promise<DeleteFollowPrizeResponse> {
     return ShopeeFetch.fetch<DeleteFollowPrizeResponse>(
       this.config,
@@ -54,6 +62,7 @@ export class FollowPrizeManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -61,9 +70,13 @@ export class FollowPrizeManager extends BaseManager {
    * end follow prize
    *
    * @param {EndFollowPrizeRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<EndFollowPrizeResponse>} Promise resolving to the response
    */
-  public async endFollowPrize(params: EndFollowPrizeRequest): Promise<EndFollowPrizeResponse> {
+  public async endFollowPrize(
+    params: EndFollowPrizeRequest,
+    options?: RequestOptions
+  ): Promise<EndFollowPrizeResponse> {
     return ShopeeFetch.fetch<EndFollowPrizeResponse>(
       this.config,
       "/follow_prize/end_follow_prize",
@@ -71,6 +84,7 @@ export class FollowPrizeManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -78,10 +92,12 @@ export class FollowPrizeManager extends BaseManager {
    * get_follow_prize_detail
    *
    * @param {GetFollowPrizeDetailRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetFollowPrizeDetailResponse>} Promise resolving to the response
    */
   public async getFollowPrizeDetail(
-    params?: GetFollowPrizeDetailRequest
+    params?: GetFollowPrizeDetailRequest,
+    options?: RequestOptions
   ): Promise<GetFollowPrizeDetailResponse> {
     return ShopeeFetch.fetch<GetFollowPrizeDetailResponse>(
       this.config,
@@ -90,6 +106,7 @@ export class FollowPrizeManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: ["response.start_time", "response.end_time"],
       }
     );
@@ -98,10 +115,12 @@ export class FollowPrizeManager extends BaseManager {
    * OpenAPI get_follow_prize_list
    *
    * @param {GetFollowPrizeListRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetFollowPrizeListResponse>} Promise resolving to the response
    */
   public async getFollowPrizeList(
-    params: GetFollowPrizeListRequest
+    params: GetFollowPrizeListRequest,
+    options?: RequestOptions
   ): Promise<GetFollowPrizeListResponse> {
     return ShopeeFetch.fetch<GetFollowPrizeListResponse>(
       this.config,
@@ -110,6 +129,7 @@ export class FollowPrizeManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: [
           "response.follow_prize_list.start_time",
           "response.follow_prize_list.end_time",
@@ -121,10 +141,12 @@ export class FollowPrizeManager extends BaseManager {
    * update_follow_prize
    *
    * @param {UpdateFollowPrizeRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateFollowPrizeResponse>} Promise resolving to the response
    */
   public async updateFollowPrize(
-    params: UpdateFollowPrizeRequest
+    params: UpdateFollowPrizeRequest,
+    options?: RequestOptions
   ): Promise<UpdateFollowPrizeResponse> {
     return ShopeeFetch.fetch<UpdateFollowPrizeResponse>(
       this.config,
@@ -133,6 +155,7 @@ export class FollowPrizeManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }

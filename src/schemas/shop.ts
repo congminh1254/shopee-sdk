@@ -114,7 +114,7 @@ export interface GetBrShopOnboardingInfoResponseData {
    * 1: Personal seller (CPF)
    * 2: Company seller (CNPJ)
    */
-  tax_id_type?: TaxIdType | string | number;
+  tax_id_type?: TaxIdType | (string & {}) | number;
   /**
    * The shop’s tax ID.- When tax_id_type = 1 (Personal seller), it is CPF.- When tax_id_type = 2 (Company seller), it is CNPJ.
    */
@@ -352,7 +352,7 @@ export interface GetShopInfoResponseData {
   /**
    * Use this field to indicate the fulfillment type of current shop, the applicable values: - Pure - FBS Shop: Single mode, refer to Local/CB shops which only have Shopee official warehouse stock, orders are fulfilled by Shopee from Shopee official warehouse; - Pure - 3PF Shop: Single mode, refer to CB shops which only have local seller warehouse stock, orders are fulfilled by seller from local seller warehouse via local logistics channels; - PFF - FBS Shop: 1) Hybird mode, refer to Local shops which have both Shopee official warehouse stock and local seller warehouse stock, orders can be fulfilled by Shopee from Shopee official warehouse and can also fulfilled by seller from local seller warehouse via local logistics channels; 2) Hybrid mode, refer to CB shops which have both Shopee official warehouse stock and CB seller warehouse stock, orders can be fulfilled by Shopee from Shopee official warehouse and can also fulfilled by seller from CB seller warehouse via CB logistics channels; - PFF - 3PF Shop: Hybrid mode, refer to CB shops which have both local seller warehouse stock and CB seller warehouse stock, orders can be fulfilled by seller from local seller warehouse via local logistics channels and can also fulfilled by seller from CB seller warehouse via CB logistics channels; - LFF Hybrid Shop: Hybrid mode, refer to CB shops which have 3 types of stock: FBS stock (Shopee official warehouse stock), 3PF stock (CB seller own stock in the local market) and CB SLS stock (CB seller own stock in CN/HK/KR);- Others- Unknown: Returned when obtaining shop_fulfillment_flag information fails
    */
-  shop_fulfillment_flag?: ShopFulfillmentFlag | string | number;
+  shop_fulfillment_flag?: ShopFulfillmentFlag | (string & {}) | number;
   /**
    * Identifies if the current shop is a Local Shop linked to Cross Border Direct Shop.
    */

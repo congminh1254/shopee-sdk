@@ -29,6 +29,7 @@ import {
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
+import { RequestOptions } from "../schemas/fetch.js";
 export class DiscountManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
@@ -37,39 +38,54 @@ export class DiscountManager extends BaseManager {
    * Use this api to add shop discount activity
    *
    * @param {AddDiscountRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<AddDiscountResponse>} Promise resolving to the response
    */
-  public async addDiscount(params: AddDiscountRequest): Promise<AddDiscountResponse> {
+  public async addDiscount(
+    params: AddDiscountRequest,
+    options?: RequestOptions
+  ): Promise<AddDiscountResponse> {
     return ShopeeFetch.fetch<AddDiscountResponse>(this.config, "/discount/add_discount", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
     });
   }
   /**
    * Use this api to add shop discount item.
    *
    * @param {AddDiscountItemRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<AddDiscountItemResponse>} Promise resolving to the response
    */
-  public async addDiscountItem(params: AddDiscountItemRequest): Promise<AddDiscountItemResponse> {
+  public async addDiscountItem(
+    params: AddDiscountItemRequest,
+    options?: RequestOptions
+  ): Promise<AddDiscountItemResponse> {
     return ShopeeFetch.fetch<AddDiscountItemResponse>(this.config, "/discount/add_discount_item", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
     });
   }
   /**
    * Use this api to delete one discount activity
    *
    * @param {DeleteDiscountRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DeleteDiscountResponse>} Promise resolving to the response
    */
-  public async deleteDiscount(params: DeleteDiscountRequest): Promise<DeleteDiscountResponse> {
+  public async deleteDiscount(
+    params: DeleteDiscountRequest,
+    options?: RequestOptions
+  ): Promise<DeleteDiscountResponse> {
     return ShopeeFetch.fetch<DeleteDiscountResponse>(this.config, "/discount/delete_discount", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
       timestampPaths: ["response.modify_time"],
     });
   }
@@ -77,10 +93,12 @@ export class DiscountManager extends BaseManager {
    * Use this api to delete items of the discount activity
    *
    * @param {DeleteDiscountItemRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DeleteDiscountItemResponse>} Promise resolving to the response
    */
   public async deleteDiscountItem(
-    params: DeleteDiscountItemRequest
+    params: DeleteDiscountItemRequest,
+    options?: RequestOptions
   ): Promise<DeleteDiscountItemResponse> {
     return ShopeeFetch.fetch<DeleteDiscountItemResponse>(
       this.config,
@@ -89,6 +107,7 @@ export class DiscountManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -96,10 +115,12 @@ export class DiscountManager extends BaseManager {
    * Delete SIP Overseas Discounts for SIP affiliate region. Please use Primary shop's Shop ID to request, and provide the region of the Affiliate shop to be deleted, the API will delete the discount from that region's Affiliate shop.
    *
    * @param {DeleteSipDiscountRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DeleteSipDiscountResponse>} Promise resolving to the response
    */
   public async deleteSipDiscount(
-    params: DeleteSipDiscountRequest
+    params: DeleteSipDiscountRequest,
+    options?: RequestOptions
   ): Promise<DeleteSipDiscountResponse> {
     return ShopeeFetch.fetch<DeleteSipDiscountResponse>(
       this.config,
@@ -108,6 +129,7 @@ export class DiscountManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -115,13 +137,18 @@ export class DiscountManager extends BaseManager {
    * Use this api to end shop discount activity
    *
    * @param {EndDiscountRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<EndDiscountResponse>} Promise resolving to the response
    */
-  public async endDiscount(params: EndDiscountRequest): Promise<EndDiscountResponse> {
+  public async endDiscount(
+    params: EndDiscountRequest,
+    options?: RequestOptions
+  ): Promise<EndDiscountResponse> {
     return ShopeeFetch.fetch<EndDiscountResponse>(this.config, "/discount/end_discount", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
       timestampPaths: ["response.modify_time"],
     });
   }
@@ -129,13 +156,18 @@ export class DiscountManager extends BaseManager {
    * Use this api to get one shop discount activity detail
    *
    * @param {GetDiscountRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetDiscountResponse>} Promise resolving to the response
    */
-  public async getDiscount(params: GetDiscountRequest): Promise<GetDiscountResponse> {
+  public async getDiscount(
+    params: GetDiscountRequest,
+    options?: RequestOptions
+  ): Promise<GetDiscountResponse> {
     return ShopeeFetch.fetch<GetDiscountResponse>(this.config, "/discount/get_discount", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
       timestampPaths: ["response.start_time", "response.end_time"],
     });
   }
@@ -143,13 +175,18 @@ export class DiscountManager extends BaseManager {
    * Use this api to get shop discount activity list
    *
    * @param {GetDiscountListRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetDiscountListResponse>} Promise resolving to the response
    */
-  public async getDiscountList(params: GetDiscountListRequest): Promise<GetDiscountListResponse> {
+  public async getDiscountList(
+    params: GetDiscountListRequest,
+    options?: RequestOptions
+  ): Promise<GetDiscountListResponse> {
     return ShopeeFetch.fetch<GetDiscountListResponse>(this.config, "/discount/get_discount_list", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
       timestampPaths: ["response.discount_list.start_time", "response.discount_list.end_time"],
     });
   }
@@ -157,13 +194,18 @@ export class DiscountManager extends BaseManager {
    * Get SIP Overseas Discounts. Only regions that have upcoming/ongoing discounts will be returned. Please use Primary shop's Shop ID to request, the API will return the list of Affiliate shops under this Primary shop that have set discounts, along with the discount details.
    *
    * @param {GetSipDiscountsRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetSipDiscountsResponse>} Promise resolving to the response
    */
-  public async getSipDiscounts(params?: GetSipDiscountsRequest): Promise<GetSipDiscountsResponse> {
+  public async getSipDiscounts(
+    params?: GetSipDiscountsRequest,
+    options?: RequestOptions
+  ): Promise<GetSipDiscountsResponse> {
     return ShopeeFetch.fetch<GetSipDiscountsResponse>(this.config, "/discount/get_sip_discounts", {
       method: "GET",
       auth: true,
       params: params,
+      request: options,
       timestampPaths: [
         "response.discount_list.start_time",
         "response.discount_list.end_time",
@@ -176,13 +218,18 @@ export class DiscountManager extends BaseManager {
    * Set SIP Overseas Discount for SIP affiliate region. Please use Primary shop's Shop ID to request, and provide the region and discount rate of the Affiliate shop to be set or update, the API will set or update the discount rate for that region's Affiliate shop.
    *
    * @param {SetSipDiscountRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<SetSipDiscountResponse>} Promise resolving to the response
    */
-  public async setSipDiscount(params: SetSipDiscountRequest): Promise<SetSipDiscountResponse> {
+  public async setSipDiscount(
+    params: SetSipDiscountRequest,
+    options?: RequestOptions
+  ): Promise<SetSipDiscountResponse> {
     return ShopeeFetch.fetch<SetSipDiscountResponse>(this.config, "/discount/set_sip_discount", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
       timestampPaths: [
         "response.start_time",
         "response.end_time",
@@ -195,13 +242,18 @@ export class DiscountManager extends BaseManager {
    * Use this api to update one discount information
    *
    * @param {UpdateDiscountRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateDiscountResponse>} Promise resolving to the response
    */
-  public async updateDiscount(params: UpdateDiscountRequest): Promise<UpdateDiscountResponse> {
+  public async updateDiscount(
+    params: UpdateDiscountRequest,
+    options?: RequestOptions
+  ): Promise<UpdateDiscountResponse> {
     return ShopeeFetch.fetch<UpdateDiscountResponse>(this.config, "/discount/update_discount", {
       method: "POST",
       auth: true,
       body: params,
+      request: options,
       timestampPaths: ["response.modify_time"],
     });
   }
@@ -209,10 +261,12 @@ export class DiscountManager extends BaseManager {
    * Use this api to update items of the discount promotion.
    *
    * @param {UpdateDiscountItemRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateDiscountItemResponse>} Promise resolving to the response
    */
   public async updateDiscountItem(
-    params: UpdateDiscountItemRequest
+    params: UpdateDiscountItemRequest,
+    options?: RequestOptions
   ): Promise<UpdateDiscountItemResponse> {
     return ShopeeFetch.fetch<UpdateDiscountItemResponse>(
       this.config,
@@ -221,6 +275,7 @@ export class DiscountManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }

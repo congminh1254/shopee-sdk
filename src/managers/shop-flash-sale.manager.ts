@@ -27,6 +27,7 @@ import {
 import { ShopeeConfig } from "../sdk.js";
 import { BaseManager } from "./base.manager.js";
 import { ShopeeFetch } from "../fetch.js";
+import { RequestOptions } from "../schemas/fetch.js";
 export class ShopFlashSaleManager extends BaseManager {
   constructor(config: ShopeeConfig) {
     super(config);
@@ -35,10 +36,12 @@ export class ShopFlashSaleManager extends BaseManager {
    * add shop flash sale item
    *
    * @param {AddShopFlashSaleItemsRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<AddShopFlashSaleItemsResponse>} Promise resolving to the response
    */
   public async addShopFlashSaleItems(
-    params: AddShopFlashSaleItemsRequest
+    params: AddShopFlashSaleItemsRequest,
+    options?: RequestOptions
   ): Promise<AddShopFlashSaleItemsResponse> {
     return ShopeeFetch.fetch<AddShopFlashSaleItemsResponse>(
       this.config,
@@ -47,6 +50,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -54,10 +58,12 @@ export class ShopFlashSaleManager extends BaseManager {
    * creat shop flash sale
    *
    * @param {CreateShopFlashSaleRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<CreateShopFlashSaleResponse>} Promise resolving to the response
    */
   public async createShopFlashSale(
-    params: CreateShopFlashSaleRequest
+    params: CreateShopFlashSaleRequest,
+    options?: RequestOptions
   ): Promise<CreateShopFlashSaleResponse> {
     return ShopeeFetch.fetch<CreateShopFlashSaleResponse>(
       this.config,
@@ -66,6 +72,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -73,10 +80,12 @@ export class ShopFlashSaleManager extends BaseManager {
    * delete shop flash sale
    *
    * @param {DeleteShopFlashSaleRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DeleteShopFlashSaleResponse>} Promise resolving to the response
    */
   public async deleteShopFlashSale(
-    params: DeleteShopFlashSaleRequest
+    params: DeleteShopFlashSaleRequest,
+    options?: RequestOptions
   ): Promise<DeleteShopFlashSaleResponse> {
     return ShopeeFetch.fetch<DeleteShopFlashSaleResponse>(
       this.config,
@@ -85,6 +94,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -92,10 +102,12 @@ export class ShopFlashSaleManager extends BaseManager {
    * delete shop flash sale items
    *
    * @param {DeleteShopFlashSaleItemsRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<DeleteShopFlashSaleItemsResponse>} Promise resolving to the response
    */
   public async deleteShopFlashSaleItems(
-    params: DeleteShopFlashSaleItemsRequest
+    params: DeleteShopFlashSaleItemsRequest,
+    options?: RequestOptions
   ): Promise<DeleteShopFlashSaleItemsResponse> {
     return ShopeeFetch.fetch<DeleteShopFlashSaleItemsResponse>(
       this.config,
@@ -104,6 +116,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -111,9 +124,13 @@ export class ShopFlashSaleManager extends BaseManager {
    * get shop flash sale item criteria
    *
    * @param {GetItemCriteriaRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetItemCriteriaResponse>} Promise resolving to the response
    */
-  public async getItemCriteria(params?: GetItemCriteriaRequest): Promise<GetItemCriteriaResponse> {
+  public async getItemCriteria(
+    params?: GetItemCriteriaRequest,
+    options?: RequestOptions
+  ): Promise<GetItemCriteriaResponse> {
     return ShopeeFetch.fetch<GetItemCriteriaResponse>(
       this.config,
       "/shop_flash_sale/get_item_criteria",
@@ -121,6 +138,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -128,10 +146,12 @@ export class ShopFlashSaleManager extends BaseManager {
    * get shop flash sale detail
    *
    * @param {GetShopFlashSaleRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShopFlashSaleResponse>} Promise resolving to the response
    */
   public async getShopFlashSale(
-    params: GetShopFlashSaleRequest
+    params: GetShopFlashSaleRequest,
+    options?: RequestOptions
   ): Promise<GetShopFlashSaleResponse> {
     return ShopeeFetch.fetch<GetShopFlashSaleResponse>(
       this.config,
@@ -140,6 +160,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: ["response.start_time", "response.end_time"],
       }
     );
@@ -148,10 +169,12 @@ export class ShopFlashSaleManager extends BaseManager {
    * get shop flash sale items and item detail
    *
    * @param {GetShopFlashSaleItemsRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShopFlashSaleItemsResponse>} Promise resolving to the response
    */
   public async getShopFlashSaleItems(
-    params: GetShopFlashSaleItemsRequest
+    params: GetShopFlashSaleItemsRequest,
+    options?: RequestOptions
   ): Promise<GetShopFlashSaleItemsResponse> {
     return ShopeeFetch.fetch<GetShopFlashSaleItemsResponse>(
       this.config,
@@ -160,6 +183,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
       }
     );
   }
@@ -167,10 +191,12 @@ export class ShopFlashSaleManager extends BaseManager {
    * get shop flash sale list
    *
    * @param {GetShopFlashSaleListRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetShopFlashSaleListResponse>} Promise resolving to the response
    */
   public async getShopFlashSaleList(
-    params: GetShopFlashSaleListRequest
+    params: GetShopFlashSaleListRequest,
+    options?: RequestOptions
   ): Promise<GetShopFlashSaleListResponse> {
     return ShopeeFetch.fetch<GetShopFlashSaleListResponse>(
       this.config,
@@ -179,6 +205,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: ["flash_sale_list.start_time", "flash_sale_list.end_time"],
       }
     );
@@ -187,9 +214,13 @@ export class ShopFlashSaleManager extends BaseManager {
    * get time slot id
    *
    * @param {GetTimeSlotIdRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<GetTimeSlotIdResponse>} Promise resolving to the response
    */
-  public async getTimeSlotId(params: GetTimeSlotIdRequest): Promise<GetTimeSlotIdResponse> {
+  public async getTimeSlotId(
+    params: GetTimeSlotIdRequest,
+    options?: RequestOptions
+  ): Promise<GetTimeSlotIdResponse> {
     return ShopeeFetch.fetch<GetTimeSlotIdResponse>(
       this.config,
       "/shop_flash_sale/get_time_slot_id",
@@ -197,6 +228,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "GET",
         auth: true,
         params: params,
+        request: options,
         timestampPaths: ["response.start_time", "response.end_time"],
       }
     );
@@ -205,10 +237,12 @@ export class ShopFlashSaleManager extends BaseManager {
    * edit shop flash sale(enable, disable)
    *
    * @param {UpdateShopFlashSaleRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateShopFlashSaleResponse>} Promise resolving to the response
    */
   public async updateShopFlashSale(
-    params: UpdateShopFlashSaleRequest
+    params: UpdateShopFlashSaleRequest,
+    options?: RequestOptions
   ): Promise<UpdateShopFlashSaleResponse> {
     return ShopeeFetch.fetch<UpdateShopFlashSaleResponse>(
       this.config,
@@ -217,6 +251,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
@@ -224,10 +259,12 @@ export class ShopFlashSaleManager extends BaseManager {
    * edit shop flash sale item, you can only edit the models in disbaled or enabled status
    *
    * @param {UpdateShopFlashSaleItemsRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
    * @returns {Promise<UpdateShopFlashSaleItemsResponse>} Promise resolving to the response
    */
   public async updateShopFlashSaleItems(
-    params: UpdateShopFlashSaleItemsRequest
+    params: UpdateShopFlashSaleItemsRequest,
+    options?: RequestOptions
   ): Promise<UpdateShopFlashSaleItemsResponse> {
     return ShopeeFetch.fetch<UpdateShopFlashSaleItemsResponse>(
       this.config,
@@ -236,6 +273,7 @@ export class ShopFlashSaleManager extends BaseManager {
         method: "POST",
         auth: true,
         body: params,
+        request: options,
       }
     );
   }
