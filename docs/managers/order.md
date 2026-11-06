@@ -897,12 +897,17 @@ const response = await sdk.order.generateFbsInvoices({
     document_type: 1, // Remessa
     file_type: 3, // Both PDF and XML
     document_status: 1, // Authorized only
+    cnpj: '12345678000190', // Required: one of the seller's registered CNPJ branches
   },
 });
 
 console.log('Request ID:', response.request_id);
 // Use this request_id with getFbsInvoicesResult() to check status
 ```
+
+**CNPJ (required):**
+- `cnpj` is the CNPJ of the seller's branch used to filter the tax documents.
+- It must match one of the CNPJ branches registered for the seller. Only one CNPJ can be passed per request.
 
 **Document Types:**
 - `1`: Remessa
@@ -912,6 +917,12 @@ console.log('Request ID:', response.request_id);
 - `5`: Entrada
 - `6`: Symbolic Remessa
 - `7`: All
+- `8`: Export
+- `9`: Cancellation
+- `10`: Export Devolução
+- `11`: Transfer
+- `12`: Transfer Remessa
+- `13`: Reverse Transfer
 
 **File Types:**
 - `1`: XML only
@@ -921,7 +932,8 @@ console.log('Request ID:', response.request_id);
 **Document Status:**
 - `1`: Authorized only
 - `2`: Cancelled
-- Not specified: All statuses
+- `3`: Disable invoice
+- Not specified: All statuses (both authorized and cancelled)
 
 ---
 
@@ -966,6 +978,7 @@ const generateResponse = await sdk.order.generateFbsInvoices({
     end: 20240131,
     document_type: 4, // Sale invoices
     file_type: 3, // Both PDF and XML
+    cnpj: '12345678000190', // Required: seller branch CNPJ
   },
 });
 

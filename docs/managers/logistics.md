@@ -247,6 +247,81 @@ response.address_list.forEach((addr) => {
 - Manage shop addresses for logistics operations
 - Get address_id for use in shipOrder() pickup parameter
 
+---
+
+### downloadShippingDocumentJobFilelink()
+
+**API Documentation:** [v2.logistics.download_shipping_document_job_filelink](https://open.shopee.com/documents/v2/v2.logistics.download_shipping_document_job_filelink?module=95&type=1)
+
+Get a download link for the shipping document of a job created with `createShippingDocumentJob()`. Unlike `downloadShippingDocumentJob()`, this returns a link instead of the file content. The job status is checked before the link is returned.
+
+```typescript
+const response = await sdk.logistics.downloadShippingDocumentJobFilelink({
+  job_id: 'JOB_123456',
+});
+
+console.log('Shipping document link:', response.response?.file_link); // Valid for 30 minutes
+```
+
+---
+
+### downloadToLabelFilelink()
+
+**API Documentation:** [v2.logistics.download_to_label_filelink](https://open.shopee.com/documents/v2/v2.logistics.download_to_label_filelink?module=95&type=1)
+
+Get a download link for the TO label to attach to the carton before drop-off at the warehouse (TW channel_id 30029 only). Unlike `downloadToLabel()`, this returns a link instead of the file content.
+
+```typescript
+const response = await sdk.logistics.downloadToLabelFilelink({
+  sorting_group: 1, // 1: North, 2: South
+  quantity: 10, // Optional, max 100, defaults to 1
+});
+
+console.log('TO label link:', response.response?.file_link); // Valid for 30 minutes
+```
+
+---
+
+### getOrderCountLimitOutsideInstantOperatingTime()
+
+**API Documentation:** [v2.logistics.get_order_count_limit_outside_instant_operating_time](https://open.shopee.com/documents/v2/v2.logistics.get_order_count_limit_outside_instant_operating_time?module=95&type=1)
+
+Get the daily order count limit applied to orders placed outside the Instant operating time window.
+
+```typescript
+const response = await sdk.logistics.getOrderCountLimitOutsideInstantOperatingTime();
+
+console.log('Limit enabled:', response.response?.is_order_limit_enabled);
+console.log('Daily limit:', response.response?.order_count_limit); // Present only when enabled
+```
+
+---
+
+### setOrderCountLimitOutsideInstantOperatingTime()
+
+**API Documentation:** [v2.logistics.set_order_count_limit_outside_instant_operating_time](https://open.shopee.com/documents/v2/v2.logistics.set_order_count_limit_outside_instant_operating_time?module=95&type=1)
+
+Configure how orders placed outside the Instant operating time window are accepted: either accept all of them, or cap them with a maximum daily order count.
+
+```typescript
+// Accept at most 50 orders per day outside Instant operating time
+const response = await sdk.logistics.setOrderCountLimitOutsideInstantOperatingTime({
+  is_order_limit_enabled: true,
+  order_count_limit: 50, // 0 means no orders are accepted outside Instant operating time
+});
+
+console.log('Update result:', response.response?.update_result); // "succeed" or "failed"
+
+// Accept all orders without restriction
+await sdk.logistics.setOrderCountLimitOutsideInstantOperatingTime({
+  is_order_limit_enabled: false,
+});
+```
+
+**Note:** The setting may take a few moments to take effect. Orders may still be accepted under the previous configuration during that window.
+
+---
+
 ## Integration Example
 
 ### Complete Shipping Workflow
