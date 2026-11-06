@@ -4,18 +4,16 @@ This guide explains how token storage works in the Shopee SDK and how to impleme
 
 ## Overview
 
-The SDK needs to store access tokens to maintain authentication between API calls. By default, tokens are stored in local JSON files, but you can implement custom storage using databases, cloud storage, or any other method.
+The SDK needs to store access tokens to maintain authentication between API calls. By default, tokens are kept in memory; the bundled `CustomTokenStorage` writes them to local JSON files, and you can implement custom storage using databases, cloud storage, or any other method.
 
 ## Default Token Storage
 
-### CustomTokenStorage
-
-The SDK includes a default `CustomTokenStorage` class that stores tokens as JSON files in a `.token` folder:
+By default (when no `tokenStorage` is passed to the constructor) the SDK uses `InMemoryTokenStorage`: tokens live only in process memory and are lost when the process exits.
 
 ```typescript
 import { ShopeeSDK } from '@congminh1254/shopee-sdk';
 
-// Uses default file-based storage
+// Uses InMemoryTokenStorage
 const sdk = new ShopeeSDK({
   partner_id: 123456,
   partner_key: 'your-key',
@@ -23,11 +21,32 @@ const sdk = new ShopeeSDK({
 });
 ```
 
+## File-Based Storage (CustomTokenStorage)
+
+`CustomTokenStorage` persists tokens as JSON files in a `.token` folder under the current working directory. It is opt-in:
+
+```typescript
+import { ShopeeSDK, CustomTokenStorage } from '@congminh1254/shopee-sdk';
+
+const sdk = new ShopeeSDK(
+  { partner_id: 123456, partner_key: 'your-key', shop_id: 789012 },
+  new CustomTokenStorage(789012)
+);
+```
+
+> **Security note:** tokens, including the long-lived `refresh_token`, are stored **in plaintext**. Anyone who can read these files can act as the shop on the Shopee Open Platform.
+>
+> - The `.token` directory is created with mode `0700` and token files with mode `0600` (owner only). In versions after 2.12.0, files and directories created by older versions are tightened automatically when `CustomTokenStorage` is constructed.
+> - A `.gitignore` containing `*` is written inside `.token/` so the folder is not committed. Also exclude `.token/` from Docker images, backups and CI artifacts.
+> - On Windows, POSIX permission bits are not applied; rely on NTFS ACLs of the working directory.
+> - For production, prefer a [custom storage](#custom-storage-implementations) backed by a secrets manager or an encrypted database.
+
 **File Structure:**
 ```
 project-root/
 └── .token/
-    ├── default.json      # Default token (fallback)
+    ├── .gitignore        # Prevents committing tokens
+    ├── default.json      # Copy of the first shop token stored (fallback)
     └── 789012.json       # Token for shop_id 789012
 ```
 
@@ -43,40 +62,16 @@ project-root/
 }
 ```
 
-### Default Storage Behavior
-
-```typescript
-// Token is stored automatically when authenticating
-await sdk.authenticateWithCode('auth-code', 789012);
-// Stored in: .token/789012.json and .token/default.json (if first token)
-
-// Retrieve stored token
-const token = await sdk.getAuthToken();
-
-// Token is updated automatically when refreshing
-await sdk.refreshToken();
-```
-
 ### Multiple Shops
 
-The default storage handles multiple shops by using separate files:
+Use one `CustomTokenStorage` per shop; each shop gets its own file:
 
 ```typescript
-// Shop 1
-const sdk1 = new ShopeeSDK({
-  partner_id: 123456,
-  partner_key: 'your-key',
-  shop_id: 111111,
-});
+const sdk1 = new ShopeeSDK(config1, new CustomTokenStorage(111111));
 await sdk1.authenticateWithCode('code1', 111111);
-// Stored in: .token/111111.json
+// Stored in: .token/111111.json (and .token/default.json if it does not exist yet)
 
-// Shop 2
-const sdk2 = new ShopeeSDK({
-  partner_id: 123456,
-  partner_key: 'your-key',
-  shop_id: 222222,
-});
+const sdk2 = new ShopeeSDK(config2, new CustomTokenStorage(222222));
 await sdk2.authenticateWithCode('code2', 222222);
 // Stored in: .token/222222.json
 ```

@@ -53,6 +53,62 @@ describe("CustomTokenStorage", () => {
     expect((await shop.get())?.shop_id).toBe(123);
   });
 
+  const posixIt = process.platform === "win32" ? it.skip : it;
+  const modeOf = (p: string) => fs.statSync(p).mode & 0o777;
+
+  describe("file permissions", () => {
+    let previousUmask: number;
+    const tokenDir = path.join(TEST_DIR, ".token");
+    const token = {
+      access_token: "secret_access",
+      refresh_token: "secret_refresh",
+      shop_id: 424242,
+    } as AccessToken;
+
+    beforeEach(() => {
+      // Most permissive umask, so modes come only from the SDK.
+      previousUmask = process.umask(0o000);
+    });
+
+    afterEach(() => {
+      process.umask(previousUmask);
+    });
+
+    posixIt("creates the token directory as 0700 and token files as 0600", async () => {
+      fs.rmSync(tokenDir, { recursive: true, force: true });
+      await new CustomTokenStorage(424242).store(token);
+
+      expect(modeOf(tokenDir)).toBe(0o700);
+      expect(modeOf(path.join(tokenDir, "424242.json"))).toBe(0o600);
+      expect(modeOf(path.join(tokenDir, "default.json"))).toBe(0o600);
+    });
+
+    posixIt("tightens permissions left by older versions", async () => {
+      fs.mkdirSync(tokenDir, { recursive: true });
+      fs.chmodSync(tokenDir, 0o777);
+      const shopFile = path.join(tokenDir, "424242.json");
+      const defaultFile = path.join(tokenDir, "default.json");
+      fs.writeFileSync(shopFile, JSON.stringify(token), { mode: 0o666 });
+      fs.writeFileSync(defaultFile, JSON.stringify(token), { mode: 0o666 });
+
+      const storage = new CustomTokenStorage(424242);
+      expect(modeOf(tokenDir)).toBe(0o700);
+      expect(modeOf(shopFile)).toBe(0o600);
+      expect(modeOf(defaultFile)).toBe(0o600);
+
+      fs.chmodSync(shopFile, 0o644);
+      await storage.store(token);
+      expect(modeOf(shopFile)).toBe(0o600);
+    });
+
+    it("writes a .gitignore that ignores everything in the token directory", () => {
+      fs.rmSync(tokenDir, { recursive: true, force: true });
+      new CustomTokenStorage(424242);
+      const gitignore = fs.readFileSync(path.join(tokenDir, ".gitignore"), "utf-8");
+      expect(gitignore.split("\n")).toContain("*");
+    });
+  });
+
   describe("constructor", () => {
     it("should create token directory if it does not exist", () => {
       new CustomTokenStorage(123456);
