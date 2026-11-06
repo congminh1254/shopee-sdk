@@ -50,6 +50,8 @@ export interface ShopeeConfig {
 export class ShopeeSDK {
   private config: ShopeeConfig;
   private tokenStorage: TokenStorage;
+  /** In-flight refresh, shared so concurrent callers never reuse a single-use refresh token. */
+  private pendingRefresh: { key: string; promise: Promise<AccessToken | null> } | null = null;
   public readonly ads: AdsManager;
   public readonly product: ProductManager;
   public readonly order: OrderManager;
@@ -186,7 +188,41 @@ export class ShopeeSDK {
   public async getAuthToken(): Promise<AccessToken | null> {
     return this.tokenStorage.get();
   }
+  /**
+   * Refresh the stored token. Concurrent calls with the same arguments share one request;
+   * calls with different arguments run one after another, because Shopee refresh tokens
+   * are single-use and every refresh rotates the stored refresh_token.
+   */
   public async refreshToken(
+    shop_id?: number,
+    merchant_id?: number,
+    user_id?: number
+  ): Promise<AccessToken | null> {
+    const key = JSON.stringify([shop_id ?? null, merchant_id ?? null, user_id ?? null]);
+    while (this.pendingRefresh) {
+      const pending = this.pendingRefresh;
+      if (pending.key === key) {
+        return pending.promise;
+      }
+      // A different refresh is consuming the current refresh_token; wait for it to finish.
+      await pending.promise.catch(() => undefined);
+      if (this.pendingRefresh === pending) {
+        this.pendingRefresh = null;
+      }
+    }
+    const promise = this.performRefresh(shop_id, merchant_id, user_id);
+    const entry = { key, promise };
+    this.pendingRefresh = entry;
+    try {
+      return await promise;
+    } finally {
+      if (this.pendingRefresh === entry) {
+        this.pendingRefresh = null;
+      }
+    }
+  }
+
+  private async performRefresh(
     shop_id?: number,
     merchant_id?: number,
     user_id?: number
@@ -212,3 +248,10 @@ export class ShopeeSDK {
   }
 }
 export default ShopeeSDK;
+
+export { ShopeeApiError, ShopeeSdkError } from "./errors.js";
+export { ShopeeRegion, SHOPEE_BASE_URLS, SHOPEE_AUTH_URLS } from "./schemas/region.js";
+export type { AccessToken } from "./schemas/access-token.js";
+export type { TokenStorage } from "./storage/token-storage.interface.js";
+export { InMemoryTokenStorage } from "./storage/in-memory-token-storage.js";
+export { CustomTokenStorage } from "./storage/custom-token-storage.js";

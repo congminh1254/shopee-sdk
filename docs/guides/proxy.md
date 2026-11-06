@@ -12,6 +12,8 @@ The SDK supports proxy configuration through Node.js HTTP/HTTPS agents. This is 
 - Bypassing rate limits (use responsibly)
 - Accessing region-specific APIs
 
+> Node's built-in `fetch` ignores `http.Agent`, so when an `agent` is configured the SDK sends requests through `node-fetch`, which honours it. Requests without an agent keep using the built-in `fetch`.
+
 ## Setting Up a Proxy
 
 ### Using https-proxy-agent
