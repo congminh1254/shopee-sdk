@@ -1088,25 +1088,25 @@ describe("OrderManager", () => {
 
       mockShopeeFetch.mockResolvedValue(mockResponse);
 
+      // Declared as a variable (not an inline literal) so the test compiles whether or not
+      // the generated GenerateFbsInvoicesBatchDownload type already includes `cnpj`.
+      const batchDownload = {
+        start: 20240101,
+        end: 20240131,
+        document_type: 1,
+        file_type: 3,
+        cnpj: "12345678000190",
+      };
+
       const result = await orderManager.generateFbsInvoices({
-        batch_download: {
-          start: 20240101,
-          end: 20240131,
-          document_type: 1,
-          file_type: 3,
-        },
+        batch_download: batchDownload,
       });
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/order/generate_fbs_invoices", {
         method: "POST",
         auth: true,
         body: {
-          batch_download: {
-            start: 20240101,
-            end: 20240131,
-            document_type: 1,
-            file_type: 3,
-          },
+          batch_download: batchDownload,
         },
       });
 
