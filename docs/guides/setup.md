@@ -132,7 +132,7 @@ console.log(config);
 
 ## Custom Token Storage
 
-By default, the SDK stores tokens in local JSON files in a `.token` folder. You can provide your own token storage implementation:
+By default, the SDK keeps tokens in memory (`InMemoryTokenStorage`). The bundled `CustomTokenStorage` persists them in plaintext JSON files under `.token/` (owner-only permissions, see the [Token Storage Guide](./token-storage.md)). For production, provide your own token storage implementation:
 
 ```typescript
 import { TokenStorage, AccessToken } from '@congminh1254/shopee-sdk';
