@@ -235,6 +235,12 @@ export SHOPEE_MERCHANT_ACCESS_TOKEN=...
 npm test -- --runInBand --coverage=false src/__tests__/integration/merchant.live.integration.test.ts
 ```
 
+`npm run test:sandbox` (and the **Integration Tests** GitHub workflow) runs it automatically when
+`SHOPEE_SANDBOX_MAIN_ACCOUNT`, `SHOPEE_SANDBOX_MAIN_PASSWORD` and `SHOPEE_SANDBOX_MAIN_ACCOUNT_ID`
+are set: it logs in to the sandbox main account with Playwright (the sandbox accepts any OTP),
+authorizes the merchant and its shops for the `SHOPEE_SANDBOX_PARTNER_ID` app, and passes the new
+merchant token to the test.
+
 ## Best Practices
 
 ### 1. Store Tokens Securely

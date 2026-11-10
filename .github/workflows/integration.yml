@@ -19,6 +19,10 @@ jobs:
       SHOPEE_SANDBOX_ACCOUNT: ${{ secrets.SHOPEE_SANDBOX_ACCOUNT }}
       SHOPEE_SANDBOX_PASSWORD: ${{ secrets.SHOPEE_SANDBOX_PASSWORD }}
       SHOPEE_SANDBOX_SHOP_ID: ${{ secrets.SHOPEE_SANDBOX_SHOP_ID }}
+      # Optional: main account for Merchant / Global Product tests (skipped when unset)
+      SHOPEE_SANDBOX_MAIN_ACCOUNT: ${{ secrets.SHOPEE_SANDBOX_MAIN_ACCOUNT }}
+      SHOPEE_SANDBOX_MAIN_PASSWORD: ${{ secrets.SHOPEE_SANDBOX_MAIN_PASSWORD }}
+      SHOPEE_SANDBOX_MAIN_ACCOUNT_ID: ${{ secrets.SHOPEE_SANDBOX_MAIN_ACCOUNT_ID }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

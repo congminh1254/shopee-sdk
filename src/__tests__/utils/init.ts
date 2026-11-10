@@ -1,11 +1,30 @@
 /* eslint-disable no-console */
 import { spawn } from "node:child_process";
-import { automateSandboxAuth } from "./sandbox-auth-automation.js";
-import { getSandboxConfig, validateSandboxEnv } from "./env-helper.js";
+import { automateMainAccountAuth, automateSandboxAuth } from "./sandbox-auth-automation.js";
+import {
+  getSandboxConfig,
+  hasSandboxMainAccountCredentials,
+  validateSandboxEnv,
+} from "./env-helper.js";
 
 async function main() {
   validateSandboxEnv();
   const config = getSandboxConfig();
+
+  // Authorize the main account first: it also re-authorizes its shops, so the shop login
+  // below then issues the newest shop token.
+  if (hasSandboxMainAccountCredentials()) {
+    console.log("Starting automated sandbox main-account (merchant) authorization...");
+    const merchantToken = await automateMainAccountAuth();
+    console.log(`Obtained merchant token for merchant_id ${merchantToken.merchant_id}.`);
+    process.env.SHOPEE_RUN_MERCHANT_INTEGRATION = "1";
+    process.env.SHOPEE_MERCHANT_PARTNER_ID = String(config.partner_id);
+    process.env.SHOPEE_MERCHANT_PARTNER_KEY = config.partner_key;
+    process.env.SHOPEE_MERCHANT_ID = String(merchantToken.merchant_id);
+    process.env.SHOPEE_MERCHANT_ACCESS_TOKEN = merchantToken.access_token;
+  } else {
+    console.log("Main-account credentials not set; merchant sandbox tests will be skipped.");
+  }
 
   console.log("Starting automated sandbox login and token generation...");
   const token = await automateSandboxAuth();

@@ -7,6 +7,9 @@ export interface SandboxConfig {
   password?: string;
   access_token?: string;
   refresh_token?: string;
+  main_account?: string;
+  main_password?: string;
+  main_account_id?: number;
 }
 
 /**
@@ -20,6 +23,7 @@ export function getSandboxConfig(): SandboxConfig {
   const password = process.env.SHOPEE_SANDBOX_PASSWORD;
   const accessToken = process.env.SHOPEE_SANDBOX_ACCESS_TOKEN;
   const refreshToken = process.env.SHOPEE_SANDBOX_REFRESH_TOKEN;
+  const mainAccountIdStr = process.env.SHOPEE_SANDBOX_MAIN_ACCOUNT_ID;
 
   return {
     partner_id: partnerIdStr ? parseInt(partnerIdStr, 10) : undefined,
@@ -29,7 +33,16 @@ export function getSandboxConfig(): SandboxConfig {
     password,
     access_token: accessToken,
     refresh_token: refreshToken,
+    main_account: process.env.SHOPEE_SANDBOX_MAIN_ACCOUNT || undefined,
+    main_password: process.env.SHOPEE_SANDBOX_MAIN_PASSWORD || undefined,
+    main_account_id: mainAccountIdStr ? parseInt(mainAccountIdStr, 10) : undefined,
   };
+}
+
+/** Checks if sandbox main-account (merchant) credentials are present. */
+export function hasSandboxMainAccountCredentials(): boolean {
+  const config = getSandboxConfig();
+  return hasSandboxPartnerCredentials() && !!config.main_account && !!config.main_password;
 }
 
 /**
