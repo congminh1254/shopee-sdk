@@ -218,6 +218,23 @@ await sdk.refreshToken(undefined, undefined, undefined, 888); // select principa
 `merchant_id`, `principal_id`, `user_id`). A token storage holds one token, so keep shop and
 merchant tokens in separate SDK instances if you refresh them independently.
 
+#### Live merchant test
+
+An optional read-only test calls `merchant.getMerchantInfo`, `merchant.getShopListByMerchant` and
+`globalProduct.getCategory` with an existing merchant access token. It does not consume refresh
+tokens. Enable it explicitly; missing configuration or API errors fail the test:
+
+```sh
+# Supply these via your environment or secret manager; do not commit tokens.
+export SHOPEE_RUN_MERCHANT_INTEGRATION=1
+export SHOPEE_MERCHANT_PARTNER_ID=...
+export SHOPEE_MERCHANT_PARTNER_KEY=...
+export SHOPEE_MERCHANT_ID=...
+export SHOPEE_MERCHANT_ACCESS_TOKEN=...
+# Optional: SHOPEE_MERCHANT_BASE_URL, defaults to the global sandbox.
+npm test -- --runInBand --coverage=false src/__tests__/integration/merchant.live.integration.test.ts
+```
+
 ## Best Practices
 
 ### 1. Store Tokens Securely
