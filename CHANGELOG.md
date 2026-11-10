@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.14.1](https://github.com/congminh1254/shopee-sdk/compare/v2.14.0...v2.14.1) (2026-11-10)
+
+
+### Bug Fixes
+
+* **auth:** sign Merchant and Principal APIs with merchant_id / principal_id ([#318](https://github.com/congminh1254/shopee-sdk/issues/318)) ([74a8076](https://github.com/congminh1254/shopee-sdk/commit/74a80765cb8d50bc597fea230c24f8c57d91653c))
+
 ## [2.14.0](https://github.com/congminh1254/shopee-sdk/compare/v2.13.0...v2.14.0) (2026-11-06)
 
 
