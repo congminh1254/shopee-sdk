@@ -1,15 +1,8 @@
 import { setupIntegrationTest } from "./setup.js";
-import { ShopeeApiError } from "../../errors.js";
+import { ShopeeApiError } from "../../../errors.js";
 
 describe("ShopeeSDK Returns Sandbox Integration Tests", () => {
-  const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
-
-  if (!runTests) {
-    it("should skip sandbox integration tests if credentials are not configured", () => {
-      // Skipped
-    });
-    return;
-  }
+  const { initSdk } = setupIntegrationTest();
 
   let sdk: any;
 
@@ -18,10 +11,6 @@ describe("ShopeeSDK Returns Sandbox Integration Tests", () => {
   });
 
   it("should successfully retrieve return list for the shop", async () => {
-    if (!hasValidToken()) {
-      return;
-    }
-
     const response = await sdk.returns.getReturnList({
       page_no: 0,
       page_size: 10,
@@ -32,10 +21,6 @@ describe("ShopeeSDK Returns Sandbox Integration Tests", () => {
   });
 
   it("should gracefully propagate error when querying details with a dummy return serial number", async () => {
-    if (!hasValidToken()) {
-      return;
-    }
-
     try {
       await sdk.returns.getReturnDetail({
         return_sn: "1234567890", // Dummy return SN

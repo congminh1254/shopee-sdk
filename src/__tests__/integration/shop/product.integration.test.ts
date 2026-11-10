@@ -1,13 +1,13 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
 import fs from "fs";
-import { ShopeeSDK } from "../../sdk.js";
+import { ShopeeSDK } from "../../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
-import { ItemStatus } from "../../schemas/product.js";
-import { ShopeeApiError } from "../../errors.js";
+import { ItemStatus } from "../../../schemas/product.js";
+import { ShopeeApiError } from "../../../errors.js";
 
-const { runTests, initSdk } = setupIntegrationTest();
+const { initSdk } = setupIntegrationTest();
 
-(runTests ? describe : describe.skip)("ShopeeSDK ProductManager Sandbox Integration Tests", () => {
+describe("ShopeeSDK ProductManager Sandbox Integration Tests", () => {
   let sdk: ShopeeSDK;
   let testCategoryId = 100001; // default fallback category ID
 

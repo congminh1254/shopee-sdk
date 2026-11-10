@@ -30,7 +30,6 @@ export class InstallationManager extends BaseManager {
       "/installation/receive_installation_order",
       {
         method: "POST",
-        auth: true,
         body: params,
         request: options,
       }
@@ -52,7 +51,6 @@ export class InstallationManager extends BaseManager {
       "/installation/validate_installation_otp_code",
       {
         method: "POST",
-        auth: true,
         body: params,
         request: options,
       }

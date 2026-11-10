@@ -34,7 +34,6 @@ export class PushManager extends BaseManager {
       "/push/confirm_consumed_lost_push_message",
       {
         method: "POST",
-        auth: true,
         body: params,
         request: options,
       }
@@ -53,7 +52,6 @@ export class PushManager extends BaseManager {
   ): Promise<GetAppPushConfigResponse> {
     return ShopeeFetch.fetch<GetAppPushConfigResponse>(this.config, "/push/get_app_push_config", {
       method: "GET",
-      auth: true,
       params: params,
       request: options,
       timestampPaths: ["response.suspended_time"],
@@ -75,7 +73,6 @@ export class PushManager extends BaseManager {
       "/push/get_lost_push_message",
       {
         method: "GET",
-        auth: true,
         params: params,
         request: options,
         timestampPaths: ["response.push_message_list.timestamp"],
@@ -95,7 +92,6 @@ export class PushManager extends BaseManager {
   ): Promise<SetAppPushConfigResponse> {
     return ShopeeFetch.fetch<SetAppPushConfigResponse>(this.config, "/push/set_app_push_config", {
       method: "POST",
-      auth: true,
       body: params,
       request: options,
     });

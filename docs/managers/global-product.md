@@ -2,6 +2,13 @@
 
 The GlobalProductManager handles all global product operations for China mainland and Korean sellers. Global products allow sellers to manage products centrally and publish them to multiple shops across different regions.
 
+## Authentication
+
+Global Product APIs are signed with `merchant_id`, not `shop_id`. Authenticate with a main account
+(`sdk.authenticateWithCode(code, undefined, mainAccountId)`); the SDK selects the merchant when the
+grant contains exactly one, otherwise call `sdk.refreshToken(undefined, merchantId)` first. See the
+[Authentication Guide](../guides/authentication.md#main-account-authentication).
+
 ## Overview
 
 The GlobalProductManager provides methods for:

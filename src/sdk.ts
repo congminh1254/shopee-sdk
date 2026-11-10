@@ -203,9 +203,15 @@ export class ShopeeSDK {
   public async refreshToken(
     shop_id?: number,
     merchant_id?: number,
-    user_id?: number
+    user_id?: number,
+    principal_id?: number
   ): Promise<AccessToken | null> {
-    const key = JSON.stringify([shop_id ?? null, merchant_id ?? null, user_id ?? null]);
+    const key = JSON.stringify([
+      shop_id ?? null,
+      merchant_id ?? null,
+      user_id ?? null,
+      principal_id ?? null,
+    ]);
     while (this.pendingRefresh) {
       const pending = this.pendingRefresh;
       if (pending.key === key) {
@@ -217,7 +223,7 @@ export class ShopeeSDK {
         this.pendingRefresh = null;
       }
     }
-    const promise = this.performRefresh(shop_id, merchant_id, user_id);
+    const promise = this.performRefresh(shop_id, merchant_id, user_id, principal_id);
     const entry = { key, promise };
     this.pendingRefresh = entry;
     try {
@@ -232,20 +238,31 @@ export class ShopeeSDK {
   private async performRefresh(
     shop_id?: number,
     merchant_id?: number,
-    user_id?: number
+    user_id?: number,
+    principal_id?: number
   ): Promise<AccessToken | null> {
     const old_token = await this.tokenStorage.get();
     if (!old_token) {
       throw new ShopeeSdkError("No token found to refresh");
     }
-    const selectedUserId =
-      user_id ??
-      (shop_id === undefined && merchant_id === undefined ? old_token.user_id : undefined);
+    const explicit = [shop_id, merchant_id, user_id, principal_id].some((id) => id !== undefined);
+    // Without explicit IDs, refresh the identity the stored token is for, so the renewed
+    // token keeps signing the same kind of API (shop, merchant, principal or user).
+    const identity = explicit
+      ? { shop_id, merchant_id, user_id, principal_id }
+      : old_token.shop_id !== undefined
+        ? { shop_id: old_token.shop_id }
+        : old_token.merchant_id !== undefined
+          ? { merchant_id: old_token.merchant_id }
+          : old_token.principal_id !== undefined
+            ? { principal_id: old_token.principal_id }
+            : { user_id: old_token.user_id };
     const token = await this.auth.getRefreshToken(
       old_token.refresh_token,
-      selectedUserId !== undefined ? shop_id : (shop_id ?? old_token.shop_id),
-      merchant_id,
-      selectedUserId
+      identity.shop_id,
+      identity.merchant_id,
+      identity.user_id,
+      identity.principal_id
     );
     if (!token) {
       return null;

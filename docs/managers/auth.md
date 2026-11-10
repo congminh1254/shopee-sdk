@@ -121,7 +121,9 @@ Refresh an expired access token using a refresh token.
 async getRefreshToken(
   refreshToken: string,
   shopId?: number,
-  merchantId?: number
+  merchantId?: number,
+  userId?: number,
+  principalId?: number
 ): Promise<AccessToken>
 ```
 
@@ -132,6 +134,8 @@ async getRefreshToken(
 | `refreshToken` | `string` | Yes | The refresh token from a previous access token |
 | `shopId` | `number` | No | Shop ID (required for shop-level tokens) |
 | `merchantId` | `number` | No | Merchant ID (for main account tokens) |
+| `userId` | `number` | No | User ID (for user tokens; not combined with shop/merchant) |
+| `principalId` | `number` | No | Principal ID (for principal tokens; not combined with others) |
 
 #### Returns
 
@@ -274,7 +278,10 @@ interface AccessToken {
   expire_in: number;         // Lifetime in seconds (usually 14400 = 4 hours)
   expired_at?: number;       // Unix timestamp when token expires (calculated)
   shop_id?: number;          // Shop ID (for shop-level tokens)
-  merchant_id?: number;      // Merchant ID (for main account tokens)
+  merchant_id?: number;      // Merchant ID; Merchant APIs sign with it
+  principal_id?: number;     // Principal ID; Principal APIs sign with it
+  merchant_id_list?: number[];  // Merchants authorized by a main-account grant
+  principal_id_list?: number[]; // Principals authorized by a main-account grant
   request_id?: string;       // Request ID from Shopee API
   error?: string;            // Error code if request failed
   message?: string;          // Error message if request failed

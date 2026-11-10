@@ -41,8 +41,12 @@
     "prebuild": "node scripts/generate-version.js",
     "build": "npm run prebuild && node --loader ts-node/esm node_modules/.bin/tsc",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:sandbox": "dotenv run -- tsx src/__tests__/utils/init.ts",
-    "auth:sandbox": "dotenv run -- tsx src/__tests__/utils/init.ts --auth-only",
+    "test:sandbox": "npm run test:sandbox:shop && npm run test:sandbox:user && npm run test:sandbox:merchant",
+    "test:sandbox:shop": "dotenv run -- tsx src/__tests__/utils/init.ts shop",
+    "test:sandbox:user": "dotenv run -- tsx src/__tests__/utils/init.ts user",
+    "test:sandbox:merchant": "dotenv run -- tsx src/__tests__/utils/init.ts merchant",
+    "test:live:video": "NODE_OPTIONS=--experimental-vm-modules dotenv run -- jest --config jest.integration.config.js src/__tests__/live/user-video.live.test.ts",
+    "auth:sandbox": "dotenv run -- tsx src/__tests__/utils/init.ts shop --auth-only",
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
@@ -56,7 +60,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   },
   "repository": {
     "type": "git",

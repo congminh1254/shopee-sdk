@@ -1,5 +1,5 @@
 import ts from "typescript";
-import { NormalizedParam, ParsedEnum, toPascalCase, toCamelCase } from "./types.js";
+import { AuthType, NormalizedParam, ParsedEnum, toPascalCase, toCamelCase } from "./types.js";
 
 // Singularize name for interface type names
 function singularize(name: string): string {
@@ -381,7 +381,7 @@ export class AstBuilder {
     endpointName: string,
     method: "GET" | "POST",
     path: string,
-    auth: boolean | "user",
+    auth: AuthType,
     timestampPaths: string[],
     description: string,
     requestParams: NormalizedParam[] = []
@@ -421,7 +421,7 @@ export class AstBuilder {
       optionsProperties.push(
         ts.factory.createPropertyAssignment(
           "auth",
-          auth === "user" ? ts.factory.createStringLiteral("user") : ts.factory.createTrue()
+          typeof auth === "string" ? ts.factory.createStringLiteral(auth) : ts.factory.createTrue()
         )
       );
     }

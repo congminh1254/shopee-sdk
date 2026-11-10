@@ -47,7 +47,7 @@ describe("MediaManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/cancel_video_upload", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
@@ -79,7 +79,7 @@ describe("MediaManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/complete_video_upload", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
@@ -119,7 +119,7 @@ describe("MediaManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/get_video_upload_result", {
         method: "GET",
-        auth: true,
+
         params: exampleRequest,
         timestampPaths: ["response.update_time"],
       });
@@ -154,7 +154,7 @@ describe("MediaManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/init_video_upload", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
@@ -190,7 +190,7 @@ describe("MediaManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_image", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
@@ -225,7 +225,7 @@ describe("MediaManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media/upload_video_part", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 

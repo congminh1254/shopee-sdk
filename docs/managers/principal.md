@@ -2,6 +2,13 @@
 
 The `PrincipalManager` provides methods to fetch consolidated multi-shop performance metrics for content creators, affiliates, livestreamers, and videos across different regions.
 
+## Authentication
+
+Principal APIs are signed with `principal_id`, not `shop_id`. When the code exchange returns a
+`principal_id_list` with exactly one entry, the SDK stores it as `principal_id`; otherwise call
+`sdk.refreshToken(undefined, undefined, undefined, principalId)` first. See the
+[Authentication Guide](../guides/authentication.md#main-account-authentication).
+
 ## Overview
 
 Content creators, Multi-Channel Networks (MCNs), and principal entities can track analytics across their linked shops and assets, including:

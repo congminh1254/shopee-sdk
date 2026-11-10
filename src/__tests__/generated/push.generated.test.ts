@@ -50,7 +50,7 @@ describe("PushManager (Generated Tests)", () => {
         "/push/confirm_consumed_lost_push_message",
         {
           method: "POST",
-          auth: true,
+
           body: exampleRequest,
         }
       );
@@ -83,7 +83,7 @@ describe("PushManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/push/get_app_push_config", {
         method: "GET",
-        auth: true,
+
         params: exampleRequest,
         timestampPaths: ["response.suspended_time"],
       });
@@ -120,7 +120,7 @@ describe("PushManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/push/get_lost_push_message", {
         method: "GET",
-        auth: true,
+
         params: exampleRequest,
         timestampPaths: ["response.push_message_list.timestamp"],
       });
@@ -153,7 +153,7 @@ describe("PushManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/push/set_app_push_config", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 

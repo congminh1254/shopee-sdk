@@ -799,7 +799,6 @@ describe("PaymentManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payment_method_list", {
         method: "GET",
-        auth: true,
         params: undefined,
       });
 

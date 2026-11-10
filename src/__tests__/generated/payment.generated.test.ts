@@ -839,7 +839,7 @@ describe("PaymentManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/payment/get_payment_method_list", {
         method: "GET",
-        auth: true,
+
         params: exampleRequest,
       });
 

@@ -83,7 +83,7 @@ describe("MediaSpaceManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media_space/complete_video_upload", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
@@ -213,7 +213,7 @@ describe("MediaSpaceManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_image", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 
@@ -248,7 +248,7 @@ describe("MediaSpaceManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/media_space/upload_video_part", {
         method: "POST",
-        auth: true,
+
         body: exampleRequest,
       });
 

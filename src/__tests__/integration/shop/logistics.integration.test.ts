@@ -1,15 +1,8 @@
 import { setupIntegrationTest } from "./setup.js";
-import { ShopeeApiError } from "../../errors.js";
+import { ShopeeApiError } from "../../../errors.js";
 
 describe("ShopeeSDK Logistics Sandbox Integration Tests", () => {
-  const { runTests, initSdk, hasValidToken } = setupIntegrationTest();
-
-  if (!runTests) {
-    it("should skip sandbox integration tests if credentials are not configured", () => {
-      // Skipped
-    });
-    return;
-  }
+  const { initSdk } = setupIntegrationTest();
 
   let sdk: any;
 
@@ -18,10 +11,6 @@ describe("ShopeeSDK Logistics Sandbox Integration Tests", () => {
   });
 
   it("should successfully retrieve the active shipping channel list for the shop", async () => {
-    if (!hasValidToken()) {
-      return; // Skip if no active shop session
-    }
-
     const response = await sdk.logistics.getChannelList();
 
     expect(response).toBeDefined();
@@ -39,10 +28,6 @@ describe("ShopeeSDK Logistics Sandbox Integration Tests", () => {
   });
 
   it("should gracefully propagate error when fetching shipping document parameter with dummy order ID", async () => {
-    if (!hasValidToken()) {
-      return;
-    }
-
     try {
       await sdk.logistics.getShippingDocumentParameter({
         order_list: [

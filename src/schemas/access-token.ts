@@ -7,16 +7,21 @@ export interface AccessToken {
   message: string;
   shop_id?: number;
   user_id?: number;
+  /** Selected merchant identity; Merchant APIs (merchant, global_product) sign with it. */
+  merchant_id?: number;
+  /** Selected principal identity; Principal APIs sign with it. */
+  principal_id?: number;
   merchant_id_list?: number[];
   shop_id_list?: number[];
   user_id_list?: number[];
   supplier_id_list?: number[];
+  principal_id_list?: number[];
   expired_at?: number;
 }
 
 export interface RefreshedAccessToken extends Omit<
   AccessToken,
-  "merchant_id_list" | "shop_id_list" | "supplier_id_list" | "user_id_list"
+  "merchant_id_list" | "shop_id_list" | "supplier_id_list" | "user_id_list" | "principal_id_list"
 > {
   partner_id: number;
   shop_id?: number;
@@ -30,6 +35,7 @@ export interface TokenByResendCode {
   shop_id_list?: number[];
   user_id_list?: number[];
   merchant_id_list?: number[];
+  principal_id_list?: number[];
   refresh_token: string;
   access_token: string;
   expire_in: number;

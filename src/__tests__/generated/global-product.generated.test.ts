@@ -104,7 +104,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_item", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -158,7 +158,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_model", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -188,7 +188,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/category_recommend", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -276,7 +276,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/create_publish_task", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -310,7 +310,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/delete_global_item", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -347,7 +347,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/delete_global_model", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -419,7 +419,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_attribute_tree", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -461,7 +461,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_brand_list", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -498,7 +498,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_category", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -533,7 +533,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_id", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -659,7 +659,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_info", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
         timestampPaths: [
           "response.global_item_list.create_time",
@@ -744,7 +744,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_limit", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -784,7 +784,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_item_list", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
         timestampPaths: ["response.global_item_list.update_time"],
       });
@@ -871,7 +871,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_global_model_list", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -903,7 +903,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         "/global_product/get_local_adjustment_rate",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: exampleRequest,
         }
       );
@@ -944,7 +944,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         "/global_product/get_publish_task_result",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: exampleRequest,
         }
       );
@@ -980,7 +980,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_publishable_shop", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -1017,7 +1017,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_published_list", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -1060,7 +1060,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         "/global_product/get_recommend_attribute",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: exampleRequest,
         }
       );
@@ -1104,7 +1104,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         "/global_product/get_shop_publishable_status",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: exampleRequest,
         }
       );
@@ -1155,7 +1155,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_size_chart_detail", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -1192,7 +1192,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_size_chart_list", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -1243,7 +1243,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_variations", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -1311,7 +1311,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/init_tier_variation", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -1355,7 +1355,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         "/global_product/search_global_attribute_value_list",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: exampleRequest,
         }
       );
@@ -1398,7 +1398,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/set_sync_field", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -1427,7 +1427,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/support_size_chart", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -1507,7 +1507,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_global_item", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -1554,7 +1554,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_global_model", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -1590,7 +1590,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
         "/global_product/update_local_adjustment_rate",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: exampleRequest,
         }
       );
@@ -1629,7 +1629,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_price", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -1662,7 +1662,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_size_chart", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -1705,7 +1705,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_stock", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -1757,7 +1757,7 @@ describe("GlobalProductManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_tier_variation", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
