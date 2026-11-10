@@ -9,6 +9,12 @@ on:
       - main
   workflow_dispatch:
 
+# All runs share one set of sandbox accounts, so only one run uses them at a time; a newer run
+# waits instead of invalidating the tokens of the one in progress.
+concurrency:
+  group: shopee-sandbox
+  cancel-in-progress: false
+
 # Three sandbox suites, each in its own job. They run one after another because the user and
 # merchant suites share a main account, and a new main-account authorization invalidates the
 # previous token. Later jobs still run when an earlier one fails. Missing secrets fail the job.
