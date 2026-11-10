@@ -43,3 +43,21 @@ export function setupIntegrationTest() {
 
   return { initSdk };
 }
+
+/**
+ * Retries a read until Shopee can see a record the test just created. The sandbox is
+ * eventually consistent: a read right after a successful create can briefly return
+ * `common.error_not_found` (observed for ~1.5s on vouchers).
+ */
+export async function untilFound<T>(read: () => Promise<T>, timeoutMs = 20000): Promise<T> {
+  const deadline = Date.now() + timeoutMs;
+  for (;;) {
+    try {
+      return await read();
+    } catch (error) {
+      const notFound = (error as { error?: string })?.error?.endsWith("error_not_found");
+      if (!notFound || Date.now() >= deadline) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+  }
+}

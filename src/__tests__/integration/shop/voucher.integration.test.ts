@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
 import { ShopeeSDK } from "../../../sdk.js";
-import { setupIntegrationTest } from "./setup.js";
+import { setupIntegrationTest, untilFound } from "./setup.js";
 import { VoucherStatus } from "../../utils/legacy-enums.js";
 
 const { initSdk } = setupIntegrationTest();
@@ -35,26 +35,23 @@ describe("ShopeeSDK VoucherManager Sandbox Integration Tests", () => {
     expect(addResponse.response?.voucher_id).toBeDefined();
 
     testVoucherId = addResponse.response?.voucher_id;
+    const voucherId = testVoucherId!;
 
-    if (testVoucherId) {
-      // 2. Fetch the voucher detail to verify
-      const getResponse = await sdk.voucher.getVoucher({
-        voucher_id: testVoucherId,
-      });
+    try {
+      // 2. Fetch the voucher detail to verify (waits out the sandbox's read-after-create lag)
+      const getResponse = await untilFound(() => sdk.voucher.getVoucher({ voucher_id: voucherId }));
       expect(getResponse.error).toBe("");
       expect(getResponse.response?.voucher_name).toBe("Integration Test Voucher");
 
       // 3. Update the voucher limits
       const updateResponse = await sdk.voucher.updateVoucher({
-        voucher_id: testVoucherId,
+        voucher_id: voucherId,
         usage_quantity: 15,
       });
       expect(updateResponse.error).toBe("");
-
-      // 4. Delete the upcoming voucher (clean up)
-      const deleteResponse = await sdk.voucher.deleteVoucher({
-        voucher_id: testVoucherId,
-      });
+    } finally {
+      // 4. Delete the upcoming voucher, even when a step above failed, so retries don't leak it
+      const deleteResponse = await sdk.voucher.deleteVoucher({ voucher_id: voucherId });
       expect(deleteResponse.error).toBe("");
     }
   });
