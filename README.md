@@ -241,10 +241,17 @@ Our integration test suite executes real HTTP requests against the **live Shopee
 - **Media & Videos**: Verifies safe transparent PNG uploads, video session initialization, and a complete chunked video upload workflow utilizing a built-in, highly-optimized 10-second Base64 MP4 H.264 video fixture.
 - **Logistics & Documents**: Validates thermal shipping label document generation and download jobs.
 - **Payments & Settings**: Checks public payment methods, shop installment profiles, active orders, local products, and dynamic Shopee server IP ranges.
-- Run sandbox integration tests:
-  ```bash
-  npm run test:sandbox
-  ```
+- Sandbox tests are split into three suites, each with its own GitHub Actions job. Each logs in with
+  Playwright, then runs its tests; missing configuration fails the suite (nothing is skipped):
+
+  | Suite | Command | Account | Covers |
+  |---|---|---|---|
+  | Shop | `npm run test:sandbox:shop` | `SHOPEE_SANDBOX_ACCOUNT` | Shop APIs (`src/__tests__/integration/shop/`) |
+  | User | `npm run test:sandbox:user` | `SHOPEE_SANDBOX_MAIN_ACCOUNT` | Livestream user APIs (`.../integration/user/`) |
+  | Merchant | `npm run test:sandbox:merchant` | `SHOPEE_SANDBOX_MAIN_ACCOUNT` | Merchant and Global Product APIs (`.../integration/merchant/`) |
+
+  `npm run test:sandbox` runs all three. Copy `.env.example` to `.env` for local runs. These suites
+  are excluded from `npm test`.
 
 ## Contributing
 

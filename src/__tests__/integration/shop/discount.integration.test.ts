@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
-import { ShopeeSDK } from "../../sdk.js";
+import { ShopeeSDK } from "../../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
-import { DiscountStatus } from "../../schemas/discount.js";
-import { ShopeeApiError } from "../../errors.js";
+import { DiscountStatus } from "../../../schemas/discount.js";
+import { ShopeeApiError } from "../../../errors.js";
 
-const { runTests, initSdk } = setupIntegrationTest();
+const { initSdk } = setupIntegrationTest();
 
-(runTests ? describe : describe.skip)("ShopeeSDK DiscountManager Sandbox Integration Tests", () => {
+describe("ShopeeSDK DiscountManager Sandbox Integration Tests", () => {
   let sdk: ShopeeSDK;
 
   beforeAll(async () => {

@@ -3,6 +3,13 @@ export default {
   testEnvironment: "node",
   testTimeout: 60000,
   testMatch: ["**/*.test.ts"],
+  // Sandbox and live suites need real Shopee credentials; run them with `npm run test:sandbox:*`
+  // and `npm run test:live:video` (jest.integration.config.js).
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    "/src/__tests__/integration/(shop|user|merchant)/",
+    "/src/__tests__/live/",
+  ],
   collectCoverage: true,
   collectCoverageFrom: [
     "src/**/*.ts",

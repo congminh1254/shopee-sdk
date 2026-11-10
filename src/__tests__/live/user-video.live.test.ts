@@ -3,10 +3,10 @@ import { ShopeeSDK } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
 import { InMemoryTokenStorage } from "../../storage/in-memory-token-storage.js";
 
-// Explicit opt-in: uses an existing user token and only reads the video list.
+// Production Video test (the sandbox has no Video API). Run with `npm run test:live:video`;
+// excluded from `npm test`. Uses an existing user token and only reads the video list.
 // No automatic refresh: live refresh tokens are single-use and must be persisted by the owner.
-const enabled = process.env.SHOPEE_RUN_USER_INTEGRATION === "1";
-(enabled ? describe : describe.skip)("Shopee Video live user endpoint", () => {
+describe("Shopee Video live user endpoint", () => {
   let sdk: ShopeeSDK;
 
   beforeAll(async () => {

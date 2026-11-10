@@ -1,7 +1,7 @@
 import { chromium } from "playwright";
 import { ShopeeSDK } from "../../sdk.js";
 import { ShopeeRegion } from "../../schemas/region.js";
-import { getSandboxConfig, validateSandboxEnv } from "./env-helper.js";
+import { getSandboxConfig, requireSandboxEnv, SANDBOX_SUITE_ENV } from "./env-helper.js";
 import { AccessToken } from "../../schemas/access-token.js";
 
 // Optional override for environments whose Playwright build differs from the installed browser.
@@ -18,7 +18,7 @@ const launchBrowser = () =>
  * intercepts the authorization callback code, and exchanges it for an access token.
  */
 export async function automateSandboxAuth(): Promise<AccessToken> {
-  validateSandboxEnv();
+  requireSandboxEnv(SANDBOX_SUITE_ENV.shop);
   const config = getSandboxConfig();
 
   const sdk = new ShopeeSDK({
@@ -140,16 +140,16 @@ export async function automateSandboxAuth(): Promise<AccessToken> {
 
 /**
  * Authorizes the app for a sandbox main account (merchant + its shops) and exchanges the code.
+ * The grant also lists the main account's users; pass userId to select one for User APIs.
  * The sandbox accepts any OTP; SHOPEE_SANDBOX_MAIN_OTP overrides the default "123456".
+ * A new main-account grant invalidates earlier ones, so run main-account suites one at a time.
  */
-export async function automateMainAccountAuth(): Promise<AccessToken> {
+export async function automateMainAccountAuth(userId?: number): Promise<AccessToken> {
+  requireSandboxEnv(SANDBOX_SUITE_ENV.merchant);
   const config = getSandboxConfig();
-  if (!config.partner_id || !config.partner_key || !config.main_account || !config.main_password) {
-    throw new Error("Main account sandbox credentials are not configured");
-  }
   const sdk = new ShopeeSDK({
-    partner_id: config.partner_id,
-    partner_key: config.partner_key,
+    partner_id: config.partner_id!,
+    partner_key: config.partner_key!,
     region: ShopeeRegion.TEST_GLOBAL,
   });
   const redirectUri = "https://open.sandbox.test-stable.shopee.com";
@@ -172,8 +172,8 @@ export async function automateMainAccountAuth(): Promise<AccessToken> {
 
     await page.locator("button.toggle-btn").click(); // "Switch to Main account"
     await page.waitForTimeout(1000);
-    await page.locator("input:visible:not([type=password])").first().fill(config.main_account);
-    await page.locator("input[type=password]:visible").first().fill(config.main_password);
+    await page.locator("input:visible:not([type=password])").first().fill(config.main_account!);
+    await page.locator("input[type=password]:visible").first().fill(config.main_password!);
     await page.locator("button.login-btn:visible").first().click();
     await settle();
 
@@ -227,9 +227,9 @@ export async function automateMainAccountAuth(): Promise<AccessToken> {
       throw new Error(`Main account authorization did not return a code. Final URL: ${page.url()}`);
     }
 
-    const token = await sdk.authenticateWithCode(code, undefined, mainAccountId);
-    if (!token?.merchant_id) {
-      throw new Error("Main account grant did not contain exactly one merchant");
+    const token = await sdk.authenticateWithCode(code, undefined, mainAccountId, userId);
+    if (!token) {
+      throw new Error("authenticateWithCode returned null token.");
     }
     return token;
   } finally {

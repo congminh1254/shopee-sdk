@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeAll } from "@jest/globals";
-import { ShopeeSDK } from "../../sdk.js";
+import { ShopeeSDK } from "../../../sdk.js";
 import { setupIntegrationTest } from "./setup.js";
-import { VoucherStatus } from "../utils/legacy-enums.js";
+import { VoucherStatus } from "../../utils/legacy-enums.js";
 
-const { runTests, initSdk } = setupIntegrationTest();
+const { initSdk } = setupIntegrationTest();
 
-(runTests ? describe : describe.skip)("ShopeeSDK VoucherManager Sandbox Integration Tests", () => {
+describe("ShopeeSDK VoucherManager Sandbox Integration Tests", () => {
   let sdk: ShopeeSDK;
   let testVoucherId: number | undefined;
 

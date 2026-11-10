@@ -51,17 +51,23 @@ The HTTP integration test exercises a local gateway using real transport and an 
 npm test -- --runInBand --coverage=false src/__tests__/integration/user-auth.integration.test.ts
 ```
 
-The optional live test reads one page of posted videos. Use a fresh **user** access token from an app with Video permission. It does not consume refresh tokens or publish/change videos. Enable it explicitly; missing configuration or API errors fail the test:
+`npm run test:sandbox:user` (the **Sandbox - User** job of the Integration Tests workflow) logs in
+to the sandbox main account, selects a user from the grant's `user_id_list` (`SHOPEE_SANDBOX_USER_ID`,
+or the first listed user), and runs `src/__tests__/integration/user/` against Livestream. The sandbox
+has no Video API: its gateway answers `error_not_found` for `/video/*`.
+
+The production Video test reads one page of posted videos. Use a fresh **user** access token from an
+app with Video permission. It does not consume refresh tokens or publish/change videos. It is
+excluded from `npm test`; missing configuration or API errors fail it:
 
 ```sh
 # Supply these via your environment or secret manager; do not commit tokens.
-export SHOPEE_RUN_USER_INTEGRATION=1
 export SHOPEE_USER_PARTNER_ID=...
 export SHOPEE_USER_PARTNER_KEY=...
 export SHOPEE_USER_ID=...
 export SHOPEE_USER_ACCESS_TOKEN=...
 # Optional: SHOPEE_USER_BASE_URL, defaults to the global production API.
-npm test -- --runInBand --coverage=false src/__tests__/integration/user-video.live.integration.test.ts
+npm run test:live:video
 ```
 
 ## Documentation investigation (issue #288)

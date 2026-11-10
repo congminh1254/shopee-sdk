@@ -218,28 +218,14 @@ await sdk.refreshToken(undefined, undefined, undefined, 888); // select principa
 `merchant_id`, `principal_id`, `user_id`). A token storage holds one token, so keep shop and
 merchant tokens in separate SDK instances if you refresh them independently.
 
-#### Live merchant test
+#### Merchant sandbox tests
 
-An optional read-only test calls `merchant.getMerchantInfo`, `merchant.getShopListByMerchant` and
-`globalProduct.getCategory` with an existing merchant access token. It does not consume refresh
-tokens. Enable it explicitly; missing configuration or API errors fail the test:
-
-```sh
-# Supply these via your environment or secret manager; do not commit tokens.
-export SHOPEE_RUN_MERCHANT_INTEGRATION=1
-export SHOPEE_MERCHANT_PARTNER_ID=...
-export SHOPEE_MERCHANT_PARTNER_KEY=...
-export SHOPEE_MERCHANT_ID=...
-export SHOPEE_MERCHANT_ACCESS_TOKEN=...
-# Optional: SHOPEE_MERCHANT_BASE_URL, defaults to the global sandbox.
-npm test -- --runInBand --coverage=false src/__tests__/integration/merchant.live.integration.test.ts
-```
-
-`npm run test:sandbox` (and the **Integration Tests** GitHub workflow) runs it automatically when
-`SHOPEE_SANDBOX_MAIN_ACCOUNT`, `SHOPEE_SANDBOX_MAIN_PASSWORD` and `SHOPEE_SANDBOX_MAIN_ACCOUNT_ID`
-are set: it logs in to the sandbox main account with Playwright (the sandbox accepts any OTP),
-authorizes the merchant and its shops for the `SHOPEE_SANDBOX_PARTNER_ID` app, and passes the new
-merchant token to the test.
+`npm run test:sandbox:merchant` (the **Sandbox - Merchant** job of the Integration Tests workflow)
+logs in to the sandbox main account (`SHOPEE_SANDBOX_MAIN_ACCOUNT`, `SHOPEE_SANDBOX_MAIN_PASSWORD`)
+with Playwright, authorizes the merchant and its shops for the `SHOPEE_SANDBOX_PARTNER_ID` app (the
+sandbox accepts any OTP), and runs `src/__tests__/integration/merchant/` with the new merchant
+token. Missing configuration fails the run. A new main-account authorization invalidates the
+previous main-account token, so run the user and merchant suites one after another.
 
 ## Best Practices
 
