@@ -381,16 +381,19 @@ export function parseSchemaFile(filePath: string): EndpointSpec {
   const rawPath = schema.path || `/api/v2/${moduleName}/${endpointName}`;
   const pathVal = rawPath.replace("/api/v2/", "/"); // shopee fetch uses "/module/endpoint" format
 
-  // Only public manager does not need auth. User, Merchant and Principal APIs sign with
-  // their own identity (user_id, merchant_id, principal_id) instead of shop_id.
+  // Shopee's api_type decides the signing identity: Public APIs are partner-level (no access
+  // token or identity), User/Merchant/Principal sign with user_id/merchant_id/principal_id, and
+  // Shop APIs with shop_id. Specs without an api_type keep the module-based default.
   const auth: AuthType =
-    schema.api_type === "User"
-      ? "user"
-      : schema.api_type === "Merchant"
-        ? "merchant"
-        : schema.api_type === "Principal"
-          ? "principal"
-          : moduleName !== "public";
+    schema.api_type === "Public"
+      ? false
+      : schema.api_type === "User"
+        ? "user"
+        : schema.api_type === "Merchant"
+          ? "merchant"
+          : schema.api_type === "Principal"
+            ? "principal"
+            : moduleName !== "public";
 
   const rawDefine = schema.define;
   const defineStr = typeof rawDefine === "string" ? rawDefine : rawDefine?.content || "";

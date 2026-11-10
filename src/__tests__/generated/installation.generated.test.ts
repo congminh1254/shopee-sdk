@@ -50,7 +50,7 @@ describe("InstallationManager (Generated Tests)", () => {
         "/installation/receive_installation_order",
         {
           method: "POST",
-          auth: true,
+
           body: exampleRequest,
         }
       );
@@ -86,7 +86,7 @@ describe("InstallationManager (Generated Tests)", () => {
         "/installation/validate_installation_otp_code",
         {
           method: "POST",
-          auth: true,
+
           body: exampleRequest,
         }
       );

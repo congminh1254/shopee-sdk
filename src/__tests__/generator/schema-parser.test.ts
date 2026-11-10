@@ -73,6 +73,9 @@ describe("schema-parser", () => {
       ["merchant.get_merchant_info", "merchant"],
       ["global_product.get_category", "merchant"],
       ["principal.get_clip_video_performance", "principal"],
+      ["push.get_app_push_config", false],
+      ["media_space.upload_image", false],
+      ["payment.get_payment_method_list", false],
     ])("uses the documented auth type for %s", (endpoint, auth) => {
       const parsed = parseSchemaFile(path.resolve(process.cwd(), `schemas/v2.${endpoint}.json`));
       expect(parsed.auth).toBe(auth);

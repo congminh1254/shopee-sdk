@@ -203,6 +203,9 @@ const token = await sdk.authenticateWithCode(
 Shopee signs each API type with its own identity: Shop APIs with `shop_id`, Merchant APIs
 (`sdk.merchant`, `sdk.globalProduct`) with `merchant_id`, Principal APIs (`sdk.principal`) with
 `principal_id`, and User APIs with `user_id`. The SDK picks the right one from the stored token.
+Public APIs are partner-level and need no token: besides `sdk.public`, this covers push
+configuration, media and media-space uploads, installation codes and
+`payment.getPaymentMethodList`, which therefore work before authentication or with any token.
 
 A main-account grant returns `merchant_id_list` and `principal_id_list`. When a list holds exactly
 one entry, the SDK stores it as `merchant_id` / `principal_id` so merchant and principal calls work

@@ -139,6 +139,22 @@ describe("Merchant and principal authentication through the HTTP transport", () 
     expect(requests[1].url.searchParams.has("shop_id")).toBe(false);
   });
 
+  it("signs partner-level (Public) endpoints without a token or identity", async () => {
+    await sdk.authenticateWithCode("main-code", undefined, 777);
+    expect((await sdk.payment.getPaymentMethodList()).error).toBe("");
+    const q = requests[1].url.searchParams;
+    expect(requests[1].url.pathname).toBe("/api/v2/payment/get_payment_method_list");
+    for (const key of ["access_token", "shop_id", "merchant_id", "user_id"]) {
+      expect(q.has(key)).toBe(false);
+    }
+  });
+
+  it("calls partner-level endpoints before any token is stored", async () => {
+    expect((await sdk.push.getAppPushConfig()).error).toBe("");
+    expect(requests).toHaveLength(1);
+    expect(requests[0].url.searchParams.has("access_token")).toBe(false);
+  });
+
   it("does not choose an arbitrary merchant from a multi-merchant grant", async () => {
     merchants = [555, 556];
     const token = await sdk.authenticateWithCode("main-code", undefined, 777);

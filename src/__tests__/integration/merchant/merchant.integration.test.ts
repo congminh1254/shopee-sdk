@@ -42,6 +42,13 @@ describe("Merchant sandbox integration", () => {
     expect(result.response?.total_count).toEqual(expect.any(Number));
   });
 
+  it("calls partner-level endpoints while holding a merchant token", async () => {
+    const methods = await sdk.payment.getPaymentMethodList();
+    expect(methods.error ?? "").toBe("");
+    const push = await sdk.push.getAppPushConfig();
+    expect(push.error).toBe("");
+  });
+
   it("fails locally on shop endpoints without a shop_id", async () => {
     await expect(sdk.shop.getShopInfo()).rejects.toThrow("No valid shop_id");
   });
