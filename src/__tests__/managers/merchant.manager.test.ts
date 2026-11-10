@@ -57,7 +57,7 @@ describe("MerchantManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_merchant_info", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: undefined,
         timestampPaths: ["auth_time", "expire_time"],
       });
@@ -119,7 +119,7 @@ describe("MerchantManager", () => {
         "/merchant/get_merchant_prepaid_account_list",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             page_no: 1,
             page_size: 100,
@@ -208,7 +208,7 @@ describe("MerchantManager", () => {
         "/merchant/get_merchant_warehouse_list",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             cursor: {
               next_id: 0,
@@ -252,7 +252,7 @@ describe("MerchantManager", () => {
       expect(mockShopeeFetch).toHaveBeenCalledWith(
         mockConfig,
         "/merchant/get_merchant_warehouse_location_list",
-        { method: "GET", auth: true, params: undefined }
+        { method: "GET", auth: "merchant", params: undefined }
       );
 
       expect(result).toEqual(mockResponse);
@@ -303,7 +303,7 @@ describe("MerchantManager", () => {
         "/merchant/get_shop_list_by_merchant",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             page_no: 1,
             page_size: 100,
@@ -369,7 +369,7 @@ describe("MerchantManager", () => {
         "/merchant/get_warehouse_eligible_shop_list",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             warehouse_id: 10001027,
             warehouse_type: 1,

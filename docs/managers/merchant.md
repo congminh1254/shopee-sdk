@@ -11,6 +11,13 @@ The MerchantManager provides methods for:
 - Retrieving shop lists bound to merchant
 - Getting warehouse-eligible shop lists
 
+## Authentication
+
+Merchant APIs are signed with `merchant_id`, not `shop_id`. Authenticate with a main account
+(`sdk.authenticateWithCode(code, undefined, mainAccountId)`); the SDK selects the merchant when the
+grant contains exactly one, otherwise call `sdk.refreshToken(undefined, merchantId)` first. The
+same applies to `sdk.globalProduct`. See the [Authentication Guide](../guides/authentication.md#main-account-authentication).
+
 ## Quick Start
 
 ```typescript

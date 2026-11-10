@@ -48,7 +48,7 @@ describe("MerchantManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_merchant_info", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
         timestampPaths: ["auth_time", "expire_time"],
       });
@@ -98,7 +98,7 @@ describe("MerchantManager (Generated Tests)", () => {
         "/merchant/get_merchant_prepaid_account_list",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: exampleRequest,
         }
       );
@@ -163,7 +163,7 @@ describe("MerchantManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_merchant_warehouse_list", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: exampleRequest,
       });
 
@@ -196,7 +196,7 @@ describe("MerchantManager (Generated Tests)", () => {
         "/merchant/get_merchant_warehouse_location_list",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: exampleRequest,
         }
       );
@@ -238,7 +238,7 @@ describe("MerchantManager (Generated Tests)", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/merchant/get_shop_list_by_merchant", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: exampleRequest,
       });
 
@@ -286,7 +286,7 @@ describe("MerchantManager (Generated Tests)", () => {
         "/merchant/get_warehouse_eligible_shop_list",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: exampleRequest,
         }
       );

@@ -316,6 +316,7 @@ describe("ShopeeSDK", () => {
         "test_refresh_token",
         undefined,
         undefined,
+        undefined,
         undefined
       );
       expect(mockStore).toHaveBeenCalledWith(newToken);

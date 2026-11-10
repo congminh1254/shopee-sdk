@@ -23,6 +23,14 @@ import { SDK_VERSION } from "./version.js";
 
 const isMock = typeof (nodeFetch as any).mock === "object";
 
+/** Token field each Shopee API type signs with and sends as its identity parameter. */
+const AUTH_IDENTITY_KEYS = {
+  shop: "shop_id",
+  user: "user_id",
+  merchant: "merchant_id",
+  principal: "principal_id",
+} as const;
+
 const nativeFetchFn = isMock ? nodeFetch : globalThis.fetch || nodeFetch;
 
 /**
@@ -457,7 +465,7 @@ export class ShopeeFetch {
       if (!token) {
         throw new ShopeeSdkError("No access token found");
       }
-      const identityKey = options.auth === "user" ? "user_id" : "shop_id";
+      const identityKey = AUTH_IDENTITY_KEYS[options.auth === true ? "shop" : options.auth];
       const identity = token[identityKey];
       if (typeof identity !== "number" || !Number.isSafeInteger(identity) || identity < 0) {
         throw new ShopeeSdkError(`No valid ${identityKey} found on access token`);

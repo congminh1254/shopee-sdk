@@ -35,7 +35,7 @@ export class MerchantManager extends BaseManager {
   ): Promise<GetMerchantInfoResponse> {
     return ShopeeFetch.fetch<GetMerchantInfoResponse>(this.config, "/merchant/get_merchant_info", {
       method: "GET",
-      auth: true,
+      auth: "merchant",
       params: params,
       request: options,
       timestampPaths: ["auth_time", "expire_time"],
@@ -57,7 +57,7 @@ export class MerchantManager extends BaseManager {
       "/merchant/get_merchant_prepaid_account_list",
       {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: params,
         request: options,
       }
@@ -79,7 +79,7 @@ export class MerchantManager extends BaseManager {
       "/merchant/get_merchant_warehouse_list",
       {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: params,
         request: options,
       }
@@ -101,7 +101,7 @@ export class MerchantManager extends BaseManager {
       "/merchant/get_merchant_warehouse_location_list",
       {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: params,
         request: options,
       }
@@ -123,7 +123,7 @@ export class MerchantManager extends BaseManager {
       "/merchant/get_shop_list_by_merchant",
       {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: params,
         request: options,
       }
@@ -145,7 +145,7 @@ export class MerchantManager extends BaseManager {
       "/merchant/get_warehouse_eligible_shop_list",
       {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: params,
         request: options,
       }

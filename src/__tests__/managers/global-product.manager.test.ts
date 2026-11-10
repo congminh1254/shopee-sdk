@@ -95,7 +95,7 @@ describe("GlobalProductManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_category", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: { language: "zh-hans" },
       });
 
@@ -121,7 +121,7 @@ describe("GlobalProductManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_category", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: undefined,
       });
 
@@ -165,7 +165,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_global_item_list",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             page_size: 10,
             update_time_from: 1611311600,
@@ -233,7 +233,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_global_item_info",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             global_item_id_list: [123456],
           },
@@ -279,7 +279,7 @@ describe("GlobalProductManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_item", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: {
           category_id: 100182,
           global_item_name: "New Product",
@@ -322,7 +322,7 @@ describe("GlobalProductManager", () => {
         "/global_product/update_global_item",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             global_item_id: 123456,
             global_item_name: "Updated Product",
@@ -355,7 +355,7 @@ describe("GlobalProductManager", () => {
         "/global_product/delete_global_item",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             global_item_id: 123456,
           },
@@ -410,7 +410,7 @@ describe("GlobalProductManager", () => {
         "/global_product/init_tier_variation",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             global_item_id: 123456,
             standardise_tier_variation: [
@@ -473,7 +473,7 @@ describe("GlobalProductManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_stock", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: {
           global_item_id: 123456,
           stock_list: [
@@ -519,7 +519,7 @@ describe("GlobalProductManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/update_price", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: {
           global_item_id: 123456,
           price_list: [
@@ -570,7 +570,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_attribute_tree",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             category_id_list: [100182],
             language: "en",
@@ -613,7 +613,7 @@ describe("GlobalProductManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_brand_list", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: {
           category_id: 100182,
           page_size: 20,
@@ -650,7 +650,7 @@ describe("GlobalProductManager", () => {
         "/global_product/category_recommend",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             global_item_name: "iPhone Case",
           },
@@ -686,7 +686,7 @@ describe("GlobalProductManager", () => {
         "/global_product/create_publish_task",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             global_item_id: 123456,
             shop_id: 67890,
@@ -727,7 +727,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_publish_task_result",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             publish_task_id: 123,
           },
@@ -768,7 +768,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_global_item_id",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             shop_id: 67890,
             item_id_list: [999],
@@ -810,7 +810,7 @@ describe("GlobalProductManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/set_sync_field", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: {
           shop_sync_list: [
             {
@@ -853,7 +853,7 @@ describe("GlobalProductManager", () => {
         "/global_product/support_size_chart",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             category_id: 100182,
           },
@@ -916,7 +916,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_global_model_list",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             global_item_id: 123456,
           },
@@ -955,7 +955,7 @@ describe("GlobalProductManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/add_global_model", {
         method: "POST",
-        auth: true,
+        auth: "merchant",
         body: {
           global_item_id: 123456,
           global_model: [
@@ -1001,7 +1001,7 @@ describe("GlobalProductManager", () => {
         "/global_product/update_global_model",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             global_item_id: 123456,
             global_model: [
@@ -1043,7 +1043,7 @@ describe("GlobalProductManager", () => {
         "/global_product/delete_global_model",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             global_item_id: 123456,
             global_model_id: 789,
@@ -1087,7 +1087,7 @@ describe("GlobalProductManager", () => {
         "/global_product/update_tier_variation",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             global_item_id: 123456,
             standardise_tier_variation: [
@@ -1139,7 +1139,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_global_item_limit",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             category_id: 100182,
           },
@@ -1178,7 +1178,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_publishable_shop",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             global_item_id: 123456,
           },
@@ -1219,7 +1219,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_shop_publishable_status",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             global_item_id: 123456,
             offset: 0,
@@ -1261,7 +1261,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_published_list",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             global_item_id: 123456,
           },
@@ -1301,7 +1301,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_recommend_attribute",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             global_item_name: "T-Shirt",
             category_id: 100001,
@@ -1344,7 +1344,7 @@ describe("GlobalProductManager", () => {
         "/global_product/search_global_attribute_value_list",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             attribute_id: 1000,
             value_name: "cotton",
@@ -1383,7 +1383,7 @@ describe("GlobalProductManager", () => {
 
       expect(mockShopeeFetch).toHaveBeenCalledWith(mockConfig, "/global_product/get_variations", {
         method: "GET",
-        auth: true,
+        auth: "merchant",
         params: {
           category_id: 100001,
         },
@@ -1416,7 +1416,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_local_adjustment_rate",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             shop_id: 67890,
           },
@@ -1451,7 +1451,7 @@ describe("GlobalProductManager", () => {
         "/global_product/update_local_adjustment_rate",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             shop_id: 67890,
             adjustment_rate: 10.5,
@@ -1494,7 +1494,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_size_chart_list",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             category_id: 100001,
             page_size: 20,
@@ -1545,7 +1545,7 @@ describe("GlobalProductManager", () => {
         "/global_product/get_size_chart_detail",
         {
           method: "GET",
-          auth: true,
+          auth: "merchant",
           params: {
             size_chart_id: 123,
           },
@@ -1578,7 +1578,7 @@ describe("GlobalProductManager", () => {
         "/global_product/update_size_chart",
         {
           method: "POST",
-          auth: true,
+          auth: "merchant",
           body: {
             global_item_id: 123456,
             size_chart: "chart_image_id",

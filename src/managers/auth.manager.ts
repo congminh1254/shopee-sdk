@@ -59,10 +59,18 @@ export class AuthManager extends BaseManager {
     if (userId !== undefined && response.user_id_list && !response.user_id_list.includes(userId)) {
       throw new ShopeeSdkError("Selected user_id was not authorized by this code");
     }
+    // A main-account grant returns identity lists; select a merchant or principal only when
+    // the grant contains exactly one, so Merchant and Principal APIs have an identity to sign with.
+    const selectedMerchantId =
+      shopId === undefined ? onlyEntry(response.merchant_id_list) : undefined;
+    const selectedPrincipalId =
+      shopId === undefined ? onlyEntry(response.principal_id_list) : undefined;
     return {
       ...response,
       shop_id: shopId,
       ...(selectedUserId !== undefined ? { user_id: selectedUserId } : {}),
+      ...(selectedMerchantId !== undefined ? { merchant_id: selectedMerchantId } : {}),
+      ...(selectedPrincipalId !== undefined ? { principal_id: selectedPrincipalId } : {}),
     };
   }
 
@@ -85,18 +93,34 @@ export class AuthManager extends BaseManager {
     return response;
   }
 
-  /** Refresh one identity. For users, pass undefined shop/merchant IDs and the userId. */
+  /**
+   * Refresh one identity. For users, pass undefined shop/merchant IDs and the userId; for
+   * principals, pass only the principalId.
+   */
   public async getRefreshToken(
     refreshToken: string,
     shopId?: number,
     merchantId?: number,
-    userId?: number
+    userId?: number,
+    principalId?: number
   ): Promise<AccessToken> {
-    if (userId !== undefined && (!Number.isSafeInteger(userId) || userId < 0)) {
-      throw new ShopeeSdkError("Invalid user_id");
+    for (const [name, id] of [
+      ["user_id", userId],
+      ["merchant_id", merchantId],
+      ["principal_id", principalId],
+    ] as const) {
+      if (id !== undefined && (!Number.isSafeInteger(id) || id < 0)) {
+        throw new ShopeeSdkError(`Invalid ${name}`);
+      }
     }
     if (userId !== undefined && (shopId !== undefined || merchantId !== undefined)) {
       throw new ShopeeSdkError("Refresh user_id separately from shop_id or merchant_id");
+    }
+    if (
+      principalId !== undefined &&
+      (shopId !== undefined || merchantId !== undefined || userId !== undefined)
+    ) {
+      throw new ShopeeSdkError("Refresh principal_id separately from other identities");
     }
     const body: Record<string, string | number | boolean> = {
       partner_id: this.config.partner_id,
@@ -112,6 +136,10 @@ export class AuthManager extends BaseManager {
 
     if (merchantId) {
       body.merchant_id = merchantId;
+    }
+
+    if (principalId !== undefined) {
+      body.principal_id = principalId;
     }
 
     const response: AccessToken = await ShopeeFetch.fetch<AccessToken>(
@@ -131,6 +159,12 @@ export class AuthManager extends BaseManager {
       ...response,
       shop_id: shopId,
       ...(userId !== undefined ? { user_id: userId } : {}),
+      ...(merchantId !== undefined ? { merchant_id: merchantId } : {}),
+      ...(principalId !== undefined ? { principal_id: principalId } : {}),
     };
   }
+}
+
+function onlyEntry(list: number[] | undefined): number | undefined {
+  return list?.length === 1 ? list[0] : undefined;
 }

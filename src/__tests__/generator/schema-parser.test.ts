@@ -69,6 +69,15 @@ describe("schema-parser", () => {
       }
     );
 
+    it.each([
+      ["merchant.get_merchant_info", "merchant"],
+      ["global_product.get_category", "merchant"],
+      ["principal.get_clip_video_performance", "principal"],
+    ])("uses the documented auth type for %s", (endpoint, auth) => {
+      const parsed = parseSchemaFile(path.resolve(process.cwd(), `schemas/v2.${endpoint}.json`));
+      expect(parsed.auth).toBe(auth);
+    });
+
     it("preserves shop authentication", () => {
       expect(
         parseSchemaFile(path.resolve(process.cwd(), "schemas/v2.product.get_item_list.json")).auth

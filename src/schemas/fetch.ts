@@ -1,8 +1,14 @@
+/** Identity an authenticated request is signed with. `true` means a shop identity. */
+export type AuthType = boolean | "user" | "merchant" | "principal";
+
 export type FetchOptions = Omit<RequestInit, "body"> & {
   params?: any;
   body?: unknown;
-  /** true preserves shop authentication; "user" signs with the selected user_id. */
-  auth?: boolean | "user";
+  /**
+   * true signs with the token's shop_id; "user", "merchant" and "principal" sign with the
+   * token's user_id, merchant_id or principal_id, matching the API type in Shopee's docs.
+   */
+  auth?: AuthType;
   timestampPaths?: string[];
   /** Per-call options supplied by the caller of a manager method. */
   request?: RequestOptions;
