@@ -37,6 +37,38 @@
   "define": "Use this API to approve or reject a prescription",
   "error_list": [
     {
+      "name": "order.invalid_pharmacist_license_number",
+      "description": "Pharmacist license number must be between 5-50 characters.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
+      "name": "order.invalid_pharmacist_nric",
+      "description": "The NRIC is invalid. Please make sure that NRIC number only contains digits and have 12 digits inside.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
+      "name": "order.invalid_trustgate_pin",
+      "description": "The trustgate PIN is empty",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
+      "name": "order.pharmacist_info_invalid",
+      "description": "The pharmacist info is invalid. Please check the pharmacist information supplied.",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
       "name": "order.prescription_order_status_invalid",
       "description": "Prescription order is already completed or canceled",
       "solution": null
