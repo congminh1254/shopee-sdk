@@ -303,7 +303,8 @@
     "Shopee Video Management",
     "Auto Parts Installation (ISP)",
     "Brand Portal Service",
-    "Payment Service Provider"
+    "Payment Service Provider",
+    "Migoo"
   ],
   "path": "/api/v2/public/get_shopee_ip_ranges",
   "related_documents": {

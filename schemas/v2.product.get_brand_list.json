@@ -588,7 +588,8 @@
     "Seller In House System",
     "Product Management",
     "Customized APP",
-    "Swam ERP"
+    "Swam ERP",
+    "Migoo"
   ],
   "path": "/api/v2/product/get_brand_list",
   "related_documents": {

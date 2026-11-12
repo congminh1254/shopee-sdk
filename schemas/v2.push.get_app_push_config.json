@@ -392,7 +392,8 @@
     "Swam ERP",
     "Livestream Management",
     "Affiliate Marketing Solution Management",
-    "Shopee Video Management"
+    "Shopee Video Management",
+    "Migoo"
   ],
   "path": "/api/v2/push/get_app_push_config",
   "related_documents": {

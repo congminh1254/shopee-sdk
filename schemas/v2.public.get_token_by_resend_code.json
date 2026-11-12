@@ -360,7 +360,8 @@
     "Affiliate Marketing Solution Management",
     "Shopee Video Management",
     "Brand Portal Service",
-    "Payment Service Provider"
+    "Payment Service Provider",
+    "Migoo"
   ],
   "path": "/api/v2/public/get_token_by_resend_code",
   "related_documents": {

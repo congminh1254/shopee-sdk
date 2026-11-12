@@ -380,7 +380,8 @@
     "ERP System",
     "Seller In House System",
     "Product Management",
-    "Swam ERP"
+    "Swam ERP",
+    "Migoo"
   ],
   "path": "/api/v2/media_space/complete_video_upload",
   "related_documents": {

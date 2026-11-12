@@ -655,7 +655,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Product Management"
+    "Product Management",
+    "Migoo"
   ],
   "path": "/api/v2/product/update_price",
   "related_documents": {

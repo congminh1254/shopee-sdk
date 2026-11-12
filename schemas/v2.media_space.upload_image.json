@@ -500,7 +500,8 @@
     "ERP System",
     "Seller In House System",
     "Product Management",
-    "Swam ERP"
+    "Swam ERP",
+    "Migoo"
   ],
   "path": "/api/v2/media_space/upload_image",
   "related_documents": {
