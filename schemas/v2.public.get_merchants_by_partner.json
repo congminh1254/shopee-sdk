@@ -366,7 +366,8 @@
     "Affiliate Marketing Solution Management",
     "Shopee Video Management",
     "Brand Portal Service",
-    "Payment Service Provider"
+    "Payment Service Provider",
+    "Migoo"
   ],
   "path": "/api/v2/public/get_merchants_by_partner",
   "related_documents": {

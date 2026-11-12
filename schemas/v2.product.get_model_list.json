@@ -1039,7 +1039,8 @@
     "Livestream Management",
     "Ads Facil",
     "Affiliate Marketing Solution Management",
-    "Shopee Video Management"
+    "Shopee Video Management",
+    "Migoo"
   ],
   "path": "/api/v2/product/get_model_list",
   "related_documents": {
