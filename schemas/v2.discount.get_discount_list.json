@@ -511,7 +511,8 @@
     "ERP System",
     "Seller In House System",
     "Marketing",
-    "Customized APP"
+    "Customized APP",
+    "Migoo"
   ],
   "path": "/api/v2/discount/get_discount_list",
   "related_documents": {

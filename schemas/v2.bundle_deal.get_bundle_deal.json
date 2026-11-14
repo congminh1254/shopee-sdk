@@ -541,7 +541,8 @@
     "ERP System",
     "Seller In House System",
     "Marketing",
-    "Customized APP"
+    "Customized APP",
+    "Migoo"
   ],
   "path": "/api/v2/bundle_deal/get_bundle_deal",
   "related_documents": {

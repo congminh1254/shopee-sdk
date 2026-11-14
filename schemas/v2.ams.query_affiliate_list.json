@@ -641,7 +641,8 @@
     }
   ],
   "api_permission": [
-    "Affiliate Marketing Solution Management"
+    "Affiliate Marketing Solution Management",
+    "Migoo"
   ],
   "path": "/api/v2/ams/query_affiliate_list",
   "related_documents": {

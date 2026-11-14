@@ -440,7 +440,8 @@
   "api_permission": [
     "Seller In House System",
     "Ads Service",
-    "Ads Service App "
+    "Ads Service App ",
+    "Migoo"
   ],
   "path": "/api/v2/ads/list_gms_user_deleted_item",
   "related_documents": {

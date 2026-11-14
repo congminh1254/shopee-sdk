@@ -606,7 +606,8 @@
   "api_permission": [
     "Seller In House System",
     "Ads Service",
-    "Ads Service App "
+    "Ads Service App ",
+    "Migoo"
   ],
   "path": "/api/v2/ads/get_gms_campaign_performance",
   "related_documents": {

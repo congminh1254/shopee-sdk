@@ -452,7 +452,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Product Management"
+    "Product Management",
+    "Migoo"
   ],
   "path": "/api/v2/shop_category/add_shop_category",
   "related_documents": {

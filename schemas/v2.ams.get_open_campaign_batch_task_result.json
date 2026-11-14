@@ -387,7 +387,8 @@
     }
   ],
   "api_permission": [
-    "Affiliate Marketing Solution Management"
+    "Affiliate Marketing Solution Management",
+    "Migoo"
   ],
   "path": "/api/v2/ams/get_open_campaign_batch_task_result",
   "related_documents": {

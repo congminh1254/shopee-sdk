@@ -564,7 +564,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Marketing"
+    "Marketing",
+    "Migoo"
   ],
   "path": "/api/v2/shop_flash_sale/update_shop_flash_sale_items",
   "related_documents": {

@@ -487,7 +487,8 @@
     "Marketing",
     "Ads Service",
     "Ads Service App ",
-    "Ads Facil"
+    "Ads Facil",
+    "Migoo"
   ],
   "path": "/api/v2/ads/get_recommended_keyword_list",
   "related_documents": {

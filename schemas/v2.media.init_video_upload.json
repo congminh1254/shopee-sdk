@@ -326,7 +326,8 @@
     "Product Management",
     "Customer Service",
     "Consignment Service System",
-    "Shopee Video Management"
+    "Shopee Video Management",
+    "Migoo"
   ],
   "path": "/api/v2/media/init_video_upload",
   "related_documents": {

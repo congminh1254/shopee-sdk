@@ -449,7 +449,8 @@
     }
   ],
   "api_permission": [
-    "Affiliate Marketing Solution Management"
+    "Affiliate Marketing Solution Management",
+    "Migoo"
   ],
   "path": "/api/v2/ams/batch_remove_products_open_campaign_setting",
   "related_documents": {

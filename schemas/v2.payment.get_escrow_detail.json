@@ -2029,7 +2029,8 @@
     "Customer Service",
     "Brand Membership",
     "Swam ERP",
-    "Payment Service Provider"
+    "Payment Service Provider",
+    "Migoo"
   ],
   "path": "/api/v2/payment/get_escrow_detail",
   "related_documents": {

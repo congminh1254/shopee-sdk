@@ -1230,7 +1230,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Order Management"
+    "Order Management",
+    "Migoo"
   ],
   "path": "/api/v2/order/get_package_detail",
   "related_documents": {

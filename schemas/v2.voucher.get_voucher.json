@@ -536,7 +536,8 @@
     "ERP System",
     "Seller In House System",
     "Marketing",
-    "Customized APP"
+    "Customized APP",
+    "Migoo"
   ],
   "path": "/api/v2/voucher/get_voucher",
   "related_documents": {

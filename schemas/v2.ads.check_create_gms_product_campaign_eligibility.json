@@ -381,7 +381,8 @@
   "api_permission": [
     "Seller In House System",
     "Ads Service",
-    "Ads Service App "
+    "Ads Service App ",
+    "Migoo"
   ],
   "path": "/api/v2/ads/check_create_gms_product_campaign_eligibility",
   "related_documents": {

@@ -521,7 +521,8 @@
     }
   ],
   "api_permission": [
-    "Affiliate Marketing Solution Management"
+    "Affiliate Marketing Solution Management",
+    "Migoo"
   ],
   "path": "/api/v2/ams/get_open_campaign_not_added_product",
   "related_documents": {

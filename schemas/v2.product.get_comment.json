@@ -672,7 +672,8 @@
     "Product Management",
     "Order Management",
     "Accounting And Finance",
-    "Customized APP"
+    "Customized APP",
+    "Migoo"
   ],
   "path": "/api/v2/product/get_comment",
   "related_documents": {

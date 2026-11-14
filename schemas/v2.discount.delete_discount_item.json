@@ -475,7 +475,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Marketing"
+    "Marketing",
+    "Migoo"
   ],
   "path": "/api/v2/discount/delete_discount_item",
   "related_documents": {

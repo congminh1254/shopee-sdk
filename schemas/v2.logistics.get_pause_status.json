@@ -350,7 +350,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Order Management"
+    "Order Management",
+    "Migoo"
   ],
   "path": "/api/v2/logistics/get_pause_status",
   "related_documents": {

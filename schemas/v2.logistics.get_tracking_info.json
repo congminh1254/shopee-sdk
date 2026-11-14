@@ -593,7 +593,8 @@
     "Seller In House System",
     "Order Management",
     "Customer Service",
-    "Swam ERP"
+    "Swam ERP",
+    "Migoo"
   ],
   "path": "/api/v2/logistics/get_tracking_info",
   "related_documents": {

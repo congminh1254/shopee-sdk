@@ -427,7 +427,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Marketing"
+    "Marketing",
+    "Migoo"
   ],
   "path": "/api/v2/shop_flash_sale/get_time_slot_id",
   "related_documents": {

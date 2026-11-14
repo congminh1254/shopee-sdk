@@ -416,7 +416,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Marketing"
+    "Marketing",
+    "Migoo"
   ],
   "path": "/api/v2/top_picks/delete_top_picks",
   "related_documents": {

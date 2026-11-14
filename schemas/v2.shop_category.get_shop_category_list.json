@@ -548,7 +548,8 @@
     "Seller In House System",
     "Product Management",
     "Customized APP",
-    "Custom APP"
+    "Custom APP",
+    "Migoo"
   ],
   "path": "/api/v2/shop_category/get_shop_category_list",
   "related_documents": {
