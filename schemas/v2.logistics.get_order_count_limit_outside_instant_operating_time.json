@@ -374,7 +374,8 @@
     "ERP System",
     "Seller In House System",
     "Order Management",
-    "Swam ERP"
+    "Swam ERP",
+    "Migoo"
   ],
   "path": "/api/v2/logistics/get_order_count_limit_outside_instant_operating_time",
   "related_documents": {

@@ -398,7 +398,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Product Management"
+    "Product Management",
+    "Migoo"
   ],
   "path": "/api/v2/product/get_mart_item_mapping_by_id",
   "related_documents": {

@@ -303,7 +303,8 @@
   "api_permission": [
     "Ads Service",
     "Ads Service App ",
-    "Ads Facil"
+    "Ads Facil",
+    "Migoo"
   ],
   "path": "/api/v2/ads/get_ads_facil_shop_rate",
   "related_documents": {

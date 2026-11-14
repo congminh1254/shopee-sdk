@@ -686,7 +686,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Marketing"
+    "Marketing",
+    "Migoo"
   ],
   "path": "/api/v2/discount/update_discount_item",
   "related_documents": {

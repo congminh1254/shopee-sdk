@@ -526,7 +526,8 @@
   ],
   "api_permission": [
     "ERP System",
-    "Seller In House System"
+    "Seller In House System",
+    "Migoo"
   ],
   "path": "/api/v2/sbs/get_fulfillment_mapping_inventory_list",
   "related_documents": {

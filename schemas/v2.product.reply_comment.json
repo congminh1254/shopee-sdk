@@ -523,7 +523,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Product Management"
+    "Product Management",
+    "Migoo"
   ],
   "path": "/api/v2/product/reply_comment",
   "related_documents": {

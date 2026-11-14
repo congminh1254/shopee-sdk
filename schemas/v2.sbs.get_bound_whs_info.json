@@ -409,7 +409,8 @@
   ],
   "api_permission": [
     "ERP System",
-    "Seller In House System"
+    "Seller In House System",
+    "Migoo"
   ],
   "path": "/api/v2/sbs/get_bound_whs_info",
   "related_documents": {

@@ -477,7 +477,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Product Management"
+    "Product Management",
+    "Migoo"
   ],
   "path": "/api/v2/product/get_boosted_list",
   "related_documents": {

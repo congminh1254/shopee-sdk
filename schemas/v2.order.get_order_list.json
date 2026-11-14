@@ -592,7 +592,8 @@
     "Swam ERP",
     "Livestream Management",
     "Affiliate Marketing Solution Management",
-    "Payment Service Provider"
+    "Payment Service Provider",
+    "Migoo"
   ],
   "path": "/api/v2/order/get_order_list",
   "related_documents": {

@@ -490,7 +490,8 @@
   "error_example": [],
   "api_permission": [
     "ERP System",
-    "Seller In House System"
+    "Seller In House System",
+    "Migoo"
   ],
   "path": "/api/v2/fbs/query_br_shop_invoice_error",
   "related_documents": {

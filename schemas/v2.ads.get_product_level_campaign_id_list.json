@@ -485,7 +485,8 @@
     "Marketing",
     "Ads Service",
     "Ads Service App ",
-    "Ads Facil"
+    "Ads Facil",
+    "Migoo"
   ],
   "path": "/api/v2/ads/get_product_level_campaign_id_list",
   "related_documents": {

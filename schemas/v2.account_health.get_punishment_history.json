@@ -521,7 +521,8 @@
     "Product Management",
     "Order Management",
     "Customized APP",
-    "Swam ERP"
+    "Swam ERP",
+    "Migoo"
   ],
   "path": "/api/v2/account_health/get_punishment_history",
   "related_documents": {

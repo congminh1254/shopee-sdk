@@ -396,7 +396,8 @@
     "ERP System",
     "Seller In House System",
     "Product Management",
-    "Order Management"
+    "Order Management",
+    "Migoo"
   ],
   "path": "/api/v2/shop/get_shop_holiday_mode",
   "related_documents": {

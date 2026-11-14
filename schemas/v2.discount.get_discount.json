@@ -705,7 +705,8 @@
     "Order Management",
     "Accounting And Finance",
     "Marketing",
-    "Customized APP"
+    "Customized APP",
+    "Migoo"
   ],
   "path": "/api/v2/discount/get_discount",
   "related_documents": {

@@ -420,7 +420,8 @@
     "Marketing",
     "Ads Service",
     "Ads Service App ",
-    "Ads Facil"
+    "Ads Facil",
+    "Migoo"
   ],
   "path": "/api/v2/ads/get_shop_toggle_info",
   "related_documents": {

@@ -490,7 +490,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Marketing"
+    "Marketing",
+    "Migoo"
   ],
   "path": "/api/v2/add_on_deal/add_add_on_deal",
   "related_documents": {

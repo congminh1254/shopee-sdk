@@ -406,7 +406,8 @@
     }
   ],
   "api_permission": [
-    "Affiliate Marketing Solution Management"
+    "Affiliate Marketing Solution Management",
+    "Migoo"
   ],
   "path": "/api/v2/ams/batch_get_products_suggested_rate",
   "related_documents": {

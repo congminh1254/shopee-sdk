@@ -477,7 +477,8 @@
     "Seller In House System",
     "Ads Service",
     "Ads Service App ",
-    "Ads Facil"
+    "Ads Facil",
+    "Migoo"
   ],
   "path": "/api/v2/ads/get_product_recommended_roi_target",
   "related_documents": {

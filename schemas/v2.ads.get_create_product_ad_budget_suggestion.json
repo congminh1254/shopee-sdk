@@ -514,7 +514,8 @@
     "Seller In House System",
     "Ads Service",
     "Ads Service App ",
-    "Ads Facil"
+    "Ads Facil",
+    "Migoo"
   ],
   "path": "/api/v2/ads/get_create_product_ad_budget_suggestion",
   "related_documents": {

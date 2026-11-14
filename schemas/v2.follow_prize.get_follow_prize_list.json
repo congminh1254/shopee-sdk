@@ -499,7 +499,8 @@
     "ERP System",
     "Seller In House System",
     "Marketing",
-    "Customized APP"
+    "Customized APP",
+    "Migoo"
   ],
   "path": "/api/v2/follow_prize/get_follow_prize_list",
   "related_documents": {

@@ -314,7 +314,8 @@
     "Order Management",
     "Customer Service",
     "Consignment Service System",
-    "Livestream Management"
+    "Livestream Management",
+    "Migoo"
   ],
   "path": "/api/v2/media/upload_image",
   "related_documents": {

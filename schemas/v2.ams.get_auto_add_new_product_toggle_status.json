@@ -354,7 +354,8 @@
     }
   ],
   "api_permission": [
-    "Affiliate Marketing Solution Management"
+    "Affiliate Marketing Solution Management",
+    "Migoo"
   ],
   "path": "/api/v2/ams/get_auto_add_new_product_toggle_status",
   "related_documents": {

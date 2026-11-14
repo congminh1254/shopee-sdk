@@ -485,7 +485,8 @@
     "ERP System",
     "Seller In House System",
     "Marketing",
-    "Customized APP"
+    "Customized APP",
+    "Migoo"
   ],
   "path": "/api/v2/top_picks/get_top_picks_list",
   "related_documents": {

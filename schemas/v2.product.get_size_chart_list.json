@@ -456,7 +456,8 @@
     "ERP System",
     "Seller In House System",
     "Product Management",
-    "Swam ERP"
+    "Swam ERP",
+    "Migoo"
   ],
   "path": "/api/v2/product/get_size_chart_list",
   "related_documents": {
