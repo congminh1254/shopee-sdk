@@ -913,7 +913,7 @@ export interface GetEstimateCancelValueRequest {
   partial_cancel_item_list: GetEstimateCancelValuePartialCancelItem[];
 }
 /**
- * Response data payload for get_estimate_cancel_value
+ * GetEstimateCancelValueResponseData sub-interface for GetEstimateCancelValueResponse
  */
 export interface GetEstimateCancelValueResponseData {
   /**

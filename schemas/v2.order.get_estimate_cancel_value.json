@@ -315,11 +315,46 @@
     ],
     "response_params": [
       {
-        "name": "cancel_value_price",
+        "description": "<p>Indicate error type if hit error. Empty if no error happened.</p>",
+        "name": "error",
+        "sample": "",
         "type": "string",
-        "sample": "1000",
-        "description": "<p>The estimated cancellation value for the selected item quantities. This value is calculated before the actual cancellation is submitted and can be used by sellers to preview the expected cancellation amount and support partial cancellation confirmation.</p>",
-        "key": "MZbfyzb"
+        "required": null,
+        "key": "XpnkeYy"
+      },
+      {
+        "description": "<p>Indicate error details if hit error. Empty if no error happened.</p>",
+        "name": "message",
+        "sample": "",
+        "type": "string",
+        "required": null,
+        "key": "ytNEBsJ"
+      },
+      {
+        "description": "<p>The identifier for an API request for error tracking.</p>",
+        "name": "request_id",
+        "sample": "69ee3f61ec6f4e3f85836391e5b78dbc",
+        "type": "string",
+        "required": null,
+        "key": "GGzTshp"
+      },
+      {
+        "description": "<p>Detail informations you are querying.</p>",
+        "name": "response",
+        "sample": "",
+        "type": "object",
+        "required": null,
+        "key": "iYQDSMs",
+        "children": [
+          {
+            "description": "<p>The estimated cancellation value for the selected item quantities. This value is calculated before the actual cancellation is submitted and can be used by sellers to preview the expected cancellation amount and support partial cancellation confirmation.</p>",
+            "name": "cancel_value_price",
+            "sample": "1000",
+            "type": "string",
+            "required": null,
+            "key": "QjQHCYT"
+          }
+        ]
       }
     ]
   },
