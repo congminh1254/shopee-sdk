@@ -11,19 +11,18 @@ import { normalizeSchemaName } from "../src/generator/types.js";
 const BASE_URL = "https://open.shopee.com/opservice/api/v1/doc/module/?version=2";
 const DETAIL_URL = "https://open.shopee.com/opservice/api/v1/doc/api/?version=2&api_name=";
 
-// Clear all of .json files in schemas folder
-async function clearExistingSchemas() {
-  const schemasFolder = path.join(process.cwd(), "schemas");
-  if (!fs.existsSync(schemasFolder)) {
-    fs.mkdirSync(schemasFolder, { recursive: true });
-    return;
-  }
-  const files = fs.readdirSync(schemasFolder);
-  files.forEach((file) => {
-    if (file.endsWith(".json")) {
-      fs.unlinkSync(path.join(schemasFolder, file));
-    }
-  });
+const SCHEMAS_FOLDER = path.join(process.cwd(), "schemas");
+const DETAIL_ATTEMPTS = 3;
+/**
+ * Refuse to apply a fetch that would drop more than this share of the existing schemas: a
+ * partial endpoint list from Shopee must not silently delete large parts of the SDK.
+ * Override with ALLOW_SCHEMA_SHRINK=1 when a large removal is intended.
+ */
+const MAX_REMOVED_RATIO = 0.05;
+
+function listExistingSchemas(): string[] {
+  if (!fs.existsSync(SCHEMAS_FOLDER)) return [];
+  return fs.readdirSync(SCHEMAS_FOLDER).filter((file) => file.endsWith(".json"));
 }
 
 // Fetch list of endpoints
@@ -39,6 +38,17 @@ async function fetchEndpoints() {
   const modules = data.modules;
   const endpoints = modules.map((module: any) => module.items).flat();
   return endpoints;
+}
+
+async function fetchEndpointDetailWithRetry(name: string) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await fetchEndpointDetail(name);
+    } catch (error) {
+      if (attempt >= DETAIL_ATTEMPTS) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 1000 * 2 ** (attempt - 1)));
+    }
+  }
 }
 
 // Fetch detail of each endpoint
@@ -77,44 +87,64 @@ function unescapeJsonFields(obj: any): any {
   return obj;
 }
 
-// Save schema to schemas folder
-async function saveSchema(name: string, schema: any) {
-  const schemasFolder = path.join(process.cwd(), "schemas");
-  const unescaped = unescapeJsonFields(schema);
-  const cleanName = normalizeSchemaName(name);
-  fs.writeFileSync(path.join(schemasFolder, `${cleanName}.json`), JSON.stringify(unescaped, null, 2));
-}
-
 // Main function
 async function main() {
   try {
-    console.log('Clearing existing schemas...');
-    clearExistingSchemas();
-    
+    // Nothing on disk is touched until every schema has been fetched, so a failed or
+    // partial run never removes endpoints from the SDK.
     console.log('Fetching endpoints list...');
     const endpoints = await fetchEndpoints();
     console.log(`Found ${endpoints.length} endpoints`);
-    
-    let savedCount = 0;
+
+    const fetched = new Map<string, string>();
+    const failures: string[] = [];
     for (const endpoint of endpoints) {
       if (endpoint.type !== 1) continue;
       try {
         console.log(`Fetching schema for: ${endpoint.name}`);
-        const schema = await fetchEndpointDetail(endpoint.name);
-        await saveSchema(endpoint.name, schema);
-        savedCount++;
+        const schema = await fetchEndpointDetailWithRetry(endpoint.name);
+        const file = `${normalizeSchemaName(endpoint.name)}.json`;
+        fetched.set(file, JSON.stringify(unescapeJsonFields(schema), null, 2));
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error);
-        const errorStack = error instanceof Error ? error.stack : undefined;
         console.error(`Error fetching schema for ${endpoint.name}:`, errorMessage);
-        if (errorStack) {
-          console.error('Stack trace:', errorStack);
-        }
-        // Continue with other endpoints even if one fails
+        failures.push(endpoint.name);
       }
     }
-    
-    console.log(`Successfully saved ${savedCount} schemas`);
+
+    if (failures.length > 0) {
+      throw new Error(
+        `Failed to fetch ${failures.length} schema(s) after ${DETAIL_ATTEMPTS} attempts: ${failures.join(", ")}. Existing schemas were left unchanged.`
+      );
+    }
+    if (fetched.size === 0) {
+      throw new Error('Shopee returned no endpoints. Existing schemas were left unchanged.');
+    }
+
+    const existing = listExistingSchemas();
+    const removed = existing.filter((file) => !fetched.has(file)).sort();
+    const added = [...fetched.keys()].filter((file) => !existing.includes(file)).sort();
+    if (
+      existing.length > 0 &&
+      removed.length / existing.length > MAX_REMOVED_RATIO &&
+      process.env.ALLOW_SCHEMA_SHRINK !== '1'
+    ) {
+      throw new Error(
+        `Refusing to remove ${removed.length} of ${existing.length} schemas (${removed.join(", ")}). Set ALLOW_SCHEMA_SHRINK=1 if this is intended.`
+      );
+    }
+
+    fs.mkdirSync(SCHEMAS_FOLDER, { recursive: true });
+    for (const file of removed) {
+      fs.unlinkSync(path.join(SCHEMAS_FOLDER, file));
+    }
+    for (const [file, content] of fetched) {
+      fs.writeFileSync(path.join(SCHEMAS_FOLDER, file), content);
+    }
+
+    console.log(`Successfully saved ${fetched.size} schemas`);
+    console.log(`Added endpoints (${added.length}): ${added.join(", ") || "none"}`);
+    console.log(`Removed endpoints (${removed.length}): ${removed.join(", ") || "none"}`);
     process.exit(0);
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
