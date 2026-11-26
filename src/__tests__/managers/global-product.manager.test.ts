@@ -33,7 +33,6 @@ import {
   GetVariationsResponse,
   SetSyncFieldResponse,
   GetLocalAdjustmentRateResponse,
-  UpdateLocalAdjustmentRateResponse,
   GetSizeChartListResponse,
   GetSizeChartDetailResponse,
   UpdateSizeChartResponse,
@@ -1425,42 +1424,6 @@ describe("GlobalProductManager", () => {
 
       expect(result.error).toBe("");
       expect(result.response.local_adjustment_rate).toBe(10.5);
-    });
-  });
-
-  describe("updateLocalAdjustmentRate", () => {
-    it("should update local adjustment rate successfully", async () => {
-      const mockResponse: UpdateLocalAdjustmentRateResponse = {
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: {
-          warning: "",
-        },
-      };
-
-      mockShopeeFetch.mockResolvedValue(mockResponse);
-
-      const result = await globalProductManager.updateLocalAdjustmentRate({
-        shop_id: 67890,
-        adjustment_rate: 10.5,
-      });
-
-      expect(mockShopeeFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/update_local_adjustment_rate",
-        {
-          method: "POST",
-          auth: "merchant",
-          body: {
-            shop_id: 67890,
-            adjustment_rate: 10.5,
-          },
-        }
-      );
-
-      expect(result.error).toBe("");
-      expect(result.response.warning).toBe("");
     });
   });
 

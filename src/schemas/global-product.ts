@@ -2803,37 +2803,6 @@ export interface UpdateGlobalModelResponseData {
  */
 export type UpdateGlobalModelResponse = FetchResponse<UpdateGlobalModelResponseData>;
 /**
- * Request parameters for update_local_adjustment_rate
- *
- * A multiplier that automatically converts your CB stock price into the local-warehouse price. It ensures your local inventory prices reflect regional costs, currency factors, and margin targets.
- */
-export interface UpdateLocalAdjustmentRateRequest {
-  /**
-   * The multiplier used to adjust the cross-border original price to local price
-   */
-  adjustment_rate: number;
-  /**
-   * The unique identifier of the shop to which the adjustment rate applies
-   */
-  shop_id: number;
-}
-/**
- * Response data payload for update_local_adjustment_rate
- */
-export interface UpdateLocalAdjustmentRateResponseData {
-  /**
-   * Indicate waring details if hit waring. Empty if no waring happened.
-   */
-  warning?: string;
-}
-/**
- * Response payload for update_local_adjustment_rate
- *
- * A multiplier that automatically converts your CB stock price into the local-warehouse price. It ensures your local inventory prices reflect regional costs, currency factors, and margin targets.
- */
-export type UpdateLocalAdjustmentRateResponse =
-  FetchResponse<UpdateLocalAdjustmentRateResponseData>;
-/**
  * UpdatePricePrice sub-interface for UpdatePriceRequest
  */
 export interface UpdatePricePrice {
