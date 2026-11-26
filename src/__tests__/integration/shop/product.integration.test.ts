@@ -8,10 +8,9 @@ import { ShopeeApiError } from "../../../errors.js";
 const { initSdk } = setupIntegrationTest();
 
 /**
- * Right after add_item the sandbox rejects price/stock updates while it is still processing
- * the item: update_price answers "The item is still being created. Please wait 5 seconds",
- * update_stock answers product.error_internal "system busy". Retry those calls until the item
- * is ready instead of failing the lifecycle test.
+ * Right after add_item the sandbox rejects price/stock updates with
+ * "The item is still being created. Please wait 5 seconds ...". Retry those calls
+ * until the item is ready instead of failing the lifecycle test.
  */
 async function whenItemIsReady<T>(
   call: () => Promise<T>,
@@ -22,13 +21,10 @@ async function whenItemIsReady<T>(
     try {
       return await call();
     } catch (error) {
-      const body = error instanceof ShopeeApiError ? JSON.stringify(error.data) : "";
-      const notReady =
-        body.includes("still being created") ||
-        (error instanceof ShopeeApiError &&
-          error.error === "product.error_internal" &&
-          body.includes("system busy"));
-      if (!notReady || attempt >= attempts) throw error;
+      const stillCreating =
+        error instanceof ShopeeApiError &&
+        JSON.stringify(error.data).includes("still being created");
+      if (!stillCreating || attempt >= attempts) throw error;
       await new Promise((resolve) => setTimeout(resolve, delayMs));
     }
   }
