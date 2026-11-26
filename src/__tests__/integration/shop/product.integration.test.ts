@@ -7,6 +7,29 @@ import { ShopeeApiError } from "../../../errors.js";
 
 const { initSdk } = setupIntegrationTest();
 
+/**
+ * Right after add_item the sandbox rejects price/stock updates with
+ * "The item is still being created. Please wait 5 seconds ...". Retry those calls
+ * until the item is ready instead of failing the lifecycle test.
+ */
+async function whenItemIsReady<T>(
+  call: () => Promise<T>,
+  attempts = 8,
+  delayMs = 2000
+): Promise<T> {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await call();
+    } catch (error) {
+      const stillCreating =
+        error instanceof ShopeeApiError &&
+        JSON.stringify(error.data).includes("still being created");
+      if (!stillCreating || attempt >= attempts) throw error;
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+}
+
 describe("ShopeeSDK ProductManager Sandbox Integration Tests", () => {
   let sdk: ShopeeSDK;
   let testCategoryId = 100001; // default fallback category ID
@@ -226,32 +249,36 @@ describe("ShopeeSDK ProductManager Sandbox Integration Tests", () => {
       expect(infoResponse.response.item_list![0].item_id).toBe(createdItemId);
 
       // 5. Update product price
-      const updatePriceResponse = await sdk.product.updatePrice({
-        item_id: createdItemId,
-        price_list: [
-          {
-            model_id: 0,
-            original_price: 60000,
-          },
-        ],
-      });
+      const updatePriceResponse = await whenItemIsReady(() =>
+        sdk.product.updatePrice({
+          item_id: createdItemId,
+          price_list: [
+            {
+              model_id: 0,
+              original_price: 60000,
+            },
+          ],
+        })
+      );
       expect(updatePriceResponse).toBeDefined();
       expect(updatePriceResponse.error).toBe("");
 
       // 6. Update product stock
-      const updateStockResponse = await sdk.product.updateStock({
-        item_id: createdItemId,
-        stock_list: [
-          {
-            model_id: 0,
-            seller_stock: [
-              {
-                stock: 150,
-              },
-            ],
-          },
-        ],
-      });
+      const updateStockResponse = await whenItemIsReady(() =>
+        sdk.product.updateStock({
+          item_id: createdItemId,
+          stock_list: [
+            {
+              model_id: 0,
+              seller_stock: [
+                {
+                  stock: 150,
+                },
+              ],
+            },
+          ],
+        })
+      );
       expect(updateStockResponse).toBeDefined();
       expect(updateStockResponse.error).toBe("");
     } finally {
