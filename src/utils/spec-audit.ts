@@ -523,12 +523,9 @@ export function auditRepositorySpecs(repoRoot: string): SpecAuditReport {
     }
     const sdkEndpointDef = sdkEndpoints.get(lookupKey);
     if (!sdkEndpointDef) {
-      const isIgnored = [
-        "public.get_access_token",
-        "public.refresh_access_token",
-        "ads.create_auto_product_ads",
-        "ads.edit_auto_product_ads",
-      ].includes(endpointKey);
+      const isIgnored = ["public.get_access_token", "public.refresh_access_token"].includes(
+        endpointKey
+      );
 
       if (!isIgnored) {
         missingEndpoints.push(endpointKey);

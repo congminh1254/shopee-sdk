@@ -403,22 +403,6 @@ const rates = await sdk.globalProduct.getLocalAdjustmentRate({
 });
 ```
 
-### updateLocalAdjustmentRate()
-
-**API Documentation:** [v2.global_product.update_local_adjustment_rate](https://open.shopee.com/documents/v2/v2.global_product.update_local_adjustment_rate?module=90&type=1)
-
-Update local price adjustment rates for shops.
-
-```typescript
-const result = await sdk.globalProduct.updateLocalAdjustmentRate({
-  global_item_id: 123456,
-  adjustment_rate_list: [{
-    shop_id: 67890,
-    adjustment_rate: 10.5
-  }]
-});
-```
-
 ## Attribute & Brand Methods
 
 ### getAttributeTree()

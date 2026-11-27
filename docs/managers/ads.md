@@ -55,13 +55,6 @@ const campaigns = await sdk.ads.getProductLevelCampaignIdList({
 - `getProductRecommendedRoiTarget()` - Get recommended ROI targets
 - `getCreateProductAdBudgetSuggestion()` - Get budget suggestions before creating ads
 
-### Auto Product Ads
-
-⚠️ **DEPRECATION WARNING**: Auto Product Ads endpoints are being deprecated and will be removed in a future version. Please migrate to alternative advertising methods.
-
-- `createAutoProductAds()` - ⚠️ **DEPRECATED** - Create Auto Product Ads
-- `editAutoProductAds()` - ⚠️ **DEPRECATED** - Edit existing Auto Product Ads (budget, duration, status)
-
 ### Manual Product Ads
 
 - `createManualProductAds()` - Create Manual Product Ads with full control

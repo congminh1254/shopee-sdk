@@ -1562,43 +1562,6 @@ describe("GlobalProductManager (Generated Tests)", () => {
     });
   });
 
-  describe("updateLocalAdjustmentRate", () => {
-    it("should forward the exact request options and return the response", async () => {
-      const exampleRequest = {
-        adjustment_rate: 123,
-        shop_id: 123,
-      };
-      const exampleResponse = {
-        error: "test_string",
-        message: "test_string",
-        warning: "test_string",
-        request_id: "test_string",
-      };
-
-      mockFetch.mockResolvedValueOnce({
-        request_id: "test-request-id",
-        error: "",
-        message: "",
-        response: exampleResponse,
-      });
-
-      const result = await manager.updateLocalAdjustmentRate(exampleRequest);
-
-      expect(mockFetch).toHaveBeenCalledTimes(1);
-      expect(mockFetch).toHaveBeenCalledWith(
-        mockConfig,
-        "/global_product/update_local_adjustment_rate",
-        {
-          method: "POST",
-          auth: "merchant",
-          body: exampleRequest,
-        }
-      );
-
-      expect(result.response).toEqual(exampleResponse);
-    });
-  });
-
   describe("updatePrice", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {

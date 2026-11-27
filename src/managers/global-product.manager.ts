@@ -59,8 +59,6 @@ import {
   UpdateGlobalItemResponse,
   UpdateGlobalModelRequest,
   UpdateGlobalModelResponse,
-  UpdateLocalAdjustmentRateRequest,
-  UpdateLocalAdjustmentRateResponse,
   UpdatePriceRequest,
   UpdatePriceResponse,
   UpdateSizeChartRequest,
@@ -697,28 +695,6 @@ export class GlobalProductManager extends BaseManager {
     return ShopeeFetch.fetch<UpdateGlobalModelResponse>(
       this.config,
       "/global_product/update_global_model",
-      {
-        method: "POST",
-        auth: "merchant",
-        body: params,
-        request: options,
-      }
-    );
-  }
-  /**
-   * A multiplier that automatically converts your CB stock price into the local-warehouse price. It ensures your local inventory prices reflect regional costs, currency factors, and margin targets.
-   *
-   * @param {UpdateLocalAdjustmentRateRequest} params Request parameters
-   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
-   * @returns {Promise<UpdateLocalAdjustmentRateResponse>} Promise resolving to the response
-   */
-  public async updateLocalAdjustmentRate(
-    params: UpdateLocalAdjustmentRateRequest,
-    options?: RequestOptions
-  ): Promise<UpdateLocalAdjustmentRateResponse> {
-    return ShopeeFetch.fetch<UpdateLocalAdjustmentRateResponse>(
-      this.config,
-      "/global_product/update_local_adjustment_rate",
       {
         method: "POST",
         auth: "merchant",

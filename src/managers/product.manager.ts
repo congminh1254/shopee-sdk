@@ -95,8 +95,6 @@ import {
   InitTierVariationResponse,
   LinkItemToSspRequest,
   LinkItemToSspResponse,
-  PublishItemToOutletShopRequest,
-  PublishItemToOutletShopResponse,
   RegisterBrandRequest,
   RegisterBrandResponse,
   ReplyCommentRequest,
@@ -1091,28 +1089,6 @@ export class ProductManager extends BaseManager {
       body: params,
       request: options,
     });
-  }
-  /**
-   * This API supports publishing an existing item from the mart shop to an outlet shop.
-   *
-   * @param {PublishItemToOutletShopRequest} params Request parameters
-   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
-   * @returns {Promise<PublishItemToOutletShopResponse>} Promise resolving to the response
-   */
-  public async publishItemToOutletShop(
-    params: PublishItemToOutletShopRequest,
-    options?: RequestOptions
-  ): Promise<PublishItemToOutletShopResponse> {
-    return ShopeeFetch.fetch<PublishItemToOutletShopResponse>(
-      this.config,
-      "/product/publish_item_to_outlet_shop",
-      {
-        method: "POST",
-        auth: true,
-        body: params,
-        request: options,
-      }
-    );
   }
   /**
    * Use this call to register a brand.
