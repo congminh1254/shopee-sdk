@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.15.0](https://github.com/congminh1254/shopee-sdk/compare/v2.14.1...v2.15.0) (2026-11-27)
+
+
+### Features
+
+* **ads,product:** add 5 endpoints and BCRS/VAT product schema fields ([#327](https://github.com/congminh1254/shopee-sdk/issues/327)) ([6472bc4](https://github.com/congminh1254/shopee-sdk/commit/6472bc44afee1cf8f381ac36c763780962a209d4))
+* remove endpoints retired by Shopee and make schema fetch fail-safe ([#325](https://github.com/congminh1254/shopee-sdk/issues/325)) ([9113af5](https://github.com/congminh1254/shopee-sdk/commit/9113af5d9a26bb5b383628c5e1775867e5cfd33c))
+
 ## [2.14.1](https://github.com/congminh1254/shopee-sdk/compare/v2.14.0...v2.14.1) (2026-11-10)
 
 
