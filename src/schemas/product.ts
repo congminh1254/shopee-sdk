@@ -317,6 +317,10 @@ export interface AddItemTaxInfo {
    * [BR region]7101 - for sales of self-produced goods7102 - resale of third-party goods
    */
   export_cfop?: string;
+  /**
+   * [AR region]
+   */
+  vat_rate?: string;
 }
 /**
  * AddItemComplaintPolicy sub-interface for AddItemRequest
@@ -512,6 +516,28 @@ export interface AddItemPurchaseLimitInfo {
   max_purchase_limit?: AddItemMaxPurchaseLimit;
 }
 /**
+ * AddItemContainerUnit sub-interface for AddItemBcrsSetting
+ */
+export interface AddItemContainerUnit {
+  /**
+   * Number of containers of this volume in one sales pack. Required for each submitted container unit. Use a non-negative integer; applicable BCRS quantity limits are validated by the service.
+   */
+  quantity_per_pack: number;
+  /**
+   * Volume of each beverage container in millilitres (ml). Required for each submitted container unit. Use a non-negative integer; applicable BCRS volume limits are validated by the service.
+   */
+  volume: number;
+}
+/**
+ * AddItemBcrsSetting sub-interface for AddItemRequest
+ */
+export interface AddItemBcrsSetting {
+  /**
+   * Container units in one sales pack of this model. Provide at least one entry when submitting BCRS container settings. Each entry describes containers of the same volume. An empty list is treated as not provided and cannot clear existing settings.
+   */
+  container_unit_list: AddItemContainerUnit[];
+}
+/**
  * Request parameters for add_item
  *
  * Add a new item.
@@ -644,6 +670,14 @@ export interface AddItemRequest {
    * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
    */
   cssp_id?: number;
+  /**
+   * Whether the item is subject to the Beverage Container Return Scheme (BCRS). true: BCRS item; false: non-BCRS item. Applicable only to eligible shops and items in Singapore. Omit this field when BCRS is not applicable. Omitting this field does not set a default BCRS value; the applicable BCRS mandatory rule may require it when creating an eligible item. Setting false is subject to the shop's BCRS opt-out policy. If false is supplied, bcrs_setting in the same item request is ignored.
+   */
+  is_bcrs?: boolean;
+  /**
+   * BCRS container settings for the item's default model. To specify settings for variations created later, use model[].bcrs_setting in v2.product.init_tier_variation or model_list[].bcrs_setting in v2.product.add_model. An omitted setting, an empty object, or an empty container_unit_list is treated as not provided; it cannot clear existing BCRS settings. If is_bcrs is explicitly false, this setting is ignored. Do not submit total_refundable_container_quantity, which is not a request field.
+   */
+  bcrs_setting?: AddItemBcrsSetting;
 }
 /**
  * AddItem_AddItemPreOrder sub-interface for AddItemResponseData
@@ -1221,6 +1255,28 @@ export interface AddModelPreOrder {
   days_to_ship?: number;
 }
 /**
+ * AddModelContainerUnit sub-interface for AddModelBcrsSetting
+ */
+export interface AddModelContainerUnit {
+  /**
+   * Number of containers of this volume in one sales pack. Required for each submitted container unit. Use a non-negative integer; applicable BCRS quantity limits are validated by the service.
+   */
+  quantity_per_pack: number;
+  /**
+   * Volume of each beverage container in millilitres (ml). Required for each submitted container unit. Use a non-negative integer; applicable BCRS volume limits are validated by the service.
+   */
+  volume: number;
+}
+/**
+ * AddModelBcrsSetting sub-interface for AddModelModel
+ */
+export interface AddModelBcrsSetting {
+  /**
+   * Container units in one sales pack of this model. Provide at least one entry when submitting BCRS container settings. Each entry describes containers of the same volume. An empty list is treated as not provided and cannot clear existing settings.
+   */
+  container_unit_list: AddModelContainerUnit[];
+}
+/**
  * AddModelModel sub-interface for AddModelRequest
  */
 export interface AddModelModel {
@@ -1264,6 +1320,10 @@ export interface AddModelModel {
    * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
    */
   cssp_id?: number;
+  /**
+   * BCRS container settings for this model. The item-level BCRS flag is set through is_bcrs in v2.product.add_item or v2.product.update_item. An omitted setting, an empty object, or an empty container_unit_list is treated as not provided; it cannot clear existing BCRS settings. Do not submit total_refundable_container_quantity, which is not a request field. For a BCRS item, provide valid container settings for each new model as required by the applicable BCRS rules.
+   */
+  bcrs_setting?: AddModelBcrsSetting;
 }
 /**
  * Request parameters for add_model
@@ -1607,6 +1667,10 @@ export interface BatchAddItemTaxInfo {
    * [BR region]7101 - for sales of self-produced goods7102 - resale of third-party goods
    */
   export_cfop?: string;
+  /**
+   * VAT rate for an item created by an AR local shop. Required for each applicable item when AR VAT is enabled and the VAT requirement applies. Submit an allowed rate for the shop as a percentage string, for example 21% or 10.5%.AR request fragment: {&quot;item_list&quot;:[{&quot;tax_info&quot;:{&quot;vat_rate&quot;:&quot;21%&quot;}}]}
+   */
+  vat_rate?: string;
 }
 /**
  * BatchAddItemComplaintPolicy sub-interface for BatchAddItemItem
@@ -1802,6 +1866,28 @@ export interface BatchAddItemPurchaseLimitInfo {
   max_purchase_limit?: BatchAddItemMaxPurchaseLimit;
 }
 /**
+ * BatchAddItemContainerUnit sub-interface for BatchAddItemBcrsSetting
+ */
+export interface BatchAddItemContainerUnit {
+  /**
+   * Number of containers of this volume in one sales pack. Required for each submitted container unit. Use a non-negative integer; applicable BCRS quantity limits are validated by the service.
+   */
+  quantity_per_pack: number;
+  /**
+   * Volume of each beverage container in millilitres (ml). Required for each submitted container unit. Use a non-negative integer; applicable BCRS volume limits are validated by the service.
+   */
+  volume: number;
+}
+/**
+ * BatchAddItemBcrsSetting sub-interface for BatchAddItemItem
+ */
+export interface BatchAddItemBcrsSetting {
+  /**
+   * Container units in one sales pack of this model. Provide at least one entry when submitting BCRS container settings. Each entry describes containers of the same volume. An empty list is treated as not provided and cannot clear existing settings.
+   */
+  container_unit_list: BatchAddItemContainerUnit[];
+}
+/**
  * BatchAddItemItem sub-interface for BatchAddItemRequest
  */
 export interface BatchAddItemItem {
@@ -1932,6 +2018,14 @@ export interface BatchAddItemItem {
    * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
    */
   cssp_id?: number;
+  /**
+   * Whether the item is subject to the Beverage Container Return Scheme (BCRS). true: BCRS item; false: non-BCRS item. Applicable only to eligible shops and items in Singapore. Omit this field when BCRS is not applicable. Omitting this field does not set a default BCRS value; the applicable BCRS mandatory rule may require it when creating an eligible item. Setting false is subject to the shop's BCRS opt-out policy. If false is supplied, bcrs_setting in the same item request is ignored.
+   */
+  is_bcrs?: boolean;
+  /**
+   * BCRS container settings for the item's default model. To specify settings for variations created later, use model[].bcrs_setting in v2.product.init_tier_variation or model_list[].bcrs_setting in v2.product.add_model. An omitted setting, an empty object, or an empty container_unit_list is treated as not provided; it cannot clear existing BCRS settings. If is_bcrs is explicitly false, this setting is ignored. Do not submit total_refundable_container_quantity, which is not a request field.
+   */
+  bcrs_setting?: BatchAddItemBcrsSetting;
 }
 /**
  * Request parameters for batch_add_item
@@ -4599,6 +4693,57 @@ export interface GetItemPromotionResponseData {
  */
 export type GetItemPromotionResponse = FetchResponse<GetItemPromotionResponseData>;
 /**
+ * Request parameters for get_item_tenure_info
+ *
+ * Retrieves the current tenure configuration for an item.The item must belong to the authorized shop. Response fields:response.tenure_settingtoggle_status: Indicates whether SSPL tenure is enabled for the item.tenure_key: The active tenure key. It is 0 when SSPL tenure is not enabled.response.metadataallow_item_management: Indicates whether the seller is allowed to manage item-level tenure settings.sspl_possible_tenures: The tenure keys available for the shop.can_change_tenures：Whether seller can change exact tenure plan. - If allow_item_management is false, item-level tenure management is unavailable.- If allow_item_management is true, you can use the tenure function for the item.- If can_change_tenures is false, the tenure keys are fixed by the shop. You can only enable or disable tenure for the item.- If can_change_tenures is true, the tenure keys are not fixed by the shop. You can choose which tenure level to enable for the item.- For example, if the available tenure keys are [1, 3, 6], setting tenure_key to 1 enables 1-month tenure. Setting it to 3 enables both 1-month and 3-month tenures. Setting it to 6 enables 1-month, 3-month, and 6-month tenures.
+ */
+export interface GetItemTenureInfoRequest {
+  /**
+   * Need fill in item_id, if not fill in item_id or item_id = 0, will only return shop tenure info.
+   */
+  item_id?: number;
+}
+/**
+ * GetItemTenureInfoTenureSetting sub-interface for GetItemTenureInfoResponseData
+ */
+export interface GetItemTenureInfoTenureSetting {
+  /**
+   * Indicate item current open tenure or not, false means not open tenure, true means open tenure.
+   */
+  toggle_status?: boolean;
+  /**
+   * Indicate item current tenure.
+   */
+  tenure_key?: number;
+}
+/**
+ * GetItemTenureInfoMetadata sub-interface for GetItemTenureInfoResponseData
+ */
+export interface GetItemTenureInfoMetadata {
+  /**
+   * Indicate whether item can change tenrue (shop-level setting).
+   */
+  allow_item_managment?: boolean;
+  /**
+   * Indicate which tenure item can set (shop-level setting).
+   */
+  sspl_possible_tenures?: number[];
+  can_change_tenures?: boolean;
+}
+/**
+ * GetItemTenureInfoResponseData sub-interface for GetItemTenureInfoResponse
+ */
+export interface GetItemTenureInfoResponseData {
+  tenure_setting?: GetItemTenureInfoTenureSetting[];
+  metadata?: GetItemTenureInfoMetadata[];
+}
+/**
+ * Response payload for get_item_tenure_info
+ *
+ * Retrieves the current tenure configuration for an item.The item must belong to the authorized shop. Response fields:response.tenure_settingtoggle_status: Indicates whether SSPL tenure is enabled for the item.tenure_key: The active tenure key. It is 0 when SSPL tenure is not enabled.response.metadataallow_item_management: Indicates whether the seller is allowed to manage item-level tenure settings.sspl_possible_tenures: The tenure keys available for the shop.can_change_tenures：Whether seller can change exact tenure plan. - If allow_item_management is false, item-level tenure management is unavailable.- If allow_item_management is true, you can use the tenure function for the item.- If can_change_tenures is false, the tenure keys are fixed by the shop. You can only enable or disable tenure for the item.- If can_change_tenures is true, the tenure keys are not fixed by the shop. You can choose which tenure level to enable for the item.- For example, if the available tenure keys are [1, 3, 6], setting tenure_key to 1 enables 1-month tenure. Setting it to 3 enables both 1-month and 3-month tenures. Setting it to 6 enables 1-month, 3-month, and 6-month tenures.
+ */
+export type GetItemTenureInfoResponse = FetchResponse<GetItemTenureInfoResponseData>;
+/**
  * Request parameters for get_item_violation_info
  *
  * get item violation info
@@ -6644,6 +6789,28 @@ export interface InitTierVariationPreOrder {
   days_to_ship?: number;
 }
 /**
+ * InitTierVariationContainerUnit sub-interface for InitTierVariationBcrsSetting
+ */
+export interface InitTierVariationContainerUnit {
+  /**
+   * Number of containers of this volume in one sales pack. Required for each submitted container unit. Use a non-negative integer; applicable BCRS quantity limits are validated by the service.
+   */
+  quantity_per_pack: number;
+  /**
+   * Volume of each beverage container in millilitres (ml). Required for each submitted container unit. Use a non-negative integer; applicable BCRS volume limits are validated by the service.
+   */
+  volume: number;
+}
+/**
+ * InitTierVariationBcrsSetting sub-interface for InitTierVariationModel
+ */
+export interface InitTierVariationBcrsSetting {
+  /**
+   * Container units in one sales pack of this model. Provide at least one entry when submitting BCRS container settings. Each entry describes containers of the same volume. An empty list is treated as not provided and cannot clear existing settings.
+   */
+  container_unit_list: InitTierVariationContainerUnit[];
+}
+/**
  * InitTierVariationModel sub-interface for InitTierVariationRequest
  */
 export interface InitTierVariationModel {
@@ -6687,6 +6854,10 @@ export interface InitTierVariationModel {
    * The ID of the country-specific Standardized Shop Product (CSSP) to associate with the default model of the new item. The value must be greater than 0 when provided. This field is required when ssp_id is provided.
    */
   cssp_id?: number;
+  /**
+   * BCRS container settings for this model. The item-level BCRS flag is set through is_bcrs in v2.product.add_item or v2.product.update_item. An omitted setting, an empty object, or an empty container_unit_list is treated as not provided; it cannot clear existing BCRS settings. Do not submit total_refundable_container_quantity, which is not a request field. For a BCRS item, provide valid container settings for each new model as required by the applicable BCRS rules.
+   */
+  bcrs_setting?: InitTierVariationBcrsSetting;
 }
 /**
  * InitTierVariationVariationOption sub-interface for InitTierVariationStandardiseTierVariation
@@ -6924,6 +7095,156 @@ export interface LinkItemToSspResponseData {
  * Link one or more models of an item to their country-specific SSPs. item_id and model_cssp_pairs are required, and each pair must contain model_id and cssp_id; ssp_id is optional.
  */
 export type LinkItemToSspResponse = FetchResponse<LinkItemToSspResponseData>;
+/**
+ * PublishItemToOutletShopSellerStock sub-interface for PublishItemToOutletShopModel
+ */
+export interface PublishItemToOutletShopSellerStock {
+  /**
+   * The location ID where the stock is stored.
+   */
+  location_id?: string;
+  /**
+   * The available stock quantity for the model.
+   */
+  stock: number;
+}
+/**
+ * PublishItemToOutletShopPreOrder sub-interface for PublishItemToOutletShopModel
+ */
+export interface PublishItemToOutletShopPreOrder {
+  /**
+   * Indicates whether the model is sold as a pre-order item.
+   */
+  is_pre_order: boolean;
+  /**
+   * The number of days required to ship the item after an order is placed.
+   */
+  days_to_ship?: number;
+}
+/**
+ * PublishItemToOutletShopModel sub-interface for PublishItemToOutletShopPublishItem
+ */
+export interface PublishItemToOutletShopModel {
+  /**
+   * The model ID in the Mart shop that this outlet model is associated with.model_id=0 for items with only the default model(no variations)
+   */
+  relate_mart_model_id: number;
+  /**
+   * The status of model.
+   */
+  model_status?: string;
+  /**
+   * The original price of the model.
+   */
+  original_price?: number;
+  /**
+   * Stock information for the model, set in outlet sku level.
+   */
+  seller_stock?: PublishItemToOutletShopSellerStock[];
+  /**
+   * set in outlet sku level
+   */
+  pre_order?: PublishItemToOutletShopPreOrder;
+}
+/**
+ * PublishItemToOutletShopLogisticInfo sub-interface for PublishItemToOutletShopPublishItem
+ */
+export interface PublishItemToOutletShopLogisticInfo {
+  /**
+   * The logistics channel ID used for shipping the item.
+   */
+  logistic_id: number;
+  /**
+   * Indicates whether the logistics channel is enabled for the item.
+   */
+  enabled: boolean;
+  /**
+   * The shipping fee charged to the buyer for this logistics channel.
+   */
+  shipping_fee?: number;
+  /**
+   * The parcel size ID used to calculate shipping fees.
+   */
+  size_id?: number;
+  /**
+   * Indicates whether free shipping is applied for this logistics channel.
+   */
+  is_free?: boolean;
+}
+/**
+ * PublishItemToOutletShopMaxPurchaseLimit sub-interface for PublishItemToOutletShopPurchaseLimitInfo
+ */
+export interface PublishItemToOutletShopMaxPurchaseLimit {
+  /**
+   * The maximum quantity that a buyer is allowed to purchase per order.
+   */
+  purchase_limit: number;
+}
+/**
+ * PublishItemToOutletShopPurchaseLimitInfo sub-interface for PublishItemToOutletShopPublishItem
+ */
+export interface PublishItemToOutletShopPurchaseLimitInfo {
+  /**
+   * The minimum quantity that a buyer is allowed to purchase per order.
+   */
+  min_purchase_limit: number;
+  /**
+   * The maximum purchase quantity configuration for the item.
+   */
+  max_purchase_limit: PublishItemToOutletShopMaxPurchaseLimit;
+}
+/**
+ * PublishItemToOutletShopPublishItem sub-interface for PublishItemToOutletShopRequest
+ */
+export interface PublishItemToOutletShopPublishItem {
+  outlet_item_id?: number;
+  /**
+   * A list of models to be published to the outlet shop, mapped from the corresponding Mart shop models.
+   */
+  model?: PublishItemToOutletShopModel[];
+  /**
+   * Logistic channel setting; can set for each outlet shop.
+   */
+  logistic_info?: PublishItemToOutletShopLogisticInfo[];
+  /**
+   * Purchase quantity limits applied to the item in the outlet shop.
+   */
+  purchase_limit_info?: PublishItemToOutletShopPurchaseLimitInfo;
+}
+/**
+ * Request parameters for publish_item_to_outlet_shop
+ *
+ * This API supports publishing an existing item from the mart shop to an outlet shop.
+ */
+export interface PublishItemToOutletShopRequest {
+  /**
+   * The item ID of the product in the Mart shop to be published to the outlet shop.
+   */
+  mart_item_id: number;
+  /**
+   * The shop ID of the outlet shop where the product will be published.
+   */
+  outlet_shop_id: number;
+  /**
+   * Configuration details for publishing the product to the outlet shop, including model mapping, pricing, stock, logistics, and purchase limits.
+   */
+  publish_item: PublishItemToOutletShopPublishItem;
+}
+/**
+ * PublishItemToOutletShopResponseData sub-interface for PublishItemToOutletShopResponse
+ */
+export interface PublishItemToOutletShopResponseData {
+  /**
+   * The outlet item ID.
+   */
+  item_id?: number;
+}
+/**
+ * Response payload for publish_item_to_outlet_shop
+ *
+ * This API supports publishing an existing item from the mart shop to an outlet shop.
+ */
+export type PublishItemToOutletShopResponse = FetchResponse<PublishItemToOutletShopResponseData>;
 /**
  * RegisterBrandProductImage sub-interface for RegisterBrandRequest
  */
@@ -7479,6 +7800,36 @@ export interface SearchUnpackagedModelListResponseData {
 export type SearchUnpackagedModelListResponse =
   FetchResponse<SearchUnpackagedModelListResponseData>;
 /**
+ * Request parameters for set_item_tenure_info
+ *
+ * Updates the SSPL tenure configuration for an item.Method: POSTRequest fieldsitem_id, tenure key.Required flag:true: Opts the item out of SSPL. tenure_key is ignored.false: Cancels the item’s opt-out status.tenure_keyCancels opt-out and updates the item tenure.0: means opt out  item tenure.Whether to update the tenure is inferred from whether tenure_key is provided. - If allow_item_management is false, item-level tenure management is unavailable.- If allow_item_management is true, you can use the tenure function for the item.- If can_change_tenures is false, the tenure keys are fixed by the shop. You can only enable or disable tenure for the item.- If can_change_tenures is true, the tenure keys are not fixed by the shop. You can choose which tenure level to enable for the item.- For example, if the available tenure keys are [1, 3, 6], setting tenure_key to 1 enables 1-month tenure. Setting it to 3 enables both 1-month and 3-month tenures. Setting it to 6 enables 1-month, 3-month, and 6-month tenures.
+ */
+export interface SetItemTenureInfoRequest {
+  /**
+   * ID of item which need change tenure.
+   */
+  item_id: number;
+  /**
+   * Indicate whether change item sspl tenure, if not pass this field, will not update item sspl tenure.
+   */
+  tenure_key?: number;
+}
+/**
+ * SetItemTenureInfoResponseData sub-interface for SetItemTenureInfoResponse
+ */
+export interface SetItemTenureInfoResponseData {
+  /**
+   * Return success update item_id.
+   */
+  item_id?: number;
+}
+/**
+ * Response payload for set_item_tenure_info
+ *
+ * Updates the SSPL tenure configuration for an item.Method: POSTRequest fieldsitem_id, tenure key.Required flag:true: Opts the item out of SSPL. tenure_key is ignored.false: Cancels the item’s opt-out status.tenure_keyCancels opt-out and updates the item tenure.0: means opt out  item tenure.Whether to update the tenure is inferred from whether tenure_key is provided. - If allow_item_management is false, item-level tenure management is unavailable.- If allow_item_management is true, you can use the tenure function for the item.- If can_change_tenures is false, the tenure keys are fixed by the shop. You can only enable or disable tenure for the item.- If can_change_tenures is true, the tenure keys are not fixed by the shop. You can choose which tenure level to enable for the item.- For example, if the available tenure keys are [1, 3, 6], setting tenure_key to 1 enables 1-month tenure. Setting it to 3 enables both 1-month and 3-month tenures. Setting it to 6 enables 1-month, 3-month, and 6-month tenures.
+ */
+export type SetItemTenureInfoResponse = FetchResponse<SetItemTenureInfoResponseData>;
+/**
  * UnlinkItemFromSspModelCsspPair sub-interface for UnlinkItemFromSspRequest
  */
 export interface UnlinkItemFromSspModelCsspPair {
@@ -7999,6 +8350,28 @@ export interface UpdateItemPurchaseLimitInfo {
   max_purchase_limit?: UpdateItemMaxPurchaseLimit;
 }
 /**
+ * UpdateItemContainerUnit sub-interface for UpdateItemBcrsSetting
+ */
+export interface UpdateItemContainerUnit {
+  /**
+   * Number of containers of this volume in one sales pack. Required for each submitted container unit. Use a non-negative integer; applicable BCRS quantity limits are validated by the service.
+   */
+  quantity_per_pack: number;
+  /**
+   * Volume of each beverage container in millilitres (ml). Required for each submitted container unit. Use a non-negative integer; applicable BCRS volume limits are validated by the service.
+   */
+  volume: number;
+}
+/**
+ * UpdateItemBcrsSetting sub-interface for UpdateItemRequest
+ */
+export interface UpdateItemBcrsSetting {
+  /**
+   * Container units in one sales pack of this model. Provide at least one entry when submitting BCRS container settings. Each entry describes containers of the same volume. An empty list is treated as not provided and cannot clear existing settings.
+   */
+  container_unit_list: UpdateItemContainerUnit[];
+}
+/**
  * Request parameters for update_item
  *
  * Update item.
@@ -8115,6 +8488,14 @@ export interface UpdateItemRequest {
    * [Only for ID local sellers] as a unique identifier for each standardized medicine, the medicine id can only be obtained offline
    */
   medicine_id?: number;
+  /**
+   * Whether the item is subject to the Beverage Container Return Scheme (BCRS). true: BCRS item; false: non-BCRS item. Applicable only to eligible shops and items in Singapore. Omit this field when BCRS is not applicable. On an existing item, omission retains the current BCRS value. Setting false is subject to the shop's BCRS opt-out policy; if the update is allowed, existing BCRS container settings are cleared. When false is supplied, bcrs_setting in the same request is ignored. Setting is_bcrs alone does not provide container settings for the item's models.
+   */
+  is_bcrs?: boolean;
+  /**
+   * BCRS container settings for an item without variations, applied to its default model. This field can be updated without sending gtin_code. For an item with variations, a nonempty item-level bcrs_setting returns a parameter error; use v2.product.update_model with model_id and bcrs_setting for each existing model instead. An omitted setting, an empty object, or an empty container_unit_list is treated as not provided and cannot clear existing settings. If is_bcrs is explicitly false, this setting is ignored and the BCRS opt-out policy still applies. Do not submit total_refundable_container_quantity, which is not a request field.
+   */
+  bcrs_setting?: UpdateItemBcrsSetting;
 }
 /**
  * UpdateItem_UpdateItemImage sub-interface for UpdateItemResponseData
@@ -8565,6 +8946,28 @@ export interface UpdateModelDimension {
   package_width: number;
 }
 /**
+ * UpdateModelContainerUnit sub-interface for UpdateModelBcrsSetting
+ */
+export interface UpdateModelContainerUnit {
+  /**
+   * Number of containers of this volume in one sales pack. Required for each submitted container unit. Use a non-negative integer; applicable BCRS quantity limits are validated by the service.
+   */
+  quantity_per_pack: number;
+  /**
+   * Volume of each beverage container in millilitres (ml). Required for each submitted container unit. Use a non-negative integer; applicable BCRS volume limits are validated by the service.
+   */
+  volume: number;
+}
+/**
+ * UpdateModelBcrsSetting sub-interface for UpdateModelModel
+ */
+export interface UpdateModelBcrsSetting {
+  /**
+   * Container units in one sales pack of this model. Provide at least one entry when submitting BCRS container settings. Each entry describes containers of the same volume. An empty list is treated as not provided and cannot clear existing settings.
+   */
+  container_unit_list: UpdateModelContainerUnit[];
+}
+/**
  * UpdateModelModel sub-interface for UpdateModelRequest
  */
 export interface UpdateModelModel {
@@ -8593,11 +8996,15 @@ export interface UpdateModelModel {
    * The dimension of this model.If don't set the dimension of this model, will use the dimension of item by default.
    */
   dimension?: UpdateModelDimension;
+  /**
+   * BCRS container settings for this model. The item-level BCRS flag is set through is_bcrs in v2.product.add_item or v2.product.update_item. An omitted setting, an empty object, or an empty container_unit_list is treated as not provided; it cannot clear existing BCRS settings. Do not submit total_refundable_container_quantity, which is not a request field. Identify each existing model by model_id. Use this API to update BCRS container settings for an item with variations; v2.product.update_item only accepts item-level bcrs_setting for an item without variations.
+   */
+  bcrs_setting?: UpdateModelBcrsSetting;
 }
 /**
  * Request parameters for update_model
  *
- * Update seller sku/ pre order/ model status for model.
+ * Update seller sku/ pre order/ model status for model. BCRS container settings can be updated using model[].bcrs_setting with model_id for each existing model.
  */
 export interface UpdateModelRequest {
   /**
@@ -8621,7 +9028,7 @@ export interface UpdateModelResponseData {
 /**
  * Response payload for update_model
  *
- * Update seller sku/ pre order/ model status for model.
+ * Update seller sku/ pre order/ model status for model. BCRS container settings can be updated using model[].bcrs_setting with model_id for each existing model.
  */
 export type UpdateModelResponse = FetchResponse<UpdateModelResponseData>;
 /**

@@ -55,6 +55,40 @@ describe("AdsManager (Generated Tests)", () => {
     });
   });
 
+  describe("createAutoProductAds", () => {
+    it("should forward the exact request options and return the response", async () => {
+      const exampleRequest = {
+        reference_id: "asdf-1234-qwerty",
+        budget: 10.5,
+        start_date: "11-11-2023",
+        end_date: "test_string",
+      };
+      const exampleResponse = [
+        {
+          campaign_id: 123,
+        },
+      ];
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.createAutoProductAds(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/create_auto_product_ads", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
   describe("createGmsProductCampaign", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
@@ -131,6 +165,42 @@ describe("AdsManager (Generated Tests)", () => {
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/create_manual_product_ads", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
+  describe("editAutoProductAds", () => {
+    it("should forward the exact request options and return the response", async () => {
+      const exampleRequest = {
+        reference_id: "asd-qwer",
+        campaign_id: 1234,
+        edit_action: "start",
+        budget: 20.5,
+        start_date: "11-11-2023",
+        end_date: "17-11-2023",
+      };
+      const exampleResponse = [
+        {
+          campaign_id: 123,
+        },
+      ];
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.editAutoProductAds(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/ads/edit_auto_product_ads", {
         method: "POST",
         auth: true,
         body: exampleRequest,

@@ -294,7 +294,7 @@
   "errors": "",
   "gateway_api_id": 0,
   "is_get_method": 0,
-  "method": 2,
+  "method": 1,
   "module_id": 97,
   "module_name": "Payment",
   "params": {
@@ -1722,7 +1722,7 @@
     ]
   },
   "perm_mtime": 1716799047,
-  "perm_operator": "qimiao@shopee.com",
+  "perm_operator": "junji.yao@shopee.com",
   "perm_type": 1,
   "perm_upload_file_name": "",
   "priority": 80391,

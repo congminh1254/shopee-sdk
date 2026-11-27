@@ -515,7 +515,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Order Management"
+    "Order Management",
+    "Swam ERP"
   ],
   "path": "/api/v2/logistics/create_shipping_document_job",
   "related_documents": {

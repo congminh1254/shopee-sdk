@@ -109,6 +109,7 @@ describe("ProductManager (Generated Tests)", () => {
             group_grai_gtin_sscc: "test_string",
           },
           export_cfop: "7101",
+          vat_rate: '"10.5%"',
         },
         complaint_policy: {
           warranty_time: "test_string",
@@ -182,6 +183,15 @@ describe("ProductManager (Generated Tests)", () => {
         medicine_id: 123,
         ssp_id: 123,
         cssp_id: 123,
+        is_bcrs: true,
+        bcrs_setting: {
+          container_unit_list: [
+            {
+              quantity_per_pack: 12,
+              volume: 600,
+            },
+          ],
+        },
       };
       const exampleResponse = {
         description: "description",
@@ -429,6 +439,14 @@ describe("ProductManager (Generated Tests)", () => {
             },
             ssp_id: 123,
             cssp_id: 123,
+            bcrs_setting: {
+              container_unit_list: [
+                {
+                  quantity_per_pack: 12,
+                  volume: 600,
+                },
+              ],
+            },
           },
         ],
       };
@@ -567,6 +585,7 @@ describe("ProductManager (Generated Tests)", () => {
                 group_grai_gtin_sscc: "test_string",
               },
               export_cfop: "7101",
+              vat_rate: '"21%"',
             },
             complaint_policy: {
               warranty_time: "test_string",
@@ -640,6 +659,15 @@ describe("ProductManager (Generated Tests)", () => {
             medicine_id: 123,
             ssp_id: 123,
             cssp_id: 123,
+            is_bcrs: true,
+            bcrs_setting: {
+              container_unit_list: [
+                {
+                  quantity_per_pack: 12,
+                  volume: 600,
+                },
+              ],
+            },
           },
         ],
       };
@@ -2052,6 +2080,47 @@ describe("ProductManager (Generated Tests)", () => {
     });
   });
 
+  describe("getItemTenureInfo", () => {
+    it("should forward the exact request options and return the response", async () => {
+      const exampleRequest = {
+        item_id: 123456,
+      };
+      const exampleResponse = {
+        tenure_setting: [
+          {
+            toggle_status: true,
+            tenure_key: 123,
+          },
+        ],
+        metadata: [
+          {
+            allow_item_managment: false,
+            sspl_possible_tenures: [1, 2, 3, 6],
+            can_change_tenures: true,
+          },
+        ],
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.getItemTenureInfo(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/product/get_item_tenure_info", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
   describe("getItemViolationInfo", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
@@ -3093,6 +3162,14 @@ describe("ProductManager (Generated Tests)", () => {
             },
             ssp_id: 123,
             cssp_id: 123,
+            bcrs_setting: {
+              container_unit_list: [
+                {
+                  quantity_per_pack: 12,
+                  volume: 600,
+                },
+              ],
+            },
           },
         ],
         standardise_tier_variation: [
@@ -3203,6 +3280,71 @@ describe("ProductManager (Generated Tests)", () => {
 
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/product/link_item_to_ssp", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
+  describe("publishItemToOutletShop", () => {
+    it("should forward the exact request options and return the response", async () => {
+      const exampleRequest = {
+        mart_item_id: 123,
+        outlet_shop_id: 123,
+        publish_item: {
+          outlet_item_id: 123,
+          model: [
+            {
+              relate_mart_model_id: 123,
+              model_status: "test_string",
+              original_price: 123,
+              seller_stock: [
+                {
+                  location_id: "test_string",
+                  stock: 123,
+                },
+              ],
+              pre_order: {
+                is_pre_order: true,
+                days_to_ship: 123,
+              },
+            },
+          ],
+          logistic_info: [
+            {
+              logistic_id: 123,
+              enabled: true,
+              shipping_fee: 123,
+              size_id: 123,
+              is_free: true,
+            },
+          ],
+          purchase_limit_info: {
+            min_purchase_limit: 123,
+            max_purchase_limit: {
+              purchase_limit: 123,
+            },
+          },
+        },
+      };
+      const exampleResponse = {
+        item_id: 123,
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.publishItemToOutletShop(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/product/publish_item_to_outlet_shop", {
         method: "POST",
         auth: true,
         body: exampleRequest,
@@ -3535,6 +3677,36 @@ describe("ProductManager (Generated Tests)", () => {
     });
   });
 
+  describe("setItemTenureInfo", () => {
+    it("should forward the exact request options and return the response", async () => {
+      const exampleRequest = {
+        item_id: 123456789,
+        tenure_key: 3,
+      };
+      const exampleResponse = {
+        item_id: 123456789,
+      };
+
+      mockFetch.mockResolvedValueOnce({
+        request_id: "test-request-id",
+        error: "",
+        message: "",
+        response: exampleResponse,
+      });
+
+      const result = await manager.setItemTenureInfo(exampleRequest);
+
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(mockConfig, "/product/set_item_tenure_info", {
+        method: "POST",
+        auth: true,
+        body: exampleRequest,
+      });
+
+      expect(result.response).toEqual(exampleResponse);
+    });
+  });
+
   describe("unlinkItemFromSsp", () => {
     it("should forward the exact request options and return the response", async () => {
       const exampleRequest = {
@@ -3763,6 +3935,15 @@ describe("ProductManager (Generated Tests)", () => {
           },
         },
         medicine_id: 123,
+        is_bcrs: true,
+        bcrs_setting: {
+          container_unit_list: [
+            {
+              quantity_per_pack: 12,
+              volume: 600,
+            },
+          ],
+        },
       };
       const exampleResponse = {
         description: "Hello product product 6xnhI3ug5D2rFpH3QoJSNNOrfUSP8rw5",
@@ -3969,6 +4150,14 @@ describe("ProductManager (Generated Tests)", () => {
               package_height: 11,
               package_length: 11,
               package_width: 11,
+            },
+            bcrs_setting: {
+              container_unit_list: [
+                {
+                  quantity_per_pack: 12,
+                  volume: 600,
+                },
+              ],
             },
           },
         ],

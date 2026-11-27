@@ -381,7 +381,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Order Management"
+    "Order Management",
+    "Swam ERP"
   ],
   "path": "/api/v2/logistics/download_to_label_filelink",
   "related_documents": {

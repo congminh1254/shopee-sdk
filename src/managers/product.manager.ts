@@ -59,6 +59,8 @@ import {
   GetItemListByContentDiagnosisResponse,
   GetItemPromotionRequest,
   GetItemPromotionResponse,
+  GetItemTenureInfoRequest,
+  GetItemTenureInfoResponse,
   GetItemViolationInfoRequest,
   GetItemViolationInfoResponse,
   GetKitItemInfoRequest,
@@ -95,6 +97,8 @@ import {
   InitTierVariationResponse,
   LinkItemToSspRequest,
   LinkItemToSspResponse,
+  PublishItemToOutletShopRequest,
+  PublishItemToOutletShopResponse,
   RegisterBrandRequest,
   RegisterBrandResponse,
   ReplyCommentRequest,
@@ -107,6 +111,8 @@ import {
   SearchSspListResponse,
   SearchUnpackagedModelListRequest,
   SearchUnpackagedModelListResponse,
+  SetItemTenureInfoRequest,
+  SetItemTenureInfoResponse,
   UnlinkItemFromSspRequest,
   UnlinkItemFromSspResponse,
   UnlistItemRequest,
@@ -716,6 +722,28 @@ export class ProductManager extends BaseManager {
     });
   }
   /**
+   * Retrieves the current tenure configuration for an item.The item must belong to the authorized shop. Response fields:response.tenure_settingtoggle_status: Indicates whether SSPL tenure is enabled for the item.tenure_key: The active tenure key. It is 0 when SSPL tenure is not enabled.response.metadataallow_item_management: Indicates whether the seller is allowed to manage item-level tenure settings.sspl_possible_tenures: The tenure keys available for the shop.can_change_tenures：Whether seller can change exact tenure plan. - If allow_item_management is false, item-level tenure management is unavailable.- If allow_item_management is true, you can use the tenure function for the item.- If can_change_tenures is false, the tenure keys are fixed by the shop. You can only enable or disable tenure for the item.- If can_change_tenures is true, the tenure keys are not fixed by the shop. You can choose which tenure level to enable for the item.- For example, if the available tenure keys are [1, 3, 6], setting tenure_key to 1 enables 1-month tenure. Setting it to 3 enables both 1-month and 3-month tenures. Setting it to 6 enables 1-month, 3-month, and 6-month tenures.
+   *
+   * @param {GetItemTenureInfoRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
+   * @returns {Promise<GetItemTenureInfoResponse>} Promise resolving to the response
+   */
+  public async getItemTenureInfo(
+    params?: GetItemTenureInfoRequest,
+    options?: RequestOptions
+  ): Promise<GetItemTenureInfoResponse> {
+    return ShopeeFetch.fetch<GetItemTenureInfoResponse>(
+      this.config,
+      "/product/get_item_tenure_info",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+        request: options,
+      }
+    );
+  }
+  /**
    * get item violation info
    *
    * @param {GetItemViolationInfoRequest} params Request parameters
@@ -1091,6 +1119,28 @@ export class ProductManager extends BaseManager {
     });
   }
   /**
+   * This API supports publishing an existing item from the mart shop to an outlet shop.
+   *
+   * @param {PublishItemToOutletShopRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
+   * @returns {Promise<PublishItemToOutletShopResponse>} Promise resolving to the response
+   */
+  public async publishItemToOutletShop(
+    params: PublishItemToOutletShopRequest,
+    options?: RequestOptions
+  ): Promise<PublishItemToOutletShopResponse> {
+    return ShopeeFetch.fetch<PublishItemToOutletShopResponse>(
+      this.config,
+      "/product/publish_item_to_outlet_shop",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+        request: options,
+      }
+    );
+  }
+  /**
    * Use this call to register a brand.
    *
    * @param {RegisterBrandRequest} params Request parameters
@@ -1207,6 +1257,28 @@ export class ProductManager extends BaseManager {
     );
   }
   /**
+   * Updates the SSPL tenure configuration for an item.Method: POSTRequest fieldsitem_id, tenure key.Required flag:true: Opts the item out of SSPL. tenure_key is ignored.false: Cancels the item’s opt-out status.tenure_keyCancels opt-out and updates the item tenure.0: means opt out  item tenure.Whether to update the tenure is inferred from whether tenure_key is provided. - If allow_item_management is false, item-level tenure management is unavailable.- If allow_item_management is true, you can use the tenure function for the item.- If can_change_tenures is false, the tenure keys are fixed by the shop. You can only enable or disable tenure for the item.- If can_change_tenures is true, the tenure keys are not fixed by the shop. You can choose which tenure level to enable for the item.- For example, if the available tenure keys are [1, 3, 6], setting tenure_key to 1 enables 1-month tenure. Setting it to 3 enables both 1-month and 3-month tenures. Setting it to 6 enables 1-month, 3-month, and 6-month tenures.
+   *
+   * @param {SetItemTenureInfoRequest} params Request parameters
+   * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
+   * @returns {Promise<SetItemTenureInfoResponse>} Promise resolving to the response
+   */
+  public async setItemTenureInfo(
+    params: SetItemTenureInfoRequest,
+    options?: RequestOptions
+  ): Promise<SetItemTenureInfoResponse> {
+    return ShopeeFetch.fetch<SetItemTenureInfoResponse>(
+      this.config,
+      "/product/set_item_tenure_info",
+      {
+        method: "POST",
+        auth: true,
+        body: params,
+        request: options,
+      }
+    );
+  }
+  /**
    * Remove the SSP links of one or more models of an item. item_id and model_cssp_pairs are required, and each pair must contain model_id and cssp_id; ssp_id is optional.
    *
    * @param {UnlinkItemFromSspRequest} params Request parameters
@@ -1283,7 +1355,7 @@ export class ProductManager extends BaseManager {
     });
   }
   /**
-   * Update seller sku/ pre order/ model status for model.
+   * Update seller sku/ pre order/ model status for model. BCRS container settings can be updated using model[].bcrs_setting with model_id for each existing model.
    *
    * @param {UpdateModelRequest} params Request parameters
    * @param {RequestOptions} options Per-call options such as signal, timeout_ms and retry
