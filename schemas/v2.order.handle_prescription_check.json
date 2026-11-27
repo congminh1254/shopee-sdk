@@ -46,7 +46,7 @@
     },
     {
       "name": "order.invalid_pharmacist_nric",
-      "description": "The NRIC is invalid. Please make sure that NRIC number only contains digits and have 12 digits inside.",
+      "description": "The NRIC is invalid. Please make sure that the NRIC number only contains digits and has 12 digits inside.",
       "solution": {
         "content": "",
         "raw_content": []

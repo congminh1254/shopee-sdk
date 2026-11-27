@@ -812,6 +812,15 @@
                 "type": "string",
                 "required": "False",
                 "key": "hQXScdi"
+              },
+              {
+                "name": "vat_rate",
+                "type": "string",
+                "required": "False",
+                "limits": "",
+                "description": "<p>VAT rate for an item created by an AR local shop. Required for each applicable item when AR VAT is enabled and the VAT requirement applies. Submit an allowed rate for the shop as a percentage string, for example <code>21%</code> or <code>10.5%</code>.</p><p>AR request fragment: <code>{&quot;item_list&quot;:[{&quot;tax_info&quot;:{&quot;vat_rate&quot;:&quot;21%&quot;}}]}</code></p>",
+                "sample": "\"21%\"",
+                "key": "8LGepdd_"
               }
             ],
             "description": "Tax information",
@@ -1238,6 +1247,50 @@
             "type": "int64",
             "required": "False",
             "key": "wGNTGmQ"
+          },
+          {
+            "description": "<p>Whether the item is subject to the Beverage Container Return Scheme (BCRS). true: BCRS item; false: non-BCRS item. Applicable only to eligible shops and items in Singapore. Omit this field when BCRS is not applicable. Omitting this field does not set a default BCRS value; the applicable BCRS mandatory rule may require it when creating an eligible item. Setting false is subject to the shop's BCRS opt-out policy. If false is supplied, bcrs_setting in the same item request is ignored.</p>",
+            "name": "is_bcrs",
+            "sample": "true",
+            "type": "boolean",
+            "required": "False",
+            "key": "hV25UY8F"
+          },
+          {
+            "description": "<p>BCRS container settings for the item's default model. To specify settings for variations created later, use model[].bcrs_setting in v2.product.init_tier_variation or model_list[].bcrs_setting in v2.product.add_model. An omitted setting, an empty object, or an empty container_unit_list is treated as not provided; it cannot clear existing BCRS settings. If is_bcrs is explicitly false, this setting is ignored. Do not submit total_refundable_container_quantity, which is not a request field.</p>",
+            "name": "bcrs_setting",
+            "sample": "",
+            "type": "object",
+            "required": "False",
+            "key": "PfyWNaS7",
+            "children": [
+              {
+                "description": "<p>Container units in one sales pack of this model. Provide at least one entry when submitting BCRS container settings. Each entry describes containers of the same volume. An empty list is treated as not provided and cannot clear existing settings.</p>",
+                "name": "container_unit_list",
+                "sample": "",
+                "type": "object[]",
+                "required": "True",
+                "key": "xU25lUuf",
+                "children": [
+                  {
+                    "description": "<p>Number of containers of this volume in one sales pack. Required for each submitted container unit. Use a non-negative integer; applicable BCRS quantity limits are validated by the service.</p>",
+                    "name": "quantity_per_pack",
+                    "sample": "12",
+                    "type": "int32",
+                    "required": "True",
+                    "key": "9O1dfGN_"
+                  },
+                  {
+                    "description": "<p>Volume of each beverage container in millilitres (ml). Required for each submitted container unit. Use a non-negative integer; applicable BCRS volume limits are validated by the service.</p>",
+                    "name": "volume",
+                    "sample": "600",
+                    "type": "int32",
+                    "required": "True",
+                    "key": "L_LpLqde"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1315,47 +1368,6 @@
                 "c54265d475b85e00ffb2404585e32b6f"
               ]
             },
-            "tier_variation": [
-              {
-                "name": "Color",
-                "option_list": [
-                  {
-                    "option": "Red"
-                  },
-                  {
-                    "option": "Blue"
-                  }
-                ]
-              }
-            ],
-            "model_list": [
-              {
-                "model_sku": "SKU-001-RED",
-                "original_price": 12.34,
-                "seller_stock": [
-                  {
-                    "location_id": "SGZ",
-                    "stock": 100
-                  }
-                ],
-                "tier_index": [
-                  0
-                ]
-              },
-              {
-                "model_sku": "SKU-001-BLUE",
-                "original_price": 13.34,
-                "seller_stock": [
-                  {
-                    "location_id": "SGZ",
-                    "stock": 80
-                  }
-                ],
-                "tier_index": [
-                  1
-                ]
-              }
-            ],
             "weight": 1.2,
             "dimension": {
               "package_length": 10,
@@ -1370,7 +1382,23 @@
             ],
             "brand": {
               "brand_id": 0
-            }
+            },
+            "is_bcrs": true,
+            "bcrs_setting": {
+              "container_unit_list": [
+                {
+                  "quantity_per_pack": 12,
+                  "volume": 600
+                }
+              ]
+            },
+            "original_price": 12.34,
+            "seller_stock": [
+              {
+                "location_id": "SGZ",
+                "stock": 100
+              }
+            ]
           },
           {
             "category_id": 100017,
@@ -1382,47 +1410,6 @@
                 "6fb33d484f232510b5f9b169f2758322"
               ]
             },
-            "tier_variation": [
-              {
-                "name": "Size",
-                "option_list": [
-                  {
-                    "option": "M"
-                  },
-                  {
-                    "option": "L"
-                  }
-                ]
-              }
-            ],
-            "model_list": [
-              {
-                "model_sku": "SKU-002-M",
-                "original_price": 15.99,
-                "seller_stock": [
-                  {
-                    "location_id": "SGZ",
-                    "stock": 60
-                  }
-                ],
-                "tier_index": [
-                  0
-                ]
-              },
-              {
-                "model_sku": "SKU-002-L",
-                "original_price": 16.99,
-                "seller_stock": [
-                  {
-                    "location_id": "SGZ",
-                    "stock": 40
-                  }
-                ],
-                "tier_index": [
-                  1
-                ]
-              }
-            ],
             "weight": 1.5,
             "dimension": {
               "package_length": 12,
@@ -1437,7 +1424,23 @@
             ],
             "brand": {
               "brand_id": 0
-            }
+            },
+            "is_bcrs": true,
+            "bcrs_setting": {
+              "container_unit_list": [
+                {
+                  "quantity_per_pack": 12,
+                  "volume": 600
+                }
+              ]
+            },
+            "original_price": 15.99,
+            "seller_stock": [
+              {
+                "location_id": "SGZ",
+                "stock": 60
+              }
+            ]
           }
         ]
       }

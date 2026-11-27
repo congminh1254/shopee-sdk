@@ -52,6 +52,14 @@
       "solution": null
     },
     {
+      "name": "returns.error_offer_currency_mismatch",
+      "description": "Currency must be empty or match the local currency of the region",
+      "solution": {
+        "content": "",
+        "raw_content": []
+      }
+    },
+    {
       "name": "error_data",
       "description": "Something wrong. Please try later. [20]",
       "solution": null

@@ -8,11 +8,11 @@ Strategy:
   2) HTTP methods must match spec definitions exactly
   3) Endpoint request/response must use explicit endpoint type definitions
   4) Spec request/response fields must exist in those endpoint types with exact names
-- Specs scanned: 459
-- SDK endpoints discovered: 457
+- Specs scanned: 464
+- SDK endpoints discovered: 462
 - Missing endpoints: 0
 - SDK endpoints not in spec: 0
-- Method mismatches: 1
+- Method mismatches: 0
 - Missing request/response types: 0
 - Request field gaps: 0
 - Response field gaps: 8
@@ -21,9 +21,6 @@ Strategy:
 - Request type mismatches: 1
 - Response type mismatches: 2
 - Request optionality mismatches: 0
-
-Method mismatches:
-  - payment.get_escrow_detail_batch: expected GET, found POST
 
 Response field gaps:
   - payment.get_escrow_detail: order_income.items.activity_id, order_income.items.promotion_list.promotion_id

@@ -366,7 +366,8 @@
   "api_permission": [
     "ERP System",
     "Seller In House System",
-    "Order Management"
+    "Order Management",
+    "Swam ERP"
   ],
   "path": "/api/v2/first_mile/get_waybill_filelink",
   "related_documents": {
